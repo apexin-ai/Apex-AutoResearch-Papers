@@ -1,0 +1,2503 @@
+{
+  "schema_version": "1.0",
+  "session_id": "4e70666ae7cedb6df278",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 166,
+          "timestamp": "2026-05-16T04:58:02.915Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PxqfoHYcPQe54TRs6q7rGh",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "autodl-5090",
+                "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -c \"\nimport json, os\n\n# Check exp_009_v2 for stratification data\nv2_dir = 'output/exp_009_v2'\nif os.path.isdir(v2_dir):\n    files = os.listdir(v2_dir)\n    print('exp_009_v2 files:', files[:20])\n    for f in files:\n        if 'strat' in f.lower() or f.endswith('.json'):\n            print(f'  {f}')\n\n# Check exp_015 for the wrong-source LP RE rho\nfor d in ['output/exp_015_unified', 'output/exp_015_v2']:\n    if os.path.isdir(d):\n        files = os.listdir(d)\n        print(f'{d} files:', files[:10])\n        rpt = os.path.join(d, 'report.json')\n        if os.path.exists(rpt):\n            data = json.load(open(rpt))\n            if 're_logprob_baseline' in data:\n                lp = data['re_logprob_baseline']\n                print(f'  RE LP full rho: {lp.get(\\\"full\\\",{}).get(\\\"rho\\\",\\\"N/A\\\")}')\n                print(f'  RE LP cond rho: {lp.get(\\\"conditional\\\",{}).get(\\\"rho\\\",\\\"N/A\\\")}')\n\"\n",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a1a02ef9-4610-43a0-9163-a596b3c2ecfb",
+            "isSidechain": false,
+            "requestId": "req_011Cb5exTYGxDNkCEFfgkpnj",
+            "type": "assistant",
+            "uuid": "c96a6632-06e6-4d6b-aa32-75c25ebc2663",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JsZ7Zg9xY9CijQtSE9MjuZ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2162,
+                "cache_read_input_tokens": 92750,
+                "output_tokens": 1323,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2162,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1323,
+                    "cache_read_input_tokens": 92750,
+                    "cache_creation_input_tokens": 2162,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2162
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000166"
+        },
+        {
+          "source_line": 167,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "c96a6632-06e6-4d6b-aa32-75c25ebc2663",
+                "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc"
+              }
+            }
+          ],
+          "id": "event-000167"
+        },
+        {
+          "source_line": 168,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Audit provenance values in paper against registry",
+                "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc"
+              }
+            }
+          ],
+          "id": "event-000168"
+        },
+        {
+          "source_line": 169,
+          "timestamp": "2026-05-16T04:58:03.431Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PxqfoHYcPQe54TRs6q7rGh",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"exp_009_v2 files: ['results.json', 'ner_seed42_stratification.pdf', 'ner_seed123_stratification.pdf', 're_seed42_stratification.pdf', 'summary.txt']\\\\n  results.json\\\\n  ner_seed42_stratification.pdf\\\\n  ner_seed123_stratification.pdf\\\\n  re_seed42_stratification.pdf\\\\noutput/exp_015_unified files: ['exp015_unified_report.json', 'exp015_summary.md']\\\\noutput/exp_015_v2 files: ['exp015_v2_metrics.json']\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c96a6632-06e6-4d6b-aa32-75c25ebc2663",
+            "isSidechain": false,
+            "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+            "type": "user",
+            "uuid": "4f0f66b8-8bc3-4d28-a5be-421c5112eea1",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"exp_009_v2 files: ['results.json', 'ner_seed42_stratification.pdf', 'ner_seed123_stratification.pdf', 're_seed42_stratification.pdf', 'summary.txt']\\\\n  results.json\\\\n  ner_seed42_stratification.pdf\\\\n  ner_seed123_stratification.pdf\\\\n  re_seed42_stratification.pdf\\\\noutput/exp_015_unified files: ['exp015_unified_report.json', 'exp015_summary.md']\\\\noutput/exp_015_v2 files: ['exp015_v2_metrics.json']\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"exp_009_v2 files: ['results.json', 'ner_seed42_stratification.pdf', 'ner_seed123_stratification.pdf', 're_seed42_stratification.pdf', 'summary.txt']\\n  results.json\\n  ner_seed42_stratification.pdf\\n  ner_seed123_stratification.pdf\\n  re_seed42_stratification.pdf\\noutput/exp_015_unified files: ['exp015_unified_report.json', 'exp015_summary.md']\\noutput/exp_015_v2 files: ['exp015_v2_metrics.json']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+              }
+            },
+            "sourceToolAssistantUUID": "c96a6632-06e6-4d6b-aa32-75c25ebc2663",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000169"
+        },
+        {
+          "source_line": 170,
+          "timestamp": "2026-05-16T04:58:11.941Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013i9vn5S5fHPgxYLvbVzdNk",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "autodl-5090",
+                "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -c \"\nimport json\n\n# exp_009_v2 results\nd = json.load(open('output/exp_009_v2/results.json'))\nif 'scierc_re' in d:\n    re = d['scierc_re']\n    if 'by_sent_len' in re:\n        print('=== exp_009_v2 RE by_sent_len ===')\n        for k in re['by_sent_len']:\n            q = re['by_sent_len'][k]\n            sj = q.get('signals', {}).get('sj', {}).get('rho', 'N/A')\n            n = q.get('n', 'N/A')\n            print(f'{k}: n={n}, sj_rho={sj}')\n    if 'by_greedy_f1' in re:\n        print()\n        print('=== exp_009_v2 RE by_greedy_f1 ===')\n        for k in re['by_greedy_f1']:\n            q = re['by_greedy_f1'][k]\n            sj = q.get('signals', {}).get('sj', {}).get('rho', 'N/A')\n            n = q.get('n', 'N/A')\n            print(f'{k}: n={n}, sj_rho={sj}')\nelse:\n    print('Keys:', list(d.keys())[:15])\n\n# exp_015 unified\nprint()\nd2 = json.load(open('output/exp_015_unified/exp015_unified_report.json'))\nfor k in d2:\n    if 'logprob' in k.lower() or 'lp' in k.lower() or 're_cond' in k.lower():\n        print(f'{k}: {d2[k]}')\n# Just show all keys\nprint('exp015 keys:', [k for k in d2.keys() if 're' in k.lower() or 'lp' in k.lower() or 'log' in k.lower()])\n\"\n",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4f0f66b8-8bc3-4d28-a5be-421c5112eea1",
+            "isSidechain": false,
+            "requestId": "req_011Cb5ez32SeqxrwFSwLbfqK",
+            "type": "assistant",
+            "uuid": "92dc961f-c133-4847-9b58-6ec37d619be7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CvG9ZDK9U1LruVnMTEVokA",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1554,
+                "cache_read_input_tokens": 94912,
+                "output_tokens": 653,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1554,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 653,
+                    "cache_read_input_tokens": 94912,
+                    "cache_creation_input_tokens": 1554,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1554
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000170"
+        },
+        {
+          "source_line": 171,
+          "timestamp": "2026-05-16T04:58:12.454Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013i9vn5S5fHPgxYLvbVzdNk",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Keys: ['ner_seed42', 'ner_seed123', 're_seed42', 'ner_avg']\\\\n\\\\nexp015 keys: ['re']\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "92dc961f-c133-4847-9b58-6ec37d619be7",
+            "isSidechain": false,
+            "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+            "type": "user",
+            "uuid": "f2a5e400-dd46-4cf2-b5dc-d6a7f9a10fcd",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Keys: ['ner_seed42', 'ner_seed123', 're_seed42', 'ner_avg']\\\\n\\\\nexp015 keys: ['re']\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Keys: ['ner_seed42', 'ner_seed123', 're_seed42', 'ner_avg']\\n\\nexp015 keys: ['re']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+              }
+            },
+            "sourceToolAssistantUUID": "92dc961f-c133-4847-9b58-6ec37d619be7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000171"
+        },
+        {
+          "source_line": 172,
+          "timestamp": "2026-05-16T04:58:20.192Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WLKTooRF7AKxjp9jxqgNt5",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "autodl-5090",
+                "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -c \"\nimport json\n\n# exp_009_v2 - check re_seed42\nd = json.load(open('output/exp_009_v2/results.json'))\nif 're_seed42' in d:\n    re = d['re_seed42']\n    print('re_seed42 keys:', list(re.keys())[:15])\n    if 'by_sent_len' in re:\n        print('=== exp_009_v2 re_seed42 by_sent_len ===')\n        for k in re['by_sent_len']:\n            q = re['by_sent_len'][k]\n            sj = q.get('signals', {}).get('sj', {}).get('rho', 'N/A')\n            n = q.get('n', 'N/A')\n            print(f'{k}: n={n}, sj_rho={sj}')\n\n# exp_015 RE data\nd2 = json.load(open('output/exp_015_unified/exp015_unified_report.json'))\nre = d2.get('re', {})\nprint()\nprint('exp015 RE keys:', list(re.keys())[:20])\nif 'logprob' in re or 'lp' in re:\n    print('LP data:', re.get('logprob', re.get('lp', 'N/A')))\n# Print all signal data\nfor k, v in re.items():\n    if isinstance(v, (int, float)):\n        print(f'  {k}: {v}')\n    elif isinstance(v, dict):\n        print(f'  {k}: {list(v.keys())[:5]}')\n\"\n",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f2a5e400-dd46-4cf2-b5dc-d6a7f9a10fcd",
+            "isSidechain": false,
+            "requestId": "req_011Cb5ezhaS7Co7d1ymcHfPJ",
+            "type": "assistant",
+            "uuid": "8c0403d6-94ca-4137-a38f-b7ec3f192fb7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01F27peDQ2v7W8p7vdaySVKk",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 770,
+                "cache_read_input_tokens": 96466,
+                "output_tokens": 553,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 770,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 553,
+                    "cache_read_input_tokens": 96466,
+                    "cache_creation_input_tokens": 770,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 770
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000172"
+        },
+        {
+          "source_line": 173,
+          "timestamp": "2026-05-16T04:58:20.707Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WLKTooRF7AKxjp9jxqgNt5",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"re_seed42 keys: ['n_total', 'subtask', 'by_greedy_f1', 'by_greedy_f1_fisher_z', 'by_sent_len', 'by_sent_len_thresholds', 'by_sent_len_fisher_z', 'by_ent_count', 'by_ent_count_fisher_z', 'by_type_diversity', 'by_type_diversity_thresholds', 'by_type_diversity_fisher_z', 'proxy_correlations', 'global_signals']\\\\n=== exp_009_v2 re_seed42 by_sent_len ===\\\\nLow (T1): n=196, sj_rho=-0.04635972468824193\\\\nMedium (T2): n=180, sj_rho=0.13818692226576398\\\\nHigh (T3): n=175, sj_rho=0.2669239250691258\\\\n\\\\nexp015 RE keys: ['n_total', 'n_valid', 'n_conditional', 'median_f1_full', 'median_f1_cond', 'signals', 'bootstrap_ci', 'loo_sj', 'calibration']\\\\n  n_total: 551\\\\n  n_valid: 397\\\\n  n_conditional: 296\\\\n  median_f1_full: 0.3333333333333333\\\\n  median_f1_cond: 0.5\\\\n  signals: ['soft_jaccard', 'fleiss_kappa', 'mean_logprob', 'exact_match', 'entity_voting']\\\\n  bootstrap_ci: ['sj_vs_fleiss_kappa', 'sj_vs_mean_logprob', 'sj_vs_exact_match', 'sj_vs_entity_voting']\\\\n  loo_sj: ['standard_f1_rho', 'loo_f1_rho', 'rho_difference', 'loo_vs_standard_rho', 'circularity_ok']\\\\n  calibration: ['soft_jaccard', 'fleiss_kappa', 'mean_logprob', 'exact_match', 'entity_voting']\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8c0403d6-94ca-4137-a38f-b7ec3f192fb7",
+            "isSidechain": false,
+            "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+            "type": "user",
+            "uuid": "96b9ea06-8d68-43eb-abfc-c8d62b874e75",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"re_seed42 keys: ['n_total', 'subtask', 'by_greedy_f1', 'by_greedy_f1_fisher_z', 'by_sent_len', 'by_sent_len_thresholds', 'by_sent_len_fisher_z', 'by_ent_count', 'by_ent_count_fisher_z', 'by_type_diversity', 'by_type_diversity_thresholds', 'by_type_diversity_fisher_z', 'proxy_correlations', 'global_signals']\\\\n=== exp_009_v2 re_seed42 by_sent_len ===\\\\nLow (T1): n=196, sj_rho=-0.04635972468824193\\\\nMedium (T2): n=180, sj_rho=0.13818692226576398\\\\nHigh (T3): n=175, sj_rho=0.2669239250691258\\\\n\\\\nexp015 RE keys: ['n_total', 'n_valid', 'n_conditional', 'median_f1_full', 'median_f1_cond', 'signals', 'bootstrap_ci', 'loo_sj', 'calibration']\\\\n  n_total: 551\\\\n  n_valid: 397\\\\n  n_conditional: 296\\\\n  median_f1_full: 0.3333333333333333\\\\n  median_f1_cond: 0.5\\\\n  signals: ['soft_jaccard', 'fleiss_kappa', 'mean_logprob', 'exact_match', 'entity_voting']\\\\n  bootstrap_ci: ['sj_vs_fleiss_kappa', 'sj_vs_mean_logprob', 'sj_vs_exact_match', 'sj_vs_entity_voting']\\\\n  loo_sj: ['standard_f1_rho', 'loo_f1_rho', 'rho_difference', 'loo_vs_standard_rho', 'circularity_ok']\\\\n  calibration: ['soft_jaccard', 'fleiss_kappa', 'mean_logprob', 'exact_match', 'entity_voting']\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"re_seed42 keys: ['n_total', 'subtask', 'by_greedy_f1', 'by_greedy_f1_fisher_z', 'by_sent_len', 'by_sent_len_thresholds', 'by_sent_len_fisher_z', 'by_ent_count', 'by_ent_count_fisher_z', 'by_type_diversity', 'by_type_diversity_thresholds', 'by_type_diversity_fisher_z', 'proxy_correlations', 'global_signals']\\n=== exp_009_v2 re_seed42 by_sent_len ===\\nLow (T1): n=196, sj_rho=-0.04635972468824193\\nMedium (T2): n=180, sj_rho=0.13818692226576398\\nHigh (T3): n=175, sj_rho=0.2669239250691258\\n\\nexp015 RE keys: ['n_total', 'n_valid', 'n_conditional', 'median_f1_full', 'median_f1_cond', 'signals', 'bootstrap_ci', 'loo_sj', 'calibration']\\n  n_total: 551\\n  n_valid: 397\\n  n_conditional: 296\\n  median_f1_full: 0.3333333333333333\\n  median_f1_cond: 0.5\\n  signals: ['soft_jaccard', 'fleiss_kappa', 'mean_logprob', 'exact_match', 'entity_voting']\\n  bootstrap_ci: ['sj_vs_fleiss_kappa', 'sj_vs_mean_logprob', 'sj_vs_exact_match', 'sj_vs_entity_voting']\\n  loo_sj: ['standard_f1_rho', 'loo_f1_rho', 'rho_difference', 'loo_vs_standard_rho', 'circularity_ok']\\n  calibration: ['soft_jaccard', 'fleiss_kappa', 'mean_logprob', 'exact_match', 'entity_voting']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+              }
+            },
+            "sourceToolAssistantUUID": "8c0403d6-94ca-4137-a38f-b7ec3f192fb7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000173"
+        },
+        {
+          "source_line": 174,
+          "timestamp": "2026-05-16T04:58:26.787Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Interesting! The exp_009_v2 has different bin boundaries (T1/T2/T3 tertiles instead of Q1/Q2/Q3/Q4 quartiles), and the RE by_sent_len values are very different:\n- Low (T1): sj_rho = -0.046\n- Medium (T2): sj_rho = 0.138\n- High (T3): sj_rho = 0.267\n\nThese are also not matching the paper's 0.110 and 0.473.\n\n\nLet me dig into exp_015 to see what's going on there.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "96b9ea06-8d68-43eb-abfc-c8d62b874e75",
+            "isSidechain": false,
+            "requestId": "req_011Cb5f1JwBtBips9a9WjrL8",
+            "type": "assistant",
+            "uuid": "446bf26b-5c02-4392-9bfe-f497fb999495",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MUi3jdLfZex4tJQJbRG1iH",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1189,
+                "cache_read_input_tokens": 97236,
+                "output_tokens": 510,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1189,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 510,
+                    "cache_read_input_tokens": 97236,
+                    "cache_creation_input_tokens": 1189,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1189
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000174"
+        },
+        {
+          "source_line": 175,
+          "timestamp": "2026-05-16T04:58:29.232Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TtNKfKzmxGbaKZ2SBAmXia",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "autodl-5090",
+                "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -c \"\nimport json\n\n# exp015 RE signal data - look for LP/logprob conditional rho\nd = json.load(open('output/exp_015_unified/exp015_unified_report.json'))\nre_signals = d['re']['signals']\nfor sig_name, sig_data in re_signals.items():\n    print(f'=== {sig_name} ===')\n    if isinstance(sig_data, dict):\n        for k, v in sig_data.items():\n            if isinstance(v, (int, float)):\n                print(f'  {k}: {v:.6f}' if isinstance(v, float) else f'  {k}: {v}')\n            elif isinstance(v, dict):\n                for kk, vv in v.items():\n                    print(f'  {k}.{kk}: {vv}')\n    print()\n\"\n",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "446bf26b-5c02-4392-9bfe-f497fb999495",
+            "isSidechain": false,
+            "requestId": "req_011Cb5f1JwBtBips9a9WjrL8",
+            "type": "assistant",
+            "uuid": "f751551d-9ae8-458b-ad77-655ebcc1bd0e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MUi3jdLfZex4tJQJbRG1iH",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1189,
+                "cache_read_input_tokens": 97236,
+                "output_tokens": 510,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1189,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 510,
+                    "cache_read_input_tokens": 97236,
+                    "cache_creation_input_tokens": 1189,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1189
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000175"
+        },
+        {
+          "source_line": 176,
+          "timestamp": "2026-05-16T04:58:29.746Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TtNKfKzmxGbaKZ2SBAmXia",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== soft_jaccard ===\\\\n  full.rho: 0.2111856976869065\\\\n  full.p_rho: 2.210227030399547e-05\\\\n  full.tau: 0.16188645960396325\\\\n  full.p_tau: 1.4258913210766884e-05\\\\n  full.auroc: 0.5816197004315816\\\\n  full.n: 397\\\\n  cond.rho: 0.3682920531854295\\\\n  cond.p_rho: 6.116385001848524e-11\\\\n  cond.tau: 0.26990942241983057\\\\n  cond.p_tau: 1.289936027756236e-10\\\\n  cond.auroc: 0.6966274114466389\\\\n  cond.n: 296\\\\n\\\\n=== fleiss_kappa ===\\\\n  full.rho: 0.25280782133455587\\\\n  full.p_rho: 3.317974348766374e-07\\\\n  full.tau: 0.19665787066549478\\\\n  full.p_tau: 1.311107459309817e-07\\\\n  full.auroc: 0.6307946179233308\\\\n  full.n: 397\\\\n  cond.rho: 0.31683087192539916\\\\n  cond.p_rho: 2.5167905576227273e-08\\\\n  cond.tau: 0.23975586405437\\\\n  cond.p_tau: 1.0993703240960715e-08\\\\n  cond.auroc: 0.6566466571965358\\\\n  cond.n: 296\\\\n\\\\n=== mean_logprob ===\\\\n  full.rho: 0.24668271217578314\\\\n  full.p_rho: 6.466504185414077e-07\\\\n  full.tau: 0.18084207809868308\\\\n  full.p_tau: 9.558517952039666e-07\\\\n  full.auroc: 0.6353643056613354\\\\n  full.n: 397\\\\n  cond.rho: 0.14574645978771525\\\\n  cond.p_rho: 0.012061990555778583\\\\n  cond.tau: 0.1039174853770387\\\\n  cond.p_tau: 0.012826956762003008\\\\n  cond.auroc: 0.552169729184805\\\\n  cond.n: 296\\\\n\\\\n=== exact_match ===\\\\n  full.rho: 0.10021526626212784\\\\n  full.p_rho: 0.04598783917208473\\\\n  full.tau: 0.08392806452160913\\\\n  full.p_tau: 0.032743921148723945\\\\n  full.auroc: 0.5036176694592536\\\\n  full.n: 397\\\\n  cond.rho: 0.36070963611203544\\\\n  cond.p_rho: 1.5924985078578092e-10\\\\n  cond.tau: 0.2781183358720306\\\\n  cond.p_tau: 4.299840883899117e-10\\\\n  cond.auroc: 0.6990331301837511\\\\n  cond.n: 296\\\\n\\\\n=== entity_voting ===\\\\n  full.rho: 0.42166547797708653\\\\n  full.p_rho: 1.518253441833814e-18\\\\n  full.tau: 0.3270212126296791\\\\n  full.p_tau: 2.503868053851325e-18\\\\n  full.auroc: 0.7161843107387662\\\\n  full.n: 397\\\\n  cond.rho: 0.4630297678261838\\\\n  cond.p_rho: 3.9035855770200273e-17\\\\n  cond.tau: 0.3476419278754012\\\\n  cond.p_tau: 2.1073259450903802e-16\\\\n  cond.auroc: 0.734843971956193\\\\n  cond.n: 296\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f751551d-9ae8-458b-ad77-655ebcc1bd0e",
+            "isSidechain": false,
+            "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+            "type": "user",
+            "uuid": "15478457-ab0f-411a-842b-748af1dcbbfa",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== soft_jaccard ===\\\\n  full.rho: 0.2111856976869065\\\\n  full.p_rho: 2.210227030399547e-05\\\\n  full.tau: 0.16188645960396325\\\\n  full.p_tau: 1.4258913210766884e-05\\\\n  full.auroc: 0.5816197004315816\\\\n  full.n: 397\\\\n  cond.rho: 0.3682920531854295\\\\n  cond.p_rho: 6.116385001848524e-11\\\\n  cond.tau: 0.26990942241983057\\\\n  cond.p_tau: 1.289936027756236e-10\\\\n  cond.auroc: 0.6966274114466389\\\\n  cond.n: 296\\\\n\\\\n=== fleiss_kappa ===\\\\n  full.rho: 0.25280782133455587\\\\n  full.p_rho: 3.317974348766374e-07\\\\n  full.tau: 0.19665787066549478\\\\n  full.p_tau: 1.311107459309817e-07\\\\n  full.auroc: 0.6307946179233308\\\\n  full.n: 397\\\\n  cond.rho: 0.31683087192539916\\\\n  cond.p_rho: 2.5167905576227273e-08\\\\n  cond.tau: 0.23975586405437\\\\n  cond.p_tau: 1.0993703240960715e-08\\\\n  cond.auroc: 0.6566466571965358\\\\n  cond.n: 296\\\\n\\\\n=== mean_logprob ===\\\\n  full.rho: 0.24668271217578314\\\\n  full.p_rho: 6.466504185414077e-07\\\\n  full.tau: 0.18084207809868308\\\\n  full.p_tau: 9.558517952039666e-07\\\\n  full.auroc: 0.6353643056613354\\\\n  full.n: 397\\\\n  cond.rho: 0.14574645978771525\\\\n  cond.p_rho: 0.012061990555778583\\\\n  cond.tau: 0.1039174853770387\\\\n  cond.p_tau: 0.012826956762003008\\\\n  cond.auroc: 0.552169729184805\\\\n  cond.n: 296\\\\n\\\\n=== exact_match ===\\\\n  full.rho: 0.10021526626212784\\\\n  full.p_rho: 0.04598783917208473\\\\n  full.tau: 0.08392806452160913\\\\n  full.p_tau: 0.032743921148723945\\\\n  full.auroc: 0.5036176694592536\\\\n  full.n: 397\\\\n  cond.rho: 0.36070963611203544\\\\n  cond.p_rho: 1.5924985078578092e-10\\\\n  cond.tau: 0.2781183358720306\\\\n  cond.p_tau: 4.299840883899117e-10\\\\n  cond.auroc: 0.6990331301837511\\\\n  cond.n: 296\\\\n\\\\n=== entity_voting ===\\\\n  full.rho: 0.42166547797708653\\\\n  full.p_rho: 1.518253441833814e-18\\\\n  full.tau: 0.3270212126296791\\\\n  full.p_tau: 2.503868053851325e-18\\\\n  full.auroc: 0.7161843107387662\\\\n  full.n: 397\\\\n  cond.rho: 0.4630297678261838\\\\n  cond.p_rho: 3.9035855770200273e-17\\\\n  cond.tau: 0.3476419278754012\\\\n  cond.p_tau: 2.1073259450903802e-16\\\\n  cond.auroc: 0.734843971956193\\\\n  cond.n: 296\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"=== soft_jaccard ===\\n  full.rho: 0.2111856976869065\\n  full.p_rho: 2.210227030399547e-05\\n  full.tau: 0.16188645960396325\\n  full.p_tau: 1.4258913210766884e-05\\n  full.auroc: 0.5816197004315816\\n  full.n: 397\\n  cond.rho: 0.3682920531854295\\n  cond.p_rho: 6.116385001848524e-11\\n  cond.tau: 0.26990942241983057\\n  cond.p_tau: 1.289936027756236e-10\\n  cond.auroc: 0.6966274114466389\\n  cond.n: 296\\n\\n=== fleiss_kappa ===\\n  full.rho: 0.25280782133455587\\n  full.p_rho: 3.317974348766374e-07\\n  full.tau: 0.19665787066549478\\n  full.p_tau: 1.311107459309817e-07\\n  full.auroc: 0.6307946179233308\\n  full.n: 397\\n  cond.rho: 0.31683087192539916\\n  cond.p_rho: 2.5167905576227273e-08\\n  cond.tau: 0.23975586405437\\n  cond.p_tau: 1.0993703240960715e-08\\n  cond.auroc: 0.6566466571965358\\n  cond.n: 296\\n\\n=== mean_logprob ===\\n  full.rho: 0.24668271217578314\\n  full.p_rho: 6.466504185414077e-07\\n  full.tau: 0.18084207809868308\\n  full.p_tau: 9.558517952039666e-07\\n  full.auroc: 0.6353643056613354\\n  full.n: 397\\n  cond.rho: 0.14574645978771525\\n  cond.p_rho: 0.012061990555778583\\n  cond.tau: 0.1039174853770387\\n  cond.p_tau: 0.012826956762003008\\n  cond.auroc: 0.552169729184805\\n  cond.n: 296\\n\\n=== exact_match ===\\n  full.rho: 0.10021526626212784\\n  full.p_rho: 0.04598783917208473\\n  full.tau: 0.08392806452160913\\n  full.p_tau: 0.032743921148723945\\n  full.auroc: 0.5036176694592536\\n  full.n: 397\\n  cond.rho: 0.36070963611203544\\n  cond.p_rho: 1.5924985078578092e-10\\n  cond.tau: 0.2781183358720306\\n  cond.p_tau: 4.299840883899117e-10\\n  cond.auroc: 0.6990331301837511\\n  cond.n: 296\\n\\n=== entity_voting ===\\n  full.rho: 0.42166547797708653\\n  full.p_rho: 1.518253441833814e-18\\n  full.tau: 0.3270212126296791\\n  full.p_tau: 2.503868053851325e-18\\n  full.auroc: 0.7161843107387662\\n  full.n: 397\\n  cond.rho: 0.4630297678261838\\n  cond.p_rho: 3.9035855770200273e-17\\n  cond.tau: 0.3476419278754012\\n  cond.p_tau: 2.1073259450903802e-16\\n  cond.auroc: 0.734843971956193\\n  cond.n: 296\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+              }
+            },
+            "sourceToolAssistantUUID": "f751551d-9ae8-458b-ad77-655ebcc1bd0e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000176"
+        },
+        {
+          "source_line": 177,
+          "timestamp": "2026-05-16T04:58:40.967Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I found the exp_015 data:\n\n**exp_015 (metrics expansion) - mean_logprob RE:**\n- full.rho: 0.2467 (n=397)\n- cond.rho: **0.1457** (n=296)\n\nSo exp_015's conditional LP RE rho = 0.1457, and n=296 (not n=238).\n\n**exp_012_rerun_1024 - RE logprob conditional:**\n- rho: 0.0112 (n=238)\n\n\nThe sample size difference between exp_015 (n=296) and exp_012 (n=238) likely stems from exp_015 using max_tokens=512, which affects the filtering thresholds. The paper reports 0.011 for conditional LP RE rho, matching exp_012's 0.0112, but I still can't locate where the 0.002 value mentioned in the task appears—let me check if there's a heatmap with that data.\n\nI should also look at the exp_015_v2 results to see if they provide any clarity.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "15478457-ab0f-411a-842b-748af1dcbbfa",
+            "isSidechain": false,
+            "requestId": "req_011Cb5f1yYeQEPrzoLR16H5Q",
+            "type": "assistant",
+            "uuid": "63233a0f-b1e4-4cb6-9bdf-d1c1e036dbd3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01C7yw1Vy3qNPQ6DLUAAA9Pf",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1668,
+                "cache_read_input_tokens": 98425,
+                "output_tokens": 1074,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1668,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1074,
+                    "cache_read_input_tokens": 98425,
+                    "cache_creation_input_tokens": 1668,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1668
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000177"
+        },
+        {
+          "source_line": 178,
+          "timestamp": "2026-05-16T04:58:43.894Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012JTk9ECEkb3xaZdJcpGzrS",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "autodl-5090",
+                "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -c \"\nimport json\n\n# exp_015_v2 metrics\nd = json.load(open('output/exp_015_v2/exp015_v2_metrics.json'))\nprint('exp015_v2 keys:', list(d.keys())[:20])\nif 're' in d:\n    re = d['re']\n    if 'signals' in re:\n        for sig_name, sig_data in re['signals'].items():\n            if 'logprob' in sig_name or 'lp' in sig_name:\n                print(f'{sig_name}: {sig_data}')\n    # Check if there's a direct logprob entry\n    for k, v in re.items():\n        if 'log' in k.lower() or 'lp' in k.lower():\n            print(f'{k}: {v}')\nelif 'scierc_re' in d:\n    print('scierc_re:', list(d['scierc_re'].keys())[:10])\n\"\n",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "63233a0f-b1e4-4cb6-9bdf-d1c1e036dbd3",
+            "isSidechain": false,
+            "requestId": "req_011Cb5f1yYeQEPrzoLR16H5Q",
+            "type": "assistant",
+            "uuid": "e732d51d-cf5f-4c4c-b4b0-bd949189000a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01C7yw1Vy3qNPQ6DLUAAA9Pf",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1668,
+                "cache_read_input_tokens": 98425,
+                "output_tokens": 1074,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1668,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1074,
+                    "cache_read_input_tokens": 98425,
+                    "cache_creation_input_tokens": 1668,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1668
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000178"
+        },
+        {
+          "source_line": 179,
+          "timestamp": "2026-05-16T04:58:44.400Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012JTk9ECEkb3xaZdJcpGzrS",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"exp015_v2 keys: ['scierc_n8_logprob_ner', 'scierc_n8_logprob_re', 'scierc_n16_seed42_ner', 'scierc_n16_seed42_re', 'scierc_n16_seed123_ner', 'scierc_n16_seed123_re', 'conll2003_ner', 'wnut17_ner', 'llama_scierc_n8_ner', 'llama_scierc_n8_re', 'llama_seed123_ner', 'llama_seed123_re', 'llama_seed456_ner', 'llama_seed456_re', 'scierc_re_n16_ner', 'scierc_re_n16_re', 'scierc_re_seed123_ner', 'scierc_re_seed123_re']\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e732d51d-cf5f-4c4c-b4b0-bd949189000a",
+            "isSidechain": false,
+            "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+            "type": "user",
+            "uuid": "1ecbc765-a814-438c-b018-8bbd99891312",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"exp015_v2 keys: ['scierc_n8_logprob_ner', 'scierc_n8_logprob_re', 'scierc_n16_seed42_ner', 'scierc_n16_seed42_re', 'scierc_n16_seed123_ner', 'scierc_n16_seed123_re', 'conll2003_ner', 'wnut17_ner', 'llama_scierc_n8_ner', 'llama_scierc_n8_re', 'llama_seed123_ner', 'llama_seed123_re', 'llama_seed456_ner', 'llama_seed456_re', 'scierc_re_n16_ner', 'scierc_re_n16_re', 'scierc_re_seed123_ner', 'scierc_re_seed123_re']\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"exp015_v2 keys: ['scierc_n8_logprob_ner', 'scierc_n8_logprob_re', 'scierc_n16_seed42_ner', 'scierc_n16_seed42_re', 'scierc_n16_seed123_ner', 'scierc_n16_seed123_re', 'conll2003_ner', 'wnut17_ner', 'llama_scierc_n8_ner', 'llama_scierc_n8_re', 'llama_seed123_ner', 'llama_seed123_re', 'llama_seed456_ner', 'llama_seed456_re', 'scierc_re_n16_ner', 'scierc_re_n16_re', 'scierc_re_seed123_ner', 'scierc_re_seed123_re']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"
+              }
+            },
+            "sourceToolAssistantUUID": "e732d51d-cf5f-4c4c-b4b0-bd949189000a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000179"
+        },
+        {
+          "source_line": 180,
+          "timestamp": "2026-05-16T04:58:47.631Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AEkmRgeYDkiFBxtNvea2LP",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "autodl-5090",
+                "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && python -c \"\nimport json\n\n# Check the heatmap data file\nimport os\nfig_dir = 'output/figures'\nif os.path.isdir(fig_dir):\n    print('figures:', os.listdir(fig_dir)[:20])\n\n# Check for heatmap data in analysis files\nfor f in ['output/analysis_unified_rho_full.json', 'output/rho_audit_results.json']:\n    if os.path.exists(f):\n        d = json.load(open(f))\n        print(f'\\\\n=== {f} ===')\n        if isinstance(d, dict):\n            for k in list(d.keys())[:10]:\n                v = d[k]\n                if isinstance(v, (int, float, str)):\n                    print(f'  {k}: {v}')\n                elif isinstance(v, dict):\n                    print(f'  {k}: {list(v.keys())[:5]}')\n\"\n",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1ecbc765-a814-438c-b018-8bbd99891312",
+            "isSidechain": false,
+            "requestId": "req_011Cb5f1yYeQEPrzoLR16H5Q",
+            "type": "assistant",
+            "uuid": "36516a41-c4c9-4861-a0a7-84e22db92233",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01C7yw1Vy3qNPQ6DLUAAA9Pf",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1668,
+                "cache_read_input_tokens": 98425,
+                "output_tokens": 1074,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1668,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1074,
+                    "cache_read_input_tokens": 98425,
+                    "cache_creation_input_tokens": 1668,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1668
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000180"
+        },
+        {
+          "source_line": 181,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "36516a41-c4c9-4861-a0a7-84e22db92233",
+                "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc"
+              }
+            }
+          ],
+          "id": "event-000181"
+        },
+        {
+          "source_line": 182,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Audit provenance values in paper against registry",
+                "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc"
+              }
+            }
+          ],
+          "id": "event-000182"
+        },
+        {
+          "source_line": 183,
+          "timestamp": "2026-05-16T04:58:48.143Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AEkmRgeYDkiFBxtNvea2LP",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"figures: ['lp_range_cdf.pdf', 'lp_range_cdf.png', 'lp_range_cdf_check.png', 'lp_range_cdf_n16_3seed.pdf', 'lp_range_cdf_n16_3seed.png', 'fig_selection_gap.pdf', 'fig_selection_gap.png']\\\\n\\\\n=== output/analysis_unified_rho_full.json ===\\\\n  metadata: ['pipeline', 'date', 'fk_empty_fix', 'gold_filter', 'conll_n_valid']\\\\n  results: ['llama_conll_n16_seed42', 'llama_conll_n16_seed123', 'llama_conll_n16_seed456', 'qwen_scierc_n16_seed42', 'qwen_scierc_n16_seed123']\\\\n  sanity_check_vs_rho_audit: ['llama_conll_n16_seed42.FK', 'llama_conll_n16_seed42.SJ', 'llama_conll_n16_seed42.VC', 'llama_conll_n16_seed42.EM', 'llama_conll_n16_seed42.LP']\\\\n  sanity_check_vs_n8_5signal: ['qwen_conll_n8_seed42.SJ', 'qwen_conll_n8_seed42.FK', 'qwen_conll_n8_seed42.EM', 'qwen_conll_n8_seed42.LP', 'qwen_conll_n8_seed42.VC']\\\\n\\\\n=== output/rho_audit_results.json ===\\\\n  exp_017_llama_conll_n16_r1024: ['exp_id', 'n_total', 'n_gold_empty', 'n_valid', 'n_conditional']\\\\n  exp_017_llama_conll_n16_s456_r1024: ['exp_id', 'n_total', 'n_gold_empty', 'n_valid', 'n_conditional']\\\\n  exp_001_n16_seed456: ['exp_id', 'n_total', 'n_gold_empty', 'n_valid', 'n_conditional']\\\\n  exp_011_ood_conll_to_scierc: ['exp_id', 'n_total', 'n_gold_empty', 'n_valid', 'n_conditional']\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "36516a41-c4c9-4861-a0a7-84e22db92233",
+            "isSidechain": false,
+            "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+            "type": "user",
+            "uuid": "2b7fb61c-60a3-4d99-8559-4cdc94a7a844",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"figures: ['lp_range_cdf.pdf', 'lp_range_cdf.png', 'lp_range_cdf_check.png', 'lp_range_cdf_n16_3seed.pdf', 'lp_range_cdf_n16_3seed.png', 'fig_selection_gap.pdf', 'fig_selection_gap.png']\\\\n\\\\n=== output/analysis_unified_rho_full.json ===\\\\n  metadata: ['pipeline', 'date', 'fk_empty_fix', 'gold_filter', 'conll_n_valid']\\\\n  results: ['llama_conll_n16_seed42', 'llama_conll_n16_seed123', 'llama_conll_n16_seed456', 'qwen_scierc_n16_seed42', 'qwen_scierc_n16_seed123']\\\\n  sanity_check_vs_rho_audit: ['llama_conll_n16_seed42.FK', 'llama_conll_n16_seed42.SJ', 'llama_conll_n16_seed42.VC', 'llama_conll_n16_seed42.EM', 'llama_conll_n16_seed42.LP']\\\\n  sanity_check_vs_n8_5signal: ['qwen_conll_n8_seed42.SJ', 'qwen_conll_n8_seed42.FK', 'qwen_conll_n8_seed42.EM', 'qwen_conll_n8_seed42.LP', 'qwen_conll_n8_seed42.VC']\\\\n\\\\n=== output/rho_audit_results.json ===\\\\n  exp_017_llama_conll_n16_r1024: ['exp_id', 'n_total', 'n_gold_empty', 'n_valid', 'n_conditional']\\\\n  exp_017_llama_conll_n16_s456_r1024: ['exp_id', 'n_total', 'n_gold_empty', 'n_valid', 'n_conditional']\\\\n  exp_001_n16_seed456: ['exp_id', 'n_total', 'n_gold_empty', 'n_valid', 'n_conditional']\\\\n  exp_011_ood_conll_to_scierc: ['exp_id', 'n_total', 'n_gold_empty', 'n_valid', 'n_conditional']\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"figures: ['lp_range_cdf.pdf', 'lp_range_cdf.png', 'lp_range_cdf_check.png', 'lp_range_cdf_n16_3seed.pdf', 'lp_range_cdf_n16_3seed.png', 'fig_selection_gap.pdf', 'fig_selection_gap.png']\\n\\n=== output/analysis_unified_rho_full.json ===\\n  metadata: ['pipeline', 'date', 'fk_empty_fix', 'gold_filter', 'conll_n_valid']\\n  results: ['llama_conll_n16_seed42', 'llama_conll_n16_seed123', 'llama_conll_n16_seed456', 'qwen_scierc_n16_seed42', 'qwen_scierc_n16_seed123']\\n  sanity_check_vs_rho_audit: ['llama_conll_n16_seed42.FK', 'llama_conll_n16_seed42.SJ', 'llama_conll_n16_seed42.VC', 'llama_conll_n16_seed42.EM', 'llama_conll_n16_seed42.LP']\\n  sanity_check_vs_n8_5signal: ['qwen_conll_n8_seed42.SJ', 'qwen_conll_n8_seed42.FK', 'qwen_conll_n8_seed42.EM', 'qwen_conll_n8_seed42.LP', 'qwen_conll_n8_seed42.VC']\\n\\n=== output/rho_audit_results.json ===\\n  exp_017_llama_conll_n16_r1024: ['exp_id', 'n_total', 'n_gold_empty', 'n_valid', 'n_conditional']\\n  exp_017_llama_conll_n16_s456_r1024: ['exp_id', 'n_total', 'n_gold_empty', 'n_valid', 'n_conditional']\\n  exp_001_n16_seed456: ['exp_id', 'n_total', 'n_gold_empty', 'n_valid', 'n_conditional']\\n  exp_011_ood_conll_to_scierc: ['exp_id', 'n_total', 'n_gold_empty', 'n_valid', 'n_conditional']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+              }
+            },
+            "sourceToolAssistantUUID": "36516a41-c4c9-4861-a0a7-84e22db92233",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000183"
+        },
+        {
+          "source_line": 184,
+          "timestamp": "2026-05-16T04:58:57.550Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me check the rho_audit_results and the unified rho data for the specific LP RE conditional values. Also, let me check the exp_015_v2 data for the LP RE values that might contain the 0.002 value.\n\nActually, let me step back and look at the big picture. The task mentions 3 discrepancies:\n1. c032: LP cond RE ρ — registry says 0.0112, paper reportedly says 0.002\n2. c023: Q1-Q4 SJ ρ — registry says Q1=0.447, Q4=0.540, paper says Q1=0.110, Q4=0.473\n\n\n3. c021: WNUT SJ ρ — registry says 0.089, paper reportedly says 0.062\n\nI've confirmed the c023 discrepancy in appendix.tex line 150. For c021 and c032, the paper's current values actually match the registry values, so these may have already been corrected or the reported discrepancies were inaccurate.\n\nLet me search through all the tex files including the artifacts directory to double-check for any remaining instances of 0.062 and 0.002.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2b7fb61c-60a3-4d99-8559-4cdc94a7a844",
+            "isSidechain": false,
+            "requestId": "req_011Cb5f3LFs9CKgfVuR7uuv3",
+            "type": "assistant",
+            "uuid": "e8db38bf-e497-4222-acfb-019acc77dbaa",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01A43NfvXnkEbo9XQWxbaUtT",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2160,
+                "cache_read_input_tokens": 100093,
+                "output_tokens": 842,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2160,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 842,
+                    "cache_read_input_tokens": 100093,
+                    "cache_creation_input_tokens": 2160,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2160
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000184"
+        },
+        {
+          "source_line": 185,
+          "timestamp": "2026-05-16T04:58:57.755Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "让我在 artifacts 旧版论文中搜索 0.062 和 0.002，看是否有残留。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e8db38bf-e497-4222-acfb-019acc77dbaa",
+            "isSidechain": false,
+            "requestId": "req_011Cb5f3LFs9CKgfVuR7uuv3",
+            "type": "assistant",
+            "uuid": "3349091d-507f-40fb-87a5-c1e48e24893c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01A43NfvXnkEbo9XQWxbaUtT",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2160,
+                "cache_read_input_tokens": 100093,
+                "output_tokens": 842,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2160,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 842,
+                    "cache_read_input_tokens": 100093,
+                    "cache_creation_input_tokens": 2160,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2160
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000185"
+        },
+        {
+          "source_line": 186,
+          "timestamp": "2026-05-16T04:58:59.884Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UwYWyyYFYxp7xCAVMzseNK",
+              "name": "Grep",
+              "input": {
+                "pattern": "0\\.062",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper",
+                "output_mode": "content",
+                "-n": true,
+                "context": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3349091d-507f-40fb-87a5-c1e48e24893c",
+            "isSidechain": false,
+            "requestId": "req_011Cb5f3LFs9CKgfVuR7uuv3",
+            "type": "assistant",
+            "uuid": "2de9fd12-ff7d-4180-a35a-a86f31f14e60",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01A43NfvXnkEbo9XQWxbaUtT",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2160,
+                "cache_read_input_tokens": 100093,
+                "output_tokens": 842,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2160,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 842,
+                    "cache_read_input_tokens": 100093,
+                    "cache_creation_input_tokens": 2160,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2160
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000186"
+        },
+        {
+          "source_line": 187,
+          "timestamp": "2026-05-16T04:59:02.133Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RS1aPREN414GRaeagzZsyQ",
+              "type": "tool_result",
+              "content": "No matches found"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f1f017d4-89d4-4b01-8876-e3133b4012c6",
+            "isSidechain": false,
+            "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+            "type": "user",
+            "uuid": "015f6d0a-ff07-4de8-b922-5938a1e08dbc",
+            "toolUseResult": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "",
+              "numLines": 0
+            },
+            "sourceToolAssistantUUID": "f1f017d4-89d4-4b01-8876-e3133b4012c6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000187"
+        },
+        {
+          "source_line": 188,
+          "timestamp": "2026-05-16T04:58:59.906Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UwYWyyYFYxp7xCAVMzseNK",
+              "type": "tool_result",
+              "content": "artifacts/_project/paper/experiments.tex-179-\\paragraph{Method boundary: WNUT-17.}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/experiments.tex-180-WNUT-17 establishes where the approach breaks down.\nartifacts/_project/paper/experiments.tex:181:SJ achieves $\\rho{=}0.062$ ($p{=}0.106$, not statistically significant), with 54\\% of instances at zero F1.\nartifacts/_project/paper/experiments.tex-182-Log-probability shows a strong \\textit{negative} correlation ($\\rho{=}{-}0.411$): the model is confidently wrong on novel entities, a calibration failure that no post-hoc consistency signal can remedy.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/experiments.tex-183-This is a boundary of the method, not a limitation of the datasets.\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/freeform_ablation_appendix_table.tex-15-\\midrule\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/freeform_ablation_appendix_table.tex-16-Mean LP std        & 0.0206 & 0.0199 & $-$0.0007 \\\\\nartifacts/_project/paper/freeform_ablation_appendix_table.tex:17:Mean LP range      & 0.0623 & 0.0599 & $-$0.0024 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/freeform_ablation_appendix_table.tex-18-Tied fraction ($\\varepsilon{=}0.05$) & 59.7\\% & 57.7\\% & $-$2.0\\,pp \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/freeform_ablation_appendix_table.tex-19-\\bottomrule"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2de9fd12-ff7d-4180-a35a-a86f31f14e60",
+            "isSidechain": false,
+            "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+            "type": "user",
+            "uuid": "19babb28-52f9-4616-bf9a-a7e334a8f721",
+            "toolUseResult": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "artifacts/_project/paper/experiments.tex-179-\\paragraph{Method boundary: WNUT-17.}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/experiments.tex-180-WNUT-17 establishes where the approach breaks down.\nartifacts/_project/paper/experiments.tex:181:SJ achieves $\\rho{=}0.062$ ($p{=}0.106$, not statistically significant), with 54\\% of instances at zero F1.\nartifacts/_project/paper/experiments.tex-182-Log-probability shows a strong \\textit{negative} correlation ($\\rho{=}{-}0.411$): the model is confidently wrong on novel entities, a calibration failure that no post-hoc consistency signal can remedy.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/experiments.tex-183-This is a boundary of the method, not a limitation of the datasets.\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/freeform_ablation_appendix_table.tex-15-\\midrule\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/freeform_ablation_appendix_table.tex-16-Mean LP std        & 0.0206 & 0.0199 & $-$0.0007 \\\\\nartifacts/_project/paper/freeform_ablation_appendix_table.tex:17:Mean LP range      & 0.0623 & 0.0599 & $-$0.0024 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/freeform_ablation_appendix_table.tex-18-Tied fraction ($\\varepsilon{=}0.05$) & 59.7\\% & 57.7\\% & $-$2.0\\,pp \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/freeform_ablation_appendix_table.tex-19-\\bottomrule",
+              "numLines": 11
+            },
+            "sourceToolAssistantUUID": "2de9fd12-ff7d-4180-a35a-a86f31f14e60",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000188"
+        },
+        {
+          "source_line": 189,
+          "timestamp": "2026-05-16T04:59:01.313Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01L4HPdWnFggQUuNJaeyeEBq",
+              "name": "Grep",
+              "input": {
+                "pattern": "0\\.002[^0-9]",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper",
+                "output_mode": "content",
+                "-n": true,
+                "context": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "19babb28-52f9-4616-bf9a-a7e334a8f721",
+            "isSidechain": false,
+            "requestId": "req_011Cb5f3LFs9CKgfVuR7uuv3",
+            "type": "assistant",
+            "uuid": "a4ff313a-3210-461f-a2d0-79822fa6ee9e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01A43NfvXnkEbo9XQWxbaUtT",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2160,
+                "cache_read_input_tokens": 100093,
+                "output_tokens": 842,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2160,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 842,
+                    "cache_read_input_tokens": 100093,
+                    "cache_creation_input_tokens": 2160,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2160
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000189"
+        },
+        {
+          "source_line": 190,
+          "timestamp": "2026-05-16T04:59:01.339Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01L4HPdWnFggQUuNJaeyeEBq",
+              "type": "tool_result",
+              "content": "No matches found"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a4ff313a-3210-461f-a2d0-79822fa6ee9e",
+            "isSidechain": false,
+            "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+            "type": "user",
+            "uuid": "1be64c8f-ed65-4e8c-867f-c9e4fddc7946",
+            "toolUseResult": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "",
+              "numLines": 0
+            },
+            "sourceToolAssistantUUID": "a4ff313a-3210-461f-a2d0-79822fa6ee9e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000190"
+        },
+        {
+          "source_line": 191,
+          "timestamp": "2026-05-16T04:59:02.115Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RS1aPREN414GRaeagzZsyQ",
+              "name": "Grep",
+              "input": {
+                "pattern": "Q1.*0\\.110|0\\.110.*Q1",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper",
+                "output_mode": "content",
+                "-n": true,
+                "context": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1be64c8f-ed65-4e8c-867f-c9e4fddc7946",
+            "isSidechain": false,
+            "requestId": "req_011Cb5f3LFs9CKgfVuR7uuv3",
+            "type": "assistant",
+            "uuid": "f1f017d4-89d4-4b01-8876-e3133b4012c6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01A43NfvXnkEbo9XQWxbaUtT",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2160,
+                "cache_read_input_tokens": 100093,
+                "output_tokens": 842,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2160,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 842,
+                    "cache_read_input_tokens": 100093,
+                    "cache_creation_input_tokens": 2160,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2160
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000191"
+        },
+        {
+          "source_line": 192,
+          "timestamp": "2026-05-16T04:59:02.167Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "015f6d0a-ff07-4de8-b922-5938a1e08dbc",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "todo_reminder",
+                  "content": [],
+                  "itemCount": 0
+                },
+                "type": "attachment",
+                "uuid": "28bb3aa2-e8c3-424c-89b4-a0272d25c5f8",
+                "timestamp": "2026-05-16T04:59:02.167Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+                "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000192"
+        },
+        {
+          "source_line": 193,
+          "timestamp": "2026-05-16T04:59:10.582Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Found it! In `artifacts/_project/paper/experiments.tex` line 181:\n```\nSJ achieves $\\rho{=}0.062$ ($p{=}0.106$, not statistically significant), with 54\\% of instances at zero F1.\n```\n\nThis is the OLD version of the paper (artifacts/_project/paper/), which has 0.062 for WNUT SJ ρ. The current version (docs/paper/sections/) has already been updated to 0.089 in the WNUT table.\n\nBut wait — the current paper text in experiments.tex line 50 doesn't mention SJ ρ=0.089 in inline text. \n\nThe inline text just references Table tab:wnut, which contains the correct 0.089 value. So for c021, the old artifacts version had 0.062 but the current version already has the corrected 0.089 — this has been fixed. Now I need to track down the old LP RE conditional rho value of 0.002 in the artifacts version.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "28bb3aa2-e8c3-424c-89b4-a0272d25c5f8",
+            "isSidechain": false,
+            "requestId": "req_011Cb5f4N8ksXh3APbE92SsG",
+            "type": "assistant",
+            "uuid": "65fc4ad6-1b55-4b23-bd1b-c05b2550cd97",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VyTSX3kpYHjKRYP6dWAxaE",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1639,
+                "cache_read_input_tokens": 102253,
+                "output_tokens": 530,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1639,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 530,
+                    "cache_read_input_tokens": 102253,
+                    "cache_creation_input_tokens": 1639,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1639
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000193"
+        },
+        {
+          "source_line": 194,
+          "timestamp": "2026-05-16T04:59:10.963Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "找到了 c021 的旧值！`artifacts/_project/paper/experiments.tex:181` 有 SJ ρ=0.062。已在当前版本修正。继续搜索 c032 的 0.002。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "65fc4ad6-1b55-4b23-bd1b-c05b2550cd97",
+            "isSidechain": false,
+            "requestId": "req_011Cb5f4N8ksXh3APbE92SsG",
+            "type": "assistant",
+            "uuid": "bd53a118-5239-4e62-a465-2a3b0c5db21a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VyTSX3kpYHjKRYP6dWAxaE",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1639,
+                "cache_read_input_tokens": 102253,
+                "output_tokens": 530,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1639,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 530,
+                    "cache_read_input_tokens": 102253,
+                    "cache_creation_input_tokens": 1639,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1639
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000194"
+        },
+        {
+          "source_line": 195,
+          "timestamp": "2026-05-16T04:59:12.147Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012Pn5ePyxrc5PWKrADZyR5N",
+              "name": "Grep",
+              "input": {
+                "pattern": "LP.*RE.*rho|LP.*cond.*RE|logprob.*RE.*rho|0\\.002",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper",
+                "output_mode": "content",
+                "-n": true,
+                "context": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bd53a118-5239-4e62-a465-2a3b0c5db21a",
+            "isSidechain": false,
+            "requestId": "req_011Cb5f4N8ksXh3APbE92SsG",
+            "type": "assistant",
+            "uuid": "54f2d2e4-9c50-4e3b-84a9-df7db071f448",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VyTSX3kpYHjKRYP6dWAxaE",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1639,
+                "cache_read_input_tokens": 102253,
+                "output_tokens": 530,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1639,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 530,
+                    "cache_read_input_tokens": 102253,
+                    "cache_creation_input_tokens": 1639,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1639
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000195"
+        },
+        {
+          "source_line": 196,
+          "timestamp": "2026-05-16T04:59:12.178Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012Pn5ePyxrc5PWKrADZyR5N",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/freeform_ablation_appendix_table.tex-15-\\midrule\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/freeform_ablation_appendix_table.tex-16-Mean LP std        & 0.0206 & 0.0199 & $-$0.0007 \\\\\nartifacts/_project/paper/freeform_ablation_appendix_table.tex:17:Mean LP range      & 0.0623 & 0.0599 & $-$0.0024 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/freeform_ablation_appendix_table.tex-18-Tied fraction ($\\varepsilon{=}0.05$) & 59.7\\% & 57.7\\% & $-$2.0\\,pp \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/freeform_ablation_appendix_table.tex-19-\\bottomrule\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/freeform_ablation_appendix_table.tex-31-\\midrule\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/freeform_ablation_appendix_table.tex-32-\\multirow{3}{*}{NER}\nartifacts/_project/paper/freeform_ablation_appendix_table.tex:33:  & Greedy        & 0.6182 & 0.6204 & \\textbf{+0.0022} \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/freeform_ablation_appendix_table.tex-34-  & LP-selected   & 0.6241 & 0.6222 & $-$0.0019 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/freeform_ablation_appendix_table.tex-35-  & Selection gap & +0.0059 & +0.0018 & $-$0.0041 \\\\\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/freeform_ablation_appendix_table.tex-57-FK & 0.2665 & 0.3197 & \\textbf{+0.0532} & 0.2752 & 0.3145 & \\textbf{+0.0393} \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/freeform_ablation_appendix_table.tex-58-LP & 0.2052 & 0.2129 & \\textbf{+0.0077} & 0.2662 & 0.3042 & \\textbf{+0.0379} \\\\\nartifacts/_project/paper/freeform_ablation_appendix_table.tex:59:EM & 0.2945 & 0.3171 & \\textbf{+0.0225} & 0.1344 & 0.1367 & \\textbf{+0.0024} \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/freeform_ablation_appendix_table.tex-60-VC & 0.3792 & 0.4089 & \\textbf{+0.0297} & 0.3498 & 0.3234 & $-$0.0263 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/freeform_ablation_appendix_table.tex-61-\\bottomrule"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "54f2d2e4-9c50-4e3b-84a9-df7db071f448",
+            "isSidechain": false,
+            "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+            "type": "user",
+            "uuid": "fc43e37f-295d-4e21-9aa8-a908af0451b2",
+            "toolUseResult": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/freeform_ablation_appendix_table.tex-15-\\midrule\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/freeform_ablation_appendix_table.tex-16-Mean LP std        & 0.0206 & 0.0199 & $-$0.0007 \\\\\nartifacts/_project/paper/freeform_ablation_appendix_table.tex:17:Mean LP range      & 0.0623 & 0.0599 & $-$0.0024 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/freeform_ablation_appendix_table.tex-18-Tied fraction ($\\varepsilon{=}0.05$) & 59.7\\% & 57.7\\% & $-$2.0\\,pp \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/freeform_ablation_appendix_table.tex-19-\\bottomrule\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/freeform_ablation_appendix_table.tex-31-\\midrule\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/freeform_ablation_appendix_table.tex-32-\\multirow{3}{*}{NER}\nartifacts/_project/paper/freeform_ablation_appendix_table.tex:33:  & Greedy        & 0.6182 & 0.6204 & \\textbf{+0.0022} \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/freeform_ablation_appendix_table.tex-34-  & LP-selected   & 0.6241 & 0.6222 & $-$0.0019 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/freeform_ablation_appendix_table.tex-35-  & Selection gap & +0.0059 & +0.0018 & $-$0.0041 \\\\\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/freeform_ablation_appendix_table.tex-57-FK & 0.2665 & 0.3197 & \\textbf{+0.0532} & 0.2752 & 0.3145 & \\textbf{+0.0393} \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/freeform_ablation_appendix_table.tex-58-LP & 0.2052 & 0.2129 & \\textbf{+0.0077} & 0.2662 & 0.3042 & \\textbf{+0.0379} \\\\\nartifacts/_project/paper/freeform_ablation_appendix_table.tex:59:EM & 0.2945 & 0.3171 & \\textbf{+0.0225} & 0.1344 & 0.1367 & \\textbf{+0.0024} \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/freeform_ablation_appendix_table.tex-60-VC & 0.3792 & 0.4089 & \\textbf{+0.0297} & 0.3498 & 0.3234 & $-$0.0263 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/freeform_ablation_appendix_table.tex-61-\\bottomrule",
+              "numLines": 17
+            },
+            "sourceToolAssistantUUID": "54f2d2e4-9c50-4e3b-84a9-df7db071f448",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000196"
+        },
+        {
+          "source_line": 197,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "fc43e37f-295d-4e21-9aa8-a908af0451b2",
+                "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc"
+              }
+            }
+          ],
+          "id": "event-000197"
+        },
+        {
+          "source_line": 198,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Audit provenance values in paper against registry",
+                "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc"
+              }
+            }
+          ],
+          "id": "event-000198"
+        },
+        {
+          "source_line": 199,
+          "timestamp": "2026-05-16T04:59:17.722Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "No direct match for \"0.002\" as LP cond RE rho in the artifacts/_project/paper either. Let me do a broader search across all artifacts and check the old experiments.tex more carefully for any LP RE conditional mention.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fc43e37f-295d-4e21-9aa8-a908af0451b2",
+            "isSidechain": false,
+            "requestId": "req_011Cb5f57DbVo4Kxef6PaLDD",
+            "type": "assistant",
+            "uuid": "4894cbbe-bf84-4e92-954d-e4217a6c73b1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UqsRrnZctxxMBiz6CBzhmo",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1689,
+                "cache_read_input_tokens": 103892,
+                "output_tokens": 391,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1689,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 391,
+                    "cache_read_input_tokens": 103892,
+                    "cache_creation_input_tokens": 1689,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1689
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000199"
+        },
+        {
+          "source_line": 200,
+          "timestamp": "2026-05-16T04:59:19.636Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014AS2oCWKrQDjsJfEsVdZmz",
+              "name": "Grep",
+              "input": {
+                "pattern": "LP.*collapses|LP.*RE.*0\\.|LP.*near.zero",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper",
+                "output_mode": "content",
+                "-n": true,
+                "context": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4894cbbe-bf84-4e92-954d-e4217a6c73b1",
+            "isSidechain": false,
+            "requestId": "req_011Cb5f57DbVo4Kxef6PaLDD",
+            "type": "assistant",
+            "uuid": "d21139b3-4a03-4cd8-a8e9-372885f16046",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UqsRrnZctxxMBiz6CBzhmo",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1689,
+                "cache_read_input_tokens": 103892,
+                "output_tokens": 391,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1689,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 391,
+                    "cache_read_input_tokens": 103892,
+                    "cache_creation_input_tokens": 1689,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1689
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000200"
+        },
+        {
+          "source_line": 201,
+          "timestamp": "2026-05-16T04:59:19.664Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014AS2oCWKrQDjsJfEsVdZmz",
+              "type": "tool_result",
+              "content": "No matches found"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d21139b3-4a03-4cd8-a8e9-372885f16046",
+            "isSidechain": false,
+            "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+            "type": "user",
+            "uuid": "1355415d-da38-4add-a0d9-f747dfc1aeba",
+            "toolUseResult": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "",
+              "numLines": 0
+            },
+            "sourceToolAssistantUUID": "d21139b3-4a03-4cd8-a8e9-372885f16046",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000201"
+        },
+        {
+          "source_line": 202,
+          "timestamp": "2026-05-16T04:59:20.835Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017i7DBj1efutypFv8WViLyn",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/experiments.tex-62-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/experiments.tex-63-\\paragraph{Structural signals dominate on complex schemas.}\nartifacts/_project/paper/experiments.tex:64:On SciERC NER, Voting Confidence achieves $\\rho{=}0.502$, substantially outperforming the second-best signal, SJ ($\\rho{=}0.357$), and all remaining signals ($\\rho{\\leq}0.265$).\nartifacts/_project/paper/experiments.tex-65-Voting's advantage reflects its extraction-level granularity: it rewards entities that appear consistently while penalizing hallucinated or missed ones, whereas SJ compares entire sets and is sensitive to both overlap and total extraction count.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/experiments.tex-66-The structural advantage persists on RE, where Voting ($\\rho{=}0.422$) again leads.\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/experiments.tex-259-LLaMA-3.1-8B-Instruct replicates the structural-over-surface ordering on SciERC NER (SJ $\\rho{=}0.325{\\pm}0.021$, FK $\\rho{=}0.256{\\pm}0.024$, 3-seed mean).\nartifacts/_project/paper/experiments.tex-260-On CoNLL, the cross-model gap is minimal (Table~\\ref{tab:quality_estimation}): SJ achieves $\\rho{=}0.431$ (LLaMA) vs.\\ 0.436 (Qwen), $\\Delta{=}0.005$.\nartifacts/_project/paper/experiments.tex:261:On conditional RE (non-zero F1 instances), SJ recovers to $\\rho{=}0.405$ while FK drops to $\\rho{=}0.259$, confirming that structural advantage is robust across both models and evaluation conditions.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/experiments.tex-262-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/experiments.tex-263-\\paragraph{Evaluation circularity.}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/experiments.tex-268-We define instances as \\textit{tied} when the within-sample log-probability range falls below $\\varepsilon{=}0.05$ nats; results are robust to $\\varepsilon \\in \\{0.01, 0.05, 0.10\\}$ (tied fractions of 45\\%, 60\\%, 72\\% on NER, with consistent patterns across all thresholds).\nartifacts/_project/paper/experiments.tex-269-Filtering to non-zero F1 instances improves SJ correlations: NER $\\rho{=}0.412$ (from 0.357), RE $\\rho{=}0.368$ at $N{=}8$.\nartifacts/_project/paper/experiments.tex:270:At $N{=}16$, signal families diverge sharply on conditional RE: SJ maintains $\\rho{=}0.308$, while logprob drops to $\\rho{=}{-}0.026$---effectively zero---showing that logprob's apparent RE utility at $N{=}8$ does not generalize to larger sample sets.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/experiments.tex-271-For applications that can first filter out catastrophic failures, SJ's effective ranking approaches $\\rho{\\approx}0.4$ on both NER and RE, a regime where quality-aware aggregation can provide meaningful benefit.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/experiments.tex-272-\n--\nartifacts/_project/paper/discussion.tex-5-For per-instance quality estimation, entity voting provides the strongest single signal ($\\rho{=}0.50$, Table~\\ref{tab:quality_estimation}).\nartifacts/_project/paper/discussion.tex-6-When temperature or cross-condition robustness is required, SJ is preferable: its temperature sensitivity is small with bootstrap CIs including zero (Table~\\ref{tab:robustness}), and it generalizes beyond entity-level structure to any set-valued output.\nartifacts/_project/paper/discussion.tex:7:Under conditional filtering, SJ achieves $\\rho{\\approx}0.4$ on both NER and RE (\\S\\ref{sec:complexity_robustness}), and its ensemble with voting reaches AUROC${=}0.735$ (\\S\\ref{sec:selection_gap}).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/discussion.tex-8-For binary accept/reject decisions, logprob is most effective (AUROC${=}0.761$ on CoNLL with LLaMA).\nartifacts/_project/paper/discussion.tex-9-For best-of-$N$ selection, greedy decoding is near-optimal on NER; on RE, logprob is the only helpful signal (+2.3~pp, Table~\\ref{tab:selection})."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "60e70c53-c25d-45b8-84c3-d5e618fd957b",
+            "isSidechain": false,
+            "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+            "type": "user",
+            "uuid": "02207eb0-e61a-41d3-a911-b6899484aa1f",
+            "toolUseResult": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/experiments.tex-62-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/experiments.tex-63-\\paragraph{Structural signals dominate on complex schemas.}\nartifacts/_project/paper/experiments.tex:64:On SciERC NER, Voting Confidence achieves $\\rho{=}0.502$, substantially outperforming the second-best signal, SJ ($\\rho{=}0.357$), and all remaining signals ($\\rho{\\leq}0.265$).\nartifacts/_project/paper/experiments.tex-65-Voting's advantage reflects its extraction-level granularity: it rewards entities that appear consistently while penalizing hallucinated or missed ones, whereas SJ compares entire sets and is sensitive to both overlap and total extraction count.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/experiments.tex-66-The structural advantage persists on RE, where Voting ($\\rho{=}0.422$) again leads.\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/experiments.tex-259-LLaMA-3.1-8B-Instruct replicates the structural-over-surface ordering on SciERC NER (SJ $\\rho{=}0.325{\\pm}0.021$, FK $\\rho{=}0.256{\\pm}0.024$, 3-seed mean).\nartifacts/_project/paper/experiments.tex-260-On CoNLL, the cross-model gap is minimal (Table~\\ref{tab:quality_estimation}): SJ achieves $\\rho{=}0.431$ (LLaMA) vs.\\ 0.436 (Qwen), $\\Delta{=}0.005$.\nartifacts/_project/paper/experiments.tex:261:On conditional RE (non-zero F1 instances), SJ recovers to $\\rho{=}0.405$ while FK drops to $\\rho{=}0.259$, confirming that structural advantage is robust across both models and evaluation conditions.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/experiments.tex-262-\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/experiments.tex-263-\\paragraph{Evaluation circularity.}\n--\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/experiments.tex-268-We define instances as \\textit{tied} when the within-sample log-probability range falls below $\\varepsilon{=}0.05$ nats; results are robust to $\\varepsilon \\in \\{0.01, 0.05, 0.10\\}$ (tied fractions of 45\\%, 60\\%, 72\\% on NER, with consistent patterns across all thresholds).\nartifacts/_project/paper/experiments.tex-269-Filtering to non-zero F1 instances improves SJ correlations: NER $\\rho{=}0.412$ (from 0.357), RE $\\rho{=}0.368$ at $N{=}8$.\nartifacts/_project/paper/experiments.tex:270:At $N{=}16$, signal families diverge sharply on conditional RE: SJ maintains $\\rho{=}0.308$, while logprob drops to $\\rho{=}{-}0.026$---effectively zero---showing that logprob's apparent RE utility at $N{=}8$ does not generalize to larger sample sets.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/experiments.tex-271-For applications that can first filter out catastrophic failures, SJ's effective ranking approaches $\\rho{\\approx}0.4$ on both NER and RE, a regime where quality-aware aggregation can provide meaningful benefit.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/experiments.tex-272-\n--\nartifacts/_project/paper/discussion.tex-5-For per-instance quality estimation, entity voting provides the strongest single signal ($\\rho{=}0.50$, Table~\\ref{tab:quality_estimation}).\nartifacts/_project/paper/discussion.tex-6-When temperature or cross-condition robustness is required, SJ is preferable: its temperature sensitivity is small with bootstrap CIs including zero (Table~\\ref{tab:robustness}), and it generalizes beyond entity-level structure to any set-valued output.\nartifacts/_project/paper/discussion.tex:7:Under conditional filtering, SJ achieves $\\rho{\\approx}0.4$ on both NER and RE (\\S\\ref{sec:complexity_robustness}), and its ensemble with voting reaches AUROC${=}0.735$ (\\S\\ref{sec:selection_gap}).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/discussion.tex-8-For binary accept/reject decisions, logprob is most effective (AUROC${=}0.761$ on CoNLL with LLaMA).\nartifacts/_project/paper/discussion.tex-9-For best-of-$N$ selection, greedy decoding is near-optimal on NER; on RE, logprob is the only helpful signal (+2.3~pp, Table~\\ref{tab:selection}).",
+              "numLines": 23
+            },
+            "sourceToolAssistantUUID": "60e70c53-c25d-45b8-84c3-d5e618fd957b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000202"
+        },
+        {
+          "source_line": 203,
+          "timestamp": "2026-05-16T04:59:20.815Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017i7DBj1efutypFv8WViLyn",
+              "name": "Grep",
+              "input": {
+                "pattern": "conditional.*rho|cond.*rho.*0\\.",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper",
+                "output_mode": "content",
+                "-n": true,
+                "context": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1355415d-da38-4add-a0d9-f747dfc1aeba",
+            "isSidechain": false,
+            "requestId": "req_011Cb5f57DbVo4Kxef6PaLDD",
+            "type": "assistant",
+            "uuid": "60e70c53-c25d-45b8-84c3-d5e618fd957b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UqsRrnZctxxMBiz6CBzhmo",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1689,
+                "cache_read_input_tokens": 103892,
+                "output_tokens": 391,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1689,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 391,
+                    "cache_read_input_tokens": 103892,
+                    "cache_creation_input_tokens": 1689,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1689
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000203"
+        },
+        {
+          "source_line": 204,
+          "timestamp": "2026-05-16T04:59:52.328Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now let me look more closely at the old version of the paper. The old version at `artifacts/_project/paper/experiments.tex` line 270 mentions:\n\"At N=16, signal families diverge sharply on conditional RE: SJ maintains ρ=0.308, while logprob drops to ρ=-0.026\"\n\nThis is about N=16. The paper doesn't explicitly mention the N=8 LP conditional RE rho in the old version either.\n\nLet me also check if there's a specific heatmap or figure that had the 0.002 value. \n\nMaybe the \"0.002\" was actually the difference between rho_sj_cond and rho_fk_cond somewhere. Let me search across all local files to see if this value appears in any analysis or report related to LP RE rho. But actually, I should focus on what the task is telling me: the registry shows RE cond logprob rho = 0.0112 from exp_012_rerun_1024, and the error is coming from exp_015.\n\nLooking at the metrics, exp_015_metrics_expansion with max_tokens=512 gives 0.1457, but the paper currently writes 0.011, which matches the registry value of 0.0112. So the paper appears to be correct now. The \"0.002\" mentioned in the task might be a misreading, an already-fixed issue, or from an older version of the paper. It could also be confusion with a p-value or something from the old figure data. Let me check the exp_015 analysis report to confirm, then I'll have enough to write the audit summary.\n\nFor c032 (LP cond RE ρ), the paper says 0.011 which aligns with the registry truth of 0.0112 from exp_012_rerun_1024 — that's correct when rounded to three decimal places. The exp_015 wrong source would give 0.1457, but that's not in the paper. The \"0.002\" value from the task doesn't appear anywhere in current or previous paper versions, so it's likely a misattribution.\n\nNow checking c023 (Q1-Q4 stratification SJ ρ) where the paper reports Q1=0.110 through Q4=0.473 in the appendix.\n\nLooking at the registry data for scierc_re stratified by sentence length, I'm getting Q1=0.4472 and Q4=0.5401, which clearly doesn't match the paper's values. I've checked all available stratification dimensions — by_sent_len, by_greedy_f1, by_entity_count — and none of them produce those numbers. The closest I can find is exp_009_v2 with by_sent_len tertiles showing T2=0.138, which is somewhat near the paper's 0.110 but still off. These values most likely came from an intermediate analysis with different binning or filtering that got incorrectly attributed to RE.\n\nFor WNUT, the current paper value of 0.089 checks out against the registry at 0.08883, so that's correct. The old version had 0.062, which has since been fixed, though I can't pinpoint exactly where that earlier number originated — possibly from a pilot run or different filtering approach. I've confirmed there are no active TACRED processes on the server, so I'm ready to compile the audit report.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "02207eb0-e61a-41d3-a911-b6899484aa1f",
+            "isSidechain": false,
+            "requestId": "req_011Cb5f5k7d1Hy93p4euAxG1",
+            "type": "assistant",
+            "uuid": "0acfeccb-9fdb-4077-9652-9841d1d0fb23",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01U9nKc2kcsSFtM5iW8DyXVx",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1920,
+                "cache_read_input_tokens": 105581,
+                "output_tokens": 1364,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1920,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1364,
+                    "cache_read_input_tokens": 105581,
+                    "cache_creation_input_tokens": 1920,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1920
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000204"
+        },
+        {
+          "source_line": 205,
+          "timestamp": "2026-05-16T04:59:53.062Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据收集完毕。总结发现：\n- c023：确认差异（appendix.tex:150，Q1=0.110→Q4=0.473 vs 真值 Q1=0.447→Q4=0.540）\n- c021：已在 docs/ 版修正为 0.089，旧版 artifacts/ 有 0.062\n- c032：当前论文写的是 0.011（≈registry 0.0112），未找到 0.002\n\n现在写审计报告。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0acfeccb-9fdb-4077-9652-9841d1d0fb23",
+            "isSidechain": false,
+            "requestId": "req_011Cb5f5k7d1Hy93p4euAxG1",
+            "type": "assistant",
+            "uuid": "35a11f05-53e3-4af9-91c8-820f0857a715",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01U9nKc2kcsSFtM5iW8DyXVx",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1920,
+                "cache_read_input_tokens": 105581,
+                "output_tokens": 1364,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1920,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1364,
+                    "cache_read_input_tokens": 105581,
+                    "cache_creation_input_tokens": 1920,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1920
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000205"
+        },
+        {
+          "source_line": 206,
+          "timestamp": "2026-05-16T04:59:54.189Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AZpW8UZHKG1vKz7qZby3Cy",
+              "name": "Bash",
+              "input": {
+                "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/provenance_audit_d105",
+                "description": "Create audit report output directory"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "35a11f05-53e3-4af9-91c8-820f0857a715",
+            "isSidechain": false,
+            "requestId": "req_011Cb5f5k7d1Hy93p4euAxG1",
+            "type": "assistant",
+            "uuid": "79e4efe0-e33d-4c13-a678-79bd57576e95",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01U9nKc2kcsSFtM5iW8DyXVx",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1920,
+                "cache_read_input_tokens": 105581,
+                "output_tokens": 1364,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1920,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1364,
+                    "cache_read_input_tokens": 105581,
+                    "cache_creation_input_tokens": 1920,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1920
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000206"
+        },
+        {
+          "source_line": 207,
+          "timestamp": "2026-05-16T04:59:54.356Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AZpW8UZHKG1vKz7qZby3Cy",
+              "type": "tool_result",
+              "content": "(Bash completed with no output)",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "79e4efe0-e33d-4c13-a678-79bd57576e95",
+            "isSidechain": false,
+            "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+            "type": "user",
+            "uuid": "f7b357df-c29d-4179-882a-405721fbc21f",
+            "toolUseResult": {
+              "stdout": "",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": true
+            },
+            "sourceToolAssistantUUID": "79e4efe0-e33d-4c13-a678-79bd57576e95",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000207"
+        },
+        {
+          "source_line": 208,
+          "timestamp": "2026-05-16T05:00:34.949Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0141mhVpFJ1GMxMYNbXNLQuQ",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/provenance_audit_d105/audit_report.md",
+                "content": "# Provenance Audit Report (D105)\n\n**Date**: 2026-05-16  \n**Auditor**: Worker (automated)  \n**Scope**: 3 reported numerical discrepancies between paper and registry\n\n---\n\n## Summary\n\n| ID | Claim | Current Paper Value | Registry Truth | Status |\n|----|-------|-------------------|----------------|--------|\n| c032 | LP cond RE ρ = 0.002 | **0.011** | 0.0112 | CORRECT (already fixed or misreported) |\n| c023 | Q1-Q4 SJ ρ = 0.110→0.473 | **0.110→0.473** | 0.447→0.540 | **DISCREPANCY CONFIRMED** |\n| c021 | WNUT SJ ρ = 0.062 | **0.089** | 0.089 | CORRECT (fixed in docs/ version) |\n\n---\n\n## Detailed Findings\n\n### c032: LP Conditional RE ρ (72x差异)\n\n**Reported**: Paper writes 0.002, registry truth is 0.0112  \n**Actual finding**: Paper currently writes **0.011**, NOT 0.002\n\n- `docs/paper/sections/experiments.tex:50` — \"LP $^\\dagger$RE collapses to $\\rho{=}0.011$\"\n- `docs/paper/sections/appendix.tex:137` — figure caption: \"LP RE collapses to near-zero ($\\rho{=}0.011$)\"\n\n**Registry verification** (`exp_012_rerun_1024/report.json`):\n```\nre_logprob_baseline.conditional.rho = 0.01119 (n=238)\n```\n\n**Verdict**: Paper's 0.011 is a correct 3-decimal rounding of 0.01119. No error.\n\n**Wrong-source confirmation**: exp_015 (max_tokens=512) gives cond rho=0.1457 (n=296) — different filtering threshold produces inflated n and different rho, but this value is NOT in the paper.\n\n**Note on \"0.002\"**: This value was NOT found anywhere in the paper (current or old versions) as LP cond RE ρ. The task description may contain a misattribution. The only 0.002 values in experiments.tex are confidence intervals (±0.002) and unrelated deltas.\n\n---\n\n### c023: Q1-Q4 Stratification SJ ρ — CONFIRMED DISCREPANCY\n\n**Location**: `docs/paper/sections/appendix.tex:150`\n\n**Paper text**:\n```latex\nFor RE, SJ $\\rho$ increases monotonically with sentence length \n(Q1: 0.110 $\\to$ Q4: 0.473; Fisher $z$-test $p{=}0.004$)\n```\n\n**Registry truth** (`exp009_stratification_results.json`, scierc_re, by_sent_len):\n```\nQ1 (lowest): n=143, sj_rho=0.4472\nQ2:          n=151, sj_rho=0.3191\nQ3:          n=119, sj_rho=0.4975\nQ4 (highest):n=138, sj_rho=0.5401\n```\n\n**Discrepancy analysis**:\n- Paper Q1=0.110 vs truth Q1=0.447 (4x difference)\n- Paper Q4=0.473 vs truth Q4=0.540 (14% off)\n- Paper claims \"monotonically increasing\" — truth is NON-monotonic (Q2 dips to 0.319)\n- Paper's Fisher z-test p=0.004 may be valid for the wrong values, not the truth\n\n**Possible confusion sources**:\n1. **exp_009_v2** (re_seed42, tertile bins): T1=-0.046, T2=0.138, T3=0.267 — T2≈0.138 is close to 0.110 but not exact\n2. **by_greedy_f1 dimension** (RE): values are -0.043, -0.003, 0.006, 0.210 — no match\n3. **Different pipeline version**: The values 0.110 and 0.473 may originate from an intermediate analysis with different bin boundaries or conditional filtering not present in the final data\n\n**Root cause hypothesis**: Values likely came from a preliminary analysis run (possibly with quartile boundaries computed on a subset, or from a different stratification variable) and were never reconciled with the final exp009 data.\n\n**Correct text should read**: \"For RE, SJ ρ ranges from 0.319 (Q2) to 0.540 (Q4) across sentence-length quartiles (Q1: 0.447); the pattern is non-monotonic.\"\n\n---\n\n### c021: WNUT SJ ρ\n\n**Reported**: Paper writes 0.062, registry truth is 0.089  \n**Actual finding**: Paper **already fixed** to 0.089 in current compilation version.\n\n**Current paper** (`docs/paper/sections/appendix.tex:222`, Table tab:wnut):\n```latex\nSJ      & .089 & .020 & .517 & .288 & ${<}$1e-7 \\\\\n```\n\n**Registry verification** (`exp003_wnut17_eval/report.json`):\n```\ncorrelation_softjaccard_vs_f1_full.rho = 0.08883 (n=689)\ncorrelation_softjaccard_vs_f1_conditional.rho = 0.2884 (n=334)\n```\n\n**Old version** (`artifacts/_project/paper/experiments.tex:181`):\n```latex\nSJ achieves $\\rho{=}0.062$ ($p{=}0.106$, not statistically significant)\n```\n\n**Verdict**: Already corrected. The old 0.062 (artifacts/ version) was likely from an earlier pilot run (exp003_wnut17_pilot?) or from full-set n=1287 without gold-empty filtering.\n\n---\n\n## TACRED Process Check\n\n```\nps aux | grep tacred → No matches\n```\n\nNo TACRED-related processes running on autodl-5090. The `exp_tacred_re_benchmark` in registry has status=PREPARING, conclusion=killed.\n\n---\n\n## Action Items\n\n| Priority | Item | Action Required |\n|----------|------|----------------|\n| HIGH | c023 (appendix.tex:150) | Fix Q1-Q4 values to match registry truth. Remove \"monotonically increasing\" claim. Consider whether to report quartiles (non-monotonic) or focus on Q1 vs Q4 comparison only. |\n| NONE | c032 | No action needed — paper is correct (0.011 ≈ 0.0112). |\n| NONE | c021 | No action needed — already fixed in docs/ compilation version. |\n| LOW | Constraint C001 reminder | Confirm artifacts/_project/paper/ files are NOT used in compilation. They contain stale values (0.062 for WNUT). |\n\n---\n\n## Data Provenance Chain\n\n```\nexp_012_rerun_1024 (max_tokens=1024, n_cond=238) → LP RE cond ρ=0.0112 → paper: 0.011 ✓\nexp009_stratification_results.json (by_sent_len, scierc_re) → Q1=0.447, Q4=0.540 → paper: 0.110, 0.473 ✗\nexp003_wnut17_eval (n=689, gold-filtered) → SJ ρ=0.089 → paper: 0.089 ✓\n```\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f7b357df-c29d-4179-882a-405721fbc21f",
+            "isSidechain": false,
+            "requestId": "req_011Cb5f8DJYsfNeTZyqLQyyB",
+            "type": "assistant",
+            "uuid": "ce313e1a-2ccb-4bcd-a77d-cfdcfee09553",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01D2zi5mqtAAyUTJ2A9szMkC",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1382,
+                "cache_read_input_tokens": 107501,
+                "output_tokens": 2008,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1382,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2008,
+                    "cache_read_input_tokens": 107501,
+                    "cache_creation_input_tokens": 1382,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1382
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000208"
+        },
+        {
+          "source_line": 209,
+          "timestamp": "2026-05-16T05:00:34.973Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0141mhVpFJ1GMxMYNbXNLQuQ",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/provenance_audit_d105/audit_report.md"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ce313e1a-2ccb-4bcd-a77d-cfdcfee09553",
+            "isSidechain": false,
+            "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+            "type": "user",
+            "uuid": "c717faea-d783-41fc-ac28-75ea3ce4b578",
+            "toolUseResult": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/provenance_audit_d105/audit_report.md",
+              "content": "# Provenance Audit Report (D105)\n\n**Date**: 2026-05-16  \n**Auditor**: Worker (automated)  \n**Scope**: 3 reported numerical discrepancies between paper and registry\n\n---\n\n## Summary\n\n| ID | Claim | Current Paper Value | Registry Truth | Status |\n|----|-------|-------------------|----------------|--------|\n| c032 | LP cond RE ρ = 0.002 | **0.011** | 0.0112 | CORRECT (already fixed or misreported) |\n| c023 | Q1-Q4 SJ ρ = 0.110→0.473 | **0.110→0.473** | 0.447→0.540 | **DISCREPANCY CONFIRMED** |\n| c021 | WNUT SJ ρ = 0.062 | **0.089** | 0.089 | CORRECT (fixed in docs/ version) |\n\n---\n\n## Detailed Findings\n\n### c032: LP Conditional RE ρ (72x差异)\n\n**Reported**: Paper writes 0.002, registry truth is 0.0112  \n**Actual finding**: Paper currently writes **0.011**, NOT 0.002\n\n- `docs/paper/sections/experiments.tex:50` — \"LP $^\\dagger$RE collapses to $\\rho{=}0.011$\"\n- `docs/paper/sections/appendix.tex:137` — figure caption: \"LP RE collapses to near-zero ($\\rho{=}0.011$)\"\n\n**Registry verification** (`exp_012_rerun_1024/report.json`):\n```\nre_logprob_baseline.conditional.rho = 0.01119 (n=238)\n```\n\n**Verdict**: Paper's 0.011 is a correct 3-decimal rounding of 0.01119. No error.\n\n**Wrong-source confirmation**: exp_015 (max_tokens=512) gives cond rho=0.1457 (n=296) — different filtering threshold produces inflated n and different rho, but this value is NOT in the paper.\n\n**Note on \"0.002\"**: This value was NOT found anywhere in the paper (current or old versions) as LP cond RE ρ. The task description may contain a misattribution. The only 0.002 values in experiments.tex are confidence intervals (±0.002) and unrelated deltas.\n\n---\n\n### c023: Q1-Q4 Stratification SJ ρ — CONFIRMED DISCREPANCY\n\n**Location**: `docs/paper/sections/appendix.tex:150`\n\n**Paper text**:\n```latex\nFor RE, SJ $\\rho$ increases monotonically with sentence length \n(Q1: 0.110 $\\to$ Q4: 0.473; Fisher $z$-test $p{=}0.004$)\n```\n\n**Registry truth** (`exp009_stratification_results.json`, scierc_re, by_sent_len):\n```\nQ1 (lowest): n=143, sj_rho=0.4472\nQ2:          n=151, sj_rho=0.3191\nQ3:          n=119, sj_rho=0.4975\nQ4 (highest):n=138, sj_rho=0.5401\n```\n\n**Discrepancy analysis**:\n- Paper Q1=0.110 vs truth Q1=0.447 (4x difference)\n- Paper Q4=0.473 vs truth Q4=0.540 (14% off)\n- Paper claims \"monotonically increasing\" — truth is NON-monotonic (Q2 dips to 0.319)\n- Paper's Fisher z-test p=0.004 may be valid for the wrong values, not the truth\n\n**Possible confusion sources**:\n1. **exp_009_v2** (re_seed42, tertile bins): T1=-0.046, T2=0.138, T3=0.267 — T2≈0.138 is close to 0.110 but not exact\n2. **by_greedy_f1 dimension** (RE): values are -0.043, -0.003, 0.006, 0.210 — no match\n3. **Different pipeline version**: The values 0.110 and 0.473 may originate from an intermediate analysis with different bin boundaries or conditional filtering not present in the final data\n\n**Root cause hypothesis**: Values likely came from a preliminary analysis run (possibly with quartile boundaries computed on a subset, or from a different stratification variable) and were never reconciled with the final exp009 data.\n\n**Correct text should read**: \"For RE, SJ ρ ranges from 0.319 (Q2) to 0.540 (Q4) across sentence-length quartiles (Q1: 0.447); the pattern is non-monotonic.\"\n\n---\n\n### c021: WNUT SJ ρ\n\n**Reported**: Paper writes 0.062, registry truth is 0.089  \n**Actual finding**: Paper **already fixed** to 0.089 in current compilation version.\n\n**Current paper** (`docs/paper/sections/appendix.tex:222`, Table tab:wnut):\n```latex\nSJ      & .089 & .020 & .517 & .288 & ${<}$1e-7 \\\\\n```\n\n**Registry verification** (`exp003_wnut17_eval/report.json`):\n```\ncorrelation_softjaccard_vs_f1_full.rho = 0.08883 (n=689)\ncorrelation_softjaccard_vs_f1_conditional.rho = 0.2884 (n=334)\n```\n\n**Old version** (`artifacts/_project/paper/experiments.tex:181`):\n```latex\nSJ achieves $\\rho{=}0.062$ ($p{=}0.106$, not statistically significant)\n```\n\n**Verdict**: Already corrected. The old 0.062 (artifacts/ version) was likely from an earlier pilot run (exp003_wnut17_pilot?) or from full-set n=1287 without gold-empty filtering.\n\n---\n\n## TACRED Process Check\n\n```\nps aux | grep tacred → No matches\n```\n\nNo TACRED-related processes running on autodl-5090. The `exp_tacred_re_benchmark` in registry has status=PREPARING, conclusion=killed.\n\n---\n\n## Action Items\n\n| Priority | Item | Action Required |\n|----------|------|----------------|\n| HIGH | c023 (appendix.tex:150) | Fix Q1-Q4 values to match registry truth. Remove \"monotonically increasing\" claim. Consider whether to report quartiles (non-monotonic) or focus on Q1 vs Q4 comparison only. |\n| NONE | c032 | No action needed — paper is correct (0.011 ≈ 0.0112). |\n| NONE | c021 | No action needed — already fixed in docs/ compilation version. |\n| LOW | Constraint C001 reminder | Confirm artifacts/_project/paper/ files are NOT used in compilation. They contain stale values (0.062 for WNUT). |\n\n---\n\n## Data Provenance Chain\n\n```\nexp_012_rerun_1024 (max_tokens=1024, n_cond=238) → LP RE cond ρ=0.0112 → paper: 0.011 ✓\nexp009_stratification_results.json (by_sent_len, scierc_re) → Q1=0.447, Q4=0.540 → paper: 0.110, 0.473 ✗\nexp003_wnut17_eval (n=689, gold-filtered) → SJ ρ=0.089 → paper: 0.089 ✓\n```\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            },
+            "sourceToolAssistantUUID": "ce313e1a-2ccb-4bcd-a77d-cfdcfee09553",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000209"
+        },
+        {
+          "source_line": 210,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "c717faea-d783-41fc-ac28-75ea3ce4b578",
+                "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc"
+              }
+            }
+          ],
+          "id": "event-000210"
+        },
+        {
+          "source_line": 211,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Audit provenance values in paper against registry",
+                "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc"
+              }
+            }
+          ],
+          "id": "event-000211"
+        },
+        {
+          "source_line": 212,
+          "timestamp": "2026-05-16T05:00:40.966Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Cyhe7SgABzEMVqA7yTnndX",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "provenance_audit_d105",
+                "type": "report",
+                "description": "Provenance audit of 3 numerical discrepancies between paper and registry. c023 confirmed (appendix.tex:150), c021 and c032 already correct in current paper.",
+                "project": "struct_self_consist_ie",
+                "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/provenance_audit_d105/audit_report.md",
+                "tags": [
+                  "audit",
+                  "provenance",
+                  "d105"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c717faea-d783-41fc-ac28-75ea3ce4b578",
+            "isSidechain": false,
+            "requestId": "req_011Cb5fBCvoh72sQNC6ZroyK",
+            "type": "assistant",
+            "uuid": "42dfa18b-3b88-47cb-b17b-0e8a8c0ca5f3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VJdyCARHwS3JhjBPa9UrkT",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2070,
+                "cache_read_input_tokens": 108883,
+                "output_tokens": 255,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2070,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 255,
+                    "cache_read_input_tokens": 108883,
+                    "cache_creation_input_tokens": 2070,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2070
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000212"
+        },
+        {
+          "source_line": 213,
+          "timestamp": "2026-05-16T05:00:41.305Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Cyhe7SgABzEMVqA7yTnndX",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260516_ea4a11\\\", \\\"name\\\": \\\"provenance_audit_d105\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"Provenance audit of 3 numerical discrepancies between paper and registry. c023 confirmed (appendix.tex:150), c021 and c032 already correct in current paper.\\\", \\\"path\\\": \\\"projects/struct_self_consist_ie/artifacts/_project/report/audit_report.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"struct_self_consist_ie\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-16T05:00:40.972190+00:00\\\", \\\"tags\\\": [\\\"audit\\\", \\\"provenance\\\", \\\"d105\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "42dfa18b-3b88-47cb-b17b-0e8a8c0ca5f3",
+            "isSidechain": false,
+            "promptId": "c1e97325-3bb4-4488-9d22-95e1a429821a",
+            "type": "user",
+            "uuid": "4d33ff68-07a7-4db4-86cb-7a24d259e169",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260516_ea4a11\\\", \\\"name\\\": \\\"provenance_audit_d105\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"Provenance audit of 3 numerical discrepancies between paper and registry. c023 confirmed (appendix.tex:150), c021 and c032 already correct in current paper.\\\", \\\"path\\\": \\\"projects/struct_self_consist_ie/artifacts/_project/report/audit_report.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"struct_self_consist_ie\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-16T05:00:40.972190+00:00\\\", \\\"tags\\\": [\\\"audit\\\", \\\"provenance\\\", \\\"d105\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260516_ea4a11\", \"name\": \"provenance_audit_d105\", \"type\": \"report\", \"description\": \"Provenance audit of 3 numerical discrepancies between paper and registry. c023 confirmed (appendix.tex:150), c021 and c032 already correct in current paper.\", \"path\": \"projects/struct_self_consist_ie/artifacts/_project/report/audit_report.md\", \"url\": null, \"project\": \"struct_self_consist_ie\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-16T05:00:40.972190+00:00\", \"tags\": [\"audit\", \"provenance\", \"d105\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            },
+            "sourceToolAssistantUUID": "42dfa18b-3b88-47cb-b17b-0e8a8c0ca5f3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000213"
+        },
+        {
+          "source_line": 214,
+          "timestamp": "2026-05-16T05:00:51.491Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。结果：\n\n**1/3 有真正差异需修复**：\n- **c023** (`appendix.tex:150`)：论文写 Q1=0.110→Q4=0.473，实际数据 Q1=0.447→Q4=0.540，且非单调递增。需要修正。\n- **c032**：论文当前写 0.011，与 registry 0.0112 一致。\"0.002\"未在论文中找到。\n- **c021**：docs/ 版已修正为 0.089，artifacts/ 旧版残留 0.062 不参与编译。\n\n无 TACRED 进程运行。报告已写入 `artifacts/provenance_audit_d105/audit_report.md` 并注册。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4d33ff68-07a7-4db4-86cb-7a24d259e169",
+            "isSidechain": false,
+            "requestId": "req_011Cb5fBg4TgFfi9pnHbfZKQ",
+            "type": "assistant",
+            "uuid": "4522e7a0-a710-420e-9ba4-bbbe1e986573",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012GT8h1MsZXHcR5KirscLni",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 539,
+                "cache_read_input_tokens": 110953,
+                "output_tokens": 212,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 539,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 212,
+                    "cache_read_input_tokens": 110953,
+                    "cache_creation_input_tokens": 539,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 539
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000214"
+        },
+        {
+          "source_line": 215,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "4522e7a0-a710-420e-9ba4-bbbe1e986573",
+                "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc"
+              }
+            }
+          ],
+          "id": "event-000215"
+        },
+        {
+          "source_line": 216,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Audit provenance values in paper against registry",
+                "sessionId": "c8c7f004-7c20-436d-b822-f78a19ce26dc"
+              }
+            }
+          ],
+          "id": "event-000216"
+        }
+      ]
+    }
+  ]
+}

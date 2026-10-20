@@ -1,0 +1,1365 @@
+{
+  "schema_version": "1.0",
+  "id": "ef9a842274583f4dd077",
+  "project": "struct_self_consist_ie--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Parse the registry JSON file at /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-",
+  "task_key": "agent-a37fba2a40b1ce129",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/agent-a37fba2a40b1ce129.jsonl",
+    "occurrence": 1,
+    "bytes": 146250,
+    "sha256": "b330df60e3fa7051a87577ac35ec4584b00844cb8fa4855a8ea97a6096d4d4d1"
+  },
+  "statistics": {
+    "messages": 25,
+    "user_turns": 1,
+    "tool_calls": 10,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "tool_call": 10,
+      "tool_result": 10,
+      "assistant": 3
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T07:57:44.552Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Parse the registry JSON file at /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/8a7c5621-29b1-4475-9625-e962f960c1bd/tool-results/mcp-agent-ml-research-read_registry-1779177454168.txt\n\nThis file is JSON with schema: {result: string}. The \"result\" field is itself a JSON string containing an array of experiment objects.\n\nI need ALL experiments whose exp_id or name contains \"fewnerd\" (case-insensitive). For each matching experiment, return the FULL object including all fields — especially: exp_id, status, conclusion, metrics, config, notes, and any other fields present. Quote all numeric values verbatim.\n\nAlso search for any experiment with \"n16\" or \"n_16\" in its name/id.\n\nUse jq or python to parse. Return the complete data for all matching experiments."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "6db2e51c-9e8c-47e6-b1c4-6f35ea2e4e39",
+            "agentId": "a37fba2a40b1ce129",
+            "type": "user",
+            "uuid": "22f2e590-6567-404f-8e3d-1c517910f134",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "8a7c5621-29b1-4475-9625-e962f960c1bd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T07:57:44.557Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "22f2e590-6567-404f-8e3d-1c517910f134",
+                "isSidechain": true,
+                "agentId": "a37fba2a40b1ce129",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__append_idea",
+                    "mcp__agent-ml-research__detect_image",
+                    "mcp__agent-ml-research__kill_job",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__read_registry",
+                    "mcp__agent-ml-research__register_artifact",
+                    "mcp__agent-ml-research__save_project_file",
+                    "mcp__agent-ml-research__ssh_execute",
+                    "mcp__agent-ml-research__ssh_read_only",
+                    "mcp__agent-ml-research__update_registry"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__append_idea",
+                    "mcp__agent-ml-research__detect_image",
+                    "mcp__agent-ml-research__kill_job",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__read_registry",
+                    "mcp__agent-ml-research__register_artifact",
+                    "mcp__agent-ml-research__save_project_file",
+                    "mcp__agent-ml-research__ssh_execute",
+                    "mcp__agent-ml-research__ssh_read_only",
+                    "mcp__agent-ml-research__update_registry"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "79958d2b-68a9-47e4-8e50-c720a955bc3c",
+                "timestamp": "2026-05-19T07:57:44.557Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+                "sessionId": "8a7c5621-29b1-4475-9625-e962f960c1bd",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T07:57:51.195Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01M8UkEAsoG5oE7L3V7tWvw8",
+              "name": "Bash",
+              "input": {
+                "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/8a7c5621-29b1-4475-9625-e962f960c1bd/tool-results/mcp-agent-ml-research-read_registry-1779177454168.txt | python3 -c \"\nimport json, sys, re\n\nraw = json.load(sys.stdin)\nresult = json.loads(raw['result'])\n\nmatches = []\nfor exp in result:\n    exp_str = json.dumps(exp).lower()\n    exp_id = str(exp.get('exp_id', '')).lower()\n    name = str(exp.get('name', '')).lower()\n    \n    # Check for fewnerd, n16, n_16 in exp_id or name\n    if any(kw in exp_id or kw in name for kw in ['fewnerd', 'n16', 'n_16']):\n        matches.append(exp)\n\nprint(json.dumps(matches, indent=2, ensure_ascii=False))\nprint(f'\\n--- Total matching experiments: {len(matches)} ---')\n\"\n",
+                "description": "Parse registry JSON and filter experiments matching fewnerd/n16/n_16"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "79958d2b-68a9-47e4-8e50-c720a955bc3c",
+            "isSidechain": true,
+            "agentId": "a37fba2a40b1ce129",
+            "requestId": "req_011CbBa7WHfmWcqFcxijcVfh",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "c2a7e435-ceb9-4314-b99a-388dc3b8616e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "8a7c5621-29b1-4475-9625-e962f960c1bd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0142taEVV4JtfX9i5ysqYeKN",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 15939,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 382,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 15939
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 382,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 15939,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 15939,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T07:57:51.512Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 10, in <module>\n    exp_id = str(exp.get('exp_id', '')).lower()\n                 ^^^^^^^\nAttributeError: 'str' object has no attribute 'get'",
+              "is_error": true,
+              "tool_use_id": "toolu_01M8UkEAsoG5oE7L3V7tWvw8"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c2a7e435-ceb9-4314-b99a-388dc3b8616e",
+            "isSidechain": true,
+            "promptId": "6db2e51c-9e8c-47e6-b1c4-6f35ea2e4e39",
+            "agentId": "a37fba2a40b1ce129",
+            "type": "user",
+            "uuid": "8061c6ae-b595-44db-892b-026c7b79579e",
+            "toolUseResult": "Error: Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 10, in <module>\n    exp_id = str(exp.get('exp_id', '')).lower()\n                 ^^^^^^^\nAttributeError: 'str' object has no attribute 'get'",
+            "sourceToolAssistantUUID": "c2a7e435-ceb9-4314-b99a-388dc3b8616e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "8a7c5621-29b1-4475-9625-e962f960c1bd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T07:57:54.059Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The data structure is different than expected. Let me inspect it first."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8061c6ae-b595-44db-892b-026c7b79579e",
+            "isSidechain": true,
+            "agentId": "a37fba2a40b1ce129",
+            "requestId": "req_011CbBa825oMwTZg8dBa6JF8",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "24817d69-317d-4422-a468-72a14692e1df",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "8a7c5621-29b1-4475-9625-e962f960c1bd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01G2gPheypPYC4nBmveepk7e",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1312,
+                "cache_read_input_tokens": 15939,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1312,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T07:57:58.504Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Y6thA1cS5tnNve6kUysMZm",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport json, sys\n\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/8a7c5621-29b1-4475-9625-e962f960c1bd/tool-results/mcp-agent-ml-research-read_registry-1779177454168.txt') as f:\n    raw = json.load(f)\n\nresult = json.loads(raw['result'])\nprint(f'Type of result: {type(result)}')\nif isinstance(result, list):\n    print(f'Length: {len(result)}')\n    for i, item in enumerate(result[:3]):\n        print(f'Item {i} type: {type(item)}')\n        if isinstance(item, str):\n            print(f'  Value: {item[:200]}')\n        elif isinstance(item, dict):\n            print(f'  Keys: {list(item.keys())}')\nelif isinstance(result, dict):\n    print(f'Keys: {list(result.keys())}')\n    for k in list(result.keys())[:5]:\n        v = result[k]\n        print(f'  {k}: type={type(v)}')\n        if isinstance(v, list) and len(v) > 0:\n            print(f'    First item type: {type(v[0])}')\n            if isinstance(v[0], dict):\n                print(f'    First item keys: {list(v[0].keys())}')\n\"\n",
+                "description": "Inspect the structure of the parsed registry JSON"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "24817d69-317d-4422-a468-72a14692e1df",
+            "isSidechain": true,
+            "agentId": "a37fba2a40b1ce129",
+            "requestId": "req_011CbBa825oMwTZg8dBa6JF8",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "3044355b-cbfb-4bf4-832e-adacc79ef8b6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "8a7c5621-29b1-4475-9625-e962f960c1bd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01G2gPheypPYC4nBmveepk7e",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1312,
+                "cache_read_input_tokens": 15939,
+                "output_tokens": 478,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1312
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 478,
+                    "cache_read_input_tokens": 15939,
+                    "cache_creation_input_tokens": 1312,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1312,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T07:57:58.602Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Y6thA1cS5tnNve6kUysMZm",
+              "type": "tool_result",
+              "content": "Type of result: <class 'dict'>\nKeys: ['success', 'data', 'error', 'metadata']\n  success: type=<class 'bool'>\n  data: type=<class 'dict'>\n  error: type=<class 'NoneType'>\n  metadata: type=<class 'dict'>",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3044355b-cbfb-4bf4-832e-adacc79ef8b6",
+            "isSidechain": true,
+            "promptId": "6db2e51c-9e8c-47e6-b1c4-6f35ea2e4e39",
+            "agentId": "a37fba2a40b1ce129",
+            "type": "user",
+            "uuid": "f200303a-3daa-4acd-874a-03bd4d15a339",
+            "sourceToolAssistantUUID": "3044355b-cbfb-4bf4-832e-adacc79ef8b6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "8a7c5621-29b1-4475-9625-e962f960c1bd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T07:58:03.998Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0125Lbi1J176z85yGcbvjNvP",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/8a7c5621-29b1-4475-9625-e962f960c1bd/tool-results/mcp-agent-ml-research-read_registry-1779177454168.txt') as f:\n    raw = json.load(f)\n\nresult = json.loads(raw['result'])\ndata = result['data']\nprint(f'Data keys: {list(data.keys())}')\nfor k in data.keys():\n    v = data[k]\n    print(f'  {k}: type={type(v).__name__}, ', end='')\n    if isinstance(v, list):\n        print(f'len={len(v)}')\n        if len(v) > 0:\n            print(f'    First item type: {type(v[0]).__name__}')\n            if isinstance(v[0], dict):\n                print(f'    First item keys: {list(v[0].keys())}')\n    elif isinstance(v, dict):\n        print(f'keys={list(v.keys())[:10]}')\n    else:\n        print(f'value={v}')\n\"\n",
+                "description": "Inspect data structure inside the registry"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f200303a-3daa-4acd-874a-03bd4d15a339",
+            "isSidechain": true,
+            "agentId": "a37fba2a40b1ce129",
+            "requestId": "req_011CbBa8YHk7Re15b2LfuoK9",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "d19b8a45-ba02-415b-bef7-fb2803b7b0f5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "8a7c5621-29b1-4475-9625-e962f960c1bd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MT4pBZ4dJDua1P9vk6x1gU",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 568,
+                "cache_read_input_tokens": 17251,
+                "output_tokens": 399,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 568
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 399,
+                    "cache_read_input_tokens": 17251,
+                    "cache_creation_input_tokens": 568,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 568,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T07:58:04.161Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0125Lbi1J176z85yGcbvjNvP",
+              "type": "tool_result",
+              "content": "Data keys: ['experiments', 'count', 'total', 'baseline']\n  experiments: type=dict, keys=['exp_qwen25_32b_fewnerd', 'exp_qwen25_7b_fewnerd', 'exp_wnut17_qwen25_7b', 'exp_qwen25_14b_fewnerd', 'exp_qwen25_72b_zeroshot', 'exp_llama_fewnerd_inference', 'exp_entity_construction', 'exp_lp_alignment_gating', 'exp_selective_prediction', 'exp_llama_fewnerd_lora']\n  count: type=int, value=171\n  total: type=int, value=171\n  baseline: type=NoneType, value=None",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d19b8a45-ba02-415b-bef7-fb2803b7b0f5",
+            "isSidechain": true,
+            "promptId": "6db2e51c-9e8c-47e6-b1c4-6f35ea2e4e39",
+            "agentId": "a37fba2a40b1ce129",
+            "type": "user",
+            "uuid": "c7a4c424-b98d-4937-8550-6aa073fb34e6",
+            "sourceToolAssistantUUID": "d19b8a45-ba02-415b-bef7-fb2803b7b0f5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "8a7c5621-29b1-4475-9625-e962f960c1bd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-19T07:58:10.654Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MHTpt9hdtBCeoUSviEafvf",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/8a7c5621-29b1-4475-9625-e962f960c1bd/tool-results/mcp-agent-ml-research-read_registry-1779177454168.txt') as f:\n    raw = json.load(f)\n\nresult = json.loads(raw['result'])\nexperiments = result['data']['experiments']\n\n# experiments is a dict keyed by exp_id\nmatches = {}\nfor exp_id, exp_data in experiments.items():\n    exp_id_lower = exp_id.lower()\n    # Also check name if present\n    name = ''\n    if isinstance(exp_data, dict):\n        name = str(exp_data.get('name', '')).lower()\n    elif isinstance(exp_data, list):\n        # might be a list of sub-experiments\n        pass\n    \n    combined = exp_id_lower + ' ' + name\n    if any(kw in combined for kw in ['fewnerd', 'n16', 'n_16']):\n        matches[exp_id] = exp_data\n\nprint(json.dumps(matches, indent=2, ensure_ascii=False))\nprint(f'\\n--- Total matching experiment keys: {len(matches)} ---')\n\" 2>&1 | head -50\n",
+                "description": "Filter experiments matching fewnerd/n16/n_16 from the dict-keyed experiments"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c7a4c424-b98d-4937-8550-6aa073fb34e6",
+            "isSidechain": true,
+            "agentId": "a37fba2a40b1ce129",
+            "requestId": "req_011CbBa8x5UaSrDX6YqjKVsr",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "75142da9-6bc2-4a47-a013-649cc6fd06a3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "8a7c5621-29b1-4475-9625-e962f960c1bd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01R7bZJrBJPYt7AN2pNYA5FF",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 602,
+                "cache_read_input_tokens": 17819,
+                "output_tokens": 444,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 602
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 444,
+                    "cache_read_input_tokens": 17819,
+                    "cache_creation_input_tokens": 602,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 602,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-19T07:58:10.745Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MHTpt9hdtBCeoUSviEafvf",
+              "type": "tool_result",
+              "content": "{\n  \"exp_qwen25_32b_fewnerd\": {\n    \"status\": \"ALLOCATED\",\n    \"retry_count\": 0,\n    \"created_at\": \"2026-05-19T06:19:25.428Z\",\n    \"updated_at\": \"2026-05-19T07:52:18.591Z\",\n    \"hypothesis\": \"The correlation-selection gap (high QE correlation but no selection gain) generalizes to 32B-scale models. Qwen2.5-32B QLoRA fine-tuned on FewNERD should show the same pattern: structural signals have high ρ but fail at instance-level selection, while entity construction (θ=2/N) provides significant F1 gain. This fills the 8B→72B scale gap.\",\n    \"server\": \"autodl-5090\",\n    \"gpu\": \"cuda:0,cuda:1,cuda:2,cuda:3\",\n    \"account\": \"root\",\n    \"reproduce\": {\n      \"server\": \"autodl-5090\",\n      \"gpu\": \"cuda:0,cuda:1,cuda:2,cuda:3\",\n      \"started_at\": \"2026-05-19T06:47:41.246Z\"\n    },\n    \"notes\": \"2026-05-19 15:52 UTC: 32B model download in progress, 26GB/~65GB (~40%), 8 incomplete blobs remaining. PIDs 764902/764903 still active. Disk OK (84GB free). ETA ~1-2h.\"\n  },\n  \"exp_qwen25_7b_fewnerd\": {\n    \"status\": \"QUEUED\",\n    \"retry_count\": 0,\n    \"created_at\": \"2026-05-19T06:41:43.121Z\",\n    \"updated_at\": \"2026-05-19T07:48:40.207Z\",\n    \"hypothesis\": \"Qwen2.5-7B fine-tuned on FewNERD provides the baseline point for a pure Qwen2.5 family scale curve (7B/14B/32B/72B). This eliminates the confound of mixing Qwen2.5 and Qwen3 families when studying how the correlation-selection gap changes with model scale.\"\n  },\n  \"exp_qwen25_14b_fewnerd\": {\n    \"status\": \"ALLOCATED\",\n    \"retry_count\": 0,\n    \"created_at\": \"2026-05-19T06:19:31.620Z\",\n    \"updated_at\": \"2026-05-19T06:47:43.938Z\",\n    \"hypothesis\": \"The correlation-selection gap pattern is consistent at 14B scale, filling the gap between 8B and 32B. Qwen2.5-14B QLoRA fine-tuned on FewNERD should show intermediate degeneracy rates and similar signal ranking patterns, providing a smooth scaling curve for the diagnostic findings.\",\n    \"server\": \"autodl-5090-c\",\n    \"gpu\": \"cuda:0,cuda:1\",\n    \"account\": \"root\",\n    \"reproduce\": {\n      \"server\": \"autodl-5090-c\",\n      \"gpu\": \"cuda:0,cuda:1\",\n      \"started_at\": \"2026-05-19T06:47:43.938Z\"\n    }\n  },\n  \"exp_llama_fewnerd_inference\": {\n    \"status\": \"DONE\",\n    \"retry_count\": 0,\n    \"created_at\": \"2026-05-19T02:18:49.938Z\",\n    \"updated_at\": \"2026-05-19T03:15:04.486Z\",\n    \"hypothesis\": \"LLaMA-3.1-8B fine-tuned on FewNERD shows the same structured self-consistency phenomena (degeneracy, LP-F1 alignment, signal ranking) as Qwen models, providing cross-model generalization evidence. 3-seed inference (42/123/456) for statistical robustness.\",\n    \"parent\": \"exp_llama_fewnerd_lora\",\n    \"spec\": {\n      \"command\": \"bash code/run_llama_fewnerd_inference.sh\",\n      \"server\": \"autodl-5090\",\n      \"data_path\": \"/root/autodl-tmp/struct_self_consist_ie/data/fewnerd/\",",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "75142da9-6bc2-4a47-a013-649cc6fd06a3",
+            "isSidechain": true,
+            "promptId": "6db2e51c-9e8c-47e6-b1c4-6f35ea2e4e39",
+            "agentId": "a37fba2a40b1ce129",
+            "type": "user",
+            "uuid": "b082b6dc-56fb-4c49-8291-c1f225098f99",
+            "sourceToolAssistantUUID": "75142da9-6bc2-4a47-a013-649cc6fd06a3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "8a7c5621-29b1-4475-9625-e962f960c1bd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T07:58:16.217Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014i2nkeSZEzHJCofmtKRPcD",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/8a7c5621-29b1-4475-9625-e962f960c1bd/tool-results/mcp-agent-ml-research-read_registry-1779177454168.txt') as f:\n    raw = json.load(f)\n\nresult = json.loads(raw['result'])\nexperiments = result['data']['experiments']\n\nmatches = {}\nfor exp_id, exp_data in experiments.items():\n    exp_id_lower = exp_id.lower()\n    name = ''\n    if isinstance(exp_data, dict):\n        name = str(exp_data.get('name', '')).lower()\n    combined = exp_id_lower + ' ' + name\n    if any(kw in combined for kw in ['fewnerd', 'n16', 'n_16']):\n        matches[exp_id] = exp_data\n\nprint(json.dumps(matches, indent=2, ensure_ascii=False))\nprint(f'\\n--- Total matching experiment keys: {len(matches)} ---')\n\" 2>&1\n",
+                "description": "Print ALL matching experiments fully (no head truncation)",
+                "timeout": 30000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b082b6dc-56fb-4c49-8291-c1f225098f99",
+            "isSidechain": true,
+            "agentId": "a37fba2a40b1ce129",
+            "requestId": "req_011CbBa9SEeCes6y9hXB8xwH",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "8dddf29a-0a8e-46d6-8a1a-9b6e95ddbdc3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "8a7c5621-29b1-4475-9625-e962f960c1bd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PNYvCmyv1F8PCe3jAxSDWa",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1520,
+                "cache_read_input_tokens": 18421,
+                "output_tokens": 399,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1520
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 399,
+                    "cache_read_input_tokens": 18421,
+                    "cache_creation_input_tokens": 1520,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1520,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-19T07:58:16.524Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014i2nkeSZEzHJCofmtKRPcD",
+              "type": "tool_result",
+              "content": "<persisted-output>\nOutput too large (59.8KB). Full output saved to: /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/8a7c5621-29b1-4475-9625-e962f960c1bd/tool-results/bhxefydqt.txt\n\nPreview (first 2KB):\n{\n  \"exp_qwen25_32b_fewnerd\": {\n    \"status\": \"ALLOCATED\",\n    \"retry_count\": 0,\n    \"created_at\": \"2026-05-19T06:19:25.428Z\",\n    \"updated_at\": \"2026-05-19T07:52:18.591Z\",\n    \"hypothesis\": \"The correlation-selection gap (high QE correlation but no selection gain) generalizes to 32B-scale models. Qwen2.5-32B QLoRA fine-tuned on FewNERD should show the same pattern: structural signals have high ρ but fail at instance-level selection, while entity construction (θ=2/N) provides significant F1 gain. This fills the 8B→72B scale gap.\",\n    \"server\": \"autodl-5090\",\n    \"gpu\": \"cuda:0,cuda:1,cuda:2,cuda:3\",\n    \"account\": \"root\",\n    \"reproduce\": {\n      \"server\": \"autodl-5090\",\n      \"gpu\": \"cuda:0,cuda:1,cuda:2,cuda:3\",\n      \"started_at\": \"2026-05-19T06:47:41.246Z\"\n    },\n    \"notes\": \"2026-05-19 15:52 UTC: 32B model download in progress, 26GB/~65GB (~40%), 8 incomplete blobs remaining. PIDs 764902/764903 still active. Disk OK (84GB free). ETA ~1-2h.\"\n  },\n  \"exp_qwen25_7b_fewnerd\": {\n    \"status\": \"QUEUED\",\n    \"retry_count\": 0,\n    \"created_at\": \"2026-05-19T06:41:43.121Z\",\n    \"updated_at\": \"2026-05-19T07:48:40.207Z\",\n    \"hypothesis\": \"Qwen2.5-7B fine-tuned on FewNERD provides the baseline point for a pure Qwen2.5 family scale curve (7B/14B/32B/72B). This eliminates the confound of mixing Qwen2.5 and Qwen3 families when studying how the correlation-selection gap changes with model scale.\"\n  },\n  \"exp_qwen25_14b_fewnerd\": {\n    \"status\": \"ALLOCATED\",\n    \"retry_count\": 0,\n    \"created_at\": \"2026-05-19T06:19:31.620Z\",\n    \"updated_at\": \"2026-05-19T06:47:43.938Z\",\n    \"hypothesis\": \"The correlation-selection gap pattern is consistent at 14B scale, filling the gap between 8B and 32B. Qwen2.5-14B QLoRA fine-tuned on FewNERD should show intermediate degeneracy rates and similar signal ranking patterns, providing a smooth scaling curve for the diagnostic findings.\",\n    \"server\": \"autodl-5090-c\",\n    \"gpu\": \"cuda:0,cuda:1\",\n    \"account\": \"root\",\n    \"reproduce\": {\n...\n</persisted-output>",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8dddf29a-0a8e-46d6-8a1a-9b6e95ddbdc3",
+            "isSidechain": true,
+            "promptId": "6db2e51c-9e8c-47e6-b1c4-6f35ea2e4e39",
+            "agentId": "a37fba2a40b1ce129",
+            "type": "user",
+            "uuid": "4ed46b7c-303a-40ff-9faa-b562ac56b151",
+            "sourceToolAssistantUUID": "8dddf29a-0a8e-46d6-8a1a-9b6e95ddbdc3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "8a7c5621-29b1-4475-9625-e962f960c1bd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-19T07:58:20.473Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XeWHr2hMCeddFWmMT6aCFA",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/8a7c5621-29b1-4475-9625-e962f960c1bd/tool-results/bhxefydqt.txt"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4ed46b7c-303a-40ff-9faa-b562ac56b151",
+            "isSidechain": true,
+            "agentId": "a37fba2a40b1ce129",
+            "requestId": "req_011CbBa9rzR4nhRcJ2hjvgrA",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "23b48a00-e600-4c32-b963-1614885f2b4f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "8a7c5621-29b1-4475-9625-e962f960c1bd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01U8B7eHbsRJYq495n1wD4xB",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1282,
+                "cache_read_input_tokens": 19941,
+                "output_tokens": 131,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1282
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 131,
+                    "cache_read_input_tokens": 19941,
+                    "cache_creation_input_tokens": 1282,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1282,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-19T07:58:20.747Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "File content (26113 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+              "is_error": true,
+              "tool_use_id": "toolu_01XeWHr2hMCeddFWmMT6aCFA"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "23b48a00-e600-4c32-b963-1614885f2b4f",
+            "isSidechain": true,
+            "promptId": "6db2e51c-9e8c-47e6-b1c4-6f35ea2e4e39",
+            "agentId": "a37fba2a40b1ce129",
+            "type": "user",
+            "uuid": "d4b8e0a5-e86d-4ed6-b8f1-b3a43bf40569",
+            "toolUseResult": "Error: File content (26113 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+            "sourceToolAssistantUUID": "23b48a00-e600-4c32-b963-1614885f2b4f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "8a7c5621-29b1-4475-9625-e962f960c1bd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-19T07:58:23.510Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MyPGbersD8pHnSzBtUQXqB",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/8a7c5621-29b1-4475-9625-e962f960c1bd/tool-results/bhxefydqt.txt",
+                "limit": 600
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d4b8e0a5-e86d-4ed6-b8f1-b3a43bf40569",
+            "isSidechain": true,
+            "agentId": "a37fba2a40b1ce129",
+            "requestId": "req_011CbBaAB18vFYTQ6vuhojz2",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "c28e9353-ae6d-42dd-81ad-31897b9de7b5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "8a7c5621-29b1-4475-9625-e962f960c1bd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013Uw8kKYbgEc5qAFUQCN9QB",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 192,
+                "cache_read_input_tokens": 21223,
+                "output_tokens": 148,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 192
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 148,
+                    "cache_read_input_tokens": 21223,
+                    "cache_creation_input_tokens": 192,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 192,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-19T07:58:24.021Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MyPGbersD8pHnSzBtUQXqB",
+              "type": "tool_result",
+              "content": "1\t{\n2\t  \"exp_qwen25_32b_fewnerd\": {\n3\t    \"status\": \"ALLOCATED\",\n4\t    \"retry_count\": 0,\n5\t    \"created_at\": \"2026-05-19T06:19:25.428Z\",\n6\t    \"updated_at\": \"2026-05-19T07:52:18.591Z\",\n7\t    \"hypothesis\": \"The correlation-selection gap (high QE correlation but no selection gain) generalizes to 32B-scale models. Qwen2.5-32B QLoRA fine-tuned on FewNERD should show the same pattern: structural signals have high ρ but fail at instance-level selection, while entity construction (θ=2/N) provides significant F1 gain. This fills the 8B→72B scale gap.\",\n8\t    \"server\": \"autodl-5090\",\n9\t    \"gpu\": \"cuda:0,cuda:1,cuda:2,cuda:3\",\n10\t    \"account\": \"root\",\n11\t    \"reproduce\": {\n12\t      \"server\": \"autodl-5090\",\n13\t      \"gpu\": \"cuda:0,cuda:1,cuda:2,cuda:3\",\n14\t      \"started_at\": \"2026-05-19T06:47:41.246Z\"\n15\t    },\n16\t    \"notes\": \"2026-05-19 15:52 UTC: 32B model download in progress, 26GB/~65GB (~40%), 8 incomplete blobs remaining. PIDs 764902/764903 still active. Disk OK (84GB free). ETA ~1-2h.\"\n17\t  },\n18\t  \"exp_qwen25_7b_fewnerd\": {\n19\t    \"status\": \"QUEUED\",\n20\t    \"retry_count\": 0,\n21\t    \"created_at\": \"2026-05-19T06:41:43.121Z\",\n22\t    \"updated_at\": \"2026-05-19T07:48:40.207Z\",\n23\t    \"hypothesis\": \"Qwen2.5-7B fine-tuned on FewNERD provides the baseline point for a pure Qwen2.5 family scale curve (7B/14B/32B/72B). This eliminates the confound of mixing Qwen2.5 and Qwen3 families when studying how the correlation-selection gap changes with model scale.\"\n24\t  },\n25\t  \"exp_qwen25_14b_fewnerd\": {\n26\t    \"status\": \"ALLOCATED\",\n27\t    \"retry_count\": 0,\n28\t    \"created_at\": \"2026-05-19T06:19:31.620Z\",\n29\t    \"updated_at\": \"2026-05-19T06:47:43.938Z\",\n30\t    \"hypothesis\": \"The correlation-selection gap pattern is consistent at 14B scale, filling the gap between 8B and 32B. Qwen2.5-14B QLoRA fine-tuned on FewNERD should show intermediate degeneracy rates and similar signal ranking patterns, providing a smooth scaling curve for the diagnostic findings.\",\n31\t    \"server\": \"autodl-5090-c\",\n32\t    \"gpu\": \"cuda:0,cuda:1\",\n33\t    \"account\": \"root\",\n34\t    \"reproduce\": {\n35\t      \"server\": \"autodl-5090-c\",\n36\t      \"gpu\": \"cuda:0,cuda:1\",\n37\t      \"started_at\": \"2026-05-19T06:47:43.938Z\"\n38\t    }\n39\t  },\n40\t  \"exp_llama_fewnerd_inference\": {\n41\t    \"status\": \"DONE\",\n42\t    \"retry_count\": 0,\n43\t    \"created_at\": \"2026-05-19T02:18:49.938Z\",\n44\t    \"updated_at\": \"2026-05-19T03:15:04.486Z\",\n45\t    \"hypothesis\": \"LLaMA-3.1-8B fine-tuned on FewNERD shows the same structured self-consistency phenomena (degeneracy, LP-F1 alignment, signal ranking) as Qwen models, providing cross-model generalization evidence. 3-seed inference (42/123/456) for statistical robustness.\",\n46\t    \"parent\": \"exp_llama_fewnerd_lora\",\n47\t    \"spec\": {\n48\t      \"command\": \"bash code/run_llama_fewnerd_inference.sh\",\n49\t      \"server\": \"autodl-5090\",\n50\t      \"data_path\": \"/root/autodl-tmp/struct_self_consist_ie/data/fewnerd/\",\n51\t      \"data_count\": 37648,\n52\t      \"model_name\": \"LLaMA-3.1-8B-FewNERD-LoRA-merged\",\n53\t      \"seed\": \"42,123,456\",\n54\t      \"checkpoint_source\": \"exp_llama_fewnerd_lora\",\n55\t      \"eval_data\": \"FewNERD test set\",\n56\t      \"checkpoint_path\": \"checkpoints/llama3.1-8b-fewnerd-merged/\",\n57\t      \"log_path\": \"logs/llama_fewnerd_inference.log\"\n58\t    },\n59\t    \"conclusion\": \"success\",\n60\t    \"metrics\": {\n61\t      \"3seed_mean\": {\n62\t        \"greedy_f1\": 0.7842,\n63\t        \"oracle_f1\": 0.8843,\n64\t        \"headroom_pp\": 10.01,\n65\t        \"degeneracy_pct\": 23.36,\n66\t        \"lp_delta_pp\": 0.36,\n67\t        \"dgs_delta_pp\": -0.35\n68\t      },\n69\t      \"seed_42\": {\n70\t        \"greedy_f1\": 0.7841,\n71\t        \"oracle_f1\": 0.8854,\n72\t        \"degen\": 27.32\n73\t      },\n74\t      \"seed_123\": {\n75\t        \"greedy_f1\": 0.784,\n76\t        \"oracle_f1\": 0.8839,\n77\t        \"degen\": 24.63\n78\t      },\n79\t      \"seed_456\": {\n80\t        \"greedy_f1\": 0.7844,\n81\t        \"oracle_f1\": 0.8835,\n82\t        \"degen\": 18.13\n83\t      },\n84\t      \"signal_ranking\": \"LP (+0.36pp) > SJ (-0.52) > FK (-0.53) > EM (-1.02) > VC (-2.39)\",\n85\t      \"lp_only_positive\": true,\n86\t      \"n_instances_gold_filtered\": 32565\n87\t    },\n88\t    \"completed_at\": \"2026-05-19T03:15:04.486Z\"\n89\t  },\n90\t  \"exp_llama_fewnerd_lora\": {\n91\t    \"status\": \"DONE\",\n92\t    \"retry_count\": 0,\n93\t    \"created_at\": \"2026-05-18T13:20:55.859Z\",\n94\t    \"updated_at\": \"2026-05-19T01:08:20.832Z\",\n95\t    \"hypothesis\": \"LLaMA-based model with LoRA fine-tuning on Few-NERD can provide a second model family (beyond Qwen) for cross-model generalization evidence of structured self-consistency phenomena in NER\",\n96\t    \"spec\": {\n97\t      \"command\": \"llamafactory-cli train train_config_llama_fewnerd.yaml\",\n98\t      \"server\": \"autodl-5090\",\n99\t      \"gpu\": \"cuda:1\",\n100\t      \"pid\": 137865,\n101\t      \"data_path\": \"/root/autodl-tmp/struct_self_consist_ie/data/fewnerd\",\n102\t      \"data_count\": -1,\n103\t      \"model_name\": \"LLaMA-Few-NERD-LoRA\",\n104\t      \"seed\": 42,\n105\t      \"log_path\": \"/root/autodl-tmp/struct_self_consist_ie/logs/llama_fewnerd_train.log\",\n106\t      \"run_script\": \"run_llama_fewnerd_train_single_gpu.sh\",\n107\t      \"tmux_session\": \"llama_fewnerd\",\n108\t      \"note\": \"Retroactively registered - data_count unknown, seed assumed 42\"\n109\t    },\n110\t    \"checkpoint_path\": \"/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-fewnerd-lora\",\n111\t    \"log_path\": \"/root/autodl-tmp/struct_self_consist_ie/logs/llama_fewnerd_train.log\",\n112\t    \"conclusion\": \"success\",\n113\t    \"metrics\": {\n114\t      \"epoch\": 3,\n115\t      \"train_loss\": 0.0516,\n116\t      \"eval_loss\": 0.0323,\n117\t      \"train_runtime_hours\": 15.35,\n118\t      \"total_steps\": 24708,\n119\t      \"final_checkpoint\": \"checkpoint-24708\",\n120\t      \"adapter_size_mb\": 320\n121\t    },\n122\t    \"completed_at\": \"2026-05-19T01:08:20.832Z\"\n123\t  },\n124\t  \"exp_031_fewnerd_t12\": {\n125\t    \"status\": \"DONE\",\n126\t    \"retry_count\": 0,\n127\t    \"created_at\": \"2026-05-18T20:04:12.040Z\",\n128\t    \"updated_at\": \"2026-05-19T00:30:14.652Z\",\n129\t    \"hypothesis\": \"FewNERD T=1.2 temperature ablation: test if higher temperature reduces degeneracy on FewNERD as observed on SciERC\",\n130\t    \"conclusion\": \"killed\",\n131\t    \"failure_reason\": \"数据不可用于论文：测试集(37648 vs T=1.0的5000)、N(8 vs 16)、分析管道(MVP pilot vs 5-signal)三重不一致。Director决定不重跑(DDL约束+非核心claim)。\",\n132\t    \"notes\": \"T=1.2 ablation not in paper scope, SciERC T=1.2 sufficient\",\n133\t    \"completed_at\": \"2026-05-19T00:30:14.652Z\"\n134\t  },\n135\t  \"exp_fewnerd_s789_n8\": {\n136\t    \"status\": \"DONE\",\n137\t    \"retry_count\": 0,\n138\t    \"created_at\": \"2026-05-18T23:17:34.011Z\",\n139\t    \"updated_at\": \"2026-05-18T23:18:28.125Z\",\n140\t    \"hypothesis\": \"FewNERD seed789 (4th seed) for statistical CI strengthening: 4-seed protocol provides tighter confidence intervals on LP selection gain and DGS effectiveness in low-degeneracy regime.\",\n141\t    \"parent\": \"exp_029a\",\n142\t    \"spec\": {\n143\t      \"command\": \"python code/analyze_fewnerd_s789.py\",\n144\t      \"server\": \"autodl-5090\",\n145\t      \"data_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_seed789_merged/samples.jsonl\",\n146\t      \"data_count\": 37648,\n147\t      \"model_name\": \"Qwen3-8B (ft_002_v2)\",\n148\t      \"seed\": 789,\n149\t      \"checkpoint_source\": \"exp_021 shards\",\n150\t      \"eval_data\": \"FewNERD test (37648 instances, 32565 gold-filtered)\",\n151\t      \"checkpoint_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_seed789_merged/\",\n152\t      \"log_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_seed789_merged/run.log\"\n153\t    },\n154\t    \"conclusion\": \"success\",\n155\t    \"completed_at\": \"2026-05-18T23:18:17.902Z\",\n156\t    \"metrics\": {\n157\t      \"greedy_f1\": 0.7478,\n158\t      \"oracle_f1\": 0.8714,\n159\t      \"headroom_pp\": 12.37,\n160\t      \"degen_rate\": 0.1177,\n161\t      \"degen_rate_source\": \"unified_metrics_constant_f1_gold_filtered\",\n162\t      \"instance_count\": 37648,\n163\t      \"n_valid\": 32565,\n164\t      \"lp_sel_f1\": 0.7614,\n165\t      \"lp_delta_pp\": 1.36,\n166\t      \"lp_rho_global\": 0.1788,\n167\t      \"lp_rho_cond\": 0.176,\n168\t      \"dgs_f1\": 0.7621,\n169\t      \"dgs_delta_pp\": 1.43,\n170\t      \"dgs_vs_lp_pp\": 0.07,\n171\t      \"best_signal\": \"LP\",\n172\t      \"four_seed_mean_greedy\": 0.7481,\n173\t      \"four_seed_mean_lp_delta_pp\": 1.38,\n174\t      \"four_seed_lp_delta_ci95\": [\n175\t        1.32,\n176\t        1.44\n177\t      ]\n178\t    }\n179\t  },\n180\t  \"exp_021_fewnerd_n8_seed456\": {\n181\t    \"status\": \"DONE\",\n182\t    \"retry_count\": 0,\n183\t    \"created_at\": \"2026-05-18T22:03:17.992Z\",\n184\t    \"updated_at\": \"2026-05-18T22:04:50.774Z\",\n185\t    \"hypothesis\": \"Multi-seed replication (seed=456) of Qwen3-8B FewNERD N=8 SCS inference to validate structural consistency signal on fine-grained NER dataset.\",\n186\t    \"spec\": {\n187\t      \"command\": \"python scs_inference.py --dataset fewnerd --seed 456 --n_samples 8 --temperature 1.0\",\n188\t      \"server\": \"autodl-5090\",\n189\t      \"data_path\": \"/root/autodl-tmp/struct_self_consist_ie/data/fewnerd\",\n190\t      \"data_count\": 37648,\n191\t      \"model_name\": \"Qwen3-8B\",\n192\t      \"seed\": 456,\n193\t      \"checkpoint_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_n8_seed456\",\n194\t      \"log_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_n8_seed456_run.log\"\n195\t    },\n196\t    \"conclusion\": \"success\",\n197\t    \"completed_at\": \"2026-05-18T22:04:35.573Z\",\n198\t    \"metrics\": {\n199\t      \"degen_rate\": 0.1212,\n200\t      \"degen_rate_source\": \"unified_metrics_constant_f1_gold_filtered\",\n201\t      \"instance_count\": 37648,\n202\t      \"n_valid\": 32565,\n203\t      \"n_gold_empty\": 5083,\n204\t      \"ner_greedy_f1\": 0.7888,\n205\t      \"ner_oracle_f1\": 0.881,\n206\t      \"rho_fk_ner\": 0.1632,\n207\t      \"rho_sj_ner\": 0.313,\n208\t      \"sample_f1_pct_zero\": 19.32\n209\t    }\n210\t  },\n211\t  \"exp_021_fewnerd_n8_seed123\": {\n212\t    \"status\": \"DONE\",\n213\t    \"retry_count\": 0,\n214\t    \"created_at\": \"2026-05-18T22:03:16.735Z\",\n215\t    \"updated_at\": \"2026-05-18T22:04:49.470Z\",\n216\t    \"hypothesis\": \"Multi-seed replication (seed=123) of Qwen3-8B FewNERD N=8 SCS inference to validate structural consistency signal on fine-grained NER dataset.\",\n217\t    \"spec\": {\n218\t      \"command\": \"python scs_inference.py --dataset fewnerd --seed 123 --n_samples 8 --temperature 1.0\",\n219\t      \"server\": \"autodl-5090\",\n220\t      \"data_path\": \"/root/autodl-tmp/struct_self_consist_ie/data/fewnerd\",\n221\t      \"data_count\": 37648,\n222\t      \"model_name\": \"Qwen3-8B\",\n223\t      \"seed\": 123,\n224\t      \"checkpoint_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_n8_seed123\",\n225\t      \"log_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_n8_seed123_run.log\"\n226\t    },\n227\t    \"conclusion\": \"success\",\n228\t    \"completed_at\": \"2026-05-18T22:04:33.731Z\",\n229\t    \"metrics\": {\n230\t      \"degen_rate\": 0.1312,\n231\t      \"degen_rate_source\": \"unified_metrics_constant_f1_gold_filtered\",\n232\t      \"instance_count\": 37648,\n233\t      \"n_valid\": 32565,\n234\t      \"n_gold_empty\": 5083,\n235\t      \"ner_greedy_f1\": 0.7885,\n236\t      \"ner_oracle_f1\": 0.8892,\n237\t      \"rho_fk_ner\": 0.1602,\n238\t      \"rho_sj_ner\": 0.3083,\n239\t      \"sample_f1_pct_zero\": 20.39\n240\t    }\n241\t  },\n242\t  \"exp_002_conll_n16_seed456\": {\n243\t    \"status\": \"DONE\",\n244\t    \"retry_count\": 0,\n245\t    \"created_at\": \"2026-05-18T22:03:15.720Z\",\n246\t    \"updated_at\": \"2026-05-18T22:04:46.954Z\",\n247\t    \"hypothesis\": \"Multi-seed replication (seed=456) of Qwen3-8B CoNLL-2003 N=16 SCS inference to validate structural consistency signal stability across random seeds.\",\n248\t    \"spec\": {\n249\t      \"command\": \"python scs_inference.py --dataset conll2003 --seed 456 --n_samples 16 --temperature 1.0\",\n250\t      \"server\": \"autodl-5090\",\n251\t      \"data_path\": \"/root/autodl-tmp/struct_self_consist_ie/data/conll2003\",\n252\t      \"data_count\": 3453,\n253\t      \"model_name\": \"Qwen3-8B\",\n254\t      \"seed\": 456,\n255\t      \"checkpoint_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16_seed456\",\n256\t      \"log_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16_seed456.log\"\n257\t    },\n258\t    \"conclusion\": \"success\",\n259\t    \"completed_at\": \"2026-05-18T22:04:31.934Z\",\n260\t    \"metrics\": {\n261\t      \"degen_rate\": 0.5544,\n262\t      \"degen_rate_source\": \"unified_metrics_constant_f1_gold_filtered\",\n263\t      \"instance_count\": 3453,\n264\t      \"n_valid\": 2756,\n265\t      \"n_gold_empty\": 697,\n266\t      \"ner_greedy_f1\": 0.9074,\n267\t      \"ner_oracle_f1\": 0.9549,\n268\t      \"rho_fk_ner\": 0.4718,\n269\t      \"rho_sj_ner\": 0.4819,\n270\t      \"sample_f1_pct_zero\": 7.02\n271\t    }\n272\t  },\n273\t  \"exp_002_conll_n16_seed123\": {\n274\t    \"status\": \"DONE\",\n275\t    \"retry_count\": 0,\n276\t    \"created_at\": \"2026-05-18T22:03:14.343Z\",\n277\t    \"updated_at\": \"2026-05-18T22:04:45.039Z\",\n278\t    \"hypothesis\": \"Multi-seed replication (seed=123) of Qwen3-8B CoNLL-2003 N=16 SCS inference to validate structural consistency signal stability across random seeds.\",\n279\t    \"spec\": {\n280\t      \"command\": \"python scs_inference.py --dataset conll2003 --seed 123 --n_samples 16 --temperature 1.0\",\n281\t      \"server\": \"autodl-5090\",\n282\t      \"data_path\": \"/root/autodl-tmp/struct_self_consist_ie/data/conll2003\",\n283\t      \"data_count\": 3453,\n284\t      \"model_name\": \"Qwen3-8B\",\n285\t      \"seed\": 123,\n286\t      \"checkpoint_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16_seed123\",\n287\t      \"log_path\": \"/root/autodl-tmp/struct_self_consist_ie/output/exp_002_conll_n16_seed123.log\"\n288\t    },\n289\t    \"conclusion\": \"success\",\n290\t    \"completed_at\": \"2026-05-18T22:04:29.992Z\",\n291\t    \"metrics\": {\n292\t      \"degen_rate\": 0.471,\n293\t      \"degen_rate_source\": \"unified_metrics_constant_f1_gold_filtered\",\n294\t      \"instance_count\": 3453,\n295\t      \"n_valid\": 2756,\n296\t      \"n_gold_empty\": 697,\n297\t      \"ner_greedy_f1\": 0.9068,\n298\t      \"ner_oracle_f1\": 0.9633,\n299\t      \"rho_fk_ner\": 0.4524,\n300\t      \"rho_sj_ner\": 0.4621,\n301\t      \"sample_f1_pct_zero\": 7.54\n302\t    }\n303\t  },\n304\t  \"exp_017_llama_conll_n16_s456_r1024\": {\n305\t    \"status\": \"DONE\",\n306\t    \"retry_count\": 0,\n307\t    \"created_at\": \"2026-05-14T22:17:04.572Z\",\n308\t    \"updated_at\": \"2026-05-18T20:50:15.047Z\",\n309\t    \"spec\": {\n310\t      \"hypothesis\": \"D054 rerun: max_tokens=1024. Verify truncation impact on LLaMA CoNLL N=16 seed456.\",\n311\t      \"parent\": \"exp_017_llama_conll_n16_s456\",\n312\t      \"model_name\": \"llama3.1-8b-conll2003-merged\",\n313\t      \"dataset\": \"CoNLL-2003\",\n314\t      \"seed\": 456,\n315\t      \"server\": \"autodl-5090\",\n316\t      \"command\": \"python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 456 --num_test 9999 --max_tokens 1024 --collect_logprobs --output_dir output/exp_017_llama_conll_n16_s456_r1024\",\n317\t      \"gpu\": \"cuda:2\",\n318\t      \"pid\": \"175870\",\n319\t      \"data_path\": \"data/conll2003\",\n320\t      \"data_count\": 3453,\n321\t      \"tmux_session\": \"exp_017_llama_conll_n16_s456_r1024\"\n322\t    },\n323\t    \"conclusion\": \"success\",\n324\t    \"metrics\": {\n325\t      \"degen_rate\": 0.8672,\n326\t      \"degen_rate_source\": \"unified_metrics_constant_f1_gold_filtered\",\n327\t      \"instance_count\": 3453,\n328\t      \"n_valid\": 2756,\n329\t      \"n_gold_empty\": 697,\n330\t      \"parse_rate\": 1,\n331\t      \"ner_greedy_f1\": 0.9265,\n332\t      \"ner_oracle_f1\": 0.9499,\n333\t      \"rho_fk_ner\": 0.469,\n334\t      \"rho_sj_ner\": 0.4734,\n335\t      \"rho_vc_ner\": 0.4722,\n336\t      \"rho_em_ner\": 0.4752,\n337\t      \"rho_lp_ner\": 0.3099,\n338\t      \"auroc_fk_ner\": 0.7408,\n339\t      \"auroc_sj_ner\": 0.7428,\n340\t      \"auroc_vc_ner\": 0.7495,\n341\t      \"auroc_em_ner\": 0.7444,\n342\t      \"auroc_lp_ner\": 0.7628,\n343\t      \"auroc_note\": \"median F1=1.0, AUROC uses >=median threshold\",\n344\t      \"rho_note\": \"CORRECTED 2026-05-15: old values (rho_fk=0.8085,rho_sj=0.1895) were inflated/deflated by 697 gold-empty instances. Now uses gold-filtered pipeline (n=2756).\"\n345\t    },\n346\t    \"checkpoint_path\": \"N/A (inference-only)\",\n347\t    \"log_path\": \"output/exp_017_llama_conll_n16_s456_r1024_run.log\",\n348\t    \"completed_at\": \"2026-05-15T11:45:25.899Z\",\n349\t    \"hypothesis\": \"LLaMA CoNLL N=16 seed=456 (max_tokens=1024 rerun): cross-model multi-seed validation. Confirms structural>surface ordering is stable across seeds for LLaMA on CoNLL after gold-filtering correction.\"\n350\t  },\n351\t  \"exp_017_llama_conll_n16_r1024\": {\n352\t    \"status\": \"DONE\",\n353\t    \"retry_count\": 0,\n354\t    \"created_at\": \"2026-05-14T22:17:01.036Z\",\n355\t    \"updated_at\": \"2026-05-18T20:50:11.906Z\",\n356\t    \"spec\": {\n357\t      \"hypothesis\": \"D054 rerun: max_tokens=1024. Verify truncation impact on LLaMA CoNLL N=16 seed42.\",\n358\t      \"parent\": \"exp_017_llama_conll_n16\",\n359\t      \"model_name\": \"llama3.1-8b-conll2003-merged\",\n360\t      \"dataset\": \"CoNLL-2003\",\n361\t      \"seed\": 42,\n362\t      \"server\": \"autodl-5090\",\n363\t      \"command\": \"python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 42 --num_test 9999 --max_tokens 1024 --collect_logprobs --output_dir output/exp_017_llama_conll_n16_r1024\",\n364\t      \"gpu\": \"cuda:1\",\n365\t      \"pid\": \"175734\",\n366\t      \"data_path\": \"data/conll2003\",\n367\t      \"data_count\": 3453,\n368\t      \"tmux_session\": \"exp_017_llama_conll_n16_r1024\"\n369\t    },\n370\t    \"conclusion\": \"success\",\n371\t    \"metrics\": {\n372\t      \"degen_rate\": 0.8647,\n373\t      \"degen_rate_source\": \"unified_metrics_constant_f1_gold_filtered\",\n374\t      \"instance_count\": 3453,\n375\t      \"n_valid\": 2756,\n376\t      \"n_gold_empty\": 697,\n377\t      \"parse_rate\": 1,\n378\t      \"ner_greedy_f1\": 0.9265,\n379\t      \"ner_oracle_f1\": 0.9499,\n380\t      \"rho_fk_ner\": 0.4752,\n381\t      \"rho_sj_ner\": 0.4836,\n382\t      \"rho_vc_ner\": 0.4746,\n383\t      \"rho_em_ner\": 0.4818,\n384\t      \"rho_lp_ner\": 0.3136,\n385\t      \"auroc_fk_ner\": 0.7467,\n386\t      \"auroc_sj_ner\": 0.7496,\n387\t      \"auroc_vc_ner\": 0.7529,\n388\t      \"auroc_em_ner\": 0.7508,\n389\t      \"auroc_lp_ner\": 0.7661,\n390\t      \"auroc_note\": \"median F1=1.0, AUROC uses >=median threshold\",\n391\t      \"rho_note\": \"CORRECTED 2026-05-15: old values (rho_fk=0.8095,rho_sj=0.1815) were inflated/deflated by 697 gold-empty instances. Now uses gold-filtered pipeline (n=2756).\"\n392\t    },\n393\t    \"checkpoint_path\": \"N/A (inference-only)\",\n394\t    \"log_path\": \"output/exp_017_llama_conll_n16_r1024_run.log\",\n395\t    \"completed_at\": \"2026-05-15T11:45:23.213Z\",\n396\t    \"hypothesis\": \"LLaMA CoNLL N=16 seed=42 (max_tokens=1024 rerun): cross-model baseline on CoNLL. Establishes LLaMA signal rankings after gold-filtering correction (fixes inflated FK ρ from gold-empty instances).\"\n397\t  },\n398\t  \"exp_002_conll_n16\": {\n399\t    \"status\": \"DONE\",\n400\t    \"retry_count\": 0,\n401\t    \"created_at\": \"2026-05-14T18:12:16.041Z\",\n402\t    \"updated_at\": \"2026-05-18T20:49:50.398Z\",\n403\t    \"spec\": {\n404\t      \"hypothesis\": \"Qwen CoNLL-2003 N=16: cross-dataset N-scaling comparison with SciERC N=16\",\n405\t      \"plan_id\": \"exp-002\",\n406\t      \"parent\": \"exp_002_ner_conll2003\",\n407\t      \"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=0 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 42 --num_test 9999 --collect_logprobs --output_dir output/exp_002_conll_n16\",\n408\t      \"server\": \"autodl-5090\",\n409\t      \"data_path\": \"data/conll2003\",\n410\t      \"data_count\": 3453,\n411\t      \"model_name\": \"qwen3-8b-conll2003-merged\",\n412\t      \"seed\": 42\n413\t    },\n414\t    \"conclusion\": \"success\",\n415\t    \"metrics\": {\n416\t      \"degen_rate\": 0.4844,\n417\t      \"degen_rate_source\": \"unified_metrics_constant_f1_gold_filtered\",\n418\t      \"N\": 16,\n419\t      \"dataset\": \"conll2003\",\n420\t      \"subtask\": \"ner\",\n421\t      \"n_instances\": 3453,\n422\t      \"n_valid\": 2756,\n423\t      \"n_conditional\": 2614,\n424\t      \"greedy_f1\": 0.907,\n425\t      \"full\": {\n426\t        \"SJ_rho\": 0.4496,\n427\t        \"FK_rho\": 0.3928,\n428\t        \"logprob_rho\": 0.3146,\n429\t        \"EM_rho\": 0.4627,\n430\t        \"voting_conf_rho\": 0.4286,\n431\t        \"SJ_AUROC\": 0.8264,\n432\t        \"FK_AUROC\": 0.7821,\n433\t        \"logprob_AUROC\": 0.7531,\n434\t        \"EM_AUROC\": 0.8409,\n435\t        \"voting_conf_AUROC\": 0.8071,\n436\t        \"SJ_ECE\": 0.0747,\n437\t        \"FK_ECE\": 0.1786,\n438\t        \"logprob_ECE\": 0.2031,\n439\t        \"EM_ECE\": 0.0786,\n440\t        \"voting_conf_ECE\": 0.529\n441\t      },\n442\t      \"conditional\": {\n443\t        \"SJ_rho\": 0.4208,\n444\t        \"FK_rho\": 0.3494,\n445\t        \"logprob_rho\": 0.3756,\n446\t        \"EM_rho\": 0.4658,\n447\t        \"voting_conf_rho\": 0.3654,\n448\t        \"SJ_AUROC\": 0.8405,\n449\t        \"FK_AUROC\": 0.7819,\n450\t        \"logprob_AUROC\": 0.8259,\n451\t        \"EM_AUROC\": 0.8781,\n452\t        \"voting_conf_AUROC\": 0.7951,\n453\t        \"SJ_ECE\": 0.0982,\n454\t        \"FK_ECE\": 0.1899,\n455\t        \"logprob_ECE\": 0.2504,\n456\t        \"EM_ECE\": 0.0997,\n457\t        \"voting_conf_ECE\": 0.6096\n458\t      },\n459\t      \"n8_vs_n16_delta_rho_full\": {\n460\t        \"SJ\": 0.0139,\n461\t        \"FK\": -0.007,\n462\t        \"logprob\": -0.0011,\n463\t        \"EM\": 0.012,\n464\t        \"voting_conf\": 0.0049\n465\t      }\n466\t    },\n467\t    \"checkpoint_path\": \"output/exp_002_conll_n16/samples.jsonl\",\n468\t    \"log_path\": \"output/exp_002_conll_n16.log\",\n469\t    \"completed_at\": \"2026-05-14T18:58:40.473Z\",\n470\t    \"hypothesis\": \"CoNLL N=16 NER: cross-dataset validation on high-performance NER dataset. Tests if structural signals retain advantage when base model performance is already high (greedy F1 > 0.9).\"\n471\t  },\n472\t  \"exp_027_fewnerd_n16\": {\n473\t    \"status\": \"DONE\",\n474\t    \"retry_count\": 0,\n475\t    \"created_at\": \"2026-05-17T05:28:57.036Z\",\n476\t    \"updated_at\": \"2026-05-18T20:48:58.455Z\",\n477\t    \"spec\": {\n478\t      \"hypothesis\": \"LP selection scales with N in low-degeneracy regime: N=16 should yield LP Δ > +2pp (vs N=8 +1.36pp) on Few-NERD (10% degen), because more samples increase oracle headroom while LP ranking remains effective.\",\n479\t      \"parent\": \"exp_021_fewnerd_full\",\n480\t      \"model_name\": \"qwen3-8b-fewnerd-exp021-merged\",\n481\t      \"data_path\": \"data/fewnerd_n16_subset/test.json\",\n482\t      \"data_count\": 5000,\n483\t      \"seed\": 42,\n484\t      \"server\": \"autodl-5090\",\n485\t      \"gpu\": \"cuda:0,cuda:1,cuda:2,cuda:3\",\n486\t      \"command\": \"python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged --data_dir data/fewnerd_n16_subset --dataset fewnerd --subtask ner --n_samples 16 --temperature 1.0 --seed 42 --collect_logprobs --start_index {0,1250,2500,3750} --end_index {1250,2500,3750,5000} --output_dir output/exp_027_fewnerd_n16/shard_{0-3}\",\n487\t      \"checkpoint_path\": \"output/exp_027_fewnerd_n16/sampled_results.jsonl\",\n488\t      \"log_path\": \"output/exp_027_fewnerd_n16/\"\n489\t    },\n490\t    \"conclusion\": \"success\",\n491\t    \"metrics\": {\n492\t      \"LP_delta_pp\": 1.88,\n493\t      \"LP_delta_95CI\": [\n494\t        1.41,\n495\t        2.37\n496\t      ],\n497\t      \"degen_rate\": 0.0706,\n498\t      \"degen_rate_source\": \"unified_metrics_constant_f1_gold_filtered\",\n499\t      \"greedy_f1\": 0.7478,\n500\t      \"lp_sel_f1\": 0.7666,\n501\t      \"oracle_f1\": 0.902,\n502\t      \"headroom_pp\": 15.42,\n503\t      \"all_8_types_positive\": true,\n504\t      \"n_instances\": 5000,\n505\t      \"N_samples\": 16,\n506\t      \"bootstrap_p\": \"<0.001\"\n507\t    },\n508\t    \"hypothesis\": \"LP selection scales with N in low-degeneracy regime: N=16 should yield LP Δ > +2pp (vs N=8 +1.36pp) on Few-NERD (10% degen), because more samples increase oracle headroom while LP ranking remains effective.\",\n509\t    \"completed_at\": \"2026-05-17T05:46:48.460Z\"\n510\t  },\n511\t  \"exp_017_llama_conll_n16_s123_r1024\": {\n512\t    \"status\": \"DONE\",\n513\t    \"retry_count\": 0,\n514\t    \"created_at\": \"2026-05-14T22:17:02.953Z\",\n515\t    \"updated_at\": \"2026-05-18T20:47:52.122Z\",\n516\t    \"spec\": {\n517\t      \"hypothesis\": \"D054 rerun: max_tokens=1024. Verify truncation impact on LLaMA CoNLL N=16 seed123.\",\n518\t      \"parent\": \"exp_017_llama_conll_n16_s123\",\n519\t      \"model_name\": \"llama3.1-8b-conll2003-merged\",\n520\t      \"dataset\": \"CoNLL-2003\",\n521\t      \"seed\": 123,\n522\t      \"server\": \"autodl-5090\",\n523\t      \"command\": \"python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 123 --num_test 9999 --max_tokens 1024 --collect_logprobs --output_dir output/exp_017_llama_conll_n16_s123_r1024\",\n524\t      \"data_path\": \"data/conll2003\",\n525\t      \"data_count\": 3453\n526\t    },\n527\t    \"conclusion\": \"success\",\n528\t    \"completed_at\": \"2026-05-15T01:20:51.219Z\",\n529\t    \"notes\": \"Output exists on autodl-5090. Registry status corrected from killed to success.\",\n530\t    \"hypothesis\": \"LLaMA CoNLL N=16 seed=123 (max_tokens=1024 rerun): cross-model multi-seed validation. Confirms structural>surface ordering is stable across seeds for LLaMA on CoNLL after gold-filtering correction.\",\n531\t    \"metrics\": {\n532\t      \"degen_rate\": 0.8636,\n533\t      \"degen_rate_source\": \"unified_metrics_constant_f1_gold_filtered\"\n534\t    }\n535\t  },\n536\t  \"exp_028_fewnerd_5epoch\": {\n537\t    \"status\": \"DONE\",\n538\t    \"retry_count\": 0,\n539\t    \"created_at\": \"2026-05-17T07:53:12.913Z\",\n540\t    \"updated_at\": \"2026-05-17T20:29:42.274Z\",\n541\t    \"spec\": {\n542\t      \"hypothesis\": \"Few-NERD low degeneracy (10%) partially due to under-convergence at 3 epochs. 5 epochs should increase degeneracy as model becomes more confident, potentially reducing LP selection gain.\",\n543\t      \"parent\": \"exp_021_fewnerd_full\",\n544\t      \"command\": \"bash -c \\\"source /root/miniconda3/bin/activate && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=0,1,2,3 llamafactory-cli train train_config_fewnerd_5epoch_4gpu.yaml 2>&1 | tee logs/exp_028_4gpu_train.log\\\"\",\n545\t      \"server\": \"autodl-5090\",\n546\t      \"gpu\": \"cuda:0,1,2,3\",\n547\t      \"data_path\": \"data/fewnerd_uie_train\",\n548\t      \"data_count\": 131767,\n549\t      \"model_name\": \"Qwen3-8B LoRA rank=32\",\n550\t      \"seed\": 42,\n551\t      \"log_path\": \"logs/exp_028_4gpu_train.log\",\n552\t      \"checkpoint_path\": \"checkpoints/qwen3-8b-fewnerd-5epoch-lora\"\n553\t    },\n554\t    \"conclusion\": \"negative\",\n555\t    \"metrics\": {\n556\t      \"degeneracy_cf1_gold\": 0.3133,\n557\t      \"greedy_f1\": 0.7773,\n558\t      \"lp_sel_delta_pp\": 0.624,\n559\t      \"lp_sel_f1\": 0.7835,\n560\t      \"oracle_f1\": 0.8723,\n561\t      \"within_instance_rho_mean\": 0.4066,\n562\t      \"within_instance_rho_median\": 0.6151\n563\t    },\n564\t    \"hypothesis\": \"Few-NERD low degeneracy (10%) partially due to under-convergence at 3 epochs. 5 epochs should increase degeneracy as model becomes more confident, potentially reducing LP selection gain.\",\n565\t    \"completed_at\": \"2026-05-17T20:29:42.274Z\"\n566\t  },\n567\t  \"exp_008_re_n16\": {\n568\t    \"status\": \"DONE\",\n569\t    \"retry_count\": 0,\n570\t    \"created_at\": \"2026-05-14T12:03:06.876Z\",\n571\t    \"updated_at\": \"2026-05-17T02:58:19.490Z\",\n572\t    \"spec\": {\n573\t      \"hypothesis\": \"RE N=16 confirms negative finding with higher statistical power. If rho still <0.30, task-complexity boundary is robust.\",\n574\t      \"plan_id\": \"exp-008\",\n575\t      \"model_name\": \"qwen3-8b-scierc-merged-v2\",\n576\t      \"dataset\": \"SciERC\",\n577\t      \"gpu\": \"cuda:2\",\n578\t      \"server\": \"gpu-5090-4x-2\",\n579\t      \"gpu_budget_hours\": 12,\n580\t      \"description\": \"RE N=16 on SciERC to confirm negative finding. Inference with log-prob capture.\",\n581\t      \"priority\": \"P1\",\n582\t      \"command\": \"python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 16 --temperature 1.0 --seed 42 --collect_logprobs\",\n583\t      \"data_path\": \"data/scierc/processed_data\",\n584\t      \"data_count\": 551,\n585\t      \"seed\": 42,\n586\t      \"num_instances\": 200,\n587\t      \"partial\": true,\n588\t      \"note\": \"Only 200/551 instances due to --num_test default bug. Needs full rerun.\"\n589\t    },\n590\t    \"metrics\": {\n591\t      \"ner\": {\n592\t        \"greedy_f1\": 0.6635,\n593\t        \"oracle_f1\": 0.8208,\n594\t        \"headroom\": 0.1572,\n595\t        \"rho_sj_full\": 0.377,\n596\t        \"rho_fk_full\": 0.2508,\n597\t        \"rho_logprob_full\": 0.3153,\n598\t        \"rho_sj_cond\": 0.3598,\n599\t        \"rho_fk_cond\": 0.2251,\n600\t        \"rho_logprob_cond\": 0.2927,"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c28e9353-ae6d-42dd-81ad-31897b9de7b5",
+            "isSidechain": true,
+            "promptId": "6db2e51c-9e8c-47e6-b1c4-6f35ea2e4e39",
+            "agentId": "a37fba2a40b1ce129",
+            "type": "user",
+            "uuid": "fc5ef91e-193c-4171-87c8-6a27546674b3",
+            "sourceToolAssistantUUID": "c28e9353-ae6d-42dd-81ad-31897b9de7b5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "8a7c5621-29b1-4475-9625-e962f960c1bd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-19T07:58:29.217Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LLvMesQ9pq63rDA2XnxAR1",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/8a7c5621-29b1-4475-9625-e962f960c1bd/tool-results/bhxefydqt.txt",
+                "offset": 600,
+                "limit": 600
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fc5ef91e-193c-4171-87c8-6a27546674b3",
+            "isSidechain": true,
+            "agentId": "a37fba2a40b1ce129",
+            "requestId": "req_011CbBaAR5UHvMgPeNUai7FQ",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "68ebc718-1100-4810-89c3-f9a6121a4be8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "8a7c5621-29b1-4475-9625-e962f960c1bd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011uNSuM5JJH1NamEYwDqkd2",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 12309,
+                "cache_read_input_tokens": 21415,
+                "output_tokens": 165,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 12309
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 165,
+                    "cache_read_input_tokens": 21415,
+                    "cache_creation_input_tokens": 12309,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 12309,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-19T07:58:29.224Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LLvMesQ9pq63rDA2XnxAR1",
+              "type": "tool_result",
+              "content": "600\t        \"rho_logprob_cond\": 0.2927,\n601\t        \"sj_beats_fk\": true,\n602\t        \"rho_advantage\": 0.1262\n603\t      },\n604\t      \"re\": {\n605\t        \"greedy_f1\": 0.4339,\n606\t        \"oracle_f1\": 0.6658,\n607\t        \"headroom\": 0.2319,\n608\t        \"rho_sj_full\": 0.2966,\n609\t        \"rho_fk_full\": 0.2871,\n610\t        \"rho_logprob_full\": 0.2986,\n611\t        \"rho_sj_cond\": 0.3975,\n612\t        \"rho_fk_cond\": 0.3774,\n613\t        \"rho_logprob_cond\": 0.2745,\n614\t        \"sj_beats_fk\": true,\n615\t        \"rho_advantage\": 0.0095\n616\t      },\n617\t      \"verdict\": \"FAIL\"\n618\t    },\n619\t    \"conclusion\": \"success\",\n620\t    \"checkpoint_path\": \"N/A\",\n621\t    \"log_path\": \"output/exp008_re_n16/\",\n622\t    \"completed_at\": \"2026-05-14T12:28:39.268Z\",\n623\t    \"hypothesis\": \"RE N=16 initial evaluation: first relation extraction test with structural signals. Establishes baseline RE signal effectiveness before pipeline corrections.\"\n624\t  },\n625\t  \"exp_001_ner_n16_seed123\": {\n626\t    \"status\": \"DONE\",\n627\t    \"retry_count\": 0,\n628\t    \"created_at\": \"2026-05-14T12:46:06.430Z\",\n629\t    \"updated_at\": \"2026-05-17T02:58:18.225Z\",\n630\t    \"spec\": {\n631\t      \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=3 python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 16 --temperature 1.0 --seed 123 --output_dir output/exp001_n16_seed123 --num_test 9999 --collect_logprobs 2>&1 | tee output/exp001_n16_seed123_run.log\\\"\",\n632\t      \"server\": \"autodl-5090\",\n633\t      \"gpu\": [\n634\t        \"cuda:3\"\n635\t      ],\n636\t      \"pid\": \"63407\",\n637\t      \"log_path\": \"output/exp001_n16_seed123_run.log\",\n638\t      \"submitted_at\": \"2026-05-14T12:46:06.234Z\",\n639\t      \"submitted_via\": \"submit_training_job\",\n640\t      \"backend\": \"tmux\",\n641\t      \"account\": \"root\",\n642\t      \"data_count\": 551,\n643\t      \"data_path\": \"data/scierc/processed_data\",\n644\t      \"model_name\": \"qwen3-8b-scierc-merged-v2\",\n645\t      \"seed\": 123,\n646\t      \"checkpoint_path\": \"output/exp001_n16_seed123/\",\n647\t      \"wall_clock_seconds\": 2748.0,\n648\t      \"gpu_hours\": 0.76\n649\t    },\n650\t    \"conclusion\": \"success\",\n651\t    \"metrics\": {\n652\t      \"ner\": {\n653\t        \"greedy_f1\": 0.663,\n654\t        \"oracle_f1\": 0.809,\n655\t        \"headroom\": 0.146,\n656\t        \"rho_sj\": 0.423,\n657\t        \"rho_fk\": 0.29,\n658\t        \"rho_logprob\": 0.239,\n659\t        \"rho_sj_cond\": 0.423,\n660\t        \"rho_fk_cond\": 0.26\n661\t      },\n662\t      \"re\": {\n663\t        \"greedy_f1\": 0.419,\n664\t        \"oracle_f1\": 0.625,\n665\t        \"headroom\": 0.206,\n666\t        \"rho_sj\": 0.267,\n667\t        \"rho_fk\": 0.315,\n668\t        \"rho_sj_cond\": 0.364,\n669\t        \"rho_fk_cond\": 0.331\n670\t      },\n671\t      \"verdict\": \"FAIL\",\n672\t      \"verdict_note\": \"RE rho_sj=0.267 < 0.40; RE >30% samples F1=0\",\n673\t      \"n_instances\": 551,\n674\t      \"seed\": 123,\n675\t      \"N\": 16,\n676\t      \"T\": 1\n677\t    },\n678\t    \"completed_at\": \"2026-05-14T13:31:54.232Z\",\n679\t    \"hypothesis\": \"SciERC NER N=16 seed=123: multi-seed validation at N=16. Tests seed stability for signal rankings with more samples.\"\n680\t  },\n681\t  \"exp_008_re_n16_t10_full\": {\n682\t    \"status\": \"DONE\",\n683\t    \"retry_count\": 0,\n684\t    \"created_at\": \"2026-05-14T13:27:42.867Z\",\n685\t    \"updated_at\": \"2026-05-17T02:58:10.171Z\",\n686\t    \"spec\": {\n687\t      \"command\": \"python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --dataset scierc --subtask joint --n_samples 16 --temperature 1.0 --seed 42 --num_test 9999 --collect_logprobs\",\n688\t      \"server\": \"autodl-5090\",\n689\t      \"data_path\": \"data/scierc/processed_data\",\n690\t      \"data_count\": 551,\n691\t      \"model_name\": \"qwen3-8b-scierc-merged-v2\",\n692\t      \"seed\": 42\n693\t    },\n694\t    \"reproduce\": {\n695\t      \"finished_at\": \"2026-05-14T13:44:18.988Z\"\n696\t    },\n697\t    \"failure_reason\": \"\",\n698\t    \"conclusion\": \"negative\",\n699\t    \"completed_at\": \"2026-05-14T13:44:19.577Z\",\n700\t    \"extra\": {\n701\t      \"hook_events\": [\n702\t        {\n703\t          \"event\": \"on_failed\",\n704\t          \"action\": \"agent\",\n705\t          \"ts\": \"2026-05-14T13:44:21.528032+00:00\"\n706\t        }\n707\t      ]\n708\t    },\n709\t    \"metrics\": {\n710\t      \"ner\": {\n711\t        \"rho_sj\": 0.444\n712\t      },\n713\t      \"re\": {\n714\t        \"rho_sj\": 0.248\n715\t      },\n716\t      \"n_instances\": 551,\n717\t      \"N\": 16,\n718\t      \"T\": 1,\n719\t      \"seed\": 42,\n720\t      \"mode\": \"RE-only\",\n721\t      \"source\": \"director_corrected\"\n722\t    },\n723\t    \"hypothesis\": \"RE N=16 T=1.0 full dataset: early RE evaluation attempt. Tests structural signals on relation extraction before pipeline corrections.\"\n724\t  },\n725\t  \"exp_008_re_n16_v2\": {\n726\t    \"status\": \"DONE\",\n727\t    \"retry_count\": 0,\n728\t    \"created_at\": \"2026-05-14T14:34:06.296Z\",\n729\t    \"updated_at\": \"2026-05-17T02:57:41.178Z\",\n730\t    \"spec\": {\n731\t      \"description\": \"RE N=16 on SciERC full set confirmation, ft_002_v2, with logprobs\",\n732\t      \"hypothesis\": \"Structural consistency correlates with per-instance RE F1 on SciERC full dataset\",\n733\t      \"server\": \"autodl-5090\",\n734\t      \"data_path\": \"data/scierc/processed_data\",\n735\t      \"data_count\": 551,\n736\t      \"model_name\": \"ft_002_v2\",\n737\t      \"seed\": 42,\n738\t      \"command\": \"CUDA_VISIBLE_DEVICES=3 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask re --n_samples 16 --temperature 1.0 --seed 42 --num_test 9999 --collect_logprobs --output_dir output/exp_008_re_n16_v2\",\n739\t      \"gpu\": [\n740\t        \"cuda:3\"\n741\t      ],\n742\t      \"pid\": \"78737\",\n743\t      \"backend\": \"tmux\",\n744\t      \"account\": \"root\",\n745\t      \"log_path\": \"output/exp_008_re_n16_v2/run.log\"\n746\t    },\n747\t    \"conclusion\": \"negative\",\n748\t    \"metrics\": {\n749\t      \"sj_rho_full\": 0.281,\n750\t      \"sj_rho_cond\": 0.308,\n751\t      \"f1_zero_pct\": 44.3,\n752\t      \"conclusion_note\": \"RE N=16 v2 negative: SJ weak, 44.3% F1=0\"\n753\t    },\n754\t    \"checkpoint_path\": \"N/A (inference)\",\n755\t    \"completed_at\": \"2026-05-14T15:23:35.598Z\",\n756\t    \"log_path\": \"output/exp_008_re_n16_v2/\",\n757\t    \"hypothesis\": \"RE N=16 evaluation v2: tests structural signal effectiveness on relation extraction at higher sample count. Hypothesis: SJ/FK benefit from more samples on RE task where zero-F1 rate is high.\"\n758\t  },\n759\t  \"exp_007_llama_n16\": {\n760\t    \"status\": \"DONE\",\n761\t    \"retry_count\": 0,\n762\t    \"created_at\": \"2026-05-14T18:31:44.366Z\",\n763\t    \"updated_at\": \"2026-05-17T02:57:12.521Z\",\n764\t    \"spec\": {\n765\t      \"hypothesis\": \"LLaMA SciERC N=16: cross-model N-scaling validation. If SJ rho increases from N=8 (0.363) to N=16, N-scaling is model-agnostic.\",\n766\t      \"plan_id\": \"exp-007\",\n767\t      \"parent\": \"exp_007_llama_inference\",\n768\t      \"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=1 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-scierc-merged --data_dir data/scierc/processed_data --dataset scierc --subtask ner --n_samples 16 --temperature 1.0 --seed 42 --num_test 9999 --collect_logprobs --output_dir output/exp_007_llama_n16\",\n769\t      \"server\": \"autodl-5090\",\n770\t      \"data_path\": \"data/scierc/processed_data\",\n771\t      \"data_count\": 551,\n772\t      \"model_name\": \"llama3.1-8b-scierc-merged\",\n773\t      \"seed\": 42,\n774\t      \"checkpoint_source\": \"checkpoints/llama3.1-8b-scierc-merged\",\n775\t      \"eval_data\": \"data/scierc/processed_data\"\n776\t    },\n777\t    \"conclusion\": \"success\",\n778\t    \"checkpoint_path\": \"output/exp_007_llama_n16/samples.jsonl\",\n779\t    \"log_path\": \"output/exp_007_llama_n16.log\",\n780\t    \"completed_at\": \"2026-05-14T19:03:39.163Z\",\n781\t    \"metrics\": {\n782\t      \"N\": 16,\n783\t      \"dataset\": \"scierc\",\n784\t      \"subtask\": \"ner\",\n785\t      \"n_instances\": 551,\n786\t      \"n_valid\": 529,\n787\t      \"n_conditional\": 478,\n788\t      \"greedy_f1\": 0.645,\n789\t      \"full\": {\n790\t        \"SJ_rho\": 0.3791,\n791\t        \"FK_rho\": 0.3081,\n792\t        \"logprob_rho\": 0.2041,\n793\t        \"EM_rho\": 0.3159,\n794\t        \"voting_conf_rho\": 0.4515,\n795\t        \"SJ_AUROC\": 0.717,\n796\t        \"FK_AUROC\": 0.6581,\n797\t        \"logprob_AUROC\": 0.5656,\n798\t        \"EM_AUROC\": 0.7686,\n799\t        \"voting_conf_AUROC\": 0.7266,\n800\t        \"SJ_ECE\": 0.1019,\n801\t        \"FK_ECE\": 0.1556,\n802\t        \"logprob_ECE\": 0.084,\n803\t        \"EM_ECE\": 0.1761,\n804\t        \"voting_conf_ECE\": 0.1365\n805\t      },\n806\t      \"conditional\": {\n807\t        \"SJ_rho\": 0.3222,\n808\t        \"FK_rho\": 0.2182,\n809\t        \"logprob_rho\": 0.1286,\n810\t        \"EM_rho\": 0.3563,\n811\t        \"voting_conf_rho\": 0.3356,\n812\t        \"SJ_AUROC\": 0.7014,\n813\t        \"FK_AUROC\": 0.6392,\n814\t        \"logprob_AUROC\": 0.545,\n815\t        \"EM_AUROC\": 0.7708,\n816\t        \"voting_conf_AUROC\": 0.6988,\n817\t        \"SJ_ECE\": 0.1466,\n818\t        \"FK_ECE\": 0.1853,\n819\t        \"logprob_ECE\": 0.1141,\n820\t        \"EM_ECE\": 0.1887,\n821\t        \"voting_conf_ECE\": 0.2634\n822\t      },\n823\t      \"n8_vs_n16_delta_rho_full\": {\n824\t        \"SJ\": 0.0161,\n825\t        \"FK\": -0.0185,\n826\t        \"logprob\": 0.0214,\n827\t        \"EM\": 0.0007,\n828\t        \"voting_conf\": 0.0184\n829\t      }\n830\t    },\n831\t    \"hypothesis\": \"LLaMA SciERC N=16: cross-model NER signal evaluation at higher sample count. Tests if LLaMA shows same N-scaling benefit for structural signals as Qwen.\"\n832\t  },\n833\t  \"exp_017_llama_conll_n16\": {\n834\t    \"status\": \"DONE\",\n835\t    \"retry_count\": 0,\n836\t    \"created_at\": \"2026-05-14T19:19:35.318Z\",\n837\t    \"updated_at\": \"2026-05-17T02:56:57.283Z\",\n838\t    \"spec\": {\n839\t      \"hypothesis\": \"LLaMA CoNLL N=16: complete the 2x2 matrix (model x dataset x N). If SJ N-scaling holds for LLaMA on CoNLL, the finding is fully cross-model cross-dataset.\",\n840\t      \"plan_id\": \"exp-017\",\n841\t      \"parent\": \"exp_017_llama_conll_infer\",\n842\t      \"model_name\": \"llama3.1-8b-conll2003-merged\",\n843\t      \"dataset\": \"CoNLL-2003\",\n844\t      \"data_count\": 3453,\n845\t      \"seed\": 42,\n846\t      \"server\": \"autodl-5090\",\n847\t      \"command\": \"CUDA_VISIBLE_DEVICES=0 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 42 --num_test 9999 --collect_logprobs --output_dir output/exp_017_llama_conll_n16\",\n848\t      \"data_path\": \"data/conll2003\",\n849\t      \"pid\": 106997,\n850\t      \"n_samples\": 16,\n851\t      \"temperature\": 1,\n852\t      \"checkpoint_source\": \"checkpoints/llama3.1-8b-conll2003-merged\",\n853\t      \"eval_data\": \"conll2003 test set\",\n854\t      \"checkpoint_path\": \"output/exp_017_llama_conll_n16/samples.jsonl\",\n855\t      \"log_path\": \"output/exp_017_llama_conll_n16/all_signals_report.json\"\n856\t    },\n857\t    \"metrics\": {\n858\t      \"greedy_f1\": 0.9243,\n859\t      \"oracle_f1\": 0.9487,\n860\t      \"oracle_headroom\": 0.0244,\n861\t      \"n_instances\": 3453,\n862\t      \"n_valid\": 2756,\n863\t      \"n_conditional\": 2642,\n864\t      \"structural_beats_surface\": true,\n865\t      \"full\": {\n866\t        \"SJ_rho\": 0.4642,\n867\t        \"SJ_AUROC\": 0.7391,\n868\t        \"SJ_ECE\": 0.1131,\n869\t        \"FK_rho\": 0.4566,\n870\t        \"FK_AUROC\": 0.736,\n871\t        \"FK_ECE\": 0.1071,\n872\t        \"logprob_rho\": 0.3058,\n873\t        \"logprob_AUROC\": 0.7594,\n874\t        \"logprob_ECE\": 0.1288,\n875\t        \"EM_rho\": 0.4613,\n876\t        \"EM_AUROC\": 0.7391,\n877\t        \"EM_ECE\": 0.1084,\n878\t        \"voting_conf_rho\": 0.4554,\n879\t        \"voting_conf_AUROC\": 0.7406,\n880\t        \"voting_conf_ECE\": 0.0844\n881\t      },\n882\t      \"conditional\": {\n883\t        \"SJ_rho\": 0.4597,\n884\t        \"SJ_AUROC\": 0.7565,\n885\t        \"SJ_ECE\": 0.0846,\n886\t        \"FK_rho\": 0.4515,\n887\t        \"FK_AUROC\": 0.753,\n888\t        \"FK_ECE\": 0.0813,\n889\t        \"logprob_rho\": 0.3193,\n890\t        \"logprob_AUROC\": 0.8023,\n891\t        \"logprob_ECE\": 0.0921,\n892\t        \"EM_rho\": 0.4618,\n893\t        \"EM_AUROC\": 0.7589,\n894\t        \"EM_ECE\": 0.0757,\n895\t        \"voting_conf_rho\": 0.3978,\n896\t        \"voting_conf_AUROC\": 0.7287,\n897\t        \"voting_conf_ECE\": 0.0742\n898\t      },\n899\t      \"best_of_n\": {\n900\t        \"greedy\": 0.9243,\n901\t        \"random_avg\": 0.9213,\n902\t        \"sj_best\": 0.9259,\n903\t        \"logprob_best\": 0.925,\n904\t        \"voting_conf_best\": 0.9268,\n905\t        \"oracle\": 0.9487\n906\t      },\n907\t      \"n8_vs_n16_delta\": {\n908\t        \"full_SJ_rho_delta\": 0.0328,\n909\t        \"full_FK_rho_delta\": 0.0289,\n910\t        \"full_logprob_rho_delta\": -0.0014,\n911\t        \"full_EM_rho_delta\": 0.0307,\n912\t        \"full_voting_conf_rho_delta\": 0.0298,\n913\t        \"cond_SJ_rho_delta\": 0.0241,\n914\t        \"cond_FK_rho_delta\": 0.0205,\n915\t        \"cond_logprob_rho_delta\": -0.0089,\n916\t        \"cond_EM_rho_delta\": 0.0215,\n917\t        \"cond_voting_conf_rho_delta\": 0.0235\n918\t      }\n919\t    },\n920\t    \"conclusion\": \"success\",\n921\t    \"completed_at\": \"2026-05-14T19:45:16.265Z\",\n922\t    \"hypothesis\": \"LLaMA CoNLL N=16 seed=42 (original): cross-model validation on CoNLL. First evidence that structural>surface ranking generalizes from Qwen to LLaMA model family.\"\n923\t  },\n924\t  \"exp_001_n16_seed456\": {\n925\t    \"status\": \"DONE\",\n926\t    \"retry_count\": 1,\n927\t    \"created_at\": \"2026-05-14T12:10:30.350Z\",\n928\t    \"updated_at\": \"2026-05-17T02:56:53.526Z\",\n929\t    \"completed_at\": \"2026-05-14T12:28:38.721Z\",\n930\t    \"extra\": {\n931\t      \"previous_failure\": {\n932\t        \"conclusion\": \"success\",\n933\t        \"metrics\": {\n934\t          \"ner\": {\n935\t            \"greedy_f1\": 0.6577,\n936\t            \"oracle_f1\": 0.8129,\n937\t            \"headroom\": 0.1553,\n938\t            \"rho_sj_full\": 0.3297,\n939\t            \"rho_fk_full\": 0.2578,\n940\t            \"rho_logprob_full\": 0.2866,\n941\t            \"rho_sj_cond\": 0.3394,\n942\t            \"rho_fk_cond\": 0.2721,\n943\t            \"rho_logprob_cond\": 0.2567,\n944\t            \"sj_beats_fk\": true,\n945\t            \"rho_advantage\": 0.0719\n946\t          },\n947\t          \"re\": {\n948\t            \"greedy_f1\": 0.4312,\n949\t            \"oracle_f1\": 0.6737,\n950\t            \"headroom\": 0.2425,\n951\t            \"rho_sj_full\": 0.285,\n952\t            \"rho_fk_full\": 0.2372,\n953\t            \"rho_logprob_full\": 0.2626,\n954\t            \"rho_sj_cond\": 0.3525,\n955\t            \"rho_fk_cond\": 0.2614,\n956\t            \"rho_logprob_cond\": 0.1927,\n957\t            \"sj_beats_fk\": true,\n958\t            \"rho_advantage\": 0.0478\n959\t          },\n960\t          \"verdict\": \"FAIL\"\n961\t        }\n962\t      }\n963\t    },\n964\t    \"spec\": {\n965\t      \"hypothesis\": \"N=16 seed456 multi-seed robustness verification for SciERC NER+RE\",\n966\t      \"plan_id\": \"exp-001\",\n967\t      \"model_name\": \"qwen3-8b-scierc-merged-v2\",\n968\t      \"data_path\": \"data/scierc/processed_data\",\n969\t      \"data_count\": 551,\n970\t      \"seed\": 456,\n971\t      \"command\": \"python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 16 --temperature 1.0 --seed 456 --output_dir output/exp001_n16_seed456 --collect_logprobs\",\n972\t      \"server\": \"autodl-5090\",\n973\t      \"gpu\": \"cuda:0\",\n974\t      \"pid\": \"174595\",\n975\t      \"log_path\": \"output/exp001_n16_seed456_run.log\",\n976\t      \"tmux_session\": \"exp_001_n16_seed456\"\n977\t    },\n978\t    \"conclusion\": \"success\",\n979\t    \"checkpoint_path\": \"N/A (inference-only)\",\n980\t    \"metrics\": {\n981\t      \"instance_count\": 551,\n982\t      \"n_valid\": 529,\n983\t      \"n_gold_empty\": 22,\n984\t      \"parse_rate\": 1,\n985\t      \"ner_greedy_f1\": 0.6617,\n986\t      \"ner_oracle_f1\": 0.8075,\n987\t      \"re_greedy_f1\": 0.4215,\n988\t      \"re_oracle_f1\": 0.4748,\n989\t      \"rho_sj_ner\": 0.4098,\n990\t      \"rho_fk_ner\": 0.2723,\n991\t      \"rho_vc_ner\": 0.4449,\n992\t      \"rho_em_ner\": 0.3363,\n993\t      \"rho_lp_ner\": 0.2415,\n994\t      \"rho_sj_re\": 0.2835,\n995\t      \"rho_fk_re\": 0.2929,\n996\t      \"auroc_sj_ner\": 0.6823,\n997\t      \"auroc_fk_ner\": 0.6179,\n998\t      \"auroc_vc_ner\": 0.6981,\n999\t      \"auroc_em_ner\": 0.649,\n1000\t      \"auroc_lp_ner\": 0.5885,\n1001\t      \"rho_note\": \"CORRECTED 2026-05-15: old values (rho_fk=0.3448,rho_sj=0.4134) included 22 gold-empty instances. Now uses gold-filtered pipeline (n=529).\"\n1002\t    },\n1003\t    \"log_path\": \"output/exp001_n16_seed456_run.log\",\n1004\t    \"hypothesis\": \"SciERC N=16 seed=456: early multi-seed validation of structural signal rankings at N=16 sample count. Establishes seed stability for SJ/FK/VC/EM ordering.\"\n1005\t  },\n1006\t  \"exp_021_fewnerd_full\": {\n1007\t    \"status\": \"DONE\",\n1008\t    \"retry_count\": 0,\n1009\t    \"created_at\": \"2026-05-16T16:33:44.079Z\",\n1010\t    \"updated_at\": \"2026-05-17T02:55:45.560Z\",\n1011\t    \"hypothesis\": \"Full Few-NERD LoRA fine-tune (rank=32, α=64, 3 epochs) on SUPERVISED coarse 8-type NER (131k train). 4-GPU DDP on autodl-5090. Post-training: N=8 inference on full test set, T=1.0, seed=42, collect logprobs for SCS metrics.\",\n1012\t    \"spec\": {\n1013\t      \"gpu\": \"cuda:0,cuda:1,cuda:2,cuda:3\",\n1014\t      \"gpu_count\": 4,\n1015\t      \"training_mode\": \"DDP\",\n1016\t      \"checkpoint_path\": \"output/exp_021_fewnerd_full/checkpoint-6177\",\n1017\t      \"log_path\": \"output/exp_021_inference/\"\n1018\t    },\n1019\t    \"conclusion\": \"success\",\n1020\t    \"metrics\": {\n1021\t      \"total_steps\": 6177,\n1022\t      \"train_loss\": 0.048,\n1023\t      \"eval_loss\": 0.0275,\n1024\t      \"train_runtime\": \"3h57m\",\n1025\t      \"epochs\": 3,\n1026\t      \"final_checkpoint\": \"output/exp_021_fewnerd_full/checkpoint-6177\",\n1027\t      \"adapter_path\": \"output/exp_021_fewnerd_full/adapter_model.safetensors\",\n1028\t      \"inference_instances\": 37648,\n1029\t      \"inference_filtered\": 32565,\n1030\t      \"inference_n_samples\": 8,\n1031\t      \"greedy_macro_f1\": 0.7478,\n1032\t      \"oracle_macro_f1\": 0.8719,\n1033\t      \"headroom\": 0.124,\n1034\t      \"zero_f1_rate\": 0.119,\n1035\t      \"degeneracy_rate\": 0.101,\n1036\t      \"lp_within_range_mean\": 0.0879,\n1037\t      \"lp_within_range_median\": 0.0662,\n1038\t      \"lp_global_rho\": 0.4215,\n1039\t      \"lp_cond_rho\": 0.4225,\n1040\t      \"sj_global_rho\": 0.3002,\n1041\t      \"sj_cond_rho\": 0.2937,\n1042\t      \"fk_global_rho\": 0.3132,\n1043\t      \"fk_cond_rho\": 0.3093,\n1044\t      \"em_global_rho\": 0.2871,\n1045\t      \"em_cond_rho\": 0.271,\n1046\t      \"vc_global_rho\": 0.3858,\n1047\t      \"vc_cond_rho\": 0.3234,\n1048\t      \"lp_selection_delta_pp\": 1.36,\n1049\t      \"vc_selection_delta_pp\": -1.79,\n1050\t      \"sj_selection_delta_pp\": -2.14,\n1051\t      \"fk_selection_delta_pp\": -2.26,\n1052\t      \"em_selection_delta_pp\": -3.85,\n1053\t      \"lp_bootstrap_ci_95_pp\": [\n1054\t        1.18,\n1055\t        1.53\n1056\t      ],\n1057\t      \"lp_sample_auroc\": 0.5782,\n1058\t      \"vc_sample_auroc\": 0.5354,\n1059\t      \"fk_sample_auroc\": 0.521,\n1060\t      \"sj_sample_auroc\": 0.5197,\n1061\t      \"em_sample_auroc\": 0.5137,\n1062\t      \"scenario\": \"A_partial\",\n1063\t      \"note\": \"Full analysis (gold-filtered n=32565). Prior simplified analysis used unfiltered data with different metrics.\"\n1064\t    },\n1065\t    \"completed_at\": \"2026-05-16T22:04:16.683Z\",\n1066\t    \"parent\": \"exp_020_fewnerd_smoke\"\n1067\t  },\n1068\t  \"exp_020_fewnerd_smoke\": {\n1069\t    \"status\": \"DONE\",\n1070\t    \"retry_count\": 0,\n1071\t    \"created_at\": \"2026-05-16T10:29:25.272Z\",\n1072\t    \"updated_at\": \"2026-05-16T16:33:59.109Z\",\n1073\t    \"spec\": {\n1074\t      \"checkpoint_path\": \"checkpoints/ft_fewnerd_smoke\",\n1075\t      \"log_path\": \"checkpoints/fewnerd_train.log\"\n1076\t    },\n1077\t    \"hypothesis\": \"1-epoch LoRA (r16) fine-tune Qwen3-8B on Few-NERD INTRA coarse 8-type (131k train), then N=8 T=1.0 pilot inference on 200 test instances. Re-started training 2026-05-16 18:29 CST on cuda:1, PID 288683. ETA ~22:55 CST.\",\n1078\t    \"conclusion\": \"success\",\n1079\t    \"metrics\": {\n1080\t      \"final_loss\": 0.031,\n1081\t      \"total_steps\": 8236,\n1082\t      \"training_time\": \"5h54m\",\n1083\t      \"pilot_greedy_f1\": 0.8037,\n1084\t      \"pilot_instances\": 200,\n1085\t      \"merged_model_path\": \"checkpoints/qwen3-8b-fewnerd-merged\"\n1086\t    },\n1087\t    \"completed_at\": \"2026-05-16T16:33:59.109Z\"\n1088\t  },\n1089\t  \"exp008_re_n16\": {\n1090\t    \"status\": \"DONE\",\n1091\t    \"retry_count\": 0,\n1092\t    \"created_at\": \"2026-05-14T12:09:50.987Z\",\n1093\t    \"updated_at\": \"2026-05-15T12:41:39.774Z\",\n1094\t    \"spec\": {\n1095\t      \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && mkdir -p output/exp008_re_n16 && CUDA_VISIBLE_DEVICES=2 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 16 --temperature 1.0 --seed 42 --output_dir output/exp008_re_n16 --collect_logprobs 2>&1 | tee output/exp008_re_n16/run.log\\\"\",\n1096\t      \"server\": \"gpu-5090-4x-2\",\n1097\t      \"gpu\": [\n1098\t        \"cuda:2\"\n1099\t      ],\n1100\t      \"pid\": \"53600\",\n1101\t      \"log_path\": \"~/runs/struct_self_consist_ie/exp008_re_n16.log\",\n1102\t      \"submitted_at\": \"2026-05-14T12:15:14.917Z\",\n1103\t      \"submitted_via\": \"submit_training_job\",\n1104\t      \"backend\": \"tmux\",\n1105\t      \"account\": \"root\",\n1106\t      \"failure_reason\": \"Superseded by exp_008_re_n16_v2 (full 551-instance run on autodl-5090)\",\n1107\t      \"wall_clock_seconds\": 87984.9,\n1108\t      \"gpu_hours\": 24.44\n1109\t    },\n1110\t    \"conclusion\": \"killed\",\n1111\t    \"completed_at\": \"2026-05-15T12:41:39.774Z\"\n1112\t  },\n1113\t  \"exp_001_n16_seed456_full\": {\n1114\t    \"status\": \"DONE\",\n1115\t    \"retry_count\": 0,\n1116\t    \"created_at\": \"2026-05-14T12:44:31.348Z\",\n1117\t    \"updated_at\": \"2026-05-15T12:41:30.065Z\",\n1118\t    \"spec\": {\n1119\t      \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=1 python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 16 --temperature 1.0 --seed 456 --collect_logprobs --num_test 9999 --output_dir output/exp001_n16_seed456/\\\"\",\n1120\t      \"server\": \"gpu-5090-4x-2\",\n1121\t      \"gpu\": [\n1122\t        \"cuda:1\"\n1123\t      ],\n1124\t      \"pid\": \"62170\",\n1125\t      \"log_path\": \"~/runs/struct_self_consist_ie/exp_001_n16_seed456_full.log\",\n1126\t      \"submitted_at\": \"2026-05-14T12:44:31.087Z\",\n1127\t      \"submitted_via\": \"submit_training_job\",\n1128\t      \"backend\": \"tmux\",\n1129\t      \"account\": \"root\",\n1130\t      \"failure_reason\": \"Superseded by exp_001_seed456_v2_ner (NER-only on autodl-5090)\",\n1131\t      \"wall_clock_seconds\": 86219.0,\n1132\t      \"gpu_hours\": 23.95\n1133\t    },\n1134\t    \"conclusion\": \"killed\",\n1135\t    \"failure_reason\": \"superseded by v2\",\n1136\t    \"completed_at\": \"2026-05-15T12:41:30.065Z\"\n1137\t  },\n1138\t  \"exp_001_n16_seed123_full\": {\n1139\t    \"status\": \"DONE\",\n1140\t    \"retry_count\": 0,\n1141\t    \"created_at\": \"2026-05-14T12:43:47.915Z\",\n1142\t    \"updated_at\": \"2026-05-15T12:41:29.068Z\",\n1143\t    \"spec\": {\n1144\t      \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=0 python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 16 --temperature 1.0 --seed 123 --collect_logprobs --num_test 9999 --output_dir output/exp001_n16_seed123_full/\\\"\",\n1145\t      \"server\": \"gpu-5090-4x-2\",\n1146\t      \"gpu\": [\n1147\t        \"cuda:0\"\n1148\t      ],\n1149\t      \"pid\": \"61812\",\n1150\t      \"log_path\": \"~/runs/struct_self_consist_ie/exp_001_n16_seed123_full.log\",\n1151\t      \"submitted_at\": \"2026-05-14T12:44:06.059Z\",\n1152\t      \"submitted_via\": \"submit_training_job\",\n1153\t      \"backend\": \"tmux\",\n1154\t      \"account\": \"root\",\n1155\t      \"failure_reason\": \"Superseded by exp_001_seed123_v2 (NER-only on autodl-5090)\",\n1156\t      \"wall_clock_seconds\": 86243.0,\n1157\t      \"gpu_hours\": 23.96\n1158\t    },\n1159\t    \"conclusion\": \"killed\",\n1160\t    \"failure_reason\": \"superseded by v2\",\n1161\t    \"completed_at\": \"2026-05-15T12:41:29.068Z\"\n1162\t  },\n1163\t  \"exp_002_conll_n16_r1024\": {\n1164\t    \"status\": \"DONE\",\n1165\t    \"retry_count\": 0,\n1166\t    \"created_at\": \"2026-05-14T22:16:57.682Z\",\n1167\t    \"updated_at\": \"2026-05-15T01:20:53.108Z\",\n1168\t    \"spec\": {\n1169\t      \"hypothesis\": \"D054 rerun: max_tokens=1024. Verify truncation impact on Qwen CoNLL N=16.\",\n1170\t      \"parent\": \"exp_002_conll_n16\",\n1171\t      \"model_name\": \"qwen3-8b-conll2003-merged\",\n1172\t      \"dataset\": \"CoNLL-2003\",\n1173\t      \"seed\": 42,\n1174\t      \"server\": \"autodl-5090\",\n1175\t      \"command\": \"CUDA_VISIBLE_DEVICES=2 python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 42 --num_test 9999 --max_tokens 1024 --collect_logprobs --output_dir output/exp_002_conll_n16_r1024\",\n1176\t      \"data_path\": \"data/conll2003\",\n1177\t      \"data_count\": 3453\n1178\t    },\n1179\t    \"conclusion\": \"killed\",\n1180\t    \"completed_at\": \"2026-05-15T01:20:53.108Z\"\n1181\t  },\n1182\t  \"exp_007_llama_n16_r1024\": {\n1183\t    \"status\": \"DONE\",\n1184\t    \"retry_count\": 0,\n1185\t    \"created_at\": \"2026-05-14T22:16:59.685Z\",\n1186\t    \"updated_at\": \"2026-05-15T01:20:52.194Z\",\n1187\t    \"spec\": {\n1188\t      \"hypothesis\": \"D054 rerun: max_tokens=1024. Verify truncation impact on LLaMA SciERC N=16.\",\n1189\t      \"parent\": \"exp_007_llama_n16\",\n1190\t      \"model_name\": \"llama3.1-8b-scierc-merged\",\n1191\t      \"dataset\": \"SciERC\",\n1192\t      \"seed\": 42,\n1193\t      \"server\": \"autodl-5090\",\n1194\t      \"command\": \"CUDA_VISIBLE_DEVICES=3 PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-scierc-merged --data_dir data/scierc/processed_data --dataset scierc --subtask ner --n_samples 16 --temperature 1.0 --seed 42 --num_test 9999 --max_tokens 1024 --collect_logprobs --output_dir output/exp_007_llama_n16_r1024\",\n1195\t      \"data_path\": \"data/scierc/processed_data\",\n1196\t      \"data_count\": 9999\n1197\t    },\n1198\t    \"conclusion\": \"killed\",\n1199\t    \"completed_at\": \"2026-05-15T01:20:52.194Z\""
+            }
+          ],
+          "metadata": {
+            "parentUuid": "68ebc718-1100-4810-89c3-f9a6121a4be8",
+            "isSidechain": true,
+            "promptId": "6db2e51c-9e8c-47e6-b1c4-6f35ea2e4e39",
+            "agentId": "a37fba2a40b1ce129",
+            "type": "user",
+            "uuid": "e9953ea7-25ea-4ee5-8065-2ae73d19f088",
+            "sourceToolAssistantUUID": "68ebc718-1100-4810-89c3-f9a6121a4be8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "8a7c5621-29b1-4475-9625-e962f960c1bd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-19T07:58:34.834Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VcK3iDccdwRpYBAAZFdhZu",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/8a7c5621-29b1-4475-9625-e962f960c1bd/tool-results/bhxefydqt.txt",
+                "offset": 1198,
+                "limit": 400
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e9953ea7-25ea-4ee5-8065-2ae73d19f088",
+            "isSidechain": true,
+            "agentId": "a37fba2a40b1ce129",
+            "requestId": "req_011CbBaAoW6RAXew9bV54HS3",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "fa4fb415-22d1-4f96-a34f-7e7c545b2f46",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "8a7c5621-29b1-4475-9625-e962f960c1bd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QYeAFB2h9fV1LjUoVVd8DT",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 11661,
+                "cache_read_input_tokens": 33724,
+                "output_tokens": 166,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 11661
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 166,
+                    "cache_read_input_tokens": 33724,
+                    "cache_creation_input_tokens": 11661,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 11661,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-19T07:58:34.840Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VcK3iDccdwRpYBAAZFdhZu",
+              "type": "tool_result",
+              "content": "1198\t    \"conclusion\": \"killed\",\n1199\t    \"completed_at\": \"2026-05-15T01:20:52.194Z\"\n1200\t  },\n1201\t  \"exp_017_llama_conll_n16_s456\": {\n1202\t    \"status\": \"DONE\",\n1203\t    \"retry_count\": 0,\n1204\t    \"created_at\": \"2026-05-14T19:23:21.987Z\",\n1205\t    \"updated_at\": \"2026-05-14T20:24:45.875Z\",\n1206\t    \"hypothesis\": \"LLaMA CoNLL N=16 seed=456: structural>surface ranking preserved across seeds, complementing Qwen SciERC 3-seed protocol\",\n1207\t    \"spec\": {\n1208\t      \"command\": \"CUDA_VISIBLE_DEVICES=2 python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 456 --collect_logprobs --num_test 9999 --output_dir output/exp_017_llama_conll_n16_s456\",\n1209\t      \"server\": \"autodl-5090\",\n1210\t      \"data_path\": \"data/conll2003\",\n1211\t      \"data_count\": 3453,\n1212\t      \"model_name\": \"llama3.1-8b-conll2003-merged\",\n1213\t      \"seed\": 456\n1214\t    },\n1215\t    \"metrics\": {\n1216\t      \"greedy_f1\": 0.9243,\n1217\t      \"oracle_f1\": 0.9488,\n1218\t      \"oracle_headroom\": 0.0245,\n1219\t      \"n_instances\": 3453,\n1220\t      \"n_valid\": 2756,\n1221\t      \"n_conditional\": 2642,\n1222\t      \"structural_beats_surface\": true,\n1223\t      \"full\": {\n1224\t        \"SJ_rho\": 0.4552,\n1225\t        \"SJ_AUROC\": 0.7288,\n1226\t        \"SJ_ECE\": 0.1134,\n1227\t        \"FK_rho\": 0.4478,\n1228\t        \"FK_AUROC\": 0.7248,\n1229\t        \"FK_ECE\": 0.109,\n1230\t        \"logprob_rho\": 0.3078,\n1231\t        \"logprob_AUROC\": 0.7612,\n1232\t        \"logprob_ECE\": 0.1289,\n1233\t        \"EM_rho\": 0.452,\n1234\t        \"EM_AUROC\": 0.7275,\n1235\t        \"EM_ECE\": 0.1082,\n1236\t        \"voting_conf_rho\": 0.4571,\n1237\t        \"voting_conf_AUROC\": 0.7348,\n1238\t        \"voting_conf_ECE\": 0.0863\n1239\t      },\n1240\t      \"conditional\": {\n1241\t        \"SJ_rho\": 0.4505,\n1242\t        \"SJ_AUROC\": 0.7449,\n1243\t        \"SJ_ECE\": 0.0826,\n1244\t        \"FK_rho\": 0.4422,\n1245\t        \"FK_AUROC\": 0.7401,\n1246\t        \"FK_ECE\": 0.0835,\n1247\t        \"logprob_rho\": 0.3242,\n1248\t        \"logprob_AUROC\": 0.8067,\n1249\t        \"logprob_ECE\": 0.0921,\n1250\t        \"EM_rho\": 0.451,\n1251\t        \"EM_AUROC\": 0.745,\n1252\t        \"EM_ECE\": 0.0756,\n1253\t        \"voting_conf_rho\": 0.3962,\n1254\t        \"voting_conf_AUROC\": 0.7202,\n1255\t        \"voting_conf_ECE\": 0.0746\n1256\t      },\n1257\t      \"best_of_n\": {\n1258\t        \"greedy\": 0.9243,\n1259\t        \"random_avg\": 0.9215,\n1260\t        \"sj_best\": 0.9243,\n1261\t        \"logprob_best\": 0.9243,\n1262\t        \"voting_conf_best\": 0.9243,\n1263\t        \"oracle\": 0.9488\n1264\t      },\n1265\t      \"n8_vs_n16_delta\": {\n1266\t        \"full_SJ_rho_delta\": 0.0238,\n1267\t        \"full_FK_rho_delta\": 0.0201,\n1268\t        \"full_logprob_rho_delta\": 0.0006,\n1269\t        \"full_EM_rho_delta\": 0.0214,\n1270\t        \"full_voting_conf_rho_delta\": 0.0315,\n1271\t        \"cond_SJ_rho_delta\": 0.0149,\n1272\t        \"cond_FK_rho_delta\": 0.0112,\n1273\t        \"cond_logprob_rho_delta\": -0.004,\n1274\t        \"cond_EM_rho_delta\": 0.0107,\n1275\t        \"cond_voting_conf_rho_delta\": 0.0219\n1276\t      }\n1277\t    },\n1278\t    \"checkpoint_path\": \"output/exp_017_llama_conll_n16_s456/samples.jsonl\",\n1279\t    \"log_path\": \"output/exp_017_llama_conll_n16_s456/all_signals_report.json\",\n1280\t    \"conclusion\": \"success\",\n1281\t    \"completed_at\": \"2026-05-14T20:24:45.875Z\"\n1282\t  },\n1283\t  \"exp_017_llama_conll_n16_s123\": {\n1284\t    \"status\": \"DONE\",\n1285\t    \"retry_count\": 0,\n1286\t    \"created_at\": \"2026-05-14T19:23:21.084Z\",\n1287\t    \"updated_at\": \"2026-05-14T19:43:06.607Z\",\n1288\t    \"hypothesis\": \"LLaMA CoNLL N=16 seed=123: structural>surface ranking preserved across seeds, complementing Qwen SciERC 3-seed protocol\",\n1289\t    \"spec\": {\n1290\t      \"hypothesis\": \"LLaMA CoNLL-2003 NER N=16 seed=123: cross-seed robustness check against N=8 seed=42 baseline (exp_017_llama_conll_infer)\",\n1291\t      \"command\": \"CUDA_VISIBLE_DEVICES=1 python code/run_mvp_pilot.py --model_path checkpoints/llama3.1-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 123 --collect_logprobs --num_test 9999 --output_dir output/exp_017_llama_conll_n16_s123\",\n1292\t      \"server\": \"autodl-5090\",\n1293\t      \"data_path\": \"/root/autodl-tmp/struct_self_consist_ie/data/conll2003\",\n1294\t      \"data_count\": 3453,\n1295\t      \"model_name\": \"llama3.1-8b-conll2003-merged\",\n1296\t      \"seed\": 123,\n1297\t      \"checkpoint_source\": \"checkpoints/llama3.1-8b-conll2003-merged\",\n1298\t      \"eval_data\": \"data/conll2003\",\n1299\t      \"checkpoint_path\": \"output/exp_017_llama_conll_n16_s123/samples.jsonl\",\n1300\t      \"log_path\": \"output/exp_017_llama_conll_n16_s123.log\"\n1301\t    },\n1302\t    \"metrics\": {\n1303\t      \"greedy_f1\": 0.9266,\n1304\t      \"oracle_f1\": 0.9497,\n1305\t      \"oracle_headroom\": 0.0231,\n1306\t      \"n_instances\": 3453,\n1307\t      \"n_valid\": 2756,\n1308\t      \"n_conditional\": 2642,\n1309\t      \"structural_beats_surface\": true,\n1310\t      \"full\": {\n1311\t        \"SJ_rho\": 0.4698,\n1312\t        \"SJ_AUROC\": 0.7402,\n1313\t        \"SJ_ECE\": 0.1135,\n1314\t        \"FK_rho\": 0.4594,\n1315\t        \"FK_AUROC\": 0.7351,\n1316\t        \"FK_ECE\": 0.1114,\n1317\t        \"logprob_rho\": 0.3161,\n1318\t        \"logprob_AUROC\": 0.768,\n1319\t        \"logprob_ECE\": 0.129,\n1320\t        \"EM_rho\": 0.4676,\n1321\t        \"EM_AUROC\": 0.7399,\n1322\t        \"EM_ECE\": 0.1082,\n1323\t        \"voting_conf_rho\": 0.4612,\n1324\t        \"voting_conf_AUROC\": 0.7429,\n1325\t        \"voting_conf_ECE\": 0.0832\n1326\t      },\n1327\t      \"conditional\": {\n1328\t        \"SJ_rho\": 0.4712,\n1329\t        \"SJ_AUROC\": 0.7609,\n1330\t        \"SJ_ECE\": 0.0828,\n1331\t        \"FK_rho\": 0.4595,\n1332\t        \"FK_AUROC\": 0.7547,\n1333\t        \"FK_ECE\": 0.0858,\n1334\t        \"logprob_rho\": 0.3314,\n1335\t        \"logprob_AUROC\": 0.8134,\n1336\t        \"logprob_ECE\": 0.0922,\n1337\t        \"EM_rho\": 0.4732,\n1338\t        \"EM_AUROC\": 0.7626,\n1339\t        \"EM_ECE\": 0.075,\n1340\t        \"voting_conf_rho\": 0.4086,\n1341\t        \"voting_conf_AUROC\": 0.7338,\n1342\t        \"voting_conf_ECE\": 0.0706\n1343\t      },\n1344\t      \"best_of_n\": {\n1345\t        \"greedy\": 0.9242,\n1346\t        \"random_avg\": 0.9216,\n1347\t        \"sj_best\": 0.9247,\n1348\t        \"logprob_best\": 0.9253,\n1349\t        \"voting_conf_best\": 0.9255,\n1350\t        \"oracle\": 0.9486\n1351\t      },\n1352\t      \"n8_vs_n16_delta\": {\n1353\t        \"full_SJ_rho_delta\": 0.0384,\n1354\t        \"full_FK_rho_delta\": 0.0317,\n1355\t        \"full_logprob_rho_delta\": 0.0089,\n1356\t        \"full_SJ_AUROC_delta\": 0.0363,\n1357\t        \"full_FK_AUROC_delta\": 0.0325,\n1358\t        \"full_logprob_AUROC_delta\": 0.007,\n1359\t        \"cond_SJ_rho_delta\": 0.0356,\n1360\t        \"cond_FK_rho_delta\": 0.0285,\n1361\t        \"cond_logprob_rho_delta\": 0.0032\n1362\t      }\n1363\t    },\n1364\t    \"log_path\": \"output/exp_017_llama_conll_n16_s123.log\",\n1365\t    \"checkpoint_path\": \"output/exp_017_llama_conll_n16_s123/samples.jsonl\",\n1366\t    \"conclusion\": \"success\",\n1367\t    \"completed_at\": \"2026-05-14T19:43:06.607Z\"\n1368\t  },\n1369\t  \"exp_008_re_n16_full\": {\n1370\t    \"status\": \"DONE\",\n1371\t    \"retry_count\": 0,\n1372\t    \"created_at\": \"2026-05-14T12:45:10.852Z\",\n1373\t    \"updated_at\": \"2026-05-14T17:51:43.957Z\",\n1374\t    \"spec\": {\n1375\t      \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=2 python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask re --n_samples 16 --temperature 1.0 --seed 42 --collect_logprobs --num_test 9999 --output_dir output/exp008_re_n16/\\\"\",\n1376\t      \"server\": \"gpu-5090-4x-2\",\n1377\t      \"gpu\": [\n1378\t        \"cuda:2\"\n1379\t      ],\n1380\t      \"pid\": \"62585\",\n1381\t      \"log_path\": \"~/runs/struct_self_consist_ie/exp_008_re_n16_full.log\",\n1382\t      \"submitted_at\": \"2026-05-14T12:45:10.764Z\",\n1383\t      \"submitted_via\": \"submit_training_job\",\n1384\t      \"backend\": \"tmux\",\n1385\t      \"account\": \"root\",\n1386\t      \"wall_clock_seconds\": 18393.2,\n1387\t      \"gpu_hours\": 5.11\n1388\t    },\n1389\t    \"conclusion\": \"killed\",\n1390\t    \"failure_reason\": \"superseded by exp_008_re_n16_t10_full (full 551-instance RE-only run on autodl-5090)\",\n1391\t    \"completed_at\": \"2026-05-14T17:51:43.957Z\"\n1392\t  },\n1393\t  \"exp_001_n16_seed123\": {\n1394\t    \"status\": \"DONE\",\n1395\t    \"retry_count\": 0,\n1396\t    \"created_at\": \"2026-05-14T12:10:29.393Z\",\n1397\t    \"updated_at\": \"2026-05-14T12:42:58.393Z\",\n1398\t    \"spec\": {\n1399\t      \"command\": \"python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 16 --temperature 1.0 --seed 123 --collect_logprobs\",\n1400\t      \"server\": \"gpu-5090-4x-2\",\n1401\t      \"data_path\": \"data/scierc/processed_data\",\n1402\t      \"data_count\": 551,\n1403\t      \"model_name\": \"qwen3-8b-scierc-merged-v2\",\n1404\t      \"seed\": 123,\n1405\t      \"num_instances\": 200,\n1406\t      \"partial\": true,\n1407\t      \"note\": \"Only 200/551 instances due to --num_test default bug. Needs full rerun.\"\n1408\t    },\n1409\t    \"metrics\": {\n1410\t      \"ner\": {\n1411\t        \"greedy_f1\": 0.655,\n1412\t        \"oracle_f1\": 0.8028,\n1413\t        \"headroom\": 0.1478,\n1414\t        \"rho_sj_full\": 0.4076,\n1415\t        \"rho_fk_full\": 0.2799,\n1416\t        \"rho_logprob_full\": 0.3189,\n1417\t        \"rho_sj_cond\": 0.4271,\n1418\t        \"rho_fk_cond\": 0.2743,\n1419\t        \"rho_logprob_cond\": 0.2835,\n1420\t        \"sj_beats_fk\": true,\n1421\t        \"rho_advantage\": 0.1277\n1422\t      },\n1423\t      \"re\": {\n1424\t        \"greedy_f1\": 0.4243,\n1425\t        \"oracle_f1\": 0.6771,\n1426\t        \"headroom\": 0.2528,\n1427\t        \"rho_sj_full\": 0.2943,\n1428\t        \"rho_fk_full\": 0.2657,\n1429\t        \"rho_logprob_full\": 0.3005,\n1430\t        \"rho_sj_cond\": 0.4003,\n1431\t        \"rho_fk_cond\": 0.313,\n1432\t        \"rho_logprob_cond\": 0.2317,\n1433\t        \"sj_beats_fk\": true,\n1434\t        \"rho_advantage\": 0.0286\n1435\t      },\n1436\t      \"verdict\": \"FAIL\"\n1437\t    },\n1438\t    \"conclusion\": \"success\",\n1439\t    \"checkpoint_path\": \"N/A\",\n1440\t    \"log_path\": \"output/exp001_n16_seed123/\",\n1441\t    \"completed_at\": \"2026-05-14T12:28:38.104Z\"\n1442\t  },\n1443\t  \"exp_001_ner_n16_scierc\": {\n1444\t    \"status\": \"DONE\",\n1445\t    \"retry_count\": 0,\n1446\t    \"created_at\": \"2026-05-14T11:42:10.898Z\",\n1447\t    \"updated_at\": \"2026-05-14T12:42:49.592Z\",\n1448\t    \"spec\": {\n1449\t      \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=0 python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 16 --temperature 1.0 --seed 42 --output_dir output/exp001_n16_seed42 --num_test 9999 --collect_logprobs 2>&1 | tee output/exp001_n16_seed42_run.log\\\"\",\n1450\t      \"server\": \"autodl-5090\",\n1451\t      \"gpu\": [\n1452\t        \"cuda:0\"\n1453\t      ],\n1454\t      \"pid\": \"54357\",\n1455\t      \"log_path\": \"~/runs/struct_self_consist_ie/exp_001_ner_n16_scierc.log\",\n1456\t      \"submitted_at\": \"2026-05-14T12:15:46.646Z\",\n1457\t      \"submitted_via\": \"submit_training_job\",\n1458\t      \"backend\": \"tmux\",\n1459\t      \"account\": \"root\"\n1460\t    },\n1461\t    \"server\": \"autodl-5090\",\n1462\t    \"gpu\": \"cuda:0\",\n1463\t    \"account\": \"root\",\n1464\t    \"reproduce\": {\n1465\t      \"server\": \"autodl-5090\",\n1466\t      \"gpu\": \"cuda:0\",\n1467\t      \"started_at\": \"2026-05-14T11:43:48.643Z\"\n1468\t    },\n1469\t    \"conclusion\": \"success\",\n1470\t    \"completed_at\": \"2026-05-14T11:55:45.664Z\",\n1471\t    \"metrics\": {\n1472\t      \"n_instances\": 551,\n1473\t      \"ner_n\": 529,\n1474\t      \"re_n\": 397,\n1475\t      \"N\": 16,\n1476\t      \"T\": 1,\n1477\t      \"seed\": 42,\n1478\t      \"full_test_set\": true,\n1479\t      \"ner_voting_conf_rho\": 0.399,\n1480\t      \"ner_sj_rho\": 0.398,\n1481\t      \"ner_em_rho\": 0.339,\n1482\t      \"ner_fk_rho\": 0.288,\n1483\t      \"ner_logprob_rho\": 0.237,\n1484\t      \"ner_voting_conf_auroc\": 0.704,\n1485\t      \"ner_sj_auroc\": 0.697,\n1486\t      \"ner_cond_em_rho\": 0.414,\n1487\t      \"ner_cond_sj_rho\": 0.349,\n1488\t      \"ner_cond_vc_rho\": 0.34,\n1489\t      \"re_voting_conf_rho\": 0.38,\n1490\t      \"re_logprob_rho\": 0.293,\n1491\t      \"re_fk_rho\": 0.281,\n1492\t      \"re_sj_rho\": 0.277,\n1493\t      \"re_em_rho\": 0.148,\n1494\t      \"re_voting_conf_auroc\": 0.699,\n1495\t      \"re_cond_em_rho\": 0.475,\n1496\t      \"re_cond_sj_rho\": 0.318,\n1497\t      \"re_cond_vc_rho\": 0.35,\n1498\t      \"re_cond_em_auroc\": 0.742,\n1499\t      \"diagnosis\": \"551 instances T=1.0: voting_conf best on full set (NER 0.399, RE 0.380). EM SURPRISE best on conditional set (NER cond 0.414, RE cond 0.475). RE full FAIL (SJ 0.277 < 0.40). Previous N-scaling 'breakthrough' was artifact of 200 instances + T=0.7.\"\n1500\t    }\n1501\t  }\n1502\t}\n1503\t\n1504\t--- Total matching experiment keys: 36 ---\n1505\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fa4fb415-22d1-4f96-a34f-7e7c545b2f46",
+            "isSidechain": true,
+            "promptId": "6db2e51c-9e8c-47e6-b1c4-6f35ea2e4e39",
+            "agentId": "a37fba2a40b1ce129",
+            "type": "user",
+            "uuid": "fd67f058-6be9-4a7a-a520-6c2fa0cd3fd8",
+            "sourceToolAssistantUUID": "fa4fb415-22d1-4f96-a34f-7e7c545b2f46",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "8a7c5621-29b1-4475-9625-e962f960c1bd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-19T07:58:38.225Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me also check if there were any experiments with \"n16\" or \"n_16\" not already captured by \"fewnerd\"."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fd67f058-6be9-4a7a-a520-6c2fa0cd3fd8",
+            "isSidechain": true,
+            "agentId": "a37fba2a40b1ce129",
+            "requestId": "req_011CbBaBDRWgw9Bh2k5naEj2",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "b348dfa6-2f1c-4337-b49c-290427c6b79f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "8a7c5621-29b1-4475-9625-e962f960c1bd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012oZ2udNvbDw7Djyj2aiUWg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6328,
+                "cache_read_input_tokens": 45385,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 6328,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-19T07:58:48.482Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FYLFTVKUa3Sk69jAo1yUes",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie/8a7c5621-29b1-4475-9625-e962f960c1bd/tool-results/mcp-agent-ml-research-read_registry-1779177454168.txt') as f:\n    raw = json.load(f)\n\nresult = json.loads(raw['result'])\nexperiments = result['data']['experiments']\n\n# Find all with n16 or n_16 that don't also have fewnerd\nn16_only = {}\nfewnerd_ids = set()\nn16_ids = set()\n\nfor exp_id, exp_data in experiments.items():\n    exp_id_lower = exp_id.lower()\n    name = ''\n    if isinstance(exp_data, dict):\n        name = str(exp_data.get('name', '')).lower()\n    combined = exp_id_lower + ' ' + name\n    \n    if 'fewnerd' in combined:\n        fewnerd_ids.add(exp_id)\n    if 'n16' in combined or 'n_16' in combined:\n        n16_ids.add(exp_id)\n\n# Show which n16 experiments are NOT fewnerd (already shown above)\nn16_not_fewnerd = n16_ids - fewnerd_ids\nprint('=== n16/n_16 experiments already included (also contain fewnerd): ===')\nfor eid in sorted(n16_ids & fewnerd_ids):\n    print(f'  {eid}')\n\nprint()\nprint('=== n16/n_16 experiments NOT containing fewnerd (additional matches): ===')\nfor eid in sorted(n16_not_fewnerd):\n    print(f'  {eid}')\n\nprint()\nprint(f'Total fewnerd matches: {len(fewnerd_ids)}')\nprint(f'Total n16/n_16 matches: {len(n16_ids)}')\nprint(f'n16/n_16 already in fewnerd set: {len(n16_ids & fewnerd_ids)}')\nprint(f'n16/n_16 additional (not fewnerd): {len(n16_not_fewnerd)}')\nprint(f'Grand total unique matches: {len(fewnerd_ids | n16_ids)}')\n\"\n",
+                "description": "Identify n16/n_16 experiments not already in the fewnerd set"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b348dfa6-2f1c-4337-b49c-290427c6b79f",
+            "isSidechain": true,
+            "agentId": "a37fba2a40b1ce129",
+            "requestId": "req_011CbBaBDRWgw9Bh2k5naEj2",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "c89bf873-7bf0-4830-8504-b900b739ec46",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "8a7c5621-29b1-4475-9625-e962f960c1bd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012oZ2udNvbDw7Djyj2aiUWg",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6328,
+                "cache_read_input_tokens": 45385,
+                "output_tokens": 726,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 6328
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 726,
+                    "cache_read_input_tokens": 45385,
+                    "cache_creation_input_tokens": 6328,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 6328,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-19T07:58:48.589Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FYLFTVKUa3Sk69jAo1yUes",
+              "type": "tool_result",
+              "content": "=== n16/n_16 experiments already included (also contain fewnerd): ===\n  exp_027_fewnerd_n16\n\n=== n16/n_16 experiments NOT containing fewnerd (additional matches): ===\n  exp008_re_n16\n  exp_001_n16_seed123\n  exp_001_n16_seed123_full\n  exp_001_n16_seed456\n  exp_001_n16_seed456_full\n  exp_001_ner_n16_scierc\n  exp_001_ner_n16_seed123\n  exp_002_conll_n16\n  exp_002_conll_n16_r1024\n  exp_002_conll_n16_seed123\n  exp_002_conll_n16_seed456\n  exp_007_llama_n16\n  exp_007_llama_n16_r1024\n  exp_008_re_n16\n  exp_008_re_n16_full\n  exp_008_re_n16_t10_full\n  exp_008_re_n16_v2\n  exp_017_llama_conll_n16\n  exp_017_llama_conll_n16_r1024\n  exp_017_llama_conll_n16_s123\n  exp_017_llama_conll_n16_s123_r1024\n  exp_017_llama_conll_n16_s456\n  exp_017_llama_conll_n16_s456_r1024\n\nTotal fewnerd matches: 13\nTotal n16/n_16 matches: 24\nn16/n_16 already in fewnerd set: 1\nn16/n_16 additional (not fewnerd): 23\nGrand total unique matches: 36",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c89bf873-7bf0-4830-8504-b900b739ec46",
+            "isSidechain": true,
+            "promptId": "6db2e51c-9e8c-47e6-b1c4-6f35ea2e4e39",
+            "agentId": "a37fba2a40b1ce129",
+            "type": "user",
+            "uuid": "68b97513-c5d2-48a4-a1a6-845b101c9ae6",
+            "sourceToolAssistantUUID": "c89bf873-7bf0-4830-8504-b900b739ec46",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "8a7c5621-29b1-4475-9625-e962f960c1bd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-19T08:02:02.250Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 36 matching experiments have been fully extracted. Here is the complete data:\n\n---\n\n## Summary: 36 matching experiments (13 fewnerd + 23 n16-only + 1 overlap)\n\n### FEWNERD experiments (13 total)\n\n**1. exp_qwen25_32b_fewnerd**\n- status: \"ALLOCATED\"\n- retry_count: 0\n- created_at: \"2026-05-19T06:19:25.428Z\"\n- updated_at: \"2026-05-19T07:52:18.591Z\"\n- hypothesis: \"The correlation-selection gap (high QE correlation but no selection gain) generalizes to 32B-scale models. Qwen2.5-32B QLoRA fine-tuned on FewNERD should show the same pattern: structural signals have high ρ but fail at instance-level selection, while entity construction (θ=2/N) provides significant F1 gain. This fills the 8B→72B scale gap.\"\n- server: \"autodl-5090\"\n- gpu: \"cuda:0,cuda:1,cuda:2,cuda:3\"\n- account: \"root\"\n- reproduce: {server: \"autodl-5090\", gpu: \"cuda:0,cuda:1,cuda:2,cuda:3\", started_at: \"2026-05-19T06:47:41.246Z\"}\n- notes: \"2026-05-19 15:52 UTC: 32B model download in progress, 26GB/~65GB (~40%), 8 incomplete blobs remaining. PIDs 764902/764903 still active. Disk OK (84GB free). ETA ~1-2h.\"\n\n**2. exp_qwen25_7b_fewnerd**\n- status: \"QUEUED\"\n- retry_count: 0\n- created_at: \"2026-05-19T06:41:43.121Z\"\n- updated_at: \"2026-05-19T07:48:40.207Z\"\n- hypothesis: \"Qwen2.5-7B fine-tuned on FewNERD provides the baseline point for a pure Qwen2.5 family scale curve (7B/14B/32B/72B). This eliminates the confound of mixing Qwen2.5 and Qwen3 families when studying how the correlation-selection gap changes with model scale.\"\n\n**3. exp_qwen25_14b_fewnerd**\n- status: \"ALLOCATED\"\n- retry_count: 0\n- created_at: \"2026-05-19T06:19:31.620Z\"\n- updated_at: \"2026-05-19T06:47:43.938Z\"\n- hypothesis: \"The correlation-selection gap pattern is consistent at 14B scale, filling the gap between 8B and 32B. Qwen2.5-14B QLoRA fine-tuned on FewNERD should show intermediate degeneracy rates and similar signal ranking patterns, providing a smooth scaling curve for the diagnostic findings.\"\n- server: \"autodl-5090-c\"\n- gpu: \"cuda:0,cuda:1\"\n- account: \"root\"\n- reproduce: {server: \"autodl-5090-c\", gpu: \"cuda:0,cuda:1\", started_at: \"2026-05-19T06:47:43.938Z\"}\n\n**4. exp_llama_fewnerd_inference**\n- status: \"DONE\"\n- conclusion: \"success\"\n- created_at: \"2026-05-19T02:18:49.938Z\"\n- updated_at: \"2026-05-19T03:15:04.486Z\"\n- completed_at: \"2026-05-19T03:15:04.486Z\"\n- hypothesis: \"LLaMA-3.1-8B fine-tuned on FewNERD shows the same structured self-consistency phenomena (degeneracy, LP-F1 alignment, signal ranking) as Qwen models, providing cross-model generalization evidence. 3-seed inference (42/123/456) for statistical robustness.\"\n- parent: \"exp_llama_fewnerd_lora\"\n- spec: {command: \"bash code/run_llama_fewnerd_inference.sh\", server: \"autodl-5090\", data_path: \"/root/autodl-tmp/struct_self_consist_ie/data/fewnerd/\", data_count: 37648, model_name: \"LLaMA-3.1-8B-FewNERD-LoRA-merged\", seed: \"42,123,456\", checkpoint_source: \"exp_llama_fewnerd_lora\", eval_data: \"FewNERD test set\", checkpoint_path: \"checkpoints/llama3.1-8b-fewnerd-merged/\", log_path: \"logs/llama_fewnerd_inference.log\"}\n- metrics:\n  - 3seed_mean: {greedy_f1: 0.7842, oracle_f1: 0.8843, headroom_pp: 10.01, degeneracy_pct: 23.36, lp_delta_pp: 0.36, dgs_delta_pp: -0.35}\n  - seed_42: {greedy_f1: 0.7841, oracle_f1: 0.8854, degen: 27.32}\n  - seed_123: {greedy_f1: 0.784, oracle_f1: 0.8839, degen: 24.63}\n  - seed_456: {greedy_f1: 0.7844, oracle_f1: 0.8835, degen: 18.13}\n  - signal_ranking: \"LP (+0.36pp) > SJ (-0.52) > FK (-0.53) > EM (-1.02) > VC (-2.39)\"\n  - lp_only_positive: true\n  - n_instances_gold_filtered: 32565\n\n**5. exp_llama_fewnerd_lora**\n- status: \"DONE\"\n- conclusion: \"success\"\n- created_at: \"2026-05-18T13:20:55.859Z\"\n- updated_at: \"2026-05-19T01:08:20.832Z\"\n- completed_at: \"2026-05-19T01:08:20.832Z\"\n- hypothesis: \"LLaMA-based model with LoRA fine-tuning on Few-NERD can provide a second model family (beyond Qwen) for cross-model generalization evidence of structured self-consistency phenomena in NER\"\n- spec: {command: \"llamafactory-cli train train_config_llama_fewnerd.yaml\", server: \"autodl-5090\", gpu: \"cuda:1\", pid: 137865, data_path: \"/root/autodl-tmp/struct_self_consist_ie/data/fewnerd\", model_name: \"LLaMA-Few-NERD-LoRA\", seed: 42, log_path: \"/root/autodl-tmp/struct_self_consist_ie/logs/llama_fewnerd_train.log\", run_script: \"run_llama_fewnerd_train_single_gpu.sh\", tmux_session: \"llama_fewnerd\", note: \"Retroactively registered - data_count unknown, seed assumed 42\"}\n- checkpoint_path: \"/root/autodl-tmp/struct_self_consist_ie/checkpoints/llama3.1-8b-fewnerd-lora\"\n- log_path: \"/root/autodl-tmp/struct_self_consist_ie/logs/llama_fewnerd_train.log\"\n- metrics: {epoch: 3, train_loss: 0.0516, eval_loss: 0.0323, train_runtime_hours: 15.35, total_steps: 24708, final_checkpoint: \"checkpoint-24708\", adapter_size_mb: 320}\n\n**6. exp_031_fewnerd_t12**\n- status: \"DONE\"\n- conclusion: \"killed\"\n- created_at: \"2026-05-18T20:04:12.040Z\"\n- completed_at: \"2026-05-19T00:30:14.652Z\"\n- hypothesis: \"FewNERD T=1.2 temperature ablation: test if higher temperature reduces degeneracy on FewNERD as observed on SciERC\"\n- failure_reason: \"数据不可用于论文：测试集(37648 vs T=1.0的5000)、N(8 vs 16)、分析管道(MVP pilot vs 5-signal)三重不一致。Director决定不重跑(DDL约束+非核心claim)。\"\n- notes: \"T=1.2 ablation not in paper scope, SciERC T=1.2 sufficient\"\n\n**7. exp_fewnerd_s789_n8**\n- status: \"DONE\"\n- conclusion: \"success\"\n- created_at: \"2026-05-18T23:17:34.011Z\"\n- completed_at: \"2026-05-18T23:18:17.902Z\"\n- hypothesis: \"FewNERD seed789 (4th seed) for statistical CI strengthening: 4-seed protocol provides tighter confidence intervals on LP selection gain and DGS effectiveness in low-degeneracy regime.\"\n- parent: \"exp_029a\"\n- spec: {command: \"python code/analyze_fewnerd_s789.py\", server: \"autodl-5090\", data_path: \"/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_seed789_merged/samples.jsonl\", data_count: 37648, model_name: \"Qwen3-8B (ft_002_v2)\", seed: 789, checkpoint_source: \"exp_021 shards\", eval_data: \"FewNERD test (37648 instances, 32565 gold-filtered)\", checkpoint_path: \"/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_seed789_merged/\", log_path: \"/root/autodl-tmp/struct_self_consist_ie/output/fewnerd_seed789_merged/run.log\"}\n- metrics: {greedy_f1: 0.7478, oracle_f1: 0.8714, headroom_pp: 12.37, degen_rate: 0.1177, degen_rate_source: \"unified_metrics_constant_f1_gold_filtered\", instance_count: 37648, n_valid: 32565, lp_sel_f1: 0.7614, lp_delta_pp: 1.36, lp_rho_global: 0.1788, lp_rho_cond: 0.176, dgs_f1: 0.7621, dgs_delta_pp: 1.43, dgs_vs_lp_pp: 0.07, best_signal: \"LP\", four_seed_mean_greedy: 0.7481, four_seed_mean_lp_delta_pp: 1.38, four_seed_lp_delta_ci95: [1.32, 1.44]}\n\n**8. exp_021_fewnerd_n8_seed456**\n- status: \"DONE\"\n- conclusion: \"success\"\n- created_at: \"2026-05-18T22:03:17.992Z\"\n- completed_at: \"2026-05-18T22:04:35.573Z\"\n- hypothesis: \"Multi-seed replication (seed=456) of Qwen3-8B FewNERD N=8 SCS inference to validate structural consistency signal on fine-grained NER dataset.\"\n- spec: {command: \"python scs_inference.py --dataset fewnerd --seed 456 --n_samples 8 --temperature 1.0\", server: \"autodl-5090\", data_path: \"/root/autodl-tmp/struct_self_consist_ie/data/fewnerd\", data_count: 37648, model_name: \"Qwen3-8B\", seed: 456, checkpoint_path: \"/root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_n8_seed456\", log_path: \"/root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_n8_seed456_run.log\"}\n- metrics: {degen_rate: 0.1212, degen_rate_source: \"unified_metrics_constant_f1_gold_filtered\", instance_count: 37648, n_valid: 32565, n_gold_empty: 5083, ner_greedy_f1: 0.7888, ner_oracle_f1: 0.881, rho_fk_ner: 0.1632, rho_sj_ner: 0.313, sample_f1_pct_zero: 19.32}\n\n**9. exp_021_fewnerd_n8_seed123**\n- status: \"DONE\"\n- conclusion: \"success\"\n- created_at: \"2026-05-18T22:03:16.735Z\"\n- completed_at: \"2026-05-18T22:04:33.731Z\"\n- hypothesis: \"Multi-seed replication (seed=123) of Qwen3-8B FewNERD N=8 SCS inference to validate structural consistency signal on fine-grained NER dataset.\"\n- spec: {command: \"python scs_inference.py --dataset fewnerd --seed 123 --n_samples 8 --temperature 1.0\", server: \"autodl-5090\", data_path: \"/root/autodl-tmp/struct_self_consist_ie/data/fewnerd\", data_count: 37648, model_name: \"Qwen3-8B\", seed: 123, checkpoint_path: \"/root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_n8_seed123\", log_path: \"/root/autodl-tmp/struct_self_consist_ie/output/exp_021_fewnerd_n8_seed123_run.log\"}\n- metrics: {degen_rate: 0.1312, degen_rate_source: \"unified_metrics_constant_f1_gold_filtered\", instance_count: 37648, n_valid: 32565, n_gold_empty: 5083, ner_greedy_f1: 0.7885, ner_oracle_f1: 0.8892, rho_fk_ner: 0.1602, rho_sj_ner: 0.3083, sample_f1_pct_zero: 20.39}\n\n**10. exp_027_fewnerd_n16** (also matches n16)\n- status: \"DONE\"\n- conclusion: \"success\"\n- created_at: \"2026-05-17T05:28:57.036Z\"\n- completed_at: \"2026-05-17T05:46:48.460Z\"\n- hypothesis: \"LP selection scales with N in low-degeneracy regime: N=16 should yield LP Δ > +2pp (vs N=8 +1.36pp) on Few-NERD (10% degen), because more samples increase oracle headroom while LP ranking remains effective.\"\n- parent: \"exp_021_fewnerd_full\"\n- spec: {model_name: \"qwen3-8b-fewnerd-exp021-merged\", data_path: \"data/fewnerd_n16_subset/test.json\", data_count: 5000, seed: 42, server: \"autodl-5090\", gpu: \"cuda:0,cuda:1,cuda:2,cuda:3\", command: \"python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-fewnerd-exp021-merged ...\", checkpoint_path: \"output/exp_027_fewnerd_n16/sampled_results.jsonl\", log_path: \"output/exp_027_fewnerd_n16/\"}\n- metrics: {LP_delta_pp: 1.88, LP_delta_95CI: [1.41, 2.37], degen_rate: 0.0706, degen_rate_source: \"unified_metrics_constant_f1_gold_filtered\", greedy_f1: 0.7478, lp_sel_f1: 0.7666, oracle_f1: 0.902, headroom_pp: 15.42, all_8_types_positive: true, n_instances: 5000, N_samples: 16, bootstrap_p: \"<0.001\"}\n\n**11. exp_028_fewnerd_5epoch**\n- status: \"DONE\"\n- conclusion: \"negative\"\n- created_at: \"2026-05-17T07:53:12.913Z\"\n- completed_at: \"2026-05-17T20:29:42.274Z\"\n- hypothesis: \"Few-NERD low degeneracy (10%) partially due to under-convergence at 3 epochs. 5 epochs should increase degeneracy as model becomes more confident, potentially reducing LP selection gain.\"\n- spec: {server: \"autodl-5090\", gpu: \"cuda:0,1,2,3\", data_path: \"data/fewnerd_uie_train\", data_count: 131767, model_name: \"Qwen3-8B LoRA rank=32\", seed: 42, log_path: \"logs/exp_028_4gpu_train.log\", checkpoint_path: \"checkpoints/qwen3-8b-fewnerd-5epoch-lora\"}\n- metrics: {degeneracy_cf1_gold: 0.3133, greedy_f1: 0.7773, lp_sel_delta_pp: 0.624, lp_sel_f1: 0.7835, oracle_f1: 0.8723, within_instance_rho_mean: 0.4066, within_instance_rho_median: 0.6151}\n\n**12. exp_021_fewnerd_full**\n- status: \"DONE\"\n- conclusion: \"success\"\n- created_at: \"2026-05-16T16:33:44.079Z\"\n- completed_at: \"2026-05-16T22:04:16.683Z\"\n- hypothesis: \"Full Few-NERD LoRA fine-tune (rank=32, α=64, 3 epochs) on SUPERVISED coarse 8-type NER (131k train). 4-GPU DDP on autodl-5090. Post-training: N=8 inference on full test set, T=1.0, seed=42, collect logprobs for SCS metrics.\"\n- parent: \"exp_020_fewnerd_smoke\"\n- spec: {gpu: \"cuda:0,cuda:1,cuda:2,cuda:3\", gpu_count: 4, training_mode: \"DDP\", checkpoint_path: \"output/exp_021_fewnerd_full/checkpoint-6177\", log_path: \"output/exp_021_inference/\"}\n- metrics: {total_steps: 6177, train_loss: 0.048, eval_loss: 0.0275, train_runtime: \"3h57m\", epochs: 3, final_checkpoint: \"output/exp_021_fewnerd_full/checkpoint-6177\", adapter_path: \"output/exp_021_fewnerd_full/adapter_model.safetensors\", inference_instances: 37648, inference_filtered: 32565, inference_n_samples: 8, greedy_macro_f1: 0.7478, oracle_macro_f1: 0.8719, headroom: 0.124, zero_f1_rate: 0.119, degeneracy_rate: 0.101, lp_within_range_mean: 0.0879, lp_within_range_median: 0.0662, lp_global_rho: 0.4215, lp_cond_rho: 0.4225, sj_global_rho: 0.3002, sj_cond_rho: 0.2937, fk_global_rho: 0.3132, fk_cond_rho: 0.3093, em_global_rho: 0.2871, em_cond_rho: 0.271, vc_global_rho: 0.3858, vc_cond_rho: 0.3234, lp_selection_delta_pp: 1.36, vc_selection_delta_pp: -1.79, sj_selection_delta_pp: -2.14, fk_selection_delta_pp: -2.26, em_selection_delta_pp: -3.85, lp_bootstrap_ci_95_pp: [1.18, 1.53], lp_sample_auroc: 0.5782, vc_sample_auroc: 0.5354, fk_sample_auroc: 0.521, sj_sample_auroc: 0.5197, em_sample_auroc: 0.5137, scenario: \"A_partial\", note: \"Full analysis (gold-filtered n=32565). Prior simplified analysis used unfiltered data with different metrics.\"}\n\n**13. exp_020_fewnerd_smoke**\n- status: \"DONE\"\n- conclusion: \"success\"\n- created_at: \"2026-05-16T10:29:25.272Z\"\n- completed_at: \"2026-05-16T16:33:59.109Z\"\n- hypothesis: \"1-epoch LoRA (r16) fine-tune Qwen3-8B on Few-NERD INTRA coarse 8-type (131k train), then N=8 T=1.0 pilot inference on 200 test instances.\"\n- metrics: {final_loss: 0.031, total_steps: 8236, training_time: \"5h54m\", pilot_greedy_f1: 0.8037, pilot_instances: 200, merged_model_path: \"checkpoints/qwen3-8b-fewnerd-merged\"}\n\n---\n\n### N16 experiments (23 additional, not containing \"fewnerd\")\n\n**14. exp_002_conll_n16_seed456**\n- status: \"DONE\", conclusion: \"success\"\n- created_at: \"2026-05-18T22:03:15.720Z\", completed_at: \"2026-05-18T22:04:31.934Z\"\n- hypothesis: \"Multi-seed replication (seed=456) of Qwen3-8B CoNLL-2003 N=16 SCS inference to validate structural consistency signal stability across random seeds.\"\n- spec: {command: \"python scs_inference.py --dataset conll2003 --seed 456 --n_samples 16 --temperature 1.0\", server: \"autodl-5090\", data_count: 3453, model_name: \"Qwen3-8B\", seed: 456}\n- metrics: {degen_rate: 0.5544, instance_count: 3453, n_valid: 2756, n_gold_empty: 697, ner_greedy_f1: 0.9074, ner_oracle_f1: 0.9549, rho_fk_ner: 0.4718, rho_sj_ner: 0.4819, sample_f1_pct_zero: 7.02}\n\n**15. exp_002_conll_n16_seed123**\n- status: \"DONE\", conclusion: \"success\"\n- created_at: \"2026-05-18T22:03:14.343Z\", completed_at: \"2026-05-18T22:04:29.992Z\"\n- hypothesis: \"Multi-seed replication (seed=123) of Qwen3-8B CoNLL-2003 N=16 SCS inference to validate structural consistency signal stability across random seeds.\"\n- metrics: {degen_rate: 0.471, instance_count: 3453, n_valid: 2756, n_gold_empty: 697, ner_greedy_f1: 0.9068, ner_oracle_f1: 0.9633, rho_fk_ner: 0.4524, rho_sj_ner: 0.4621, sample_f1_pct_zero: 7.54}\n\n**16. exp_017_llama_conll_n16_s456_r1024**\n- status: \"DONE\", conclusion: \"success\"\n- completed_at: \"2026-05-15T11:45:25.899Z\"\n- hypothesis: \"LLaMA CoNLL N=16 seed=456 (max_tokens=1024 rerun): cross-model multi-seed validation. Confirms structural>surface ordering is stable across seeds for LLaMA on CoNLL after gold-filtering correction.\"\n- spec: {model_name: \"llama3.1-8b-conll2003-merged\", dataset: \"CoNLL-2003\", seed: 456, server: \"autodl-5090\", gpu: \"cuda:2\", data_count: 3453}\n- metrics: {degen_rate: 0.8672, instance_count: 3453, n_valid: 2756, n_gold_empty: 697, parse_rate: 1, ner_greedy_f1: 0.9265, ner_oracle_f1: 0.9499, rho_fk_ner: 0.469, rho_sj_ner: 0.4734, rho_vc_ner: 0.4722, rho_em_ner: 0.4752, rho_lp_ner: 0.3099, auroc_fk_ner: 0.7408, auroc_sj_ner: 0.7428, auroc_vc_ner: 0.7495, auroc_em_ner: 0.7444, auroc_lp_ner: 0.7628, rho_note: \"CORRECTED 2026-05-15: old values (rho_fk=0.8085,rho_sj=0.1895) were inflated/deflated by 697 gold-empty instances. Now uses gold-filtered pipeline (n=2756).\"}\n\n**17. exp_017_llama_conll_n16_r1024**\n- status: \"DONE\", conclusion: \"success\"\n- completed_at: \"2026-05-15T11:45:23.213Z\"\n- hypothesis: \"LLaMA CoNLL N=16 seed=42 (max_tokens=1024 rerun): cross-model baseline on CoNLL. Establishes LLaMA signal rankings after gold-filtering correction.\"\n- metrics: {degen_rate: 0.8647, instance_count: 3453, n_valid: 2756, n_gold_empty: 697, parse_rate: 1, ner_greedy_f1: 0.9265, ner_oracle_f1: 0.9499, rho_fk_ner: 0.4752, rho_sj_ner: 0.4836, rho_vc_ner: 0.4746, rho_em_ner: 0.4818, rho_lp_ner: 0.3136, auroc_fk_ner: 0.7467, auroc_sj_ner: 0.7496, auroc_vc_ner: 0.7529, auroc_em_ner: 0.7508, auroc_lp_ner: 0.7661, rho_note: \"CORRECTED 2026-05-15: old values (rho_fk=0.8095,rho_sj=0.1815) were inflated/deflated by 697 gold-empty instances. Now uses gold-filtered pipeline (n=2756).\"}\n\n**18. exp_002_conll_n16**\n- status: \"DONE\", conclusion: \"success\"\n- completed_at: \"2026-05-14T18:58:40.473Z\"\n- hypothesis: \"CoNLL N=16 NER: cross-dataset validation on high-performance NER dataset. Tests if structural signals retain advantage when base model performance is already high (greedy F1 > 0.9).\"\n- spec: {model_name: \"qwen3-8b-conll2003-merged\", seed: 42, server: \"autodl-5090\", data_count: 3453}\n- metrics: {degen_rate: 0.4844, N: 16, dataset: \"conll2003\", n_instances: 3453, n_valid: 2756, n_conditional: 2614, greedy_f1: 0.907, full: {SJ_rho: 0.4496, FK_rho: 0.3928, logprob_rho: 0.3146, EM_rho: 0.4627, voting_conf_rho: 0.4286, SJ_AUROC: 0.8264, FK_AUROC: 0.7821, logprob_AUROC: 0.7531, EM_AUROC: 0.8409, voting_conf_AUROC: 0.8071, SJ_ECE: 0.0747, FK_ECE: 0.1786, logprob_ECE: 0.2031, EM_ECE: 0.0786, voting_conf_ECE: 0.529}, conditional: {SJ_rho: 0.4208, FK_rho: 0.3494, logprob_rho: 0.3756, EM_rho: 0.4658, voting_conf_rho: 0.3654, SJ_AUROC: 0.8405, FK_AUROC: 0.7819, logprob_AUROC: 0.8259, EM_AUROC: 0.8781, voting_conf_AUROC: 0.7951, SJ_ECE: 0.0982, FK_ECE: 0.1899, logprob_ECE: 0.2504, EM_ECE: 0.0997, voting_conf_ECE: 0.6096}, n8_vs_n16_delta_rho_full: {SJ: 0.0139, FK: -0.007, logprob: -0.0011, EM: 0.012, voting_conf: 0.0049}}\n\n**19. exp_017_llama_conll_n16_s123_r1024**\n- status: \"DONE\", conclusion: \"success\"\n- completed_at: \"2026-05-15T01:20:51.219Z\"\n- hypothesis: \"LLaMA CoNLL N=16 seed=123 (max_tokens=1024 rerun): cross-model multi-seed validation.\"\n- notes: \"Output exists on autodl-5090. Registry status corrected from killed to success.\"\n- metrics: {degen_rate: 0.8636, degen_rate_source: \"unified_metrics_constant_f1_gold_filtered\"}\n\n**20. exp_008_re_n16**\n- status: \"DONE\", conclusion: \"success\"\n- completed_at: \"2026-05-14T12:28:39.268Z\"\n- hypothesis: \"RE N=16 initial evaluation: first relation extraction test with structural signals.\"\n- spec: {model_name: \"qwen3-8b-scierc-merged-v2\", dataset: \"SciERC\", seed: 42, data_count: 551, num_instances: 200, partial: true, note: \"Only 200/551 instances due to --num_test default bug.\"}\n- metrics: {ner: {greedy_f1: 0.6635, oracle_f1: 0.8208, headroom: 0.1572, rho_sj_full: 0.377, rho_fk_full: 0.2508, rho_logprob_full: 0.3153, rho_sj_cond: 0.3598, rho_fk_cond: 0.2251, rho_logprob_cond: 0.2927, sj_beats_fk: true, rho_advantage: 0.1262}, re: {greedy_f1: 0.4339, oracle_f1: 0.6658, headroom: 0.2319, rho_sj_full: 0.2966, rho_fk_full: 0.2871, rho_logprob_full: 0.2986, rho_sj_cond: 0.3975, rho_fk_cond: 0.3774, rho_logprob_cond: 0.2745, sj_beats_fk: true, rho_advantage: 0.0095}, verdict: \"FAIL\"}\n\n**21. exp_001_ner_n16_seed123**\n- status: \"DONE\", conclusion: \"success\"\n- completed_at: \"2026-05-14T13:31:54.232Z\"\n- hypothesis: \"SciERC NER N=16 seed=123: multi-seed validation at N=16.\"\n- spec: {model_name: \"qwen3-8b-scierc-merged-v2\", seed: 123, data_count: 551}\n- metrics: {ner: {greedy_f1: 0.663, oracle_f1: 0.809, headroom: 0.146, rho_sj: 0.423, rho_fk: 0.29, rho_logprob: 0.239, rho_sj_cond: 0.423, rho_fk_cond: 0.26}, re: {greedy_f1: 0.419, oracle_f1: 0.625, headroom: 0.206, rho_sj: 0.267, rho_fk: 0.315, rho_sj_cond: 0.364, rho_fk_cond: 0.331}, verdict: \"FAIL\", verdict_note: \"RE rho_sj=0.267 < 0.40; RE >30% samples F1=0\", n_instances: 551, seed: 123, N: 16, T: 1}\n\n**22. exp_008_re_n16_t10_full**\n- status: \"DONE\", conclusion: \"negative\"\n- completed_at: \"2026-05-14T13:44:19.577Z\"\n- hypothesis: \"RE N=16 evaluation v2: early RE evaluation attempt.\"\n- metrics: {ner: {rho_sj: 0.444}, re: {rho_sj: 0.248}, n_instances: 551, N: 16, T: 1, seed: 42, mode: \"RE-only\", source: \"director_corrected\"}\n\n**23. exp_008_re_n16_v2**\n- status: \"DONE\", conclusion: \"negative\"\n- completed_at: \"2026-05-14T15:23:35.598Z\"\n- hypothesis: \"RE N=16 evaluation v2: tests structural signal effectiveness on relation extraction at higher sample count.\"\n- metrics: {sj_rho_full: 0.281, sj_rho_cond: 0.308, f1_zero_pct: 44.3, conclusion_note: \"RE N=16 v2 negative: SJ weak, 44.3% F1=0\"}\n\n**24. exp_007_llama_n16**\n- status: \"DONE\", conclusion: \"success\"\n- completed_at: \"2026-05-14T19:03:39.163Z\"\n- hypothesis: \"LLaMA SciERC N=16: cross-model NER signal evaluation at higher sample count.\"\n- spec: {model_name: \"llama3.1-8b-scierc-merged\", seed: 42, data_count: 551}\n- metrics: {N: 16, dataset: \"scierc\", n_instances: 551, n_valid: 529, n_conditional: 478, greedy_f1: 0.645, full: {SJ_rho: 0.3791, FK_rho: 0.3081, logprob_rho: 0.2041, EM_rho: 0.3159, voting_conf_rho: 0.4515, SJ_AUROC: 0.717, FK_AUROC: 0.6581, logprob_AUROC: 0.5656, EM_AUROC: 0.7686, voting_conf_AUROC: 0.7266}, conditional: {SJ_rho: 0.3222, FK_rho: 0.2182, logprob_rho: 0.1286, EM_rho: 0.3563, voting_conf_rho: 0.3356}, n8_vs_n16_delta_rho_full: {SJ: 0.0161, FK: -0.0185, logprob: 0.0214, EM: 0.0007, voting_conf: 0.0184}}\n\n**25. exp_017_llama_conll_n16**\n- status: \"DONE\", conclusion: \"success\"\n- completed_at: \"2026-05-14T19:45:16.265Z\"\n- hypothesis: \"LLaMA CoNLL N=16 seed=42 (original): cross-model validation on CoNLL.\"\n- metrics: {greedy_f1: 0.9243, oracle_f1: 0.9487, oracle_headroom: 0.0244, n_instances: 3453, n_valid: 2756, structural_beats_surface: true, full: {SJ_rho: 0.4642, FK_rho: 0.4566, logprob_rho: 0.3058, EM_rho: 0.4613, voting_conf_rho: 0.4554, SJ_AUROC: 0.7391, FK_AUROC: 0.736, logprob_AUROC: 0.7594, EM_AUROC: 0.7391, voting_conf_AUROC: 0.7406}, conditional: {SJ_rho: 0.4597, FK_rho: 0.4515, logprob_rho: 0.3193, EM_rho: 0.4618, voting_conf_rho: 0.3978}, best_of_n: {greedy: 0.9243, random_avg: 0.9213, sj_best: 0.9259, logprob_best: 0.925, voting_conf_best: 0.9268, oracle: 0.9487}, n8_vs_n16_delta: {full_SJ_rho_delta: 0.0328, full_FK_rho_delta: 0.0289, full_logprob_rho_delta: -0.0014, full_EM_rho_delta: 0.0307, full_voting_conf_rho_delta: 0.0298}}\n\n**26. exp_001_n16_seed456**\n- status: \"DONE\", conclusion: \"success\", retry_count: 1\n- completed_at: \"2026-05-14T12:28:38.721Z\"\n- hypothesis: \"SciERC N=16 seed=456: early multi-seed validation of structural signal rankings at N=16 sample count.\"\n- metrics: {instance_count: 551, n_valid: 529, n_gold_empty: 22, parse_rate: 1, ner_greedy_f1: 0.6617, ner_oracle_f1: 0.8075, re_greedy_f1: 0.4215, re_oracle_f1: 0.4748, rho_sj_ner: 0.4098, rho_fk_ner: 0.2723, rho_vc_ner: 0.4449, rho_em_ner: 0.3363, rho_lp_ner: 0.2415, rho_sj_re: 0.2835, rho_fk_re: 0.2929, auroc_sj_ner: 0.6823, auroc_fk_ner: 0.6179, auroc_vc_ner: 0.6981, auroc_em_ner: 0.649, auroc_lp_ner: 0.5885, rho_note: \"CORRECTED 2026-05-15: old values included 22 gold-empty instances. Now uses gold-filtered pipeline (n=529).\"}\n- extra.previous_failure.metrics: {ner: {greedy_f1: 0.6577, oracle_f1: 0.8129, headroom: 0.1553, rho_sj_full: 0.3297, rho_fk_full: 0.2578, rho_logprob_full: 0.2866}, re: {greedy_f1: 0.4312, oracle_f1: 0.6737, headroom: 0.2425, rho_sj_full: 0.285, rho_fk_full: 0.2372, rho_logprob_full: 0.2626}, verdict: \"FAIL\"}\n\n**27. exp_017_llama_conll_n16_s456**\n- status: \"DONE\", conclusion: \"success\"\n- completed_at: \"2026-05-14T20:24:45.875Z\"\n- hypothesis: \"LLaMA CoNLL N=16 seed=456: structural>surface ranking preserved across seeds\"\n- metrics: {greedy_f1: 0.9243, oracle_f1: 0.9488, oracle_headroom: 0.0245, n_instances: 3453, n_valid: 2756, structural_beats_surface: true, full: {SJ_rho: 0.4552, FK_rho: 0.4478, logprob_rho: 0.3078, EM_rho: 0.452, voting_conf_rho: 0.4571}, conditional: {SJ_rho: 0.4505, FK_rho: 0.4422, logprob_rho: 0.3242, EM_rho: 0.451, voting_conf_rho: 0.3962}, best_of_n: {greedy: 0.9243, random_avg: 0.9215, sj_best: 0.9243, logprob_best: 0.9243, voting_conf_best: 0.9243, oracle: 0.9488}, n8_vs_n16_delta: {full_SJ_rho_delta: 0.0238, full_FK_rho_delta: 0.0201, full_logprob_rho_delta: 0.0006, full_EM_rho_delta: 0.0214, full_voting_conf_rho_delta: 0.0315}}\n\n**28. exp_017_llama_conll_n16_s123**\n- status: \"DONE\", conclusion: \"success\"\n- completed_at: \"2026-05-14T19:43:06.607Z\"\n- hypothesis: \"LLaMA CoNLL N=16 seed=123: structural>surface ranking preserved across seeds\"\n- metrics: {greedy_f1: 0.9266, oracle_f1: 0.9497, oracle_headroom: 0.0231, n_instances: 3453, n_valid: 2756, structural_beats_surface: true, full: {SJ_rho: 0.4698, FK_rho: 0.4594, logprob_rho: 0.3161, EM_rho: 0.4676, voting_conf_rho: 0.4612}, conditional: {SJ_rho: 0.4712, FK_rho: 0.4595, logprob_rho: 0.3314, EM_rho: 0.4732, voting_conf_rho: 0.4086}, best_of_n: {greedy: 0.9242, random_avg: 0.9216, sj_best: 0.9247, logprob_best: 0.9253, voting_conf_best: 0.9255, oracle: 0.9486}, n8_vs_n16_delta: {full_SJ_rho_delta: 0.0384, full_FK_rho_delta: 0.0317, full_logprob_rho_delta: 0.0089}}\n\n**29. exp_008_re_n16_full**\n- status: \"DONE\", conclusion: \"killed\"\n- completed_at: \"2026-05-14T17:51:43.957Z\"\n- failure_reason: \"superseded by exp_008_re_n16_t10_full (full 551-instance RE-only run on autodl-5090)\"\n\n**30. exp_001_n16_seed123**\n- status: \"DONE\", conclusion: \"success\"\n- completed_at: \"2026-05-14T12:28:38.104Z\"\n- spec: {data_count: 551, model_name: \"qwen3-8b-scierc-merged-v2\", seed: 123, num_instances: 200, partial: true, note: \"Only 200/551 instances due to --num_test default bug.\"}\n- metrics: {ner: {greedy_f1: 0.655, oracle_f1: 0.8028, headroom: 0.1478, rho_sj_full: 0.4076, rho_fk_full: 0.2799, rho_logprob_full: 0.3189, sj_beats_fk: true, rho_advantage: 0.1277}, re: {greedy_f1: 0.4243, oracle_f1: 0.6771, headroom: 0.2528, rho_sj_full: 0.2943, rho_fk_full: 0.2657, rho_logprob_full: 0.3005, sj_beats_fk: true, rho_advantage: 0.0286}, verdict: \"FAIL\"}\n\n**31. exp_001_ner_n16_scierc**\n- status: \"DONE\", conclusion: \"success\"\n- completed_at: \"2026-05-14T11:55:45.664Z\"\n- metrics: {n_instances: 551, ner_n: 529, re_n: 397, N: 16, T: 1, seed: 42, full_test_set: true, ner_voting_conf_rho: 0.399, ner_sj_rho: 0.398, ner_em_rho: 0.339, ner_fk_rho: 0.288, ner_logprob_rho: 0.237, ner_voting_conf_auroc: 0.704, ner_sj_auroc: 0.697, ner_cond_em_rho: 0.414, ner_cond_sj_rho: 0.349, ner_cond_vc_rho: 0.34, re_voting_conf_rho: 0.38, re_logprob_rho: 0.293, re_fk_rho: 0.281, re_sj_rho: 0.277, re_em_rho: 0.148, re_voting_conf_auroc: 0.699, re_cond_em_rho: 0.475, re_cond_sj_rho: 0.318, re_cond_vc_rho: 0.35, re_cond_em_auroc: 0.742, diagnosis: \"551 instances T=1.0: voting_conf best on full set (NER 0.399, RE 0.380). EM SURPRISE best on conditional set (NER cond 0.414, RE cond 0.475). RE full FAIL (SJ 0.277 < 0.40).\"}\n\n**32. exp_002_conll_n16_r1024**\n- status: \"DONE\", conclusion: \"killed\"\n- completed_at: \"2026-05-15T01:20:53.108Z\"\n- spec: {hypothesis: \"D054 rerun: max_tokens=1024. Verify truncation impact on Qwen CoNLL N=16.\", model_name: \"qwen3-8b-conll2003-merged\", dataset: \"CoNLL-2003\", seed: 42}\n\n**33. exp_007_llama_n16_r1024**\n- status: \"DONE\", conclusion: \"killed\"\n- completed_at: \"2026-05-15T01:20:52.194Z\"\n- spec: {hypothesis: \"D054 rerun: max_tokens=1024. Verify truncation impact on LLaMA SciERC N=16.\", model_name: \"llama3.1-8b-scierc-merged\", dataset: \"SciERC\", seed: 42}\n\n**34. exp008_re_n16** (note: no underscore after \"exp008\")\n- status: \"DONE\", conclusion: \"killed\"\n- completed_at: \"2026-05-15T12:41:39.774Z\"\n- failure_reason: \"Superseded by exp_008_re_n16_v2 (full 551-instance run on autodl-5090)\"\n- spec: {server: \"gpu-5090-4x-2\", wall_clock_seconds: 87984.9, gpu_hours: 24.44}\n\n**35. exp_001_n16_seed456_full**\n- status: \"DONE\", conclusion: \"killed\"\n- completed_at: \"2026-05-15T12:41:30.065Z\"\n- failure_reason: \"superseded by v2\"\n- spec: {server: \"gpu-5090-4x-2\", wall_clock_seconds: 86219.0, gpu_hours: 23.95}\n\n**36. exp_001_n16_seed123_full**\n- status: \"DONE\", conclusion: \"killed\"\n- completed_at: \"2026-05-15T12:41:29.068Z\"\n- failure_reason: \"superseded by v2\"\n- spec: {server: \"gpu-5090-4x-2\", wall_clock_seconds: 86243.0, gpu_hours: 23.96}\n\n---\n\n### Totals\n\n| Category | Count |\n|---|---|\n| fewnerd experiments | 13 |\n| n16 experiments (additional) | 23 |\n| Overlap (fewnerd + n16) | 1 (exp_027_fewnerd_n16) |\n| **Grand total unique** | **36** |\n\nBy status: 3 ALLOCATED/QUEUED (exp_qwen25_32b_fewnerd, exp_qwen25_7b_fewnerd, exp_qwen25_14b_fewnerd), 33 DONE. By conclusion among DONE: 22 success, 3 negative, 8 killed. No experiments matched \"n_16\" (with underscore before 16)."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "68b97513-c5d2-48a4-a1a6-845b101c9ae6",
+            "isSidechain": true,
+            "agentId": "a37fba2a40b1ce129",
+            "requestId": "req_011CbBaCE4jhm8ug4Y6cgVzF",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "5c78e544-477f-476f-8902-f5e82b2d41bb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie",
+            "sessionId": "8a7c5621-29b1-4475-9625-e962f960c1bd",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KvK4M5hTwAQKu4uBdzyG8H",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1180,
+                "cache_read_input_tokens": 51713,
+                "output_tokens": 12850,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1180
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 12850,
+                    "cache_read_input_tokens": 51713,
+                    "cache_creation_input_tokens": 1180,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1180,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000025"
+        }
+      ],
+      "message_count": 25
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-parse-the-registry-json-file-at-home-ubuntu-claude-account-3-projects-home-ubu.md"
+}

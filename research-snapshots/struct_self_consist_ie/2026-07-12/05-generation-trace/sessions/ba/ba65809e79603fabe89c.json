@@ -1,0 +1,146 @@
+{
+  "schema_version": "1.0",
+  "id": "ba65809e79603fabe89c",
+  "project": "struct_self_consist_ie--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [系统通知 — worker_done:worker_paper_figures_core_3figures_20260514T210514]: Worker worker_paper_figures_core_3figures_20260",
+  "task_key": "3b08b32f-eef7-4a33-9216-e4808b58ed80",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/3b08b32f-eef7-4a33-9216-e4808b58ed80.jsonl",
+    "occurrence": 1,
+    "bytes": 714708,
+    "sha256": "53c83b7d29bc02f3d77c0b20d75e8b305fb0339779068f18cbd4706b13b84d5a"
+  },
+  "statistics": {
+    "messages": 234,
+    "user_turns": 9,
+    "tool_calls": 63,
+    "roles": {
+      "record": 55,
+      "user": 9,
+      "assistant": 44,
+      "tool_call": 63,
+      "tool_result": 63
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "ba65809e79603fabe89c-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 75,
+      "chunks": [
+        {
+          "path": "ba65809e79603fabe89c-part-0001.json",
+          "message_count": 75
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "ba65809e79603fabe89c-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 30,
+      "chunks": [
+        {
+          "path": "ba65809e79603fabe89c-part-0001.json",
+          "message_count": 30
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "ba65809e79603fabe89c-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 58,
+      "chunks": [
+        {
+          "path": "ba65809e79603fabe89c-part-0001.json",
+          "message_count": 51
+        },
+        {
+          "path": "ba65809e79603fabe89c-part-0002.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "ba65809e79603fabe89c-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "boundary": "recorded_user_message",
+      "message_count": 60,
+      "chunks": [
+        {
+          "path": "ba65809e79603fabe89c-part-0002.json",
+          "message_count": 60
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "ba65809e79603fabe89c-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "boundary": "recorded_user_message",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "ba65809e79603fabe89c-part-0002.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-worker-done-worker-paper-figures-core-3figures-20260514t210514-worker-worker-p.md"
+}

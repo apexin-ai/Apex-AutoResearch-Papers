@@ -1,0 +1,300 @@
+{
+  "schema_version": "1.0",
+  "id": "abf3c67d9048d3045e89",
+  "project": "struct_self_consist_ie--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [WORKER DONE] Worker worker_diagnostic_gpu_status_check_20260518T123758 已完成（status=done）。用 `get_worker_status('worker_di",
+  "task_key": "5779c60b-5987-4199-a40b-94147103442d",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/5779c60b-5987-4199-a40b-94147103442d.jsonl",
+    "occurrence": 1,
+    "bytes": 525495,
+    "sha256": "a8a93ae76abb1763ddb25d6aed405facc4b140097a7a6a803d1e2594d3a84b22"
+  },
+  "statistics": {
+    "messages": 233,
+    "user_turns": 23,
+    "tool_calls": 52,
+    "roles": {
+      "record": 62,
+      "user": 23,
+      "assistant": 45,
+      "tool_call": 52,
+      "tool_result": 51
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "abf3c67d9048d3045e89-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 57,
+      "chunks": [
+        {
+          "path": "abf3c67d9048d3045e89-part-0001.json",
+          "message_count": 57
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "abf3c67d9048d3045e89-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 25,
+      "chunks": [
+        {
+          "path": "abf3c67d9048d3045e89-part-0001.json",
+          "message_count": 25
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "abf3c67d9048d3045e89-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 42,
+      "chunks": [
+        {
+          "path": "abf3c67d9048d3045e89-part-0001.json",
+          "message_count": 42
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "abf3c67d9048d3045e89-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "boundary": "recorded_user_message",
+      "message_count": 16,
+      "chunks": [
+        {
+          "path": "abf3c67d9048d3045e89-part-0001.json",
+          "message_count": 16
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "abf3c67d9048d3045e89-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "boundary": "recorded_user_message",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "abf3c67d9048d3045e89-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "abf3c67d9048d3045e89-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "boundary": "recorded_user_message",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "abf3c67d9048d3045e89-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "abf3c67d9048d3045e89-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 13,
+      "boundary": "recorded_user_message",
+      "message_count": 11,
+      "chunks": [
+        {
+          "path": "abf3c67d9048d3045e89-part-0001.json",
+          "message_count": 11
+        }
+      ]
+    },
+    {
+      "number": 14,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "abf3c67d9048d3045e89-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 15,
+      "boundary": "recorded_user_message",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "abf3c67d9048d3045e89-part-0001.json",
+          "message_count": 1
+        },
+        {
+          "path": "abf3c67d9048d3045e89-part-0002.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 16,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "abf3c67d9048d3045e89-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 17,
+      "boundary": "recorded_user_message",
+      "message_count": 8,
+      "chunks": [
+        {
+          "path": "abf3c67d9048d3045e89-part-0002.json",
+          "message_count": 8
+        }
+      ]
+    },
+    {
+      "number": 18,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "abf3c67d9048d3045e89-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 19,
+      "boundary": "recorded_user_message",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "abf3c67d9048d3045e89-part-0002.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 20,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "abf3c67d9048d3045e89-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 21,
+      "boundary": "recorded_user_message",
+      "message_count": 11,
+      "chunks": [
+        {
+          "path": "abf3c67d9048d3045e89-part-0002.json",
+          "message_count": 11
+        }
+      ]
+    },
+    {
+      "number": 22,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "abf3c67d9048d3045e89-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 23,
+      "boundary": "recorded_user_message",
+      "message_count": 15,
+      "chunks": [
+        {
+          "path": "abf3c67d9048d3045e89-part-0002.json",
+          "message_count": 15
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-worker-done-worker-worker-diagnostic-gpu-status-check-20260518t123758-status-d.md"
+}

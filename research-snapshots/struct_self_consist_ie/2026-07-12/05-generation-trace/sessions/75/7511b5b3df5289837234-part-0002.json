@@ -1,0 +1,594 @@
+{
+  "schema_version": "1.0",
+  "session_id": "7511b5b3df5289837234",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 114,
+          "timestamp": "2026-05-18T05:59:07.410Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012D2jiQ3uQzWfQkYDxb8CtJ",
+              "type": "tool_result",
+              "content": "600\tSignal & Qwen & LLaMA & Qwen & LLaMA \\\\\n601\t\\midrule\n602\tSJ & 0.92 & 1.45 & 0.99 & 0.18 \\\\\n603\tFK & 1.03 & 0.93 & 0.60 & 0.15 \\\\\n604\tVC & 2.33 & 0.53 & 0.72 & 0.18 \\\\\n605\tEM & 0.00 & 0.00 & 0.00 & 0.00 \\\\\n606\tLP & 3.65 & 2.58 & 3.00 & 0.31 \\\\\n607\t\\bottomrule\n608\t\\end{tabular}\n609\t\\end{table}\n610\t\n611\t\\paragraph{Non-tied subset analysis.}\n612\tTable~\\ref{tab:nontied_main} presents the non-tied subset analysis referenced in \\S\\ref{sec:discussion}.\n613\t\n614\t\\begin{table}[t]\n615\t\\centering\n616\t\\small\n617\t\\caption{Non-tied subset analysis (SciERC, Qwen3-8B, $N{=}8$, $T{=}1.0$). Instances split at LP range $\\varepsilon{=}0.05$. Within-instance $\\rho$ and selection gain both concentrate in the non-tied subset. Full $\\varepsilon$ sweep in Table~\\ref{tab:epsilon_sweep}.}\n618\t\\label{tab:nontied_main}\n619\t\\begin{tabular}{lccc}\n620\t\\toprule\n621\tSubset & $n$ & $\\rho$(LP,F1) & LP $\\Delta$ vs.\\ greedy \\\\\n622\t\\midrule\n623\tTied (range ${<}0.05$) & 319 & 0.08 & ${\\approx}0$ \\\\\n624\tNon-tied (range ${\\geq}0.05$) & 210 & 0.39 & $+$2.9~pp ($p{=}0.004$) \\\\\n625\t\\midrule\n626\tAll instances & 529 & 0.248 & $+$0.2~pp ($p{=}0.29$) \\\\\n627\t\\bottomrule\n628\t\\end{tabular}\n629\t\\end{table}\n630\t\n631\t\\section{Consistency-Stratified Selection Analysis}\\label{app:vc_quartile}\n632\t\n633\tTable~\\ref{tab:vc_quartile} stratifies SciERC instances by voting confidence (VC) quartiles and reports selection $\\Delta$ (gain over single-sample) for LP and SJ.\n634\t\n635\t\\begin{table}[t]\n636\t\\centering\n637\t\\small\n638\t\\caption{Selection $\\Delta$ (pp over single-sample) stratified by VC quartile on SciERC ($N{=}8$, Qwen3-8B). Oracle headroom collapses at Q4; LP rankings are unreliable at Q1--Q2. Neither quartile supports consistent selection gains.}\n639\t\\label{tab:vc_quartile}\n640\t\\begin{tabular}{lcccc}\n641\t\\toprule\n642\tQuartile & Mean VC & LP $\\Delta$ & SJ $\\Delta$ & Oracle (pp) \\\\\n643\t\\midrule\n644\t\\multicolumn{5}{l}{\\textit{NER}} \\\\\n645\tQ1 (low) & 0.30 & $+$1.55 & $+$0.54 & 16.85 \\\\\n646\tQ2 & 0.51 & $-$0.65 & $-$1.89 & 14.35 \\\\\n647\tQ3 & 0.68 & $+$1.97 & $+$1.84 & 16.83 \\\\\n648\tQ4 (high) & 0.92 & $-$0.41 & $-$0.04 & 4.78 \\\\\n649\t\\midrule\n650\t\\multicolumn{5}{l}{\\textit{$^\\dagger$RE}} \\\\\n651\tQ1 (low) & --- & $-$3.56 & --- & --- \\\\\n652\tQ4 (high) & --- & $+$4.01 & --- & --- \\\\\n653\t\\bottomrule\n654\t\\end{tabular}\n655\t\\end{table}\n656\t\n657\tThe NER pattern reveals two complementary failure modes rather than a monotonic relationship between consistency and selection gain:\n658\t\\begin{itemize}\n659\t\\item \\textbf{Q4 ceiling effect.} High-consistency instances (mean VC${=}0.92$) have oracle headroom of only 4.78~pp. Samples have already converged, leaving little room for any signal to improve selection.\n660\t\\item \\textbf{Q1--Q2 noise.} Low-consistency instances retain large headroom (14--17~pp) but LP rankings are unreliable, and LP rankings produce inconsistent $\\Delta$ signs across quartiles.\n661\t\\end{itemize}\n662\t\n663\tOn $^\\dagger$RE, the pattern differs: Q4 LP achieves $+4.01$~pp; LP may recover selection ability when high consistency coincides with structured output diversity. This is a single-dataset observation and should be interpreted cautiously.\n664\t\n665\tOn CoNLL NER, Q3--Q4 instances have VC${=}1.0$ (all samples identical), and $\\Delta{=}0$ universally; this ceiling effect is even more extreme than SciERC Q4.\n666\t\n667\t\\section{Exploratory Extension to Relation Extraction}\\label{app:re_extension}\n668\t\n669\tWe extend the NER evaluation to relation extraction (RE) on SciERC as an exploratory single-benchmark analysis.\n670\tRE produces sets of (head, relation, tail) triples with partial overlap; 40\\% of RE instances receive zero F1, and entity span errors account for 55.5\\% of RE false negatives, a prerequisite failure that consistency signals cannot detect (\\S\\ref{app:additional}).\n671\tAll RE results use Qwen3-8B unless noted; single-seed ($\\text{seed}{=}42$) for $N{=}8$ analyses, 3-seed for $N{=}16$.\n672\t\n673\t\\paragraph{Quality estimation.}\n674\tRE quality estimation is reported in Table~\\ref{tab:multiseed} (3-seed means).\n675\tThe signal ranking differs from NER: VC leads ($\\rho{=}0.309{\\pm}0.024$), but LP rises to \\#2 ($\\rho{=}0.297{\\pm}0.022$), above FK, SJ, and EM, a reversal reflecting RE's higher sensitivity to per-sample scoring.\n676\tRE miscalibration is more severe than NER (ECE 0.109--0.339; Figure~\\ref{fig:reliability}).\n677\t\n678\t\\paragraph{Selection.}\n679\tTable~\\ref{tab:re_cond_selection} presents RE selection at $N{=}8$: no signal outperforms single-sample (0.404) on the full set ($n{=}397$) or the non-zero subset ($n{=}238$), with 18.1~pp of unrealized oracle headroom.\n680\tAt $N{=}16$ (Qwen3-4B, Table~\\ref{tab:re_n16_selection}), LP is the sole positive signal ($\\Delta{=}{+}0.7$~pp, $p{=}0.058$), consistent with LP being the strongest RE selection signal across scales.\n681\t\n682\t\\paragraph{Scale ablation.}\n683\tAt 4B scale (Qwen3-4B, $N{=}8$, $\\text{seed}{=}42$), RE quality estimation shows FK $\\rho{=}0.359$ and LP $\\rho{=}0.351$, both above their 8B counterparts (FK 0.275, LP 0.266), while SJ declines ($0.267$ vs.\\ $0.250$).\n684\tSelection remains below single-sample on RE ($\\Delta$ up to $-3.4$~pp) despite 17.1~pp of oracle headroom.\n685\t\n686\t\\paragraph{Free-form decoding.}\n687\tRE LP selection consistently reverses direction under free-form decoding ($+1.8{\\pm}0.1$~pp across 4 seeds vs.\\ $-0.9$~pp under constrained decoding at 8B; \\S\\ref{app:freeform_ablation}); constrained decoding's fixed template likely obscures LP signal in RE (\\S\\ref{app:mbr_discussion}).\n688\t\n689\t\\section{RE Conditional Selection}\\label{app:re_conditional_selection}\n690\t\n691\tTable~\\ref{tab:re_cond_selection} extends the selection analysis to the RE non-zero F1 subset.\n692\tOf $n{=}397$ RE instances, 238 (60\\%) have non-zero F1 and 159 (40\\%) have zero F1.\n693\tAll five signals underperform single-sample on both subsets.\n694\tOn the non-zero subset, selection performance is \\textit{worse} than on the full set (e.g., VC: $-10.0$~pp on non-zero vs.\\ $-4.5$~pp on full set), because single-sample is already strong on non-zero instances (F1${=}0.674$) and signals actively select inferior samples.\n695\tOracle headroom exists (0.757 vs.\\ 0.674) but no signal exploits it, ruling out the 40\\% zero-F1 floor effect as the explanation for RE selection failure.\n696\t\n697\t\\begin{table}[t]\n698\t\\centering\n699\t\\small\n700\t\\caption{RE selection F1 (macro, instance-averaged) on SciERC ($N{=}8$, $T{=}1.0$). Full set ($n{=}397$) and non-zero F1 subset ($n{=}238$). No signal outperforms greedy on either subset.}\n701\t\\label{tab:re_cond_selection}\n702\t\\begin{tabular}{lcc}\n703\t\\toprule\n704\tMethod & Full ($n{=}397$) & Non-zero ($n{=}238$) \\\\\n705\t\\midrule\n706\tOracle & 0.585 & 0.757 \\\\\n707\t\\midrule\n708\tLP & 0.395 & 0.600 \\\\\n709\tSJ & 0.386 & 0.604 \\\\\n710\tEM & 0.372 & 0.583 \\\\\n711\tVC & 0.359 & 0.574 \\\\\n712\t\\midrule\n713\tGreedy & 0.404 & 0.674 \\\\\n714\t\\bottomrule\n715\t\\end{tabular}\n716\t\\end{table}\n717\t\n718\t\\section{RE $N{=}16$ Selection Analysis}\\label{app:re_n16_selection}\n719\t\n720\tTable~\\ref{tab:re_n16_selection} extends the selection analysis to RE at $N{=}16$ with 3-seed statistics.\n721\tAll four consistency signals underperform single-sample, with EM showing the largest deficit ($\\Delta{=}{-}1.5$~pp, Fisher $p{>}0.99$).\n722\tLP is the only positive signal ($\\Delta{=}{+}0.7$~pp, Fisher $p{=}0.058$), driven primarily by seed~456 ($\\Delta{=}{+}1.5$~pp, $p{=}0.026$); the remaining seeds show smaller effects ($+0.1$ and $+0.6$~pp, $p{>}0.20$).\n723\tEven the most favorable seed captures only ${\\sim}9\\%$ of the 17.1~pp oracle headroom.\n724\tThis cross-task consistency (LP as the only viable selection signal on both NER and RE) reinforces the persistent limitation of instance-level signals for candidate ranking across tested regimes.\n725\t\n726\t\\begin{table}[t]\n727\t\\centering\n728\t\\small\n729\t\\caption{RE best-of-$N$ selection F1 (macro, instance-averaged) on SciERC (Qwen3-4B, $N{=}16$, $T{=}1.0$, 3-seed mean${\\pm}\\sigma$, $n{=}551$). Fisher combined $p$ vs.\\ greedy. LP is the only signal with positive $\\Delta$. $\\sigma$ is population standard deviation over 3 seeds.}\n730\t\\label{tab:re_n16_selection}\n731\t\\begin{tabular}{lccc}\n732\t\\toprule\n733\tMethod & F1 & $\\Delta$ (pp) & $p$(Fisher) \\\\\n734\t\\midrule\n735\tOracle & $.463{\\pm}.006$ & $+$17.1 & --- \\\\\n736\t\\midrule\n737\tLP & $\\mathbf{.299}{\\pm}.007$ & $+$0.7 & .058 \\\\\n738\tVC & $.284{\\pm}.002$ & $-$0.8 & .973 \\\\\n739\tFK & $.283{\\pm}.005$ & $-$0.9 & .985 \\\\\n740\tSJ & $.281{\\pm}.005$ & $-$1.0 & .993 \\\\\n741\tEM & $.277{\\pm}.007$ & $-$1.5 & .999 \\\\\n742\t\\midrule\n743\tGreedy & $.291{\\pm}.000$ & --- & --- \\\\\n744\tRandom & $.262{\\pm}.001$ & $-$2.9 & --- \\\\\n745\t\\bottomrule\n746\t\\end{tabular}\n747\t\\end{table}\n748\t\n749\t\\section{MBR Decoding and Task-Specific Interactions}\\label{app:mbr_discussion}\n750\t\n751\t\\paragraph{Connection to MBR decoding.}\n752\tOur selection strategies instantiate minimum Bayes risk (MBR) decoding \\cite{eikema2022sampling, muller2021understanding}: each selects $\\hat{y} = \\arg\\max_{y_i} \\sum_{j \\neq i} U(y_i, y_j)$ with utility $U$ defined by SJ, EM, or entity overlap.\n753\tDespite MBR's success in machine translation \\cite{freitag2022high} and its extension to summarization, code generation, and captioning \\cite{jinnai2024mbr}, all variants fail here: despite positive within-instance utility--F1 correlation, selection gains are limited by instance degeneracy, the core of the correlation-selection gap.\n754\t\\citet{eikema2025structured} study structure-conditional MBR decoding and find that standard utility functions degrade on structured outputs, consistent with our finding that consensus-proximity selection fails in IE despite its success in machine translation.\n755\t\n756\t\\paragraph{Task-specific decoding interactions.}\n757\tThe free-form ablation reveals divergent behavior across tasks.\n758\tOn RE, LP selection flips from $-0.68$~pp (constrained) to $+1.69$~pp (free-form; preliminary, single RE benchmark), a reversal that spans all 7 relation types and is driven by selective variance reallocation ($p{<}0.0001$).\n759\tThe win/loss ratio shifts from 36:59 (constrained) to 45:45 (free-form), with the gains concentrated on relation-dense instances (mean 3.3 gold relations).\n760\tThis interaction does not generalize to NER, where selection remains negligible under both regimes.\n761\tThis ablation uses a single seed (seed${=}42$); whether the RE reversal replicates across seeds and generalizes to other RE benchmarks warrants further investigation.\n762\tThe non-tied subset ($n{=}210$) is partially reshuffled under free-form decoding: Jaccard similarity between the constrained and free-form non-tied sets is 0.472: 87 instances newly gain LP discrimination while others lose it, and the newly non-tied subset shows a $3{\\times}$ increase in within-instance LP range for the newly non-tied subset.\n763\tDespite this reshuffling, aggregate NER selection gains remain negligible. Score compression is not a fixed property of specific instances but rather a pervasive regime that shifts across instances without producing net selection improvement.\n764\tFree-form decoding also slightly improves quality estimation (NER VC $\\rho$: 0.379$\\to$0.409), though this does not translate to selection gains.\n765\t\n766\t\\section{Free-Form Decoding Ablation}\\label{app:freeform_ablation}\n767\t\n768\tTable~\\ref{tab:freeform_ablation} compares constrained and free-form decoding across four dimensions on SciERC ($N{=}8$, $T{=}1.0$, Qwen3-8B; seed${=}42$ shown, 4-seed RE statistics below).\n769\tFree-form decoding removes grammar constraints entirely; outputs are parsed post-hoc (parse rate 99.95\\%, 4406/4408).\n770\tLP score distributions are nearly identical across regimes (Panel~A: within-instance std ratio $0.97{\\times}$), and NER selection gains remain negligible under both regimes (Panel~B).\n771\tRE LP selection consistently reverses direction under free-form decoding across 4 seeds: $+1.84{\\pm}0.12$~pp (seeds 42/123/456/789: $+1.69$, $+1.76$, $+2.00$, $+1.91$~pp) vs.\\ $-0.68$~pp constrained.\n772\tThe constrained reference ($-0.68$~pp) uses the ablation-matched baseline; the primary experiment (Table~\\ref{tab:selection}) yields $-0.9$~pp on the same gold-filtered set.\n773\tQuality estimation improves modestly for most signals under free-form decoding (Panel~C), with the largest gain for FK ($+0.053$ NER, $+0.039$ RE).\n774\t\n775\t\\begin{table*}[t]\n776\t\\centering\n777\t\\caption{Comparison of constrained vs.\\ free-form decoding on SciERC (Qwen3-8B, $N{=}8$, $T{=}1.0$, seed${=}42$; RE selection gap replicates across 4 seeds: $+1.84{\\pm}0.12$~pp).}\n778\t\\label{tab:freeform_ablation}\n779\t\n780\t\\vspace{2pt}\n781\t{\\small\\textsc{Panel A: Logprob Distribution}}\n782\t\\vspace{2pt}\n783\t\n784\t\\begin{tabular}{lccc}\n785\t\\toprule\n786\tMetric & Constrained & Free-form & $\\Delta$ \\\\\n787\t\\midrule\n788\tMean LP std        & 0.0206 & 0.0199 & $-$0.0007 \\\\\n789\tMean LP range      & 0.0623 & 0.0599 & $-$0.0024 \\\\\n790\tTied fraction ($\\varepsilon{=}0.05$) & 59.7\\% & 57.7\\% & $-$2.0\\,pp \\\\\n791\t\\bottomrule\n792\t\\end{tabular}\n793\t\n794\t\\vspace{8pt}\n795\t\n796\t{\\small\\textsc{Panel B: Selection F1}}\n797\t\\vspace{2pt}\n798\t\n799\t\\begin{tabular}{llccc}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "41e084e2-3d1a-44b8-aea4-f75d56d5a54b",
+            "isSidechain": false,
+            "promptId": "7e6eefcf-2c2f-4283-b3f0-334cc9cf9d89",
+            "type": "user",
+            "uuid": "bf29942c-65b8-4598-8e19-59ed95bd9cf0",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+                "content": "Signal & Qwen & LLaMA & Qwen & LLaMA \\\\\n\\midrule\nSJ & 0.92 & 1.45 & 0.99 & 0.18 \\\\\nFK & 1.03 & 0.93 & 0.60 & 0.15 \\\\\nVC & 2.33 & 0.53 & 0.72 & 0.18 \\\\\nEM & 0.00 & 0.00 & 0.00 & 0.00 \\\\\nLP & 3.65 & 2.58 & 3.00 & 0.31 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Non-tied subset analysis.}\nTable~\\ref{tab:nontied_main} presents the non-tied subset analysis referenced in \\S\\ref{sec:discussion}.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Non-tied subset analysis (SciERC, Qwen3-8B, $N{=}8$, $T{=}1.0$). Instances split at LP range $\\varepsilon{=}0.05$. Within-instance $\\rho$ and selection gain both concentrate in the non-tied subset. Full $\\varepsilon$ sweep in Table~\\ref{tab:epsilon_sweep}.}\n\\label{tab:nontied_main}\n\\begin{tabular}{lccc}\n\\toprule\nSubset & $n$ & $\\rho$(LP,F1) & LP $\\Delta$ vs.\\ greedy \\\\\n\\midrule\nTied (range ${<}0.05$) & 319 & 0.08 & ${\\approx}0$ \\\\\nNon-tied (range ${\\geq}0.05$) & 210 & 0.39 & $+$2.9~pp ($p{=}0.004$) \\\\\n\\midrule\nAll instances & 529 & 0.248 & $+$0.2~pp ($p{=}0.29$) \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{Consistency-Stratified Selection Analysis}\\label{app:vc_quartile}\n\nTable~\\ref{tab:vc_quartile} stratifies SciERC instances by voting confidence (VC) quartiles and reports selection $\\Delta$ (gain over single-sample) for LP and SJ.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Selection $\\Delta$ (pp over single-sample) stratified by VC quartile on SciERC ($N{=}8$, Qwen3-8B). Oracle headroom collapses at Q4; LP rankings are unreliable at Q1--Q2. Neither quartile supports consistent selection gains.}\n\\label{tab:vc_quartile}\n\\begin{tabular}{lcccc}\n\\toprule\nQuartile & Mean VC & LP $\\Delta$ & SJ $\\Delta$ & Oracle (pp) \\\\\n\\midrule\n\\multicolumn{5}{l}{\\textit{NER}} \\\\\nQ1 (low) & 0.30 & $+$1.55 & $+$0.54 & 16.85 \\\\\nQ2 & 0.51 & $-$0.65 & $-$1.89 & 14.35 \\\\\nQ3 & 0.68 & $+$1.97 & $+$1.84 & 16.83 \\\\\nQ4 (high) & 0.92 & $-$0.41 & $-$0.04 & 4.78 \\\\\n\\midrule\n\\multicolumn{5}{l}{\\textit{$^\\dagger$RE}} \\\\\nQ1 (low) & --- & $-$3.56 & --- & --- \\\\\nQ4 (high) & --- & $+$4.01 & --- & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThe NER pattern reveals two complementary failure modes rather than a monotonic relationship between consistency and selection gain:\n\\begin{itemize}\n\\item \\textbf{Q4 ceiling effect.} High-consistency instances (mean VC${=}0.92$) have oracle headroom of only 4.78~pp. Samples have already converged, leaving little room for any signal to improve selection.\n\\item \\textbf{Q1--Q2 noise.} Low-consistency instances retain large headroom (14--17~pp) but LP rankings are unreliable, and LP rankings produce inconsistent $\\Delta$ signs across quartiles.\n\\end{itemize}\n\nOn $^\\dagger$RE, the pattern differs: Q4 LP achieves $+4.01$~pp; LP may recover selection ability when high consistency coincides with structured output diversity. This is a single-dataset observation and should be interpreted cautiously.\n\nOn CoNLL NER, Q3--Q4 instances have VC${=}1.0$ (all samples identical), and $\\Delta{=}0$ universally; this ceiling effect is even more extreme than SciERC Q4.\n\n\\section{Exploratory Extension to Relation Extraction}\\label{app:re_extension}\n\nWe extend the NER evaluation to relation extraction (RE) on SciERC as an exploratory single-benchmark analysis.\nRE produces sets of (head, relation, tail) triples with partial overlap; 40\\% of RE instances receive zero F1, and entity span errors account for 55.5\\% of RE false negatives, a prerequisite failure that consistency signals cannot detect (\\S\\ref{app:additional}).\nAll RE results use Qwen3-8B unless noted; single-seed ($\\text{seed}{=}42$) for $N{=}8$ analyses, 3-seed for $N{=}16$.\n\n\\paragraph{Quality estimation.}\nRE quality estimation is reported in Table~\\ref{tab:multiseed} (3-seed means).\nThe signal ranking differs from NER: VC leads ($\\rho{=}0.309{\\pm}0.024$), but LP rises to \\#2 ($\\rho{=}0.297{\\pm}0.022$), above FK, SJ, and EM, a reversal reflecting RE's higher sensitivity to per-sample scoring.\nRE miscalibration is more severe than NER (ECE 0.109--0.339; Figure~\\ref{fig:reliability}).\n\n\\paragraph{Selection.}\nTable~\\ref{tab:re_cond_selection} presents RE selection at $N{=}8$: no signal outperforms single-sample (0.404) on the full set ($n{=}397$) or the non-zero subset ($n{=}238$), with 18.1~pp of unrealized oracle headroom.\nAt $N{=}16$ (Qwen3-4B, Table~\\ref{tab:re_n16_selection}), LP is the sole positive signal ($\\Delta{=}{+}0.7$~pp, $p{=}0.058$), consistent with LP being the strongest RE selection signal across scales.\n\n\\paragraph{Scale ablation.}\nAt 4B scale (Qwen3-4B, $N{=}8$, $\\text{seed}{=}42$), RE quality estimation shows FK $\\rho{=}0.359$ and LP $\\rho{=}0.351$, both above their 8B counterparts (FK 0.275, LP 0.266), while SJ declines ($0.267$ vs.\\ $0.250$).\nSelection remains below single-sample on RE ($\\Delta$ up to $-3.4$~pp) despite 17.1~pp of oracle headroom.\n\n\\paragraph{Free-form decoding.}\nRE LP selection consistently reverses direction under free-form decoding ($+1.8{\\pm}0.1$~pp across 4 seeds vs.\\ $-0.9$~pp under constrained decoding at 8B; \\S\\ref{app:freeform_ablation}); constrained decoding's fixed template likely obscures LP signal in RE (\\S\\ref{app:mbr_discussion}).\n\n\\section{RE Conditional Selection}\\label{app:re_conditional_selection}\n\nTable~\\ref{tab:re_cond_selection} extends the selection analysis to the RE non-zero F1 subset.\nOf $n{=}397$ RE instances, 238 (60\\%) have non-zero F1 and 159 (40\\%) have zero F1.\nAll five signals underperform single-sample on both subsets.\nOn the non-zero subset, selection performance is \\textit{worse} than on the full set (e.g., VC: $-10.0$~pp on non-zero vs.\\ $-4.5$~pp on full set), because single-sample is already strong on non-zero instances (F1${=}0.674$) and signals actively select inferior samples.\nOracle headroom exists (0.757 vs.\\ 0.674) but no signal exploits it, ruling out the 40\\% zero-F1 floor effect as the explanation for RE selection failure.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{RE selection F1 (macro, instance-averaged) on SciERC ($N{=}8$, $T{=}1.0$). Full set ($n{=}397$) and non-zero F1 subset ($n{=}238$). No signal outperforms greedy on either subset.}\n\\label{tab:re_cond_selection}\n\\begin{tabular}{lcc}\n\\toprule\nMethod & Full ($n{=}397$) & Non-zero ($n{=}238$) \\\\\n\\midrule\nOracle & 0.585 & 0.757 \\\\\n\\midrule\nLP & 0.395 & 0.600 \\\\\nSJ & 0.386 & 0.604 \\\\\nEM & 0.372 & 0.583 \\\\\nVC & 0.359 & 0.574 \\\\\n\\midrule\nGreedy & 0.404 & 0.674 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{RE $N{=}16$ Selection Analysis}\\label{app:re_n16_selection}\n\nTable~\\ref{tab:re_n16_selection} extends the selection analysis to RE at $N{=}16$ with 3-seed statistics.\nAll four consistency signals underperform single-sample, with EM showing the largest deficit ($\\Delta{=}{-}1.5$~pp, Fisher $p{>}0.99$).\nLP is the only positive signal ($\\Delta{=}{+}0.7$~pp, Fisher $p{=}0.058$), driven primarily by seed~456 ($\\Delta{=}{+}1.5$~pp, $p{=}0.026$); the remaining seeds show smaller effects ($+0.1$ and $+0.6$~pp, $p{>}0.20$).\nEven the most favorable seed captures only ${\\sim}9\\%$ of the 17.1~pp oracle headroom.\nThis cross-task consistency (LP as the only viable selection signal on both NER and RE) reinforces the persistent limitation of instance-level signals for candidate ranking across tested regimes.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{RE best-of-$N$ selection F1 (macro, instance-averaged) on SciERC (Qwen3-4B, $N{=}16$, $T{=}1.0$, 3-seed mean${\\pm}\\sigma$, $n{=}551$). Fisher combined $p$ vs.\\ greedy. LP is the only signal with positive $\\Delta$. $\\sigma$ is population standard deviation over 3 seeds.}\n\\label{tab:re_n16_selection}\n\\begin{tabular}{lccc}\n\\toprule\nMethod & F1 & $\\Delta$ (pp) & $p$(Fisher) \\\\\n\\midrule\nOracle & $.463{\\pm}.006$ & $+$17.1 & --- \\\\\n\\midrule\nLP & $\\mathbf{.299}{\\pm}.007$ & $+$0.7 & .058 \\\\\nVC & $.284{\\pm}.002$ & $-$0.8 & .973 \\\\\nFK & $.283{\\pm}.005$ & $-$0.9 & .985 \\\\\nSJ & $.281{\\pm}.005$ & $-$1.0 & .993 \\\\\nEM & $.277{\\pm}.007$ & $-$1.5 & .999 \\\\\n\\midrule\nGreedy & $.291{\\pm}.000$ & --- & --- \\\\\nRandom & $.262{\\pm}.001$ & $-$2.9 & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{MBR Decoding and Task-Specific Interactions}\\label{app:mbr_discussion}\n\n\\paragraph{Connection to MBR decoding.}\nOur selection strategies instantiate minimum Bayes risk (MBR) decoding \\cite{eikema2022sampling, muller2021understanding}: each selects $\\hat{y} = \\arg\\max_{y_i} \\sum_{j \\neq i} U(y_i, y_j)$ with utility $U$ defined by SJ, EM, or entity overlap.\nDespite MBR's success in machine translation \\cite{freitag2022high} and its extension to summarization, code generation, and captioning \\cite{jinnai2024mbr}, all variants fail here: despite positive within-instance utility--F1 correlation, selection gains are limited by instance degeneracy, the core of the correlation-selection gap.\n\\citet{eikema2025structured} study structure-conditional MBR decoding and find that standard utility functions degrade on structured outputs, consistent with our finding that consensus-proximity selection fails in IE despite its success in machine translation.\n\n\\paragraph{Task-specific decoding interactions.}\nThe free-form ablation reveals divergent behavior across tasks.\nOn RE, LP selection flips from $-0.68$~pp (constrained) to $+1.69$~pp (free-form; preliminary, single RE benchmark), a reversal that spans all 7 relation types and is driven by selective variance reallocation ($p{<}0.0001$).\nThe win/loss ratio shifts from 36:59 (constrained) to 45:45 (free-form), with the gains concentrated on relation-dense instances (mean 3.3 gold relations).\nThis interaction does not generalize to NER, where selection remains negligible under both regimes.\nThis ablation uses a single seed (seed${=}42$); whether the RE reversal replicates across seeds and generalizes to other RE benchmarks warrants further investigation.\nThe non-tied subset ($n{=}210$) is partially reshuffled under free-form decoding: Jaccard similarity between the constrained and free-form non-tied sets is 0.472: 87 instances newly gain LP discrimination while others lose it, and the newly non-tied subset shows a $3{\\times}$ increase in within-instance LP range for the newly non-tied subset.\nDespite this reshuffling, aggregate NER selection gains remain negligible. Score compression is not a fixed property of specific instances but rather a pervasive regime that shifts across instances without producing net selection improvement.\nFree-form decoding also slightly improves quality estimation (NER VC $\\rho$: 0.379$\\to$0.409), though this does not translate to selection gains.\n\n\\section{Free-Form Decoding Ablation}\\label{app:freeform_ablation}\n\nTable~\\ref{tab:freeform_ablation} compares constrained and free-form decoding across four dimensions on SciERC ($N{=}8$, $T{=}1.0$, Qwen3-8B; seed${=}42$ shown, 4-seed RE statistics below).\nFree-form decoding removes grammar constraints entirely; outputs are parsed post-hoc (parse rate 99.95\\%, 4406/4408).\nLP score distributions are nearly identical across regimes (Panel~A: within-instance std ratio $0.97{\\times}$), and NER selection gains remain negligible under both regimes (Panel~B).\nRE LP selection consistently reverses direction under free-form decoding across 4 seeds: $+1.84{\\pm}0.12$~pp (seeds 42/123/456/789: $+1.69$, $+1.76$, $+2.00$, $+1.91$~pp) vs.\\ $-0.68$~pp constrained.\nThe constrained reference ($-0.68$~pp) uses the ablation-matched baseline; the primary experiment (Table~\\ref{tab:selection}) yields $-0.9$~pp on the same gold-filtered set.\nQuality estimation improves modestly for most signals under free-form decoding (Panel~C), with the largest gain for FK ($+0.053$ NER, $+0.039$ RE).\n\n\\begin{table*}[t]\n\\centering\n\\caption{Comparison of constrained vs.\\ free-form decoding on SciERC (Qwen3-8B, $N{=}8$, $T{=}1.0$, seed${=}42$; RE selection gap replicates across 4 seeds: $+1.84{\\pm}0.12$~pp).}\n\\label{tab:freeform_ablation}\n\n\\vspace{2pt}\n{\\small\\textsc{Panel A: Logprob Distribution}}\n\\vspace{2pt}\n\n\\begin{tabular}{lccc}\n\\toprule\nMetric & Constrained & Free-form & $\\Delta$ \\\\\n\\midrule\nMean LP std        & 0.0206 & 0.0199 & $-$0.0007 \\\\\nMean LP range      & 0.0623 & 0.0599 & $-$0.0024 \\\\\nTied fraction ($\\varepsilon{=}0.05$) & 59.7\\% & 57.7\\% & $-$2.0\\,pp \\\\\n\\bottomrule\n\\end{tabular}\n\n\\vspace{8pt}\n\n{\\small\\textsc{Panel B: Selection F1}}\n\\vspace{2pt}\n\n\\begin{tabular}{llccc}",
+                "numLines": 200,
+                "startLine": 600,
+                "totalLines": 1354
+              }
+            },
+            "sourceToolAssistantUUID": "41e084e2-3d1a-44b8-aea4-f75d56d5a54b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/review_reviewer_2_a0c838f5",
+            "sessionId": "4d69282c-32b0-4839-ba8f-96c846d16f13",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000114"
+        },
+        {
+          "source_line": 115,
+          "timestamp": "2026-05-18T05:59:35.018Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "I've now read enough of the paper to form a thorough review. Let me compile my findings and write the review. Let me also look at the remaining appendix sections briefly for completeness.\n\nKey observations so far:\n\n**Reference verification**: \n- 60 entries, 0 orphan, 0 missing, 53 verified, 3 not found (likely too recent for OpenAlex), 4 mismatch (minor)\n\n**Writing quality**:\n- No em-dash (—) or en-dash (–) issues\n- `\\textendash` used only for number ranges (4B–8B, 14–59%), which is acceptable\n\n\n- No blacklist words present, no repetitive transition patterns, and the -ing phrases used feel natural rather than formulaic\n\nNow I'm assessing the novelty. Yao et al. (2026) showed that consistency correlates with accuracy for NER and RE tasks on hard-prompted LLMs, but this paper distinguishes itself by investigating why that correlation fails to translate into effective selection—a meaningful difference, though the comparison requires careful framing since Yao uses hard prompting while this work focuses on fine-tuned models. The core contribution around correlation-selection gaps needs...\n\nThe \"correlation-selection gap\" concept itself isn't entirely new—MBR decoding already demonstrates scenarios where correlation doesn't guarantee selection performance—but applying this diagnosis specifically to structured IE through the lens of degeneracy and weak alignment has some novelty value. The first methodological contribution is somewhat circular: four of five signals are instance-level by design, so they inherently can't rank candidates across the board, which reads more as a definitional observation than an experimental finding. The paper's strength lies in its diagnostic approach, though the positive results are modest (LP gains 1.36pp on Few-NERD) while most other findings are negative, raising questions about whether the diagnostic value alone justifies publication at a top venue.\n\nThe related work section is solid with 60 references and good coverage of MBR literature.\n\nNow I'm assessing the paper's structure and formatting—the abstract is quite dense at 178 words with eight quantitative values, the introduction follows a standard five-paragraph structure but the contributions section is packed, and the discussion spans seven paragraphs covering disparate topics which might benefit from tighter organization. The submission appears to meet ACL formatting requirements with an ethics statement included, and the body text around 4600 words should fit within the page limit given the tables and figures.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bf29942c-65b8-4598-8e19-59ed95bd9cf0",
+            "isSidechain": false,
+            "requestId": "req_011Cb9XFxZ6MUPTBxoiG1kzE",
+            "type": "assistant",
+            "uuid": "0b57a202-8ab3-4806-8f3a-3cc8a25e9a48",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/review_reviewer_2_a0c838f5",
+            "sessionId": "4d69282c-32b0-4839-ba8f-96c846d16f13",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01U251UgzeYXHGtudCYoZeoP",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5132,
+                "cache_read_input_tokens": 92399,
+                "output_tokens": 855,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 5132,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 855,
+                    "cache_read_input_tokens": 92399,
+                    "cache_creation_input_tokens": 5132,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 5132
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000115"
+        },
+        {
+          "source_line": 116,
+          "timestamp": "2026-05-18T05:59:35.021Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "论文已全部通读。现在编写完整审稿意见。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0b57a202-8ab3-4806-8f3a-3cc8a25e9a48",
+            "isSidechain": false,
+            "requestId": "req_011Cb9XFxZ6MUPTBxoiG1kzE",
+            "type": "assistant",
+            "uuid": "84dcdf16-a28d-48fe-981f-fa837b68c8fa",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/review_reviewer_2_a0c838f5",
+            "sessionId": "4d69282c-32b0-4839-ba8f-96c846d16f13",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01U251UgzeYXHGtudCYoZeoP",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5132,
+                "cache_read_input_tokens": 92399,
+                "output_tokens": 855,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 5132,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 855,
+                    "cache_read_input_tokens": 92399,
+                    "cache_creation_input_tokens": 5132,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 5132
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000116"
+        },
+        {
+          "source_line": 117,
+          "timestamp": "2026-05-18T05:59:35.032Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MwrfU7gEEjFL1FWiyTxvgi",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://aclrollingreview.org/reviewerguidelines",
+                "prompt": "Extract the key reviewer guidance about what constitutes reasons to accept/reject a paper, how to evaluate novelty, how to handle negative results papers, and any specific guidance about diagnostic/analysis papers."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "84dcdf16-a28d-48fe-981f-fa837b68c8fa",
+            "isSidechain": false,
+            "requestId": "req_011Cb9XFxZ6MUPTBxoiG1kzE",
+            "type": "assistant",
+            "uuid": "d4bbbc34-be3f-41b6-a8ff-f3edb498b2d1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/review_reviewer_2_a0c838f5",
+            "sessionId": "4d69282c-32b0-4839-ba8f-96c846d16f13",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01U251UgzeYXHGtudCYoZeoP",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5132,
+                "cache_read_input_tokens": 92399,
+                "output_tokens": 855,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 5132,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 855,
+                    "cache_read_input_tokens": 92399,
+                    "cache_creation_input_tokens": 5132,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 5132
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000117"
+        },
+        {
+          "source_line": 118,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "[Round 1 审稿请求]: ## 审稿任务 — Reviewer 2（新颖性 + 完整性 + 写作质量）  ### 论文信息 - **标题**: Strong Predictors, Weak Selectors: Why Confidence Signals Fail to Scale Structured Information Extraction - **路径**: `projects…",
+                "leafUuid": "d4bbbc34-be3f-41b6-a8ff-f3edb498b2d1",
+                "sessionId": "4d69282c-32b0-4839-ba8f-96c846d16f13"
+              }
+            }
+          ],
+          "id": "event-000118"
+        },
+        {
+          "source_line": 119,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Review structured IE paper for EMNLP 2026",
+                "sessionId": "4d69282c-32b0-4839-ba8f-96c846d16f13"
+              }
+            }
+          ],
+          "id": "event-000119"
+        },
+        {
+          "source_line": 120,
+          "timestamp": "2026-05-18T05:59:41.774Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MwrfU7gEEjFL1FWiyTxvgi",
+              "type": "tool_result",
+              "content": "# Key Reviewer Guidance on Paper Evaluation\n\n## Reasons to Accept/Reject\n\nThe guidelines emphasize that **soundness is necessary but not sufficient**. Papers should be rejected only when they have genuine flaws, not for subjective preferences. The document explicitly warns against common problematic rejection rationales:\n\n- \"The results are not surprising\" (H1) - findings may seem obvious retroactively but represent novel empirical contributions\n- \"The results are not SOTA\" (H5) - achieving state-of-the-art is \"neither necessary nor sufficient for a scientific contribution\"\n- \"This method is too simple\" (H7) - simpler solutions are preferable as they're \"less brittle and easier to deploy\"\n\nPapers merit acceptance when they demonstrate technical soundness and make appropriate contributions to their claimed scope, even if reviewers personally lack enthusiasm.\n\n## Evaluating Novelty\n\nThe guidance distinguishes between contribution types. Novelty isn't limited to methodological innovation—the field should encourage \"reimplementations and systematic analyses of prior work.\" However, if authors claim novelty, reviewers must verify by providing specific references to prior work (H3). The three-month publication threshold applies: prior work must be officially published, not merely preprinted.\n\n## Negative Results Papers\n\nThe guidelines explicitly support negative results: \"The bias towards publishing only positive results is a known problem in many fields...if something systematically does not work where it could be expected to, the community does need to know about it\" (H6).\n\n## Analysis/Diagnostic Papers\n\nThese papers receive particular protection in the guidelines. Resource papers, reproduction studies, and analyses represent \"proper contributions in scope of ARR\" when appropriately presented, countering reviewer dismissal of non-modeling work."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d4bbbc34-be3f-41b6-a8ff-f3edb498b2d1",
+            "isSidechain": false,
+            "promptId": "7e6eefcf-2c2f-4283-b3f0-334cc9cf9d89",
+            "type": "user",
+            "uuid": "c2ae635e-3af8-4f7f-a815-89a6da05d80f",
+            "toolUseResult": {
+              "bytes": 100603,
+              "code": 200,
+              "codeText": "OK",
+              "result": "# Key Reviewer Guidance on Paper Evaluation\n\n## Reasons to Accept/Reject\n\nThe guidelines emphasize that **soundness is necessary but not sufficient**. Papers should be rejected only when they have genuine flaws, not for subjective preferences. The document explicitly warns against common problematic rejection rationales:\n\n- \"The results are not surprising\" (H1) - findings may seem obvious retroactively but represent novel empirical contributions\n- \"The results are not SOTA\" (H5) - achieving state-of-the-art is \"neither necessary nor sufficient for a scientific contribution\"\n- \"This method is too simple\" (H7) - simpler solutions are preferable as they're \"less brittle and easier to deploy\"\n\nPapers merit acceptance when they demonstrate technical soundness and make appropriate contributions to their claimed scope, even if reviewers personally lack enthusiasm.\n\n## Evaluating Novelty\n\nThe guidance distinguishes between contribution types. Novelty isn't limited to methodological innovation—the field should encourage \"reimplementations and systematic analyses of prior work.\" However, if authors claim novelty, reviewers must verify by providing specific references to prior work (H3). The three-month publication threshold applies: prior work must be officially published, not merely preprinted.\n\n## Negative Results Papers\n\nThe guidelines explicitly support negative results: \"The bias towards publishing only positive results is a known problem in many fields...if something systematically does not work where it could be expected to, the community does need to know about it\" (H6).\n\n## Analysis/Diagnostic Papers\n\nThese papers receive particular protection in the guidelines. Resource papers, reproduction studies, and analyses represent \"proper contributions in scope of ARR\" when appropriately presented, countering reviewer dismissal of non-modeling work.",
+              "durationMs": 6736,
+              "url": "https://aclrollingreview.org/reviewerguidelines"
+            },
+            "sourceToolAssistantUUID": "d4bbbc34-be3f-41b6-a8ff-f3edb498b2d1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/review_reviewer_2_a0c838f5",
+            "sessionId": "4d69282c-32b0-4839-ba8f-96c846d16f13",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000120"
+        },
+        {
+          "source_line": 121,
+          "timestamp": "2026-05-18T06:00:14.408Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "This is very relevant. ARR explicitly supports negative results papers and diagnostic/analysis papers. The guidelines say:\n- \"Negative results: if something systematically does not work where it could be expected to, the community does need to know about it\"\n- Analysis papers are \"proper contributions in scope of ARR\"\n- \"The results are not surprising\" is listed as a problematic rejection rationale\n\nThis is important context for my review. Now let me finalize the review.\n\nLet me think through the major points:\n\n**Strengths:**\n1. Thorough experimental design with well-designed controls (4 datasets spanning difficulty gradient, 2 model families, 4B ablation)\n\n\n2. Clear separation of quality estimation vs. selection — important methodological contribution\n3. Statistical rigor (bootstrap CIs, TOST equivalence testing, MDE calculation, Bonferroni correction)\n4. Extensive ablations (temperature, N-scaling, LoRA rank, free-form decoding, entity-token LP, supervised verifier)\n5. Massive appendix demonstrating thoroughness\n\n**Weaknesses:**\n1. [Must-Fix] Contribution 1 \"methodological premise\" — the observation that 4/5 signals are instance-level by construction is definitional, not experimental. Claiming this as a contribution inflates the contribution list.\n2. [Must-Fix] The paper needs to address a critical issue with how it frames its findings.\n3. [Should-Fix] Abstract is very dense with 8+ quantitative values in 178 words. Reads like a results summary rather than a narrative abstract.\n4. [Should-Fix] Discussion section has 7 paragraph-level subtopics — too fragmented for the space. Some should be consolidated or moved to appendix.\n5. [Should-Fix] The paper doesn't build a verifier (the obvious next step) — acknowledged in limitations but this significantly limits the contribution. The paper diagnoses the problem but stops short of proposing a solution.\n6. [Should-Fix] Positioning relative to Yao et al. (2026) needs clarification on what truly distinguishes this work.\n7. [Minor] `\\textendash` used correctly for ranges but excessively throughout — same numbers (14–59%) appear in abstract, introduction, and conclusion.\n8. [Minor] Repetition of core findings across sections — the same numbers appear verbatim in abstract, introduction, experiments, discussion, and conclusion.\n\nNow I'm reconsidering the novelty angle. The correlation-selection gap isn't entirely new — prior work like Eikema & Aziz (2022) and Müller & Sennrich (2021) already established that MBR utility choice matters and that MBR doesn't always improve. More recent work from Eikema et al. (2025) specifically found MBR utilities degrade on structured outputs, so the core observation here feels somewhat incremental.\n\nWhat does feel novel is the specific application to NER with set-valued outputs, the identification of two independent mechanisms (degeneracy and weak alignment), and the empirical demonstration that both are necessary conditions. Instance degeneracy itself is somewhat expected given that fine-tuning collapses diversity, but the paper's real value lies in its diagnostic clarity — separating quality estimation from selection issues and providing actionable guidelines. That's a solid empirical contribution under ARR standards, though the main weakness is that the \"what to do about it\" part feels incomplete.\n\nLooking at this holistically, I'm settling on a borderline rating. The experimental rigor is genuinely impressive and the problem matters, but the core insight about correlation-selection gaps has precedent in the MBR literature, and the practical impact is limited by the negative results. I'd score this around 3/5 overall — solid methodological work with useful diagnostics, but incremental novelty and constrained actionability.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c2ae635e-3af8-4f7f-a815-89a6da05d80f",
+            "isSidechain": false,
+            "requestId": "req_011Cb9XJVGbZwujnH7JEr1UM",
+            "type": "assistant",
+            "uuid": "5af8ee99-8b8f-40b0-b29d-8350f6eb37ee",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/review_reviewer_2_a0c838f5",
+            "sessionId": "4d69282c-32b0-4839-ba8f-96c846d16f13",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ENQTtjvGcC8EK35EA1pvbi",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1243,
+                "cache_read_input_tokens": 97531,
+                "output_tokens": 7373,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1243,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 7373,
+                    "cache_read_input_tokens": 97531,
+                    "cache_creation_input_tokens": 1243,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1243
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000121"
+        },
+        {
+          "source_line": 122,
+          "timestamp": "2026-05-18T06:00:14.663Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "审稿意见已准备好，现在提交给 Review Director。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5af8ee99-8b8f-40b0-b29d-8350f6eb37ee",
+            "isSidechain": false,
+            "requestId": "req_011Cb9XJVGbZwujnH7JEr1UM",
+            "type": "assistant",
+            "uuid": "8f80d98a-3fac-45bd-b782-b0ccc26cc42a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/review_reviewer_2_a0c838f5",
+            "sessionId": "4d69282c-32b0-4839-ba8f-96c846d16f13",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ENQTtjvGcC8EK35EA1pvbi",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1243,
+                "cache_read_input_tokens": 97531,
+                "output_tokens": 7373,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1243,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 7373,
+                    "cache_read_input_tokens": 97531,
+                    "cache_creation_input_tokens": 1243,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1243
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000122"
+        },
+        {
+          "source_line": 123,
+          "timestamp": "2026-05-18T06:02:30.565Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01A6yrR3SCUSYpZcqiYcHDBa",
+              "name": "mcp__agent-ml-research__review_reviewer_post_to_director",
+              "input": {
+                "text": "\n# Reviewer 2 审稿意见 — Round 1\n\n**论文**: Strong Predictors, Weak Selectors: Why Confidence Signals Fail to Scale Structured Information Extraction\n**审查侧重**: 新颖性 + 完整性 + 写作质量 + 格式合规\n\n---\n\n## 1. Summary\n\n本文评估五种置信度信号（四种 instance-level，一种 per-sample LP）在 LLM-based NER 中的质量估计（QE）和样本选择（selection）效果，横跨四个 benchmark、两个模型家族和一个 4B ablation。核心发现是：所有信号均可进行可靠的 QE（ρ 最高 0.45，AUROC 最高 0.82），但仅 LP 在 Few-NERD 上实现了显著的选择增益（+1.36pp），且需要两个条件同时满足（低 instance degeneracy 和足够的 LP-quality alignment）。作者将 QE 强度与选择失败之间的落差命名为 \"correlation-selection gap\"，并诊断出两个阻断机制。\n\n---\n\n## 2. Strengths\n\n**S1. 实验设计严谨且系统化。** 四个数据集构成 difficulty gradient（ceiling → medium → low-degeneracy → collapse boundary），每个数据集有明确的诊断角色。两个模型家族 + 4B ablation 增强了泛化性。QE 和 selection 的分离是一个重要的方法论贡献。\n\n**S2. 统计方法论远超同类工作。** Bootstrap CIs（Table 9）、TOST equivalence testing（Appendix）、MDE 计算（n=529 对应 ~1.5pp）、Bonferroni correction、Fisher combined p-values、external equivalence margins（Ratinov 2009, Berg-Kirkpatrick 2012）——这些构成了一个罕见的完整统计分析框架。\n\n**S3. 消融实验全面且可信。** Temperature ablation（隔离 diversity 和 capacity）、LoRA-rank ablation（conflated 但有 secondary evidence 价值）、free-form decoding ablation（排除 constrained decoding 作为 NER LP compression 的唯一原因）、entity-token LP（排除 token averaging 作为唯一机制）、supervised verifier baseline（排除信号组合策略）——每个 ablation 都有明确的诊断目的。\n\n**S4. Appendix 的深度令人印象深刻。** 1353 行 appendix 覆盖了几乎所有可预见的审稿人质疑：FK 独立性检验、SJ normalizer 鲁棒性、ε 灵敏度分析、epoch confound、thinking token 分析、OOD、calibration baseline 等。这是负责任的学术写作。\n\n**S5. 引用完整且无 orphan/missing 条目。** verify_references 确认 60 条 bib entry 全部被引用，0 orphan、0 missing。在线验证 53/60 confirmed，3 条 not_found（均为最近 arXiv preprint，尚未被 OpenAlex 索引），4 条 minor mismatch（作者名格式差异）。\n\n**S6. 写作质量优秀，AI 痕迹极少。** 无 em-dash/en-dash 解释性使用（`\\textendash` 仅用于数字范围），无黑名单用词（delve/leverage/utilize/facilitate/myriad/plethora），无 Furthermore/Moreover/Additionally 堆砌，无过度分段。\n\n---\n\n## 3. Weaknesses\n\n### Must-Fix\n\n**N1 [critical] Contribution 1 中 \"methodological premise\" 的贡献定位不当**\n- 具体位置：Section 1, Contribution 1; Section 2 (§2.1); Abstract line 8\n- 问题：\"A definitional observation structures the analysis: four of five signals are instance-level aggregates that by design assign identical scores to all candidates\" 是一个定义推论，不是实验发现。Instance-level signal 无法区分 per-sample candidates 是信号定义的直接推论——任何理解 MBR decoding 的读者都能从定义推导出这一点。将此列为 Contribution 1 的一部分（与 \"Quality estimation framework\" 并列）inflates 了贡献清单。\n- 为什么影响接收：审稿人（特别是熟悉 MBR/uncertainty 的审稿人）可能将此视为 trivial observation 被 overclaimed，进而质疑整篇论文的 novelty bar。\n- 建议修改方向：将其降级为 Method section 的 framing observation（目前已经是），从 Contribution 列表中移除或明确标注为 \"definitional premise that structures our analysis\" 而非 contribution。Contribution 1 可以聚焦于 \"five-signal QE framework across 4 benchmarks and 2 model families\" 本身。\n\n**N2 [critical] \"Correlation-selection gap\" 的新颖性需要更锐利的差异化定位**\n- 具体位置：Section 1 (term coined), Section 3 (§3.3), Section 5\n- 问题：MBR decoding 文献已经建立了 utility function 选择不当导致选择失败的先例。Eikema et al. (2025)（论文已引用）明确发现 MBR utilities degrade on structured outputs。Müller & Sennrich (2021) 讨论了 MBR 的 properties 和 limitations。论文引用了这些工作但差异化定位不够锐利——读者可能会问：\"这和 Eikema et al. (2025) 发现的 'utility degradation on structured outputs' 有什么本质区别？\"\n- 为什么影响接收：如果审稿人认为核心概念是已知结论的 domain-specific 重述，novelty 评分将严重受损。\n- 建议修改方向：在 Introduction 或 Related Work 中增加一段明确的对比：\"Eikema et al. (2025) attribute MBR failure to utility misalignment; our diagnosis is complementary but distinct: on non-degenerate instances, SJ utility is well-aligned with F1 (median ρ=0.524, Table X), yet selection still fails because instance degeneracy eliminates headroom. The bottleneck is not the utility function but the input distribution.\"（论文在 §2.3 line 18 已经有类似表述，但过于简略——应该更加突出这一差异，因为这是论文最关键的 novelty claim。）\n\n### Should-Fix\n\n**W1 [warning] Abstract 数字过载，叙事被压缩**\n- 具体位置：Abstract (178 words, 8+ quantitative values)\n- 问题：Abstract 包含 ρ up to 0.45、AUROC up to 0.82、+1.36pp、p<0.001、ρ ≳ 0.3、14–59%、~13pp 等至少 8 个定量值。30 秒内审稿人无法消化这些数字。关键叙事（\"为什么 QE 强但 selection 弱\"）被数字堆积淹没。\n- 建议：保留 3 个以内关键数字（如 ρ up to 0.45 for QE、+1.36pp for LP selection、14–59% degeneracy），其余用 qualitative language 替代。\n\n**W2 [warning] 论文的 actionable contribution 偏薄**\n- 具体位置：Section 5 \"Practical guidelines\"; Limitations\n- 问题：论文的主要积极发现是 LP 在 Few-NERD 上 +1.36pp（~1.8% relative improvement），且需要两个特定条件（degeneracy <15%, ρ ≳ 0.3）。对于不满足条件的场景（SciERC, CoNLL, WNUT），actionable advice 是 \"use greedy decoding\"——这等于告诉 practitioner 回到原点。论文诊断了问题但没有提出解决方案。acknowledged in Limitations (line 3: \"We do not train a verifier\")，但这显著降低了 practical impact。\n- 建议：（a）在 Discussion 中增加一段 \"toward closing the gap\" 的 forward-looking analysis，超越简单引用 Cobbe et al.——例如讨论 hidden state verifiers 的可行性，或 entity embedding 作为 per-sample signal 的初步分析；（b）明确 Few-NERD +1.36pp 在实际部署中的意义（是否超过 inference cost 的代价？8 次采样的 latency/cost overhead 是多少？）。\n\n**W3 [warning] Discussion section 过于碎片化**\n- 具体位置：Section 5 (7 个 \\paragraph)\n- 问题：Discussion 包含 7 个独立的 paragraph topic（practitioners, why gap exists, non-tied subset, LP compression, regime boundaries, practical guidelines, methodological implications）。每个 topic 只有 1 段，无法深入展开。\"Practical guidelines\" 段特别长（单段 ~180 words），包含 temperature curve、epoch confound、calibration 等多个子话题，读起来像压缩过的 laundry list。\n- 建议：合并 \"Implications for practitioners\" 和 \"Practical guidelines\" 为一个 subsection；合并 \"Why the gap exists\" 和 \"LP compression mechanisms\" 为一个 subsection；将 \"Regime boundaries\" 的部分内容移入 Experiments。\n\n**W4 [warning] 纯诊断性论文（几乎全部 negative results）对 EMNLP main conference 的门槛**\n- 具体位置：全文\n- 问题：ARR reviewer guidelines 明确支持 negative results papers（\"if something systematically does not work where it could be expected to, the community does need to know about it\"），但论文需要确保诊断价值足够高。目前论文的核心信息可以用一句话概括：\"Instance-level signals can't rank candidates by definition, and LP is too compressed to do so in practice unless degeneracy is low and alignment is adequate.\" 这一诊断是否足够 surprising 来支撑 8 页正文 + 大量 appendix？\n- 建议：论文应该在 Introduction 中更明确地 argue 为什么这个诊断是 non-trivial（不仅仅是 \"the community needs to know\"，而是 \"this changes how we think about test-time scaling for structured tasks\"），并且展示现有文献中的 implicit assumption（structured IE 应该受益于 self-consistency）被系统性 falsified。\n\n**W5 [warning] 核心发现的重复性过高**\n- 具体位置：Abstract, Introduction (§1 lines 11-15, Contribution 2-3), Experiments (§4.3, §4.4), Discussion (§5 para 1-2), Conclusion\n- 问题：\"14–59% degeneracy\", \"+1.36pp on Few-NERD\", \"ρ up to 0.45\", \"AUROC up to 0.82\" 等数字在 abstract、introduction、experiments、discussion、conclusion 中几乎逐字重复。这种程度的 recapitulation 浪费了宝贵的正文空间，且给审稿人留下 \"padding\" 的印象。\n- 建议：Abstract 和 Conclusion 可以保留具体数字；Introduction 的 contribution list 引用 section/table 即可，不需要重复完整数字；Discussion 重点解释 mechanism 而非重述 results。\n\n**W6 [warning] Few-NERD 训练设置差异引入混淆**\n- 具体位置：Section 4.1 line 15; Appendix (epoch confound)\n- 问题：Few-NERD 使用 3 epochs（其他数据集 5 epochs），这是论文中唯一正面结果的来源。虽然 Appendix 提供了 5-epoch control（\"LP selection remains positive though gains are halved\"），但这恰恰证明 epoch 是一个关键 confound。3 epochs → 低 degeneracy → LP selection 有效；5 epochs → 高 degeneracy → LP gains halved。那么 Few-NERD 的成功究竟是 dataset property 还是 training artifact？\n- 建议：在正文中更显著地讨论这一 confound（目前只在 Appendix），并考虑在 SciERC 上使用 3-epoch checkpoint 进行 selection 实验（Appendix 的 3-point curve 只报告了 degeneracy 和 alignment，没有报告 selection F1）。\n\n### Minor\n\n**M1** `\\textendash` 使用正确（仅用于数字范围如 4B–8B, 14–59%），但相同范围在多处重复（Abstract, Introduction, Conclusion 均出现 \"14\\textendash 59\\%\"），属于上述重复问题的子集。\n\n**M2** Table 3 (§4.4) caption 中有两个 `\\footnotemark`，对应的 `\\footnotetext` 紧随表格之后。这种 split footnote 在 ACL 格式中技术上可行但不优雅，且第二个 footnote 的编号可能在编译时出错。建议改为表格 caption 内的 parenthetical note。\n\n**M3** Conclusion 最后两句 (\"Whether these patterns persist at 70B+ scales remains open.\" 和 \"Closing the gap...\") 结构松散。\"Whether...remains open\" 在 Limitations 中已说过，Conclusion 的最后一句应该是 forward-looking statement 而非重复 limitation。\n\n**M4** Ethics Statement (main.tex lines 40-44) 较为单薄（4 句），特别是 \"Code and data will be released upon acceptance at [anonymized URL]\" 这种 boilerplate。建议增加一句关于 potential misuse（如 practitioners 可能 overrely on QE signals for deployment gating without understanding selection limitations）的讨论。\n\n**M5** Table 1 (quality estimation) 只报告 SciERC 和 CoNLL 两个数据集的结果，Few-NERD 和 WNUT-17 的结果分散在正文和 Appendix 中。建议在 Table 1 中增加 Few-NERD 列，因为它是 selection 成功的关键数据集。\n\n---\n\n## 4. Questions\n\n**Q1.** SciERC 3-epoch checkpoint（Table appendix epoch_scierc）的 degeneracy 为 6.4%，alignment ρ=0.317。这已经接近 Few-NERD 的 degeneracy 水平（13.8%），且 alignment 高于论文提出的 ρ ≳ 0.3 threshold。那么 SciERC 3-epoch 的 selection F1 是多少？如果 selection 仍然为 negative，那么 \"two jointly necessary conditions\" 的 claim 就需要修正（可能需要更高的 alignment threshold，或存在第三个 factor）。\n\n**Q2.** 论文使用 macro F1 作为 evaluation metric（Table 2 caption \"macro F1\"），但 SciERC 有 6 个 entity types，Few-NERD 有 8 个。不同 entity types 之间的 F1 variance 可能很大。是否分析过 per-type LP selection 的 heterogeneity 在 SciERC 上的表现（Few-NERD 的 per-type 分析已在 Appendix 中）？\n\n**Q3.** Supervised verifier baseline（§4.5 line 172-175）使用 logistic regression/MLP/random forest 但仅以 5 个 unsupervised signals 作为特征。这不是公平的 verifier baseline——真正的 verifier（如 Cobbe et al.）使用 hidden states 或 full output representations。论文已在 limitations 中承认，但 \"supervised verifier baseline\" 这一名称可能误导读者认为已经测试了 learned verifier 的上限。建议更名为 \"supervised signal combination\" 或 \"meta-learner over unsupervised signals\"。\n\n**Q4.** Per-entity-type analysis within Few-NERD 报告 ρ=-0.881, p=0.004, n=8。但论文也承认 \"entity types share model, tokenizer, and temperature, so effective degrees of freedom may be lower than 6\"。如果 effective df < 6，那么 p=0.004 可能不可靠。是否有 permutation test 或 bootstrap 来验证？\n\n---\n\n## 5. Missing References\n\n引用覆盖度总体良好（60 条），但以下方向可能有遗漏：\n\n- **Structured prediction diversity**: Ippolito et al. (2019) \"Comparison of Diverse Decoding Methods from Conditional Language Models\" — 讨论了 structured output 多样性问题，与 degeneracy 诊断直接相关。\n- **Confidence estimation for sequence labeling**: Fomicheva et al. (2020) 已引用，但 Xiao & Wang (2021) \"On Hallucination and Predictive Uncertainty in Conditional Language Generation\" 讨论了 generation uncertainty 与 quality 的关系。\n- **Sample efficiency in best-of-N**: Li et al. (2024) \"Rain: Your Language Models Can Align Themselves without Finetuning\" 中的 self-evaluation 机制可能与 LP-as-selector 的讨论相关。\n\n以上均为 suggestion，不构成 must-cite。\n\n---\n\n## 6. 格式合规检查\n\n| 检查项 | 状态 | 备注 |\n|--------|------|------|\n| ACL style template | ✓ | `\\usepackage[review]{acl}` |\n| 匿名化 | ✓ | `\\author{Anonymous}`，无 URL 泄漏 |\n| 行号 | ✓ | review mode 启用 |\n| 页数 | △ | 无编译 PDF 可供验证；正文 ~4600 words + 3 tables + 2 figures，估计 7-8 页，应在限制内 |\n| Limitations | ✓ | 充实，14 行，覆盖 scale、verifier、seed、epoch 等 |\n| Ethics Statement | ⚠ | 较薄（4 句），见 M4 |\n| References 格式 | ✓ | `\\bibliography{references}` 正确引用 |\n| 图表 caption | ✓ | 自包含，Table 2/3 有完整的实验设置描述 |\n| 小数精度 | ✓ | Table 1 统一 3 位小数 |\n| 最优加粗 | ✓ | Table 1, 2, 3 均有 bold 标注 |\n\n---\n\n## 7. Overall Assessment\n\n### 官方维度打分（ACL Rolling Review form）\n\n| 维度 | 分数 | 理由摘要 |\n|------|------|----------|\n| Soundness | 3.5/5 | 方法论严谨，统计分析全面。但 \"two necessary conditions\" 的 claim 基于 3 个数据集的 observational evidence + 单个 per-type analysis（n=8，df 存疑），causal claim 的支撑偏弱。Temperature ablation 是最强证据，但只在 SciERC 上进行。 |\n| Excitement | 2.5/5 | 诊断价值真实存在，但核心发现的 surprise factor 有限：instance-level signals 无法 rank candidates 是 definitional，LP compression 在 fine-tuned models 上是可预期的。Positive finding（+1.36pp）较小且 dataset-specific。 |\n| Overall | 3/5 | Borderline。实验执行优秀（top 10% thoroughness），但 novelty 和 practical impact 均处于 borderline 水平。作为 Findings 论文完全合格，作为 main conference 论文需要更锐利的 novelty framing 和至少一个 stronger positive contribution。 |\n| Reproducibility | 4/5 | 训练配置完整（Table appendix training），prompt template 给出，vLLM + constrained decoding 细节充分。Code release promised。唯一减分：2 seeds（非 3）for primary selection results。 |\n| Confidence | 4/5 | 熟悉 self-consistency、MBR decoding、NER evaluation 和 uncertainty estimation 文献。仔细阅读了正文和 ~60% appendix。 |\n\n### 总体评分\n\n**Overall**: 3/5 (Borderline — Findings acceptance, borderline for main conference)\n\n**一句话总结**: 实验设计和统计分析堪称 exemplary，但核心诊断的新颖性受限于 MBR 文献中的已有结论，且唯一的正面发现（LP +1.36pp on Few-NERD）过小且 dataset-specific，难以支撑 main conference 的 excitement bar。\n\n### 接收建议\n\n如果作者能：(1) 锐化与 Eikema et al. (2025) 的差异化定位，(2) 在 SciERC 3-epoch checkpoint 上报告 selection F1 以验证 \"two necessary conditions\" claim，(3) 精简重复内容并加强 forward-looking discussion，则有望升至 weak accept。当前状态下建议 Findings track。\n",
+                "reviewer_id": "2",
+                "project": "struct_self_consist_ie"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8f80d98a-3fac-45bd-b782-b0ccc26cc42a",
+            "isSidechain": false,
+            "requestId": "req_011Cb9XJVGbZwujnH7JEr1UM",
+            "type": "assistant",
+            "uuid": "aa1d1c45-3ed1-4ab0-8c60-a4d4e2db782f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/review_reviewer_2_a0c838f5",
+            "sessionId": "4d69282c-32b0-4839-ba8f-96c846d16f13",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ENQTtjvGcC8EK35EA1pvbi",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1243,
+                "cache_read_input_tokens": 97531,
+                "output_tokens": 7373,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1243,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 7373,
+                    "cache_read_input_tokens": 97531,
+                    "cache_creation_input_tokens": 1243,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1243
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000123"
+        },
+        {
+          "source_line": 124,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "[Round 1 审稿请求]: ## 审稿任务 — Reviewer 2（新颖性 + 完整性 + 写作质量）  ### 论文信息 - **标题**: Strong Predictors, Weak Selectors: Why Confidence Signals Fail to Scale Structured Information Extraction - **路径**: `projects…",
+                "leafUuid": "aa1d1c45-3ed1-4ab0-8c60-a4d4e2db782f",
+                "sessionId": "4d69282c-32b0-4839-ba8f-96c846d16f13"
+              }
+            }
+          ],
+          "id": "event-000124"
+        },
+        {
+          "source_line": 125,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Review structured IE paper for EMNLP 2026",
+                "sessionId": "4d69282c-32b0-4839-ba8f-96c846d16f13"
+              }
+            }
+          ],
+          "id": "event-000125"
+        },
+        {
+          "source_line": 126,
+          "timestamp": "2026-05-18T06:02:35.868Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01A6yrR3SCUSYpZcqiYcHDBa",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_3897c2857f11615119e277e820eae311:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "aa1d1c45-3ed1-4ab0-8c60-a4d4e2db782f",
+            "isSidechain": false,
+            "promptId": "7e6eefcf-2c2f-4283-b3f0-334cc9cf9d89",
+            "type": "user",
+            "uuid": "cd278a5a-be51-4406-8a8c-10ac509e0995",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_3897c2857f11615119e277e820eae311:director\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"review_director_key\": \"feishu:group:oc_3897c2857f11615119e277e820eae311:director\"}, \"error\": \"\"}"
+              }
+            },
+            "sourceToolAssistantUUID": "aa1d1c45-3ed1-4ab0-8c60-a4d4e2db782f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/review_reviewer_2_a0c838f5",
+            "sessionId": "4d69282c-32b0-4839-ba8f-96c846d16f13",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000126"
+        }
+      ]
+    }
+  ]
+}

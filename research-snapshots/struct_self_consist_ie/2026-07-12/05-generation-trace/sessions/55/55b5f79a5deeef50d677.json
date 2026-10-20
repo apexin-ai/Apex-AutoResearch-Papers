@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "55b5f79a5deeef50d677",
+  "project": "struct_self_consist_ie--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: struct_self_consist_ie ## 运行环境 - 服务器名: autodl-5090 - SSH 账户: root（调用 ssh_execute / submit_traini",
+  "task_key": "ed7b989a-7285-4aeb-a1fc-7c4a01eca84e",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/ed7b989a-7285-4aeb-a1fc-7c4a01eca84e.jsonl",
+    "occurrence": 1,
+    "bytes": 856003,
+    "sha256": "517ecf3aa174c0993077fa0052f4c9b2b36ba490b945c1cbbc57713573e965af"
+  },
+  "statistics": {
+    "messages": 328,
+    "user_turns": 1,
+    "tool_calls": 107,
+    "roles": {
+      "record": 60,
+      "user": 1,
+      "assistant": 53,
+      "tool_call": 107,
+      "tool_result": 107
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "55b5f79a5deeef50d677-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 326,
+      "chunks": [
+        {
+          "path": "55b5f79a5deeef50d677-part-0001.json",
+          "message_count": 173
+        },
+        {
+          "path": "55b5f79a5deeef50d677-part-0002.json",
+          "message_count": 153
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-struct-self-consist-ie-autodl-5090-ssh-root-ssh-execute-submit-copy-142.md"
+}

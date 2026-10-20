@@ -1,0 +1,2345 @@
+{
+  "schema_version": "1.0",
+  "id": "e988c4991deb9039087b",
+  "project": "struct_self_consist_ie--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Find all files related to \"n16_3seed_scs\" or \"n16_3seed\" or \"n16.*3seed\" analysis in the directory /home/ubuntu/.agent-m",
+  "task_key": "agent-a96027dfb27aaad6a",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/agent-a96027dfb27aaad6a.jsonl",
+    "occurrence": 1,
+    "bytes": 104048,
+    "sha256": "dfeb75c4f9751f29b6a81a0e4d8402e4ad9838d1baae45dc1e2fab4808a686a4"
+  },
+  "statistics": {
+    "messages": 49,
+    "user_turns": 1,
+    "tool_calls": 20,
+    "roles": {
+      "user": 1,
+      "assistant": 8,
+      "tool_call": 20,
+      "tool_result": 20
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T11:42:32.353Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Find all files related to \"n16_3seed_scs\" or \"n16_3seed\" or \"n16.*3seed\" analysis in the directory /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/. Also check for any recent .md files in that artifacts directory that might contain N=16 three-seed analysis results. Search breadth: medium."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "b60b9ea7-b5f5-472e-bc16-38d67f517df1",
+            "agentId": "a96027dfb27aaad6a",
+            "type": "user",
+            "uuid": "869e55d8-9ab5-4178-9305-a24722c44fe6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "87b5e1ab-0e84-4cd7-80a1-2356c4e5a8e9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "wobbly-snuggling-unicorn"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T11:42:33.797Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll search for files related to \"n16_3seed\" analysis in the artifacts directory. Let me start with a broad search using multiple patterns."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "869e55d8-9ab5-4178-9305-a24722c44fe6",
+            "isSidechain": true,
+            "agentId": "a96027dfb27aaad6a",
+            "requestId": "req_011Cb4J26GGcGjHUYWQ7gEkx",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "acd66df9-2ecc-4052-b4ff-acf2c9ae7ac1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "87b5e1ab-0e84-4cd7-80a1-2356c4e5a8e9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "wobbly-snuggling-unicorn",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_014BXT27YJnL7q6hPcRYZb7t",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 20710,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 20710,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T11:42:34.295Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011oc7T1imfAFtBzaDEQFXNT",
+              "name": "Glob",
+              "input": {
+                "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/*n16*3seed*"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "acd66df9-2ecc-4052-b4ff-acf2c9ae7ac1",
+            "isSidechain": true,
+            "agentId": "a96027dfb27aaad6a",
+            "requestId": "req_011Cb4J26GGcGjHUYWQ7gEkx",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "84152493-5269-4bc4-8768-10303e2bb760",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "87b5e1ab-0e84-4cd7-80a1-2356c4e5a8e9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "wobbly-snuggling-unicorn",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_014BXT27YJnL7q6hPcRYZb7t",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 20710,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 20710,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T11:42:34.318Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011oc7T1imfAFtBzaDEQFXNT",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/report/llama_conll_n16_3seed_5signal_summary.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_001_n16/report/n16_3seed_scs_analysis.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/n16_3seed_scs_analysis.md"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "84152493-5269-4bc4-8768-10303e2bb760",
+            "isSidechain": true,
+            "promptId": "b60b9ea7-b5f5-472e-bc16-38d67f517df1",
+            "agentId": "a96027dfb27aaad6a",
+            "type": "user",
+            "uuid": "cd994143-8eb7-44c0-ab72-523a684c709f",
+            "sourceToolAssistantUUID": "84152493-5269-4bc4-8768-10303e2bb760",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "87b5e1ab-0e84-4cd7-80a1-2356c4e5a8e9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "wobbly-snuggling-unicorn"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T11:42:34.578Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01685AfFoSwJYepXMBpbR71N",
+              "name": "Glob",
+              "input": {
+                "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/*n16_3seed*"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cd994143-8eb7-44c0-ab72-523a684c709f",
+            "isSidechain": true,
+            "agentId": "a96027dfb27aaad6a",
+            "requestId": "req_011Cb4J26GGcGjHUYWQ7gEkx",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "f897b43b-25a6-4857-b714-90b62b7b227a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "87b5e1ab-0e84-4cd7-80a1-2356c4e5a8e9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "wobbly-snuggling-unicorn",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_014BXT27YJnL7q6hPcRYZb7t",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 20710,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 20710,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T11:42:34.595Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01685AfFoSwJYepXMBpbR71N",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/report/llama_conll_n16_3seed_5signal_summary.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_001_n16/report/n16_3seed_scs_analysis.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/n16_3seed_scs_analysis.md"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f897b43b-25a6-4857-b714-90b62b7b227a",
+            "isSidechain": true,
+            "promptId": "b60b9ea7-b5f5-472e-bc16-38d67f517df1",
+            "agentId": "a96027dfb27aaad6a",
+            "type": "user",
+            "uuid": "401a5bc7-c74b-4961-9125-00729bc48b30",
+            "sourceToolAssistantUUID": "f897b43b-25a6-4857-b714-90b62b7b227a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "87b5e1ab-0e84-4cd7-80a1-2356c4e5a8e9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "wobbly-snuggling-unicorn"
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T11:42:34.711Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VKGqgG8tqhBNdkQHiG7RR3",
+              "name": "Glob",
+              "input": {
+                "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/*.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "401a5bc7-c74b-4961-9125-00729bc48b30",
+            "isSidechain": true,
+            "agentId": "a96027dfb27aaad6a",
+            "requestId": "req_011Cb4J26GGcGjHUYWQ7gEkx",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "b0f7115c-bb91-442d-aab8-b406166068bd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "87b5e1ab-0e84-4cd7-80a1-2356c4e5a8e9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "wobbly-snuggling-unicorn",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_014BXT27YJnL7q6hPcRYZb7t",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 20710,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 20710,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T11:42:34.723Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VKGqgG8tqhBNdkQHiG7RR3",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/ft_002/intermediate/ft_002_config_notes.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/mvp_pilot_004/report/framing_proposal_post_pilot004.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260514T093336/best/paper_framing.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260514T093336/median/paper_framing.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260514T093336/worst/paper_framing.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260514T093336/best/review_report.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260514T093336/median/review_report.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260514T093336/worst/review_report.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260514T105303/best/paper_framing.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260514T105303/median/paper_framing.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260514T105303/worst/paper_framing.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp005_temperature/summary.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_005/report/summary.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp-015/report/exp015_summary.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260514T105303/best/review_report.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260514T105303/median/review_report.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260514T105303/worst/review_report.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_016_signal_ensemble/report/summary.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_016_signal_ensemble/report/summary_cc2f1c.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/review_reports/round_0.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/report/logprob_rho_diagnosis.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/wnut17_diagnosis_report.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_003/report/wnut17_diagnosis_report.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/bjb1_status_report.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/report/autodl_process_check.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/autodl_process_check.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/auroc_bug_diagnosis.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_015_metrics_expansion/report/heatmap_data_audit.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/heatmap_data_audit.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/audit_gpu5090_4x2_loop3.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/audit_autodl5090_loop3.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/report/3seed_5signal_tables.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/3seed_summary/3seed_5signal_tables.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_001_seed456_v2_ner/report/3seed_ner_summary.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/3seed_ner_summary.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_009_v2_re_rerun/report/exp_009_v2_re_rerun_summary.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/report/n16_5signal_comparison.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/n16_5signal_comparison.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/report/llama_conll_n16_3seed_5signal_summary.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260514T203201/best/paper_framing.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260514T203201/median/paper_framing.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260514T203201/worst/paper_framing.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260514T203201/best/review_report.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260514T203201/median/review_report.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260514T203201/worst/review_report.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/review_reports/round_1.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/review_reports/round_2.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/review_reports/round_3.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_018_provenance_report.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_018/report/exp_018_provenance_report.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/report/multi_seed_stability_table.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/multi_seed_stability_table.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/review_reports/round_4.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/report/re_nonzero_selection_analysis.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/re_nonzero_selection_analysis.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/training_config_appendix.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/report/logprob_tie_analysis.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/logprob_tie_analysis.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/report/re_nonzero_selection_n397.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/report/logprob_tie_analysis_n529.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/review_reports/round_5.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/review_reports/round_6.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/report/qwen3_thinking_confirmation.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/qwen3_thinking_confirmation.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/data/tost_breakpoint_delta_star.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/tost_breakpoint_delta_star.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/report/vc_implementation_rho_diff.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/vc_implementation_rho_diff.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260515T092545/best/paper_framing.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/report/D070_D071_revision_summary.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260515T092545/median/paper_framing.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_freeform_ablation/report/freeform_ablation_results.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/freeform_ablation_results.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260515T092545/worst/paper_framing.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/report/n16_readiness_report.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/n16_readiness_report.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260515T092545/best/review_report.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260515T092545/median/review_report.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260515T092545/worst/review_report.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/report/freeform_ablation_deep_analysis.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/freeform_ablation_deep_analysis.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/report/pending_exp_readiness.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/pending_exp_readiness.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/report/d072_paper_patch_inventory.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/d072_paper_patch_inventory.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/report/multiseed_flip_overlap_analysis.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/multiseed_flip_overlap_analysis.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_001_n16/report/n16_3seed_scs_analysis.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/n16_3seed_scs_analysis.md"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b0f7115c-bb91-442d-aab8-b406166068bd",
+            "isSidechain": true,
+            "promptId": "b60b9ea7-b5f5-472e-bc16-38d67f517df1",
+            "agentId": "a96027dfb27aaad6a",
+            "type": "user",
+            "uuid": "37483fdc-c320-4406-a9eb-915d8fc8bfc8",
+            "sourceToolAssistantUUID": "b0f7115c-bb91-442d-aab8-b406166068bd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "87b5e1ab-0e84-4cd7-80a1-2356c4e5a8e9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "wobbly-snuggling-unicorn"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T11:42:34.927Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UuKXqpt6TZpkky4UXYXEpg",
+              "name": "Bash",
+              "input": {
+                "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts -type f -name \"*n16*\" 2>/dev/null | head -50"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "37483fdc-c320-4406-a9eb-915d8fc8bfc8",
+            "isSidechain": true,
+            "agentId": "a96027dfb27aaad6a",
+            "requestId": "req_011Cb4J26GGcGjHUYWQ7gEkx",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "19b496df-b6ff-470b-9655-ac26793869dc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "87b5e1ab-0e84-4cd7-80a1-2356c4e5a8e9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "wobbly-snuggling-unicorn",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_014BXT27YJnL7q6hPcRYZb7t",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 20710,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 346,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 20710
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 346,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 20710,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 20710,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T11:42:35.097Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UuKXqpt6TZpkky4UXYXEpg",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/report/n16_readiness_report.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/report/n16_5signal_comparison.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/report/llama_conll_n16_3seed_5signal_summary.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_001_n16/report/n16_3seed_scs_analysis.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/n16_readiness_report.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/n16_3seed_scs_analysis.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/n16_5signal_comparison.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_001_ner_n16_scierc/data/exp001_n16_samples_pointer.txt",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "19b496df-b6ff-470b-9655-ac26793869dc",
+            "isSidechain": true,
+            "promptId": "b60b9ea7-b5f5-472e-bc16-38d67f517df1",
+            "agentId": "a96027dfb27aaad6a",
+            "type": "user",
+            "uuid": "eae4793d-8245-4a25-92aa-06f66853c163",
+            "sourceToolAssistantUUID": "19b496df-b6ff-470b-9655-ac26793869dc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "87b5e1ab-0e84-4cd7-80a1-2356c4e5a8e9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "wobbly-snuggling-unicorn"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T11:42:36.702Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Good! I found several key files. Now let me search for any additional related files and check for recent modifications in the .md files I found."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "eae4793d-8245-4a25-92aa-06f66853c163",
+            "isSidechain": true,
+            "agentId": "a96027dfb27aaad6a",
+            "requestId": "req_011Cb4J2HfN9chE9x3Dnuhf2",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "ed8ce494-1048-4e1c-adca-6d2fe73a5698",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "87b5e1ab-0e84-4cd7-80a1-2356c4e5a8e9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "wobbly-snuggling-unicorn",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01TDq6jiANnSKR1kd5AZDC9t",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 6236,
+                "cache_read_input_tokens": 20710,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 6236,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T11:42:37.179Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015tUiEH5r9Kd4dNzkQ7dnDa",
+              "name": "Bash",
+              "input": {
+                "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts -type f \\( -name \"*3seed*\" -o -name \"*n16*\" \\) 2>/dev/null | sort"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ed8ce494-1048-4e1c-adca-6d2fe73a5698",
+            "isSidechain": true,
+            "agentId": "a96027dfb27aaad6a",
+            "requestId": "req_011Cb4J2HfN9chE9x3Dnuhf2",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "f8df68bd-4aec-4305-a362-22758800badf",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "87b5e1ab-0e84-4cd7-80a1-2356c4e5a8e9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "wobbly-snuggling-unicorn",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01TDq6jiANnSKR1kd5AZDC9t",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 6236,
+                "cache_read_input_tokens": 20710,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 6236,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T11:42:37.250Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015tUiEH5r9Kd4dNzkQ7dnDa",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/3seed_ner_summary.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/3seed_summary/3seed_5signal_data.json\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/3seed_summary/3seed_5signal_tables.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/data/3seed_5signal_data.json\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/report/3seed_5signal_tables.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/report/llama_conll_n16_3seed_5signal_summary.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/report/n16_5signal_comparison.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/report/n16_readiness_report.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/data/qwen_scierc_3seed_em_voting.json\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_001_n16/report/n16_3seed_scs_analysis.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_001_ner_n16_scierc/data/exp001_n16_samples_pointer.txt\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_001_seed456_v2_ner/report/3seed_ner_summary.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/n16_3seed_scs_analysis.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/n16_5signal_comparison.md\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/n16_readiness_report.md",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f8df68bd-4aec-4305-a362-22758800badf",
+            "isSidechain": true,
+            "promptId": "b60b9ea7-b5f5-472e-bc16-38d67f517df1",
+            "agentId": "a96027dfb27aaad6a",
+            "type": "user",
+            "uuid": "a0b873fa-ac88-4243-80da-cb00f66a1a37",
+            "sourceToolAssistantUUID": "f8df68bd-4aec-4305-a362-22758800badf",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "87b5e1ab-0e84-4cd7-80a1-2356c4e5a8e9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "wobbly-snuggling-unicorn"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T11:42:37.434Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NtjFqPiQnvyQmVcnGvswV6",
+              "name": "Bash",
+              "input": {
+                "command": "ls -lrt /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/*.md 2>/dev/null | tail -20"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a0b873fa-ac88-4243-80da-cb00f66a1a37",
+            "isSidechain": true,
+            "agentId": "a96027dfb27aaad6a",
+            "requestId": "req_011Cb4J2HfN9chE9x3Dnuhf2",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "4a6a8688-d2c1-4334-bfc8-ec777b7868bd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "87b5e1ab-0e84-4cd7-80a1-2356c4e5a8e9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "wobbly-snuggling-unicorn",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01TDq6jiANnSKR1kd5AZDC9t",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 6236,
+                "cache_read_input_tokens": 20710,
+                "output_tokens": 226,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 6236
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 226,
+                    "cache_read_input_tokens": 20710,
+                    "cache_creation_input_tokens": 6236,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 6236,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T11:42:37.496Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NtjFqPiQnvyQmVcnGvswV6",
+              "type": "tool_result",
+              "content": "-rw-r--r-- 1 ubuntu ubuntu  7874 May 14 15:01 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/heatmap_data_audit.md\n-rw-r--r-- 1 ubuntu ubuntu  1323 May 14 17:42 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/audit_gpu5090_4x2_loop3.md\n-rw-r--r-- 1 ubuntu ubuntu  4165 May 14 17:43 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/audit_autodl5090_loop3.md\n-rw-r--r-- 1 ubuntu ubuntu  4393 May 14 18:55 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/3seed_ner_summary.md\n-rw-r--r-- 1 ubuntu ubuntu  4916 May 14 19:03 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/n16_5signal_comparison.md\n-rw-r--r-- 1 ubuntu ubuntu  8519 May 15 06:12 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_018_provenance_report.md\n-rw-r--r-- 1 ubuntu ubuntu  6803 May 15 06:29 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/multi_seed_stability_table.md\n-rw-r--r-- 1 ubuntu ubuntu  2701 May 15 07:16 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/re_nonzero_selection_analysis.md\n-rw-r--r-- 1 ubuntu ubuntu  6048 May 15 07:16 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/training_config_appendix.md\n-rw-r--r-- 1 ubuntu ubuntu  5565 May 15 07:17 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/logprob_tie_analysis.md\n-rw-r--r-- 1 ubuntu ubuntu  3450 May 15 09:20 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/qwen3_thinking_confirmation.md\n-rw-r--r-- 1 ubuntu ubuntu  2508 May 15 09:24 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/tost_breakpoint_delta_star.md\n-rw-r--r-- 1 ubuntu ubuntu  2523 May 15 09:25 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/vc_implementation_rho_diff.md\n-rw-r--r-- 1 ubuntu ubuntu  3588 May 15 09:59 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/freeform_ablation_results.md\n-rw-r--r-- 1 ubuntu ubuntu  3356 May 15 10:13 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/n16_readiness_report.md\n-rw-r--r-- 1 ubuntu ubuntu 11055 May 15 10:35 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/freeform_ablation_deep_analysis.md\n-rw-r--r-- 1 ubuntu ubuntu  4988 May 15 10:36 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/pending_exp_readiness.md\n-rw-r--r-- 1 ubuntu ubuntu  8652 May 15 11:37 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/d072_paper_patch_inventory.md\n-rw-r--r-- 1 ubuntu ubuntu  7774 May 15 11:38 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/multiseed_flip_overlap_analysis.md\n-rw-r--r-- 1 ubuntu ubuntu  6712 May 15 11:39 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/n16_3seed_scs_analysis.md",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4a6a8688-d2c1-4334-bfc8-ec777b7868bd",
+            "isSidechain": true,
+            "promptId": "b60b9ea7-b5f5-472e-bc16-38d67f517df1",
+            "agentId": "a96027dfb27aaad6a",
+            "type": "user",
+            "uuid": "aa2f9564-6dd7-458d-a370-8fa9099b2acb",
+            "sourceToolAssistantUUID": "4a6a8688-d2c1-4334-bfc8-ec777b7868bd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "87b5e1ab-0e84-4cd7-80a1-2356c4e5a8e9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "wobbly-snuggling-unicorn"
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T11:42:39.888Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Now let me also check for related directories and JSON data files:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "aa2f9564-6dd7-458d-a370-8fa9099b2acb",
+            "isSidechain": true,
+            "agentId": "a96027dfb27aaad6a",
+            "requestId": "req_011Cb4J2U8QgQHR5xusi9hUo",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "624b1456-2be0-4ae8-b0fb-9713dc745f7b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "87b5e1ab-0e84-4cd7-80a1-2356c4e5a8e9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "wobbly-snuggling-unicorn",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01SNNWfWLwsoRAjC5QEYQnPp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 2371,
+                "cache_read_input_tokens": 26946,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2371,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T11:42:40.435Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Ssq6k6ieLyVRiE3pzvVPPM",
+              "name": "Bash",
+              "input": {
+                "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts -type d -name \"*n16*\" 2>/dev/null"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "624b1456-2be0-4ae8-b0fb-9713dc745f7b",
+            "isSidechain": true,
+            "agentId": "a96027dfb27aaad6a",
+            "requestId": "req_011Cb4J2U8QgQHR5xusi9hUo",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "422ecc2f-1ea9-4b5b-beb3-82e0405249d2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "87b5e1ab-0e84-4cd7-80a1-2356c4e5a8e9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "wobbly-snuggling-unicorn",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01SNNWfWLwsoRAjC5QEYQnPp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 2371,
+                "cache_read_input_tokens": 26946,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2371,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T11:42:40.502Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Ssq6k6ieLyVRiE3pzvVPPM",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_001_n16\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_001_ner_n16_scierc",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "422ecc2f-1ea9-4b5b-beb3-82e0405249d2",
+            "isSidechain": true,
+            "promptId": "b60b9ea7-b5f5-472e-bc16-38d67f517df1",
+            "agentId": "a96027dfb27aaad6a",
+            "type": "user",
+            "uuid": "abb3f1cb-93f4-4e90-be80-fee6abb52ee7",
+            "sourceToolAssistantUUID": "422ecc2f-1ea9-4b5b-beb3-82e0405249d2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "87b5e1ab-0e84-4cd7-80a1-2356c4e5a8e9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "wobbly-snuggling-unicorn"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T11:42:40.746Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QwTJfxufqDKyBRCFjLeRJC",
+              "name": "Bash",
+              "input": {
+                "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts -type f \\( -name \"*3seed*\" -o -name \"*n16*\" \\) | wc -l"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "abb3f1cb-93f4-4e90-be80-fee6abb52ee7",
+            "isSidechain": true,
+            "agentId": "a96027dfb27aaad6a",
+            "requestId": "req_011Cb4J2U8QgQHR5xusi9hUo",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "a0d0d140-aee3-4596-9c56-7878259d2838",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "87b5e1ab-0e84-4cd7-80a1-2356c4e5a8e9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "wobbly-snuggling-unicorn",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01SNNWfWLwsoRAjC5QEYQnPp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 2371,
+                "cache_read_input_tokens": 26946,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2371,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T11:42:40.811Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QwTJfxufqDKyBRCFjLeRJC",
+              "type": "tool_result",
+              "content": "15",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a0d0d140-aee3-4596-9c56-7878259d2838",
+            "isSidechain": true,
+            "promptId": "b60b9ea7-b5f5-472e-bc16-38d67f517df1",
+            "agentId": "a96027dfb27aaad6a",
+            "type": "user",
+            "uuid": "82a11bfe-a0db-47d9-b7eb-6bd068b6e131",
+            "sourceToolAssistantUUID": "a0d0d140-aee3-4596-9c56-7878259d2838",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "87b5e1ab-0e84-4cd7-80a1-2356c4e5a8e9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "wobbly-snuggling-unicorn"
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T11:42:41.080Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0173q8A2DyPXqQ5ZYmgGyJBr",
+              "name": "Bash",
+              "input": {
+                "command": "ls -lh /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/3seed_summary/ 2>/dev/null"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "82a11bfe-a0db-47d9-b7eb-6bd068b6e131",
+            "isSidechain": true,
+            "agentId": "a96027dfb27aaad6a",
+            "requestId": "req_011Cb4J2U8QgQHR5xusi9hUo",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "6d8bd06b-a2ed-4e28-ae6f-802e59a1d3cd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "87b5e1ab-0e84-4cd7-80a1-2356c4e5a8e9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "wobbly-snuggling-unicorn",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01SNNWfWLwsoRAjC5QEYQnPp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 2371,
+                "cache_read_input_tokens": 26946,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2371,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T11:42:41.144Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0173q8A2DyPXqQ5ZYmgGyJBr",
+              "type": "tool_result",
+              "content": "total 8.0K\n-rw-r--r-- 1 ubuntu ubuntu 3.2K May 14 18:34 3seed_5signal_data.json\n-rw-r--r-- 1 ubuntu ubuntu 2.4K May 14 18:34 3seed_5signal_tables.md",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6d8bd06b-a2ed-4e28-ae6f-802e59a1d3cd",
+            "isSidechain": true,
+            "promptId": "b60b9ea7-b5f5-472e-bc16-38d67f517df1",
+            "agentId": "a96027dfb27aaad6a",
+            "type": "user",
+            "uuid": "2d1f0690-b382-4982-87b9-41a0609b7971",
+            "sourceToolAssistantUUID": "6d8bd06b-a2ed-4e28-ae6f-802e59a1d3cd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "87b5e1ab-0e84-4cd7-80a1-2356c4e5a8e9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "wobbly-snuggling-unicorn"
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T11:42:42.823Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me get the full list of all relevant files systematically:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2d1f0690-b382-4982-87b9-41a0609b7971",
+            "isSidechain": true,
+            "agentId": "a96027dfb27aaad6a",
+            "requestId": "req_011Cb4J2jwB7xLhqTSYg6mbb",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "a29ad750-cfb4-42bb-8e32-69bde6042760",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "87b5e1ab-0e84-4cd7-80a1-2356c4e5a8e9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "wobbly-snuggling-unicorn",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01BHLjGg2y8bsz3WayuxHBNX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 640,
+                "cache_read_input_tokens": 29317,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 640,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T11:42:43.260Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Kksadhye62dFMayE2UntLy",
+              "name": "Bash",
+              "input": {
+                "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts -type f \\( -name \"*3seed*\" -o -name \"*n16*\" \\) -print0 2>/dev/null | xargs -0 ls -lh 2>/dev/null"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a29ad750-cfb4-42bb-8e32-69bde6042760",
+            "isSidechain": true,
+            "agentId": "a96027dfb27aaad6a",
+            "requestId": "req_011Cb4J2jwB7xLhqTSYg6mbb",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "e582c5b8-2371-48f7-b0e5-83fa1245b749",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "87b5e1ab-0e84-4cd7-80a1-2356c4e5a8e9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "wobbly-snuggling-unicorn",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01BHLjGg2y8bsz3WayuxHBNX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 640,
+                "cache_read_input_tokens": 29317,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 640,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T11:42:43.379Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Kksadhye62dFMayE2UntLy",
+              "type": "tool_result",
+              "content": "-rw-r--r-- 1 ubuntu ubuntu 4.3K May 14 18:55 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/3seed_ner_summary.md\n-rw-r--r-- 1 ubuntu ubuntu 3.2K May 14 18:34 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/3seed_summary/3seed_5signal_data.json\n-rw-r--r-- 1 ubuntu ubuntu 2.4K May 14 18:34 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/3seed_summary/3seed_5signal_tables.md\n-rw-r--r-- 1 ubuntu ubuntu 3.2K May 14 18:34 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/data/3seed_5signal_data.json\n-rw-r--r-- 1 ubuntu ubuntu 2.4K May 14 18:34 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/report/3seed_5signal_tables.md\n-rw-r--r-- 1 ubuntu ubuntu 2.7K May 14 20:26 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/report/llama_conll_n16_3seed_5signal_summary.md\n-rw-r--r-- 1 ubuntu ubuntu 4.9K May 14 19:03 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/report/n16_5signal_comparison.md\n-rw-r--r-- 1 ubuntu ubuntu 3.3K May 15 10:13 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/report/n16_readiness_report.md\n-rw-r--r-- 1 ubuntu ubuntu 8.8K May 14 21:16 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/data/qwen_scierc_3seed_em_voting.json\n-rw-r--r-- 1 ubuntu ubuntu 6.6K May 15 11:39 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_001_n16/report/n16_3seed_scs_analysis.md\n-rw-r--r-- 1 ubuntu ubuntu  147 May 14 11:56 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_001_ner_n16_scierc/data/exp001_n16_samples_pointer.txt\n-rw-r--r-- 1 ubuntu ubuntu 4.3K May 14 18:55 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_001_seed456_v2_ner/report/3seed_ner_summary.md\n-rw-r--r-- 1 ubuntu ubuntu 6.6K May 15 11:39 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/n16_3seed_scs_analysis.md\n-rw-r--r-- 1 ubuntu ubuntu 4.9K May 14 19:03 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/n16_5signal_comparison.md\n-rw-r--r-- 1 ubuntu ubuntu 3.3K May 15 10:13 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/n16_readiness_report.md",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e582c5b8-2371-48f7-b0e5-83fa1245b749",
+            "isSidechain": true,
+            "promptId": "b60b9ea7-b5f5-472e-bc16-38d67f517df1",
+            "agentId": "a96027dfb27aaad6a",
+            "type": "user",
+            "uuid": "463a6a63-5b2e-44c7-946f-300ca60f8c55",
+            "sourceToolAssistantUUID": "e582c5b8-2371-48f7-b0e5-83fa1245b749",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "87b5e1ab-0e84-4cd7-80a1-2356c4e5a8e9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "wobbly-snuggling-unicorn"
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T11:42:43.463Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LrRaMZximwozDFg6BkJo6y",
+              "name": "Bash",
+              "input": {
+                "command": "ls -lh /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_001_n16/report/ 2>/dev/null"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "463a6a63-5b2e-44c7-946f-300ca60f8c55",
+            "isSidechain": true,
+            "agentId": "a96027dfb27aaad6a",
+            "requestId": "req_011Cb4J2jwB7xLhqTSYg6mbb",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "373fcf17-63e6-432f-9d26-cd4cf0f20b21",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "87b5e1ab-0e84-4cd7-80a1-2356c4e5a8e9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "wobbly-snuggling-unicorn",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01BHLjGg2y8bsz3WayuxHBNX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 640,
+                "cache_read_input_tokens": 29317,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 640,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-15T11:42:43.533Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LrRaMZximwozDFg6BkJo6y",
+              "type": "tool_result",
+              "content": "total 8.0K\n-rw-r--r-- 1 ubuntu ubuntu 6.6K May 15 11:39 n16_3seed_scs_analysis.md",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "373fcf17-63e6-432f-9d26-cd4cf0f20b21",
+            "isSidechain": true,
+            "promptId": "b60b9ea7-b5f5-472e-bc16-38d67f517df1",
+            "agentId": "a96027dfb27aaad6a",
+            "type": "user",
+            "uuid": "febbebe4-d0ba-4d57-b08e-c86120dbe934",
+            "sourceToolAssistantUUID": "373fcf17-63e6-432f-9d26-cd4cf0f20b21",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "87b5e1ab-0e84-4cd7-80a1-2356c4e5a8e9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "wobbly-snuggling-unicorn"
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T11:42:43.731Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UyGR4mtjcrZugakwFpmDaB",
+              "name": "Bash",
+              "input": {
+                "command": "ls -lh /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_001_n16/ 2>/dev/null"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "febbebe4-d0ba-4d57-b08e-c86120dbe934",
+            "isSidechain": true,
+            "agentId": "a96027dfb27aaad6a",
+            "requestId": "req_011Cb4J2jwB7xLhqTSYg6mbb",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "ad1b6573-1ec6-4f9f-a7d3-a8e778eeeb99",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "87b5e1ab-0e84-4cd7-80a1-2356c4e5a8e9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "wobbly-snuggling-unicorn",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01BHLjGg2y8bsz3WayuxHBNX",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 640,
+                "cache_read_input_tokens": 29317,
+                "output_tokens": 314,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 640
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 314,
+                    "cache_read_input_tokens": 29317,
+                    "cache_creation_input_tokens": 640,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 640,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-15T11:42:43.818Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UyGR4mtjcrZugakwFpmDaB",
+              "type": "tool_result",
+              "content": "total 4.0K\ndrwxr-xr-x 2 ubuntu ubuntu 4.0K May 15 11:39 report",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ad1b6573-1ec6-4f9f-a7d3-a8e778eeeb99",
+            "isSidechain": true,
+            "promptId": "b60b9ea7-b5f5-472e-bc16-38d67f517df1",
+            "agentId": "a96027dfb27aaad6a",
+            "type": "user",
+            "uuid": "920fdaca-56a9-4396-b1b7-9dc7cd133eaf",
+            "sourceToolAssistantUUID": "ad1b6573-1ec6-4f9f-a7d3-a8e778eeeb99",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "87b5e1ab-0e84-4cd7-80a1-2356c4e5a8e9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "wobbly-snuggling-unicorn"
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-15T11:42:45.038Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Let me now read the main N=16 three-seed analysis files to get a summary of their contents:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "920fdaca-56a9-4396-b1b7-9dc7cd133eaf",
+            "isSidechain": true,
+            "agentId": "a96027dfb27aaad6a",
+            "requestId": "req_011Cb4J2vwhxeySZRP1TAxtu",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "07af089f-7a52-41f7-99d6-0e4b0c586014",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "87b5e1ab-0e84-4cd7-80a1-2356c4e5a8e9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "wobbly-snuggling-unicorn",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Y6hgp7PFc2qp5eTgYgr7qn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1591,
+                "cache_read_input_tokens": 29957,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1591,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-15T11:42:45.473Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01R1i6F8zP8FZo6SutrgtnLE",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/n16_3seed_scs_analysis.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "07af089f-7a52-41f7-99d6-0e4b0c586014",
+            "isSidechain": true,
+            "agentId": "a96027dfb27aaad6a",
+            "requestId": "req_011Cb4J2vwhxeySZRP1TAxtu",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "c9362cb5-e40b-42f3-81e3-d8129ad9ac17",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "87b5e1ab-0e84-4cd7-80a1-2356c4e5a8e9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "wobbly-snuggling-unicorn",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Y6hgp7PFc2qp5eTgYgr7qn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1591,
+                "cache_read_input_tokens": 29957,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1591,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-15T11:42:45.481Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01R1i6F8zP8FZo6SutrgtnLE",
+              "type": "tool_result",
+              "content": "1\t# N=16 Three-Seed SCS Analysis (Qwen SciERC)\n2\t\n3\tConfig: Qwen2.5-7B-Instruct, SciERC, N=16 samples, T=1.0, max_tokens=1024, seeds={42, 123, 456}.\n4\tNER instances: 529 (gold entities non-empty). RE instances: 397 (gold relations non-empty).\n5\t\n6\t## Table A: Per-seed Spearman ρ — NER (vs greedy NER F1)\n7\t\n8\t| Signal | seed=42 | seed=123 | seed=456 | mean | σ |\n9\t|--------|---------|----------|----------|------|---|\n10\t| SJ     | 0.3984  | 0.4234   | 0.4098   | 0.4105 | 0.0102 |\n11\t| FK     | 0.2876  | 0.2899   | 0.2723   | 0.2833 | 0.0079 |\n12\t| VC     | 0.3993  | 0.3835   | 0.4449   | 0.4092 | 0.0260 |\n13\t| EM     | 0.3386  | 0.3437   | 0.3363   | 0.3395 | 0.0031 |\n14\t| LP     | 0.2373  | 0.2391   | 0.2415   | 0.2393 | 0.0017 |\n15\t\n16\t## Table A2: Per-seed Spearman ρ — RE (vs greedy RE F1)\n17\t\n18\t| Signal | seed=42 | seed=123 | seed=456 | mean | σ |\n19\t|--------|---------|----------|----------|------|---|\n20\t| SJ     | 0.2766  | 0.2672   | 0.2835   | 0.2758 | 0.0067 |\n21\t| FK     | 0.2808  | 0.3154   | 0.2929   | 0.2964 | 0.0143 |\n22\t| VC     | 0.3801  | 0.3522   | 0.3892   | 0.3738 | 0.0158 |\n23\t| EM     | 0.1475  | 0.1575   | 0.1469   | 0.1506 | 0.0049 |\n24\t| LP     | 0.2931  | 0.3071   | 0.3298   | 0.3100 | 0.0152 |\n25\t\n26\t## Table B: Per-seed AUROC — NER (above-median NER F1)\n27\t\n28\t| Signal | seed=42 | seed=123 | seed=456 | mean | σ |\n29\t|--------|---------|----------|----------|------|---|\n30\t| SJ     | 0.6965  | 0.7131   | 0.6997   | 0.7031 | 0.0072 |\n31\t| FK     | 0.6323  | 0.6393   | 0.6261   | 0.6326 | 0.0054 |\n32\t| VC     | 0.7039  | 0.6947   | 0.7141   | 0.7042 | 0.0079 |\n33\t| EM     | 0.6773  | 0.6787   | 0.6651   | 0.6737 | 0.0061 |\n34\t| LP     | 0.6215  | 0.6261   | 0.6204   | 0.6227 | 0.0025 |\n35\t\n36\t## Table B2: Per-seed AUROC — RE (above-median RE F1)\n37\t\n38\t| Signal | seed=42 | seed=123 | seed=456 | mean | σ |\n39\t|--------|---------|----------|----------|------|---|\n40\t| SJ     | 0.6372  | 0.6425   | 0.6710   | 0.6502 | 0.0149 |\n41\t| FK     | 0.6514  | 0.6579   | 0.6777   | 0.6623 | 0.0112 |\n42\t| VC     | 0.6989  | 0.6846   | 0.7029   | 0.6955 | 0.0079 |\n43\t| EM     | 0.5557  | 0.5905   | 0.6013   | 0.5825 | 0.0194 |\n44\t| LP     | 0.6552  | 0.6466   | 0.6710   | 0.6576 | 0.0101 |\n45\t\n46\t## Table C: Three-Seed Summary (mean ± σ)\n47\t\n48\t### Spearman ρ\n49\t\n50\t| Signal | NER ρ (mean ± σ) | RE ρ (mean ± σ) |\n51\t|--------|-------------------|-----------------|\n52\t| VC     | **0.4092 ± 0.0260** | **0.3738 ± 0.0158** |\n53\t| SJ     | **0.4105 ± 0.0102** | 0.2758 ± 0.0067 |\n54\t| EM     | 0.3395 ± 0.0031 | 0.1506 ± 0.0049 |\n55\t| FK     | 0.2833 ± 0.0079 | 0.2964 ± 0.0143 |\n56\t| LP     | 0.2393 ± 0.0017 | 0.3100 ± 0.0152 |\n57\t\n58\t### AUROC\n59\t\n60\t| Signal | NER AUROC (mean ± σ) | RE AUROC (mean ± σ) |\n61\t|--------|----------------------|---------------------|\n62\t| VC     | **0.7042 ± 0.0079** | **0.6955 ± 0.0079** |\n63\t| SJ     | **0.7031 ± 0.0072** | 0.6502 ± 0.0149 |\n64\t| EM     | 0.6737 ± 0.0061 | 0.5825 ± 0.0194 |\n65\t| FK     | 0.6326 ± 0.0054 | 0.6623 ± 0.0112 |\n66\t| LP     | 0.6227 ± 0.0025 | 0.6576 ± 0.0101 |\n67\t\n68\t## Table D: Ranking Consistency\n69\t\n70\t### NER ρ ranking per seed\n71\t\n72\t| Seed | Ranking |\n73\t|------|---------|\n74\t| 42   | VC (0.399) ≈ SJ (0.398) > EM > FK > LP |\n75\t| 123  | SJ (0.423) > VC (0.384) > EM > FK > LP |\n76\t| 456  | VC (0.445) > SJ (0.410) > EM > FK > LP |\n77\t\n78\tRank order (1=best): SJ gets {2, 1, 2}, VC gets {1, 2, 1}. Bottom 3 (EM > FK > LP) perfectly stable.\n79\t\n80\t### RE ρ ranking per seed\n81\t\n82\t| Seed | Ranking |\n83\t|------|---------|\n84\t| 42   | VC > LP > FK > SJ > EM |\n85\t| 123  | VC > FK > LP > SJ > EM |\n86\t| 456  | VC > LP > FK > SJ > EM |\n87\t\n88\tVC consistently #1, EM consistently #5, SJ consistently #4. Only FK/LP swap at #2-3 in seed=123.\n89\t\n90\t### Kendall's W (concordance coefficient)\n91\t\n92\t| Subtask | W | Interpretation |\n93\t|---------|---|----------------|\n94\t| NER     | 0.956 | Near-perfect agreement (only SJ/VC swap) |\n95\t| RE      | 0.956 | Near-perfect agreement (only FK/LP swap) |\n96\t\n97\t## Table E: N=8 vs N=16 Comparison (Qwen SciERC, ρ mean)\n98\t\n99\t### NER ρ\n100\t\n101\t| Signal | N=8 mean | N=16 mean | Δ | Δ% |\n102\t|--------|----------|-----------|---|-----|\n103\t| SJ     | 0.3641   | 0.4105    | **+0.0464** | +12.7% |\n104\t| FK     | 0.2536   | 0.2833    | +0.0297 | +11.7% |\n105\t| VC     | 0.3861   | 0.4092    | +0.0231 | +6.0% |\n106\t| EM     | 0.3071   | 0.3395    | +0.0324 | +10.6% |\n107\t| LP     | 0.2167   | 0.2393    | +0.0226 | +10.4% |\n108\t\n109\t### RE ρ\n110\t\n111\t| Signal | N=8 mean | N=16 mean | Δ | Δ% |\n112\t|--------|----------|-----------|---|-----|\n113\t| SJ     | 0.2485   | 0.2758    | +0.0273 | +11.0% |\n114\t| FK     | 0.2903   | 0.2964    | +0.0061 | +2.1% |\n115\t| VC     | 0.3088   | 0.3738    | **+0.0650** | +21.1% |\n116\t| EM     | 0.1353   | 0.1506    | +0.0153 | +11.3% |\n117\t| LP     | 0.2970   | 0.3100    | +0.0130 | +4.4% |\n118\t\n119\t### Cross-seed σ comparison\n120\t\n121\t| Signal | NER σ(N=8) | NER σ(N=16) | RE σ(N=8) | RE σ(N=16) |\n122\t|--------|------------|-------------|-----------|------------|\n123\t| SJ     | 0.0179     | 0.0102      | 0.0015    | 0.0067     |\n124\t| FK     | 0.0157     | 0.0079      | 0.0121    | 0.0143     |\n125\t| VC     | 0.0187     | 0.0260      | 0.0244    | 0.0158     |\n126\t| EM     | 0.0076     | 0.0031      | 0.0157    | 0.0049     |\n127\t| LP     | 0.0125     | 0.0017      | 0.0218    | 0.0152     |\n128\t\n129\t### Ranking shift N=8 → N=16\n130\t\n131\t| Subtask | N=8 ranking | N=16 ranking | Changed? |\n132\t|---------|------------|--------------|----------|\n133\t| NER     | VC > SJ > EM > FK > LP | VC ≈ SJ > EM > FK > LP | SJ closes gap with VC |\n134\t| RE      | VC > LP > FK > SJ > EM | VC > LP > FK > SJ > EM | Identical |\n135\t\n136\t## Key Findings\n137\t\n138\t1. **SJ overtakes VC in NER ρ (by mean)**: At N=16, SJ mean ρ = 0.411 vs VC = 0.409. They are essentially tied, but SJ has lower σ (0.010 vs 0.026). At N=8, VC led by 0.022. SJ benefits most from additional samples due to its pairwise soft-Jaccard formulation gaining more signal from C(16,2)=120 pairs vs C(8,2)=28.\n139\t\n140\t2. **VC dominates RE**: VC ρ = 0.374 is the only signal above 0.35 in RE, with a large margin over #2 LP (0.310). The N=8→N=16 improvement for VC-RE is the largest observed (+0.065, +21%).\n141\t\n142\t3. **All signals improve with N=16**: Every signal's mean ρ increases from N=8 to N=16. NER improvements range +6–13%, RE improvements +2–21%.\n143\t\n144\t4. **Cross-seed stability generally improves**: LP σ drops from 0.0125 to 0.0017 (NER), EM from 0.0076 to 0.0031. Exception: VC-NER σ increases from 0.0187 to 0.0260, and SJ-RE σ increases from 0.0015 to 0.0067.\n145\t\n146\t5. **RE signal ranking stabilizes at N=16**: N=8 had minor RE ranking instability (VC/LP/FK swapping). N=16 produces the same RE ranking across 2/3 seeds, with only seed=123 swapping FK↔LP.\n147\t\n148\t6. **Structural > logprob claim strengthened for NER**: All structural signals (SJ, FK, EM, VC) beat LP in all NER seeds. The gap widens at N=16 (SJ-LP gap: 0.147→0.171). For RE, LP still beats SJ and FK individually, but VC consistently dominates LP.\n149\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c9362cb5-e40b-42f3-81e3-d8129ad9ac17",
+            "isSidechain": true,
+            "promptId": "b60b9ea7-b5f5-472e-bc16-38d67f517df1",
+            "agentId": "a96027dfb27aaad6a",
+            "type": "user",
+            "uuid": "e241f02a-b32c-4cc9-a07a-4b95562ab75d",
+            "sourceToolAssistantUUID": "c9362cb5-e40b-42f3-81e3-d8129ad9ac17",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "87b5e1ab-0e84-4cd7-80a1-2356c4e5a8e9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "wobbly-snuggling-unicorn"
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-15T11:42:45.685Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MXWsgXUJJcTGwtJxSDqCZr",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/report/llama_conll_n16_3seed_5signal_summary.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e241f02a-b32c-4cc9-a07a-4b95562ab75d",
+            "isSidechain": true,
+            "agentId": "a96027dfb27aaad6a",
+            "requestId": "req_011Cb4J2vwhxeySZRP1TAxtu",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "66e177c3-a348-43ec-8d96-118983fd7def",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "87b5e1ab-0e84-4cd7-80a1-2356c4e5a8e9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "wobbly-snuggling-unicorn",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Y6hgp7PFc2qp5eTgYgr7qn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1591,
+                "cache_read_input_tokens": 29957,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1591,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-15T11:42:45.690Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MXWsgXUJJcTGwtJxSDqCZr",
+              "type": "tool_result",
+              "content": "1\t# LLaMA CoNLL-2003 NER N=16: 3-Seed 5-Signal Robustness Summary\n2\t\n3\tProtocol: seeds 42/123/456 | Model: llama3.1-8b-conll2003-merged | Dataset: CoNLL-2003\n4\tN=16 samples, T=1.0 | 3453 instances, 2756 valid (gold_empty=697 filtered), 2642 conditional\n5\t\n6\t## Full rho (Spearman correlation with greedy F1)\n7\t\n8\t| Signal      | seed42 | seed123 | seed456 | Mean   | SD     | CV%  |\n9\t|-------------|--------|---------|---------|--------|--------|------|\n10\t| SJ          | 0.4642 | 0.4698  | 0.4552  | 0.4631 | 0.0074 | 1.6% |\n11\t| FK          | 0.4566 | 0.4594  | 0.4478  | 0.4546 | 0.0061 | 1.3% |\n12\t| EM          | 0.4613 | 0.4676  | 0.4520  | 0.4603 | 0.0078 | 1.7% |\n13\t| voting_conf | 0.4554 | 0.4612  | 0.4571  | 0.4579 | 0.0030 | 0.7% |\n14\t| logprob     | 0.3058 | 0.3161  | 0.3078  | 0.3099 | 0.0055 | 1.8% |\n15\t\n16\t## Full AUROC\n17\t\n18\t| Signal      | seed42 | seed123 | seed456 | Mean   | SD     |\n19\t|-------------|--------|---------|---------|--------|--------|\n20\t| SJ          | 0.7391 | 0.7402  | 0.7288  | 0.7360 | 0.0064 |\n21\t| FK          | 0.7360 | 0.7351  | 0.7248  | 0.7320 | 0.0063 |\n22\t| EM          | 0.7391 | 0.7399  | 0.7275  | 0.7355 | 0.0069 |\n23\t| voting_conf | 0.7406 | 0.7429  | 0.7348  | 0.7394 | 0.0041 |\n24\t| logprob     | 0.7594 | 0.7680  | 0.7612  | 0.7629 | 0.0044 |\n25\t\n26\t## Conditional rho (greedy F1 > 0)\n27\t\n28\t| Signal      | seed42 | seed123 | seed456 | Mean   | SD     | CV%  |\n29\t|-------------|--------|---------|---------|--------|--------|------|\n30\t| SJ          | 0.4597 | 0.4712  | 0.4505  | 0.4605 | 0.0104 | 2.3% |\n31\t| FK          | 0.4515 | 0.4595  | 0.4422  | 0.4511 | 0.0087 | 1.9% |\n32\t| EM          | 0.4618 | 0.4732  | 0.4510  | 0.4620 | 0.0112 | 2.4% |\n33\t| voting_conf | 0.3978 | 0.4086  | 0.3962  | 0.4009 | 0.0067 | 1.7% |\n34\t| logprob     | 0.3193 | 0.3314  | 0.3242  | 0.3250 | 0.0061 | 1.9% |\n35\t\n36\t## Structural > Surface verdict: 3/3 seeds (full AND conditional)\n37\t\n38\t## N=8 to N=16 scaling (mean delta across 3 seeds, full rho)\n39\t- SJ: +0.032 | FK: +0.027 | EM: +0.030 | voting_conf: +0.032 | logprob: +0.003\n40\t- Structural signals scale with N; logprob does not.\n41\t\n42\t## Cross-protocol comparison with Qwen SciERC 3-seed\n43\t| Metric    | Qwen SciERC       | LLaMA CoNLL       |\n44\t|-----------|-------------------|-------------------|\n45\t| SJ mean   | 0.412             | 0.463             |\n46\t| SJ SD     | 0.025             | 0.007             |\n47\t| SJ CV%    | 6.0%              | 1.6%              |\n48\t| n_valid   | 529               | 2756              |\n49\tHigher magnitude, tighter variance. Both confirm structural > surface across all seeds.\n50\t\n51\t## rho-AUROC dissociation\n52\tlogprob has highest mean AUROC (0.763) but lowest mean rho (0.310).\n53\tStructural signals: mean AUROC ~0.735 but mean rho ~0.458.\n54\tInterpretation: logprob captures binary correct/incorrect well but misses fine-grained quality ranking."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "66e177c3-a348-43ec-8d96-118983fd7def",
+            "isSidechain": true,
+            "promptId": "b60b9ea7-b5f5-472e-bc16-38d67f517df1",
+            "agentId": "a96027dfb27aaad6a",
+            "type": "user",
+            "uuid": "bf690987-b2b9-42b0-864c-66c9455954b5",
+            "sourceToolAssistantUUID": "66e177c3-a348-43ec-8d96-118983fd7def",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "87b5e1ab-0e84-4cd7-80a1-2356c4e5a8e9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "wobbly-snuggling-unicorn"
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-15T11:42:46.136Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0151XAKR1LxNejjii9RAtckq",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/n16_readiness_report.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bf690987-b2b9-42b0-864c-66c9455954b5",
+            "isSidechain": true,
+            "agentId": "a96027dfb27aaad6a",
+            "requestId": "req_011Cb4J2vwhxeySZRP1TAxtu",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "44902a5a-5fce-4d63-902e-0eeb0aefe2e9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "87b5e1ab-0e84-4cd7-80a1-2356c4e5a8e9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "wobbly-snuggling-unicorn",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Y6hgp7PFc2qp5eTgYgr7qn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1591,
+                "cache_read_input_tokens": 29957,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1591,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-15T11:42:46.148Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0151XAKR1LxNejjii9RAtckq",
+              "type": "tool_result",
+              "content": "1\t# SciERC NER N=16 多种子实验准备状态报告\n2\t\n3\t**日期**: 2026-05-15  \n4\t**服务器**: autodl-5090 (4× RTX 5090 32GB)\n5\t\n6\t## 总结\n7\t\n8\t| 项目 | 状态 | 说明 |\n9\t|------|------|------|\n10\t| 代码 | ✅ | `code/run_mvp_pilot.py` 支持 `--n_samples 16 --seed N --collect_logprobs` |\n11\t| 模型 | ✅ | Qwen3-8B-SciERC + LLaMA-3.1-8B-SciERC merged checkpoints 均存在 |\n12\t| 数据 | ✅ | `data/test.jsonl` = 551 instances |\n13\t| 依赖 | ✅ | vLLM 0.18.1 + xgrammar 0.1.33 |\n14\t| seed42 N=16 | ✅ 已完成 | `output/exp001_n16_seed42/` (551 instances) |\n15\t| seed123 N=16 | ✅ 已完成 | `output/exp001_n16_seed123/` (551 instances) |\n16\t| seed456 N=16 | ❌ 缺失 | `output/exp001_n16_seed456/` 为空，仅有 `_200only` (200 instances) |\n17\t\n18\t**结论: 只需运行 seed456 的 full N=16 实验。seed42 和 seed123 均已完成。**\n19\t\n20\t## 代码\n21\t\n22\t- **推理脚本**: `/root/autodl-tmp/struct_self_consist_ie/code/run_mvp_pilot.py`\n23\t- 关键参数: `--n_samples` (default 8), `--seed` (default 42), `--temperature` (default 1.0), `--collect_logprobs`, `--subtask joint`\n24\t- 辅助模块: `code/sampling.py` (VLLMSampler + XGrammar 约束解码), `code/consistency.py`, `code/evaluation.py`, `code/data_utils.py`\n25\t\n26\t## 模型\n27\t\n28\t| 模型 | 路径 | 状态 |\n29\t|------|------|------|\n30\t| Qwen3-8B-SciERC (v2) | `checkpoints/qwen3-8b-scierc-merged-v2` | ✅ |\n31\t| LLaMA-3.1-8B-SciERC | `checkpoints/llama3.1-8b-scierc-merged` | ✅ |\n32\t| Qwen3-8B-ConLL2003 | `checkpoints/qwen3-8b-conll2003-merged` | ✅ |\n33\t| LLaMA-3.1-8B-ConLL2003 | `checkpoints/llama3.1-8b-conll2003-merged` | ✅ |\n34\t\n35\t## 数据\n36\t\n37\t- **SciERC 测试集**: `data/test.jsonl` — **551 instances** ✅\n38\t- 另有 `data/scierc/processed_data/test.json` (100 行，不同格式，非推理用)\n39\t\n40\t## 已有 N=16 结果详情\n41\t\n42\t### seed42 (output/exp001_n16_seed42/)\n43\t- 模型: qwen3-8b-scierc-merged-v2\n44\t- subtask: joint, n_samples=16, temperature=1.0\n45\t- 551 instances, 含 logprobs\n46\t- NER greedy F1: 0.659, NER oracle F1: 0.804, NER ρ(SJ,F1) cond: 0.416\n47\t- 运行时间: ~8 min (20:15 → 20:24, May 14)\n48\t\n49\t### seed123 (output/exp001_n16_seed123/)\n50\t- 同配置, seed=123\n51\t- 551 instances, 含 logprobs\n52\t- NER greedy F1: 0.663, NER oracle F1: 0.809, NER ρ(SJ,F1) cond: 0.420\n53\t- 注: `exp001_n16_seed123_full` 是旧服务器上被 kill 的尝试（空目录），`exp001_n16_seed123` 是成功的运行\n54\t\n55\t### seed456 — 缺失\n56\t- `output/exp001_n16_seed456/` — 空目录\n57\t- `output/exp001_n16_seed456_200only/` — 仅 200 instances (partial)\n58\t\n59\t## 依赖\n60\t\n61\t| 包 | 版本 | 状态 |\n62\t|----|------|------|\n63\t| vLLM | 0.18.1 | ✅ |\n64\t| xgrammar | 0.1.33 | ✅ |\n65\t| PyTorch | (conda base) | ✅ |\n66\t| transformers | (已安装) | ✅ |\n67\t\n68\t## 预计运行命令\n69\t\n70\t**seed456 (唯一需要运行的)**:\n71\t```bash\n72\tcd /root/autodl-tmp/struct_self_consist_ie && \\\n73\tpython code/run_mvp_pilot.py \\\n74\t  --model_path checkpoints/qwen3-8b-scierc-merged-v2 \\\n75\t  --data_dir data/ \\\n76\t  --dataset scierc \\\n77\t  --subtask joint \\\n78\t  --n_samples 16 \\\n79\t  --temperature 1.0 \\\n80\t  --seed 456 \\\n81\t  --output_dir output/exp001_n16_seed456 \\\n82\t  --collect_logprobs \\\n83\t  2>&1 | tee output/exp001_n16_seed456_run.log\n84\t```\n85\t\n86\t## 预计运行时间\n87\t\n88\t- 单次 N=16 推理 (551 instances): **~8-9 分钟** (基于 seed42 实测)\n89\t- 仅需运行 1 次 (seed456)\n90\t\n91\t## 缺失项\n92\t\n93\t| 缺失项 | 修复方案 |\n94\t|--------|---------|\n95\t| seed456 full N=16 结果 | 运行上述命令 |\n96\t| (无其他缺失) | — |\n97\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "44902a5a-5fce-4d63-902e-0eeb0aefe2e9",
+            "isSidechain": true,
+            "promptId": "b60b9ea7-b5f5-472e-bc16-38d67f517df1",
+            "agentId": "a96027dfb27aaad6a",
+            "type": "user",
+            "uuid": "a4ffcd76-73ef-41f6-8eed-406292ca23ad",
+            "sourceToolAssistantUUID": "44902a5a-5fce-4d63-902e-0eeb0aefe2e9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "87b5e1ab-0e84-4cd7-80a1-2356c4e5a8e9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "wobbly-snuggling-unicorn"
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-15T11:42:46.305Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Hvhf1AVqiAamCAtv7AzFBp",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/n16_5signal_comparison.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a4ffcd76-73ef-41f6-8eed-406292ca23ad",
+            "isSidechain": true,
+            "agentId": "a96027dfb27aaad6a",
+            "requestId": "req_011Cb4J2vwhxeySZRP1TAxtu",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "cdce03e0-a33b-4bb1-a588-dabdc9d927d7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "87b5e1ab-0e84-4cd7-80a1-2356c4e5a8e9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "wobbly-snuggling-unicorn",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Y6hgp7PFc2qp5eTgYgr7qn",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1591,
+                "cache_read_input_tokens": 29957,
+                "output_tokens": 363,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1591
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 363,
+                    "cache_read_input_tokens": 29957,
+                    "cache_creation_input_tokens": 1591,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1591,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-15T11:42:46.310Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Hvhf1AVqiAamCAtv7AzFBp",
+              "type": "tool_result",
+              "content": "1\t# N=16 vs N=8 Five-Signal Comparison\n2\t\n3\t**Date**: 2026-05-14\n4\t**Experiments**: exp_002 (Qwen CoNLL-2003 NER), exp_007 (LLaMA SciERC NER)\n5\t\n6\t## 1. Complete 5-Signal Metrics (Full Set)\n7\t\n8\t### exp_002: Qwen 2.5-7B-Instruct / CoNLL-2003 NER\n9\t\n10\t| Signal | N=8 ρ | N=16 ρ | Δρ | N=8 AUROC | N=16 AUROC | ΔAUROC | N=16 ECE |\n11\t|--------|--------|--------|----|-----------|------------|--------|----------|\n12\t| **SJ** | 0.4357 | **0.4496** | +0.0139 | 0.8008 | **0.8264** | +0.0256 | 0.0747 |\n13\t| FK | 0.3998 | 0.3928 | -0.0070 | 0.7741 | 0.7821 | +0.0080 | 0.1786 |\n14\t| logprob | 0.3157 | 0.3146 | -0.0011 | 0.7532 | 0.7531 | -0.0001 | 0.2031 |\n15\t| **EM** | 0.4507 | **0.4627** | +0.0120 | 0.8156 | **0.8409** | +0.0253 | 0.0786 |\n16\t| voting_conf | 0.4237 | 0.4286 | +0.0049 | 0.7889 | 0.8071 | +0.0182 | 0.5290 |\n17\t\n18\tn=2756, greedy F1=0.907\n19\t\n20\t### exp_007: LLaMA 3.1-8B-Instruct / SciERC NER\n21\t\n22\t| Signal | N=8 ρ | N=16 ρ | Δρ | N=8 AUROC | N=16 AUROC | ΔAUROC | N=16 ECE |\n23\t|--------|--------|--------|----|-----------|------------|--------|----------|\n24\t| **SJ** | 0.3630 | **0.3791** | +0.0161 | 0.7099 | **0.7170** | +0.0071 | 0.1019 |\n25\t| FK | 0.3266 | 0.3081 | -0.0185 | 0.6648 | 0.6581 | -0.0067 | 0.1556 |\n26\t| logprob | 0.1827 | 0.2041 | +0.0214 | 0.5569 | 0.5656 | +0.0087 | 0.0840 |\n27\t| EM | 0.3152 | 0.3159 | +0.0007 | 0.7658 | 0.7686 | +0.0028 | 0.1761 |\n28\t| **voting_conf** | 0.4331 | **0.4515** | +0.0184 | 0.7283 | 0.7266 | -0.0017 | 0.1365 |\n29\t\n30\tn=529, greedy F1=0.645\n31\t\n32\t## 2. Conditional Set (greedy F1 > 0)\n33\t\n34\t### exp_002 Conditional\n35\t\n36\t| Signal | N=8 ρ | N=16 ρ | Δρ | N=8 AUROC | N=16 AUROC | ΔAUROC |\n37\t|--------|--------|--------|----|-----------|------------|--------|\n38\t| SJ | 0.3994 | 0.4208 | +0.0214 | 0.8061 | 0.8405 | +0.0344 |\n39\t| FK | 0.3521 | 0.3494 | -0.0027 | 0.7699 | 0.7819 | +0.0120 |\n40\t| logprob | 0.3671 | 0.3756 | +0.0085 | 0.8185 | 0.8259 | +0.0074 |\n41\t| EM | 0.4449 | 0.4658 | +0.0209 | 0.8420 | 0.8781 | +0.0361 |\n42\t| voting_conf | 0.3521 | 0.3654 | +0.0133 | 0.7697 | 0.7951 | +0.0254 |\n43\t\n44\tn_cond=2614 (N=16), 2617 (N=8)\n45\t\n46\t### exp_007 Conditional\n47\t\n48\t| Signal | N=8 ρ | N=16 ρ | Δρ | N=8 AUROC | N=16 AUROC | ΔAUROC |\n49\t|--------|--------|--------|----|-----------|------------|--------|\n50\t| SJ | 0.3114 | 0.3222 | +0.0108 | 0.6954 | 0.7014 | +0.0060 |\n51\t| FK | 0.2259 | 0.2182 | -0.0077 | 0.6424 | 0.6392 | -0.0032 |\n52\t| logprob | 0.1089 | 0.1286 | +0.0197 | 0.5365 | 0.5450 | +0.0085 |\n53\t| EM | 0.3437 | 0.3563 | +0.0126 | 0.7655 | 0.7708 | +0.0053 |\n54\t| voting_conf | 0.3473 | 0.3356 | -0.0117 | 0.7059 | 0.6988 | -0.0071 |\n55\t\n56\tn_cond=478\n57\t\n58\t## 3. Key Findings\n59\t\n60\t### SJ N-scaling confirmed\n61\tSJ ρ improves with N=16 on **both** experiments (CoNLL +0.014, SciERC +0.016). This holds on both full and conditional sets, and across both models (Qwen, LLaMA) and datasets. SJ AUROC also improves (CoNLL +0.026, SciERC +0.007).\n62\t\n63\t### EM benefits from more samples on CoNLL\n64\tEM shows the largest ρ gain on CoNLL (full: +0.012, cond: +0.021) and the largest AUROC gain (cond: +0.036). On SciERC the effect is weaker (+0.001 full), likely because SciERC entities are more diverse and exact match is rarer.\n65\t\n66\t### FK degrades with N=16\n67\tFK ρ **decreases** on both experiments (CoNLL -0.007, SciERC -0.019). More samples dilute the pairwise agreement signal in FK. This makes FK less suitable for N-scaling.\n68\t\n69\t### logprob is N-invariant (as expected)\n70\tlogprob ρ barely changes on CoNLL (-0.001) since mean logprob averages over more samples but doesn't fundamentally change. Slight improvement on SciERC (+0.021) may be noise.\n71\t\n72\t### voting_conf has mixed behavior\n73\tImproves on SciERC full set (+0.018) but degrades on SciERC conditional (-0.012). On CoNLL, marginal improvement (+0.005). Less reliable for N-scaling than SJ.\n74\t\n75\t### Signal ranking stability\n76\t**CoNLL N=16 full**: EM (0.463) > SJ (0.450) > voting_conf (0.429) > FK (0.393) > logprob (0.315)\n77\t**SciERC N=16 full**: voting_conf (0.452) > SJ (0.379) > EM (0.316) > FK (0.308) > logprob (0.204)\n78\t\n79\tSJ is consistently top-2 across both settings. EM leads on CoNLL (high agreement task), voting_conf leads on SciERC (diverse predictions task).\n80\t\n81\t### Structural > Surface gap widens\n82\tCoNLL: best structural ρ (EM=0.463) vs logprob (0.315), gap = 0.148 (was 0.135 at N=8)\n83\tSciERC: best structural ρ (VC=0.452) vs logprob (0.204), gap = 0.248 (was 0.250 at N=8)\n84\t\n85\t## 4. Implications for Paper\n86\t\n87\t1. **N-scaling section**: SJ and EM are the signals that benefit from doubling N. FK and logprob do not. This supports the claim that structural consistency captures information that scales with sample count.\n88\t2. **Recommendation**: Use SJ as primary signal (consistent N-scaling across settings), EM as secondary (strong on high-agreement tasks), logprob as complementary (captures different information, AUROC remains competitive).\n89\t3. **ECE**: SJ has the lowest ECE across settings (0.075-0.102), suggesting best calibration. voting_conf has the worst ECE on CoNLL (0.529), indicating it overestimates confidence.\n90\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cdce03e0-a33b-4bb1-a588-dabdc9d927d7",
+            "isSidechain": true,
+            "promptId": "b60b9ea7-b5f5-472e-bc16-38d67f517df1",
+            "agentId": "a96027dfb27aaad6a",
+            "type": "user",
+            "uuid": "57abf635-a4df-4a69-8d14-62f0b8ae34ab",
+            "sourceToolAssistantUUID": "cdce03e0-a33b-4bb1-a588-dabdc9d927d7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "87b5e1ab-0e84-4cd7-80a1-2356c4e5a8e9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "wobbly-snuggling-unicorn"
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-15T11:42:49.139Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Excellent! Now let me check for any additional data files and verify the complete structure:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "57abf635-a4df-4a69-8d14-62f0b8ae34ab",
+            "isSidechain": true,
+            "agentId": "a96027dfb27aaad6a",
+            "requestId": "req_011Cb4J37rnjW8EooaFJ6eGj",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "e159d351-97ac-4585-be1a-cd2532d29574",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "87b5e1ab-0e84-4cd7-80a1-2356c4e5a8e9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "wobbly-snuggling-unicorn",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01QG886KzZVXC11bkPy3nirf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 9826,
+                "cache_read_input_tokens": 31548,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 9826,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-15T11:42:50.508Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HtsPovRgZmfc4zo2m8cbJ3",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/3seed_summary/3seed_5signal_data.json",
+                "limit": 100
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e159d351-97ac-4585-be1a-cd2532d29574",
+            "isSidechain": true,
+            "agentId": "a96027dfb27aaad6a",
+            "requestId": "req_011Cb4J37rnjW8EooaFJ6eGj",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "943f54b4-451b-46d7-a38f-8328c9063f91",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "87b5e1ab-0e84-4cd7-80a1-2356c4e5a8e9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "wobbly-snuggling-unicorn",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01QG886KzZVXC11bkPy3nirf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 9826,
+                "cache_read_input_tokens": 31548,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 9826,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-15T11:42:50.647Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HtsPovRgZmfc4zo2m8cbJ3",
+              "type": "tool_result",
+              "content": "1\t{\n2\t  \"meta\": {\n3\t    \"task\": \"NER-only (SciERC)\",\n4\t    \"N\": 16,\n5\t    \"T\": 1.0,\n6\t    \"instances\": 551,\n7\t    \"seeds\": [42, 123, 456],\n8\t    \"model\": \"Qwen2.5-7B-Instruct (LoRA)\",\n9\t    \"date\": \"2026-05-14\"\n10\t  },\n11\t  \"full\": {\n12\t    \"n\": 529,\n13\t    \"rho\": {\n14\t      \"SJ\":          {\"seed42\": 0.4280, \"seed123\": 0.4244, \"seed456\": 0.3838, \"mean\": 0.4121, \"sd\": 0.0245},\n15\t      \"FK\":          {\"seed42\": 0.2809, \"seed123\": 0.2752, \"seed456\": 0.2234, \"mean\": 0.2598, \"sd\": 0.0317},\n16\t      \"logprob\":     {\"seed42\": 0.2194, \"seed123\": 0.2513, \"seed456\": 0.2322, \"mean\": 0.2343, \"sd\": 0.0161},\n17\t      \"EM\":          {\"seed42\": 0.3347, \"seed123\": 0.3369, \"seed456\": 0.3162, \"mean\": 0.3293, \"sd\": 0.0114},\n18\t      \"voting_conf\": {\"seed42\": 0.4408, \"seed123\": 0.4131, \"seed456\": 0.4111, \"mean\": 0.4217, \"sd\": 0.0166}\n19\t    },\n20\t    \"auroc\": {\n21\t      \"SJ\":          {\"seed42\": 0.7368, \"seed123\": 0.7363, \"seed456\": 0.7107, \"mean\": 0.7279, \"sd\": 0.0149},\n22\t      \"FK\":          {\"seed42\": 0.6099, \"seed123\": 0.6268, \"seed456\": 0.5768, \"mean\": 0.6045, \"sd\": 0.0253},\n23\t      \"logprob\":     {\"seed42\": 0.5870, \"seed123\": 0.6062, \"seed456\": 0.5938, \"mean\": 0.5957, \"sd\": 0.0097},\n24\t      \"EM\":          {\"seed42\": 0.7902, \"seed123\": 0.7807, \"seed456\": 0.7683, \"mean\": 0.7797, \"sd\": 0.0110},\n25\t      \"voting_conf\": {\"seed42\": 0.7340, \"seed123\": 0.7167, \"seed456\": 0.7121, \"mean\": 0.7209, \"sd\": 0.0115}\n26\t    },\n27\t    \"ranking_rho\": [\"voting_conf\", \"SJ\", \"EM\", \"FK\", \"logprob\"],\n28\t    \"ranking_auroc\": [\"EM\", \"SJ\", \"voting_conf\", \"FK\", \"logprob\"]\n29\t  },\n30\t  \"conditional\": {\n31\t    \"n\": [477, 477, 479],\n32\t    \"rho\": {\n33\t      \"SJ\":          {\"seed42\": 0.3688, \"seed123\": 0.3757, \"seed456\": 0.3494, \"mean\": 0.3646, \"sd\": 0.0136},\n34\t      \"FK\":          {\"seed42\": 0.1934, \"seed123\": 0.1785, \"seed456\": 0.1565, \"mean\": 0.1761, \"sd\": 0.0186},\n35\t      \"logprob\":     {\"seed42\": 0.1560, \"seed123\": 0.1727, \"seed456\": 0.1707, \"mean\": 0.1665, \"sd\": 0.0092},\n36\t      \"EM\":          {\"seed42\": 0.4151, \"seed123\": 0.4036, \"seed456\": 0.4058, \"mean\": 0.4082, \"sd\": 0.0061},\n37\t      \"voting_conf\": {\"seed42\": 0.3531, \"seed123\": 0.3393, \"seed456\": 0.3459, \"mean\": 0.3461, \"sd\": 0.0069}\n38\t    },\n39\t    \"auroc\": {\n40\t      \"SJ\":          {\"seed42\": 0.7193, \"seed123\": 0.7213, \"seed456\": 0.6985, \"mean\": 0.7130, \"sd\": 0.0126},\n41\t      \"FK\":          {\"seed42\": 0.5893, \"seed123\": 0.6054, \"seed456\": 0.5610, \"mean\": 0.5853, \"sd\": 0.0225},\n42\t      \"logprob\":     {\"seed42\": 0.5694, \"seed123\": 0.5844, \"seed456\": 0.5758, \"mean\": 0.5765, \"sd\": 0.0075},\n43\t      \"EM\":          {\"seed42\": 0.7972, \"seed123\": 0.7869, \"seed456\": 0.7801, \"mean\": 0.7881, \"sd\": 0.0087},\n44\t      \"voting_conf\": {\"seed42\": 0.7122, \"seed123\": 0.6979, \"seed456\": 0.6937, \"mean\": 0.7013, \"sd\": 0.0097}\n45\t    },\n46\t    \"ranking_rho\": [\"EM\", \"SJ\", \"voting_conf\", \"FK\", \"logprob\"],\n47\t    \"ranking_auroc\": [\"EM\", \"SJ\", \"voting_conf\", \"FK\", \"logprob\"]\n48\t  },\n49\t  \"analysis\": {\n50\t    \"structural_beats_surface\": \"3/3 seeds (SJ > FK for all seeds, all structural > logprob)\",\n51\t    \"cross_seed_ranking_consistent\": true,\n52\t    \"top3_stable\": \"EM, SJ, voting_conf always top-3 across all seeds and both splits\",\n53\t    \"bottom2_stable\": \"FK, logprob always bottom-2 (swap 4th/5th in seed456 full)\",\n54\t    \"conditional_ranking_perfectly_consistent\": \"EM > SJ > voting_conf > FK > logprob in all 3 seeds\"\n55\t  }\n56\t}\n57\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "943f54b4-451b-46d7-a38f-8328c9063f91",
+            "isSidechain": true,
+            "promptId": "b60b9ea7-b5f5-472e-bc16-38d67f517df1",
+            "agentId": "a96027dfb27aaad6a",
+            "type": "user",
+            "uuid": "33ae5c78-11e6-4596-ada4-c08a1b3632f6",
+            "sourceToolAssistantUUID": "943f54b4-451b-46d7-a38f-8328c9063f91",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "87b5e1ab-0e84-4cd7-80a1-2356c4e5a8e9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "wobbly-snuggling-unicorn"
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-15T11:42:50.995Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01F97LcvoGZhkzLu2Z2799yf",
+              "name": "Bash",
+              "input": {
+                "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_001_n16 -type f 2>/dev/null"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "33ae5c78-11e6-4596-ada4-c08a1b3632f6",
+            "isSidechain": true,
+            "agentId": "a96027dfb27aaad6a",
+            "requestId": "req_011Cb4J37rnjW8EooaFJ6eGj",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "317f236c-d52d-4e63-91d5-d1f1ca9c7e3a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "87b5e1ab-0e84-4cd7-80a1-2356c4e5a8e9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "wobbly-snuggling-unicorn",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01QG886KzZVXC11bkPy3nirf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 9826,
+                "cache_read_input_tokens": 31548,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 9826,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-15T11:42:51.164Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01F97LcvoGZhkzLu2Z2799yf",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_001_n16/report/n16_3seed_scs_analysis.md",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "317f236c-d52d-4e63-91d5-d1f1ca9c7e3a",
+            "isSidechain": true,
+            "promptId": "b60b9ea7-b5f5-472e-bc16-38d67f517df1",
+            "agentId": "a96027dfb27aaad6a",
+            "type": "user",
+            "uuid": "581a80bb-9552-4662-98d7-6862b4ff39f5",
+            "sourceToolAssistantUUID": "317f236c-d52d-4e63-91d5-d1f1ca9c7e3a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "87b5e1ab-0e84-4cd7-80a1-2356c4e5a8e9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "wobbly-snuggling-unicorn"
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-15T11:42:51.636Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01K3xx1NkgiG7ZtXM8PrqS95",
+              "name": "Bash",
+              "input": {
+                "command": "head -20 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_001_ner_n16_scierc/data/exp001_n16_samples_pointer.txt"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "581a80bb-9552-4662-98d7-6862b4ff39f5",
+            "isSidechain": true,
+            "agentId": "a96027dfb27aaad6a",
+            "requestId": "req_011Cb4J37rnjW8EooaFJ6eGj",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "6fb07e00-3066-4f6e-aa02-da7d8a68dc77",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "87b5e1ab-0e84-4cd7-80a1-2356c4e5a8e9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "wobbly-snuggling-unicorn",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01QG886KzZVXC11bkPy3nirf",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 9826,
+                "cache_read_input_tokens": 31548,
+                "output_tokens": 314,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 9826
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 314,
+                    "cache_read_input_tokens": 31548,
+                    "cache_creation_input_tokens": 9826,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 9826,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-15T11:42:51.785Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01K3xx1NkgiG7ZtXM8PrqS95",
+              "type": "tool_result",
+              "content": "Remote path: /root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42/samples.jsonl (2.5MB, 200 instances x 16 samples + greedy + logprobs)",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6fb07e00-3066-4f6e-aa02-da7d8a68dc77",
+            "isSidechain": true,
+            "promptId": "b60b9ea7-b5f5-472e-bc16-38d67f517df1",
+            "agentId": "a96027dfb27aaad6a",
+            "type": "user",
+            "uuid": "8dab69f2-2111-45b8-aeae-ed20bfec87ed",
+            "sourceToolAssistantUUID": "6fb07e00-3066-4f6e-aa02-da7d8a68dc77",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "87b5e1ab-0e84-4cd7-80a1-2356c4e5a8e9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "wobbly-snuggling-unicorn"
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-15T11:42:53.233Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Now let me create a comprehensive summary. Let me verify the most recent timestamp:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8dab69f2-2111-45b8-aeae-ed20bfec87ed",
+            "isSidechain": true,
+            "agentId": "a96027dfb27aaad6a",
+            "requestId": "req_011Cb4J3XAW2LGa4Ucu1j5Lj",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "f1d6630e-6437-48d6-afe3-c6a89ec2cdb5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "87b5e1ab-0e84-4cd7-80a1-2356c4e5a8e9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "wobbly-snuggling-unicorn",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_017pMNBCr4Ha3k4J7xtAcHnP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 2276,
+                "cache_read_input_tokens": 41374,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2276,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-15T11:42:53.582Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PZRcdgbUxofgwyo7egn2Bb",
+              "name": "Bash",
+              "input": {
+                "command": "ls -lt /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/*n16* 2>/dev/null | head -15"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f1d6630e-6437-48d6-afe3-c6a89ec2cdb5",
+            "isSidechain": true,
+            "agentId": "a96027dfb27aaad6a",
+            "requestId": "req_011Cb4J3XAW2LGa4Ucu1j5Lj",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "c53e5dd0-f539-4a6e-b6ef-06059ff4ecdc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "87b5e1ab-0e84-4cd7-80a1-2356c4e5a8e9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "wobbly-snuggling-unicorn",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_017pMNBCr4Ha3k4J7xtAcHnP",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 2276,
+                "cache_read_input_tokens": 41374,
+                "output_tokens": 118,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2276
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 118,
+                    "cache_read_input_tokens": 41374,
+                    "cache_creation_input_tokens": 2276,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2276,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-15T11:42:53.654Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PZRcdgbUxofgwyo7egn2Bb",
+              "type": "tool_result",
+              "content": "-rw-r--r-- 1 ubuntu ubuntu 6712 May 15 11:39 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/n16_3seed_scs_analysis.md\n-rw-r--r-- 1 ubuntu ubuntu 3356 May 15 10:13 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/n16_readiness_report.md\n-rw-r--r-- 1 ubuntu ubuntu 4916 May 14 19:03 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/n16_5signal_comparison.md\n\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_001_n16:\ntotal 4\ndrwxr-xr-x 2 ubuntu ubuntu 4096 May 15 11:39 report\n\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/exp_001_ner_n16_scierc:\ntotal 8\ndrwxr-xr-x 2 ubuntu ubuntu 4096 May 14 11:56 report\ndrwxr-xr-x 2 ubuntu ubuntu 4096 May 14 11:56 data",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c53e5dd0-f539-4a6e-b6ef-06059ff4ecdc",
+            "isSidechain": true,
+            "promptId": "b60b9ea7-b5f5-472e-bc16-38d67f517df1",
+            "agentId": "a96027dfb27aaad6a",
+            "type": "user",
+            "uuid": "656199b3-2845-464a-b362-b9e2ea41dbd4",
+            "sourceToolAssistantUUID": "c53e5dd0-f539-4a6e-b6ef-06059ff4ecdc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "87b5e1ab-0e84-4cd7-80a1-2356c4e5a8e9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "wobbly-snuggling-unicorn"
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-15T11:43:08.820Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! I now have a comprehensive view of all the N=16 three-seed analysis files. Let me provide a complete summary:\n\n## Summary: N=16 Three-Seed Analysis Files\n\nI found **15 files** related to \"n16_3seed\" or \"n16_3seed_scs\" analysis in the artifacts directory. Here's the complete inventory:\n\n### Core N=16 Three-Seed Analysis Files (Most Recent)\n\n1. **`/artifacts/n16_3seed_scs_analysis.md`** (May 15 11:39)\n   - Qwen2.5-7B-Instruct on SciERC with N=16 samples, seeds {42, 123, 456}\n   - Comprehensive tables: Per-seed Spearman ρ (NER & RE), AUROC (NER & RE), ranking consistency, Kendall's W\n   - Key findings: SJ and VC dominate; VC shows largest RE improvement (+21.1%); all signals improve N=8→N=16\n\n2. **`/artifacts/exp_001_n16/report/n16_3seed_scs_analysis.md`** (May 15 11:39)\n   - Identical content to above (symlinked or copied version)\n\n3. **`/artifacts/_project/report/llama_conll_n16_3seed_5signal_summary.md`** (May 14 20:26)\n   - LLaMA3.1-8B on CoNLL-2003 NER with N=16 samples, seeds {42, 123, 456}\n   - 2756 valid instances, 2642 conditional\n   - Cross-seed stability metrics: SJ (CV% 1.6%), FK (1.3%), EM (1.7%), voting_conf (0.7%), logprob (1.8%)\n   - Confirms structural > surface verdict across all 3 seeds\n\n### Supporting N=16 Analysis Files\n\n4. **`/artifacts/n16_readiness_report.md`** (May 15 10:13)\n   - Status report in Chinese: SciERC NER N=16 experiment readiness on autodl-5090 server\n   - Documents completed runs: seed42 ✅, seed123 ✅; missing seed456\n   - Includes infrastructure details, model paths, expected runtime (~8-9 min per seed)\n\n5. **`/artifacts/n16_5signal_comparison.md`** (May 14 19:03)\n   - Comprehensive N=8 vs N=16 comparison for exp_002 (Qwen CoNLL) and exp_007 (LLaMA SciERC)\n   - SJ N-scaling confirmed (ρ improvements +0.014 to +0.016)\n   - FK degrades with N=16; EM benefits most on CoNLL; logprob N-invariant\n\n6. **`/artifacts/_project/report/n16_5signal_comparison.md`**\n   - Duplicate of above\n\n7. **`/artifacts/_project/report/n16_readiness_report.md`**\n   - Duplicate of #4\n\n### Related 3-Seed (General) Files\n\n8. **`/artifacts/_project/report/3seed_5signal_tables.md`** (May 14 18:34)\n9. **`/artifacts/3seed_summary/3seed_5signal_tables.md`** (May 14 18:34)\n   - NER-only (SciERC) analysis with N=16, seeds {42, 123, 456}\n   - 529 instances, 551 total (non-empty)\n\n### Data Files\n\n10. **`/artifacts/3seed_summary/3seed_5signal_data.json`** (May 14 18:34)\n    - Structured JSON with full/conditional split metrics for all 5 signals across 3 seeds\n    - Includes per-seed rho/AUROC values and signal rankings\n\n11. **`/artifacts/_project/data/3seed_5signal_data.json`**\n    - Duplicate of above\n\n12. **`/artifacts/data/qwen_scierc_3seed_em_voting.json`** (May 14 21:16, 8.8K)\n    - Qwen SciERC EM voting analysis across 3 seeds\n\n### Metadata & Reference Files\n\n13. **`/artifacts/3seed_ner_summary.md`** (May 14 18:55, 4.3K)\n14. **`/artifacts/exp_001_seed456_v2_ner/report/3seed_ner_summary.md`** (May 14 18:55, 4.3K)\n    - General NER 3-seed summary (SciERC)\n\n15. **`/artifacts/exp_001_ner_n16_scierc/data/exp001_n16_samples_pointer.txt`** (May 14 11:56)\n    - Pointer to remote output: `/root/autodl-tmp/struct_self_consist_ie/output/exp001_n16_seed42/samples.jsonl`\n\n### Directory Structure\n\n```\n/artifacts/\n├── n16_3seed_scs_analysis.md                                 ← PRIMARY analysis\n├── n16_readiness_report.md\n├── n16_5signal_comparison.md\n├── exp_001_n16/report/\n│   └── n16_3seed_scs_analysis.md                             ← Copy of primary\n├── 3seed_summary/\n│   ├── 3seed_5signal_tables.md\n│   └── 3seed_5signal_data.json\n├── _project/report/\n│   ├── llama_conll_n16_3seed_5signal_summary.md\n│   ├── n16_5signal_comparison.md\n│   ├── n16_readiness_report.md\n│   └── 3seed_5signal_tables.md\n└── data/\n    └── qwen_scierc_3seed_em_voting.json\n```\n\n### Key Findings Across Files\n\n- **VC dominance for RE**: ρ=0.374 is highest in relation extraction (N=16, Qwen SciERC)\n- **SJ-VC tie for NER**: Both at ~0.41 ρ (Qwen SciERC); SJ has lower variance\n- **All signals improve N=8→N=16**: Range +2% to +21% improvement\n- **Cross-seed stability**: Kendall's W = 0.956 for both NER and RE (near-perfect ranking agreement)\n- **Structural > Surface**: Confirmed across all 3 seeds, 2 models (Qwen, LLaMA), 2 datasets (SciERC, CoNLL)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "656199b3-2845-464a-b362-b9e2ea41dbd4",
+            "isSidechain": true,
+            "agentId": "a96027dfb27aaad6a",
+            "requestId": "req_011Cb4J3ezniisTvvVfshMEt",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "4acd22e5-4f1f-49fa-ac36-36cc69c4986c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "87b5e1ab-0e84-4cd7-80a1-2356c4e5a8e9",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "wobbly-snuggling-unicorn",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01LoMDmfDhmfEgu3XtABEt78",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 513,
+                "cache_read_input_tokens": 43650,
+                "output_tokens": 1660,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 513
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 6,
+                    "output_tokens": 1660,
+                    "cache_read_input_tokens": 43650,
+                    "cache_creation_input_tokens": 513,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 513,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000049"
+        }
+      ],
+      "message_count": 49
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-find-all-files-related-to-n16-3seed-scs-or-n16-3seed-or-n16-3seed-analysis-in.md"
+}

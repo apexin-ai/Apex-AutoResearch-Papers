@@ -1,0 +1,74 @@
+{
+  "schema_version": "1.0",
+  "id": "72e0a73706755eef6645",
+  "project": "struct_self_consist_ie--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> GPU 白名单: cuda:0,1,2,3 (autodl-5090)。不要手动设 CUDA_VISIBLE_DEVICES。4B CoNLL 训练在 cuda:0 上，预计 15-20 min 完成。训练完",
+  "task_key": "4b085905-8083-4238-9dcd-8637b5fac457",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/4b085905-8083-4238-9dcd-8637b5fac457.jsonl",
+    "occurrence": 1,
+    "bytes": 1310923,
+    "sha256": "89751f091f15457484fa57f3206938b9a0042af4ae1176634a2cf65f139780da"
+  },
+  "statistics": {
+    "messages": 379,
+    "user_turns": 2,
+    "tool_calls": 111,
+    "roles": {
+      "record": 77,
+      "user": 2,
+      "assistant": 77,
+      "tool_call": 111,
+      "tool_result": 111,
+      "system": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "72e0a73706755eef6645-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 337,
+      "chunks": [
+        {
+          "path": "72e0a73706755eef6645-part-0001.json",
+          "message_count": 156
+        },
+        {
+          "path": "72e0a73706755eef6645-part-0002.json",
+          "message_count": 176
+        },
+        {
+          "path": "72e0a73706755eef6645-part-0003.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 40,
+      "chunks": [
+        {
+          "path": "72e0a73706755eef6645-part-0003.json",
+          "message_count": 40
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-gpu-cuda-0-1-2-3-autodl-5090-cuda-visible-devices4b-conll-cuda-0.md"
+}

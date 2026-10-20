@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "eef56d10a0c191f67c20",
+  "project": "struct_self_consist_ie--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> 服务器环境：autodl-5090, 4× RTX 5090, conda 环境 /root/miniconda3/。项目路径 /root/autodl-tmp/struct_self_consist_ie/",
+  "task_key": "ff14a560-c52e-4a4a-af53-469861f178d5",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/ff14a560-c52e-4a4a-af53-469861f178d5.jsonl",
+    "occurrence": 1,
+    "bytes": 902021,
+    "sha256": "cdf0226989d41cd1f9f74c2adfb52c4e6ece213427ea452adb9d07be03d5a0a9"
+  },
+  "statistics": {
+    "messages": 201,
+    "user_turns": 1,
+    "tool_calls": 65,
+    "roles": {
+      "record": 40,
+      "user": 1,
+      "assistant": 30,
+      "tool_call": 65,
+      "tool_result": 65
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "eef56d10a0c191f67c20-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 199,
+      "chunks": [
+        {
+          "path": "eef56d10a0c191f67c20-part-0001.json",
+          "message_count": 108
+        },
+        {
+          "path": "eef56d10a0c191f67c20-part-0002.json",
+          "message_count": 91
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-autodl-5090-4-rtx-5090-conda-root-miniconda3-root-autodl-tmp-str.md"
+}

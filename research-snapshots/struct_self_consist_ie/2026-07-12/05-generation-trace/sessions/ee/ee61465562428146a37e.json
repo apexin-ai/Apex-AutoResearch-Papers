@@ -1,0 +1,1851 @@
+{
+  "schema_version": "1.0",
+  "id": "ee61465562428146a37e",
+  "project": "struct_self_consist_ie--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: I need to extract very specific data from a large registry JSON file to audit a potential N=8/N=16 data mixing issue. Th",
+  "task_key": "agent-a64b58073ea7a72a5",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/agent-a64b58073ea7a72a5.jsonl",
+    "occurrence": 1,
+    "bytes": 97166,
+    "sha256": "746c6774dd265fcc48f4be352e878480d822dddbe8e3575cec6e61ebe7dd295b"
+  },
+  "statistics": {
+    "messages": 34,
+    "user_turns": 1,
+    "tool_calls": 13,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "assistant": 6,
+      "tool_call": 13,
+      "tool_result": 13
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T13:57:22.979Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "I need to extract very specific data from a large registry JSON file to audit a potential N=8/N=16 data mixing issue.\n\nThe file is at:\n/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie--claude-sessions-reviewer-0064dd56/a6ae7e35-390a-442a-93d4-9958c82c9e3b/tool-results/mcp-agent-ml-research-read_registry-1779198683077.txt\n\nThis is JSON with schema: {result: string} — the `result` field is a YAML string.\n\nI need to find:\n\n1. **exp_002** (NOT exp_002_conll_n16, just exp_002): What is the sample size N used? Is there a degen_rate or degeneracy metric? What's its value? Quote the full spec and metrics sections.\n\n2. **exp_002_conll_n16**: What N was used? Degen_rate? Full spec and metrics.\n\n3. Any OTHER experiment that reports CoNLL degeneracy at N=8 specifically. Search for degen_rate fields in any CoNLL-related experiment.\n\n4. For exp_012_rerun_1024: Extract the FULL metrics section with all AUROC values (both full and cond, both NER and RE). Also the full spec.\n\n5. For exp_015_metrics_expansion: Extract the FULL metrics section. I need to know what AUROC values this experiment reports for SciERC.\n\n6. For exp_015_v2: Extract the FULL metrics section — this is supposedly the source of AUROC values for Table 1.\n\nUse python or jq to parse. Return ALL field values verbatim — this is a data audit, precision matters. Don't summarize."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "2279f609-b135-4e34-8568-a1f529688be0",
+            "agentId": "a64b58073ea7a72a5",
+            "type": "user",
+            "uuid": "854ce879-ab68-4fbf-b2f5-6f8a3cd9d94a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "a6ae7e35-390a-442a-93d4-9958c82c9e3b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T13:57:22.984Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "854ce879-ab68-4fbf-b2f5-6f8a3cd9d94a",
+                "isSidechain": true,
+                "agentId": "a64b58073ea7a72a5",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__check_figures_and_layout",
+                    "mcp__agent-ml-research__cleanup_pdf_images",
+                    "mcp__agent-ml-research__compute_coverage_matrix",
+                    "mcp__agent-ml-research__fetch_wandb_metrics",
+                    "mcp__agent-ml-research__get_gpu_health",
+                    "mcp__agent-ml-research__get_project_resource_usage",
+                    "mcp__agent-ml-research__list_constraints",
+                    "mcp__agent-ml-research__pdf_to_images",
+                    "mcp__agent-ml-research__read_experiment_plan_with_status",
+                    "mcp__agent-ml-research__read_matrix",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__read_registry",
+                    "mcp__agent-ml-research__read_roadmap",
+                    "mcp__agent-ml-research__reviewer_post_to_director",
+                    "mcp__agent-ml-research__ssh_read_only",
+                    "mcp__agent-ml-research__tail_training_logs"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__check_figures_and_layout",
+                    "mcp__agent-ml-research__cleanup_pdf_images",
+                    "mcp__agent-ml-research__compute_coverage_matrix",
+                    "mcp__agent-ml-research__fetch_wandb_metrics",
+                    "mcp__agent-ml-research__get_gpu_health",
+                    "mcp__agent-ml-research__get_project_resource_usage",
+                    "mcp__agent-ml-research__list_constraints",
+                    "mcp__agent-ml-research__pdf_to_images",
+                    "mcp__agent-ml-research__read_experiment_plan_with_status",
+                    "mcp__agent-ml-research__read_matrix",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__read_registry",
+                    "mcp__agent-ml-research__read_roadmap",
+                    "mcp__agent-ml-research__reviewer_post_to_director",
+                    "mcp__agent-ml-research__ssh_read_only",
+                    "mcp__agent-ml-research__tail_training_logs"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "cd023f40-07be-4503-a17b-7b7ce095e370",
+                "timestamp": "2026-05-19T13:57:22.984Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+                "sessionId": "a6ae7e35-390a-442a-93d4-9958c82c9e3b",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T13:57:26.162Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nI'll start by reading the file to understand its structure, then use Python to extract the specific data."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cd023f40-07be-4503-a17b-7b7ce095e370",
+            "isSidechain": true,
+            "agentId": "a64b58073ea7a72a5",
+            "requestId": "req_011CbC3Y9GxXjMALUAzyqToE",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "4673d9e3-d5c8-48b6-bc85-9c6d9be45e30",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "a6ae7e35-390a-442a-93d4-9958c82c9e3b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Wv46aZV6NJ9qjBDyGhDE8v",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 16333,
+                "cache_read_input_tokens": 8262,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 16333,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T13:57:26.969Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01E52u28D6MmNKZvMKQPPjQH",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie--claude-sessions-reviewer-0064dd56/a6ae7e35-390a-442a-93d4-9958c82c9e3b/tool-results/mcp-agent-ml-research-read_registry-1779198683077.txt",
+                "limit": 50
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4673d9e3-d5c8-48b6-bc85-9c6d9be45e30",
+            "isSidechain": true,
+            "agentId": "a64b58073ea7a72a5",
+            "requestId": "req_011CbC3Y9GxXjMALUAzyqToE",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "032aa877-e050-471f-a364-dca2f3f04668",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "a6ae7e35-390a-442a-93d4-9958c82c9e3b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Wv46aZV6NJ9qjBDyGhDE8v",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 16333,
+                "cache_read_input_tokens": 8262,
+                "output_tokens": 196,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 16333
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 196,
+                    "cache_read_input_tokens": 8262,
+                    "cache_creation_input_tokens": 16333,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 16333,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T13:57:27.271Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "File content (115530 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+              "is_error": true,
+              "tool_use_id": "toolu_01E52u28D6MmNKZvMKQPPjQH"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "032aa877-e050-471f-a364-dca2f3f04668",
+            "isSidechain": true,
+            "promptId": "2279f609-b135-4e34-8568-a1f529688be0",
+            "agentId": "a64b58073ea7a72a5",
+            "type": "user",
+            "uuid": "cc9aa97f-abd5-4016-afa4-fec72b8047fc",
+            "toolUseResult": "Error: File content (115530 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+            "sourceToolAssistantUUID": "032aa877-e050-471f-a364-dca2f3f04668",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "a6ae7e35-390a-442a-93d4-9958c82c9e3b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T13:57:29.552Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file is very large. Let me use Python to parse it and extract the specific experiments."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cc9aa97f-abd5-4016-afa4-fec72b8047fc",
+            "isSidechain": true,
+            "agentId": "a64b58073ea7a72a5",
+            "requestId": "req_011CbC3YTbnAvGbNWqEc5Nfg",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "50d24ebd-33e8-41cb-85cb-5ae8dacd3073",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "a6ae7e35-390a-442a-93d4-9958c82c9e3b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016ZzMz4Cp12pv4ebgXNNSwQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1098,
+                "cache_read_input_tokens": 24595,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1098,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T13:57:33.747Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WvyQPCeKgVdkyfFNR4oTXw",
+              "name": "Bash",
+              "input": {
+                "command": "cd /tmp && python3 << 'PYEOF'\nimport json, yaml\n\nfpath = \"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie--claude-sessions-reviewer-0064dd56/a6ae7e35-390a-442a-93d4-9958c82c9e3b/tool-results/mcp-agent-ml-research-read_registry-1779198683077.txt\"\n\nwith open(fpath, 'r') as f:\n    raw = f.read()\n\n# Parse JSON wrapper\ndata = json.loads(raw)\nresult_str = data['result']\n\n# Parse YAML inside result\nregistry = yaml.safe_load(result_str)\n\n# Show top-level keys to understand structure\nif isinstance(registry, dict):\n    print(\"Top-level type: dict\")\n    print(\"Top-level keys:\", list(registry.keys())[:20])\nelif isinstance(registry, list):\n    print(\"Top-level type: list, length:\", len(registry))\n    if len(registry) > 0:\n        print(\"First item keys:\", list(registry[0].keys()) if isinstance(registry[0], dict) else type(registry[0]))\nPYEOF\n",
+                "description": "Parse registry JSON/YAML to understand structure",
+                "timeout": 30000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "50d24ebd-33e8-41cb-85cb-5ae8dacd3073",
+            "isSidechain": true,
+            "agentId": "a64b58073ea7a72a5",
+            "requestId": "req_011CbC3YTbnAvGbNWqEc5Nfg",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "0283550d-2632-4934-965a-ff13f4ed183e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "a6ae7e35-390a-442a-93d4-9958c82c9e3b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016ZzMz4Cp12pv4ebgXNNSwQ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1098,
+                "cache_read_input_tokens": 24595,
+                "output_tokens": 427,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1098
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 427,
+                    "cache_read_input_tokens": 24595,
+                    "cache_creation_input_tokens": 1098,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1098,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T13:57:34.276Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WvyQPCeKgVdkyfFNR4oTXw",
+              "type": "tool_result",
+              "content": "Top-level type: dict\nTop-level keys: ['success', 'data', 'error', 'metadata']",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0283550d-2632-4934-965a-ff13f4ed183e",
+            "isSidechain": true,
+            "promptId": "2279f609-b135-4e34-8568-a1f529688be0",
+            "agentId": "a64b58073ea7a72a5",
+            "type": "user",
+            "uuid": "784ad5c7-246f-4483-a9d2-72d2952b037b",
+            "sourceToolAssistantUUID": "0283550d-2632-4934-965a-ff13f4ed183e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "a6ae7e35-390a-442a-93d4-9958c82c9e3b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T13:57:41.479Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EdXtcExyfuBWdBwWZwAgKr",
+              "name": "Bash",
+              "input": {
+                "command": "cd /tmp && python3 << 'PYEOF'\nimport json, yaml\n\nfpath = \"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie--claude-sessions-reviewer-0064dd56/a6ae7e35-390a-442a-93d4-9958c82c9e3b/tool-results/mcp-agent-ml-research-read_registry-1779198683077.txt\"\n\nwith open(fpath, 'r') as f:\n    raw = f.read()\n\ndata = json.loads(raw)\nresult_str = data['result']\nregistry = yaml.safe_load(result_str)\n\n# Dig into data\nd = registry.get('data', registry)\nif isinstance(d, dict):\n    print(\"data type: dict, keys:\", list(d.keys())[:30])\nelif isinstance(d, list):\n    print(\"data type: list, length:\", len(d))\n    if len(d) > 0 and isinstance(d[0], dict):\n        print(\"First item keys:\", list(d[0].keys()))\n        if 'id' in d[0] or 'exp_id' in d[0]:\n            print(\"All experiment IDs:\")\n            for item in d:\n                eid = item.get('id') or item.get('exp_id') or item.get('name', 'UNKNOWN')\n                print(f\"  {eid}\")\nPYEOF\n",
+                "description": "Explore registry data structure and list experiment IDs",
+                "timeout": 30000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "784ad5c7-246f-4483-a9d2-72d2952b037b",
+            "isSidechain": true,
+            "agentId": "a64b58073ea7a72a5",
+            "requestId": "req_011CbC3YyaqA51e49em5XWgA",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "7946c013-49b1-4b21-a39e-750aedcb2754",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "a6ae7e35-390a-442a-93d4-9958c82c9e3b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NjJqL4yDaZeJ6ZoJvyghgT",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 466,
+                "cache_read_input_tokens": 25693,
+                "output_tokens": 468,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 466
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 468,
+                    "cache_read_input_tokens": 25693,
+                    "cache_creation_input_tokens": 466,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 466,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-19T13:57:42.017Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EdXtcExyfuBWdBwWZwAgKr",
+              "type": "tool_result",
+              "content": "data type: dict, keys: ['experiments', 'count', 'total', 'baseline']",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7946c013-49b1-4b21-a39e-750aedcb2754",
+            "isSidechain": true,
+            "promptId": "2279f609-b135-4e34-8568-a1f529688be0",
+            "agentId": "a64b58073ea7a72a5",
+            "type": "user",
+            "uuid": "624327ad-ab23-4eb6-9b17-33932e8d5b22",
+            "sourceToolAssistantUUID": "7946c013-49b1-4b21-a39e-750aedcb2754",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "a6ae7e35-390a-442a-93d4-9958c82c9e3b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-19T13:57:47.549Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012c7Hsi65WxcFQudAzwvtt2",
+              "name": "Bash",
+              "input": {
+                "command": "cd /tmp && python3 << 'PYEOF'\nimport json, yaml\n\nfpath = \"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie--claude-sessions-reviewer-0064dd56/a6ae7e35-390a-442a-93d4-9958c82c9e3b/tool-results/mcp-agent-ml-research-read_registry-1779198683077.txt\"\n\nwith open(fpath, 'r') as f:\n    raw = f.read()\n\ndata = json.loads(raw)\nresult_str = data['result']\nregistry = yaml.safe_load(result_str)\n\nexperiments = registry['data']['experiments']\n\nif isinstance(experiments, dict):\n    print(\"experiments type: dict\")\n    print(\"All experiment IDs:\")\n    for k in experiments.keys():\n        print(f\"  {k}\")\nelif isinstance(experiments, list):\n    print(\"experiments type: list, length:\", len(experiments))\n    print(\"All experiment IDs:\")\n    for exp in experiments:\n        if isinstance(exp, dict):\n            eid = exp.get('id') or exp.get('exp_id') or exp.get('name', 'UNKNOWN')\n            print(f\"  {eid}\")\nPYEOF\n",
+                "description": "List all experiment IDs in registry",
+                "timeout": 30000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "624327ad-ab23-4eb6-9b17-33932e8d5b22",
+            "isSidechain": true,
+            "agentId": "a64b58073ea7a72a5",
+            "requestId": "req_011CbC3ZYdvd3EKUAfWYoxGY",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "66bc4961-de44-4eae-89fb-2d9448b8a6e5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "a6ae7e35-390a-442a-93d4-9958c82c9e3b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TSeQPcxKS5aiFXuaYEPCik",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 502,
+                "cache_read_input_tokens": 26159,
+                "output_tokens": 423,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 502
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 423,
+                    "cache_read_input_tokens": 26159,
+                    "cache_creation_input_tokens": 502,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 502,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T13:57:48.275Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012c7Hsi65WxcFQudAzwvtt2",
+              "type": "tool_result",
+              "content": "experiments type: dict\nAll experiment IDs:\n  exp_qwen25_72b_zeroshot\n  exp_qwen25_14b_fewnerd\n  exp_qwen25_32b_fewnerd\n  exp_qwen25_7b_fewnerd\n  exp_wnut17_qwen25_7b\n  exp_llama_fewnerd_inference\n  exp_entity_construction\n  exp_lp_alignment_gating\n  exp_selective_prediction\n  exp_llama_fewnerd_lora\n  hidden_state_probe_conll_full\n  hidden_state_probe_conll_v2\n  exp_031_fewnerd_t12\n  exp_030_conll_t12\n  mbr_pilot\n  dgs_pilot\n  exp_fewnerd_s789_n8\n  exp_026_t12_seed456\n  exp_026_t12_seed123\n  exp_026_t10_seed456\n  exp_026_t10_seed123\n  exp_026_t10_seed42\n  exp_026_t08_seed456\n  exp_026_t08_seed123\n  exp_026_t05_seed456\n  exp_026_t05_seed123\n  exp_029b\n  exp_029a\n  exp_021_fewnerd_n8_seed456\n  exp_021_fewnerd_n8_seed123\n  exp_002_conll_n16_seed456\n  exp_002_conll_n16_seed123\n  exp_017_llama_conll_n16_s456_r1024\n  exp_017_llama_conll_n16_r1024\n  exp_018_llama_scierc_seed456_r1024\n  exp_018_llama_scierc_seed42_r1024\n  exp_002_conll_n16\n  exp_012_rerun_1024\n  exp_llama_scierc_seed456\n  exp_007_llama_scierc_seed123\n  exp_qwen3_4b_conll_scs_inference\n  exp_qwen3_4b_conll_scs_inference_v2\n  exp_qwen3_4b_scierc_scs_inference\n  exp_027_fewnerd_n16\n  exp_026_t12\n  exp_026_t08\n  exp_026_t05\n  exp_026_T12\n  exp_026_T08\n  exp_026_T05\n  exp_017_llama_conll_n16_s123_r1024\n  exp_018_llama_scierc_seed123\n  exp_018_qwen_scierc_seed456\n  exp_018_qwen_scierc_seed123\n  exp_epoch_dgs_analysis\n  exp_diagnostic_calibration\n  exp_adaptive_temperature\n  exp_entity_consensus\n  exp_ccs_selection\n  exp_017_llama_conll\n  exp_017_llama_conll_finetune\n  exp_028_entity_token_lp\n  exp_026_t12_scierc\n  exp_026_t08_scierc\n  exp_026_t05_scierc\n  exp_027_mlp_verifier\n  exp_028_fewnerd_5epoch\n  exp_028\n  exp_024_claim_audit\n  exp_016_rerun_1024_bootstrap\n  exp_verbalized_confidence\n  exp_entity_token_lp\n  exp_freeform_ablation\n  exp_008_re_n16\n  exp_001_ner_n16_seed123\n  exp_007_ner_multi_model\n  exp_003_ner_wnut17\n  exp_001_seed456_t10_full\n  exp_001_seed123_t10_full\n  exp_008_re_n16_t10_full\n  exp_007_llama_inference\n  exp_003_wnut17_eval\n  exp_010_selection_curves\n  exp_007_llama_seed456\n  exp_007_llama_seed123\n  exp_008_re_seed123\n  exp_001_seed42_v2\n  exp_001_seed123_v2\n  exp_008_re_n16_v2\n  exp_005_v2\n  exp_006_v2\n  exp_004_v2\n  exp_009_v2\n  exp_016_v2\n  exp_001_seed456_v2\n  exp_017_llama_conll_infer\n  exp_003_wnut17_v2\n  exp_001_seed456_v2_ner\n  exp_009_v2_re_rerun\n  exp_007_llama_n16\n  exp_017_llama_conll_n16\n  exp_015_v2\n  exp_001_n16_seed456\n  exp_011_ood_scierc_to_conll\n  exp_qwen3_4b_scierc_finetune_v4\n  exp_011_ood_conll_to_scierc\n  exp_freeform_seed789_v3\n  exp_freeform_seed789\n  exp_freeform_seed456\n  exp_freeform_seed123\n  exp_009_capability_stratification\n  exp_023_lora_rank8\n  exp_022_seed789\n  exp_025_n32\n  exp_021_fewnerd_full\n  exp_015_metrics_expansion\n  exp_020_fewnerd_smoke\n  exp_vc_lp_cascade_selection\n  exp_tacred_re_benchmark\n  exp_vc_quartile_analysis\n  exp_llama3b_scierc_ablation\n  exp_freeform_conll_4seed\n  exp_qwen3_4b_conll_merge_inference_v2\n  exp_qwen3_4b_scierc_merge_inference\n  exp_qwen3_4b_scierc_finetune_v3\n  exp_qwen3_4b_conll_finetune_resume\n  exp_qwen3_4b_scierc_finetune_v2\n  exp_qwen3_4b_conll_finetune\n  exp_freeform_seed789_v2\n  exp_qwen3_4b_scierc_finetune\n  exp_lp_t07_scierc\n  exp_lp_scierc_t07\n  exp_re_scierc_seed456\n  exp_re_scierc_seed123\n  exp_017_llama_conll_n8_t07\n  exp008_re_n16\n  exp001_seed456\n  exp001_seed123\n  exp_001_n16_seed456_full\n  exp_001_n16_seed123_full\n  exp_007_ner_llama\n  exp_002_merge_conll2003\n  exp_019_supervised_verifier\n  exp_018_llama_scierc_seed456\n  exp_002_conll_n16_r1024\n  exp_007_llama_n16_r1024\n  exp_001_seed123_v2_r1024\n  exp_001_seed456_v2_ner_r1024\n  exp_001_seed42_v2_r1024\n  exp_017_llama_conll_n16_s456\n  exp_017_llama_conll_n16_s123\n  exp_008_re_n16_full\n  exp_001_n16_seed123\n  exp_016_signal_ensemble\n  exp_001_ner_n16_scierc\n  exp_002\n  exp_002_ner_conll2003\n  exp_004_re_diagnostic\n  exp_005\n  exp_014_entity_majority_voting\n  exp_013_exact_match_voting\n  exp_012_logprob_baseline\n  mvp_pilot_005\n  e1_component_wise_re_sj\n  mvp_pilot_004\n  ft_002_v2\n  mvp_pilot_002\n  ft_002\n  ft_001\n  mvp_pilot_003\n  mvp_pilot_001",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "66bc4961-de44-4eae-89fb-2d9448b8a6e5",
+            "isSidechain": true,
+            "promptId": "2279f609-b135-4e34-8568-a1f529688be0",
+            "agentId": "a64b58073ea7a72a5",
+            "type": "user",
+            "uuid": "7a9d8dba-cf14-484e-a318-f6b00f069148",
+            "sourceToolAssistantUUID": "66bc4961-de44-4eae-89fb-2d9448b8a6e5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "a6ae7e35-390a-442a-93d4-9958c82c9e3b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-19T13:57:51.334Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Good, now I have the full list. Let me extract the specific experiments."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7a9d8dba-cf14-484e-a318-f6b00f069148",
+            "isSidechain": true,
+            "agentId": "a64b58073ea7a72a5",
+            "requestId": "req_011CbC3a1SyBjKSmBGSBP1GS",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "c97d86a7-76c8-4f92-9c18-6a95ce276985",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "a6ae7e35-390a-442a-93d4-9958c82c9e3b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PbNJvUkGmzEkspwBNhaRqy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2478,
+                "cache_read_input_tokens": 26661,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2478,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-19T13:57:54.798Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AQskrqrg4jco2JwSsXCxuy",
+              "name": "Bash",
+              "input": {
+                "command": "cd /tmp && python3 << 'PYEOF'\nimport json, yaml\n\nfpath = \"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie--claude-sessions-reviewer-0064dd56/a6ae7e35-390a-442a-93d4-9958c82c9e3b/tool-results/mcp-agent-ml-research-read_registry-1779198683077.txt\"\n\nwith open(fpath, 'r') as f:\n    raw = f.read()\n\ndata = json.loads(raw)\nresult_str = data['result']\nregistry = yaml.safe_load(result_str)\nexperiments = registry['data']['experiments']\n\n# 1. exp_002 (exact match, not exp_002_conll_n16 etc.)\nprint(\"=\" * 80)\nprint(\"1. exp_002\")\nprint(\"=\" * 80)\nexp = experiments.get('exp_002')\nif exp:\n    print(yaml.dump(exp, default_flow_style=False, allow_unicode=True, width=200))\nelse:\n    print(\"NOT FOUND\")\n\nPYEOF\n",
+                "description": "Extract exp_002 from registry",
+                "timeout": 30000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c97d86a7-76c8-4f92-9c18-6a95ce276985",
+            "isSidechain": true,
+            "agentId": "a64b58073ea7a72a5",
+            "requestId": "req_011CbC3a1SyBjKSmBGSBP1GS",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "377d70b8-c78d-4d8e-b382-2397829ba08e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "a6ae7e35-390a-442a-93d4-9958c82c9e3b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PbNJvUkGmzEkspwBNhaRqy",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2478,
+                "cache_read_input_tokens": 26661,
+                "output_tokens": 409,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2478
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 409,
+                    "cache_read_input_tokens": 26661,
+                    "cache_creation_input_tokens": 2478,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2478,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-19T13:57:55.323Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AQskrqrg4jco2JwSsXCxuy",
+              "type": "tool_result",
+              "content": "================================================================================\n1. exp_002\n================================================================================\ncompleted_at: '2026-05-14T12:40:08.402Z'\nconclusion: success\ncreated_at: '2026-05-14T12:39:53.226Z'\nmetrics:\n  em_auroc_full: 0.8156\n  em_rho_cond: 0.4799\n  em_rho_full: 0.4507\n  em_tau_full: 0.4002\n  ev_auroc_full: 0.7889\n  ev_rho_cond: 0.4127\n  ev_rho_full: 0.4237\n  ev_tau_full: 0.3777\n  fk_auroc_full: 0.7741\n  fk_rho_cond: 0.4064\n  fk_rho_full: 0.3998\n  fk_tau_full: 0.3568\n  greedy_f1: 0.9123\n  logprob_auroc_full: 0.7532\n  logprob_rho_cond: 0.3562\n  logprob_rho_full: 0.3157\n  logprob_tau_full: 0.2469\n  n_instances: 3453\n  n_samples: 8\n  n_valid: 2756\n  oracle_f1: 0.9543\n  oracle_headroom: 0.042\n  sj_auroc_full: 0.8008\n  sj_rho_cond: 0.4511\n  sj_rho_full: 0.4357\n  sj_tau_full: 0.3851\n  sj_vs_logprob_ci_high: 0.154\n  sj_vs_logprob_ci_low: 0.0881\n  sj_vs_logprob_delta_rho: 0.12\n  sj_vs_logprob_significant: true\n  temperature: 1\n  voting_f1: 0.9141\nretry_count: 0\nspec:\n  checkpoint_path: /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-8b-conll2003-merged\n  command: python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --dataset conll2003 --subtask ner --n_samples 8 --temperature 1.0 --collect_logprobs --num_test 99999\n  data_count: 3453\n  data_path: data/conll2003\n  log_path: /tmp/pilot_conll2003.log\n  model_name: qwen3-8b-conll2003-lora-merged\n  seed: 42\n  server: autodl-5090\nstatus: DONE\nupdated_at: '2026-05-14T12:40:17.202Z'",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "377d70b8-c78d-4d8e-b382-2397829ba08e",
+            "isSidechain": true,
+            "promptId": "2279f609-b135-4e34-8568-a1f529688be0",
+            "agentId": "a64b58073ea7a72a5",
+            "type": "user",
+            "uuid": "5f074b18-2b3c-4f92-9380-26b45eaea615",
+            "sourceToolAssistantUUID": "377d70b8-c78d-4d8e-b382-2397829ba08e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "a6ae7e35-390a-442a-93d4-9958c82c9e3b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-19T13:58:00.399Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01M49Rs6GZoouX7hBiPoJTeq",
+              "name": "Bash",
+              "input": {
+                "command": "cd /tmp && python3 << 'PYEOF'\nimport json, yaml\n\nfpath = \"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie--claude-sessions-reviewer-0064dd56/a6ae7e35-390a-442a-93d4-9958c82c9e3b/tool-results/mcp-agent-ml-research-read_registry-1779198683077.txt\"\n\nwith open(fpath, 'r') as f:\n    raw = f.read()\n\ndata = json.loads(raw)\nresult_str = data['result']\nregistry = yaml.safe_load(result_str)\nexperiments = registry['data']['experiments']\n\n# 2. exp_002_conll_n16\nprint(\"=\" * 80)\nprint(\"2. exp_002_conll_n16\")\nprint(\"=\" * 80)\nexp = experiments.get('exp_002_conll_n16')\nif exp:\n    print(yaml.dump(exp, default_flow_style=False, allow_unicode=True, width=200))\nelse:\n    print(\"NOT FOUND\")\n\nPYEOF\n",
+                "description": "Extract exp_002_conll_n16 from registry",
+                "timeout": 30000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5f074b18-2b3c-4f92-9380-26b45eaea615",
+            "isSidechain": true,
+            "agentId": "a64b58073ea7a72a5",
+            "requestId": "req_011CbC3aXXj8rnVsLLU5L76h",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "63034890-ea7e-4c4d-974c-c12de5f1f3fb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "a6ae7e35-390a-442a-93d4-9958c82c9e3b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01REoXmmJ9TkEZQJji4LVo7w",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1156,
+                "cache_read_input_tokens": 29139,
+                "output_tokens": 398,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1156
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 398,
+                    "cache_read_input_tokens": 29139,
+                    "cache_creation_input_tokens": 1156,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1156,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-19T13:58:00.971Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01M49Rs6GZoouX7hBiPoJTeq",
+              "type": "tool_result",
+              "content": "================================================================================\n2. exp_002_conll_n16\n================================================================================\ncheckpoint_path: output/exp_002_conll_n16/samples.jsonl\ncompleted_at: '2026-05-14T18:58:40.473Z'\nconclusion: success\ncreated_at: '2026-05-14T18:12:16.041Z'\nhypothesis: 'CoNLL N=16 NER: cross-dataset validation on high-performance NER dataset. Tests if structural signals retain advantage when base model performance is already high (greedy F1 > 0.9).'\nlog_path: output/exp_002_conll_n16.log\nmetrics:\n  N: 16\n  conditional:\n    EM_AUROC: 0.8781\n    EM_ECE: 0.0997\n    EM_rho: 0.4658\n    FK_AUROC: 0.7819\n    FK_ECE: 0.1899\n    FK_rho: 0.3494\n    SJ_AUROC: 0.8405\n    SJ_ECE: 0.0982\n    SJ_rho: 0.4208\n    logprob_AUROC: 0.8259\n    logprob_ECE: 0.2504\n    logprob_rho: 0.3756\n    voting_conf_AUROC: 0.7951\n    voting_conf_ECE: 0.6096\n    voting_conf_rho: 0.3654\n  dataset: conll2003\n  degen_rate: 0.4844\n  degen_rate_source: unified_metrics_constant_f1_gold_filtered\n  full:\n    EM_AUROC: 0.8409\n    EM_ECE: 0.0786\n    EM_rho: 0.4627\n    FK_AUROC: 0.7821\n    FK_ECE: 0.1786\n    FK_rho: 0.3928\n    SJ_AUROC: 0.8264\n    SJ_ECE: 0.0747\n    SJ_rho: 0.4496\n    logprob_AUROC: 0.7531\n    logprob_ECE: 0.2031\n    logprob_rho: 0.3146\n    voting_conf_AUROC: 0.8071\n    voting_conf_ECE: 0.529\n    voting_conf_rho: 0.4286\n  greedy_f1: 0.907\n  n8_vs_n16_delta_rho_full:\n    EM: 0.012\n    FK: -0.007\n    SJ: 0.0139\n    logprob: -0.0011\n    voting_conf: 0.0049\n  n_conditional: 2614\n  n_instances: 3453\n  n_valid: 2756\n  subtask: ner\nretry_count: 0\nspec:\n  command: source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && CUDA_VISIBLE_DEVICES=0 PYTHONPATH=code python code/run_mvp_pilot.py --model_path\n    checkpoints/qwen3-8b-conll2003-merged --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples 16 --temperature 1.0 --seed 42 --num_test 9999 --collect_logprobs --output_dir output/exp_002_conll_n16\n  data_count: 3453\n  data_path: data/conll2003\n  hypothesis: 'Qwen CoNLL-2003 N=16: cross-dataset N-scaling comparison with SciERC N=16'\n  model_name: qwen3-8b-conll2003-merged\n  parent: exp_002_ner_conll2003\n  plan_id: exp-002\n  seed: 42\n  server: autodl-5090\nstatus: DONE\nupdated_at: '2026-05-18T20:49:50.398Z'",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "63034890-ea7e-4c4d-974c-c12de5f1f3fb",
+            "isSidechain": true,
+            "promptId": "2279f609-b135-4e34-8568-a1f529688be0",
+            "agentId": "a64b58073ea7a72a5",
+            "type": "user",
+            "uuid": "dbf381b8-0840-4ecf-8d82-c044c871621d",
+            "sourceToolAssistantUUID": "63034890-ea7e-4c4d-974c-c12de5f1f3fb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "a6ae7e35-390a-442a-93d4-9958c82c9e3b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-19T13:58:09.887Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015LCKLyynCLx9YjPuTP7Rrz",
+              "name": "Bash",
+              "input": {
+                "command": "cd /tmp && python3 << 'PYEOF'\nimport json, yaml\n\nfpath = \"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie--claude-sessions-reviewer-0064dd56/a6ae7e35-390a-442a-93d4-9958c82c9e3b/tool-results/mcp-agent-ml-research-read_registry-1779198683077.txt\"\n\nwith open(fpath, 'r') as f:\n    raw = f.read()\n\ndata = json.loads(raw)\nresult_str = data['result']\nregistry = yaml.safe_load(result_str)\nexperiments = registry['data']['experiments']\n\n# 3. Search ALL experiments for degen_rate in CoNLL-related ones\nprint(\"=\" * 80)\nprint(\"3. ALL experiments with degen_rate (focusing on CoNLL)\")\nprint(\"=\" * 80)\n\nfor exp_id, exp in experiments.items():\n    metrics = exp.get('metrics', {})\n    if not isinstance(metrics, dict):\n        continue\n    \n    has_degen = False\n    degen_val = None\n    \n    # Check top-level degen_rate\n    if 'degen_rate' in metrics:\n        has_degen = True\n        degen_val = metrics['degen_rate']\n    \n    # Check nested\n    for k, v in metrics.items():\n        if isinstance(v, dict) and 'degen_rate' in v:\n            has_degen = True\n            degen_val = v['degen_rate']\n    \n    if has_degen:\n        n_val = metrics.get('N', metrics.get('n_samples', 'NOT_SPECIFIED'))\n        dataset = metrics.get('dataset', exp.get('spec', {}).get('dataset', 'UNKNOWN') if isinstance(exp.get('spec'), dict) else 'UNKNOWN')\n        degen_source = metrics.get('degen_rate_source', 'NOT_SPECIFIED')\n        print(f\"\\n  exp_id: {exp_id}\")\n        print(f\"    N: {n_val}\")\n        print(f\"    dataset: {dataset}\")\n        print(f\"    degen_rate: {degen_val}\")\n        print(f\"    degen_rate_source: {degen_source}\")\n\nPYEOF\n",
+                "description": "Search all experiments for degen_rate field",
+                "timeout": 30000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dbf381b8-0840-4ecf-8d82-c044c871621d",
+            "isSidechain": true,
+            "agentId": "a64b58073ea7a72a5",
+            "requestId": "req_011CbC3awiGqWMUVffckcztC",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "a6bebe1c-d1a8-47ef-906d-6b762ae91d7b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "a6ae7e35-390a-442a-93d4-9958c82c9e3b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013bYNEQc21ZsGbUWaueTjXN",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1459,
+                "cache_read_input_tokens": 30295,
+                "output_tokens": 694,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1459
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 694,
+                    "cache_read_input_tokens": 30295,
+                    "cache_creation_input_tokens": 1459,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1459,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-19T13:58:10.412Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015LCKLyynCLx9YjPuTP7Rrz",
+              "type": "tool_result",
+              "content": "================================================================================\n3. ALL experiments with degen_rate (focusing on CoNLL)\n================================================================================\n\n  exp_id: exp_fewnerd_s789_n8\n    N: NOT_SPECIFIED\n    dataset: UNKNOWN\n    degen_rate: 0.1177\n    degen_rate_source: unified_metrics_constant_f1_gold_filtered\n\n  exp_id: exp_029b\n    N: NOT_SPECIFIED\n    dataset: UNKNOWN\n    degen_rate: 0.478\n    degen_rate_source: unified_metrics_constant_f1_gold_filtered\n\n  exp_id: exp_029a\n    N: NOT_SPECIFIED\n    dataset: UNKNOWN\n    degen_rate: 0.064\n    degen_rate_source: unified_metrics_constant_f1_gold_filtered\n\n  exp_id: exp_021_fewnerd_n8_seed456\n    N: NOT_SPECIFIED\n    dataset: UNKNOWN\n    degen_rate: 0.1212\n    degen_rate_source: unified_metrics_constant_f1_gold_filtered\n\n  exp_id: exp_021_fewnerd_n8_seed123\n    N: NOT_SPECIFIED\n    dataset: UNKNOWN\n    degen_rate: 0.1312\n    degen_rate_source: unified_metrics_constant_f1_gold_filtered\n\n  exp_id: exp_002_conll_n16_seed456\n    N: NOT_SPECIFIED\n    dataset: UNKNOWN\n    degen_rate: 0.5544\n    degen_rate_source: unified_metrics_constant_f1_gold_filtered\n\n  exp_id: exp_002_conll_n16_seed123\n    N: NOT_SPECIFIED\n    dataset: UNKNOWN\n    degen_rate: 0.471\n    degen_rate_source: unified_metrics_constant_f1_gold_filtered\n\n  exp_id: exp_017_llama_conll_n16_s456_r1024\n    N: NOT_SPECIFIED\n    dataset: CoNLL-2003\n    degen_rate: 0.8672\n    degen_rate_source: unified_metrics_constant_f1_gold_filtered\n\n  exp_id: exp_017_llama_conll_n16_r1024\n    N: NOT_SPECIFIED\n    dataset: CoNLL-2003\n    degen_rate: 0.8647\n    degen_rate_source: unified_metrics_constant_f1_gold_filtered\n\n  exp_id: exp_018_llama_scierc_seed456_r1024\n    N: NOT_SPECIFIED\n    dataset: SciERC\n    degen_rate: 0.2741\n    degen_rate_source: unified_metrics_constant_f1_gold_filtered\n\n  exp_id: exp_018_llama_scierc_seed42_r1024\n    N: NOT_SPECIFIED\n    dataset: SciERC\n    degen_rate: 0.2495\n    degen_rate_source: unified_metrics_constant_f1_gold_filtered\n\n  exp_id: exp_002_conll_n16\n    N: 16\n    dataset: conll2003\n    degen_rate: 0.4844\n    degen_rate_source: unified_metrics_constant_f1_gold_filtered\n\n  exp_id: exp_012_rerun_1024\n    N: NOT_SPECIFIED\n    dataset: SciERC\n    degen_rate: 0.1777\n    degen_rate_source: unified_metrics_constant_f1_gold_filtered\n\n  exp_id: exp_llama_scierc_seed456\n    N: NOT_SPECIFIED\n    dataset: UNKNOWN\n    degen_rate: 0.2741\n    degen_rate_source: unified_metrics_constant_f1_gold_filtered\n\n  exp_id: exp_007_llama_scierc_seed123\n    N: NOT_SPECIFIED\n    dataset: UNKNOWN\n    degen_rate: 0.2665\n    degen_rate_source: unified_metrics_constant_f1_gold_filtered\n\n  exp_id: exp_qwen3_4b_conll_scs_inference\n    N: NOT_SPECIFIED\n    dataset: UNKNOWN\n    degen_rate: 0.9057\n    degen_rate_source: unified_metrics_constant_f1_gold_filtered\n\n  exp_id: exp_qwen3_4b_conll_scs_inference_v2\n    N: NOT_SPECIFIED\n    dataset: UNKNOWN\n    degen_rate: 0.9057\n    degen_rate_source: unified_metrics_constant_f1_gold_filtered\n\n  exp_id: exp_qwen3_4b_scierc_scs_inference\n    N: NOT_SPECIFIED\n    dataset: UNKNOWN\n    degen_rate: 0.104\n    degen_rate_source: unified_metrics_constant_f1_gold_filtered\n\n  exp_id: exp_027_fewnerd_n16\n    N: NOT_SPECIFIED\n    dataset: UNKNOWN\n    degen_rate: 0.0706\n    degen_rate_source: unified_metrics_constant_f1_gold_filtered\n\n  exp_id: exp_026_t12\n    N: NOT_SPECIFIED\n    dataset: UNKNOWN\n    degen_rate: 0.1493\n    degen_rate_source: unified_metrics_constant_f1_gold_filtered\n\n  exp_id: exp_026_t08\n    N: NOT_SPECIFIED\n    dataset: UNKNOWN\n    degen_rate: 0.2382\n    degen_rate_source: unified_metrics_constant_f1_gold_filtered\n\n  exp_id: exp_026_t05\n    N: NOT_SPECIFIED\n    dataset: UNKNOWN\n    degen_rate: 0.414\n    degen_rate_source: unified_metrics_constant_f1_gold_filtered\n\n  exp_id: exp_026_T12\n    N: NOT_SPECIFIED\n    dataset: UNKNOWN\n    degen_rate: 0.1493\n    degen_rate_source: unified_metrics_constant_f1_gold_filtered\n\n  exp_id: exp_026_T08\n    N: NOT_SPECIFIED\n    dataset: UNKNOWN\n    degen_rate: 0.2382\n    degen_rate_source: unified_metrics_constant_f1_gold_filtered\n\n  exp_id: exp_026_T05\n    N: NOT_SPECIFIED\n    dataset: UNKNOWN\n    degen_rate: 0.414\n    degen_rate_source: unified_metrics_constant_f1_gold_filtered\n\n  exp_id: exp_017_llama_conll_n16_s123_r1024\n    N: NOT_SPECIFIED\n    dataset: CoNLL-2003\n    degen_rate: 0.8636\n    degen_rate_source: unified_metrics_constant_f1_gold_filtered\n\n  exp_id: exp_018_llama_scierc_seed123\n    N: NOT_SPECIFIED\n    dataset: UNKNOWN\n    degen_rate: 0.2665\n    degen_rate_source: unified_metrics_constant_f1_gold_filtered\n\n  exp_id: exp_018_qwen_scierc_seed456\n    N: NOT_SPECIFIED\n    dataset: UNKNOWN\n    degen_rate: 0.2042\n    degen_rate_source: unified_metrics_constant_f1_gold_filtered\n\n  exp_id: exp_018_qwen_scierc_seed123\n    N: NOT_SPECIFIED\n    dataset: UNKNOWN\n    degen_rate: 0.172\n    degen_rate_source: unified_metrics_constant_f1_gold_filtered",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a6bebe1c-d1a8-47ef-906d-6b762ae91d7b",
+            "isSidechain": true,
+            "promptId": "2279f609-b135-4e34-8568-a1f529688be0",
+            "agentId": "a64b58073ea7a72a5",
+            "type": "user",
+            "uuid": "49085a59-935a-427a-ba0e-0d714a8a9bd8",
+            "sourceToolAssistantUUID": "a6bebe1c-d1a8-47ef-906d-6b762ae91d7b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "a6ae7e35-390a-442a-93d4-9958c82c9e3b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-19T13:58:23.012Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01W6ZgRsk8ahhY1W1Wx3R3Pe",
+              "name": "Bash",
+              "input": {
+                "command": "cd /tmp && python3 << 'PYEOF'\nimport json, yaml\n\nfpath = \"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie--claude-sessions-reviewer-0064dd56/a6ae7e35-390a-442a-93d4-9958c82c9e3b/tool-results/mcp-agent-ml-research-read_registry-1779198683077.txt\"\n\nwith open(fpath, 'r') as f:\n    raw = f.read()\n\ndata = json.loads(raw)\nresult_str = data['result']\nregistry = yaml.safe_load(result_str)\nexperiments = registry['data']['experiments']\n\n# Now let's get detailed info on CoNLL experiments with degen_rate to check which ones are N=8\n# Focus on exp_002 variants and any CoNLL N=8 specifically\nconll_exps_with_degen = [\n    'exp_002_conll_n16_seed456', 'exp_002_conll_n16_seed123',\n    'exp_017_llama_conll_n16_s456_r1024', 'exp_017_llama_conll_n16_r1024',\n    'exp_017_llama_conll_n16_s123_r1024',\n    'exp_qwen3_4b_conll_scs_inference', 'exp_qwen3_4b_conll_scs_inference_v2',\n    'exp_029a', 'exp_029b'\n]\n\nfor eid in conll_exps_with_degen:\n    exp = experiments.get(eid)\n    if not exp:\n        continue\n    metrics = exp.get('metrics', {})\n    spec = exp.get('spec', {})\n    n_samples = metrics.get('N', metrics.get('n_samples', 'NOT_IN_METRICS'))\n    \n    # Look for n_samples in spec\n    spec_n = 'NOT_IN_SPEC'\n    if isinstance(spec, dict):\n        cmd = spec.get('command', '')\n        spec_n = spec.get('n_samples', 'NOT_IN_SPEC')\n        # Also check command for --n_samples\n        import re\n        m = re.search(r'--n_samples\\s+(\\d+)', cmd)\n        if m:\n            spec_n = f\"from_cmd: {m.group(1)}\"\n    \n    dataset_info = metrics.get('dataset', 'NOT_IN_METRICS')\n    if isinstance(spec, dict):\n        dataset_spec = spec.get('dataset', 'NOT_IN_SPEC')\n    else:\n        dataset_spec = 'NOT_IN_SPEC'\n    \n    print(f\"\\n--- {eid} ---\")\n    print(f\"  metrics.N / metrics.n_samples: {n_samples}\")\n    print(f\"  spec.n_samples / from command: {spec_n}\")\n    print(f\"  metrics.dataset: {dataset_info}\")\n    print(f\"  spec.dataset: {dataset_spec}\")\n    print(f\"  degen_rate: {metrics.get('degen_rate')}\")\n    print(f\"  hypothesis: {exp.get('hypothesis', 'NONE')}\")\n\nPYEOF\n",
+                "description": "Check N values and datasets for CoNLL experiments with degen_rate",
+                "timeout": 30000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "49085a59-935a-427a-ba0e-0d714a8a9bd8",
+            "isSidechain": true,
+            "agentId": "a64b58073ea7a72a5",
+            "requestId": "req_011CbC3be3fagNPaBFX2XCXM",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "9a84014f-9f5e-4d12-b6a0-2f15bc48c0af",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "a6ae7e35-390a-442a-93d4-9958c82c9e3b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UMyK7gW92MbtvncFEgxDg6",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2715,
+                "cache_read_input_tokens": 31754,
+                "output_tokens": 938,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2715
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 938,
+                    "cache_read_input_tokens": 31754,
+                    "cache_creation_input_tokens": 2715,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2715,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-19T13:58:23.537Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01W6ZgRsk8ahhY1W1Wx3R3Pe",
+              "type": "tool_result",
+              "content": "--- exp_002_conll_n16_seed456 ---\n  metrics.N / metrics.n_samples: NOT_IN_METRICS\n  spec.n_samples / from command: from_cmd: 16\n  metrics.dataset: NOT_IN_METRICS\n  spec.dataset: NOT_IN_SPEC\n  degen_rate: 0.5544\n  hypothesis: Multi-seed replication (seed=456) of Qwen3-8B CoNLL-2003 N=16 SCS inference to validate structural consistency signal stability across random seeds.\n\n--- exp_002_conll_n16_seed123 ---\n  metrics.N / metrics.n_samples: NOT_IN_METRICS\n  spec.n_samples / from command: from_cmd: 16\n  metrics.dataset: NOT_IN_METRICS\n  spec.dataset: NOT_IN_SPEC\n  degen_rate: 0.471\n  hypothesis: Multi-seed replication (seed=123) of Qwen3-8B CoNLL-2003 N=16 SCS inference to validate structural consistency signal stability across random seeds.\n\n--- exp_017_llama_conll_n16_s456_r1024 ---\n  metrics.N / metrics.n_samples: NOT_IN_METRICS\n  spec.n_samples / from command: from_cmd: 16\n  metrics.dataset: NOT_IN_METRICS\n  spec.dataset: CoNLL-2003\n  degen_rate: 0.8672\n  hypothesis: LLaMA CoNLL N=16 seed=456 (max_tokens=1024 rerun): cross-model multi-seed validation. Confirms structural>surface ordering is stable across seeds for LLaMA on CoNLL after gold-filtering correction.\n\n--- exp_017_llama_conll_n16_r1024 ---\n  metrics.N / metrics.n_samples: NOT_IN_METRICS\n  spec.n_samples / from command: from_cmd: 16\n  metrics.dataset: NOT_IN_METRICS\n  spec.dataset: CoNLL-2003\n  degen_rate: 0.8647\n  hypothesis: LLaMA CoNLL N=16 seed=42 (max_tokens=1024 rerun): cross-model baseline on CoNLL. Establishes LLaMA signal rankings after gold-filtering correction (fixes inflated FK ρ from gold-empty instances).\n\n--- exp_017_llama_conll_n16_s123_r1024 ---\n  metrics.N / metrics.n_samples: NOT_IN_METRICS\n  spec.n_samples / from command: from_cmd: 16\n  metrics.dataset: NOT_IN_METRICS\n  spec.dataset: CoNLL-2003\n  degen_rate: 0.8636\n  hypothesis: LLaMA CoNLL N=16 seed=123 (max_tokens=1024 rerun): cross-model multi-seed validation. Confirms structural>surface ordering is stable across seeds for LLaMA on CoNLL after gold-filtering correction.\n\n--- exp_qwen3_4b_conll_scs_inference ---\n  metrics.N / metrics.n_samples: NOT_IN_METRICS\n  spec.n_samples / from command: from_cmd: 8\n  metrics.dataset: NOT_IN_METRICS\n  spec.dataset: NOT_IN_SPEC\n  degen_rate: 0.9057\n  hypothesis: CoNLL 4B SCS inference (checkpoint-3800): cross-scale evidence for correlation-selection gap. Tests if structural>surface ranking and LP compression hold at smaller model scale on high-degeneracy dataset.\n\n--- exp_qwen3_4b_conll_scs_inference_v2 ---\n  metrics.N / metrics.n_samples: NOT_IN_METRICS\n  spec.n_samples / from command: from_cmd: 8\n  metrics.dataset: NOT_IN_METRICS\n  spec.dataset: NOT_IN_SPEC\n  degen_rate: 0.9057\n  hypothesis: CoNLL 4B SCS inference with best checkpoint-4200 (from resume training). Scale ablation: cross-scale evidence for correlation-selection gap. Compare vs v1 (ckpt-3800 baseline: greedy_f1=0.9251, SJ_rho=0.4045).\n\n--- exp_029a ---\n  metrics.N / metrics.n_samples: NOT_IN_METRICS\n  spec.n_samples / from command: NOT_IN_SPEC\n  metrics.dataset: NOT_IN_METRICS\n  spec.dataset: NOT_IN_SPEC\n  degen_rate: 0.064\n  hypothesis: Training convergence modulates degeneracy across datasets. SciERC 3-epoch training should produce lower degeneracy than 5-epoch baseline (17.8%), confirming epoch confound is not Few-NERD-specific.\n\n--- exp_029b ---\n  metrics.N / metrics.n_samples: NOT_IN_METRICS\n  spec.n_samples / from command: NOT_IN_SPEC\n  metrics.dataset: NOT_IN_METRICS\n  spec.dataset: NOT_IN_SPEC\n  degen_rate: 0.478\n  hypothesis: Training convergence modulates degeneracy across datasets. SciERC 10-epoch training should produce higher degeneracy than 5-epoch baseline (17.8%), confirming monotonic epoch-degeneracy relationship across datasets.",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9a84014f-9f5e-4d12-b6a0-2f15bc48c0af",
+            "isSidechain": true,
+            "promptId": "2279f609-b135-4e34-8568-a1f529688be0",
+            "agentId": "a64b58073ea7a72a5",
+            "type": "user",
+            "uuid": "5cf0b09d-61a6-4bfb-a81f-f4266831c3f3",
+            "sourceToolAssistantUUID": "9a84014f-9f5e-4d12-b6a0-2f15bc48c0af",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "a6ae7e35-390a-442a-93d4-9958c82c9e3b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-19T13:58:29.122Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Uazk72dvffEePJodKtJV6q",
+              "name": "Bash",
+              "input": {
+                "command": "cd /tmp && python3 << 'PYEOF'\nimport json, yaml\n\nfpath = \"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie--claude-sessions-reviewer-0064dd56/a6ae7e35-390a-442a-93d4-9958c82c9e3b/tool-results/mcp-agent-ml-research-read_registry-1779198683077.txt\"\n\nwith open(fpath, 'r') as f:\n    raw = f.read()\n\ndata = json.loads(raw)\nresult_str = data['result']\nregistry = yaml.safe_load(result_str)\nexperiments = registry['data']['experiments']\n\n# 4. exp_012_rerun_1024 - full dump\nprint(\"=\" * 80)\nprint(\"4. exp_012_rerun_1024\")\nprint(\"=\" * 80)\nexp = experiments.get('exp_012_rerun_1024')\nif exp:\n    print(yaml.dump(exp, default_flow_style=False, allow_unicode=True, width=200))\nelse:\n    print(\"NOT FOUND\")\n\nPYEOF\n",
+                "description": "Extract exp_012_rerun_1024 full data",
+                "timeout": 30000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5cf0b09d-61a6-4bfb-a81f-f4266831c3f3",
+            "isSidechain": true,
+            "agentId": "a64b58073ea7a72a5",
+            "requestId": "req_011CbC3ccFJ631TcCtGu2HrL",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "9289719b-82f6-4e9b-b554-fa6dae34419e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "a6ae7e35-390a-442a-93d4-9958c82c9e3b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018PX5e3xJY8ynbguKo5Y34o",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2260,
+                "cache_read_input_tokens": 34469,
+                "output_tokens": 402,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2260
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 402,
+                    "cache_read_input_tokens": 34469,
+                    "cache_creation_input_tokens": 2260,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2260,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-19T13:58:29.644Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Uazk72dvffEePJodKtJV6q",
+              "type": "tool_result",
+              "content": "================================================================================\n4. exp_012_rerun_1024\n================================================================================\ncompleted_at: '2026-05-14T23:10:33.075Z'\nconclusion: success\ncreated_at: '2026-05-14T22:11:33.777Z'\nhypothesis: 'Canonical SciERC baseline with max_tokens=1024: Qwen3-8B ft_002_v2, N=8, T=1.0, seed=42, joint NER+RE. Establishes ground-truth ρ rankings and selection F1 for all 5 signals under correct generation\n  length.'\nmetrics:\n  degen_rate: 0.1777\n  degen_rate_source: unified_metrics_constant_f1_gold_filtered\n  delta_vs_512_ner_full_rho:\n    EM: 0.0379\n    FK: 0.0014\n    SJ: 0.0034\n    logprob: 0.0656\n    voting_conf: -0.1226\n  ner_cond:\n    EM:\n      AUROC: 0.7556\n      AUROC_ci95:\n      - 0.7011\n      - 0.8107\n      ECE: 0.3257\n      rho: 0.3596\n      rho_ci95:\n      - 0.2819\n      - 0.4408\n      tau: 0.2735\n    FK:\n      AUROC: 0.6078\n      AUROC_ci95:\n      - 0.5442\n      - 0.6709\n      ECE: 0.4389\n      rho: 0.1761\n      rho_ci95:\n      - 0.0839\n      - 0.2665\n      tau: 0.1284\n    SJ:\n      AUROC: 0.6772\n      AUROC_ci95:\n      - 0.621\n      - 0.7337\n      ECE: 0.4416\n      rho: 0.3113\n      rho_ci95:\n      - 0.2353\n      - 0.3959\n      tau: 0.2257\n    logprob:\n      AUROC: 0.5633\n      AUROC_ci95:\n      - 0.5032\n      - 0.6232\n      ECE: 0.6803\n      rho: 0.1538\n      rho_ci95:\n      - 0.0637\n      - 0.2424\n      tau: 0.1111\n    n: 477\n    voting_conf:\n      AUROC: 0.6618\n      AUROC_ci95:\n      - 0.6004\n      - 0.7201\n      ECE: 0.3746\n      rho: 0.3\n      rho_ci95:\n      - 0.2168\n      - 0.3836\n      tau: 0.2189\n  ner_full:\n    EM:\n      AUROC: 0.7493\n      AUROC_ci95:\n      - 0.7002\n      - 0.7928\n      ECE: 0.3526\n      rho: 0.2945\n      rho_ci95:\n      - 0.2094\n      - 0.37\n      tau: 0.2208\n    FK:\n      AUROC: 0.629\n      AUROC_ci95:\n      - 0.5612\n      - 0.6882\n      ECE: 0.4512\n      rho: 0.2665\n      rho_ci95:\n      - 0.1743\n      - 0.3486\n      tau: 0.1974\n    SJ:\n      AUROC: 0.6917\n      AUROC_ci95:\n      - 0.6304\n      - 0.7406\n      ECE: 0.4531\n      rho: 0.3599\n      rho_ci95:\n      - 0.2732\n      - 0.4389\n      tau: 0.2646\n    logprob:\n      AUROC: 0.5783\n      AUROC_ci95:\n      - 0.5179\n      - 0.6387\n      ECE: 0.7064\n      rho: 0.2052\n      rho_ci95:\n      - 0.1171\n      - 0.2904\n      tau: 0.1478\n    n: 529\n    voting_conf:\n      AUROC: 0.6841\n      AUROC_ci95:\n      - 0.6249\n      - 0.7366\n      ECE: 0.3807\n      rho: 0.3792\n      rho_ci95:\n      - 0.2972\n      - 0.4486\n      tau: 0.2805\n  provenance_note: exp_015_v2 scierc_n8_logprob used exp_012_logprob (max_tokens=512 truncated data). voting_conf was inflated 0.502→0.379, logprob was suppressed 0.140→0.205.\n  re_cond:\n    EM:\n      AUROC: 0.7515\n      ECE: 0.2232\n      rho: 0.4165\n      tau: 0.3256\n    FK:\n      AUROC: 0.551\n      ECE: 0.3424\n      rho: 0.1139\n      tau: 0.0876\n    SJ:\n      AUROC: 0.6463\n      ECE: 0.2941\n      rho: 0.2457\n      tau: 0.1811\n    logprob:\n      AUROC: 0.5186\n      ECE: 0.6464\n      rho: 0.0112\n      tau: 0.0051\n    n: 238\n    voting_conf:\n      AUROC: 0.642\n      ECE: 0.207\n      rho: 0.2409\n      tau: 0.178\n  re_full:\n    EM:\n      AUROC: 0.7059\n      ECE: 0.3548\n      rho: 0.1344\n      tau: 0.1081\n    FK:\n      AUROC: 0.6089\n      ECE: 0.4405\n      rho: 0.2752\n      tau: 0.2117\n    SJ:\n      AUROC: 0.6702\n      ECE: 0.3865\n      rho: 0.2503\n      tau: 0.1878\n    logprob:\n      AUROC: 0.6005\n      ECE: 0.7694\n      rho: 0.2662\n      tau: 0.1951\n    n: 397\n    voting_conf:\n      AUROC: 0.6935\n      ECE: 0.2724\n      rho: 0.3498\n      tau: 0.2663\nretry_count: 0\nspec:\n  checkpoint_path: output/exp_012_rerun_1024/\n  command: CUDA_VISIBLE_DEVICES=0 python3 code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 8 --temperature\n    1.0 --max_tokens 1024 --seed 42 --num_test 9999 --collect_logprobs --output_dir output/exp_012_rerun_1024\n  data_count: 551\n  data_path: data/scierc/processed_data\n  dataset: SciERC\n  hypothesis: Verify if max_tokens=512 truncation inflated Table 1 N=8 SciERC signal values. Rerun with max_tokens=1024 for clean comparison.\n  log_path: output/exp_012_rerun_1024/run.log\n  model_name: qwen3-8b-scierc-merged-v2\n  parent: exp_012_logprob_baseline\n  seed: 42\n  server: autodl-5090\nstatus: DONE\nupdated_at: '2026-05-18T20:49:42.395Z'",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9289719b-82f6-4e9b-b554-fa6dae34419e",
+            "isSidechain": true,
+            "promptId": "2279f609-b135-4e34-8568-a1f529688be0",
+            "agentId": "a64b58073ea7a72a5",
+            "type": "user",
+            "uuid": "321f2132-a237-4213-9e99-792d0e40db62",
+            "sourceToolAssistantUUID": "9289719b-82f6-4e9b-b554-fa6dae34419e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "a6ae7e35-390a-442a-93d4-9958c82c9e3b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-19T13:58:37.807Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XvZQmxDBtTa2cQgGuDJyfN",
+              "name": "Bash",
+              "input": {
+                "command": "cd /tmp && python3 << 'PYEOF'\nimport json, yaml\n\nfpath = \"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie--claude-sessions-reviewer-0064dd56/a6ae7e35-390a-442a-93d4-9958c82c9e3b/tool-results/mcp-agent-ml-research-read_registry-1779198683077.txt\"\n\nwith open(fpath, 'r') as f:\n    raw = f.read()\n\ndata = json.loads(raw)\nresult_str = data['result']\nregistry = yaml.safe_load(result_str)\nexperiments = registry['data']['experiments']\n\n# 5. exp_015_metrics_expansion\nprint(\"=\" * 80)\nprint(\"5. exp_015_metrics_expansion\")\nprint(\"=\" * 80)\nexp = experiments.get('exp_015_metrics_expansion')\nif exp:\n    print(yaml.dump(exp, default_flow_style=False, allow_unicode=True, width=200))\nelse:\n    print(\"NOT FOUND\")\n\nPYEOF\n",
+                "description": "Extract exp_015_metrics_expansion full data",
+                "timeout": 30000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "321f2132-a237-4213-9e99-792d0e40db62",
+            "isSidechain": true,
+            "agentId": "a64b58073ea7a72a5",
+            "requestId": "req_011CbC3d4TdimzqzT8Sw3zAW",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "c1182966-265d-4c8b-ae33-2c58eb5742f2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "a6ae7e35-390a-442a-93d4-9958c82c9e3b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011TZ79Ev2kQieo1jQnES8Rt",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2508,
+                "cache_read_input_tokens": 36729,
+                "output_tokens": 389,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2508
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 389,
+                    "cache_read_input_tokens": 36729,
+                    "cache_creation_input_tokens": 2508,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2508,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-19T13:58:38.355Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XvZQmxDBtTa2cQgGuDJyfN",
+              "type": "tool_result",
+              "content": "================================================================================\n5. exp_015_metrics_expansion\n================================================================================\ncompleted_at: '2026-05-14T12:22:32.661Z'\nconclusion: success\ncreated_at: '2026-05-14T11:47:36.569Z'\nhypothesis: Unified 5-signal evaluation (SJ/FK/EM/VC/LP) on single canonical data source (exp_012 logprobs). Establishes complete signal ranking with ρ, AUROC, and τ metrics for both NER and RE under consistent\n  conditions.\nmetrics:\n  config: N=8, T=1.0, seed=42, model=qwen3-8b-scierc-merged-v2\n  data_source: exp_012_logprob/samples_with_logprobs.jsonl\n  diagnosis: 'Unified 5-signal evaluation on single data source. Voting leads NER full (ρ=0.502), SJ retains strength in NER cond (ρ=0.412). All structural signals beat logprob on NER. RE: voting leads\n    both full and cond.'\n  ner:\n    em_auroc: 0.623\n    em_rho_cond: 0.3427\n    em_rho_full: 0.2566\n    em_tau: 0.1924\n    fk_auroc: 0.6243\n    fk_rho_cond: 0.306\n    fk_rho_full: 0.2651\n    fk_tau: 0.2027\n    logprob_auroc: 0.5585\n    logprob_rho_cond: 0.1627\n    logprob_rho_full: 0.1396\n    logprob_tau: 0.1006\n    n_cond: 501\n    n_valid: 529\n    sj_auroc: 0.6656\n    sj_rho_cond: 0.412\n    sj_rho_full: 0.3565\n    sj_tau: 0.2658\n    voting_auroc: 0.7279\n    voting_rho_cond: 0.4497\n    voting_rho_full: 0.5018\n    voting_tau: 0.3766\n  re:\n    em_auroc: 0.5036\n    em_rho_cond: 0.3607\n    em_rho_full: 0.1002\n    em_tau: 0.0839\n    fk_auroc: 0.6308\n    fk_rho_cond: 0.3168\n    fk_rho_full: 0.2528\n    fk_tau: 0.1967\n    logprob_auroc: 0.6354\n    logprob_rho_cond: 0.1457\n    logprob_rho_full: 0.2467\n    logprob_tau: 0.1808\n    n_cond: 296\n    n_valid: 397\n    sj_auroc: 0.5816\n    sj_rho_cond: 0.3683\n    sj_rho_full: 0.2112\n    sj_tau: 0.1619\n    voting_auroc: 0.7162\n    voting_rho_cond: 0.463\n    voting_rho_full: 0.4217\n    voting_tau: 0.327\nnotes: 'RE logprob_rho_cond=0.1457 uses WRONG conditional filter (any sample F1>0, n=331). Correct value: 0.0112 from exp_012_rerun_1024 (greedy_f1>0, n=238). This entry''s RE cond values are DEPRECATED.'\nretry_count: 0\nspec:\n  checkpoint_path: /root/autodl-tmp/struct_self_consist_ie/output/mvp_pilot_004\n  command: python code/analyze_exp015_metrics_expansion.py\n  data_count: 551\n  data_path: /root/autodl-tmp/struct_self_consist_ie/output/exp_012_logprob/samples_with_logprobs.jsonl\n  hypothesis: Comprehensive evaluation of all 5 confidence signals with extended metrics\n  log_path: /root/autodl-tmp/struct_self_consist_ie/output/exp015_metrics_expansion\n  method: 'CPU-only analysis: 6 metrics x 5 signals x 2 subtasks (NER+RE)'\n  model_name: N/A (reuse pilot_004 samples)\n  parent: exp_012_logprob_baseline\n  seed: 42\n  server: autodl-5090\nstatus: DONE\nupdated_at: '2026-05-17T02:55:35.391Z'",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c1182966-265d-4c8b-ae33-2c58eb5742f2",
+            "isSidechain": true,
+            "promptId": "2279f609-b135-4e34-8568-a1f529688be0",
+            "agentId": "a64b58073ea7a72a5",
+            "type": "user",
+            "uuid": "afbe4ee6-4065-43a3-a3dc-231c89d5ce61",
+            "sourceToolAssistantUUID": "c1182966-265d-4c8b-ae33-2c58eb5742f2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "a6ae7e35-390a-442a-93d4-9958c82c9e3b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-19T13:58:43.004Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01N8W6yowCRuuL6QLyQ2ZDEA",
+              "name": "Bash",
+              "input": {
+                "command": "cd /tmp && python3 << 'PYEOF'\nimport json, yaml\n\nfpath = \"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie--claude-sessions-reviewer-0064dd56/a6ae7e35-390a-442a-93d4-9958c82c9e3b/tool-results/mcp-agent-ml-research-read_registry-1779198683077.txt\"\n\nwith open(fpath, 'r') as f:\n    raw = f.read()\n\ndata = json.loads(raw)\nresult_str = data['result']\nregistry = yaml.safe_load(result_str)\nexperiments = registry['data']['experiments']\n\n# 6. exp_015_v2\nprint(\"=\" * 80)\nprint(\"6. exp_015_v2\")\nprint(\"=\" * 80)\nexp = experiments.get('exp_015_v2')\nif exp:\n    print(yaml.dump(exp, default_flow_style=False, allow_unicode=True, width=200))\nelse:\n    print(\"NOT FOUND\")\n\nPYEOF\n",
+                "description": "Extract exp_015_v2 full data",
+                "timeout": 30000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "afbe4ee6-4065-43a3-a3dc-231c89d5ce61",
+            "isSidechain": true,
+            "agentId": "a64b58073ea7a72a5",
+            "requestId": "req_011CbC3dhY55cq2vrULvPssp",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "93c18586-d551-4104-b662-bc20cb00847c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "a6ae7e35-390a-442a-93d4-9958c82c9e3b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KXFbS8xeL2MSiGjtg2UBCu",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1603,
+                "cache_read_input_tokens": 39237,
+                "output_tokens": 386,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1603
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 386,
+                    "cache_read_input_tokens": 39237,
+                    "cache_creation_input_tokens": 1603,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1603,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-19T13:58:43.519Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01N8W6yowCRuuL6QLyQ2ZDEA",
+              "type": "tool_result",
+              "content": "================================================================================\n6. exp_015_v2\n================================================================================\ncompleted_at: '2026-05-14T15:34:56.741Z'\nconclusion: success\ncreated_at: '2026-05-14T15:34:23.336Z'\nhypothesis: 'Metrics expansion v2: corrected evaluation with proper conditional filtering. Updates exp_015 with gold-filtered pipeline to fix RE conditional ρ values that used wrong filter criterion.'\nmetrics:\n  scierc_ner_avg:\n    em_auroc: 0.7873\n    fk_auroc: 0.6172\n    logprob_auroc: 0.5918\n    sj_auroc: 0.7394\n    voting_auroc: 0.7367\n  scierc_re_avg:\n    em_auroc: 0.715\n    fk_auroc: 0.5939\n    logprob_auroc: 0.5849\n    sj_auroc: 0.6746\n    voting_auroc: 0.7234\nretry_count: 0\nspec:\n  checkpoint_path: N/A (analysis only)\n  command: python code/analyze_exp015_v2_metrics.py\n  data_count: 9148\n  data_path: /root/autodl-tmp/struct_self_consist_ie/output/ (10 datasets)\n  log_path: /tmp/exp015_v2.log\n  model_name: Qwen3-8B + LLaMA (multi-model)\n  seed: 42,123,456 (multi-seed)\n  server: autodl-5090\nstatus: DONE\nupdated_at: '2026-05-17T02:56:55.830Z'",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "93c18586-d551-4104-b662-bc20cb00847c",
+            "isSidechain": true,
+            "promptId": "2279f609-b135-4e34-8568-a1f529688be0",
+            "agentId": "a64b58073ea7a72a5",
+            "type": "user",
+            "uuid": "bd97445d-f613-4349-a26e-01b6612abba8",
+            "sourceToolAssistantUUID": "93c18586-d551-4104-b662-bc20cb00847c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "a6ae7e35-390a-442a-93d4-9958c82c9e3b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-19T13:58:47.221Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me also check the original exp_002 more carefully -- its spec says `--n_samples 8` and check if there are any other CoNLL N=8 experiments with degen_rate that I might have missed."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bd97445d-f613-4349-a26e-01b6612abba8",
+            "isSidechain": true,
+            "agentId": "a64b58073ea7a72a5",
+            "requestId": "req_011CbC3e5bNhYuqZD944tThB",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "3b5221af-53b8-4620-94d0-e3f985c4e251",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "a6ae7e35-390a-442a-93d4-9958c82c9e3b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PR2gfDf4r2CwzUyrTEK9dV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 824,
+                "cache_read_input_tokens": 40840,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 824,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-19T13:58:57.139Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SzGnCYkprbQ5NFLfZMobPJ",
+              "name": "Bash",
+              "input": {
+                "command": "cd /tmp && python3 << 'PYEOF'\nimport json, yaml, re\n\nfpath = \"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie--claude-sessions-reviewer-0064dd56/a6ae7e35-390a-442a-93d4-9958c82c9e3b/tool-results/mcp-agent-ml-research-read_registry-1779198683077.txt\"\n\nwith open(fpath, 'r') as f:\n    raw = f.read()\n\ndata = json.loads(raw)\nresult_str = data['result']\nregistry = yaml.safe_load(result_str)\nexperiments = registry['data']['experiments']\n\n# Find ALL experiments that could be CoNLL + N=8\n# Check by looking at command, dataset, hypothesis, name\nprint(\"=\" * 80)\nprint(\"ALL CONLL EXPERIMENTS (any N)\")\nprint(\"=\" * 80)\n\nfor eid, exp in experiments.items():\n    is_conll = False\n    # Check name\n    if 'conll' in eid.lower():\n        is_conll = True\n    # Check spec\n    spec = exp.get('spec', {})\n    if isinstance(spec, dict):\n        cmd = spec.get('command', '')\n        dataset = spec.get('dataset', '')\n        hyp = spec.get('hypothesis', '')\n        if 'conll' in cmd.lower() or 'conll' in dataset.lower() or 'conll' in hyp.lower():\n            is_conll = True\n    # Check hypothesis at top level\n    hyp_top = exp.get('hypothesis', '')\n    if isinstance(hyp_top, str) and 'conll' in hyp_top.lower():\n        is_conll = True\n    # Check metrics\n    metrics = exp.get('metrics', {})\n    if isinstance(metrics, dict):\n        ds = metrics.get('dataset', '')\n        if isinstance(ds, str) and 'conll' in ds.lower():\n            is_conll = True\n    \n    if is_conll:\n        # Get N\n        n_val = 'UNKNOWN'\n        if isinstance(metrics, dict):\n            n_val = metrics.get('N', metrics.get('n_samples', 'NOT_IN_METRICS'))\n        spec_n = 'NOT_IN_SPEC'\n        if isinstance(spec, dict):\n            cmd = spec.get('command', '')\n            m = re.search(r'--n_samples\\s+(\\d+)', cmd)\n            if m:\n                spec_n = m.group(1)\n        \n        degen = metrics.get('degen_rate', 'NONE') if isinstance(metrics, dict) else 'NONE'\n        \n        print(f\"\\n  {eid}\")\n        print(f\"    N (metrics): {n_val}\")\n        print(f\"    N (from cmd): {spec_n}\")\n        print(f\"    degen_rate: {degen}\")\n\nPYEOF\n",
+                "description": "Find ALL CoNLL experiments with their N values",
+                "timeout": 30000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3b5221af-53b8-4620-94d0-e3f985c4e251",
+            "isSidechain": true,
+            "agentId": "a64b58073ea7a72a5",
+            "requestId": "req_011CbC3e5bNhYuqZD944tThB",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "b3e47d05-4a84-4094-9c40-6ef91e2c30ea",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "a6ae7e35-390a-442a-93d4-9958c82c9e3b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PR2gfDf4r2CwzUyrTEK9dV",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 824,
+                "cache_read_input_tokens": 40840,
+                "output_tokens": 908,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 824
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 908,
+                    "cache_read_input_tokens": 40840,
+                    "cache_creation_input_tokens": 824,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 824,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-19T13:58:57.712Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SzGnCYkprbQ5NFLfZMobPJ",
+              "type": "tool_result",
+              "content": "================================================================================\nALL CONLL EXPERIMENTS (any N)\n================================================================================\n\n  exp_qwen25_72b_zeroshot\n    N (metrics): NOT_IN_METRICS\n    N (from cmd): NOT_IN_SPEC\n    degen_rate: NONE\n\n  exp_wnut17_qwen25_7b\n    N (metrics): NOT_IN_METRICS\n    N (from cmd): NOT_IN_SPEC\n    degen_rate: NONE\n\n  hidden_state_probe_conll_full\n    N (metrics): NOT_IN_METRICS\n    N (from cmd): NOT_IN_SPEC\n    degen_rate: NONE\n\n  hidden_state_probe_conll_v2\n    N (metrics): NOT_IN_METRICS\n    N (from cmd): NOT_IN_SPEC\n    degen_rate: NONE\n\n  exp_030_conll_t12\n    N (metrics): NOT_IN_METRICS\n    N (from cmd): NOT_IN_SPEC\n    degen_rate: NONE\n\n  exp_002_conll_n16_seed456\n    N (metrics): NOT_IN_METRICS\n    N (from cmd): 16\n    degen_rate: 0.5544\n\n  exp_002_conll_n16_seed123\n    N (metrics): NOT_IN_METRICS\n    N (from cmd): 16\n    degen_rate: 0.471\n\n  exp_017_llama_conll_n16_s456_r1024\n    N (metrics): NOT_IN_METRICS\n    N (from cmd): 16\n    degen_rate: 0.8672\n\n  exp_017_llama_conll_n16_r1024\n    N (metrics): NOT_IN_METRICS\n    N (from cmd): 16\n    degen_rate: 0.8647\n\n  exp_002_conll_n16\n    N (metrics): 16\n    N (from cmd): 16\n    degen_rate: 0.4844\n\n  exp_qwen3_4b_conll_scs_inference\n    N (metrics): NOT_IN_METRICS\n    N (from cmd): 8\n    degen_rate: 0.9057\n\n  exp_qwen3_4b_conll_scs_inference_v2\n    N (metrics): NOT_IN_METRICS\n    N (from cmd): 8\n    degen_rate: 0.9057\n\n  exp_017_llama_conll_n16_s123_r1024\n    N (metrics): NOT_IN_METRICS\n    N (from cmd): 16\n    degen_rate: 0.8636\n\n  exp_017_llama_conll\n    N (metrics): NOT_IN_METRICS\n    N (from cmd): NOT_IN_SPEC\n    degen_rate: NONE\n\n  exp_017_llama_conll_finetune\n    N (metrics): NOT_IN_METRICS\n    N (from cmd): NOT_IN_SPEC\n    degen_rate: NONE\n\n  exp_017_llama_conll_infer\n    N (metrics): 8\n    N (from cmd): NOT_IN_SPEC\n    degen_rate: NONE\n\n  exp_017_llama_conll_n16\n    N (metrics): NOT_IN_METRICS\n    N (from cmd): 16\n    degen_rate: NONE\n\n  exp_011_ood_scierc_to_conll\n    N (metrics): NOT_IN_METRICS\n    N (from cmd): 8\n    degen_rate: NONE\n\n  exp_011_ood_conll_to_scierc\n    N (metrics): NOT_IN_METRICS\n    N (from cmd): 8\n    degen_rate: NONE\n\n  exp_freeform_conll_4seed\n    N (metrics): 8\n    N (from cmd): 8\n    degen_rate: NONE\n\n  exp_qwen3_4b_conll_merge_inference_v2\n    N (metrics): NOT_IN_METRICS\n    N (from cmd): 8\n    degen_rate: NONE\n\n  exp_qwen3_4b_conll_finetune_resume\n    N (metrics): NOT_IN_METRICS\n    N (from cmd): NOT_IN_SPEC\n    degen_rate: NONE\n\n  exp_qwen3_4b_conll_finetune\n    N (metrics): NOT_IN_METRICS\n    N (from cmd): NOT_IN_SPEC\n    degen_rate: NONE\n\n  exp_017_llama_conll_n8_t07\n    N (metrics): NOT_IN_METRICS\n    N (from cmd): 8\n    degen_rate: NONE\n\n  exp_002_merge_conll2003\n    N (metrics): NOT_IN_METRICS\n    N (from cmd): NOT_IN_SPEC\n    degen_rate: NONE\n\n  exp_002_conll_n16_r1024\n    N (metrics): NOT_IN_METRICS\n    N (from cmd): 16\n    degen_rate: NONE\n\n  exp_017_llama_conll_n16_s456\n    N (metrics): NOT_IN_METRICS\n    N (from cmd): 16\n    degen_rate: NONE\n\n  exp_017_llama_conll_n16_s123\n    N (metrics): NOT_IN_METRICS\n    N (from cmd): 16\n    degen_rate: NONE\n\n  exp_002\n    N (metrics): 8\n    N (from cmd): 8\n    degen_rate: NONE\n\n  exp_002_ner_conll2003\n    N (metrics): NOT_IN_METRICS\n    N (from cmd): 8\n    degen_rate: NONE",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b3e47d05-4a84-4094-9c40-6ef91e2c30ea",
+            "isSidechain": true,
+            "promptId": "2279f609-b135-4e34-8568-a1f529688be0",
+            "agentId": "a64b58073ea7a72a5",
+            "type": "user",
+            "uuid": "6d55ff2e-2551-40f2-91a4-1f5a5c2e0f42",
+            "sourceToolAssistantUUID": "b3e47d05-4a84-4094-9c40-6ef91e2c30ea",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "a6ae7e35-390a-442a-93d4-9958c82c9e3b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-19T13:59:01.221Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me also get the full records for the Qwen3-4B CoNLL N=8 experiments since they're the only CoNLL N=8 experiments that report degen_rate."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6d55ff2e-2551-40f2-91a4-1f5a5c2e0f42",
+            "isSidechain": true,
+            "agentId": "a64b58073ea7a72a5",
+            "requestId": "req_011CbC3f8Lbm3PRdcA93qHbT",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "b8f0673a-7896-45a0-a774-1dfb482d10ab",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "a6ae7e35-390a-442a-93d4-9958c82c9e3b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01A4cZXmyq3wPLsBvMtV2Xzc",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2342,
+                "cache_read_input_tokens": 41664,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2342,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-19T13:59:04.401Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015XvDwsjRrZLbjyJ1xhkCJf",
+              "name": "Bash",
+              "input": {
+                "command": "cd /tmp && python3 << 'PYEOF'\nimport json, yaml\n\nfpath = \"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-1-projects-struct-self-consist-ie--claude-sessions-reviewer-0064dd56/a6ae7e35-390a-442a-93d4-9958c82c9e3b/tool-results/mcp-agent-ml-research-read_registry-1779198683077.txt\"\n\nwith open(fpath, 'r') as f:\n    raw = f.read()\n\ndata = json.loads(raw)\nresult_str = data['result']\nregistry = yaml.safe_load(result_str)\nexperiments = registry['data']['experiments']\n\n# Full dump of the two CoNLL N=8 experiments with degen_rate\nfor eid in ['exp_qwen3_4b_conll_scs_inference', 'exp_qwen3_4b_conll_scs_inference_v2']:\n    print(\"=\" * 80)\n    print(f\"FULL: {eid}\")\n    print(\"=\" * 80)\n    exp = experiments.get(eid)\n    if exp:\n        print(yaml.dump(exp, default_flow_style=False, allow_unicode=True, width=200))\n\nPYEOF\n",
+                "description": "Extract full records for Qwen3-4B CoNLL N=8 experiments",
+                "timeout": 30000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b8f0673a-7896-45a0-a774-1dfb482d10ab",
+            "isSidechain": true,
+            "agentId": "a64b58073ea7a72a5",
+            "requestId": "req_011CbC3f8Lbm3PRdcA93qHbT",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "d6bf240c-f2c6-4853-8594-e2840f2bba86",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "a6ae7e35-390a-442a-93d4-9958c82c9e3b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01A4cZXmyq3wPLsBvMtV2Xzc",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2342,
+                "cache_read_input_tokens": 41664,
+                "output_tokens": 485,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2342
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 485,
+                    "cache_read_input_tokens": 41664,
+                    "cache_creation_input_tokens": 2342,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2342,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-19T13:59:04.912Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015XvDwsjRrZLbjyJ1xhkCJf",
+              "type": "tool_result",
+              "content": "================================================================================\nFULL: exp_qwen3_4b_conll_scs_inference\n================================================================================\ncompleted_at: '2026-05-15T19:19:03.585Z'\nconclusion: success\ncreated_at: '2026-05-15T19:08:28.512Z'\nhypothesis: 'CoNLL 4B SCS inference (checkpoint-3800): cross-scale evidence for correlation-selection gap. Tests if structural>surface ranking and LP compression hold at smaller model scale on high-degeneracy\n  dataset.'\nmetrics:\n  FK_rho_cond: 0.42\n  FK_rho_full: 0.3961\n  LP_auroc_cond: 0.8153\n  LP_auroc_full: 0.7689\n  LP_rho_cond: 0.3378\n  LP_rho_full: 0.3186\n  SJ_rho_cond: 0.4306\n  SJ_rho_full: 0.4045\n  degen_rate: 0.9057\n  degen_rate_source: unified_metrics_constant_f1_gold_filtered\n  fleiss_kappa_mean: 0.9349\n  greedy_f1: 0.9251\n  n_gold_empty_filtered: 697\n  n_greedy_f1_zero_filtered: 112\n  n_instances: 3453\n  oracle_f1: 0.9408\n  oracle_headroom_pp: 1.57\n  rho_advantage_pp: 0.84\n  soft_jaccard_mean: 0.9754\n  structural_beats_surface: true\n  verdict: MARGINAL\nnotes: 4B CoNLL SCS inference completed. SJ>FK>LP ordering preserved at 4B scale (rho 0.405>0.396>0.319). Greedy F1=0.925 outperforms 8B (0.907), but SJ rho is lower (0.405 vs 0.450 at 8B N=16). Structural\n  beats surface confirmed (+0.84pp). Verdict MARGINAL due to small oracle headroom (1.57pp) — the model is already very good at CoNLL, leaving little room for selection improvement.\nretry_count: 0\nspec:\n  account: root\n  backend: tmux\n  checkpoint_path: /root/autodl-tmp/struct_self_consist_ie/checkpoints/qwen3-4b-conll2003-merged\n  command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/struct_self_consist_ie && PYTHONPATH=code python code/run_mvp_pilot.py --model_path checkpoints/qwen3-4b-conll2003-merged\n    --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples 8 --temperature 1.0 --seed 42 --num_test 9999 --max_tokens 1024 --collect_logprobs --output_dir output/exp_qwen3_4b_conll_scs_inference\"\n  gpu:\n  - cuda:0\n  gpu_hours: 0.15\n  log_path: /root/autodl-tmp/struct_self_consist_ie/output/exp_qwen3_4b_conll_scs_inference/report.json\n  pid: '222184'\n  server: autodl-5090\n  submitted_at: '2026-05-15T19:10:19.757Z'\n  submitted_via: submit_training_job\n  wall_clock_seconds: 523.8\nstatus: DONE\nupdated_at: '2026-05-18T20:49:06.922Z'\n\n================================================================================\nFULL: exp_qwen3_4b_conll_scs_inference_v2\n================================================================================\ncompleted_at: '2026-05-15T19:54:14.575Z'\nconclusion: success\ncreated_at: '2026-05-15T19:41:33.501Z'\nhypothesis: 'CoNLL 4B SCS inference with best checkpoint-4200 (from resume training). Scale ablation: cross-scale evidence for correlation-selection gap. Compare vs v1 (ckpt-3800 baseline: greedy_f1=0.9251,\n  SJ_rho=0.4045).'\nmetrics:\n  FK_rho_cond: 0.4538\n  FK_rho_full: 0.4181\n  LP_auroc_cond: 0.8209\n  LP_auroc_full: 0.7761\n  LP_rho_cond: 0.3487\n  LP_rho_full: 0.3313\n  SJ_rho_cond: 0.459\n  SJ_rho_full: 0.4217\n  degen_rate: 0.9057\n  degen_rate_source: unified_metrics_constant_f1_gold_filtered\n  greedy_f1: 0.9234\n  n_instances: 3453\n  oracle_f1: 0.9404\n  oracle_headroom_pp: 1.7\n  verdict: MARGINAL\nnotes: 'Gold-filter audit (2026-05-16): CONSISTENT. _full metrics (SJ_rho=0.4217, FK_rho=0.4181) are computed on gold-filtered set (n=2756), same as 8B Table 1 values. _full does NOT mean all 3453 instances\n  — it means gold-nonempty instances. _cond further excludes greedy-F1=0 (n=2641). Confirmed via run_mvp_pilot.py source code and report.json n values.'\nretry_count: 0\nspec:\n  account: root\n  backend: tmux\n  checkpoint_path: checkpoints/qwen3-4b-conll2003-merged-ckpt4200\n  checkpoint_source: checkpoints/qwen3-4b-conll2003-lora/checkpoint-4200\n  command: CUDA_VISIBLE_DEVICES=1 python code/run_mvp_pilot.py --model_path checkpoints/qwen3-4b-conll2003-merged-ckpt4200 --data_dir data/conll2003 --dataset conll2003 --subtask ner --n_samples 8 --temperature\n    1.0 --seed 42 --num_test 9999 --max_tokens 1024 --collect_logprobs --output_dir output/exp_qwen3_4b_conll_scs_inference_v2\n  data_count: 3453\n  data_path: data/conll2003\n  gpu:\n  - cuda:1\n  log_path: /tmp/infer_4b_conll_v2.log\n  model_name: Qwen3-4B (LoRA checkpoint-4200 merged)\n  seed: 42\n  server: autodl-5090\n  tmux_session: exp_4b_conll_scs_v2\nstatus: DONE\nupdated_at: '2026-05-18T20:49:03.705Z'",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d6bf240c-f2c6-4853-8594-e2840f2bba86",
+            "isSidechain": true,
+            "promptId": "2279f609-b135-4e34-8568-a1f529688be0",
+            "agentId": "a64b58073ea7a72a5",
+            "type": "user",
+            "uuid": "22da5071-e4a4-4611-ba70-a4eba0365676",
+            "sourceToolAssistantUUID": "d6bf240c-f2c6-4853-8594-e2840f2bba86",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "a6ae7e35-390a-442a-93d4-9958c82c9e3b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-19T14:00:03.652Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here is the complete extracted data:\n\n---\n\n## 1. exp_002 (CoNLL, Qwen3-8B)\n\n**N = 8** (from command: `--n_samples 8`; also `metrics.n_samples: 8`)\n\n**No `degen_rate` field exists in this experiment's metrics.** The metrics contain `n_valid: 2756` out of `n_instances: 3453`, but degeneracy rate was not computed/recorded.\n\n**Full spec:**\n- command: `python code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-conll2003-merged --dataset conll2003 --subtask ner --n_samples 8 --temperature 1.0 --collect_logprobs --num_test 99999`\n- model: `qwen3-8b-conll2003-lora-merged`\n- seed: 42\n- server: autodl-5090\n- data: `data/conll2003`, 3453 instances\n\n**Full metrics:**\n- `greedy_f1: 0.9123`, `voting_f1: 0.9141`, `oracle_f1: 0.9543`, `oracle_headroom: 0.042`\n- `n_samples: 8`, `n_instances: 3453`, `n_valid: 2756`, `temperature: 1`\n- SJ: `auroc_full=0.8008`, `rho_full=0.4357`, `rho_cond=0.4511`, `tau_full=0.3851`\n- EM: `auroc_full=0.8156`, `rho_full=0.4507`, `rho_cond=0.4799`, `tau_full=0.4002`\n- FK: `auroc_full=0.7741`, `rho_full=0.3998`, `rho_cond=0.4064`, `tau_full=0.3568`\n- EV: `auroc_full=0.7889`, `rho_full=0.4237`, `rho_cond=0.4127`, `tau_full=0.3777`\n- logprob: `auroc_full=0.7532`, `rho_full=0.3157`, `rho_cond=0.3562`, `tau_full=0.2469`\n- SJ vs logprob delta: `0.12` (significant=true, CI=[0.0881, 0.154])\n\n---\n\n## 2. exp_002_conll_n16 (CoNLL, Qwen3-8B)\n\n**N = 16** (explicit in `metrics.N: 16` and command `--n_samples 16`)\n\n**degen_rate = 0.4844** (source: `unified_metrics_constant_f1_gold_filtered`)\n\n**Full spec:**\n- command: `--n_samples 16 --temperature 1.0 --seed 42 --num_test 9999 --collect_logprobs`\n- model: `qwen3-8b-conll2003-merged`\n- parent: `exp_002_ner_conll2003`\n- plan_id: `exp-002`\n- seed: 42\n- server: autodl-5090\n\n**Full metrics (condensed):**\n- `greedy_f1: 0.907`, `n_instances: 3453`, `n_valid: 2756`, `n_conditional: 2614`\n- `degen_rate: 0.4844`\n- Full AUROC: EM=0.8409, FK=0.7821, SJ=0.8264, logprob=0.7531, voting_conf=0.8071\n- Full rho: EM=0.4627, FK=0.3928, SJ=0.4496, logprob=0.3146, voting_conf=0.4286\n- Cond AUROC: EM=0.8781, FK=0.7819, SJ=0.8405, logprob=0.8259, voting_conf=0.7951\n- Cond rho: EM=0.4658, FK=0.3494, SJ=0.4208, logprob=0.3756, voting_conf=0.3654\n- n8_vs_n16_delta_rho_full: EM=+0.012, FK=-0.007, SJ=+0.0139, logprob=-0.0011, voting_conf=+0.0049\n\n---\n\n## 3. CoNLL N=8 experiments with degen_rate\n\n**No Qwen3-8B CoNLL N=8 experiment reports degen_rate.** `exp_002` (which IS Qwen3-8B CoNLL N=8) has **no degen_rate field**.\n\nThe only CoNLL N=8 experiments with degen_rate are both **Qwen3-4B** (different model scale):\n- `exp_qwen3_4b_conll_scs_inference`: N=8, degen_rate=**0.9057**\n- `exp_qwen3_4b_conll_scs_inference_v2`: N=8, degen_rate=**0.9057**\n\nThese are 4B model scale ablation experiments, not the 8B model used in Table 1.\n\n**Key finding: There is NO degen_rate recorded for the canonical Qwen3-8B CoNLL N=8 configuration (exp_002).** The degen_rate was only added to the pipeline later (for N=16 experiments and 4B ablations). If Table 1 or any paper claim uses a CoNLL N=8 degen_rate for the 8B model, it has no registry source.\n\n---\n\n## 4. exp_012_rerun_1024 (SciERC, Qwen3-8B, N=8, max_tokens=1024)\n\n**degen_rate = 0.1777**\n\n**Full spec:**\n- command: `CUDA_VISIBLE_DEVICES=0 python3 code/run_mvp_pilot.py --model_path checkpoints/qwen3-8b-scierc-merged-v2 --data_dir data/scierc/processed_data --dataset scierc --subtask joint --n_samples 8 --temperature 1.0 --max_tokens 1024 --seed 42 --num_test 9999 --collect_logprobs --output_dir output/exp_012_rerun_1024`\n- model: `qwen3-8b-scierc-merged-v2`\n- dataset: SciERC\n- parent: `exp_012_logprob_baseline`\n- seed: 42\n- server: autodl-5090\n\n**Full metrics (all AUROC values):**\n\n| Signal | NER full AUROC | NER cond AUROC | RE full AUROC | RE cond AUROC |\n|--------|---------------|----------------|--------------|---------------|\n| EM     | 0.7493        | 0.7556         | 0.7059       | 0.7515        |\n| FK     | 0.6290        | 0.6078         | 0.6089       | 0.5510        |\n| SJ     | 0.6917        | 0.6772         | 0.6702       | 0.6463        |\n| logprob| 0.5783        | 0.5633         | 0.6005       | 0.5186        |\n| voting | 0.6841        | 0.6618         | 0.6935       | 0.6420        |\n\n**Full rho values:**\n\n| Signal | NER full rho | NER cond rho | RE full rho | RE cond rho |\n|--------|-------------|--------------|------------|-------------|\n| EM     | 0.2945      | 0.3596       | 0.1344     | 0.4165      |\n| FK     | 0.2665      | 0.1761       | 0.2752     | 0.1139      |\n| SJ     | 0.3599      | 0.3113       | 0.2503     | 0.2457      |\n| logprob| 0.2052      | 0.1538       | 0.2662     | 0.0112      |\n| voting | 0.3792      | 0.3000       | 0.3498     | 0.2409      |\n\nn: NER full=529, NER cond=477, RE full=397, RE cond=238\n\n**provenance_note:** \"exp_015_v2 scierc_n8_logprob used exp_012_logprob (max_tokens=512 truncated data). voting_conf was inflated 0.502->0.379, logprob was suppressed 0.140->0.205.\"\n\n---\n\n## 5. exp_015_metrics_expansion (SciERC analysis, reuses exp_012 data)\n\n**CRITICAL NOTE in the record itself:** `notes: 'RE logprob_rho_cond=0.1457 uses WRONG conditional filter (any sample F1>0, n=331). Correct value: 0.0112 from exp_012_rerun_1024 (greedy_f1>0, n=238). This entry's RE cond values are DEPRECATED.'`\n\n**Data source:** `exp_012_logprob/samples_with_logprobs.jsonl` (this is the OLD max_tokens=512 data, NOT the 1024 rerun)\n\n**SciERC NER metrics:**\n- `em_auroc: 0.623`, `em_rho_full: 0.2566`, `em_rho_cond: 0.3427`\n- `fk_auroc: 0.6243`, `fk_rho_full: 0.2651`, `fk_rho_cond: 0.306`\n- `sj_auroc: 0.6656`, `sj_rho_full: 0.3565`, `sj_rho_cond: 0.412`\n- `logprob_auroc: 0.5585`, `logprob_rho_full: 0.1396`, `logprob_rho_cond: 0.1627`\n- `voting_auroc: 0.7279`, `voting_rho_full: 0.5018`, `voting_rho_cond: 0.4497`\n- n_valid=529, n_cond=501\n\n**SciERC RE metrics:**\n- `em_auroc: 0.5036`, `em_rho_full: 0.1002`, `em_rho_cond: 0.3607`\n- `fk_auroc: 0.6308`, `fk_rho_full: 0.2528`, `fk_rho_cond: 0.3168`\n- `sj_auroc: 0.5816`, `sj_rho_full: 0.2112`, `sj_rho_cond: 0.3683`\n- `logprob_auroc: 0.6354`, `logprob_rho_full: 0.2467`, `logprob_rho_cond: 0.1457` **(DEPRECATED - wrong filter)**\n- `voting_auroc: 0.7162`, `voting_rho_full: 0.4217`, `voting_rho_cond: 0.463`\n- n_valid=397, n_cond=296\n\n---\n\n## 6. exp_015_v2 (multi-model/multi-seed averaged AUROC)\n\nThis experiment stores only **averaged AUROC** values across 10 datasets (multi-model Qwen3-8B + LLaMA, multi-seed 42/123/456). It does NOT contain per-seed or per-dataset breakdowns, rho values, or raw data.\n\n**SciERC NER averages:**\n- `em_auroc: 0.7873`\n- `fk_auroc: 0.6172`\n- `logprob_auroc: 0.5918`\n- `sj_auroc: 0.7394`\n- `voting_auroc: 0.7367`\n\n**SciERC RE averages:**\n- `em_auroc: 0.7150`\n- `fk_auroc: 0.5939`\n- `logprob_auroc: 0.5849`\n- `sj_auroc: 0.6746`\n- `voting_auroc: 0.7234`\n\n**Spec:** data_count=9148, data_path=\"output/ (10 datasets)\", model=\"Qwen3-8B + LLaMA (multi-model)\", seeds=\"42,123,456 (multi-seed)\"\n\n---\n\n## Key audit observations\n\n1. **exp_002 (Qwen3-8B CoNLL N=8) has NO degen_rate.** If any document claims a specific CoNLL N=8 degeneracy rate for the 8B model, it cannot be traced to registry.\n\n2. **exp_015_metrics_expansion is built on max_tokens=512 (truncated) data** from `exp_012_logprob`, not from `exp_012_rerun_1024` (max_tokens=1024). The record itself flags RE conditional values as DEPRECATED.\n\n3. **exp_015_v2 only stores averaged AUROC** -- no rho, no per-experiment breakdowns, no CIs. If Table 1 cites specific rho or per-dataset values and attributes them to exp_015_v2, those values are not in this record.\n\n4. **The provenance_note in exp_012_rerun_1024** explicitly states that exp_015_v2's SciERC N=8 logprob values came from the wrong (truncated) data source, with voting_conf inflated from 0.502 to 0.379 and logprob suppressed from 0.140 to 0.205."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "22da5071-e4a4-4611-ba70-a4eba0365676",
+            "isSidechain": true,
+            "agentId": "a64b58073ea7a72a5",
+            "requestId": "req_011CbC3ff639gnD6hbQBaqMk",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "b86eeca7-aa22-4ba5-bb1d-e69b241861c4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "a6ae7e35-390a-442a-93d4-9958c82c9e3b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ANav95rx4TC2DtfNqJXZkf",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2291,
+                "cache_read_input_tokens": 44006,
+                "output_tokens": 3500,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2291
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 3500,
+                    "cache_read_input_tokens": 44006,
+                    "cache_creation_input_tokens": 2291,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2291,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000034"
+        }
+      ],
+      "message_count": 34
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-i-need-to-extract-very-specific-data-from-a-large-registry-json-file-to-audit.md"
+}

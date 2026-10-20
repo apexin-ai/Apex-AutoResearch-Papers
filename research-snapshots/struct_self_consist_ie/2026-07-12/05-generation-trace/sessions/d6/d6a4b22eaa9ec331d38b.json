@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "d6a4b22eaa9ec331d38b",
+  "project": "struct_self_consist_ie--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [系统通知 — worker_done:worker_fix_bootstrap_voting_conf_p1_20260514T214500]: Worker worker_fix_bootstrap_voting_conf_p1_202",
+  "task_key": "37eb8e75-7ba5-4f77-bebc-3c2e309dd8ee",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/37eb8e75-7ba5-4f77-bebc-3c2e309dd8ee.jsonl",
+    "occurrence": 1,
+    "bytes": 648527,
+    "sha256": "6add4f60d4692d40bdc941089ea23535ca585c7784d6666bccbfd219e560a0fc"
+  },
+  "statistics": {
+    "messages": 161,
+    "user_turns": 1,
+    "tool_calls": 49,
+    "roles": {
+      "record": 35,
+      "user": 1,
+      "assistant": 27,
+      "tool_call": 49,
+      "tool_result": 49
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "d6a4b22eaa9ec331d38b-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 159,
+      "chunks": [
+        {
+          "path": "d6a4b22eaa9ec331d38b-part-0001.json",
+          "message_count": 133
+        },
+        {
+          "path": "d6a4b22eaa9ec331d38b-part-0002.json",
+          "message_count": 26
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-worker-done-worker-fix-bootstrap-voting-conf-p1-20260514t214500-worker-worker.md"
+}

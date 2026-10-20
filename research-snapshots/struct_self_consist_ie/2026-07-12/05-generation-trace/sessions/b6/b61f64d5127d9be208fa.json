@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "b61f64d5127d9be208fa",
+  "project": "struct_self_consist_ie--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> 已知信息: - pilot_004: max_tokens=1024, N=8, T=1.0, seed=42, SciERC, Qwen3-8B - exp_015_metrics_expansion: v",
+  "task_key": "d3032f48-fe32-4b2b-bb2c-e9c52d9030d4",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/d3032f48-fe32-4b2b-bb2c-e9c52d9030d4.jsonl",
+    "occurrence": 1,
+    "bytes": 951951,
+    "sha256": "a756d773e63166dc53580d71a2304d96ffee9eeb091462c4077b6ac1f3ea4216"
+  },
+  "statistics": {
+    "messages": 197,
+    "user_turns": 1,
+    "tool_calls": 65,
+    "roles": {
+      "record": 42,
+      "user": 1,
+      "assistant": 24,
+      "tool_call": 65,
+      "tool_result": 65
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "b61f64d5127d9be208fa-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 195,
+      "chunks": [
+        {
+          "path": "b61f64d5127d9be208fa-part-0001.json",
+          "message_count": 121
+        },
+        {
+          "path": "b61f64d5127d9be208fa-part-0002.json",
+          "message_count": 74
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-pilot-004-max-tokens-1024-n-8-t-1-0-seed-42-scierc-qwen3-8b-exp-copy-2.md"
+}

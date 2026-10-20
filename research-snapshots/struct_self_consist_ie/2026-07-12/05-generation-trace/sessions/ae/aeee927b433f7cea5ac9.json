@@ -1,0 +1,1590 @@
+{
+  "schema_version": "1.0",
+  "id": "aeee927b433f7cea5ac9",
+  "project": "struct_self_consist_ie--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Find and read the main LaTeX paper files for the struct_self_consist_ie project. The paper is likely in the artifacts/dr",
+  "task_key": "agent-a3a8f9937ba741116",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/agent-a3a8f9937ba741116.jsonl",
+    "occurrence": 1,
+    "bytes": 141487,
+    "sha256": "3bad26ba7bc4a620c469f2c4b3a0c0af0d788c5bea4fa7443c040b11194ecc33"
+  },
+  "statistics": {
+    "messages": 33,
+    "user_turns": 1,
+    "tool_calls": 13,
+    "roles": {
+      "user": 1,
+      "assistant": 6,
+      "tool_call": 13,
+      "tool_result": 13
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T19:14:03.378Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Find and read the main LaTeX paper files for the struct_self_consist_ie project. The paper is likely in the artifacts/dream_reports directory or a dedicated paper directory. Look for the most recent paper.tex, and also check for a sections/ directory with individual .tex files (abstract.tex, conclusion.tex, introduction.tex, experiments.tex, methodology.tex, related_work.tex, discussion.tex, limitations.tex, appendix.tex etc).\n\nSearch in:\n- /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/\n- Any paper/ or latex/ subdirectories\n\nReport all .tex files found with their paths and modification times, and read the content of the main paper file and key sections (especially experiments section for numerical claims, and any tables)."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "ca9f328b-7d8f-49d7-ba83-1bf2b49868d3",
+            "agentId": "a3a8f9937ba741116",
+            "type": "user",
+            "uuid": "47092cf1-2d78-45b2-9ddd-5e5ae7fd85a5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "3614841f-3054-4bdc-a2e6-70a4541802e0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "serialized-singing-lantern"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T19:14:05.076Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll help you find and read the LaTeX paper files for the struct_self_consist_ie project. Let me search systematically for these files."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "47092cf1-2d78-45b2-9ddd-5e5ae7fd85a5",
+            "isSidechain": true,
+            "agentId": "a3a8f9937ba741116",
+            "requestId": "req_011Cb4tT5vqLM3gJSRNfFGrC",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "8f67a21d-4fb2-4b29-ab09-8e1e0a9afd3e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "3614841f-3054-4bdc-a2e6-70a4541802e0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "serialized-singing-lantern",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Hg35SLBnfRhFsKsaYK3PYS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 20797,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 20797,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T19:14:05.293Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Jkd8oPU5yrNpLCiHTtYZF4",
+              "name": "Bash",
+              "input": {
+                "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie -name \"*.tex\" -type f 2>/dev/null | head -50"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8f67a21d-4fb2-4b29-ab09-8e1e0a9afd3e",
+            "isSidechain": true,
+            "agentId": "a3a8f9937ba741116",
+            "requestId": "req_011Cb4tT5vqLM3gJSRNfFGrC",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "7b44bbc9-7021-4d2c-9091-75af5cea96dc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "3614841f-3054-4bdc-a2e6-70a4541802e0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "serialized-singing-lantern",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Hg35SLBnfRhFsKsaYK3PYS",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 20797,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 133,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 20797
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 133,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 20797,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 20797,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T19:14:05.585Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Jkd8oPU5yrNpLCiHTtYZF4",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/introduction.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/abstract.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/limitations.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/method.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/conclusion.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/related_work.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/main.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/introduction.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/n_scaling_appendix_tables_44b000.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/n_scaling_appendix_tables.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/abstract.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/limitations.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/discussion.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/conclusion.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/freeform_ablation_appendix_table.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/experiments.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/related_work.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/bootstrap_ci_tables.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/n_scaling_appendix_tables.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260514T203201/median/paper.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260514T203201/worst/paper.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260514T203201/best/paper.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260515T092545/median/paper.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260515T092545/worst/paper.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260515T092545/best/paper.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260514T093336/median/paper.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260514T093336/worst/paper.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260514T093336/best/paper.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260514T105303/median/paper.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260514T105303/worst/paper.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260514T105303/best/paper.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/freeform_ablation_appendix_table.tex",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7b44bbc9-7021-4d2c-9091-75af5cea96dc",
+            "isSidechain": true,
+            "promptId": "ca9f328b-7d8f-49d7-ba83-1bf2b49868d3",
+            "agentId": "a3a8f9937ba741116",
+            "type": "user",
+            "uuid": "85698db3-1f16-4090-b518-4e8aaed51d70",
+            "sourceToolAssistantUUID": "7b44bbc9-7021-4d2c-9091-75af5cea96dc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "3614841f-3054-4bdc-a2e6-70a4541802e0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "serialized-singing-lantern"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T19:14:07.613Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Good! I found multiple .tex files. Now let me check the modification times to find the most recent paper, and then read the main files:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "85698db3-1f16-4090-b518-4e8aaed51d70",
+            "isSidechain": true,
+            "agentId": "a3a8f9937ba741116",
+            "requestId": "req_011Cb4tTFCwSn76hiPis3Tpb",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "4558db9c-845b-4311-bea4-2263c5fb2468",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "3614841f-3054-4bdc-a2e6-70a4541802e0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "serialized-singing-lantern",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_016s3yTFbP57iGAbPcFh63RH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 2550,
+                "cache_read_input_tokens": 20797,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2550,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T19:14:08.205Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TmVGLKj8qZmbChsEAMykvg",
+              "name": "Bash",
+              "input": {
+                "command": "ls -lt /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/*.tex /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/*.tex 2>/dev/null | head -20"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4558db9c-845b-4311-bea4-2263c5fb2468",
+            "isSidechain": true,
+            "agentId": "a3a8f9937ba741116",
+            "requestId": "req_011Cb4tTFCwSn76hiPis3Tpb",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "c9e690a2-f87a-4687-8689-26fe009577bb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "3614841f-3054-4bdc-a2e6-70a4541802e0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "serialized-singing-lantern",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_016s3yTFbP57iGAbPcFh63RH",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 2550,
+                "cache_read_input_tokens": 20797,
+                "output_tokens": 167,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2550
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 167,
+                    "cache_read_input_tokens": 20797,
+                    "cache_creation_input_tokens": 2550,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2550,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T19:14:08.282Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TmVGLKj8qZmbChsEAMykvg",
+              "type": "tool_result",
+              "content": "-rw-r--r-- 1 ubuntu ubuntu 18046 May 15 16:16 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/experiments.tex\n-rw-r--r-- 1 ubuntu ubuntu  1504 May 15 15:35 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/main.tex\n-rw-r--r-- 1 ubuntu ubuntu  2524 May 15 12:17 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/n_scaling_appendix_tables_44b000.tex\n-rw-r--r-- 1 ubuntu ubuntu  2530 May 15 12:06 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/n_scaling_appendix_tables.tex\n-rw-r--r-- 1 ubuntu ubuntu  2344 May 15 10:30 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/freeform_ablation_appendix_table.tex\n-rw-r--r-- 1 ubuntu ubuntu  1734 May 14 21:10 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/limitations.tex\n-rw-r--r-- 1 ubuntu ubuntu  2169 May 14 21:09 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/conclusion.tex\n-rw-r--r-- 1 ubuntu ubuntu  1559 May 14 21:09 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/abstract.tex\n-rw-r--r-- 1 ubuntu ubuntu  4076 May 14 20:50 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/discussion.tex\n-rw-r--r-- 1 ubuntu ubuntu  9219 May 14 20:31 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/related_work.tex\n-rw-r--r-- 1 ubuntu ubuntu  6245 May 14 20:10 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/introduction.tex",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c9e690a2-f87a-4687-8689-26fe009577bb",
+            "isSidechain": true,
+            "promptId": "ca9f328b-7d8f-49d7-ba83-1bf2b49868d3",
+            "agentId": "a3a8f9937ba741116",
+            "type": "user",
+            "uuid": "e8f93aa4-ba74-4666-ad65-2da574506ad8",
+            "sourceToolAssistantUUID": "c9e690a2-f87a-4687-8689-26fe009577bb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "3614841f-3054-4bdc-a2e6-70a4541802e0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "serialized-singing-lantern"
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T19:14:09.473Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me get a complete list with all file details and check for the main paper file:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e8f93aa4-ba74-4666-ad65-2da574506ad8",
+            "isSidechain": true,
+            "agentId": "a3a8f9937ba741116",
+            "requestId": "req_011Cb4tTSemDyu4MbVLLuvTp",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "461a0bb5-8be2-47af-9cf9-22b71d0c4448",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "3614841f-3054-4bdc-a2e6-70a4541802e0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "serialized-singing-lantern",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Ms7RqksbGmy2CwAq8KViQu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 921,
+                "cache_read_input_tokens": 23347,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 921,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T19:14:09.890Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KvF5hJxEX1v9aakFEjWN8D",
+              "name": "Bash",
+              "input": {
+                "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie -name \"paper.tex\" -o -name \"main.tex\" 2>/dev/null | xargs ls -lt"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "461a0bb5-8be2-47af-9cf9-22b71d0c4448",
+            "isSidechain": true,
+            "agentId": "a3a8f9937ba741116",
+            "requestId": "req_011Cb4tTSemDyu4MbVLLuvTp",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "358e6631-b143-43c6-a801-8f0d3707ca44",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "3614841f-3054-4bdc-a2e6-70a4541802e0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "serialized-singing-lantern",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Ms7RqksbGmy2CwAq8KViQu",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 921,
+                "cache_read_input_tokens": 23347,
+                "output_tokens": 128,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 921
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 128,
+                    "cache_read_input_tokens": 23347,
+                    "cache_creation_input_tokens": 921,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 921,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T19:14:09.983Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KvF5hJxEX1v9aakFEjWN8D",
+              "type": "tool_result",
+              "content": "-rw-r--r-- 1 ubuntu ubuntu  1504 May 15 15:35 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/main.tex\n-rw-r--r-- 1 ubuntu ubuntu 28288 May 15 10:04 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260515T092545/worst/paper.tex\n-rw-r--r-- 1 ubuntu ubuntu 38761 May 15 10:00 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260515T092545/median/paper.tex\n-rw-r--r-- 1 ubuntu ubuntu 38829 May 15 09:54 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260515T092545/best/paper.tex\n-rw-r--r-- 1 ubuntu ubuntu 34876 May 14 21:17 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260514T203201/worst/paper.tex\n-rw-r--r-- 1 ubuntu ubuntu 40482 May 14 21:12 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260514T203201/median/paper.tex\n-rw-r--r-- 1 ubuntu ubuntu 41720 May 14 21:06 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260514T203201/best/paper.tex\n-rw-r--r-- 1 ubuntu ubuntu 33731 May 14 11:46 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260514T105303/worst/paper.tex\n-rw-r--r-- 1 ubuntu ubuntu 36120 May 14 11:41 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260514T105303/median/paper.tex\n-rw-r--r-- 1 ubuntu ubuntu 41198 May 14 11:37 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260514T105303/best/paper.tex\n-rw-r--r-- 1 ubuntu ubuntu 30835 May 14 10:06 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260514T093336/worst/paper.tex\n-rw-r--r-- 1 ubuntu ubuntu 33502 May 14 10:00 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260514T093336/median/paper.tex\n-rw-r--r-- 1 ubuntu ubuntu 31178 May 14 09:56 /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260514T093336/best/paper.tex",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "358e6631-b143-43c6-a801-8f0d3707ca44",
+            "isSidechain": true,
+            "promptId": "ca9f328b-7d8f-49d7-ba83-1bf2b49868d3",
+            "agentId": "a3a8f9937ba741116",
+            "type": "user",
+            "uuid": "c0b857b3-816f-40cb-a608-40b64021f517",
+            "sourceToolAssistantUUID": "358e6631-b143-43c6-a801-8f0d3707ca44",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "3614841f-3054-4bdc-a2e6-70a4541802e0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "serialized-singing-lantern"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T19:14:11.570Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me read the main LaTeX files. The most recent paper files are in dream_20260515T092545. Let me read the main.tex from the docs/paper directory and the sections:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c0b857b3-816f-40cb-a608-40b64021f517",
+            "isSidechain": true,
+            "agentId": "a3a8f9937ba741116",
+            "requestId": "req_011Cb4tTZy3wso6b2ajrUqPi",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "6dd73109-9524-4f28-a1b1-dcb5469ce454",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "3614841f-3054-4bdc-a2e6-70a4541802e0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "serialized-singing-lantern",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_016Y2b2CB5mRdNx52iaHX21u",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1114,
+                "cache_read_input_tokens": 24268,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1114,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T19:14:11.865Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011iyUUPqgmbgX2efV6XeY1d",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/main.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6dd73109-9524-4f28-a1b1-dcb5469ce454",
+            "isSidechain": true,
+            "agentId": "a3a8f9937ba741116",
+            "requestId": "req_011Cb4tTZy3wso6b2ajrUqPi",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "ee73bedb-262c-4110-be45-af83697eb80f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "3614841f-3054-4bdc-a2e6-70a4541802e0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "serialized-singing-lantern",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_016Y2b2CB5mRdNx52iaHX21u",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1114,
+                "cache_read_input_tokens": 24268,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1114,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T19:14:11.876Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011iyUUPqgmbgX2efV6XeY1d",
+              "type": "tool_result",
+              "content": "1\t\\documentclass[11pt]{article}\n2\t\n3\t\\usepackage[review]{acl}\n4\t\n5\t\\usepackage{times}\n6\t\\usepackage{latexsym}\n7\t\\usepackage[T1]{fontenc}\n8\t\\usepackage[utf8]{inputenc}\n9\t\\usepackage{microtype}\n10\t\\usepackage{inconsolata}\n11\t\\usepackage{graphicx}\n12\t\\usepackage{booktabs}\n13\t\\usepackage{amsmath}\n14\t\\usepackage{amssymb}\n15\t\\usepackage{multirow}\n16\t\\usepackage{xcolor}\n17\t\\usepackage{subcaption}\n18\t\n19\t\\graphicspath{{figures/}}\n20\t\n21\t\\title{Strong Predictors, Weak Selectors:\\\\ Confidence Signals Predict but Struggle to Select in 8B-Scale Information Extraction}\n22\t\n23\t\\author{Anonymous}\n24\t\n25\t\\begin{document}\n26\t\\maketitle\n27\t\n28\t\\input{sections/abstract}\n29\t\\input{sections/introduction}\n30\t\\input{sections/related_work}\n31\t\\input{sections/method}\n32\t\\input{sections/experiments}\n33\t\\input{sections/discussion}\n34\t\\input{sections/conclusion}\n35\t\n36\t\\section*{Limitations}\n37\t\\input{sections/limitations}\n38\t\n39\t\\section*{Ethics Statement}\n40\tAll experiments use publicly available benchmarks (SciERC, CoNLL-2003, WNUT-17) and open-weight models (Qwen3-8B, LLaMA-3.1-8B).\n41\tCoNLL-2003 is derived from the Reuters RCV1 corpus, which is available for research purposes under a NIST agreement; we use the standard research distribution.\n42\tNo new human data was collected or annotated for this study.\n43\tOur findings on signal limitations could inform more reliable deployment of IE systems by guiding practitioners toward appropriate confidence signals for their use case.\n44\tCode and data will be released upon acceptance at [anonymized URL].\n45\t\n46\t\\bibliography{references}\n47\t\n48\t\\appendix\n49\t\\input{sections/appendix}\n50\t\n51\t\\end{document}\n52\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ee73bedb-262c-4110-be45-af83697eb80f",
+            "isSidechain": true,
+            "promptId": "ca9f328b-7d8f-49d7-ba83-1bf2b49868d3",
+            "agentId": "a3a8f9937ba741116",
+            "type": "user",
+            "uuid": "d50c833f-6469-43a0-95f6-324e0f8e78ad",
+            "sourceToolAssistantUUID": "ee73bedb-262c-4110-be45-af83697eb80f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "3614841f-3054-4bdc-a2e6-70a4541802e0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "serialized-singing-lantern"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T19:14:12.026Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XNfHznLbmyovWXHscpeLfK",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/abstract.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d50c833f-6469-43a0-95f6-324e0f8e78ad",
+            "isSidechain": true,
+            "agentId": "a3a8f9937ba741116",
+            "requestId": "req_011Cb4tTZy3wso6b2ajrUqPi",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "9593ffaf-2cd6-413f-a4e0-b5dfc29c94fc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "3614841f-3054-4bdc-a2e6-70a4541802e0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "serialized-singing-lantern",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_016Y2b2CB5mRdNx52iaHX21u",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1114,
+                "cache_read_input_tokens": 24268,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1114,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T19:14:12.035Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XNfHznLbmyovWXHscpeLfK",
+              "type": "tool_result",
+              "content": "1\t\\begin{abstract}\n2\tSelf-consistency---sampling multiple outputs and selecting via agreement---yields large gains on discrete-answer tasks, but information extraction (IE) produces \\textit{sets} of entities and relations with partial overlap, where no majority vote exists.\n3\tCan confidence signals still guide selection in this structured setting?\n4\t\n5\tWe compare five confidence signals---spanning structural consistency, surface agreement, and model-internal families---across three NER benchmarks and one RE benchmark (preliminary) with two 8B-parameter models.\n6\tAll signals achieve strong quality estimation yet none improves best-of-$N$ sample selection despite substantial oracle headroom---the \\textit{correlation-selection gap}.\n7\tThe gap has two layers: instance-level signals cannot rank candidates by construction, and log-probability---the only per-sample signal---is too compressed within instances to discriminate; a free-form decoding ablation confirms this compression is intrinsic to the model, not an artifact of constrained decoding.\n8\tSignal rankings shift with task difficulty and collapse at the capability boundary.\n9\tClosing the gap likely requires learned per-sample scoring such as trained verifiers.\n10\t\\end{abstract}\n11\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9593ffaf-2cd6-413f-a4e0-b5dfc29c94fc",
+            "isSidechain": true,
+            "promptId": "ca9f328b-7d8f-49d7-ba83-1bf2b49868d3",
+            "agentId": "a3a8f9937ba741116",
+            "type": "user",
+            "uuid": "9ee39f76-9253-4573-ab88-ec65e1cd72d4",
+            "sourceToolAssistantUUID": "9593ffaf-2cd6-413f-a4e0-b5dfc29c94fc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "3614841f-3054-4bdc-a2e6-70a4541802e0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "serialized-singing-lantern"
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T19:14:14.819Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XEjTu6GAHjgvvyym8LkLpo",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/introduction.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9ee39f76-9253-4573-ab88-ec65e1cd72d4",
+            "isSidechain": true,
+            "agentId": "a3a8f9937ba741116",
+            "requestId": "req_011Cb4tTZy3wso6b2ajrUqPi",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "558c7285-ea93-4f05-94b1-5f11302c86a4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "3614841f-3054-4bdc-a2e6-70a4541802e0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "serialized-singing-lantern",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_016Y2b2CB5mRdNx52iaHX21u",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1114,
+                "cache_read_input_tokens": 24268,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1114,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T19:14:14.825Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XEjTu6GAHjgvvyym8LkLpo",
+              "type": "tool_result",
+              "content": "1\t\\section{Introduction}\\label{sec:introduction}\n2\t\n3\tSelf-consistency---sampling multiple outputs and aggregating them---has become a powerful strategy for improving language model reasoning.\n4\tOn discrete-answer tasks, majority voting over chain-of-thought samples yields large gains---+18~pp on GSM8K \\citep{wang2023selfconsistency}---and test-time compute scaling has emerged as a complementary axis to model scaling \\cite{snell2025scaling, brown2024monkeys}.\n5\tThese results assume that among $N$ stochastic samples, a selection mechanism can identify better outputs; for tasks with a single answer, majority voting is the selector.\n6\tBut information extraction (IE) poses a structurally different challenge: the output is a \\textit{set} of entities or relations with internal dependencies, two samples may extract overlapping but non-identical structures, and there is no obvious majority to vote on.\n7\tCan self-consistency still provide useful signal in this structured setting?\n8\t\n9\tPrior work on confidence estimation for LLM-based IE has conflated two distinct objectives: \\textit{quality estimation} (which inputs does the model handle reliably?) and \\textit{sample selection} (which of $N$ outputs is best?).\n10\tSelf-consistency methods for reasoning \\cite{wang2023selfconsistency, chen2024usc} and weighted variants \\cite{taubenfeld2025cisc, kang2025selfcertainty} assume outputs can be grouped by equivalence---an assumption that breaks for entity sets with partial overlap.\n11\t\\citet{yao2026consistency} examine consistency--accuracy correlations for LLM-based IE; our work extends theirs with structural matching, a selection analysis, and a difficulty gradient.\n12\t\n13\tOur central finding is the \\textbf{correlation-selection gap} (Figure~\\ref{fig:overview}): consistency signals achieve strong quality estimation ($\\rho$ up to 0.45) but fail at sample selection despite substantial oracle headroom.\n14\tFour of five signals are instance-level by construction; log-probability, the only per-sample signal, is too compressed to discriminate (\\S\\ref{sec:discussion}), though where compression is mitigated, selection recovers gains (\\S\\ref{sec:ablation}).\n15\t\n16\t\\begin{figure*}[t]\n17\t\\centering\n18\t\\includegraphics[width=\\textwidth]{fig_overview}\n19\t\\caption{The correlation-selection gap. \\textbf{Left}: high inter-sample agreement correlates with high F1 (quality estimation). \\textbf{Right}: instance-level signals assign identical scores to all candidates, precluding sample selection.}\n20\t\\label{fig:overview}\n21\t\\end{figure*}\n22\t\n23\tWe compare five confidence signals from three families---structural, surface, and model-internal---across NER and RE on SciERC \\cite{luan2018scierc}, CoNLL-2003 \\cite{tjongkimsang2003conll}, and WNUT-17 \\cite{derczynski2017wnut}, using Qwen3-8B and LLaMA-3.1-8B.\n24\tOur contributions are:\n25\t\\begin{enumerate}\n26\t    \\item \\textbf{Metric dissociation.}\n27\t    We find that quality estimation, binary discrimination, and sample selection decouple, so single-metric evaluation risks selecting the wrong signal.\n28\t\n29\t    \\item \\textbf{The correlation-selection gap.}\n30\t    Despite strong quality estimation, no signal improves sample selection: log-probability scores are too compressed within instances, and MBR-style selection correlates with F1 across but not within instances.\n31\t\n32\t    \\item \\textbf{Difficulty- and task-dependent signal rankings.}\n33\t    Signal rankings shift with task complexity and type, and collapse at the capability boundary. RE conclusions rest on SciERC alone (preliminary).\n34\t\\end{enumerate}\n35\t\n36\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "558c7285-ea93-4f05-94b1-5f11302c86a4",
+            "isSidechain": true,
+            "promptId": "ca9f328b-7d8f-49d7-ba83-1bf2b49868d3",
+            "agentId": "a3a8f9937ba741116",
+            "type": "user",
+            "uuid": "52456701-658e-49b1-b20e-cfa2d42e22d0",
+            "sourceToolAssistantUUID": "558c7285-ea93-4f05-94b1-5f11302c86a4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "3614841f-3054-4bdc-a2e6-70a4541802e0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "serialized-singing-lantern"
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T19:14:14.921Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BHoao7hg1z1puEKkeewaEQ",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "52456701-658e-49b1-b20e-cfa2d42e22d0",
+            "isSidechain": true,
+            "agentId": "a3a8f9937ba741116",
+            "requestId": "req_011Cb4tTZy3wso6b2ajrUqPi",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "ea0121f3-43a7-4eb7-9f01-0fefb7147d47",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "3614841f-3054-4bdc-a2e6-70a4541802e0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "serialized-singing-lantern",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_016Y2b2CB5mRdNx52iaHX21u",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1114,
+                "cache_read_input_tokens": 24268,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1114,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T19:14:14.934Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BHoao7hg1z1puEKkeewaEQ",
+              "type": "tool_result",
+              "content": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\t\\subsection{Experimental Setup}\n5\t\\label{sec:setup}\n6\t\n7\t\\paragraph{Datasets.}\n8\tWe evaluate on three English IE benchmarks spanning a difficulty gradient.\n9\t\\textbf{SciERC} \\cite{luan2018scierc} contains 551 test instances annotated for joint NER (6 types) and RE (7 types).\n10\t\\textbf{CoNLL-2003} \\cite{tjongkimsang2003conll} provides 3{,}453 test sentences with 4 entity types, where models achieve ${\\approx}$91\\% micro F1.\n11\t\\textbf{WNUT-17} \\cite{derczynski2017wnut} consists of 1{,}287 social media instances with emerging entities, used to probe method boundaries (52\\% zero F1).\n12\t\n13\t\\paragraph{Models and sampling.}\n14\tBoth \\textbf{Qwen3-8B} and \\textbf{LLaMA-3.1-8B-Instruct} are fine-tuned with LoRA (rank$=$32, $\\alpha{=}64$) for 5 epochs using LLaMA Factory \\cite{zheng2024llamafactory} under identical training procedures.\n15\tQwen3-8B's SciERC checkpoint has a minor train--test mismatch (empty thinking tokens); a quantitative analysis rules out this confound (Appendix~\\ref{app:thinking_token}).\n16\tWe draw $N{=}8$ samples at $T{=}1.0$ (primary), with $N{=}16$ for scaling experiments.\\footnote{$N$-scaling analysis (Appendix~\\ref{app:n_scaling}) shows sublinear gains beyond $N{=}8$; 3-seed stability ($\\sigma{\\leq}0.026$; Table~\\ref{tab:multiseed}) confirms identical signal rankings across seeds.}\n17\tInference uses vLLM with constrained decoding \\cite{willard2023guided}.\n18\t\n19\t%% ============================================================\n20\t\\subsection{Quality Estimation Results}\n21\t\\label{sec:qe_results}\n22\t\n23\t\\begin{table*}[t]\n24\t\\centering\n25\t\\small\n26\t\\caption{Quality estimation (Spearman $\\rho$ and AUROC; $N{=}8$, seed${=}42$). Best per column in \\textbf{bold}. SciERC: joint NER (6 types) and RE (7 types, preliminary); CoNLL: NER (4 types). $N{=}16$ in Table~\\ref{tab:robustness} (Appendix~\\ref{app:robustness}).}\n27\t\\label{tab:quality_estimation}\n28\t\\begin{tabular}{ll cc cc cc cc}\n29\t\\toprule\n30\t& & \\multicolumn{2}{c}{\\textbf{SciERC NER}} & \\multicolumn{2}{c}{\\textbf{SciERC RE}} & \\multicolumn{2}{c}{\\textbf{CoNLL (Qwen)}} & \\multicolumn{2}{c}{\\textbf{CoNLL (LLaMA)}} \\\\\n31\t\\cmidrule(lr){3-4} \\cmidrule(lr){5-6} \\cmidrule(lr){7-8} \\cmidrule(lr){9-10}\n32\tSignal & Family & $\\rho$ & AUC & $\\rho$ & AUC & $\\rho$ & AUC & $\\rho$ & AUC \\\\\n33\t\\midrule\n34\tVC & Structural & \\textbf{.379} & \\textbf{.663} & \\textbf{.350} & .694 & .424 & .789 & .426 & .709 \\\\\n35\tSJ  & Structural & .360 & .650 & .250 & .670 & .436 & .801 & \\textbf{.431} & .704 \\\\\n36\tFK & Surface & .267 & .602 & .275 & .609 & .400 & .774 & .428 & .703 \\\\\n37\tEM  & Surface    & .295 & .614 & .134 & \\textbf{.706} & \\textbf{.451} & \\textbf{.816} & \\textbf{.431} & .705 \\\\\n38\t\\midrule\n39\tLP     & Model      & .205 & .578 & .266 & .601 & .316 & .753 & .307 & \\textbf{.761} \\\\\n40\t\\bottomrule\n41\t\\end{tabular}\n42\t\\end{table*}\n43\t\n44\tTable~\\ref{tab:quality_estimation} presents rank correlation ($\\rho$) and AUROC for five confidence signals across tasks and models.\\footnote{$\\varepsilon{=}0.05$ is a convenience threshold used only in the selection analysis (\\S\\ref{sec:selection_gap}); quality estimation metrics ($\\rho$, AUROC) are continuous and $\\varepsilon$-free. Selection F1 is stable across $\\varepsilon \\in [0, 0.2]$ (Appendix~\\ref{app:epsilon_robustness}).}\n45\t\n46\t\\paragraph{Difficulty-dependent signal complementarity.}\n47\tOn SciERC NER, structural signals lead: VC $\\rho{=}0.379$, SJ $\\rho{=}0.360$, outperforming surface ($\\rho{\\leq}0.295$) and LP ($\\rho{=}0.205$); on RE (preliminary), LP rises above SJ and FK in multi-seed analysis (Table~\\ref{tab:multiseed}), likely because RE's 40\\% zero-F1 rate favors generation confidence.\n48\tThe best NER AUROC reaches 0.816 (EM, CoNLL Qwen); pairwise bootstrap CIs confirm the SJ--LP gap ($\\Delta\\rho{=}{+}0.155$, CI excludes zero; Appendix~\\ref{app:bootstrap_signal}).\n49\tSignal choice depends on use case: EM leads AUROC but not $\\rho$ on CoNLL, preferred for binary triage; this $\\rho$--AUROC dissociation replicates across configurations.\n50\t\n51\t\\paragraph{Signal rankings shift with task difficulty.}\n52\tOn CoNLL (greedy F1${\\approx}$0.91), EM leads; on SciERC, structural signals dominate---demonstrating difficulty-dependent complementarity consistent across model families.\n53\tOn WNUT-17 (52\\% zero F1), all conditional signals collapse (Table~\\ref{tab:wnut}), suggesting a capability boundary beyond which consistency captures binary success/failure but not quality gradation.\n54\tRestricting to non-zero F1 instances reshuffles rankings (Figure~\\ref{fig:signal_heatmap}, Appendix~\\ref{app:additional}): EM emerges as the strongest conditional signal on both NER ($\\rho{=}0.360$) and RE ($\\rho{=}0.417$; preliminary), while LP RE collapses to $\\rho{=}0.011$.\n55\t\n56\t%% ============================================================\n57\t\\subsection{The Correlation-Selection Gap}\n58\t\\label{sec:selection_gap}\n59\t\n60\t\\begin{table}[t]\n61\t\\centering\n62\t\\small\n63\t\\caption{Best-of-$N$ selection F1 on SciERC ($N{=}8$, $T{=}1.0$). NER: 2-seed mean${\\pm}\\sigma$, Fisher combined $p$ vs.\\ greedy; RE: single seed (preliminary). Best non-oracle in \\textbf{bold}. $^\\dagger$Greedy: a fixed $T{=}1.0$ sample.}\n64\t\\label{tab:selection}\n65\t\\begin{tabular}{lccc}\n66\t\\toprule\n67\tMethod & NER F1 & $p$ & RE F1 \\\\\n68\t\\midrule\n69\tOracle & $0.778 \\pm 0.003$ & --- & 0.585 \\\\\n70\t\\midrule\n71\t\\multicolumn{4}{l}{\\textit{Per-sample signal}} \\\\\n72\tLP           & $\\mathbf{0.647} \\pm 0.005$ & .29 & 0.395 \\\\\n73\t\\midrule\n74\t\\multicolumn{4}{l}{\\textit{Instance-level signals (consensus-proximity selection)}} \\\\\n75\tSJ           & $0.646 \\pm 0.002$ & .68 & 0.386 \\\\\n76\tFK           & $0.646 \\pm 0.001$ & .79 & --- \\\\\n77\tEM           & $0.637 \\pm 0.001$ & .45 & 0.372 \\\\\n78\tVC           & $0.623 \\pm 0.004$ & .26 & 0.359 \\\\\n79\t\\midrule\n80\tGreedy$^\\dagger$ & $0.645 \\pm 0.001$ & --- & \\textbf{0.404} \\\\\n81\tRandom           & $0.610 \\pm 0.003$ & --- & 0.354 \\\\\n82\t\\bottomrule\n83\t\\end{tabular}\n84\t\\end{table}\n85\t\n86\tDespite strong quality estimation, confidence signals yield limited gains for best-of-$N$ selection (Table~\\ref{tab:selection}; see also Figure~\\ref{fig:selection_gap}).\n87\tFour of five signals are instance-level by construction (they assign identical scores to all candidates); the non-trivial question is whether LP---the only per-sample signal---can exploit the oracle headroom.\n88\tWe anchor on SciERC, where output diversity is substantial (39--43\\% unique outputs; Appendix~\\ref{app:diversity}).\n89\t\n90\t\\paragraph{No significant improvement over greedy.}\n91\tWe evaluate significance via 2-seed instance-level sign tests ($n{=}551$, Fisher combination).\n92\tOn NER, the oracle (0.778) reveals 13.3~pp of headroom above greedy (0.645).\n93\tLP achieves the highest mean selection F1 (0.647), indistinguishable from greedy ($\\Delta{=}{+}0.2$~pp, $p{=}0.29$); all other signals also fail to reach significance (all $p{>}0.05$; Table~\\ref{tab:selection}).\n94\tOn RE, the best signal (LP, 0.395) falls below greedy (0.404; single seed, preliminary), while 18.1~pp of oracle headroom remains.\n95\tThe pattern is consistent across CoNLL and WNUT-17 (Table~\\ref{tab:cross_selection}).\n96\t\n97\t\\paragraph{Quality estimation $\\neq$ output selection.}\n98\tInstance-level signals predict \\textit{which inputs} the model handles reliably, not \\textit{which output} is best; when per-sample variance is low, even perfect quality estimation fails to discriminate.\n99\tClosing this gap likely requires per-sample signals such as trained verifiers \\cite{cobbe2021verifiers}.\n100\t\n101\t%% ============================================================\n102\t\\subsection{Robustness}\n103\t\\label{sec:robustness_main}\n104\t\n105\tConsistency-based signals (SJ, FK, EM, VC) are robust across $T{\\in}\\{0.7, 1.0\\}$ and show sublinear gains from $N{=}8$ to $N{=}16$ (Table~\\ref{tab:robustness}, Appendix~\\ref{app:robustness}); LP is excluded from this robustness claim, exhibiting the largest temperature sensitivity ($\\Delta\\rho{=}{+}0.044$ on NER).\n106\tNER signals are reasonably calibrated (ECE 0.069--0.096; Appendix~\\ref{app:calibration}); RE miscalibration (ECE up to 0.339, preliminary) imposes a ceiling at $\\rho{\\approx}0.28$ for $N{=}16$.\n107\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ea0121f3-43a7-4eb7-9f01-0fefb7147d47",
+            "isSidechain": true,
+            "promptId": "ca9f328b-7d8f-49d7-ba83-1bf2b49868d3",
+            "agentId": "a3a8f9937ba741116",
+            "type": "user",
+            "uuid": "dbbe538b-6971-42e5-8849-f1e00281e194",
+            "sourceToolAssistantUUID": "ea0121f3-43a7-4eb7-9f01-0fefb7147d47",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "3614841f-3054-4bdc-a2e6-70a4541802e0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "serialized-singing-lantern"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T19:14:14.995Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LHzoGnWB2LnmuGqr9hbSJR",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/method.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dbbe538b-6971-42e5-8849-f1e00281e194",
+            "isSidechain": true,
+            "agentId": "a3a8f9937ba741116",
+            "requestId": "req_011Cb4tTZy3wso6b2ajrUqPi",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "73710169-d4e9-4d66-a588-8d574016eb36",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "3614841f-3054-4bdc-a2e6-70a4541802e0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "serialized-singing-lantern",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_016Y2b2CB5mRdNx52iaHX21u",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1114,
+                "cache_read_input_tokens": 24268,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1114,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T19:14:15.014Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LHzoGnWB2LnmuGqr9hbSJR",
+              "type": "tool_result",
+              "content": "1\t\\section{Method}\\label{sec:method}\n2\t\n3\t\\subsection{Problem Formulation}\\label{sec:formulation}\n4\t\n5\tGiven model $\\mathcal{M}$ and input $x$, we sample $N$ structured outputs $\\{y_1, \\ldots, y_N\\}$ at temperature $T > 0$ via constrained decoding \\cite{willard2023guided}, where each $y_i$ is an entity set (NER) or relation set (RE).\n6\tA \\textbf{per-sample signal} $c_{\\text{ps}}: (x, y_i) \\to \\mathbb{R}$ scores each output independently; an \\textbf{instance-level signal} $c_{\\text{il}}: (x, \\{y_i\\}_{i=1}^N) \\to \\mathbb{R}$ produces a single score per input.\n7\tThis asymmetry is central to the correlation-selection gap: instance-level signals predict \\textit{which inputs} are easy, not \\textit{which output} is best (notation in Appendix~\\ref{app:notation}).\n8\t\n9\t\\subsection{Confidence Signals}\\label{sec:signals}\n10\t\n11\tFour signals are \\textit{consistency signals} from two families: \\textit{structural} (Soft Jaccard [SJ], entity voting confidence [VC]) and \\textit{surface} (exact match [EM], Fleiss' $\\kappa$ [FK]); log-probability [LP] is the sole \\textit{model-internal} signal and the only per-sample one.\n12\t\n13\t\\paragraph{Log-probability (model-internal, per-sample).}\n14\tThe only per-sample signal.\n15\tFor sample $y_i$ with tokens $t_1, \\ldots, t_{|y_i|}$:\n16\t\\begin{equation}\\label{eq:logprob}\n17\tc_{\\text{lp}}(y_i) = \\frac{1}{|y_i|} \\sum_{j=1}^{|y_i|} \\log p_{\\mathcal{M}}(t_j \\mid t_{<j}, x)\n18\t\\end{equation}\n19\t\n20\t\\paragraph{Exact match voting (surface, instance-level).}\n21\tThe majority fraction---the proportion of samples producing the most common output:\n22\t\\begin{equation}\\label{eq:em}\n23\tc_{\\text{em}}(x) = \\frac{1}{N} \\max_{y} \\big|\\{i : y_i = y\\}\\big|\n24\t\\end{equation}\n25\t\n26\t\\paragraph{Fleiss' $\\kappa$ (surface, instance-level).}\n27\tWe adapt \\citet{fleiss1971agreement} to entity sets: items are unique (text, type) tuples across all $N$ samples; each sample assigns binary present/absent labels, yielding a $|E_\\cup| \\times 2$ rating matrix:\n28\t\\begin{equation}\\label{eq:fk}\n29\t\\kappa = \\frac{\\bar{P} - \\bar{P}_e}{1 - \\bar{P}_e}\n30\t\\end{equation}\n31\twhere $\\bar{P}$ is mean observed pairwise agreement and $\\bar{P}_e$ is expected agreement under random assignment.\n32\tTemperature-based sampling introduces mild negative dependence (excess agreement $-$0.4\\% to $-$4.0\\%), which does not inflate FK.\n33\tUnlike structural signals, FK relies on exact string matching.\n34\t\n35\t\\paragraph{Soft Jaccard (structural, instance-level).}\n36\tExtends Jaccard similarity \\cite{jaccard1901distribution} to entity/relation sets.\n37\tFor samples $y_i, y_j$, we group extractions by type, compute max-weight bipartite matching via the Hungarian algorithm (maximizing token-level IoU), and define:\n38\t\\begin{equation}\\label{eq:sj}\n39\t\\text{SJ}(y_i, y_j) = \\frac{\\sum_{m \\in M} \\text{sim}(a_m, b_m)}{\\sum_{g} \\max(|g_i|, |g_j|)}\n40\t\\end{equation}\n41\twhere $M$ is the matched set, $\\text{sim}(a_m, b_m)$ is the token-level IoU between matched spans, and $\\max(|g_i|, |g_j|)$ penalizes length asymmetry.\n42\tThe instance-level signal averages over all pairs:\n43\t\\begin{equation}\\label{eq:sj_instance}\n44\tc_{\\text{sj}}(x) = \\frac{1}{\\binom{N}{2}} \\sum_{i<j} \\text{SJ}(y_i, y_j)\n45\t\\end{equation}\n46\t\n47\t\\paragraph{Entity voting confidence (structural, instance-level).}\n48\tFor each entity $e$ in the union $E_\\cup$ of all samples, we compute frequency $\\text{freq}(e) = |\\{i : e \\in y_i\\}| / N$.\n49\tThe instance-level confidence is the mean frequency:\n50\t\\begin{equation}\\label{eq:voting}\n51\tc_{\\text{vote}}(x) = \\frac{1}{|E_\\cup|} \\sum_{e \\in E_\\cup} \\text{freq}(e)\n52\t\\end{equation}\n53\tWhen $E_\\cup = \\emptyset$, we set $c_{\\mathrm{vc}}(x) = 0$.\\footnote{Equation~\\ref{eq:voting} defines the continuous QE signal; for voted-output \\textit{selection} (Table~\\ref{tab:selection}), we include only entities with frequency ${>}N/2$, following standard majority voting.}\n54\t\n55\t\\subsection{Evaluation Framework}\\label{sec:evaluation}\n56\t\n57\t\\paragraph{Quality estimation.}\n58\tWe measure rank correlation (Spearman $\\rho$) between the confidence signal and instance-level F1, and binary discrimination (AUROC) by classifying instances as above or below median F1.\n59\tCorrelation analyses exclude instances with empty gold annotations ($n{=}529$ on SciERC after filtering 22/551); selection analyses retain the full set ($n{=}551$).\n60\t\n61\t\\paragraph{Sample selection.}\n62\tWe report best-of-$N$ F1: per-sample signals (LP) directly rank candidates; instance-level signals select the sample closest to the consensus output.\n63\tWe compare against an \\textit{oracle} (highest-F1 sample) and a \\textit{greedy} baseline (a fixed $T{=}1.0$ sample).\n64\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "73710169-d4e9-4d66-a588-8d574016eb36",
+            "isSidechain": true,
+            "promptId": "ca9f328b-7d8f-49d7-ba83-1bf2b49868d3",
+            "agentId": "a3a8f9937ba741116",
+            "type": "user",
+            "uuid": "61bd6599-0ac2-4394-90fc-9d6ab34a83ea",
+            "sourceToolAssistantUUID": "73710169-d4e9-4d66-a588-8d574016eb36",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "3614841f-3054-4bdc-a2e6-70a4541802e0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "serialized-singing-lantern"
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T19:14:16.075Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me read the remaining sections:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "61bd6599-0ac2-4394-90fc-9d6ab34a83ea",
+            "isSidechain": true,
+            "agentId": "a3a8f9937ba741116",
+            "requestId": "req_011Cb4tTweHEekGS3LDCt5aE",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "85d87578-8d0c-4a0b-bdf3-914dda133d7b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "3614841f-3054-4bdc-a2e6-70a4541802e0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "serialized-singing-lantern",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Phqe2saJEYxQSXYZDySSdq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 7304,
+                "cache_read_input_tokens": 25382,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 7304,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T19:14:17.264Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01A5bqydTTjcPjVq1uqXPFCQ",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/related_work.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "85d87578-8d0c-4a0b-bdf3-914dda133d7b",
+            "isSidechain": true,
+            "agentId": "a3a8f9937ba741116",
+            "requestId": "req_011Cb4tTweHEekGS3LDCt5aE",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "fbd8e7fc-446c-4677-bd6a-af9a970ab717",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "3614841f-3054-4bdc-a2e6-70a4541802e0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "serialized-singing-lantern",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Phqe2saJEYxQSXYZDySSdq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 7304,
+                "cache_read_input_tokens": 25382,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 7304,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T19:14:17.274Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01A5bqydTTjcPjVq1uqXPFCQ",
+              "type": "tool_result",
+              "content": "1\t\\section{Related Work}\\label{sec:related}\n2\t\n3\t\\paragraph{Self-consistency and test-time scaling.}\n4\tSelf-consistency decoding \\cite{wang2023selfconsistency} improves reasoning by majority voting over chain-of-thought samples, assuming a discrete answer space.\n5\tExtensions to free-form text use LLM-based comparison \\cite{chen2024usc}, atomic sub-claim decomposition \\cite{thirukovalluru2024atomic}, or cross-sample hallucination detection \\cite{manakul2023selfcheckgpt}.\n6\tFor test-time scaling \\cite{zhang2025tts}, \\citet{snell2025scaling} characterize compute scaling laws and \\citet{brown2024monkeys} show best-of-$N$ gains across tasks.\n7\tRecent reward-free selectors include confidence-weighted voting \\cite{taubenfeld2025cisc}, KL-based self-certainty \\cite{kang2025selfcertainty}, adaptive sampling \\cite{kim2026reasc}, ranked aggregation \\cite{wang2025rankedvoting}, and latent-space consistency \\cite{oh2025latentsc}.\n8\tConcurrently, \\citet{feng2025optimal} and \\citet{wang2025make} adapt self-consistency to difficulty-aware settings, echoing our finding that signal rankings shift with task complexity; \\citet{li2025llms} propose generative self-aggregation for IE but focus on output fusion rather than confidence-based selection.\n9\tAll of the above target reasoning/QA with discrete answers or specific aggregation strategies.\n10\tOur work extends self-consistency to set-valued structured outputs and identifies the correlation-selection gap: strong quality estimation ($\\rho{=}0.38$) coexists with selection failure ($p{>}0.39$).\n11\t\n12\t\\paragraph{Consistency for structured IE.}\n13\t\\citet{yao2026consistency} study consistency--accuracy correlations for LLM-based NER/RE, corroborating our quality-estimation findings but leaving open whether structural matching improves on surface agreement, whether quality estimation translates to selection, and whether findings generalize across a difficulty gradient---the three questions we address.\n14\tCoCoA \\cite{vashurin2025cocoa} fuses model confidence with inter-sample consistency for QA/summarization but does not address structured extraction.\n15\tOur evaluation builds on generative IE work \\cite{zhou2024uniner, sainz2024gollie, josifoski2022genie, li2023codeie, wadhwa2023revisiting, wang2023instructuie} and constrained decoding \\cite{willard2023guided}.\n16\t\n17\t\\paragraph{Uncertainty estimation and calibration.}\n18\tSurveys cover confidence estimation \\cite{geng2024confidence}, selective abstention \\cite{wen2025know}, uncertainty quantification \\cite{xia2025survey}, and calibration \\cite{hobelsberger2025systematic} for LLMs.\n19\tSemantic uncertainty \\cite{kuhn2023semantic} clusters generations by meaning; P(True) \\cite{kadavath2022language} queries model confidence directly.\n20\tOur structural signals instead measure agreement over output \\textit{structure}, requiring no model modification unlike deep ensembles \\cite{lakshminarayanan2017ensembles} or MC-dropout \\cite{gal2016dropout}.\n21\tOur selection strategies instantiate MBR decoding \\cite{eikema2022sampling} with structural utility functions.\n22\t\\citet{eikema2025structured} study structure-conditional MBR and find that standard utility functions degrade on structured outputs; they attribute this to the mismatch between bag-of-unit utilities and compositional output structure, a diagnosis consistent with our finding that consensus-proximity selection fails for IE.\n23\tWe extend their analysis by showing the specific failure mode: utility correlates with F1 across instances but not within them (\\S\\ref{sec:discussion}).\n24\tDespite MBR's success in translation \\cite{freitag2022high} and other generation tasks \\cite{jinnai2024mbr}, this within-instance misalignment renders it ineffective for structured IE.\n25\tConformal prediction \\cite{fisch2021conformal, angelopoulos2021conformal} provides coverage guarantees; trained verifiers \\cite{cobbe2021verifiers, lightman2024verify, venktesh2025trust} learn per-sample scoring that may bridge this gap.\n26\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fbd8e7fc-446c-4677-bd6a-af9a970ab717",
+            "isSidechain": true,
+            "promptId": "ca9f328b-7d8f-49d7-ba83-1bf2b49868d3",
+            "agentId": "a3a8f9937ba741116",
+            "type": "user",
+            "uuid": "3b7e81ba-a251-4f44-8ef7-494a6fe6d00b",
+            "sourceToolAssistantUUID": "fbd8e7fc-446c-4677-bd6a-af9a970ab717",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "3614841f-3054-4bdc-a2e6-70a4541802e0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "serialized-singing-lantern"
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T19:14:17.400Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EzSFjrhXA3ZnvPMNwUd5uY",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3b7e81ba-a251-4f44-8ef7-494a6fe6d00b",
+            "isSidechain": true,
+            "agentId": "a3a8f9937ba741116",
+            "requestId": "req_011Cb4tTweHEekGS3LDCt5aE",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "7b4e60fd-6bc7-4179-bf99-71220e368cd2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "3614841f-3054-4bdc-a2e6-70a4541802e0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "serialized-singing-lantern",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Phqe2saJEYxQSXYZDySSdq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 7304,
+                "cache_read_input_tokens": 25382,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 7304,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T19:14:17.412Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EzSFjrhXA3ZnvPMNwUd5uY",
+              "type": "tool_result",
+              "content": "1\t\\section{Discussion}\\label{sec:discussion}\n2\t\n3\t\\paragraph{Practical recommendations.}\n4\tFor quality ranking, VC leads on hard NER ($\\rho{=}0.38$) while EM leads easy NER and binary discrimination (AUROC${=}0.816$, CoNLL); on RE (preliminary), LP outperforms structural signals (Table~\\ref{tab:multiseed}).\n5\tRankings are consistent across two 8B-scale model families; at the capability boundary (WNUT-17), all signals collapse (Table~\\ref{tab:wnut}).\n6\t\n7\t\\paragraph{Why the gap exists: two layers.}\n8\t\\textit{Layer 1 (definitional):} Four of five signals are instance-level aggregates that assign a single score per input; they cannot rank candidates by construction.\n9\t\\textit{Layer 2 (score compression):} Log-probability, the only per-sample signal, is severely compressed within instances: the median LP range is 0.041 nats (IQR [0.024, 0.073]; Figure~\\ref{fig:lp_range_cdf}, Table~\\ref{tab:logprob_ties}).\n10\tWhere compression is mitigated ($n{=}210$ instances with above-median spread), LP selection outperforms greedy ($+2.9$~pp, $p{=}0.004$), confirming compression as the bottleneck.\n11\tThe gap holds even among high-diversity instances (Appendix~\\ref{app:diversity}).\n12\t\n13\t\\paragraph{The gap widens with $N$.}\n14\tDoubling from $N{=}8$ to $N{=}16$ expands oracle headroom by $+4.4$~pp without improving signal-based selection; on RE at $N{=}16$ (preliminary), LP is the sole positive signal ($\\Delta{=}{+}0.7$~pp, $p{=}0.058$; Table~\\ref{tab:re_n16_selection}).\n15\tDetailed $N$-scaling analysis in Appendix~\\ref{app:n_scaling}.\n16\t\n17\t\\paragraph{Ablation: free-form decoding.}\\label{sec:ablation}\n18\tRemoving grammar constraints entirely (SciERC, Qwen3-8B) yields nearly identical LP distributions and negligible selection changes (Appendix~\\ref{app:freeform_ablation}), ruling out constrained decoding as the cause of score compression.\n19\tOur consensus-proximity strategies instantiate MBR decoding \\cite{eikema2022sampling}; all fail because utility correlates with F1 across instances but not within them (Appendix~\\ref{app:mbr_discussion}).\n20\t\n21\t\\paragraph{Methodological implications.}\n22\tThe decoupling of $\\rho$, AUROC, and selection F1 means single-metric evaluation risks selecting the wrong signal.\n23\tEffective selection likely requires per-sample signals such as trained verifiers \\cite{cobbe2021verifiers, venktesh2025trust}; $N{=}8$ captures most quality estimation benefit (Appendix~\\ref{app:n_scaling}).\n24\tStructural signals are robust to domain shift when the training schema subsumes the target (Appendix~\\ref{app:ood}).\n25\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7b4e60fd-6bc7-4179-bf99-71220e368cd2",
+            "isSidechain": true,
+            "promptId": "ca9f328b-7d8f-49d7-ba83-1bf2b49868d3",
+            "agentId": "a3a8f9937ba741116",
+            "type": "user",
+            "uuid": "75f7ca21-b693-4de9-b05f-0b770d125ebc",
+            "sourceToolAssistantUUID": "7b4e60fd-6bc7-4179-bf99-71220e368cd2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "3614841f-3054-4bdc-a2e6-70a4541802e0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "serialized-singing-lantern"
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-15T19:14:17.606Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Un6YsjVdiz2DZQRaR4fsu4",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/conclusion.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "75f7ca21-b693-4de9-b05f-0b770d125ebc",
+            "isSidechain": true,
+            "agentId": "a3a8f9937ba741116",
+            "requestId": "req_011Cb4tTweHEekGS3LDCt5aE",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "e0a3bc74-0878-4306-89e3-a63d23c1ac22",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "3614841f-3054-4bdc-a2e6-70a4541802e0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "serialized-singing-lantern",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Phqe2saJEYxQSXYZDySSdq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 7304,
+                "cache_read_input_tokens": 25382,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 7304,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T19:14:17.612Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Un6YsjVdiz2DZQRaR4fsu4",
+              "type": "tool_result",
+              "content": "1\t\\section{Conclusion}\\label{sec:conclusion}\n2\t\n3\tWe evaluate five confidence signals for quality estimation and sample selection in LLM-based structured IE, revealing that these objectives decouple: all signals achieve strong quality estimation yet none improves sample selection despite substantial oracle headroom---the \\textit{correlation-selection gap}.\n4\tFour signals fail by construction (instance-level); log-probability is too compressed within instances to discriminate (median range 0.041 nats, IQR [0.024, 0.073]), though selection recovers where compression is mitigated; a free-form ablation confirms compression is model-intrinsic.\n5\tSignal rankings shift with difficulty and task type, and collapse at the capability boundary---consistent across two model families.\n6\tRE findings rest on SciERC alone (preliminary); trained verifiers and scaling to 70B+ are promising directions.\n7\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e0a3bc74-0878-4306-89e3-a63d23c1ac22",
+            "isSidechain": true,
+            "promptId": "ca9f328b-7d8f-49d7-ba83-1bf2b49868d3",
+            "agentId": "a3a8f9937ba741116",
+            "type": "user",
+            "uuid": "bd15a75f-44ec-415f-8cd3-c2baadeb3aec",
+            "sourceToolAssistantUUID": "e0a3bc74-0878-4306-89e3-a63d23c1ac22",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "3614841f-3054-4bdc-a2e6-70a4541802e0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "serialized-singing-lantern"
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-15T19:14:18.058Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01ANciBkdYL89VFV4EKAi7n1",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/limitations.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bd15a75f-44ec-415f-8cd3-c2baadeb3aec",
+            "isSidechain": true,
+            "agentId": "a3a8f9937ba741116",
+            "requestId": "req_011Cb4tTweHEekGS3LDCt5aE",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "23131a9f-c7c4-4936-91a0-f878522adc99",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "3614841f-3054-4bdc-a2e6-70a4541802e0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "serialized-singing-lantern",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Phqe2saJEYxQSXYZDySSdq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 7304,
+                "cache_read_input_tokens": 25382,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 7304,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-15T19:14:18.068Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01ANciBkdYL89VFV4EKAi7n1",
+              "type": "tool_result",
+              "content": "1\tOur evaluation covers three NER datasets but only one RE benchmark (SciERC), where 40\\% of instances receive zero F1; RE selection failure persists even on non-zero F1 instances (Appendix~\\ref{app:re_conditional_selection}), but generalization to other RE benchmarks remains unvalidated.\n2\tWNUT-17 confirms the capability boundary; positive results on formal text have not been validated on informal domains where models achieve non-trivial performance.\n3\t\n4\tWe evaluate two 8B-parameter model families; whether the correlation-selection gap and difficulty-dependent signal ordering hold for 70B+ models or closed-source APIs is untested---larger models may produce more diverse samples, potentially altering the signal landscape.\n5\tWe do not train a dedicated verifier or reward model, leaving unknown how much oracle headroom a supervised approach could recover.\n6\t\n7\tWe evaluate at $N{=}8$ (primary) and $N{=}16$; behavior at larger sample sizes is unknown (Appendix~\\ref{app:n_scaling}).\n8\tOn CoNLL, the structural advantage over surface signals is marginal (SJ--FK $\\Delta\\rho{=}0.003$) and may not generalize to all simple-schema datasets.\n9\tThe free-form ablation was conducted on a single dataset with one model; whether LP compression generalizes to other settings remains untested.\n10\t\n11\tQwen3-8B's SciERC checkpoint was trained with empty \\texttt{<think></think>} blocks; a three-part analysis (Appendix~\\ref{app:thinking_token}) rules out this confound.\n12\tOne of three seeds used a different subtask flag; the F1 difference is ${<}0.3$~pp and LP compression is unaffected (Appendix~\\ref{app:logprob_ties}).\n13\t\n14\tLog-probability shows the largest temperature sensitivity ($\\Delta\\rho{=}{+}0.044$ on NER; RE $T{=}0.7$ data unavailable), and LP compression worsens on easy datasets at lower temperature (CoNLL tied fractions reach 95.8\\% at $T{=}0.7$); whether reduced temperature translates to selection gains remains untested.\n15\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "23131a9f-c7c4-4936-91a0-f878522adc99",
+            "isSidechain": true,
+            "promptId": "ca9f328b-7d8f-49d7-ba83-1bf2b49868d3",
+            "agentId": "a3a8f9937ba741116",
+            "type": "user",
+            "uuid": "944b25c8-7c87-4d73-b89d-e77a40d5c995",
+            "sourceToolAssistantUUID": "23131a9f-c7c4-4936-91a0-f878522adc99",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "3614841f-3054-4bdc-a2e6-70a4541802e0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "serialized-singing-lantern"
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-15T19:14:18.166Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JZENewuArD1dxcPe6798M5",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "944b25c8-7c87-4d73-b89d-e77a40d5c995",
+            "isSidechain": true,
+            "agentId": "a3a8f9937ba741116",
+            "requestId": "req_011Cb4tTweHEekGS3LDCt5aE",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "dde2e3a4-09ce-46a2-903f-892cba383474",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "3614841f-3054-4bdc-a2e6-70a4541802e0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "serialized-singing-lantern",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Phqe2saJEYxQSXYZDySSdq",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 7304,
+                "cache_read_input_tokens": 25382,
+                "output_tokens": 399,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 7304
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 6,
+                    "output_tokens": 399,
+                    "cache_read_input_tokens": 25382,
+                    "cache_creation_input_tokens": 7304,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 7304,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-15T19:14:18.482Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JZENewuArD1dxcPe6798M5",
+              "type": "tool_result",
+              "content": "1\t\\section{Notation}\\label{app:notation}\n2\t\n3\tTable~\\ref{tab:notation} summarizes the notation used throughout the paper.\n4\t\n5\t\\begin{table}[h]\n6\t\\centering\n7\t\\small\n8\t\\begin{tabular}{cl}\n9\t\\toprule\n10\tSymbol & Meaning \\\\\n11\t\\midrule\n12\t$\\mathcal{M}$ & Language model \\\\\n13\t$x$ & Input instance \\\\\n14\t$y_i$ & $i$-th stochastic sample \\\\\n15\t$N$ & Number of samples \\\\\n16\t$T$ & Sampling temperature \\\\\n17\t$c(\\cdot)$ & Confidence signal \\\\\n18\tSJ & Soft Jaccard similarity \\\\\n19\tFK & Fleiss' $\\kappa$ \\\\\n20\tEM & Exact-match voting rate \\\\\n21\tVC ($c_{\\mathrm{vc}}$) & Entity voting confidence \\\\\n22\tLP ($c_{\\mathrm{lp}}$) & Log-probability (mean token log-likelihood) \\\\\n23\t\\bottomrule\n24\t\\end{tabular}\n25\t\\caption{Notation used throughout the paper.}\n26\t\\label{tab:notation}\n27\t\\end{table}\n28\t\n29\t\\section{Robustness Analysis}\\label{app:robustness}\n30\t\n31\tWe exclude instances with empty gold annotations from all correlation analyses (CoNLL: 697/3{,}453 instances, 20.2\\%; SciERC: 22/551, 4.0\\%).\n32\tFor these instances, F1 is trivially zero regardless of prediction quality, and consistency signals reflect agreement on the empty set rather than extraction quality---including them inflates or deflates Spearman $\\rho$ depending on signal behavior at the boundary.\n33\t\n34\t\\begin{table}[t]\n35\t\\centering\n36\t\\small\n37\t\\caption{Signal robustness across configurations (Spearman $\\rho$). Top: temperature on Qwen SciERC. Middle: sample size on Qwen SciERC. Bottom: transfer across model families (both 8B) (LLaMA CoNLL $N{=}16$, 3-seed mean $\\pm\\sigma$). $^\\dagger$Mean over 3 seeds ($\\sigma{=}0.013$; individual: 0.398, 0.423, 0.410). $\\sigma$ computed as sample standard deviation.}\n38\t\\label{tab:robustness}\n39\t\\begin{tabular}{llcc}\n40\t\\toprule\n41\t& & NER $\\rho$ & RE $\\rho$ \\\\\n42\t\\midrule\n43\t\\multicolumn{4}{l}{\\textit{Temperature} (Qwen SciERC, $N{=}8$)} \\\\\n44\t\\quad SJ & $T{=}0.7$ & 0.364 & 0.234 \\\\\n45\t\\quad SJ & $T{=}1.0$ & 0.360 & 0.250 \\\\\n46\t\\quad FK & $T{=}0.7$ & 0.289 & 0.184 \\\\\n47\t\\quad FK & $T{=}1.0$ & 0.267 & 0.275 \\\\\n48\t\\quad LP & $T{=}0.7$ & 0.249 & --- \\\\\n49\t\\quad LP & $T{=}1.0$ & 0.205 & 0.266 \\\\\n50\t\\midrule\n51\t\\multicolumn{4}{l}{\\textit{Sample size} (Qwen SciERC, $T{=}1.0$)} \\\\\n52\t\\quad SJ & $N{=}8$  & 0.360 & 0.250 \\\\\n53\t\\quad SJ & $N{=}16$ & 0.411$^\\dagger$ & 0.281 \\\\\n54\t\\quad FK & $N{=}8$  & 0.267 & 0.275 \\\\\n55\t\\quad FK & $N{=}16$ & 0.283 & 0.279 \\\\\n56\t\\midrule\n57\t\\multicolumn{4}{l}{\\textit{Across model families} (LLaMA CoNLL, $N{=}16$, 3 seeds)} \\\\\n58\t\\quad SJ &  & $0.474{\\pm}0.009$ & --- \\\\\n59\t\\quad FK &  & $0.467{\\pm}0.009$ & --- \\\\\n60\t\\quad EM &  & $0.473{\\pm}0.010$ & --- \\\\\n61\t\\quad VC &  & $0.470{\\pm}0.006$ & --- \\\\\n62\t\\quad LP &  & $0.311{\\pm}0.003$ & --- \\\\\n63\t\\bottomrule\n64\t\\end{tabular}\n65\t\\end{table}\n66\t\n67\t\\begin{figure}[t]\n68\t\\centering\n69\t\\includegraphics[width=\\columnwidth]{fig_temperature_robustness}\n70\t\\caption{Temperature robustness on SciERC ($N{=}8$). Top: NER; bottom: RE. SJ maintains stable $\\rho$ across $T{=}0.7$ and $T{=}1.0$, while FK shows mixed sensitivity. LP shows the largest NER temperature effect ($\\Delta\\rho{=}{+}0.044$); RE $T{=}0.7$ LP data unavailable.}\n71\t\\label{fig:temperature_robustness}\n72\t\\end{figure}\n73\t\n74\t\\paragraph{Temperature sensitivity.}\n75\tSJ NER $\\rho$ shifts from 0.364 ($T{=}0.7$) to 0.360 ($T{=}1.0$), a difference of 0.004.\n76\tFK NER $\\rho$ drops by 0.022, while RE $\\rho$ increases by 0.091, likely reflecting reduced diversity at lower temperature interacting differently across tasks.\n77\tLP exhibits the largest temperature effect on NER ($\\rho{=}0.249$ at $T{=}0.7$ vs.\\ $0.205$ at $T{=}1.0$, $\\Delta{=}{+}0.044$), consistent with lower temperature concentrating probability mass and improving LP's discriminative power for quality estimation; RE $T{=}0.7$ LP data is not available.\n78\tAcross all comparisons, the signal hierarchy is preserved at both temperatures on NER (SJ${>}$FK${>}$LP at $T{=}0.7$: $0.364{>}0.289{>}0.249$; at $T{=}1.0$: $0.360{>}0.267{>}0.205$).\n79\t\n80\t\\paragraph{Sample size scaling.}\n81\tIncreasing from $N{=}8$ to $N{=}16$ improves SJ on Qwen SciERC NER: $\\rho$ rises from 0.360 to $0.411{\\pm}0.010$ (three seeds: 0.398, 0.423, 0.410), a gain of $+0.047$.\n82\tThe magnitude of $N$-scaling gains is setting-dependent---LLaMA SciERC NER yields $+0.016$ and Qwen CoNLL NER $+0.014$---though the direction is consistently positive.\n83\tLLaMA CoNLL exhibits the most uniform scaling: all four consistency signals gain $\\Delta\\rho{\\approx}{+}0.042$ (range: $+0.039$ to $+0.044$) while LP gains only $+0.004$ (Table~\\ref{tab:quality_estimation}).\n84\tFK $N$-scaling is seed-dependent: Qwen SciERC gains range from $+0.005$ to $+0.023$ across seeds (mean $+0.016$), while LLaMA CoNLL yields $+0.039$ (3-seed mean); individual seed FK shifts vary substantially under the unified pipeline, so this should not be interpreted as a robust trend.\n85\tVC $N$-scaling is consistently positive ($+0.005$ on Qwen CoNLL, $+0.018$ on LLaMA SciERC, $+0.030$ on Qwen SciERC), while LP is approximately $N$-invariant ($\\Delta{\\leq}0.034$).\n86\tSJ, EM, and VC scale consistently across all tested settings; only FK shows seed-dependent variation that does not constitute a reliable trend, suggesting that structural and binary-agreement signals are the most robust to $N$.\n87\tAt $N{=}16$, SJ converges to comparable NER performance with VC ($\\Delta{=}0.002$) while exhibiting lower cross-seed variance ($\\sigma{=}0.010$ vs.\\ $0.026$), making it a more stable alternative at higher sample sizes.\n88\t\n89\t\\paragraph{Transfer across model families.}\n90\tLLaMA-3.1-8B-Instruct shows a similar SJ--FK ordering on SciERC NER (SJ $\\rho{=}0.325{\\pm}0.021$, FK $\\rho{=}0.256{\\pm}0.024$, $\\Delta\\rho{=}0.069$; permutation $p{=}0.06$, borderline).\n91\tOn CoNLL, the gap across model families is minimal (Table~\\ref{tab:quality_estimation}): SJ achieves $\\rho{=}0.431$ (LLaMA) vs.\\ 0.436 (Qwen), $\\Delta{=}0.005$.\n92\tAt $N{=}16$, the structural-over-LP advantage holds across all four tested NER settings: Qwen SciERC (VC $\\rho{=}0.409$ vs.\\ LP 0.239, $\\Delta{=}{+}0.170$), Qwen CoNLL (EM $\\rho{=}0.463$ vs.\\ LP 0.328, $\\Delta{=}{+}0.135$),\\footnote{Qwen CoNLL $N{=}16$ was not recomputed under the unified pipeline; LP $\\rho{=}0.328$ may differ slightly from the registry value (0.315) due to instance filtering.} LLaMA SciERC (VC $\\rho{=}0.452$ vs.\\ LP 0.277, $\\Delta{=}{+}0.175$), and LLaMA CoNLL 3-seed (SJ $\\rho{=}0.474{\\pm}0.009$ vs.\\ LP $0.311{\\pm}0.003$, $\\Delta{=}{+}0.163$).\n93\t\n94\t\\section{Calibration Analysis}\\label{app:calibration}\n95\t\n96\t\\begin{figure*}[t]\n97\t\\centering\n98\t\\includegraphics[width=\\textwidth]{fig_reliability}\n99\t\\caption{Reliability diagrams on SciERC ($N{=}8$, $T{=}1.0$). Top: mean F1 vs.\\ binned confidence; bottom: instance counts per bin. Left: NER; right: RE. NER signals are reasonably well-calibrated (calibration ECE 0.069--0.096), while RE shows greater miscalibration (ECE 0.109--0.339), reflecting the difficulty of calibrating confidence for compound extraction tasks.}\n100\t\\label{fig:reliability}\n101\t\\end{figure*}\n102\t\n103\tReliability diagrams use 10 equal-width bins.\n104\tNER signals are reasonably well-calibrated (calibration ECE 0.069--0.096), while RE exhibits greater miscalibration (ECE 0.109--0.339), indicating that translating consistency scores into calibrated confidence estimates is feasible for NER but remains challenging for compound extraction tasks.\n105\t\n106\t\\section{Additional Analyses}\\label{app:additional}\n107\t\n108\t\\begin{figure*}[t]\n109\t\\centering\n110\t\\includegraphics[width=\\textwidth]{fig_signal_heatmap}\n111\t\\caption{Quality estimation heatmap (Spearman $\\rho$) across five signals and four configurations. Left: full evaluation set; right: conditional set (non-zero F1 instances). On the full set, structural signals dominate on SciERC NER while all signals converge on CoNLL. On the conditional set, EM emerges as the strongest signal on both NER ($\\rho{=}0.360$) and RE ($\\rho{=}0.417$), while LP RE collapses to near-zero ($\\rho{=}0.011$).}\n112\t\\label{fig:signal_heatmap}\n113\t\\end{figure*}\n114\t\n115\t\\paragraph{Per-relation diagnostic.}\n116\tRE signal degradation is relation-specific.\n117\t\\textsc{Feature-Of} has near-zero correlation ($\\rho{=}0.004$), while \\textsc{Hyponym-Of} achieves $\\rho{=}0.646$.\n118\tThe primary bottleneck is entity span errors, which account for 55.5\\% of RE false negatives---a prerequisite failure that consistency signals cannot detect, as they measure agreement among equally incorrect extractions.\n119\tWe note that RE analysis relies on a single dataset (SciERC); generalization to other RE benchmarks remains to be validated.\n120\t\n121\t\\paragraph{Capability stratification.}\n122\tFor NER, SJ effectiveness scales with structural complexity: on SciERC instances with 6+ entities, $\\rho{=}0.547$, compared to $\\rho{=}0.415$ for 1--2 entities.\n123\tThe SJ advantage over LP remains stable across sentence-length quartiles ($\\Delta\\rho{\\approx}0.08$--$0.20$).\n124\tFor RE, SJ $\\rho$ increases monotonically with sentence length (Q1: 0.110 $\\to$ Q4: 0.473; Fisher $z$-test $p{=}0.004$), indicating that longer, more relation-dense sentences provide richer structure for consistency-based estimation.\n125\tBoth proxies are weakly correlated with F1 ($|r|{<}0.15$), confirming they capture input complexity rather than directly predicting output quality; however, entity count and sentence length are themselves moderately correlated ($\\rho{=}0.650$), so they reflect overlapping rather than independent complexity dimensions.\n126\tFor RE, entity count and relation count are strongly correlated ($\\rho{=}0.769$) and thus reflect a single structural complexity dimension rather than independent axes.\n127\tOn the high-complexity RE subset ($n{=}81$, high relation count), signals improve substantially: VC reaches $\\rho{=}0.630$, LP $\\rho{=}0.554$, and SJ $\\rho{=}0.502$---all far above the full-set levels.\n128\tRicher relational structure provides more signal for consistency-based estimation, complementing the task-level boundary established by WNUT-17: structural signals are most effective within a ``sweet spot'' of sufficient model capability and sufficient output complexity.\n129\t\n130\t\\paragraph{Length vs.\\ log-probability.}\n131\tFigure~\\ref{fig:length_logprob_scatter} shows that mean log-probability is weakly positively correlated with output length (NER: $\\rho{=}0.386$, $n{=}4{,}232$; RE: $\\rho{=}0.326$, $n{=}3{,}176$), ruling out length-penalty confounding as an explanation for LP's selection failure: longer outputs receive \\textit{higher}, not lower, token-averaged log-probability under constrained decoding.\n132\t\n133\t\\begin{figure}[t]\n134\t\\centering\n135\t\\includegraphics[width=\\columnwidth]{fig_length_logprob_scatter}\n136\t\\caption{Output length vs.\\ mean log-probability on SciERC ($N{=}8$, $T{=}1.0$). Positive correlations (NER: $\\rho{=}0.386$; RE: $\\rho{=}0.326$) rule out length-penalty confounding.}\n137\t\\label{fig:length_logprob_scatter}\n138\t\\end{figure}\n139\t\n140\t\\paragraph{Evaluation circularity and LOO-SJ equivalence.}\n141\tConsensus-proximity selection chooses $\\hat{y} = \\arg\\max_{y_i} \\sum_{j \\neq i} \\text{SJ}(y_i, y_j)$.\n142\tLeave-one-out SJ (LOO-SJ) for sample $y_i$ is $\\text{LOO-SJ}_i = \\frac{1}{N-1}\\sum_{j \\neq i} \\text{SJ}(y_i, y_j)$.\n143\tSince the $\\frac{1}{N-1}$ constant is shared across all candidates within an instance, $\\arg\\max_{y_i} \\text{LOO-SJ}_i = \\arg\\max_{y_i} \\sum_{j \\neq i} \\text{SJ}(y_i, y_j)$, making the two selection rules equivalent.\n144\tStandard (non-LOO) SJ adds the self-comparison term $\\text{SJ}(y_i, y_i) = 1$ to each candidate, which is constant and thus does not affect ranking.\n145\tEmpirically, LOO-SJ yields $\\Delta\\rho{=}{-}0.014$ relative to standard SJ (a correlation-level difference), with a maximum per-instance score difference of $3.1{\\times}10^{-4}$ (negligible at the individual prediction level).\n146\tEvaluation circularity is negligible.\n147\t\n148\t\\paragraph{SJ normalizer robustness.}\n149\tEquation~\\ref{eq:sj} uses $\\max(|g_i|, |g_j|)$ as the denominator; an alternative is the union size $|g_i \\cup g_j|$.\n150\tOn SciERC NER ($N{=}8$, seed${=}42$), the two normalizers yield nearly identical quality estimation: $\\rho_{\\max}{=}0.360$ vs.\\ $\\rho_{\\cup}{=}0.365$ ($\\Delta\\rho{=}0.005$, $\\Delta$AUROC${=}0.003$); on CoNLL, $\\rho_{\\max}{=}0.431$ vs.\\ $\\rho_{\\cup}{=}0.432$ ($\\Delta\\rho{<}0.001$).\n151\tThe normalizer choice has negligible impact on results.\n152\t\n153\t\\paragraph{Conditional filtering details.}\n154\tOn LLaMA conditional RE (non-zero F1 instances), SJ recovers to $\\rho{=}0.405$ while FK drops to $\\rho{=}0.259$, consistent with the NER structural advantage; on full-set RE, however, the SJ--FK difference is non-significant ($\\Delta\\rho{=}{-}0.005$, $p{=}0.53$; preliminary).\n155\tAt $N{=}16$, the divergence persists: SJ maintains $\\rho{=}0.308$ on conditional RE while LP drops to $\\rho{=}{-}0.026$.\n156\tEM ranks first across all four tested conditional configurations---SciERC NER ($\\rho{=}0.360$), CoNLL Qwen $N{=}16$ ($\\rho{=}0.466$), CoNLL LLaMA 3-seed ($\\rho{=}0.462$), and SciERC RE ($\\rho{=}0.417$)---despite full-set rankings ranging from \\#1 (CoNLL Qwen) to \\#5 (SciERC RE).\n157\tOn the full set, EM is diluted by trivial agreement: instances where all $N$ samples produce identical (possibly incorrect) outputs receive EM${=}1$ regardless of quality, compressing the signal's dynamic range.\n158\tOn the conditional set---where the model demonstrably produces varied outputs---exact agreement becomes the strongest quality signal.\n159\tThe margin over SJ is largest on RE ($\\Delta\\rho{=}{+}0.171$), where compound extraction decisions amplify output variability, and smallest on CoNLL LLaMA ($\\Delta\\rho{=}{+}0.002$), where all signals converge near $\\rho{\\approx}0.46$.\n160\t\n161\t\\paragraph{WNUT-17 full signal analysis.}\n162\tTable~\\ref{tab:wnut} reports all five signals on WNUT-17.\n163\tVC achieves $\\rho{=}0.724$ (AUROC${=}0.913$) on the full set, but conditional analysis (non-zero F1 instances) reveals this is entirely driven by the zero/non-zero boundary: conditional $\\rho{=}0.038$ ($p{=}0.49$).\n164\tLP shows the reverse pattern: full-set $\\rho{=}{-}0.410$ but conditional $\\rho{=}0.350$, the highest among all signals on the conditional set.\n165\tThis inversion confirms that full-set correlations on high-failure-rate datasets conflate binary success prediction with quality gradation.\n166\t\n167\t\\begin{table}[t]\n168\t\\centering\n169\t\\small\n170\t\\caption{Quality estimation on WNUT-17 (Qwen, $N{=}16$, $T{=}1.0$, $n{=}689$ after filtering gold-empty instances). Cond: non-zero F1 instances ($n{=}334$). LP exhibits strong negative full-set $\\rho$; its conditional $\\rho$ reverses to the highest among all signals, confirming that full-set correlations on high-failure-rate datasets conflate binary success prediction with quality gradation.}\n171\t\\label{tab:wnut}\n172\t\\begin{tabular}{lccccc}\n173\t\\toprule\n174\tSignal & $\\rho$ & $p$ & AUROC & Cond.\\ $\\rho$ & Cond.\\ $p$ \\\\\n175\t\\midrule\n176\tVC      & .724 & ${<}$1e-112 & .913 & .038 & .487 \\\\\n177\tFK      & .125 & .001 & .555 & .169 & .002 \\\\\n178\tSJ      & .089 & .020 & .517 & .288 & ${<}$1e-7 \\\\\n179\tEM      & .050 & .194 & .487 & .333 & ${<}$1e-9 \\\\\n180\tLP & $-$.410 & ${<}$1e-28 & .219 & .350 & ${<}$1e-10 \\\\\n181\t\\bottomrule\n182\t\\end{tabular}\n183\t\\end{table}\n184\t\n185\t\\paragraph{Cross-configuration selection analysis.}\n186\tTable~\\ref{tab:cross_selection} extends the selection analysis to four additional configurations.\n187\tOn LLaMA SciERC, where output diversity remains substantial (18\\% identical outputs, 39\\% unique), LP achieves the highest selection F1 (0.652) at $N{=}8$ but still falls within bootstrap noise of greedy (0.646), replicating the gap observed on Qwen SciERC (Table~\\ref{tab:selection}).\n188\tOn CoNLL, 57--88\\% of instances produce identical outputs across all $N$ samples, reflecting a ceiling effect (greedy F1 ${\\approx}$0.91--0.92) rather than signal failure; selection analysis on these configurations is uninformative because there is little per-sample variance for any signal to exploit.\n189\t\n190\t\\begin{table*}[t]\n191\t\\centering\n192\t\\small\n193\t\\caption{Best-of-$N$ selection F1 (macro, instance-averaged) across configurations ($T{=}1.0$). Best non-oracle signal per row in \\textbf{bold}. At $N{=}8$, no signal significantly outperforms greedy in any configuration. At $N{=}16$ on LLaMA CoNLL, VC achieves small but significant gains ($+0.28$~pp, $p{<}0.03$; see text below). CoNLL shows especially tight clustering where greedy already exceeds 0.90.}\n194\t\\label{tab:cross_selection}\n195\t\\begin{tabular}{llccccccc}\n196\t\\toprule\n197\tConfig & $n$ & Greedy & Oracle & SJ & FK & EM & LP & VC \\\\\n198\t\\midrule\n199\tLLaMA/SciERC $N{=}8$ & 529 & .646 & .778 & .643 & .639 & .634 & \\textbf{.652} & .633 \\\\\n200\tLLaMA/SciERC $N{=}16$ & 529 & .645 & .806 & \\textbf{.649} & \\textbf{.649} & .640 & .646 & .640 \\\\\n201\tQwen/CoNLL $N{=}8$ & 2{,}756 & .908 & .948 & \\textbf{.899} & .893 & .898 & .897 & .895 \\\\\n202\tLLaMA/CoNLL $N{=}8$ & 2{,}756 & .924 & .943 & .924 & \\textbf{.925} & .924 & .924 & .923 \\\\\n203\t\\bottomrule\n204\t\\end{tabular}\n205\t\\end{table*}\n206\t\n207\t\\paragraph{Diminishing returns of $N$-scaling.}\n208\tOur $N{=}8$ and $N{=}16$ comparisons (Table~\\ref{tab:robustness}) characterize the marginal value of additional samples for test-time scaling \\cite{brown2024monkeys, snell2025scaling}.\n209\tFor quality estimation, structural signals benefit consistently but sublinearly: SJ $\\rho$ improves by $+0.047$ (Qwen SciERC, 3-seed mean) and $+0.032$ (LLaMA CoNLL, 3-seed mean) when doubling from $N{=}8$ to $N{=}16$, while log-probability is approximately $N$-invariant ($\\Delta\\rho{\\leq}0.021$).\n210\tStructural signals leverage $\\binom{N}{2}$ pairwise comparisons (28 pairs at $N{=}8$, 120 at $N{=}16$), but the $\\rho$ improvement is far less than proportional, indicating diminishing information per additional comparison.\n211\tThis asymmetry gives structural signals a relative advantage in the compute-constrained regime: at $N{=}8$, SJ already achieves $\\rho{=}0.431$ on LLaMA CoNLL (vs.\\ LP $\\rho{=}0.307$, $\\Delta{=}{+}0.124$), and the gap \\textit{widens} at $N{=}16$ ($\\Delta{=}{+}0.163$) because structural signals continue to benefit from additional pairwise evidence while LP does not.\n212\tFor sample selection, additional samples increase the oracle upper bound---more draws raise the probability of a high-quality candidate---but signal-based selection remains flat because the selector's inability to identify the best candidate is a granularity limitation, not a sample size limitation.\n213\tThe practical implication is that $N{=}8$ captures most of the achievable quality estimation benefit; further scaling widens rather than closes the correlation-selection gap absent stronger per-sample selectors.\n214\t\n215\t\\paragraph{$N{=}16$ CoNLL selection: small but significant.}\n216\tWhile quality estimation benefits sublinearly from $N$-scaling, selection behavior at $N{=}16$ reveals a nuanced exception on LLaMA CoNLL.\n217\tVC achieves the largest gain over greedy ($+0.28$~pp, $p{=}0.003$--$0.027$ across 3 seeds, all significant), with SJ, FK, and EM at $+0.22$--$0.23$~pp and LP at $+0.12$~pp (2/3 seeds significant).\n218\tThese gains are statistically significant but practically minimal: oracle headroom at $N{=}16$ is only 2.5~pp, so VC captures approximately 10\\% of the available headroom.\n219\tThis reinforces the primary finding: even under the most favorable conditions---high baseline performance, more candidates, and aggregated multi-seed evidence---signal-based selection recovers only a fraction of the oracle headroom available.\n220\t\n221\t\\section{Bootstrap CI for Signal Comparisons}\\label{app:bootstrap_signal}\n222\t\n223\tTable~\\ref{tab:bootstrap_signal_ci} reports bootstrap confidence intervals for individual signal $\\rho$ and pairwise $\\Delta\\rho$ on SciERC NER ($N{=}8$, $n{=}529$, $B{=}10{,}000$, seed${=}42$).\n224\tThe SJ--LP gap ($\\Delta\\rho{=}{+}0.155$) is clearly significant, confirming the structural advantage reported in \\S\\ref{sec:qe_results}.\n225\tThe VC--SJ gap ($\\Delta\\rho{=}{+}0.019$) is not significant, indicating that these two structural signals perform comparably.\n226\tThe SJ--EM gap ($\\Delta\\rho{=}{+}0.065$) is borderline significant, with the CI lower bound at $+0.003$ and upper bound at $+0.130$.\n227\t\n228\t\\begin{table}[t]\n229\t\\centering\n230\t\\small\n231\t\\caption{Bootstrap 95\\% CIs for signal $\\rho$ on SciERC NER ($N{=}8$, $n{=}529$, $B{=}10{,}000$, seed${=}42$). Top: individual signals. Bottom: pairwise $\\Delta\\rho$; ``Sig.'' indicates whether the 95\\% CI excludes zero.}\n232\t\\label{tab:bootstrap_signal_ci}\n233\t\\begin{tabular}{lcc}\n234\t\\toprule\n235\tSignal & $\\rho$ & 95\\% CI \\\\\n236\t\\midrule\n237\tVC & +0.379 & [+0.299, +0.456] \\\\\n238\tSJ & +0.360 & [+0.277, +0.437] \\\\\n239\tEM & +0.295 & [+0.212, +0.371] \\\\\n240\tFK & +0.267 & [+0.176, +0.354] \\\\\n241\tLP & +0.205 & [+0.119, +0.291] \\\\\n242\t\\bottomrule\n243\t\\end{tabular}\n244\t\n245\t\\vspace{0.5em}\n246\t\n247\t\\begin{tabular}{lccc}\n248\t\\toprule\n249\tComparison & $\\Delta\\rho$ & 95\\% CI & Sig. \\\\\n250\t\\midrule\n251\tSJ $-$ LP & +0.155 & [+0.074, +0.234] & Yes \\\\\n252\tVC $-$ SJ & +0.019 & [$-$0.033, +0.073] & No \\\\\n253\tSJ $-$ EM & +0.065 & [+0.003, +0.130] & Marginal$^\\dagger$ \\\\\n254\t\\bottomrule\n255\t\\end{tabular}\n256\t\n257\t\\smallskip\n258\t{\\footnotesize $^\\dagger$Marginally significant without multiple comparison correction; would not survive Bonferroni correction for 10 pairwise comparisons ($\\alpha_{\\text{adj}}{=}0.005$).}\n259\t\\end{table}\n260\t\n261\tAt $N{=}16$ ($B{=}10{,}000$, permutation test), the structural advantage extends to FK comparisons.\n262\tOn SciERC NER ($n{=}529$), SJ--FK ($\\Delta\\rho{=}0.147$--$0.160$, all $p{\\leq}0.002$) and VC--FK ($\\Delta\\rho{=}0.138$--$0.188$, all $p{\\leq}0.003$) are clearly significant across all three seeds; EM--FK is seed-dependent ($\\Delta\\rho{=}0.054$--$0.093$, $p{=}0.048$--$0.15$).\n263\tOn CoNLL ($n{=}2{,}756$), all signals significantly outperform FK: EM $\\Delta\\rho{=}0.071$ ($p{<}0.001$), SJ $\\Delta\\rho{=}0.056$ ($p{<}0.001$), VC $\\Delta\\rho{=}0.022$ ($p{=}0.040$).\n264\t\n265\t\\section{Diversity and Selection Analysis}\\label{app:diversity}\n266\t\n267\t\\begin{figure*}[t]\n268\t\\centering\n269\t\\includegraphics[width=\\textwidth]{fig_selection_gap}\n270\t\\caption{The correlation-selection gap on SciERC NER ($N{=}8$, $T{=}1.0$, 2-seed mean). Bars show best-of-$N$ selection F1; the line marks quality estimation $\\rho$. Despite $\\rho$ up to 0.40, no signal significantly outperforms greedy (all $p{>}0.05$; Table~\\ref{tab:selection}). Dashed line indicates oracle upper bound. RE selection results in Table~\\ref{tab:selection}.}\n271\t\\label{fig:selection_gap}\n272\t\\end{figure*}\n273\t\n274\t\\paragraph{Output diversity quantification.}\n275\tTable~\\ref{tab:diversity} summarizes output diversity across configurations.\n276\tOn SciERC, output diversity is substantial: Qwen produces 43\\% unique outputs per instance (mean 3.5 distinct out of $N{=}8$), with per-sample F1 standard deviation of 0.144 and mean pairwise SJ of 0.703.\n277\tLLaMA shows similar diversity (39\\% unique, F1 std 0.11).\n278\tOn CoNLL, diversity collapses: 57\\% (Qwen) to 88\\% (LLaMA) of instances produce identical outputs across all $N$ samples, reflecting a ceiling effect where greedy F1 already exceeds 0.90.\n279\tWNUT-17 shows 55\\% identical outputs, driven by the 52\\% zero-F1 rate.\n280\t\n281\t\\begin{table}[t]\n282\t\\centering\n283\t\\small\n284\t\\caption{Output diversity across configurations ($N{=}8$, $T{=}1.0$). ``Identical'' = fraction of instances with all $N$ outputs identical. ``Unique'' = mean fraction of distinct outputs per instance.}\n285\t\\label{tab:diversity}\n286\t\\begin{tabular}{lcc}\n287\t\\toprule\n288\tConfig & Identical & Unique \\\\\n289\t\\midrule\n290\tQwen/SciERC & 11\\% & 43\\% \\\\\n291\tLLaMA/SciERC & 18\\% & 39\\% \\\\\n292\tQwen/CoNLL & 57\\% & --- \\\\\n293\tLLaMA/CoNLL & 88\\% & --- \\\\\n294\tWNUT-17 & 55\\% & --- \\\\\n295\t\\bottomrule\n296\t\\end{tabular}\n297\t\\end{table}\n298\t\n299\t\\paragraph{Oracle-improvable fraction.}\n300\tAcross SciERC configurations, 39--42\\% of instances contain at least one sample with F1 exceeding greedy\\footnote{Oracle-improvable and diversity-stratified analyses use $n{=}529$ (excluding instances with empty gold annotations; see \\S\\ref{sec:evaluation}); the diversity quantification in Table~\\ref{tab:diversity} uses the full test set.}: Qwen NER 42.0\\% (222/529, mean headroom $+$31.9~pp among improvable instances), Qwen RE 41.3\\% (164/397, $+$45.3~pp), LLaMA NER 39.3\\% (208/529, $+$33.7~pp).\n301\tOn CoNLL, only 4--9\\% of instances are improvable, confirming the ceiling effect.\n302\t\n303\t\\paragraph{Diversity-stratified selection gap.}\n304\tOn the 44\\% of Qwen SciERC instances with high diversity (${\\geq}4$ unique outputs among 8 samples, $n{=}232$), oracle headroom reaches $+$16.3~pp, yet all consistency-based signals (SJ, FK, EM, VC) select at or below greedy, and LP---the only per-sample signal---achieves merely $+$0.8~pp.\n305\tLLaMA replicates this pattern: on its high-diversity subset ($n{=}186$), oracle headroom reaches $+$20.1~pp while consistency signals remain at or below greedy and LP captures only $+$2.0~pp.\n306\tThis rules out insufficient diversity as an explanation for the correlation-selection gap.\n307\t\n308\t\\paragraph{TOST equivalence testing.}\n309\tThe primary evidence against selection gains comes from effect sizes and confidence intervals: Cohen's $d{=}0.038$ for the best signal (NER LP) and bootstrap 95\\% CI [$-$3.0, $+$4.2]~pp spanning zero.\n310\tTable~\\ref{tab:tost} supplements this with two one-sided tests (TOST), testing whether each signal's selection F1 is equivalent to greedy within a bound $\\delta$.\n311\tThe $\\delta$ values are contextualized against oracle headroom (12--18~pp): $\\delta{=}5$~pp corresponds to forgoing 28--38\\% of the available headroom, $\\delta{=}3$~pp forgoing 17--23\\%, and $\\delta{=}2$~pp less than 15\\%.\n312\tThese proportions use the same test data that defines the headroom and should be interpreted as context for practical relevance rather than independent calibration.\n313\tThe breakpoint $\\delta^*$---the minimum equivalence margin at which each signal passes TOST---ranges from approximately 1.3~pp (SJ, ${\\sim}$10\\% of oracle headroom) to 3.4~pp (FK, ${\\sim}$26\\%) on NER, and from approximately 2.9~pp (LP, ${\\sim}$16\\%) to 6.5~pp (VC, ${\\sim}$36\\%) on RE.\n314\tOn NER ($n{=}529$), at $\\delta{=}{\\pm}2$~pp, SJ and LP are confirmed equivalent to greedy (TOST $p{<}0.05$); at $\\delta{=}{\\pm}3$~pp, four of five signals pass; at $\\delta{=}{\\pm}5$~pp, all five pass.\n315\tOn RE ($n{=}397$, preliminary), EM and VC fail equivalence even at $\\delta{=}{\\pm}5$~pp due to systematic underperformance ($\\Delta{=}{-}3.2$~pp and $-4.5$~pp respectively).\n316\tThe effect sizes are negligible ($d{=}0.038$) and confidence intervals span zero, with TOST confirming equivalence at practically meaningful margins.\n317\t\n318\t\\begin{table}[t]\n319\t\\centering\n320\t\\small\n321\t\\caption{TOST equivalence testing: signals vs.\\ greedy on SciERC ($N{=}8$, $T{=}1.0$). \\checkmark: equivalent at $p{<}0.05$; \\texttimes: not equivalent. $\\Delta$: mean F1 difference (signal $-$ greedy).}\n322\t\\label{tab:tost}\n323\t\\begin{tabular}{l cccc cccc}\n324\t\\toprule\n325\t& \\multicolumn{4}{c}{\\textbf{NER}} & \\multicolumn{4}{c}{\\textbf{RE}} \\\\\n326\t\\cmidrule(lr){2-5} \\cmidrule(lr){6-9}\n327\tSignal & $\\Delta$ & $\\pm$2 & $\\pm$3 & $\\pm$5 & $\\Delta$ & $\\pm$2 & $\\pm$3 & $\\pm$5 \\\\\n328\t\\midrule\n329\tLP & +0.6 & \\checkmark & \\checkmark & \\checkmark & $-$0.9 & \\texttimes & \\checkmark & \\checkmark \\\\\n330\tSJ & +0.1 & \\checkmark & \\checkmark & \\checkmark & $-$1.8 & \\texttimes & \\texttimes & \\checkmark \\\\\n331\tFK & $-$0.5 & \\texttimes & \\checkmark & \\checkmark & $-$1.6 & \\texttimes & \\texttimes & \\checkmark \\\\\n332\tEM & $-$0.8 & \\texttimes & \\checkmark & \\checkmark & $-$3.2 & \\texttimes & \\texttimes & \\texttimes \\\\\n333\tVC & $-$1.0 & \\texttimes & \\texttimes & \\checkmark & $-$4.5 & \\texttimes & \\texttimes & \\texttimes \\\\\n334\t\\bottomrule\n335\t\\end{tabular}\n336\t\\end{table}\n337\t\n338\t\\section{Multi-Seed Stability}\\label{app:multiseed}\n339\t\n340\tTable~\\ref{tab:multiseed} reports quality estimation metrics across three random seeds for both model families on SciERC ($N{=}8$, $T{=}1.0$).\n341\tOn NER, the signal ranking VC${>}$SJ${>}$EM${>}$FK${>}$LP is identical across all six model-seed combinations, with $\\sigma{\\leq}0.025$ for all signals.\n342\tOn RE (Qwen only, preliminary), VC remains the top signal ($\\rho{=}0.309{\\pm}0.024$), but LP rises to \\#2 ($\\rho{=}0.297{\\pm}0.022$), above FK, SJ, and EM---a reversal from the NER ranking that reflects RE's higher sensitivity to per-sample scoring.\n343\tLLaMA absolute values are systematically lower than Qwen on NER, consistent with the directionally-consistent-but-magnitude-dependent characterization in the main text.\n344\t\n345\t\\begin{table}[t]\n346\t\\centering\n347\t\\small\n348\t\\caption{Multi-seed quality estimation on SciERC ($N{=}8$, $T{=}1.0$, seeds: 42, 123, 456). NER: both models; RE: Qwen only (preliminary). Signal ranking is stable across seeds ($\\sigma{\\leq}0.025$). $\\sigma$ is population standard deviation over 3 seeds.}\n349\t\\label{tab:multiseed}\n350\t\\begin{tabular}{lccccc}\n351\t\\toprule\n352\t& LP & FK & SJ & VC & EM \\\\\n353\t\\midrule\n354\t\\multicolumn{6}{l}{\\textit{NER Spearman $\\rho$ (mean $\\pm\\sigma$)}} \\\\\n355\tQwen & .217${\\pm}$.013 & .254${\\pm}$.016 & .364${\\pm}$.018 & .386${\\pm}$.019 & .307${\\pm}$.008 \\\\\n356\tLLaMA & .162${\\pm}$.025 & .256${\\pm}$.024 & .325${\\pm}$.021 & .384${\\pm}$.014 & .279${\\pm}$.011 \\\\\n357\t\\midrule\n358\t\\multicolumn{6}{l}{\\textit{RE Spearman $\\rho$ (mean $\\pm\\sigma$, Qwen)}} \\\\\n359\tQwen & .297${\\pm}$.022 & .290${\\pm}$.012 & .249${\\pm}$.002 & .309${\\pm}$.024 & .135${\\pm}$.016 \\\\\n360\t\\midrule\n361\t\\multicolumn{6}{l}{\\textit{NER AUROC (mean $\\pm\\sigma$)}} \\\\\n362\tQwen & .613${\\pm}$.002 & .618${\\pm}$.009 & .684${\\pm}$.009 & .697${\\pm}$.010 & .661${\\pm}$.010 \\\\\n363\tLLaMA & .577${\\pm}$.007 & .616${\\pm}$.011 & .655${\\pm}$.010 & .689${\\pm}$.005 & .636${\\pm}$.006 \\\\\n364\t\\bottomrule\n365\t\\end{tabular}\n366\t\\end{table}\n367\t\n368\t\\section{Training Configuration}\\label{app:training}\n369\t\n370\tBoth models are fine-tuned with identical hyperparameters (Table~\\ref{tab:training}) to ensure comparisons across model families reflect model differences rather than training confounds.\n371\t\n372\t\\begin{table}[t]\n373\t\\centering\n374\t\\small\n375\t\\caption{Training configuration. Both Qwen3-8B and LLaMA-3.1-8B-Instruct use identical settings unless noted.}\n376\t\\label{tab:training}\n377\t\\begin{tabular}{ll}\n378\t\\toprule\n379\tParameter & Value \\\\\n380\t\\midrule\n381\tLoRA rank / $\\alpha$ & 32 / 64 \\\\\n382\tLoRA target & All linear modules \\\\\n383\tLoRA dropout & 0 \\\\\n384\tOptimizer & AdamW \\\\\n385\tLearning rate & 2e-4, cosine schedule \\\\\n386\tWarmup ratio & 0.1 \\\\\n387\tEffective batch size & 16 (2 $\\times$ grad.\\ accum.\\ 8) \\\\\n388\tEpochs & 5 \\\\\n389\tMax sequence length & 2048 \\\\\n390\tPrecision & bf16 \\\\\n391\tGradient checkpointing & Enabled \\\\\n392\tMax gradient norm & 1.0 \\\\\n393\tTraining seed & 42 \\\\\n394\tFramework & LLaMA Factory \\\\\n395\t\\midrule\n396\t\\multicolumn{2}{l}{\\textit{Dataset-specific}} \\\\\n397\tSciERC split & 1861 / 275 / 551 \\\\\n398\tCoNLL / WNUT & +\\,load\\_best\\_model\\_at\\_end, \\\\\n399\t& eval\\_steps${=}$200, save\\_limit${=}$5 \\\\\n400\t\\bottomrule\n401\t\\end{tabular}\n402\t\\end{table}\n403\t\n404\t\\paragraph{Prompt template.}\n405\tFor NER, we use a structured prompt:\n406\t\\begin{quote}\n407\t\\small\n408\t\\texttt{System:} You are an expert in Named Entity Recognition.\\\\\n409\t\\texttt{User:} Extract all named entities from the following text. Output as JSON.\\\\\n410\tText: \\texttt{\\{input\\_text\\}}\\\\\n411\tEntity types: \\texttt{\\{schema\\_types\\}}\n412\t\\end{quote}\n413\tRE follows the same structure with ``Relation Extraction'' and relation type lists substituted accordingly.\n414\t\n415\t\\paragraph{Constrained decoding.}\n416\tInference uses vLLM with XGrammar-based JSON schema enforcement \\cite{willard2023guided}, which constrains outputs to valid entity/relation structures matching the target schema.\n417\tThis eliminates format errors but may compress per-sample diversity by restricting the output space.\\footnote{SciERC training used \\texttt{enable\\_thinking=True} (LLaMA Factory 0.9.4 default), injecting empty \\texttt{<think></think>} blocks (4--5 tokens) into each training response with loss computation; CoNLL and WNUT explicitly set \\texttt{enable\\_thinking=False}. Constrained decoding at inference time enforces JSON-only output, suppressing thinking tokens. See \\S\\ref{sec:setup} and Limitations for discussion of this confound.}\n418\t\n419\t\\section{Thinking Token Impact Analysis}\\label{app:thinking_token}\n420\t\n421\tQwen3-8B's SciERC checkpoint was trained with empty \\texttt{<think></think>} blocks prepended to each response (\\S\\ref{sec:setup}).\n422\tWe quantify the potential impact on LP scores through three complementary arguments.\n423\t\n424\t\\paragraph{LP shift magnitude.}\n425\tThe 4--5 thinking tokens contribute an estimated LP shift of 0.001 nats to the per-token log-probability average, representing 2.68\\% of the median within-instance LP range (0.041 nats).\n426\tThis shift is too small to alter LP-based rankings.\n427\t\n428\t\\paragraph{Constant prefix cancellation.}\n429\tAll $N$ samples within an instance share the same prompt and, under constrained decoding, the same absence of thinking tokens at inference time.\n430\tAny LP bias from the training-time thinking prefix is therefore a near-constant additive shift across all candidates within an instance, leaving within-instance LP \\textit{rankings} unchanged.\n431\t\n432\t\\paragraph{CoNLL control group.}\n433\tCoNLL and WNUT-17 checkpoints were trained without thinking tokens (\\texttt{enable\\_thinking=False}).\n434\tIf thinking tokens caused LP compression on SciERC, CoNLL should exhibit lower tied fractions.\n435\tInstead, CoNLL shows \\textit{higher} tied fractions at both temperatures (86.8\\% at $T{=}1.0$, 95.8\\% at $T{=}0.7$) than SciERC (60.3\\% at $T{=}1.0$), directly contradicting the thinking-token hypothesis.\n436\t\n437\t\\section{Log-Probability Score Compression}\\label{app:logprob_ties}\n438\t\n439\tUnder constrained decoding, log-probability scores are severely compressed within instances, limiting per-sample discrimination (Table~\\ref{tab:logprob_ties}, Figure~\\ref{fig:lp_range_cdf}).\n440\tThe median within-instance LP range is only 0.041 nats---below the $\\varepsilon{=}0.05$ threshold used throughout, providing data-driven justification for this cutoff rather than an arbitrary choice.\n441\tAt $\\varepsilon{=}0.05$, 60.3\\% of instances ($n{=}529$, excluding empty gold annotations) have a within-sample range below the threshold, and 75\\% of pairwise comparisons are effective ties ($|\\Delta|{<}0.026$).\n442\tThe CDF rises smoothly with no cliff or discontinuity (Figure~\\ref{fig:lp_range_cdf}), confirming that compression is a pervasive regime rather than a bimodal split.\n443\tThis compression is stable across seeds: seed${=}456$ yields median LP range${=}0.040$ nats and tied fraction${=}62.2\\%$ (vs.\\ seed${=}42$: $0.041$ nats, $60.3\\%$).\n444\tFor comparison, SJ has only 12.5\\% tied instances at the same threshold---SJ's advantage over LP for selection is one of score resolution, not information content.\n445\t\n446\t\\begin{figure}[t]\n447\t\\centering\n448\t\\includegraphics[width=\\columnwidth]{fig_lp_range_cdf}\n449\t\\caption{CDF of within-instance LP range on SciERC NER ($N{=}8$, $n{=}529$). The median LP range is 0.041 nats (dashed line), below $\\varepsilon{=}0.05$. The smooth CDF confirms compression is pervasive, not bimodal.}\n450\t\\label{fig:lp_range_cdf}\n451\t\\end{figure}\n452\t\n453\t\\begin{table}[t]\n454\t\\centering\n455\t\\small\n456\t\\caption{Log-probability score compression on SciERC NER ($N{=}8$, $n{=}529$). ``Tied'' = fraction of instances where within-instance LP range ${<}\\varepsilon$.}\n457\t\\label{tab:logprob_ties}\n458\t\\begin{tabular}{lc}\n459\t\\toprule\n460\t$\\varepsilon$ threshold & Tied instances (\\%) \\\\\n461\t\\midrule\n462\t0.01 & 1.1\\% \\\\\n463\t0.05 & 60.3\\% \\\\\n464\t0.1  & ${\\sim}$84\\% \\\\\n465\t0.5  & ${\\sim}$99\\% \\\\\n466\t\\bottomrule\n467\t\\end{tabular}\n468\t\\end{table}\n469\t\n470\t\\paragraph{Non-tied subset.}\n471\tAmong instances with LP range ${\\geq}0.05$ ($n{=}210$, 40\\% of total), log-probability selection \\textit{significantly} outperforms greedy ($+2.9$~pp F1, $p{=}0.004$), and within-instance $\\rho(\\text{LP}, \\text{F1})$ rises from 0.08 (tied subset) to 0.39 (non-tied subset).\n472\tAs a continuous complement to the binary tied/non-tied analysis, pooled within-instance $\\rho(\\text{LP}, \\text{F1}){=}0.248$ across all instances confirms weak but positive per-sample signal; however, only 21.6\\% of instances achieve $p{<}0.05$ significance, and $\\rho(\\text{LP range}, \\text{F1 range}){=}0.328$ shows that instances with more LP spread also exhibit more F1 variability---LP carries information but compression limits its exploitation.\n473\tA free-form NER decoding ablation (Appendix~\\ref{app:freeform_ablation}) confirms this compression persists without constrained decoding.\n474\t\n475\t\\paragraph{$\\varepsilon$ sensitivity sweep.}\n476\tTable~\\ref{tab:epsilon_sweep} sweeps the tied/non-tied threshold from $\\varepsilon{=}0.01$ to $0.20$.\n477\tThe tied fraction increases smoothly with no cliff or discontinuity, and the selection gain $\\Delta$ grows monotonically as the non-tied subset narrows to progressively higher-spread instances.\n478\t$\\varepsilon{=}0.05$ yields the strongest statistical separation ($p{=}0.004$); at $\\varepsilon{\\geq}0.15$, the non-tied subset becomes too small for reliable inference ($n{\\leq}36$).\n479\t\n480\t\\begin{table}[t]\n481\t\\centering\n482\t\\small\n483\t\\caption{$\\varepsilon$ sensitivity sweep for LP selection on SciERC NER ($N{=}8$, seed${=}42$, $n{=}529$). ``Tied\\%'' = fraction with within-instance LP range ${<}\\varepsilon$. $\\Delta$: selection F1 gain over greedy on the non-tied subset. The tied fraction increases smoothly; $\\varepsilon{=}0.05$ yields the strongest statistical separation.}\n484\t\\label{tab:epsilon_sweep}\n485\t\\begin{tabular}{ccccc}\n486\t\\toprule\n487\t$\\varepsilon$ & Tied\\% & Non-tied $n$ & $\\Delta$ (pp) & $p$ \\\\\n488\t\\midrule\n489\t0.01 & 1.1\\% & 523 & $+$0.58 & .21 \\\\\n490\t0.02 & 13.6\\% & 457 & $+$0.83 & .15 \\\\\n491\t0.03 & 31.8\\% & 361 & $+$1.31 & .079 \\\\\n492\t\\textbf{0.05} & \\textbf{60.3\\%} & \\textbf{210} & \\textbf{$+$2.86} & \\textbf{.004} \\\\\n493\t0.10 & 83.9\\% & 85 & $+$3.69 & .034 \\\\\n494\t0.15 & 93.2\\% & 36 & $+$4.15 & .11 \\\\\n495\t0.20 & 96.4\\% & 19 & $+$4.59 & .13 \\\\\n496\t\\bottomrule\n497\t\\end{tabular}\n498\t\\end{table}\n499\t\n500\t\\paragraph{$\\varepsilon$ robustness of selection F1.}\\label{app:epsilon_robustness}\n501\tThe preceding analysis stratifies LP by a tied/non-tied threshold; consistency-based signals (SJ, FK, VC, EM) also use $\\varepsilon$ to define MBR-style proximity in selection.\n502\tTable~\\ref{tab:epsilon_robustness} reports the maximum selection F1 variation across $\\varepsilon \\in [0, 0.2]$ for all signals and configurations.\n503\tAt $\\varepsilon{=}0.05$, consistency signals change by at most 1.09~pp (mean 0.21~pp), with EM completely $\\varepsilon$-invariant (integer scoring); LP is the most sensitive (up to 3.65~pp across the full range), as expected.\n504\tSpearman $\\rho$---the primary quality estimation metric throughout---is a continuous rank correlation that does not depend on any discretization threshold; the $\\varepsilon$ parameter affects only the selection analysis.\n505\t\n506\t\\begin{table}[t]\n507\t\\centering\n508\t\\small\n509\t\\caption{Maximum selection F1 variation (pp) across $\\varepsilon \\in [0, 0.2]$. At $\\varepsilon{=}0.05$ (used throughout), consistency signals change by ${\\leq}1.09$~pp; EM is invariant (integer scoring). LP is most sensitive as $\\varepsilon$ governs its tied/non-tied partition. SciERC: $n{=}529$; CoNLL: $n{=}2{,}756$.}\n510\t\\label{tab:epsilon_robustness}\n511\t\\begin{tabular}{lcccc}\n512\t\\toprule\n513\t& \\multicolumn{2}{c}{\\textbf{SciERC}} & \\multicolumn{2}{c}{\\textbf{CoNLL}} \\\\\n514\t\\cmidrule(lr){2-3} \\cmidrule(lr){4-5}\n515\tSignal & Qwen & LLaMA & Qwen & LLaMA \\\\\n516\t\\midrule\n517\tSJ & 0.92 & 1.45 & 0.99 & 0.18 \\\\\n518\tFK & 1.03 & 0.93 & 0.60 & 0.15 \\\\\n519\tVC & 2.33 & 0.53 & 0.72 & 0.18 \\\\\n520\tEM & 0.00 & 0.00 & 0.00 & 0.00 \\\\\n521\tLP & 3.65 & 2.58 & 3.00 & 0.31 \\\\\n522\t\\bottomrule\n523\t\\end{tabular}\n524\t\\end{table}\n525\t\n526\t\\section{RE Conditional Selection}\\label{app:re_conditional_selection}\n527\t\n528\tTable~\\ref{tab:re_cond_selection} extends the selection analysis to the RE non-zero F1 subset.\n529\tOf $n{=}397$ RE instances, 238 (60\\%) have non-zero F1 and 159 (40\\%) have zero F1.\n530\tAll five signals underperform greedy on both subsets.\n531\tOn the non-zero subset, selection performance is \\textit{worse} than on the full set (e.g., VC: $-10.0$~pp on non-zero vs.\\ $-4.5$~pp on full set), because greedy is already strong on non-zero instances (F1${=}0.674$) and signals actively select inferior samples.\n532\tOracle headroom exists (0.757 vs.\\ 0.674) but no signal exploits it, ruling out the 40\\% zero-F1 floor effect as the explanation for RE selection failure.\n533\t\n534\t\\begin{table}[t]\n535\t\\centering\n536\t\\small\n537\t\\caption{RE selection F1 (macro, instance-averaged) on SciERC ($N{=}8$, $T{=}1.0$). Full set ($n{=}397$) and non-zero F1 subset ($n{=}238$). No signal outperforms greedy on either subset.}\n538\t\\label{tab:re_cond_selection}\n539\t\\begin{tabular}{lcc}\n540\t\\toprule\n541\tMethod & Full ($n{=}397$) & Non-zero ($n{=}238$) \\\\\n542\t\\midrule\n543\tOracle & 0.585 & 0.757 \\\\\n544\t\\midrule\n545\tLP & 0.395 & 0.600 \\\\\n546\tSJ & 0.386 & 0.604 \\\\\n547\tEM & 0.372 & 0.583 \\\\\n548\tVC & 0.359 & 0.574 \\\\\n549\t\\midrule\n550\tGreedy & 0.404 & 0.674 \\\\\n551\t\\bottomrule\n552\t\\end{tabular}\n553\t\\end{table}\n554\t\n555\t\\section{RE $N{=}16$ Selection Analysis}\\label{app:re_n16_selection}\n556\t\n557\tTable~\\ref{tab:re_n16_selection} extends the selection analysis to RE at $N{=}16$ with 3-seed statistics.\n558\tAll four consistency signals underperform greedy, with EM showing the largest deficit ($\\Delta{=}{-}1.5$~pp, Fisher $p{>}0.99$).\n559\tLP is the only positive signal ($\\Delta{=}{+}0.7$~pp, Fisher $p{=}0.058$), driven primarily by seed~456 ($\\Delta{=}{+}1.5$~pp, $p{=}0.026$); the remaining seeds show smaller effects ($+0.1$ and $+0.6$~pp, $p{>}0.20$).\n560\tEven the most favorable seed captures only ${\\sim}9\\%$ of the 17.1~pp oracle headroom.\n561\tThis cross-task consistency---LP as the only viable selection signal on both NER and RE---reinforces the structural limitation of instance-level signals for candidate ranking.\n562\t\n563\t\\begin{table}[t]\n564\t\\centering\n565\t\\small\n566\t\\caption{RE best-of-$N$ selection F1 (macro, instance-averaged) on SciERC ($N{=}16$, $T{=}1.0$, 3-seed mean${\\pm}\\sigma$, $n{=}551$). Fisher combined $p$ vs.\\ greedy. LP is the only signal with positive $\\Delta$. $\\sigma$ is population standard deviation over 3 seeds.}\n567\t\\label{tab:re_n16_selection}\n568\t\\begin{tabular}{lccc}\n569\t\\toprule\n570\tMethod & F1 & $\\Delta$ (pp) & $p$(Fisher) \\\\\n571\t\\midrule\n572\tOracle & $.463{\\pm}.006$ & $+$17.1 & --- \\\\\n573\t\\midrule\n574\tLP & $\\mathbf{.299}{\\pm}.007$ & $+$0.7 & .058 \\\\\n575\tVC & $.284{\\pm}.002$ & $-$0.8 & .973 \\\\\n576\tFK & $.283{\\pm}.005$ & $-$0.9 & .985 \\\\\n577\tSJ & $.281{\\pm}.005$ & $-$1.0 & .993 \\\\\n578\tEM & $.277{\\pm}.007$ & $-$1.5 & .999 \\\\\n579\t\\midrule\n580\tGreedy & $.291{\\pm}.000$ & --- & --- \\\\\n581\tRandom & $.262{\\pm}.001$ & $-$2.9 & --- \\\\\n582\t\\bottomrule\n583\t\\end{tabular}\n584\t\\end{table}\n585\t\n586\t\\section{MBR Decoding and Task-Specific Interactions}\\label{app:mbr_discussion}\n587\t\n588\t\\paragraph{Connection to MBR decoding.}\n589\tOur selection strategies instantiate minimum Bayes risk (MBR) decoding \\cite{eikema2022sampling, muller2021understanding}: each selects $\\hat{y} = \\arg\\max_{y_i} \\sum_{j \\neq i} U(y_i, y_j)$ with utility $U$ defined by SJ, EM, or entity overlap.\n590\tDespite MBR's success in machine translation \\cite{freitag2022high} and its extension to summarization, code generation, and captioning \\cite{jinnai2024mbr}, all variants fail here because the utility functions correlate with F1 at the instance level but not within a single instance---the mathematical essence of the correlation-selection gap.\n591\t\\citet{eikema2025structured} study structure-conditional MBR decoding and find that standard utility functions degrade on structured outputs---consistent with our finding that consensus-proximity selection fails in IE despite its success in machine translation.\n592\t\n593\t\\paragraph{Task-specific decoding interactions.}\n594\tThe free-form ablation reveals divergent behavior across tasks.\n595\tOn RE, LP selection flips from $-0.68$~pp (constrained) to $+1.69$~pp (free-form; preliminary, single RE benchmark), a reversal that spans all 7 relation types and is driven by selective variance reallocation ($p{<}0.0001$).\n596\tThe win/loss ratio shifts from 36:59 (constrained) to 45:45 (free-form), with the gains concentrated on relation-dense instances (mean 3.3 gold relations).\n597\tThis interaction does not generalize to NER, where selection remains negligible under both regimes.\n598\tThis ablation uses a single seed (seed${=}42$); whether the RE reversal replicates across seeds and generalizes to other RE benchmarks warrants further investigation.\n599\tThe non-tied subset ($n{=}210$) is partially reshuffled under free-form decoding: Jaccard similarity between the constrained and free-form non-tied sets is 0.472, indicating that 87 instances newly gain LP discrimination while others lose it, yielding a $3{\\times}$ increase in within-instance LP range for the newly non-tied subset.\n600\tDespite this reshuffling, aggregate NER selection gains remain negligible---score compression is not a fixed property of specific instances but rather a pervasive regime that shifts across instances without producing net selection improvement.\n601\tFree-form decoding also slightly improves quality estimation (NER VC $\\rho$: 0.379$\\to$0.409), though this does not translate to selection gains.\n602\t\n603\t\\section{Free-Form Decoding Ablation}\\label{app:freeform_ablation}\n604\t\n605\tTable~\\ref{tab:freeform_ablation} compares constrained and free-form decoding across four dimensions on SciERC ($N{=}8$, $T{=}1.0$, Qwen3-8B).\n606\tFree-form decoding removes grammar constraints entirely; outputs are parsed post-hoc (parse rate 99.95\\%, 4406/4408).\n607\tLP score distributions are nearly identical across regimes (Panel~A: within-instance std ratio $0.97{\\times}$), and NER selection gains remain negligible under both regimes (Panel~B).\n608\tRE LP selection flips positive under free-form decoding ($+1.69$~pp vs.\\ $-0.68$~pp constrained).\n609\tQuality estimation improves modestly for most signals under free-form decoding (Panel~C), with the largest gain for FK ($+0.053$ NER, $+0.039$ RE).\n610\t\n611\t\\begin{table*}[t]\n612\t\\centering\n613\t\\caption{Comparison of constrained vs.\\ free-form decoding on SciERC (Qwen3-8B, $N{=}8$, $T{=}1.0$, seed=42).}\n614\t\\label{tab:freeform_ablation}\n615\t\n616\t\\vspace{2pt}\n617\t{\\small\\textsc{Panel A: Logprob Distribution}}\n618\t\\vspace{2pt}\n619\t\n620\t\\begin{tabular}{lccc}\n621\t\\toprule\n622\tMetric & Constrained & Free-form & $\\Delta$ \\\\\n623\t\\midrule\n624\tMean LP std        & 0.0206 & 0.0199 & $-$0.0007 \\\\\n625\tMean LP range      & 0.0623 & 0.0599 & $-$0.0024 \\\\\n626\tTied fraction ($\\varepsilon{=}0.05$) & 59.7\\% & 57.7\\% & $-$2.0\\,pp \\\\\n627\t\\bottomrule\n628\t\\end{tabular}\n629\t\n630\t\\vspace{8pt}\n631\t\n632\t{\\small\\textsc{Panel B: Selection F1}}\n633\t\\vspace{2pt}\n634\t\n635\t\\begin{tabular}{llccc}\n636\t\\toprule\n637\tTask & Method & Constrained & Free-form & $\\Delta$ \\\\\n638\t\\midrule\n639\t\\multirow{3}{*}{NER}\n640\t  & Greedy        & 0.6182 & 0.6204 & $+$0.0022 \\\\\n641\t  & LP-selected   & 0.6241 & 0.6222 & $-$0.0019 \\\\\n642\t  & Selection gap & $+$0.0059 & $+$0.0018 & $-$0.0041 \\\\\n643\t\\midrule\n644\t\\multirow{3}{*}{RE}\n645\t  & Greedy        & 0.2913 & 0.2880 & $-$0.0033 \\\\\n646\t  & LP-selected   & 0.2845 & 0.3050 & \\textbf{$+$0.0205} \\\\\n647\t  & Selection gap & $-$0.0068 & $+$0.0169 & \\textbf{$+$0.0237} \\\\\n648\t\\bottomrule\n649\t\\end{tabular}\n650\t\n651\t\\vspace{8pt}\n652\t\n653\t{\\small\\textsc{Panel C: QE Signal Quality (Spearman $\\rho$)}}\n654\t\\vspace{2pt}\n655\t\n656\t\\begin{tabular}{l ccc ccc}\n657\t\\toprule\n658\t & \\multicolumn{3}{c}{NER ($n{=}529$)} & \\multicolumn{3}{c}{RE ($n{=}397$)} \\\\\n659\t\\cmidrule(lr){2-4} \\cmidrule(lr){5-7}\n660\tSignal & Constr. & Free & $\\Delta$ & Constr. & Free & $\\Delta$ \\\\\n661\t\\midrule\n662\tSJ & 0.360 & 0.377 & $+$0.018 & 0.250 & 0.273 & $+$0.023 \\\\\n663\tFK & 0.267 & 0.320 & $+$0.053 & 0.275 & 0.315 & $+$0.039 \\\\\n664\tLP & 0.205 & 0.213 & $+$0.008 & 0.266 & 0.304 & $+$0.038 \\\\\n665\tEM & 0.295 & 0.317 & $+$0.023 & 0.134 & 0.137 & $+$0.002 \\\\\n666\tVC & 0.379 & 0.409 & $+$0.030 & 0.350 & 0.323 & $-$0.026 \\\\\n667\t\\bottomrule\n668\t\\end{tabular}\n669\t\n670\t\\vspace{8pt}\n671\t\n672\t{\\small\\textsc{Panel D: Parse Rate (Free-form)}}\n673\t\\vspace{2pt}\n674\t\n675\t\\begin{tabular}{lc}\n676\t\\toprule\n677\tMetric & Value \\\\\n678\t\\midrule\n679\tTotal samples          & 4408 \\\\\n680\tParse rate             & 99.95\\% \\\\\n681\tInstances 8/8 valid    & 549\\,/\\,551 (99.6\\%) \\\\\n682\t\\bottomrule\n683\t\\end{tabular}\n684\t\n685\t\\end{table*}\n686\t\n687\t\\section{LP Selection Failure Stability}\\label{app:lp_failure_stability}\n688\t\n689\tWe analyze RE LP selection failures across three random seeds (constrained decoding, $N{=}8$, $T{=}1.0$, Qwen3-8B) to assess whether failures are systematic or stochastic.\n690\t\n691\t\\paragraph{Pairwise overlap.}\n692\tLP selection failures (instances where LP-selected F1 $<$ greedy F1) show moderate cross-seed stability: the average pairwise Jaccard similarity is 0.42 (range: 0.38--0.46), indicating that failures are partially systematic---driven by instance complexity---but not fully deterministic.\n693\tThe 3-way intersection contains 34 instances (27.9\\% of any-seed failures), confirming a stable failure core.\n694\t\n695\t\\paragraph{Instance complexity drives failure.}\n696\tTable~\\ref{tab:stable_failures} stratifies instances by failure stability.\n697\tStable failures (all 3 seeds) involve more gold relations (2.12 vs.\\ 1.62 for never-fail instances) and higher greedy F1 (0.688 vs.\\ 0.429), indicating that LP mis-selects on instances where the model already performs well---precisely the instances where selection would be most valuable.\n698\tFailure rate increases monotonically with gold relation count: 4.3\\% at 1 relation, 20.7\\% at 3 relations, 26.2\\% at 6 relations.\n699\t\n700\t\\begin{table}[t]\n701\t\\centering\n702\t\\small\n703\t\\caption{RE LP selection failure stability across 3 seeds (SciERC, $N{=}8$). Stable failures concentrate on relation-dense instances with high greedy F1.}\n704\t\\label{tab:stable_failures}\n705\t\\begin{tabular}{lcccc}\n706\t\\toprule\n707\tGroup & $n$ & Gold rels & Greedy F1 & LP $\\Delta$F1 \\\\\n708\t\\midrule\n709\tStable fail (3 seeds) & 34 & 2.12 & 0.688 & $-$0.499 \\\\\n710\tFail 2+ seeds & 26 & 2.46 & 0.774 & $-$0.450 \\\\\n711\tFail 1 seed & 62 & 2.32 & 0.692 & $-$0.239 \\\\\n712\tNever fail & 429 & 1.62 & 0.429 & $+$0.041 \\\\\n713\t\\bottomrule\n714\t\\end{tabular}\n715\t\\end{table}\n716\t\n717\t\\paragraph{Flip instances.}\n718\tOnly 5 RE instances with gold relations flip from LP failure (constrained) to LP success (free-form), with mean gold relation count 3.67 (well above the population mean of 1.86).\n719\tThese instances show large constrained LP errors ($\\Delta{=}{-}0.430$) that reverse under free-form decoding ($\\Delta{=}{+}0.503$), but their rarity (5/397) confirms that the RE selection flip is driven by aggregate variance reallocation rather than systematic instance-level correction.\n720\t\n721\t\\section{$N$-Scaling Detailed Analysis}\\label{app:n_scaling}\n722\t\n723\tTables~\\ref{tab:n-scaling}--\\ref{tab:sigma-comparison} provide detailed $N$-scaling analysis on Qwen3-8B SciERC with 3-seed statistics.\n724\t\n725\t\\begin{table}[t]\n726\t\\centering\n727\t\\caption{Effect of sample pool size on signal quality (Qwen3-8B, SciERC, 3-seed mean Spearman $\\rho$).}\n728\t\\label{tab:n-scaling}\n729\t\\small\n730\t\\begin{tabular}{l ccc ccc}\n731\t\\toprule\n732\t & \\multicolumn{3}{c}{\\textbf{NER} $\\rho$} & \\multicolumn{3}{c}{\\textbf{RE} $\\rho$} \\\\\n733\t\\cmidrule(lr){2-4} \\cmidrule(lr){5-7}\n734\tSignal & $N\\!=\\!8$ & $N\\!=\\!16$ & $\\Delta$ & $N\\!=\\!8$ & $N\\!=\\!16$ & $\\Delta$ \\\\\n735\t\\midrule\n736\tSJ & 0.3641 & 0.4105 & \\textbf{+0.0464} & 0.2485 & 0.2758 & \\textbf{+0.0273} \\\\\n737\tFK & 0.2536 & 0.2833 & \\textbf{+0.0297} & 0.2903 & 0.2964 & \\textbf{+0.0061} \\\\\n738\tVC & 0.3861 & 0.4092 & \\textbf{+0.0231} & 0.3088 & 0.3738 & \\textbf{+0.0650} \\\\\n739\tLP & 0.2167 & 0.2393 & \\textbf{+0.0226} & 0.2970 & 0.3100 & \\textbf{+0.0130} \\\\\n740\tEM & 0.3071 & 0.3395 & \\textbf{+0.0324} & 0.1353 & 0.1506 & \\textbf{+0.0153} \\\\\n741\t\\midrule\n742\tMean & 0.3055 & 0.3364 & \\textbf{+0.0308} & 0.2560 & 0.2813 & \\textbf{+0.0253} \\\\\n743\t\\bottomrule\n744\t\\end{tabular}\n745\t\\end{table}\n746\t\n747\t\\begin{table}[t]\n748\t\\centering\n749\t\\caption{Cross-seed signal ranking stability (Kendall's $W$, 3 seeds).}\n750\t\\label{tab:ranking-stability}\n751\t\\small\n752\t\\begin{tabular}{ll cc l}\n753\t\\toprule\n754\tModel & Task & $N$ & Kendall's $W$ & Consensus ranking \\\\\n755\t\\midrule\n756\tQwen  & NER & 8  & 1.000 & VC $>$ SJ $>$ EM $>$ FK $>$ LP \\\\\n757\tQwen  & NER & 16 & 0.956 & SJ $\\approx$ VC $>$ EM $>$ FK $>$ LP \\\\\n758\tQwen  & RE  & 8  & 0.822 & VC $>$ LP $>$ FK $>$ SJ $>$ EM \\\\\n759\tQwen  & RE  & 16 & 0.956 & VC $>$ LP $>$ FK $>$ SJ $>$ EM \\\\\n760\tLLaMA & NER & 8  & 1.000 & VC $>$ SJ $>$ EM $>$ FK $>$ LP \\\\\n761\t\\bottomrule\n762\t\\end{tabular}\n763\t\\end{table}\n764\t\n765\t\\begin{table}[t]\n766\t\\centering\n767\t\\caption{Cross-seed standard deviation ($\\sigma$) of Spearman $\\rho$ at $N\\!=\\!8$ vs.\\ $N\\!=\\!16$ (Qwen3-8B, SciERC, 3 seeds). $\\sigma$ is population standard deviation.}\n768\t\\label{tab:sigma-comparison}\n769\t\\small\n770\t\\begin{tabular}{l cc cc}\n771\t\\toprule\n772\t & \\multicolumn{2}{c}{\\textbf{NER} $\\sigma_\\rho$} & \\multicolumn{2}{c}{\\textbf{RE} $\\sigma_\\rho$} \\\\\n773\t\\cmidrule(lr){2-3} \\cmidrule(lr){4-5}\n774\tSignal & $N\\!=\\!8$ & $N\\!=\\!16$ & $N\\!=\\!8$ & $N\\!=\\!16$ \\\\\n775\t\\midrule\n776\tSJ & 0.0179 & 0.0102 & 0.0015 & 0.0067 \\\\\n777\tFK & 0.0157 & 0.0079 & 0.0121 & 0.0143 \\\\\n778\tVC & 0.0187 & 0.0260 & 0.0244 & 0.0158 \\\\\n779\tEM & 0.0076 & 0.0031 & 0.0157 & 0.0049 \\\\\n780\tLP & 0.0125 & 0.0017 & 0.0218 & 0.0152 \\\\\n781\t\\midrule\n782\tMean & 0.0145 & 0.0098 & 0.0151 & 0.0114 \\\\\n783\t\\bottomrule\n784\t\\end{tabular}\n785\t\\end{table}\n786\t\n787\tSignal rankings are highly stable across seeds: Kendall's $W{=}1.000$ for NER at $N{=}8$ (both models), dropping only to $W{=}0.956$ at $N{=}16$ where SJ and VC converge (Table~\\ref{tab:ranking-stability}).\n788\tDoubling $N$ reduces cross-seed $\\sigma$ by 32\\% on NER and 24\\% on RE (Table~\\ref{tab:sigma-comparison}), with the largest reductions for SJ ($-43\\%$ NER) and EM ($-59\\%$ NER), confirming that additional samples stabilize structural signals more than LP.\n789\t\n790\t\\section{Cross-Dataset OOD Analysis}\\label{app:ood}\n791\t\n792\tTo test whether confidence signals generalize under domain shift, we evaluate models on out-of-distribution data: a SciERC-trained model applied to CoNLL instances (wider$\\to$narrower schema) and vice versa (Table~\\ref{tab:ood}).\n793\t\n794\t\\begin{table}[t]\n795\t\\centering\n796\t\\small\n797\t\\caption{Cross-dataset OOD quality estimation (Spearman $\\rho$, Qwen3-8B, $N{=}8$, $T{=}1.0$, seed${=}42$). SciERC$\\to$CoNLL: SciERC-trained model on CoNLL instances ($n{=}2756$). CoNLL$\\to$SciERC: CoNLL-trained model on SciERC instances ($n{=}529$, excluded from conclusions due to catastrophic model failure). In-domain $\\rho$ from Table~\\ref{tab:quality_estimation} (same model, same seed). \\textsuperscript{***}$p{<}0.001$, \\textsuperscript{*}$p{<}0.05$.}\n798\t\\label{tab:ood}\n799\t\\begin{tabular}{l ccc ccc}\n800\t\\toprule\n801\t & \\multicolumn{3}{c}{\\textbf{SciERC$\\to$CoNLL}} & \\multicolumn{3}{c}{\\textbf{CoNLL$\\to$SciERC}} \\\\\n802\t\\cmidrule(lr){2-4} \\cmidrule(lr){5-7}\n803\tSignal & $\\rho$ & In-dom. & $\\Delta$ & $\\rho$ & In-dom. & $\\Delta$ \\\\\n804\t\\midrule\n805\tVC & .469\\textsuperscript{***} & .379 & +.090 & +.105\\textsuperscript{*} & .379 & $-$.274 \\\\\n806\tSJ & .378\\textsuperscript{***} & .360 & +.018 & $-$.186\\textsuperscript{***} & .360 & $-$.546 \\\\\n807\tEM & .300\\textsuperscript{***} & .295 & +.005 & $-$.202\\textsuperscript{***} & .295 & $-$.497 \\\\\n808\tFK & .285\\textsuperscript{***} & .267 & +.018 & $-$.070 & .267 & $-$.337 \\\\\n809\tLP & .246\\textsuperscript{***} & .205 & +.041 & $-$.152\\textsuperscript{***} & .205 & $-$.357 \\\\\n810\t\\bottomrule\n811\t\\end{tabular}\n812\t\\end{table}\n813\t\n814\t\\paragraph{Wider-to-narrower schema transfer.}\n815\tWhen the SciERC-trained model (6 NER types) is applied to CoNLL (4 types), all signals remain significant ($p{<}0.001$) and structural signals improve over their in-domain levels (same model, seed${=}42$, $N{=}8$; in-domain $\\rho$ from Table~\\ref{tab:quality_estimation}): VC reaches $\\rho{=}0.469$ (in-domain $0.379$, $\\Delta{=}{+}0.090$), SJ $\\rho{=}0.378$ (in-domain $0.360$, $\\Delta{=}{+}0.018$), and FK $\\rho{=}0.285$ (in-domain $0.267$, $\\Delta{=}{+}0.018$).\n816\tThe wider training schema subsumes CoNLL's narrower schema, so the model produces reasonable outputs even out-of-domain (greedy F1${=}0.522$), and structural signals benefit from the simpler target schema's reduced output ambiguity.\n817\t\n818\t\\paragraph{Narrower-to-wider schema transfer (excluded).}\n819\tThe reverse direction is excluded from our conclusions due to catastrophic model failure, not signal failure.\n820\tThe CoNLL-trained model recognizes only 4 news entity types (PER, ORG, LOC, MISC) and has no relation extraction capability; when applied to SciERC's 6 scientific entity types and 7 relation types, the model cannot produce meaningful structured outputs (greedy NER F1${=}0.009$, RE F1${=}0.001$).\n821\tUnder this regime, most signals flip to negative or near-zero correlations (Table~\\ref{tab:ood}); only VC retains weak positive correlation ($\\rho{=}0.105$, $p{=}0.016$).\n822\tThese negative correlations reflect the model systematically generating confident but incorrect outputs---a capability failure analogous to WNUT-17 (\\S\\ref{sec:qe_results}), not evidence against signal utility.\n823\t\n824\t\\paragraph{Asymmetry interpretation.}\n825\tThe directional asymmetry is driven by schema coverage: wider$\\to$narrower preserves signal utility because the SciERC model's 6-type schema subsumes CoNLL's 4 types, while narrower$\\to$wider fails because the CoNLL model lacks the entity and relation types required by SciERC.\n826\tThis extends the capability boundary identified on WNUT-17 to the domain-shift setting: confidence signals require sufficient model capability as a prerequisite, and results from the CoNLL$\\to$SciERC direction should not be interpreted as evidence of signal degradation under domain shift.\n827\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dde2e3a4-09ce-46a2-903f-892cba383474",
+            "isSidechain": true,
+            "promptId": "ca9f328b-7d8f-49d7-ba83-1bf2b49868d3",
+            "agentId": "a3a8f9937ba741116",
+            "type": "user",
+            "uuid": "b88f9381-9a4d-4862-8eff-817ac1bb4874",
+            "sourceToolAssistantUUID": "dde2e3a4-09ce-46a2-903f-892cba383474",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "3614841f-3054-4bdc-a2e6-70a4541802e0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "serialized-singing-lantern"
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-15T19:14:36.697Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! I've successfully located and read all the main LaTeX paper files. Let me compile a comprehensive summary of my findings.\n\n## Summary: LaTeX Paper Files for struct_self_consist_ie Project\n\n### File Locations Found\n\n**Primary Paper Structure:**\n- Main file: `/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/main.tex` (updated May 15 15:35)\n- Sections directory: `/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/`\n\n**Section Files (all updated May 14-15):**\n1. `abstract.tex` - Abstract\n2. `introduction.tex` - Introduction (6,245 bytes, May 14 20:10)\n3. `related_work.tex` - Related Work (9,219 bytes, May 14 20:31)\n4. `method.tex` - Method/Methodology (partial read; defines the problem formulation and five confidence signals)\n5. `experiments.tex` - Experiments (18,046 bytes, most recent at May 15 16:16)\n6. `discussion.tex` - Discussion (4,076 bytes, May 14 20:50)\n7. `conclusion.tex` - Conclusion (2,169 bytes, May 14 21:09)\n8. `limitations.tex` - Limitations (1,734 bytes, May 14 21:10)\n9. `appendix.tex` - Appendix (extensive analysis)\n\n**Additional artifact directories with generated papers:**\n- `/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/_project/paper/` (various section TEX files)\n- `/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/artifacts/dream_reports/dream_20260515T092545/` (most recent: best, median, worst variants)\n\n### Paper Title and Overview\n\n**Title:** \"Strong Predictors, Weak Selectors: Confidence Signals Predict but Struggle to Select in 8B-Scale Information Extraction\"\n\n**Main Contribution:** The paper identifies and analyzes the **correlation-selection gap**—where confidence signals achieve strong quality estimation (ρ up to 0.45) but fail to improve best-of-N sample selection despite substantial oracle headroom (13-18 percentage points).\n\n### Key Experimental Results\n\n**Datasets:**\n- SciERC (551 test instances, joint NER 6 types + RE 7 types)\n- CoNLL-2003 (3,453 test sentences, 4 entity types, ~91% F1)\n- WNUT-17 (1,287 social media instances, 52% zero F1)\n\n**Models:** Qwen3-8B and LLaMA-3.1-8B-Instruct (fine-tuned with LoRA)\n\n**Five Confidence Signals Evaluated:**\n1. **Log-Probability (LP)** - model-internal, per-sample signal\n2. **Soft Jaccard (SJ)** - structural, instance-level\n3. **Entity Voting Confidence (VC)** - structural, instance-level\n4. **Exact Match Voting (EM)** - surface, instance-level\n5. **Fleiss' κ (FK)** - surface, instance-level\n\n**Quality Estimation Results (Table ref:tab:quality_estimation):**\n- Best results: VC ρ=0.379 (SciERC NER), EM ρ=0.451 (CoNLL NER)\n- Structural signals dominate on hard tasks (SciERC); surface/LP rise on easier tasks\n- Signal rankings shift with task difficulty\n\n**Selection Results (Table ref:tab:selection):**\n- Oracle headroom: 0.778 (NER), 0.585 (RE)\n- Greedy baseline: 0.645 (NER), 0.404 (RE)\n- Best signal (LP): 0.647 (NER), 0.395 (RE) - **no significant improvement** (p=0.29, p-value > 0.05)\n\n### Core Finding: The Correlation-Selection Gap\n\nTwo-layered explanation:\n1. **Layer 1 (Definitional):** Four of five signals are instance-level—they assign identical scores to all candidates within an instance, making ranking impossible by construction.\n2. **Layer 2 (Score Compression):** Log-probability (the only per-sample signal) is severely compressed within instances. Median LP range = 0.041 nats (IQR [0.024, 0.073]); 60.3% of instances fall below the ε=0.05 tie threshold. Where compression is mitigated (n=210 instances with above-median spread), LP selection outperforms greedy (+2.9 pp, p=0.004), confirming compression as the bottleneck.\n\n### Notable Appendix Analyses\n\nThe appendix (sections/appendix.tex) contains extensive supporting analyses:\n- Robustness across temperature, sample size N, and model families\n- Calibration analysis (NER ECE 0.069-0.096; RE ECE up to 0.339)\n- Diversity quantification (39-43% unique outputs on SciERC)\n- Free-form ablation confirming compression is model-intrinsic, not a constrained decoding artifact\n- Bootstrap confidence intervals for signal comparisons\n- WNUT-17 analysis showing signal collapse at capability boundary\n- Multi-seed stability (σ ≤ 0.025 on NER)\n- Thinking token impact analysis (negligible)\n- Cross-dataset OOD analysis (wider→narrower schema transfer succeeds; narrower→wider fails due to model capability limits)\n\n### Limitations Section Highlights\n\n- RE evaluation limited to SciERC (40% zero F1 instances)\n- Only 8B models tested; generalization to 70B+ unknown\n- No trained verifier or reward model baseline\n- Single free-form ablation on one dataset with one model\n- Qwen3-8B SciERC checkpoint trained with empty thinking tokens (analysis confirms negligible impact)\n\nAll the LaTeX files are now available for review. The most actively updated file is experiments.tex (May 15 16:16), indicating ongoing refinement of experimental results and tables."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b88f9381-9a4d-4862-8eff-817ac1bb4874",
+            "isSidechain": true,
+            "agentId": "a3a8f9937ba741116",
+            "requestId": "req_011Cb4tUCJb2NvDdhsT8v8jc",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "926aca36-a19f-4f5b-80c9-63989deadcd9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/reviewer_0064dd56",
+            "sessionId": "3614841f-3054-4bdc-a2e6-70a4541802e0",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "serialized-singing-lantern",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01PBHuoEPKu3YMLyjknKGDes",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 25912,
+                "cache_read_input_tokens": 32686,
+                "output_tokens": 1549,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 25912
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 6,
+                    "output_tokens": 1549,
+                    "cache_read_input_tokens": 32686,
+                    "cache_creation_input_tokens": 25912,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 25912,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000033"
+        }
+      ],
+      "message_count": 33
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-find-and-read-the-main-latex-paper-files-for-the-struct-self-consist-ie-projec.md"
+}

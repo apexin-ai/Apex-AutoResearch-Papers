@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "5b1aca9355ff2a280beb",
+  "project": "struct_self_consist_ie--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> 项目 struct_self_consist_ie。autodl-5090-b 路径 /root/autodl-tmp/struct_self_consist_ie/。aml-train 镜像，conda b",
+  "task_key": "67bd42b9-5fff-439f-a709-df482582cdcc",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/67bd42b9-5fff-439f-a709-df482582cdcc.jsonl",
+    "occurrence": 1,
+    "bytes": 684404,
+    "sha256": "a227d5ef5bdd18211178b45f13d81914d76e6bc972b5e9710d53e0efce2dde8f"
+  },
+  "statistics": {
+    "messages": 173,
+    "user_turns": 1,
+    "tool_calls": 49,
+    "roles": {
+      "record": 45,
+      "user": 1,
+      "assistant": 29,
+      "tool_call": 49,
+      "tool_result": 49
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "5b1aca9355ff2a280beb-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 171,
+      "chunks": [
+        {
+          "path": "5b1aca9355ff2a280beb-part-0001.json",
+          "message_count": 136
+        },
+        {
+          "path": "5b1aca9355ff2a280beb-part-0002.json",
+          "message_count": 35
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-struct-self-consist-ieautodl-5090-b-root-autodl-tmp-struct-self.md"
+}

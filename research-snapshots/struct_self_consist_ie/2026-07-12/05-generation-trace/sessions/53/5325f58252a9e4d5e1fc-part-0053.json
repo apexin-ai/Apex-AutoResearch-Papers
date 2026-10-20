@@ -1,0 +1,1810 @@
+{
+  "schema_version": "1.0",
+  "session_id": "5325f58252a9e4d5e1fc",
+  "rounds": [
+    {
+      "number": 449,
+      "messages": [
+        {
+          "source_line": 8439,
+          "timestamp": "2026-05-16T05:45:39.198Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-16T05:45:39.198Z",
+                "sessionId": "9fa88e93-92fc-446f-90c6-86ed7a5c1cb6"
+              }
+            }
+          ],
+          "id": "event-008439"
+        }
+      ]
+    },
+    {
+      "number": 450,
+      "messages": [
+        {
+          "source_line": 8440,
+          "timestamp": "2026-05-16T05:45:39.183Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Continue from where you left off."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d4214ee8-0871-437e-bb35-79038910a291",
+            "isSidechain": false,
+            "promptId": "23a6b5dc-01f2-457c-97e5-adf62a7122b1",
+            "type": "user",
+            "isMeta": true,
+            "uuid": "5369d5dd-7bbc-46ed-9575-a8c721688e06",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/paper_agent_4f1165b4",
+            "sessionId": "9fa88e93-92fc-446f-90c6-86ed7a5c1cb6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "stateless-growing-kite"
+          },
+          "id": "event-008440"
+        },
+        {
+          "source_line": 8441,
+          "timestamp": "2026-05-16T05:45:39.183Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5369d5dd-7bbc-46ed-9575-a8c721688e06",
+            "isSidechain": false,
+            "type": "assistant",
+            "uuid": "dfb5b7ae-6e2e-4437-8c41-eddefc50fb07",
+            "isApiErrorMessage": false,
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/paper_agent_4f1165b4",
+            "sessionId": "9fa88e93-92fc-446f-90c6-86ed7a5c1cb6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "stateless-growing-kite",
+            "message": {
+              "id": "16eab92b-3575-4fe0-a935-5ac16f0e3e44",
+              "container": null,
+              "model": "<synthetic>",
+              "stop_reason": "stop_sequence",
+              "stop_sequence": "",
+              "type": "message",
+              "usage": {
+                "input_tokens": 0,
+                "output_tokens": 0,
+                "cache_creation_input_tokens": 0,
+                "cache_read_input_tokens": 0,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": null,
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": null,
+                "iterations": null,
+                "speed": null
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-008441"
+        }
+      ]
+    },
+    {
+      "number": 451,
+      "messages": [
+        {
+          "source_line": 8442,
+          "timestamp": "2026-05-16T05:45:39.304Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dfb5b7ae-6e2e-4437-8c41-eddefc50fb07",
+            "isSidechain": false,
+            "promptId": "23a6b5dc-01f2-457c-97e5-adf62a7122b1",
+            "type": "user",
+            "uuid": "cf90a56b-5dbb-47ea-833e-6de8936306f0",
+            "permissionMode": "bypassPermissions",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/paper_agent_4f1165b4",
+            "sessionId": "9fa88e93-92fc-446f-90c6-86ed7a5c1cb6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "stateless-growing-kite"
+          },
+          "id": "event-008442"
+        },
+        {
+          "source_line": 8443,
+          "timestamp": "2026-05-16T05:45:45.145Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "This is a false positive system reminder. I haven't finished the Director's instruction yet — I'm still in the middle of making edits. I need to continue adding the citations to related_work.tex and discussion.tex, then compile and report. Let me continue.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cf90a56b-5dbb-47ea-833e-6de8936306f0",
+            "isSidechain": false,
+            "requestId": "req_011Cb5icZEjnLa4m4VLCNYc6",
+            "type": "assistant",
+            "uuid": "9d2a6dca-1a9d-4e9c-9af7-41ee6c6c1954",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/paper_agent_4f1165b4",
+            "sessionId": "9fa88e93-92fc-446f-90c6-86ed7a5c1cb6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "stateless-growing-kite",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01D6WPFfb7teaBRzFd4YwQHK",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 101,
+                "cache_read_input_tokens": 109681,
+                "output_tokens": 698,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 101,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 698,
+                    "cache_read_input_tokens": 109681,
+                    "cache_creation_input_tokens": 101,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 101
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-008443"
+        },
+        {
+          "source_line": 8444,
+          "timestamp": "2026-05-16T05:45:46.119Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'm still mid-edit — not done yet. Continuing with citation placement and remaining items."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9d2a6dca-1a9d-4e9c-9af7-41ee6c6c1954",
+            "isSidechain": false,
+            "requestId": "req_011Cb5icZEjnLa4m4VLCNYc6",
+            "type": "assistant",
+            "uuid": "25b25e39-bcaf-4261-b40c-c73f9de9c35a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/paper_agent_4f1165b4",
+            "sessionId": "9fa88e93-92fc-446f-90c6-86ed7a5c1cb6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "stateless-growing-kite",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01D6WPFfb7teaBRzFd4YwQHK",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 101,
+                "cache_read_input_tokens": 109681,
+                "output_tokens": 698,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 101,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 698,
+                    "cache_read_input_tokens": 109681,
+                    "cache_creation_input_tokens": 101,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 101
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-008444"
+        },
+        {
+          "source_line": 8445,
+          "timestamp": "2026-05-16T05:45:47.656Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FCQoEB3pZ3AAAoLy3fPnVk",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/related_work.tex",
+                "old_string": "\\citet{culotta2004confidence} pioneer confidence estimation for IE via CRF marginals; our signals are model-agnostic.",
+                "new_string": "\\citet{culotta2004confidence} and \\citet{mejer2011confidence} pioneer confidence estimation for structured prediction via CRF marginals and confidence-weighted models; our signals are model-agnostic."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "25b25e39-bcaf-4261-b40c-c73f9de9c35a",
+            "isSidechain": false,
+            "requestId": "req_011Cb5icZEjnLa4m4VLCNYc6",
+            "type": "assistant",
+            "uuid": "d537e67d-fe63-409a-9e9b-620762830973",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/paper_agent_4f1165b4",
+            "sessionId": "9fa88e93-92fc-446f-90c6-86ed7a5c1cb6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "stateless-growing-kite",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01D6WPFfb7teaBRzFd4YwQHK",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 101,
+                "cache_read_input_tokens": 109681,
+                "output_tokens": 698,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 101,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 698,
+                    "cache_read_input_tokens": 109681,
+                    "cache_creation_input_tokens": 101,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 101
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-008445"
+        },
+        {
+          "source_line": 8446,
+          "timestamp": "2026-05-16T05:45:47.683Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FCQoEB3pZ3AAAoLy3fPnVk",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/related_work.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d537e67d-fe63-409a-9e9b-620762830973",
+            "isSidechain": false,
+            "promptId": "23a6b5dc-01f2-457c-97e5-adf62a7122b1",
+            "type": "user",
+            "uuid": "d3e03a52-9356-408a-8619-c7ea749259f6",
+            "toolUseResult": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/related_work.tex",
+              "oldString": "\\citet{culotta2004confidence} pioneer confidence estimation for IE via CRF marginals; our signals are model-agnostic.",
+              "newString": "\\citet{culotta2004confidence} and \\citet{mejer2011confidence} pioneer confidence estimation for structured prediction via CRF marginals and confidence-weighted models; our signals are model-agnostic.",
+              "originalFile": "\\section{Related Work}\\label{sec:related}\n\n\\paragraph{Self-consistency and test-time scaling.}\nSelf-consistency \\cite{wang2023selfconsistency} improves reasoning via majority voting; extensions handle free-form text through LLM comparison \\cite{chen2024usc}, sub-claim decomposition \\cite{thirukovalluru2024atomic}, or hallucination detection \\cite{manakul2023selfcheckgpt}.\nTest-time scaling studies \\cite{snell2025scaling, brown2024monkeys} and reward-free selectors \\cite{taubenfeld2025cisc, kang2025selfcertainty, kim2026reasc, wang2025rankedvoting, oh2026latentsc} all target discrete answers.\nConcurrently, \\citet{feng2025optimal} and \\citet{wang2025make} adapt self-consistency to difficulty-aware settings; \\citet{li2025llms} propose generative self-aggregation for IE but focus on fusion rather than selection.\nOur work extends self-consistency to set-valued structured outputs and identifies the correlation-selection gap.\n\n\\paragraph{Consistency for structured IE.}\n\\citet{yao2026consistency} study consistency--accuracy correlations for LLM-based NER/RE, leaving open whether structural matching improves on surface agreement, whether quality estimation translates to selection, and whether findings generalize across a difficulty gradient---the three questions we address.\nCoCoA \\cite{vashurin2025cocoa} fuses confidence with consistency for QA/summarization but does not address structured extraction.\n\\citet{culotta2004confidence} pioneer confidence estimation for IE via CRF marginals; our signals are model-agnostic.\nOur evaluation builds on generative IE work \\cite{zhou2024uniner, sainz2024gollie, li2023codeie, wadhwa2023revisiting} and constrained decoding \\cite{willard2023guided}.\n\n\\paragraph{Uncertainty estimation and calibration.}\nSurveys cover confidence estimation \\cite{geng2024confidence}, uncertainty quantification \\cite{xia2025survey}, and calibration \\cite{hobelsberger2025systematic} for LLMs.\nSemantic uncertainty \\cite{kuhn2023semantic} clusters generations by meaning; P(True) \\cite{kadavath2022language} queries model confidence directly; \\citet{malinin2021uncertainty} study predictive uncertainty for autoregressive structured prediction.\nOur structural signals instead measure agreement over output \\textit{structure}, requiring no model modification.\nOur selection strategies instantiate MBR decoding \\cite{eikema2022sampling} with structural utility functions.\n\\citet{eikema2025structured} find that standard MBR utilities degrade on structured outputs due to bag-of-unit mismatches---consistent with our finding that consensus-proximity selection fails for IE; we show the specific failure: utility correlates with F1 across instances but not within them (\\S\\ref{sec:discussion}).\nTrained verifiers \\cite{cobbe2021verifiers, lightman2024verify} and quality-aware decoding \\cite{fernandes2022quality} learn per-sample scoring that may bridge this gap.\nConformal prediction constructs prediction sets with coverage guarantees \\cite{zhang2025conformal}; while complementary, its set-valued output differs from best-of-$N$ selection.\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 9,
+                  "oldLines": 7,
+                  "newStart": 9,
+                  "newLines": 7,
+                  "lines": [
+                    " \\paragraph{Consistency for structured IE.}",
+                    " \\citet{yao2026consistency} study consistency--accuracy correlations for LLM-based NER/RE, leaving open whether structural matching improves on surface agreement, whether quality estimation translates to selection, and whether findings generalize across a difficulty gradient---the three questions we address.",
+                    " CoCoA \\cite{vashurin2025cocoa} fuses confidence with consistency for QA/summarization but does not address structured extraction.",
+                    "-\\citet{culotta2004confidence} pioneer confidence estimation for IE via CRF marginals; our signals are model-agnostic.",
+                    "+\\citet{culotta2004confidence} and \\citet{mejer2011confidence} pioneer confidence estimation for structured prediction via CRF marginals and confidence-weighted models; our signals are model-agnostic.",
+                    " Our evaluation builds on generative IE work \\cite{zhou2024uniner, sainz2024gollie, li2023codeie, wadhwa2023revisiting} and constrained decoding \\cite{willard2023guided}.",
+                    " ",
+                    " \\paragraph{Uncertainty estimation and calibration.}"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            },
+            "sourceToolAssistantUUID": "d537e67d-fe63-409a-9e9b-620762830973",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/paper_agent_4f1165b4",
+            "sessionId": "9fa88e93-92fc-446f-90c6-86ed7a5c1cb6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "stateless-growing-kite"
+          },
+          "id": "event-008446"
+        },
+        {
+          "source_line": 8447,
+          "timestamp": "2026-05-16T05:45:51.232Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UBkp5uN5Mi5rMe8TYMD1fi",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/related_work.tex",
+                "old_string": "Our selection strategies instantiate MBR decoding \\cite{eikema2022sampling} with structural utility functions.\n\\citet{eikema2025structured} find that standard MBR utilities degrade on structured outputs due to bag-of-unit mismatches---consistent with our finding that consensus-proximity selection fails for IE; we show the specific failure: utility correlates with F1 across instances but not within them (\\S\\ref{sec:discussion}).",
+                "new_string": "Our selection strategies instantiate MBR decoding \\cite{eikema2022sampling, deguchi2024centroid} with structural utility functions.\n\\citet{eikema2025structured} find that standard MBR utilities degrade on structured outputs due to bag-of-unit mismatches---consistent with our finding that consensus-proximity selection fails for IE; we show the specific failure: utility correlates with F1 across instances but not within them (\\S\\ref{sec:discussion}).\n\\citet{xie2024selfevaluation} show self-evaluation improves selective generation for discrete tasks; our results suggest this does not transfer to structured extraction without learned scoring."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d3e03a52-9356-408a-8619-c7ea749259f6",
+            "isSidechain": false,
+            "requestId": "req_011Cb5icZEjnLa4m4VLCNYc6",
+            "type": "assistant",
+            "uuid": "016d2acb-1f24-4c80-88f2-33f188f1fe02",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/paper_agent_4f1165b4",
+            "sessionId": "9fa88e93-92fc-446f-90c6-86ed7a5c1cb6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "stateless-growing-kite",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01D6WPFfb7teaBRzFd4YwQHK",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 101,
+                "cache_read_input_tokens": 109681,
+                "output_tokens": 698,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 101,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 698,
+                    "cache_read_input_tokens": 109681,
+                    "cache_creation_input_tokens": 101,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 101
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-008447"
+        },
+        {
+          "source_line": 8448,
+          "timestamp": "2026-05-16T05:45:51.258Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UBkp5uN5Mi5rMe8TYMD1fi",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/related_work.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "016d2acb-1f24-4c80-88f2-33f188f1fe02",
+            "isSidechain": false,
+            "promptId": "23a6b5dc-01f2-457c-97e5-adf62a7122b1",
+            "type": "user",
+            "uuid": "dacdf8b3-fa96-4cc2-8ff3-565118c69688",
+            "toolUseResult": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/related_work.tex",
+              "oldString": "Our selection strategies instantiate MBR decoding \\cite{eikema2022sampling} with structural utility functions.\n\\citet{eikema2025structured} find that standard MBR utilities degrade on structured outputs due to bag-of-unit mismatches---consistent with our finding that consensus-proximity selection fails for IE; we show the specific failure: utility correlates with F1 across instances but not within them (\\S\\ref{sec:discussion}).",
+              "newString": "Our selection strategies instantiate MBR decoding \\cite{eikema2022sampling, deguchi2024centroid} with structural utility functions.\n\\citet{eikema2025structured} find that standard MBR utilities degrade on structured outputs due to bag-of-unit mismatches---consistent with our finding that consensus-proximity selection fails for IE; we show the specific failure: utility correlates with F1 across instances but not within them (\\S\\ref{sec:discussion}).\n\\citet{xie2024selfevaluation} show self-evaluation improves selective generation for discrete tasks; our results suggest this does not transfer to structured extraction without learned scoring.",
+              "originalFile": "\\section{Related Work}\\label{sec:related}\n\n\\paragraph{Self-consistency and test-time scaling.}\nSelf-consistency \\cite{wang2023selfconsistency} improves reasoning via majority voting; extensions handle free-form text through LLM comparison \\cite{chen2024usc}, sub-claim decomposition \\cite{thirukovalluru2024atomic}, or hallucination detection \\cite{manakul2023selfcheckgpt}.\nTest-time scaling studies \\cite{snell2025scaling, brown2024monkeys} and reward-free selectors \\cite{taubenfeld2025cisc, kang2025selfcertainty, kim2026reasc, wang2025rankedvoting, oh2026latentsc} all target discrete answers.\nConcurrently, \\citet{feng2025optimal} and \\citet{wang2025make} adapt self-consistency to difficulty-aware settings; \\citet{li2025llms} propose generative self-aggregation for IE but focus on fusion rather than selection.\nOur work extends self-consistency to set-valued structured outputs and identifies the correlation-selection gap.\n\n\\paragraph{Consistency for structured IE.}\n\\citet{yao2026consistency} study consistency--accuracy correlations for LLM-based NER/RE, leaving open whether structural matching improves on surface agreement, whether quality estimation translates to selection, and whether findings generalize across a difficulty gradient---the three questions we address.\nCoCoA \\cite{vashurin2025cocoa} fuses confidence with consistency for QA/summarization but does not address structured extraction.\n\\citet{culotta2004confidence} and \\citet{mejer2011confidence} pioneer confidence estimation for structured prediction via CRF marginals and confidence-weighted models; our signals are model-agnostic.\nOur evaluation builds on generative IE work \\cite{zhou2024uniner, sainz2024gollie, li2023codeie, wadhwa2023revisiting} and constrained decoding \\cite{willard2023guided}.\n\n\\paragraph{Uncertainty estimation and calibration.}\nSurveys cover confidence estimation \\cite{geng2024confidence}, uncertainty quantification \\cite{xia2025survey}, and calibration \\cite{hobelsberger2025systematic} for LLMs.\nSemantic uncertainty \\cite{kuhn2023semantic} clusters generations by meaning; P(True) \\cite{kadavath2022language} queries model confidence directly; \\citet{malinin2021uncertainty} study predictive uncertainty for autoregressive structured prediction.\nOur structural signals instead measure agreement over output \\textit{structure}, requiring no model modification.\nOur selection strategies instantiate MBR decoding \\cite{eikema2022sampling} with structural utility functions.\n\\citet{eikema2025structured} find that standard MBR utilities degrade on structured outputs due to bag-of-unit mismatches---consistent with our finding that consensus-proximity selection fails for IE; we show the specific failure: utility correlates with F1 across instances but not within them (\\S\\ref{sec:discussion}).\nTrained verifiers \\cite{cobbe2021verifiers, lightman2024verify} and quality-aware decoding \\cite{fernandes2022quality} learn per-sample scoring that may bridge this gap.\nConformal prediction constructs prediction sets with coverage guarantees \\cite{zhang2025conformal}; while complementary, its set-valued output differs from best-of-$N$ selection.\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 16,
+                  "oldLines": 7,
+                  "newStart": 16,
+                  "newLines": 8,
+                  "lines": [
+                    " Surveys cover confidence estimation \\cite{geng2024confidence}, uncertainty quantification \\cite{xia2025survey}, and calibration \\cite{hobelsberger2025systematic} for LLMs.",
+                    " Semantic uncertainty \\cite{kuhn2023semantic} clusters generations by meaning; P(True) \\cite{kadavath2022language} queries model confidence directly; \\citet{malinin2021uncertainty} study predictive uncertainty for autoregressive structured prediction.",
+                    " Our structural signals instead measure agreement over output \\textit{structure}, requiring no model modification.",
+                    "-Our selection strategies instantiate MBR decoding \\cite{eikema2022sampling} with structural utility functions.",
+                    "+Our selection strategies instantiate MBR decoding \\cite{eikema2022sampling, deguchi2024centroid} with structural utility functions.",
+                    " \\citet{eikema2025structured} find that standard MBR utilities degrade on structured outputs due to bag-of-unit mismatches---consistent with our finding that consensus-proximity selection fails for IE; we show the specific failure: utility correlates with F1 across instances but not within them (\\S\\ref{sec:discussion}).",
+                    "+\\citet{xie2024selfevaluation} show self-evaluation improves selective generation for discrete tasks; our results suggest this does not transfer to structured extraction without learned scoring.",
+                    " Trained verifiers \\cite{cobbe2021verifiers, lightman2024verify} and quality-aware decoding \\cite{fernandes2022quality} learn per-sample scoring that may bridge this gap.",
+                    " Conformal prediction constructs prediction sets with coverage guarantees \\cite{zhang2025conformal}; while complementary, its set-valued output differs from best-of-$N$ selection."
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            },
+            "sourceToolAssistantUUID": "016d2acb-1f24-4c80-88f2-33f188f1fe02",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/paper_agent_4f1165b4",
+            "sessionId": "9fa88e93-92fc-446f-90c6-86ed7a5c1cb6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "stateless-growing-kite"
+          },
+          "id": "event-008448"
+        },
+        {
+          "source_line": 8449,
+          "timestamp": "2026-05-16T05:45:56.738Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me also add the Deguchi citation to the Discussion MBR paragraph for completeness."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dacdf8b3-fa96-4cc2-8ff3-565118c69688",
+            "isSidechain": false,
+            "requestId": "req_011Cb5idSFa7EZS82nNG4PGj",
+            "type": "assistant",
+            "uuid": "f54fbd71-1f89-4ab2-9118-2d7d6fae5559",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/paper_agent_4f1165b4",
+            "sessionId": "9fa88e93-92fc-446f-90c6-86ed7a5c1cb6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "stateless-growing-kite",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01F8rupi9roB1ZcBraf1nMMk",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 853,
+                "cache_read_input_tokens": 109782,
+                "output_tokens": 217,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 853,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 217,
+                    "cache_read_input_tokens": 109782,
+                    "cache_creation_input_tokens": 853,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 853
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-008449"
+        },
+        {
+          "source_line": 8450,
+          "timestamp": "2026-05-16T05:45:58.336Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Hfy5EhdCNB7aAqjz5iAM58",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex",
+                "old_string": "consistent with MBR's known mode-seeking bias \\cite{eikema2022sampling}.",
+                "new_string": "consistent with MBR's known mode-seeking bias \\cite{eikema2022sampling, deguchi2024centroid}."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f54fbd71-1f89-4ab2-9118-2d7d6fae5559",
+            "isSidechain": false,
+            "requestId": "req_011Cb5idSFa7EZS82nNG4PGj",
+            "type": "assistant",
+            "uuid": "0a754844-79d5-4d7c-857a-0cfa6c5b5498",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/paper_agent_4f1165b4",
+            "sessionId": "9fa88e93-92fc-446f-90c6-86ed7a5c1cb6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "stateless-growing-kite",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01F8rupi9roB1ZcBraf1nMMk",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 853,
+                "cache_read_input_tokens": 109782,
+                "output_tokens": 217,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 853,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 217,
+                    "cache_read_input_tokens": 109782,
+                    "cache_creation_input_tokens": 853,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 853
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-008450"
+        },
+        {
+          "source_line": 8451,
+          "timestamp": "2026-05-16T05:45:58.348Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Hfy5EhdCNB7aAqjz5iAM58",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0a754844-79d5-4d7c-857a-0cfa6c5b5498",
+            "isSidechain": false,
+            "promptId": "23a6b5dc-01f2-457c-97e5-adf62a7122b1",
+            "type": "user",
+            "uuid": "a36943c2-4e4a-478f-8c34-cb6198f44084",
+            "toolUseResult": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/discussion.tex",
+              "oldString": "consistent with MBR's known mode-seeking bias \\cite{eikema2022sampling}.",
+              "newString": "consistent with MBR's known mode-seeking bias \\cite{eikema2022sampling, deguchi2024centroid}.",
+              "originalFile": "\\section{Discussion}\\label{sec:discussion}\n\n\\paragraph{Practical recommendations.}\nVC leads on hard NER ($\\rho{=}0.379$); EM leads easy NER and binary discrimination (AUROC${=}0.816$, CoNLL); on $^\\dagger$RE, LP outperforms structural signals (Table~\\ref{tab:multiseed}).\nRankings hold across model families and a 4B ablation (Table~\\ref{tab:scale_ablation}); at the capability boundary (WNUT-17), all signals collapse.\n\n\\paragraph{Why the gap exists.}\nFour of five signals are instance-level aggregates that assign a single QE score per input. Consensus-proximity (MBR) converts these to per-sample rankings (Table~\\ref{tab:selection}), but within-instance utility does not correlate with F1 (Appendix~\\ref{app:mbr_discussion}).\nLog-probability, the only per-sample signal, is severely compressed: median LP range is 0.041 nats (IQR [0.024, 0.073]; Table~\\ref{tab:logprob_ties}), with pooled within-instance $\\rho(\\text{LP}, \\text{F1}){=}0.248$ confirming weak but positive signal.\nWhere compression is mitigated ($n{=}210$ instances with above-median spread), LP selection outperforms single-sample ($+2.9$~pp, $p{=}0.004$), confirming compression as the bottleneck; the gap holds even among high-diversity instances (Appendix~\\ref{app:diversity}).\nStratifying by voting confidence reveals a complementary mechanism: high-consistency instances (Q4) have collapsed headroom (4.78~pp), leaving nothing to select, while low-consistency instances retain headroom but unreliable LP rankings (Appendix~\\ref{app:vc_quartile}).\nDoubling to $N{=}16$ expands oracle headroom by $+4.4$~pp without improving selection; on $^\\dagger$RE at 4B scale, LP is the sole positive signal ($\\Delta{=}{+}0.7$~pp, $p{=}0.058$; Table~\\ref{tab:re_n16_selection}), consistent with LP being the strongest RE selection signal across scales, though still below single-sample at 8B.\nA verbalized confidence baseline confirms that score compression is not LP-specific: the model's self-rated confidence (mean 8.6/10) is even more compressed and yields the weakest selection despite higher $\\rho$ than LP (Appendix~\\ref{app:verbalized_confidence}; \\citealp{bhattacharyya2026beyond}).\n\n\\paragraph{Hypotheses for LP compression.}\nWe identify four (non-mutually-exclusive) mechanisms that may explain within-instance LP compression, though we do not isolate their individual contributions:\n(a) \\textit{token-level averaging}---mean log-probability over long sequences smooths token-level variance, compressing the effective signal;\n(b) \\textit{schema-dominated tokens}---constrained decoding enforces structural tokens (brackets, type labels) that carry no extraction information yet dominate the sequence, reducing effective variance; and\n(c) \\textit{vocabulary restriction}---constrained decoding shrinks the effective vocabulary at each step, concentrating probability mass and reducing log-probability variation; and\n(d) \\textit{format-token dilution}---fine-tuned models assign extremely high LP to schema tokens (\\texttt{\\{\"entities\": [}~etc.) that carry no extraction information, diluting the signal from entity-name tokens; free-form parse rates of 99.95\\% confirm that format tokens dominate the sequence.\nMechanisms (b)--(c) predict that free-form decoding should reduce compression; our NER ablation finds negligible change (std ratio 0.97; Appendix~\\ref{app:freeform_ablation}), suggesting (a) and (d) are the primary drivers for NER.\n\n\\paragraph{Ablation: free-form decoding.}\\label{sec:ablation}\nRemoving grammar constraints (SciERC NER, Qwen3-8B, 4 seeds) yields nearly identical LP distributions (std ratio 0.97) and negligible selection changes (Appendix~\\ref{app:freeform_ablation}), ruling out constrained decoding as the cause of NER compression.\nOn $^\\dagger$RE, LP selection consistently reverses direction under free-form decoding ($+1.8{\\pm}0.1$~pp, 4 seeds; Appendix~\\ref{app:freeform_ablation}), while under constrained decoding LP falls below single-sample ($-0.9$~pp at 8B).\nRE LP selection is thus regime-dependent: constrained decoding suppresses it, free-form decoding recovers it, and at 4B $N{=}16$ it is marginally positive ($+0.7$~pp, $p{=}0.058$).\nOne possible explanation: free-form decoding permits greater structural diversity in RE outputs, where LP variation---though compressed---aligns with extraction quality in ways that constrained decoding's fixed template obscures.\nVC becomes per-sample in the selection context (each candidate's overlap with the majority-voted output varies), yet tends to select the most typical rather than the best output---consistent with MBR's known mode-seeking bias \\cite{eikema2022sampling}.\nMore broadly, all consensus-proximity strategies fail because utility correlates with F1 across instances but not within them (Appendix~\\ref{app:mbr_discussion}).\n\n\\paragraph{Methodological implications.}\nThe decoupling of $\\rho$, AUROC, and selection F1 means single-metric evaluation risks selecting the wrong signal.\nEffective selection likely requires trained verifiers \\cite{cobbe2021verifiers, venktesh2025trust}; $N{=}8$ captures most quality estimation benefit (Appendix~\\ref{app:n_scaling}).\nStructural signals are robust to domain shift when the training schema subsumes the target (Appendix~\\ref{app:ood}).\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 25,
+                  "oldLines": 7,
+                  "newStart": 25,
+                  "newLines": 7,
+                  "lines": [
+                    " On $^\\dagger$RE, LP selection consistently reverses direction under free-form decoding ($+1.8{\\pm}0.1$~pp, 4 seeds; Appendix~\\ref{app:freeform_ablation}), while under constrained decoding LP falls below single-sample ($-0.9$~pp at 8B).",
+                    " RE LP selection is thus regime-dependent: constrained decoding suppresses it, free-form decoding recovers it, and at 4B $N{=}16$ it is marginally positive ($+0.7$~pp, $p{=}0.058$).",
+                    " One possible explanation: free-form decoding permits greater structural diversity in RE outputs, where LP variation---though compressed---aligns with extraction quality in ways that constrained decoding's fixed template obscures.",
+                    "-VC becomes per-sample in the selection context (each candidate's overlap with the majority-voted output varies), yet tends to select the most typical rather than the best output---consistent with MBR's known mode-seeking bias \\cite{eikema2022sampling}.",
+                    "+VC becomes per-sample in the selection context (each candidate's overlap with the majority-voted output varies), yet tends to select the most typical rather than the best output---consistent with MBR's known mode-seeking bias \\cite{eikema2022sampling, deguchi2024centroid}.",
+                    " More broadly, all consensus-proximity strategies fail because utility correlates with F1 across instances but not within them (Appendix~\\ref{app:mbr_discussion}).",
+                    " ",
+                    " \\paragraph{Methodological implications.}"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            },
+            "sourceToolAssistantUUID": "0a754844-79d5-4d7c-857a-0cfa6c5b5498",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/paper_agent_4f1165b4",
+            "sessionId": "9fa88e93-92fc-446f-90c6-86ed7a5c1cb6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "stateless-growing-kite"
+          },
+          "id": "event-008451"
+        },
+        {
+          "source_line": 8452,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "[系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。",
+                "leafUuid": "a36943c2-4e4a-478f-8c34-cb6198f44084",
+                "sessionId": "9fa88e93-92fc-446f-90c6-86ed7a5c1cb6"
+              }
+            }
+          ],
+          "id": "event-008452"
+        },
+        {
+          "source_line": 8453,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Set up agent communication with Director",
+                "sessionId": "9fa88e93-92fc-446f-90c6-86ed7a5c1cb6"
+              }
+            }
+          ],
+          "id": "event-008453"
+        },
+        {
+          "source_line": 8454,
+          "timestamp": "2026-05-16T05:46:04.073Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me also verify no remaining \"strong quality estimation\" without the modifier (SF1). Let me check what's left."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a36943c2-4e4a-478f-8c34-cb6198f44084",
+            "isSidechain": false,
+            "requestId": "req_011Cb5idxvns8WtnEcLVPmQM",
+            "type": "assistant",
+            "uuid": "fedc98e8-3008-4141-be18-cb34ac75c93c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/paper_agent_4f1165b4",
+            "sessionId": "9fa88e93-92fc-446f-90c6-86ed7a5c1cb6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "stateless-growing-kite",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011RuDUkcjzF3bifY1DCiZx6",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 274,
+                "cache_read_input_tokens": 110635,
+                "output_tokens": 169,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 274,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 169,
+                    "cache_read_input_tokens": 110635,
+                    "cache_creation_input_tokens": 274,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 274
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-008454"
+        },
+        {
+          "source_line": 8455,
+          "timestamp": "2026-05-16T05:46:05.168Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KY8G2TDsvCVhxhuHgyvWpk",
+              "name": "Grep",
+              "input": {
+                "pattern": "strong quality estimation",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections",
+                "output_mode": "content",
+                "-n": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fedc98e8-3008-4141-be18-cb34ac75c93c",
+            "isSidechain": false,
+            "requestId": "req_011Cb5idxvns8WtnEcLVPmQM",
+            "type": "assistant",
+            "uuid": "4384f5a9-e095-48c7-aa6b-66ffe51ead1d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/paper_agent_4f1165b4",
+            "sessionId": "9fa88e93-92fc-446f-90c6-86ed7a5c1cb6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "stateless-growing-kite",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011RuDUkcjzF3bifY1DCiZx6",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 274,
+                "cache_read_input_tokens": 110635,
+                "output_tokens": 169,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 274,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 169,
+                    "cache_read_input_tokens": 110635,
+                    "cache_creation_input_tokens": 274,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 274
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-008455"
+        },
+        {
+          "source_line": 8456,
+          "timestamp": "2026-05-16T05:46:05.188Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KY8G2TDsvCVhxhuHgyvWpk",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex:84:Despite strong quality estimation, confidence signals yield limited selection gains (Table~\\ref{tab:selection}, Figure~\\ref{fig:selection_gap}).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/conclusion.tex:3:We evaluate five confidence signals for quality estimation and sample selection in LLM-based NER, revealing the \\textit{correlation-selection gap}: moderate-to-strong quality estimation ($\\rho$ up to 0.45) coexists with selection failure.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/abstract.tex:4:All signals achieve moderate-to-strong quality estimation (Spearman $\\rho$ up to 0.45), yet none improves best-of-$N$ selection despite substantial oracle headroom---the \\textit{correlation-selection gap}.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/introduction.tex:10:Our central finding is the \\textbf{correlation-selection gap} (Figure~\\ref{fig:overview}): consistency signals achieve moderate-to-strong quality estimation ($\\rho$ up to 0.45, substantially exceeding random baselines) but fail at sample selection despite substantial oracle headroom."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4384f5a9-e095-48c7-aa6b-66ffe51ead1d",
+            "isSidechain": false,
+            "promptId": "23a6b5dc-01f2-457c-97e5-adf62a7122b1",
+            "type": "user",
+            "uuid": "74fa876d-01d5-4848-8a49-a2f997ec6e19",
+            "toolUseResult": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex:84:Despite strong quality estimation, confidence signals yield limited selection gains (Table~\\ref{tab:selection}, Figure~\\ref{fig:selection_gap}).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/conclusion.tex:3:We evaluate five confidence signals for quality estimation and sample selection in LLM-based NER, revealing the \\textit{correlation-selection gap}: moderate-to-strong quality estimation ($\\rho$ up to 0.45) coexists with selection failure.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/abstract.tex:4:All signals achieve moderate-to-strong quality estimation (Spearman $\\rho$ up to 0.45), yet none improves best-of-$N$ selection despite substantial oracle headroom---the \\textit{correlation-selection gap}.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/introduction.tex:10:Our central finding is the \\textbf{correlation-selection gap} (Figure~\\ref{fig:overview}): consistency signals achieve moderate-to-strong quality estimation ($\\rho$ up to 0.45, substantially exceeding random baselines) but fail at sample selection despite substantial oracle headroom.",
+              "numLines": 4
+            },
+            "sourceToolAssistantUUID": "4384f5a9-e095-48c7-aa6b-66ffe51ead1d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/paper_agent_4f1165b4",
+            "sessionId": "9fa88e93-92fc-446f-90c6-86ed7a5c1cb6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "stateless-growing-kite"
+          },
+          "id": "event-008456"
+        },
+        {
+          "source_line": 8457,
+          "timestamp": "2026-05-16T05:46:05.192Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "74fa876d-01d5-4848-8a49-a2f997ec6e19",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "todo_reminder",
+                  "content": [],
+                  "itemCount": 0
+                },
+                "type": "attachment",
+                "uuid": "ee4db60a-5a0a-4487-80b3-8be311afc945",
+                "timestamp": "2026-05-16T05:46:05.192Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/paper_agent_4f1165b4",
+                "sessionId": "9fa88e93-92fc-446f-90c6-86ed7a5c1cb6",
+                "version": "2.1.126",
+                "gitBranch": "HEAD",
+                "slug": "stateless-growing-kite"
+              }
+            }
+          ],
+          "id": "event-008457"
+        },
+        {
+          "source_line": 8458,
+          "timestamp": "2026-05-16T05:46:09.948Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "One remaining instance in experiments.tex line 84. Fix it."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ee4db60a-5a0a-4487-80b3-8be311afc945",
+            "isSidechain": false,
+            "requestId": "req_011Cb5ieTnsR6zswVoAqzfEA",
+            "type": "assistant",
+            "uuid": "ae4a52ac-e548-4cc5-bcad-22619067148b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/paper_agent_4f1165b4",
+            "sessionId": "9fa88e93-92fc-446f-90c6-86ed7a5c1cb6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "stateless-growing-kite",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011zGgHh1E8YiWgMGyNv2C5X",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 664,
+                "cache_read_input_tokens": 110909,
+                "output_tokens": 229,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 664,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 229,
+                    "cache_read_input_tokens": 110909,
+                    "cache_creation_input_tokens": 664,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 664
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-008458"
+        },
+        {
+          "source_line": 8459,
+          "timestamp": "2026-05-16T05:46:11.205Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01L7b77wgusq1vfDqvhLbwbR",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex",
+                "old_string": "Despite strong quality estimation, confidence signals yield limited selection gains (Table~\\ref{tab:selection}, Figure~\\ref{fig:selection_gap}).",
+                "new_string": "Despite moderate-to-strong quality estimation, confidence signals yield limited selection gains (Table~\\ref{tab:selection}, Figure~\\ref{fig:selection_gap})."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ae4a52ac-e548-4cc5-bcad-22619067148b",
+            "isSidechain": false,
+            "requestId": "req_011Cb5ieTnsR6zswVoAqzfEA",
+            "type": "assistant",
+            "uuid": "5c14eef1-d49f-48b7-8bb7-d7bff7afc4e7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/paper_agent_4f1165b4",
+            "sessionId": "9fa88e93-92fc-446f-90c6-86ed7a5c1cb6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "stateless-growing-kite",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011zGgHh1E8YiWgMGyNv2C5X",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 664,
+                "cache_read_input_tokens": 110909,
+                "output_tokens": 229,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 664,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 229,
+                    "cache_read_input_tokens": 110909,
+                    "cache_creation_input_tokens": 664,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 664
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-008459"
+        },
+        {
+          "source_line": 8460,
+          "timestamp": "2026-05-16T05:46:11.228Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01L7b77wgusq1vfDqvhLbwbR",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5c14eef1-d49f-48b7-8bb7-d7bff7afc4e7",
+            "isSidechain": false,
+            "promptId": "23a6b5dc-01f2-457c-97e5-adf62a7122b1",
+            "type": "user",
+            "uuid": "9b42dd40-0608-482a-ac57-c98e6b8d8ffc",
+            "toolUseResult": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/experiments.tex",
+              "oldString": "Despite strong quality estimation, confidence signals yield limited selection gains (Table~\\ref{tab:selection}, Figure~\\ref{fig:selection_gap}).",
+              "newString": "Despite moderate-to-strong quality estimation, confidence signals yield limited selection gains (Table~\\ref{tab:selection}, Figure~\\ref{fig:selection_gap}).",
+              "originalFile": "\\section{Experiments}\n\\label{sec:experiments}\n\n\\subsection{Experimental Setup}\n\\label{sec:setup}\n\n\\paragraph{Datasets.}\nWe evaluate on three English IE benchmarks spanning a difficulty gradient.\n\\textbf{SciERC} \\cite{luan2018scierc} contains 551 test instances annotated for joint NER (6 types) and RE (7 types).\n\\textbf{CoNLL-2003} \\cite{tjongkimsang2003conll} provides 3{,}453 test sentences with 4 entity types, where models achieve ${\\approx}$91\\% micro F1.\n\\textbf{WNUT-17} \\cite{derczynski2017wnut} consists of 1{,}287 social media instances with emerging entities, used to probe method boundaries (52\\% zero F1).\n\n\\paragraph{Models and sampling.}\nBoth \\textbf{Qwen3-8B} and \\textbf{LLaMA-3.1-8B-Instruct} are fine-tuned with LoRA (rank$=$32, $\\alpha{=}64$) for 5 epochs using LLaMA Factory \\cite{zheng2024llamafactory} under identical training procedures.\nQwen3-8B's SciERC checkpoint has a minor train--test mismatch (empty thinking tokens); a quantitative analysis rules out this confound (Appendix~\\ref{app:thinking_token}).\nWe draw $N{=}8$ samples at $T{=}1.0$ (primary), with $N{=}16$ for scaling experiments.\\footnote{$N{=}16$ with 3 seeds verifies scaling and ranking stability ($\\sigma{\\leq}0.026$; Table~\\ref{tab:multiseed}); gains beyond $N{=}8$ are sublinear (Appendix~\\ref{app:n_scaling}).}\nInference uses vLLM with constrained decoding \\cite{willard2023guided}.\n\n%% ============================================================\n\\subsection{Quality Estimation Results}\n\\label{sec:qe_results}\n\n\\begin{table*}[t]\n\\centering\n\\small\n\\caption{Quality estimation ($\\rho$ and AUROC; $N{=}8$, seed${=}42$, single-seed; 3-seed stability in Table~\\ref{tab:multiseed}). Best in \\textbf{bold}. $^\\dagger$RE results rest on a single benchmark (SciERC, 40\\% zero-F1 rate). $N{=}16$ in Table~\\ref{tab:robustness}.}\n\\label{tab:quality_estimation}\n\\begin{tabular}{ll cc cc cc cc}\n\\toprule\n& & \\multicolumn{2}{c}{\\textbf{SciERC NER}} & \\multicolumn{2}{c}{\\textbf{SciERC RE}} & \\multicolumn{2}{c}{\\textbf{CoNLL (Qwen)}} & \\multicolumn{2}{c}{\\textbf{CoNLL (LLaMA)}} \\\\\n\\cmidrule(lr){3-4} \\cmidrule(lr){5-6} \\cmidrule(lr){7-8} \\cmidrule(lr){9-10}\nSignal & Family & $\\rho$ & AUC & $\\rho$ & AUC & $\\rho$ & AUC & $\\rho$ & AUC \\\\\n\\midrule\nVC & Structural & \\textbf{.379} & \\textbf{.663} & \\textbf{.350} & .694 & .424 & .789 & .426 & .709 \\\\\nSJ  & Structural & .360 & .650 & .250 & .670 & .436 & .801 & \\textbf{.431} & .704 \\\\\nFK & Surface & .267 & .602 & .275 & .609 & .400 & .774 & .428 & .703 \\\\\nEM  & Surface    & .295 & .614 & .134 & \\textbf{.706} & \\textbf{.451} & \\textbf{.816} & \\textbf{.431} & .705 \\\\\n\\midrule\nLP     & Model      & .205 & .578 & .266 & .601 & .316 & .753 & .307 & \\textbf{.761} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table*}\n\nTable~\\ref{tab:quality_estimation} presents $\\rho$ and AUROC for five signals across tasks and models.\\footnote{$\\varepsilon{=}0.05$ applies only to selection (\\S\\ref{sec:selection_gap}); quality estimation is $\\varepsilon$-free. Selection F1 is stable across $\\varepsilon \\in [0, 0.2]$ (Appendix~\\ref{app:epsilon_robustness}).}\n\n\\paragraph{Signal rankings are difficulty-dependent.}\nOn SciERC NER, structural signals lead (VC $\\rho{=}0.379$, SJ $0.360$) over surface ($\\rho{\\leq}0.295$) and LP ($0.205$); bootstrap CIs confirm the SJ--LP gap ($\\Delta\\rho{=}{+}0.155$; Appendix~\\ref{app:bootstrap_signal}).\nOn CoNLL (single-sample F1${\\approx}$0.91), EM leads both $\\rho$ and AUROC ($0.816$); the $\\rho$--AUROC dissociation across datasets reflects use-case alignment.\nOn $^\\dagger$RE, LP rises above SJ and FK at $N{=}16$ (Table~\\ref{tab:multiseed}).\nAt the capability boundary---WNUT-17 (52\\% zero F1)---all conditional signals collapse (Table~\\ref{tab:wnut}); restricting to non-zero instances reshuffles rankings, with EM strongest on NER ($\\rho{=}0.360$) and $^\\dagger$RE ($\\rho{=}0.417$) while LP $^\\dagger$RE collapses to $\\rho{=}0.011$ (Figure~\\ref{fig:signal_heatmap}, Appendix~\\ref{app:additional}).\n\n%% ============================================================\n\\subsection{The Correlation-Selection Gap}\n\\label{sec:selection_gap}\n\nWe define the correlation-selection gap as the disparity between a signal's instance-level rank correlation with F1 and its ability to select the best output from $N$ candidates.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Best-of-$N$ selection F1 on SciERC ($N{=}8$, $T{=}1.0$). LP is per-sample; others are instance-level. NER: 2-seed mean${\\pm}\\sigma$, Fisher $p$ vs.\\ single-sample; $^\\dagger$RE: single seed. Best non-oracle in \\textbf{bold}. $^\\ddagger$Single: one $T{=}1.0$ draw.}\n\\label{tab:selection}\n\\begin{tabular}{lccc}\n\\toprule\nMethod & NER F1 & $p$ & RE F1 \\\\\n\\midrule\nOracle & $0.778 \\pm 0.003$ & --- & 0.585 \\\\\n\\midrule\n\\multicolumn{4}{l}{\\textit{Per-sample signal}} \\\\\nLP           & $\\mathbf{0.647} \\pm 0.005$ & .29 & 0.395 \\\\\n\\midrule\n\\multicolumn{4}{l}{\\textit{Instance-level signals (consensus-proximity selection)}} \\\\\nSJ           & $0.646 \\pm 0.002$ & .68 & 0.386 \\\\\nFK           & $0.646 \\pm 0.001$ & .79 & --- \\\\\nEM           & $0.637 \\pm 0.001$ & .45 & 0.372 \\\\\nVC           & $0.623 \\pm 0.004$ & .26 & 0.359 \\\\\n\\midrule\nSingle$^\\ddagger$ & $0.645 \\pm 0.001$ & --- & \\textbf{0.404} \\\\\nRandom           & $0.610 \\pm 0.003$ & --- & 0.354 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nDespite strong quality estimation, confidence signals yield limited selection gains (Table~\\ref{tab:selection}, Figure~\\ref{fig:selection_gap}).\nInstance-level signals (SJ, FK, EM, VC) assign identical QE scores to all candidates per input; consensus-proximity (MBR) converts these to per-sample rankings (Table~\\ref{tab:selection}: SJ 0.646, FK 0.646, EM 0.637, VC 0.623), but none improves over single-sample.\nThe key question is whether LP---the only natively per-sample signal---can exploit the oracle headroom.\n\n\\paragraph{No significant improvement over single-sample.}\nOn SciERC NER (2-seed sign tests, $n{=}529$), the oracle (0.778) reveals 13.3~pp of headroom above single-sample (0.645), yet LP achieves only 0.647 ($\\Delta{=}{+}0.2$~pp, $p{=}0.29$); no signal consistently improves selection ($p{>}0.05$; TOST equivalence holds under all external anchors for LLaMA-CoNLL but varies by configuration, Appendix~\\ref{app:tost}).\nOn $^\\dagger$RE, the best signal (LP, 0.395) falls below single-sample (0.404), with 18.1~pp unrealized; excluding zero-F1 instances worsens the gap (VC $-10.0$~pp; Appendix~\\ref{app:re_conditional_selection}).\nThe pattern holds across CoNLL and WNUT-17 (Table~\\ref{tab:cross_selection}).\nCoNLL's near-ceiling single-sample F1 (0.91) with only ${\\sim}$4~pp oracle headroom functions primarily as a ceiling-effect control.\nUnder stringent external TOST anchors ($\\delta_0{=}1.0$~pp), some configurations (e.g., Qwen CoNLL) show statistically significant degradation, indicating signals can actively harm selection (Appendix~\\ref{app:tost}).\nInstance-level signals predict \\textit{which inputs} the model handles reliably, not \\textit{which output} is best; closing this gap likely requires trained verifiers \\cite{cobbe2021verifiers}.\\footnote{For negative results (all $p{>}0.05$), uncorrected tests suffice; the sole positive finding (non-tied LP subset, $+2.9$~pp, $p{=}0.004$; \\S\\ref{sec:discussion}) survives Bonferroni correction over 5 comparisons.}\n\n%% ============================================================\n\\subsection{Robustness}\n\\label{sec:robustness_main}\n\nConsistency signals are robust across $T{\\in}\\{0.7, 1.0\\}$ with sublinear $N$-scaling gains (Table~\\ref{tab:robustness}); LP shows the largest temperature sensitivity ($\\Delta\\rho{=}{+}0.044$).\nNER calibration is reasonable (ECE 0.069--0.096); $^\\dagger$RE miscalibration (ECE${\\leq}$0.339) caps $\\rho$ at ${\\approx}0.28$ for $N{=}16$ (Appendix~\\ref{app:calibration}).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Scale ablation: Qwen3-8B vs.\\ 4B quality estimation ($\\rho$; $N{=}8$, $T{=}1.0$, seed${=}42$). 8B values identical to Table~\\ref{tab:quality_estimation}; 4B uses matched evaluation protocol. $^\\dagger$Preliminary.}\n\\label{tab:scale_ablation}\n\\begin{tabular}{@{}ll cc r@{}}\n\\toprule\n& & \\textbf{8B} & \\textbf{4B} & $\\Delta$ \\\\\n\\midrule\nCoNLL NER & SJ & .436 & .422 & $-$.014 \\\\\n          & FK & .400 & .418 & $+$.018 \\\\\nSciERC NER & SJ & .360 & .422 & $+$.062 \\\\\n           & FK & .267 & .326 & $+$.059 \\\\\nSciERC RE$^\\dagger$ & SJ & .250 & .267 & $+$.017 \\\\\n           & FK & .275 & .359 & $+$.084 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Scale robustness.}\nRepeating with Qwen3-4B (Table~\\ref{tab:scale_ablation}), quality estimation is comparable or improved (mean $|\\Delta\\rho|{=}0.042$), yet selection remains below single-sample on SciERC ($\\Delta$ up to $-3.4$~pp) despite 13.0~pp of oracle headroom, and indistinguishable on CoNLL (${<}0.3$~pp, 1.7~pp headroom). Within the 3B--8B range tested across two model families, task difficulty is a stronger predictor of the gap than model scale.\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 81,
+                  "oldLines": 7,
+                  "newStart": 81,
+                  "newLines": 7,
+                  "lines": [
+                    " \\end{tabular}",
+                    " \\end{table}",
+                    " ",
+                    "-Despite strong quality estimation, confidence signals yield limited selection gains (Table~\\ref{tab:selection}, Figure~\\ref{fig:selection_gap}).",
+                    "+Despite moderate-to-strong quality estimation, confidence signals yield limited selection gains (Table~\\ref{tab:selection}, Figure~\\ref{fig:selection_gap}).",
+                    " Instance-level signals (SJ, FK, EM, VC) assign identical QE scores to all candidates per input; consensus-proximity (MBR) converts these to per-sample rankings (Table~\\ref{tab:selection}: SJ 0.646, FK 0.646, EM 0.637, VC 0.623), but none improves over single-sample.",
+                    " The key question is whether LP---the only natively per-sample signal---can exploit the oracle headroom.",
+                    " "
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            },
+            "sourceToolAssistantUUID": "5c14eef1-d49f-48b7-8bb7-d7bff7afc4e7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/paper_agent_4f1165b4",
+            "sessionId": "9fa88e93-92fc-446f-90c6-86ed7a5c1cb6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "stateless-growing-kite"
+          },
+          "id": "event-008460"
+        },
+        {
+          "source_line": 8461,
+          "timestamp": "2026-05-16T05:46:15.473Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me check if there are any remaining \"by construction\" in the appendix or other files."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9b42dd40-0608-482a-ac57-c98e6b8d8ffc",
+            "isSidechain": false,
+            "requestId": "req_011Cb5ieuibDSTtXkv14t6nX",
+            "type": "assistant",
+            "uuid": "1f55a98f-0586-41c3-b404-2af13fc61653",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/paper_agent_4f1165b4",
+            "sessionId": "9fa88e93-92fc-446f-90c6-86ed7a5c1cb6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "stateless-growing-kite",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MTrUEohQXcAZfgN5vwFbJt",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 286,
+                "cache_read_input_tokens": 111573,
+                "output_tokens": 161,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 286,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 161,
+                    "cache_read_input_tokens": 111573,
+                    "cache_creation_input_tokens": 286,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 286
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-008461"
+        },
+        {
+          "source_line": 8462,
+          "timestamp": "2026-05-16T05:46:16.073Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CoNpdZbxTuJXR7HGPnwmNr",
+              "name": "Grep",
+              "input": {
+                "pattern": "by construction",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper",
+                "output_mode": "content",
+                "-n": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1f55a98f-0586-41c3-b404-2af13fc61653",
+            "isSidechain": false,
+            "requestId": "req_011Cb5ieuibDSTtXkv14t6nX",
+            "type": "assistant",
+            "uuid": "4d65e2cf-911a-4e34-827f-d8fe5c6175bc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/paper_agent_4f1165b4",
+            "sessionId": "9fa88e93-92fc-446f-90c6-86ed7a5c1cb6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "stateless-growing-kite",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MTrUEohQXcAZfgN5vwFbJt",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 286,
+                "cache_read_input_tokens": 111573,
+                "output_tokens": 161,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 286,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 161,
+                    "cache_read_input_tokens": 111573,
+                    "cache_creation_input_tokens": 286,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 286
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-008462"
+        },
+        {
+          "source_line": 8463,
+          "timestamp": "2026-05-16T05:46:16.092Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CoNpdZbxTuJXR7HGPnwmNr",
+              "type": "tool_result",
+              "content": "No matches found"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4d65e2cf-911a-4e34-827f-d8fe5c6175bc",
+            "isSidechain": false,
+            "promptId": "23a6b5dc-01f2-457c-97e5-adf62a7122b1",
+            "type": "user",
+            "uuid": "44349eac-4bde-4f49-8ad1-f504950a1016",
+            "toolUseResult": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "",
+              "numLines": 0
+            },
+            "sourceToolAssistantUUID": "4d65e2cf-911a-4e34-827f-d8fe5c6175bc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/paper_agent_4f1165b4",
+            "sessionId": "9fa88e93-92fc-446f-90c6-86ed7a5c1cb6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "stateless-growing-kite"
+          },
+          "id": "event-008463"
+        },
+        {
+          "source_line": 8464,
+          "timestamp": "2026-05-16T05:46:21.197Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All \"by construction\" removed. Now let me compile to check for errors before reporting."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "44349eac-4bde-4f49-8ad1-f504950a1016",
+            "isSidechain": false,
+            "requestId": "req_011Cb5ifGwHypNhJPsnfVNd9",
+            "type": "assistant",
+            "uuid": "838e9250-e236-4ee1-8252-afbd0de76533",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/paper_agent_4f1165b4",
+            "sessionId": "9fa88e93-92fc-446f-90c6-86ed7a5c1cb6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "stateless-growing-kite",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RS9QkExW28Kf1KgQQFEhNR",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 176,
+                "cache_read_input_tokens": 111859,
+                "output_tokens": 110,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 176,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 110,
+                    "cache_read_input_tokens": 111859,
+                    "cache_creation_input_tokens": 176,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 176
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-008464"
+        },
+        {
+          "source_line": 8465,
+          "timestamp": "2026-05-16T05:46:21.671Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016QCsWRSkNonuxrHq5Z48qp",
+              "name": "mcp__agent-ml-research__paper_compile_and_check",
+              "input": {
+                "project": "struct_self_consist_ie",
+                "max_pages": 8
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "838e9250-e236-4ee1-8252-afbd0de76533",
+            "isSidechain": false,
+            "requestId": "req_011Cb5ifGwHypNhJPsnfVNd9",
+            "type": "assistant",
+            "uuid": "90b0f8b5-df23-4ef0-9d8e-1d9ed2722a31",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/paper_agent_4f1165b4",
+            "sessionId": "9fa88e93-92fc-446f-90c6-86ed7a5c1cb6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "stateless-growing-kite",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RS9QkExW28Kf1KgQQFEhNR",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 176,
+                "cache_read_input_tokens": 111859,
+                "output_tokens": 110,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 176,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 110,
+                    "cache_read_input_tokens": 111859,
+                    "cache_creation_input_tokens": 176,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 176
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-008465"
+        },
+        {
+          "source_line": 8466,
+          "timestamp": "2026-05-16T05:46:30.031Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016QCsWRSkNonuxrHq5Z48qp",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"passed\\\": false, \\\"compiled\\\": {\\\"success\\\": true, \\\"pdf_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/main.pdf\\\", \\\"paper_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper\\\", \\\"main_tex\\\": \\\"main.tex\\\", \\\"log_tail\\\": \\\"Underfull \\\\\\\\hbox (badness 7081) in paragraph at lines 928--930\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) asym-me-try is driven by schema cov-er-age:\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 2600) in paragraph at lines 939--939\\\\n[]\\\\\\\\T1/ptm/m/n/10 (+20) Table 27: |Ver-bal-ized con-fi-dence (Ver-b-Conf) vs.\\\\n []\\\\n\\\\n\\\\nOverfull \\\\\\\\hbox (45.74033pt too wide) in paragraph at lines 941--956\\\\n [][] \\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 2245) in paragraph at lines 974--974\\\\n\\\\\\\\T1/ptm/m/n/10 (+20) ti-ma-tion and se-lec-tion ($\\\\\\\\OML/cmm/m/it/10 N[]\\\\\\\\OT1/cmr/\\\\nm/n/10 8$\\\\\\\\T1/ptm/m/n/10 (+20) , $\\\\\\\\OML/cmm/m/it/10 T[]\\\\\\\\OT1/cmr/m/n/10 1\\\\\\\\OML/cmm/\\\\nm/it/10 :\\\\\\\\OT1/cmr/m/n/10 0$\\\\\\\\T1/ptm/m/n/10 (+20) , seed$[]\\\\\\\\OT1/cmr/m/n/10 42$\\\\\\\\T1\\\\n/ptm/m/n/10 (+20) ).\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 10000) in paragraph at lines 974--974\\\\n\\\\\\\\T1/ptm/m/n/10 (+20) Single-sample F1$[]\\\\\\\\OT1/cmr/m/n/10 0\\\\\\\\OML/cmm/m/it/10 :\\\\\\\\OT1\\\\n/cmr/m/n/10 627$\\\\\\\\T1/ptm/m/n/10 (+20) , Or-a-cle F1$[]\\\\\\\\OT1/cmr/m/n/10 0\\\\\\\\OML/cmm/\\\\nm/it/10 :\\\\\\\\OT1/cmr/m/n/10 763$\\\\\\\\T1/ptm/m/n/10 (+20) ,\\\\n []\\\\n\\\\n\\\\nOverfull \\\\\\\\hbox (9.25264pt too wide) in paragraph at lines 976--990\\\\n [][] \\\\n []\\\\n\\\\n) [23] (./main.aux)\\\\n ***********\\\\nLaTeX2e <2025-11-01>\\\\nL3 programming layer <2026-01-19>\\\\n ***********\\\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\\\n(rerunfilecheck)             Checksum: 3426C65F3CDA85E4EC608F44E9AF50D6;5363.\\\\n ) \\\\nHere is how much of TeX's memory you used:\\\\n 16897 strings out of 469438\\\\n 266673 string characters out of 5468411\\\\n 743068 words of memory out of 5000000\\\\n 44526 multiletter control sequences out of 15000+600000\\\\n 722740 words of font info for 473 fonts, out of 8000000 for 9000\\\\n 59 hyphenation exceptions out of 8191\\\\n 84i,12n,93p,1001b,670s stack positions out of 10000i,1000n,20000p,200000b,200000s\\\\n</usr/share/texlive/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4\\\\nr.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb><\\\\n/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/s\\\\nhare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/t\\\\nexlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive\\\\n/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-\\\\ndist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fo\\\\nnts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/typ\\\\ne1/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ\\\\nic/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf\\\\nonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm\\\\n/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pf\\\\nb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/\\\\nshare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/\\\\ntexlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive\\\\n/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-\\\\ndist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fo\\\\nnts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/typ\\\\ne1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type\\\\n1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/fonts/type1\\\\n/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/u\\\\ntmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr\\\\n/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>\\\\nOutput written on main.pdf (23 pages, 673850 bytes).\\\\nPDF statistics:\\\\n 1529 PDF objects out of 1728 (max. 8388607)\\\\n 990 compressed objects within 10 object streams\\\\n 222 named destinations out of 1000 (max. 500000)\\\\n 87340 words of extra memory for PDF output out of 89155 (max. 10000000)\\\\n\\\", \\\"error\\\": \\\"\\\", \\\"pages\\\": 23, \\\"warnings\\\": [\\\"`h' float specifier changed to `ht'.\\\", \\\"Token not allowed in a PDF string (Unicode):\\\", \\\"Token not allowed in a PDF string (Unicode):\\\", \\\"Token not allowed in a PDF string (Unicode):\\\", \\\"Token not allowed in a PDF string (Unicode):\\\"]}, \\\"pages\\\": 23, \\\"page_status\\\": \\\"over_limit\\\", \\\"max_pages\\\": 8, \\\"min_pages\\\": null, \\\"critical_warnings\\\": [], \\\"minor_warnings\\\": [\\\"`h' float specifier changed to `ht'.\\\", \\\"Token not allowed in a PDF string (Unicode):\\\", \\\"Token not allowed in a PDF string (Unicode):\\\", \\\"Token not allowed in a PDF string (Unicode):\\\", \\\"Token not allowed in a PDF string (Unicode):\\\", \\\"Underfull \\\\\\\\hbox (badness 1715) in paragraph at lines 10--13\\\", \\\"Underfull \\\\\\\\vbox (badness 7081) has occurred while \\\\\\\\output is active []\\\", \\\"Underfull \\\\\\\\hbox (badness 3668) in paragraph at lines 14--18\\\", \\\"Underfull \\\\\\\\hbox (badness 1377) in paragraph at lines 14--18\\\", \\\"Underfull \\\\\\\\hbox (badness 4899) in paragraph at lines 47--51\\\", \\\"Underfull \\\\\\\\hbox (badness 1552) in paragraph at lines 16--22\\\", \\\"Underfull \\\\\\\\hbox (badness 1365) in paragraph at lines 126--131\\\", \\\"Underfull \\\\\\\\hbox (badness 1158) in paragraph at lines 145--153\\\", \\\"Underfull \\\\\\\\hbox (badness 1824) in paragraph at lines 256--260\\\", \\\"Underfull \\\\\\\\hbox (badness 8056) in paragraph at lines 90--93\\\", \\\"Underfull \\\\\\\\hbox (badness 5802) in paragraph at lines 90--93\\\", \\\"Underfull \\\\\\\\hbox (badness 1253) in paragraph at lines 90--93\\\", \\\"Underfull \\\\\\\\hbox (badness 1715) in paragraph at lines 90--93\\\", \\\"Underfull \\\\\\\\hbox (badness 2635) in paragraph at lines 90--93\\\", \\\"Overfull \\\\\\\\hbox (84.0711pt too wide) in paragraph at lines 104--113\\\", \\\"Underfull \\\\\\\\hbox (badness 1990) in paragraph at lines 142--146\\\", \\\"Underfull \\\\\\\\hbox (badness 2753) in paragraph at lines 167--173\\\", \\\"Underfull \\\\\\\\hbox (badness 10000) in paragraph at lines 167--173\\\", \\\"Underfull \\\\\\\\hbox (badness 10000) in paragraph at lines 167--173\\\", \\\"Underfull \\\\\\\\hbox (badness 1082) in paragraph at lines 167--173\\\", \\\"Underfull \\\\\\\\hbox (badness 1072) in paragraph at lines 167--173\\\", \\\"Underfull \\\\\\\\hbox (badness 6691) in paragraph at lines 167--173\\\", \\\"Underfull \\\\\\\\hbox (badness 10000) in paragraph at lines 167--173\\\", \\\"Underfull \\\\\\\\hbox (badness 1019) in paragraph at lines 175--177\\\", \\\"Overfull \\\\\\\\hbox (0.91821pt too wide) in paragraph at lines 198--204\\\", \\\"Underfull \\\\\\\\hbox (badness 1033) in paragraph at lines 206--210\\\", \\\"Overfull \\\\\\\\hbox (19.10843pt too wide) in paragraph at lines 216--227\\\", \\\"Underfull \\\\\\\\hbox (badness 1137) in paragraph at lines 260--264\\\", \\\"Underfull \\\\\\\\hbox (badness 4060) in paragraph at lines 305--308\\\", \\\"Overfull \\\\\\\\hbox (18.97287pt too wide) in paragraph at lines 368--381\\\", \\\"Underfull \\\\\\\\hbox (badness 2573) in paragraph at lines 384--389\\\", \\\"Underfull \\\\\\\\hbox (badness 1048) in paragraph at lines 398--402\\\", \\\"Overfull \\\\\\\\hbox (75.87871pt too wide) in paragraph at lines 408--424\\\", \\\"Overfull \\\\\\\\hbox (0.76773pt too wide) in paragraph at lines 435--460\\\", \\\"Underfull \\\\\\\\hbox (badness 2460) in paragraph at lines 475--475\\\", \\\"Underfull \\\\\\\\hbox (badness 3514) in paragraph at lines 475--475\\\", \\\"Underfull \\\\\\\\hbox (badness 10000) in paragraph at lines 531--534\\\", \\\"Underfull \\\\\\\\hbox (badness 1810) in paragraph at lines 531--534\\\", \\\"Underfull \\\\\\\\hbox (badness 3568) in paragraph at lines 531--534\\\", \\\"Underfull \\\\\\\\hbox (badness 1694) in paragraph at lines 531--534\\\", \\\"Underfull \\\\\\\\hbox (badness 2626) in paragraph at lines 531--534\\\", \\\"Underfull \\\\\\\\hbox (badness 6268) in paragraph at lines 531--534\\\", \\\"Underfull \\\\\\\\hbox (badness 10000) in paragraph at lines 531--534\\\", \\\"Underfull \\\\\\\\hbox (badness 10000) in paragraph at lines 531--534\\\", \\\"Underfull \\\\\\\\hbox (badness 1552) in paragraph at lines 531--534\\\", \\\"Underfull \\\\\\\\vbox (badness 10000) has occurred while \\\\\\\\output is active []\\\", \\\"Underfull \\\\\\\\hbox (badness 3312) in paragraph at lines 620--621\\\", \\\"Underfull \\\\\\\\vbox (badness 1107) has occurred while \\\\\\\\output is active []\\\", \\\"Underfull \\\\\\\\hbox (badness 2894) in paragraph at lines 685--688\\\", \\\"Underfull \\\\\\\\hbox (badness 5008) in paragraph at lines 685--688\\\", \\\"Underfull \\\\\\\\vbox (badness 8000) has occurred while \\\\\\\\output is active []\\\", \\\"Underfull \\\\\\\\hbox (badness 1859) in paragraph at lines 792--793\\\", \\\"Underfull \\\\\\\\hbox (badness 1838) in paragraph at lines 795--797\\\", \\\"Overfull \\\\\\\\hbox (23.52626pt too wide) in paragraph at lines 808--818\\\", \\\"Underfull \\\\\\\\vbox (badness 10000) has occurred while \\\\\\\\output is active []\\\", \\\"Overfull \\\\\\\\hbox (50.91055pt too wide) in paragraph at lines 833--848\\\", \\\"Overfull \\\\\\\\hbox (47.2356pt too wide) in paragraph at lines 855--866\\\", \\\"Underfull \\\\\\\\hbox (badness 1655) in paragraph at lines 900--900\\\", \\\"Underfull \\\\\\\\hbox (badness 1769) in paragraph at lines 900--900\\\", \\\"Overfull \\\\\\\\hbox (46.87402pt too wide) in paragraph at lines 902--915\\\", \\\"Underfull \\\\\\\\hbox (badness 5133) in paragraph at lines 928--930\\\", \\\"Underfull \\\\\\\\hbox (badness 7081) in paragraph at lines 928--930\\\", \\\"Underfull \\\\\\\\hbox (badness 2600) in paragraph at lines 939--939\\\", \\\"Overfull \\\\\\\\hbox (45.74033pt too wide) in paragraph at lines 941--956\\\", \\\"Underfull \\\\\\\\hbox (badness 2245) in paragraph at lines 974--974\\\", \\\"Underfull \\\\\\\\hbox (badness 10000) in paragraph at lines 974--974\\\", \\\"Overfull \\\\\\\\hbox (9.25264pt too wide) in paragraph at lines 976--990\\\"], \\\"issues\\\": [\\\"pages 23 > limit 8\\\"], \\\"summary\\\": \\\"FAIL: pages 23 > limit 8\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "90b0f8b5-df23-4ef0-9d8e-1d9ed2722a31",
+            "isSidechain": false,
+            "promptId": "23a6b5dc-01f2-457c-97e5-adf62a7122b1",
+            "type": "user",
+            "uuid": "db8c90ce-7efb-4eca-a72d-8be4f9351d23",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"passed\\\": false, \\\"compiled\\\": {\\\"success\\\": true, \\\"pdf_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/main.pdf\\\", \\\"paper_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper\\\", \\\"main_tex\\\": \\\"main.tex\\\", \\\"log_tail\\\": \\\"Underfull \\\\\\\\hbox (badness 7081) in paragraph at lines 928--930\\\\n\\\\\\\\T1/ptm/m/n/10.95 (+20) asym-me-try is driven by schema cov-er-age:\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 2600) in paragraph at lines 939--939\\\\n[]\\\\\\\\T1/ptm/m/n/10 (+20) Table 27: |Ver-bal-ized con-fi-dence (Ver-b-Conf) vs.\\\\n []\\\\n\\\\n\\\\nOverfull \\\\\\\\hbox (45.74033pt too wide) in paragraph at lines 941--956\\\\n [][] \\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 2245) in paragraph at lines 974--974\\\\n\\\\\\\\T1/ptm/m/n/10 (+20) ti-ma-tion and se-lec-tion ($\\\\\\\\OML/cmm/m/it/10 N[]\\\\\\\\OT1/cmr/\\\\nm/n/10 8$\\\\\\\\T1/ptm/m/n/10 (+20) , $\\\\\\\\OML/cmm/m/it/10 T[]\\\\\\\\OT1/cmr/m/n/10 1\\\\\\\\OML/cmm/\\\\nm/it/10 :\\\\\\\\OT1/cmr/m/n/10 0$\\\\\\\\T1/ptm/m/n/10 (+20) , seed$[]\\\\\\\\OT1/cmr/m/n/10 42$\\\\\\\\T1\\\\n/ptm/m/n/10 (+20) ).\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 10000) in paragraph at lines 974--974\\\\n\\\\\\\\T1/ptm/m/n/10 (+20) Single-sample F1$[]\\\\\\\\OT1/cmr/m/n/10 0\\\\\\\\OML/cmm/m/it/10 :\\\\\\\\OT1\\\\n/cmr/m/n/10 627$\\\\\\\\T1/ptm/m/n/10 (+20) , Or-a-cle F1$[]\\\\\\\\OT1/cmr/m/n/10 0\\\\\\\\OML/cmm/\\\\nm/it/10 :\\\\\\\\OT1/cmr/m/n/10 763$\\\\\\\\T1/ptm/m/n/10 (+20) ,\\\\n []\\\\n\\\\n\\\\nOverfull \\\\\\\\hbox (9.25264pt too wide) in paragraph at lines 976--990\\\\n [][] \\\\n []\\\\n\\\\n) [23] (./main.aux)\\\\n ***********\\\\nLaTeX2e <2025-11-01>\\\\nL3 programming layer <2026-01-19>\\\\n ***********\\\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\\\n(rerunfilecheck)             Checksum: 3426C65F3CDA85E4EC608F44E9AF50D6;5363.\\\\n ) \\\\nHere is how much of TeX's memory you used:\\\\n 16897 strings out of 469438\\\\n 266673 string characters out of 5468411\\\\n 743068 words of memory out of 5000000\\\\n 44526 multiletter control sequences out of 15000+600000\\\\n 722740 words of font info for 473 fonts, out of 8000000 for 9000\\\\n 59 hyphenation exceptions out of 8191\\\\n 84i,12n,93p,1001b,670s stack positions out of 10000i,1000n,20000p,200000b,200000s\\\\n</usr/share/texlive/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4\\\\nr.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb><\\\\n/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/s\\\\nhare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/t\\\\nexlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive\\\\n/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-\\\\ndist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fo\\\\nnts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/typ\\\\ne1/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ\\\\nic/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf\\\\nonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm\\\\n/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pf\\\\nb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/\\\\nshare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/\\\\ntexlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive\\\\n/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-\\\\ndist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fo\\\\nnts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/typ\\\\ne1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type\\\\n1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/fonts/type1\\\\n/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/u\\\\ntmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr\\\\n/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>\\\\nOutput written on main.pdf (23 pages, 673850 bytes).\\\\nPDF statistics:\\\\n 1529 PDF objects out of 1728 (max. 8388607)\\\\n 990 compressed objects within 10 object streams\\\\n 222 named destinations out of 1000 (max. 500000)\\\\n 87340 words of extra memory for PDF output out of 89155 (max. 10000000)\\\\n\\\", \\\"error\\\": \\\"\\\", \\\"pages\\\": 23, \\\"warnings\\\": [\\\"`h' float specifier changed to `ht'.\\\", \\\"Token not allowed in a PDF string (Unicode):\\\", \\\"Token not allowed in a PDF string (Unicode):\\\", \\\"Token not allowed in a PDF string (Unicode):\\\", \\\"Token not allowed in a PDF string (Unicode):\\\"]}, \\\"pages\\\": 23, \\\"page_status\\\": \\\"over_limit\\\", \\\"max_pages\\\": 8, \\\"min_pages\\\": null, \\\"critical_warnings\\\": [], \\\"minor_warnings\\\": [\\\"`h' float specifier changed to `ht'.\\\", \\\"Token not allowed in a PDF string (Unicode):\\\", \\\"Token not allowed in a PDF string (Unicode):\\\", \\\"Token not allowed in a PDF string (Unicode):\\\", \\\"Token not allowed in a PDF string (Unicode):\\\", \\\"Underfull \\\\\\\\hbox (badness 1715) in paragraph at lines 10--13\\\", \\\"Underfull \\\\\\\\vbox (badness 7081) has occurred while \\\\\\\\output is active []\\\", \\\"Underfull \\\\\\\\hbox (badness 3668) in paragraph at lines 14--18\\\", \\\"Underfull \\\\\\\\hbox (badness 1377) in paragraph at lines 14--18\\\", \\\"Underfull \\\\\\\\hbox (badness 4899) in paragraph at lines 47--51\\\", \\\"Underfull \\\\\\\\hbox (badness 1552) in paragraph at lines 16--22\\\", \\\"Underfull \\\\\\\\hbox (badness 1365) in paragraph at lines 126--131\\\", \\\"Underfull \\\\\\\\hbox (badness 1158) in paragraph at lines 145--153\\\", \\\"Underfull \\\\\\\\hbox (badness 1824) in paragraph at lines 256--260\\\", \\\"Underfull \\\\\\\\hbox (badness 8056) in paragraph at lines 90--93\\\", \\\"Underfull \\\\\\\\hbox (badness 5802) in paragraph at lines 90--93\\\", \\\"Underfull \\\\\\\\hbox (badness 1253) in paragraph at lines 90--93\\\", \\\"Underfull \\\\\\\\hbox (badness 1715) in paragraph at lines 90--93\\\", \\\"Underfull \\\\\\\\hbox (badness 2635) in paragraph at lines 90--93\\\", \\\"Overfull \\\\\\\\hbox (84.0711pt too wide) in paragraph at lines 104--113\\\", \\\"Underfull \\\\\\\\hbox (badness 1990) in paragraph at lines 142--146\\\", \\\"Underfull \\\\\\\\hbox (badness 2753) in paragraph at lines 167--173\\\", \\\"Underfull \\\\\\\\hbox (badness 10000) in paragraph at lines 167--173\\\", \\\"Underfull \\\\\\\\hbox (badness 10000) in paragraph at lines 167--173\\\", \\\"Underfull \\\\\\\\hbox (badness 1082) in paragraph at lines 167--173\\\", \\\"Underfull \\\\\\\\hbox (badness 1072) in paragraph at lines 167--173\\\", \\\"Underfull \\\\\\\\hbox (badness 6691) in paragraph at lines 167--173\\\", \\\"Underfull \\\\\\\\hbox (badness 10000) in paragraph at lines 167--173\\\", \\\"Underfull \\\\\\\\hbox (badness 1019) in paragraph at lines 175--177\\\", \\\"Overfull \\\\\\\\hbox (0.91821pt too wide) in paragraph at lines 198--204\\\", \\\"Underfull \\\\\\\\hbox (badness 1033) in paragraph at lines 206--210\\\", \\\"Overfull \\\\\\\\hbox (19.10843pt too wide) in paragraph at lines 216--227\\\", \\\"Underfull \\\\\\\\hbox (badness 1137) in paragraph at lines 260--264\\\", \\\"Underfull \\\\\\\\hbox (badness 4060) in paragraph at lines 305--308\\\", \\\"Overfull \\\\\\\\hbox (18.97287pt too wide) in paragraph at lines 368--381\\\", \\\"Underfull \\\\\\\\hbox (badness 2573) in paragraph at lines 384--389\\\", \\\"Underfull \\\\\\\\hbox (badness 1048) in paragraph at lines 398--402\\\", \\\"Overfull \\\\\\\\hbox (75.87871pt too wide) in paragraph at lines 408--424\\\", \\\"Overfull \\\\\\\\hbox (0.76773pt too wide) in paragraph at lines 435--460\\\", \\\"Underfull \\\\\\\\hbox (badness 2460) in paragraph at lines 475--475\\\", \\\"Underfull \\\\\\\\hbox (badness 3514) in paragraph at lines 475--475\\\", \\\"Underfull \\\\\\\\hbox (badness 10000) in paragraph at lines 531--534\\\", \\\"Underfull \\\\\\\\hbox (badness 1810) in paragraph at lines 531--534\\\", \\\"Underfull \\\\\\\\hbox (badness 3568) in paragraph at lines 531--534\\\", \\\"Underfull \\\\\\\\hbox (badness 1694) in paragraph at lines 531--534\\\", \\\"Underfull \\\\\\\\hbox (badness 2626) in paragraph at lines 531--534\\\", \\\"Underfull \\\\\\\\hbox (badness 6268) in paragraph at lines 531--534\\\", \\\"Underfull \\\\\\\\hbox (badness 10000) in paragraph at lines 531--534\\\", \\\"Underfull \\\\\\\\hbox (badness 10000) in paragraph at lines 531--534\\\", \\\"Underfull \\\\\\\\hbox (badness 1552) in paragraph at lines 531--534\\\", \\\"Underfull \\\\\\\\vbox (badness 10000) has occurred while \\\\\\\\output is active []\\\", \\\"Underfull \\\\\\\\hbox (badness 3312) in paragraph at lines 620--621\\\", \\\"Underfull \\\\\\\\vbox (badness 1107) has occurred while \\\\\\\\output is active []\\\", \\\"Underfull \\\\\\\\hbox (badness 2894) in paragraph at lines 685--688\\\", \\\"Underfull \\\\\\\\hbox (badness 5008) in paragraph at lines 685--688\\\", \\\"Underfull \\\\\\\\vbox (badness 8000) has occurred while \\\\\\\\output is active []\\\", \\\"Underfull \\\\\\\\hbox (badness 1859) in paragraph at lines 792--793\\\", \\\"Underfull \\\\\\\\hbox (badness 1838) in paragraph at lines 795--797\\\", \\\"Overfull \\\\\\\\hbox (23.52626pt too wide) in paragraph at lines 808--818\\\", \\\"Underfull \\\\\\\\vbox (badness 10000) has occurred while \\\\\\\\output is active []\\\", \\\"Overfull \\\\\\\\hbox (50.91055pt too wide) in paragraph at lines 833--848\\\", \\\"Overfull \\\\\\\\hbox (47.2356pt too wide) in paragraph at lines 855--866\\\", \\\"Underfull \\\\\\\\hbox (badness 1655) in paragraph at lines 900--900\\\", \\\"Underfull \\\\\\\\hbox (badness 1769) in paragraph at lines 900--900\\\", \\\"Overfull \\\\\\\\hbox (46.87402pt too wide) in paragraph at lines 902--915\\\", \\\"Underfull \\\\\\\\hbox (badness 5133) in paragraph at lines 928--930\\\", \\\"Underfull \\\\\\\\hbox (badness 7081) in paragraph at lines 928--930\\\", \\\"Underfull \\\\\\\\hbox (badness 2600) in paragraph at lines 939--939\\\", \\\"Overfull \\\\\\\\hbox (45.74033pt too wide) in paragraph at lines 941--956\\\", \\\"Underfull \\\\\\\\hbox (badness 2245) in paragraph at lines 974--974\\\", \\\"Underfull \\\\\\\\hbox (badness 10000) in paragraph at lines 974--974\\\", \\\"Overfull \\\\\\\\hbox (9.25264pt too wide) in paragraph at lines 976--990\\\"], \\\"issues\\\": [\\\"pages 23 > limit 8\\\"], \\\"summary\\\": \\\"FAIL: pages 23 > limit 8\\\"}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"passed\": false, \"compiled\": {\"success\": true, \"pdf_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/main.pdf\", \"paper_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper\", \"main_tex\": \"main.tex\", \"log_tail\": \"Underfull \\\\hbox (badness 7081) in paragraph at lines 928--930\\n\\\\T1/ptm/m/n/10.95 (+20) asym-me-try is driven by schema cov-er-age:\\n []\\n\\n\\nUnderfull \\\\hbox (badness 2600) in paragraph at lines 939--939\\n[]\\\\T1/ptm/m/n/10 (+20) Table 27: |Ver-bal-ized con-fi-dence (Ver-b-Conf) vs.\\n []\\n\\n\\nOverfull \\\\hbox (45.74033pt too wide) in paragraph at lines 941--956\\n [][] \\n []\\n\\n\\nUnderfull \\\\hbox (badness 2245) in paragraph at lines 974--974\\n\\\\T1/ptm/m/n/10 (+20) ti-ma-tion and se-lec-tion ($\\\\OML/cmm/m/it/10 N[]\\\\OT1/cmr/\\nm/n/10 8$\\\\T1/ptm/m/n/10 (+20) , $\\\\OML/cmm/m/it/10 T[]\\\\OT1/cmr/m/n/10 1\\\\OML/cmm/\\nm/it/10 :\\\\OT1/cmr/m/n/10 0$\\\\T1/ptm/m/n/10 (+20) , seed$[]\\\\OT1/cmr/m/n/10 42$\\\\T1\\n/ptm/m/n/10 (+20) ).\\n []\\n\\n\\nUnderfull \\\\hbox (badness 10000) in paragraph at lines 974--974\\n\\\\T1/ptm/m/n/10 (+20) Single-sample F1$[]\\\\OT1/cmr/m/n/10 0\\\\OML/cmm/m/it/10 :\\\\OT1\\n/cmr/m/n/10 627$\\\\T1/ptm/m/n/10 (+20) , Or-a-cle F1$[]\\\\OT1/cmr/m/n/10 0\\\\OML/cmm/\\nm/it/10 :\\\\OT1/cmr/m/n/10 763$\\\\T1/ptm/m/n/10 (+20) ,\\n []\\n\\n\\nOverfull \\\\hbox (9.25264pt too wide) in paragraph at lines 976--990\\n [][] \\n []\\n\\n) [23] (./main.aux)\\n ***********\\nLaTeX2e <2025-11-01>\\nL3 programming layer <2026-01-19>\\n ***********\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\n(rerunfilecheck)             Checksum: 3426C65F3CDA85E4EC608F44E9AF50D6;5363.\\n ) \\nHere is how much of TeX's memory you used:\\n 16897 strings out of 469438\\n 266673 string characters out of 5468411\\n 743068 words of memory out of 5000000\\n 44526 multiletter control sequences out of 15000+600000\\n 722740 words of font info for 473 fonts, out of 8000000 for 9000\\n 59 hyphenation exceptions out of 8191\\n 84i,12n,93p,1001b,670s stack positions out of 10000i,1000n,20000p,200000b,200000s\\n</usr/share/texlive/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4\\nr.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb><\\n/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/s\\nhare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/t\\nexlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive\\n/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-\\ndist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fo\\nnts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/typ\\ne1/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ\\nic/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf\\nonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm\\n/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pf\\nb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/\\nshare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/\\ntexlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive\\n/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-\\ndist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fo\\nnts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/typ\\ne1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type\\n1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/fonts/type1\\n/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/u\\ntmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr\\n/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>\\nOutput written on main.pdf (23 pages, 673850 bytes).\\nPDF statistics:\\n 1529 PDF objects out of 1728 (max. 8388607)\\n 990 compressed objects within 10 object streams\\n 222 named destinations out of 1000 (max. 500000)\\n 87340 words of extra memory for PDF output out of 89155 (max. 10000000)\\n\", \"error\": \"\", \"pages\": 23, \"warnings\": [\"`h' float specifier changed to `ht'.\", \"Token not allowed in a PDF string (Unicode):\", \"Token not allowed in a PDF string (Unicode):\", \"Token not allowed in a PDF string (Unicode):\", \"Token not allowed in a PDF string (Unicode):\"]}, \"pages\": 23, \"page_status\": \"over_limit\", \"max_pages\": 8, \"min_pages\": null, \"critical_warnings\": [], \"minor_warnings\": [\"`h' float specifier changed to `ht'.\", \"Token not allowed in a PDF string (Unicode):\", \"Token not allowed in a PDF string (Unicode):\", \"Token not allowed in a PDF string (Unicode):\", \"Token not allowed in a PDF string (Unicode):\", \"Underfull \\\\hbox (badness 1715) in paragraph at lines 10--13\", \"Underfull \\\\vbox (badness 7081) has occurred while \\\\output is active []\", \"Underfull \\\\hbox (badness 3668) in paragraph at lines 14--18\", \"Underfull \\\\hbox (badness 1377) in paragraph at lines 14--18\", \"Underfull \\\\hbox (badness 4899) in paragraph at lines 47--51\", \"Underfull \\\\hbox (badness 1552) in paragraph at lines 16--22\", \"Underfull \\\\hbox (badness 1365) in paragraph at lines 126--131\", \"Underfull \\\\hbox (badness 1158) in paragraph at lines 145--153\", \"Underfull \\\\hbox (badness 1824) in paragraph at lines 256--260\", \"Underfull \\\\hbox (badness 8056) in paragraph at lines 90--93\", \"Underfull \\\\hbox (badness 5802) in paragraph at lines 90--93\", \"Underfull \\\\hbox (badness 1253) in paragraph at lines 90--93\", \"Underfull \\\\hbox (badness 1715) in paragraph at lines 90--93\", \"Underfull \\\\hbox (badness 2635) in paragraph at lines 90--93\", \"Overfull \\\\hbox (84.0711pt too wide) in paragraph at lines 104--113\", \"Underfull \\\\hbox (badness 1990) in paragraph at lines 142--146\", \"Underfull \\\\hbox (badness 2753) in paragraph at lines 167--173\", \"Underfull \\\\hbox (badness 10000) in paragraph at lines 167--173\", \"Underfull \\\\hbox (badness 10000) in paragraph at lines 167--173\", \"Underfull \\\\hbox (badness 1082) in paragraph at lines 167--173\", \"Underfull \\\\hbox (badness 1072) in paragraph at lines 167--173\", \"Underfull \\\\hbox (badness 6691) in paragraph at lines 167--173\", \"Underfull \\\\hbox (badness 10000) in paragraph at lines 167--173\", \"Underfull \\\\hbox (badness 1019) in paragraph at lines 175--177\", \"Overfull \\\\hbox (0.91821pt too wide) in paragraph at lines 198--204\", \"Underfull \\\\hbox (badness 1033) in paragraph at lines 206--210\", \"Overfull \\\\hbox (19.10843pt too wide) in paragraph at lines 216--227\", \"Underfull \\\\hbox (badness 1137) in paragraph at lines 260--264\", \"Underfull \\\\hbox (badness 4060) in paragraph at lines 305--308\", \"Overfull \\\\hbox (18.97287pt too wide) in paragraph at lines 368--381\", \"Underfull \\\\hbox (badness 2573) in paragraph at lines 384--389\", \"Underfull \\\\hbox (badness 1048) in paragraph at lines 398--402\", \"Overfull \\\\hbox (75.87871pt too wide) in paragraph at lines 408--424\", \"Overfull \\\\hbox (0.76773pt too wide) in paragraph at lines 435--460\", \"Underfull \\\\hbox (badness 2460) in paragraph at lines 475--475\", \"Underfull \\\\hbox (badness 3514) in paragraph at lines 475--475\", \"Underfull \\\\hbox (badness 10000) in paragraph at lines 531--534\", \"Underfull \\\\hbox (badness 1810) in paragraph at lines 531--534\", \"Underfull \\\\hbox (badness 3568) in paragraph at lines 531--534\", \"Underfull \\\\hbox (badness 1694) in paragraph at lines 531--534\", \"Underfull \\\\hbox (badness 2626) in paragraph at lines 531--534\", \"Underfull \\\\hbox (badness 6268) in paragraph at lines 531--534\", \"Underfull \\\\hbox (badness 10000) in paragraph at lines 531--534\", \"Underfull \\\\hbox (badness 10000) in paragraph at lines 531--534\", \"Underfull \\\\hbox (badness 1552) in paragraph at lines 531--534\", \"Underfull \\\\vbox (badness 10000) has occurred while \\\\output is active []\", \"Underfull \\\\hbox (badness 3312) in paragraph at lines 620--621\", \"Underfull \\\\vbox (badness 1107) has occurred while \\\\output is active []\", \"Underfull \\\\hbox (badness 2894) in paragraph at lines 685--688\", \"Underfull \\\\hbox (badness 5008) in paragraph at lines 685--688\", \"Underfull \\\\vbox (badness 8000) has occurred while \\\\output is active []\", \"Underfull \\\\hbox (badness 1859) in paragraph at lines 792--793\", \"Underfull \\\\hbox (badness 1838) in paragraph at lines 795--797\", \"Overfull \\\\hbox (23.52626pt too wide) in paragraph at lines 808--818\", \"Underfull \\\\vbox (badness 10000) has occurred while \\\\output is active []\", \"Overfull \\\\hbox (50.91055pt too wide) in paragraph at lines 833--848\", \"Overfull \\\\hbox (47.2356pt too wide) in paragraph at lines 855--866\", \"Underfull \\\\hbox (badness 1655) in paragraph at lines 900--900\", \"Underfull \\\\hbox (badness 1769) in paragraph at lines 900--900\", \"Overfull \\\\hbox (46.87402pt too wide) in paragraph at lines 902--915\", \"Underfull \\\\hbox (badness 5133) in paragraph at lines 928--930\", \"Underfull \\\\hbox (badness 7081) in paragraph at lines 928--930\", \"Underfull \\\\hbox (badness 2600) in paragraph at lines 939--939\", \"Overfull \\\\hbox (45.74033pt too wide) in paragraph at lines 941--956\", \"Underfull \\\\hbox (badness 2245) in paragraph at lines 974--974\", \"Underfull \\\\hbox (badness 10000) in paragraph at lines 974--974\", \"Overfull \\\\hbox (9.25264pt too wide) in paragraph at lines 976--990\"], \"issues\": [\"pages 23 > limit 8\"], \"summary\": \"FAIL: pages 23 > limit 8\"}"
+              }
+            },
+            "sourceToolAssistantUUID": "90b0f8b5-df23-4ef0-9d8e-1d9ed2722a31",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/paper_agent_4f1165b4",
+            "sessionId": "9fa88e93-92fc-446f-90c6-86ed7a5c1cb6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "stateless-growing-kite"
+          },
+          "id": "event-008466"
+        },
+        {
+          "source_line": 8467,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "[系统提醒] 你刚才完成了 [Director 指令] 但没有调用 main_agent_post_to_director 汇报结果。Director 看不到你的文字回复。请立即调用 main_agent_post_to_director 将结果发给 Director。",
+                "leafUuid": "db8c90ce-7efb-4eca-a72d-8be4f9351d23",
+                "sessionId": "9fa88e93-92fc-446f-90c6-86ed7a5c1cb6"
+              }
+            }
+          ],
+          "id": "event-008467"
+        },
+        {
+          "source_line": 8468,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Set up agent communication with Director",
+                "sessionId": "9fa88e93-92fc-446f-90c6-86ed7a5c1cb6"
+              }
+            }
+          ],
+          "id": "event-008468"
+        },
+        {
+          "source_line": 8469,
+          "timestamp": "2026-05-16T05:46:42.959Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Compilation successful with 0 critical warnings. 23 pages (including appendix). The only \"fail\" is the page count which includes the appendix (normal for ACL/EMNLP papers).\n\nNow let me verify:\n- SF6 (Kendall W n=3 caveat) — already confirmed at appendix line 890\n- SF7 (Table 2 NER/RE seed footnote) — already confirmed at experiments.tex line 61\n\nLet me also check if there's a \"Table A13\" that needs checking for the gold-filtering fix. \n\nI need to locate Table A13 in the appendix and verify that its annotations align with the gold-filtering fix, particularly checking if any tables reference the full dataset (n=551) that might need updating.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "db8c90ce-7efb-4eca-a72d-8be4f9351d23",
+            "isSidechain": false,
+            "requestId": "req_011Cb5igJ8FZ5DykKadDT8wf",
+            "type": "assistant",
+            "uuid": "0ebdb362-bfe1-4d91-a95e-e675f04576a8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/paper_agent_4f1165b4",
+            "sessionId": "9fa88e93-92fc-446f-90c6-86ed7a5c1cb6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "stateless-growing-kite",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YWwctFoP8ysuZ4NoDA5bY3",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4314,
+                "cache_read_input_tokens": 112035,
+                "output_tokens": 486,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 4314,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 486,
+                    "cache_read_input_tokens": 112035,
+                    "cache_creation_input_tokens": 4314,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 4314
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-008469"
+        },
+        {
+          "source_line": 8470,
+          "timestamp": "2026-05-16T05:46:43.095Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Compilation clean (0 critical). Let me verify the Table A13 consistency that the Director requested — checking appendix tables for any \"full set\" claims in selection context that contradict the gold-filtering fix."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0ebdb362-bfe1-4d91-a95e-e675f04576a8",
+            "isSidechain": false,
+            "requestId": "req_011Cb5igJ8FZ5DykKadDT8wf",
+            "type": "assistant",
+            "uuid": "5ba8dbe0-4df1-4f1a-bb27-09526b613924",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/paper_agent_4f1165b4",
+            "sessionId": "9fa88e93-92fc-446f-90c6-86ed7a5c1cb6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "stateless-growing-kite",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YWwctFoP8ysuZ4NoDA5bY3",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4314,
+                "cache_read_input_tokens": 112035,
+                "output_tokens": 486,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 4314,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 486,
+                    "cache_read_input_tokens": 112035,
+                    "cache_creation_input_tokens": 4314,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 4314
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-008470"
+        },
+        {
+          "source_line": 8471,
+          "timestamp": "2026-05-16T05:46:45.769Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Uur5kg1fCkJ2AWsUotXV1R",
+              "name": "Grep",
+              "input": {
+                "pattern": "n.*=.*551|full set|full-set",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/docs/paper/sections/appendix.tex",
+                "output_mode": "content",
+                "-n": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5ba8dbe0-4df1-4f1a-bb27-09526b613924",
+            "isSidechain": false,
+            "requestId": "req_011Cb5igJ8FZ5DykKadDT8wf",
+            "type": "assistant",
+            "uuid": "9ee5114a-3e75-43d5-a2ab-f898cc020675",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/paper_agent_4f1165b4",
+            "sessionId": "9fa88e93-92fc-446f-90c6-86ed7a5c1cb6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "stateless-growing-kite",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YWwctFoP8ysuZ4NoDA5bY3",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4314,
+                "cache_read_input_tokens": 112035,
+                "output_tokens": 486,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 4314,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 486,
+                    "cache_read_input_tokens": 112035,
+                    "cache_creation_input_tokens": 4314,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 4314
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-008471"
+        },
+        {
+          "source_line": 8472,
+          "timestamp": "2026-05-16T05:46:45.788Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Uur5kg1fCkJ2AWsUotXV1R",
+              "type": "tool_result",
+              "content": "137:\\caption{Quality estimation heatmap (Spearman $\\rho$) across five signals and four configurations. Left: full evaluation set; right: conditional set (non-zero F1 instances). On the full set, structural signals dominate on SciERC NER while all signals converge on CoNLL. On the conditional set, EM emerges as the strongest signal on both NER ($\\rho{=}0.360$) and RE ($\\rho{=}0.417$), while LP RE collapses to near-zero ($\\rho{=}0.011$).}\n153:On the high-complexity RE subset ($n{=}81$, high relation count), signals improve substantially: VC reaches $\\rho{=}0.630$, LP $\\rho{=}0.554$, and SJ $\\rho{=}0.502$---all far above the full-set levels.\n198:On LLaMA conditional RE (non-zero F1 instances), SJ recovers to $\\rho{=}0.405$ while FK drops to $\\rho{=}0.259$, consistent with the NER structural advantage; on full-set RE, however, the SJ--FK difference is non-significant ($\\Delta\\rho{=}{-}0.005$, $p{=}0.53$; preliminary).\n200:EM ranks first across all four tested conditional configurations---SciERC NER ($\\rho{=}0.360$), CoNLL Qwen $N{=}16$ ($\\rho{=}0.466$), CoNLL LLaMA 3-seed ($\\rho{=}0.462$), and SciERC RE ($\\rho{=}0.417$)---despite full-set rankings ranging from \\#1 (CoNLL Qwen) to \\#5 (SciERC RE).\n201:On the full set, EM is diluted by trivial agreement: instances where all $N$ samples produce identical (possibly incorrect) outputs receive EM${=}1$ regardless of quality, compressing the signal's dynamic range.\n207:VC achieves $\\rho{=}0.724$ (AUROC${=}0.913$) on the full set, but conditional analysis (non-zero F1 instances) reveals this is entirely driven by the zero/non-zero boundary: conditional $\\rho{=}0.038$ ($p{=}0.49$).\n208:LP shows the reverse pattern: full-set $\\rho{=}{-}0.410$ but conditional $\\rho{=}0.350$, the highest among all signals on the conditional set.\n209:This inversion confirms that full-set correlations on high-failure-rate datasets conflate binary success prediction with quality gradation.\n214:\\caption{Quality estimation on WNUT-17 (Qwen, $N{=}16$, $T{=}1.0$, $n{=}689$ after filtering gold-empty instances). Cond: non-zero F1 instances ($n{=}334$). LP exhibits strong negative full-set $\\rho$; its conditional $\\rho$ reverses to the highest among all signals, confirming that full-set correlations on high-failure-rate datasets conflate binary success prediction with quality gradation.}\n627:On the non-zero subset, selection performance is \\textit{worse} than on the full set (e.g., VC: $-10.0$~pp on non-zero vs.\\ $-4.5$~pp on full set), because single-sample is already strong on non-zero instances (F1${=}0.674$) and signals actively select inferior samples.\n662:\\caption{RE best-of-$N$ selection F1 (macro, instance-averaged) on SciERC (Qwen3-4B, $N{=}16$, $T{=}1.0$, 3-seed mean${\\pm}\\sigma$, $n{=}551$). Fisher combined $p$ vs.\\ single-sample. LP is the only signal with positive $\\Delta$. $\\sigma$ is population standard deviation over 3 seeds.}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9ee5114a-3e75-43d5-a2ab-f898cc020675",
+            "isSidechain": false,
+            "promptId": "23a6b5dc-01f2-457c-97e5-adf62a7122b1",
+            "type": "user",
+            "uuid": "b5997d37-fe4a-4270-9368-1d6f614c8050",
+            "toolUseResult": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "137:\\caption{Quality estimation heatmap (Spearman $\\rho$) across five signals and four configurations. Left: full evaluation set; right: conditional set (non-zero F1 instances). On the full set, structural signals dominate on SciERC NER while all signals converge on CoNLL. On the conditional set, EM emerges as the strongest signal on both NER ($\\rho{=}0.360$) and RE ($\\rho{=}0.417$), while LP RE collapses to near-zero ($\\rho{=}0.011$).}\n153:On the high-complexity RE subset ($n{=}81$, high relation count), signals improve substantially: VC reaches $\\rho{=}0.630$, LP $\\rho{=}0.554$, and SJ $\\rho{=}0.502$---all far above the full-set levels.\n198:On LLaMA conditional RE (non-zero F1 instances), SJ recovers to $\\rho{=}0.405$ while FK drops to $\\rho{=}0.259$, consistent with the NER structural advantage; on full-set RE, however, the SJ--FK difference is non-significant ($\\Delta\\rho{=}{-}0.005$, $p{=}0.53$; preliminary).\n200:EM ranks first across all four tested conditional configurations---SciERC NER ($\\rho{=}0.360$), CoNLL Qwen $N{=}16$ ($\\rho{=}0.466$), CoNLL LLaMA 3-seed ($\\rho{=}0.462$), and SciERC RE ($\\rho{=}0.417$)---despite full-set rankings ranging from \\#1 (CoNLL Qwen) to \\#5 (SciERC RE).\n201:On the full set, EM is diluted by trivial agreement: instances where all $N$ samples produce identical (possibly incorrect) outputs receive EM${=}1$ regardless of quality, compressing the signal's dynamic range.\n207:VC achieves $\\rho{=}0.724$ (AUROC${=}0.913$) on the full set, but conditional analysis (non-zero F1 instances) reveals this is entirely driven by the zero/non-zero boundary: conditional $\\rho{=}0.038$ ($p{=}0.49$).\n208:LP shows the reverse pattern: full-set $\\rho{=}{-}0.410$ but conditional $\\rho{=}0.350$, the highest among all signals on the conditional set.\n209:This inversion confirms that full-set correlations on high-failure-rate datasets conflate binary success prediction with quality gradation.\n214:\\caption{Quality estimation on WNUT-17 (Qwen, $N{=}16$, $T{=}1.0$, $n{=}689$ after filtering gold-empty instances). Cond: non-zero F1 instances ($n{=}334$). LP exhibits strong negative full-set $\\rho$; its conditional $\\rho$ reverses to the highest among all signals, confirming that full-set correlations on high-failure-rate datasets conflate binary success prediction with quality gradation.}\n627:On the non-zero subset, selection performance is \\textit{worse} than on the full set (e.g., VC: $-10.0$~pp on non-zero vs.\\ $-4.5$~pp on full set), because single-sample is already strong on non-zero instances (F1${=}0.674$) and signals actively select inferior samples.\n662:\\caption{RE best-of-$N$ selection F1 (macro, instance-averaged) on SciERC (Qwen3-4B, $N{=}16$, $T{=}1.0$, 3-seed mean${\\pm}\\sigma$, $n{=}551$). Fisher combined $p$ vs.\\ single-sample. LP is the only signal with positive $\\Delta$. $\\sigma$ is population standard deviation over 3 seeds.}",
+              "numLines": 11
+            },
+            "sourceToolAssistantUUID": "9ee5114a-3e75-43d5-a2ab-f898cc020675",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_1/projects/struct_self_consist_ie/.claude/sessions/paper_agent_4f1165b4",
+            "sessionId": "9fa88e93-92fc-446f-90c6-86ed7a5c1cb6",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "stateless-growing-kite"
+          },
+          "id": "event-008472"
+        }
+      ]
+    }
+  ]
+}
