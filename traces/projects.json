@@ -969,6 +969,19 @@
       }
     },
     {
+      "project": "nlp_variance_gtheory--export-20260712",
+      "title": "Reproducibility Budgets for Open-Weight LLM Evaluation: A Generalizability Theory Study of 7–9B Instruction-Tuned Models (July export snapshot)",
+      "catalog": "../research-snapshots/nlp_variance_gtheory/2026-07-12/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 1188,
+        "messages": 157484,
+        "user_turns": 6359,
+        "tool_calls": 43247,
+        "unparsed_lines": 7,
+        "conversation": 1188
+      }
+    },
+    {
       "project": "occsafe_vla",
       "title": "Does Auxiliary Spatial Supervision Make Vision-Language-Action Models Safer? A Factorial Analysis",
       "catalog": "../paper-assets/occsafe_vla/05-generation-trace/catalog.json",

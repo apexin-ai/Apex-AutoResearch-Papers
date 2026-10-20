@@ -364,6 +364,17 @@
           "paper_pdf": null,
           "code_count": 5,
           "trace_count": 1009
+        },
+        "nlp_variance_gtheory": {
+          "status": "uploaded",
+          "project": "nlp_variance_gtheory",
+          "collection": "nlp_variance_gtheory--export-20260712",
+          "snapshot": true,
+          "derived_archive_sha256": "1cc5f9252f629dd6dabbbb6ae009223812ee21dcb9645a7c0a4790718460a296",
+          "indexed_members": 1193,
+          "paper_pdf": null,
+          "code_count": 5,
+          "trace_count": 1188
         }
       },
       "status": "in_progress",

@@ -1,6 +1,6 @@
 # Research Trace Atlas
 
-Browse recorded tasks, user-role instructions, assistant responses, tool calls, and tool results from **122 trace collections**. Open **Readable Markdown** in any project guide for a GitHub reading view, or select the adjacent JSON link for the complete structured record.
+Browse recorded tasks, user-role instructions, assistant responses, tool calls, and tool results from **123 trace collections**. Open **Readable Markdown** in any project guide for a GitHub reading view, or select the adjacent JSON link for the complete structured record.
 
 [Offline preview](demo.html) · [Interactive browser](index.html) · [Format and provenance](FORMAT.md)
 
@@ -76,6 +76,7 @@ For the complete browser, run `python3 scripts/serve_traces.py --open` from a do
 | [meta_brain_lora_routing](../paper-assets/meta_brain_lora_routing/05-generation-trace/README.md) | 96 | 277 | 176 | 7 | 55,779 | [Read](../paper-assets/meta_brain_lora_routing/05-generation-trace/readable/README.md) |
 | [min_necessary_circuit_css](../paper-assets/min_necessary_circuit_css/05-generation-trace/README.md) | 54 | 131 | 124 | 4 | 24,655 | [Read](../paper-assets/min_necessary_circuit_css/05-generation-trace/readable/README.md) |
 | [nlp_variance_gtheory](../paper-assets/nlp_variance_gtheory/05-generation-trace/README.md) | 128 | 343 | 335 | 9 | 81,448 | [Read](../paper-assets/nlp_variance_gtheory/05-generation-trace/readable/README.md) |
+| [nlp_variance_gtheory--export-20260712](../research-snapshots/nlp_variance_gtheory/2026-07-12/05-generation-trace/README.md) | 1,188 | 0 | 0 | 0 | 157,484 | [Read](../research-snapshots/nlp_variance_gtheory/2026-07-12/05-generation-trace/readable/README.md) |
 | [occsafe_vla](../paper-assets/occsafe_vla/05-generation-trace/README.md) | 516 | 979 | 957 | 121 | 167,803 | [Read](../paper-assets/occsafe_vla/05-generation-trace/readable/README.md) |
 | [persuasion_turn_jailbreak_detect](../paper-assets/persuasion_turn_jailbreak_detect/05-generation-trace/README.md) | 159 | 420 | 391 | 14 | 125,176 | [Read](../paper-assets/persuasion_turn_jailbreak_detect/05-generation-trace/readable/README.md) |
 | [persuasion_turn_jailbreak_detect--export-20260712](../research-snapshots/persuasion_turn_jailbreak_detect/2026-07-12/05-generation-trace/README.md) | 1,424 | 0 | 0 | 0 | 264,733 | [Read](../research-snapshots/persuasion_turn_jailbreak_detect/2026-07-12/05-generation-trace/readable/README.md) |
@@ -131,6 +132,6 @@ For the complete browser, run `python3 scripts/serve_traces.py --open` from a do
 | [xling_calab_direction](../paper-assets/xling_calab_direction/05-generation-trace/README.md) | 0 | 1 | 1 | 0 | 404 | [Read](../paper-assets/xling_calab_direction/05-generation-trace/readable/README.md) |
 | [xling_calib_direction](../paper-assets/xling_calib_direction/05-generation-trace/README.md) | 48 | 123 | 119 | 0 | 27,260 | [Read](../paper-assets/xling_calib_direction/05-generation-trace/readable/README.md) |
 
-**143,308 source records · 14,859,223 recorded messages/events.** Counts include overlapping snapshots and parallel logs; they are not deduplicated research actions.
+**144,496 source records · 15,016,707 recorded messages/events.** Counts include overlapping snapshots and parallel logs; they are not deduplicated research actions.
 
 Source language and order are retained. A user-role message can originate from another agent or system and does not identify a human author. Missing prompts and timestamps are not reconstructed. Credentials and embedded attachment payloads are redacted.
