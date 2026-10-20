@@ -364,6 +364,29 @@
         }
       ],
       "workflow_run": "https://github.com/Zxy-MLlab/Release_examples/actions/runs/39280436179"
+    },
+    "distrib_canary_collapse/workspace.tar.gz": {
+      "status": "uploaded",
+      "source": {
+        "bytes": 393447985,
+        "etag": "\"cd9b0f1825f8eb18750e35d3c2e37ed4-47\"",
+        "modified": "2026-05-31T17:31:06+00:00"
+      },
+      "archive_sha256": "ebf9185dd8d778cf9a691162039863dc5500b2893bea8736ea65ddbe0ccb5e37",
+      "projects": [
+        "distrib_canary_collapse"
+      ],
+      "counts": [
+        {
+          "project": "distrib_canary_collapse",
+          "title": "Characterizing the Detectability Landscape of Iterative Model Collapse",
+          "paper_pdf": "paper.pdf",
+          "code_count": 621,
+          "data_count": 2017,
+          "trace_count": 2660
+        }
+      ],
+      "workflow_run": "https://github.com/Zxy-MLlab/Release_examples/actions/runs/39357442666"
     }
   }
 }

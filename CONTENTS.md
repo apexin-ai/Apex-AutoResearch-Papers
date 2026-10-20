@@ -1,6 +1,6 @@
 # Contents
 
-This catalogue covers **19 projects with manuscript PDFs** and **12 additional project records**. Records without a PDF are listed after the manuscript projects. Open a project README for its available manuscript, research code, experiment outputs, and recorded research process.
+This catalogue covers **20 projects with manuscript PDFs** and **12 additional project records**. Records without a PDF are listed after the manuscript projects. Open a project README for its available manuscript, research code, experiment outputs, and recorded research process.
 
 | Project | Manuscript | Code/config files | Data/result files | Trace sources | Recorded events |
 |---|---|---:|---:|---:|---:|
@@ -14,6 +14,7 @@ This catalogue covers **19 projects with manuscript PDFs** and **12 additional p
 | [cost-verify-agent-rl](paper-assets/cost-verify-agent-rl/README.md) | [PDF](paper-assets/cost-verify-agent-rl/01-manuscript/paper.pdf) | 495 | 1,236 | 2,831 | 209,966 |
 | [diff_collision_sdf](paper-assets/diff_collision_sdf/README.md) | [PDF](paper-assets/diff_collision_sdf/01-manuscript/paper.pdf) | 360 | 1,053 | 1,864 | 149,990 |
 | [distill_sparse_swiglu](paper-assets/distill_sparse_swiglu/README.md) | [PDF](paper-assets/distill_sparse_swiglu/01-manuscript/paper.pdf) | 1,783 | 2,536 | 2,646 | 197,700 |
+| [distrib_canary_collapse](paper-assets/distrib_canary_collapse/README.md) | [PDF](paper-assets/distrib_canary_collapse/01-manuscript/paper.pdf) | 621 | 2,017 | 2,660 | 222,729 |
 | [ec_hte_llm_annotation](paper-assets/ec_hte_llm_annotation/README.md) | [PDF](paper-assets/ec_hte_llm_annotation/01-manuscript/paper.pdf) | 27 | 74 | 434 | 75,488 |
 | [entrainment_gated_ft](paper-assets/entrainment_gated_ft/README.md) | [PDF](paper-assets/entrainment_gated_ft/01-manuscript/paper.pdf) | 25 | 92 | 599 | 80,801 |
 | [importance_margin_vla_compress](paper-assets/importance_margin_vla_compress/README.md) | [PDF](paper-assets/importance_margin_vla_compress/01-manuscript/paper.pdf) | 83 | 50 | 5,754 | 413,702 |

@@ -220,6 +220,22 @@
       }
     },
     {
+      "project": "distrib_canary_collapse",
+      "title": "Characterizing the Detectability Landscape of Iterative Model Collapse",
+      "catalog": "../paper-assets/distrib_canary_collapse/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 2660,
+        "messages": 222729,
+        "user_turns": 7288,
+        "tool_calls": 90270,
+        "unparsed_lines": 983,
+        "worker": 1011,
+        "result": 975,
+        "conversation": 570,
+        "history": 104
+      }
+    },
+    {
       "project": "ec_hte_llm_annotation",
       "title": "When Debiasing Hurts: An Exact Bias Identity for LLM-Annotated Treatment Effects",
       "catalog": "../paper-assets/ec_hte_llm_annotation/05-generation-trace/catalog.json",
