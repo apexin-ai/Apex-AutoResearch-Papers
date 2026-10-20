@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c66002df255c17866191",
+  "project": "spectral_collapse_ews",
+  "kind": "history",
+  "title": "agent / loop_3_1779055619.md",
+  "task_key": "loop_3_1779055619",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3_1779055619.md",
+    "occurrence": 1,
+    "bytes": 4006,
+    "sha256": "0adb8a4991eb48cd7e8b3fde76663bd06aea645144dca1987e7cc225e7732357"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: max_wall_time\nupdated: '2026-05-17T20:52:37+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0 和 cuda:1（rtx6000-diagprobe），不得使用其他设备\n- exp_005 路径是 `adaptive_seed42/`（旧格式），exp_006 路径是 `adaptive_k10_seed42/`（新格式）。两者共存，不能搞混\n- run_phase1.py 已修改：adaptive 条件用 `{condition}_k{k}_seed{seed}` 路径，其他条件用 `{condition}_seed{seed}`。exp_005 在内存中用旧版代码，不受影响\n- 服务器环境必须 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1（无外网）\n- submit_training_job 命令必须 `bash -c \"...\"` 包裹（tmux 用 sh 不是 bash）\n- GPU 编号脚本内始终 --gpu 0（框架自动映射 CUDA_VISIBLE_DEVICES）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：rtx6000-diagprobe，root，2× RTX PRO 6000 Blackwell (98GB each)\n- 工作目录：/root/spectral_collapse_ews/\n- Python：/root/miniconda3/bin/python（conda base）\n- 模型：EleutherAI/pythia-410m-deduped（HF cache 本地，offline mode）\n- 数据：/root/spectral_collapse_ews/data/（50K real pool + 5K eval + 1K spectral）\n- Checkpoints：/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/\n- Results：/root/spectral_collapse_ews/results/\n- 活跃进程：\n  - exp_006: PID 134913, tmux=exp_006, cuda:0 (adaptive k=10, 论文主实验)\n  - exp_005: PID 116947, 无独立tmux(后台), cuda:1 (adaptive k=20, sensitivity)\n  - exp_004: PID 135411, tmux=exp_004, cuda:1 (fixed_mix baseline)\n- Cron 监控：exp_005 + exp_006 有 cron（exp_004 由 submit_training_job 自动注册）\n\n### 3. 📊 当前状态\n刚完成 Director 的 CPU 预备任务批次：\n- Phase 0 完整数据表 CSV 生成 ✅（phase0_summary.csv）\n- numpy bool bug 修复 ✅（phase0_analysis.json 生成）\n- exp_005 controller 轨迹分析 ✅（Gen 0-3, 从未触发）\n- linear_increasing launch script 准备 ✅（/root/spectral_collapse_ews/scripts/launch_linear_increasing.sh）\n- 论文 Fig 1 (4-panel spectral trajectory) 生成 ✅\n- 文献搜索 21 篇 + references.bib ✅（全部 verified）\n- experiments.tex + method.tex 初稿 ✅\n\nRegistry RUNNING：exp_004, exp_005, exp_006（三实验并行，两GPU满载）\n无待处理 Worker/Cron 回调。\n\n### 4. 📋 待办（条件触发式）\n- exp_006 完成 → 核心对比：adaptive k=10 vs fixed_mix vs pure_collapse，决定论文 claim 强度\n- exp_005 Gen 5+ log_det 开始下降 → controller 首次触发，记录 trigger_gen 作为 sensitivity 数据\n- exp_004 完成 → 与 exp_001 (pure) 和 exp_006 (adaptive) 三方对比\n- 任一 GPU 释放 → 立即启动 linear_increasing（script 已就绪，submit 命令已确认）\n- Phase 1 核心对比完成 (adaptive vs fixed_mix 都有 10 gen) → 填充 experiments.tex 的 Adaptive Mixing placeholder\n- Director 说\"写论文\" → 已有 method.tex + experiments.tex 骨架，补充 intro/related work/conclusion\n\n### 5. 🎯 战略上下文\n- 投稿目标：EMNLP 2026 ARR May 25（~6天）\n- 核心 claim 策略 (D013)：主线是 spectral EWS detection + collapse 加速特征化，controller 是 proof-of-concept\n- Phase 0 关键发现：3-phase pattern (Decompression Gen 0-2 / Onset Gen 3-5 / Acceleration Gen 6-10)，decline_rate_ratio=2.43x\n- exp_005 重要发现：k=20 配合 per_gen 模式下 log_det 前 3 代上升而非下降，controller 完全不触发。distinct-4 暴跌 40% 但 spectral signal 看不到。这是论文 sensitivity analysis 的核心数据点\n- 易错点：exp_005 的 log_det 上升不代表 EWS 失败——Phase 0 中 log_det 也是先升后降（peak Gen 2），有 50% real data 混入后 decompression phase 被延长。关键是 Gen 5-7 后是否开始下降\n- 路径冲突教训 (M005+)：所有新实验路径必须包含区分参数（k 值/condition），不能只靠 seed 区分\n- analyze_phase0.py 校准输出的 τ=0.009754, k=24.53 是纯 Phase 0 数据拟合值，论文实际用 τ=0.002, k=10（Director 决策 D015）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-1779055619.md"
+}

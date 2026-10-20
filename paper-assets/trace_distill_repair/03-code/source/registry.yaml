@@ -1,0 +1,707 @@
+baseline: null
+experiments:
+  mvp_trace_collect:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-14T14:58:26.912Z'
+    updated_at: '2026-05-14T16:00:57.427Z'
+    hypothesis: ≥80% BugsInPy 实例可成功收集 trace 并解析为结构化 segments
+    spec:
+      command: python run_phase2_3.py
+      server: gpu-6000pro-1
+      data_path: /root/trace_distill_repair/pipeline_output/
+      data_count: 24
+      model_name: n/a
+      seed: 0
+      checkpoint_path: /root/trace_distill_repair/pipeline_output/
+      log_path: /root/trace_distill_repair/pipeline_output/summary.json
+    conclusion: success
+    metrics:
+      setup_success: 40/45
+      trace_success: 38/40
+      segment_success: 38/38
+      end_to_end_rate: 95%
+      total_segments: 491
+      segment_types:
+        basic_block: 84
+        call_subtree: 147
+        exception_chain: 36
+        loop_iteration: 224
+      avg_segments_per_instance: 12.9
+      instances_with_gte5_segments: 24/38 (63%)
+      instances_with_basic_block: 32/38
+      failed:
+      - fastapi_3
+      - fastapi_5
+      too_small:
+      - httpie_1
+      - tqdm_2
+      - scrapy_4
+      - scrapy_7
+      pass_criterion_met: true
+      fields_verified:
+      - locals_snapshot
+      - return_value
+      - exception_info
+    completed_at: '2026-05-14T14:58:56.084Z'
+  mvp_teacher_scoring:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-14T17:00:11.550Z'
+    updated_at: '2026-05-14T21:41:56.315Z'
+    hypothesis: DeepSeek-V4-Flash 对 structural segments 的 keep/drop 标注 precision ≥
+      0.6
+    spec:
+      command: python run_phase2_scoring.py --mode line (full rerun, no truncation)
+      server: westd-18314
+      data_path: /root/trace_distill_repair/pipeline_output/
+      data_count: 38
+      model_name: deepseek/deepseek-v4-flash
+      seed: 0
+      checkpoint_path: /root/trace_distill_repair/pipeline_output/
+      log_path: /tmp/phase2_line_scoring_rerun.log
+      notes: 'Line scoring full rerun v2: no truncation (62,322 segments), fastapi_1/2
+        included, retry+fallback fix applied. PID 67855, tmux session mvp_line_scoring_rerun_v2.'
+    metrics:
+      structural_scoring:
+        total_segments: 491
+        scored_valid: 475
+        error: 16
+        keep: 25
+        drop: 450
+        keep_rate_valid: 5.26% (25/475 based on valid scores)
+        keep_rate_total: 5.09% (25/491 based on all segments)
+        fastapi_1_2_included: true
+        fastapi_error_note: 'fastapi_1: 1keep/11drop/8error; fastapi_2: 1keep/11drop/8error'
+      line_scoring:
+        status: blocked_server_unreachable
+        sampling: head-100+tail-100
+        total_segments_sampled: 3922
+        instances: 38
+        excluded:
+        - fastapi_3
+        - fastapi_5
+        pid: 73590
+        tmux_session: line_scoring_v2
+        code_fixes: model restored to deepseek-v4-flash, retry 3x restored, no buggy
+          fallback
+        estimated_runtime: 6-10 min
+        blocker: westd-18314 not in SSH server list, PID 73590 presumed dead
+    conclusion: failed
+    completed_at: '2026-05-14T21:41:56.315Z'
+  mvp_line_scoring_rerun:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-14T20:15:29.161Z'
+    updated_at: '2026-05-14T20:47:56.027Z'
+    spec:
+      command: 'python run_phase2_scoring.py --mode line (failed: missing API key)'
+      server: westd-18314
+      gpu:
+      - cuda:0
+      pid: unknown
+      log_path: ~/runs/trace_distill_repair/mvp_line_scoring_rerun.log
+      submitted_at: '2026-05-14T20:15:29.152Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      data_path: /root/trace_distill_repair/pipeline_output/
+      data_count: 38
+      model_name: deepseek/deepseek-v4-flash
+      seed: 0
+      wall_clock_seconds: 1946.9
+      gpu_hours: 0.54
+    conclusion: failed
+    completed_at: '2026-05-14T20:47:56.027Z'
+  mvp_line_scoring_rerun_v2:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-14T20:17:14.529Z'
+    updated_at: '2026-05-14T21:08:56.152Z'
+    spec:
+      command: python run_phase2_scoring.py --mode line (full, no truncation - CANCELLED
+        per D006)
+      server: westd-18314
+      gpu:
+      - cuda:0
+      pid: '67855'
+      log_path: ~/runs/trace_distill_repair/mvp_line_scoring_rerun_v2.log
+      submitted_at: '2026-05-14T20:22:39.274Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      data_path: /root/trace_distill_repair/pipeline_output/
+      data_count: 38
+      model_name: deepseek/deepseek-v4-flash
+      seed: 0
+      wall_clock_seconds: 2776.9
+      gpu_hours: 0.77
+    conclusion: killed
+    completed_at: '2026-05-14T21:08:56.152Z'
+  mvp_line_scoring_sampled:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-14T20:51:53.462Z'
+    updated_at: '2026-05-14T21:30:14.306Z'
+    spec:
+      command: python run_phase2_scoring.py --mode line (sampled, buggy code)
+      server: westd-18314
+      gpu:
+      - cuda:0
+      pid: '70545'
+      log_path: /tmp/phase2_line_scoring_sampled.log
+      submitted_at: '2026-05-14T20:51:53.453Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      data_path: /root/trace_distill_repair/pipeline_output/
+      data_count: 38
+      model_name: deepseek/deepseek-v4-flash
+      seed: 0
+      wall_clock_seconds: 2300.9
+      gpu_hours: 0.64
+    conclusion: failed
+    completed_at: '2026-05-14T21:30:14.306Z'
+  mvp_line_scoring_sampled_final:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-14T20:57:45.960Z'
+    updated_at: '2026-05-14T21:30:19.762Z'
+    spec:
+      command: python run_phase2_scoring.py --mode line (sampled, PID 71299 killed
+        due to JSON bug)
+      server: westd-18314
+      gpu:
+      - cuda:0
+      pid: '71289'
+      log_path: /tmp/phase2_line_scoring_final.log
+      submitted_at: '2026-05-14T20:57:45.949Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      data_path: /root/trace_distill_repair/pipeline_output/
+      data_count: 38
+      model_name: deepseek/deepseek-v4-flash
+      seed: 0
+      wall_clock_seconds: 1953.8
+      gpu_hours: 0.54
+    conclusion: killed
+    completed_at: '2026-05-14T21:30:19.762Z'
+  mvp_line_scoring_clean:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-14T21:44:52.338Z'
+    updated_at: '2026-05-15T01:44:33.676Z'
+    spec:
+      command: cd /root/trace_distill_repair && python run_phase2_scoring.py --mode
+        line
+      server: rtx6000-diagprobe
+      data_path: /root/trace_distill_repair/pipeline_output/
+      data_count: 38
+      model_name: deepseek/deepseek-v4-flash
+      seed: 0
+      pid: '74506'
+      log_path: /tmp/line_scoring.log
+      notes: Clean restart after 5 failed attempts. Single worker, no parallel interference.
+      checkpoint_path: /root/trace_distill_repair/pipeline_output/phase2_line_scores.json
+    hypothesis: 修复后代码干净重跑 line scoring (max_concurrent=3)，预期 38 实例全部完成
+    conclusion: success
+    completed_at: '2026-05-15T01:44:31.868Z'
+    metrics:
+      instances: 38
+      total_segments: 3922
+      scored_segments: 2256
+      failed_segments: 1666
+      keep: 38
+      drop: 2218
+      error: 1666
+      keep_rate_pct: 1.7
+      error_rate_pct: 42.5
+      elapsed_seconds: 14016
+      excluded:
+      - fastapi_3
+      - fastapi_5
+      output_file: /root/trace_distill_repair/pipeline_output/phase2_line_scores.json
+      output_size_bytes: 1832507
+  mvp_structural_scoring_clean:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-15T01:44:43.856Z'
+    updated_at: '2026-05-15T02:35:54.875Z'
+    hypothesis: 重跑 structural scoring 清除旧 bug 脏数据
+    spec:
+      command: cd /root/trace_distill_repair && python run_phase2_scoring.py --mode
+        structural
+      server: rtx6000-diagprobe
+      data_path: /root/trace_distill_repair/pipeline_output/
+      data_count: 38
+      model_name: deepseek/deepseek-v4-flash
+      seed: 0
+      pid: '85831'
+      checkpoint_path: /root/trace_distill_repair/pipeline_output/phase2_structural_scores.json
+      log_path: /tmp/structural_scoring.log
+    conclusion: success
+    metrics:
+      instances: 38
+      total_segments: 491
+      scored: 351
+      failed: 140
+      failure_rate_pct: 28.5
+      failure_breakdown:
+        PARSE_FAILURE: 117
+        API_FAILURE_FALLBACK: 23
+      parse_failure_cause: max_tokens=256 truncation (111/117 confirmed truncated
+        JSON)
+      api_failure_cause: API None content after 3 retries
+      instances_affected: 33
+      instances_clean: 5
+      elapsed_seconds: 1024.6
+      output_file: /root/trace_distill_repair/pipeline_output/phase2_structural_scores.json
+    completed_at: '2026-05-15T02:31:47.088Z'
+  mvp_line_scoring_v2:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-15T01:56:02.906Z'
+    updated_at: '2026-05-15T05:32:05.795Z'
+    hypothesis: 修复 max_tokens=1024 后全量重跑 line scoring，消除 JSON 截断导致的 keep 系统性低估（前次
+      error_rate 42.5%，预期降至 &lt;10%）
+    parent: mvp_line_scoring_clean
+    spec:
+      checkpoint_path: /root/trace_distill_repair/pipeline_output/phase2_line_scores.json
+      log_path: /tmp/line_scoring_v2.log
+    conclusion: success
+    metrics:
+      note: 仅验证代码修复（max_tokens=1024），不用于 MVP 判定。基于旧 v1 trace（未覆盖 failing test）
+      instances: 38
+      completed: 36
+      errors: 0
+      PARSE_FAILURE: 0
+      code_fix_validated: true
+    completed_at: '2026-05-15T05:32:05.796Z'
+  mvp_structural_scoring_v2:
+    status: PREPARING
+    retry_count: 0
+    created_at: '2026-05-15T02:37:15.562Z'
+    updated_at: '2026-05-15T05:00:08.023Z'
+    hypothesis: '[CANCELLED by D013] 原计划用修复后代码重跑 structural scoring，但发现 Phase 1 trace
+      收集 bug（未用 failing test），需先修复 trace 再重新 scoring'
+    parent: mvp_structural_scoring_clean
+    conclusion: killed
+  phase1_trace_v2:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-15T05:14:46.540Z'
+    updated_at: '2026-05-15T05:39:58.770Z'
+    hypothesis: 用修复后 pipeline（正确 failing test command + Python 3.8）全量重跑 38 实例 trace
+      收集，预期 failing test 覆盖率从 0% 提升至 >80%
+    parent: mvp_trace_collect
+    spec:
+      checkpoint_path: /root/trace_distill_repair/pipeline_output/
+      log_path: /tmp/phase1_v2.log
+    conclusion: success
+    metrics:
+      total_instances: 45
+      setup_success: 40
+      setup_failed: 5
+      traces_collected: 33
+      traces_failed: 5
+      dataset_issues: 2
+      event_distribution:
+        min: 5
+        median: 2741
+        max: 49974
+        total: 257085
+        mean: 7790
+      structural_segments:
+        total: 566
+        capped_at_20: 26
+        under_20: 7
+      line_segments:
+        total: 51430
+        min: 1
+        median: 549
+        max: 9995
+      exit_code_distribution:
+        exit_0:
+          count: 1
+          instances:
+          - thefuck_1
+          meaning: test passed
+        exit_1:
+          count: 1
+          instances:
+          - thefuck_4
+          meaning: test failed (expected for buggy code)
+        exit_4:
+          count: 17
+          meaning: pytest no tests collected (import-only traces)
+        exit_None:
+          count: 21
+          meaning: non-pytest runner, status unknown
+      segment_cap: MAX_SEGMENTS=20 in structural_segmenter.py, uniform sampling truncation,
+        large instances lose 95%+ segments
+    completed_at: '2026-05-15T05:32:45.216Z'
+  mvp_structural_scoring_v3:
+    status: DONE
+    retry_count: 1
+    created_at: '2026-05-15T05:33:58.242Z'
+    updated_at: '2026-05-15T06:21:36.498Z'
+    hypothesis: 在 v2 traces（33 实例，566 structural segments）上用修复后 teacher_scorer（max_tokens=1024）进行
+      structural scoring，预期 error_rate < 5%
+    parent: phase1_trace_v2
+    reproduce:
+      finished_at: '2026-05-15T06:19:45.608Z'
+    failure_reason: process dead 5× with no sentinel/W&B — auto-resolved as failed
+    completed_at: '2026-05-15T06:08:21.024Z'
+    extra:
+      hook_events:
+      - event: on_failed
+        action: agent
+        ts: '2026-05-15T06:08:24.374824+00:00'
+      - event: on_complete
+        action: agent
+        ts: '2026-05-15T06:19:46.796342+00:00'
+      previous_failure:
+        conclusion: failed
+    spec:
+      checkpoint_path: /root/trace_distill_repair/pipeline_output/phase2_structural_scores.json
+      log_path: ~/runs/trace_distill_repair/mvp_structural_scoring_v3.log
+    metrics:
+      instances: 33
+      total_segments: 566
+      keep: 41
+      drop: 498
+      error: 27
+      keep_rate_pct: 7.2
+      error_rate_pct: 4.8
+      reviewer: PASS
+    conclusion: success
+  mvp_line_scoring_v3:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-15T05:33:59.176Z'
+    updated_at: '2026-05-15T09:24:21.093Z'
+    hypothesis: 在 v2 traces（33 实例，51430 line segments）上用修复后 teacher_scorer（max_tokens=1024）进行
+      line scoring，预期 error_rate < 5%
+    parent: phase1_trace_v2
+    spec:
+      command: python run_phase2_scoring.py --mode line --max-concurrent 3
+      server: rtx6000-diagprobe
+      gpu:
+      - cuda:0
+      pid: '100942'
+      log_path: ~/runs/trace_distill_repair/mvp_line_scoring_v3.log
+      submitted_at: '2026-05-15T05:38:24.230Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      data_path: /root/trace_distill_repair/pipeline_output/
+      data_count: 33 instances, 51430 line segments
+      model_name: deepseek-v4-flash
+      seed: N/A
+      checkpoint_source: N/A (API scoring, no checkpoint)
+      eval_data: /root/trace_distill_repair/pipeline_output/*_line_segments.json
+      wall_clock_seconds: 12664.4
+      gpu_hours: 3.52
+    conclusion: success
+    failure_reason: ''
+    completed_at: '2026-05-15T09:09:28.636Z'
+    metrics:
+      instances: 33
+      total_segments: 4091
+      keep: 226
+      drop: 3676
+      error: 189
+      keep_rate_pct: 5.5
+      error_rate_pct: 4.6
+      content_verification: PASS - contains v2 data with failing test execution features
+      reviewer: PASS
+  mvp_line_scoring_v4:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-15T09:10:39.674Z'
+    updated_at: '2026-05-15T09:18:27.750Z'
+    hypothesis: 在 v2 traces（33 实例，采样后 ≤6600 line segments）上用 teacher_scorer（max_tokens=1024,
+      max_concurrent=3）进行 line scoring，预期 error_rate < 5%
+    parent: phase1_trace_v2
+    spec:
+      command: bash -c "source /root/.bashrc && source /root/miniconda3/etc/profile.d/conda.sh
+        && conda activate base && cd /root/trace_distill_repair && python run_phase2_scoring.py
+        --mode line --max-concurrent 3"
+      server: rtx6000-diagprobe
+      gpu:
+      - cuda:0
+      pid: unknown
+      log_path: ~/runs/trace_distill_repair/mvp_line_scoring_v4.log
+      submitted_at: '2026-05-15T09:16:14.926Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      wall_clock_seconds: 14.3
+      gpu_hours: 0.0
+    server: rtx6000-diagprobe
+    gpu: cuda:0
+    pid: unknown
+    log_path: ~/runs/trace_distill_repair/mvp_line_scoring_v4.log
+    reproduce:
+      command: bash -c "source /root/.bashrc && source /root/miniconda3/etc/profile.d/conda.sh
+        && conda activate base && cd /root/trace_distill_repair && python run_phase2_scoring.py
+        --mode line --max-concurrent 3"
+      finished_at: '2026-05-15T09:16:28.591Z'
+    failure_reason: API key 未设置：OPENROUTER_API_KEY / DEEPSEEK_API_KEY 在新 tmux session
+      中不可用。submit_training_job 创建的新 tmux session 未继承之前手动 export 的环境变量。
+    conclusion: killed
+    completed_at: '2026-05-15T09:16:29.242Z'
+    extra:
+      hook_events:
+      - event: on_failed
+        action: agent
+        ts: '2026-05-15T09:16:30.084809+00:00'
+    notes: '失败原因: OPENROUTER_API_KEY/DEEPSEEK_API_KEY 未设置，脚本启动即退出 (14.3s, EXIT_CODE=1)。日志仅
+      3 行：发现 33 实例 → 报错无 API key → 退出。| 已有成果: 无 | 建议: 确认 key 持久化到 .bashrc 或 .env 文件后重跑'
+  mvp_line_scoring_v5:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-15T09:20:27.914Z'
+    updated_at: '2026-05-15T10:10:11.109Z'
+    spec:
+      command: bash -c "source /root/trace_distill_repair/.env && source /root/miniconda3/etc/profile.d/conda.sh
+        && conda activate base && cd /root/trace_distill_repair && python run_phase2_scoring.py
+        --mode line --max-concurrent 3"
+      server: rtx6000-diagprobe
+      gpu:
+      - cuda:0
+      pid: '112842'
+      log_path: ~/runs/trace_distill_repair/mvp_line_scoring_v5.log
+      submitted_at: '2026-05-15T09:20:38.197Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      wall_clock_seconds: 2972.9
+      gpu_hours: 0.83
+    conclusion: killed
+    failure_reason: Director 指令终止：v3 已确认有效，v5 冗余
+    completed_at: '2026-05-15T10:10:11.109Z'
+  mvp_phase3_repair:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-15T09:25:23.220Z'
+    updated_at: '2026-05-15T12:15:31.711Z'
+    hypothesis: Structural-filtered trace 在 repair quality 上优于 line-filtered、full_trace（naive
+      16K truncation）和 no_trace，尤其在 structural keep>0 的 15 个实例子集上
+    parent: mvp_line_scoring_v3
+    server: rtx6000-diagprobe
+    gpu: cuda:0
+    spec:
+      command: bash -c "source /root/trace_distill_repair/.env && source /root/miniconda3/etc/profile.d/conda.sh
+        && conda activate base && cd /root/trace_distill_repair && python run_phase3_repair.py
+        --repair-model deepseek/deepseek-v4-flash"
+      server: rtx6000-diagprobe
+      gpu:
+      - cuda:0
+      pid: '116942'
+      log_path: ~/runs/trace_distill_repair/mvp_phase3_repair.log
+      submitted_at: '2026-05-15T10:23:54.364Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      checkpoint_path: /root/trace_distill_repair/pipeline_output/phase3_results/
+      wall_clock_seconds: 6697.3
+      gpu_hours: 1.86
+    conclusion: negative
+    pid: '116942'
+    log_path: ~/runs/trace_distill_repair/mvp_phase3_repair.log
+    reproduce:
+      command: bash -c "source /root/trace_distill_repair/.env && source /root/miniconda3/etc/profile.d/conda.sh
+        && conda activate base && cd /root/trace_distill_repair && python run_phase3_repair.py
+        --repair-model deepseek/deepseek-v4-flash"
+      finished_at: '2026-05-15T11:27:02.987Z'
+    extra:
+      hook_events:
+      - event: on_complete
+        action: agent
+        ts: '2026-05-15T11:27:03.839334+00:00'
+    metrics:
+      instances: 33
+      conditions: 4
+      total_api_calls: 132
+      judge_mean:
+        no_trace: 1.06
+        full_trace: 0.7
+        structural_filtered: 0.76
+        line_filtered: 0.88
+      judge_gte4_pct:
+        no_trace: 6.1
+        full_trace: 3
+        structural_filtered: 3
+        line_filtered: 6.1
+      h2h_structural_vs_line:
+        win: 5
+        tie: 23
+        loss: 5
+        win_rate: 0.5
+      exact_match: 0
+      mean_line_overlap:
+        no_trace: 0.202
+        full_trace: 0.173
+        structural_filtered: 0.202
+        line_filtered: 0.208
+      mean_input_tokens:
+        no_trace: 3372
+        full_trace: 16264
+        structural_filtered: 3632
+        line_filtered: 4574
+      token_savings_vs_full:
+        structural: 77.7%
+        line: 71.9%
+      subset_a_h2h:
+        win: 4
+        tie: 8
+        loss: 3
+      subset_b_h2h:
+        win: 1
+        tie: 15
+        loss: 2
+      test_execution: '0/4 all conditions (confounded: output truncation + wrong target
+        file)'
+      test_oracle_baseline: 4/4 ground_truth pass
+      test_confounds:
+        output_truncation: 12/16 entries, max_tokens=4096 too small for 27K-221K files
+        wrong_target_file: fastapi_1 repaired applications.py but test checks encoders.py
+        clean_signal: httpie_2 only — all 4 conditions fail equally (LLM didnt find
+          bug)
+    failure_reason: 'INVALIDATED (D021/D022): 三重 confound 使结果无效——get_buggy_code 失败
+      + prompt 退化 + 输出截断。非假设被否定，而是数据/pipeline 问题。'
+    completed_at: '2026-05-15T12:15:31.711Z'
+  mvp_phase3_repair_v2:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-15T12:17:02.472Z'
+    updated_at: '2026-05-16T06:25:18.494Z'
+    hypothesis: Pipeline 修复后（正确 buggy_code + diff 输出 + max_tokens=8192），在 Tier 1 clean
+      subset（14 实例）上验证 structural_filtered trace 是否优于 no_trace，用 test execution 作为主评估指标
+    parent: mvp_phase3_repair
+    spec:
+      command: python phase3_repair_v2.py
+      server: rtx6000-diagprobe
+      gpu:
+      - cuda:0
+      pid: '130226'
+      log_path: ~/runs/trace_distill_repair/mvp_phase3_repair_v2.log
+      submitted_at: '2026-05-15T13:12:00Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      data_path: /root/trace_distill_repair/pipeline_output/phase3_instances.json
+      data_count: 14
+      model_name: deepseek/deepseek-v4-pro
+      seed: 0
+      checkpoint_path: /root/trace_distill_repair/pipeline_output/phase3_v2_results/phase3_checkpoint.json
+      checkpoint_source: mvp_line_scoring_v3 + mvp_structural_scoring_v3
+      eval_data: /root/trace_distill_repair/pipeline_output/phase2_structural_scores.json
+        + phase2_line_scores.json
+      note: 'v1→v2 corrected: uses run_phase3_repair_v2.py with all 3 confound fixes
+        + bugsinpy conda env for test execution'
+      wall_clock_seconds: 7954.9
+      gpu_hours: 2.21
+    reproduce:
+      finished_at: '2026-05-15T15:18:49.966Z'
+    extra:
+      hook_events:
+      - event: on_complete
+        action: agent
+        ts: '2026-05-15T15:18:50.844801+00:00'
+    notes: D026/D028修正：PID 131777仍在运行(API retry backoff中)。第三次清除误标记的conclusion/metrics。等14/14完成后从checkpoint重新计算。
+    failure_reason: 'startup recovery: process dead, no active cron monitor'
+    conclusion: failed
+    completed_at: '2026-05-16T06:25:18.494Z'
+  mvp_strong_model_disambig:
+    status: ANALYZING
+    retry_count: 0
+    created_at: '2026-05-15T15:55:58.868Z'
+    updated_at: '2026-05-15T16:20:01.433Z'
+    hypothesis: D018 强模型消歧：用 Claude Sonnet 4 重跑 14 Tier 1 实例 × 4 条件，验证 trace 正向信号是否在强模型上放大。如果强模型
+      structural > no_trace 且 test_pass > 0，说明 v2 negative 是模型能力问题而非 trace 无用。
+    parent: mvp_phase3_repair_v2
+    spec:
+      command: bash -c "source /root/trace_distill_repair/.env && source /root/miniconda3/etc/profile.d/conda.sh
+        && conda activate base && cd /root/trace_distill_repair && rm -f pipeline_output/phase3_strong_checkpoint.json
+        pipeline_output/phase3_strong_claude_sonnet_4_results.csv && python run_phase3_repair_strong.py
+        --model anthropic/claude-sonnet-4 --instances black_1 cookiecutter_1 cookiecutter_2
+        cookiecutter_3 fastapi_2 httpie_2 luigi_5 sanic_2 scrapy_2 scrapy_7 tornado_2
+        youtube-dl_1 youtube-dl_5 youtube-dl_20 2>&1 | tee ~/runs/trace_distill_repair/mvp_strong_model_disambig.log"
+      server: rtx6000-diagprobe
+      gpu:
+      - cuda:1
+      pid: '141440'
+      log_path: ~/runs/trace_distill_repair/mvp_strong_model_disambig.log
+      submitted_at: '2026-05-15T15:56:15.634Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      data_path: /root/trace_distill_repair/pipeline_output/
+      data_count: 14 Tier 1 instances x 4 conditions = 56 API calls
+      model_name: anthropic/claude-sonnet-4
+      seed: N/A
+      checkpoint_source: mvp_line_scoring_v3 + mvp_structural_scoring_v3
+      eval_data: /root/trace_distill_repair/pipeline_output/phase2_structural_scores.json
+        + phase2_line_scores.json
+    reproduce:
+      finished_at: '2026-05-15T16:15:59.661Z'
+    extra:
+      hook_events:
+      - event: on_complete
+        action: agent
+        ts: '2026-05-15T16:16:00.559234+00:00'
+    conclusion: negative
+    metrics:
+      instances_completed: 14
+      instances_target: 14
+      model: anthropic/claude-sonnet-4
+      no_trace:
+        n: 14
+        test_pass: 6
+        pass_rate: 0.429
+        diff_apply: 12
+        apply_rate: 0.857
+        judge_mean: 1.29
+      full_trace:
+        n: 14
+        test_pass: 4
+        pass_rate: 0.286
+        diff_apply: 8
+        apply_rate: 0.571
+        judge_mean: 1
+      structural_filtered:
+        n: 14
+        test_pass: 5
+        pass_rate: 0.357
+        diff_apply: 9
+        apply_rate: 0.643
+        judge_mean: 1
+      line_filtered:
+        n: 14
+        test_pass: 6
+        pass_rate: 0.429
+        diff_apply: 10
+        apply_rate: 0.714
+        judge_mean: 1.14
+      h2h_structural_vs_notrace:
+        win: 0
+        tie: 11
+        loss: 3
+        p_value: 1
+      h2h_line_vs_notrace:
+        win: 2
+        tie: 10
+        loss: 2
+        p_value: 0.688
+      h2h_structural_vs_line:
+        win: 1
+        tie: 10
+        loss: 3
+        p_value: 0.938
+      c001_1_judge_gte3: false
+      c001_2_structural_gt_notrace: false
+      c001_3_any_testpass_gt0: true
+      c001_verdict: FAIL

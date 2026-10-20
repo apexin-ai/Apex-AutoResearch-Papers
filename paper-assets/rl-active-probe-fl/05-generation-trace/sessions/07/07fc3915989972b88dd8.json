@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "07fc3915989972b88dd8",
+  "project": "rl-active-probe-fl",
+  "kind": "result",
+  "title": "train sft v2 eval",
+  "task_key": "worker_train_sft-v2-eval_20260514T092308",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_sft-v2-eval_20260514T092308_result.json",
+    "occurrence": 1,
+    "bytes": 1887,
+    "sha256": "c541421ced93f138d251edd6a945be44ad10de659cbad1f9cccd51d4568d7987"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据清晰了。汇报如下：\n\n---\n\n## Sandbox 测试结果：50 样本，3 成功 (6%)\n\n| 错误类型 | 数量 | 原因 | 可修？ |\n|---------|------|------|-------|\n| **IndentationError** | 22 (44%) | `_insert_probe` 缩进叠加 bug | **是** |\n| **SyntaxError** | 13 (26%) | buggy_code 本身有语法错误，文件无法被 Python 解析 | **否**（插入式 probe 的固有限制） |\n| **NameError: List** | 11 (22%) | buggy_code 用 `List[int]` 但没 `from typing import List` | **是** |\n| **NameError: other** | 1 (2%) | 同上类似 | 可能 |\n| 成功 | 3 (6%) | — | — |\n\n### 根因分析\n\n**Bug 1 — 缩进叠加 (22 samples)**：当 probe 注释不含 `LINE N` 格式（如 `# INSERT AFTER LINE: for j in range(...)`），`_parse_insertion_comment` 无法提取行号，返回 `target_line=None`。probe 落入 strategy 2（首个方法 def），此时 `body_indent + pl` 会在 probe 已有的缩进上再加一层缩进。\n\n原因：`textwrap.dedent` 在 L120 应用于整个 probe 文本（含注释行），注释行缩进=0 导致 dedent 无效。注释行被 `_parse_insertion_comment` 移除后，剩余 probe 行仍保留原始缩进。\n\n**Bug 2 — Missing typing import (11 samples)**：LeetCode 风格代码用 `List[int]` 但不含 import，独立执行时 NameError。\n\n### 修复方案\n\n**Fix 1** — `_insert_probe` L121 后，对 probe_lines 重新 dedent：\n```python\nif probe_lines:\n    probe_lines = textwrap.dedent(\"\\n\".join(probe_lines)).strip().split(\"\\n\")\n```\n\n**Fix 2** — `execute_probe` 中 prepend `from typing import *`：\n```python\ninstrumented = \"from typing import *\\n\" + instrumented\n```\n\n修复后预期：50 - 13(不可修) = **37/50 (74%)** 可执行。\n\n### 要继续修然后重测吗？SFT 训练不依赖 sandbox（只影响 eval），也可以先起 SFT。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-sft-v2-eval.md"
+}

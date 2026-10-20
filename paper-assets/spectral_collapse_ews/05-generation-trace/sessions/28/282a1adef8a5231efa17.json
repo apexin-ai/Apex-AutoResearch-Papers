@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "282a1adef8a5231efa17",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ssh check exp progress",
+  "task_key": "worker_ssh_check-exp-progress_20260519T135233",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check-exp-progress_20260519T135233_result.json",
+    "occurrence": 1,
+    "bytes": 3925,
+    "sha256": "bc2881df119bde60754dfe82177a7e9ce0015a84441ce2731bd7de9cfb065a17"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### exp_009 (r=0.25, cuda:0, pid=247492)\n**状态: RUNNING** — 已运行 18h05m，当前在 **Gen 9** 训练阶段 (step 2200, loss=1.2971)\n\n日志显示 Gen 9 已完成 37500 样本生成，正在 fine-tuning，已到 step 2200。接近完成（通常约 2500 steps）。\n\n**完整 results JSON（Gen 0–8）：**\n\n```json\n[\n  {\n    \"generation\": 0,\n    \"effective_rank\": 417.5472106933594,\n    \"log_det\": 2366.682861328125,\n    \"perplexity\": 9.553585720044504,\n    \"distinct_4\": 0.7414389763779528,\n    \"top_10_singular_values\": [1942.816, 488.368, 407.616, 284.336, 227.260, 210.670, 181.438, 171.560, 168.540, 162.467]\n  },\n  {\n    \"generation\": 1,\n    \"effective_rank\": 476.66156005859375,\n    \"log_det\": 2362.134765625,\n    \"perplexity\": 10.238942219689196,\n    \"distinct_4\": 0.6498661417322835,\n    \"train_loss\": 1.80109278963089,\n    \"mix_ratio\": 0.25,\n    \"controller_ratio\": 0.25\n  },\n  {\n    \"generation\": 2,\n    \"effective_rank\": 482.84356689453125,\n    \"log_det\": 2363.101806640625,\n    \"perplexity\": 10.652554699554909,\n    \"distinct_4\": 0.4973248031496063,\n    \"train_loss\": 1.697985660381317,\n    \"mix_ratio\": 0.25,\n    \"controller_ratio\": 0.25\n  },\n  {\n    \"generation\": 3,\n    \"effective_rank\": 489.4678955078125,\n    \"log_det\": 2380.876953125,\n    \"perplexity\": 11.018671418188633,\n    \"distinct_4\": 0.4419055118110236,\n    \"train_loss\": 1.4132862640237809,\n    \"mix_ratio\": 0.25,\n    \"controller_ratio\": 0.25\n  },\n  {\n    \"generation\": 4,\n    \"effective_rank\": 491.21258544921875,\n    \"log_det\": 2393.37060546875,\n    \"perplexity\": 11.343002049773526,\n    \"distinct_4\": 0.42981496062992125,\n    \"train_loss\": 1.3425281575345993,\n    \"mix_ratio\": 0.25,\n    \"controller_ratio\": 0.25\n  },\n  {\n    \"generation\": 5,\n    \"effective_rank\": 495.8443603515625,\n    \"log_det\": 2421.21826171875,\n    \"perplexity\": 11.668743109320236,\n    \"distinct_4\": 0.4191555118110236,\n    \"train_loss\": 1.3076749965000152,\n    \"mix_ratio\": 0.25,\n    \"controller_ratio\": 0.25\n  },\n  {\n    \"generation\": 6,\n    \"effective_rank\": 498.5948791503906,\n    \"log_det\": 2436.37841796875,\n    \"perplexity\": 11.973914122440608,\n    \"distinct_4\": 0.3969055118110236,\n    \"train_loss\": 1.316501470246315,\n    \"mix_ratio\": 0.25,\n    \"controller_ratio\": 0.25\n  },\n  {\n    \"generation\": 7,\n    \"effective_rank\": 500.66448974609375,\n    \"log_det\": 2447.076171875,\n    \"perplexity\": 12.29451624012561,\n    \"distinct_4\": 0.38890157480314963,\n    \"train_loss\": 1.303484043006897,\n    \"mix_ratio\": 0.25,\n    \"controller_ratio\": 0.25\n  },\n  {\n    \"generation\": 8,\n    \"effective_rank\": 505.81884765625,\n    \"log_det\": 2463.805419921875,\n    \"perplexity\": 12.631141659500072,\n    \"distinct_4\": 0.36570472440944884,\n    \"train_loss\": 1.3039245527935028,\n    \"mix_ratio\": 0.25,\n    \"controller_ratio\": 0.25\n  }\n]\n```\n\n---\n\n### exp_010 (pure_collapse, seed43, cuda:1, pid=283142)\n**状态: RUNNING** — 已运行 8h00m，当前在 **Gen 4** 生成阶段 (5120/50000 samples)\n\n已完成 Gen 0–3 的 metrics：\n\n| Gen | effective_rank | log_det | perplexity | distinct_4 | train_loss |\n|-----|---------------|---------|------------|------------|------------|\n| 0 | 417.55 | 2366.68 | 9.55 | 0.7415 | — |\n| 1 | 490.83 | 2462.62 | 11.37 | 0.5997 | 1.6245 |\n| 2 | 496.24 | 2466.63 | 13.57 | 0.5048 | 1.2609 |\n| 3 | 494.04 | 2438.38 | 16.22 | 0.4778 | 1.1248 |\n\n---\n\n### 异常\n无 error/crash。两个实验均正常运行。exp_009 日志有 `padding_side='left'` 警告，不影响结果。\n\n**关键观察**: exp_010 (pure_collapse, r=0.0) 的 perplexity 退化远快于 exp_009 (r=0.25)——Gen 3 已到 16.22 vs exp_009 Gen 3 仅 11.02，符合预期。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-exp-progress.md"
+}

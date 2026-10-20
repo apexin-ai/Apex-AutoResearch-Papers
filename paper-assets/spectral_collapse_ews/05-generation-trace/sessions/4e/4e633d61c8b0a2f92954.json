@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4e633d61c8b0a2f92954",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ops exp013 completion check",
+  "task_key": "worker_ops_exp013-completion-check_20260521T095538",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp013-completion-check_20260521T095538_result.json",
+    "occurrence": 1,
+    "bytes": 867,
+    "sha256": "a7b8b6af02c4d5a374a138e471105c69471f30fd8fcdebe4a84db45d31fdb6b1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp_013 结论：**SUCCESS**\n\n10 代 pure collapse (r=0, seed=44) 全部完成。\n\n### Gen 8-10 Metrics\n\n| Gen | eff_rank | log_det | ppl | distinct4 | train_loss |\n|-----|----------|---------|-----|-----------|------------|\n| 8 | 454.56 | 2237.81 | 44.48 | 0.1817 | 0.6171 |\n| 9 | 444.33 | 2188.92 | 54.34 | 0.1482 | 0.3899 |\n| 10 | 432.91 | 2154.34 | 65.70 | 0.1515 | 0.3271 |\n\n趋势一致：eff_rank 从 gen0 的 417→gen2 峰值 496→gen10 的 433 持续下降；ppl 从 9.55 单调升至 65.70；distinct4 从 0.73 降至 0.15；train_loss 持续收敛到 0.33。光谱集中度加剧（top-1 singular value 从 1943→912 先降后升回）。\n\n### cuda:1 状态\n已释放 — 0% utilization, 0 MiB memory。\n\n### Registry 已更新\n- status: DONE, conclusion: success\n- metrics: gen8-10 已补全\n- cron 监控已删除"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp013-completion-check.md"
+}

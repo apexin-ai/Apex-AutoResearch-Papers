@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a38b764de4e733504aea",
+  "project": "rl-active-probe-fl",
+  "kind": "result",
+  "title": "check eval v3 status",
+  "task_key": "worker_check_eval-v3-status_20260514T103509",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_eval-v3-status_20260514T103509_result.json",
+    "occurrence": 1,
+    "bytes": 1047,
+    "sha256": "8b86b7091d5f35430964851b7959c2de9ea9edaef981d4bf8f8891a47a322db1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇报\n\n### 两个 eval 均在运行中\n\n| Eval | 进度 | 速率 | 预计完成 |\n|------|------|------|----------|\n| **eval-base-v3** (base mode) | **186/202** (92%) | ~15s/sample | ~18:40 (~4 min) |\n| **eval-sft-v2** (sft mode) | **168/202** (83%) | ~16s/sample | ~18:45 (~9 min) |\n\n两个 eval 均于 17:49 启动，已运行约 47 分钟。\n\n### GPU 使用\n\n| GPU | 利用率 | 显存 |\n|-----|--------|------|\n| cuda:0 | 100% | 33,984 / 97,887 MiB |\n| cuda:1 | 0% | 0 / 97,887 MiB |\n\n注意：eval-sft-v2 设置了 `CUDA_VISIBLE_DEVICES=1` 但 nvidia-smi 显示 GPU 1 无显存占用。日志显示 sft eval 仍在正常推进，可能是 nvidia-smi 快照时恰好在两次推理之间，或存在设备映射问题。进程本身运行正常，无需干预。\n\n### 结果文件\n\n两个结果 JSON 文件（`eval_base_v3.json`、`eval_sft_v2.json`）均尚未生成，预计 eval 完成后写入。\n\n两个 eval 预计 ~10 分钟内全部完成。需要我稍后再查一次提取结果吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-eval-v3-status.md"
+}

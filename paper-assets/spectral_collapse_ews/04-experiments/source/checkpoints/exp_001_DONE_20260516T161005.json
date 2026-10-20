@@ -1,0 +1,51 @@
+{
+  "exp_id": "exp_001",
+  "project": "spectral_collapse_ews",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T07:39:16.853Z",
+    "updated_at": "2026-05-16T16:10:05.672Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && python run_phase0.py 2>&1 | tee results/phase0_run.log\"",
+      "server": "rtx6000-diagprobe",
+      "gpu": "cuda:0",
+      "pid": 7396,
+      "log_path": "~/runs/spectral_collapse_ews/exp_001.log",
+      "submitted_at": "2026-05-16T08:08:13.632Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "description": "Phase 0: Pure collapse characterization - 100% synthetic, 10 generations",
+      "hypothesis": "Effective rank monotonically decreases over recursive synthetic training with accelerating collapse in later generations (baseline from Gen 1, not Gen 0)",
+      "model_name": "EleutherAI/pythia-410m-deduped",
+      "seed": 42,
+      "data_path": "/root/spectral_collapse_ews/data/",
+      "data_count": "50K train + 5K eval + 1K spectral",
+      "generations": 10,
+      "mix_ratio": "100% synthetic (pure collapse)",
+      "hyperparams": {
+        "lr": 5e-05,
+        "batch_size": 8,
+        "gradient_accumulation_steps": 4,
+        "warmup_ratio": 0.05,
+        "epochs_per_gen": 1,
+        "temperature": 1,
+        "top_k": 50,
+        "max_length": 512
+      },
+      "wall_clock_seconds": 28912.0,
+      "gpu_hours": 8.03
+    },
+    "reproduce": {
+      "finished_at": "2026-05-16T16:10:05.042Z"
+    },
+    "failure_reason": "EXIT_CODE=124 (timeout — exceeded timeout_hours)",
+    "conclusion": "failed",
+    "completed_at": "2026-05-16T16:10:05.673Z"
+  },
+  "timestamp": "2026-05-16T16:10:05.681195+00:00",
+  "trigger": "update_registry"
+}

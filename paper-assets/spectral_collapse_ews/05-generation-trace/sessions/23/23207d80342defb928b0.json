@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "23207d80342defb928b0",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "figure fig5 controller fix",
+  "task_key": "worker_figure_fig5-controller-fix_20260523T130846",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_fig5-controller-fix_20260523T130846_result.json",
+    "occurrence": 1,
+    "bytes": 697,
+    "sha256": "e0341ba1d797dce812f3592e3b7d45092b4651409b8cc9435c54ff7d9c3515e6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个文件均已更新，图表正确。修复后各 mixing ratio 的 max signal：\n\n| r | 修复前 (α=0.3, t≥1) | 修复后 (α=0.5, t≥2) | 变化 |\n|---|---|---|---|\n| 0 | ~34 | **40.3810** | ↑ 信号更强（α=0.5 响应更快 + 去掉 Gen0→1 不影响 r=0 的持续下降趋势） |\n| 0.2 | ~4.8 | **3.9788** | ↓ 微弱信号保留 |\n| 0.25 | ~1.6 | **1.0992** | ↓ 微弱信号保留 |\n| 0.3 | ~0.5 | **0.0000** | → silent（Gen2+ SLV 单调递增，无负 delta） |\n| 0.5 | 0.0 | **0.0000** | → silent（同上） |\n\nr=0.3 和 r=0.5 的 bar 上已标注灰色斜体 \"silent\"。r_crit 分界线仍在 r=0.25 和 r=0.3 之间，与论文一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-fig5-controller-fix.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3e771ca1cb9d1178de68",
+  "project": "trace_distill_repair",
+  "kind": "result",
+  "title": "diag phase1 v2 analysis",
+  "task_key": "worker_diag_phase1_v2_analysis_20260515T052450",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_phase1_v2_analysis_20260515T052450_result.json",
+    "occurrence": 1,
+    "bytes": 1346,
+    "sha256": "884e6277110f73fc21c79711559a3d5a7f1928839aa87b5b7375fc01ff7295e0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。最终分析结果：\n\n---\n\n### Phase 1 Trace v2 完成分析\n\n**Pipeline 完成情况**\n- Setup: 40/45 成功（5 失败：pandas×3, rich×2）\n- Trace 收集: 33/40 成功\n- 失败 (0 events): 5 — black_2, black_5, black_14, tqdm_1, tqdm_2\n- Dataset issue (exit code 4, 0 events): 2 — fastapi_3, fastapi_5\n\n**Event 分布 (33 instances)**\n- min=5, p25=164, **median=2,741**, p75=5,294, max=49,974\n- 总计 257,085 events, 均值 7,790\n\n**Structural Segments**\n- 总计 566 segments（vs v1: 491, +15%）\n- 26/33 达到 cap=20，7 个自然终止 (httpie_1 仅 1 segment)\n- 类型分布：call_subtree 40.6%, loop_iteration 32.3%, basic_block 20.1%, exception_chain 6.9%\n\n**Line Segments（v2 新增）**\n- 总计 51,430 segments, median=549, max=9,995\n\n**Failing Test 覆盖率**\n- 18/38 (47%) traces 含 test 函数名（luigi×5, tornado×5, youtube-dl×5, thefuck×3）\n- 38/38 (100%) traces 含来自 test 文件的 events\n- **关键问题：所有 instance pytest exit code = 4，test 只被 import 没有被执行**。traces 只捕获了模块导入和 setup 阶段\n\n**vs v1**\n- 成功率下降：33/40 vs 38/40（更严格过滤）\n- Segments 更丰富：4 种结构类型 + 行级 segments\n- Test 覆盖从 0% → 47% 函数定义可见，但实际执行仍为 0%"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-phase1-v2-analysis.md"
+}

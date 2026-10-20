@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2cdf5f20b31c0bdf5380",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ops check exp progress 0523b",
+  "task_key": "worker_ops_check-exp-progress-0523b_20260523T220125",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-exp-progress-0523b_20260523T220125_result.json",
+    "occurrence": 1,
+    "bytes": 1496,
+    "sha256": "233a0b23e0957c903a3610c2467e0d076470d92b66074a49ce17593eb31c9ae3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总如下：\n\n## exp_019 (GPT-2 small, r=0.2, seed44) — GPU 1\n\n| 指标 | 值 |\n|------|-----|\n| **当前进度** | **Gen 9** — 正在生成合成样本 ~3520/40000 (9%) |\n| **已完成** | Gen 0-8（Gen 0 baseline eval + 8 轮训练） |\n| **总计** | --generations 10（Gen 0 baseline + Gen 1-10，共 11 轮） |\n| **已运行** | 17h 54m |\n| **平均每 gen** | ~2.0h |\n| **剩余** | Gen 9 剩余 ~1.8h + Gen 10 ~2h ≈ **~3.5-4h** |\n\nGen 1-8 指标趋势：eff_rank 476→497（缓慢上升），ppl 10.3→12.7（逐步退化），distinct4 0.65→0.28（明显下降），training loss 1.76→1.00（持续降低）。\n\n## exp_020 (GPT-2 medium, r=0, seed42) — GPU 0\n\n| 指标 | 值 |\n|------|-----|\n| **当前进度** | **Gen 5** — 正在生成合成样本 ~42560/50000 (85%) |\n| **已完成** | Gen 0-4（Gen 0 baseline eval + 4 轮训练） |\n| **总计** | --generations 10（同上，共 11 轮） |\n| **剩余** | Gen 5 剩余 + Gen 6-10 ≈ **~12-15h**（GPT-2 medium 每 gen 更慢） |\n\nGen 1-4 指标趋势：eff_rank 23→170（猛增），ppl 15.5→32.1（快速退化），distinct4 0.91→0.76（缓慢下降）。纯合成数据训练（r=0）退化比 r=0.2 更快。\n\n## GPU 状态\n\n| GPU | 型号 | 利用率 | 显存 |\n|-----|------|--------|------|\n| 0 | RTX PRO 6000 Blackwell | **96%** | 26.4 / 97.9 GB |\n| 1 | RTX PRO 6000 Blackwell | **90%** | 25.0 / 97.9 GB |\n\n两块 GPU 满载运行，训练正常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-exp-progress-0523b.md"
+}

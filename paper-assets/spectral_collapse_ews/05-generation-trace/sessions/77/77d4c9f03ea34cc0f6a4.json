@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "77d4c9f03ea34cc0f6a4",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ssh progress check 016 017",
+  "task_key": "worker_ssh_progress_check_016_017_20260522T073721",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_progress_check_016_017_20260522T073721_result.json",
+    "occurrence": 1,
+    "bytes": 1380,
+    "sha256": "4bdfb8644362b0bbaffe1a43596a2d568a697697c9a86913958fa34c10fa280a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n### exp_016 — r=0.3, seed44, cuda:0\n| 项目 | 状态 |\n|------|------|\n| 当前阶段 | **Generation 5/10 — 正在生成合成数据** (15,360/35,000 samples, 44%) |\n| 已完成 | gen 0 (baseline) + gen 1–4 (results JSON 已写入 5 条) |\n| 运行时长 | ~8.4h（07:16 UTC 启动） |\n| 每代耗时 | ~100 min/gen |\n| 剩余 | ~5.5 代 → **预计还需 ~9–10h**，约 UTC 01:00–02:00 (May 23) 完成 |\n\n### exp_017 — r=0.2, seed43, cuda:1\n| 项目 | 状态 |\n|------|------|\n| 当前阶段 | **Generation 1/10 — 正在生成合成数据** (29,120/40,000 samples, 73%) |\n| 已完成 | gen 0 (baseline eval)，尚未产出 results JSON |\n| 运行时长 | ~1.4h（14:18 UTC 启动） |\n| 每代耗时 | 估计 ~90–100 min/gen（r=0.2 合成量更大: 40k vs 35k） |\n| 剩余 | ~9.3 代 → **预计还需 ~14–15h**，约 UTC 05:00–06:00 (May 23) 完成 |\n\n### 资源状态\n| 资源 | 状态 |\n|------|------|\n| GPU 0 | 93% 利用率, 25.0/95.6 GB 显存 |\n| GPU 1 | 90% 利用率, 19.0/95.6 GB 显存 |\n| 磁盘 | **25G/30G (83%)** — 剩余 5.2G，偏紧，两个实验各产出 ~1.5G checkpoint/gen，需关注 |\n\n**注意**：磁盘仅剩 5.2G，两个实验共还需写约 15 代的 checkpoint（每代 ~1.5G），如果 checkpoint 是覆盖式保存（只留最新）则无碍，否则会爆盘。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-progress-check-016-017.md"
+}

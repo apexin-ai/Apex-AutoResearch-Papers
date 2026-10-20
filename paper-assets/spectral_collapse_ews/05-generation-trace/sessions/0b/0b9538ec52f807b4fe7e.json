@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0b9538ec52f807b4fe7e",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "research reference verification",
+  "task_key": "worker_research_reference_verification_20260523T042337",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_reference_verification_20260523T042337_result.json",
+    "occurrence": 1,
+    "bytes": 882,
+    "sha256": "6f89466e8d0651dc2fc74571d75a9aa6ce44649adc292761651192840a058c39"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 4 papers verified and written to `artifacts/plan_018/reference_verification.md`. Key findings:\n\n| Paper | Status | Venue | Relevance |\n|-------|--------|-------|-----------|\n| **Seddik et al.** | Confirmed | COLM 2024 | High — statistical analysis of model collapse |\n| **Self-Verification** | Confirmed (Weng et al.) | Findings EMNLP 2023 | Low — about inference-time reasoning, not model collapse |\n| **Escaping Collapse** | 2 candidates found | ICLR 2026 (Yi et al.) / NeurIPS 2025 (Amin et al.) | Moderate — collapse mitigation |\n| **Golden Ratio** | Confirmed (He et al.) | arXiv preprint only | High — optimal real/synthetic mixing ratio = 1/φ |\n\nTwo items need Director input:\n1. **Self-Verification** — seems unrelated to our work. Was the intent a different paper?\n2. **Escaping Collapse** — two papers match. Which one (or both)?"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-reference-verification.md"
+}

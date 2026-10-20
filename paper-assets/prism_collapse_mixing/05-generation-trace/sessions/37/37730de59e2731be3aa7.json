@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "37730de59e2731be3aa7",
+  "project": "prism_collapse_mixing",
+  "kind": "result",
+  "title": "ssh restart training",
+  "task_key": "worker_ssh_restart-training_20260515T203617",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_restart-training_20260515T203617_result.json",
+    "occurrence": 1,
+    "bytes": 887,
+    "sha256": "e76c3087ce60ad8f1429a241042b346c14a02c0d559d990814b942838a876594"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "重启成功。报告：\n\n---\n\n**崩溃原因**：`train.py:79` 的 `wandb.init()` 因无 API key 报错 `UsageError: No API key configured`\n\n**已有数据**：\n- `synthetic/synthetic_gen1_seed42.jsonl` (320M) ✓\n- `synthetic/synthetic_gen1_seed137.jsonl` (320M) ✓\n- `mixed/mixed_gen1_seed42.jsonl` (899M) ✓\n- `mixed/mixed_gen1_seed137.jsonl` (899M) ✓\n- `checkpoints/` 空（训练失败未产出）\n\n**run_pipeline.py 修改**：无需修改，4 个步骤均已有跳过逻辑。重启后自动跳过 synthetic 和 mix，直接从 train 开始。\n\n**重启状态**：\n- tmux `mvp_collapse_decoupling`：运行中 ✓\n- 环境变量：`WANDB_MODE=disabled HF_HUB_OFFLINE=1` ✓\n- GPU：两张 GPU 各占用 1372 MiB，正在训练\n- PID：`198116`（seed42, cuda:0）、`198117`（seed137, cuda:1）\n- 父进程 `run_pipeline.py` PID：`197985`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-restart-training.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "629618829a9c5a0ebda0",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "code fix run phase0 range",
+  "task_key": "worker_code_fix_run_phase0_range_20260516T144450",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_run_phase0_range_20260516T144450_result.json",
+    "occurrence": 1,
+    "bytes": 242,
+    "sha256": "00ee729f07b5541bd350884c28c60cf89ee656439695e15f2cacfb8d56808edf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已修复。`run_phase0.py` 第 51 行从 `range(1, 6)` 改为 `range(2, 6)`，decline rate 基线现在从 Gen 1→2 开始计算，跳过 Gen 0→1 的 pretraining→fine-tuning 分布转移。未触碰运行中的 exp_001。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-run-phase0-range.md"
+}

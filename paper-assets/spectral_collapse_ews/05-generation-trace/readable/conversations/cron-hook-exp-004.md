@@ -1,0 +1,1872 @@
+# cron hook exp 004
+
+**Spectral Early Warning Signals for Model Collapse and Their Prevention–Detectability Tradeoff** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 62
+- **Recorded user turns:** 1
+- **Tool calls:** 30
+- **Original source:** `logs/chats/cron_hook_exp_004.jsonl`
+- **Structured JSON:** [`c9c154003a26e6a46e5f.json`](../../sessions/c9/c9c154003a26e6a46e5f.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+62 recorded events
+
+### User
+
+_source line 1 · 2026-05-18T10:15:47.676231+00:00_
+
+[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。
+详情: Process exited cleanly, W&B data available
+
+- exp_id: exp_004
+- project: spectral_collapse_ews
+- server: rtx6000-diagprobe
+- log_path: ~/runs/spectral_collapse_ews/exp_004.log
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:exp_004",
+  "source": "cron:hook"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-18T10:15:59.188034+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_004",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-18T10:15:59.238669+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_004",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-18T10:16:02.716748+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "spectral_collapse_ews",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_004",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "spectral_collapse_ews",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-18T10:16:03.169024+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_004",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-18T10:16:03.220246+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp_004\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-17T04:31:11.170Z\", \"updated_at\": \"2026-05-18T10:15:45.196Z\", \"hypothesis\": \"Fixed 50/50 real-synthetic mixing provides intermediate collapse mitigation compared to pure collapse (0% real) but underperforms spectral-guided adaptive mixing (exp_003), because uniform allocation wastes real data budget on early generations where collapse signals are weak\", \"parent\": \"exp_001\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition fixed_mix --seed 42 --generations 10 --signal log_det --tau 0.002 --k 0 --signal_mode per_gen --gpu 0\\\"\", \"server\": \"rtx6000-diagprobe\", \"gpu\": \"cuda:1\", \"pid\": 135411, \"log_path\": \"~/runs/spectral_collapse_ews/exp_004.log\", \"submitted_at\": \"2026-05-17T17:56:12.965Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"description\": \"Phase 1: Fixed 50/50 real-synthetic mixing (baseline condition), seed 42\", \"tmux_session\": \"exp_004\", \"model_name\": \"EleutherAI/pythia-410m-deduped\", \"seed\": 42, \"data_path\": \"/root/spectral_collapse_ews/data/\", \"data_count\": \"50K real pool, total_per_gen=50K\", \"generations\": 10, \"condition\": \"fixed_mix\", \"checkpoint_dir\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_seed42/\", \"results_file\": \"/root/spectral_collapse_ews/results/phase1_fixed_mix_seed42_results.json\", \"checkpoint_source\": \"EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)\", \"eval_data\": \"/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)\"}, \"metrics\": {\"gen0_eff_rank\": 417.55, \"gen0_log_det\": 2366.68, \"gen0_ppl\": 9.554, \"gen0_
+…[truncated 20637 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_004",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 503
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-18T10:16:03.572050+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_004",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 403
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-18T10:16:03.572498+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "spectral_collapse_ews",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_004",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "spectral_collapse_ews",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-18T10:16:03.623232+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-18T10:15:46Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 7 个实验 — ANALYZING 1, DONE 5, RUNNING 1\\n**DONE 分布**: killed 2, negative 1, success 2\\n\\n### GPU 占用\\n- **分配**: 2 张 — rtx6000-diagprobe:cuda:0, rtx6000-diagprobe:cuda:1\\n- **实际运行**: 1 张 — rtx6000-diagprobe:cuda:0(exp_007)\\n- **空闲（分配了没跑）**: rtx6000-diagprobe:cuda:1\\n\\n### 💾 磁盘余量\\n- **rtx6000-diagprobe**:\\n  - `/init`: 150M/150M 可用（已用 0%）\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\n  - `/usr/bin/nvidia-smi`: 400G/439G 可用（已用 4%）\\n\\n### 🏃 RUNNING\\n| exp_id | server | gpu | pid | log |\\n|--------|--------|-----|-----|-----|\\n| `exp_007` | rtx6000-diagprobe | cuda:0 | 188503 | `~/runs/spectral_collapse_ews/exp_007.log` |\\n\\n### 📌 最近完成 (top 5)\\n- `exp_006` [negative] — 2026-05-18T08:49:12\\n- `exp_005` [killed] — 2026-05-17T21:16:49 — process dead 5× with no sentinel/W&B — auto-resolved as failed\\n- `exp_001` [success] — 2026-05-17T17:32:40 — EXIT_CODE=124 (timeout — exceeded timeout_hours)\\n- `exp_003` [killed] — 2026-05-17T13:08:33\\n- `exp_002` [success] — 2026-05-17T04:03:52 — EXIT_CODE=143 (SIGTERM — graceful kill)\\n\\n### 🔴 最近失败原因 (top 3)\\n- `exp_005`: process dead 5× with no sentinel/W&B — auto-resolved as failed\\n- `exp_003`: _(no failure_reason — pre-2026-04-24 entry)_\\n\\n&lt;!-- AUTO-FACTS-END -->\\n\\n---\\n\\n# Handover — 2026-05-18\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| exp_007 | At r=0.2 (20% real data), spectral collapse will manifest within 5 generations (log_det decline), unlike r=0.5 where decompression persisted through 10 gen (exp_006). This establishes a critical real-data ratio r_crit between 0.2 and 0.5 below which 
+…[truncated 2273 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_004",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-18T10:16:03.623744+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "spectral_collapse_ews"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_004",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "spectral_collapse_ews"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-18T10:16:03.674376+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/ROADMAP.md\", \"content\": \"# spectral_collapse_ews — Research Dashboard\\n\\n> 最后更新: 2026-05-18 10:00 UTC | 更新原因: Reviewer 审查修正：GPU 型号、buffer 比例、写作排期、Phase 4 标记 nice-to-have\\n\\n## 核心方向\\nSpectral Early Warning Signals for Model Collapse in Recursive Synthetic Training。SLV (½ log det G) 提供可靠的 collapse EWS；real data mixing 导致 signal attenuation paradox；r_crit phase diagram 刻画 collapse boundary。详见 paper_framing.md。\\n\\n## 投稿目标\\n**EMNLP 2026 ARR Long Paper (8p + refs)**，DDL May 25。D022 升级自 short paper。\\n\\n## 当前进展\\n- **阶段**: MVP 通过（C1-C3 validated），Research 扩展中\\n- **已完成**: exp_001 (pure 410M 10gen ✅), exp_006 (adaptive r=0.5 10gen ✅, 10gen silent)\\n- **在跑**: exp_007 (r=0.2 5gen→10gen, cuda:0), exp_004 (fixed_mix r=0.5 Gen 10 finishing, cuda:1)\\n- **论文**: 4p 稿已编译（Figure 1 + Gen 10 数据 + AI 痕迹清零），待扩展至 8p\\n- **Claims**: C1 三阶段 ✅ | C2 SLV as EWS ✅ | C3 signal attenuation paradox ✅ | C4 controller negative ✅\\n- **新发现**: 二阶 EWS (growth rate decline) EMA-smoothed 后 Gen 5+ 严格单调递减，待低 r 数据确认\\n\\n## 实验排期 (D022, 2 GPU × 7 天)\\n\\n### Phase 1 (Day 1-2): r_crit 曲线 (~75h, MUST-HAVE)\\n- [x] r=0 (exp_001, done)\\n- [x] r=0.5 (exp_006, done)\\n- [ ] r=0.2 5gen (exp_007, running) → 续跑至 10gen (从 Gen 5 checkpoint)\\n- [ ] r=0.3 10gen seed42 (cuda:1, after exp_004)\\n- [ ] r=0.1 10gen seed42 (cuda:0, after exp_007 10gen)\\n- [ ] r=0.05 10gen seed42\\n- [ ] r=0.7 10gen seed42\\n\\n### Phase 2 (Day 2-4): Multi-seed (~90h, MUST-HAVE)\\n- [ ] pure seed43 + seed44\\n- [ ] r=0.5 seed43 + seed44\\n- [ ] r=0.2 seed43 + seed44\\n- 统计：mean ± std, paired t-test p<0.1 (3 seeds)\\n\\n### Phase 3 (Day 4-5): Cross-scale + EWS (~55h, MUST-HAVE)\\n- [ ] 1B pure: 先跑 3gen 确认速度，再决定 5gen 或 10gen\\n- [ ] 160M pure 10gen + 160M r=0.5 10gen\\n- [ ] Alternative EWS metrics on exp_001 checkpoints (~5h)\\n- [ ] HellaSwag eval on exp_006 checkpoints (~8h)\\n\\n### Phase 4 (D
+…[truncated 2125 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_004",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-18T10:16:47.607695+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__main_agent_post_to_director",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_004",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__main_agent_post_to_director",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-18T10:16:47.658408+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_004",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-18T10:17:20.049412+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "analysis:exp_004",
+  "project": "spectral_collapse_ews",
+  "task_prompt": "## 任务：分析 exp_004 完整实验结果\n\nexp_004 刚完成，需要提取完整指标。\n\n### 背景\n- 实验：Phase 1 Fixed 50/50 real-synthetic mixing (r=0.5), seed 42, 10 generations\n- 服务器：rtx6000-diagprobe\n- 结果文件：`/root/spectral_collapse_ews/results/phase1_fixed_mix_seed42_results.json`\n- 日志：`~/runs/spectral_collapse_ews/exp_004.log`\n- Checkpoint 目录：`/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_seed42/`\n\n### 具体步骤\n\n1. SSH 到 rtx6000-diagprobe，读取结果 JSON 文件：\n   ```\n   cat /root/spectral_collapse_ews/results/phase1_fixed_mix_seed42_results.json\n   ```\n   提取所有 generation 的完整指标（特别是 gen10 的 eff_rank, log_det, ppl, distinct4, train_loss, mix_ratio）。Registry 目前只有 gen0-gen9，gen10 可能缺失。\n\n2. 读取日志尾部确认正常完成：\n   ```\n   tail -100 ~/runs/spectral_collapse_ews/exp_004.log\n   ```\n\n3. 检查 checkpoint 是否保存完好：\n   ```\n   ls -la /root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_seed42/\n   ```\n\n4. 同时读取 exp_001（纯合成 collapse）和 exp_006（adaptive r=0.5）的结果做对比：\n   ```\n   cat /root/spectral_collapse_ews/results/phase0_results.json\n   cat /root/spectral_collapse_ews/results/phase1_adaptive_k10_seed42_results.json\n   ```\n\n### 输出要求\n\n输出一份简洁分析报告，包含：\n\nA) **exp_004 完整指标表**：gen0-gen10 的 eff_rank, log_det, ppl, distinct4, train_loss（如果有 gen10）\n\nB) **与 exp_001 (r=0, pure collapse) 对比**：\n   - Final ppl: exp_001 vs exp_004\n   - Final eff_rank: exp_001 vs exp_004\n   - Final log_det: exp_001 vs exp_004\n   - Collapse pattern 差异\n\nC) **与 exp_006 (adaptive r=0.5, controller never triggered) 对比**：\n   - 逐 generation 指标对齐（两者都是 r=0.5，但 exp_006 是 adaptive 从未触发，应该非常接近）\n   - 任何显著差异\n\nD) **关键发现**：\n   - r=0.5 下 spectral collapse 是否发生？\n   - distinct4 的急剧下降（0.74→0.10）与 spectral metrics 的上升之间的 divergence\n   - 对 r_crit 论文 claim 的意义\n\nE) **Checkpoint 状态**：路径和大小，确认可用于后续分析\n",
+  "tool_groups": "['ssh']",
+  "tools": "['read_registry']"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_004",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "analysis:exp_004",
+    "project": "spectral_collapse_ews",
+    "task_prompt": "## 任务：分析 exp_004 完整实验结果\n\nexp_004 刚完成，需要提取完整指标。\n\n### 背景\n- 实验：Phase 1 Fixed 50/50 real-synthetic mixing (r=0.5), seed 42, 10 generations\n- 服务器：rtx6000-diagprobe\n- 结果文件：`/root/spectral_collapse_ews/results/phase1_fixed_mix_seed42_results.json`\n- 日志：`~/runs/spectral_collapse_ews/exp_004.log`\n- Checkpoint 目录：`/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_seed42/`\n\n### 具体步骤\n\n1. SSH 到 rtx6000-diagprobe，读取结果 JSON 文件：\n   ```\n   cat /root/spectral_collapse_ews/results/phase1_fixed_mix_seed42_results.json\n   ```\n   提取所有 generation 的完整指标（特别是 gen10 的 eff_rank, log_det, ppl, distinct4, train_loss, mix_ratio）。Registry 目前只有 gen0-gen9，gen10 可能缺失。\n\n2. 读取日志尾部确认正常完成：\n   ```\n   tail -100 ~/runs/spectral_collapse_ews/exp_004.log\n   ```\n\n3. 检查 checkpoint 是否保存完好：\n   ```\n   ls -la /root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_seed42/\n   ```\n\n4. 同时读取 exp_001（纯合成 collapse）和 exp_006（adaptive r=0.5）的结果做对比：\n   ```\n   cat /root/spectral_collapse_ews/results/phase0_results.json\n   cat /root/spectral_collapse_ews/results/phase1_adaptive_k10_seed42_results.json\n   ```\n\n### 输出要求\n\n输出一份简洁分析报告，包含：\n\nA) **exp_004 完整指标表**：gen0-gen10 的 eff_rank, log_det, ppl, distinct4, train_loss（如果有 gen10）\n\nB) **与 exp_001 (r=0, pure collapse) 对比**：\n   - Final ppl: exp_001 vs exp_004\n   - Final eff_rank: exp_001 vs exp_004\n   - Final log_det: exp_001 vs exp_004\n   - Collapse pattern 差异\n\nC) **与 exp_006 (adaptive r=0.5, controller never triggered) 对比**：\n   - 逐 generation 指标对齐（两者都是 r=0.5，但 exp_006 是 adaptive 从未触发，应该非常接近）\n   - 任何显著差异\n\nD) **关键发现**：\n   - r=0.5 下 spectral collapse 是否发生？\n   - distinct4 的急剧下降（0.74→0.10）与 spectral metrics 的上升之间的 divergence\n   - 对 r_crit 论文 claim 的意义\n\nE) **Checkpoint 状态**：路径和大小，确认可用于后续分析\n",
+    "tool_groups": "['ssh']",
+    "tools": "['read_registry']"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-18T10:17:22.965222+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_exp_004_20260518T101720\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/logs/workers/worker_analysis_exp_004_20260518T101720.log\", \"setup_data\": {}, \"message\": \"Worker worker_analysis_exp_004_20260518T101720 started. Use get_worker_status('worker_analysis_exp_004_20260518T101720') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_004",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 2915
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-18T10:17:46.122090+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_004",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/skills/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-18T10:17:46.875573+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_246cde33.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_004",
+  "tool": "Read",
+  "elapsed_ms": 753
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-18T10:17:46.875948+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__submit_training_job,mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__list_workers",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_004",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__submit_training_job,mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__list_workers",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-18T10:17:46.926460+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_004",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-18T10:17:50.002860+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation.skill.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_004",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/resource-saturation.skill.md",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-18T10:17:50.103720+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_004",
+  "tool": "Glob",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-18T10:17:53.320826+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/skills/**/resource*.md",
+  "path": "/home/ubuntu"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_004",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/skills/**/resource*.md",
+    "path": "/home/ubuntu"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-18T10:17:53.622845+00:00_
+
+/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_004",
+  "tool": "Glob",
+  "elapsed_ms": 302
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-18T10:17:58.243973+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_004",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-18T10:17:58.295042+00:00_
+
+1	---
+2	name: resource-saturation
+3	description: "当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。"
+4	always: false
+5	roles:
+6	  - director
+7	  - agent
+8	---
+9	
+10	# 资源饱和度自检（硬约束）
+11	
+12	## A. GPU 分配率检查
+13	
+14	调 `get_project_resource_usage(project)` 看:
+15	- 已分配给本项目的 GPU 总数和具体卡号
+16	- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）
+17	- 分配了但没跑的 GPU 清单 ⚠️
+18	
+19	任何"分配了但没跑"的 GPU = 失职。必须立即:
+20	- 派 Worker 铺 dry-run / 下一批实验代码准备
+21	- 铺 ablation（从 experiment-matrix 空白格子里挑）
+22	- 确实无实验可铺 → 向 Director 汇报"暂无可铺实验"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作
+23	
+24	**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。
+25	
+26	## B. GPU 效率检查
+27	
+28	调 `get_gpu_health(server)`:
+29	- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务
+30	- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）
+31	- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优
+32	
+33	## C. 非 GPU 任务并行
+34	
+35	GPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:
+36	- 下一批实验的数据集下载 / 预处理 / fingerprint
+37	- 下一批实验的代码准备 / dry-run / 环境配置
+38	- 论文文献调研 / related work 检索
+39	- 已完成实验的 log 深度分析 / metric 聚合
+40	- 论文章节起草
+41	- 代码 review / refactor
+42	
+43	**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。
+44	
+45	## D. 汇报格式
+46	
+47	向 Director 汇报时开头必须带资源声明行:
+48	
+49	    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)
+50	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_004",
+  "tool": "Read",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-18T10:18:36.964211+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_008",
+  "field": "hypothesis",
+  "value": "At r=0.3 (30% real data), spectral metrics will show attenuated but detectable collapse compared to r=0.5 (exp_004, monotonic log_det rise), helping establish the r_crit phase boundary shape. If log_det peaks then declines within 10 generations, r=0.3 is below r_crit and SLV-based collapse detection is viable at this ratio; if log_det rises monotonically like r=0.5, then r_crit < 0.3.",
+  "project": "spectral_collapse_ews"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_004",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_008",
+    "field": "hypothesis",
+    "value": "At r=0.3 (30% real data), spectral metrics will show attenuated but detectable collapse compared to r=0.5 (exp_004, monotonic log_det rise), helping establish the r_crit phase boundary shape. If log_det peaks then declines within 10 generations, r=0.3 is below r_crit and SLV-based collapse detection is viable at this ratio; if log_det rises monotonically like r=0.5, then r_crit < 0.3.",
+    "project": "spectral_collapse_ews"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-18T10:18:37.115487+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_008\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T10:18:37.014Z\", \"updated_at\": \"2026-05-18T10:18:37.014Z\", \"hypothesis\": \"At r=0.3 (30% real data), spectral metrics will show attenuated but detectable collapse compared to r=0.5 (exp_004, monotonic log_det rise), helping establish the r_crit phase boundary shape. If log_det peaks then declines within 10 generations, r=0.3 is below r_crit and SLV-based collapse detection is viable at this ratio; if log_det rises monotonically like r=0.5, then r_crit < 0.3.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0788}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_004",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 151
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-18T10:18:40.334412+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_008",
+  "field": "parent",
+  "value": "exp_004",
+  "project": "spectral_collapse_ews"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_004",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_008",
+    "field": "parent",
+    "value": "exp_004",
+    "project": "spectral_collapse_ews"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-18T10:18:40.435507+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_008\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T10:18:37.014Z\", \"updated_at\": \"2026-05-18T10:18:40.376Z\", \"hypothesis\": \"At r=0.3 (30% real data), spectral metrics will show attenuated but detectable collapse compared to r=0.5 (exp_004, monotonic log_det rise), helping establish the r_crit phase boundary shape. If log_det peaks then declines within 10 generations, r=0.3 is below r_crit and SLV-based collapse detection is viable at this ratio; if log_det rises monotonically like r=0.5, then r_crit < 0.3.\", \"parent\": \"exp_004\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.074}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_004",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-18T10:18:46.032165+00:00_
+
+called mcp__agent-ml-research__submit_training_job
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__submit_training_job</summary>
+
+```json
+{
+  "server": "rtx6000-diagprobe",
+  "gpu_ids": "['cuda:1']",
+  "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition fixed_mix --seed 42 --generations 10 --signal log_det --tau 0.002 --k 0 --signal_mode per_gen --real_ratio 0.3 --gpu 0\"",
+  "exp_id": "exp_008",
+  "project": "spectral_collapse_ews",
+  "timeout_hours": "24"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_004",
+  "tool": "mcp__agent-ml-research__submit_training_job",
+  "tool_args": {
+    "server": "rtx6000-diagprobe",
+    "gpu_ids": "['cuda:1']",
+    "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition fixed_mix --seed 42 --generations 10 --signal log_det --tau 0.002 --k 0 --signal_mode per_gen --real_ratio 0.3 --gpu 0\"",
+    "exp_id": "exp_008",
+    "project": "spectral_collapse_ews",
+    "timeout_hours": "24"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-18T10:18:47.540145+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"pid\": \"194372\", \"log_file\": \"~/runs/spectral_collapse_ews/exp_008.log\", \"gpu_ids\": [\"cuda:1\"], \"server\": \"rtx6000-diagprobe\", \"account\": \"root\", \"cuda_visible_devices\": \"1\", \"backend\": \"tmux\", \"tmux_session\": \"exp_008\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_004",
+  "tool": "mcp__agent-ml-research__submit_training_job",
+  "elapsed_ms": 1507
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-18T10:18:58.810824+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_008",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "spectral_collapse_ews",
+  "spec": "{'description': 'Phase 1: Fixed mix r=0.3 ablation (30% real + 70% synthetic), seed 42, 10 generations', 'command': 'bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition fixed_mix --seed 42 --generations 10 --signal log_det --tau 0.002 --k 0 --signal_mode per_gen --real_ratio 0.3 --gpu 0\"', 'server': 'rtx6000-diagprobe', 'gpu': 'cuda:1', 'pid': 194372, 'tmux_session': 'exp_008', 'model_name': 'EleutherAI/pythia-410m-deduped', 'seed': 42, 'data_path': '/root/spectral_collapse_ews/data/', 'data_count': '50K real pool, total_per_gen=50K (15K real + 35K synthetic per gen)', 'generations': 10, 'condition': 'fixed_mix', 'real_ratio': 0.3, 'checkpoint_dir': '/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r03_seed42/', 'results_file': '/root/spectral_collapse_ews/results/phase1_fixed_mix_r03_seed42_results.json', 'checkpoint_source': 'EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)', 'eval_data': '/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)', 'log_path': '~/runs/spectral_collapse_ews/exp_008.log'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_004",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_008",
+    "field": "status",
+    "value": "RUNNING",
+    "project": "spectral_collapse_ews",
+    "spec": "{'description': 'Phase 1: Fixed mix r=0.3 ablation (30% real + 70% synthetic), seed 42, 10 generations', 'command': 'bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition fixed_mix --seed 42 --generations 10 --signal log_det --tau 0.002 --k 0 --signal_mode per_gen --real_ratio 0.3 --gpu 0\"', 'server': 'rtx6000-diagprobe', 'gpu': 'cuda:1', 'pid': 194372, 'tmux_session': 'exp_008', 'model_name': 'EleutherAI/pythia-410m-deduped', 'seed': 42, 'data_path': '/root/spectral_collapse_ews/data/', 'data_count': '50K real pool, total_per_gen=50K (15K real + 35K synthetic per gen)', 'generations': 10, 'condition': 'fixed_mix', 'real_ratio': 0.3, 'checkpoint_dir': '/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r03_seed42/', 'results_file': '/root/spectral_collapse_ews/results/phase1_fixed_mix_r03_seed42_results.json', 'checkpoint_source': 'EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)', 'eval_data': '/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)', 'log_path': '~/runs/spectral_collapse_ews/exp_008.log'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-18T10:18:58.911749+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.0472}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_004",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-18T10:19:04.451158+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_008",
+  "field": "status",
+  "value": "PENDING",
+  "project": "spectral_collapse_ews"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_004",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_008",
+    "field": "status",
+    "value": "PENDING",
+    "project": "spectral_collapse_ews"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-18T10:19:04.652591+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_008\", \"experiment\": {\"status\": \"PENDING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T10:18:37.014Z\", \"updated_at\": \"2026-05-18T10:19:04.471Z\", \"hypothesis\": \"At r=0.3 (30% real data), spectral metrics will show attenuated but detectable collapse compared to r=0.5 (exp_004, monotonic log_det rise), helping establish the r_crit phase boundary shape. If log_det peaks then declines within 10 generations, r=0.3 is below r_crit and SLV-based collapse detection is viable at this ratio; if log_det rises monotonically like r=0.5, then r_crit < 0.3.\", \"parent\": \"exp_004\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition fixed_mix --seed 42 --generations 10 --signal log_det --tau 0.002 --k 0 --signal_mode per_gen --real_ratio 0.3 --gpu 0\\\"\", \"server\": \"rtx6000-diagprobe\", \"gpu\": [\"cuda:1\"], \"pid\": \"194372\", \"log_path\": \"~/runs/spectral_collapse_ews/exp_008.log\", \"submitted_at\": \"2026-05-18T10:18:47.426Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1951}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_004",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 201
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-18T10:19:07.520813+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_008",
+  "field": "status",
+  "value": "QUEUED",
+  "project": "spectral_collapse_ews"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_004",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_008",
+    "field": "status",
+    "value": "QUEUED",
+    "project": "spectral_collapse_ews"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-18T10:19:07.772332+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_008\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-18T10:18:37.014Z\", \"updated_at\": \"2026-05-18T10:19:07.563Z\", \"hypothesis\": \"At r=0.3 (30% real data), spectral metrics will show attenuated but detectable collapse compared to r=0.5 (exp_004, monotonic log_det rise), helping establish the r_crit phase boundary shape. If log_det peaks then declines within 10 generations, r=0.3 is below r_crit and SLV-based collapse detection is viable at this ratio; if log_det rises monotonically like r=0.5, then r_crit < 0.3.\", \"parent\": \"exp_004\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition fixed_mix --seed 42 --generations 10 --signal log_det --tau 0.002 --k 0 --signal_mode per_gen --real_ratio 0.3 --gpu 0\\\"\", \"server\": \"rtx6000-diagprobe\", \"gpu\": [\"cuda:1\"], \"pid\": \"194372\", \"log_path\": \"~/runs/spectral_collapse_ews/exp_008.log\", \"submitted_at\": \"2026-05-18T10:18:47.426Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.181}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_004",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 251
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-18T10:19:11.203922+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_008",
+  "field": "status",
+  "value": "ALLOCATED",
+  "project": "spectral_collapse_ews"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_004",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_008",
+    "field": "status",
+    "value": "ALLOCATED",
+    "project": "spectral_collapse_ews"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-18T10:19:11.354966+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_008\", \"experiment\": {\"status\": \"ALLOCATED\", \"retry_count\": 0, \"created_at\": \"2026-05-18T10:18:37.014Z\", \"updated_at\": \"2026-05-18T10:19:11.229Z\", \"hypothesis\": \"At r=0.3 (30% real data), spectral metrics will show attenuated but detectable collapse compared to r=0.5 (exp_004, monotonic log_det rise), helping establish the r_crit phase boundary shape. If log_det peaks then declines within 10 generations, r=0.3 is below r_crit and SLV-based collapse detection is viable at this ratio; if log_det rises monotonically like r=0.5, then r_crit < 0.3.\", \"parent\": \"exp_004\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition fixed_mix --seed 42 --generations 10 --signal log_det --tau 0.002 --k 0 --signal_mode per_gen --real_ratio 0.3 --gpu 0\\\"\", \"server\": \"rtx6000-diagprobe\", \"gpu\": [\"cuda:1\"], \"pid\": \"194372\", \"log_path\": \"~/runs/spectral_collapse_ews/exp_008.log\", \"submitted_at\": \"2026-05-18T10:18:47.426Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1564}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_004",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 151
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-18T10:19:16.702851+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_008",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "spectral_collapse_ews",
+  "spec": "{'description': 'Phase 1: Fixed mix r=0.3 ablation (30% real + 70% synthetic), seed 42, 10 generations', 'model_name': 'EleutherAI/pythia-410m-deduped', 'seed': 42, 'data_path': '/root/spectral_collapse_ews/data/', 'data_count': '50K real pool, total_per_gen=50K (15K real + 35K synthetic per gen)', 'generations': 10, 'condition': 'fixed_mix', 'real_ratio': 0.3, 'checkpoint_dir': '/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r03_seed42/', 'results_file': '/root/spectral_collapse_ews/results/phase1_fixed_mix_r03_seed42_results.json', 'checkpoint_source': 'EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)', 'eval_data': '/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_004",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_008",
+    "field": "status",
+    "value": "RUNNING",
+    "project": "spectral_collapse_ews",
+    "spec": "{'description': 'Phase 1: Fixed mix r=0.3 ablation (30% real + 70% synthetic), seed 42, 10 generations', 'model_name': 'EleutherAI/pythia-410m-deduped', 'seed': 42, 'data_path': '/root/spectral_collapse_ews/data/', 'data_count': '50K real pool, total_per_gen=50K (15K real + 35K synthetic per gen)', 'generations': 10, 'condition': 'fixed_mix', 'real_ratio': 0.3, 'checkpoint_dir': '/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r03_seed42/', 'results_file': '/root/spectral_collapse_ews/results/phase1_fixed_mix_r03_seed42_results.json', 'checkpoint_source': 'EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)', 'eval_data': '/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-18T10:19:16.904859+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_008\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T10:18:37.014Z\", \"updated_at\": \"2026-05-18T10:19:16.767Z\", \"hypothesis\": \"At r=0.3 (30% real data), spectral metrics will show attenuated but detectable collapse compared to r=0.5 (exp_004, monotonic log_det rise), helping establish the r_crit phase boundary shape. If log_det peaks then declines within 10 generations, r=0.3 is below r_crit and SLV-based collapse detection is viable at this ratio; if log_det rises monotonically like r=0.5, then r_crit < 0.3.\", \"parent\": \"exp_004\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition fixed_mix --seed 42 --generations 10 --signal log_det --tau 0.002 --k 0 --signal_mode per_gen --real_ratio 0.3 --gpu 0\\\"\", \"server\": \"rtx6000-diagprobe\", \"gpu\": [\"cuda:1\"], \"pid\": \"194372\", \"log_path\": \"~/runs/spectral_collapse_ews/exp_008.log\", \"submitted_at\": \"2026-05-18T10:18:47.426Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"description\": \"Phase 1: Fixed mix r=0.3 ablation (30% real + 70% synthetic), seed 42, 10 generations\", \"model_name\": \"EleutherAI/pythia-410m-deduped\", \"seed\": 42, \"data_path\": \"/root/spectral_collapse_ews/data/\", \"data_count\": \"50K real pool, total_per_gen=50K (15K real + 35K synthetic per gen)\", \"generations\": 10, \"condition\": \"fixed_mix\", \"real_ratio\": 0.3, \"checkpoint_dir\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r03_seed42/\", \"results_file\": \"/root/spectral_collapse_ews/results/phase1_fixed_mix_r03_seed42_results.json\", \"checkpoint_source\": \"EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)\"
+…[truncated 157 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_004",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 202
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-18T10:20:05.421474+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_004",
+  "field": "conclusion",
+  "value": "success",
+  "project": "spectral_collapse_ews"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_004",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_004",
+    "field": "conclusion",
+    "value": "success",
+    "project": "spectral_collapse_ews"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-18T10:20:05.873886+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_004\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-17T04:31:11.170Z\", \"updated_at\": \"2026-05-18T10:20:05.448Z\", \"hypothesis\": \"Fixed 50/50 real-synthetic mixing provides intermediate collapse mitigation compared to pure collapse (0% real) but underperforms spectral-guided adaptive mixing (exp_003), because uniform allocation wastes real data budget on early generations where collapse signals are weak\", \"parent\": \"exp_001\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition fixed_mix --seed 42 --generations 10 --signal log_det --tau 0.002 --k 0 --signal_mode per_gen --gpu 0\\\"\", \"server\": \"rtx6000-diagprobe\", \"gpu\": \"cuda:1\", \"pid\": 135411, \"log_path\": \"~/runs/spectral_collapse_ews/exp_004.log\", \"submitted_at\": \"2026-05-17T17:56:12.965Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"description\": \"Phase 1: Fixed 50/50 real-synthetic mixing (baseline condition), seed 42\", \"tmux_session\": \"exp_004\", \"model_name\": \"EleutherAI/pythia-410m-deduped\", \"seed\": 42, \"data_path\": \"/root/spectral_collapse_ews/data/\", \"data_count\": \"50K real pool, total_per_gen=50K\", \"generations\": 10, \"condition\": \"fixed_mix\", \"checkpoint_dir\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_seed42/\", \"results_file\": \"/root/spectral_collapse_ews/results/phase1_fixed_mix_seed42_results.json\", \"checkpoint_source\": \"EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)\", \"eval_data\": \"/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)\"}, \"metrics\": {\"gen0_eff_rank\": 417.55, \"gen0_log_det\": 2366.68, \"gen0_ppl\": 9.55
+…[truncated 1958 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_004",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 452
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-18T10:20:06.376410+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_004",
+  "field": "checkpoint_path",
+  "value": "/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_seed42/",
+  "project": "spectral_collapse_ews"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_004",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_004",
+    "field": "checkpoint_path",
+    "value": "/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_seed42/",
+    "project": "spectral_collapse_ews"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-18T10:20:06.778618+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_004\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-17T04:31:11.170Z\", \"updated_at\": \"2026-05-18T10:20:06.400Z\", \"hypothesis\": \"Fixed 50/50 real-synthetic mixing provides intermediate collapse mitigation compared to pure collapse (0% real) but underperforms spectral-guided adaptive mixing (exp_003), because uniform allocation wastes real data budget on early generations where collapse signals are weak\", \"parent\": \"exp_001\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition fixed_mix --seed 42 --generations 10 --signal log_det --tau 0.002 --k 0 --signal_mode per_gen --gpu 0\\\"\", \"server\": \"rtx6000-diagprobe\", \"gpu\": \"cuda:1\", \"pid\": 135411, \"log_path\": \"~/runs/spectral_collapse_ews/exp_004.log\", \"submitted_at\": \"2026-05-17T17:56:12.965Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"description\": \"Phase 1: Fixed 50/50 real-synthetic mixing (baseline condition), seed 42\", \"tmux_session\": \"exp_004\", \"model_name\": \"EleutherAI/pythia-410m-deduped\", \"seed\": 42, \"data_path\": \"/root/spectral_collapse_ews/data/\", \"data_count\": \"50K real pool, total_per_gen=50K\", \"generations\": 10, \"condition\": \"fixed_mix\", \"checkpoint_dir\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_seed42/\", \"results_file\": \"/root/spectral_collapse_ews/results/phase1_fixed_mix_seed42_results.json\", \"checkpoint_source\": \"EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)\", \"eval_data\": \"/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)\"}, \"metrics\": {\"gen0_eff_rank\": 417.55, \"gen0_log_det\": 2366.68, \"gen0_ppl\": 9.55
+…[truncated 2060 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_004",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 402
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-18T10:20:06.779098+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_004",
+  "field": "log_path",
+  "value": "~/runs/spectral_collapse_ews/exp_004.log",
+  "project": "spectral_collapse_ews"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_004",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_004",
+    "field": "log_path",
+    "value": "~/runs/spectral_collapse_ews/exp_004.log",
+    "project": "spectral_collapse_ews"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-18T10:20:06.879938+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_004\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-17T04:31:11.170Z\", \"updated_at\": \"2026-05-18T10:20:06.814Z\", \"hypothesis\": \"Fixed 50/50 real-synthetic mixing provides intermediate collapse mitigation compared to pure collapse (0% real) but underperforms spectral-guided adaptive mixing (exp_003), because uniform allocation wastes real data budget on early generations where collapse signals are weak\", \"parent\": \"exp_001\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition fixed_mix --seed 42 --generations 10 --signal log_det --tau 0.002 --k 0 --signal_mode per_gen --gpu 0\\\"\", \"server\": \"rtx6000-diagprobe\", \"gpu\": \"cuda:1\", \"pid\": 135411, \"log_path\": \"~/runs/spectral_collapse_ews/exp_004.log\", \"submitted_at\": \"2026-05-17T17:56:12.965Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"description\": \"Phase 1: Fixed 50/50 real-synthetic mixing (baseline condition), seed 42\", \"tmux_session\": \"exp_004\", \"model_name\": \"EleutherAI/pythia-410m-deduped\", \"seed\": 42, \"data_path\": \"/root/spectral_collapse_ews/data/\", \"data_count\": \"50K real pool, total_per_gen=50K\", \"generations\": 10, \"condition\": \"fixed_mix\", \"checkpoint_dir\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_seed42/\", \"results_file\": \"/root/spectral_collapse_ews/results/phase1_fixed_mix_seed42_results.json\", \"checkpoint_source\": \"EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)\", \"eval_data\": \"/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)\"}, \"metrics\": {\"gen0_eff_rank\": 417.55, \"gen0_log_det\": 2366.68, \"gen0_ppl\": 9.55
+…[truncated 2120 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_004",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-18T10:20:17.581373+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_004",
+  "field": "notes",
+  "value": "Fixed r=0.5 baseline完成10 gen。r=0.5完全消除spectral collapse（eff_rank/log_det单调上升），ppl仅+49%（vs pure collapse +704%），但distinct4暴跌86%（0.74→0.10）。与exp_006（adaptive never triggered, 也是r=0.5）spectral/ppl高度一致，但distinct4差异显著（0.10 vs 0.23），可能因code path差异。关键结论：r=0.5是r_crit的上界参考点——spectral EWS在此比例下完全被抑制。",
+  "project": "spectral_collapse_ews"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_004",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_004",
+    "field": "notes",
+    "value": "Fixed r=0.5 baseline完成10 gen。r=0.5完全消除spectral collapse（eff_rank/log_det单调上升），ppl仅+49%（vs pure collapse +704%），但distinct4暴跌86%（0.74→0.10）。与exp_006（adaptive never triggered, 也是r=0.5）spectral/ppl高度一致，但distinct4差异显著（0.10 vs 0.23），可能因code path差异。关键结论：r=0.5是r_crit的上界参考点——spectral EWS在此比例下完全被抑制。",
+    "project": "spectral_collapse_ews"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-18T10:20:17.684147+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_004\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-17T04:31:11.170Z\", \"updated_at\": \"2026-05-18T10:20:17.626Z\", \"hypothesis\": \"Fixed 50/50 real-synthetic mixing provides intermediate collapse mitigation compared to pure collapse (0% real) but underperforms spectral-guided adaptive mixing (exp_003), because uniform allocation wastes real data budget on early generations where collapse signals are weak\", \"parent\": \"exp_001\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition fixed_mix --seed 42 --generations 10 --signal log_det --tau 0.002 --k 0 --signal_mode per_gen --gpu 0\\\"\", \"server\": \"rtx6000-diagprobe\", \"gpu\": \"cuda:1\", \"pid\": 135411, \"log_path\": \"~/runs/spectral_collapse_ews/exp_004.log\", \"submitted_at\": \"2026-05-17T17:56:12.965Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"description\": \"Phase 1: Fixed 50/50 real-synthetic mixing (baseline condition), seed 42\", \"tmux_session\": \"exp_004\", \"model_name\": \"EleutherAI/pythia-410m-deduped\", \"seed\": 42, \"data_path\": \"/root/spectral_collapse_ews/data/\", \"data_count\": \"50K real pool, total_per_gen=50K\", \"generations\": 10, \"condition\": \"fixed_mix\", \"checkpoint_dir\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_seed42/\", \"results_file\": \"/root/spectral_collapse_ews/results/phase1_fixed_mix_seed42_results.json\", \"checkpoint_source\": \"EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)\", \"eval_data\": \"/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)\"}, \"metrics\": {\"gen0_eff_rank\": 417.55, \"gen0_log_det\": 2366.68, \"gen0_ppl\": 9.55
+…[truncated 2427 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_004",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 102
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-18T10:20:17.735705+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_004",
+  "field": "status",
+  "value": "DONE",
+  "project": "spectral_collapse_ews"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_004",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_004",
+    "field": "status",
+    "value": "DONE",
+    "project": "spectral_collapse_ews"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-18T10:20:17.887273+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_004\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T04:31:11.170Z\", \"updated_at\": \"2026-05-18T10:20:17.738Z\", \"hypothesis\": \"Fixed 50/50 real-synthetic mixing provides intermediate collapse mitigation compared to pure collapse (0% real) but underperforms spectral-guided adaptive mixing (exp_003), because uniform allocation wastes real data budget on early generations where collapse signals are weak\", \"parent\": \"exp_001\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition fixed_mix --seed 42 --generations 10 --signal log_det --tau 0.002 --k 0 --signal_mode per_gen --gpu 0\\\"\", \"server\": \"rtx6000-diagprobe\", \"gpu\": \"cuda:1\", \"pid\": 135411, \"log_path\": \"~/runs/spectral_collapse_ews/exp_004.log\", \"submitted_at\": \"2026-05-17T17:56:12.965Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"description\": \"Phase 1: Fixed 50/50 real-synthetic mixing (baseline condition), seed 42\", \"tmux_session\": \"exp_004\", \"model_name\": \"EleutherAI/pythia-410m-deduped\", \"seed\": 42, \"data_path\": \"/root/spectral_collapse_ews/data/\", \"data_count\": \"50K real pool, total_per_gen=50K\", \"generations\": 10, \"condition\": \"fixed_mix\", \"checkpoint_dir\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_seed42/\", \"results_file\": \"/root/spectral_collapse_ews/results/phase1_fixed_mix_seed42_results.json\", \"checkpoint_source\": \"EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)\", \"eval_data\": \"/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)\", \"wall_clock_seconds\": 59044.8, \"gpu_hours\": 16.4}, \"metrics\": {\"gen0_eff_rank\": 417.
+…[truncated 2575 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_004",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 151
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-18T10:20:55.840852+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "text": "[资源] GPU 2/2 | Worker 2 (GPU 0 / CPU 2) | 磁盘: rtx6000-diagprobe 400GB/439GB (4%)\n\n## exp_004 完成 ✅ — Fixed mix r=0.5 baseline (10 gen)\n\n**事实**:\n- ppl: 9.55→14.23 (+49%), eff_rank: 417→546 (单调上升), log_det: 2367→2562 (单调上升)\n- distinct4: 0.74→0.10 (↓86%) — 严重多样性退化\n- train_loss: 1.98→0.99 (单调下降，memorization 信号)\n- 耗时 16.4 GPU·h\n\n**对比**:\n| 指标 | r=0 (exp_001) | r=0.5 fixed (exp_004) | r=0.5 adaptive (exp_006) |\n|------|------|------|------|\n| Final ppl | 76.78 (+704%) | 14.23 (+49%) | 15.10 (+58%) |\n| eff_rank趋势 | 496→442 (collapse) | 417→546 (rise) | 417→554 (rise) |\n| log_det趋势 | 2469→2179 (collapse) | 2367→2562 (rise) | 2367→2572 (rise) |\n| distinct4 final | N/A (gen3: 0.49) | 0.102 | 0.239 |\n\nexp_004 vs exp_006: spectral/ppl 几乎一致（exp_006 controller 从未触发，等效 r=0.5 fixed），但 distinct4 差异显著（0.10 vs 0.24），可能源于 fixed_mix vs adaptive code path 的细微差异（采样顺序/随机数流）。\n\n**关键结论**: r=0.5 完全消除 spectral collapse（eff_rank/log_det 单调上升），但质量仍退化（ppl +49%, distinct4 -86%）。这确认 r=0.5 是 r_crit 上界——spectral EWS 在此比例下完全被抑制，与 signal attenuation paradox (C3) 一致。\n\n**已执行**:\n- exp_008 (r=0.3, 10gen, cuda:1) 已提交启动，填充 r_crit 曲线\n- Worker 正在读取 exp_004 完整结果文件（可能有 gen10 数据待补充）\n\n**r_crit 曲线进度**:\n- r=0.0 ✅ (exp_001, collapse)\n- r=0.2 🏃 (exp_007, cuda:0)\n- r=0.3 🏃 (exp_008, cuda:1, 刚提交)\n- r=0.5 ✅ (exp_004, no collapse)\n- 待做: r=0.1, r=0.05, r=0.7\n\n**实验计划反思**:\n1. exp_004 验证了 r=0.5 是 spectral collapse 的上界，r_crit 必然在 (0, 0.5) 之间\n2. exp_007 (r=0.2) 和 exp_008 (r=0.3) 将确定 r_crit 的精确位置\n3. 如果 r=0.2 也无 collapse，需要追加 r=0.1/r=0.05 才能找到边界\n4. distinct4 在 r=0.5 下仍暴跌 86%，说明 spectral EWS 只捕捉一类退化——这对论文 limitation section 有素材价值\n5. 建议 Phase 1 完成后增加一个 \"spectral vs diversity metrics\" 对比分析，强化 SLV 的适用范围 claim",
+  "project": "spectral_collapse_ews"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_004",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "text": "[资源] GPU 2/2 | Worker 2 (GPU 0 / CPU 2) | 磁盘: rtx6000-diagprobe 400GB/439GB (4%)\n\n## exp_004 完成 ✅ — Fixed mix r=0.5 baseline (10 gen)\n\n**事实**:\n- ppl: 9.55→14.23 (+49%), eff_rank: 417→546 (单调上升), log_det: 2367→2562 (单调上升)\n- distinct4: 0.74→0.10 (↓86%) — 严重多样性退化\n- train_loss: 1.98→0.99 (单调下降，memorization 信号)\n- 耗时 16.4 GPU·h\n\n**对比**:\n| 指标 | r=0 (exp_001) | r=0.5 fixed (exp_004) | r=0.5 adaptive (exp_006) |\n|------|------|------|------|\n| Final ppl | 76.78 (+704%) | 14.23 (+49%) | 15.10 (+58%) |\n| eff_rank趋势 | 496→442 (collapse) | 417→546 (rise) | 417→554 (rise) |\n| log_det趋势 | 2469→2179 (collapse) | 2367→2562 (rise) | 2367→2572 (rise) |\n| distinct4 final | N/A (gen3: 0.49) | 0.102 | 0.239 |\n\nexp_004 vs exp_006: spectral/ppl 几乎一致（exp_006 controller 从未触发，等效 r=0.5 fixed），但 distinct4 差异显著（0.10 vs 0.24），可能源于 fixed_mix vs adaptive code path 的细微差异（采样顺序/随机数流）。\n\n**关键结论**: r=0.5 完全消除 spectral collapse（eff_rank/log_det 单调上升），但质量仍退化（ppl +49%, distinct4 -86%）。这确认 r=0.5 是 r_crit 上界——spectral EWS 在此比例下完全被抑制，与 signal attenuation paradox (C3) 一致。\n\n**已执行**:\n- exp_008 (r=0.3, 10gen, cuda:1) 已提交启动，填充 r_crit 曲线\n- Worker 正在读取 exp_004 完整结果文件（可能有 gen10 数据待补充）\n\n**r_crit 曲线进度**:\n- r=0.0 ✅ (exp_001, collapse)\n- r=0.2 🏃 (exp_007, cuda:0)\n- r=0.3 🏃 (exp_008, cuda:1, 刚提交)\n- r=0.5 ✅ (exp_004, no collapse)\n- 待做: r=0.1, r=0.05, r=0.7\n\n**实验计划反思**:\n1. exp_004 验证了 r=0.5 是 spectral collapse 的上界，r_crit 必然在 (0, 0.5) 之间\n2. exp_007 (r=0.2) 和 exp_008 (r=0.3) 将确定 r_crit 的精确位置\n3. 如果 r=0.2 也无 collapse，需要追加 r=0.1/r=0.05 才能找到边界\n4. distinct4 在 r=0.5 下仍暴跌 86%，说明 spectral EWS 只捕捉一类退化——这对论文 limitation section 有素材价值\n5. 建议 Phase 1 完成后增加一个 \"spectral vs diversity metrics\" 对比分析，强化 SLV 的适用范围 claim",
+    "project": "spectral_collapse_ews"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-18T10:20:57.197564+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5bdb9114bcefff7f4872823fd76bb0ac:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_004",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "elapsed_ms": 1356
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54 · 2026-05-18T10:21:04.235550+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "spectral_collapse_ews",
+  "file": "literature_map.yaml"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_004",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "spectral_collapse_ews",
+    "file": "literature_map.yaml"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-18T10:21:04.537424+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/literature_map.yaml\", \"content\": \"papers:\\n  # ============================================================\\n  # Cluster 1: model_collapse_core (6 papers)\\n  # ============================================================\\n  - bibtex_key: shumailov2024collapse\\n    title: \\\"AI models collapse when trained on recursively generated data\\\"\\n    authors: \\\"Shumailov, Ilia and Shumaylov, Zakhar and Zhao, Yiren and Papernot, Nicolas and Anderson, Ross and Gal, Yarin\\\"\\n    year: 2024\\n    venue: \\\"Nature\\\"\\n    arxiv_id: \\\"2305.17493\\\"\\n    doi: \\\"10.1038/s41586-024-07566-y\\\"\\n    category: model_collapse_core\\n    verified: true\\n    abstract_short: \\\"Shows that training on model-generated data causes irreversible defects where tails of the original content distribution disappear, leading to model collapse across LLMs, VAEs, and GMMs.\\\"\\n    relevance: \\\"Seminal paper defining model collapse. Our work provides spectral EWS to detect collapse onset before irreversible degradation.\\\"\\n\\n  - bibtex_key: dohmatob2024tails\\n    title: \\\"A Tale of Tails: Model Collapse as a Change of Scaling Laws\\\"\\n    authors: \\\"Dohmatob, Elvis and Feng, Yunzhen and Yang, Pu and Charton, Francois and Kempe, Julia\\\"\\n    year: 2024\\n    venue: \\\"ICML 2024\\\"\\n    arxiv_id: \\\"2402.07043\\\"\\n    doi: \\\"\\\"\\n    category: model_collapse_core\\n    verified: true\\n    abstract_short: \\\"Provides first theoretical framework for model collapse through scaling laws, showing how tail distributions vanish across generations with validated experiments on transformers.\\\"\\n    relevance: \\\"Theoretical foundation for understanding collapse dynamics. Our spectral metrics connect to their scaling law framework.\\\"\\n\\n  - bibtex_key: alemohammad2024mad\\n    title: \\\"Self-Consuming Generative Mod
+…[truncated 11385 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_004",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 301
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56 · 2026-05-18T10:21:04.891207+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "spectral_collapse_ews",
+  "file": "memory.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_004",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "spectral_collapse_ews",
+    "file": "memory.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-18T10:21:04.941997+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/memory.md\", \"content\": \"# Memory — spectral_collapse_ews\\n\\n## 教训\\n\\n### M005: 裸 nohup 导致 cron 误判 (2026-05-17)\\n- **问题**: `nohup python ... &` 启动实验，cron 监控 nohup wrapper PID（自动退出），导致反复误报 \\\"process exited\\\"\\n- **修复**: 后续必须用 `submit_training_job`（自动 tmux + sentinel file）或手动 tmux wrapper\\n- **受影响实验**: exp_005 被误标 DONE(failed) 5 次\\n\\n### M004: Worker 误删 checkpoint (race condition, 2026-05-17)\\n- diagnose worker 误删了 PID 88161 的 checkpoint\\n\\n## 决策原因\\n\\n### D012: k=1.0 → k=20, tau=0.005 → tau=0.002 (2026-05-17)\\n- **原因**: dry-run 验证 k=1.0 下 ratio 最大仅 +0.006（0.5→0.506），adaptive ≡ fixed_mix 无差异\\n- **校准**: Phase 0 Gen 5 delta≈0.011, k=20 时 ratio≈0.66（有意义差异）\\n- **tau 降低**: 0.005→0.002 使 Gen 4 即触发（delta=0.0077 > 0.002）\\n\\n### D011: Controller 三层 bug (2026-05-17)\\n- Bug 1: 预算扣减用请求值不是实际值 → report_actual 修正\\n- Bug 2: Gen 0 spectral 未进入 controller → set_baseline 方法\\n- Bug 3: real=50K + total=100K → ratio>0.5 不可能 → 改为 total_per_gen=50K, ratio 控制 real 占比\\n\\n## 环境约束\\n\\n- rtx6000-diagprobe: 2× RTX PRO 6000 (98GB each)\\n- 410M 模型训练用 ~19GB VRAM → 理论上单卡可跑 2 个实验（待验证）\\n- 服务器无外网 (HF_HUB_OFFLINE=1, TRANSFORMERS_OFFLINE=1)\\n- 缺 PYTHONUNBUFFERED → stdout 缓冲延迟，需看 results 文件而非 log\\n\\n## Phase 0 完整趋势 (Gen 0-9)\\n- eff_rank: 417→496(peak Gen 2)→448(Gen 9), 单调下降 Gen 2-9 (-9.7%)\\n- log_det: 2367→2470(peak Gen 2)→2208(Gen 9), Gen 7-9 加速下降 (~50/gen vs 之前 ~33/gen)\\n- ppl: 9.55→63.32, Gen 2→9 +366% 指数增长，每代增量单调递增\\n- HellaSwag: 0.413→0.301, -27%, 完美单调下降 Gen 0-9\\n- 1B pilot (Gen 0-3): 确认 cross-scale 同 pattern\\n\\n## 信号衰减悖论（Reviewer 战略审查 2026-05-17）\\n- Proportional controller 存在自稳定负反馈环：干预→collapse 减缓→信号减弱→干预减少→collapse 恢复\\n- 即使 k=50，ratio 也只会在 0.50-0.60 小幅波动\\n- exp_005 Gen 1: delta=-0.00009，50% mixing 完全消除 decompression peak\\n- Reviewer 预测 Gen 3-5 触发但 ratio 仅 0.52-0.56\\n- 备选方案：累积偏移 controller (delta_cumulative = max(0, S_0 - S_t
+…[truncated 665 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_004",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58 · 2026-05-18T10:21:37.333557+00:00_
+
+called mcp__agent-ml-research__save_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__save_project_file</summary>
+
+```json
+{
+  "project": "spectral_collapse_ews",
+  "file": "memory.md",
+  "content": "# Memory — spectral_collapse_ews\n\n## 教训\n\n### M005: 裸 nohup 导致 cron 误判 (2026-05-17)\n- **问题**: `nohup python ... &` 启动实验，cron 监控 nohup wrapper PID（自动退出），导致反复误报 \"process exited\"\n- **修复**: 后续必须用 `submit_training_job`（自动 tmux + sentinel file）或手动 tmux wrapper\n- **受影响实验**: exp_005 被误标 DONE(failed) 5 次\n\n### M004: Worker 误删 checkpoint (race condition, 2026-05-17)\n- diagnose worker 误删了 PID 88161 的 checkpoint\n\n## 决策原因\n\n### D012: k=1.0 → k=20, tau=0.005 → tau=0.002 (2026-05-17)\n- **原因**: dry-run 验证 k=1.0 下 ratio 最大仅 +0.006（0.5→0.506），adaptive ≡ fixed_mix 无差异\n- **校准**: Phase 0 Gen 5 delta≈0.011, k=20 时 ratio≈0.66（有意义差异）\n- **tau 降低**: 0.005→0.002 使 Gen 4 即触发（delta=0.0077 > 0.002）\n\n### D011: Controller 三层 bug (2026-05-17)\n- Bug 1: 预算扣减用请求值不是实际值 → report_actual 修正\n- Bug 2: Gen 0 spectral 未进入 controller → set_baseline 方法\n- Bug 3: real=50K + total=100K → ratio>0.5 不可能 → 改为 total_per_gen=50K, ratio 控制 real 占比\n\n## 环境约束\n\n- rtx6000-diagprobe: 2× RTX PRO 6000 (98GB each)\n- 410M 模型训练用 ~19GB VRAM → 理论上单卡可跑 2 个实验（待验证）\n- 服务器无外网 (HF_HUB_OFFLINE=1, TRANSFORMERS_OFFLINE=1)\n- 缺 PYTHONUNBUFFERED → stdout 缓冲延迟，需看 results 文件而非 log\n\n## Phase 0 完整趋势 (Gen 0-9)\n- eff_rank: 417→496(peak Gen 2)→448(Gen 9), 单调下降 Gen 2-9 (-9.7%)\n- log_det: 2367→2470(peak Gen 2)→2208(Gen 9), Gen 7-9 加速下降 (~50/gen vs 之前 ~33/gen)\n- ppl: 9.55→63.32, Gen 2→9 +366% 指数增长，每代增量单调递增\n- HellaSwag: 0.413→0.301, -27%, 完美单调下降 Gen 0-9\n- 1B pilot (Gen 0-3): 确认 cross-scale 同 pattern\n\n## r=0.5 关键发现 (exp_004, 2026-05-18)\n- r=0.5 完全消除 spectral collapse：eff_rank 417→546 单调上升，log_det 2367→2562 单调上升\n- 但 ppl 仍 +49%（9.55→14.23），distinct4 暴跌 86%（0.74→0.10）\n- **含义**: spectral EWS (SLV/eff_rank) 只捕捉一类退化——real data mixing 在抑制 spectral signal 的同时未完全阻止质量退化\n- distinct4 vs spectral 的 divergence 在文献中尚未见讨论，可作为 limitation 或额外 contribution\n- exp_004 (fixed r=0.5) vs exp_006 (adaptive never triggered, 也 r=0.5): spectral/ppl 一致但 distinct4 差异显著（0.10 vs 0.24），原因待查（code path 差异 or 采样噪声）\n\n## 信号衰减悖论（Reviewer 战略审查 2026-05-17）\n- Proportional controller 存在自稳定负反馈环：干预→collapse 减缓→信号减弱→干预减少→collapse 恢复\n- 即使 k=50，ratio 也只会在 0.50-0.60 小幅波动\n- exp_005 Gen 1: delta=-0.00009，50% mixing 完全消除 decompression peak\n- Reviewer 预测 Gen 3-5 触发但 ratio 仅 0.52-0.56\n- 备选方案：累积偏移 controller (delta_cumulative = max(0, S_0 - S_t)/|S_0|)\n- ⚠️ 校准注意：Gen 0 baseline 时，Phase 0 的 decompression peak 使 Gen 1-5 delta=0（log_det 高于 Gen 0）。Gen 6 才首次为正。Phase 1 中 decompression 被抑制，Gen 0≈Gen 1，此问题不影响\n- cumulative k 待校准：Gen 0 baseline 下 Phase 0 Gen 8 delta=0.0484，k≈15 时 ratio≈0.62\n\n## 论文 Claim 策略（Reviewer 评估）\n- ✅ 强 claim: spectral collapse 检测 + collapse 加速\n- ⚠️ \"SLV 比 eff_rank 更早\" → 降为 preliminary observation（410M 无 temporal lead）\n- 三阶段模式 → characterization 的一部分，不独立贡献\n- 主线从 \"adaptive controller\" 后移到 \"spectral EWS detection\"\n- Controller 作为 proof-of-concept + 信号衰减悖论作为对未来设计的约束\n\n## r_crit 曲线数据点 (2026-05-18)\n- r=0.0: spectral collapse confirmed (eff_rank↓, log_det↓ after Gen 2)\n- r=0.5: no spectral collapse (eff_rank↑, log_det↑ monotonic through 10 gen)\n- r_crit 在 (0, 0.5) 之间，exp_007 (r=0.2) 和 exp_008 (r=0.3) 正在定位\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_004",
+  "tool": "mcp__agent-ml-research__save_project_file",
+  "tool_args": {
+    "project": "spectral_collapse_ews",
+    "file": "memory.md",
+    "content": "# Memory — spectral_collapse_ews\n\n## 教训\n\n### M005: 裸 nohup 导致 cron 误判 (2026-05-17)\n- **问题**: `nohup python ... &` 启动实验，cron 监控 nohup wrapper PID（自动退出），导致反复误报 \"process exited\"\n- **修复**: 后续必须用 `submit_training_job`（自动 tmux + sentinel file）或手动 tmux wrapper\n- **受影响实验**: exp_005 被误标 DONE(failed) 5 次\n\n### M004: Worker 误删 checkpoint (race condition, 2026-05-17)\n- diagnose worker 误删了 PID 88161 的 checkpoint\n\n## 决策原因\n\n### D012: k=1.0 → k=20, tau=0.005 → tau=0.002 (2026-05-17)\n- **原因**: dry-run 验证 k=1.0 下 ratio 最大仅 +0.006（0.5→0.506），adaptive ≡ fixed_mix 无差异\n- **校准**: Phase 0 Gen 5 delta≈0.011, k=20 时 ratio≈0.66（有意义差异）\n- **tau 降低**: 0.005→0.002 使 Gen 4 即触发（delta=0.0077 > 0.002）\n\n### D011: Controller 三层 bug (2026-05-17)\n- Bug 1: 预算扣减用请求值不是实际值 → report_actual 修正\n- Bug 2: Gen 0 spectral 未进入 controller → set_baseline 方法\n- Bug 3: real=50K + total=100K → ratio>0.5 不可能 → 改为 total_per_gen=50K, ratio 控制 real 占比\n\n## 环境约束\n\n- rtx6000-diagprobe: 2× RTX PRO 6000 (98GB each)\n- 410M 模型训练用 ~19GB VRAM → 理论上单卡可跑 2 个实验（待验证）\n- 服务器无外网 (HF_HUB_OFFLINE=1, TRANSFORMERS_OFFLINE=1)\n- 缺 PYTHONUNBUFFERED → stdout 缓冲延迟，需看 results 文件而非 log\n\n## Phase 0 完整趋势 (Gen 0-9)\n- eff_rank: 417→496(peak Gen 2)→448(Gen 9), 单调下降 Gen 2-9 (-9.7%)\n- log_det: 2367→2470(peak Gen 2)→2208(Gen 9), Gen 7-9 加速下降 (~50/gen vs 之前 ~33/gen)\n- ppl: 9.55→63.32, Gen 2→9 +366% 指数增长，每代增量单调递增\n- HellaSwag: 0.413→0.301, -27%, 完美单调下降 Gen 0-9\n- 1B pilot (Gen 0-3): 确认 cross-scale 同 pattern\n\n## r=0.5 关键发现 (exp_004, 2026-05-18)\n- r=0.5 完全消除 spectral collapse：eff_rank 417→546 单调上升，log_det 2367→2562 单调上升\n- 但 ppl 仍 +49%（9.55→14.23），distinct4 暴跌 86%（0.74→0.10）\n- **含义**: spectral EWS (SLV/eff_rank) 只捕捉一类退化——real data mixing 在抑制 spectral signal 的同时未完全阻止质量退化\n- distinct4 vs spectral 的 divergence 在文献中尚未见讨论，可作为 limitation 或额外 contribution\n- exp_004 (fixed r=0.5) vs exp_006 (adaptive never triggered, 也 r=0.5): spectral/ppl 一致但 distinct4 差异显著（0.10 vs 0.24），原因待查（code path 差异 or 采样噪声）\n\n## 信号衰减悖论（Reviewer 战略审查 2026-05-17）\n- Proportional controller 存在自稳定负反馈环：干预→collapse 减缓→信号减弱→干预减少→collapse 恢复\n- 即使 k=50，ratio 也只会在 0.50-0.60 小幅波动\n- exp_005 Gen 1: delta=-0.00009，50% mixing 完全消除 decompression peak\n- Reviewer 预测 Gen 3-5 触发但 ratio 仅 0.52-0.56\n- 备选方案：累积偏移 controller (delta_cumulative = max(0, S_0 - S_t)/|S_0|)\n- ⚠️ 校准注意：Gen 0 baseline 时，Phase 0 的 decompression peak 使 Gen 1-5 delta=0（log_det 高于 Gen 0）。Gen 6 才首次为正。Phase 1 中 decompression 被抑制，Gen 0≈Gen 1，此问题不影响\n- cumulative k 待校准：Gen 0 baseline 下 Phase 0 Gen 8 delta=0.0484，k≈15 时 ratio≈0.62\n\n## 论文 Claim 策略（Reviewer 评估）\n- ✅ 强 claim: spectral collapse 检测 + collapse 加速\n- ⚠️ \"SLV 比 eff_rank 更早\" → 降为 preliminary observation（410M 无 temporal lead）\n- 三阶段模式 → characterization 的一部分，不独立贡献\n- 主线从 \"adaptive controller\" 后移到 \"spectral EWS detection\"\n- Controller 作为 proof-of-concept + 信号衰减悖论作为对未来设计的约束\n\n## r_crit 曲线数据点 (2026-05-18)\n- r=0.0: spectral collapse confirmed (eff_rank↓, log_det↓ after Gen 2)\n- r=0.5: no spectral collapse (eff_rank↑, log_det↑ monotonic through 10 gen)\n- r_crit 在 (0, 0.5) 之间，exp_007 (r=0.2) 和 exp_008 (r=0.3) 正在定位\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-18T10:21:37.334201+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/memory.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_004",
+  "tool": "mcp__agent-ml-research__save_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60 · 2026-05-18T10:22:11.582963+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+```json
+{
+  "task_type": "research:literature-linkage-exp004",
+  "project": "spectral_collapse_ews",
+  "task_prompt": "## 任务：exp_004 文献联动 — spectral vs diversity metrics divergence\n\n### 背景\nexp_004 (fixed r=0.5 real-synthetic mixing, 10 generations, Pythia-410M) 刚完成。核心发现：\n- r=0.5 完全消除 spectral collapse（eff_rank 和 log_det 单调上升 10 generations）\n- 但 distinct-4 从 0.74 暴跌到 0.10（-86%），perplexity 从 9.55 升到 14.23（+49%）\n- 这意味着 spectral metrics (SLV/effective rank) 无法捕捉所有类型的质量退化\n\n### 调研任务\n\n1. **搜索文献**：用 WebSearch 搜索以下关键词组合，找相关论文：\n   - \"model collapse diversity loss spectral\" \n   - \"effective rank diversity metrics divergence\"\n   - \"synthetic data quality diversity generation\"\n   - \"n-gram diversity model collapse recursive training\"\n   - \"spectral metrics limitations language model\"\n\n2. **重点关注**：\n   - 是否有论文报告过 spectral metrics (effective rank, singular value distribution) 与 diversity metrics (distinct-n, self-BLEU) 在 model collapse 场景下的 divergence？\n   - 是否有论文讨论过 real data mixing 抑制 spectral signal 但未抑制 diversity collapse 的现象？\n   - gerstgrasser2024inevitable (arXiv 2404.01413) 是否有 diversity 指标数据？\n   - dohmatob2025strong (arXiv 2410.04840) 是否讨论 spectral vs diversity？\n\n3. **对比**：检查项目 literature_map.yaml（通过 read_project_file）中已有的 direct-competitor 论文：\n   - gu2026sigma (SIGMA) — 他们是否报告了 diversity metrics？\n   - 他们的 spectral bounds 是否也存在我们发现的这种 blindness？\n\n### 输出\n\n写一份简短报告（<500 字），结构：\nA) 文献中是否已有关于 spectral vs diversity divergence 的讨论（yes/no + 具体引用）\nB) 如果有，他们的发现与我们的对比\nC) 如果无，这是否可作为我们论文的额外 contribution 或 novel observation\nD) 建议补充到 literature_map.yaml 的论文（如果有新发现的相关论文）\n",
+  "tool_groups": "['knowledge']",
+  "tools": "['WebSearch', 'WebFetch']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_004",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "research:literature-linkage-exp004",
+    "project": "spectral_collapse_ews",
+    "task_prompt": "## 任务：exp_004 文献联动 — spectral vs diversity metrics divergence\n\n### 背景\nexp_004 (fixed r=0.5 real-synthetic mixing, 10 generations, Pythia-410M) 刚完成。核心发现：\n- r=0.5 完全消除 spectral collapse（eff_rank 和 log_det 单调上升 10 generations）\n- 但 distinct-4 从 0.74 暴跌到 0.10（-86%），perplexity 从 9.55 升到 14.23（+49%）\n- 这意味着 spectral metrics (SLV/effective rank) 无法捕捉所有类型的质量退化\n\n### 调研任务\n\n1. **搜索文献**：用 WebSearch 搜索以下关键词组合，找相关论文：\n   - \"model collapse diversity loss spectral\" \n   - \"effective rank diversity metrics divergence\"\n   - \"synthetic data quality diversity generation\"\n   - \"n-gram diversity model collapse recursive training\"\n   - \"spectral metrics limitations language model\"\n\n2. **重点关注**：\n   - 是否有论文报告过 spectral metrics (effective rank, singular value distribution) 与 diversity metrics (distinct-n, self-BLEU) 在 model collapse 场景下的 divergence？\n   - 是否有论文讨论过 real data mixing 抑制 spectral signal 但未抑制 diversity collapse 的现象？\n   - gerstgrasser2024inevitable (arXiv 2404.01413) 是否有 diversity 指标数据？\n   - dohmatob2025strong (arXiv 2410.04840) 是否讨论 spectral vs diversity？\n\n3. **对比**：检查项目 literature_map.yaml（通过 read_project_file）中已有的 direct-competitor 论文：\n   - gu2026sigma (SIGMA) — 他们是否报告了 diversity metrics？\n   - 他们的 spectral bounds 是否也存在我们发现的这种 blindness？\n\n### 输出\n\n写一份简短报告（<500 字），结构：\nA) 文献中是否已有关于 spectral vs diversity divergence 的讨论（yes/no + 具体引用）\nB) 如果有，他们的发现与我们的对比\nC) 如果无，这是否可作为我们论文的额外 contribution 或 novel observation\nD) 建议补充到 literature_map.yaml 的论文（如果有新发现的相关论文）\n",
+    "tool_groups": "['knowledge']",
+    "tools": "['WebSearch', 'WebFetch']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-18T10:22:14.569251+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_research_literature-linkage-exp004_20260518T102211\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/logs/workers/worker_research_literature-linkage-exp004_20260518T102211.log\", \"setup_data\": {}, \"message\": \"Worker worker_research_literature-linkage-exp004_20260518T102211 started. Use get_worker_status('worker_research_literature-linkage-exp004_20260518T102211') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_004",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 2986
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 62 · 2026-05-18T10:22:20.240310+00:00_
+
+当前状态：
+- **GPU**: 2/2 活跃 — cuda:0 (exp_007 r=0.2), cuda:1 (exp_008 r=0.3)
+- **Worker**: 2 运行中 — analysis:exp_004 (读完整结果), literature-linkage (文献联动)
+- **exp_004**: DONE(success), registry/memory.md 已更新, Director 已汇报
+
+已完成所有 on-experiment-done 步骤。等待 Worker 回调处理后续。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:exp_004"
+}
+```
+
+</details>
+
+---

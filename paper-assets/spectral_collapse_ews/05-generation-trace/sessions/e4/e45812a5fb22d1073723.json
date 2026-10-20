@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e45812a5fb22d1073723",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "analysis exp 017",
+  "task_key": "worker_analysis_exp_017_20260523T040027",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_017_20260523T040027_result.json",
+    "occurrence": 1,
+    "bytes": 1093,
+    "sha256": "41b25a5de1961da4455c11142a70f529b10bb827e17f0e8246e8960b307247cf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp_017 分析完成\n\n**结论: SUCCESS** — seed43 高保真复现 Type II trajectory。\n\n### 核心发现\n\n| 指标 | Gen0 | Gen2 (dip) | Gen5 | Gen10 |\n|------|------|-----------|------|-------|\n| SLV | 2366.68 | **2358.84** (Δ=-7.84) | 2395.98 | 2455.78 |\n| eff_rank | 417.55 | 480.44 | 492.09 | 505.98 |\n| PPL | 9.55 | 10.74 | 11.83 | 13.40 |\n| D-4 | 0.7415 | 0.4988 | 0.4435 | 0.2453 |\n\n### Cross-seed 一致性 (seed42 vs seed43)\n\n- **SLV Gen2 dip**: Δ = −8.11 ± 0.27，两个 seed 几乎完全一致\n- **Gen0-5 谱指标**: SLV std < 1.6, eff_rank std < 0.7, PPL std < 0.02\n- **Gen6-10 分化**: SLV 两者均持续上升，但 seed 间 std 增至 ~12；D-4 分化最大 — seed42 恢复到 0.52 而 seed43 持续下降到 0.25\n\n### 延伸趋势 (Gen5→10)\nSLV 持续单调上升，无二次坍缩。但 PPL (+40%) 和 D-4 (-67%) 的持续退化表明 20% real data 能稳定谱结构，但不足以阻止逐代质量下降。\n\n报告已写入 `artifacts/exp_017/report/analysis.md`，registry 已更新 metrics/notes/conclusion/paths。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-017.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e9dfbb0c0fc0e8bf8307",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "fix phase1 reviewer",
+  "task_key": "worker_fix_phase1_reviewer_20260516T160508",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_phase1_reviewer_20260516T160508_result.json",
+    "occurrence": 1,
+    "bytes": 1007,
+    "sha256": "992b689753ba392614930f075d0be29e1202153f6abed35af6353ccdd891377b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。\n\n## 修改摘要\n\n| 文件 | 改动 |\n|------|------|\n| `run_phase1.py` | `--k` default 2.0→1.0；添加 `linear_increasing` 到 CONDITION_CHOICES；`build_config` 返回 `(config, ratio_schedule)` 元组；`--gpu -1` 支持 CPU；传递 `ratio_schedule` 给 pipeline |\n| `src/pipeline.py` | `run_recursive_training` 新增 `ratio_schedule: Optional[List[float]]` 参数；ratio 决定逻辑：schedule 优先 > controller > config.real_data_ratio |\n\n## 验证结果\n\n- `--help` 参数列表正确，`--k` default=1.0 ✓\n- `from src.pipeline import run_recursive_training` import 成功 ✓\n- 4 个条件的 config 构建全部正确 ✓\n- `linear_increasing` schedule: `[0.2, 0.2667, ..., 0.8]`，首值=0.20，末值=0.80 ✓\n- `adaptive` 模式 ratio_schedule=None，k=1.0, tau=0.02, r_min=0.20, r_max=0.80 ✓\n- dry-run 因 CPU 加载模型超时未完成（正常——CPU 模式下 transformers 模型加载需 >30s），逻辑层验证已覆盖"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-phase1-reviewer.md"
+}

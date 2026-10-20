@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7b70199e1a1e6e17c5ce",
+  "project": "trace_distill_repair",
+  "kind": "result",
+  "title": "diag structural scoring v3 done",
+  "task_key": "worker_diag_structural_scoring_v3_done_20260515T060619",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_structural_scoring_v3_done_20260515T060619_result.json",
+    "occurrence": 1,
+    "bytes": 190,
+    "sha256": "1380f196c8dd41a2a55e80a5a5067550a2bb5071afb372eb635e9f1e16865f98"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程仍在活跃运行（6/33 实例，14:07:32 时间戳），并非已退出。按每实例约 18 秒估算，约 8 分钟后完成。已设置 ~4 分钟后回来复查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-structural-scoring-v3-done.md"
+}

@@ -1,0 +1,157 @@
+paper_key: "spectral_collapse_plasticity"
+title: "Spectral Collapse Drives Loss of Plasticity in Deep Continual Learning"
+venue: "NeurIPS 2025"
+full_text_available: true
+
+research:
+  baselines:
+    - "Backpropagation (BP) - vanilla SGD on cross-entropy loss"
+    - "L2 regularization (L2) - BP with weight decay"
+    - "Effective Rank regularization (ER) - BP with effective feature rank maximization"
+    - "Continual Backpropagation (CBP) - periodic neuron resetting (Dohare et al., 2024)"
+    - "RESET - reinitialize full network at each task switch (Incremental CIFAR only)"
+  metrics:
+    - {name: "Classification accuracy (per-task)", direction: "higher_better"}
+    - {name: "Online returns (Slippery Ant RL)", direction: "higher_better"}
+    - {name: "Normalized epsilon-Hessian rank", direction: "higher_better"}
+    - {name: "Number of dead neurons", direction: "lower_better"}
+    - {name: "Effective feature rank", direction: "higher_better"}
+    - {name: "Hessian spectral density (eigenspectrum)", direction: "denser_better"}
+    - {name: "R-squared (curvature vs accuracy correlation)", direction: "higher_better"}
+  datasets:
+    - {name: "Permuted MNIST", size: "800 tasks, 10-class classification per task, MNIST-based"}
+    - {name: "Continual ImageNet", size: "2000 binary classification tasks, ImageNet-based"}
+    - {name: "Incremental CIFAR", size: "20 tasks (5 classes added per task, up to 100), CIFAR-100-based"}
+    - {name: "Slippery Ant", size: "Continuous RL, friction changes every 2M steps"}
+  ablation_dimensions:
+    - "Regularizer component (ER alone vs L2 alone vs L2-ER combined)"
+    - "Learning rate (fixed lr=1e-2 vs best lr sweep)"
+    - "Hyperparameter sweep (ER lr, weight decay, replacement rate)"
+    - "Architecture (MLP for Permuted MNIST, ConvNet for Continual ImageNet, ResNet-18 for Incremental CIFAR, ActorCritic MLP for Slippery Ant)"
+    - "Hessian spectrum evolution across tasks"
+  training_recipe:
+    optimizer: "SGD (supervised tasks), PPO (Slippery Ant RL)"
+    lr: "Swept over {1e-2, 1e-3, 1e-4}; best varies by task/method (typically 1e-2 to 1e-4)"
+    hardware: "GPU (JAX-based implementation)"
+    framework: "JAX (Bradbury et al., 2018)"
+    batch_size: "1 (Permuted MNIST), 100 (Continual ImageNet & Incremental CIFAR)"
+    seeds: "5 seeds (10 for Continual ImageNet due to high variance)"
+    gradient_clipping: "max_grad_norm=0.5 (Permuted MNIST), 1e9 (ImageNet/CIFAR)"
+    momentum: "0.9 (Continual ImageNet & Incremental CIFAR)"
+    weight_decay: "0.001 (Permuted MNIST & ImageNet), 0.0005 (Incremental CIFAR)"
+    epochs_per_task: "1 pass (Permuted MNIST, 6000 steps/task), 250 epochs (Continual ImageNet), 200 epochs (Incremental CIFAR)"
+  method_family: "Curvature-based plasticity preservation via Hessian spectral regularization"
+
+positioning:
+  core_claim: "Hessian spectral collapse at new-task initialization is the central mechanism driving loss of plasticity in continual learning, unifying previously disparate explanations (dead neurons, parameter norm growth, feature rank collapse) as facets of the same phenomenon."
+  key_results: "L2-ER preserves plasticity across all 4 environments. On Continual ImageNet, R^2=0.711 between normalized epsilon-Hessian rank and accuracy. Algorithms that lose plasticity show sparse Hessian eigenspectrum; those preserving plasticity maintain dense spectrum. Single metrics (dead neurons, effective rank) are insufficient standalone indicators."
+  limitations:
+    - "Theory restricted to 2-layer ReLU MLPs; extension to deeper/wider architectures not proven"
+    - "tau-trainability framework not adapted to RL where Hessian is influenced by non-stationary policy and value functions"
+    - "Does not investigate how spectral collapse manifests in attention-based/Transformer models"
+    - "Epsilon-Hessian rank is not an accurate measure of spectral collapse in Incremental CIFAR due to non-uniform task difficulty"
+    - "Hessian computation via stochastic Lanczos is approximate, not exact"
+  relation_to_us: "competitor"
+
+narrative:
+  story_type: "统一框架型"
+  hook: "Human intelligence is marked not by mastering a single task, but by the ability to accumulate knowledge, refine it, and adapt to new challenges - opens with the aspiration of continual learning, then immediately grounds it in the failure mode (loss of plasticity)."
+  tension: "Several disparate explanations exist for plasticity loss (inactive neurons, dead neurons, feature rank reduction, parameter norm growth, overfitting) but there is no unifying consensus on what drives it. Prior work only shows correlation, not causation."
+  key_insight: "These seemingly disparate phenomena are all different facets of spectral collapse - a degeneration of the Hessian eigenspectrum where meaningful curvature directions vanish. Revealed via a 2D toy example (Figure 1) showing GD trapped in a flat valley vs curvature-regularized GD finding the bowl, then validated at scale with Hessian spectral density plots."
+  argument_chain: "disparate pathologies observed -> unify under spectral collapse concept -> define tau-trainability (Hessian rank threshold) -> prove dead neurons upper bound Hessian rank (Theorem 6.2, 6.5) -> derive regularizer from KFAC Hessian approximation -> L2-ER combines effective rank + L2 penalty -> empirical validation across 4 environments + Hessian spectrum visualization"
+  contribution_framing: "Three contributions stated explicitly at end of intro: (1) extensive empirical study identifying spectral collapse as consistent driver, (2) tau-trainability framework with theoretical connection to dead neurons, (3) L2-ER regularizer derived from theory that prevents spectral collapse."
+  intro_structure: "5 paragraphs: P1-aspirational framing (human learning -> continual learning); P2-deep learning progress but limited to stationary settings, define continual learning + plasticity vs forgetting; P3-focus on plasticity, enumerate disparate explanations, propose unifying term 'spectral collapse'; P4-toy example illustrating the mechanism (Figure 1); P5-contributions (3 items) and overview of results."
+  notable_technique: "The toy 2D loss landscape example (Figure 1) is exceptionally effective: it makes the abstract concept of spectral collapse visually intuitive by showing GD zigzagging in a flat valley (collapsed spectrum) vs smoothly converging in a bowl (healthy spectrum). The side-by-side real loss landscape slices from Continual ImageNet task 800 validate that the toy behavior occurs at scale."
+
+figures:
+  figure_count: 13  # main: 3 (Fig 1-3), appendix: 10 (Fig 4-13)
+  figure1:
+    type: "motivation"
+    description: "Left: 2D contour plot comparing standard gradient descent (GD) vs curvature-regularized GD in a two-minima toy problem. Task 1 shows both finding minima; Task 2 shows GD trapped in flat valley (zigzagging) while regularized GD converges to bowl. Right: Real 2D loss landscape slices from Continual ImageNet task 800 - BP shows elongated flat valley (top), L2-ER shows well-conditioned bowl (bottom)."
+    narrative_role: "Core motivation - makes abstract concept of spectral collapse visually tangible. Bridges toy theory to real-world observation. Reader immediately understands WHY spectral collapse matters for optimization."
+    design_elements: ["Contour plot with trajectory overlay", "Legend for minima types (Low-curv/High-curv)", "Side-by-side task comparison", "Real loss landscape validation panels", "Color-coded trajectories (GD=green, Curv-reg GD=red)"]
+    visual_style: "Clean contour lines with trajectory overlay on left, 2D projected loss landscapes as heat maps on right. Effective contrast between 'elongated valley' (failure) and 'bowl' (success) geometry."
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "scatter_with_fit + eigenspectrum_density"
+      what_compared: "Left: Accuracy vs normalized epsilon-rank(H) on Continual ImageNet across all algorithms (R^2=0.711). Right: Hessian eigenspectrum before spectral collapse (task 100) vs after (task 1400)."
+      how_gain_highlighted: "L2-ER (blue) clusters at high accuracy + high curvature. Red square (before collapse) and black triangle (after collapse) explicitly mark the spectral shift. Linear fit dotted line shows correlation."
+      design_note: "Dual-panel figure: left establishes quantitative correlation, right provides mechanistic evidence via eigenspectrum density plots. Very effective for bridging statistics and mechanism."
+    - figure_id: "Figure 3"
+      viz_type: "line_plot_grid"
+      what_compared: "Performance (accuracy/returns) across all 4 environments over task sequence. 5 algorithms + RESET baseline."
+      how_gain_highlighted: "L2-ER (red) consistently at top or near top. Shaded 95% CI regions. Clear visual separation between methods that maintain vs lose plasticity."
+      design_note: "2x2 grid layout, one subplot per environment. Shared legend at bottom. Shaded confidence intervals. Effective for showing L2-ER's consistency across diverse settings."
+  ablation_figures:
+    - figure_id: "Figure 6 (Appendix E)"
+      viz_type: "line_plot_grid"
+      dimensions_varied: ["Dead neurons count over tasks", "Effective rank over tasks"]
+      design_note: "8-panel grid (4 envs x 2 metrics). Shows that neither dead neurons nor effective rank alone explains plasticity loss. ER maintains high rank but still fails; L2 has low rank + many dead neurons but preserves plasticity. Key evidence for 'single metrics insufficient' argument."
+    - figure_id: "Figure 7 (Appendix F)"
+      viz_type: "scatter_with_fit"
+      dimensions_varied: ["Epsilon-Hessian rank vs accuracy on Permuted MNIST (R^2=0.785) and Incremental CIFAR (R^2=0.460)"]
+      design_note: "Complements Figure 2 by showing curvature-accuracy correlation generalizes beyond Continual ImageNet."
+    - figure_id: "Figures 10, 12, 13 (Appendix G, H, I)"
+      viz_type: "eigenspectrum_density_grid"
+      dimensions_varied: ["Algorithm (ER, BP, L2, CBP, L2-ER) x Task progression (early, mid, late)"]
+      design_note: "15-panel grids per environment: 5 algorithms x 3 time snapshots. Orange=test set spectrum, blue=train set spectrum. Clear visual dichotomy: algorithms losing plasticity show spectrum narrowing to single spike; those preserving show dense broad spectrum. Most compelling visual evidence."
+  figure_narrative_role: "Figure 1 (toy motivation + real validation) -> Figure 2 (quantitative correlation + mechanistic evidence) -> Figure 3 (main performance results) -> Figure 6 (why single metrics fail) -> Figures 10/12/13 (exhaustive spectral evidence across all environments)"
+
+tables:
+  table_count: 8  # Tables 1-8, all in appendix
+  main_result_table:
+    table_id: "N/A - main results presented as Figure 3 (line plots), not tables"
+    row_axis: "N/A"
+    col_axis: "N/A"
+    row_organization: "N/A"
+    col_organization: "N/A"
+    highlight_strategy: "N/A - results presented as plots with shaded confidence intervals"
+    statistical_reporting: "Mean across 5 seeds (10 for Continual ImageNet), 95% confidence interval shown as shaded region"
+    num_baselines: 5
+    design_note: "Unusual choice to present ALL main results as line plots (Figure 3) rather than summary tables. This works because the temporal dynamics (performance over task sequence) are the key message, not single aggregate numbers. The learning curves ARE the result."
+  ablation_tables:
+    - table_id: "Table 2 (Appendix G)"
+      what_varied: ["Algorithm x Hyperparameter combinations for Permuted MNIST"]
+      variation_style: "full_numbers"
+      design_note: "Hyperparameter sweep table: columns = Algorithm, Hyperparameter, Sweep range, Fixed LR Best, Overall Best. Shows the sweep space and selected values. Reproducibility-oriented rather than result-oriented."
+    - table_id: "Table 4 (Appendix H)"
+      what_varied: ["Algorithm x Hyperparameter combinations for Continual ImageNet"]
+      variation_style: "full_numbers"
+      design_note: "Same format as Table 2 but for ImageNet. 3 columns: Algorithm, Hyperparameter, Sweep Values, Best Hyperparam."
+    - table_id: "Table 6 (Appendix I)"
+      what_varied: ["Algorithm x Hyperparameter combinations for Incremental CIFAR"]
+      variation_style: "full_numbers"
+      design_note: "Same format. Includes RESET baseline not present in other envs."
+    - table_id: "Table 7 (Appendix J)"
+      what_varied: ["Algorithm x Hyperparameter combinations for Slippery Ant"]
+      variation_style: "full_numbers"
+      design_note: "Same format. CBP+L2 replaces CBP in RL setting."
+  supplementary_tables:
+    in_appendix: true
+    content: "Tables 1, 3, 5, 8: Default hyperparameter configurations for each environment (comprehensive listing of all hyperparams with defaults and descriptions). Tables 2, 4, 6, 7: Hyperparameter sweep ranges and selected best values for each algorithm per environment."
+    reason: "All tables are in appendix because the paper prioritizes visual evidence (eigenspectrum plots, performance curves) in the main text. Tables serve reproducibility rather than narrative. This is a deliberate choice: the paper's argument is mechanistic (spectral collapse causes plasticity loss) rather than benchmark-competitive (our method achieves X% on Y), so learning curves and spectrum visualizations are more persuasive than tables of numbers."
+
+# Additional critical details for competitive analysis
+spectral_collapse_definition:
+  formal_name: "Hessian spectral collapse"
+  definition: "The majority of Hessian eigenvalues cluster around zero at task initialization, meaning the optimization landscape becomes effectively flat in most directions, rendering gradient-based updates ineffective."
+  measurement: "epsilon-rank(H) = number of Hessian eigenvalues with |lambda_i(H)| > epsilon. Normalized version: epsilon-rank(H) / total number of eigenvalues. Computed via stochastic Lanczos quadrature (Ghorbani et al., 2019) using Hessian-vector products."
+  key_threshold: "Normalized epsilon-rank >= 0.5 is necessary for ~80% accuracy on Continual ImageNet"
+  spectral_object: "Hessian of the loss (second-order), NOT weight matrix singular values"
+  connection_to_weight_spectrum: "Through KFAC factored approximation: H_GGN approx (input covariance) kron (gradient covariance). Rank of H_GGN is monotone in rank of both input covariance and gradient covariance matrices. Thus effective feature rank (of representations) is a proxy for part of the Hessian rank."
+
+tau_trainability:
+  definition: "A neural network is tau-trainable if its Hessian rank at task tau initialization is at least rho_tau (a task-dependent threshold)."
+  key_theorem: "Theorem 6.2: Hessian rank <= P - k_tau(I+O+1), where k_tau = number of dead neurons. Dead neurons directly reduce the number of independent curvature directions."
+  key_theorem_2: "Theorem 6.5: Probability of tau-trainability bounded above by Cantelli inequality involving persistence probabilities of dead neurons across task shifts."
+  practical_implication: "Methods that reduce dead neurons (CBP, ReDo) or increase Hessian rank directly (L2-ER) both improve tau-trainability, but through different mechanisms."
+
+l2_er_method:
+  objective: "min_theta E[loss(F_theta(x), y)] - erank(sum_l E[x_n x_n^T]) + lambda * ||theta||_2^2"
+  components:
+    - "Standard task loss (cross-entropy)"
+    - "Negative effective rank penalty on input covariance matrices (per-layer, averaged)"
+    - "L2 weight decay"
+  why_both_needed: "ER maximizes rank of KFAC input factor (increases H_GGN rank). L2 ensures the residual term R doesn't dominate, so H_GGN rank increase translates to full Hessian rank increase (Corollary B.4)."
+  update_schedule: "ER loss computed every L steps using buffered features (not every step)"
+  hyperparams: "3 additional hyperparams: ER learning rate (beta), ER batch size, weight decay (lambda)"

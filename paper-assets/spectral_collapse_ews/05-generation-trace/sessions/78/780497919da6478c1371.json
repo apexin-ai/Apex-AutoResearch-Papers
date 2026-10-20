@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "780497919da6478c1371",
+  "project": "spectral_collapse_ews",
+  "kind": "history",
+  "title": "agent / loop_3.md",
+  "task_key": "loop_3",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3.md",
+    "occurrence": 1,
+    "bytes": 4116,
+    "sha256": "c33485bdc88116de5825a0170080c661b388628c2c1f80db9cb989c8a33c7579"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: idle_timeout\nupdated: '2026-05-17T17:44:40+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目 GPU 白名单：rtx6000-diagprobe 的 cuda:0 和 cuda:1，不得使用其他设备\n- exp_003 已因 3 个 controller bug 被 kill（D011：budget deduction 用 request 而非 actual、Gen 0 baseline 缺失、ratio>0.5 在 50K real pool 下物理不可能），这些 bug 修复状态需确认后才能重跑 adaptive 实验\n- checkpoint 必须写 /root/autodl-tmp/（root 分区仅 30GB，exp_002 曾因 root 满崩溃）\n- 环境激活必须用 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，不要假设 .venv 存在\n\n### 2. 🖥️ 基础设施快照\n- 服务器：rtx6000-diagprobe（2× RTX PRO 6000, 98GB each）\n- 工作目录：/root/spectral_collapse_ews\n- Python：/root/miniconda3/bin/python（conda base 环境）\n- 模型：EleutherAI/pythia-410m-deduped（主），pythia-1b-deduped（scale transfer）；HF cache 本地已有（HF_HUB_OFFLINE=1）\n- 数据：/root/spectral_collapse_ews/data/（50K train + 5K eval + 1K spectral）\n- Checkpoint 盘：/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/\n- 磁盘：/autodl-tmp ~401GB 可用（充裕），root 分区需注意\n- 活跃进程：exp_001 (PID 59365, tmux=exp_001_gen4, cuda:0, Phase 0 Gen 8/10)\n- 日志：exp_001 → /root/spectral_collapse_ews/results/phase0_gen4_run.log\n\n### 3. 📊 当前状态\n**刚发生**：exp_005（Phase 1 adaptive k=20 tau=0.002）失败，\"process dead 5× with no sentinel/W&B\"。已派 Worker `worker_diagnose_exp_005_20260517T134252` SSH 诊断日志，**尚未回调**——这是最高优先级待处理项。\n\n**Registry 概览**：\n- exp_001: RUNNING — Phase 0 纯 collapse 特征化，Gen 8/10，cuda:0，预计 ~2h 完成\n- exp_004: PREPARING — Phase 1 fixed_mix 50/50 baseline，等 cuda:0 空出（或可用 cuda:1）\n- exp_002: DONE/success — 1B pilot，Gen 0-3 完整，已确认 cross-scale 3-phase pattern\n- exp_003: DONE/killed — D011 三 bug，结果无效\n- exp_005: DONE/failed — k=20 adaptive，进程异常退出，诊断中\n\n**等待中**：\n- Worker 回调：worker_diagnose_exp_005 诊断结果\n- Cron：exp_001 进程监控\n- cuda:1 当前空闲（exp_005 崩溃后释放）\n\n### 4. 📋 待办\n- worker_diagnose_exp_005 回调 → 读诊断结论 → update_registry 写入 failure_reason 细节 → 向 Director 汇报根因和修复方案\n- 诊断确认是 bug（非 OOM/disk）→ 派 Worker 修复代码 → dry-run 验证 → 重新提交 exp_005v2 到 cuda:1\n- 诊断确认是 OOM/资源 → 调整参数（batch_size / gradient_accumulation）→ 重提交\n- exp_001 cron 回调（Gen 10 完成）→ 收集 Gen 0-10 全量 metrics → 跑 analyze_phase0.py → 启动 exp_004（fixed_mix）到空出的 cuda:0\n- exp_004 可以不等 cuda:0：cuda:1 现在空闲，确认 exp_005 不会立即重跑的话，可以先把 exp_004 提交到 cuda:1\n- Phase 1 核心对比完成（adaptive vs fixed_mix 至少 1 seed）→ 向 Director 汇报 go/no-go\n\n### 5. 🎯 战略上下文\n- **投稿目标**：EMNLP 2026 ARR May 25（距今 8 天）\n- **核心 narrative**：log-determinant 作为 early warning signal 引导自适应数据混合，比固定比例更有效防止 model collapse\n- **决策链**：D009（Phase 0 go/no-go PASS）→ D010（signal 从 eff_rank 切 log_det, tau 0.02→0.005）→ D011（controller 三 bug kill exp_003）→ D012（k 从 1.0 提到 20, tau 从 0.005 降到 0.002 校准）\n- **关键风险**：Phase 1 adaptive 实验已连续失败两次（exp_003 killed by bugs, exp_005 crash），还没拿到任何 adaptive vs fixed_mix 的对比数据。DDL 压力下，确保下一次 adaptive run 成功是最高优先级\n- **易错点**：D011 修复的三个 bug 是否真的在 exp_005 的代码版本中修好了——exp_005 用了新参数 k=20 但代码修复状态不确定，诊断时需要同时确认代码是否正确\n- **Phase 0 数据已足够**：Gen 0-7 monotonic decline 已确认（eff_rank 496→464, ppl 9.55→38.89, HellaSwag -16.7%），Gen 8-10 是补完不阻塞\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-copy-2.md"
+}

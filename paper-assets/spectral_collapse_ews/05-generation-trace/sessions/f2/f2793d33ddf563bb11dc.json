@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f2793d33ddf563bb11dc",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "code sensitivity grid",
+  "task_key": "worker_code_sensitivity_grid_20260517T054615",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_sensitivity_grid_20260517T054615_result.json",
+    "occurrence": 1,
+    "bytes": 575,
+    "sha256": "caa998853dcd56b67484166b29336cd38978b0164d5b66d39224451a54036c96"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已创建并验证。`/root/spectral_collapse_ews/run_sensitivity.py` 参数解析正常，`--help` 输出符合预期。\n\n脚本结构：\n- 直接 import `src.config.Config` 和 `src.pipeline.run_recursive_training`，复用 run_phase1.py 的核心逻辑\n- 9 组网格 (3 k x 3 tau)，固定 adaptive 条件\n- `--mode serial` 串行跑全部，`--mode single --k X --tau Y` 跑单组\n- 自动设置 `TRANSFORMERS_OFFLINE=1 HF_HUB_OFFLINE=1`\n- 每组记录 wall time，输出独立 summary JSON\n- Python 路径：`/root/miniconda3/bin/python3.12`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-sensitivity-grid.md"
+}

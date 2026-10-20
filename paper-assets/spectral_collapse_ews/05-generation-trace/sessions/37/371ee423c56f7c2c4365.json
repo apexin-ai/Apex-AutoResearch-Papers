@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "371ee423c56f7c2c4365",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ops exp021 check results",
+  "task_key": "worker_ops_exp021-check-results_20260524T061107",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp021-check-results_20260524T061107_result.json",
+    "occurrence": 1,
+    "bytes": 1593,
+    "sha256": "0a566465141f205001742bbfdff6ab512e5da8b0162317cc93e8b5f0a92dc7b7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### exp_021 — 已完成 ✓\nGPT-2-medium real-data control (r=1.0, seed 42, 3 generations)\n\n| Gen | r_eff | PPL | D-4 | σ₁ | train_loss |\n|-----|-------|-----|------|------|-----------|\n| 0 | 23.09 | 15.45 | 0.913 | 6598.1 | — |\n| 1 | 121.17 | 11.47 | 0.884 | 1454.9 | 2.560 |\n| 2 | 113.30 | 11.30 | 0.870 | 1886.9 | 2.478 |\n| 3 | 134.49 | 11.21 | 0.860 | 1688.8 | 2.432 |\n\n关键发现：纯真实数据微调下 PPL **持续下降**（15.45→11.21），D-4 仅轻微下降（0.913→0.860），r_eff 从基线的 23 跳到 ~120 后**保持稳定**。没有崩溃。这与 exp_020 的纯合成数据条件形成鲜明对比。\n\n无 HellaSwag、无 SLV 指标（实验脚本未计算）。\n\n---\n\n### exp_020 — 仍在运行\nGPT-2-medium pure collapse (r=0.0, seed 42, 9 generations)，当前 **Gen 9 生成合成样本中 (4480/50000)**。\n\n已完成 Gen 0-8 的结果：\n\n| Gen | r_eff | PPL | D-4 | train_loss |\n|-----|-------|-----|------|-----------|\n| 0 | 23.09 | 15.45 | 0.913 | — |\n| 1 | 155.22 | 16.42 | 0.891 | 2.358 |\n| 2 | 185.37 | 18.94 | 0.868 | 2.119 |\n| 3 | 184.86 | 23.33 | 0.837 | 2.052 |\n| 4 | 169.56 | 32.11 | 0.764 | 1.993 |\n| 5 | 151.94 | 49.35 | 0.658 | 1.913 |\n| 6 | 136.09 | 76.81 | 0.559 | 1.821 |\n| 7 | 121.29 | 123.66 | 0.501 | 1.740 |\n| 8 | 110.92 | 198.01 | 0.460 | 1.706 |\n| 9 | 进行中... | | | |\n\n清晰的崩溃轨迹：PPL 从 15→198（12.8x 恶化），D-4 从 0.91→0.46。Gen 9 还需要完成样本生成（~45k 剩余）+ 训练 + 评估，预计 **1-2 小时**完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp021-check-results.md"
+}

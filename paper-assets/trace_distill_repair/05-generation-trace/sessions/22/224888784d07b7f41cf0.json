@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "224888784d07b7f41cf0",
+  "project": "trace_distill_repair",
+  "kind": "result",
+  "title": "code restart line scoring v2",
+  "task_key": "worker_code_restart_line_scoring_v2_20260514T213702",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_restart_line_scoring_v2_20260514T213702_result.json",
+    "occurrence": 1,
+    "bytes": 350,
+    "sha256": "b6ed6dcc97ad315ace2547a7b99ada6da354ad1c7ea45673bc210f949e5229ee"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "服务器 `westd-18314` 未在 resources.yaml 中注册。当前可用服务器为：`gpu-6000pro-1`、`rtx6000-diagprobe`。\n\n需要确认：\n1. `westd-18314` 是否对应其中一个已注册名称？\n2. 还是需要将 `westd-18314` 新注册到 resources.yaml？如果是，请提供 SSH 连接信息（host、port、user）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-restart-line-scoring-v2.md"
+}

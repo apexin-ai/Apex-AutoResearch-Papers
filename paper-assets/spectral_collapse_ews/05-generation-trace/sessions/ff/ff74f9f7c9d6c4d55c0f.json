@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ff74f9f7c9d6c4d55c0f",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "paper writing introduction",
+  "task_key": "worker_paper_writing_introduction_20260517T205226",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_introduction_20260517T205226_result.json",
+    "occurrence": 1,
+    "bytes": 875,
+    "sha256": "014b648a6c27800430015f985a15c420d220e5b52f473fa9a745c120d2dc73af"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All clean. The \"ing\" matches are all nouns (training, tuning, mixing), not participial phrase endings.\n\nIntroduction written to `introduction.tex`. ~600 words, 5 paragraphs following the specified structure:\n\n1. Background: synthetic data proliferation + recursive training → model collapse\n2. Spectral perspective gap: geometric structure of collapse unexplored\n3. Existing methods' limitations + SIGMA's narrow validation + three open gaps\n4. Our approach: three-phase pattern, SLV properties (efficient, monotonic, mechanistic), asymmetry finding, controller PoC + attenuation paradox\n5. Three contributions with section/table references\n\nSLV is correctly framed as computationally efficient, mechanistically interpretable, and monotonic (not as \"earlier than functional metrics\"). No em-dashes, no -ing phrase endings, no blacklisted words."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-introduction.md"
+}

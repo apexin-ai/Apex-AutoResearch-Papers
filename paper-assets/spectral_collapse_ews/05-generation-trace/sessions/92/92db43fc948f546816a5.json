@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "92db43fc948f546816a5",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "preflight exp 004",
+  "task_key": "worker_preflight_exp_004_20260517T104732",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_preflight_exp_004_20260517T104732_result.json",
+    "occurrence": 1,
+    "bytes": 1436,
+    "sha256": "221344cb4e1f5078ffe079bc41fc0eda558d4bf3eacd0ae99e6b0345b45ccce3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp_004 预检结果\n\n| # | 检查项 | 状态 |\n|---|--------|------|\n| 1 | `--condition fixed_mix` argparse 支持 | ✅ 在 `CONDITION_CHOICES` 中 |\n| 2 | `fixed_mix` 实现: `real_data_ratio=0.5`, `ratio_schedule=[0.5]*T` | ✅ 确认 50/50 固定比例 |\n| 3 | checkpoint 目录 `fixed_mix_seed42/` | ✅ 不存在，无残留 |\n| 4 | 结果文件 `phase1_fixed_mix_seed42_results.json` | ✅ 不存在，无残留 |\n| 5 | 数据文件 (`train_real_50k.pt`, `eval_5k.pt`, `spectral_1k.pt`) | ✅ 就绪 |\n| 6 | 模型缓存 `pythia-410m-deduped` (含 safetensors + tokenizer) | ✅ 就绪 (symlink → autodl-tmp) |\n| 7 | `--help` dry-run | ✅ 通过 |\n\n### 需注意\n\n- **GPU 0 当前被占用**: PID 59365 — `run_phase0.py --resume_from_gen 4` (exp_001)，占用 65.9 GB VRAM，需等其完成。\n- **GPU 1**: PID 88161 — exp_003 (`run_phase1.py --condition adaptive --seed 42`)，占用 23.7 GB，不影响 exp_004。\n- **Python 路径**: 服务器上 `python` 不在 PATH 中，需要 conda 激活。启动命令应改为：\n\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\ncd /root/spectral_collapse_ews && \\\nTRANSFORMERS_OFFLINE=1 HF_HUB_OFFLINE=1 CUDA_VISIBLE_DEVICES=0 PYTHONUNBUFFERED=1 \\\npython run_phase1.py --condition fixed_mix --seed 42 --generations 10\n```\n\n**结论: Ready to launch**，等 exp_001 (GPU 0) 完成即可启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/preflight-exp-004.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d0d4874ea0cb35de9816",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "launch exp 012",
+  "task_key": "worker_launch_exp_012_20260520T033036",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_launch_exp_012_20260520T033036_result.json",
+    "occurrence": 1,
+    "bytes": 496,
+    "sha256": "8d2bf3b515be4c51b19c1104956e3c3657787e6814de586fa4863b8ea6a216c8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp_012 状态汇报：\n\n- **状态**: 进程存活，已在正常训练中\n- **PID**: 385711（bash），385721（python, GPU 进程）\n- **GPU**: cuda:0，占用 19036 MiB\n- **tmux session**: `exp_012` 存在\n- **训练进度**: 生成阶段 8960/35000 samples，正在推进\n- **Registry**: 已从 PREPARING → RUNNING 更新\n\n无需重启，进程一直在跑，只是 registry 状态未同步。padding_side 警告是 HuggingFace 的常规警告，不影响训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/launch-exp-012.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fc8e56fe5c0b8c49a7c6",
+  "project": "trace_distill_repair",
+  "kind": "result",
+  "title": "exp line scoring sampled v2",
+  "task_key": "worker_exp_line_scoring_sampled_v2_20260514T204847",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_line_scoring_sampled_v2_20260514T204847_result.json",
+    "occurrence": 1,
+    "bytes": 701,
+    "sha256": "e74da4e21683cc25d9eb7164a972e6a2c9de5f2c124e65919d90e5cd4d430636"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "运行正常，API 调用已开始。\n\n## 产出汇总\n\n| 项目 | 结果 |\n|------|------|\n| **进程清理** | PID 67855 + tmux session 已杀，状态 CLEAN |\n| **不完整结果** | 无需备份（文件不存在） |\n| **fallback fix** | `_parse_response` 的 `\"drop\"`/`0.5` → `\"error\"`/`0.0`（`score_segment` 已经是正确的） |\n| **采样统计** | 62,322 → 3,922 segments（**-93.7%**），15 个大实例被 head-100+tail-100 采样 |\n| **启动确认** | PID=70545, tmux=`mvp_line_scoring_sampled`, 38 个实例, API 请求正常 |\n| **预估完成** | 3,922 segments × ~1s/segment ÷ 10 并发 ≈ **6-7 分钟**（vs 原先全量需要数小时） |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-line-scoring-sampled-v2.md"
+}

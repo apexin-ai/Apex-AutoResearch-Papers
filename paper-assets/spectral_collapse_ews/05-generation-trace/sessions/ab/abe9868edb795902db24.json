@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "abe9868edb795902db24",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "fix kill zombie exp002",
+  "task_key": "worker_fix_kill_zombie_exp002_20260517T034052",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_kill_zombie_exp002_20260517T034052_result.json",
+    "occurrence": 1,
+    "bytes": 1002,
+    "sha256": "f52d12e1e3001992c949c4f19504e4b023bcca78fc7fd4edf390b84e94274f1a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 总结\n\n### 僵尸进程\n- **PID 25237 已成功 kill**，cuda:1 显存完全释放（0MiB）\n- 无 exp_002 相关 tmux session（仅存 `exp_001_gen4`）\n\n### 磁盘使用\n\n| 分区 | 总量 | 已用 | 可用 | 使用率 |\n|------|------|------|------|--------|\n| `/`（根） | 30G | 25G | 5.1G | 84% |\n| `/root/autodl-tmp`（数据盘） | 250G | 111G | 140G | 45% |\n\n### Checkpoint 存储位置\n\n两个 checkpoint 目录**都已正确 symlink 到数据盘**：\n- `/root/spectral_collapse_ews/checkpoints/` → `/root/autodl-tmp/spectral_collapse_ews/checkpoints_410m/`（7.6G）\n- `/root/spectral_collapse_ews/checkpoints_1b/` → `/root/autodl-tmp/spectral_collapse_ews/checkpoints_1b/`（16G，含 gen_0~gen_3）\n\n### 1B 实验能否重启\n\n**可以重启**。Checkpoint 写在数据盘（140G 剩余），不会撑爆根分区。根分区 84% 使用率虽偏高但不是 checkpoint 导致的，不影响 1B 训练继续。cuda:1 已空闲，随时可用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-kill-zombie-exp002.md"
+}

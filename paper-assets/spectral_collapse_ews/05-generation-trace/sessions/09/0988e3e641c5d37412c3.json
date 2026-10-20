@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0988e3e641c5d37412c3",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "paper f1 f13 writing fixes",
+  "task_key": "worker_paper_f1-f13_writing_fixes_20260521T025159",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_f1-f13_writing_fixes_20260521T025159_result.json",
+    "occurrence": 1,
+    "bytes": 1695,
+    "sha256": "9f6f9c7eae20611b3adf69e88d7065c574155364e816c36040461efa38fec4c4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Compilation successful. Results:\n\n**Verification:**\n1. No LaTeX errors\n2. No undefined reference warnings (0 warnings in log)\n3. Main text = 8 pages (conclusion ends on p8, limitations shares p8, bibliography starts p9)\n\n---\n\n**Summary of all 11 edits:**\n\n| Fix | File | Location | Change |\n|-----|------|----------|--------|\n| F1 | experiments.tex:122 | Fig 2 caption | \"monotonic collapse\" → \"decompression then monotonic collapse\" |\n| F2 | experiments.tex:47 | Phase I para | Added phase boundary structural transition sentence |\n| F4 | related_work.tex:16 | SIGMA scale | \"an order of magnitude\" → \"3--8×\" |\n| F5 | related_work.tex:21 | SIGMA para end | Added cross-architecture OPT-125M evidence sentence |\n| F7 | experiments.tex:155 | §4.4 | Moved D-4 discussion (5 sentences) to `\\paragraph{Output Diversity Divergence.}` after phase diagram discussion |\n| F12 | conclusion.tex:27 | Future work | Added 4th direction: data accumulation conjecture (bib already existed) |\n| F3 | experiments.tex:189 | §4.4 end | Added level-based trigger limitation sentence |\n| F6 | related_work.tex:18 | After 3-gen horizon | Added premature-conclusion defense sentence |\n| F8 | experiments.tex:132 | Type II $\\widetilde{S}$ | Added \"(EMA-smoothed SLV; §3.2)\" parenthetical |\n| F10 | conclusion.tex:14 | After D-4 anchoring | Added spectral collapse prevention practical value sentence |\n| F13a | experiments.tex:188 | §4.4 end | Added finer resolution remark |\n| F13b | experiments.tex:8 | Setup | Added downstream metric selection rationale |\n\nAlso fixed \"three directions\" → \"four directions\" in conclusion.tex:23 to match added F12."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-f1-f13-writing-fixes.md"
+}

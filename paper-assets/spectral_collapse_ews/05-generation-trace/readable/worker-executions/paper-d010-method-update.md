@@ -1,0 +1,928 @@
+# paper d010 method update
+
+**Spectral Early Warning Signals for Model Collapse and Their Prevention–Detectability Tradeoff** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 19
+- **Recorded user turns:** 0
+- **Tool calls:** 5
+- **Original source:** `logs/workers/worker_paper_d010_method_update_20260517T063527.log`
+- **Structured JSON:** [`968288b1c6ebf6578faf.json`](../../sessions/96/968288b1c6ebf6578faf.json)
+
+## Before a recorded user message
+
+19 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews",
+  "session_id": "4385f888-0640-475d-a5a7-d152e7715c1f",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "1bdc52f8-022d-429b-96fe-884f18858244",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-5-projects-spectral-collapse-ews/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779004200,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "9d9d15b5-3d06-4b49-b0bf-6ca1028f46a0",
+  "session_id": "4385f888-0640-475d-a5a7-d152e7715c1f"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me first read the current method.tex file from the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4385f888-0640-475d-a5a7-d152e7715c1f",
+  "uuid": "0d5a423f-9de9-441e-b20d-d052f6d15ca0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WY4JM1kbjiB3aQYW6S9Uvk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12765,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12765
+      },
+      "output_tokens": 38,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01LjfWst2iHR56ZxHJ63vaV9`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4385f888-0640-475d-a5a7-d152e7715c1f",
+  "uuid": "e21d1d92-e246-4f3e-bf9a-453bf8e8b221",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WY4JM1kbjiB3aQYW6S9Uvk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12765,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12765
+      },
+      "output_tokens": 38,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-17T06:35:39.625Z_
+
+<details><summary>↩ Tool result · `toolu_01LjfWst2iHR56ZxHJ63vaV9`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4385f888-0640-475d-a5a7-d152e7715c1f",
+  "uuid": "a5241a59-173f-4d69-b6fb-ef7c7a84ff05",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01TP9GzpibAyUfsHkea4VQF7`</summary>
+
+```json
+{
+  "server": "rtx6000-diagprobe",
+  "command": "cat /root/spectral_collapse_ews/paper/method.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4385f888-0640-475d-a5a7-d152e7715c1f",
+  "uuid": "a819d1ca-c0c0-4456-8745-58aa20e83006",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q3gsJBmW5xPFEXor7aXE9E",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 375,
+      "cache_read_input_tokens": 24606,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 375
+      },
+      "output_tokens": 5,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-17T06:35:44.089Z_
+
+<details><summary>↩ Tool result · `toolu_01TP9GzpibAyUfsHkea4VQF7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\\section{Method}\\n\\n\\\\subsection{Problem Formulation}\\n\\nWe consider \\\\emph{recursive synthetic training}: a sequence of models $M_0, M_1, \\\\ldots, M_T$ where each $M_t$ is trained on a mixture of real data and synthetic data generated by $M_{t-1}$.\\nLet $r_t \\\\in [0,1]$ denote the fraction of real data at generation $t$.\\nGiven a fixed total real-data budget $B = T \\\\cdot r_{\\\\text{base}}$ across $T$ generations, we seek an allocation $\\\\{r_1, \\\\ldots, r_T\\\\}$ satisfying $\\\\sum_t r_t = B$ that minimizes cumulative model degradation.\\n\\nThe core challenge is \\\\emph{temporal}: uniform allocation wastes real data on healthy generations while under-investing in critical collapse phases.\\nWe propose a closed-loop controller that monitors spectral health online and redistributes budget toward generations exhibiting early signs of representation collapse.\\n\\n\\\\subsection{Spectral Health Signal}\\n\\nWe adopt the \\\\emph{effective rank} (RankMe)~\\\\cite{rankme2023} of the output representation Gram matrix as our collapse indicator.\\nAt each generation $t$, we perform a forward pass of $M_t$ on a held-out probe set of $N$ examples, extract last-layer hidden states, and mean-pool to obtain a matrix $\\\\mathbf{Z} \\\\in \\\\mathbb{R}^{N \\\\times D}$.\\nWe compute the SVD of $\\\\mathbf{Z}$ to obtain singular values $\\\\sigma_1 \\\\geq \\\\sigma_2 \\\\geq \\\\cdots \\\\geq \\\\sigma_{\\\\min(N,D)}$, normalize them as $p_i = \\\\sigma_i / \\\\sum_j \\\\sigma_j$, and define:\\n\\\\begin{equation}\\n  S_t = \\\\rho(\\\\mathbf{Z}) = \\\\exp\\\\!\\\\left(-\\\\sum_i p_i \\\\log p_i\\\\right)\\n\\\\end{equation}\\nThe effective rank $S_t$ measures the diversity of learned representations: collapse concentrates the singular spectrum, causing $S_t$ to decrease.\\nThis signal is cheap to compute (one forward pass, no gradient) and prior work shows that calibration degradation (ECE) precedes accuracy loss by 1--2 iterations~\\\\cite{calibration2025}; whether spectral signals exhibit similar or earlier lead time is an empirical question we investigate.\\n\\n\\\\subsection{Proportional Controller with Budget Constraint}\\n\\nWe smooth the raw signal with an exponential moving average:\\n\\\\begin{equation}\\n  \\\\tilde{S}_t = \\\\alpha \\\\cdot S_t + (1 - \\\\alpha) \\\\cdot \\\\tilde{S}_{t-1}, \\\\quad \\\\alpha = 0.5\\n\\\\end{equation}\\nand define the normalized decline rate:\\n\\\\begin{equation}\\n  \\\\Delta_t = \\\\frac{\\\\tilde{S}_{t-1} - \\\\tilde{S}_t}{|\\\\tilde{S}_0|}\\n\\\\end{equation}\\n\\nThe controller computes a raw target ratio for the next generation:\\n\\\\begin{equation}\\n  r_{t+1}^{\\\\text{raw}} = \\\\underbrace{\\\\frac{B_{\\\\text{rem}}}{T - t - 1}}_{\\\\text{forward baseline}} + \\\\underbrace{k \\\\cdot \\\\max(0,\\\\; \\\\Delta_t - \\\\tau)}_{\\\\text{reactive boost}}\\n\\\\end{equation}\\nwhere $B_{\\\\text{rem}} = B - \\\\sum_{i=1}^{t} r_i$ is the remaining budget, $T-t-1$ is the number of subsequent generations (from $t+2$ to $T$), $\\\\tau$ is a dead-zone threshold below which no correction is applied, and $k$ is the proportional gain.\\n\\nBudget feasibility is enforced by clipping:\\n\\\\begin{equation}\\n  r_{t+1} = \\\\text{clip}\\\\!\\\\left(r_{t+1}^{\\\\text{raw}},\\\\; r_{\\\\min},\\\\; \\\\min\\\\!\\\\left(r_{\\\\max},\\\\; B_{\\\\text{rem}} - (T - t - 1) \\\\cdot r_{\\\\min}\\\\right)\\\\right)\\n\\\\end{equation}\\nguaranteeing that every future generation receives at least $r_{\\\\min}$.\\nThe first generation uses $r_1 = r_{\\\\text{base}}$ (no prior signal).\\n\\nController hyperparameters: threshold $\\\\tau$, gain $k$, EMA coefficient $\\\\alpha$, bounds $r_{\\\\min}$ and $r_{\\\\max}$.\\n\\n\\\\subsection{Experimental Design}\\n\\nWe compare four conditions; conditions (b)--(d) share an identical total real-data budget $B$:\\n\\\\begin{enumerate}[nosep]\\n  \\\\item[(a)] \\\\textbf{Pure synthetic} ($r_t = 0\\\\;\\\\forall t$): collapse reference establishing degradation ceiling.\\n  \\\\item[(b)] \\\\textbf{Fixed uniform} ($r_t = r_{\\\\text{base}}\\\\;\\\\forall t$): static baseline representing naive budget-spreading.\\n  \\\\item[(c)] \\\\textbf{Spectral-guided adaptive} (ours): closed-loop allocation via the controller above.\\n  \\\\item[(d)] \\\\textbf{Linear-increasing} (budget-matched open-loop control): $r_t = r_{\\\\min} + (r_{\\\\max} - r_{\\\\min}) \\\\cdot (t-1)/(T-1)$, which allocates increasing real-data proportions over generations without spectral feedback.\\n\\\\end{enumerate}\\n\\nAll conditions use the same base model, training hyperparameters, and synthetic generation procedure, differing only in real-data scheduling.\\nWe evaluate on: effective rank $\\\\rho$, log-determinant proxy $\\\\mathcal{D}(\\\\mathbf{Z})$, held-out perplexity, lexical diversity (distinct-4), and HellaSwag accuracy (acc\\\\_norm).\\nToken-level ECE is implemented as a planned extension for signal-flexibility validation.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.98}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4385f888-0640-475d-a5a7-d152e7715c1f",
+  "uuid": "66bdcf8e-4fa8-48d2-a7ad-6a82e9f6c811",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\\section{Method}\\\\n\\\\n\\\\\\\\subsection{Problem Formulation}\\\\n\\\\nWe consider \\\\\\\\emph{recursive synthetic training}: a sequence of models $M_0, M_1, \\\\\\\\ldots, M_T$ where each $M_t$ is trained on a mixture of real data and synthetic data generated by $M_{t-1}$.\\\\nLet $r_t \\\\\\\\in [0,1]$ denote the fraction of real data at generation $t$.\\\\nGiven a fixed total real-data budget $B = T \\\\\\\\cdot r_{\\\\\\\\text{base}}$ across $T$ generations, we seek an allocation $\\\\\\\\{r_1, \\\\\\\\ldots, r_T\\\\\\\\}$ satisfying $\\\\\\\\sum_t r_t = B$ that minimizes cumulative model degradation.\\\\n\\\\nThe core challenge is \\\\\\\\emph{temporal}: uniform allocation wastes real data on healthy generations while under-investing in critical collapse phases.\\\\nWe propose a closed-loop controller that monitors spectral health online and redistributes budget toward generations exhibiting early signs of representation collapse.\\\\n\\\\n\\\\\\\\subsection{Spectral Health Signal}\\\\n\\\\nWe adopt the \\\\\\\\emph{effective rank} (RankMe)~\\\\\\\\cite{rankme2023} of the output representation Gram matrix as our collapse indicator.\\\\nAt each generation $t$, we perform a forward pass of $M_t$ on a held-out probe set of $N$ examples, extract last-layer hidden states, and mean-pool to obtain a matrix $\\\\\\\\mathbf{Z} \\\\\\\\in \\\\\\\\mathbb{R}^{N \\\\\\\\times D}$.\\\\nWe compute the SVD of $\\\\\\\\mathbf{Z}$ to obtain singular values $\\\\\\\\sigma_1 \\\\\\\\geq \\\\\\\\sigma_2 \\\\\\\\geq \\\\\\\\cdots \\\\\\\\geq \\\\\\\\sigma_{\\\\\\\\min(N,D)}$, normalize them as $p_i = \\\\\\\\sigma_i / \\\\\\\\sum_j \\\\\\\\sigma_j$, and define:\\\\n\\\\\\\\begin{equation}\\\\n  S_t = \\\\\\\\rho(\\\\\\\\mathbf{Z}) = \\\\\\\\exp\\\\\\\\!\\\\\\\\left(-\\\\\\\\sum_i p_i \\\\\\\\log p_i\\\\\\\\right)\\\\n\\\\\\\\end{equation}\\\\nThe effective rank $S_t$ measures the diversity of learned representations: collapse concentrates the singular spectrum, causing $S_t$ to decrease.\\\\nThis signal is cheap to compute (one forward pass, no gradient) and prior work shows that calibration degradation (ECE) precedes accuracy loss by 1--2 iterations~\\\\\\\\cite{calibration2025}; whether spectral signals exhibit similar or earlier lead time is an empirical question we investigate.\\\\n\\\\n\\\\\\\\subsection{Proportional Controller with Budget Constraint}\\\\n\\\\nWe smooth the raw signal with an exponential moving average:\\\\n\\\\\\\\begin{equation}\\\\n  \\\\\\\\tilde{S}_t = \\\\\\\\alpha \\\\\\\\cdot S_t + (1 - \\\\\\\\alpha) \\\\\\\\cdot \\\\\\\\tilde{S}_{t-1}, \\\\\\\\quad \\\\\\\\alpha = 0.5\\\\n\\\\\\\\end{equation}\\\\nand define the normalized decline rate:\\\\n\\\\\\\\begin{equation}\\\\n  \\\\\\\\Delta_t = \\\\\\\\frac{\\\\\\\\tilde{S}_{t-1} - \\\\\\\\tilde{S}_t}{|\\\\\\\\tilde{S}_0|}\\\\n\\\\\\\\end{equation}\\\\n\\\\nThe controller computes a raw target ratio for the next generation:\\\\n\\\\\\\\begin{equation}\\\\n  r_{t+1}^{\\\\\\\\text{raw}} = \\\\\\\\underbrace{\\\\\\\\frac{B_{\\\\\\\\text{rem}}}{T - t - 1}}_{\\\\\\\\text{forward baseline}} + \\\\\\\\underbrace{k \\\\\\\\cdot \\\\\\\\max(0,\\\\\\\\; \\\\\\\\Delta_t - \\\\\\\\tau)}_{\\\\\\\\text{reactive boost}}\\\\n\\\\\\\\end{equation}\\\\nwhere $B_{\\\\\\\\text{rem}} = B - \\\\\\\\sum_{i=1}^{t} r_i$ is the remaining budget, $T-t-1$ is the number of subsequent generations (from $t+2$ to $T$), $\\\\\\\\tau$ is a dead-zone threshold below which no correction is applied, and $k$ is the proportional gain.\\\\n\\\\nBudget feasibility is enforced by clipping:\\\\n\\\\\\\\begin{equation}\\\\n  r_{t+1} = \\\\\\\\text{clip}\\\\\\\\!\\\\\\\\left(r_{t+1}^{\\\\\\\\text{raw}},\\\\\\\\; r_{\\\\\\\\min},\\\\\\\\; \\\\\\\\min\\\\\\\\!\\\\\\\\left(r_{\\\\\\\\max},\\\\\\\\; B_{\\\\\\\\text{rem}} - (T - t - 1) \\\\\\\\cdot r_{\\\\\\\\min}\\\\\\\\right)\\\\\\\\right)\\\\n\\\\\\\\end{equation}\\\\nguaranteeing that every future generation receives at least $r_{\\\\\\\\min}$.\\\\nThe first generation uses $r_1 = r_{\\\\\\\\text{base}}$ (no prior signal).\\\\n\\\\nController hyperparameters: threshold $\\\\\\\\tau$, gain $k$, EMA coefficient $\\\\\\\\alpha$, bounds $r_{\\\\\\\\min}$ and $r_{\\\\\\\\max}$.\\\\n\\\\n\\\\\\\\subsection{Experimental Design}\\\\n\\\\nWe compare four conditions; conditions (b)--(d) share an identical total real-data budget $B$:\\\\n\\\\\\\\begin{enumerate}[nosep]\\\\n  \\\\\\\\item[(a)] \\\\\\\\textbf{Pure synthetic} ($r_t = 0\\\\\\\\;\\\\\\\\forall t$): collapse reference establishing degradation ceiling.\\\\n  \\\\\\\\item[(b)] \\\\\\\\textbf{Fixed uniform} ($r_t = r_{\\\\\\\\text{base}}\\\\\\\\;\\\\\\\\forall t$): static baseline representing naive budget-spreading.\\\\n  \\\\\\\\item[(c)] \\\\\\\\textbf{Spectral-guided adaptive} (ours): closed-loop allocation via the controller above.\\\\n  \\\\\\\\item[(d)] \\\\\\\\textbf{Linear-increasing} (budget-matched open-loop control): $r_t = r_{\\\\\\\\min} + (r_{\\\\\\\\max} - r_{\\\\\\\\min}) \\\\\\\\cdot (t-1)/(T-1)$, which allocates increasing real-data proportions over generations without spectral feedback.\\\\n\\\\\\\\end{enumerate}\\\\n\\\\nAll conditions use the same base model, training hyperparameters, and synthetic generation procedure, differing only in real-data scheduling.\\\\nWe evaluate on: effective rank $\\\\\\\\rho$, log-determinant proxy $\\\\\\\\mathcal{D}(\\\\\\\\mathbf{Z})$, held-out perplexity, lexical diversity (distinct-4), and HellaSwag accuracy (acc\\\\\\\\_norm).\\\\nToken-level ECE is implemented as a planned extension for signal-flexibility validation.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.98}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\\section{Method}\\n\\n\\\\subsection{Problem Formulation}\\n\\nWe consider \\\\emph{recursive synthetic training}: a sequence of models $M_0, M_1, \\\\ldots, M_T$ where each $M_t$ is trained on a mixture of real data and synthetic data generated by $M_{t-1}$.\\nLet $r_t \\\\in [0,1]$ denote the fraction of real data at generation $t$.\\nGiven a fixed total real-data budget $B = T \\\\cdot r_{\\\\text{base}}$ across $T$ generations, we seek an allocation $\\\\{r_1, \\\\ldots, r_T\\\\}$ satisfying $\\\\sum_t r_t = B$ that minimizes cumulative model degradation.\\n\\nThe core challenge is \\\\emph{temporal}: uniform allocation wastes real data on healthy generations while under-investing in critical collapse phases.\\nWe propose a closed-loop controller that monitors spectral health online and redistributes budget toward generations exhibiting early signs of representation collapse.\\n\\n\\\\subsection{Spectral Health Signal}\\n\\nWe adopt the \\\\emph{effective rank} (RankMe)~\\\\cite{rankme2023} of the output representation Gram matrix as our collapse indicator.\\nAt each generation $t$, we perform a forward pass of $M_t$ on a held-out probe set of $N$ examples, extract last-layer hidden states, and mean-pool to obtain a matrix $\\\\mathbf{Z} \\\\in \\\\mathbb{R}^{N \\\\times D}$.\\nWe compute the SVD of $\\\\mathbf{Z}$ to obtain singular values $\\\\sigma_1 \\\\geq \\\\sigma_2 \\\\geq \\\\cdots \\\\geq \\\\sigma_{\\\\min(N,D)}$, normalize them as $p_i = \\\\sigma_i / \\\\sum_j \\\\sigma_j$, and define:\\n\\\\begin{equation}\\n  S_t = \\\\rho(\\\\mathbf{Z}) = \\\\exp\\\\!\\\\left(-\\\\sum_i p_i \\\\log p_i\\\\right)\\n\\\\end{equation}\\nThe effective rank $S_t$ measures the diversity of learned representations: collapse concentrates the singular spectrum, causing $S_t$ to decrease.\\nThis signal is cheap to compute (one forward pass, no gradient) and prior work shows that calibration degradation (ECE) precedes accuracy loss by 1--2 iterations~\\\\cite{calibration2025}; whether spectral signals exhibit similar or earlier lead time is an empirical question we investigate.\\n\\n\\\\subsection{Proportional Controller with Budget Constraint}\\n\\nWe smooth the raw signal with an exponential moving average:\\n\\\\begin{equation}\\n  \\\\tilde{S}_t = \\\\alpha \\\\cdot S_t + (1 - \\\\alpha) \\\\cdot \\\\tilde{S}_{t-1}, \\\\quad \\\\alpha = 0.5\\n\\\\end{equation}\\nand define the normalized decline rate:\\n\\\\begin{equation}\\n  \\\\Delta_t = \\\\frac{\\\\tilde{S}_{t-1} - \\\\tilde{S}_t}{|\\\\tilde{S}_0|}\\n\\\\end{equation}\\n\\nThe controller computes a raw target ratio for the next generation:\\n\\\\begin{equation}\\n  r_{t+1}^{\\\\text{raw}} = \\\\underbrace{\\\\frac{B_{\\\\text{rem}}}{T - t - 1}}_{\\\\text{forward baseline}} + \\\\underbrace{k \\\\cdot \\\\max(0,\\\\; \\\\Delta_t - \\\\tau)}_{\\\\text{reactive boost}}\\n\\\\end{equation}\\nwhere $B_{\\\\text{rem}} = B - \\\\sum_{i=1}^{t} r_i$ is the remaining budget, $T-t-1$ is the number of subsequent generations (from $t+2$ to $T$), $\\\\tau$ is a dead-zone threshold below which no correction is applied, and $k$ is the proportional gain.\\n\\nBudget feasibility is enforced by clipping:\\n\\\\begin{equation}\\n  r_{t+1} = \\\\text{clip}\\\\!\\\\left(r_{t+1}^{\\\\text{raw}},\\\\; r_{\\\\min},\\\\; \\\\min\\\\!\\\\left(r_{\\\\max},\\\\; B_{\\\\text{rem}} - (T - t - 1) \\\\cdot r_{\\\\min}\\\\right)\\\\right)\\n\\\\end{equation}\\nguaranteeing that every future generation receives at least $r_{\\\\min}$.\\nThe first generation uses $r_1 = r_{\\\\text{base}}$ (no prior signal).\\n\\nController hyperparameters: threshold $\\\\tau$, gain $k$, EMA coefficient $\\\\alpha$, bounds $r_{\\\\min}$ and $r_{\\\\max}$.\\n\\n\\\\subsection{Experimental Design}\\n\\nWe compare four conditions; conditions (b)--(d) share an identical total real-data budget $B$:\\n\\\\begin{enumerate}[nosep]\\n  \\\\item[(a)] \\\\textbf{Pure synthetic} ($r_t = 0\\\\;\\\\forall t$): collapse reference establishing degradation ceiling.\\n  \\\\item[(b)] \\\\textbf{Fixed uniform} ($r_t = r_{\\\\text{base}}\\\\;\\\\forall t$): static baseline representing naive budget-spreading.\\n  \\\\item[(c)] \\\\textbf{Spectral-guided adaptive} (ours): closed-loop allocation via the controller above.\\n  \\\\item[(d)] \\\\textbf{Linear-increasing} (budget-matched open-loop control): $r_t = r_{\\\\min} + (r_{\\\\max} - r_{\\\\min}) \\\\cdot (t-1)/(T-1)$, which allocates increasing real-data proportions over generations without spectral feedback.\\n\\\\end{enumerate}\\n\\nAll conditions use the same base model, training hyperparameters, and synthetic generation procedure, differing only in real-data scheduling.\\nWe evaluate on: effective rank $\\\\rho$, log-determinant proxy $\\\\mathcal{D}(\\\\mathbf{Z})$, held-out perplexity, lexical diversity (distinct-4), and HellaSwag accuracy (acc\\\\_norm).\\nToken-level ECE is implemented as a planned extension for signal-flexibility validation.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.98}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9_
+
+现在我来修改 method.tex。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4385f888-0640-475d-a5a7-d152e7715c1f",
+  "uuid": "ffe49db5-ed8b-4929-ac90-5123269d9103",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R6JPYZXCWeZbf77q1UXj3Y",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1921,
+      "cache_read_input_tokens": 24981,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1921
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01RSTe6PxtiRN84B7QsuSksL`</summary>
+
+```json
+{
+  "server": "rtx6000-diagprobe",
+  "command": "cat << 'ENDOFFILE' > /root/spectral_collapse_ews/paper/method.tex\n\\section{Method}\n\n\\subsection{Problem Formulation}\n\nWe consider \\emph{recursive synthetic training}: a sequence of models $M_0, M_1, \\ldots, M_T$ where each $M_t$ is trained on a mixture of real data and synthetic data generated by $M_{t-1}$.\nLet $r_t \\in [0,1]$ denote the fraction of real data at generation $t$.\nGiven a fixed total real-data budget $B = T \\cdot r_{\\text{base}}$ across $T$ generations, we seek an allocation $\\{r_1, \\ldots, r_T\\}$ satisfying $\\sum_t r_t = B$ that minimizes cumulative model degradation.\n\nThe core challenge is \\emph{temporal}: uniform allocation wastes real data on healthy generations while under-investing in critical collapse phases.\nWe propose a closed-loop controller that monitors spectral health online and redistributes budget toward generations exhibiting early signs of representation collapse.\n\n\\subsection{Spectral Health Signal}\n\nWe monitor the \\emph{log-determinant} of the output representation Gram matrix as our collapse indicator.\nAt each generation $t$, we perform a forward pass of $M_t$ on a held-out probe set of $N$ examples, extract last-layer hidden states, and mean-pool to obtain a matrix $\\mathbf{Z} \\in \\mathbb{R}^{N \\times D}$.\nWe compute the SVD of $\\mathbf{Z}$ to obtain singular values $\\sigma_1 \\geq \\sigma_2 \\geq \\cdots \\geq \\sigma_{\\min(N,D)}$ and define:\n\\begin{equation}\n  S_t = \\log \\det G = \\sum_{i=1}^{d} \\log \\sigma_i\n\\end{equation}\nwhere $G = \\mathbf{Z}^\\top \\mathbf{Z}$ is the Gram matrix and $d = \\min(N, D)$.\nThe log-determinant $S_t$ captures the total volume spanned by learned representations: collapse concentrates the singular spectrum, causing $S_t$ to decrease sharply.\nThis signal is cheap to compute (one forward pass, no gradient).\n\nPhase 0 calibration reveals that effective rank's normalized decline rate converges to approximately 0.66\\% per generation under EMA smoothing, insufficient to exceed practical thresholds. Log-determinant amplifies tail spectrum sensitivity because it sums logarithms of all singular values, giving equal weight to small and large components. In our Phase 0 characterization, log-determinant produces a 6.7$\\times$ stronger onset signal at Generation 3 compared to effective rank. In larger models (Pythia 1B), log-determinant also exhibits temporal lead, declining one generation before effective rank begins to decrease.\n\n\\subsection{Proportional Controller with Budget Constraint}\n\nWe smooth the raw signal with an exponential moving average:\n\\begin{equation}\n  \\tilde{S}_t = \\alpha \\cdot S_t + (1 - \\alpha) \\cdot \\tilde{S}_{t-1}, \\quad \\alpha = 0.5\n\\end{equation}\n$\\tilde{S}_0$ is initialized from the spectral metrics computed on the first recursive generation (Generation 1), establishing the post-fine-tuning baseline.\n\nWe define the normalized decline rate:\n\\begin{equation}\n  \\Delta_t = \\frac{\\tilde{S}_{t-1} - \\tilde{S}_t}{|\\tilde{S}_0|}\n\\end{equation}\n\nThe controller computes a raw target ratio for the next generation:\n\\begin{equation}\n  r_{t+1}^{\\text{raw}} = \\underbrace{\\frac{B_{\\text{rem}}}{T - t - 1}}_{\\text{forward baseline}} + \\underbrace{k \\cdot \\max(0,\\; \\Delta_t - \\tau)}_{\\text{reactive boost}}\n\\end{equation}\nwhere $B_{\\text{rem}} = B - \\sum_{i=1}^{t} r_i$ is the remaining budget, $T-t-1$ is the number of subsequent generations (from $t+2$ to $T$), $\\tau = 0.005$ is a dead-zone threshold below which no correction is applied, and $k = 1.0$ is the proportional gain.\nWe calibrate $\\tau = 0.005$ from Phase 0 data by computing the mean normalized decline rate of log-determinant across Generations 3 through 5, then setting $\\tau$ slightly below the minimum observed rate to ensure the controller activates at collapse onset.\n\nBudget feasibility is enforced by clipping:\n\\begin{equation}\n  r_{t+1} = \\text{clip}\\!\\left(r_{t+1}^{\\text{raw}},\\; r_{\\min},\\; \\min\\!\\left(r_{\\max},\\; B_{\\text{rem}} - (T - t - 1) \\cdot r_{\\min}\\right)\\right)\n\\end{equation}\nguaranteeing that every future generation receives at least $r_{\\min}$.\nThe first generation uses $r_1 = r_{\\text{base}}$ (no prior signal).\n\nController hyperparameters: threshold $\\tau = 0.005$, gain $k = 1.0$, EMA coefficient $\\alpha = 0.5$, bounds $r_{\\min} = 0.20$ and $r_{\\max} = 0.80$.\n\n\\subsection{Experimental Design}\n\nWe compare four conditions; conditions (b) through (d) share an identical total real-data budget $B$:\n\\begin{enumerate}[nosep]\n  \\item[(a)] \\textbf{Pure synthetic} ($r_t = 0\\;\\forall t$): collapse reference establishing degradation ceiling.\n  \\item[(b)] \\textbf{Fixed uniform} ($r_t = r_{\\text{base}}\\;\\forall t$): static baseline representing naive budget-spreading.\n  \\item[(c)] \\textbf{Spectral-guided adaptive} (ours): closed-loop allocation via the controller above.\n  \\item[(d)] \\textbf{Linear-increasing} (budget-matched open-loop control): $r_t = r_{\\min} + (r_{\\max} - r_{\\min}) \\cdot (t-1)/(T-1)$, which allocates increasing real-data proportions over generations without spectral feedback.\n\\end{enumerate}\n\nAll conditions use the same base model, training hyperparameters, and synthetic generation procedure, differing only in real-data scheduling.\nWe evaluate on: effective rank $\\rho$, log-determinant proxy $\\mathcal{D}(\\mathbf{Z})$, held-out perplexity, lexical diversity (distinct-4), and HellaSwag accuracy (acc\\_norm).\nENDOFFILE",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4385f888-0640-475d-a5a7-d152e7715c1f",
+  "uuid": "fe509dda-aa03-4068-9df5-4d6be34fc966",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R6JPYZXCWeZbf77q1UXj3Y",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1921,
+      "cache_read_input_tokens": 24981,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1921
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-17T06:36:03.891Z_
+
+<details><summary>↩ Tool result · `toolu_01RSTe6PxtiRN84B7QsuSksL`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4385f888-0640-475d-a5a7-d152e7715c1f",
+  "uuid": "a5fdaeb0-9c94-4a84-8c64-7d329971a7c7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+验证写入结果。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4385f888-0640-475d-a5a7-d152e7715c1f",
+  "uuid": "83670a76-17ce-4b75-95d3-d6cc37615bd2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XSHbgEiwH5qnHZ9pJGWdis",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1874,
+      "cache_read_input_tokens": 26902,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1874
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01U1JbUdU5wqNCdkjMRe1WYT`</summary>
+
+```json
+{
+  "server": "rtx6000-diagprobe",
+  "command": "cat /root/spectral_collapse_ews/paper/method.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4385f888-0640-475d-a5a7-d152e7715c1f",
+  "uuid": "b79e16c2-0de7-40b8-b046-8f51de5fbc7b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XSHbgEiwH5qnHZ9pJGWdis",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1874,
+      "cache_read_input_tokens": 26902,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1874
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-17T06:36:07.600Z_
+
+<details><summary>↩ Tool result · `toolu_01U1JbUdU5wqNCdkjMRe1WYT`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\\section{Method}\\n\\n\\\\subsection{Problem Formulation}\\n\\nWe consider \\\\emph{recursive synthetic training}: a sequence of models $M_0, M_1, \\\\ldots, M_T$ where each $M_t$ is trained on a mixture of real data and synthetic data generated by $M_{t-1}$.\\nLet $r_t \\\\in [0,1]$ denote the fraction of real data at generation $t$.\\nGiven a fixed total real-data budget $B = T \\\\cdot r_{\\\\text{base}}$ across $T$ generations, we seek an allocation $\\\\{r_1, \\\\ldots, r_T\\\\}$ satisfying $\\\\sum_t r_t = B$ that minimizes cumulative model degradation.\\n\\nThe core challenge is \\\\emph{temporal}: uniform allocation wastes real data on healthy generations while under-investing in critical collapse phases.\\nWe propose a closed-loop controller that monitors spectral health online and redistributes budget toward generations exhibiting early signs of representation collapse.\\n\\n\\\\subsection{Spectral Health Signal}\\n\\nWe monitor the \\\\emph{log-determinant} of the output representation Gram matrix as our collapse indicator.\\nAt each generation $t$, we perform a forward pass of $M_t$ on a held-out probe set of $N$ examples, extract last-layer hidden states, and mean-pool to obtain a matrix $\\\\mathbf{Z} \\\\in \\\\mathbb{R}^{N \\\\times D}$.\\nWe compute the SVD of $\\\\mathbf{Z}$ to obtain singular values $\\\\sigma_1 \\\\geq \\\\sigma_2 \\\\geq \\\\cdots \\\\geq \\\\sigma_{\\\\min(N,D)}$ and define:\\n\\\\begin{equation}\\n  S_t = \\\\log \\\\det G = \\\\sum_{i=1}^{d} \\\\log \\\\sigma_i\\n\\\\end{equation}\\nwhere $G = \\\\mathbf{Z}^\\\\top \\\\mathbf{Z}$ is the Gram matrix and $d = \\\\min(N, D)$.\\nThe log-determinant $S_t$ captures the total volume spanned by learned representations: collapse concentrates the singular spectrum, causing $S_t$ to decrease sharply.\\nThis signal is cheap to compute (one forward pass, no gradient).\\n\\nPhase 0 calibration reveals that effective rank's normalized decline rate converges to approximately 0.66\\\\% per generation under EMA smoothing, insufficient to exceed practical thresholds. Log-determinant amplifies tail spectrum sensitivity because it sums logarithms of all singular values, giving equal weight to small and large components. In our Phase 0 characterization, log-determinant produces a 6.7$\\\\times$ stronger onset signal at Generation 3 compared to effective rank. In larger models (Pythia 1B), log-determinant also exhibits temporal lead, declining one generation before effective rank begins to decrease.\\n\\n\\\\subsection{Proportional Controller with Budget Constraint}\\n\\nWe smooth the raw signal with an exponential moving average:\\n\\\\begin{equation}\\n  \\\\tilde{S}_t = \\\\alpha \\\\cdot S_t + (1 - \\\\alpha) \\\\cdot \\\\tilde{S}_{t-1}, \\\\quad \\\\alpha = 0.5\\n\\\\end{equation}\\n$\\\\tilde{S}_0$ is initialized from the spectral metrics computed on the first recursive generation (Generation 1), establishing the post-fine-tuning baseline.\\n\\nWe define the normalized decline rate:\\n\\\\begin{equation}\\n  \\\\Delta_t = \\\\frac{\\\\tilde{S}_{t-1} - \\\\tilde{S}_t}{|\\\\tilde{S}_0|}\\n\\\\end{equation}\\n\\nThe controller computes a raw target ratio for the next generation:\\n\\\\begin{equation}\\n  r_{t+1}^{\\\\text{raw}} = \\\\underbrace{\\\\frac{B_{\\\\text{rem}}}{T - t - 1}}_{\\\\text{forward baseline}} + \\\\underbrace{k \\\\cdot \\\\max(0,\\\\; \\\\Delta_t - \\\\tau)}_{\\\\text{reactive boost}}\\n\\\\end{equation}\\nwhere $B_{\\\\text{rem}} = B - \\\\sum_{i=1}^{t} r_i$ is the remaining budget, $T-t-1$ is the number of subsequent generations (from $t+2$ to $T$), $\\\\tau = 0.005$ is a dead-zone threshold below which no correction is applied, and $k = 1.0$ is the proportional gain.\\nWe calibrate $\\\\tau = 0.005$ from Phase 0 data by computing the mean normalized decline rate of log-determinant across Generations 3 through 5, then setting $\\\\tau$ slightly below the minimum observed rate to ensure the controller activates at collapse onset.\\n\\nBudget feasibility is enforced by clipping:\\n\\\\begin{equation}\\n  r_{t+1} = \\\\text{clip}\\\\!\\\\left(r_{t+1}^{\\\\text{raw}},\\\\; r_{\\\\min},\\\\; \\\\min\\\\!\\\\left(r_{\\\\max},\\\\; B_{\\\\text{rem}} - (T - t - 1) \\\\cdot r_{\\\\min}\\\\right)\\\\right)\\n\\\\end{equation}\\nguaranteeing that every future generation receives at least $r_{\\\\min}$.\\nThe first generation uses $r_1 = r_{\\\\text{base}}$ (no prior signal).\\n\\nController hyperparameters: threshold $\\\\tau = 0.005$, gain $k = 1.0$, EMA coefficient $\\\\alpha = 0.5$, bounds $r_{\\\\min} = 0.20$ and $r_{\\\\max} = 0.80$.\\n\\n\\\\subsection{Experimental Design}\\n\\nWe compare four conditions; conditions (b) through (d) share an identical total real-data budget $B$:\\n\\\\begin{enumerate}[nosep]\\n  \\\\item[(a)] \\\\textbf{Pure synthetic} ($r_t = 0\\\\;\\\\forall t$): collapse reference establishing degradation ceiling.\\n  \\\\item[(b)] \\\\textbf{Fixed uniform} ($r_t = r_{\\\\text{base}}\\\\;\\\\forall t$): static baseline representing naive budget-spreading.\\n  \\\\item[(c)] \\\\textbf{Spectral-guided adaptive} (ours): closed-loop allocation via the controller above.\\n  \\\\item[(d)] \\\\textbf{Linear-increasing} (budget-matched open-loop control): $r_t = r_{\\\\min} + (r_{\\\\max} - r_{\\\\min}) \\\\cdot (t-1)/(T-1)$, which allocates increasing real-data proportions over generations without spectral feedback.\\n\\\\end{enumerate}\\n\\nAll conditions use the same base model, training hyperparameters, and synthetic generation procedure, differing only in real-data scheduling.\\nWe evaluate on: effective rank $\\\\rho$, log-determinant proxy $\\\\mathcal{D}(\\\\mathbf{Z})$, held-out perplexity, lexical diversity (distinct-4), and HellaSwag accuracy (acc\\\\_norm).\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4385f888-0640-475d-a5a7-d152e7715c1f",
+  "uuid": "c3097af3-5c72-49fe-bf62-0f802d8150e1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\\section{Method}\\\\n\\\\n\\\\\\\\subsection{Problem Formulation}\\\\n\\\\nWe consider \\\\\\\\emph{recursive synthetic training}: a sequence of models $M_0, M_1, \\\\\\\\ldots, M_T$ where each $M_t$ is trained on a mixture of real data and synthetic data generated by $M_{t-1}$.\\\\nLet $r_t \\\\\\\\in [0,1]$ denote the fraction of real data at generation $t$.\\\\nGiven a fixed total real-data budget $B = T \\\\\\\\cdot r_{\\\\\\\\text{base}}$ across $T$ generations, we seek an allocation $\\\\\\\\{r_1, \\\\\\\\ldots, r_T\\\\\\\\}$ satisfying $\\\\\\\\sum_t r_t = B$ that minimizes cumulative model degradation.\\\\n\\\\nThe core challenge is \\\\\\\\emph{temporal}: uniform allocation wastes real data on healthy generations while under-investing in critical collapse phases.\\\\nWe propose a closed-loop controller that monitors spectral health online and redistributes budget toward generations exhibiting early signs of representation collapse.\\\\n\\\\n\\\\\\\\subsection{Spectral Health Signal}\\\\n\\\\nWe monitor the \\\\\\\\emph{log-determinant} of the output representation Gram matrix as our collapse indicator.\\\\nAt each generation $t$, we perform a forward pass of $M_t$ on a held-out probe set of $N$ examples, extract last-layer hidden states, and mean-pool to obtain a matrix $\\\\\\\\mathbf{Z} \\\\\\\\in \\\\\\\\mathbb{R}^{N \\\\\\\\times D}$.\\\\nWe compute the SVD of $\\\\\\\\mathbf{Z}$ to obtain singular values $\\\\\\\\sigma_1 \\\\\\\\geq \\\\\\\\sigma_2 \\\\\\\\geq \\\\\\\\cdots \\\\\\\\geq \\\\\\\\sigma_{\\\\\\\\min(N,D)}$ and define:\\\\n\\\\\\\\begin{equation}\\\\n  S_t = \\\\\\\\log \\\\\\\\det G = \\\\\\\\sum_{i=1}^{d} \\\\\\\\log \\\\\\\\sigma_i\\\\n\\\\\\\\end{equation}\\\\nwhere $G = \\\\\\\\mathbf{Z}^\\\\\\\\top \\\\\\\\mathbf{Z}$ is the Gram matrix and $d = \\\\\\\\min(N, D)$.\\\\nThe log-determinant $S_t$ captures the total volume spanned by learned representations: collapse concentrates the singular spectrum, causing $S_t$ to decrease sharply.\\\\nThis signal is cheap to compute (one forward pass, no gradient).\\\\n\\\\nPhase 0 calibration reveals that effective rank's normalized decline rate converges to approximately 0.66\\\\\\\\% per generation under EMA smoothing, insufficient to exceed practical thresholds. Log-determinant amplifies tail spectrum sensitivity because it sums logarithms of all singular values, giving equal weight to small and large components. In our Phase 0 characterization, log-determinant produces a 6.7$\\\\\\\\times$ stronger onset signal at Generation 3 compared to effective rank. In larger models (Pythia 1B), log-determinant also exhibits temporal lead, declining one generation before effective rank begins to decrease.\\\\n\\\\n\\\\\\\\subsection{Proportional Controller with Budget Constraint}\\\\n\\\\nWe smooth the raw signal with an exponential moving average:\\\\n\\\\\\\\begin{equation}\\\\n  \\\\\\\\tilde{S}_t = \\\\\\\\alpha \\\\\\\\cdot S_t + (1 - \\\\\\\\alpha) \\\\\\\\cdot \\\\\\\\tilde{S}_{t-1}, \\\\\\\\quad \\\\\\\\alpha = 0.5\\\\n\\\\\\\\end{equation}\\\\n$\\\\\\\\tilde{S}_0$ is initialized from the spectral metrics computed on the first recursive generation (Generation 1), establishing the post-fine-tuning baseline.\\\\n\\\\nWe define the normalized decline rate:\\\\n\\\\\\\\begin{equation}\\\\n  \\\\\\\\Delta_t = \\\\\\\\frac{\\\\\\\\tilde{S}_{t-1} - \\\\\\\\tilde{S}_t}{|\\\\\\\\tilde{S}_0|}\\\\n\\\\\\\\end{equation}\\\\n\\\\nThe controller computes a raw target ratio for the next generation:\\\\n\\\\\\\\begin{equation}\\\\n  r_{t+1}^{\\\\\\\\text{raw}} = \\\\\\\\underbrace{\\\\\\\\frac{B_{\\\\\\\\text{rem}}}{T - t - 1}}_{\\\\\\\\text{forward baseline}} + \\\\\\\\underbrace{k \\\\\\\\cdot \\\\\\\\max(0,\\\\\\\\; \\\\\\\\Delta_t - \\\\\\\\tau)}_{\\\\\\\\text{reactive boost}}\\\\n\\\\\\\\end{equation}\\\\nwhere $B_{\\\\\\\\text{rem}} = B - \\\\\\\\sum_{i=1}^{t} r_i$ is the remaining budget, $T-t-1$ is the number of subsequent generations (from $t+2$ to $T$), $\\\\\\\\tau = 0.005$ is a dead-zone threshold below which no correction is applied, and $k = 1.0$ is the proportional gain.\\\\nWe calibrate $\\\\\\\\tau = 0.005$ from Phase 0 data by computing the mean normalized decline rate of log-determinant across Generations 3 through 5, then setting $\\\\\\\\tau$ slightly below the minimum observed rate to ensure the controller activates at collapse onset.\\\\n\\\\nBudget feasibility is enforced by clipping:\\\\n\\\\\\\\begin{equation}\\\\n  r_{t+1} = \\\\\\\\text{clip}\\\\\\\\!\\\\\\\\left(r_{t+1}^{\\\\\\\\text{raw}},\\\\\\\\; r_{\\\\\\\\min},\\\\\\\\; \\\\\\\\min\\\\\\\\!\\\\\\\\left(r_{\\\\\\\\max},\\\\\\\\; B_{\\\\\\\\text{rem}} - (T - t - 1) \\\\\\\\cdot r_{\\\\\\\\min}\\\\\\\\right)\\\\\\\\right)\\\\n\\\\\\\\end{equation}\\\\nguaranteeing that every future generation receives at least $r_{\\\\\\\\min}$.\\\\nThe first generation uses $r_1 = r_{\\\\\\\\text{base}}$ (no prior signal).\\\\n\\\\nController hyperparameters: threshold $\\\\\\\\tau = 0.005$, gain $k = 1.0$, EMA coefficient $\\\\\\\\alpha = 0.5$, bounds $r_{\\\\\\\\min} = 0.20$ and $r_{\\\\\\\\max} = 0.80$.\\\\n\\\\n\\\\\\\\subsection{Experimental Design}\\\\n\\\\nWe compare four conditions; conditions (b) through (d) share an identical total real-data budget $B$:\\\\n\\\\\\\\begin{enumerate}[nosep]\\\\n  \\\\\\\\item[(a)] \\\\\\\\textbf{Pure synthetic} ($r_t = 0\\\\\\\\;\\\\\\\\forall t$): collapse reference establishing degradation ceiling.\\\\n  \\\\\\\\item[(b)] \\\\\\\\textbf{Fixed uniform} ($r_t = r_{\\\\\\\\text{base}}\\\\\\\\;\\\\\\\\forall t$): static baseline representing naive budget-spreading.\\\\n  \\\\\\\\item[(c)] \\\\\\\\textbf{Spectral-guided adaptive} (ours): closed-loop allocation via the controller above.\\\\n  \\\\\\\\item[(d)] \\\\\\\\textbf{Linear-increasing} (budget-matched open-loop control): $r_t = r_{\\\\\\\\min} + (r_{\\\\\\\\max} - r_{\\\\\\\\min}) \\\\\\\\cdot (t-1)/(T-1)$, which allocates increasing real-data proportions over generations without spectral feedback.\\\\n\\\\\\\\end{enumerate}\\\\n\\\\nAll conditions use the same base model, training hyperparameters, and synthetic generation procedure, differing only in real-data scheduling.\\\\nWe evaluate on: effective rank $\\\\\\\\rho$, log-determinant proxy $\\\\\\\\mathcal{D}(\\\\\\\\mathbf{Z})$, held-out perplexity, lexical diversity (distinct-4), and HellaSwag accuracy (acc\\\\\\\\_norm).\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\\section{Method}\\n\\n\\\\subsection{Problem Formulation}\\n\\nWe consider \\\\emph{recursive synthetic training}: a sequence of models $M_0, M_1, \\\\ldots, M_T$ where each $M_t$ is trained on a mixture of real data and synthetic data generated by $M_{t-1}$.\\nLet $r_t \\\\in [0,1]$ denote the fraction of real data at generation $t$.\\nGiven a fixed total real-data budget $B = T \\\\cdot r_{\\\\text{base}}$ across $T$ generations, we seek an allocation $\\\\{r_1, \\\\ldots, r_T\\\\}$ satisfying $\\\\sum_t r_t = B$ that minimizes cumulative model degradation.\\n\\nThe core challenge is \\\\emph{temporal}: uniform allocation wastes real data on healthy generations while under-investing in critical collapse phases.\\nWe propose a closed-loop controller that monitors spectral health online and redistributes budget toward generations exhibiting early signs of representation collapse.\\n\\n\\\\subsection{Spectral Health Signal}\\n\\nWe monitor the \\\\emph{log-determinant} of the output representation Gram matrix as our collapse indicator.\\nAt each generation $t$, we perform a forward pass of $M_t$ on a held-out probe set of $N$ examples, extract last-layer hidden states, and mean-pool to obtain a matrix $\\\\mathbf{Z} \\\\in \\\\mathbb{R}^{N \\\\times D}$.\\nWe compute the SVD of $\\\\mathbf{Z}$ to obtain singular values $\\\\sigma_1 \\\\geq \\\\sigma_2 \\\\geq \\\\cdots \\\\geq \\\\sigma_{\\\\min(N,D)}$ and define:\\n\\\\begin{equation}\\n  S_t = \\\\log \\\\det G = \\\\sum_{i=1}^{d} \\\\log \\\\sigma_i\\n\\\\end{equation}\\nwhere $G = \\\\mathbf{Z}^\\\\top \\\\mathbf{Z}$ is the Gram matrix and $d = \\\\min(N, D)$.\\nThe log-determinant $S_t$ captures the total volume spanned by learned representations: collapse concentrates the singular spectrum, causing $S_t$ to decrease sharply.\\nThis signal is cheap to compute (one forward pass, no gradient).\\n\\nPhase 0 calibration reveals that effective rank's normalized decline rate converges to approximately 0.66\\\\% per generation under EMA smoothing, insufficient to exceed practical thresholds. Log-determinant amplifies tail spectrum sensitivity because it sums logarithms of all singular values, giving equal weight to small and large components. In our Phase 0 characterization, log-determinant produces a 6.7$\\\\times$ stronger onset signal at Generation 3 compared to effective rank. In larger models (Pythia 1B), log-determinant also exhibits temporal lead, declining one generation before effective rank begins to decrease.\\n\\n\\\\subsection{Proportional Controller with Budget Constraint}\\n\\nWe smooth the raw signal with an exponential moving average:\\n\\\\begin{equation}\\n  \\\\tilde{S}_t = \\\\alpha \\\\cdot S_t + (1 - \\\\alpha) \\\\cdot \\\\tilde{S}_{t-1}, \\\\quad \\\\alpha = 0.5\\n\\\\end{equation}\\n$\\\\tilde{S}_0$ is initialized from the spectral metrics computed on the first recursive generation (Generation 1), establishing the post-fine-tuning baseline.\\n\\nWe define the normalized decline rate:\\n\\\\begin{equation}\\n  \\\\Delta_t = \\\\frac{\\\\tilde{S}_{t-1} - \\\\tilde{S}_t}{|\\\\tilde{S}_0|}\\n\\\\end{equation}\\n\\nThe controller computes a raw target ratio for the next generation:\\n\\\\begin{equation}\\n  r_{t+1}^{\\\\text{raw}} = \\\\underbrace{\\\\frac{B_{\\\\text{rem}}}{T - t - 1}}_{\\\\text{forward baseline}} + \\\\underbrace{k \\\\cdot \\\\max(0,\\\\; \\\\Delta_t - \\\\tau)}_{\\\\text{reactive boost}}\\n\\\\end{equation}\\nwhere $B_{\\\\text{rem}} = B - \\\\sum_{i=1}^{t} r_i$ is the remaining budget, $T-t-1$ is the number of subsequent generations (from $t+2$ to $T$), $\\\\tau = 0.005$ is a dead-zone threshold below which no correction is applied, and $k = 1.0$ is the proportional gain.\\nWe calibrate $\\\\tau = 0.005$ from Phase 0 data by computing the mean normalized decline rate of log-determinant across Generations 3 through 5, then setting $\\\\tau$ slightly below the minimum observed rate to ensure the controller activates at collapse onset.\\n\\nBudget feasibility is enforced by clipping:\\n\\\\begin{equation}\\n  r_{t+1} = \\\\text{clip}\\\\!\\\\left(r_{t+1}^{\\\\text{raw}},\\\\; r_{\\\\min},\\\\; \\\\min\\\\!\\\\left(r_{\\\\max},\\\\; B_{\\\\text{rem}} - (T - t - 1) \\\\cdot r_{\\\\min}\\\\right)\\\\right)\\n\\\\end{equation}\\nguaranteeing that every future generation receives at least $r_{\\\\min}$.\\nThe first generation uses $r_1 = r_{\\\\text{base}}$ (no prior signal).\\n\\nController hyperparameters: threshold $\\\\tau = 0.005$, gain $k = 1.0$, EMA coefficient $\\\\alpha = 0.5$, bounds $r_{\\\\min} = 0.20$ and $r_{\\\\max} = 0.80$.\\n\\n\\\\subsection{Experimental Design}\\n\\nWe compare four conditions; conditions (b) through (d) share an identical total real-data budget $B$:\\n\\\\begin{enumerate}[nosep]\\n  \\\\item[(a)] \\\\textbf{Pure synthetic} ($r_t = 0\\\\;\\\\forall t$): collapse reference establishing degradation ceiling.\\n  \\\\item[(b)] \\\\textbf{Fixed uniform} ($r_t = r_{\\\\text{base}}\\\\;\\\\forall t$): static baseline representing naive budget-spreading.\\n  \\\\item[(c)] \\\\textbf{Spectral-guided adaptive} (ours): closed-loop allocation via the controller above.\\n  \\\\item[(d)] \\\\textbf{Linear-increasing} (budget-matched open-loop control): $r_t = r_{\\\\min} + (r_{\\\\max} - r_{\\\\min}) \\\\cdot (t-1)/(T-1)$, which allocates increasing real-data proportions over generations without spectral feedback.\\n\\\\end{enumerate}\\n\\nAll conditions use the same base model, training hyperparameters, and synthetic generation procedure, differing only in real-data scheduling.\\nWe evaluate on: effective rank $\\\\rho$, log-determinant proxy $\\\\mathcal{D}(\\\\mathbf{Z})$, held-out perplexity, lexical diversity (distinct-4), and HellaSwag accuracy (acc\\\\_norm).\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+检查无破折号和 -ing 结尾。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4385f888-0640-475d-a5a7-d152e7715c1f",
+  "uuid": "5bc2ff59-ff37-4d39-9735-0f2d06696e36",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019ELY1n3hTF3ZKUjneet7Vn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2144,
+      "cache_read_input_tokens": 28776,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2144
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01RXiNA2K6hZomtFBPQMiLaA`</summary>
+
+```json
+{
+  "server": "rtx6000-diagprobe",
+  "command": "grep -n \"—\\|–\" /root/spectral_collapse_ews/paper/method.tex; echo \"---\"; grep -n \"ing,$\\|ing\\.$\\|ing \" /root/spectral_collapse_ews/paper/method.tex | grep -i \"demonstrating\\|highlighting\\|showcasing\\|indicating\\|revealing\\|suggesting\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4385f888-0640-475d-a5a7-d152e7715c1f",
+  "uuid": "b0b564c9-76dc-4746-861c-1e589f64d6bf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019ELY1n3hTF3ZKUjneet7Vn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2144,
+      "cache_read_input_tokens": 28776,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2144
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-17T06:36:13.743Z_
+
+<details><summary>↩ Tool result · `toolu_01RXiNA2K6hZomtFBPQMiLaA`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'grep -n \\\"—\\\\\\\\|–\\\" /root/spectral_collapse_ews/paper/method.tex; echo \\\"---\\\"; grep -n \\\"ing,$\\\\\\\\|ing\\\\\\\\.$\\\\\\\\|ing \\\" /root/spectral_collapse_ews/paper/method.tex | grep -i \\\"demonstrating\\\\\\\\|highlighting\\\\\\\\|showcasing\\\\\\\\|indicating\\\\\\\\|revealing\\\\\\\\|suggesting\\\"'\\n\\nExit code: 1\\n\\nStdout:\\n\\n---\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4385f888-0640-475d-a5a7-d152e7715c1f",
+  "uuid": "b434aca3-d79b-45fe-a4d9-9bec70e78bee",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'grep -n \\\\\\\"—\\\\\\\\\\\\\\\\|–\\\\\\\" /root/spectral_collapse_ews/paper/method.tex; echo \\\\\\\"---\\\\\\\"; grep -n \\\\\\\"ing,$\\\\\\\\\\\\\\\\|ing\\\\\\\\\\\\\\\\.$\\\\\\\\\\\\\\\\|ing \\\\\\\" /root/spectral_collapse_ews/paper/method.tex | grep -i \\\\\\\"demonstrating\\\\\\\\\\\\\\\\|highlighting\\\\\\\\\\\\\\\\|showcasing\\\\\\\\\\\\\\\\|indicating\\\\\\\\\\\\\\\\|revealing\\\\\\\\\\\\\\\\|suggesting\\\\\\\"'\\\\n\\\\nExit code: 1\\\\n\\\\nStdout:\\\\n\\\\n---\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'grep -n \\\"—\\\\\\\\|–\\\" /root/spectral_collapse_ews/paper/method.tex; echo \\\"---\\\"; grep -n \\\"ing,$\\\\\\\\|ing\\\\\\\\.$\\\\\\\\|ing \\\" /root/spectral_collapse_ews/paper/method.tex | grep -i \\\"demonstrating\\\\\\\\|highlighting\\\\\\\\|showcasing\\\\\\\\|indicating\\\\\\\\|revealing\\\\\\\\|suggesting\\\"'\\n\\nExit code: 1\\n\\nStdout:\\n\\n---\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18_
+
+无破折号，无违规 -ing 短语。修改完成。
+
+**修改清单：**
+
+1. **信号从 eff_rank → log_det** — S_t 定义改为 log-determinant，公式改为 $\sum_{i=1}^{d} \log \sigma_i$，删除 effective rank 的 Shannon entropy 公式
+2. **信号选择动机段** — 在信号定义后加入 Phase 0 calibration 对比段（0.66% 不足、log-det 6.7× 更强、Pythia 1B temporal lead）
+3. **τ = 0.005** — 从 0.02 改为 0.005，加入 calibration 方法说明（Phase 0 Generations 3-5 的 mean normalized decline rate）
+4. **删除 ECE 扩展句** — "Token-level ECE is implemented as a planned extension" 已删除
+5. **S̃_0 初始化说明** — 在 EMA 公式后补充 "$\tilde{S}_0$ is initialized from the spectral metrics computed on the first recursive generation (Generation 1), establishing the post-fine-tuning baseline."
+6. **其他参数不变** — k=1.0, α=0.5, r_min=0.20, r_max=0.80 保留，末尾显式列出全部参数值
+7. **条件列表 `(b)--(d)`** 改为 "conditions (b) through (d)"，消除 en-dash
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4385f888-0640-475d-a5a7-d152e7715c1f",
+  "uuid": "7c8e6742-5015-4f32-b042-e59cbaa6686e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014CHLcqVQeLEH4ffT39xHwz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 434,
+      "cache_read_input_tokens": 30920,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 434
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 19_
+
+无破折号，无违规 -ing 短语。修改完成。
+
+**修改清单：**
+
+1. **信号从 eff_rank → log_det** — S_t 定义改为 log-determinant，公式改为 $\sum_{i=1}^{d} \log \sigma_i$，删除 effective rank 的 Shannon entropy 公式
+2. **信号选择动机段** — 在信号定义后加入 Phase 0 calibration 对比段（0.66% 不足、log-det 6.7× 更强、Pythia 1B temporal lead）
+3. **τ = 0.005** — 从 0.02 改为 0.005，加入 calibration 方法说明（Phase 0 Generations 3-5 的 mean normalized decline rate）
+4. **删除 ECE 扩展句** — "Token-level ECE is implemented as a planned extension" 已删除
+5. **S̃_0 初始化说明** — 在 EMA 公式后补充 "$\tilde{S}_0$ is initialized from the spectral metrics computed on the first recursive generation (Generation 1), establishing the post-fine-tuning baseline."
+6. **其他参数不变** — k=1.0, α=0.5, r_min=0.20, r_max=0.80 保留，末尾显式列出全部参数值
+7. **条件列表 `(b)--(d)`** 改为 "conditions (b) through (d)"，消除 en-dash
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 55657,
+  "duration_api_ms": 55799,
+  "num_turns": 6,
+  "stop_reason": "end_turn",
+  "session_id": "4385f888-0640-475d-a5a7-d152e7715c1f",
+  "total_cost_usd": 0.26686625,
+  "usage": {
+    "input_tokens": 10,
+    "cache_creation_input_tokens": 19513,
+    "cache_read_input_tokens": 148026,
+    "output_tokens": 2776,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 19513,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 411,
+        "cache_read_input_tokens": 30920,
+        "cache_creation_input_tokens": 434,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 434
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1357,
+      "outputTokens": 18,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001447,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 10,
+      "outputTokens": 2776,
+      "cacheReadInputTokens": 148026,
+      "cacheCreationInputTokens": 19513,
+      "webSearchRequests": 0,
+      "costUSD": 0.26541925,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "dc1858dc-5147-4073-8030-a46a547d1d91"
+}
+```
+
+</details>
+
+---

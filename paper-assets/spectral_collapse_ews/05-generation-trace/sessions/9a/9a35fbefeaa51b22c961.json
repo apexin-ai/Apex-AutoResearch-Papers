@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9a35fbefeaa51b22c961",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "audit data integrity full",
+  "task_key": "worker_audit_data-integrity-full_20260523T102939",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_data-integrity-full_20260523T102939_result.json",
+    "occurrence": 1,
+    "bytes": 1088,
+    "sha256": "210f1d5fa08d1a29aaa19af13436d1b3df204b2d8e824ef8794890c3d5ca8a96"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。报告已写入 `artifacts/_project/report/data_audit_report.md`。\n\n**结论：无实质性数据错误。** 所有数值均可追溯到服务器原始实验输出。\n\n发现的问题：\n\n| 类别 | 数量 | 严重程度 |\n|------|------|----------|\n| Table 1 (30 cells) | 0 | — |\n| Table 2 (8 indicators) | 0 (caption 措辞不精确) | 📝 |\n| Table 3 (20 cells) | 3 个末位小数舍入差异 | ⚠️ 极微 |\n| Figure 1 (55 values) | 0 | — |\n| Figure 2 (~100 values) | 0 | — |\n| 正文引用数字 (~30 claims) | 1 处内部不一致 | ⚠️ 修辞 |\n\n具体问题：\n1. **Table 3 三处舍入**：r=0.3 PPL (13.35 vs 13.34)、r=0.5 SLV (2571.7 vs 2571.6)、r=0.5 PPL (15.12 vs 15.11)，均在末位 ±0.1 内\n2. **§3.5 文本不一致**：同一个量（r=0 Gen0→1 SLV 变化）在两段分别写成 \"+97\" 和 \"+98\"，三种子均值为 +96\n3. **Table 2 caption**：Rel Δ 公式写的是 |v₁₀−v₀|/|v₀|（Gen0→10），但 SLV 和 RankMe 实际用的是 peak→Gen10 计算（11.8% vs Gen0→10 的 7.9%）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-data-integrity-full.md"
+}

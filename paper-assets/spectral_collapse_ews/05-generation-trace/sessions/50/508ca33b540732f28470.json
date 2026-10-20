@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "508ca33b540732f28470",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ops slv extract and altews check",
+  "task_key": "worker_ops_slv-extract-and-altews-check_20260518T130252",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_slv-extract-and-altews-check_20260518T130252_result.json",
+    "occurrence": 1,
+    "bytes": 3614,
+    "sha256": "112ce825fd93de550bceb9d7fd85f75a0bdd02754efdfd64ffac73adea104be8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据已全部提取。以下是汇总：\n\n---\n\n## 任务 1: SLV (log_det) 对比表\n\n| Gen | r=0 (exp_001) | r=0.2 (exp_007) | r=0.3 (exp_008) | r=0.5 (exp_004) |\n|-----|---------------|-----------------|-----------------|-----------------|\n| 0   | 2366.7        | 2366.7          | 2366.7          | 2366.7          |\n| 1   | 2464.8        | 2367.5          | 2366.1          | 2366.6          |\n| 2   | 2469.9        | -               | -               | 2395.4          |\n| 3   | 2440.6        | -               | -               | 2425.6          |\n| 4   | 2405.0        | -               | -               | 2451.7          |\n| 5   | 2370.2        | -               | -               | 2486.3          |\n| 6   | 2335.2        | -               | -               | 2507.6          |\n| 7   | 2304.2        | -               | -               | 2525.6          |\n| 8   | 2252.1        | -               | -               | 2544.0          |\n| 9   | 2207.6        | -               | -               | 2562.1          |\n| 10  | 2178.9        | -               | -               | 2573.2          |\n\n**exp_007 (r=0.2) 和 exp_008 (r=0.3) 都只有 Gen 0-1 数据。**\n\n关键观察：\n- **r=0**: Gen 0→1 log_det 上升 (+98.1)，之后持续下降至 2178.9 (collapse)\n- **r=0.2**: Gen 0→1 几乎不变 (+0.8)\n- **r=0.3**: Gen 0→1 微降 (-0.6)\n- **r=0.5**: Gen 0→1 不变 (-0.1)，之后持续上升至 2573.2\n\n### eff_rank 对比\n\n| Gen | r=0 (exp_001) | r=0.2 (exp_007) | r=0.3 (exp_008) | r=0.5 (exp_004) |\n|-----|---------------|-----------------|-----------------|-----------------|\n| 0   | 417.5         | 417.5           | 417.5           | 417.5           |\n| 1   | 491.8         | 476.7           | 476.9           | 477.9           |\n\n### PPL 对比\n\n| Gen | r=0 (exp_001) | r=0.2 (exp_007) | r=0.3 (exp_008) | r=0.5 (exp_004) |\n|-----|---------------|-----------------|-----------------|-----------------|\n| 0   | 9.55          | 9.55            | 9.55            | 9.55            |\n| 1   | 11.38         | 10.28           | 10.19           | 10.08           |\n\n---\n\n## 任务 2: alt-EWS v2 文件状态\n\n三个 v2 文件全部存在 (2026-05-18 19:32-19:34 创建)：\n- `alternative_ews_v2_exp001.json` (8,372 bytes)\n- `alternative_ews_v2_exp004.json` (8,376 bytes)\n- `alternative_ews_v2_exp006.json` (8,381 bytes)\n\n### RankMe 趋势\n\n| Gen | r=0 (exp_001) | r=0.5 fixed (exp_004) | r=0.5 adaptive (exp_006) |\n|-----|---------------|-----------------------|--------------------------|\n| 0   | 707.1         | 712.4                 | 706.3                    |\n| 1   | 738.7         | 733.6                 | 733.3                    |\n| 2   | 745.1         | 742.3                 | 741.9                    |\n| 3   | 744.6         | 752.6                 | 750.1                    |\n| 4   | 735.8         | 755.6                 | 756.2                    |\n| 5   | 735.5         | 771.0                 | 770.3                    |\n| 6   | 728.7         | 776.5                 | 775.9                    |\n| 7   | 724.8         | 784.1                 | 779.5                    |\n| 8   | 720.7         | 792.0                 | 794.1                    |\n| 9   | 717.5         | 804.3                 | 799.7                    |\n| 10  | 709.9         | 810.6                 | 810.6                    |\n\n**RankMe 趋势**：\n- **r=0**: Gen 0→2 上升后持续下降 (707→745→710)，与 log_det collapse 一致\n- **r=0.5 (两种)**: 持续单调上升 (706/712→811)，谱多样性保持扩展"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-slv-extract-and-altews-check.md"
+}

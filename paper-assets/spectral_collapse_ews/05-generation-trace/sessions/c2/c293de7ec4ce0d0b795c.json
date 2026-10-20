@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c293de7ec4ce0d0b795c",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "paper writing experiments",
+  "task_key": "worker_paper_writing_experiments_20260517T203103",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_experiments_20260517T203103_result.json",
+    "occurrence": 1,
+    "bytes": 617,
+    "sha256": "7035cfbf5190d4fa34d4c22ed8fbb3aaf68c7af4aa5aa4c2527e4a37240c4647"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Clean. The experiments section is written at `/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/paper/sections/experiments.tex`.\n\nStructure:\n- **Setup** (1 para): model, data, protocol, metric definitions\n- **Spectral Collapse Characterization**: Table 1 + three-phase narrative (Decompression, Onset, Acceleration) + dedicated paragraph on HellaSwag-spectral asymmetry as a highlighted finding\n- **Cross-Scale Validation** (1 para): Pythia-1B confirms same pattern, notes SLV leads $r_{\\text{eff}}$ by ~1 generation\n- **Adaptive Mixing** placeholder with `\\todo{}`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-experiments.md"
+}

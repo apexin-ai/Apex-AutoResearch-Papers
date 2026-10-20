@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eb13193022e38ab78d18",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ops urgent status check",
+  "task_key": "worker_ops_urgent-status-check_20260521T231412",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_urgent-status-check_20260521T231412_result.json",
+    "occurrence": 1,
+    "bytes": 1771,
+    "sha256": "a6de4cd407de11faca88c97474df375be2130185c99e5770c0766259504f7f6d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态报告\n\n### GPU\n| GPU | 利用率 | 显存 |\n|-----|--------|------|\n| 0 | 0% | 0 / 97887 MiB (空闲) |\n| 1 | 94% | 25017 / 97887 MiB (运行中) |\n\n### exp_014b (r=0.25, seed43) — **已完成**\n- gen_0 ~ gen_10 全部完成，EXIT_CODE=0\n- 最后一个 checkpoint 时间: May 22 06:21 (gen_10)\n- 结果摘要:\n\n| Gen | Eff.Rank | Perplexity | Distinct-4 | Train Loss |\n|-----|----------|------------|------------|------------|\n| 0 | 417.55 | 9.55 | 0.7415 | — |\n| 1 | 475.66 | 10.23 | 0.6584 | 1.802 |\n| 2 | 483.00 | 10.65 | 0.5574 | 1.722 |\n| 3 | 488.96 | 11.00 | 0.4772 | 1.521 |\n| 4 | 491.74 | 11.35 | 0.3735 | 1.363 |\n| 5 | 495.60 | 11.67 | 0.3378 | 1.200 |\n| 6 | 497.83 | 12.00 | 0.3374 | 1.053 |\n| 7 | 502.04 | 12.41 | 0.3700 | 1.060 |\n| 8 | 506.76 | 12.77 | 0.3586 | 1.093 |\n| 9 | 510.49 | 13.18 | 0.3848 | 1.073 |\n| 10 | 515.56 | 13.61 | 0.3380 | 1.061 |\n\n### exp_015 (r=0.25, seed44) — **运行中，gen_6 完成，正在跑 gen_7**\n- gen_0 ~ gen_6 checkpoint 已存在\n- 日志显示正在生成 gen_7 的合成数据 (24640/37500 samples)\n- GPU 1 在 94% 利用率，确认进程活跃\n- 已有结果 (到 gen_6):\n\n| Gen | Eff.Rank | Perplexity | Distinct-4 | Train Loss |\n|-----|----------|------------|------------|------------|\n| 0 | 417.55 | 9.55 | 0.7305 | — |\n| 1 | 475.92 | 10.22 | 0.6379 | 1.800 |\n| 2 | 484.39 | 10.64 | 0.5156 | 1.689 |\n| 3 | 488.62 | 11.00 | 0.4518 | 1.473 |\n| 4 | 493.01 | 11.33 | 0.4156 | 1.388 |\n| 5 | 494.32 | 11.64 | 0.4008 | 1.319 |\n| 6 | 498.74 | 11.97 | 0.3994 | 1.294 |\n\n- 预计还需 ~4 代 (gen_7~10)，每代约 2h，约 **8 小时后完成**\n\n### 磁盘\n`/root/autodl-tmp`: 163G / 250G 已用，**剩余 88G (34%)**，空间充足。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-urgent-status-check-copy-2.md"
+}

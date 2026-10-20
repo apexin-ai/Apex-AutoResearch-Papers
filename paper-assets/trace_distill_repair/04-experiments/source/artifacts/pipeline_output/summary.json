@@ -1,0 +1,486 @@
+{
+  "phase1_setup": {
+    "total": 45,
+    "success": 40,
+    "failed": 5
+  },
+  "phase2_traces": {
+    "total": 40,
+    "success": 38,
+    "failed": 2,
+    "failed_list": [
+      {
+        "key": "fastapi_3",
+        "error": "No events collected"
+      },
+      {
+        "key": "fastapi_5",
+        "error": "No events collected"
+      }
+    ],
+    "event_counts": {
+      "thefuck_1": 31,
+      "thefuck_2": 31,
+      "thefuck_4": 30,
+      "black_1": 51,
+      "black_2": 46,
+      "cookiecutter_1": 185,
+      "cookiecutter_2": 185,
+      "cookiecutter_3": 37,
+      "fastapi_1": 718,
+      "fastapi_2": 714,
+      "httpie_1": 5,
+      "httpie_2": 646,
+      "luigi_1": 3329,
+      "luigi_2": 3317,
+      "sanic_1": 78,
+      "sanic_2": 700,
+      "scrapy_1": 202,
+      "scrapy_2": 166,
+      "tornado_1": 7059,
+      "tornado_2": 4950,
+      "tqdm_1": 466,
+      "tqdm_2": 8,
+      "youtube-dl_1": 67244,
+      "youtube-dl_2": 59653,
+      "scrapy_3": 158,
+      "scrapy_4": 7,
+      "scrapy_7": 7,
+      "tornado_4": 6415,
+      "tornado_5": 1362,
+      "tornado_7": 1437,
+      "luigi_5": 1952,
+      "luigi_10": 1954,
+      "luigi_14": 1948,
+      "youtube-dl_5": 52172,
+      "youtube-dl_10": 30365,
+      "youtube-dl_20": 63820,
+      "black_5": 44,
+      "black_14": 41
+    }
+  },
+  "phase3_segmentation": {
+    "structural": {
+      "thefuck_1": {
+        "num_segments": 4,
+        "types": {
+          "call_subtree": 2,
+          "basic_block": 1,
+          "exception_chain": 1
+        }
+      },
+      "thefuck_2": {
+        "num_segments": 4,
+        "types": {
+          "call_subtree": 2,
+          "basic_block": 1,
+          "exception_chain": 1
+        }
+      },
+      "thefuck_4": {
+        "num_segments": 3,
+        "types": {
+          "call_subtree": 2,
+          "exception_chain": 1
+        }
+      },
+      "black_1": {
+        "num_segments": 4,
+        "types": {
+          "call_subtree": 2,
+          "basic_block": 1,
+          "exception_chain": 1
+        }
+      },
+      "black_2": {
+        "num_segments": 3,
+        "types": {
+          "basic_block": 1,
+          "call_subtree": 1,
+          "exception_chain": 1
+        }
+      },
+      "cookiecutter_1": {
+        "num_segments": 20,
+        "types": {
+          "call_subtree": 15,
+          "basic_block": 4,
+          "loop_iteration": 1
+        }
+      },
+      "cookiecutter_2": {
+        "num_segments": 20,
+        "types": {
+          "call_subtree": 15,
+          "basic_block": 4,
+          "loop_iteration": 1
+        }
+      },
+      "cookiecutter_3": {
+        "num_segments": 6,
+        "types": {
+          "call_subtree": 3,
+          "basic_block": 2,
+          "exception_chain": 1
+        }
+      },
+      "fastapi_1": {
+        "num_segments": 20,
+        "types": {
+          "call_subtree": 5,
+          "loop_iteration": 13,
+          "basic_block": 2
+        }
+      },
+      "fastapi_2": {
+        "num_segments": 20,
+        "types": {
+          "call_subtree": 5,
+          "loop_iteration": 14,
+          "basic_block": 1
+        }
+      },
+      "httpie_1": {
+        "num_segments": 1,
+        "types": {
+          "exception_chain": 1
+        }
+      },
+      "httpie_2": {
+        "num_segments": 20,
+        "types": {
+          "basic_block": 6,
+          "loop_iteration": 13,
+          "call_subtree": 1
+        }
+      },
+      "luigi_1": {
+        "num_segments": 20,
+        "types": {
+          "basic_block": 4,
+          "exception_chain": 2,
+          "call_subtree": 12,
+          "loop_iteration": 2
+        }
+      },
+      "luigi_2": {
+        "num_segments": 20,
+        "types": {
+          "call_subtree": 11,
+          "exception_chain": 2,
+          "loop_iteration": 5,
+          "basic_block": 2
+        }
+      },
+      "sanic_1": {
+        "num_segments": 8,
+        "types": {
+          "basic_block": 4,
+          "call_subtree": 3,
+          "exception_chain": 1
+        }
+      },
+      "sanic_2": {
+        "num_segments": 20,
+        "types": {
+          "basic_block": 2,
+          "call_subtree": 8,
+          "loop_iteration": 10
+        }
+      },
+      "scrapy_1": {
+        "num_segments": 18,
+        "types": {
+          "loop_iteration": 10,
+          "basic_block": 5,
+          "exception_chain": 3
+        }
+      },
+      "scrapy_2": {
+        "num_segments": 20,
+        "types": {
+          "loop_iteration": 10,
+          "basic_block": 7,
+          "call_subtree": 2,
+          "exception_chain": 1
+        }
+      },
+      "tornado_1": {
+        "num_segments": 20,
+        "types": {
+          "call_subtree": 2,
+          "loop_iteration": 16,
+          "basic_block": 2
+        }
+      },
+      "tornado_2": {
+        "num_segments": 20,
+        "types": {
+          "call_subtree": 1,
+          "loop_iteration": 18,
+          "basic_block": 1
+        }
+      },
+      "tqdm_1": {
+        "num_segments": 20,
+        "types": {
+          "basic_block": 8,
+          "loop_iteration": 2,
+          "call_subtree": 9,
+          "exception_chain": 1
+        }
+      },
+      "tqdm_2": {
+        "num_segments": 2,
+        "types": {
+          "call_subtree": 1,
+          "exception_chain": 1
+        }
+      },
+      "youtube-dl_1": {
+        "num_segments": 20,
+        "types": {
+          "call_subtree": 9,
+          "loop_iteration": 9,
+          "basic_block": 1,
+          "exception_chain": 1
+        }
+      },
+      "youtube-dl_2": {
+        "num_segments": 20,
+        "types": {
+          "call_subtree": 6,
+          "loop_iteration": 11,
+          "exception_chain": 1,
+          "basic_block": 2
+        }
+      },
+      "scrapy_3": {
+        "num_segments": 19,
+        "types": {
+          "loop_iteration": 10,
+          "basic_block": 5,
+          "call_subtree": 2,
+          "exception_chain": 2
+        }
+      },
+      "scrapy_4": {
+        "num_segments": 2,
+        "types": {
+          "call_subtree": 1,
+          "exception_chain": 1
+        }
+      },
+      "scrapy_7": {
+        "num_segments": 2,
+        "types": {
+          "call_subtree": 1,
+          "exception_chain": 1
+        }
+      },
+      "tornado_4": {
+        "num_segments": 20,
+        "types": {
+          "call_subtree": 3,
+          "loop_iteration": 16,
+          "basic_block": 1
+        }
+      },
+      "tornado_5": {
+        "num_segments": 20,
+        "types": {
+          "call_subtree": 2,
+          "basic_block": 1,
+          "loop_iteration": 17
+        }
+      },
+      "tornado_7": {
+        "num_segments": 20,
+        "types": {
+          "call_subtree": 3,
+          "basic_block": 2,
+          "loop_iteration": 15
+        }
+      },
+      "luigi_5": {
+        "num_segments": 3,
+        "types": {
+          "basic_block": 1,
+          "exception_chain": 2
+        }
+      },
+      "luigi_10": {
+        "num_segments": 4,
+        "types": {
+          "basic_block": 2,
+          "exception_chain": 2
+        }
+      },
+      "luigi_14": {
+        "num_segments": 2,
+        "types": {
+          "exception_chain": 2
+        }
+      },
+      "youtube-dl_5": {
+        "num_segments": 20,
+        "types": {
+          "call_subtree": 7,
+          "loop_iteration": 9,
+          "basic_block": 2,
+          "exception_chain": 2
+        }
+      },
+      "youtube-dl_10": {
+        "num_segments": 20,
+        "types": {
+          "call_subtree": 5,
+          "loop_iteration": 10,
+          "basic_block": 5
+        }
+      },
+      "youtube-dl_20": {
+        "num_segments": 20,
+        "types": {
+          "call_subtree": 4,
+          "loop_iteration": 12,
+          "basic_block": 2,
+          "exception_chain": 2
+        }
+      },
+      "black_5": {
+        "num_segments": 3,
+        "types": {
+          "basic_block": 1,
+          "call_subtree": 1,
+          "exception_chain": 1
+        }
+      },
+      "black_14": {
+        "num_segments": 3,
+        "types": {
+          "basic_block": 1,
+          "call_subtree": 1,
+          "exception_chain": 1
+        }
+      }
+    },
+    "line": {
+      "thefuck_1": {
+        "num_segments": 7
+      },
+      "thefuck_2": {
+        "num_segments": 7
+      },
+      "thefuck_4": {
+        "num_segments": 6
+      },
+      "black_1": {
+        "num_segments": 11
+      },
+      "black_2": {
+        "num_segments": 10
+      },
+      "cookiecutter_1": {
+        "num_segments": 37
+      },
+      "cookiecutter_2": {
+        "num_segments": 37
+      },
+      "cookiecutter_3": {
+        "num_segments": 8
+      },
+      "fastapi_1": {
+        "num_segments": 144
+      },
+      "fastapi_2": {
+        "num_segments": 143
+      },
+      "httpie_1": {
+        "num_segments": 1
+      },
+      "httpie_2": {
+        "num_segments": 130
+      },
+      "luigi_1": {
+        "num_segments": 666
+      },
+      "luigi_2": {
+        "num_segments": 664
+      },
+      "sanic_1": {
+        "num_segments": 16
+      },
+      "sanic_2": {
+        "num_segments": 140
+      },
+      "scrapy_1": {
+        "num_segments": 41
+      },
+      "scrapy_2": {
+        "num_segments": 34
+      },
+      "tornado_1": {
+        "num_segments": 1412
+      },
+      "tornado_2": {
+        "num_segments": 990
+      },
+      "tqdm_1": {
+        "num_segments": 94
+      },
+      "tqdm_2": {
+        "num_segments": 2
+      },
+      "youtube-dl_1": {
+        "num_segments": 13449
+      },
+      "youtube-dl_2": {
+        "num_segments": 11931
+      },
+      "scrapy_3": {
+        "num_segments": 32
+      },
+      "scrapy_4": {
+        "num_segments": 2
+      },
+      "scrapy_7": {
+        "num_segments": 2
+      },
+      "tornado_4": {
+        "num_segments": 1283
+      },
+      "tornado_5": {
+        "num_segments": 273
+      },
+      "tornado_7": {
+        "num_segments": 288
+      },
+      "luigi_5": {
+        "num_segments": 391
+      },
+      "luigi_10": {
+        "num_segments": 391
+      },
+      "luigi_14": {
+        "num_segments": 390
+      },
+      "youtube-dl_5": {
+        "num_segments": 10435
+      },
+      "youtube-dl_10": {
+        "num_segments": 6073
+      },
+      "youtube-dl_20": {
+        "num_segments": 12764
+      },
+      "black_5": {
+        "num_segments": 9
+      },
+      "black_14": {
+        "num_segments": 9
+      }
+    }
+  },
+  "output_dir": "/root/trace_distill_repair/pipeline_output"
+}

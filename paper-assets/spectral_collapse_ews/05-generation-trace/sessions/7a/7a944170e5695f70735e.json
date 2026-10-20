@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7a944170e5695f70735e",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ssh disk check urgent",
+  "task_key": "worker_ssh_disk_check_urgent_20260522T074029",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_disk_check_urgent_20260522T074029_result.json",
+    "occurrence": 1,
+    "bytes": 2490,
+    "sha256": "e3f83699edce87f8e6366d79392dd5de6d7e33d5abc09b89901787a3ee0149da"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息到齐，汇总如下：\n\n---\n\n## 磁盘状况总览\n\n| 分区 | 大小 | 已用 | 可用 | 用途 |\n|------|------|------|------|------|\n| **overlay (/)** | 30G | 25G (83%) | **5.2G** | 系统 + 代码 |\n| **/dev/md0 → /root/autodl-tmp/** | 250G | 178G (72%) | **73G** | 数据盘（模型/checkpoints） |\n\n**根分区偏紧（5.2G），数据盘尚可（73G）。** Checkpoints 全部在数据盘，不影响根分区。\n\n## Checkpoint 存储结构\n\n项目目录通过 **symlink** 指向数据盘：\n- `checkpoints` → `autodl-tmp/.../checkpoints_410m/` (17G)\n- `checkpoints_1b` → `autodl-tmp/.../checkpoints_1b/` (16G)\n- `models` → `autodl-tmp/.../models/` (4.8G)\n- `checkpoints_phase1/` (60G) — 数据盘上独立目录\n\n## Checkpoint 保存策略：**累积式**\n\n每个实验保存**每一代的完整模型**（~1.6G/代 for 410M, ~3.8G/代 for 1B），不覆盖。\n\n### 数据盘各目录明细 (96G 总计)\n\n| 目录 | 大小 | 内容 |\n|------|------|------|\n| `checkpoints_410m/` | 17G | gen_0 ~ gen_10，11代 × 1.6G |\n| `checkpoints_1b/` | 16G | gen_0 ~ gen_3，4代 × 3.8G |\n| **`checkpoints_phase1/`** | **60G** | 5 个实验 run，详见下 |\n| `models/` | 4.8G | 基座模型 |\n\n### checkpoints_phase1 明细 (60G)\n\n| 实验 | 大小 | 代数 |\n|------|------|------|\n| `fixed_mix_r025_seed42` | 17G | 11代 (gen_0~10) |\n| `fixed_mix_r025_seed43` | 17G | 11代 |\n| `fixed_mix_r025_seed44` | 17G | 11代 |\n| `fixed_mix_r02_seed43` | 1.6G | 1代 |\n| `fixed_mix_r03_seed44` | 7.6G | 5代 (gen_0~4) |\n\n## 可清理建议\n\n**数据盘 73G 可用，不算紧急**，但如果需要腾空间：\n\n1. **`checkpoints_410m/`（17G）** — 这是 `checkpoints` symlink 指向的 phase0 实验。如果 phase0 数据已全部提取到 results/ 且不再需要从这些 checkpoint 跑新分析，可清理。\n2. **`checkpoints_1b/`（16G）** — 1B 模型 phase0，仅 4 代。同上，确认数据已提取后可清。\n3. **phase1 中已完成且结果已集成的 run** — 三个 r025 seed（共 51G）如果实验数据已集成到论文，只需保留最终代或全部清理。\n\n**不建议清理**：`models/`（4.8G，基座模型，重新下载慢）。\n\n**根分区 5.2G** 的压力主要来自系统包和 miniconda（13G），与项目 checkpoints 无关。如果根分区也需要清理，查 pip cache (`pip cache purge`) 和 conda cache (`conda clean --all`) 是最有效的。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-disk-check-urgent.md"
+}

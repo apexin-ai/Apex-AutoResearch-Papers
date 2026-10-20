@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ca3c10c17e1054c317b5",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ops post restart check",
+  "task_key": "worker_ops_post-restart-check_20260524T040146",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_post-restart-check_20260524T040146_result.json",
+    "occurrence": 1,
+    "bytes": 952,
+    "sha256": "171e4771a7b2e1cdc39ae67e2eee103fcd75801c0644f077b9ff513d87c61ab0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇报\n\n### exp_020 (GPT-2-medium r=0, cuda:0)\n- **进程存活**: PID 853361 在跑\n- **当前进度**: generation 0–7 已完成（共 8 代），正在跑 generation 8\n- **GPU 0**: 52% 利用率，26431 / 97887 MiB 显存\n- **日志**: 无 exp_020.log（可能直接写结果文件）\n- **结果文件**: `phase1_gpt2m_pure_collapse_seed42_results.json`，最后更新 May 24 11:36\n\n### exp_021 (GPT-2-medium real-data control, cuda:1)\n- **进程存活**: PID 846794 在跑，已运行 1h16m\n- **当前进度**: generation 0–1 已完成，正在跑 generation 2（日志全是 padding warning，说明在训练中）\n- **GPU 1**: 100% 利用率，52858 / 97887 MiB 显存\n- **结果文件**: `exp_021_gpt2m_realdata_control_seed42_results.json`，最后更新 May 24 11:50\n\n### 结论\n两个实验都在正常运行，服务器未重启。exp_020 进度较快（已到 gen 7），exp_021 刚完成 gen 1。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-post-restart-check-copy-2.md"
+}

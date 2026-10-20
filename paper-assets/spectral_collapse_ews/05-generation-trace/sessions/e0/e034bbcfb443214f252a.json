@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e034bbcfb443214f252a",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "check exp001 completion",
+  "task_key": "worker_check_exp001_completion_20260517T101929",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_exp001_completion_20260517T101929_result.json",
+    "occurrence": 1,
+    "bytes": 1361,
+    "sha256": "7bf3647ba9f7448bbdae5b478da0f7157e99ba144aedca598a76f6acf9de3aef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Default is 10 generations (Gen 0-9). Currently on Gen 8 (generating 16320/50000 samples). 8 of 10 generations completed so far.\n\n## 产出总结\n\n**exp_001 完成否：** 否，仍在运行。PID 59365 正在处理 Gen 8（16320/50000 samples），预计还有 Gen 8 和 Gen 9 待完成。\n\n**完整 metrics（Gen 0-7）：**\n\n| Gen | eff_rank | log_det | ppl | distinct4 | train_loss |\n|-----|----------|---------|-----|-----------|------------|\n| 0 | 417.55 | 2366.68 | 9.55 | 0.7414 | — |\n| 1 | 491.77 | 2464.76 | 11.38 | 0.6256 | 1.623 |\n| 2 | 496.44 | 2469.93 | 13.58 | 0.5154 | 1.268 |\n| 3 | 493.31 | 2440.57 | 16.25 | 0.4900 | 1.134 |\n| 4 | 485.67 | 2405.05 | 19.80 | 0.4679 | 1.098 |\n| 5 | 479.21 | 2370.17 | 24.59 | 0.4630 | 1.047 |\n| 6 | 473.00 | 2335.17 | 30.91 | 0.4655 | 1.025 |\n| 7 | 464.20 | 2304.19 | 38.89 | 0.4474 | 1.015 |\n\n**趋势明显：** eff_rank 从 Gen 1 峰值 496 持续下降到 464；ppl 从 9.55 指数增长到 38.89；distinct4 从 0.74 单调下降到 0.45。collapse 信号清晰。\n\n**analyze_phase0.py / 重绘图：** 跳过，不足 10 代数据。\n\n**清理日志：** 跳过，实验未完成。\n\n**GPU 状态：**\n- cuda:0 — 占用（PID 59365，65.9GB/97.9GB，88% util）\n- cuda:1 — 占用（PID 88161/exp_003，23.7GB/97.9GB，94% util）\n- **两卡均不可用。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp001-completion.md"
+}

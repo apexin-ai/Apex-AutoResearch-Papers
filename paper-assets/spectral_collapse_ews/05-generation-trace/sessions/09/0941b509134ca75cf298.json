@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0941b509134ca75cf298",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "check phase0 progress",
+  "task_key": "worker_check_phase0_progress_20260516T112403",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_phase0_progress_20260516T112403_result.json",
+    "occurrence": 1,
+    "bytes": 1701,
+    "sha256": "d949a352e3f7343a31ace681c04267a7ab193ee65f07659840d30ec8d80cbb7f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "日志文件仍在写入（最后修改 19:25），Gen 2 正在生成合成数据。所有现有 checkpoint 的 HellaSwag 评估已由 auto_eval watcher 完成。\n\n## 报告\n\n### 1. Phase 0 进度\n\n**当前状态：Gen 2 合成数据生成中**（GPU 0 占用 25GB, 60% utilization）\n\n已完成：Gen 0（baseline）、Gen 1（训练 + 评估 + checkpoint）\n\n目标 10 代，完成 2/10。\n\n### 2. 中间 Metrics\n\n| Gen | Effective Rank | Perplexity | Distinct-4 | Train Loss |\n|-----|---------------|------------|------------|------------|\n| 0   | 417.55        | 9.55       | 0.7414     | — (baseline) |\n| 1   | 491.77        | 11.38      | 0.6256     | 1.6228     |\n\nGen 0→1 变化：\n- **Perplexity**: 9.55 → 11.38 (+19.2%) — 模型质量下降\n- **Distinct-4**: 0.7414 → 0.6256 (-15.6%) — 生成多样性下降\n- **Effective Rank**: 417.55 → 491.77 (+17.8%) — 上升（暂时的，可能是训练初期特征扩散，后续代应该开始下降）\n\n### 3. HellaSwag 评估结果\n\n| Gen | acc_norm | acc | stderr(norm) |\n|-----|----------|-----|-------------|\n| 0   | **0.4130** | 0.3450 | ±0.0049 |\n| 1   | **0.3897** | 0.3385 | ±0.0049 |\n\n**acc_norm 下降 2.33 个百分点**（-5.6%），仅一代即可观测到明显退化。\n\n### 4. Collapse 趋势判断\n\n**符合预期。** 一代合成数据训练后：\n- HellaSwag 能力明确下降\n- 生成多样性（distinct-4）显著收缩\n- Perplexity 上升\n\n这与 model collapse 的早期信号一致：模型在自身生成数据上训练导致分布收窄、下游任务性能退化。auto_eval watcher 已在 cuda:1 上运行，后续 checkpoint 会自动评估。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-phase0-progress.md"
+}

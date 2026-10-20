@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d59ac0bfb422b649820b",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "infra vram check cuda0",
+  "task_key": "worker_infra_vram-check-cuda0_20260517T173355",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_vram-check-cuda0_20260517T173355_result.json",
+    "occurrence": 1,
+    "bytes": 916,
+    "sha256": "25f3efd190ea8e7ee7284daf04c57eb63692a36240e3dbb98fe582477249e008"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报结果：\n\n## cuda:0 VRAM 使用量\n- **exp_006 (PID 133204): ~19 GB / 98 GB**\n- GPU 利用率 64%，温度 50°C，功耗 237W/600W\n\n## exp_006 运行状态\n- tmux session `exp_006` 存在，正常运行\n- 日志显示正在执行 Generation 0 评估（computing effective rank / perplexity / distinct-4）\n- 有 padding_side 警告但不影响运行\n\n## cuda:1 情况\n- **PID 116947: ~25 GB**，是 exp_005（`run_phase1.py --condition adaptive --k 20`）\n- GPU 利用率 100%，温度 81°C，功耗 578W\n- **PID 132207 已不存在**（进程已结束，可能是之前的短暂任务或已完成的实验）\n\n## 双实例可行性判断\n**可行。** exp_006 稳定 VRAM 约 19 GB，远低于 35 GB 阈值。cuda:0 剩余约 79 GB 空闲，在同一 GPU 上再启动 exp_004（同为 Pythia-410M）完全没问题，预计双实例总占用约 38 GB，仍有大量余量。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-vram-check-cuda0.md"
+}

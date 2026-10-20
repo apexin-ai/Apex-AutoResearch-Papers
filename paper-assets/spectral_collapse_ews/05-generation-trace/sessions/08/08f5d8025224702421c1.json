@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "08f5d8025224702421c1",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "fix method logdet formula",
+  "task_key": "worker_fix_method_logdet_formula_20260517T064840",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_method_logdet_formula_20260517T064840_result.json",
+    "occurrence": 1,
+    "bytes": 1399,
+    "sha256": "13df8f89005908c9311910cd75682f231d432e5e516e5a5766837c866f5fcfdf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Only remaining hit is the mathematical `\\log\\det` in experiments.tex line 48, which is correct (it states D(Z) = (1/2) log det(Z^T Z), a true mathematical identity).\n\n**Summary of changes in method.tex:**\n\n| Line | Before | After |\n|------|--------|-------|\n| 14 | `\\emph{log-determinant} of the output representation Gram matrix` | `\\emph{spectral log-volume} of the output representation matrix` |\n| 18 | `S_t = \\log \\det G = \\sum_{i=1}^{d} \\log \\sigma_i` | `S_t = \\sum_{i=1}^{d} \\log \\sigma_i(Z_t)` |\n| 20 | `where $G = \\mathbf{Z}^\\top \\mathbf{Z}$ is the Gram matrix and $d = \\min(N, D)$` | `where $\\sigma_i(Z_t)$ denotes the $i$-th singular value of $\\mathbf{Z}_t$ and $d = \\min(N, D)$` |\n| 21 | `The log-determinant $S_t$` | `The spectral log-volume $S_t$` |\n| 24 | 3× `Log-determinant` / `log-determinant` | → `spectral log-volume` |\n| 44 | `decline rate of log-determinant` | `decline rate of the spectral log-volume` |\n| 66 | `log-determinant proxy` | `spectral log-volume` |\n\n**Other files updated for consistency:**\n- **experiments.tex**: 8 occurrences renamed (lines 43, 87, 117, 145, 150, 153, 156, 158)\n- **introduction.tex**: line 23\n- **conclusion.tex**: line 14\n\nThe only surviving `log det` in the paper is the correct mathematical expression `\\tfrac{1}{2}\\log\\det(\\mathbf{Z}^\\top\\mathbf{Z})` in experiments.tex line 48."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-method-logdet-formula.md"
+}

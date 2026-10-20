@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6d76fe05b71881a0c664",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ops disk cleanup exp021 restart",
+  "task_key": "worker_ops_disk-cleanup-exp021-restart_20260524T045058",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_disk-cleanup-exp021-restart_20260524T045058_result.json",
+    "occurrence": 1,
+    "bytes": 1112,
+    "sha256": "68572ea2d6b9f27ff614060023d49d0ca7b32f5bef8ed4ea23439994bffc636c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇报如下：\n\n---\n\n### 磁盘空间\n\n| 时间 | 使用 | 可用 | 使用率 |\n|------|------|------|--------|\n| 删除前 | 250G | 2.7MB | 100% |\n| 删除后 | 117G | 134G | 47% |\n\n### 删除内容\n\n1. **`checkpoints_phase1/`** — 117G，Pythia-410M 旧实验 checkpoints（7 个实验目录）\n2. **`checkpoints_410m/gen_0~gen_10`** — ~17G，Pythia-410M 旧 checkpoint 残留\n3. **`checkpoints_410m/exp_021/seed42/gen_2`** — 174MB，磁盘满时的损坏 checkpoint\n\n### exp_020 状态\n\n- PID 783957，GPU 0（26.4G VRAM，96% util）\n- Gen 8/10 采样中（32960/50000 samples），运行正常\n\n### exp_021 状态\n\n- PID 858050，GPU 1（22.7G VRAM，100% util）\n- **从 gen_1 断点恢复**（`--start_gen 2`），已加载 2 条已有结果\n- 当前 Gen 2/3 训练中（r=1.0 纯真实数据），还需完成 Gen 2 和 Gen 3\n- tmux session: `exp021`\n- 日志: `/root/autodl-tmp/spectral_collapse_ews/logs/exp021_restart.log`\n\n### nvidia-smi 确认\n\n- GPU 0: exp_020 (PID 783957) — 26422MiB\n- GPU 1: exp_021 (PID 858050) — 22728MiB"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-disk-cleanup-exp021-restart.md"
+}

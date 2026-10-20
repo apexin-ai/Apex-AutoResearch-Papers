@@ -1,0 +1,109 @@
+paper_key: "aioli"
+title: "Aioli: A Unified Optimization Framework for Language Model Data Mixing"
+venue: "ICLR 2025"
+full_text_available: true
+
+research:
+  baselines:
+    - "Stratified Sampling (uniform, p_i=1/m)"
+    - "DML (Data Mixing Laws, Ye et al.)"
+    - "Skill-It (Chen et al.)"
+    - "DoReMi (Xie et al.)"
+    - "DoGE (Fan et al.)"
+  metrics:
+    - {name: "test perplexity", direction: "lower_better"}
+    - {name: "MSE of mixing law fit", direction: "lower_better"}
+    - {name: "R-squared of mixing law fit", direction: "higher_better"}
+    - {name: "parameter similarity to optimal A^t", direction: "higher_better"}
+  datasets:
+    - {name: "SlimPajama (sampled)", size: "7 groups: ArXiv, Books, CommonCrawl, C4, GitHub, StackExchange, Wikipedia"}
+    - {name: "SlimPajama m=2 splits", size: "6 pair combinations from 7 groups, 9 proportion sweeps each"}
+    - {name: "SlimPajama m=3 splits", size: "subset combinations, Dirichlet(alpha=1.0) sweep"}
+    - {name: "SlimPajama m=7 (all groups)", size: "full 7-group mix, Dirichlet(alpha=1.5) sweep"}
+  ablation_dimensions:
+    - "number of data groups m (2, 3, 7)"
+    - "mixing law parameterization (log-linear static vs linear dynamic)"
+    - "parameter estimation method (per-method A^t vs fitted optimal A^t)"
+    - "exploration fraction delta"
+    - "number of intervals K=mk for parameter estimation"
+    - "unrestricted vs restricted (short-run transfer) setting"
+  training_recipe:
+    optimizer: "not explicitly stated (GPT-style standard, likely AdamW)"
+    lr: "not explicitly stated; eta>0 used as EGD step size"
+    batch_size: "8"
+    context_length: "2048 tokens"
+    training_steps: "55K steps (m=2,3); 40K steps (m=7)"
+    model: "160M parameter GPT-style decoder-only LM"
+    hardware: "not explicitly stated"
+  method_family: "online data mixing optimization via linear mixing law parameter estimation"
+
+positioning:
+  core_claim: "Existing data mixing methods fail because they set mixing law parameters incorrectly, not because their optimization frameworks are wrong; Aioli fixes this by directly estimating these parameters from training history."
+  key_results: "Outperforms stratified sampling on 6/6 datasets by avg 0.27 ppl points; existing methods fail on >=1 dataset by up to 6.9 ppl worse; in restricted setting improves by up to 12.01 ppl points in 28/30 cases"
+  limitations:
+    - "Analysis limited to 160M parameter models on SlimPajama"
+    - "Broader validation across model scales and datasets needed"
+    - "Framework assumes validation loss correlates with downstream task performance"
+    - "Requires allocating delta fraction of training budget for parameter estimation exploration"
+  relation_to_us: "complementary"
+
+narrative:
+  story_type: "unified framework - revealing hidden structure across disparate methods"
+  hook: "Surprising negative result: no existing data mixing method consistently outperforms simple stratified sampling baseline"
+  tension: "Diverse methods (offline regression, online gradient-based) all claim improvements but empirically fail inconsistently -- why? The field lacks a common language to diagnose the root cause"
+  key_insight: "All methods implicitly solve the same optimization problem (minimize average loss subject to a mixing law), and they fail not because their frameworks are wrong but because they estimate the mixing law parameters A^t incorrectly"
+  argument_chain: "problem (inconsistent mixing) -> unification (LMO framework reveals shared structure) -> diagnosis (parameterizations are valid R^2~0.95-0.99 but parameter values are wrong) -> fix (Aioli estimates A^t from training history) -> validation (consistent improvement across all settings)"
+  contribution_framing: "Three research objectives framed as questions: (1) What assumptions do existing methods make? (2) Do these assumptions hold in practice? (3) How to build a principled method from these insights? This question-driven framing naturally leads to the unified framework, fidelity analysis, and Aioli as sequential answers"
+  intro_structure: "8 paragraphs: P1=problem importance (data mixing matters for LLM capabilities), P2=existing approaches landscape (offline vs online), P3=surprising empirical finding (nothing beats stratified), P4=three research objectives, P5=framework contribution (LMO unification), P6=key insight (parameterization OK but parameters wrong), P7=method contribution (Aioli), P8=empirical results summary"
+  notable_technique: "Leading with a negative result (existing methods underperform) to motivate the unification framework; using the framework itself as a diagnostic tool rather than just a theoretical contribution; the R^2=0.491 correlation between parameter accuracy and performance provides a quantitative explanation for why methods fail"
+
+figures:
+  figure_count: 3
+  figure1:
+    type: "method_overview"
+    description: "Three-panel horizontal layout. Left: shows how existing methods can be expressed in unified LMO framework with implicit linear/log-linear assumptions. Center: demonstrates that parameterizations are well-specified but parameters are set incorrectly. Right: shows Aioli accurately estimating the true loss-proportion relationship parameters."
+    narrative_role: "Serves as the paper's thesis statement in visual form -- compresses the entire story (unification -> diagnosis -> fix) into one figure"
+    design_elements: ["three-panel progression", "conceptual diagrams with arrows", "left-to-right narrative flow from problem to solution"]
+    visual_style: "Schematic/conceptual diagram style, three panels arranged horizontally with clear left-to-right progression from existing methods -> analysis -> Aioli solution"
+  result_figures:
+    - figure_id: "Figure 3"
+      viz_type: "scatter"
+      what_compared: "Improvement over stratified sampling (y-axis) vs parameter optimality/similarity to fitted A^t (x-axis), each dot = one method-dataset combination"
+      how_gain_highlighted: "Red shaded region marks where methods perform worse than stratified; vertical dashed line as visual reference; Aioli dots cluster in the upper-right (accurate parameters + good performance)"
+      design_note: "Clever scatter plot that visually proves the paper's thesis: parameter accuracy predicts performance. The red region immediately shows existing methods' failure cases."
+  ablation_figures:
+    - figure_id: "Figure 2"
+      viz_type: "scatter (fitted regression)"
+      dimensions_varied: ["static log-linear mixing law fit (left panel)", "dynamic linear mixing law fit (right panel)"]
+      design_note: "Two-panel scatter with fitted lines showing both parameterizations achieve high R^2. Colors encode random seeds (left) and initial proportions (right), demonstrating robustness across conditions."
+  figure_narrative_role: "Figure 1 (thesis overview: unify -> diagnose -> fix) -> Figure 2 (parameterizations are valid, R^2 high) -> Figure 3 (but parameter values are wrong, and accuracy predicts performance)"
+
+tables:
+  table_count: 4
+  main_result_table:
+    table_id: "Table 2"
+    row_axis: "methods"
+    col_axis: "datasets (SlimPajama group combinations)"
+    row_organization: "by_category"
+    col_organization: "grouped_by_dataset"
+    highlight_strategy: "comparison to stratified sampling baseline; improvement/degradation in perplexity points"
+    statistical_reporting: "perplexity values; improvement reported as deltas from stratified baseline"
+    num_baselines: 5
+    design_note: "Emphasizes the inconsistency of existing methods (doing worse than stratified on some datasets) vs Aioli's consistent improvement across all 6 datasets"
+  ablation_tables:
+    - table_id: "Table 1"
+      what_varied: ["mixing law parameterization", "parameter estimation method", "solver strategy"]
+      variation_style: "full_numbers"
+      design_note: "Not a traditional ablation but a unification summary table -- rows are methods, columns decompose each into (1) mixing law, (2) parameters, (3) solver. This table IS the framework contribution, showing all methods share the same structure."
+    - table_id: "Table 5"
+      what_varied: ["parameterization details across methods"]
+      variation_style: "full_numbers"
+      design_note: "Appendix table expanding on parameterization specifics"
+    - table_id: "Table 10"
+      what_varied: ["solving strategy details across methods"]
+      variation_style: "full_numbers"
+      design_note: "Appendix table expanding on solver specifics"
+  supplementary_tables:
+    in_appendix: true
+    content: "Tables 5, 10 and additional tables in Appendices C-F providing detailed parameterization analysis, solving strategy comparisons, and extended experimental results across more dataset combinations"
+    reason: "Main paper keeps the unification (Table 1) and main results (Table 2) for narrative clarity; appendix houses the full sweep data and detailed framework decomposition that supports but would clutter the main argument"

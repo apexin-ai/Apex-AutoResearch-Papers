@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "83a477d0e51b36c71dcf",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "verify sensitivity tau update",
+  "task_key": "worker_verify_sensitivity_tau_update_20260517T104723",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_sensitivity_tau_update_20260517T104723_result.json",
+    "occurrence": 1,
+    "bytes": 367,
+    "sha256": "07a06079f2b2ea901179425c7dafed42b38bd67223a927722ff5beeaa238d08f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已验证，所有值均符合要求，无需修改：\n\n- **TAU_VALUES** = `[0.002, 0.005, 0.01]` — 已是新值\n- **signal 默认值** = `\"log_det\"` — D010 修正已到位（`run_single` 参数默认值和 `argparse` 默认值均为 `\"log_det\"`）\n- **K_VALUES** = `[0.5, 1.0, 2.0]` — 未变\n\n上一个 session 已完成更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-sensitivity-tau-update.md"
+}

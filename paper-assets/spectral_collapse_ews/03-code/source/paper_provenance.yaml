@@ -1,0 +1,468 @@
+paper:
+  title: ''
+  version: 7
+  generated_at: '2026-05-19T17:00:00.000000+00:00'
+claims:
+- id: C001
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: SLV = sum_i log sigma_i = 1/2 log det G measures total embedding volume in
+    log-space
+  type: definition
+  evidence:
+  - source: citation
+    ref: gu2026sigma
+    note: SLV = 1/2 log det G, derived from SIGMA framework
+  decisions: []
+  deprecated: false
+- id: C003
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: Effective rank r_eff = exp(H(p)) quantifies how many dimensions carry substantial
+    variance
+  type: definition
+  evidence:
+  - source: citation
+    ref: rankme2023
+    note: effective rank defined via normalized singular value entropy
+  decisions: []
+  deprecated: false
+- id: C006
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: 'Controller update rule: r_{t+1} = B_rem/(T-t) + k*max(0, Delta_t - tau)'
+  type: method
+  evidence:
+  - source: exp_id
+    ref: exp_006
+  decisions:
+  - D012
+  - D015
+  deprecated: false
+- id: C010
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: 'Controller parameters: k=10, tau=0.002, signal_mode=per_gen'
+  type: method
+  evidence:
+  - source: exp_id
+    ref: exp_006
+  decisions:
+  - D012
+  - D015
+  deprecated: false
+- id: C015
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: Four conditions share same total real-data budget
+  type: method
+  evidence:
+  - source: exp_id
+    ref: exp_001
+  - source: exp_id
+    ref: exp_004
+  - source: exp_id
+    ref: exp_006
+  decisions:
+  - D026
+  deprecated: false
+- id: C016
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Recursive synthetic training triggers model collapse with progressive erosion
+    of distributional tails
+  type: background
+  evidence:
+  - source: citation
+    ref: shumailov2024collapse
+  - source: citation
+    ref: dohmatob2024tails
+  - source: citation
+    ref: alemohammad2024mad
+  decisions: []
+  deprecated: false
+- id: C018
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: 'Three-phase spectral pattern: decompression (Gen 0-2), onset (Gen 2-4), acceleration
+    (Gen 4-10) at 1.78 ± 0.22%/gen decline rate'
+  type: primary
+  evidence:
+  - source: exp_id
+    ref: exp_001
+    note: seed 42, 10 gen pure collapse
+  - source: exp_id
+    ref: exp_010
+    note: seed 43, 10 gen pure collapse (cross-seed replication)
+  - source: exp_id
+    ref: exp_013
+    note: seed 44, 10 gen pure collapse (3rd seed for mean±s.d.)
+  decisions: []
+  deprecated: false
+- id: C021
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: SLV is computationally efficient collapse monitor with monotonic post-peak
+    decline
+  type: primary
+  evidence:
+  - source: exp_id
+    ref: exp_001
+  - source: exp_id
+    ref: exp_002
+  decisions: []
+  deprecated: false
+- id: C025
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: 'HellaSwag-spectral asymmetry: downstream degradation precedes spectral collapse'
+  type: primary
+  evidence:
+  - source: exp_id
+    ref: exp_001
+  decisions: []
+  deprecated: false
+- id: C030
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: 'Signal attenuation paradox: successful intervention dampens spectral signal'
+  type: secondary
+  evidence:
+  - source: exp_id
+    ref: exp_006
+    note: adaptive controller never triggered across 10 gen at r=0.5, Δ_t ≤ 0 throughout
+  - source: exp_id
+    ref: exp_007
+    note: r=0.2 max Δ_t=0.0019 < τ=0.002, controller silent
+  - source: exp_id
+    ref: exp_009
+    note: r=0.25 max Δ_t=0.00028 < τ=0.002, controller silent (6.7x weaker than r=0.2)
+  decisions:
+  - D019
+  - D020
+  - D023
+  deprecated: false
+- id: C031
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: Tail distributions erode over successive generations in recursive synthetic
+    training
+  type: background
+  evidence:
+  - source: citation
+    ref: shumailov2024collapse
+  decisions: []
+  deprecated: false
+- id: C033
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: 1% synthetic data can trigger strong collapse
+  type: background
+  evidence:
+  - source: citation
+    ref: dohmatob2025strong
+  decisions: []
+  deprecated: false
+- id: C036
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: SIGMA framework validated on OPT-125M over short generation horizons
+  type: background
+  evidence:
+  - source: citation
+    ref: gu2026sigma
+  decisions: []
+  deprecated: false
+- id: C040
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: 'We extend along three axes: 10 generations, 410M+1B scale, closed-loop prevention'
+  type: positioning
+  evidence:
+  - source: exp_id
+    ref: exp_001
+  - source: exp_id
+    ref: exp_002
+  - source: exp_id
+    ref: exp_006
+  decisions: []
+  deprecated: false
+- id: C041
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: 'Three-phase trajectory: decompression, onset, acceleration at 1.78 ± 0.22%/gen
+    decline across 10 generations of Pythia-410M'
+  type: summary
+  evidence:
+  - source: exp_id
+    ref: exp_001
+    note: seed 42
+  - source: exp_id
+    ref: exp_010
+    note: seed 43
+  - source: exp_id
+    ref: exp_013
+    note: seed 44, 3-seed mean±s.d.
+  decisions: []
+  deprecated: false
+- id: C043
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: 1B pilot confirms same phase structure
+  type: summary
+  evidence:
+  - source: exp_id
+    ref: exp_002
+  decisions: []
+  deprecated: false
+- id: C046
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: 'Signal attenuation paradox: successful intervention suppresses the spectral
+    signal the controller depends on'
+  type: insight
+  evidence:
+  - source: exp_id
+    ref: exp_006
+    note: controller silent 10 gen at r=0.5, log_det monotonically rising
+  - source: exp_id
+    ref: exp_007
+    note: r=0.2 max Δ_t=0.0019 < τ, signal suppressed even at 20% real
+  - source: exp_id
+    ref: exp_009
+    note: r=0.25 max Δ_t=0.00028 < τ, gradient evidence of attenuation
+  decisions:
+  - D019
+  - D020
+  deprecated: false
+- id: C047
+  location:
+    section: limitations
+    paragraph: 0
+    sentence: 0
+  text: Multi-seed replication covers pure collapse (three seeds) and r=0.3 (two seeds);
+    other ratios report single seed
+  type: limitation
+  evidence:
+  - source: exp_id
+    ref: exp_001
+    note: seed 42, r=0
+  - source: exp_id
+    ref: exp_010
+    note: seed 43, r=0
+  - source: exp_id
+    ref: exp_013
+    note: seed 44, r=0
+  - source: exp_id
+    ref: exp_008
+    note: seed 42, r=0.3
+  - source: exp_id
+    ref: exp_012
+    note: seed 43, r=0.3
+  decisions: []
+  deprecated: false
+- id: C049
+  location:
+    section: limitations
+    paragraph: 0
+    sentence: 0
+  text: Two model scales only (410M + 1B pilot)
+  type: limitation
+  evidence:
+  - source: exp_id
+    ref: exp_001
+    note: Pythia-410M full 10 gen
+  - source: exp_id
+    ref: exp_002
+    note: Pythia-1B pilot 3 gen (disk space killed)
+  decisions: []
+  deprecated: false
+- id: C052
+  location:
+    section: limitations
+    paragraph: 0
+    sentence: 0
+  text: 10 generations may be shorter than production scenarios
+  type: limitation
+  evidence:
+  - source: exp_id
+    ref: exp_001
+    note: max 10 gen across all experiments
+  decisions: []
+  deprecated: false
+- id: C056
+  location:
+    section: limitations
+    paragraph: 0
+    sentence: 0
+  text: Single data domain (OpenWebText)
+  type: limitation
+  evidence:
+  - source: exp_id
+    ref: exp_001
+    note: all experiments use OpenWebText 50K subset
+  decisions: []
+  deprecated: false
+- id: C061
+  location:
+    section: limitations
+    paragraph: 0
+    sentence: 0
+  text: Proportional controller only, no integral/derivative
+  type: limitation
+  evidence:
+  - source: exp_id
+    ref: exp_006
+    note: only P-controller tested; never triggered, limiting design space exploration
+  decisions:
+  - D020
+  deprecated: false
+- id: C062
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: 'Three-phase pattern: decompression (Gen 0-2), onset (Gen 2-4), acceleration
+    (Gen 4-10) at 1.78 ± 0.22%/gen decline rate'
+  type: primary
+  evidence:
+  - source: exp_id
+    ref: exp_001
+    note: seed 42
+  - source: exp_id
+    ref: exp_010
+    note: seed 43
+  - source: exp_id
+    ref: exp_013
+    note: seed 44, 3-seed mean±s.d.
+  decisions: []
+  deprecated: false
+- id: C064
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: SLV exhibits post-decompression monotonic decline amenable to threshold-based
+    control
+  type: primary
+  evidence:
+  - source: exp_id
+    ref: exp_001
+  decisions: []
+  deprecated: false
+- id: C067
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: 'Signal attenuation paradox: successful intervention suppresses spectral signal'
+  type: secondary
+  evidence:
+  - source: exp_id
+    ref: exp_006
+    note: adaptive controller never triggered at r=0.5 across 10 gen
+  - source: exp_id
+    ref: exp_007
+    note: r=0.2 max Δ_t=0.0019 < τ=0.002
+  - source: exp_id
+    ref: exp_009
+    note: r=0.25 max Δ_t=0.00028 < τ=0.002
+  decisions:
+  - D019
+  - D020
+  deprecated: false
+- id: C070
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'Critical mixing ratio r_crit in (0.25, 0.3]: below r_crit EMA-smoothed SLV
+    violates non-decreasing condition'
+  type: primary
+  evidence:
+  - source: exp_id
+    ref: exp_009
+    note: r=0.25 Type II, EMA S̃_2=2363.8 < S̃_1=2364.4 violates non-decreasing
+  - source: exp_id
+    ref: exp_008
+    note: r=0.3 Type III, EMA S̃_2=2369.5 > S̃_1=2366.4 satisfies non-decreasing
+  decisions:
+  - D029
+  - D031
+  deprecated: false
+- id: C071
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'Three SLV trajectory types partition the mixing-ratio axis: Type I (collapse,
+    r=0), Type II (transitional dip-then-recovery, r=0.2/0.25), Type III (monotonic
+    expansion, r>=0.3)'
+  type: primary
+  evidence:
+  - source: exp_id
+    ref: exp_001
+    note: Type I, r=0 pure collapse, SLV peak Gen 2 then accelerating decline
+  - source: exp_id
+    ref: exp_007
+    note: Type II, r=0.2 dip Gen 2 (-9.2) then recovery to +32.2 above baseline
+  - source: exp_id
+    ref: exp_009
+    note: Type II, r=0.25 dip Gen 1 (-4.6) then recovery, EMA violates non-decreasing
+  - source: exp_id
+    ref: exp_004
+    note: Type III, r=0.5 monotonic SLV expansion 2367→2573
+  - source: exp_id
+    ref: exp_008
+    note: Type III, r=0.3 monotonic SLV expansion 2367→2511
+  decisions:
+  - D028
+  - D029
+  deprecated: false
+tables: []
+figures: []
+_completeness:
+  coverage: 27/27
+  claims: 27
+  tables: 0
+  figures: 0
+  tier_counts:
+    tier1: 0
+    tier2: 27
+    tier3: 0
+    tierX: 0
+  last_checked: '2026-05-21T14:30:00.000000+00:00'

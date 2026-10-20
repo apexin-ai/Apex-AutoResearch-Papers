@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d77725363950787984b1",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ops status check launch",
+  "task_key": "worker_ops_status_check_launch_20260517T152517",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_status_check_launch_20260517T152517_result.json",
+    "occurrence": 1,
+    "bytes": 2312,
+    "sha256": "c33be0d481079a93fdbee2f86c241f32215c16b876cb489c73c939f08293f998"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 状态\n| GPU | 型号 | 显存占用 | GPU-Util | 温度 |\n|-----|------|---------|----------|------|\n| 0 | RTX PRO 6000 | 65909/97887 MiB | 94% | 63°C |\n| 1 | RTX PRO 6000 | 25017/97887 MiB | 94% | 63°C |\n\n两块卡均满载运行。\n\n---\n\n## exp_001 (Phase 0, cuda:0)\n**状态: Gen 0-9 已完成，进程仍在运行（可能在跑 Gen 10）**\n- PID 59365: **存活**，已运行 16h05m（`--resume_from_gen 4`）\n- 日志显示 \"Generation 10/10\"，当前生成样本 14400/50000\n- `phase0_results.json` 已包含 Gen 0-9 全量数据\n\n### 全量数据表\n\n| Gen | eff_rank | log_det | ppl | distinct4 | hellaswag |\n|-----|----------|---------|-----|-----------|-----------|\n| 0 | 417.55 | 2366.68 | 9.55 | 0.7414 | 0.4130 |\n| 1 | 491.77 | 2464.76 | 11.38 | 0.6256 | 0.3897 |\n| 2 | 496.44 | 2469.93 | 13.58 | 0.5154 | 0.3764 |\n| 3 | 493.31 | 2440.57 | 16.25 | 0.4900 | 0.3658 |\n| 4 | 485.67 | 2405.05 | 19.80 | 0.4679 | 0.3558 |\n| 5 | 479.21 | 2370.17 | 24.59 | 0.4630 | 0.3439 |\n| 6 | 473.00 | 2335.17 | 30.91 | 0.4655 | 0.3311 |\n| 7 | 464.20 | 2304.19 | 38.89 | 0.4474 | 0.3187 |\n| 8 | 456.76 | 2252.12 | 49.29 | 0.4401 | 0.3103 |\n| 9 | 448.45 | 2207.57 | 63.32 | 0.4262 | 0.3009 |\n\n趋势：eff_rank 从 Gen 2 峰值 496 单调下降至 448，log_det 从 Gen 2 峰值 2470 下降至 2208，ppl 从 9.5 飙升至 63.3，hellaswag 从 0.413 下降至 0.301。**Spectral collapse 信号清晰。**\n\n---\n\n## exp_005 (Phase 1 adaptive k=20, cuda:1)\n**状态: Gen 2/10 进行中**\n- PID 116947: **存活**，已运行 2h08m\n- Checkpoints: gen_0, gen_1 已保存（gen_1 @ 22:45）\n- 25008 MiB 显存占用\n\n### Controller 行为\n- Gen 1 mix_ratio: **0.50**\n- controller_ratio: **0.50**\n- log_det delta: 2366.68 → 2366.46 (delta ≈ -0.22)\n\n### k=20 验证: **ratio = 0.50，未触发调整**\nGen 1 的 mix_ratio 仍为默认值 0.50，controller 未生效。不过 Gen 0→1 的 log_det 变化极小（-0.22），可能还不足以触发 tau=0.002 的阈值。需要观察 Gen 2+ 是否开始响应。\n\n---\n\n## exp_004 (fixed_mix)\n**等待 cuda:0 释放，暂不启动。**\nPID 59365 仍占用 cuda:0（65900 MiB），无法启动 exp_004。exp_001 当前在生成 Gen 10 的样本（14400/50000），预计还需数小时完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-status-check-launch.md"
+}

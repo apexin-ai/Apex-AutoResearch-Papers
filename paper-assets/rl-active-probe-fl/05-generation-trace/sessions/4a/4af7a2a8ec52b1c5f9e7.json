@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4af7a2a8ec52b1c5f9e7",
+  "project": "rl-active-probe-fl",
+  "kind": "result",
+  "title": "eval dual v3",
+  "task_key": "worker_eval_dual-v3_20260514T094512",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_dual-v3_20260514T094512_result.json",
+    "occurrence": 1,
+    "bytes": 838,
+    "sha256": "753972a465293fdef3ac56718315a30a950ccaf8085dab853ccac8e100aefb97"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部就绪。汇报：\n\n**Step 1 — 文件同步**: 3 个文件已写入服务器，行数匹配（sandbox.py 355, evaluate.py 315, reward_funcs.py 181）。\n\n**Step 2 — Sandbox 验证**: 7/10 probes 成功执行。3 个 FAIL 均为 buggy_code 自身语法错误（断行的字符串/表达式），非 sandbox 问题。\n\n**Step 3 — 双卡 Eval 已提交**:\n- `eval-base-v3` (tmux, GPU 0) — 模型已加载，正在评估 sample 1/202\n- `eval-sft-v2` (tmux, GPU 1) — 模型已加载，正在评估 sample 1/202\n\n注：`submit_training_job` 工具不存在于当前 MCP 工具集，改用 tmux session 提交（`tmux attach -t eval-base-v3` / `eval-sft-v2` 可查看实时进度）。SFT eval 中 `--gpu 0` 配合 `CUDA_VISIBLE_DEVICES=1` 使模型看到的逻辑 GPU 为 0，实际使用物理 GPU 1。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-dual-v3.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fcd3b971bf6ca9d219ea",
+  "project": "trace_distill_repair",
+  "kind": "result",
+  "title": "code result analysis script",
+  "task_key": "worker_code_result_analysis_script_20260515T140418",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_result_analysis_script_20260515T140418_result.json",
+    "occurrence": 1,
+    "bytes": 872,
+    "sha256": "8027753cdb0321d448b7b3b51ec26f6ddfa8dbba2abf2b0fa1512615f7350f82"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本运行正常。3 个已完成实例（black_1, cookiecutter_1, cookiecutter_2）的部分数据全部正确解析，所有 6 个输出模块都正常工作：\n\n- **Per-instance table**: 3×4 格，P/F + judge 分数\n- **Condition summary**: 4 条件的 test_pass_rate / avg_judge / diff_apply / tokens\n- **Head-to-head**: 4 组对比的 win/tie/loss\n- **Statistical tests**: sign test + wilcoxon（n<5 时正确跳过）\n- **Oracle baseline**: 检测到 httpie_2 oracle pass，但该实例尚未完成所以 oracle 子表为空\n- **Kill criteria C001**: 三条标准全部检测，当前均 FAIL（符合预期，数据不完整）\n\nJSON 已保存到 `pipeline_output/phase3_v2_analysis.json`。脚本自动发现 checkpoint/oracle 文件，无需手动指定路径。等 14 实例全部跑完后直接 `python analyze_phase3_v2.py` 即可。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-result-analysis-script.md"
+}

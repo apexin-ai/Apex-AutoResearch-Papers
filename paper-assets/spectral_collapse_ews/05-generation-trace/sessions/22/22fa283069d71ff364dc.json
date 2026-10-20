@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "22fa283069d71ff364dc",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "diagnose exp 003 exit",
+  "task_key": "worker_diagnose_exp_003_exit_20260517T124757",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp_003_exit_20260517T124757_result.json",
+    "occurrence": 1,
+    "bytes": 970,
+    "sha256": "8af14d38700820c449ec40cbad31848fa470b5dc56c0f8e8145608283d7f09e3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**exp_003 并未被成功 kill。**\n\n| 检查项 | 结果 |\n|--------|------|\n| PID 88156 | **已死**（`/proc/88156` 不存在） |\n| PID 88161 (子进程) | **仍在运行**，占用 cuda:1，23.7 GB 显存，GPU 利用率 94% |\n| cuda:1 释放 | **否** |\n| 退出方式 | 父进程 88156 已退出，但实际 worker 子进程 88161（NSsid=88156）仍然存活 |\n\n**日志进度：**\n- Gen 0: 完成（baseline, eff_rank=417.55, ppl=9.55）\n- Gen 1: 完成（eff_rank=479.49, ppl=10.01, training loss=1.9830）\n- Gen 2: 完成（eff_rank=496.60, ppl=10.51, training loss=1.8782）\n- Gen 3: **正在进行** — 生成合成数据中，已生成 6720/50000 samples\n- 总共 10 代（`--generations 10`）\n\n**结论：** kill 88156 只杀了父进程，子进程 88161 继承了工作并继续运行。如果 D011 要求停止此实验修复 controller bug，需要 `kill 88161` 才能真正停掉实验并释放 cuda:1。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-003-exit.md"
+}

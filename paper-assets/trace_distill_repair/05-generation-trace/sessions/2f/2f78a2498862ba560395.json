@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "2f78a2498862ba560395",
+  "project": "trace_distill_repair",
+  "kind": "worker",
+  "title": "fix test infra expand oracle",
+  "task_key": "worker_fix_test_infra_expand_oracle_20260515T140715",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_test_infra_expand_oracle_20260515T140715.log",
+    "occurrence": 1,
+    "bytes": 726143,
+    "sha256": "b4e636f8279b313098c1453807c9f40de64b51cc22758760208347792eaf0404"
+  },
+  "statistics": {
+    "messages": 306,
+    "user_turns": 0,
+    "tool_calls": 108,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 86,
+      "tool_call": 108,
+      "tool_result": 108,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 306,
+      "chunks": [
+        {
+          "path": "2f78a2498862ba560395-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "2f78a2498862ba560395-part-0002.json",
+          "message_count": 126
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/fix-test-infra-expand-oracle.md"
+}

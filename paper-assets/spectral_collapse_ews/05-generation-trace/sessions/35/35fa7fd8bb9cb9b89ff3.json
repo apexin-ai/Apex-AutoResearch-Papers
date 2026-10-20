@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "35fa7fd8bb9cb9b89ff3",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ops exp021 metrics pull",
+  "task_key": "worker_ops_exp021-metrics-pull_20260524T061238",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp021-metrics-pull_20260524T061238_result.json",
+    "occurrence": 1,
+    "bytes": 1584,
+    "sha256": "259f0394b1276c79ed4ded1cf45097a5bc0c2496ea3bb7f5ff9ff33ae03f09d4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## exp_021 — 已完成，metrics 已保存\n\n文件：`artifacts/exp_021/full_metrics.json`\n\n| Gen | r_eff | PPL | Distinct-4 | Train Loss |\n|-----|-------|-----|------------|------------|\n| 0 | 23.09 | 15.45 | 0.9127 | — |\n| 1 | 121.17 | 11.47 | 0.8844 | 2.560 |\n| 2 | 113.30 | 11.30 | 0.8701 | 2.478 |\n| 3 | 134.49 | 11.21 | 0.8600 | 2.432 |\n\nreal-data control 下 r_eff 上升后稳定在 ~113-134，PPL 持续下降，没有出现 Phase II/III 的 collapse 加速——符合预期。\n\n---\n\n## exp_020 — 正在跑 Gen 9\n\n**配置**：GPT-2-medium, pure collapse (r=0.0), 10 generations total, seed=42\n\n**当前状态**：Gen 9 正在生成 synthetic samples，进度 ~5,440/50,000 (~11%)\n\n**GPU**：GPU 0 — 85% 利用率，26.4GB 显存\n\n**已完成 gen 0-8 的趋势**：\n\n| Gen | r_eff | PPL | Distinct-4 | Loss |\n|-----|-------|-----|------------|------|\n| 0 | 23.09 | 15.45 | 0.9127 | — |\n| 1 | 155.22 | 16.42 | 0.8907 | 2.358 |\n| 2 | 185.37 | 18.94 | 0.8682 | 2.119 |\n| 3 | 184.86 | 23.33 | 0.8368 | 2.052 |\n| 4 | 169.56 | 32.11 | 0.7636 | 1.993 |\n| 5 | 151.94 | 49.35 | 0.6583 | 1.913 |\n| 6 | 136.09 | 76.81 | 0.5590 | 1.821 |\n| 7 | 121.29 | 123.66 | 0.5008 | 1.740 |\n| 8 | 110.92 | 198.01 | 0.4598 | 1.706 |\n\n三阶段轨迹清晰：Phase I decompression (gen 1-2, r_eff 上升到 185)，Phase II onset (gen 3-4, r_eff 开始回落)，Phase III acceleration (gen 5+, PPL 指数级上升)。\n\n**时间估算**：每代 ~2h24m。Gen 9 预计 ~16:20 完成，Gen 10（最后一代）预计 ~18:45 完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp021-metrics-pull.md"
+}

@@ -1,0 +1,553 @@
+_next_id: 34
+decisions:
+- id: D001
+  date: 2026-05-14 12:28 UTC
+  summary: MVP 设计：用 teacher 直接打分验证结构化 vs 行级 trace 过滤，不训练 student
+  rationale: MVP 目标是验证核心假设（结构化分段优于行级），不需要训练 0.6B student。直接用 DeepSeek-V4-Flash 作为
+    teacher 对 structural segments 和 line-level segments 打分，比较修复效果。25-30 BugsInPy 实例，1
+    个 repair LLM，4 个条件。2 天内完成。选 BugsInPy 而非 SWE-bench 因为环境搭建更简单、trace 收集更可控。
+  related_experiments: []
+  depends_on: []
+- id: D002
+  date: 2026-05-14 12:32 UTC
+  summary: 采纳 Reviewer 建议调整 MVP 参数：40 实例、50 segments 抽查、操作化 kill criterion
+  rationale: Reviewer 指出原 MVP 设计三个统计问题：(1) n=20 teacher precision 抽查 CI 过宽无法区分 0.5
+    和 0.6；(2) n=25 sign test power < 0.3；(3) kill criterion "无差异"未操作化。调整：实例数 25-30
+    → 40，teacher 抽查 20 → 50 segments，pass 标准改为 directional signal (p<0.15) + 定性分析，kill
+    criterion 明确为 ">2K token 子集 win rate ≤ 50%"。
+  related_experiments: []
+  depends_on:
+  - D001
+- id: D003
+  date: 2026-05-14 13:59 UTC
+  summary: Claim 4（通用性/即插即用）从 core claim 降级为 Discussion future direction
+  rationale: Reviewer 指出 Claim 4 要求 agentic repair pipeline 集成实验，但 MVP 不涉及、experiment_plan
+    无此实验、11 天 DDL 内不现实。核心 claims 保持 1-3：(1) 结构化过滤 > 行级过滤、(2) trace noise 是 EMNLP 2025
+    负面结论的原因、(3) 蒸馏到 0.6B student。Claims 1-2 可独立成立（即使蒸馏失败仍有贡献）。Post-MVP 修改 paper_framing.md。
+  related_experiments: []
+  depends_on: []
+- id: D004
+  date: 2026-05-14 14:59 UTC
+  summary: 启用 line event 捕获 + sub-function 分段，修复 structural segments 过少问题
+  rationale: Reviewer 发现 24 实例中 18 个 structural segments ≤ 5（多数仅 1-2 个），loop_iteration
+    几乎为零。根因是 trace collector 只捕获 call/return/exception 不捕获 line events。这使 structural
+    vs line 对比变成"大块 keep/drop"vs"逐行筛选"，无法验证结构化边界价值。IDEA_BRIEF pilot contingency 预见此情况，建议
+    fall back to basic-block-level segmentation。修复：启用 line events + loop detection
+    + sub-function 分段，目标每实例 5-20 structural segments。
+  related_experiments: []
+  depends_on:
+  - D002
+- id: D005
+  date: 2026-05-14 20:29 UTC
+  summary: Phase 2 线性评分改为 head-100 + tail-100 采样策略，终止 62K 全量评分
+  rationale: 全量 62K segments 评分需 ~23h，阻塞 Phase 3 核心实验一整天。MVP 只需验证 teacher scoring
+    precision ≥ 0.6，双端采样（~7.6K segments, ~2.5h）既修复原始 head-200 截断偏差，又保证 Phase 3 尽快启动。距
+    DDL 仅 11 天，Phase 3 repair comparison 的迭代空间优先。
+  related_experiments:
+  - exp_id: mvp_line_scoring_rerun_v2
+    role: 被终止的全量评分
+    result: running, 7/38 instances done, ~23h ETA
+  - exp_id: mvp_teacher_scoring
+    role: 原始截断评分(head-200)
+    result: running
+  depends_on: []
+- id: D006
+  date: 2026-05-14 20:54 UTC
+  summary: 'D006: 强制终止全量 scoring 进程 PID 67855，用采样版本重启'
+  rationale: D005 决策（切换 head-100+tail-100 采样）未被执行，旧全量进程仍在运行。已完成仅 2.1%（1,320/62,322
+    segments），剩余需 ~17h。Kill 后损失 1,320 segments 数据但节省 ~17h API 成本。采样版本预计 2.5h 完成。
+  related_experiments: []
+  depends_on:
+  - D005
+- id: D007
+  date: 2026-05-14 20:59 UTC
+  summary: 'D007: 暂停 line scoring 重启，先修复 structural scoring JSON 解析 bug + 轮换泄露的 API
+    key'
+  rationale: Reviewer CRITICAL：(1) line scoring sampled 进程已死，5/38 实例后终止，无输出文件；(2)
+    structural scoring 约 15+ 条目 confidence 值被错误解析为 0.5/0.0，真实值丢在 reasoning 原始 JSON
+    中；(3) API key 明文泄露在 registry。决定先修复代码再统一重跑，避免用有 bug 的代码重复浪费 API 调用。
+  related_experiments: []
+  depends_on:
+  - D006
+- id: D008
+  date: 2026-05-14 21:41 UTC
+  summary: Line scoring 改为单 Worker 串行执行，禁止多 Worker 并行操作 scoring 进程
+  rationale: 5 次 line scoring 全部失败，Reviewer 确认根因是多 Worker 同时 kill/patch/restart 互踩。同时要求重跑
+    structural scoring 清除旧 bug 脏数据。
+  related_experiments:
+  - exp_id: mvp_line_scoring_rerun
+    role: evidence
+    result: failed - missing API key
+  - exp_id: mvp_line_scoring_rerun_v2
+    role: evidence
+    result: killed - Worker 互踩
+  - exp_id: mvp_line_scoring_sampled
+    role: evidence
+    result: failed - buggy code
+  - exp_id: mvp_line_scoring_sampled_final
+    role: evidence
+    result: killed - Worker 互踩
+  - exp_id: mvp_teacher_scoring
+    role: evidence
+    result: stale RUNNING, 无实际进程
+  depends_on: []
+- id: D009
+  date: 2026-05-15 01:54 UTC
+  summary: Line scoring max_tokens=256 导致方向性偏差，修复后全量重跑
+  rationale: Reviewer CRITICAL：max_tokens=256 截断 JSON 响应，keep 的 reasoning 比 drop 长导致
+    keep 被截断概率更高，keep rate 被系统性低估（至少 21 个 keep 丢失，真实 keep ≥59 vs 报告 38）。42.5% error
+    rate 中 32.8% 是 PARSE_FAILURE。修复 max_tokens→1024 + max_retries→5 后重跑，注册为 mvp_line_scoring_v2。Structural
+    scoring 不受影响（0 PARSE_FAILURE），继续运行。
+  related_experiments:
+  - exp_id: mvp_line_scoring_clean
+    role: 触发
+    result: 42.5% error rate, keep rate 被系统性低估
+  depends_on:
+  - D008
+- id: D010
+  date: 2026-05-15 02:33 UTC
+  summary: 论文 claim 方向从 "keep rate 差异" 转向 "连贯上下文 + token 效率"
+  rationale: Reviewer 分析：structural 和 line 粒度不同（语义单元 vs 5-event 窗口），keep rate 直接对比无意义，审稿人一击即溃。更强的
+    claim 是 "Structure-aware filtering preserves semantically coherent diagnostic
+    units, achieving higher repair quality with fewer retained tokens"。Phase 3 需增加
+    token-efficiency 指标（repair_quality / kept_token_volume）。此外 v2 line scoring 取消采样后
+    segment 数从 ~3900 增至预估 3000-6000+，这是实验设计变更需要控制。
+  related_experiments:
+  - exp_id: mvp_line_scoring_clean
+    role: 触发
+    result: 1.7% keep rate confirmed real
+  - exp_id: mvp_teacher_scoring
+    role: 对比
+    result: structural 5.3% keep rate, 0 PARSE_FAILURE at mid-checkpoints
+  depends_on:
+  - D009
+- id: D011
+  date: 2026-05-15 02:36 UTC
+  summary: Structural scoring 必须用修复后代码重跑（mvp_structural_scoring_v2），串行于 line_scoring_v2
+    之后执行
+  rationale: 'Reviewer CRITICAL: mvp_structural_scoring_clean 同样受 max_tokens=256 影响，28.5%
+    错误率（117 PARSE_FAILURE + 23 API None），其中至少 7 个 keep 被截断丢失。旧版 mvp_teacher_scoring
+    的 5.26% keep rate 也因 fallback bug 不可信。当前无任何可信 structural scoring 数据。串行执行避免 API
+    过载（Reviewer 观察到并发期间 API None 集中爆发）。'
+  related_experiments:
+  - exp_id: mvp_structural_scoring_clean
+    role: invalidated
+    result: 28.5% error rate from max_tokens=256
+  - exp_id: mvp_teacher_scoring
+    role: invalidated
+    result: fallback bug masked PARSE_FAILURE as valid drops
+  - exp_id: mvp_line_scoring_v2
+    role: prerequisite
+    result: running, 0 PARSE_FAILURE so far
+  depends_on:
+  - D009
+- id: D012
+  date: 2026-05-15 02:36 UTC
+  summary: Structural scoring 全部不可信，必须用修复后代码 (max_tokens=1024, max_retries=5) 重跑；与
+    line scoring v2 串行执行
+  rationale: Reviewer 审查确认：mvp_structural_scoring_clean 仍使用旧代码(max_tokens=256)，28.5%
+    错误率(140/491)，至少7个keep被PARSE_FAILURE隐藏。旧版 mvp_teacher_scoring 的 5.26% keep rate
+    被 fallback bug 污染（PARSE_FAILURE 被当作有效 drop 计入）。两个并发 scoring 进程导致 API 过载。结论：Phase
+    3 必须等两个 v2 scoring 全部完成才能启动。
+  related_experiments:
+  - exp_id: mvp_structural_scoring_clean
+    role: evidence
+    result: 28.5% error rate, data unreliable
+  - exp_id: mvp_teacher_scoring
+    role: evidence
+    result: fallback bug polluted keep rate
+  - exp_id: mvp_line_scoring_v2
+    role: dependency
+    result: running, 10/38 done, 0 errors
+  depends_on:
+  - D009
+- id: D013
+  date: 2026-05-15 04:38 UTC
+  summary: Phase 1 trace 收集存在根本性 bug：未使用 failing test + Python 版本不匹配，需修复后全量重跑
+  rationale: 排查发现两个叠加 bug：(1) bugsinpy_setup._read_bug_info() 无法读取 test_command，回退到
+    python -m pytest 跑全量测试而非特定 failing test，导致 38/38 实例的 trace 均未覆盖 buggy execution
+    path；(2) 服务器 Python 3.12 与 BugsInPy 要求的 3.6-3.8 不匹配，部分项目 import 阶段就崩溃。~1.7% keep
+    rate 不是 teacher 过严，而是 trace 内容本身不含诊断信息（teacher 判 drop 正确）。所有 Phase 2 scoring 数据虽然验证了代码修复有效性（v2
+    error rate=0），但 scoring 结果本身无意义。决策：修复 Phase 1 bug + 安装 Python 3.8 conda 环境 + 全量重跑
+    trace 收集和 scoring。
+  related_experiments:
+  - exp_id: mvp_trace_collect
+    role: 发现问题的源头
+    result: trace 未覆盖 failing test
+  - exp_id: mvp_line_scoring_v2
+    role: 验证代码修复有效但 scoring 数据无效
+    result: 29/38 done, 0 errors, 但基于废 trace
+  - exp_id: mvp_structural_scoring_clean
+    role: 同样基于废 trace
+    result: 数据无效
+  depends_on:
+  - D012
+- id: D014
+  date: 2026-05-15 04:38 UTC
+  summary: Phase 1 trace 收集存在根本性 bug：test command 回退到全量 pytest + Python 版本不匹配，导致 38/38
+    实例未覆盖 buggy execution path。需修复后重跑 Phase 1。
+  rationale: 排查 keep rate ~1.7% 的 root cause 发现：(1) bugsinpy_setup._read_bug_info()
+    读不到 test_command 字段，回退到 python -m pytest（全量 test suite）而非特定 failing test；(2) BugsInPy
+    要求 Python 3.6-3.8 但服务器是 3.12，很多模块 import 阶段就崩。38/38 实例的 specific failing test
+    function 均未被 trace 覆盖。11 个 keep>0 的实例是 import/初始化阶段碰巧包含异常（巧合）。所有 Phase 2 scoring
+    数据基于有缺陷的 trace，Phase 3 基于这些数据无意义。line_scoring_v2 让它跑完（验证 max_tokens 修复有效性），但不再基于其结果做
+    Phase 3。修复后重跑 Phase 1 → Phase 2 → Phase 3。
+  related_experiments:
+  - exp_id: mvp_trace_collect
+    role: evidence
+    result: 38/38 实例未覆盖 failing test path
+  - exp_id: mvp_line_scoring_v2
+    role: context
+    result: 继续跑完验证 max_tokens 修复，但 scoring 结果不可用于 Phase 3
+  - exp_id: mvp_line_scoring_clean
+    role: context
+    result: v1 keep rate 1.7% 是 trace 覆盖问题而非 teacher 过严
+  depends_on:
+  - D012
+- id: D015
+  date: 2026-05-15 05:27 UTC
+  summary: Phase 1 v2 完成（33/40 成功），启动新 Phase 2 scoring + 清理旧数据防污染
+  rationale: Phase 1 v2 trace 收集 33/40 成功（82.5%），超过 >80% 的 MVP gate。5 个失败（black_2/5/14,
+    tqdm_1/2）可能是 Python 3.8 下依赖/命令兼容问题，不阻塞 Phase 2。但 pipeline_output/ 中这 5 个实例残留旧
+    v1 数据（Python 3.12 生成），必须清理后再启动 Phase 2 scoring，否则旧数据会污染结果。mvp_line_scoring_v2（旧
+    trace 上跑的）已验证代码修复有效（0 error），可关闭。
+  related_experiments:
+  - exp_id: phase1_trace_v2
+    role: trigger
+    result: 33/40 success, 5 failed, 2 dataset_issue
+  - exp_id: mvp_line_scoring_v2
+    role: validation
+    result: code fix verified, 0 errors, but on old traces
+  depends_on:
+  - D014
+  - D013
+- id: D016
+  date: 2026-05-15 06:03 UTC
+  summary: 确认两个 segment cap 问题，v3 scoring 继续跑完做初步 MVP 评估，不阻塞
+  rationale: 'Structural cap: MAX_SEGMENTS=20 硬编码，大实例丢失 >95% segments。Line cap: head=100+tail=100=200。两个
+    cap 都影响公平性但方向不同——structural 被限制更严（20 vs 200）。然而 v3 已在跑（structural 15/33, line
+    4/33），停下来改 segmenter 再重跑代价大。策略：v3 跑完 → Phase 3 初步评估 → 如果 structural 赢则假设在不利条件下成立（更强证据）；如果
+    structural 输则 cap 是混杂因素，提高 cap + 分层采样后重跑再判定。Research 阶段无论如何都需要改进 segmenter（分层采样、cap
+    提至 40-50）。'
+  related_experiments:
+  - exp_id: mvp_structural_scoring_v3
+    role: affected
+    result: RUNNING 15/33
+  - exp_id: mvp_line_scoring_v3
+    role: affected
+    result: RUNNING 4/33
+  depends_on:
+  - D015
+- id: D017
+  date: 2026-05-15 11:29 UTC
+  summary: Phase 3 完成但评估不可信，暂缓 MVP 判定，优先修复 test execution 后用客观指标重新评估
+  rationale: Phase 3 全 33 实例 × 4 条件完成。Judge 数据显示 no_trace (1.06) > structural (0.76)，核心假设方向负面。但
+    132 次评估 0% test pass rate（BugsInPy 项目依赖未装），评估完全依赖同模型 LLM 自评（DeepSeek-V4-Flash
+    做修复 + 评分），judge 分数不可作为论文级证据。整体 judge 极低（所有条件 < 1.1/5），说明 repair model 本身可能力不从心。在没有客观评估指标的情况下宣布
+    MVP FAIL 不负责任。修复 test execution 后重新评估（repair outputs 已保存，不需要重调 API），用 test pass
+    rate 做主要判据。
+  related_experiments:
+  - exp_id: mvp_phase3_repair
+    role: trigger
+    result: no_trace avg_judge=1.06 > structural=0.76, 0% test pass rate, evaluation
+      unreliable
+  depends_on:
+  - D016
+  - D015
+- id: D018
+  date: 2026-05-15 11:41 UTC
+  summary: Phase 3 负面结果处理：拒绝 Option C（token efficiency），采用两阶段消歧——先 test-based 重评估，再用强模型（Claude
+    Sonnet 4 / GPT-4o）验证 trace 是否对有能力的模型有效
+  rationale: Agent 提出 3 个 pivot 方案。Option C（token efficiency claim）数学上不成立：structural
+    judge=0.76 < no_trace=1.06，质量下降的前提下无法声称"同质量省 token"，直接淘汰。Option A（fault localization）本质上换了研究问题，作为最终
+    contingency 保留。核心消歧问题是："trace 真的对 repair 无用，还是 DeepSeek-V4-Flash 太弱无法利用 trace？"
+    证据支持后者假设——judge 全条件均值 < 1.1/5，zero exact match，24% empty response on full_trace，说明模型本身
+    repair 能力就在 floor。两阶段计划：(1) 等 test execution fix 完成，用 test pass rate 客观指标重新评估已有
+    132 个 repair outputs；(2) 若 test-based 仍负面，用 Claude Sonnet 4 或 GPT-4o 重跑 4 条件 ×
+    33 实例，消歧 trace 价值 vs 模型能力。如果强模型 + trace 有效 → 论文 claim 升级为"trace distillation enables
+    weaker models to approach strong model repair quality"，反而比原 claim 更强。如果强模型也无法利用
+    trace → MVP FAIL，考虑 Option A 或终止。
+  related_experiments:
+  - exp_id: mvp_phase3_repair
+    role: trigger
+    result: 'negative: no_trace=1.06 > structural=0.76, 0% test pass, MVP kill triggered'
+  - exp_id: mvp_fix_test_execution
+    role: dependency
+    result: worker running, fixing BugsInPy project deps for 4 instances
+  depends_on:
+  - D017
+- id: D019
+  date: 2026-05-15 11:44 UTC
+  summary: 补充 D018 强模型实验的操作化 kill criteria，防止无限消歧
+  rationale: Reviewer warning 指出 D018 缺少强模型实验的终止条件，存在无限消歧风险。采纳 Reviewer 建议，设定三层 kill
+    criteria：(1) 强模型 no_trace judge ≥ 3.0 证明模型不在 floor（否则说明 BugsInPy 太难，DDL 内无法换 benchmark
+    → 项目终止）；(2) 强模型 structural > no_trace（directional signal p<0.15 或 sign test）；(3)
+    至少 1 个条件 test pass > 0%。三条同时满足 = PASS，否则 MVP FAIL。不再允许"再换模型/换 benchmark"的进一步消歧。segment
+    cap (MAX_SEGMENTS=20) confound 存在但不阻塞：如果强模型在 capped 数据上仍能看到 structural 优势则信号更强（handicap
+    condition）；如果看不到优势则与 cap 无关地判 FAIL——DDL 内没有时间做 uncapped 重跑。
+  related_experiments:
+  - exp_id: mvp_phase3_repair
+    role: context
+    result: negative on DeepSeek-V4-Flash, triggering strong model disambiguation
+  depends_on:
+  - D018
+- id: D020
+  date: 2026-05-15 11:54 UTC
+  summary: 批准修复 repair pipeline 的三个系统性 confound（截断/错误文件/max_tokens），这是有效评估的前提而非进一步消歧
+  rationale: Test-based 重评估 0/16 pass，但 oracle baseline 4/4 pass，排除 test infra 问题。Agent
+    识别三个系统性 confound：(1) 完整文件输出 + max_tokens=4096 导致大文件截断产生 SyntaxError（black.py 221K）；(2)
+    fastapi_1 目标文件错误（改 applications.py 但 test 查 encoders.py）；(3) httpie_2 四条件输出几乎相同（overlap
+    0.97-0.99）。所有条件受同样影响 → 无法区分 filtering 方法。这不是 D019 约束的"进一步消歧"（换模型/换 benchmark），而是修复
+    broken 的评估工具——你不能用坏掉的尺子量东西然后说东西不好。修复方案：diff-based repair prompt + 修正 target file
+    选择 + 提高 max_tokens。工时 < 1h，先在 DeepSeek-V4-Flash 上验证 pipeline，再决定是否需要强模型实验。同时派
+    Reviewer 独立验证 confound 分析的准确性。
+  related_experiments:
+  - exp_id: mvp_phase3_repair
+    role: trigger
+    result: 0/16 test pass due to pipeline confounds, not filtering method
+  - exp_id: mvp_fix_test_execution
+    role: dependency
+    result: completed - oracle 4/4 pass confirms test infra works
+  depends_on:
+  - D018
+  - D019
+- id: D021
+  date: 2026-05-15 12:07 UTC
+  summary: Reviewer 核实发现三重 confound，Phase 3 现有结果无效，需修 pipeline 后重跑 clean subset
+  rationale: Reviewer 五项核实发现：(1) Confound B — ~14/33 实例 get_buggy_code() 返回错误代码（youtube-dl/tornado/luigi/thefuck），LLM
+    从未看到需修复的代码；(2) Confound A — 18/33 实例 structural_keep=0 导致 structural_filtered≡no_trace，9/33
+    同时 line_keep=0 导致 3/4 条件完全相同；(3) Confound C — 同模型 repair+judge 导致自评偏差（httpie_2
+    修错 bug 仍得 4 分）。132 个评估中有效数据点极少，既不能证实也不能证伪 trace filtering。D018 step1（reeval 已有
+    outputs）失效——已有 outputs 大部分基于错误输入。新计划：fix pipeline → 重跑 clean subset → test-based
+    eval → MVP 判定。supersedes D020。
+  related_experiments:
+  - exp_id: mvp_phase3_repair
+    role: 被审查
+    result: 三重 confound 使结果无效
+  depends_on:
+  - D020
+  - D018
+- id: D022
+  date: 2026-05-15 12:10 UTC
+  summary: 采纳 Reviewer D021 审查建议：httpie_2 纳入 Tier 1，增加 pipeline fix 验证步骤，mvp_phase3_repair
+    标记 invalidated，segment cap 暂不修
+  rationale: Reviewer 5 点建议中 3 点直接采纳：(1) httpie_2 虽 2 文件但 core.py 仅删注释，等价 single-file
+    且是唯一 reeval 确认实例；(2) 修完 pipeline 应先在 2-3 个已知实例验证再全量重跑；(3) mvp_phase3_repair 应标记
+    invalidated 与 v2 区分。Segment cap 暂缓——先看 pipeline fix 后 clean subset 大小，≥8 实例即可
+    MVP 判定，不够再修。
+  related_experiments:
+  - exp_id: mvp_phase3_repair
+    role: invalidated
+    result: 三重 confound 使结果无效
+  depends_on:
+  - D021
+  - D016
+- id: D023
+  date: 2026-05-15 13:10 UTC
+  summary: v2 实验使用 deepseek-v4-pro 模型（从 v1 的 v4-flash 升级）
+  rationale: v4-pro 在中间验证中生成了正确的 diff 格式输出（finish=stop, 4552 tokens），质量优于 v4-flash。MVP
+    验证阶段质量优先于速度/成本。延迟（~70s/call）可接受。
+  related_experiments:
+  - exp_id: mvp_phase3_repair_v2
+    role: target
+    result: pending
+  depends_on: []
+- id: D024
+  date: 2026-05-15 14:39 UTC
+  summary: v2 实验（deepseek-v4-pro）强烈负面信号：judge 0.6/5、0% test pass、各条件无差异。模型在 floor，不完成
+    v2 剩余实例，直接进入强模型消歧实验
+  rationale: v2 只完成 5/14 后进程崩溃。5 个完成实例中 black_1/fastapi_2 是 dataset bug 本该跳过，剩余 3
+    个 cookiecutter 实例 judge 0-1/5、0% test pass。C001 三条 kill criteria 全 FAIL。deepseek-v4-pro
+    无法修复 BugsInPy 级 bug（patch 完全偏离目标），trace 在模型 floor 时无法体现价值。继续用 v4-pro 补完剩余 9 实例大概率不会翻转。按
+    D018 计划，跳过 v4-pro 补完，直接用 Claude Sonnet 4 或 GPT-4o 做最终消歧。这是 C001 约定的最后一次机会。
+  related_experiments:
+  - exp_id: mvp_phase3_repair_v2
+    role: trigger
+    result: '5/14 completed, all FAIL: judge 0.4-0.6/5, 0% test pass, no condition
+      differentiation'
+  - exp_id: mvp_phase3_repair
+    role: predecessor
+    result: invalidated by D021 three confounds
+  depends_on:
+  - D018
+  - D019
+  - D023
+- id: D025
+  date: 2026-05-15 14:43 UTC
+  summary: 修正 D024：v2 实验未崩溃（PID 131777 仍活跃），等 14/14 完成再评估 C001
+  rationale: Reviewer 核实 PID 131777 uptime 01:13:02 仍在运行，5/14 是当前进度不是崩溃终态。fastapi_2
+    judge=0 是 parse error 非模型 floor。基于 5/14 不完整数据做 kill 决策过早，需等完整数据。
+  related_experiments:
+  - exp_id: mvp_phase3_repair_v2
+    role: 核心实验
+    result: 仍在运行中，5/14→14/14 预计 2h
+  depends_on:
+  - D024
+- id: D026
+  date: 2026-05-15 15:21 UTC
+  summary: 修正 on_complete 误触发：registry 从 ANALYZING 改回 RUNNING，删旧 exit file，禁止基于 8/14
+    不完整数据下结论
+  rationale: Reviewer 发现 /tmp/agent-ml-exit/mvp_phase3_repair_v2.exit 是之前失败运行残留，监控误读导致提前触发
+    on_complete。实际 PID 131777 仍在运行（8/14），需等 14/14 完成。另：scrapy_2/full_trace 出现首个 test_pass=True（full_trace
+    非 structural_filtered），记录但不下结论。
+  related_experiments:
+  - exp_id: mvp_phase3_repair_v2
+    role: affected
+    result: still_running_8_of_14
+  depends_on:
+  - D025
+- id: D027
+  date: 2026-05-15 15:28 UTC
+  summary: 修正 D024"各条件无差异"：v2 9/14 数据显示 trace 有正向信号（structural H2H 3-2 赢 no_trace，diff_apply
+    ordering 一致，full_trace 唯一 test_pass）。C001.1 数学不可能通过，C001 整体 FAIL，但方向性证据支持强模型消歧
+  rationale: 'Reviewer 审查 9/14 实例数据发现 D024"各条件无差异"不准确。实际信号：(1) H2H structural vs no_trace
+    judge: 3W/4T/2L，structural 赢面；(2) line_filtered judge 最高 0.556，no_trace 最低 0.333；(3)
+    full_trace 有唯一 test_pass（scrapy_2）；(4) diff_apply rate: line_filtered 55.6% >
+    structural/full_trace 44.4% > no_trace 33.3%，trace 条件一致优于无 trace。C001.1（no_trace
+    judge ≥ 3.0）= 0.333，数学上剩余 5 实例全满分也只到 2.78，不可能通过。C001.3 已 PASS（full_trace 11.1%
+    test pass）。C001 整体 FAIL 但结论应为"模型在 floor，trace 有微弱正向效应"而非"trace 无用"。这恰好是 D018 预测的场景——验证了强模型消歧的必要性和合理性。v2
+    继续跑完 14/14 增加统计信心，同时并行准备强模型实验。'
+  related_experiments:
+  - exp_id: mvp_phase3_repair_v2
+    role: evidence
+    result: '9/14 done: structural H2H 3-2 vs no_trace, C001.3 PASS, C001 overall
+      FAIL, positive directional signal'
+  depends_on:
+  - D024
+  - D025
+  - D026
+  - D018
+- id: D028
+  date: 2026-05-15 15:33 UTC
+  summary: v2 最终 9/14（进程在 scrapy_7 静默终止）。Trace 有正向信号但 structural 未优于 line。暂缓 framing
+    pivot，先完成数据收集 + 强模型消歧再判断
+  rationale: '三层分析：
+
+
+    (1) "line > structural" 不可靠：structural keep=0 的实例占 55%，这些实例 structural_filtered
+    ≡ no_trace，意味着 structural 条件被严重稀释——实际比较的是"45% 实例有 structural + 55% 等价 no_trace"
+    vs 纯 no_trace。在 keep>0 子集上 structural 可能表现很不同。n=9 + floor effect + 稀释 confound，不足以推翻
+    structural > line 假设。
+
+
+    (2) framing pivot 时机错误：当前数据来自 floor-effect 模型（judge 均值 0.333-0.556），所有条件差异都在噪声范围内。在强模型消歧之前
+    pivot 是用最差证据做最大决策。Option B（compression vs filtering）方向有意思但不急——等强模型数据。
+
+
+    (3) 优先完成数据收集：(a) 重启 v2 跑完剩余 5 实例（scrapy_7, tornado_2, youtube-dl_1/5/20）；(b) 修复
+    3 个 test infra（从 fixed commit checkout test 文件）；(c) 准备强模型代码。三件事并行，Agent 不应阻塞等决策。'
+  related_experiments:
+  - exp_id: mvp_phase3_repair_v2
+    role: evidence
+    result: 9/14 done, process died at scrapy_7. line_filtered judge highest but structural
+      diluted by 55% keep=0 instances
+  depends_on:
+  - D027
+  - D018
+  - D019
+- id: D029
+  date: 2026-05-15 15:36 UTC
+  summary: 修正 D028 "重启 v2" 指令：PID 131777 仍在运行（第三次误判死亡），撤销重启。建立进程存活判断硬规则：必须 ps -p 确认，日志暂停
+    ≠ 死亡。line_filtered judge_mean 修正为 0.667（非 0.556）
+  rationale: Reviewer CRITICAL：PID 131777 elapsed 02:06:53 仍活跃，scrapy_7/structural_filtered
+    在做 API retry（间隔 0.9s-3min 是正常 backoff）。这是 D024→D025→D026→D028 同一模式的第三次重现：Agent
+    观察日志暂停就判定进程死亡。D028 基于"进程在 scrapy_7 死了"下令重启，但进程没死。如果 Agent 执行了重启会产生并发冲突。立即撤销重启指令，registry
+    改回 RUNNING。另：line_filtered judge_mean Agent 手算错误（漏计 sanic_2/line judge=1），实际 6/9=0.667
+    非 5/9=0.556。建立硬规则：进程存活只看 ps -p，registry DONE 只在 checkpoint 14/14 或 ps 确认不存在时标记。
+  related_experiments:
+  - exp_id: mvp_phase3_repair_v2
+    role: affected
+    result: PID 131777 still running, 9+/14, scrapy_7 in progress. Registry incorrectly
+      marked DONE for third time
+  depends_on:
+  - D028
+  - D027
+  - D025
+  - D026
+- id: D030
+  date: 2026-05-15 15:36 UTC
+  summary: 第三次修正 v2 进程误判：PID 131777 仍活跃（API retry backoff），建立进程存活判断硬规则（ps -p 优先，日志暂停
+    ≠ 死亡）
+  rationale: Reviewer CRITICAL：这是 D024→D025→D026→D028 同一模式的第三次重现。Agent 观察到日志暂停就判定进程死亡，但
+    API exponential backoff retry 间隔 3-5 分钟是正常行为。D028 基于"进程死了"的错误前提指令 Agent 重启——如果执行会与仍在运行的进程冲突。紧急
+    replace_agent_queue 撤销 D028 重启指令。建立硬规则：判断进程存活必须先 ps -p PID，日志暂停 < 10min 为正常 retry，>
+    30min + ps ALIVE 报告 Director，ps DEAD 才确认死亡。附加：Agent 的 line_filtered judge_mean
+    手算有误（0.556 vs 实际 0.667），最终分析必须从 checkpoint JSON 计算。
+  related_experiments:
+  - exp_id: mvp_phase3_repair_v2
+    role: affected
+    result: still running, PID 131777 alive at 02:06:53 elapsed, scrapy_7/structural_filtered
+      in API retry
+  depends_on:
+  - D028
+  - D027
+  - D025
+  - D026
+- id: D031
+  date: 2026-05-15 15:54 UTC
+  summary: 批准强模型消歧实验（Claude Sonnet 4）：单例验证 cookiecutter_1/no_trace 首次通过测试，确认模型能力差异显著。全量
+    14 实例 × 4 条件，C001 kill criteria 最终判定
+  rationale: 单例验证结果决定性：Claude Sonnet 4 在 cookiecutter_1/no_trace 上 diff_apply=✅ test_pass=✅（v4-pro
+    两项均 ❌），延迟 6.1s vs v4-pro ~13min。模型能力差距已确认。全量实验预计 ~30min 完成（14 实例 × 4 条件 × ~6s/call），成本极低。实验用
+    v2 同样的 14 个 Tier 1 clean subset 实例（必须包含 scrapy_2，Agent 报告的 13 个实例列表需修正），4 条件（no_trace
+    / structural_filtered / line_filtered / full_trace）。C001 kill criteria：(1) no_trace
+    judge ≥ 3.0 (2) structural > no_trace p<0.15 (3) ≥1 condition test_pass > 0%。三条全过
+    = MVP PASS。与 v2（仍在跑）并行，不冲突（均为 API-only）。
+  related_experiments:
+  - exp_id: mvp_phase3_repair_v2
+    role: predecessor
+    result: 9/14 still running, floor effect confirmed
+  - exp_id: mvp_strong_model_disambig
+    role: target
+    result: 'single-case validation: cookiecutter_1/no_trace test_pass=True'
+  depends_on:
+  - D028
+  - D027
+  - D018
+  - D019
+- id: D032
+  date: 2026-05-15 15:56 UTC
+  summary: 修正 D028 稀释假说：Tier 1 仅 httpie_2 structural_keep=0（1/14=7%），非 55%。Line >
+    structural 在 keep>0 实例上成立，非 artifact。10/14 H2H：structural vs no_trace 3-3-4（持平），line
+    vs no_trace 4-2-4（line 领先）
+  rationale: D028 称"structural keep=0 占 55% 实例导致稀释"是基于全量 33 实例数据，但 v2 Tier 1 只有 14
+    实例，其中仅 httpie_2 structural_keep=0。13/14 实例 structural_keep≥1，稀释假说不适用。scrapy_7
+    完整结果进一步确认：structural_keep=2 但 structural 条件 diff_apply=False（no_trace 和 line_filtered
+    均通过测试），说明 structural filtering 选错了信息而非没有信息可选。10/14 更新后 structural vs no_trace
+    从 3-2 优势变为 3-3-4 持平，核心假设"structural > line"在 v4-pro 数据上不成立。但仍暂缓 framing pivot——(1)
+    v4-pro 在 floor（judge 0-1），信号噪声比低；(2) 强模型实验已批准即将启动，等 Claude Sonnet 4 数据再判断。如果强模型也复现
+    line > structural，则必须调整 claim。
+  related_experiments:
+  - exp_id: mvp_phase3_repair_v2
+    role: evidence
+    result: '10/14: structural vs no_trace H2H 3-3-4, line vs structural 6-3-1, scrapy_7
+      structural fails while no_trace/line pass'
+  depends_on:
+  - D028
+  - D029
+- id: D033
+  date: 2026-05-15 16:19 UTC
+  summary: MVP FAIL：强模型消歧（Claude Sonnet 4）确认 trace filtering 对 repair 无正面效果。no_trace
+    在 test_pass/judge/diff_apply 三项指标全部最优。C001 2/3 FAIL。核心假设"结构化 trace 过滤提升 LLM 修复"被两个模型一致否定
+  rationale: 'Claude Sonnet 4 结果（14 实例 × 4 条件，Reviewer 独立验证）：test_pass no_trace 42.9%
+    > line 42.9% > structural 35.7% > full_trace 28.6%；diff_apply no_trace 85.7% >
+    line 71.4% > structural 64.3% > full_trace 57.1%；judge no_trace 1.3 > line 1.1
+    > structural 1.0。H2H structural vs no_trace: 0-1-13（no_trace 胜）。模型不在 floor（42.9%
+    test_pass），但 trace 不仅没帮助反而伤害（full_trace 28.6% vs no_trace 42.9%）。C001.1 FAIL（judge
+    1.3 < 3.0，但 Reviewer 指出 judge 指标本身不可靠——给正确修复 1/5），C001.2 FAIL（structural < no_trace），C001.3
+    PASS。按 D019 约定"三条全过=PASS 否则 MVP FAIL，不允许进一步消歧"，宣布 MVP FAIL。v4-pro（floor effect
+    + 微弱正向信号）和 Claude Sonnet 4（充足能力 + 无正向信号）的组合确认：trace 的微弱正向信号只在模型太弱时出现，强模型不需要也不受益于
+    trace。'
+  related_experiments:
+  - exp_id: mvp_strong_model_disambig
+    role: definitive
+    result: 'C001 FAIL: no_trace best on all 3 metrics, structural/full_trace hurt
+      performance'
+  - exp_id: mvp_phase3_repair_v2
+    role: supporting
+    result: v4-pro floor effect, trace showed weak positive signal only because model
+      too weak
+  depends_on:
+  - D031
+  - D019
+  - D018

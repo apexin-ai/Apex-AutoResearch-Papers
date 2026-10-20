@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "27597611cabf642158fa",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "analysis exp 007",
+  "task_key": "worker_analysis_exp_007_20260518T194203",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_007_20260518T194203_result.json",
+    "occurrence": 1,
+    "bytes": 2501,
+    "sha256": "158d25a3a6063dcf8152fc868abfb243183676e7b7d80a376a32b6e4a0fdb084"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验 exp_007 正常完成，EXIT_CODE=0，6 代 checkpoint 齐全 (gen_0 ~ gen_5)。总训练时长约 10.7 小时 (May 18 16:54 ~ May 19 03:37)。\n\n## 完整 Metrics (JSON)\n\n```json\n[\n  {\n    \"generation\": 0,\n    \"effective_rank\": 417.547,\n    \"log_det\": 2366.683,\n    \"perplexity\": 9.554,\n    \"distinct_4\": 0.7414,\n    \"train_loss\": null,\n    \"mix_ratio\": 0.0\n  },\n  {\n    \"generation\": 1,\n    \"effective_rank\": 476.725,\n    \"log_det\": 2367.460,\n    \"perplexity\": 10.282,\n    \"distinct_4\": 0.6737,\n    \"train_loss\": 1.7653,\n    \"mix_ratio\": 0.2\n  },\n  {\n    \"generation\": 2,\n    \"effective_rank\": 481.621,\n    \"log_det\": 2358.305,\n    \"perplexity\": 10.741,\n    \"distinct_4\": 0.4978,\n    \"train_loss\": 1.6709,\n    \"mix_ratio\": 0.2\n  },\n  {\n    \"generation\": 3,\n    \"effective_rank\": 486.541,\n    \"log_det\": 2362.521,\n    \"perplexity\": 11.137,\n    \"distinct_4\": 0.4665,\n    \"train_loss\": 1.4208,\n    \"mix_ratio\": 0.2\n  },\n  {\n    \"generation\": 4,\n    \"effective_rank\": 490.346,\n    \"log_det\": 2379.191,\n    \"perplexity\": 11.512,\n    \"distinct_4\": 0.4515,\n    \"train_loss\": 1.3255,\n    \"mix_ratio\": 0.2\n  },\n  {\n    \"generation\": 5,\n    \"effective_rank\": 492.655,\n    \"log_det\": 2398.932,\n    \"perplexity\": 11.833,\n    \"distinct_4\": 0.4384,\n    \"train_loss\": 1.3049,\n    \"mix_ratio\": 0.2\n  }\n]\n```\n\n## 趋势分析\n\n| Metric | Gen 0 → Gen 5 | 趋势 | 特征 |\n|--------|---------------|------|------|\n| **eff_rank** | 417.5 → 492.7 (+75.1, +18.0%) | 单调上升 | 无 collapse，持续扩展 |\n| **log_det (SLV)** | 2366.7 → 2398.9 (+32.2, +1.4%) | Gen 2 dip (2358.3) 后反弹至 2398.9 超基线 | 典型 transitional: dip-then-recovery |\n| **ppl** | 9.55 → 11.83 (+2.28, +23.9%) | 单调上升但增速放缓 | 远低于 r=0 的 76.78，退化温和 |\n| **distinct_4** | 0.741 → 0.438 (-0.303, -40.9%) | 持续下降，Gen 1→2 最大跌幅 | 多样性损失显著但趋于平稳 |\n| **train_loss** | 1.765 → 1.305 (-0.460) | 单调下降 | 训练正常收敛 |\n\n**关键结论**: Gen 5 延续了 transitional 轨迹。log_det 在 Gen 2 触底后持续反弹，Gen 5 达到 2398.9（超基线 +32.2），确认 r=0.2 下 20% 真实数据足以阻止 spectral collapse。eff_rank 单调上升而非下降，与 r=0 的 collapse 模式完全相反。代价主要体现在 distinct_4 下降和 ppl 温和上升。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-007.md"
+}

@@ -1,0 +1,30 @@
+{
+  "exp_id": "mvp_structural_scoring_v3",
+  "project": "trace_distill_repair",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T05:33:58.242Z",
+    "updated_at": "2026-05-15T05:59:56.304Z",
+    "hypothesis": "在 v2 traces（33 实例，566 structural segments）上用修复后 teacher_scorer（max_tokens=1024）进行 structural scoring，预期 error_rate < 5%",
+    "parent": "phase1_trace_v2",
+    "spec": {
+      "command": "bash -c \"export OPENROUTER_API_KEY='[REDACTED]' && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/trace_distill_repair && python run_phase2_scoring.py --mode structural\"",
+      "server": "rtx6000-diagprobe",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "100912",
+      "log_path": "~/runs/trace_distill_repair/mvp_structural_scoring_v3.log",
+      "submitted_at": "2026-05-15T05:38:22.413Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-15T05:59:56.346434+00:00",
+  "trigger": "update_registry"
+}

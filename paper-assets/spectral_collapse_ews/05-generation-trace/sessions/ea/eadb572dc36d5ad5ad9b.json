@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eadb572dc36d5ad5ad9b",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ops exp020 metrics archive",
+  "task_key": "worker_ops_exp020-metrics-archive_20260523T220704",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp020-metrics-archive_20260523T220704_result.json",
+    "occurrence": 1,
+    "bytes": 859,
+    "sha256": "05f84ea3bc6b54095a49d3beee434a7ef93c8d6056a7ffef669db162b07f6f8b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "JSON saved. Summary of exp_020 (GPT-2-medium, r=0, seed42) Gen 0-4:\n\n| Gen | r_eff | log_det | PPL | D-4 | σ₁ | train_loss |\n|-----|-------|---------|-----|-----|-----|------------|\n| 0 | 23.09 | 689.4 | 15.45 | 0.913 | 6598 | — |\n| 1 | 155.2 | 885.3 | 16.42 | 0.891 | 1463 | 2.358 |\n| 2 | **185.4** | **924.4** | 18.94 | 0.868 | 1191 | 2.119 |\n| 3 | 184.9 | 889.7 | 23.33 | 0.837 | 1172 | 2.052 |\n| 4 | 169.6 | 817.6 | 32.11 | 0.764 | 1224 | 1.993 |\n\n**Key pattern**: r_eff peaks at Gen 2 (185.4), begins reversal at Gen 3 — decompression peak consistent with Pythia-410M. σ₁ drops sharply from Gen 0 (6598→1463) then stabilizes. PPL and D-4 monotonically degrade.\n\n**Missing data**: HellaSwag and alternative EWS (SLV/RankMe/isotropy) were not computed for this experiment — only available for exp_001 (Pythia-410M)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp020-metrics-archive.md"
+}

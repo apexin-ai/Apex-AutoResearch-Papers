@@ -1,0 +1,8 @@
+During the early stages of recursive synthetic training, spectral indicators of the embedding space suggest the model is improving, while downstream performance degrades.
+We characterize this disconnect by tracking spectral properties across 10 recursive generations of Pythia-410M.
+The result is a reproducible three-phase pattern consistent across three seeds: spectral decompression (generations 0--2), where spectral log-volume (SLV) increases while HellaSwag drops 3.3 percentage points; collapse onset (generations 2--4), where spectral indicators reverse; and accelerating collapse (generations 4--10).
+Of eight candidate indicators, SLV is the most effective indicator: it requires one forward pass (${<}\,1$\,s), captures changes across all spectral directions, and declines monotonically after the decompression peak.
+Varying the mixing ratio across five levels yields a trajectory map localizing the critical mixing ratio $r_{\text{crit}} \in (0.25, 0.3]$, separating monotonic expansion from a transitional regime with initial contraction then recovery.
+A proportional controller reveals a prevention--detectability tradeoff: real-data mixing suppresses spectral contraction, so the rate-based signal vanishes precisely when prevention succeeds---a particularly strong form of the ecological intervention--warning tradeoff.
+Setting $r > r_{\text{crit}}$ prevents collapse without per-generation monitoring.
+The three-phase trajectory reproduces on GPT-2-medium (355M), providing preliminary cross-architecture evidence\footnote{Code and data are available at \url{https://anonymous.4open.science/r/spectral_collapse_ews-1B2C/}.}.

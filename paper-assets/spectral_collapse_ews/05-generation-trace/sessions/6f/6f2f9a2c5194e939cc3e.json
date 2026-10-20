@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6f2f9a2c5194e939cc3e",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "analysis rcrit sensitivity",
+  "task_key": "worker_analysis_rcrit-sensitivity_20260525T215401",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_rcrit-sensitivity_20260525T215401_result.json",
+    "occurrence": 1,
+    "bytes": 1536,
+    "sha256": "a1b6b5099a789073c692c29f9f8180d85cb69d081c9fcb21d43882f38df5f80f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 分析结果\n\n**核心结论：r_crit ∈ (0.25, 0.3] 在所有观测窗口 T=3,5,7,10 下完全一致。**\n\n### 分类稳定性矩阵\n\n| r | T=3 | T=5 | T=7 | T=10 | 稳定性 |\n|---|-----|-----|-----|------|--------|\n| 0.0 | III (尚未显现) | I | I | I | T≥5 后稳定 |\n| 0.2 | II | II | II | II | ✓ 全T一致 |\n| 0.25 | II | II | II | II | ✓ 全T一致 |\n| 0.3 | III | III | III | III | ✓ 全T一致 |\n| 0.5 | III | III | III | III | ✓ 全T一致 |\n\n### r_crit(T) 估计\n\n| T | r_crit 范围 |\n|---|------------|\n| 3 | (0.25, 0.3] |\n| 5 | (0.25, 0.3] |\n| 7 | (0.25, 0.3] |\n| 10 | (0.25, 0.3] |\n\n### 关键发现\n\n1. **Type II/III 边界完全稳定**：r=0.25 的 transient dip (~4 SLV units) 在 T=3 时就已可观测，分类不随窗口变化。r=0.3 的 gen-1 波动 (<3 units) 始终低于 dip threshold，稳定分类为 Type III。\n\n2. **唯一的窗口依赖**：r=0 在 T=3 时尚未显现 collapse（SLV 在 gen 2 仍处于峰值上升阶段），需要 T≥5 才能检测到 Type I。这是物理上合理的——collapse 需要时间展开。\n\n3. **Seed 间一致性**：边界处（r=0.25 seed44 dip=2.1, r=0.3 seed43 dip=3.0）存在个别 seed 的分类差异，但 majority vote 下结论一致。\n\n4. **对审稿人的回应**：r_crit 的估计不依赖观测窗口长度。即使只观察 3 代，Type II/III 的分界线就已经清晰。collapse 检测需要更长窗口是因为 collapse 本身需要时间展开，而非分类方法的缺陷。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-rcrit-sensitivity.md"
+}

@@ -1,0 +1,33 @@
+paper_key: "doremi"
+title: "DoReMi: Optimizing Data Mixtures Speeds Up Language Model Pretraining"
+venue: "NeurIPS 2023"
+full_text_available: false
+
+research:
+  baselines:
+    - baseline domain weights (default proportions)
+    - task-aware tuned domain weights (GLaM)
+  metrics:
+    - {name: "perplexity (per-domain)", direction: "lower_better"}
+    - {name: "few-shot downstream accuracy", direction: "higher_better"}
+    - {name: "training steps to match baseline", direction: "lower_better"}
+  datasets:
+    - {name: "The Pile", size: "N/A"}
+    - {name: "GLaM dataset", size: "N/A"}
+  ablation_dimensions:
+    - proxy model size vs production model size
+    - domain weight optimization strategy
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "N/A"}
+  method_family: "data mixture optimization / distributionally robust optimization"
+
+positioning:
+  core_claim: "A small proxy model trained with group DRO can determine optimal domain weights for pretraining data mixtures, transferring to 30x larger models and achieving 2.6x training speedup without downstream task knowledge."
+  key_results: "280M proxy → 8B production model; 6.5% improvement in few-shot downstream accuracy on The Pile; 2.6x fewer training steps; matches task-aware tuning on GLaM."
+  limitations:
+    - "Requires training an additional proxy model"
+    - "Evaluated primarily on English text domains"
+  relation_to_us: "complementary"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

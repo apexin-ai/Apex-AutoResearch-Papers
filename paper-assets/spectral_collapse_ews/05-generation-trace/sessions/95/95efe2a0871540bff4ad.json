@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "95efe2a0871540bff4ad",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "paper update table1 gen07",
+  "task_key": "worker_paper_update_table1_gen07_20260517T111932",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_update_table1_gen07_20260517T111932_result.json",
+    "occurrence": 1,
+    "bytes": 603,
+    "sha256": "f626dafe9bfbc8f2db2dfd8a1a319e2ec301b5a68c483e90060e4ca3accae1a4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**Part A: Table 1 更新**\n- `experiments.tex` 表格列从 6 列扩展到 8 列（Gen 0-7）\n- Gen 6/7 各指标已填入，格式与已有行一致\n- HellaSwag Gen 6-7 标记为 `---`（数据待补）\n- σ₁ 值从 JSON 提取：Gen 6 = 758.4, Gen 7 = 791.3\n\n**Part B: Spectral trajectory 图**\n- 绘图脚本已更新为 Gen 0-7（8 代），ylim 范围已调整（PPL 上限 42, Log-Det 下限 2280, Eff Rank 下限 440）\n- HellaSwag 面板仅绘制 Gen 0-5（现有数据）\n- `spectral_trajectory.pdf` (27KB) 和 `.png` (330KB) 已生成到 `paper/figures/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-update-table1-gen07.md"
+}

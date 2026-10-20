@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9347b4cd4aa2e755cd86",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "paper experiments gen7 sync",
+  "task_key": "worker_paper_experiments_gen7_sync_20260517T114113",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_experiments_gen7_sync_20260517T114113_result.json",
+    "occurrence": 1,
+    "bytes": 1363,
+    "sha256": "c0f1f02acc5390ccb2f1d8012ab939e0ccb208ba74cfb4e3e53c841a18302013"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部修改完成，无遗漏。`Gen~5` 仅出现在中间位置（表头列名、per-gen 增量序列的中间步、sigma_1 中间值），均为正确引用。\n\n**修改汇总（14 处）：**\n\n| # | 行号 | 修改内容 |\n|---|------|----------|\n| 1 | 147 | 段落标题 `Gen~3→5` → `Gen~3→7` |\n| 2 | 148 | `through Generation~5` → `~7` |\n| 3 | 148 | eff rank 列表扩展到 Gen 7，累计下降 `-3.5%` → `-6.5%` |\n| 4 | 148 | log-vol 列表扩展到 Gen 7，累计下降 `-4.0%` → `-6.7%` |\n| 5 | 148 | per-gen rank 下降率追加 Gen 5→6 (`-1.3%`)、Gen 6→7 (`-1.9%`) |\n| 6 | 153 | σ₁ 从 `741.0 at Generation~5` 扩展为 `741.0 (Gen~5), 758.4 (Gen~6), 791.3 (Gen~7)` |\n| 7 | 159 | 正文引用 `Generations~0--5` → `0--7` |\n| 8 | 161 | 表格 caption `Generations~0--5` → `0--7` |\n| 9 | 180 | `through Generation~5` → `~7` |\n| 10 | 180 | ppl `24.59 at Gen~5, 116%` → `38.89 at Gen~7, 242%` |\n| 11 | 180 | ppl 增量序列追加 `6.32 (Gen~5→6), 7.97 (Gen~6→7)` |\n| 12 | 180 | distinct-4 `0.4630 (-26.0%)` → `0.4474 (-28.5%)` |\n| 13 | 182 | HellaSwag `0.3439 (Gen~5), 16.7%, 11.7%` → `0.3187 (Gen~7), 22.8%, 18.2%` |\n| 14 | 184 | train loss `1.047 (Gen~5), 116%` → `1.015 (Gen~7), 242%` |\n\n表格（item 6）HellaSwag Gen 6-7 列已有正确数值 0.3311/0.3187，无需修改。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-experiments-gen7-sync.md"
+}

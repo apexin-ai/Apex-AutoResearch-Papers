@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f11c423dd07b6c0bb9fc",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ops verify exp022c fresh",
+  "task_key": "worker_ops_verify-exp022c-fresh_20260524T074403",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-exp022c-fresh_20260524T074403_result.json",
+    "occurrence": 1,
+    "bytes": 1051,
+    "sha256": "a1845986aabb4c8514e04841dbc78b8911e552e3de07a1c4e73269cf9998bf58"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n| | GPU 0 | GPU 1 |\n|---|---|---|\n| **实验** | exp_020 | exp_022c |\n| **PID** | 783957 | 868285 (wrapper: 868280) |\n| **命令** | `pure_collapse, seed=42, 10 gens, k=0` | `fixed_mix, r=0.3, 3 gens, seed=42` |\n| **显存** | 26,431 / 97,887 MiB (27%) | 19,349 / 97,887 MiB (20%) |\n| **GPU 利用率** | 95% | 95% |\n| **功耗** | 340W / 600W | 352W / 600W |\n\n### exp_020 (GPU 0)\n- **Generation 9/10**，正在生成合成样本：**43,840 / 50,000** (~88%)\n- 上一次 fine-tuning 完成到 Gen 8，当前 Gen 9 处于数据生成阶段\n- 日志持续写入（15:45:22 最新修改），无 error\n\n### exp_022c (GPU 1)\n- 刚启动约 **6 分钟**（15:38 启动），处于 **Gen 0 baseline 评估**阶段\n- 日志仅 51 行 warning（right-padding），尚未出现 Generation 进度标记\n- PID 868280 (bash wrapper) + 868285 (python) 均存活，无异常\n\n### 残留进程\n- exp_022.log (85B) 和 exp_022b.log (54B) 均为早期终止的小文件，**无对应 GPU 进程**，已清理干净"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-exp022c-fresh.md"
+}

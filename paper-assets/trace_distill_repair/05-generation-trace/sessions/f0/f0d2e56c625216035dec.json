@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f0d2e56c625216035dec",
+  "project": "trace_distill_repair",
+  "kind": "history",
+  "title": "director / loop_3.md",
+  "task_key": "loop_3",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_3.md",
+    "occurrence": 1,
+    "bytes": 4345,
+    "sha256": "e96ce2c3d18e82bd70baabcd689e741010c08edfca434a8dacc6869cb94754c7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: max_messages\nupdated: '2026-05-15T11:35:11+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目 GPU 只能用 rtx6000-diagprobe 的 cuda:0 和 cuda:1\n- MVP 阶段全程 API-only（scoring/repair 都调 DeepSeek API），GPU 为 Research 阶段 student training 预留，但不能释放\n- API key 加载必须用 `source /root/trace_distill_repair/.env`，不能用 `source /root/.bashrc`（有 non-interactive guard 会 return）\n- phase2_line_scores.json 可能被 rogue v5 进程（PID 112847）覆盖——使用前检查文件时间戳和实例数（应为 33 实例）\n- Line scoring v3 是有效数据（v2 数据源，33 实例，4091 segments）——之前有过 \"v3 是 v1 数据\" 的误判，已被三条独立证据推翻，不要再重跑\n\n### 2. 🖥️ 基础设施快照\n- 服务器：rtx6000-diagprobe (connect.westd.seetacloud.com)，用户 root\n- 工作目录：/root/trace_distill_repair\n- Python：/root/miniconda3/envs/bugsinpy/bin/python（Python 3.8，BugsInPy 专用）\n- conda env：bugsinpy（trace 收集用），base（其他用途）\n- API key：/root/trace_distill_repair/.env（OPENROUTER_API_KEY / DEEPSEEK_API_KEY）\n- Research 阶段模型：Qwen3-Reranker-0.6B 已下载（GPU 上），QLoRA 环境已验证\n- 数据：pipeline_output/（v2 traces + segments），phase3_results.csv（132 条 repair 结果）\n- 可能存活进程：PID 112847（rogue v5 line scoring，需 kill）；Phase 3 PID 116942 应已完成\n- Cron：mvp_phase3_repair 监控可能还在\n\n### 3. 📊 当前状态\nPhase 3 repair comparison 全部完成（33 实例 × 4 条件 = 132 次评估），但评估不可信：0% test execution pass rate（BugsInPy 项目依赖未装）。\n\n**D017 决策**：暂缓 MVP 判定，优先修复 test execution 后用客观指标重新评估。\n\nRegistry 状态：\n- mvp_phase3_repair: DONE（需改 conclusion 为 negative_signal_pending_reeval）\n- mvp_structural_scoring_v3: DONE(success) — 566 segments, keep=41 (7.2%), error 4.8%\n- mvp_line_scoring_v3: DONE(success) — 4091 segments, keep=226 (5.5%), error 4.6%\n- mvp_line_scoring_v4/v5: killed（冗余）\n\n无等待中的 Worker 回调或 Cron。Agent 和 Reviewer 都刚 RESET。\n\n### 4. 📋 待办\n- 接手后立即 → kill PID 112847（rogue v5），确认 phase2_line_scores.json 未被覆盖\n- 接手后 → 派 Agent 修复 test execution：从 4 个高 judge 实例开始（black_1, fastapi_1, fastapi_2, httpie_2），在 bugsinpy env 中安装项目依赖，验证 test_command 可执行\n- Test execution 修复后 → 对 phase3_results.csv 已保存的 repair outputs 重新跑 test evaluation（不需要重调 API）\n- Test-based 结果仍然 no_trace ≥ structural → MVP FAIL 确认，开始 pivot 方案（从 \"method paper\" 转 \"analysis paper: when/why trace helps/hurts\"）\n- Test-based 结果 structural 有正面信号 → 按 D016 改 segment cap（MAX_SEGMENTS 从 20 提到 40-50 + 分层采样）后重跑一轮\n- Reviewer 建议同时做两件事：(a) test-based re-eval (b) 改 cap 后重跑 scoring + Phase 3\n\n### 5. 🎯 战略上下文\n**核心问题**：LLM judge 数据显示 no_trace (1.06) > structural (0.76)——trace 不仅没帮助反而有害。但 0% test execution 意味着没有客观指标，这个结论不 definitive。\n\n**决策链**：D013/D014（发现 Phase 1 trace bug）→ D015（Phase 1 v2 重跑 + Phase 2 scoring）→ D016（确认 segment cap 问题但先跑完 v3 做初步评估）→ D017（Phase 3 完成但评估不可信，暂缓 MVP 判定）\n\n**最容易判断错的事**：\n1. 不要因为 judge 数据负面就直接宣布 MVP FAIL——评估本身不可信（0% test exec + LLM 自评），需要 test-based 重新评估\n2. 不要再重跑 line scoring——v3 已被三次独立证据确认为 v2 数据，Agent 之前的误判（\"v3 是 v1 数据\"）已纠正\n3. Reviewer 指出 judge 相对排序仍有信息量（同框架下偏差对所有条件一致），方向性信号是真实的——不要完全忽视负面趋势\n4. 55% 实例 structural keep=0，即使 test execution 修好，structural 在这些实例上 = no_trace。论文叙事需从 \"structural > line\" 转向 \"token efficiency / precision-recall tradeoff\"\n5. DDL 5/25 还有 10 天，时间仍可控但不能再浪费在重复的数据源误判和 API key 问题上\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3.md"
+}

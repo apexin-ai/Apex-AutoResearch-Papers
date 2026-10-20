@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e34f74fbf125a8921cd2",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "viz phase diagram script",
+  "task_key": "worker_viz_phase-diagram-script_20260518T134300",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_viz_phase-diagram-script_20260518T134300_result.json",
+    "occurrence": 1,
+    "bytes": 780,
+    "sha256": "5c35b51aa045eab2f25856d0118a767b531c7caeb11d0f5b45c289f49c7e8c45"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图表生成完毕，效果符合预期：\n\n- **r=0 (红)**: Gen 0-10 完整数据，先升后降，清晰的 spectral collapse 趋势\n- **r=0.5 (蓝)**: Gen 0-10 完整数据，持续上升，mixing 有效稳定了 SLV\n- **r=0.2 (橙)**: Gen 0-2，目前只有 3 个点\n- **r=0.3 (绿)**: Gen 0-1，目前只有 2 个点\n\n脚本位置和输出：\n- 脚本: `/root/spectral_collapse_ews/scripts/plot_phase_diagram.py`\n- PDF: `/root/spectral_collapse_ews/figures/phase_diagram.pdf`\n- PNG: `/root/spectral_collapse_ews/figures/phase_diagram.png`\n\n脚本从 JSON 动态读取，r=0.2 和 r=0.3 实验推进后重跑即可自动更新。Legend 放在左下区域不遮挡数据线，r=0.3 的短线段也能在图上看到（gen 0-1 附近绿色三角）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/viz-phase-diagram-script.md"
+}

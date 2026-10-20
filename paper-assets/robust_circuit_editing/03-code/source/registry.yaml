@@ -1,0 +1,9 @@
+baseline: null
+experiments:
+  mvp_001_cross_method_consensus:
+    status: PREPARING
+    retry_count: 0
+    created_at: '2026-05-16T07:27:45.196Z'
+    updated_at: '2026-05-16T07:29:42.873Z'
+    hypothesis: CIRCUS-core (s=1) 中 CSS < 0.75 的边 ≥10% AND ≥10 条（跨方法不共识），即方法内稳定性与跨方法共识存在显著分歧。Pass
+      条件：两个阈值同时满足。

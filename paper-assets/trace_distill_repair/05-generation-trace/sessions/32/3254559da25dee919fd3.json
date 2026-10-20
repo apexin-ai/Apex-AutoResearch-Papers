@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3254559da25dee919fd3",
+  "project": "trace_distill_repair",
+  "kind": "result",
+  "title": "ops check duplicate processes",
+  "task_key": "worker_ops_check_duplicate_processes_20260514T205912",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_duplicate_processes_20260514T205912_result.json",
+    "occurrence": 1,
+    "bytes": 225,
+    "sha256": "f111b9c30dc8528c2a0591794c404158538b73b3d1707f277bc431eb9403238a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "服务器 `westd-18314` 不在可用列表中。当前可用服务器：`gpu-6000pro-1`、`rtx6000-diagprobe`。\n\n请确认实际服务器名称，或者该实例是否需要先在 resources.yaml 中注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-duplicate-processes.md"
+}

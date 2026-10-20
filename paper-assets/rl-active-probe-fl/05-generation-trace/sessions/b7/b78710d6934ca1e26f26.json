@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b78710d6934ca1e26f26",
+  "project": "rl-active-probe-fl",
+  "kind": "result",
+  "title": "train sft v2 retrain",
+  "task_key": "worker_train_sft-v2-retrain_20260514T093500",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_sft-v2-retrain_20260514T093500_result.json",
+    "occurrence": 1,
+    "bytes": 734,
+    "sha256": "d005f8efd48603fbb7ac45c411e4c44c91800a5ca498306b3d359075248ea4e0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "SFT v2 训练完成。最终结果：\n\n| 指标 | 值 |\n|------|-----|\n| 训练时间 | 177s (约 3 分钟) |\n| 最终 loss | 1.59 (epoch 2.65) → train_loss 均值 2.00 |\n| token accuracy | 0.659 |\n| 模型保存路径 | `/root/autodl-tmp/diagprobe/checkpoints/sft_v2` |\n\n**汇报总结：**\n- **sandbox.py 同步**: 完成，341 行写入服务器\n- **快速验证**: 10 样本中 5 个 probe 执行成功（从 0% 修复到 50%+）\n- **SFT v2 训练**: 成功完成 3 epochs，模型已保存到 `checkpoints/sft_v2`\n- **注意**: eval data 被跳过（`WARNING Skipping eval data without good_probe/probe_rationale fields`），eval 需单独安排\n- **GPU 0 已释放**，双卡 eval 可随时启动"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-sft-v2-retrain.md"
+}

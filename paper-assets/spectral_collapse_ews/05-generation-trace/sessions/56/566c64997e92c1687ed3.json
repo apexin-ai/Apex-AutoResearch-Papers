@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "566c64997e92c1687ed3",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "analysis exp 023",
+  "task_key": "worker_analysis_exp_023_20260524T172011",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_023_20260524T172011_result.json",
+    "occurrence": 1,
+    "bytes": 986,
+    "sha256": "c994fed91b968cc0d0a50725b7c40f883960b4afd52b239e3e54828c978f33bf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。\n\n## 结论: SUCCESS — Type II confirmed\n\n**GPT-2-medium r=0.25 展现 Type II (transitional) trajectory：**\n\n| Gen | SLV | ΔSLV | Eff. Rank | PPL |\n|-----|-----|------|-----------|-----|\n| 0 | 689.44 | — | 23.09 | 15.45 |\n| 1 | 748.06 | +58.62 (decompression) | 142.37 | 12.09 |\n| 2 | 734.21 | **-13.85 (dip)** | 143.51 | 12.05 |\n| 3 | 737.91 | **+3.70 (recovery)** | 149.42 | 12.07 |\n\nRaw SLV 在 Gen 1→2 下降 1.85%，Gen 2→3 恢复 0.50%，符合 Type II 特征（transient dip + recovery）。\n\n与 Pythia-410M r=0.25 定性一致——两种架构在 r=0.25 均未出现单调 collapse，支持 **r_crit ∈ (0.25, 0.3] 是架构无关的**。\n\n注意事项：\n- GPT-2-medium 初始谱极度集中（eff_rank=23 vs Pythia=417），decompression transient 更剧烈\n- 仅 3 代无法确认持续恢复，建议扩展至 10 代\n- 单 seed，需 cross-seed 验证\n\n报告已注册: `artifacts/exp_023/analysis_report.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-023.md"
+}

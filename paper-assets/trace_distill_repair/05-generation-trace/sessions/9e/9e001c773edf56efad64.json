@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9e001c773edf56efad64",
+  "project": "trace_distill_repair",
+  "kind": "result",
+  "title": "analyze mvp phase3 repair",
+  "task_key": "worker_analyze_mvp_phase3_repair_20260515T112816",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_mvp_phase3_repair_20260515T112816_result.json",
+    "occurrence": 1,
+    "bytes": 1065,
+    "sha256": "4ecb5adb190a8d0c752b0da93cc1ec94ac8d01f5086b7147262601f75e6b2eeb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。报告已写入 `artifacts/phase3_repair_analysis.md`。\n\n核心发现：\n\n**全部 4 个条件修复成功率 0%** — 实验正常完成 (33/33 instances, EXIT_CODE=0)，但 deepseek-v4-flash 无法完成任何一个 BugsInPy 修复。\n\n关键数据：\n- **Judge 质量分** (0-5): no_trace=1.06 > line_filtered=0.88 > structural_filtered=0.76 > full_trace=0.70\n- **Empty response**: full_trace 24.2%，其他条件 6-9%\n- **Token 消耗**: full_trace 消耗 3x tokens，效果最差\n- **Structural keep>0 子集**: 无显著差异，且 54.5% instances structural_keep=0\n- **Head-to-head**: structural vs line 全部平局\n\n**假设（structural_filtered 优于其他）不被支持。** structural_filtered 的 judge 分反而低于 no_trace。\n\n**根因是模型能力不足**：deepseek-v4-flash 连最基本的修复都做不到，模型经常生成完全无关的代码。需要先用更强的模型（GPT-4o/Claude Sonnet）验证 pipeline 本身是否有效，再回来评估 trace filtering 的增量价值。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-mvp-phase3-repair.md"
+}

@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp_016",
+  "project": "spectral_collapse_ews",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T09:29:07.345Z",
+    "updated_at": "2026-05-21T09:31:00.034Z",
+    "hypothesis": "r=0.3 with seed 44 reproduces Type III trajectory (monotonic expansion), providing 3rd seed for r_crit upper bound. Combined with exp_008 (seed42) and exp_012 (seed43), this completes 3-seed coverage at the boundary condition.",
+    "parent": "exp_008"
+  },
+  "timestamp": "2026-05-21T09:31:00.132492+00:00",
+  "trigger": "update_registry"
+}

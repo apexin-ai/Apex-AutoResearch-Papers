@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "370581d9a71e7020db79",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "paper d010 intro update",
+  "task_key": "worker_paper_d010_intro_update_20260517T072931",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_d010_intro_update_20260517T072931_result.json",
+    "occurrence": 1,
+    "bytes": 1531,
+    "sha256": "d97b377b7e178e5b83c69390fee152cb05d204df422bcb0e111b390409b341d8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成，`\\label{sec:controller}` 已正确添加到 method.tex line 27。\n\n## 修改汇总\n\n### introduction.tex 修改\n\n| 行 | 修改内容 |\n|---|---|\n| 3 | `---` → `,`（去 em-dash） |\n| 8 | `---` → `,`（去 em-dash） |\n| 15 | `---concentrating...rather than spreading it uniformly` → `, with real data concentrated...rather than spread uniformly`（去 em-dash + -ing 结尾） |\n| 16 | controller 信号从 `effective rank` 改为 `effective rank + spectral log-volume`，明确 controller 使用 spectral log-volume |\n| 21 | Contribution 1 重写：三阶段特征化 + 四指标（eff_rank, spectral log-volume, ppl, HellaSwag）+ 引用 `sec:spectral_trajectory`, `tab:phase0_metrics` |\n| 22 | Contribution 2 重写：spectral log-volume 作为 EWS，比 eff_rank 更早下降，larger models temporal lead + 引用 `sec:cross_validation` |\n| 23 | Contribution 3 重写：controller 基于 spectral log-volume decline rate；删除 \"calibration error\"；引用 `sec:controller`, `tab:phase0_metrics` |\n| 21 | 去掉重复的 \"to our knowledge\"（line 14 已有） |\n| 28 | `opening a new paradigm` → 拆为新句 `This finding supports the case for closed-loop intervention`（去 -ing 结尾 + \"paradigm\" 黑名单词） |\n\n### method.tex 修改\n- Line 27: 添加 `\\label{sec:controller}`\n\n### 验证通过\n- 0 个 em-dash/en-dash\n- 0 个 \"calibration error\" / \"ECE\"\n- 0 个 \"log-determinant\" 残留\n- 3 条 contribution 均有 section/table 引用"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-d010-intro-update.md"
+}

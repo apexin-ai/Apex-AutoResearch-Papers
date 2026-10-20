@@ -1,0 +1,34 @@
+paper_key: "ai_models_collapse_nature"
+title: "The Curse of Recursion: Training on Generated Data Makes Models Forget"
+venue: "Nature 2024"
+full_text_available: false
+
+research:
+  baselines:
+    - Variational Autoencoders (VAEs)
+    - Gaussian Mixture Models (GMMs)
+    - Large Language Models (GPT-2 family)
+  metrics:
+    - {name: "distribution tail coverage", direction: "higher_better"}
+    - {name: "generation quality degradation", direction: "lower_better"}
+    - {name: "model perplexity", direction: "lower_better"}
+  datasets:
+    - {name: "synthetic recursive data (model-generated)", size: "N/A"}
+    - {name: "original training distributions", size: "N/A"}
+  ablation_dimensions:
+    - model type (VAE, GMM, LLM)
+    - number of recursive training iterations
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "N/A"}
+  method_family: "model collapse / recursive training analysis"
+
+positioning:
+  core_claim: "Training on model-generated data causes irreversible 'Model Collapse' where tails of the original distribution disappear, demonstrated across VAEs, GMMs, and LLMs."
+  key_results: "Progressive degradation across recursive training generations; tail distribution modes vanish irreversibly; phenomenon consistent across model families."
+  limitations:
+    - "Assumes data replacement (not accumulation) across generations"
+    - "Limited mitigation strategies proposed"
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

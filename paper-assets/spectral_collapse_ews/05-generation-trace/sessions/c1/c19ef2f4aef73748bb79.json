@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c19ef2f4aef73748bb79",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "test dual instance gpu",
+  "task_key": "worker_test_dual_instance_gpu_20260517T033716",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_test_dual_instance_gpu_20260517T033716_result.json",
+    "occurrence": 1,
+    "bytes": 1794,
+    "sha256": "763b11f296979bce2f6b2d2068964e4367aa0034d3732b67a68393916738c1dc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n| 指标 | cuda:0 (exp_001) | cuda:1 (exp_002) |\n|------|-------------------|-------------------|\n| 显存占用 | 65,909 MiB | 39,771 MiB |\n| 总显存 | 97,887 MiB | 97,887 MiB |\n| 剩余显存 | ~31,978 MiB | ~58,116 MiB |\n| GPU 利用率 | 79% | 95% |\n\n## 分析\n\n两张卡上跑的都是 Pythia 410M，但显存占用差异大（65.9GB vs 39.8GB），说明配置不同（batch size、sequence length、或训练阶段不同）。\n\n**Pythia 410M 单实例显存占用估算：**\n- 保守取 cuda:0 的值：~65.9 GB\n- 乐观取 cuda:1 的值：~39.8 GB\n\n**双实例可行性判断：No（保守） / 勉强可行（乐观）**\n\n| 场景 | 双实例总需 | 98GB 卡容量 | 判断 |\n|------|-----------|------------|------|\n| 两个都按 cuda:0 配置 | ~132 GB | 98 GB | **不可行** |\n| 两个都按 cuda:1 配置 | ~80 GB | 98 GB | **可行**，剩余 ~18 GB buffer |\n| 混合（65+40） | ~106 GB | 98 GB | **不可行** |\n\n## 结论\n\n- 如果 Phase 1 实验配置与 exp_002（cuda:1）相同（~40GB/实例），**双实例可行**，buffer 约 18GB。\n- 如果配置与 exp_001（cuda:0）相同（~66GB/实例），**不可行**。\n\n## 替代方案（若显存不足）\n\n1. **减小 batch size + 增加 gradient accumulation**：将 per-device batch size 减半，gradient_accumulation_steps 翻倍，保持等效 batch size 不变，显存可降 30-40%\n2. **降低 max_length**：如从 2048 降到 1024，激活显存近乎减半\n3. **开启 gradient checkpointing**：用计算换显存，显存可再降 30-50%，速度约慢 20-30%\n\n**建议**：确认 Phase 1 的具体训练配置（batch size、seq_len、是否用 gradient checkpointing），再做最终判断。需要我去查 Phase 1 的配置文件吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/test-dual-instance-gpu.md"
+}

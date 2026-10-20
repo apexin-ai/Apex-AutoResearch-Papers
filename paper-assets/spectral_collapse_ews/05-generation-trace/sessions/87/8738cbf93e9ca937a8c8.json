@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8738cbf93e9ca937a8c8",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "code exp 013 prep",
+  "task_key": "worker_code_exp_013_prep_20260520T074928",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_013_prep_20260520T074928_result.json",
+    "occurrence": 1,
+    "bytes": 835,
+    "sha256": "03a6eb3d0cb6ac31516914b785dece89fb3e9938c0c85af6b179ac8ef6ed38a5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n### 产出\n\n**启动脚本** — `/root/spectral_collapse_ews/scripts/launch_pure_collapse_seed44.sh` 已更新，参数与 exp_010 一致：\n- `--condition pure_collapse --seed 44 --generations 10 --signal log_det --tau 0.002 --k 0 --signal_mode per_gen`\n- 支持 `bash launch_pure_collapse_seed44.sh 1` 指定 GPU\n\n**Dry-run** — `--help` 解析通过，所有参数合法。\n\n**Checkpoint 目录** — `pure_collapse_seed44/` 不存在，无覆盖风险。\n\n**磁盘空间** — **严重不足**：`/root/autodl-tmp/` 250G 已用 237G，仅剩 **14G (5%)**。现有 checkpoints 占 120G。一组 pure_collapse 10-gen 实验（pythia-410m）预计需要 ~10-12G checkpoint 空间，14G 勉强够但很紧。建议启动前先清理已不需要的旧 checkpoint 或中间产物。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-013-prep.md"
+}

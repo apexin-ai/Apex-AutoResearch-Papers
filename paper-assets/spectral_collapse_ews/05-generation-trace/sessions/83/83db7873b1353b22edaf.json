@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "83db7873b1353b22edaf",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "check urgent exp008 exp009 v2",
+  "task_key": "worker_check_urgent-exp008-exp009-v2_20260519T031646",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_urgent-exp008-exp009-v2_20260519T031646_result.json",
+    "occurrence": 1,
+    "bytes": 1885,
+    "sha256": "4568b2059191e569bbb0d598e3ce357ac9b2d14ff83425dd3dc79e3ad85e3a28"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇报\n\n### GPU 状态\n| GPU | Utilization | Memory Used / Total |\n|-----|------------|---------------------|\n| 0 | 75% | 25017 / 97887 MiB |\n| 1 | 87% | 25017 / 97887 MiB |\n\n---\n\n### exp_008 (r=0.3, cuda:1, pid=194372) — 运行中，Gen 9 采样阶段\n\n进程存活。已完成 Gen 0-8（9 条记录），当前正在 Gen 9 采样（30720/35000 samples）。\n\n| Gen | log_det | eff_rank | ppl | distinct4 |\n|-----|---------|----------|-------|-----------|\n| 0 | 2366.68 | 417.55 | 9.554 | 0.7414 |\n| 1 | 2366.13 | 476.91 | 10.193 | 0.6894 |\n| 2 | 2372.45 | 484.17 | 10.589 | 0.4892 |\n| 3 | 2386.72 | 489.48 | 10.901 | 0.4646 |\n| 4 | 2404.02 | 492.59 | 11.226 | 0.4682 |\n| 5 | 2431.17 | 497.86 | 11.544 | 0.4508 |\n| 6 | 2452.00 | 501.63 | 11.875 | 0.4176 |\n| 7 | 2467.05 | 506.30 | 12.215 | 0.3964 |\n| 8 | 2485.91 | 511.71 | 12.610 | 0.4058 |\n\n趋势：log_det 单调上升（2366→2486），eff_rank 单调上升（417→512），ppl 单调上升（9.5→12.6），distinct4 大幅下降后趋稳（0.74→0.41）。Gen 9 采样完成后还需训练+评估，预计再完成 Gen 9 和 Gen 10 后结束。**exp_008 尚未完成，正在跑 Gen 9 的采样阶段。**\n\n---\n\n### exp_009 (r=0.25, cuda:0, pid=247492) — 运行中，Gen 4 采样阶段\n\n进程存活。已完成 Gen 0-3（4 条记录），当前正在 Gen 4 采样（31360/37500 samples）。\n\n| Gen | log_det | eff_rank | ppl | distinct4 |\n|-----|---------|----------|-------|-----------|\n| 0 | 2366.68 | 417.55 | 9.554 | 0.7414 |\n| 1 | 2362.13 | 476.66 | 10.239 | 0.6499 |\n| 2 | 2363.10 | 482.84 | 10.653 | 0.4973 |\n| 3 | 2380.88 | 489.47 | 11.019 | 0.4419 |\n\n趋势与 exp_008 类似但更缓（real_ratio 更高）。log_det 前两代几乎持平后缓升，符合 r=0.25 更多真实数据稀释的预期。还需完成 Gen 4-10，距完成较远。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-urgent-exp008-exp009-v2.md"
+}

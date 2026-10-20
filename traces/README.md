@@ -1,6 +1,6 @@
 # Research Trace Atlas
 
-Browse recorded tasks, user-role instructions, assistant responses, tool calls, and tool results from **69 trace collections**. Open **Readable Markdown** in any project guide for a GitHub reading view, or select the adjacent JSON link for the complete structured record.
+Browse recorded tasks, user-role instructions, assistant responses, tool calls, and tool results from **74 trace collections**. Open **Readable Markdown** in any project guide for a GitHub reading view, or select the adjacent JSON link for the complete structured record.
 
 [Offline preview](demo.html) · [Interactive browser](index.html) · [Format and provenance](FORMAT.md)
 
@@ -56,6 +56,7 @@ For the complete browser, run `python3 scripts/serve_traces.py --open` from a do
 | [persuasion_turn_jailbreak_detect](../paper-assets/persuasion_turn_jailbreak_detect/05-generation-trace/README.md) | 159 | 420 | 391 | 14 | 125,176 | [Read](../paper-assets/persuasion_turn_jailbreak_detect/05-generation-trace/readable/README.md) |
 | [pgpf-collapse-filter](../paper-assets/pgpf-collapse-filter/05-generation-trace/README.md) | 8 | 11 | 10 | 0 | 3,992 | [Read](../paper-assets/pgpf-collapse-filter/05-generation-trace/readable/README.md) |
 | [policy_ambiguity_safety](../paper-assets/policy_ambiguity_safety/05-generation-trace/README.md) | 61 | 144 | 141 | 10 | 58,856 | [Read](../paper-assets/policy_ambiguity_safety/05-generation-trace/readable/README.md) |
+| [prism_collapse_mixing](../paper-assets/prism_collapse_mixing/05-generation-trace/README.md) | 25 | 38 | 38 | 3 | 6,679 | [Read](../paper-assets/prism_collapse_mixing/05-generation-trace/readable/README.md) |
 | [prod42](../paper-assets/prod42/05-generation-trace/README.md) | 0 | 0 | 0 | 0 | 0 | [Read](../paper-assets/prod42/05-generation-trace/readable/README.md) |
 | [prod43](../paper-assets/prod43/05-generation-trace/README.md) | 0 | 0 | 0 | 0 | 0 | [Read](../paper-assets/prod43/05-generation-trace/readable/README.md) |
 | [prod_0510](../paper-assets/prod_0510/05-generation-trace/README.md) | 0 | 0 | 0 | 0 | 0 | [Read](../paper-assets/prod_0510/05-generation-trace/readable/README.md) |
@@ -64,20 +65,24 @@ For the complete browser, run `python3 scripts/serve_traces.py --open` from a do
 | [ratekv](../paper-assets/ratekv/05-generation-trace/README.md) | 260 | 513 | 419 | 58 | 87,631 | [Read](../paper-assets/ratekv/05-generation-trace/readable/README.md) |
 | [recovery_aware_struct_prune](../paper-assets/recovery_aware_struct_prune/05-generation-trace/README.md) | 768 | 1,451 | 1,406 | 122 | 248,503 | [Read](../paper-assets/recovery_aware_struct_prune/05-generation-trace/readable/README.md) |
 | [recursive_gen_depth_est](../paper-assets/recursive_gen_depth_est/05-generation-trace/README.md) | 347 | 686 | 642 | 104 | 166,550 | [Read](../paper-assets/recursive_gen_depth_est/05-generation-trace/readable/README.md) |
+| [rl-active-probe-fl](../paper-assets/rl-active-probe-fl/05-generation-trace/README.md) | 27 | 42 | 41 | 0 | 7,227 | [Read](../paper-assets/rl-active-probe-fl/05-generation-trace/readable/README.md) |
+| [robust_circuit_editing](../paper-assets/robust_circuit_editing/05-generation-trace/README.md) | 3 | 2 | 0 | 0 | 287 | [Read](../paper-assets/robust_circuit_editing/05-generation-trace/readable/README.md) |
 | [schema-conform-ie-training](../paper-assets/schema-conform-ie-training/05-generation-trace/README.md) | 18 | 47 | 42 | 3 | 9,882 | [Read](../paper-assets/schema-conform-ie-training/05-generation-trace/readable/README.md) |
 | [schema-dag-extraction](../paper-assets/schema-dag-extraction/05-generation-trace/README.md) | 217 | 506 | 474 | 45 | 131,771 | [Read](../paper-assets/schema-dag-extraction/05-generation-trace/readable/README.md) |
 | [schema_semantic_constrained_ie](../paper-assets/schema_semantic_constrained_ie/05-generation-trace/README.md) | 447 | 1,048 | 925 | 107 | 204,987 | [Read](../paper-assets/schema_semantic_constrained_ie/05-generation-trace/readable/README.md) |
 | [simgate-modular-routing](../paper-assets/simgate-modular-routing/05-generation-trace/README.md) | 359 | 789 | 742 | 135 | 177,700 | [Read](../paper-assets/simgate-modular-routing/05-generation-trace/readable/README.md) |
 | [solver-trace-ablation](../paper-assets/solver-trace-ablation/05-generation-trace/README.md) | 805 | 1,157 | 977 | 323 | 227,092 | [Read](../paper-assets/solver-trace-ablation/05-generation-trace/readable/README.md) |
+| [spectral_collapse_ews](../paper-assets/spectral_collapse_ews/05-generation-trace/README.md) | 160 | 374 | 361 | 30 | 64,614 | [Read](../paper-assets/spectral_collapse_ews/05-generation-trace/readable/README.md) |
 | [structfuse-context](../paper-assets/structfuse-context/05-generation-trace/README.md) | 183 | 510 | 496 | 43 | 90,756 | [Read](../paper-assets/structfuse-context/05-generation-trace/readable/README.md) |
 | [svs_formal_verification](../paper-assets/svs_formal_verification/05-generation-trace/README.md) | 32 | 91 | 81 | 1 | 21,001 | [Read](../paper-assets/svs_formal_verification/05-generation-trace/readable/README.md) |
 | [tax_error_inject_agent](../paper-assets/tax_error_inject_agent/05-generation-trace/README.md) | 260 | 440 | 427 | 41 | 68,008 | [Read](../paper-assets/tax_error_inject_agent/05-generation-trace/readable/README.md) |
 | [tbab_multi_turn](../paper-assets/tbab_multi_turn/05-generation-trace/README.md) | 24 | 48 | 44 | 0 | 10,572 | [Read](../paper-assets/tbab_multi_turn/05-generation-trace/readable/README.md) |
 | [temp-adv-distill-vla](../paper-assets/temp-adv-distill-vla/05-generation-trace/README.md) | 8 | 25 | 19 | 0 | 9,052 | [Read](../paper-assets/temp-adv-distill-vla/05-generation-trace/readable/README.md) |
+| [trace_distill_repair](../paper-assets/trace_distill_repair/05-generation-trace/README.md) | 76 | 166 | 154 | 14 | 31,538 | [Read](../paper-assets/trace_distill_repair/05-generation-trace/readable/README.md) |
 | [verification_triggered_retrieval](../paper-assets/verification_triggered_retrieval/05-generation-trace/README.md) | 4 | 5 | 4 | 0 | 4,203 | [Read](../paper-assets/verification_triggered_retrieval/05-generation-trace/readable/README.md) |
 | [xling_calab_direction](../paper-assets/xling_calab_direction/05-generation-trace/README.md) | 0 | 1 | 1 | 0 | 404 | [Read](../paper-assets/xling_calab_direction/05-generation-trace/readable/README.md) |
 | [xling_calib_direction](../paper-assets/xling_calib_direction/05-generation-trace/README.md) | 48 | 123 | 119 | 0 | 27,260 | [Read](../paper-assets/xling_calib_direction/05-generation-trace/readable/README.md) |
 
-**76,410 source records · 6,037,475 recorded messages/events.** Counts include overlapping snapshots and parallel logs; they are not deduplicated research actions.
+**77,964 source records · 6,147,820 recorded messages/events.** Counts include overlapping snapshots and parallel logs; they are not deduplicated research actions.
 
 Source language and order are retained. A user-role message can originate from another agent or system and does not identify a human author. Missing prompts and timestamps are not reconstructed. Credentials and embedded attachment payloads are redacted.

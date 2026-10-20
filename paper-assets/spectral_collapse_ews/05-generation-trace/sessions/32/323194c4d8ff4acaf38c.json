@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "323194c4d8ff4acaf38c",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ops check exp022c exp023 progress",
+  "task_key": "worker_ops_check-exp022c-exp023-progress_20260524T114334",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-exp022c-exp023-progress_20260524T114334_result.json",
+    "occurrence": 1,
+    "bytes": 1288,
+    "sha256": "05a9a0699e2b143473f1a0a2ad83e9638bb74fd8ae92c1821f25baa862b01f96"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总报告\n\n### exp_022c (GPT-2 Medium, r=0.3, seed 42, GPU 1)\n\n| 项目 | 状态 |\n|------|------|\n| GPU | GPU 1: 26.4/97.9 GB, 95% 利用率 |\n| 进度 | **Generation 2/3 — 数据生成阶段 (9920/35000 samples, ~28%)** |\n| Gen 0 | ✅ 完成 (eff_rank=23.09, ppl=15.45) |\n| Gen 1 | ✅ 完成 (6200 steps, loss=2.4455, eff_rank=136.08, ppl=12.02) |\n| Gen 2 | 🔄 生成合成数据中 |\n| Gen 3 | ⏳ 未开始 |\n| 日志 | `/root/runs/spectral_collapse_ews/exp_022c.log` (2873行, 持续增长) |\n| 已运行 | ~4小时 (15:40 启动) |\n| 预计剩余 | ~6-7小时 (Gen 2 数据生成+训练+评估 + 完整 Gen 3 循环) |\n\n### exp_023 (GPT-2 Medium, r=0.25, GPU 0)\n\n| 项目 | 状态 |\n|------|------|\n| GPU | GPU 0: 19.3/97.9 GB, 96% 利用率 |\n| 进度 | **极早期 — 初始化/基线评估阶段** |\n| 日志 | `/root/runs/spectral_collapse_ews/exp_023.log` (74KB, 438条 padding 警告) |\n| 已运行 | ~33分钟 (19:11 启动) |\n| 预计剩余 | ~11-13小时 (需完成 3 个完整训练 generation) |\n\n### 已完成的结果文件\n\n`/root/spectral_collapse_ews/results/phase1_gpt2m_fixed_mix_r03_seed42_results.json` 存在（含 gen 0-2 数据，可能来自先前运行），当前 exp_022c 运行将覆盖该文件。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-exp022c-exp023-progress.md"
+}

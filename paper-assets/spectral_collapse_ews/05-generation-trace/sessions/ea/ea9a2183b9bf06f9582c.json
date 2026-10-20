@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ea9a2183b9bf06f9582c",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "paper fill hellaswag table1",
+  "task_key": "worker_paper_fill_hellaswag_table1_20260517T114046",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fill_hellaswag_table1_20260517T114046_result.json",
+    "occurrence": 1,
+    "bytes": 402,
+    "sha256": "40f39b707af63ff4743e33f8f47b35ed309bd0f3327813fed93f7ee11aff90e3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "替换成功。Table 1 HellaSwag 行现在为：\n\n| Gen 0 | Gen 1 | Gen 2 | Gen 3 | Gen 4 | Gen 5 | Gen 6 | Gen 7 |\n|-------|-------|-------|-------|-------|-------|-------|-------|\n| **0.4130** | 0.3897 | 0.3764 | 0.3658 | 0.3558 | 0.3439 | 0.3311 | 0.3187 |\n\n格式与 Gen 0–5 一致（四位小数）。单调下降趋势延续，Gen 5→6 降 0.0128，Gen 6→7 降 0.0124。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fill-hellaswag-table1.md"
+}

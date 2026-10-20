@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "da8be2162b31bf525db8",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "paper notation consistency",
+  "task_key": "worker_paper_notation-consistency_20260519T181220",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_notation-consistency_20260519T181220_result.json",
+    "occurrence": 1,
+    "bytes": 1649,
+    "sha256": "05b35d28e23132b26cd595c97c4c96efa771f294761df056d39ee2e42bd4f47b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All `\\cite{}` converted — zero bare `\\cite{` remaining. The two `Gen 2` in table cells are acceptable (no line-break risk).\n\n## 汇总\n\n### 已修复：22 个问题\n\n| 类别 | 数量 | 文件 |\n|------|------|------|\n| `\\cite{}` → `\\citep{}` (parenthetical引用) | 18 | introduction.tex (6), related_work.tex (8), experiments.tex (3), conclusion.tex (1) |\n| `Gen 0--2` → `Gen~0--2` (段落标题缺 `~`) | 3 | experiments.tex (lines 44, 52, 55) |\n| EWS 缩写首次展开 | 1 | introduction.tex line 16: 添加 \"(EWS)\" |\n\n### 检查通过（无需修改）\n\n- `$r_{\\text{crit}}$` — 全文统一 ✅\n- `$\\widetilde{S}_t$` — 全文统一，无 `\\tilde` 混用 ✅\n- `$r_{\\text{eff}}$` — 全文统一 ✅\n- `$\\sigma_1$` — 全文统一 ✅\n- `$\\Delta_t$` — 全文统一 ✅\n- `$r{=}0.x$` thin space — 全文统一 ✅\n- Table/Figure 引用 — 3 个 label 全部有对应 ref，无 undefined ✅\n- En-dash `--` 数值范围 — 全文统一，无 hyphen 混用 ✅\n- `\\%` 格式 — 全文统一（无空格） ✅\n- SLV 缩写 — abstract + introduction 均展开 ✅\n- EMA 缩写 — method 首次使用时展开 ✅\n- Subsection labels — 全部 `\\ref` 有对应 `\\label` ✅\n\n### 待确认：2 个\n\n1. **PPL 缩写**：仅出现在 Table 1/2 列头（`PPL`、`PPL growth`），正文均用全称 \"perplexity\"。作为 NLP 标准缩写可接受，但如需严谨可在 Table 1 caption 中注明。\n2. **未被引用的 subsection labels**：`subsec:cross_scale` 和 `subsec:second_order` 定义了但未被 `\\ref` 引用。如果需要正文交叉引用可补上。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-notation-consistency.md"
+}

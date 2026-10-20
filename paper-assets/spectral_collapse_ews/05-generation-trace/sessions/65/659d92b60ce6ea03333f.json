@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "659d92b60ce6ea03333f",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ops n sensitivity and hellaswag",
+  "task_key": "worker_ops_n-sensitivity-and-hellaswag_20260521T100248",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_n-sensitivity-and-hellaswag_20260521T100248_result.json",
+    "occurrence": 1,
+    "bytes": 2129,
+    "sha256": "8a38229042f5edfd020f295cdad0dece705bca5ac3047d8635d96cb466a52024"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "gen_0 完成：acc_norm=0.4130, acc=0.3450（215.8s）。eval 正常工作，继续自动跑 gen_1-gen_10，每个约 3.5 分钟，全部约 35 分钟。\n\n现在汇报当前结果。\n\n---\n\n## 产出汇总\n\n### 1. n_sensitivity 结果（pure_collapse seed44 gen_0）\n\n| n | k (SVs) | SLV mean | SLV std | Rel vs n=1000 | CV (%) |\n|---:|--------:|---------:|--------:|--------------:|-------:|\n| 250 | 250 | 783.38 | 2.82 | -66.83% | 0.360 |\n| 500 | 500 | 1440.83 | 2.47 | -39.00% | 0.171 |\n| 1000 | 1000 | 2362.07 | 4.24 | +0.00% | 0.179 |\n| 2000 | 1024 | 3072.18 | 3.21 | +30.06% | 0.105 |\n| 5000 | 1024 | 3655.41 | 0.00 | +54.75% | 0.000 |\n\n- pool_size = 5000, hidden_size = 1024, n_repeats = 10\n- n=5000 方差为零（全部样本被使用）\n- n≥2000 时 k 被截断为 1024（= hidden_size），SLV 值显著偏高\n- **CV 均 < 0.4%**，说明 SLV 在各 n 值下都很稳定\n- 结果保存在 `results/n_sensitivity_results.json`\n\n### 2. 已有 HellaSwag 数据\n\n**Phase0（seed=42, checkpoints/gen_*）—— 完整 gen_0 到 gen_10：**\n\n| Gen | acc_norm | acc |\n|----:|---------:|----:|\n| 0 | 0.4130 | 0.3450 |\n| 1 | 0.3897 | 0.3385 |\n| 2 | 0.3764 | 0.3315 |\n| 3 | 0.3658 | 0.3237 |\n| 4 | 0.3558 | 0.3171 |\n| 5 | 0.3439 | 0.3099 |\n| 6 | 0.3311 | 0.3013 |\n| 7 | 0.3187 | 0.2955 |\n| 8 | 0.3103 | 0.2906 |\n| 9 | 0.3009 | 0.2862 |\n| 10 | 0.2951 | 0.2834 |\n\n**Phase1 所有 condition/seed —— 均无 HellaSwag 数据：**\n- pure_collapse_seed43: 缺失\n- pure_collapse_seed44: 缺失（正在评估中）\n- fixed_mix_r03_seed42/43, fixed_mix_r025_seed42/43/44, fixed_mix_r02_seed42, fixed_mix_seed42, adaptive_k10_seed42: 全部缺失\n\n### 3. seed44 HellaSwag eval（进行中）\n\n- gen_0 已完成：**acc_norm=0.4130, acc=0.3450**（与 phase0 gen_0 完全一致，符合预期——都是同一预训练模型）\n- gen_1 至 gen_10 正在后台评估（PID 565098），每个 gen 约 3.5 分钟\n- 日志：`/tmp/hellaswag_seed44.log`\n- 结果输出到：`results/hellaswag_seed44_gen{0-10}/results.json`\n- 预计全部完成时间：约 35 分钟后"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-n-sensitivity-and-hellaswag.md"
+}

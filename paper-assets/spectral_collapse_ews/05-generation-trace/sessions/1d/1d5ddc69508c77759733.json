@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1d5ddc69508c77759733",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ssh prep p1 experiments",
+  "task_key": "worker_ssh_prep-p1-experiments_20260521T232506",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_prep-p1-experiments_20260521T232506_result.json",
+    "occurrence": 1,
+    "bytes": 2295,
+    "sha256": "481e99c004e2333009000531b35871a85b6a8fcef995aacdd564482be91ac788"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。汇总报告：\n\n---\n\n### 预验证结果\n\n| 检查项 | 结果 |\n|--------|------|\n| `run_phase1.py` 参数支持 | **通过** — `--real_ratio` 接受任意 float，r=0.2 和 r=0.5 均正确解析 |\n| Dry-run r=0.2 seed43 | **通过** — real_ratio=0.2, k=0.0, tau=0.002, generations=10 |\n| Dry-run r=0.5 seed43 | **通过** — real_ratio=0.5, k=0.0, tau=0.002, generations=10 |\n| Checkpoint 目录冲突 | **无冲突** — 两个目录均不存在 |\n| 磁盘空间 | **86G 可用**（已用 165G/250G，现有 checkpoints 占 46G） |\n\n### 启动脚本\n\n**P1-a:** `/root/spectral_collapse_ews/scripts/launch_fixed_mix_r020_seed43.sh`\n```bash\n#!/bin/bash\n# P1-a: r=0.20 seed43 — fixed_mix low-real trajectory\n# Usage: bash launch_fixed_mix_r020_seed43.sh <gpu_id>\nset -euo pipefail\nGPU_ID=${1:-0}\ncd /root/spectral_collapse_ews\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\nexport HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1\npython run_phase1.py \\\n    --condition fixed_mix \\\n    --seed 43 \\\n    --generations 10 \\\n    --signal log_det \\\n    --tau 0.002 \\\n    --k 0 \\\n    --signal_mode per_gen \\\n    --real_ratio 0.2 \\\n    --gpu $GPU_ID\n```\n\n**P1-b:** `/root/spectral_collapse_ews/scripts/launch_fixed_mix_r050_seed43.sh`\n```bash\n#!/bin/bash\n# P1-b: r=0.50 seed43 — fixed_mix standard trajectory\n# Usage: bash launch_fixed_mix_r050_seed43.sh <gpu_id>\nset -euo pipefail\nGPU_ID=${1:-0}\ncd /root/spectral_collapse_ews\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\nexport HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1\npython run_phase1.py \\\n    --condition fixed_mix \\\n    --seed 43 \\\n    --generations 10 \\\n    --signal log_det \\\n    --tau 0.002 \\\n    --k 0 \\\n    --signal_mode per_gen \\\n    --real_ratio 0.5 \\\n    --gpu $GPU_ID\n```\n\n### 启动方式\n\nGPU 释放后：\n```bash\n# cuda:1 跑 r=0.2\nCUDA_VISIBLE_DEVICES=1 nohup bash /root/spectral_collapse_ews/scripts/launch_fixed_mix_r020_seed43.sh 0 > /tmp/p1a_r020_s43.log 2>&1 &\n\n# cuda:0 跑 r=0.5\nCUDA_VISIBLE_DEVICES=0 nohup bash /root/spectral_collapse_ews/scripts/launch_fixed_mix_r050_seed43.sh 0 > /tmp/p1b_r050_s43.log 2>&1 &\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-prep-p1-experiments.md"
+}

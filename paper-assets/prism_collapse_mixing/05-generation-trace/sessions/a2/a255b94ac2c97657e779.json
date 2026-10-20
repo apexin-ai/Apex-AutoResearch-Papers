@@ -1,0 +1,87 @@
+{
+  "schema_version": "1.0",
+  "id": "a255b94ac2c97657e779",
+  "project": "prism_collapse_mixing",
+  "kind": "result",
+  "title": "ssh pipeline health check",
+  "task_key": "worker_ssh_pipeline-health-check_20260515T224536",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_pipeline-health-check_20260515T224536_result.json",
+    "occurrence": 1,
+    "bytes": 2986,
+    "sha256": "7d455c230e9e761f5719361413f817cf14c0dacd87a5f31ecb00a57f0a8a65e3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总报告：\n\n## Pipeline 状态\n\n| 项目 | 状态 |\n|------|------|\n| 父进程 PID 197985 | **运行中**，已运行 2h08m，`run_pipeline.py --seeds 42,137 --start_gen 1` |\n| 子进程 200889/200890 | 已结束（任务完成后退出） |\n| Gen 1 信号 | **已完成** (06:41-06:42) |\n| Gen 2 合成 | **已完成** (06:46, ~10MB/seed) |\n| Gen 2 混合 | **进行中**（文件尚未写出） |\n| Gen 2 训练/信号 | 未开始 |\n| GPU 0 | 92% 利用率, 10623/97887 MiB |\n| GPU 1 | 94% 利用率, 10623/97887 MiB |\n\n## Gen 1 信号指标\n\n```json\n{\n  \"gen1_signals\": {\n    \"seed_42\": {\n      \"rho_loss_entropy\": 0.9118,\n      \"rho_loss_spectral_rank\": -0.2050,\n      \"loss_mean\": 3.1118,\n      \"loss_std\": 0.5208,\n      \"entropy_mean\": 3.0437,\n      \"entropy_std\": 0.4513,\n      \"spectral_rank_mean\": 165.0,\n      \"spectral_rank_std\": 8.93,\n      \"corpus_spectral_rank\": 4.68,\n      \"distinct_1\": 0.0382,\n      \"distinct_2\": 0.3385,\n      \"distinct_3\": 0.6793,\n      \"num_probe_samples\": 5000\n    },\n    \"seed_137\": {\n      \"rho_loss_entropy\": 0.9119,\n      \"rho_loss_spectral_rank\": -0.2036,\n      \"loss_mean\": 3.1115,\n      \"loss_std\": 0.5209,\n      \"entropy_mean\": 3.0472,\n      \"entropy_std\": 0.4521,\n      \"spectral_rank_mean\": 164.8,\n      \"spectral_rank_std\": 8.93,\n      \"corpus_spectral_rank\": 4.68,\n      \"distinct_1\": 0.0384,\n      \"distinct_2\": 0.3399,\n      \"distinct_3\": 0.6817,\n      \"num_probe_samples\": 5000\n    }\n  },\n  \"pipeline_stage\": \"gen2_mixing\",\n  \"gpu_utilization\": {\"gpu0\": \"92%\", \"gpu1\": \"94%\"}\n}\n```\n\n两个 seed 的 Gen 1 信号高度一致：loss-entropy 相关性强 (ρ≈0.91)，loss-spectral 弱负相关 (ρ≈-0.20)，corpus spectral rank=4.68。Pipeline 当前正在 Gen 2 混合阶段，双 GPU 均在活跃工作。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "gen1_signals": {
+                "seed_42": {
+                  "rho_loss_entropy": 0.9118,
+                  "rho_loss_spectral_rank": -0.205,
+                  "loss_mean": 3.1118,
+                  "loss_std": 0.5208,
+                  "entropy_mean": 3.0437,
+                  "entropy_std": 0.4513,
+                  "spectral_rank_mean": 165.0,
+                  "spectral_rank_std": 8.93,
+                  "corpus_spectral_rank": 4.68,
+                  "distinct_1": 0.0382,
+                  "distinct_2": 0.3385,
+                  "distinct_3": 0.6793,
+                  "num_probe_samples": 5000
+                },
+                "seed_137": {
+                  "rho_loss_entropy": 0.9119,
+                  "rho_loss_spectral_rank": -0.2036,
+                  "loss_mean": 3.1115,
+                  "loss_std": 0.5209,
+                  "entropy_mean": 3.0472,
+                  "entropy_std": 0.4521,
+                  "spectral_rank_mean": 164.8,
+                  "spectral_rank_std": 8.93,
+                  "corpus_spectral_rank": 4.68,
+                  "distinct_1": 0.0384,
+                  "distinct_2": 0.3399,
+                  "distinct_3": 0.6817,
+                  "num_probe_samples": 5000
+                }
+              },
+              "pipeline_stage": "gen2_mixing",
+              "gpu_utilization": {
+                "gpu0": "92%",
+                "gpu1": "94%"
+              }
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-pipeline-health-check.md"
+}

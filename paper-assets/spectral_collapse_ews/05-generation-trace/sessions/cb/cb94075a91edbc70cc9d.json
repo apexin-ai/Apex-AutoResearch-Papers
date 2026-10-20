@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cb94075a91edbc70cc9d",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "benchmark f11 slv timing v2",
+  "task_key": "worker_benchmark_f11_slv_timing_v2_20260521T030340",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_benchmark_f11_slv_timing_v2_20260521T030340_result.json",
+    "occurrence": 1,
+    "bytes": 2660,
+    "sha256": "f7ed94cb67214c8322dec84a9e8ae74af20d6245a742379dbff6e99692857a38"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "现在我有了所有需要的数据。让我汇总。\n\n关键数据来源：\n\n**源 1: `ews_v2_all.log`** — GPU 上的 spectral 诊断耗时（EXP_001, cuda:0, 1K 样本）\n\n| 步骤 | 耗时 |\n|------|------|\n| Embeddings collected (1K samples → 7258 tokens) | 0.2–0.4s |\n| RankMe (包含 SVD) | 0.3s |\n| Model load | 0.5–1.2s |\n\n**源 2: `logdet_gen012.json`** — CPU 上 `compute_effective_rank` (forward pass + SVD)\n\n| Generation | 耗时 |\n|-----------|------|\n| Gen 0 | 424.1s |\n| Gen 1 | 374.1s |\n| Gen 2 | 360.5s |\n\n**源 3: `hellaswag_gen0` lm_eval 结果** — HellaSwag 0-shot on GPU\n\n- `total_evaluation_time_seconds`: **4230.1s** (70.5 min)\n- 10,042 samples, batch_size=64, cuda:1\n- RTX PRO 6000 Blackwell Server Edition\n\n**源 4: `src/rankme.py`** — `compute_effective_rank` 实际做的事：\n1. GPU forward pass (batch_size=32, 1K samples) → (1000, 1024) mean-pooled embeddings\n2. `np.linalg.svd()` on CPU → singular values\n3. log_det = sum(log(sv))\n\n---\n\n```\nSLV computation breakdown (GPU: RTX PRO 6000 Blackwell 98GB):\n  Forward pass (1K samples, bs=32):  ~0.3s    [from ews_v2_all.log: Embeddings collected 0.2–0.4s]\n  SVD on (1000×1024) matrix (CPU):   ~0.01s   [NumPy SVD, trivially fast at this size]\n  Total SLV per checkpoint:          ~0.3–0.5s\n\nHellaSwag 0-shot evaluation (same GPU):\n  lm_eval end-to-end:               70.5 min (4230s)\n  Samples: 10,042 × 4 choices, batch_size=64\n  Note: includes dataset loading, tokenization, auto-batch-size detection overhead\n\nSpeedup (end-to-end): SLV is ~8,500–14,000× faster than HellaSwag\n\nConservative estimate (pure inference only):\n  HellaSwag pure inference (~628 batches × ~30ms):  ~20–60s\n  Speedup (inference-only): SLV is ~40–200× faster\n\nSource: ews_v2_all.log (SLV GPU), logdet_gen012.json (SLV CPU),\n        hellaswag_gen0/results_2026-05-16*.json (HellaSwag)\nDevice: NVIDIA RTX PRO 6000 Blackwell Server Edition (×2)\nModel: Pythia-410M-deduped (405M params)\n```\n\n**关于 lm_eval 的 4230s**：这个数字包含了大量非推理开销（数据集下载/处理、tokenization、auto batch size 探测）。lm_eval 对 10K 样本的纯 GPU 推理时间估计在 20–60s 左右。论文中引用 4230s 不公平；引用 conservative 估计更可信。\n\n**建议**：如果需要论文可引用的精确数字，运行已有的 `scripts/benchmark_slv_timing.py`（通过 `scripts/run_benchmark.sh`），它会在同一 GPU 上公平对比 SLV 和 HellaSwag，输出精确的 forward pass / SVD / HellaSwag 分解耗时。脚本已写好，只需执行。要现在跑吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/benchmark-f11-slv-timing-v2.md"
+}

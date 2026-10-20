@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eefe877aa413b110f7c3",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "fix exp003 orphan critical",
+  "task_key": "worker_fix_exp003_orphan_critical_20260517T052518",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_exp003_orphan_critical_20260517T052518_result.json",
+    "occurrence": 1,
+    "bytes": 547,
+    "sha256": "d93ecd32eab6a96cf98d723819caa9409246fd37c4a75dad4de48e0b9a609323"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 结果汇总\n\n| 项目 | 状态 |\n|------|------|\n| 孤儿 kill | ✅ 成功，77667/77668 已死亡 |\n| Checkpoint 污染 | ❌ 未污染（gen_0 时间戳一致，仅 78074 写入） |\n| exp_003 状态 | **继续运行**，无需重启 |\n| 当前进度 | **Generation 1/10**，正在生成样本（15680/50000），gen_0 已完成 checkpoint 保存 |\n| GPU 使用 | GPU0: 94% / 65.9GB, GPU1: 95% / 19GB |\n\nexp_003 安全，正常推进中。padding_side 警告是无害的推理时 warning，不影响结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-exp003-orphan-critical.md"
+}

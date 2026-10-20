@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b2f3306d9db912c34640",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ops exp 001 completion",
+  "task_key": "worker_ops_exp_001_completion_20260517T172543",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp_001_completion_20260517T172543_result.json",
+    "occurrence": 1,
+    "bytes": 2553,
+    "sha256": "d8ba2758447704258c96da5ed3df4291b3dba8570ef8a106e518d5327daababb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部数据已收集。\n\n---\n\n## exp_001 退出状态\n- PID 59365: **已退出**\n- 退出原因: **Gen 0-10 全部完成**，在最后写 `phase0_analysis.json` 时因 `numpy.bool_` 不可 JSON 序列化而崩溃（`TypeError: Object of type bool is not JSON serializable`）。核心训练和 metrics 收集均正常完成，`phase0_results.json` 已成功保存。\n- cuda:0 VRAM: **已释放**（3MiB idle）\n\n## Gen 0-10 完整 Metrics 表\n\n| Gen | eff_rank | log_det | ppl | distinct4 | hellaswag_norm | train_loss |\n|-----|----------|---------|-----|-----------|----------------|------------|\n| 0 | 417.55 | 2366.68 | 9.55 | 0.7414 | 0.4130 | — |\n| 1 | 491.77 | 2464.76 | 11.38 | 0.6256 | 0.3897 | 1.6228 |\n| 2 | 496.44 | 2469.93 | 13.58 | 0.5154 | 0.3764 | 1.2682 |\n| 3 | 493.31 | 2440.57 | 16.25 | 0.4900 | 0.3658 | 1.1340 |\n| 4 | 485.67 | 2405.05 | 19.80 | 0.4679 | 0.3558 | 1.0980 |\n| 5 | 479.21 | 2370.17 | 24.59 | 0.4630 | 0.3439 | 1.0474 |\n| 6 | 473.00 | 2335.17 | 30.91 | 0.4655 | 0.3311 | 1.0252 |\n| 7 | 464.20 | 2304.19 | 38.89 | 0.4474 | 0.3187 | 1.0151 |\n| 8 | 456.76 | 2252.12 | 49.29 | 0.4401 | 0.3103 | 0.9868 |\n| 9 | 448.45 | 2207.57 | 63.32 | 0.4262 | 0.3009 | 0.9968 |\n| 10 | 442.46 | 2178.95 | 76.78 | 0.4259 | **未评估** | 0.9782 |\n\n趋势: eff_rank 从 Gen 2 (496.44) 开始单调下降到 Gen 10 (442.46)，log_det 同步下降。ppl 从 9.55 恶化到 76.78（8x）。distinct4 从 0.74 降至 0.43。hellaswag_norm 从 0.413 降至 0.301。collapse 信号非常清晰。\n\n## Gen 9-10 HellaSwag\n- Gen 9: acc_norm = 0.3009\n- Gen 10: **未评估**（`hellaswag_gen10` 目录不存在，需要补跑）\n\n## Checkpoint 位置\n- Gen 0-10 全部在: `/root/spectral_collapse_ews/checkpoints/gen_{0..10}/`\n- Gen 10: `/root/spectral_collapse_ews/checkpoints/gen_10/model.safetensors` (1.5GB, 2026-05-18 01:20)\n- Gen 9: `/root/spectral_collapse_ews/checkpoints/gen_9/model.safetensors` (1.5GB, 2026-05-17 22:45)\n- 备份: `/root/autodl-tmp/spectral_collapse_ews/checkpoints_410m/` (同步)\n\n## exp_005 Gen 3 检查\n- PID 116947: **存活**，已运行 4h09m，在 cuda:1 (25008MiB)\n- Phase1 adaptive 已完成 Gen 0-2（共 3 条记录）:\n  - Gen 0: ratio=N/A, log_det=2366.68 (baseline)\n  - Gen 1: ratio=0.5, log_det=2366.46, ppl=10.09, distinct4=0.661\n  - Gen 2: ratio=0.5, log_det=2395.23, ppl=10.42, distinct4=0.615\n- Gen 3 正在运行中（results 里还没有 Gen 3 数据）\n\n**注意**: cuda:1 上还有一个 PID 132207 (python3, 9970MiB) 的未知进程。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp-001-completion.md"
+}

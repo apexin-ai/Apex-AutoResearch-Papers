@@ -1,0 +1,38 @@
+{
+  "exp_id": "exp_023",
+  "project": "spectral_collapse_ews",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T07:47:34.066Z",
+    "updated_at": "2026-05-24T11:10:59.002Z",
+    "hypothesis": "GPT-2-medium (355M) under r=0.25 mixing exhibits Type II trajectory (transient EMA dip at Gen 1-2 followed by monotonic SLV recovery), verifying that the critical mixing ratio r_crit phase boundary holds cross-architecture. Combined with exp_020 (Type I at r=0) and exp_022c (Type III at r=0.3), this completes the GPT-2-medium phase diagram and confirms r_crit ∈ (0.25, 0.3] is architecture-independent.",
+    "parent": "exp_020",
+    "notes": "DDL 约束改为 3-gen pilot (原计划 10-gen)。3-gen 足以判定 EMA dip（Pythia r=0.25 在 Gen 1-2 即出现）。启动命令: bash -c \"cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python run_gpt2m_phase1.py --condition fixed_mix --real_ratio 0.25 --generations 3 --seed 42 --gpu 0\"",
+    "spec": {
+      "server": "rtx6000-diagprobe",
+      "gpu": [
+        "cuda:0"
+      ],
+      "account": "root",
+      "data_path": "OpenWebText (cached)",
+      "data_count": 50000,
+      "model_name": "gpt2-medium",
+      "seed": 42,
+      "gpu_model": "NVIDIA RTX PRO 6000",
+      "checkpoint_source": "gpt2-medium pretrained (HuggingFace)",
+      "eval_data": "OpenWebText held-out 1000 samples (embedded for SLV computation)",
+      "hyperparams": {
+        "lr": 5e-05,
+        "batch_size": 8,
+        "grad_accum": 4,
+        "real_ratio": 0.25,
+        "generations": 3
+      }
+    }
+  },
+  "timestamp": "2026-05-24T11:10:59.097264+00:00",
+  "trigger": "update_registry"
+}

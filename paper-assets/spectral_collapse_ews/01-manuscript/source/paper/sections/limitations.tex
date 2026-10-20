@@ -1,0 +1,15 @@
+\section*{Limitations}
+
+\paragraph{Scale and Scope.}
+We validate at two model scales (Pythia-410M and a 1B pilot through Gen~3) with all spectral metrics computed from last-layer embeddings only; intermediate layers may exhibit different dynamics.
+The 1B pilot confirms the decompression peak but is insufficient to characterize full acceleration or estimate $r_{\text{crit}}$ at that scale.
+All fine-tuning uses a single domain (OpenWebText, English web text); spectral collapse dynamics may differ for code, multilingual, or domain-specific corpora.
+
+\paragraph{Temporal Horizon.}
+Ten recursive generations may be shorter than production pipelines.
+Type~II (transitional) trajectories may eventually revert to collapse at longer horizons, which would shift $r_{\text{crit}}$ upward.
+The proportional controller uses a single gain $k$ without integral or derivative terms; a more sophisticated design might partially mitigate signal attenuation.
+
+\paragraph{Generalization.}
+Signal attenuation may extend to implicit-loop settings where web corpora contain model-generated content, but validating this requires controlled experiments with web-scale data.
+The prevention--detectability tradeoff is established for rate-based spectral signals; information sources outside the embedding spectrum (e.g., generated-text analysis) may exhibit different attenuation profiles.

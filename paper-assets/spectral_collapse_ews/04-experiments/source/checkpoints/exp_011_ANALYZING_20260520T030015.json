@@ -1,0 +1,60 @@
+{
+  "exp_id": "exp_011",
+  "project": "spectral_collapse_ews",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T16:17:23.434Z",
+    "updated_at": "2026-05-20T03:00:14.984Z",
+    "hypothesis": "Extending r=0.2 from 5gen to 10gen will reveal whether the dip-then-recovery pattern (Type II) persists or transitions to sustained decline. If SLV continues rising through Gen 10 (like r=0.25), r=0.2 is firmly Type II. If SLV plateaus or declines after Gen 5, r=0.2 may be closer to the Type I/II boundary, providing finer resolution of the phase diagram near r_crit.",
+    "parent": "exp_007",
+    "spec": {
+      "command": "bash -c \"bash /root/spectral_collapse_ews/scripts/resume_fixed_mix_r02_seed42_gen5to10.sh 0\"",
+      "server": "rtx6000-diagprobe",
+      "gpu": "cuda:0",
+      "pid": 319889,
+      "log_path": "~/runs/spectral_collapse_ews/exp_011.log",
+      "submitted_at": "2026-05-19T16:17:48.185Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "description": "Phase 1: Resume r=0.2 fixed mix seed 42 from Gen 5 to Gen 10",
+      "tmux_session": "exp_011",
+      "model_name": "EleutherAI/pythia-410m-deduped",
+      "seed": 42,
+      "data_path": "/root/spectral_collapse_ews/data/",
+      "data_count": "50K real pool, total_per_gen=50K (10K real + 40K synthetic per gen)",
+      "generations": "5→10 (resume)",
+      "condition": "fixed_mix",
+      "real_ratio": 0.2,
+      "checkpoint_dir": "/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r02_seed42/",
+      "results_file": "/root/spectral_collapse_ews/results/phase1_fixed_mix_r02_seed42_results.json",
+      "checkpoint_source": "exp_007 Gen 5 checkpoint",
+      "eval_data": "/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)"
+    },
+    "metrics": {
+      "gen0_log_det": 2366.68,
+      "gen1_log_det": 2367.46,
+      "gen2_log_det": 2358.31,
+      "gen3_log_det": 2362.52,
+      "gen4_log_det": 2379.19,
+      "gen5_log_det": 2398.93,
+      "gen6_log_det": 2429.83,
+      "gen7_log_det": 2436.35,
+      "gen8_log_det": 2454.3,
+      "gen9_log_det": 2463.14,
+      "gen9_ppl": 13.39,
+      "gen9_eff_rank": 504.9,
+      "gen9_distinct4": 0.508,
+      "progress": "Gen 0-9 complete, Gen 10 computing. SLV 2367→2463(G9, +4.1%). Process still running.",
+      "trend": "r=0.2 resume: SLV monotonic rise from Gen 3. Full 10gen trajectory nearly complete. Awaiting Gen 10."
+    },
+    "reproduce": {
+      "finished_at": "2026-05-20T03:00:14.754Z"
+    }
+  },
+  "timestamp": "2026-05-20T03:00:15.038323+00:00",
+  "trigger": "update_registry"
+}

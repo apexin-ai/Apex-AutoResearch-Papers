@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9c525dd445ef3fa6b37a",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "paper cross chapter consistency",
+  "task_key": "worker_paper_cross_chapter_consistency_20260516T152338",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_cross_chapter_consistency_20260516T152338_result.json",
+    "occurrence": 1,
+    "bytes": 544,
+    "sha256": "ff7736141364c8b42ea0af947c6a1fd7d2c80566b5d917ef3ecc8e4006b23016"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。一致性验证结果：\n\n| 检查项 | 状态 |\n|--------|------|\n| 贡献 1/2/3 intro↔conclusion 措辞对齐 | ✓ |\n| abstract 与 intro 贡献一致 | ✓ |\n| 所有 \"first\" claim 带 \"to our knowledge\" | ✓ |\n| ECE 从 intro/abstract 完全移除 | ✓ (grep 无结果) |\n| ECE 仅在 method(future work 句) + conclusion(Future Work) 提及 | ✓ |\n| method.tex 4 条件含 linear-increasing | ✓ |\n| 评估指标含 log-det proxy | ✓ |\n| intro 提及 linear-increasing baseline | ✓ |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-cross-chapter-consistency.md"
+}

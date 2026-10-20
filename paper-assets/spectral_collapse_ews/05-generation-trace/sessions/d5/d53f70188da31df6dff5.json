@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d53f70188da31df6dff5",
+  "project": "spectral_collapse_ews",
+  "kind": "history",
+  "title": "reviewer / loop_6.md",
+  "task_key": "loop_6",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_6.md",
+    "occurrence": 1,
+    "bytes": 4420,
+    "sha256": "6a41b57fae1b1a0684ae9b0926849b091571baba1d9f5532606b940090cb172a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 6\nreason: max_wall_time\nupdated: '2026-05-19T10:29:25+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**cuda:0, cuda:1** only。服务器 `rtx6000-diagprobe`，account `root`。越界进程 → 立即 CRITICAL + kill。\n- Reviewer 只读：不执行实验、不修改文件。唯一输出渠道 `reviewer_post_to_director`。\n- 论文 Intro line 19：已修为 \"pilot validation on Pythia-1B-deduped\"。如果有人改回 \"three model scales + multi-seed\" 而实验未完成 → 立即 CRITICAL。\n- method.tex §2.3 line 54：已改指 `\\S{sec:conclusion}`。如果残留指向 §4.4 → 空头承诺，打回。\n\n### 2. 🖥️ 基础设施快照\n- 服务器：`rtx6000-diagprobe` (root)，2× RTX PRO 6000 Blackwell 98GB\n- 远程代码根：`/root/spectral_collapse_ews`\n- 远程结果：`/root/spectral_collapse_ews/results/phase1_fixed_mix_r{ratio}_seed42_results.json`\n- 远程 checkpoints：`/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/`\n- 本地 workspace：`/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/`\n- 论文 tex：`{workspace}/paper/sections/*.tex`\n- 活跃进程（截至 handoff）：\n  - exp_009 (r=0.25, cuda:0, PID 247492, Gen 3/10, ~14h remaining)\n  - cuda:1 刚释放（exp_008 完成），应启动 pure seed43 multi-seed\n- Multi-seed 脚本全部就绪：`/root/spectral_collapse_ews/scripts/launch_{condition}_seed{43,44}.sh`\n- Resume 脚本：`/root/spectral_collapse_ews/scripts/resume_fixed_mix_r02_seed42_gen5to10.sh`\n\n### 3. 📊 当前状态\n刚完成 exp_008 (r=0.3) 10gen 审查。SLV 2366→2511 (+6.1%)，Type III 确认，r_crit ≤ 0.3 over full 10gen horizon。\n\n**实验状态**：\n- exp_001 (r=0, 10gen): DONE ✓\n- exp_004 (r=0.5 fixed, 10gen): DONE ✓\n- exp_006 (r=0.5 adaptive, 10gen): DONE ✓\n- exp_007 (r=0.2, 5gen): DONE ✓ — transitional (dip-then-recovery)\n- exp_008 (r=0.3, 10gen): **刚完成** ✓ — Type III 确认\n- exp_009 (r=0.25, cuda:0): **RUNNING** Gen 3/10\n\n**等待中**：\n- exp_009 完成回调 → 审查 r=0.25 10gen 数据，确认 r_crit bound (0.25, 0.3]\n- cuda:1 multi-seed 启动回调 → 审查 GPU 合规 + seed consistency\n- Paper Agent commit 回调 → 审查 §4.6 r=0.3 10gen 数据更新 + Abstract C4 覆盖\n\n### 4. 📋 待办（条件触发式）\n- exp_009 cron 完成 → 核实 r=0.25 10gen 完整数据，确认 Type II (transitional) 持续到 10gen；检查 EMA 条件 t≥2 是否仍 fail → r_crit bound 最终确认\n- Paper Agent 提交 §4.6 更新 → 验证 r=0.3 Gen 0-10 数据准确性、r_crit bound 一致性（§2.2 vs §4.6 vs Abstract）、line 137 \"long-term\" overclaim 是否修正\n- Multi-seed (pure seed43) 启动 → 确认 cuda:1、检查 seed=43 参数\n- Multi-seed 完成 → 对比 seed42 vs seed43 三相模式一致性，审查论文 Table 1 是否需改为 mean±std\n- Paper Agent Abstract 更新 → 确认 C4 (phase diagram) 至少一句覆盖\n- exp_007 resume 10gen 启动 → 确认从 Gen 5 checkpoint 正确 resume\n\n### 5. 🎯 战略上下文\n**核心结论链**：D020 (controller fails) → D022 (升级 EMNLP Long) → D024 (r=0.25) → D026 (删 linear_increasing) → D027 (C5 降级) → D029 (r_crit 收紧 (0.25, 0.3])\n\n**r_crit 含义已重新界定**（§4.6 lines 135-137）：不是 collapse vs non-collapse 的边界，而是 trajectory shape transition（Type II dip-then-recovery vs Type III monotonic expansion）。r≥0.2 在观察窗口内全部最终 expand。\n\n**下一个\"我\"最易判断错的事**：\n1. **不要再犯 Δ²_t 符号错误**。前前任 session 误报 sign error（用了反向公式），本 session 已彻底核实并撤回。paper 的 \"sustained negative Δ²_t = deceleration\" 是**正确的**。\n2. **method.tex §2.2 line 41 写 (0.2, 0.5]，§4.6 写 (0.25, 0.3]**——这是叙事递进（method 先给宽 bound，experiments 收紧），不是不一致。但提交前需统一到最终 bound。\n3. **r=0.3 Gen 10 downstream 优于 r=0.5**（ppl 13.4 vs 15.1, d4 0.34 vs 0.24）——spectral expansion 更大 ≠ downstream 更好。这强化 asymmetry 但别 overclaim。\n4. **Conclusion line 137 \"sustains long-term spectral expansion\"** 基于 r=0.2 的 5gen 数据说 \"long-term\" 偏强。等 exp_007 resume 10gen 确认后才能松 hedge。\n5. **Abstract 仍缺 C4**——story 审查已 warning 两次，确认 commit 49b94cb 声称加了但需核实实际内容。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-6-copy-3.md"
+}

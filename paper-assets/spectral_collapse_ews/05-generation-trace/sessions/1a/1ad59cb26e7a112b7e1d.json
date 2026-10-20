@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1ad59cb26e7a112b7e1d",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "paper phase diagram figure fix",
+  "task_key": "worker_paper_phase-diagram-figure-fix_20260519T185510",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_phase-diagram-figure-fix_20260519T185510_result.json",
+    "occurrence": 1,
+    "bytes": 570,
+    "sha256": "e973b8534c9b150e3c09d3c4d54aef0a0fcb61ef685859c7408ec3db917a02e6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图表已修正完成。\n\n**修改内容**：r=0 线现在使用 exp_001 (seed42) 完整 Gen 0-10 数据，显示经典 Type I 崩溃轨迹——Gen 0→2 短暂 decompression（2367→2470 峰值），随后单调下降至 Gen 10 的 2179，跨越完整 10 代。\n\n**验证**：\n- r=0 红线完整覆盖 Gen 0-10（之前错误地只到 Gen 4）\n- 5 条线全部从相同 G₀=2366.68 起点出发\n- r_crit 灰色带正确标注在 r=0.25 与 r=0.3 之间\n- r=0.2 在 Gen 5 截断并有 \"5-gen\" 标注\n- PDF + PNG 已保存到 `paper/figures/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-phase-diagram-figure-fix.md"
+}

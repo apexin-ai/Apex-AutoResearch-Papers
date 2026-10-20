@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "af6ea6ba1daa523077c6",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "verify symlinks",
+  "task_key": "worker_verify_symlinks_20260516T132210",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_symlinks_20260516T132210_result.json",
+    "occurrence": 1,
+    "bytes": 297,
+    "sha256": "f444fd8954f500eeac6b0cf80bd3d6bc99177028ac6a5ae6c3a635467a20584a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部符合预期：\n\n1. `checkpoints` → `/root/autodl-tmp/spectral_collapse_ews/checkpoints_410m` ✓ (symlink)\n2. `checkpoints_1b` → `/root/autodl-tmp/spectral_collapse_ews/checkpoints_1b` ✓ (symlink)\n3. 根分区 84% (25G/30G, 剩余 5.1G) ✓ < 90%\n\n无需修复。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-symlinks.md"
+}

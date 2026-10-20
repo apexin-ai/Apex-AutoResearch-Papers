@@ -1,0 +1,36 @@
+# check gen4 data
+
+**Spectral Early Warning Signals for Model Collapse and Their Prevention–Detectability Tradeoff** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_check_gen4_data_20260516T231106_result.json`
+- **Structured JSON:** [`f77e4cf06ab007d1909f.json`](../../sessions/f7/f77e4cf06ab007d1909f.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+**结果：当前共 4 代数据（Gen 0–3），Gen 4 尚未产出。**
+
+已有数据：
+
+| Gen | eff_rank | perplexity | log_det | distinct_4 | train_loss |
+|-----|----------|------------|---------|------------|------------|
+| 0 | 417.55 | 9.55 | 2366.68 | 0.741 | — |
+| 1 | 491.77 | 11.38 | 2464.76 | 0.626 | 1.623 |
+| 2 | 496.44 | 13.58 | 2469.93 | 0.515 | 1.268 |
+| 3 | 493.31 | 16.25 | 2440.57 | 0.490 | 1.134 |
+
+进程状态：PID 36853 仍在运行（已运行 6h55m，CPU 0.0%）。日志尾部全是 padding_side 警告，说明正在做 generation 阶段。Gen 4 应该正在生成中。
+
+---

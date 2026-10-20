@@ -1,0 +1,46 @@
+paper_key: "Methods for Detecting Early Warnings of Critical Transitions in Time Series Illustrated Using Simulated Ecological Data"
+title: "Methods for Detecting Early Warnings of Critical Transitions in Time Series Illustrated Using Simulated Ecological Data"
+venue: "PLOS ONE 2012"
+full_text_available: false
+
+research:
+  baselines:
+    - autocorrelation at lag-1 (AR1)
+    - variance / standard deviation
+    - skewness
+    - kurtosis
+    - spectral density ratio (spectral reddening)
+    - detrended fluctuation analysis (DFA)
+    - return rate
+    - BDS test (nonlinearity)
+    - conditional heteroscedasticity
+  metrics:
+    - {name: "Kendall tau trend statistic", direction: "higher_better"}
+    - {name: "sensitivity (true positive rate)", direction: "higher_better"}
+    - {name: "specificity (true negative rate)", direction: "higher_better"}
+    - {name: "p-value of trend significance", direction: "lower_better"}
+  datasets:
+    - {name: "simulated fold bifurcation (harvesting model)", size: "synthetic"}
+    - {name: "simulated transcritical bifurcation", size: "synthetic"}
+    - {name: "simulated with varying noise levels", size: "synthetic"}
+  ablation_dimensions:
+    - sliding window size (fraction of time series)
+    - detrending method (Gaussian kernel bandwidth)
+    - indicator type (9 indicators compared)
+    - noise type and amplitude
+    - sampling frequency / time series resolution
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "N/A"}
+  method_family: "statistical early warning indicators / critical slowing down"
+
+positioning:
+  core_claim: "Provides a comprehensive methodological toolkit and R package (earlywarnings) for detecting critical transitions in time series, systematically comparing the sensitivity and robustness of multiple early warning indicators under different parameter choices."
+  key_results: "Autocorrelation at lag-1 and variance are the most robust indicators; results are sensitive to sliding window size and detrending bandwidth; provides open-source R package for standardized EWS analysis."
+  limitations:
+    - "Only tested on simulated ecological data, not empirical transitions"
+    - "Indicators sensitive to preprocessing choices (window size, bandwidth)"
+    - "Limited to bifurcation-driven transitions with critical slowing down"
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

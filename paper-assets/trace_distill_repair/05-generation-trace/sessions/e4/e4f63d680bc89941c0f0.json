@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "e4f63d680bc89941c0f0",
+  "project": "trace_distill_repair",
+  "kind": "worker",
+  "title": "fix repair pipeline diff",
+  "task_key": "worker_fix_repair_pipeline_diff_20260515T115535",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_repair_pipeline_diff_20260515T115535.log",
+    "occurrence": 1,
+    "bytes": 1092720,
+    "sha256": "077cdb741eeec7ef3175d6524e5cd4b2fec04456194ca648242750faddc3273a"
+  },
+  "statistics": {
+    "messages": 455,
+    "user_turns": 0,
+    "tool_calls": 168,
+    "roles": {
+      "log": 1,
+      "system": 2,
+      "record": 1,
+      "assistant": 115,
+      "tool_call": 168,
+      "tool_result": 168
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 455,
+      "chunks": [
+        {
+          "path": "e4f63d680bc89941c0f0-part-0001.json",
+          "message_count": 152
+        },
+        {
+          "path": "e4f63d680bc89941c0f0-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "e4f63d680bc89941c0f0-part-0003.json",
+          "message_count": 123
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/fix-repair-pipeline-diff.md"
+}

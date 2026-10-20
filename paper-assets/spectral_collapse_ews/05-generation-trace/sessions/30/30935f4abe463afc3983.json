@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "30935f4abe463afc3983",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ops prep exp015 016 scripts",
+  "task_key": "worker_ops_prep-exp015-016-scripts_20260521T092947",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_prep-exp015-016-scripts_20260521T092947_result.json",
+    "occurrence": 1,
+    "bytes": 598,
+    "sha256": "0d6d6e73be9eb41b3f9b67fdf83f3d38770f723a62975447e84683a43a1e2e8e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证完成。\n\n### 产出汇报\n\n| 项目 | 结果 |\n|------|------|\n| **exp_015 脚本** | `/root/spectral_collapse_ews/scripts/launch_fixed_mix_r025_seed44.sh` ✓ |\n| **exp_016 脚本** | `/root/spectral_collapse_ews/scripts/launch_fixed_mix_r03_seed44.sh` ✓ |\n| **dry-run** | `--help` 确认所有参数名均有效：`--condition`, `--seed`, `--generations`, `--signal`, `--tau`, `--k`, `--signal_mode`, `--real_ratio`, `--gpu` 全部匹配 |\n| **checkpoint 目录** | `fixed_mix_r025_seed44/` — 不存在 (OK)；`fixed_mix_r03_seed44/` — 不存在 (OK) |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-prep-exp015-016-scripts.md"
+}

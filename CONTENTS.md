@@ -1,6 +1,6 @@
 # Contents
 
-This catalogue covers **42 projects with manuscript PDFs** and **27 additional project records**. Records without a PDF are listed after the manuscript projects. Open a project README for its available manuscript, research code, experiment outputs, and recorded research process.
+This catalogue covers **43 projects with manuscript PDFs** and **31 additional project records**. Records without a PDF are listed after the manuscript projects. Open a project README for its available manuscript, research code, experiment outputs, and recorded research process.
 
 | Project | Manuscript | Code/config files | Data/result files | Trace sources | Recorded events |
 |---|---|---:|---:|---:|---:|
@@ -43,6 +43,7 @@ This catalogue covers **42 projects with manuscript PDFs** and **27 additional p
 | [schema_semantic_constrained_ie](paper-assets/schema_semantic_constrained_ie/README.md) | [PDF](paper-assets/schema_semantic_constrained_ie/01-manuscript/paper.pdf) | 451 | 1,384 | 2,527 | 204,987 |
 | [simgate-modular-routing](paper-assets/simgate-modular-routing/README.md) | [PDF](paper-assets/simgate-modular-routing/01-manuscript/paper.pdf) | 336 | 806 | 2,025 | 177,700 |
 | [solver-trace-ablation](paper-assets/solver-trace-ablation/README.md) | [PDF](paper-assets/solver-trace-ablation/01-manuscript/paper.pdf) | 579 | 1,578 | 3,262 | 227,092 |
+| [spectral_collapse_ews](paper-assets/spectral_collapse_ews/README.md) | [PDF](paper-assets/spectral_collapse_ews/01-manuscript/paper.pdf) | 191 | 270 | 925 | 64,614 |
 | [structfuse-context](paper-assets/structfuse-context/README.md) | [PDF](paper-assets/structfuse-context/01-manuscript/paper.pdf) | 212 | 354 | 1,232 | 90,756 |
 | [tax_error_inject_agent](paper-assets/tax_error_inject_agent/README.md) | [PDF](paper-assets/tax_error_inject_agent/01-manuscript/paper.pdf) | 271 | 1,146 | 1,168 | 68,008 |
 | [xling_calib_direction](paper-assets/xling_calib_direction/README.md) | [PDF](paper-assets/xling_calib_direction/01-manuscript/paper.pdf) | 121 | 201 | 290 | 27,260 |
@@ -63,14 +64,18 @@ This catalogue covers **42 projects with manuscript PDFs** and **27 additional p
 | [error_diag_dpo_recovery](paper-assets/error_diag_dpo_recovery/README.md) | No PDF in snapshot | 76 | 97 | 323 | 25,149 |
 | [error_type_pref_optim](paper-assets/error_type_pref_optim/README.md) | No PDF in snapshot | 12 | 1 | 11 | 1,643 |
 | [pgpf-collapse-filter](paper-assets/pgpf-collapse-filter/README.md) | No PDF in snapshot | 26 | 24 | 29 | 3,992 |
+| [prism_collapse_mixing](paper-assets/prism_collapse_mixing/README.md) | No PDF in snapshot | 33 | 15 | 104 | 6,679 |
 | [prod42](paper-assets/prod42/README.md) | No PDF in snapshot | 0 | 0 | 0 | 0 |
 | [prod43](paper-assets/prod43/README.md) | No PDF in snapshot | 0 | 0 | 0 | 0 |
 | [prod_0510](paper-assets/prod_0510/README.md) | No PDF in snapshot | 0 | 0 | 0 | 0 |
 | [prov_grounded_uie](paper-assets/prov_grounded_uie/README.md) | No PDF in snapshot | 52 | 171 | 221 | 18,264 |
+| [rl-active-probe-fl](paper-assets/rl-active-probe-fl/README.md) | No PDF in snapshot | 47 | 70 | 110 | 7,227 |
+| [robust_circuit_editing](paper-assets/robust_circuit_editing/README.md) | No PDF in snapshot | 10 | 2 | 5 | 287 |
 | [schema-conform-ie-training](paper-assets/schema-conform-ie-training/README.md) | No PDF in snapshot | 35 | 140 | 110 | 9,882 |
 | [svs_formal_verification](paper-assets/svs_formal_verification/README.md) | No PDF in snapshot | 68 | 28 | 205 | 21,001 |
 | [tbab_multi_turn](paper-assets/tbab_multi_turn/README.md) | No PDF in snapshot | 45 | 60 | 116 | 10,572 |
 | [temp-adv-distill-vla](paper-assets/temp-adv-distill-vla/README.md) | No PDF in snapshot | 20 | 25 | 52 | 9,052 |
+| [trace_distill_repair](paper-assets/trace_distill_repair/README.md) | No PDF in snapshot | 96 | 126 | 410 | 31,538 |
 | [verification_triggered_retrieval](paper-assets/verification_triggered_retrieval/README.md) | No PDF in snapshot | 11 | 17 | 13 | 4,203 |
 | [xling_calab_direction](paper-assets/xling_calab_direction/README.md) | No PDF in snapshot | 0 | 0 | 2 | 404 |
 

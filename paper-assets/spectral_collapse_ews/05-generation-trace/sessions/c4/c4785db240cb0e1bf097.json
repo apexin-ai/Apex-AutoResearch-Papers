@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c4785db240cb0e1bf097",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "monitor exp 005 gen3",
+  "task_key": "worker_monitor_exp_005-gen3_20260517T173407",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_exp_005-gen3_20260517T173407_result.json",
+    "occurrence": 1,
+    "bytes": 2354,
+    "sha256": "f2831a773f2a77c0226966c4e036528061a95e44d0455f43d915282bbccd35b9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 0 在 93% 利用率，进程活跃。现在可以汇报完整状态。\n\n---\n\n## exp_005 状态报告\n\n### 当前进度\n**Gen 3/10，正在进行中**（GPU 0 利用率 93%，可能在训练或评估阶段）。Gen 3 checkpoint 尚未生成。\n\nGen 时间线（CST +0800）：\n- Gen 0: 21:20 完成\n- Gen 1: 22:45 完成（~1h25m/gen）\n- Gen 2: 00:14 完成（~1h29m/gen）\n- Gen 3: ~00:18 开始，已运行约 1h17m，预计还需 ~10-15min\n\n### 已完成 Gen 的指标\n\n| Gen | eff_rank | log_det | ppl | distinct4 | controller_ratio | triggered? |\n|-----|----------|---------|------|-----------|-----------------|------------|\n| 0 | 417.55 | **2366.68** (baseline) | 9.55 | 0.7414 | - | - |\n| 1 | 476.93 | 2366.46 | 10.09 | 0.6608 | **0.5** | **No** |\n| 2 | 486.85 | 2395.23 | 10.42 | 0.6149 | **0.5** | **No** |\n\n### Controller 分析\n\nController **从未触发**。原因：log_det 始终 ≥ baseline（2366.68）：\n- Gen 1: 2366.46（仅低 0.22，远不够触发 tau=0.002 阈值）\n- Gen 2: 2395.23（**高于** baseline +28.55）\n\nratio 始终保持默认值 0.5。\n\n### 关键观察：k=20 稀释了 collapse 信号\n\n虽然质量在退化（ppl ↑, distinct4 ↓），但频谱信号显示的是**扁平化而非坍缩**：\n- Top-1 SV 急剧下降：1942 → 954 → 883\n- 但 top 11-20 SVs 保持稳定\n- k=20 的 log_det 聚合了太多稳定维度，**稀释了 top-SV 的坍缩信号**\n\n这正是与 exp_006（k=10）对比的价值所在：k=10 应能更敏感地捕捉到 top-SV 的下降。\n\n### D014 决策建议\n\ncontroller_ratio = 0.5 < 0.53 → **技术上满足 D014 切换条件**。\n\n但建议**不急于切换 cumulative 模式**，理由：\n1. controller 未触发不是 per_gen 模式的问题，而是 **k=20 的信号本身不灵敏**\n2. 这正是 sensitivity 分析需要的数据点——k=20 下 controller 不触发 vs k=10 下可能触发，说明 k 的选择对 EWS 系统至关重要\n3. 切换到 cumulative 模式不会改善信号灵敏度（问题在 k 不在聚合模式）\n4. 让实验跑完 10 gen，得到完整的\"k=20 无干预退化曲线\"，对论文更有价值\n\n**建议**：保持 per_gen 模式让 exp_005 完整运行，作为 negative control / sensitivity 对照组使用。预计还需 ~10-11 小时完成剩余 7 个 gen。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-exp-005-gen3.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e16f263d6277bb3627d2",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "code ece module",
+  "task_key": "worker_code_ece_module_20260516T090150",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_ece_module_20260516T090150_result.json",
+    "occurrence": 1,
+    "bytes": 150,
+    "sha256": "600645c8dff57b606ed4002c1b5e35019ac938ca3ab8abd73f299aaa2d3fed9d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成：\n\n- `/root/spectral_collapse_ews/src/ece.py` 已写入服务器\n- `import` 验证通过\n- 本地 artifacts 副本已保存"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-ece-module.md"
+}

@@ -1,0 +1,39 @@
+paper_key: "Implicit Self-Regularization in Deep Neural Networks: Evidence from Random Matrix Theory and Implications for Learning"
+title: "Implicit Self-Regularization in Deep Neural Networks: Evidence from Random Matrix Theory and Implications for Learning"
+venue: "JMLR 2021"
+full_text_available: false
+
+research:
+  baselines:
+    - AlexNet
+    - Inception
+    - LeNet5
+    - miniature-AlexNet
+    - Tikhonov regularization
+  metrics:
+    - {name: "Empirical Spectral Density (ESD)", direction: "N/A"}
+    - {name: "generalization gap", direction: "lower_better"}
+    - {name: "spectral norm", direction: "N/A"}
+    - {name: "power-law exponent (alpha)", direction: "N/A"}
+  datasets:
+    - {name: "ImageNet (via pretrained AlexNet/Inception)", size: "~1.2M images"}
+    - {name: "MNIST (via LeNet5)", size: "60K images"}
+  ablation_dimensions:
+    - batch size (varying to demonstrate 5+1 phases)
+    - model architecture (production vs small)
+    - training epoch (phases observed during training)
+    - explicit regularization (presence vs absence)
+  training_recipe: {optimizer: "SGD variants", lr: "N/A", hardware: "N/A"}
+  method_family: "Random Matrix Theory / spectral analysis of weight matrices"
+
+positioning:
+  core_claim: "DNN training implicitly implements self-regularization observable through weight matrix spectral properties, progressing through 5+1 phases from bulk-plus-spikes to heavy-tailed distributions, with state-of-the-art DNNs exhibiting a novel Heavy-Tailed Self-Regularization."
+  key_results: "Identified 5+1 phases of implicit self-regularization in weight matrices; demonstrated that larger batch sizes lead to less-well implicitly-regularized models, explaining the generalization gap phenomenon."
+  limitations:
+    - "Analysis is primarily empirical/observational on existing architectures"
+    - "Causal mechanism linking spectral properties to generalization not fully formalized"
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

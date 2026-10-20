@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7efca6ece44a22cf0a21",
+  "project": "rl-active-probe-fl",
+  "kind": "result",
+  "title": "eval base v1",
+  "task_key": "worker_eval_base-v1_20260514T064416",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_base-v1_20260514T064416_result.json",
+    "occurrence": 1,
+    "bytes": 361,
+    "sha256": "96f8f4a0de500b660d1dcdd29c964918ccd6bd21d5a1f4cc37b54a39d7eeb9d9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "评估已成功启动：\n\n- **进程**: PID 11567，tmux session `eval-base-v1`\n- **日志**: 正在加载 Qwen3-8B 模型（checkpoint shards 加载中）\n- **GPU 1**: 已占用 ~15GB 显存，模型加载正常\n- **评估配置**: 202 samples, mode=base, bf16\n- **预计耗时**: 30-90 分钟\n- **结果输出**: `results/eval_base.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-base-v1.md"
+}

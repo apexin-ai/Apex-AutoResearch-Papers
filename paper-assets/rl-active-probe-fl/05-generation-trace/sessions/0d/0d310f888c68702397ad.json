@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0d310f888c68702397ad",
+  "project": "rl-active-probe-fl",
+  "kind": "result",
+  "title": "check eval v3 extract",
+  "task_key": "worker_check_eval-v3-extract_20260514T105518",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_eval-v3-extract_20260514T105518_result.json",
+    "occurrence": 1,
+    "bytes": 1018,
+    "sha256": "ce1cbe9827a5c05311ccf2dd007e7e1c34e792c6fea7b52c407cdaf5dfc81b0f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "日志已确认两个 eval 均完成（202/202 samples）。完整结果如下：\n\n## eval-base-v3 (base model)\n\n| Metric | Mean | 90% CI |\n|--------|------|--------|\n| debug_accuracy | **0.748** | [0.693, 0.797] |\n| probe_generation_rate | **1.000** | — |\n| probe_executed | **0.599** | [0.545, 0.653] |\n| probe_diagnostic | **0.104** | [0.069, 0.139] |\n| probe_dependent | **0.153** | [0.109, 0.198] |\n\n## eval-sft-v2 (SFT model)\n\n| Metric | Mean | 90% CI |\n|--------|------|--------|\n| debug_accuracy | **0.767** | [0.718, 0.817] |\n| probe_generation_rate | **0.990** | — |\n| probe_executed | **0.594** | [0.540, 0.653] |\n| probe_diagnostic | **0.129** | [0.089, 0.163] |\n| probe_dependent | **0.149** | [0.104, 0.193] |\n\n**对比要点：** SFT 在 debug_accuracy 上提升 +1.9pp（0.748→0.767），probe_diagnostic 提升 +2.5pp（0.104→0.129），CI 有重叠。probe_executed 和 probe_dependent 基本持平。probe_generation_rate SFT 略降（1.000→0.990）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-eval-v3-extract.md"
+}

@@ -1,0 +1,42 @@
+paper_key: "Early-warning signals for critical transitions"
+title: "Early-warning signals for critical transitions"
+venue: "Nature 2009"
+full_text_available: false
+
+research:
+  baselines:
+    - autocorrelation at lag-1 (AR1)
+    - variance (standard deviation)
+    - spectral reddening
+    - skewness
+    - flickering
+    - spatial correlation
+  metrics:
+    - {name: "autocorrelation at lag-1", direction: "higher_better"}
+    - {name: "variance / standard deviation", direction: "higher_better"}
+    - {name: "spectral exponent (reddening)", direction: "higher_better"}
+    - {name: "Kendall tau trend statistic", direction: "higher_better"}
+  datasets:
+    - {name: "simulated ecological models (fold/transcritical bifurcations)", size: "synthetic"}
+    - {name: "paleoclimate records", size: "empirical time series"}
+    - {name: "lake eutrophication data", size: "empirical"}
+  ablation_dimensions:
+    - type of bifurcation (fold, transcritical, Hopf)
+    - noise level (additive vs multiplicative)
+    - indicator type (variance, autocorrelation, spectral)
+    - sliding window size
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "N/A"}
+  method_family: "critical slowing down / dynamical systems theory"
+
+positioning:
+  core_claim: "Complex dynamical systems approaching tipping points exhibit universal early-warning signals rooted in critical slowing down, detectable via rising autocorrelation, variance, and spectral reddening in time series data."
+  key_results: "Demonstrated that rising autocorrelation and variance precede critical transitions across ecological, climate, and financial systems; established theoretical framework linking critical slowing down to observable statistical signatures."
+  limitations:
+    - "Signals may be weak or absent for non-bifurcation-driven transitions (noise-induced, rate-induced)"
+    - "Requires sufficiently long and high-resolution time series"
+    - "False positives possible from non-stationarity unrelated to tipping"
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

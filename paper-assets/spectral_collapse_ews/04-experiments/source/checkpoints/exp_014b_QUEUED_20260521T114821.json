@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp_014b",
+  "project": "spectral_collapse_ews",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T11:48:17.417Z",
+    "updated_at": "2026-05-21T11:48:21.742Z",
+    "hypothesis": "Resume of exp_014 (r=0.25 seed43) from gen 6 after disk-full crash. gen 0-5 data preserved. Continues to gen 10 to complete Type II trajectory validation.",
+    "parent": "exp_014"
+  },
+  "timestamp": "2026-05-21T11:48:21.827712+00:00",
+  "trigger": "update_registry"
+}

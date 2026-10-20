@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2f3e82568243362e1e86",
+  "project": "rl-active-probe-fl",
+  "kind": "result",
+  "title": "monitor grpo v2 step5 qwen dl",
+  "task_key": "worker_monitor_grpo-v2-step5-qwen-dl_20260514T120059",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_grpo-v2-step5-qwen-dl_20260514T120059_result.json",
+    "occurrence": 1,
+    "bytes": 1757,
+    "sha256": "417f920317862302002503d30d31d938c345f72ff2cc4e436c1e5c4ede49228a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇总\n\n### 任务 1: GRPO v2 训练\n\n| 项目 | 值 |\n|------|-----|\n| PID 30171 | **存活**, 运行 1h03m, 状态 R |\n| 进度 | **step 6/73** (~10min/step, 预计还需 ~11h) |\n| GPU 0 | 93% 利用率, 28.7GB / 97.9GB |\n| trainer_state.json | 不存在 |\n| 输出目录 grpo_v2/ | **空**（save_steps=50, 未到） |\n| tensorboard events | 无 |\n\n**关键问题：step 5 已过但日志中无任何 reward/loss 指标。** grep \"reward\" 和 \"loss\" 均无匹配。日志中 step 5 进度条有一次清屏重置（TRL 在 logging_steps 打印指标时的行为），但指标本身没有出现在日志文件中。这可能是：\n- TRL 的 logging callback 没有正确配置，指标没写到 stdout/stderr\n- 或者 report_to 设为了某个不可用的后端\n\n**暂无法判断 reward_mean 是否 > 0**，需要检查代码中 `report_to` 参数设置，或等 trainer_state.json 在首次 save 时出现。\n\n---\n\n### 任务 2: Qwen3-30B-A3B 下载\n\n| 项目 | 值 |\n|------|-----|\n| safetensors 文件 | **16/16, 全部完成** |\n| 总大小 | ~57GB |\n| 最后更新 | model-00015 @ 19:54 |\n| 下载进程 | **无**（正常，已完成） |\n\n**下载已完成。** 上次检查是 14/16 @ 18:39，此后又下载了 model-00013 (19:50) 和 model-00015 (19:54)。所有 16 个 shard + tokenizer + config 均已就位。\n\n---\n\n### 任务 3: eval-sft-v2-ckpt\n\n| 项目 | 值 |\n|------|-----|\n| PID 32728 | **存活**, 运行 42min, 状态 R |\n| 进度 | **200/202** (~10s/sample) |\n| GPU 1 | 67% 利用率, 17.2GB / 97.9GB |\n| 输出文件 | 尚未生成（写入在评估完成后） |\n| 最后日志 | 20:01:16 |\n\n**即将完成**，剩余 2 个样本，预计 ~20s 内结束。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-grpo-v2-step5-qwen-dl.md"
+}

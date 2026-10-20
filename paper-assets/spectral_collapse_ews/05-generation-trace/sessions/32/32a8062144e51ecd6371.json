@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "32a8062144e51ecd6371",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ssh exp015 status urgent",
+  "task_key": "worker_ssh_exp015-status-urgent_20260522T045916",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp015-status-urgent_20260522T045916_result.json",
+    "occurrence": 1,
+    "bytes": 3168,
+    "sha256": "f4e0e6b291e6ccf867c678b75e7f663c01e65459931cadde5147115fc6336434"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整输出汇总：\n\n---\n\n**1. exp_015 进程**\n```\nPID     ETIME\n516824  18:57:47\nexp_015 ALIVE\n```\n\n**2. exp_015 checkpoints (gen_0 ~ gen_9，已全部完成)**\n```\n/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r025_seed44/gen_0\n/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r025_seed44/gen_1\n/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r025_seed44/gen_2\n/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r025_seed44/gen_3\n/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r025_seed44/gen_4\n/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r025_seed44/gen_5\n/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r025_seed44/gen_6\n/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r025_seed44/gen_7\n/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r025_seed44/gen_8\n/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r025_seed44/gen_9\n```\n\n**3. exp_015 results (r=0.25, seed44) — 10 gen 全部有数据**\n```\ngen_0: eff_rank=417.55, SLV=2366.68, ppl=9.55,  d4=0.7305, train_loss=?\ngen_1: eff_rank=475.92, SLV=2366.13, ppl=10.22, d4=0.6379, train_loss=1.800\ngen_2: eff_rank=484.39, SLV=2364.59, ppl=10.64, d4=0.5156, train_loss=1.689\ngen_3: eff_rank=488.62, SLV=2378.05, ppl=11.00, d4=0.4518, train_loss=1.473\ngen_4: eff_rank=493.01, SLV=2402.71, ppl=11.33, d4=0.4156, train_loss=1.388\ngen_5: eff_rank=494.32, SLV=2415.91, ppl=11.64, d4=0.4008, train_loss=1.319\ngen_6: eff_rank=498.74, SLV=2437.92, ppl=11.97, d4=0.3994, train_loss=1.294\ngen_7: eff_rank=502.71, SLV=2456.77, ppl=12.30, d4=0.3865, train_loss=1.265\ngen_8: eff_rank=504.20, SLV=2463.28, ppl=12.61, d4=0.3703, train_loss=1.239\ngen_9: eff_rank=510.29, SLV=2482.46, ppl=13.01, d4=0.3621, train_loss=1.212\n```\n\n**4. exp_016 进程**\n```\nPID     ETIME\n614614  05:43:38\nexp_016 ALIVE\n```\n\n**exp_016 checkpoints (gen_0 ~ gen_2，正在跑)**\n```\n/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r03_seed44/gen_0\n/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r03_seed44/gen_1\n/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r03_seed44/gen_2\n```\n\n**exp_016 results (r=0.30, seed44) — 3 gen 已完成**\n```\ngen_0: eff_rank=417.55, SLV=2366.68, ppl=9.55,  d4=0.7305, train_loss=?\ngen_1: eff_rank=476.91, SLV=2365.49, ppl=10.19, d4=0.6714, train_loss=1.836\ngen_2: eff_rank=484.43, SLV=2371.06, ppl=10.57, d4=0.5271, train_loss=1.748\n```\n\n**5. GPU 状态**\n```\n0, 100 %, 25017 MiB\n1, 94 %, 25017 MiB\n```\n\n**6. 磁盘**\n```\nFilesystem      Size  Used Avail Use%  Mounted on\n/dev/md0        250G  172G   79G  69%  /root/autodl-tmp\n```\n\n**7. tmux**\n```\nexp_015: 1 windows (created Thu May 21 18:01:59 2026)\nexp_016: 1 windows (created Fri May 22 07:16:07 2026)\n```\n\n---\n\n**状态摘要**: exp_015 已跑完 10 gen（运行 ~19h），进程仍存活（可能在收尾）；exp_016 正在跑，完成 3/10 gen（运行 ~5.7h）；双卡满载，磁盘 69% 剩余 79G。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exp015-status-urgent.md"
+}

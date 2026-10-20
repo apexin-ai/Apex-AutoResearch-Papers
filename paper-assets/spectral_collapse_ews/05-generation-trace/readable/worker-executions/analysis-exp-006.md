@@ -1,0 +1,1688 @@
+# analysis exp 006
+
+**Spectral Early Warning Signals for Model Collapse and Their Prevention–Detectability Tradeoff** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 32
+- **Recorded user turns:** 0
+- **Tool calls:** 10
+- **Original source:** `logs/workers/worker_analysis_exp_006_20260518T084811.log`
+- **Structured JSON:** [`401861dcb2badadc6b62.json`](../../sessions/40/401861dcb2badadc6b62.json)
+
+## Before a recorded user message
+
+32 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews",
+  "session_id": "aa0fa3f7-db41-45c9-b628-c6c77c1c0c5d",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "9e2e65f4-6be0-4637-bf10-960d5a5f5703",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-5-projects-spectral-collapse-ews/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779106800,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "701fe8ad-9d7b-4089-b92e-75a6e7d21bab",
+  "session_id": "aa0fa3f7-db41-45c9-b628-c6c77c1c0c5d"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by reading the results file, log tail, and checking checkpoints on the remote server. I'll do these three SSH commands in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "aa0fa3f7-db41-45c9-b628-c6c77c1c0c5d",
+  "uuid": "d7641520-1c32-4b9a-a488-e6ecabcd749a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BPPc9Y7XqkqddERqeW96Jv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13593,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13593
+      },
+      "output_tokens": 27,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+Reading exp_006 results from the remote server.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "aa0fa3f7-db41-45c9-b628-c6c77c1c0c5d",
+  "uuid": "d48be844-3304-4eb3-b0cc-f393cbee517d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BPPc9Y7XqkqddERqeW96Jv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13593,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13593
+      },
+      "output_tokens": 27,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Wof5pAdMNqoGXn6YM6eJMH`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "aa0fa3f7-db41-45c9-b628-c6c77c1c0c5d",
+  "uuid": "632460c9-f64f-4405-bff4-75bfaad42d4a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BPPc9Y7XqkqddERqeW96Jv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13593,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13593
+      },
+      "output_tokens": 27,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-18T08:48:21.878Z_
+
+<details><summary>↩ Tool result · `toolu_01Wof5pAdMNqoGXn6YM6eJMH`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "aa0fa3f7-db41-45c9-b628-c6c77c1c0c5d",
+  "uuid": "16509fc2-8488-40f8-9ade-23e6a10030d5",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__read_registry"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me execute the three SSH reads in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "aa0fa3f7-db41-45c9-b628-c6c77c1c0c5d",
+  "uuid": "a701e1cb-9db5-4038-897a-04b2fa297198",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KMr7a6it2fYSiM1VtsqozM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1323,
+      "cache_read_input_tokens": 25434,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1323
+      },
+      "output_tokens": 43,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GTibbkPokMaCH2PSYdy1Jq`</summary>
+
+```json
+{
+  "server": "rtx6000-diagprobe",
+  "command": "cat /root/spectral_collapse_ews/results/phase1_adaptive_k10_seed42_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "aa0fa3f7-db41-45c9-b628-c6c77c1c0c5d",
+  "uuid": "58411876-1bb0-4ac3-9c81-48f820478d5e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KMr7a6it2fYSiM1VtsqozM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1323,
+      "cache_read_input_tokens": 25434,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1323
+      },
+      "output_tokens": 43,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011PKnvM7XL7jvS7otyzxRMw`</summary>
+
+```json
+{
+  "server": "rtx6000-diagprobe",
+  "command": "tail -200 /root/runs/spectral_collapse_ews/exp_006.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "aa0fa3f7-db41-45c9-b628-c6c77c1c0c5d",
+  "uuid": "7a2e640e-a06f-420b-8f7c-ee6ff2279ad6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KMr7a6it2fYSiM1VtsqozM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1323,
+      "cache_read_input_tokens": 25434,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1323
+      },
+      "output_tokens": 43,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-18T08:48:26.929Z_
+
+<details><summary>↩ Tool result · `toolu_01GTibbkPokMaCH2PSYdy1Jq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"generation\\\": 0,\\n    \\\"effective_rank\\\": 417.5472106933594,\\n    \\\"log_det\\\": 2366.682861328125,\\n    \\\"perplexity\\\": 9.553585720044504,\\n    \\\"distinct_4\\\": 0.7414389763779528,\\n    \\\"top_10_singular_values\\\": [\\n      1942.81640625,\\n      488.3680419921875,\\n      407.61602783203125,\\n      284.3362121582031,\\n      227.26036071777344,\\n      210.67007446289062,\\n      181.43833923339844,\\n      171.5595703125,\\n      168.53977966308594,\\n      162.46688842773438\\n    ]\\n  },\\n  {\\n    \\\"generation\\\": 1,\\n    \\\"effective_rank\\\": 477.309326171875,\\n    \\\"log_det\\\": 2365.10498046875,\\n    \\\"perplexity\\\": 10.089406346062884,\\n    \\\"distinct_4\\\": 0.7099330708661418,\\n    \\\"top_10_singular_values\\\": [\\n      951.4539184570312,\\n      497.6269226074219,\\n      416.15557861328125,\\n      282.1737060546875,\\n      232.33993530273438,\\n      216.3797607421875,\\n      182.7293243408203,\\n      174.04452514648438,\\n      172.8468017578125,\\n      164.93345642089844\\n    ],\\n    \\\"train_loss\\\": 1.9843403656959533,\\n    \\\"mix_ratio\\\": 0.5,\\n    \\\"controller_ratio\\\": 0.5\\n  },\\n  {\\n    \\\"generation\\\": 2,\\n    \\\"effective_rank\\\": 487.0781555175781,\\n    \\\"log_det\\\": 2394.005859375,\\n    \\\"perplexity\\\": 10.41563499500279,\\n    \\\"distinct_4\\\": 0.5995413385826772,\\n    \\\"top_10_singular_values\\\": [\\n      886.3754272460938,\\n      475.03302001953125,\\n      421.5679931640625,\\n      286.0914001464844,\\n      234.9393768310547,\\n      215.40463256835938,\\n      181.5048370361328,\\n      175.231689453125,\\n      171.5418701171875,\\n      166.684326171875\\n    ],\\n    \\\"train_loss\\\": 1.9338969603919982,\\n    \\\"mix_ratio\\\": 0.5,\\n    \\\"controller_ratio\\\": 0.5\\n  },\\n  {\\n    \\\"generation\\\": 3,\\n    \\\"effective_rank\\\": 496.0295104980469,\\n    \\\"log_det\\\": 2423.829345703125,\\n    \\\"perplexity\\\": 10.759752565629011,\\n    \\\"distinct_4\\\": 0.4898464566929134,\\n    \\\"top_10_singular_values\\\": [\\n      839.6018676757812,\\n      465.50762939453125,\\n      419.44842529296875,\\n      285.6249694824219,\\n      235.92056274414062,\\n      213.7093505859375,\\n      185.2765655517578,\\n      179.07931518554688,\\n      175.29759216308594,\\n      167.58689880371094\\n    ],\\n    \\\"train_loss\\\": 1.7523334920978546,\\n    \\\"mix_ratio\\\": 0.5,\\n    \\\"controller_ratio\\\": 0.5\\n  },\\n  {\\n    \\\"generation\\\": 4,\\n    \\\"effective_rank\\\": 501.1871032714844,\\n    \\\"log_det\\\": 2448.261474609375,\\n    \\\"perplexity\\\": 11.135209721354167,\\n    \\\"distinct_4\\\": 0.4303602362204724,\\n    \\\"top_10_singular_values\\\": [\\n      818.9525146484375,\\n      461.41278076171875,\\n      424.03765869140625,\\n      286.1028747558594,\\n      237.03018188476562,\\n      215.57199096679688,\\n      185.95632934570312,\\n      180.6569366455078,\\n      178.27113342285156,\\n      169.12879943847656\\n    ],\\n    \\\"train_loss\\\": 1.5717825868320465,\\n    \\\"mix_ratio\\\": 0.5,\\n    \\\"controller_ratio\\\": 0.5\\n  },\\n  {\\n    \\\"generation\\\": 5,\\n    \\\"effective_rank\\\": 512.4990234375,\\n    \\\"log_det\\\": 2488.07763671875,\\n    \\\"perplexity\\\": 11.642557450112543,\\n    \\\"distinct_4\\\": 0.3730472440944882,\\n    \\\"top_10_singular_values\\\": [\\n      767.5287475585938,\\n      444.0981750488281,\\n      420.71612548828125,\\n      285.67205810546875,\\n      235.11715698242188,\\n      214.66265869140625,\\n      187.5059356689453,\\n      182.77243041992188,\\n      178.6964569091797,\\n      171.9606170654297\\n    ],\\n    \\\"train_loss\\\": 1.466977549533844,\\n    \\\"mix_ratio\\\": 0.5,\\n    \\\"controller_ratio\\\": 0.5\\n  },\\n  {\\n    \\\"generation\\\": 6,\\n    \\\"effective_rank\\\": 518.8919677734375,\\n    \\\"log_det\\\": 2507.62255859375,\\n    \\\"perplexity\\\": 12.144415164488905,\\n    \\\"distinct_4\\\": 0.35563582677165356,\\n    \\\"top_10_singular_values\\\": [\\n      754.4064331054688,\\n      431.896728515625,\\n      412.1943359375,\\n      279.6459655761719,\\n      233.43763732910156,\\n      212.65884399414062,\\n      186.1617431640625,\\n      183.18345642089844,\\n      177.47775268554688,\\n      169.41554260253906\\n    ],\\n    \\\"train_loss\\\": 1.3248497262048722,\\n    \\\"mix_ratio\\\": 0.5,\\n    \\\"controller_ratio\\\": 0.5\\n  },\\n  {\\n    \\\"generation\\\": 7,\\n    \\\"effective_rank\\\": 526.8870849609375,\\n    \\\"log_det\\\": 2526.185791015625,\\n    \\\"perplexity\\\": 12.723160422011683,\\n    \\\"distinct_4\\\": 0.2904665354330709,\\n    \\\"top_10_singular_values\\\": [\\n      721.6915283203125,\\n      421.05291748046875,\\n      398.784912109375,\\n      275.18756103515625,\\n      228.69467163085938,\\n      208.4752655029297,\\n      184.0618438720703,\\n      180.29457092285156,\\n      176.4272003173828,\\n      171.30667114257812\\n    ],\\n    \\\"train_loss\\\": 1.250881517496109,\\n    \\\"mix_ratio\\\": 0.5,\\n    \\\"controller_ratio\\\": 0.5\\n  },\\n  {\\n    \\\"generation\\\": 8,\\n    \\\"effective_rank\\\": 535.2997436523438,\\n    \\\"log_det\\\": 2542.8857421875,\\n    \\\"perplexity\\\": 13.397390826808579,\\n    \\\"distinct_4\\\": 0.25576181102362205,\\n    \\\"top_10_singular_values\\\": [\\n      685.642333984375,\\n      413.3963928222656,\\n      383.6942443847656,\\n      265.12982177734375,\\n      221.64682006835938,\\n      205.25534057617188,\\n      181.69387817382812,\\n      177.19821166992188,\\n      172.90798950195312,\\n      168.95814514160156\\n    ],\\n    \\\"train_loss\\\": 1.1493558450055121,\\n    \\\"mix_ratio\\\": 0.5,\\n    \\\"controller_ratio\\\": 0.5\\n  },\\n  {\\n    \\\"generation\\\": 9,\\n    \\\"effective_rank\\\": 544.5014038085938,\\n    \\\"log_det\\\": 2560.13720703125,\\n    \\\"perplexity\\\": 14.158877627268959,\\n    \\\"distinct_4\\\": 0.22601377952755905,\\n    \\\"top_10_singular_values\\\": [\\n      651.35986328125,\\n      395.71002197265625,\\n      369.98382568359375,\\n      254.440185546875,\\n      217.4976043701172,\\n      202.1834259033203,\\n      177.9767303466797,\\n      174.83309936523438,\\n      170.50845336914062,\\n      166.41004943847656\\n    ],\\n    \\\"train_loss\\\": 1.0617640682697296,\\n    \\\"mix_ratio\\\": 0.5,\\n    \\\"controller_ratio\\\": 0.5\\n  },\\n  {\\n    \\\"generation\\\": 10,\\n    \\\"effective_rank\\\": 553.7581787109375,\\n    \\\"log_det\\\": 2572.219970703125,\\n    \\\"perplexity\\\": 15.100241792829216,\\n    \\\"distinct_4\\\": 0.2388307086614173,\\n    \\\"top_10_singular_values\\\": [\\n      610.1903686523438,\\n      380.3908996582031,\\n      351.3336486816406,\\n      248.9025421142578,\\n      210.11874389648438,\\n      194.78704833984375,\\n      175.6098175048828,\\n      168.30740356445312,\\n      164.8164825439453,\\n      160.94427490234375\\n    ],\\n    \\\"train_loss\\\": 0.9906822055375576,\\n    \\\"mix_ratio\\\": 0.5,\\n    \\\"controller_ratio\\\": 0.5\\n  }\\n]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.13}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "aa0fa3f7-db41-45c9-b628-c6c77c1c0c5d",
+  "uuid": "fe40e8f6-006c-4e8e-9c68-eee05e326dd2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[\\\\n  {\\\\n    \\\\\\\"generation\\\\\\\": 0,\\\\n    \\\\\\\"effective_rank\\\\\\\": 417.5472106933594,\\\\n    \\\\\\\"log_det\\\\\\\": 2366.682861328125,\\\\n    \\\\\\\"perplexity\\\\\\\": 9.553585720044504,\\\\n    \\\\\\\"distinct_4\\\\\\\": 0.7414389763779528,\\\\n    \\\\\\\"top_10_singular_values\\\\\\\": [\\\\n      1942.81640625,\\\\n      488.3680419921875,\\\\n      407.61602783203125,\\\\n      284.3362121582031,\\\\n      227.26036071777344,\\\\n      210.67007446289062,\\\\n      181.43833923339844,\\\\n      171.5595703125,\\\\n      168.53977966308594,\\\\n      162.46688842773438\\\\n    ]\\\\n  },\\\\n  {\\\\n    \\\\\\\"generation\\\\\\\": 1,\\\\n    \\\\\\\"effective_rank\\\\\\\": 477.309326171875,\\\\n    \\\\\\\"log_det\\\\\\\": 2365.10498046875,\\\\n    \\\\\\\"perplexity\\\\\\\": 10.089406346062884,\\\\n    \\\\\\\"distinct_4\\\\\\\": 0.7099330708661418,\\\\n    \\\\\\\"top_10_singular_values\\\\\\\": [\\\\n      951.4539184570312,\\\\n      497.6269226074219,\\\\n      416.15557861328125,\\\\n      282.1737060546875,\\\\n      232.33993530273438,\\\\n      216.3797607421875,\\\\n      182.7293243408203,\\\\n      174.04452514648438,\\\\n      172.8468017578125,\\\\n      164.93345642089844\\\\n    ],\\\\n    \\\\\\\"train_loss\\\\\\\": 1.9843403656959533,\\\\n    \\\\\\\"mix_ratio\\\\\\\": 0.5,\\\\n    \\\\\\\"controller_ratio\\\\\\\": 0.5\\\\n  },\\\\n  {\\\\n    \\\\\\\"generation\\\\\\\": 2,\\\\n    \\\\\\\"effective_rank\\\\\\\": 487.0781555175781,\\\\n    \\\\\\\"log_det\\\\\\\": 2394.005859375,\\\\n    \\\\\\\"perplexity\\\\\\\": 10.41563499500279,\\\\n    \\\\\\\"distinct_4\\\\\\\": 0.5995413385826772,\\\\n    \\\\\\\"top_10_singular_values\\\\\\\": [\\\\n      886.3754272460938,\\\\n      475.03302001953125,\\\\n      421.5679931640625,\\\\n      286.0914001464844,\\\\n      234.9393768310547,\\\\n      215.40463256835938,\\\\n      181.5048370361328,\\\\n      175.231689453125,\\\\n      171.5418701171875,\\\\n      166.684326171875\\\\n    ],\\\\n    \\\\\\\"train_loss\\\\\\\": 1.9338969603919982,\\\\n    \\\\\\\"mix_ratio\\\\\\\": 0.5,\\\\n    \\\\\\\"controller_ratio\\\\\\\": 0.5\\\\n  },\\\\n  {\\\\n    \\\\\\\"generation\\\\\\\": 3,\\\\n    \\\\\\\"effective_rank\\\\\\\": 496.0295104980469,\\\\n    \\\\\\\"log_det\\\\\\\": 2423.829345703125,\\\\n    \\\\\\\"perplexity\\\\\\\": 10.759752565629011,\\\\n    \\\\\\\"distinct_4\\\\\\\": 0.4898464566929134,\\\\n    \\\\\\\"top_10_singular_values\\\\\\\": [\\\\n      839.6018676757812,\\\\n      465.50762939453125,\\\\n      419.44842529296875,\\\\n      285.6249694824219,\\\\n      235.92056274414062,\\\\n      213.7093505859375,\\\\n      185.2765655517578,\\\\n      179.07931518554688,\\\\n      175.29759216308594,\\\\n      167.58689880371094\\\\n    ],\\\\n    \\\\\\\"train_loss\\\\\\\": 1.7523334920978546,\\\\n    \\\\\\\"mix_ratio\\\\\\\": 0.5,\\\\n    \\\\\\\"controller_ratio\\\\\\\": 0.5\\\\n  },\\\\n  {\\\\n    \\\\\\\"generation\\\\\\\": 4,\\\\n    \\\\\\\"effective_rank\\\\\\\": 501.1871032714844,\\\\n    \\\\\\\"log_det\\\\\\\": 2448.261474609375,\\\\n    \\\\\\\"perplexity\\\\\\\": 11.135209721354167,\\\\n    \\\\\\\"distinct_4\\\\\\\": 0.4303602362204724,\\\\n    \\\\\\\"top_10_singular_values\\\\\\\": [\\\\n      818.9525146484375,\\\\n      461.41278076171875,\\\\n      424.03765869140625,\\\\n      286.1028747558594,\\\\n      237.03018188476562,\\\\n      215.57199096679688,\\\\n      185.95632934570312,\\\\n      180.6569366455078,\\\\n      178.27113342285156,\\\\n      169.12879943847656\\\\n    ],\\\\n    \\\\\\\"train_loss\\\\\\\": 1.5717825868320465,\\\\n    \\\\\\\"mix_ratio\\\\\\\": 0.5,\\\\n    \\\\\\\"controller_ratio\\\\\\\": 0.5\\\\n  },\\\\n  {\\\\n    \\\\\\\"generation\\\\\\\": 5,\\\\n    \\\\\\\"effective_rank\\\\\\\": 512.4990234375,\\\\n    \\\\\\\"log_det\\\\\\\": 2488.07763671875,\\\\n    \\\\\\\"perplexity\\\\\\\": 11.642557450112543,\\\\n    \\\\\\\"distinct_4\\\\\\\": 0.3730472440944882,\\\\n    \\\\\\\"top_10_singular_values\\\\\\\": [\\\\n      767.5287475585938,\\\\n      444.0981750488281,\\\\n      420.71612548828125,\\\\n      285.67205810546875,\\\\n      235.11715698242188,\\\\n      214.66265869140625,\\\\n      187.5059356689453,\\\\n      182.77243041992188,\\\\n      178.6964569091797,\\\\n      171.9606170654297\\\\n    ],\\\\n    \\\\\\\"train_loss\\\\\\\": 1.466977549533844,\\\\n    \\\\\\\"mix_ratio\\\\\\\": 0.5,\\\\n    \\\\\\\"controller_ratio\\\\\\\": 0.5\\\\n  },\\\\n  {\\\\n    \\\\\\\"generation\\\\\\\": 6,\\\\n    \\\\\\\"effective_rank\\\\\\\": 518.8919677734375,\\\\n    \\\\\\\"log_det\\\\\\\": 2507.62255859375,\\\\n    \\\\\\\"perplexity\\\\\\\": 12.144415164488905,\\\\n    \\\\\\\"distinct_4\\\\\\\": 0.35563582677165356,\\\\n    \\\\\\\"top_10_singular_values\\\\\\\": [\\\\n      754.4064331054688,\\\\n      431.896728515625,\\\\n      412.1943359375,\\\\n      279.6459655761719,\\\\n      233.43763732910156,\\\\n      212.65884399414062,\\\\n      186.1617431640625,\\\\n      183.18345642089844,\\\\n      177.47775268554688,\\\\n      169.41554260253906\\\\n    ],\\\\n    \\\\\\\"train_loss\\\\\\\": 1.3248497262048722,\\\\n    \\\\\\\"mix_ratio\\\\\\\": 0.5,\\\\n    \\\\\\\"controller_ratio\\\\\\\": 0.5\\\\n  },\\\\n  {\\\\n    \\\\\\\"generation\\\\\\\": 7,\\\\n    \\\\\\\"effective_rank\\\\\\\": 526.8870849609375,\\\\n    \\\\\\\"log_det\\\\\\\": 2526.185791015625,\\\\n    \\\\\\\"perplexity\\\\\\\": 12.723160422011683,\\\\n    \\\\\\\"distinct_4\\\\\\\": 0.2904665354330709,\\\\n    \\\\\\\"top_10_singular_values\\\\\\\": [\\\\n      721.6915283203125,\\\\n      421.05291748046875,\\\\n      398.784912109375,\\\\n      275.18756103515625,\\\\n      228.69467163085938,\\\\n      208.4752655029297,\\\\n      184.0618438720703,\\\\n      180.29457092285156,\\\\n      176.4272003173828,\\\\n      171.30667114257812\\\\n    ],\\\\n    \\\\\\\"train_loss\\\\\\\": 1.250881517496109,\\\\n    \\\\\\\"mix_ratio\\\\\\\": 0.5,\\\\n    \\\\\\\"controller_ratio\\\\\\\": 0.5\\\\n  },\\\\n  {\\\\n    \\\\\\\"generation\\\\\\\": 8,\\\\n    \\\\\\\"effective_rank\\\\\\\": 535.2997436523438,\\\\n    \\\\\\\"log_det\\\\\\\": 2542.8857421875,\\\\n    \\\\\\\"perplexity\\\\\\\": 13.397390826808579,\\\\n    \\\\\\\"distinct_4\\\\\\\": 0.25576181102362205,\\\\n    \\\\\\\"top_10_singular_values\\\\\\\": [\\\\n      685.642333984375,\\\\n      413.3963928222656,\\\\n      383.6942443847656,\\\\n      265.12982177734375,\\\\n      221.64682006835938,\\\\n      205.25534057617188,\\\\n      181.69387817382812,\\\\n      177.19821166992188,\\\\n      172.90798950195312,\\\\n      168.95814514160156\\\\n    ],\\\\n    \\\\\\\"train_loss\\\\\\\": 1.1493558450055121,\\\\n    \\\\\\\"mix_ratio\\\\\\\": 0.5,\\\\n    \\\\\\\"controller_ratio\\\\\\\": 0.5\\\\n  },\\\\n  {\\\\n    \\\\\\\"generation\\\\\\\": 9,\\\\n    \\\\\\\"effective_rank\\\\\\\": 544.5014038085938,\\\\n    \\\\\\\"log_det\\\\\\\": 2560.13720703125,\\\\n    \\\\\\\"perplexity\\\\\\\": 14.158877627268959,\\\\n    \\\\\\\"distinct_4\\\\\\\": 0.22601377952755905,\\\\n    \\\\\\\"top_10_singular_values\\\\\\\": [\\\\n      651.35986328125,\\\\n      395.71002197265625,\\\\n      369.98382568359375,\\\\n      254.440185546875,\\\\n      217.4976043701172,\\\\n      202.1834259033203,\\\\n      177.9767303466797,\\\\n      174.83309936523438,\\\\n      170.50845336914062,\\\\n      166.41004943847656\\\\n    ],\\\\n    \\\\\\\"train_loss\\\\\\\": 1.0617640682697296,\\\\n    \\\\\\\"mix_ratio\\\\\\\": 0.5,\\\\n    \\\\\\\"controller_ratio\\\\\\\": 0.5\\\\n  },\\\\n  {\\\\n    \\\\\\\"generation\\\\\\\": 10,\\\\n    \\\\\\\"effective_rank\\\\\\\": 553.7581787109375,\\\\n    \\\\\\\"log_det\\\\\\\": 2572.219970703125,\\\\n    \\\\\\\"perplexity\\\\\\\": 15.100241792829216,\\\\n    \\\\\\\"distinct_4\\\\\\\": 0.2388307086614173,\\\\n    \\\\\\\"top_10_singular_values\\\\\\\": [\\\\n      610.1903686523438,\\\\n      380.3908996582031,\\\\n      351.3336486816406,\\\\n      248.9025421142578,\\\\n      210.11874389648438,\\\\n      194.78704833984375,\\\\n      175.6098175048828,\\\\n      168.30740356445312,\\\\n      164.8164825439453,\\\\n      160.94427490234375\\\\n    ],\\\\n    \\\\\\\"train_loss\\\\\\\": 0.9906822055375576,\\\\n    \\\\\\\"mix_ratio\\\\\\\": 0.5,\\\\n    \\\\\\\"controller_ratio\\\\\\\": 0.5\\\\n  }\\\\n]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.13}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"generation\\\": 0,\\n    \\\"effective_rank\\\": 417.5472106933594,\\n    \\\"log_det\\\": 2366.682861328125,\\n    \\\"perplexity\\\": 9.553585720044504,\\n    \\\"distinct_4\\\": 0.7414389763779528,\\n    \\\"top_10_singular_values\\\": [\\n      1942.81640625,\\n      488.3680419921875,\\n      407.61602783203125,\\n      284.3362121582031,\\n      227.26036071777344,\\n      210.67007446289062,\\n      181.43833923339844,\\n      171.5595703125,\\n      168.53977966308594,\\n      162.46688842773438\\n    ]\\n  },\\n  {\\n    \\\"generation\\\": 1,\\n    \\\"effective_rank\\\": 477.309326171875,\\n    \\\"log_det\\\": 2365.10498046875,\\n    \\\"perplexity\\\": 10.089406346062884,\\n    \\\"distinct_4\\\": 0.7099330708661418,\\n    \\\"top_10_singular_values\\\": [\\n      951.4539184570312,\\n      497.6269226074219,\\n      416.15557861328125,\\n      282.1737060546875,\\n      232.33993530273438,\\n      216.3797607421875,\\n      182.7293243408203,\\n      174.04452514648438,\\n      172.8468017578125,\\n      164.93345642089844\\n    ],\\n    \\\"train_loss\\\": 1.9843403656959533,\\n    \\\"mix_ratio\\\": 0.5,\\n    \\\"controller_ratio\\\": 0.5\\n  },\\n  {\\n    \\\"generation\\\": 2,\\n    \\\"effective_rank\\\": 487.0781555175781,\\n    \\\"log_det\\\": 2394.005859375,\\n    \\\"perplexity\\\": 10.41563499500279,\\n    \\\"distinct_4\\\": 0.5995413385826772,\\n    \\\"top_10_singular_values\\\": [\\n      886.3754272460938,\\n      475.03302001953125,\\n      421.5679931640625,\\n      286.0914001464844,\\n      234.9393768310547,\\n      215.40463256835938,\\n      181.5048370361328,\\n      175.231689453125,\\n      171.5418701171875,\\n      166.684326171875\\n    ],\\n    \\\"train_loss\\\": 1.9338969603919982,\\n    \\\"mix_ratio\\\": 0.5,\\n    \\\"controller_ratio\\\": 0.5\\n  },\\n  {\\n    \\\"generation\\\": 3,\\n    \\\"effective_rank\\\": 496.0295104980469,\\n    \\\"log_det\\\": 2423.829345703125,\\n    \\\"perplexity\\\": 10.759752565629011,\\n    \\\"distinct_4\\\": 0.4898464566929134,\\n    \\\"top_10_singular_values\\\": [\\n      839.6018676757812,\\n      465.50762939453125,\\n      419.44842529296875,\\n      285.6249694824219,\\n      235.92056274414062,\\n      213.7093505859375,\\n      185.2765655517578,\\n      179.07931518554688,\\n      175.29759216308594,\\n      167.58689880371094\\n    ],\\n    \\\"train_loss\\\": 1.7523334920978546,\\n    \\\"mix_ratio\\\": 0.5,\\n    \\\"controller_ratio\\\": 0.5\\n  },\\n  {\\n    \\\"generation\\\": 4,\\n    \\\"effective_rank\\\": 501.1871032714844,\\n    \\\"log_det\\\": 2448.261474609375,\\n    \\\"perplexity\\\": 11.135209721354167,\\n    \\\"distinct_4\\\": 0.4303602362204724,\\n    \\\"top_10_singular_values\\\": [\\n      818.9525146484375,\\n      461.41278076171875,\\n      424.03765869140625,\\n      286.1028747558594,\\n      237.03018188476562,\\n      215.57199096679688,\\n      185.95632934570312,\\n      180.6569366455078,\\n      178.27113342285156,\\n      169.12879943847656\\n    ],\\n    \\\"train_loss\\\": 1.5717825868320465,\\n    \\\"mix_ratio\\\": 0.5,\\n    \\\"controller_ratio\\\": 0.5\\n  },\\n  {\\n    \\\"generation\\\": 5,\\n    \\\"effective_rank\\\": 512.4990234375,\\n    \\\"log_det\\\": 2488.07763671875,\\n    \\\"perplexity\\\": 11.642557450112543,\\n    \\\"distinct_4\\\": 0.3730472440944882,\\n    \\\"top_10_singular_values\\\": [\\n      767.5287475585938,\\n      444.0981750488281,\\n      420.71612548828125,\\n      285.67205810546875,\\n      235.11715698242188,\\n      214.66265869140625,\\n      187.5059356689453,\\n      182.77243041992188,\\n      178.6964569091797,\\n      171.9606170654297\\n    ],\\n    \\\"train_loss\\\": 1.466977549533844,\\n    \\\"mix_ratio\\\": 0.5,\\n    \\\"controller_ratio\\\": 0.5\\n  },\\n  {\\n    \\\"generation\\\": 6,\\n    \\\"effective_rank\\\": 518.8919677734375,\\n    \\\"log_det\\\": 2507.62255859375,\\n    \\\"perplexity\\\": 12.144415164488905,\\n    \\\"distinct_4\\\": 0.35563582677165356,\\n    \\\"top_10_singular_values\\\": [\\n      754.4064331054688,\\n      431.896728515625,\\n      412.1943359375,\\n      279.6459655761719,\\n      233.43763732910156,\\n      212.65884399414062,\\n      186.1617431640625,\\n      183.18345642089844,\\n      177.47775268554688,\\n      169.41554260253906\\n    ],\\n    \\\"train_loss\\\": 1.3248497262048722,\\n    \\\"mix_ratio\\\": 0.5,\\n    \\\"controller_ratio\\\": 0.5\\n  },\\n  {\\n    \\\"generation\\\": 7,\\n    \\\"effective_rank\\\": 526.8870849609375,\\n    \\\"log_det\\\": 2526.185791015625,\\n    \\\"perplexity\\\": 12.723160422011683,\\n    \\\"distinct_4\\\": 0.2904665354330709,\\n    \\\"top_10_singular_values\\\": [\\n      721.6915283203125,\\n      421.05291748046875,\\n      398.784912109375,\\n      275.18756103515625,\\n      228.69467163085938,\\n      208.4752655029297,\\n      184.0618438720703,\\n      180.29457092285156,\\n      176.4272003173828,\\n      171.30667114257812\\n    ],\\n    \\\"train_loss\\\": 1.250881517496109,\\n    \\\"mix_ratio\\\": 0.5,\\n    \\\"controller_ratio\\\": 0.5\\n  },\\n  {\\n    \\\"generation\\\": 8,\\n    \\\"effective_rank\\\": 535.2997436523438,\\n    \\\"log_det\\\": 2542.8857421875,\\n    \\\"perplexity\\\": 13.397390826808579,\\n    \\\"distinct_4\\\": 0.25576181102362205,\\n    \\\"top_10_singular_values\\\": [\\n      685.642333984375,\\n      413.3963928222656,\\n      383.6942443847656,\\n      265.12982177734375,\\n      221.64682006835938,\\n      205.25534057617188,\\n      181.69387817382812,\\n      177.19821166992188,\\n      172.90798950195312,\\n      168.95814514160156\\n    ],\\n    \\\"train_loss\\\": 1.1493558450055121,\\n    \\\"mix_ratio\\\": 0.5,\\n    \\\"controller_ratio\\\": 0.5\\n  },\\n  {\\n    \\\"generation\\\": 9,\\n    \\\"effective_rank\\\": 544.5014038085938,\\n    \\\"log_det\\\": 2560.13720703125,\\n    \\\"perplexity\\\": 14.158877627268959,\\n    \\\"distinct_4\\\": 0.22601377952755905,\\n    \\\"top_10_singular_values\\\": [\\n      651.35986328125,\\n      395.71002197265625,\\n      369.98382568359375,\\n      254.440185546875,\\n      217.4976043701172,\\n      202.1834259033203,\\n      177.9767303466797,\\n      174.83309936523438,\\n      170.50845336914062,\\n      166.41004943847656\\n    ],\\n    \\\"train_loss\\\": 1.0617640682697296,\\n    \\\"mix_ratio\\\": 0.5,\\n    \\\"controller_ratio\\\": 0.5\\n  },\\n  {\\n    \\\"generation\\\": 10,\\n    \\\"effective_rank\\\": 553.7581787109375,\\n    \\\"log_det\\\": 2572.219970703125,\\n    \\\"perplexity\\\": 15.100241792829216,\\n    \\\"distinct_4\\\": 0.2388307086614173,\\n    \\\"top_10_singular_values\\\": [\\n      610.1903686523438,\\n      380.3908996582031,\\n      351.3336486816406,\\n      248.9025421142578,\\n      210.11874389648438,\\n      194.78704833984375,\\n      175.6098175048828,\\n      168.30740356445312,\\n      164.8164825439453,\\n      160.94427490234375\\n    ],\\n    \\\"train_loss\\\": 0.9906822055375576,\\n    \\\"mix_ratio\\\": 0.5,\\n    \\\"controller_ratio\\\": 0.5\\n  }\\n]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.13}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0184AscM9hDe1yAqzY685QYf`</summary>
+
+```json
+{
+  "server": "rtx6000-diagprobe",
+  "command": "ls -la /root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/adaptive_k10_seed42/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "aa0fa3f7-db41-45c9-b628-c6c77c1c0c5d",
+  "uuid": "0b9830f6-9d46-49c7-a903-091a7c811469",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KMr7a6it2fYSiM1VtsqozM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1323,
+      "cache_read_input_tokens": 25434,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1323
+      },
+      "output_tokens": 43,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-18T08:48:27.521Z_
+
+<details><summary>↩ Tool result · `toolu_011PKnvM7XL7jvS7otyzxRMw`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"A decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\n  Generated 23040/25000 samples\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\n  Generated 23360/25000 samples\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_sid\\n\\n... [截断: 输出过长，省略 12962 字符] ...\\n\\nright-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\n[Gen 10] Results: eff_rank=553.76, ppl=15.10, distinct4=0.2388\\n[Gen 10] Results saved to /root/spectral_collapse_ews/results/phase1_adaptive_k10_seed42_results.json\\nController state saved to /root/spectral_collapse_ews/results/phase1_adaptive_k10_seed42_results_controller.json\\n\\n============================================================\\nFINAL RESULTS SUMMARY\\n============================================================\\nGen   Eff.Rank     Perplexity   Distinct-4   Mix Ratio   \\n-----------------------------------------------------\\n0     417.55       9.55         0.7414       0.0000      \\n1     477.31       10.09        0.7099       0.5000      \\n2     487.08       10.42        0.5995       0.5000      \\n3     496.03       10.76        0.4898       0.5000      \\n4     501.19       11.14        0.4304       0.5000      \\n5     512.50       11.64        0.3730       0.5000      \\n6     518.89       12.14        0.3556       0.5000      \\n7     526.89       12.72        0.2905       0.5000      \\n8     535.30       13.40        0.2558       0.5000      \\n9     544.50       14.16        0.2260       0.5000      \\n10    553.76       15.10        0.2388       0.5000      \\n\\nSummary saved to /root/spectral_collapse_ews/results/phase1_adaptive_k10_seed42_summary.json\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.58}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "aa0fa3f7-db41-45c9-b628-c6c77c1c0c5d",
+  "uuid": "f5e53df6-e5ff-4ed1-b422-1dda84d124fa",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"A decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\\\n  Generated 23040/25000 samples\\\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\\\n  Generated 23360/25000 samples\\\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_sid\\\\n\\\\n... [截断: 输出过长，省略 12962 字符] ...\\\\n\\\\nright-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\\\n[Gen 10] Results: eff_rank=553.76, ppl=15.10, distinct4=0.2388\\\\n[Gen 10] Results saved to /root/spectral_collapse_ews/results/phase1_adaptive_k10_seed42_results.json\\\\nController state saved to /root/spectral_collapse_ews/results/phase1_adaptive_k10_seed42_results_controller.json\\\\n\\\\n============================================================\\\\nFINAL RESULTS SUMMARY\\\\n============================================================\\\\nGen   Eff.Rank     Perplexity   Distinct-4   Mix Ratio   \\\\n-----------------------------------------------------\\\\n0     417.55       9.55         0.7414       0.0000      \\\\n1     477.31       10.09        0.7099       0.5000      \\\\n2     487.08       10.42        0.5995       0.5000      \\\\n3     496.03       10.76        0.4898       0.5000      \\\\n4     501.19       11.14        0.4304       0.5000      \\\\n5     512.50       11.64        0.3730       0.5000      \\\\n6     518.89       12.14        0.3556       0.5000      \\\\n7     526.89       12.72        0.2905       0.5000      \\\\n8     535.30       13.40        0.2558       0.5000      \\\\n9     544.50       14.16        0.2260       0.5000      \\\\n10    553.76       15.10        0.2388       0.5000      \\\\n\\\\nSummary saved to /root/spectral_collapse_ews/results/phase1_adaptive_k10_seed42_summary.json\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.58}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"A decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\n  Generated 23040/25000 samples\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\n  Generated 23360/25000 samples\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_sid\\n\\n... [截断: 输出过长，省略 12962 字符] ...\\n\\nright-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\nA decoder-only architecture is being used, but right-padding was detected! For correct generation results, please set `padding_side='left'` when initializing the tokenizer.\\n[Gen 10] Results: eff_rank=553.76, ppl=15.10, distinct4=0.2388\\n[Gen 10] Results saved to /root/spectral_collapse_ews/results/phase1_adaptive_k10_seed42_results.json\\nController state saved to /root/spectral_collapse_ews/results/phase1_adaptive_k10_seed42_results_controller.json\\n\\n============================================================\\nFINAL RESULTS SUMMARY\\n============================================================\\nGen   Eff.Rank     Perplexity   Distinct-4   Mix Ratio   \\n-----------------------------------------------------\\n0     417.55       9.55         0.7414       0.0000      \\n1     477.31       10.09        0.7099       0.5000      \\n2     487.08       10.42        0.5995       0.5000      \\n3     496.03       10.76        0.4898       0.5000      \\n4     501.19       11.14        0.4304       0.5000      \\n5     512.50       11.64        0.3730       0.5000      \\n6     518.89       12.14        0.3556       0.5000      \\n7     526.89       12.72        0.2905       0.5000      \\n8     535.30       13.40        0.2558       0.5000      \\n9     544.50       14.16        0.2260       0.5000      \\n10    553.76       15.10        0.2388       0.5000      \\n\\nSummary saved to /root/spectral_collapse_ews/results/phase1_adaptive_k10_seed42_summary.json\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.58}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-18T08:48:28.063Z_
+
+<details><summary>↩ Tool result · `toolu_0184AscM9hDe1yAqzY685QYf`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 4\\ndrwxr-xr-x 13 root root 4096 May 18 16:41 .\\ndrwxr-xr-x  7 root root  170 May 18 01:56 ..\\ndrwxr-xr-x  2 root root  190 May 18 01:56 gen_0\\ndrwxr-xr-x  2 root root  190 May 18 03:21 gen_1\\ndrwxr-xr-x  2 root root  190 May 18 16:41 gen_10\\ndrwxr-xr-x  2 root root  190 May 18 04:50 gen_2\\ndrwxr-xr-x  2 root root  190 May 18 06:19 gen_3\\ndrwxr-xr-x  2 root root  190 May 18 07:48 gen_4\\ndrwxr-xr-x  2 root root  190 May 18 09:17 gen_5\\ndrwxr-xr-x  2 root root  190 May 18 10:46 gen_6\\ndrwxr-xr-x  2 root root  190 May 18 12:15 gen_7\\ndrwxr-xr-x  2 root root  190 May 18 13:44 gen_8\\ndrwxr-xr-x  2 root root  190 May 18 15:12 gen_9\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "aa0fa3f7-db41-45c9-b628-c6c77c1c0c5d",
+  "uuid": "26dcc80e-b4a5-44c0-b24a-77665428477a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4\\\\ndrwxr-xr-x 13 root root 4096 May 18 16:41 .\\\\ndrwxr-xr-x  7 root root  170 May 18 01:56 ..\\\\ndrwxr-xr-x  2 root root  190 May 18 01:56 gen_0\\\\ndrwxr-xr-x  2 root root  190 May 18 03:21 gen_1\\\\ndrwxr-xr-x  2 root root  190 May 18 16:41 gen_10\\\\ndrwxr-xr-x  2 root root  190 May 18 04:50 gen_2\\\\ndrwxr-xr-x  2 root root  190 May 18 06:19 gen_3\\\\ndrwxr-xr-x  2 root root  190 May 18 07:48 gen_4\\\\ndrwxr-xr-x  2 root root  190 May 18 09:17 gen_5\\\\ndrwxr-xr-x  2 root root  190 May 18 10:46 gen_6\\\\ndrwxr-xr-x  2 root root  190 May 18 12:15 gen_7\\\\ndrwxr-xr-x  2 root root  190 May 18 13:44 gen_8\\\\ndrwxr-xr-x  2 root root  190 May 18 15:12 gen_9\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 4\\ndrwxr-xr-x 13 root root 4096 May 18 16:41 .\\ndrwxr-xr-x  7 root root  170 May 18 01:56 ..\\ndrwxr-xr-x  2 root root  190 May 18 01:56 gen_0\\ndrwxr-xr-x  2 root root  190 May 18 03:21 gen_1\\ndrwxr-xr-x  2 root root  190 May 18 16:41 gen_10\\ndrwxr-xr-x  2 root root  190 May 18 04:50 gen_2\\ndrwxr-xr-x  2 root root  190 May 18 06:19 gen_3\\ndrwxr-xr-x  2 root root  190 May 18 07:48 gen_4\\ndrwxr-xr-x  2 root root  190 May 18 09:17 gen_5\\ndrwxr-xr-x  2 root root  190 May 18 10:46 gen_6\\ndrwxr-xr-x  2 root root  190 May 18 12:15 gen_7\\ndrwxr-xr-x  2 root root  190 May 18 13:44 gen_8\\ndrwxr-xr-x  2 root root  190 May 18 15:12 gen_9\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+All data collected. Let me summarize:
+
+**Results JSON** - Complete 11 generations (0-10), all parsed successfully.
+
+**Log** - Confirms clean exit (EXIT_CODE=0), final summary table matches JSON.
+
+**Checkpoints** - All 11 generation directories present (gen_0 through gen_10).
+
+Now let me extract and organize the metrics:
+
+| Gen | eff_rank | log_det | ppl | distinct4 | mix_ratio | triggered | train_loss |
+|-----|----------|---------|-----|-----------|-----------|-----------|------------|
+
+
+| 0 | 417.55 | 2366.68 | 9.554 | 0.7414 | N/A (baseline) | N/A | N/A |
+| 1 | 477.31 | 2365.10 | 10.089 | 0.7099 | 0.5 | false | 1.984 |
+| 2 | 487.08 | 2394.01 | 10.416 | 0.5995 | 0.5 | false | 1.934 |
+| 3 | 496.03 | 2423.83 | 10.760 |
+
+Generating metrics table... Looking at the final two generations and the controller behavior, the controller never actually triggered throughout all ten runs—the mix_ratio remained locked at its default 0.5 value. What's interesting is the log_det delta trend, which shows a dip in the first generation before climbing steadily, with particularly sharp increases from generation 4 onward. the r_crit / signal decay paradox claim. So this negative result actually strengthens that argument—the controller failed to intervene even as the model showed clear signs of degradation across multiple metrics. Now I'm updating the registry to capture all these experimental results with proper structure.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "aa0fa3f7-db41-45c9-b628-c6c77c1c0c5d",
+  "uuid": "4924153d-ce5a-42e3-8883-423769c0ce9c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JyNUMS89jVvSpP5eqD9nkx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6273,
+      "cache_read_input_tokens": 26757,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6273
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+All data collected. 11 generations complete, clean exit, all checkpoints present. Controller never triggered. Now updating the registry.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "aa0fa3f7-db41-45c9-b628-c6c77c1c0c5d",
+  "uuid": "b2c76f4d-3aee-4d68-90c9-9bf5c55831c7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JyNUMS89jVvSpP5eqD9nkx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6273,
+      "cache_read_input_tokens": 26757,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6273
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01R1eTuheBWFjkouPrNwYqkY`</summary>
+
+```json
+{
+  "exp_id": "exp_006",
+  "field": "metrics",
+  "value": {
+    "gen0_eff_rank": 417.55,
+    "gen0_log_det": 2366.68,
+    "gen0_ppl": 9.554,
+    "gen0_distinct4": 0.7414,
+    "gen1_eff_rank": 477.31,
+    "gen1_log_det": 2365.1,
+    "gen1_ppl": 10.089,
+    "gen1_distinct4": 0.7099,
+    "gen1_mix_ratio": 0.5,
+    "gen1_triggered": false,
+    "gen1_train_loss": 1.984,
+    "gen2_eff_rank": 487.08,
+    "gen2_log_det": 2394.01,
+    "gen2_ppl": 10.416,
+    "gen2_distinct4": 0.5995,
+    "gen2_mix_ratio": 0.5,
+    "gen2_triggered": false,
+    "gen2_train_loss": 1.934,
+    "gen3_eff_rank": 496.03,
+    "gen3_log_det": 2423.83,
+    "gen3_ppl": 10.76,
+    "gen3_distinct4": 0.4898,
+    "gen3_mix_ratio": 0.5,
+    "gen3_triggered": false,
+    "gen3_train_loss": 1.752,
+    "gen4_eff_rank": 501.19,
+    "gen4_log_det": 2448.26,
+    "gen4_ppl": 11.135,
+    "gen4_distinct4": 0.4304,
+    "gen4_mix_ratio": 0.5,
+    "gen4_triggered": false,
+    "gen4_train_loss": 1.572,
+    "gen5_eff_rank": 512.5,
+    "gen5_log_det": 2488.08,
+    "gen5_ppl": 11.643,
+    "gen5_distinct4": 0.373,
+    "gen5_mix_ratio": 0.5,
+    "gen5_triggered": false,
+    "gen5_train_loss": 1.467,
+    "gen6_eff_rank": 518.89,
+    "gen6_log_det": 2507.62,
+    "gen6_ppl": 12.144,
+    "gen6_distinct4": 0.3556,
+    "gen6_mix_ratio": 0.5,
+    "gen6_triggered": false,
+    "gen6_train_loss": 1.325,
+    "gen7_eff_rank": 526.89,
+    "gen7_log_det": 2526.19,
+    "gen7_ppl": 12.723,
+    "gen7_distinct4": 0.2905,
+    "gen7_mix_ratio": 0.5,
+    "gen7_triggered": false,
+    "gen7_train_loss": 1.251,
+    "gen8_eff_rank": 535.3,
+    "gen8_log_det": 2542.89,
+    "gen8_ppl": 13.397,
+    "gen8_distinct4": 0.2558,
+    "gen8_mix_ratio": 0.5,
+    "gen8_triggered": false,
+    "gen8_train_loss": 1.149,
+    "gen9_eff_rank": 544.5,
+    "gen9_log_det": 2560.14,
+    "gen9_ppl": 14.159,
+    "gen9_distinct4": 0.226,
+    "gen9_mix_ratio": 0.5,
+    "gen9_triggered": false,
+    "gen9_train_loss": 1.062,
+    "gen10_eff_rank": 553.76,
+    "gen10_log_det": 2572.22,
+    "gen10_ppl": 15.1,
+    "gen10_distinct4": 0.2388,
+    "gen10_mix_ratio": 0.5,
+    "gen10_triggered": false,
+    "gen10_train_loss": 0.991,
+    "total_generations": 11,
+    "controller_ever_triggered": false,
+    "final_eff_rank": 553.76,
+    "final_ppl": 15.1,
+    "final_distinct4": 0.2388
+  },
+  "project": "spectral_collapse_ews"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "aa0fa3f7-db41-45c9-b628-c6c77c1c0c5d",
+  "uuid": "9b1d06c7-519d-4b72-8d18-bce7b165fb7e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JyNUMS89jVvSpP5eqD9nkx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6273,
+      "cache_read_input_tokens": 26757,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6273
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-18T08:48:59.504Z_
+
+<details><summary>↩ Tool result · `toolu_01R1eTuheBWFjkouPrNwYqkY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_006\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-17T17:29:14.060Z\", \"updated_at\": \"2026-05-18T08:48:59.436Z\", \"hypothesis\": \"Spectral-guided adaptive mixing with moderate gain (k=10, tau=0.002, per_gen mode) provides optimal balance between early response and budget conservation. k=10 is midpoint between k=20 (exp_005, fast budget depletion) and k=5 (cumulative mode, late trigger). Expect ratio to rise to ~0.55-0.65 at peak collapse gens, with more gradual budget consumption than k=20.\", \"parent\": \"exp_005\", \"spec\": {\"description\": \"Phase 1: Adaptive spectral-guided mixing (k=10, tau=0.002, per_gen mode, log_det signal), seed 42. 论文主实验.\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition adaptive --seed 42 --generations 10 --signal log_det --tau 0.002 --k 10 --signal_mode per_gen --gpu 0\\\"\", \"server\": \"rtx6000-diagprobe\", \"gpu\": \"cuda:0\", \"pid\": 134913, \"tmux_session\": \"exp_006\", \"model_name\": \"EleutherAI/pythia-410m-deduped\", \"seed\": 42, \"data_path\": \"/root/spectral_collapse_ews/data/\", \"data_count\": \"50K real pool, total_per_gen=50K\", \"generations\": 10, \"condition\": \"adaptive\", \"controller_params\": {\"tau\": 0.002, \"k\": 10, \"r_min\": 0.2, \"r_max\": 0.8, \"alpha\": 0.5, \"signal\": \"log_det\", \"signal_mode\": \"per_gen\"}, \"log_path\": \"~/runs/spectral_collapse_ews/exp_006.log\", \"checkpoint_dir\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/adaptive_k10_seed42/\", \"results_file\": \"/root/spectral_collapse_ews/results/phase1_adaptive_k10_seed42_results.json\", \"checkpoint_source\": \"EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)\", \"eval_data\": \"/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)\"}, \"metrics\": {\"gen0_eff_rank\": 417.55, \"gen0_log_det\": 2366.68, \"gen0_ppl\": 9.554, \"gen0_distinct4\": 0.7414, \"gen1_eff_rank\": 477.31, \"gen1_log_det\": 2365.1, \"gen1_ppl\": 10.089, \"gen1_distinct4\": 0.7099, \"gen1_mix_ratio\": 0.5, \"gen1_triggered\": false, \"gen1_train_loss\": 1.984, \"gen2_eff_rank\": 487.08, \"gen2_log_det\": 2394.01, \"gen2_ppl\": 10.416, \"gen2_distinct4\": 0.5995, \"gen2_mix_ratio\": 0.5, \"gen2_triggered\": false, \"gen2_train_loss\": 1.934, \"gen3_eff_rank\": 496.03, \"gen3_log_det\": 2423.83, \"gen3_ppl\": 10.76, \"gen3_distinct4\": 0.4898, \"gen3_mix_ratio\": 0.5, \"gen3_triggered\": false, \"gen3_train_loss\": 1.752, \"gen4_eff_rank\": 501.19, \"gen4_log_det\": 2448.26, \"gen4_ppl\": 11.135, \"gen4_distinct4\": 0.4304, \"gen4_mix_ratio\": 0.5, \"gen4_triggered\": false, \"gen4_train_loss\": 1.572, \"gen5_eff_rank\": 512.5, \"gen5_log_det\": 2488.08, \"gen5_ppl\": 11.643, \"gen5_distinct4\": 0.373, \"gen5_mix_ratio\": 0.5, \"gen5_triggered\": false, \"gen5_train_loss\": 1.467, \"gen6_eff_rank\": 518.89, \"gen6_log_det\": 2507.62, \"gen6_ppl\": 12.144, \"gen6_distinct4\": 0.3556, \"gen6_mix_ratio\": 0.5, \"gen6_triggered\": false, \"gen6_train_loss\": 1.325, \"gen7_eff_rank\": 526.89, \"gen7_log_det\": 2526.19, \"gen7_ppl\": 12.723, \"gen7_distinct4\": 0.2905, \"gen7_mix_ratio\": 0.5, \"gen7_triggered\": false, \"gen7_train_loss\": 1.251, \"gen8_eff_rank\": 535.3, \"gen8_log_det\": 2542.89, \"gen8_ppl\": 13.397, \"gen8_distinct4\": 0.2558, \"gen8_mix_ratio\": 0.5, \"gen8_triggered\": false, \"gen8_train_loss\": 1.149, \"gen9_eff_rank\": 544.5, \"gen9_log_det\": 2560.14, \"gen9_ppl\": 14.159, \"gen9_distinct4\": 0.226, \"gen9_mix_ratio\": 0.5, \"gen9_triggered\": false, \"gen9_train_loss\": 1.062, \"gen10_eff_rank\": 553.76, \"gen10_log_det\": 2572.22, \"gen10_ppl\": 15.1, \"gen10_distinct4\": 0.2388, \"gen10_mix_ratio\": 0.5, \"gen10_triggered\": false, \"gen10_train_loss\": 0.991, \"total_generations\": 11, \"controller_ever_triggered\": false, \"final_eff_rank\": 553.76, \"final_ppl\": 15.1, \"final_distinct4\": 0.2388}, \"reproduce\": {\"finished_at\": \"2026-05-18T08:47:09.147Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T08:47:10.572135+00:00\"}]}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1046}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "aa0fa3f7-db41-45c9-b628-c6c77c1c0c5d",
+  "uuid": "a8afcf31-161b-4398-ac6f-09c23ef323e9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_006\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T17:29:14.060Z\\\", \\\"updated_at\\\": \\\"2026-05-18T08:48:59.436Z\\\", \\\"hypothesis\\\": \\\"Spectral-guided adaptive mixing with moderate gain (k=10, tau=0.002, per_gen mode) provides optimal balance between early response and budget conservation. k=10 is midpoint between k=20 (exp_005, fast budget depletion) and k=5 (cumulative mode, late trigger). Expect ratio to rise to ~0.55-0.65 at peak collapse gens, with more gradual budget consumption than k=20.\\\", \\\"parent\\\": \\\"exp_005\\\", \\\"spec\\\": {\\\"description\\\": \\\"Phase 1: Adaptive spectral-guided mixing (k=10, tau=0.002, per_gen mode, log_det signal), seed 42. 论文主实验.\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition adaptive --seed 42 --generations 10 --signal log_det --tau 0.002 --k 10 --signal_mode per_gen --gpu 0\\\\\\\"\\\", \\\"server\\\": \\\"rtx6000-diagprobe\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": 134913, \\\"tmux_session\\\": \\\"exp_006\\\", \\\"model_name\\\": \\\"EleutherAI/pythia-410m-deduped\\\", \\\"seed\\\": 42, \\\"data_path\\\": \\\"/root/spectral_collapse_ews/data/\\\", \\\"data_count\\\": \\\"50K real pool, total_per_gen=50K\\\", \\\"generations\\\": 10, \\\"condition\\\": \\\"adaptive\\\", \\\"controller_params\\\": {\\\"tau\\\": 0.002, \\\"k\\\": 10, \\\"r_min\\\": 0.2, \\\"r_max\\\": 0.8, \\\"alpha\\\": 0.5, \\\"signal\\\": \\\"log_det\\\", \\\"signal_mode\\\": \\\"per_gen\\\"}, \\\"log_path\\\": \\\"~/runs/spectral_collapse_ews/exp_006.log\\\", \\\"checkpoint_dir\\\": \\\"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/adaptive_k10_seed42/\\\", \\\"results_file\\\": \\\"/root/spectral_collapse_ews/results/phase1_adaptive_k10_seed42_results.json\\\", \\\"checkpoint_source\\\": \\\"EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)\\\", \\\"eval_data\\\": \\\"/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)\\\"}, \\\"metrics\\\": {\\\"gen0_eff_rank\\\": 417.55, \\\"gen0_log_det\\\": 2366.68, \\\"gen0_ppl\\\": 9.554, \\\"gen0_distinct4\\\": 0.7414, \\\"gen1_eff_rank\\\": 477.31, \\\"gen1_log_det\\\": 2365.1, \\\"gen1_ppl\\\": 10.089, \\\"gen1_distinct4\\\": 0.7099, \\\"gen1_mix_ratio\\\": 0.5, \\\"gen1_triggered\\\": false, \\\"gen1_train_loss\\\": 1.984, \\\"gen2_eff_rank\\\": 487.08, \\\"gen2_log_det\\\": 2394.01, \\\"gen2_ppl\\\": 10.416, \\\"gen2_distinct4\\\": 0.5995, \\\"gen2_mix_ratio\\\": 0.5, \\\"gen2_triggered\\\": false, \\\"gen2_train_loss\\\": 1.934, \\\"gen3_eff_rank\\\": 496.03, \\\"gen3_log_det\\\": 2423.83, \\\"gen3_ppl\\\": 10.76, \\\"gen3_distinct4\\\": 0.4898, \\\"gen3_mix_ratio\\\": 0.5, \\\"gen3_triggered\\\": false, \\\"gen3_train_loss\\\": 1.752, \\\"gen4_eff_rank\\\": 501.19, \\\"gen4_log_det\\\": 2448.26, \\\"gen4_ppl\\\": 11.135, \\\"gen4_distinct4\\\": 0.4304, \\\"gen4_mix_ratio\\\": 0.5, \\\"gen4_triggered\\\": false, \\\"gen4_train_loss\\\": 1.572, \\\"gen5_eff_rank\\\": 512.5, \\\"gen5_log_det\\\": 2488.08, \\\"gen5_ppl\\\": 11.643, \\\"gen5_distinct4\\\": 0.373, \\\"gen5_mix_ratio\\\": 0.5, \\\"gen5_triggered\\\": false, \\\"gen5_train_loss\\\": 1.467, \\\"gen6_eff_rank\\\": 518.89, \\\"gen6_log_det\\\": 2507.62, \\\"gen6_ppl\\\": 12.144, \\\"gen6_distinct4\\\": 0.3556, \\\"gen6_mix_ratio\\\": 0.5, \\\"gen6_triggered\\\": false, \\\"gen6_train_loss\\\": 1.325, \\\"gen7_eff_rank\\\": 526.89, \\\"gen7_log_det\\\": 2526.19, \\\"gen7_ppl\\\": 12.723, \\\"gen7_distinct4\\\": 0.2905, \\\"gen7_mix_ratio\\\": 0.5, \\\"gen7_triggered\\\": false, \\\"gen7_train_loss\\\": 1.251, \\\"gen8_eff_rank\\\": 535.3, \\\"gen8_log_det\\\": 2542.89, \\\"gen8_ppl\\\": 13.397, \\\"gen8_distinct4\\\": 0.2558, \\\"gen8_mix_ratio\\\": 0.5, \\\"gen8_triggered\\\": false, \\\"gen8_train_loss\\\": 1.149, \\\"gen9_eff_rank\\\": 544.5, \\\"gen9_log_det\\\": 2560.14, \\\"gen9_ppl\\\": 14.159, \\\"gen9_distinct4\\\": 0.226, \\\"gen9_mix_ratio\\\": 0.5, \\\"gen9_triggered\\\": false, \\\"gen9_train_loss\\\": 1.062, \\\"gen10_eff_rank\\\": 553.76, \\\"gen10_log_det\\\": 2572.22, \\\"gen10_ppl\\\": 15.1, \\\"gen10_distinct4\\\": 0.2388, \\\"gen10_mix_ratio\\\": 0.5, \\\"gen10_triggered\\\": false, \\\"gen10_train_loss\\\": 0.991, \\\"total_generations\\\": 11, \\\"controller_ever_triggered\\\": false, \\\"final_eff_rank\\\": 553.76, \\\"final_ppl\\\": 15.1, \\\"final_distinct4\\\": 0.2388}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-18T08:47:09.147Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-18T08:47:10.572135+00:00\\\"}]}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1046}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_006\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-17T17:29:14.060Z\", \"updated_at\": \"2026-05-18T08:48:59.436Z\", \"hypothesis\": \"Spectral-guided adaptive mixing with moderate gain (k=10, tau=0.002, per_gen mode) provides optimal balance between early response and budget conservation. k=10 is midpoint between k=20 (exp_005, fast budget depletion) and k=5 (cumulative mode, late trigger). Expect ratio to rise to ~0.55-0.65 at peak collapse gens, with more gradual budget consumption than k=20.\", \"parent\": \"exp_005\", \"spec\": {\"description\": \"Phase 1: Adaptive spectral-guided mixing (k=10, tau=0.002, per_gen mode, log_det signal), seed 42. 论文主实验.\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition adaptive --seed 42 --generations 10 --signal log_det --tau 0.002 --k 10 --signal_mode per_gen --gpu 0\\\"\", \"server\": \"rtx6000-diagprobe\", \"gpu\": \"cuda:0\", \"pid\": 134913, \"tmux_session\": \"exp_006\", \"model_name\": \"EleutherAI/pythia-410m-deduped\", \"seed\": 42, \"data_path\": \"/root/spectral_collapse_ews/data/\", \"data_count\": \"50K real pool, total_per_gen=50K\", \"generations\": 10, \"condition\": \"adaptive\", \"controller_params\": {\"tau\": 0.002, \"k\": 10, \"r_min\": 0.2, \"r_max\": 0.8, \"alpha\": 0.5, \"signal\": \"log_det\", \"signal_mode\": \"per_gen\"}, \"log_path\": \"~/runs/spectral_collapse_ews/exp_006.log\", \"checkpoint_dir\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/adaptive_k10_seed42/\", \"results_file\": \"/root/spectral_collapse_ews/results/phase1_adaptive_k10_seed42_results.json\", \"checkpoint_source\": \"EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)\", \"eval_data\": \"/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)\"}, \"metrics\": {\"gen0_eff_rank\": 417.55, \"gen0_log_det\": 2366.68, \"gen0_ppl\": 9.554, \"gen0_distinct4\": 0.7414, \"gen1_eff_rank\": 477.31, \"gen1_log_det\": 2365.1, \"gen1_ppl\": 10.089, \"gen1_distinct4\": 0.7099, \"gen1_mix_ratio\": 0.5, \"gen1_triggered\": false, \"gen1_train_loss\": 1.984, \"gen2_eff_rank\": 487.08, \"gen2_log_det\": 2394.01, \"gen2_ppl\": 10.416, \"gen2_distinct4\": 0.5995, \"gen2_mix_ratio\": 0.5, \"gen2_triggered\": false, \"gen2_train_loss\": 1.934, \"gen3_eff_rank\": 496.03, \"gen3_log_det\": 2423.83, \"gen3_ppl\": 10.76, \"gen3_distinct4\": 0.4898, \"gen3_mix_ratio\": 0.5, \"gen3_triggered\": false, \"gen3_train_loss\": 1.752, \"gen4_eff_rank\": 501.19, \"gen4_log_det\": 2448.26, \"gen4_ppl\": 11.135, \"gen4_distinct4\": 0.4304, \"gen4_mix_ratio\": 0.5, \"gen4_triggered\": false, \"gen4_train_loss\": 1.572, \"gen5_eff_rank\": 512.5, \"gen5_log_det\": 2488.08, \"gen5_ppl\": 11.643, \"gen5_distinct4\": 0.373, \"gen5_mix_ratio\": 0.5, \"gen5_triggered\": false, \"gen5_train_loss\": 1.467, \"gen6_eff_rank\": 518.89, \"gen6_log_det\": 2507.62, \"gen6_ppl\": 12.144, \"gen6_distinct4\": 0.3556, \"gen6_mix_ratio\": 0.5, \"gen6_triggered\": false, \"gen6_train_loss\": 1.325, \"gen7_eff_rank\": 526.89, \"gen7_log_det\": 2526.19, \"gen7_ppl\": 12.723, \"gen7_distinct4\": 0.2905, \"gen7_mix_ratio\": 0.5, \"gen7_triggered\": false, \"gen7_train_loss\": 1.251, \"gen8_eff_rank\": 535.3, \"gen8_log_det\": 2542.89, \"gen8_ppl\": 13.397, \"gen8_distinct4\": 0.2558, \"gen8_mix_ratio\": 0.5, \"gen8_triggered\": false, \"gen8_train_loss\": 1.149, \"gen9_eff_rank\": 544.5, \"gen9_log_det\": 2560.14, \"gen9_ppl\": 14.159, \"gen9_distinct4\": 0.226, \"gen9_mix_ratio\": 0.5, \"gen9_triggered\": false, \"gen9_train_loss\": 1.062, \"gen10_eff_rank\": 553.76, \"gen10_log_det\": 2572.22, \"gen10_ppl\": 15.1, \"gen10_distinct4\": 0.2388, \"gen10_mix_ratio\": 0.5, \"gen10_triggered\": false, \"gen10_train_loss\": 0.991, \"total_generations\": 11, \"controller_ever_triggered\": false, \"final_eff_rank\": 553.76, \"final_ppl\": 15.1, \"final_distinct4\": 0.2388}, \"reproduce\": {\"finished_at\": \"2026-05-18T08:47:09.147Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T08:47:10.572135+00:00\"}]}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1046}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, metrics updated. Now let me update conclusion, checkpoint_path, log_path, notes, and status.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "aa0fa3f7-db41-45c9-b628-c6c77c1c0c5d",
+  "uuid": "6bcab6a7-c061-4bef-a1b7-622888e77318",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CzJs1oHjPzwGCovFErwkhE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4172,
+      "cache_read_input_tokens": 33030,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4172
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_014cVtoM86C6ZRuEEmvqKUMv`</summary>
+
+```json
+{
+  "exp_id": "exp_006",
+  "field": "conclusion",
+  "value": "negative",
+  "project": "spectral_collapse_ews"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "aa0fa3f7-db41-45c9-b628-c6c77c1c0c5d",
+  "uuid": "69657bce-6f1a-452a-910c-26f80d8a7ffc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CzJs1oHjPzwGCovFErwkhE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4172,
+      "cache_read_input_tokens": 33030,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4172
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-18T08:49:03.994Z_
+
+<details><summary>↩ Tool result · `toolu_014cVtoM86C6ZRuEEmvqKUMv`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_006\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-17T17:29:14.060Z\", \"updated_at\": \"2026-05-18T08:49:03.955Z\", \"hypothesis\": \"Spectral-guided adaptive mixing with moderate gain (k=10, tau=0.002, per_gen mode) provides optimal balance between early response and budget conservation. k=10 is midpoint between k=20 (exp_005, fast budget depletion) and k=5 (cumulative mode, late trigger). Expect ratio to rise to ~0.55-0.65 at peak collapse gens, with more gradual budget consumption than k=20.\", \"parent\": \"exp_005\", \"spec\": {\"description\": \"Phase 1: Adaptive spectral-guided mixing (k=10, tau=0.002, per_gen mode, log_det signal), seed 42. 论文主实验.\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition adaptive --seed 42 --generations 10 --signal log_det --tau 0.002 --k 10 --signal_mode per_gen --gpu 0\\\"\", \"server\": \"rtx6000-diagprobe\", \"gpu\": \"cuda:0\", \"pid\": 134913, \"tmux_session\": \"exp_006\", \"model_name\": \"EleutherAI/pythia-410m-deduped\", \"seed\": 42, \"data_path\": \"/root/spectral_collapse_ews/data/\", \"data_count\": \"50K real pool, total_per_gen=50K\", \"generations\": 10, \"condition\": \"adaptive\", \"controller_params\": {\"tau\": 0.002, \"k\": 10, \"r_min\": 0.2, \"r_max\": 0.8, \"alpha\": 0.5, \"signal\": \"log_det\", \"signal_mode\": \"per_gen\"}, \"log_path\": \"~/runs/spectral_collapse_ews/exp_006.log\", \"checkpoint_dir\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/adaptive_k10_seed42/\", \"results_file\": \"/root/spectral_collapse_ews/results/phase1_adaptive_k10_seed42_results.json\", \"checkpoint_source\": \"EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)\", \"eval_data\": \"/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)\"}, \"metrics\": {\"gen0_eff_rank\": 417.55, \"gen0_log_det\": 2366.68, \"gen0_ppl\": 9.554, \"gen0_distinct4\": 0.7414, \"gen1_eff_rank\": 477.31, \"gen1_log_det\": 2365.1, \"gen1_ppl\": 10.089, \"gen1_distinct4\": 0.7099, \"gen1_mix_ratio\": 0.5, \"gen1_triggered\": false, \"gen1_train_loss\": 1.984, \"gen2_eff_rank\": 487.08, \"gen2_log_det\": 2394.01, \"gen2_ppl\": 10.416, \"gen2_distinct4\": 0.5995, \"gen2_mix_ratio\": 0.5, \"gen2_triggered\": false, \"gen2_train_loss\": 1.934, \"gen3_eff_rank\": 496.03, \"gen3_log_det\": 2423.83, \"gen3_ppl\": 10.76, \"gen3_distinct4\": 0.4898, \"gen3_mix_ratio\": 0.5, \"gen3_triggered\": false, \"gen3_train_loss\": 1.752, \"gen4_eff_rank\": 501.19, \"gen4_log_det\": 2448.26, \"gen4_ppl\": 11.135, \"gen4_distinct4\": 0.4304, \"gen4_mix_ratio\": 0.5, \"gen4_triggered\": false, \"gen4_train_loss\": 1.572, \"gen5_eff_rank\": 512.5, \"gen5_log_det\": 2488.08, \"gen5_ppl\": 11.643, \"gen5_distinct4\": 0.373, \"gen5_mix_ratio\": 0.5, \"gen5_triggered\": false, \"gen5_train_loss\": 1.467, \"gen6_eff_rank\": 518.89, \"gen6_log_det\": 2507.62, \"gen6_ppl\": 12.144, \"gen6_distinct4\": 0.3556, \"gen6_mix_ratio\": 0.5, \"gen6_triggered\": false, \"gen6_train_loss\": 1.325, \"gen7_eff_rank\": 526.89, \"gen7_log_det\": 2526.19, \"gen7_ppl\": 12.723, \"gen7_distinct4\": 0.2905, \"gen7_mix_ratio\": 0.5, \"gen7_triggered\": false, \"gen7_train_loss\": 1.251, \"gen8_eff_rank\": 535.3, \"gen8_log_det\": 2542.89, \"gen8_ppl\": 13.397, \"gen8_distinct4\": 0.2558, \"gen8_mix_ratio\": 0.5, \"gen8_triggered\": false, \"gen8_train_loss\": 1.149, \"gen9_eff_rank\": 544.5, \"gen9_log_det\": 2560.14, \"gen9_ppl\": 14.159, \"gen9_distinct4\": 0.226, \"gen9_mix_ratio\": 0.5, \"gen9_triggered\": false, \"gen9_train_loss\": 1.062, \"gen10_eff_rank\": 553.76, \"gen10_log_det\": 2572.22, \"gen10_ppl\": 15.1, \"gen10_distinct4\": 0.2388, \"gen10_mix_ratio\": 0.5, \"gen10_triggered\": false, \"gen10_train_loss\": 0.991, \"total_generations\": 11, \"controller_ever_triggered\": false, \"final_eff_rank\": 553.76, \"final_ppl\": 15.1, \"final_distinct4\": 0.2388}, \"reproduce\": {\"finished_at\": \"2026-05-18T08:47:09.147Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T08:47:10.572135+00:00\"}]}, \"conclusion\": \"negative\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.071}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "aa0fa3f7-db41-45c9-b628-c6c77c1c0c5d",
+  "uuid": "91c53108-21ec-44b3-8fbd-07a03024294f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_006\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T17:29:14.060Z\\\", \\\"updated_at\\\": \\\"2026-05-18T08:49:03.955Z\\\", \\\"hypothesis\\\": \\\"Spectral-guided adaptive mixing with moderate gain (k=10, tau=0.002, per_gen mode) provides optimal balance between early response and budget conservation. k=10 is midpoint between k=20 (exp_005, fast budget depletion) and k=5 (cumulative mode, late trigger). Expect ratio to rise to ~0.55-0.65 at peak collapse gens, with more gradual budget consumption than k=20.\\\", \\\"parent\\\": \\\"exp_005\\\", \\\"spec\\\": {\\\"description\\\": \\\"Phase 1: Adaptive spectral-guided mixing (k=10, tau=0.002, per_gen mode, log_det signal), seed 42. 论文主实验.\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition adaptive --seed 42 --generations 10 --signal log_det --tau 0.002 --k 10 --signal_mode per_gen --gpu 0\\\\\\\"\\\", \\\"server\\\": \\\"rtx6000-diagprobe\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": 134913, \\\"tmux_session\\\": \\\"exp_006\\\", \\\"model_name\\\": \\\"EleutherAI/pythia-410m-deduped\\\", \\\"seed\\\": 42, \\\"data_path\\\": \\\"/root/spectral_collapse_ews/data/\\\", \\\"data_count\\\": \\\"50K real pool, total_per_gen=50K\\\", \\\"generations\\\": 10, \\\"condition\\\": \\\"adaptive\\\", \\\"controller_params\\\": {\\\"tau\\\": 0.002, \\\"k\\\": 10, \\\"r_min\\\": 0.2, \\\"r_max\\\": 0.8, \\\"alpha\\\": 0.5, \\\"signal\\\": \\\"log_det\\\", \\\"signal_mode\\\": \\\"per_gen\\\"}, \\\"log_path\\\": \\\"~/runs/spectral_collapse_ews/exp_006.log\\\", \\\"checkpoint_dir\\\": \\\"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/adaptive_k10_seed42/\\\", \\\"results_file\\\": \\\"/root/spectral_collapse_ews/results/phase1_adaptive_k10_seed42_results.json\\\", \\\"checkpoint_source\\\": \\\"EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)\\\", \\\"eval_data\\\": \\\"/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)\\\"}, \\\"metrics\\\": {\\\"gen0_eff_rank\\\": 417.55, \\\"gen0_log_det\\\": 2366.68, \\\"gen0_ppl\\\": 9.554, \\\"gen0_distinct4\\\": 0.7414, \\\"gen1_eff_rank\\\": 477.31, \\\"gen1_log_det\\\": 2365.1, \\\"gen1_ppl\\\": 10.089, \\\"gen1_distinct4\\\": 0.7099, \\\"gen1_mix_ratio\\\": 0.5, \\\"gen1_triggered\\\": false, \\\"gen1_train_loss\\\": 1.984, \\\"gen2_eff_rank\\\": 487.08, \\\"gen2_log_det\\\": 2394.01, \\\"gen2_ppl\\\": 10.416, \\\"gen2_distinct4\\\": 0.5995, \\\"gen2_mix_ratio\\\": 0.5, \\\"gen2_triggered\\\": false, \\\"gen2_train_loss\\\": 1.934, \\\"gen3_eff_rank\\\": 496.03, \\\"gen3_log_det\\\": 2423.83, \\\"gen3_ppl\\\": 10.76, \\\"gen3_distinct4\\\": 0.4898, \\\"gen3_mix_ratio\\\": 0.5, \\\"gen3_triggered\\\": false, \\\"gen3_train_loss\\\": 1.752, \\\"gen4_eff_rank\\\": 501.19, \\\"gen4_log_det\\\": 2448.26, \\\"gen4_ppl\\\": 11.135, \\\"gen4_distinct4\\\": 0.4304, \\\"gen4_mix_ratio\\\": 0.5, \\\"gen4_triggered\\\": false, \\\"gen4_train_loss\\\": 1.572, \\\"gen5_eff_rank\\\": 512.5, \\\"gen5_log_det\\\": 2488.08, \\\"gen5_ppl\\\": 11.643, \\\"gen5_distinct4\\\": 0.373, \\\"gen5_mix_ratio\\\": 0.5, \\\"gen5_triggered\\\": false, \\\"gen5_train_loss\\\": 1.467, \\\"gen6_eff_rank\\\": 518.89, \\\"gen6_log_det\\\": 2507.62, \\\"gen6_ppl\\\": 12.144, \\\"gen6_distinct4\\\": 0.3556, \\\"gen6_mix_ratio\\\": 0.5, \\\"gen6_triggered\\\": false, \\\"gen6_train_loss\\\": 1.325, \\\"gen7_eff_rank\\\": 526.89, \\\"gen7_log_det\\\": 2526.19, \\\"gen7_ppl\\\": 12.723, \\\"gen7_distinct4\\\": 0.2905, \\\"gen7_mix_ratio\\\": 0.5, \\\"gen7_triggered\\\": false, \\\"gen7_train_loss\\\": 1.251, \\\"gen8_eff_rank\\\": 535.3, \\\"gen8_log_det\\\": 2542.89, \\\"gen8_ppl\\\": 13.397, \\\"gen8_distinct4\\\": 0.2558, \\\"gen8_mix_ratio\\\": 0.5, \\\"gen8_triggered\\\": false, \\\"gen8_train_loss\\\": 1.149, \\\"gen9_eff_rank\\\": 544.5, \\\"gen9_log_det\\\": 2560.14, \\\"gen9_ppl\\\": 14.159, \\\"gen9_distinct4\\\": 0.226, \\\"gen9_mix_ratio\\\": 0.5, \\\"gen9_triggered\\\": false, \\\"gen9_train_loss\\\": 1.062, \\\"gen10_eff_rank\\\": 553.76, \\\"gen10_log_det\\\": 2572.22, \\\"gen10_ppl\\\": 15.1, \\\"gen10_distinct4\\\": 0.2388, \\\"gen10_mix_ratio\\\": 0.5, \\\"gen10_triggered\\\": false, \\\"gen10_train_loss\\\": 0.991, \\\"total_generations\\\": 11, \\\"controller_ever_triggered\\\": false, \\\"final_eff_rank\\\": 553.76, \\\"final_ppl\\\": 15.1, \\\"final_distinct4\\\": 0.2388}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-18T08:47:09.147Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-18T08:47:10.572135+00:00\\\"}]}, \\\"conclusion\\\": \\\"negative\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.071}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_006\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-17T17:29:14.060Z\", \"updated_at\": \"2026-05-18T08:49:03.955Z\", \"hypothesis\": \"Spectral-guided adaptive mixing with moderate gain (k=10, tau=0.002, per_gen mode) provides optimal balance between early response and budget conservation. k=10 is midpoint between k=20 (exp_005, fast budget depletion) and k=5 (cumulative mode, late trigger). Expect ratio to rise to ~0.55-0.65 at peak collapse gens, with more gradual budget consumption than k=20.\", \"parent\": \"exp_005\", \"spec\": {\"description\": \"Phase 1: Adaptive spectral-guided mixing (k=10, tau=0.002, per_gen mode, log_det signal), seed 42. 论文主实验.\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition adaptive --seed 42 --generations 10 --signal log_det --tau 0.002 --k 10 --signal_mode per_gen --gpu 0\\\"\", \"server\": \"rtx6000-diagprobe\", \"gpu\": \"cuda:0\", \"pid\": 134913, \"tmux_session\": \"exp_006\", \"model_name\": \"EleutherAI/pythia-410m-deduped\", \"seed\": 42, \"data_path\": \"/root/spectral_collapse_ews/data/\", \"data_count\": \"50K real pool, total_per_gen=50K\", \"generations\": 10, \"condition\": \"adaptive\", \"controller_params\": {\"tau\": 0.002, \"k\": 10, \"r_min\": 0.2, \"r_max\": 0.8, \"alpha\": 0.5, \"signal\": \"log_det\", \"signal_mode\": \"per_gen\"}, \"log_path\": \"~/runs/spectral_collapse_ews/exp_006.log\", \"checkpoint_dir\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/adaptive_k10_seed42/\", \"results_file\": \"/root/spectral_collapse_ews/results/phase1_adaptive_k10_seed42_results.json\", \"checkpoint_source\": \"EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)\", \"eval_data\": \"/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)\"}, \"metrics\": {\"gen0_eff_rank\": 417.55, \"gen0_log_det\": 2366.68, \"gen0_ppl\": 9.554, \"gen0_distinct4\": 0.7414, \"gen1_eff_rank\": 477.31, \"gen1_log_det\": 2365.1, \"gen1_ppl\": 10.089, \"gen1_distinct4\": 0.7099, \"gen1_mix_ratio\": 0.5, \"gen1_triggered\": false, \"gen1_train_loss\": 1.984, \"gen2_eff_rank\": 487.08, \"gen2_log_det\": 2394.01, \"gen2_ppl\": 10.416, \"gen2_distinct4\": 0.5995, \"gen2_mix_ratio\": 0.5, \"gen2_triggered\": false, \"gen2_train_loss\": 1.934, \"gen3_eff_rank\": 496.03, \"gen3_log_det\": 2423.83, \"gen3_ppl\": 10.76, \"gen3_distinct4\": 0.4898, \"gen3_mix_ratio\": 0.5, \"gen3_triggered\": false, \"gen3_train_loss\": 1.752, \"gen4_eff_rank\": 501.19, \"gen4_log_det\": 2448.26, \"gen4_ppl\": 11.135, \"gen4_distinct4\": 0.4304, \"gen4_mix_ratio\": 0.5, \"gen4_triggered\": false, \"gen4_train_loss\": 1.572, \"gen5_eff_rank\": 512.5, \"gen5_log_det\": 2488.08, \"gen5_ppl\": 11.643, \"gen5_distinct4\": 0.373, \"gen5_mix_ratio\": 0.5, \"gen5_triggered\": false, \"gen5_train_loss\": 1.467, \"gen6_eff_rank\": 518.89, \"gen6_log_det\": 2507.62, \"gen6_ppl\": 12.144, \"gen6_distinct4\": 0.3556, \"gen6_mix_ratio\": 0.5, \"gen6_triggered\": false, \"gen6_train_loss\": 1.325, \"gen7_eff_rank\": 526.89, \"gen7_log_det\": 2526.19, \"gen7_ppl\": 12.723, \"gen7_distinct4\": 0.2905, \"gen7_mix_ratio\": 0.5, \"gen7_triggered\": false, \"gen7_train_loss\": 1.251, \"gen8_eff_rank\": 535.3, \"gen8_log_det\": 2542.89, \"gen8_ppl\": 13.397, \"gen8_distinct4\": 0.2558, \"gen8_mix_ratio\": 0.5, \"gen8_triggered\": false, \"gen8_train_loss\": 1.149, \"gen9_eff_rank\": 544.5, \"gen9_log_det\": 2560.14, \"gen9_ppl\": 14.159, \"gen9_distinct4\": 0.226, \"gen9_mix_ratio\": 0.5, \"gen9_triggered\": false, \"gen9_train_loss\": 1.062, \"gen10_eff_rank\": 553.76, \"gen10_log_det\": 2572.22, \"gen10_ppl\": 15.1, \"gen10_distinct4\": 0.2388, \"gen10_mix_ratio\": 0.5, \"gen10_triggered\": false, \"gen10_train_loss\": 0.991, \"total_generations\": 11, \"controller_ever_triggered\": false, \"final_eff_rank\": 553.76, \"final_ppl\": 15.1, \"final_distinct4\": 0.2388}, \"reproduce\": {\"finished_at\": \"2026-05-18T08:47:09.147Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T08:47:10.572135+00:00\"}]}, \"conclusion\": \"negative\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.071}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01AbSqYAUNg3meJ8U5oxGRQB`</summary>
+
+```json
+{
+  "exp_id": "exp_006",
+  "field": "checkpoint_path",
+  "value": "/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/adaptive_k10_seed42/",
+  "project": "spectral_collapse_ews"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "aa0fa3f7-db41-45c9-b628-c6c77c1c0c5d",
+  "uuid": "8d6a8d87-b461-4054-b5cb-21686a5bd1d0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CzJs1oHjPzwGCovFErwkhE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4172,
+      "cache_read_input_tokens": 33030,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4172
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-18T08:49:04.943Z_
+
+<details><summary>↩ Tool result · `toolu_01AbSqYAUNg3meJ8U5oxGRQB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_006\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-17T17:29:14.060Z\", \"updated_at\": \"2026-05-18T08:49:04.908Z\", \"hypothesis\": \"Spectral-guided adaptive mixing with moderate gain (k=10, tau=0.002, per_gen mode) provides optimal balance between early response and budget conservation. k=10 is midpoint between k=20 (exp_005, fast budget depletion) and k=5 (cumulative mode, late trigger). Expect ratio to rise to ~0.55-0.65 at peak collapse gens, with more gradual budget consumption than k=20.\", \"parent\": \"exp_005\", \"spec\": {\"description\": \"Phase 1: Adaptive spectral-guided mixing (k=10, tau=0.002, per_gen mode, log_det signal), seed 42. 论文主实验.\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition adaptive --seed 42 --generations 10 --signal log_det --tau 0.002 --k 10 --signal_mode per_gen --gpu 0\\\"\", \"server\": \"rtx6000-diagprobe\", \"gpu\": \"cuda:0\", \"pid\": 134913, \"tmux_session\": \"exp_006\", \"model_name\": \"EleutherAI/pythia-410m-deduped\", \"seed\": 42, \"data_path\": \"/root/spectral_collapse_ews/data/\", \"data_count\": \"50K real pool, total_per_gen=50K\", \"generations\": 10, \"condition\": \"adaptive\", \"controller_params\": {\"tau\": 0.002, \"k\": 10, \"r_min\": 0.2, \"r_max\": 0.8, \"alpha\": 0.5, \"signal\": \"log_det\", \"signal_mode\": \"per_gen\"}, \"log_path\": \"~/runs/spectral_collapse_ews/exp_006.log\", \"checkpoint_dir\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/adaptive_k10_seed42/\", \"results_file\": \"/root/spectral_collapse_ews/results/phase1_adaptive_k10_seed42_results.json\", \"checkpoint_source\": \"EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)\", \"eval_data\": \"/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)\"}, \"metrics\": {\"gen0_eff_rank\": 417.55, \"gen0_log_det\": 2366.68, \"gen0_ppl\": 9.554, \"gen0_distinct4\": 0.7414, \"gen1_eff_rank\": 477.31, \"gen1_log_det\": 2365.1, \"gen1_ppl\": 10.089, \"gen1_distinct4\": 0.7099, \"gen1_mix_ratio\": 0.5, \"gen1_triggered\": false, \"gen1_train_loss\": 1.984, \"gen2_eff_rank\": 487.08, \"gen2_log_det\": 2394.01, \"gen2_ppl\": 10.416, \"gen2_distinct4\": 0.5995, \"gen2_mix_ratio\": 0.5, \"gen2_triggered\": false, \"gen2_train_loss\": 1.934, \"gen3_eff_rank\": 496.03, \"gen3_log_det\": 2423.83, \"gen3_ppl\": 10.76, \"gen3_distinct4\": 0.4898, \"gen3_mix_ratio\": 0.5, \"gen3_triggered\": false, \"gen3_train_loss\": 1.752, \"gen4_eff_rank\": 501.19, \"gen4_log_det\": 2448.26, \"gen4_ppl\": 11.135, \"gen4_distinct4\": 0.4304, \"gen4_mix_ratio\": 0.5, \"gen4_triggered\": false, \"gen4_train_loss\": 1.572, \"gen5_eff_rank\": 512.5, \"gen5_log_det\": 2488.08, \"gen5_ppl\": 11.643, \"gen5_distinct4\": 0.373, \"gen5_mix_ratio\": 0.5, \"gen5_triggered\": false, \"gen5_train_loss\": 1.467, \"gen6_eff_rank\": 518.89, \"gen6_log_det\": 2507.62, \"gen6_ppl\": 12.144, \"gen6_distinct4\": 0.3556, \"gen6_mix_ratio\": 0.5, \"gen6_triggered\": false, \"gen6_train_loss\": 1.325, \"gen7_eff_rank\": 526.89, \"gen7_log_det\": 2526.19, \"gen7_ppl\": 12.723, \"gen7_distinct4\": 0.2905, \"gen7_mix_ratio\": 0.5, \"gen7_triggered\": false, \"gen7_train_loss\": 1.251, \"gen8_eff_rank\": 535.3, \"gen8_log_det\": 2542.89, \"gen8_ppl\": 13.397, \"gen8_distinct4\": 0.2558, \"gen8_mix_ratio\": 0.5, \"gen8_triggered\": false, \"gen8_train_loss\": 1.149, \"gen9_eff_rank\": 544.5, \"gen9_log_det\": 2560.14, \"gen9_ppl\": 14.159, \"gen9_distinct4\": 0.226, \"gen9_mix_ratio\": 0.5, \"gen9_triggered\": false, \"gen9_train_loss\": 1.062, \"gen10_eff_rank\": 553.76, \"gen10_log_det\": 2572.22, \"gen10_ppl\": 15.1, \"gen10_distinct4\": 0.2388, \"gen10_mix_ratio\": 0.5, \"gen10_triggered\": false, \"gen10_train_loss\": 0.991, \"total_generations\": 11, \"controller_ever_triggered\": false, \"final_eff_rank\": 553.76, \"final_ppl\": 15.1, \"final_distinct4\": 0.2388}, \"reproduce\": {\"finished_at\": \"2026-05-18T08:47:09.147Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T08:47:10.572135+00:00\"}]}, \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/adaptive_k10_seed42/\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0658}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "aa0fa3f7-db41-45c9-b628-c6c77c1c0c5d",
+  "uuid": "5738516e-ea96-464e-b528-fa72a1d22bbe",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_006\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T17:29:14.060Z\\\", \\\"updated_at\\\": \\\"2026-05-18T08:49:04.908Z\\\", \\\"hypothesis\\\": \\\"Spectral-guided adaptive mixing with moderate gain (k=10, tau=0.002, per_gen mode) provides optimal balance between early response and budget conservation. k=10 is midpoint between k=20 (exp_005, fast budget depletion) and k=5 (cumulative mode, late trigger). Expect ratio to rise to ~0.55-0.65 at peak collapse gens, with more gradual budget consumption than k=20.\\\", \\\"parent\\\": \\\"exp_005\\\", \\\"spec\\\": {\\\"description\\\": \\\"Phase 1: Adaptive spectral-guided mixing (k=10, tau=0.002, per_gen mode, log_det signal), seed 42. 论文主实验.\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition adaptive --seed 42 --generations 10 --signal log_det --tau 0.002 --k 10 --signal_mode per_gen --gpu 0\\\\\\\"\\\", \\\"server\\\": \\\"rtx6000-diagprobe\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": 134913, \\\"tmux_session\\\": \\\"exp_006\\\", \\\"model_name\\\": \\\"EleutherAI/pythia-410m-deduped\\\", \\\"seed\\\": 42, \\\"data_path\\\": \\\"/root/spectral_collapse_ews/data/\\\", \\\"data_count\\\": \\\"50K real pool, total_per_gen=50K\\\", \\\"generations\\\": 10, \\\"condition\\\": \\\"adaptive\\\", \\\"controller_params\\\": {\\\"tau\\\": 0.002, \\\"k\\\": 10, \\\"r_min\\\": 0.2, \\\"r_max\\\": 0.8, \\\"alpha\\\": 0.5, \\\"signal\\\": \\\"log_det\\\", \\\"signal_mode\\\": \\\"per_gen\\\"}, \\\"log_path\\\": \\\"~/runs/spectral_collapse_ews/exp_006.log\\\", \\\"checkpoint_dir\\\": \\\"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/adaptive_k10_seed42/\\\", \\\"results_file\\\": \\\"/root/spectral_collapse_ews/results/phase1_adaptive_k10_seed42_results.json\\\", \\\"checkpoint_source\\\": \\\"EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)\\\", \\\"eval_data\\\": \\\"/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)\\\"}, \\\"metrics\\\": {\\\"gen0_eff_rank\\\": 417.55, \\\"gen0_log_det\\\": 2366.68, \\\"gen0_ppl\\\": 9.554, \\\"gen0_distinct4\\\": 0.7414, \\\"gen1_eff_rank\\\": 477.31, \\\"gen1_log_det\\\": 2365.1, \\\"gen1_ppl\\\": 10.089, \\\"gen1_distinct4\\\": 0.7099, \\\"gen1_mix_ratio\\\": 0.5, \\\"gen1_triggered\\\": false, \\\"gen1_train_loss\\\": 1.984, \\\"gen2_eff_rank\\\": 487.08, \\\"gen2_log_det\\\": 2394.01, \\\"gen2_ppl\\\": 10.416, \\\"gen2_distinct4\\\": 0.5995, \\\"gen2_mix_ratio\\\": 0.5, \\\"gen2_triggered\\\": false, \\\"gen2_train_loss\\\": 1.934, \\\"gen3_eff_rank\\\": 496.03, \\\"gen3_log_det\\\": 2423.83, \\\"gen3_ppl\\\": 10.76, \\\"gen3_distinct4\\\": 0.4898, \\\"gen3_mix_ratio\\\": 0.5, \\\"gen3_triggered\\\": false, \\\"gen3_train_loss\\\": 1.752, \\\"gen4_eff_rank\\\": 501.19, \\\"gen4_log_det\\\": 2448.26, \\\"gen4_ppl\\\": 11.135, \\\"gen4_distinct4\\\": 0.4304, \\\"gen4_mix_ratio\\\": 0.5, \\\"gen4_triggered\\\": false, \\\"gen4_train_loss\\\": 1.572, \\\"gen5_eff_rank\\\": 512.5, \\\"gen5_log_det\\\": 2488.08, \\\"gen5_ppl\\\": 11.643, \\\"gen5_distinct4\\\": 0.373, \\\"gen5_mix_ratio\\\": 0.5, \\\"gen5_triggered\\\": false, \\\"gen5_train_loss\\\": 1.467, \\\"gen6_eff_rank\\\": 518.89, \\\"gen6_log_det\\\": 2507.62, \\\"gen6_ppl\\\": 12.144, \\\"gen6_distinct4\\\": 0.3556, \\\"gen6_mix_ratio\\\": 0.5, \\\"gen6_triggered\\\": false, \\\"gen6_train_loss\\\": 1.325, \\\"gen7_eff_rank\\\": 526.89, \\\"gen7_log_det\\\": 2526.19, \\\"gen7_ppl\\\": 12.723, \\\"gen7_distinct4\\\": 0.2905, \\\"gen7_mix_ratio\\\": 0.5, \\\"gen7_triggered\\\": false, \\\"gen7_train_loss\\\": 1.251, \\\"gen8_eff_rank\\\": 535.3, \\\"gen8_log_det\\\": 2542.89, \\\"gen8_ppl\\\": 13.397, \\\"gen8_distinct4\\\": 0.2558, \\\"gen8_mix_ratio\\\": 0.5, \\\"gen8_triggered\\\": false, \\\"gen8_train_loss\\\": 1.149, \\\"gen9_eff_rank\\\": 544.5, \\\"gen9_log_det\\\": 2560.14, \\\"gen9_ppl\\\": 14.159, \\\"gen9_distinct4\\\": 0.226, \\\"gen9_mix_ratio\\\": 0.5, \\\"gen9_triggered\\\": false, \\\"gen9_train_loss\\\": 1.062, \\\"gen10_eff_rank\\\": 553.76, \\\"gen10_log_det\\\": 2572.22, \\\"gen10_ppl\\\": 15.1, \\\"gen10_distinct4\\\": 0.2388, \\\"gen10_mix_ratio\\\": 0.5, \\\"gen10_triggered\\\": false, \\\"gen10_train_loss\\\": 0.991, \\\"total_generations\\\": 11, \\\"controller_ever_triggered\\\": false, \\\"final_eff_rank\\\": 553.76, \\\"final_ppl\\\": 15.1, \\\"final_distinct4\\\": 0.2388}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-18T08:47:09.147Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-18T08:47:10.572135+00:00\\\"}]}, \\\"conclusion\\\": \\\"negative\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/adaptive_k10_seed42/\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0658}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_006\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-17T17:29:14.060Z\", \"updated_at\": \"2026-05-18T08:49:04.908Z\", \"hypothesis\": \"Spectral-guided adaptive mixing with moderate gain (k=10, tau=0.002, per_gen mode) provides optimal balance between early response and budget conservation. k=10 is midpoint between k=20 (exp_005, fast budget depletion) and k=5 (cumulative mode, late trigger). Expect ratio to rise to ~0.55-0.65 at peak collapse gens, with more gradual budget consumption than k=20.\", \"parent\": \"exp_005\", \"spec\": {\"description\": \"Phase 1: Adaptive spectral-guided mixing (k=10, tau=0.002, per_gen mode, log_det signal), seed 42. 论文主实验.\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition adaptive --seed 42 --generations 10 --signal log_det --tau 0.002 --k 10 --signal_mode per_gen --gpu 0\\\"\", \"server\": \"rtx6000-diagprobe\", \"gpu\": \"cuda:0\", \"pid\": 134913, \"tmux_session\": \"exp_006\", \"model_name\": \"EleutherAI/pythia-410m-deduped\", \"seed\": 42, \"data_path\": \"/root/spectral_collapse_ews/data/\", \"data_count\": \"50K real pool, total_per_gen=50K\", \"generations\": 10, \"condition\": \"adaptive\", \"controller_params\": {\"tau\": 0.002, \"k\": 10, \"r_min\": 0.2, \"r_max\": 0.8, \"alpha\": 0.5, \"signal\": \"log_det\", \"signal_mode\": \"per_gen\"}, \"log_path\": \"~/runs/spectral_collapse_ews/exp_006.log\", \"checkpoint_dir\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/adaptive_k10_seed42/\", \"results_file\": \"/root/spectral_collapse_ews/results/phase1_adaptive_k10_seed42_results.json\", \"checkpoint_source\": \"EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)\", \"eval_data\": \"/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)\"}, \"metrics\": {\"gen0_eff_rank\": 417.55, \"gen0_log_det\": 2366.68, \"gen0_ppl\": 9.554, \"gen0_distinct4\": 0.7414, \"gen1_eff_rank\": 477.31, \"gen1_log_det\": 2365.1, \"gen1_ppl\": 10.089, \"gen1_distinct4\": 0.7099, \"gen1_mix_ratio\": 0.5, \"gen1_triggered\": false, \"gen1_train_loss\": 1.984, \"gen2_eff_rank\": 487.08, \"gen2_log_det\": 2394.01, \"gen2_ppl\": 10.416, \"gen2_distinct4\": 0.5995, \"gen2_mix_ratio\": 0.5, \"gen2_triggered\": false, \"gen2_train_loss\": 1.934, \"gen3_eff_rank\": 496.03, \"gen3_log_det\": 2423.83, \"gen3_ppl\": 10.76, \"gen3_distinct4\": 0.4898, \"gen3_mix_ratio\": 0.5, \"gen3_triggered\": false, \"gen3_train_loss\": 1.752, \"gen4_eff_rank\": 501.19, \"gen4_log_det\": 2448.26, \"gen4_ppl\": 11.135, \"gen4_distinct4\": 0.4304, \"gen4_mix_ratio\": 0.5, \"gen4_triggered\": false, \"gen4_train_loss\": 1.572, \"gen5_eff_rank\": 512.5, \"gen5_log_det\": 2488.08, \"gen5_ppl\": 11.643, \"gen5_distinct4\": 0.373, \"gen5_mix_ratio\": 0.5, \"gen5_triggered\": false, \"gen5_train_loss\": 1.467, \"gen6_eff_rank\": 518.89, \"gen6_log_det\": 2507.62, \"gen6_ppl\": 12.144, \"gen6_distinct4\": 0.3556, \"gen6_mix_ratio\": 0.5, \"gen6_triggered\": false, \"gen6_train_loss\": 1.325, \"gen7_eff_rank\": 526.89, \"gen7_log_det\": 2526.19, \"gen7_ppl\": 12.723, \"gen7_distinct4\": 0.2905, \"gen7_mix_ratio\": 0.5, \"gen7_triggered\": false, \"gen7_train_loss\": 1.251, \"gen8_eff_rank\": 535.3, \"gen8_log_det\": 2542.89, \"gen8_ppl\": 13.397, \"gen8_distinct4\": 0.2558, \"gen8_mix_ratio\": 0.5, \"gen8_triggered\": false, \"gen8_train_loss\": 1.149, \"gen9_eff_rank\": 544.5, \"gen9_log_det\": 2560.14, \"gen9_ppl\": 14.159, \"gen9_distinct4\": 0.226, \"gen9_mix_ratio\": 0.5, \"gen9_triggered\": false, \"gen9_train_loss\": 1.062, \"gen10_eff_rank\": 553.76, \"gen10_log_det\": 2572.22, \"gen10_ppl\": 15.1, \"gen10_distinct4\": 0.2388, \"gen10_mix_ratio\": 0.5, \"gen10_triggered\": false, \"gen10_train_loss\": 0.991, \"total_generations\": 11, \"controller_ever_triggered\": false, \"final_eff_rank\": 553.76, \"final_ppl\": 15.1, \"final_distinct4\": 0.2388}, \"reproduce\": {\"finished_at\": \"2026-05-18T08:47:09.147Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T08:47:10.572135+00:00\"}]}, \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/adaptive_k10_seed42/\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0658}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01K6KdXvu1Y6413e37JdDXBM`</summary>
+
+```json
+{
+  "exp_id": "exp_006",
+  "field": "log_path",
+  "value": "~/runs/spectral_collapse_ews/exp_006.log",
+  "project": "spectral_collapse_ews"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "aa0fa3f7-db41-45c9-b628-c6c77c1c0c5d",
+  "uuid": "b4c8da28-b3db-4ba4-a956-8172765da5db",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CzJs1oHjPzwGCovFErwkhE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4172,
+      "cache_read_input_tokens": 33030,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4172
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-18T08:49:05.878Z_
+
+<details><summary>↩ Tool result · `toolu_01K6KdXvu1Y6413e37JdDXBM`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_006\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-17T17:29:14.060Z\", \"updated_at\": \"2026-05-18T08:49:05.847Z\", \"hypothesis\": \"Spectral-guided adaptive mixing with moderate gain (k=10, tau=0.002, per_gen mode) provides optimal balance between early response and budget conservation. k=10 is midpoint between k=20 (exp_005, fast budget depletion) and k=5 (cumulative mode, late trigger). Expect ratio to rise to ~0.55-0.65 at peak collapse gens, with more gradual budget consumption than k=20.\", \"parent\": \"exp_005\", \"spec\": {\"description\": \"Phase 1: Adaptive spectral-guided mixing (k=10, tau=0.002, per_gen mode, log_det signal), seed 42. 论文主实验.\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition adaptive --seed 42 --generations 10 --signal log_det --tau 0.002 --k 10 --signal_mode per_gen --gpu 0\\\"\", \"server\": \"rtx6000-diagprobe\", \"gpu\": \"cuda:0\", \"pid\": 134913, \"tmux_session\": \"exp_006\", \"model_name\": \"EleutherAI/pythia-410m-deduped\", \"seed\": 42, \"data_path\": \"/root/spectral_collapse_ews/data/\", \"data_count\": \"50K real pool, total_per_gen=50K\", \"generations\": 10, \"condition\": \"adaptive\", \"controller_params\": {\"tau\": 0.002, \"k\": 10, \"r_min\": 0.2, \"r_max\": 0.8, \"alpha\": 0.5, \"signal\": \"log_det\", \"signal_mode\": \"per_gen\"}, \"log_path\": \"~/runs/spectral_collapse_ews/exp_006.log\", \"checkpoint_dir\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/adaptive_k10_seed42/\", \"results_file\": \"/root/spectral_collapse_ews/results/phase1_adaptive_k10_seed42_results.json\", \"checkpoint_source\": \"EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)\", \"eval_data\": \"/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)\"}, \"metrics\": {\"gen0_eff_rank\": 417.55, \"gen0_log_det\": 2366.68, \"gen0_ppl\": 9.554, \"gen0_distinct4\": 0.7414, \"gen1_eff_rank\": 477.31, \"gen1_log_det\": 2365.1, \"gen1_ppl\": 10.089, \"gen1_distinct4\": 0.7099, \"gen1_mix_ratio\": 0.5, \"gen1_triggered\": false, \"gen1_train_loss\": 1.984, \"gen2_eff_rank\": 487.08, \"gen2_log_det\": 2394.01, \"gen2_ppl\": 10.416, \"gen2_distinct4\": 0.5995, \"gen2_mix_ratio\": 0.5, \"gen2_triggered\": false, \"gen2_train_loss\": 1.934, \"gen3_eff_rank\": 496.03, \"gen3_log_det\": 2423.83, \"gen3_ppl\": 10.76, \"gen3_distinct4\": 0.4898, \"gen3_mix_ratio\": 0.5, \"gen3_triggered\": false, \"gen3_train_loss\": 1.752, \"gen4_eff_rank\": 501.19, \"gen4_log_det\": 2448.26, \"gen4_ppl\": 11.135, \"gen4_distinct4\": 0.4304, \"gen4_mix_ratio\": 0.5, \"gen4_triggered\": false, \"gen4_train_loss\": 1.572, \"gen5_eff_rank\": 512.5, \"gen5_log_det\": 2488.08, \"gen5_ppl\": 11.643, \"gen5_distinct4\": 0.373, \"gen5_mix_ratio\": 0.5, \"gen5_triggered\": false, \"gen5_train_loss\": 1.467, \"gen6_eff_rank\": 518.89, \"gen6_log_det\": 2507.62, \"gen6_ppl\": 12.144, \"gen6_distinct4\": 0.3556, \"gen6_mix_ratio\": 0.5, \"gen6_triggered\": false, \"gen6_train_loss\": 1.325, \"gen7_eff_rank\": 526.89, \"gen7_log_det\": 2526.19, \"gen7_ppl\": 12.723, \"gen7_distinct4\": 0.2905, \"gen7_mix_ratio\": 0.5, \"gen7_triggered\": false, \"gen7_train_loss\": 1.251, \"gen8_eff_rank\": 535.3, \"gen8_log_det\": 2542.89, \"gen8_ppl\": 13.397, \"gen8_distinct4\": 0.2558, \"gen8_mix_ratio\": 0.5, \"gen8_triggered\": false, \"gen8_train_loss\": 1.149, \"gen9_eff_rank\": 544.5, \"gen9_log_det\": 2560.14, \"gen9_ppl\": 14.159, \"gen9_distinct4\": 0.226, \"gen9_mix_ratio\": 0.5, \"gen9_triggered\": false, \"gen9_train_loss\": 1.062, \"gen10_eff_rank\": 553.76, \"gen10_log_det\": 2572.22, \"gen10_ppl\": 15.1, \"gen10_distinct4\": 0.2388, \"gen10_mix_ratio\": 0.5, \"gen10_triggered\": false, \"gen10_train_loss\": 0.991, \"total_generations\": 11, \"controller_ever_triggered\": false, \"final_eff_rank\": 553.76, \"final_ppl\": 15.1, \"final_distinct4\": 0.2388}, \"reproduce\": {\"finished_at\": \"2026-05-18T08:47:09.147Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T08:47:10.572135+00:00\"}]}, \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/adaptive_k10_seed42/\", \"log_path\": \"~/runs/spectral_collapse_ews/exp_006.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0623}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "aa0fa3f7-db41-45c9-b628-c6c77c1c0c5d",
+  "uuid": "9ef9ded1-596c-43a3-bab6-2013fbd59e46",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_006\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T17:29:14.060Z\\\", \\\"updated_at\\\": \\\"2026-05-18T08:49:05.847Z\\\", \\\"hypothesis\\\": \\\"Spectral-guided adaptive mixing with moderate gain (k=10, tau=0.002, per_gen mode) provides optimal balance between early response and budget conservation. k=10 is midpoint between k=20 (exp_005, fast budget depletion) and k=5 (cumulative mode, late trigger). Expect ratio to rise to ~0.55-0.65 at peak collapse gens, with more gradual budget consumption than k=20.\\\", \\\"parent\\\": \\\"exp_005\\\", \\\"spec\\\": {\\\"description\\\": \\\"Phase 1: Adaptive spectral-guided mixing (k=10, tau=0.002, per_gen mode, log_det signal), seed 42. 论文主实验.\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition adaptive --seed 42 --generations 10 --signal log_det --tau 0.002 --k 10 --signal_mode per_gen --gpu 0\\\\\\\"\\\", \\\"server\\\": \\\"rtx6000-diagprobe\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": 134913, \\\"tmux_session\\\": \\\"exp_006\\\", \\\"model_name\\\": \\\"EleutherAI/pythia-410m-deduped\\\", \\\"seed\\\": 42, \\\"data_path\\\": \\\"/root/spectral_collapse_ews/data/\\\", \\\"data_count\\\": \\\"50K real pool, total_per_gen=50K\\\", \\\"generations\\\": 10, \\\"condition\\\": \\\"adaptive\\\", \\\"controller_params\\\": {\\\"tau\\\": 0.002, \\\"k\\\": 10, \\\"r_min\\\": 0.2, \\\"r_max\\\": 0.8, \\\"alpha\\\": 0.5, \\\"signal\\\": \\\"log_det\\\", \\\"signal_mode\\\": \\\"per_gen\\\"}, \\\"log_path\\\": \\\"~/runs/spectral_collapse_ews/exp_006.log\\\", \\\"checkpoint_dir\\\": \\\"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/adaptive_k10_seed42/\\\", \\\"results_file\\\": \\\"/root/spectral_collapse_ews/results/phase1_adaptive_k10_seed42_results.json\\\", \\\"checkpoint_source\\\": \\\"EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)\\\", \\\"eval_data\\\": \\\"/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)\\\"}, \\\"metrics\\\": {\\\"gen0_eff_rank\\\": 417.55, \\\"gen0_log_det\\\": 2366.68, \\\"gen0_ppl\\\": 9.554, \\\"gen0_distinct4\\\": 0.7414, \\\"gen1_eff_rank\\\": 477.31, \\\"gen1_log_det\\\": 2365.1, \\\"gen1_ppl\\\": 10.089, \\\"gen1_distinct4\\\": 0.7099, \\\"gen1_mix_ratio\\\": 0.5, \\\"gen1_triggered\\\": false, \\\"gen1_train_loss\\\": 1.984, \\\"gen2_eff_rank\\\": 487.08, \\\"gen2_log_det\\\": 2394.01, \\\"gen2_ppl\\\": 10.416, \\\"gen2_distinct4\\\": 0.5995, \\\"gen2_mix_ratio\\\": 0.5, \\\"gen2_triggered\\\": false, \\\"gen2_train_loss\\\": 1.934, \\\"gen3_eff_rank\\\": 496.03, \\\"gen3_log_det\\\": 2423.83, \\\"gen3_ppl\\\": 10.76, \\\"gen3_distinct4\\\": 0.4898, \\\"gen3_mix_ratio\\\": 0.5, \\\"gen3_triggered\\\": false, \\\"gen3_train_loss\\\": 1.752, \\\"gen4_eff_rank\\\": 501.19, \\\"gen4_log_det\\\": 2448.26, \\\"gen4_ppl\\\": 11.135, \\\"gen4_distinct4\\\": 0.4304, \\\"gen4_mix_ratio\\\": 0.5, \\\"gen4_triggered\\\": false, \\\"gen4_train_loss\\\": 1.572, \\\"gen5_eff_rank\\\": 512.5, \\\"gen5_log_det\\\": 2488.08, \\\"gen5_ppl\\\": 11.643, \\\"gen5_distinct4\\\": 0.373, \\\"gen5_mix_ratio\\\": 0.5, \\\"gen5_triggered\\\": false, \\\"gen5_train_loss\\\": 1.467, \\\"gen6_eff_rank\\\": 518.89, \\\"gen6_log_det\\\": 2507.62, \\\"gen6_ppl\\\": 12.144, \\\"gen6_distinct4\\\": 0.3556, \\\"gen6_mix_ratio\\\": 0.5, \\\"gen6_triggered\\\": false, \\\"gen6_train_loss\\\": 1.325, \\\"gen7_eff_rank\\\": 526.89, \\\"gen7_log_det\\\": 2526.19, \\\"gen7_ppl\\\": 12.723, \\\"gen7_distinct4\\\": 0.2905, \\\"gen7_mix_ratio\\\": 0.5, \\\"gen7_triggered\\\": false, \\\"gen7_train_loss\\\": 1.251, \\\"gen8_eff_rank\\\": 535.3, \\\"gen8_log_det\\\": 2542.89, \\\"gen8_ppl\\\": 13.397, \\\"gen8_distinct4\\\": 0.2558, \\\"gen8_mix_ratio\\\": 0.5, \\\"gen8_triggered\\\": false, \\\"gen8_train_loss\\\": 1.149, \\\"gen9_eff_rank\\\": 544.5, \\\"gen9_log_det\\\": 2560.14, \\\"gen9_ppl\\\": 14.159, \\\"gen9_distinct4\\\": 0.226, \\\"gen9_mix_ratio\\\": 0.5, \\\"gen9_triggered\\\": false, \\\"gen9_train_loss\\\": 1.062, \\\"gen10_eff_rank\\\": 553.76, \\\"gen10_log_det\\\": 2572.22, \\\"gen10_ppl\\\": 15.1, \\\"gen10_distinct4\\\": 0.2388, \\\"gen10_mix_ratio\\\": 0.5, \\\"gen10_triggered\\\": false, \\\"gen10_train_loss\\\": 0.991, \\\"total_generations\\\": 11, \\\"controller_ever_triggered\\\": false, \\\"final_eff_rank\\\": 553.76, \\\"final_ppl\\\": 15.1, \\\"final_distinct4\\\": 0.2388}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-18T08:47:09.147Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-18T08:47:10.572135+00:00\\\"}]}, \\\"conclusion\\\": \\\"negative\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/adaptive_k10_seed42/\\\", \\\"log_path\\\": \\\"~/runs/spectral_collapse_ews/exp_006.log\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0623}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_006\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-17T17:29:14.060Z\", \"updated_at\": \"2026-05-18T08:49:05.847Z\", \"hypothesis\": \"Spectral-guided adaptive mixing with moderate gain (k=10, tau=0.002, per_gen mode) provides optimal balance between early response and budget conservation. k=10 is midpoint between k=20 (exp_005, fast budget depletion) and k=5 (cumulative mode, late trigger). Expect ratio to rise to ~0.55-0.65 at peak collapse gens, with more gradual budget consumption than k=20.\", \"parent\": \"exp_005\", \"spec\": {\"description\": \"Phase 1: Adaptive spectral-guided mixing (k=10, tau=0.002, per_gen mode, log_det signal), seed 42. 论文主实验.\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition adaptive --seed 42 --generations 10 --signal log_det --tau 0.002 --k 10 --signal_mode per_gen --gpu 0\\\"\", \"server\": \"rtx6000-diagprobe\", \"gpu\": \"cuda:0\", \"pid\": 134913, \"tmux_session\": \"exp_006\", \"model_name\": \"EleutherAI/pythia-410m-deduped\", \"seed\": 42, \"data_path\": \"/root/spectral_collapse_ews/data/\", \"data_count\": \"50K real pool, total_per_gen=50K\", \"generations\": 10, \"condition\": \"adaptive\", \"controller_params\": {\"tau\": 0.002, \"k\": 10, \"r_min\": 0.2, \"r_max\": 0.8, \"alpha\": 0.5, \"signal\": \"log_det\", \"signal_mode\": \"per_gen\"}, \"log_path\": \"~/runs/spectral_collapse_ews/exp_006.log\", \"checkpoint_dir\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/adaptive_k10_seed42/\", \"results_file\": \"/root/spectral_collapse_ews/results/phase1_adaptive_k10_seed42_results.json\", \"checkpoint_source\": \"EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)\", \"eval_data\": \"/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)\"}, \"metrics\": {\"gen0_eff_rank\": 417.55, \"gen0_log_det\": 2366.68, \"gen0_ppl\": 9.554, \"gen0_distinct4\": 0.7414, \"gen1_eff_rank\": 477.31, \"gen1_log_det\": 2365.1, \"gen1_ppl\": 10.089, \"gen1_distinct4\": 0.7099, \"gen1_mix_ratio\": 0.5, \"gen1_triggered\": false, \"gen1_train_loss\": 1.984, \"gen2_eff_rank\": 487.08, \"gen2_log_det\": 2394.01, \"gen2_ppl\": 10.416, \"gen2_distinct4\": 0.5995, \"gen2_mix_ratio\": 0.5, \"gen2_triggered\": false, \"gen2_train_loss\": 1.934, \"gen3_eff_rank\": 496.03, \"gen3_log_det\": 2423.83, \"gen3_ppl\": 10.76, \"gen3_distinct4\": 0.4898, \"gen3_mix_ratio\": 0.5, \"gen3_triggered\": false, \"gen3_train_loss\": 1.752, \"gen4_eff_rank\": 501.19, \"gen4_log_det\": 2448.26, \"gen4_ppl\": 11.135, \"gen4_distinct4\": 0.4304, \"gen4_mix_ratio\": 0.5, \"gen4_triggered\": false, \"gen4_train_loss\": 1.572, \"gen5_eff_rank\": 512.5, \"gen5_log_det\": 2488.08, \"gen5_ppl\": 11.643, \"gen5_distinct4\": 0.373, \"gen5_mix_ratio\": 0.5, \"gen5_triggered\": false, \"gen5_train_loss\": 1.467, \"gen6_eff_rank\": 518.89, \"gen6_log_det\": 2507.62, \"gen6_ppl\": 12.144, \"gen6_distinct4\": 0.3556, \"gen6_mix_ratio\": 0.5, \"gen6_triggered\": false, \"gen6_train_loss\": 1.325, \"gen7_eff_rank\": 526.89, \"gen7_log_det\": 2526.19, \"gen7_ppl\": 12.723, \"gen7_distinct4\": 0.2905, \"gen7_mix_ratio\": 0.5, \"gen7_triggered\": false, \"gen7_train_loss\": 1.251, \"gen8_eff_rank\": 535.3, \"gen8_log_det\": 2542.89, \"gen8_ppl\": 13.397, \"gen8_distinct4\": 0.2558, \"gen8_mix_ratio\": 0.5, \"gen8_triggered\": false, \"gen8_train_loss\": 1.149, \"gen9_eff_rank\": 544.5, \"gen9_log_det\": 2560.14, \"gen9_ppl\": 14.159, \"gen9_distinct4\": 0.226, \"gen9_mix_ratio\": 0.5, \"gen9_triggered\": false, \"gen9_train_loss\": 1.062, \"gen10_eff_rank\": 553.76, \"gen10_log_det\": 2572.22, \"gen10_ppl\": 15.1, \"gen10_distinct4\": 0.2388, \"gen10_mix_ratio\": 0.5, \"gen10_triggered\": false, \"gen10_train_loss\": 0.991, \"total_generations\": 11, \"controller_ever_triggered\": false, \"final_eff_rank\": 553.76, \"final_ppl\": 15.1, \"final_distinct4\": 0.2388}, \"reproduce\": {\"finished_at\": \"2026-05-18T08:47:09.147Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T08:47:10.572135+00:00\"}]}, \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/adaptive_k10_seed42/\", \"log_path\": \"~/runs/spectral_collapse_ews/exp_006.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0623}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01JXC2TZGLDfMHJ7jsWRJV1u`</summary>
+
+```json
+{
+  "exp_id": "exp_006",
+  "field": "notes",
+  "value": "Adaptive controller (k=10, tau=0.002, per_gen log_det) NEVER triggered across 10 generations. mix_ratio stayed at 0.5 (default) throughout. Per-gen log_det deltas were too small to cross tau threshold, confirming the signal-decay paradox: the spectral signal that motivates intervention is precisely the one that decays too gradually to trigger it. Valuable negative result supporting r_crit claim.",
+  "project": "spectral_collapse_ews"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "aa0fa3f7-db41-45c9-b628-c6c77c1c0c5d",
+  "uuid": "3352d630-13a6-4c41-ad96-a7a71dc75024",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CzJs1oHjPzwGCovFErwkhE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4172,
+      "cache_read_input_tokens": 33030,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4172
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-18T08:49:08.508Z_
+
+<details><summary>↩ Tool result · `toolu_01JXC2TZGLDfMHJ7jsWRJV1u`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_006\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-17T17:29:14.060Z\", \"updated_at\": \"2026-05-18T08:49:08.474Z\", \"hypothesis\": \"Spectral-guided adaptive mixing with moderate gain (k=10, tau=0.002, per_gen mode) provides optimal balance between early response and budget conservation. k=10 is midpoint between k=20 (exp_005, fast budget depletion) and k=5 (cumulative mode, late trigger). Expect ratio to rise to ~0.55-0.65 at peak collapse gens, with more gradual budget consumption than k=20.\", \"parent\": \"exp_005\", \"spec\": {\"description\": \"Phase 1: Adaptive spectral-guided mixing (k=10, tau=0.002, per_gen mode, log_det signal), seed 42. 论文主实验.\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition adaptive --seed 42 --generations 10 --signal log_det --tau 0.002 --k 10 --signal_mode per_gen --gpu 0\\\"\", \"server\": \"rtx6000-diagprobe\", \"gpu\": \"cuda:0\", \"pid\": 134913, \"tmux_session\": \"exp_006\", \"model_name\": \"EleutherAI/pythia-410m-deduped\", \"seed\": 42, \"data_path\": \"/root/spectral_collapse_ews/data/\", \"data_count\": \"50K real pool, total_per_gen=50K\", \"generations\": 10, \"condition\": \"adaptive\", \"controller_params\": {\"tau\": 0.002, \"k\": 10, \"r_min\": 0.2, \"r_max\": 0.8, \"alpha\": 0.5, \"signal\": \"log_det\", \"signal_mode\": \"per_gen\"}, \"log_path\": \"~/runs/spectral_collapse_ews/exp_006.log\", \"checkpoint_dir\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/adaptive_k10_seed42/\", \"results_file\": \"/root/spectral_collapse_ews/results/phase1_adaptive_k10_seed42_results.json\", \"checkpoint_source\": \"EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)\", \"eval_data\": \"/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)\"}, \"metrics\": {\"gen0_eff_rank\": 417.55, \"gen0_log_det\": 2366.68, \"gen0_ppl\": 9.554, \"gen0_distinct4\": 0.7414, \"gen1_eff_rank\": 477.31, \"gen1_log_det\": 2365.1, \"gen1_ppl\": 10.089, \"gen1_distinct4\": 0.7099, \"gen1_mix_ratio\": 0.5, \"gen1_triggered\": false, \"gen1_train_loss\": 1.984, \"gen2_eff_rank\": 487.08, \"gen2_log_det\": 2394.01, \"gen2_ppl\": 10.416, \"gen2_distinct4\": 0.5995, \"gen2_mix_ratio\": 0.5, \"gen2_triggered\": false, \"gen2_train_loss\": 1.934, \"gen3_eff_rank\": 496.03, \"gen3_log_det\": 2423.83, \"gen3_ppl\": 10.76, \"gen3_distinct4\": 0.4898, \"gen3_mix_ratio\": 0.5, \"gen3_triggered\": false, \"gen3_train_loss\": 1.752, \"gen4_eff_rank\": 501.19, \"gen4_log_det\": 2448.26, \"gen4_ppl\": 11.135, \"gen4_distinct4\": 0.4304, \"gen4_mix_ratio\": 0.5, \"gen4_triggered\": false, \"gen4_train_loss\": 1.572, \"gen5_eff_rank\": 512.5, \"gen5_log_det\": 2488.08, \"gen5_ppl\": 11.643, \"gen5_distinct4\": 0.373, \"gen5_mix_ratio\": 0.5, \"gen5_triggered\": false, \"gen5_train_loss\": 1.467, \"gen6_eff_rank\": 518.89, \"gen6_log_det\": 2507.62, \"gen6_ppl\": 12.144, \"gen6_distinct4\": 0.3556, \"gen6_mix_ratio\": 0.5, \"gen6_triggered\": false, \"gen6_train_loss\": 1.325, \"gen7_eff_rank\": 526.89, \"gen7_log_det\": 2526.19, \"gen7_ppl\": 12.723, \"gen7_distinct4\": 0.2905, \"gen7_mix_ratio\": 0.5, \"gen7_triggered\": false, \"gen7_train_loss\": 1.251, \"gen8_eff_rank\": 535.3, \"gen8_log_det\": 2542.89, \"gen8_ppl\": 13.397, \"gen8_distinct4\": 0.2558, \"gen8_mix_ratio\": 0.5, \"gen8_triggered\": false, \"gen8_train_loss\": 1.149, \"gen9_eff_rank\": 544.5, \"gen9_log_det\": 2560.14, \"gen9_ppl\": 14.159, \"gen9_distinct4\": 0.226, \"gen9_mix_ratio\": 0.5, \"gen9_triggered\": false, \"gen9_train_loss\": 1.062, \"gen10_eff_rank\": 553.76, \"gen10_log_det\": 2572.22, \"gen10_ppl\": 15.1, \"gen10_distinct4\": 0.2388, \"gen10_mix_ratio\": 0.5, \"gen10_triggered\": false, \"gen10_train_loss\": 0.991, \"total_generations\": 11, \"controller_ever_triggered\": false, \"final_eff_rank\": 553.76, \"final_ppl\": 15.1, \"final_distinct4\": 0.2388}, \"reproduce\": {\"finished_at\": \"2026-05-18T08:47:09.147Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T08:47:10.572135+00:00\"}]}, \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/adaptive_k10_seed42/\", \"log_path\": \"~/runs/spectral_collapse_ews/exp_006.log\", \"notes\": \"Adaptive controller (k=10, tau=0.002, per_gen log_det) NEVER triggered across 10 generations. mix_ratio stayed at 0.5 (default) throughout. Per-gen log_det deltas were too small to cross tau threshold, confirming the signal-decay paradox: the spectral signal that motivates intervention is precisely the one that decays too gradually to trigger it. Valuable negative result supporting r_crit claim.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0642}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "aa0fa3f7-db41-45c9-b628-c6c77c1c0c5d",
+  "uuid": "8932202b-e5a7-4140-9534-29cc7dc32bda",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_006\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T17:29:14.060Z\\\", \\\"updated_at\\\": \\\"2026-05-18T08:49:08.474Z\\\", \\\"hypothesis\\\": \\\"Spectral-guided adaptive mixing with moderate gain (k=10, tau=0.002, per_gen mode) provides optimal balance between early response and budget conservation. k=10 is midpoint between k=20 (exp_005, fast budget depletion) and k=5 (cumulative mode, late trigger). Expect ratio to rise to ~0.55-0.65 at peak collapse gens, with more gradual budget consumption than k=20.\\\", \\\"parent\\\": \\\"exp_005\\\", \\\"spec\\\": {\\\"description\\\": \\\"Phase 1: Adaptive spectral-guided mixing (k=10, tau=0.002, per_gen mode, log_det signal), seed 42. 论文主实验.\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition adaptive --seed 42 --generations 10 --signal log_det --tau 0.002 --k 10 --signal_mode per_gen --gpu 0\\\\\\\"\\\", \\\"server\\\": \\\"rtx6000-diagprobe\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": 134913, \\\"tmux_session\\\": \\\"exp_006\\\", \\\"model_name\\\": \\\"EleutherAI/pythia-410m-deduped\\\", \\\"seed\\\": 42, \\\"data_path\\\": \\\"/root/spectral_collapse_ews/data/\\\", \\\"data_count\\\": \\\"50K real pool, total_per_gen=50K\\\", \\\"generations\\\": 10, \\\"condition\\\": \\\"adaptive\\\", \\\"controller_params\\\": {\\\"tau\\\": 0.002, \\\"k\\\": 10, \\\"r_min\\\": 0.2, \\\"r_max\\\": 0.8, \\\"alpha\\\": 0.5, \\\"signal\\\": \\\"log_det\\\", \\\"signal_mode\\\": \\\"per_gen\\\"}, \\\"log_path\\\": \\\"~/runs/spectral_collapse_ews/exp_006.log\\\", \\\"checkpoint_dir\\\": \\\"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/adaptive_k10_seed42/\\\", \\\"results_file\\\": \\\"/root/spectral_collapse_ews/results/phase1_adaptive_k10_seed42_results.json\\\", \\\"checkpoint_source\\\": \\\"EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)\\\", \\\"eval_data\\\": \\\"/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)\\\"}, \\\"metrics\\\": {\\\"gen0_eff_rank\\\": 417.55, \\\"gen0_log_det\\\": 2366.68, \\\"gen0_ppl\\\": 9.554, \\\"gen0_distinct4\\\": 0.7414, \\\"gen1_eff_rank\\\": 477.31, \\\"gen1_log_det\\\": 2365.1, \\\"gen1_ppl\\\": 10.089, \\\"gen1_distinct4\\\": 0.7099, \\\"gen1_mix_ratio\\\": 0.5, \\\"gen1_triggered\\\": false, \\\"gen1_train_loss\\\": 1.984, \\\"gen2_eff_rank\\\": 487.08, \\\"gen2_log_det\\\": 2394.01, \\\"gen2_ppl\\\": 10.416, \\\"gen2_distinct4\\\": 0.5995, \\\"gen2_mix_ratio\\\": 0.5, \\\"gen2_triggered\\\": false, \\\"gen2_train_loss\\\": 1.934, \\\"gen3_eff_rank\\\": 496.03, \\\"gen3_log_det\\\": 2423.83, \\\"gen3_ppl\\\": 10.76, \\\"gen3_distinct4\\\": 0.4898, \\\"gen3_mix_ratio\\\": 0.5, \\\"gen3_triggered\\\": false, \\\"gen3_train_loss\\\": 1.752, \\\"gen4_eff_rank\\\": 501.19, \\\"gen4_log_det\\\": 2448.26, \\\"gen4_ppl\\\": 11.135, \\\"gen4_distinct4\\\": 0.4304, \\\"gen4_mix_ratio\\\": 0.5, \\\"gen4_triggered\\\": false, \\\"gen4_train_loss\\\": 1.572, \\\"gen5_eff_rank\\\": 512.5, \\\"gen5_log_det\\\": 2488.08, \\\"gen5_ppl\\\": 11.643, \\\"gen5_distinct4\\\": 0.373, \\\"gen5_mix_ratio\\\": 0.5, \\\"gen5_triggered\\\": false, \\\"gen5_train_loss\\\": 1.467, \\\"gen6_eff_rank\\\": 518.89, \\\"gen6_log_det\\\": 2507.62, \\\"gen6_ppl\\\": 12.144, \\\"gen6_distinct4\\\": 0.3556, \\\"gen6_mix_ratio\\\": 0.5, \\\"gen6_triggered\\\": false, \\\"gen6_train_loss\\\": 1.325, \\\"gen7_eff_rank\\\": 526.89, \\\"gen7_log_det\\\": 2526.19, \\\"gen7_ppl\\\": 12.723, \\\"gen7_distinct4\\\": 0.2905, \\\"gen7_mix_ratio\\\": 0.5, \\\"gen7_triggered\\\": false, \\\"gen7_train_loss\\\": 1.251, \\\"gen8_eff_rank\\\": 535.3, \\\"gen8_log_det\\\": 2542.89, \\\"gen8_ppl\\\": 13.397, \\\"gen8_distinct4\\\": 0.2558, \\\"gen8_mix_ratio\\\": 0.5, \\\"gen8_triggered\\\": false, \\\"gen8_train_loss\\\": 1.149, \\\"gen9_eff_rank\\\": 544.5, \\\"gen9_log_det\\\": 2560.14, \\\"gen9_ppl\\\": 14.159, \\\"gen9_distinct4\\\": 0.226, \\\"gen9_mix_ratio\\\": 0.5, \\\"gen9_triggered\\\": false, \\\"gen9_train_loss\\\": 1.062, \\\"gen10_eff_rank\\\": 553.76, \\\"gen10_log_det\\\": 2572.22, \\\"gen10_ppl\\\": 15.1, \\\"gen10_distinct4\\\": 0.2388, \\\"gen10_mix_ratio\\\": 0.5, \\\"gen10_triggered\\\": false, \\\"gen10_train_loss\\\": 0.991, \\\"total_generations\\\": 11, \\\"controller_ever_triggered\\\": false, \\\"final_eff_rank\\\": 553.76, \\\"final_ppl\\\": 15.1, \\\"final_distinct4\\\": 0.2388}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-18T08:47:09.147Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-18T08:47:10.572135+00:00\\\"}]}, \\\"conclusion\\\": \\\"negative\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/adaptive_k10_seed42/\\\", \\\"log_path\\\": \\\"~/runs/spectral_collapse_ews/exp_006.log\\\", \\\"notes\\\": \\\"Adaptive controller (k=10, tau=0.002, per_gen log_det) NEVER triggered across 10 generations. mix_ratio stayed at 0.5 (default) throughout. Per-gen log_det deltas were too small to cross tau threshold, confirming the signal-decay paradox: the spectral signal that motivates intervention is precisely the one that decays too gradually to trigger it. Valuable negative result supporting r_crit claim.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0642}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_006\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-17T17:29:14.060Z\", \"updated_at\": \"2026-05-18T08:49:08.474Z\", \"hypothesis\": \"Spectral-guided adaptive mixing with moderate gain (k=10, tau=0.002, per_gen mode) provides optimal balance between early response and budget conservation. k=10 is midpoint between k=20 (exp_005, fast budget depletion) and k=5 (cumulative mode, late trigger). Expect ratio to rise to ~0.55-0.65 at peak collapse gens, with more gradual budget consumption than k=20.\", \"parent\": \"exp_005\", \"spec\": {\"description\": \"Phase 1: Adaptive spectral-guided mixing (k=10, tau=0.002, per_gen mode, log_det signal), seed 42. 论文主实验.\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition adaptive --seed 42 --generations 10 --signal log_det --tau 0.002 --k 10 --signal_mode per_gen --gpu 0\\\"\", \"server\": \"rtx6000-diagprobe\", \"gpu\": \"cuda:0\", \"pid\": 134913, \"tmux_session\": \"exp_006\", \"model_name\": \"EleutherAI/pythia-410m-deduped\", \"seed\": 42, \"data_path\": \"/root/spectral_collapse_ews/data/\", \"data_count\": \"50K real pool, total_per_gen=50K\", \"generations\": 10, \"condition\": \"adaptive\", \"controller_params\": {\"tau\": 0.002, \"k\": 10, \"r_min\": 0.2, \"r_max\": 0.8, \"alpha\": 0.5, \"signal\": \"log_det\", \"signal_mode\": \"per_gen\"}, \"log_path\": \"~/runs/spectral_collapse_ews/exp_006.log\", \"checkpoint_dir\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/adaptive_k10_seed42/\", \"results_file\": \"/root/spectral_collapse_ews/results/phase1_adaptive_k10_seed42_results.json\", \"checkpoint_source\": \"EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)\", \"eval_data\": \"/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)\"}, \"metrics\": {\"gen0_eff_rank\": 417.55, \"gen0_log_det\": 2366.68, \"gen0_ppl\": 9.554, \"gen0_distinct4\": 0.7414, \"gen1_eff_rank\": 477.31, \"gen1_log_det\": 2365.1, \"gen1_ppl\": 10.089, \"gen1_distinct4\": 0.7099, \"gen1_mix_ratio\": 0.5, \"gen1_triggered\": false, \"gen1_train_loss\": 1.984, \"gen2_eff_rank\": 487.08, \"gen2_log_det\": 2394.01, \"gen2_ppl\": 10.416, \"gen2_distinct4\": 0.5995, \"gen2_mix_ratio\": 0.5, \"gen2_triggered\": false, \"gen2_train_loss\": 1.934, \"gen3_eff_rank\": 496.03, \"gen3_log_det\": 2423.83, \"gen3_ppl\": 10.76, \"gen3_distinct4\": 0.4898, \"gen3_mix_ratio\": 0.5, \"gen3_triggered\": false, \"gen3_train_loss\": 1.752, \"gen4_eff_rank\": 501.19, \"gen4_log_det\": 2448.26, \"gen4_ppl\": 11.135, \"gen4_distinct4\": 0.4304, \"gen4_mix_ratio\": 0.5, \"gen4_triggered\": false, \"gen4_train_loss\": 1.572, \"gen5_eff_rank\": 512.5, \"gen5_log_det\": 2488.08, \"gen5_ppl\": 11.643, \"gen5_distinct4\": 0.373, \"gen5_mix_ratio\": 0.5, \"gen5_triggered\": false, \"gen5_train_loss\": 1.467, \"gen6_eff_rank\": 518.89, \"gen6_log_det\": 2507.62, \"gen6_ppl\": 12.144, \"gen6_distinct4\": 0.3556, \"gen6_mix_ratio\": 0.5, \"gen6_triggered\": false, \"gen6_train_loss\": 1.325, \"gen7_eff_rank\": 526.89, \"gen7_log_det\": 2526.19, \"gen7_ppl\": 12.723, \"gen7_distinct4\": 0.2905, \"gen7_mix_ratio\": 0.5, \"gen7_triggered\": false, \"gen7_train_loss\": 1.251, \"gen8_eff_rank\": 535.3, \"gen8_log_det\": 2542.89, \"gen8_ppl\": 13.397, \"gen8_distinct4\": 0.2558, \"gen8_mix_ratio\": 0.5, \"gen8_triggered\": false, \"gen8_train_loss\": 1.149, \"gen9_eff_rank\": 544.5, \"gen9_log_det\": 2560.14, \"gen9_ppl\": 14.159, \"gen9_distinct4\": 0.226, \"gen9_mix_ratio\": 0.5, \"gen9_triggered\": false, \"gen9_train_loss\": 1.062, \"gen10_eff_rank\": 553.76, \"gen10_log_det\": 2572.22, \"gen10_ppl\": 15.1, \"gen10_distinct4\": 0.2388, \"gen10_mix_ratio\": 0.5, \"gen10_triggered\": false, \"gen10_train_loss\": 0.991, \"total_generations\": 11, \"controller_ever_triggered\": false, \"final_eff_rank\": 553.76, \"final_ppl\": 15.1, \"final_distinct4\": 0.2388}, \"reproduce\": {\"finished_at\": \"2026-05-18T08:47:09.147Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T08:47:10.572135+00:00\"}]}, \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/adaptive_k10_seed42/\", \"log_path\": \"~/runs/spectral_collapse_ews/exp_006.log\", \"notes\": \"Adaptive controller (k=10, tau=0.002, per_gen log_det) NEVER triggered across 10 generations. mix_ratio stayed at 0.5 (default) throughout. Per-gen log_det deltas were too small to cross tau threshold, confirming the signal-decay paradox: the spectral signal that motivates intervention is precisely the one that decays too gradually to trigger it. Valuable negative result supporting r_crit claim.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0642}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28_
+
+Now setting status to DONE.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "aa0fa3f7-db41-45c9-b628-c6c77c1c0c5d",
+  "uuid": "fda14181-7afc-40ed-915e-6f97bf96de58",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JM7KJgLeHFmJw2ctbyTwfa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9050,
+      "cache_read_input_tokens": 37202,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9050
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01FtvPGWx8YgGQhWZbG4Nc2w`</summary>
+
+```json
+{
+  "exp_id": "exp_006",
+  "field": "status",
+  "value": "DONE",
+  "project": "spectral_collapse_ews"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "aa0fa3f7-db41-45c9-b628-c6c77c1c0c5d",
+  "uuid": "76526730-6821-48c6-9f4f-40f4cec3c0bb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JM7KJgLeHFmJw2ctbyTwfa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9050,
+      "cache_read_input_tokens": 37202,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9050
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-18T08:49:12.906Z_
+
+<details><summary>↩ Tool result · `toolu_01FtvPGWx8YgGQhWZbG4Nc2w`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_006\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T17:29:14.060Z\", \"updated_at\": \"2026-05-18T08:49:12.740Z\", \"hypothesis\": \"Spectral-guided adaptive mixing with moderate gain (k=10, tau=0.002, per_gen mode) provides optimal balance between early response and budget conservation. k=10 is midpoint between k=20 (exp_005, fast budget depletion) and k=5 (cumulative mode, late trigger). Expect ratio to rise to ~0.55-0.65 at peak collapse gens, with more gradual budget consumption than k=20.\", \"parent\": \"exp_005\", \"spec\": {\"description\": \"Phase 1: Adaptive spectral-guided mixing (k=10, tau=0.002, per_gen mode, log_det signal), seed 42. 论文主实验.\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition adaptive --seed 42 --generations 10 --signal log_det --tau 0.002 --k 10 --signal_mode per_gen --gpu 0\\\"\", \"server\": \"rtx6000-diagprobe\", \"gpu\": \"cuda:0\", \"pid\": 134913, \"tmux_session\": \"exp_006\", \"model_name\": \"EleutherAI/pythia-410m-deduped\", \"seed\": 42, \"data_path\": \"/root/spectral_collapse_ews/data/\", \"data_count\": \"50K real pool, total_per_gen=50K\", \"generations\": 10, \"condition\": \"adaptive\", \"controller_params\": {\"tau\": 0.002, \"k\": 10, \"r_min\": 0.2, \"r_max\": 0.8, \"alpha\": 0.5, \"signal\": \"log_det\", \"signal_mode\": \"per_gen\"}, \"log_path\": \"~/runs/spectral_collapse_ews/exp_006.log\", \"checkpoint_dir\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/adaptive_k10_seed42/\", \"results_file\": \"/root/spectral_collapse_ews/results/phase1_adaptive_k10_seed42_results.json\", \"checkpoint_source\": \"EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)\", \"eval_data\": \"/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)\"}, \"metrics\": {\"gen0_eff_rank\": 417.55, \"gen0_log_det\": 2366.68, \"gen0_ppl\": 9.554, \"gen0_distinct4\": 0.7414, \"gen1_eff_rank\": 477.31, \"gen1_log_det\": 2365.1, \"gen1_ppl\": 10.089, \"gen1_distinct4\": 0.7099, \"gen1_mix_ratio\": 0.5, \"gen1_triggered\": false, \"gen1_train_loss\": 1.984, \"gen2_eff_rank\": 487.08, \"gen2_log_det\": 2394.01, \"gen2_ppl\": 10.416, \"gen2_distinct4\": 0.5995, \"gen2_mix_ratio\": 0.5, \"gen2_triggered\": false, \"gen2_train_loss\": 1.934, \"gen3_eff_rank\": 496.03, \"gen3_log_det\": 2423.83, \"gen3_ppl\": 10.76, \"gen3_distinct4\": 0.4898, \"gen3_mix_ratio\": 0.5, \"gen3_triggered\": false, \"gen3_train_loss\": 1.752, \"gen4_eff_rank\": 501.19, \"gen4_log_det\": 2448.26, \"gen4_ppl\": 11.135, \"gen4_distinct4\": 0.4304, \"gen4_mix_ratio\": 0.5, \"gen4_triggered\": false, \"gen4_train_loss\": 1.572, \"gen5_eff_rank\": 512.5, \"gen5_log_det\": 2488.08, \"gen5_ppl\": 11.643, \"gen5_distinct4\": 0.373, \"gen5_mix_ratio\": 0.5, \"gen5_triggered\": false, \"gen5_train_loss\": 1.467, \"gen6_eff_rank\": 518.89, \"gen6_log_det\": 2507.62, \"gen6_ppl\": 12.144, \"gen6_distinct4\": 0.3556, \"gen6_mix_ratio\": 0.5, \"gen6_triggered\": false, \"gen6_train_loss\": 1.325, \"gen7_eff_rank\": 526.89, \"gen7_log_det\": 2526.19, \"gen7_ppl\": 12.723, \"gen7_distinct4\": 0.2905, \"gen7_mix_ratio\": 0.5, \"gen7_triggered\": false, \"gen7_train_loss\": 1.251, \"gen8_eff_rank\": 535.3, \"gen8_log_det\": 2542.89, \"gen8_ppl\": 13.397, \"gen8_distinct4\": 0.2558, \"gen8_mix_ratio\": 0.5, \"gen8_triggered\": false, \"gen8_train_loss\": 1.149, \"gen9_eff_rank\": 544.5, \"gen9_log_det\": 2560.14, \"gen9_ppl\": 14.159, \"gen9_distinct4\": 0.226, \"gen9_mix_ratio\": 0.5, \"gen9_triggered\": false, \"gen9_train_loss\": 1.062, \"gen10_eff_rank\": 553.76, \"gen10_log_det\": 2572.22, \"gen10_ppl\": 15.1, \"gen10_distinct4\": 0.2388, \"gen10_mix_ratio\": 0.5, \"gen10_triggered\": false, \"gen10_train_loss\": 0.991, \"total_generations\": 11, \"controller_ever_triggered\": false, \"final_eff_rank\": 553.76, \"final_ppl\": 15.1, \"final_distinct4\": 0.2388}, \"reproduce\": {\"finished_at\": \"2026-05-18T08:47:09.147Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T08:47:10.572135+00:00\"}]}, \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/adaptive_k10_seed42/\", \"log_path\": \"~/runs/spectral_collapse_ews/exp_006.log\", \"notes\": \"Adaptive controller (k=10, tau=0.002, per_gen log_det) NEVER triggered across 10 generations. mix_ratio stayed at 0.5 (default) throughout. Per-gen log_det deltas were too small to cross tau threshold, confirming the signal-decay paradox: the spectral signal that motivates intervention is precisely the one that decays too gradually to trigger it. Valuable negative result supporting r_crit claim.\", \"completed_at\": \"2026-05-18T08:49:12.740Z\"}, \"hint\": \"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2684}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "aa0fa3f7-db41-45c9-b628-c6c77c1c0c5d",
+  "uuid": "e7c3da64-c6cd-4e82-9418-83746df90f4b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp_006\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T17:29:14.060Z\\\", \\\"updated_at\\\": \\\"2026-05-18T08:49:12.740Z\\\", \\\"hypothesis\\\": \\\"Spectral-guided adaptive mixing with moderate gain (k=10, tau=0.002, per_gen mode) provides optimal balance between early response and budget conservation. k=10 is midpoint between k=20 (exp_005, fast budget depletion) and k=5 (cumulative mode, late trigger). Expect ratio to rise to ~0.55-0.65 at peak collapse gens, with more gradual budget consumption than k=20.\\\", \\\"parent\\\": \\\"exp_005\\\", \\\"spec\\\": {\\\"description\\\": \\\"Phase 1: Adaptive spectral-guided mixing (k=10, tau=0.002, per_gen mode, log_det signal), seed 42. 论文主实验.\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition adaptive --seed 42 --generations 10 --signal log_det --tau 0.002 --k 10 --signal_mode per_gen --gpu 0\\\\\\\"\\\", \\\"server\\\": \\\"rtx6000-diagprobe\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": 134913, \\\"tmux_session\\\": \\\"exp_006\\\", \\\"model_name\\\": \\\"EleutherAI/pythia-410m-deduped\\\", \\\"seed\\\": 42, \\\"data_path\\\": \\\"/root/spectral_collapse_ews/data/\\\", \\\"data_count\\\": \\\"50K real pool, total_per_gen=50K\\\", \\\"generations\\\": 10, \\\"condition\\\": \\\"adaptive\\\", \\\"controller_params\\\": {\\\"tau\\\": 0.002, \\\"k\\\": 10, \\\"r_min\\\": 0.2, \\\"r_max\\\": 0.8, \\\"alpha\\\": 0.5, \\\"signal\\\": \\\"log_det\\\", \\\"signal_mode\\\": \\\"per_gen\\\"}, \\\"log_path\\\": \\\"~/runs/spectral_collapse_ews/exp_006.log\\\", \\\"checkpoint_dir\\\": \\\"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/adaptive_k10_seed42/\\\", \\\"results_file\\\": \\\"/root/spectral_collapse_ews/results/phase1_adaptive_k10_seed42_results.json\\\", \\\"checkpoint_source\\\": \\\"EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)\\\", \\\"eval_data\\\": \\\"/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)\\\"}, \\\"metrics\\\": {\\\"gen0_eff_rank\\\": 417.55, \\\"gen0_log_det\\\": 2366.68, \\\"gen0_ppl\\\": 9.554, \\\"gen0_distinct4\\\": 0.7414, \\\"gen1_eff_rank\\\": 477.31, \\\"gen1_log_det\\\": 2365.1, \\\"gen1_ppl\\\": 10.089, \\\"gen1_distinct4\\\": 0.7099, \\\"gen1_mix_ratio\\\": 0.5, \\\"gen1_triggered\\\": false, \\\"gen1_train_loss\\\": 1.984, \\\"gen2_eff_rank\\\": 487.08, \\\"gen2_log_det\\\": 2394.01, \\\"gen2_ppl\\\": 10.416, \\\"gen2_distinct4\\\": 0.5995, \\\"gen2_mix_ratio\\\": 0.5, \\\"gen2_triggered\\\": false, \\\"gen2_train_loss\\\": 1.934, \\\"gen3_eff_rank\\\": 496.03, \\\"gen3_log_det\\\": 2423.83, \\\"gen3_ppl\\\": 10.76, \\\"gen3_distinct4\\\": 0.4898, \\\"gen3_mix_ratio\\\": 0.5, \\\"gen3_triggered\\\": false, \\\"gen3_train_loss\\\": 1.752, \\\"gen4_eff_rank\\\": 501.19, \\\"gen4_log_det\\\": 2448.26, \\\"gen4_ppl\\\": 11.135, \\\"gen4_distinct4\\\": 0.4304, \\\"gen4_mix_ratio\\\": 0.5, \\\"gen4_triggered\\\": false, \\\"gen4_train_loss\\\": 1.572, \\\"gen5_eff_rank\\\": 512.5, \\\"gen5_log_det\\\": 2488.08, \\\"gen5_ppl\\\": 11.643, \\\"gen5_distinct4\\\": 0.373, \\\"gen5_mix_ratio\\\": 0.5, \\\"gen5_triggered\\\": false, \\\"gen5_train_loss\\\": 1.467, \\\"gen6_eff_rank\\\": 518.89, \\\"gen6_log_det\\\": 2507.62, \\\"gen6_ppl\\\": 12.144, \\\"gen6_distinct4\\\": 0.3556, \\\"gen6_mix_ratio\\\": 0.5, \\\"gen6_triggered\\\": false, \\\"gen6_train_loss\\\": 1.325, \\\"gen7_eff_rank\\\": 526.89, \\\"gen7_log_det\\\": 2526.19, \\\"gen7_ppl\\\": 12.723, \\\"gen7_distinct4\\\": 0.2905, \\\"gen7_mix_ratio\\\": 0.5, \\\"gen7_triggered\\\": false, \\\"gen7_train_loss\\\": 1.251, \\\"gen8_eff_rank\\\": 535.3, \\\"gen8_log_det\\\": 2542.89, \\\"gen8_ppl\\\": 13.397, \\\"gen8_distinct4\\\": 0.2558, \\\"gen8_mix_ratio\\\": 0.5, \\\"gen8_triggered\\\": false, \\\"gen8_train_loss\\\": 1.149, \\\"gen9_eff_rank\\\": 544.5, \\\"gen9_log_det\\\": 2560.14, \\\"gen9_ppl\\\": 14.159, \\\"gen9_distinct4\\\": 0.226, \\\"gen9_mix_ratio\\\": 0.5, \\\"gen9_triggered\\\": false, \\\"gen9_train_loss\\\": 1.062, \\\"gen10_eff_rank\\\": 553.76, \\\"gen10_log_det\\\": 2572.22, \\\"gen10_ppl\\\": 15.1, \\\"gen10_distinct4\\\": 0.2388, \\\"gen10_mix_ratio\\\": 0.5, \\\"gen10_triggered\\\": false, \\\"gen10_train_loss\\\": 0.991, \\\"total_generations\\\": 11, \\\"controller_ever_triggered\\\": false, \\\"final_eff_rank\\\": 553.76, \\\"final_ppl\\\": 15.1, \\\"final_distinct4\\\": 0.2388}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-18T08:47:09.147Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-18T08:47:10.572135+00:00\\\"}]}, \\\"conclusion\\\": \\\"negative\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/adaptive_k10_seed42/\\\", \\\"log_path\\\": \\\"~/runs/spectral_collapse_ews/exp_006.log\\\", \\\"notes\\\": \\\"Adaptive controller (k=10, tau=0.002, per_gen log_det) NEVER triggered across 10 generations. mix_ratio stayed at 0.5 (default) throughout. Per-gen log_det deltas were too small to cross tau threshold, confirming the signal-decay paradox: the spectral signal that motivates intervention is precisely the one that decays too gradually to trigger it. Valuable negative result supporting r_crit claim.\\\", \\\"completed_at\\\": \\\"2026-05-18T08:49:12.740Z\\\"}, \\\"hint\\\": \\\"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2684}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp_006\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T17:29:14.060Z\", \"updated_at\": \"2026-05-18T08:49:12.740Z\", \"hypothesis\": \"Spectral-guided adaptive mixing with moderate gain (k=10, tau=0.002, per_gen mode) provides optimal balance between early response and budget conservation. k=10 is midpoint between k=20 (exp_005, fast budget depletion) and k=5 (cumulative mode, late trigger). Expect ratio to rise to ~0.55-0.65 at peak collapse gens, with more gradual budget consumption than k=20.\", \"parent\": \"exp_005\", \"spec\": {\"description\": \"Phase 1: Adaptive spectral-guided mixing (k=10, tau=0.002, per_gen mode, log_det signal), seed 42. 论文主实验.\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition adaptive --seed 42 --generations 10 --signal log_det --tau 0.002 --k 10 --signal_mode per_gen --gpu 0\\\"\", \"server\": \"rtx6000-diagprobe\", \"gpu\": \"cuda:0\", \"pid\": 134913, \"tmux_session\": \"exp_006\", \"model_name\": \"EleutherAI/pythia-410m-deduped\", \"seed\": 42, \"data_path\": \"/root/spectral_collapse_ews/data/\", \"data_count\": \"50K real pool, total_per_gen=50K\", \"generations\": 10, \"condition\": \"adaptive\", \"controller_params\": {\"tau\": 0.002, \"k\": 10, \"r_min\": 0.2, \"r_max\": 0.8, \"alpha\": 0.5, \"signal\": \"log_det\", \"signal_mode\": \"per_gen\"}, \"log_path\": \"~/runs/spectral_collapse_ews/exp_006.log\", \"checkpoint_dir\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/adaptive_k10_seed42/\", \"results_file\": \"/root/spectral_collapse_ews/results/phase1_adaptive_k10_seed42_results.json\", \"checkpoint_source\": \"EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)\", \"eval_data\": \"/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)\"}, \"metrics\": {\"gen0_eff_rank\": 417.55, \"gen0_log_det\": 2366.68, \"gen0_ppl\": 9.554, \"gen0_distinct4\": 0.7414, \"gen1_eff_rank\": 477.31, \"gen1_log_det\": 2365.1, \"gen1_ppl\": 10.089, \"gen1_distinct4\": 0.7099, \"gen1_mix_ratio\": 0.5, \"gen1_triggered\": false, \"gen1_train_loss\": 1.984, \"gen2_eff_rank\": 487.08, \"gen2_log_det\": 2394.01, \"gen2_ppl\": 10.416, \"gen2_distinct4\": 0.5995, \"gen2_mix_ratio\": 0.5, \"gen2_triggered\": false, \"gen2_train_loss\": 1.934, \"gen3_eff_rank\": 496.03, \"gen3_log_det\": 2423.83, \"gen3_ppl\": 10.76, \"gen3_distinct4\": 0.4898, \"gen3_mix_ratio\": 0.5, \"gen3_triggered\": false, \"gen3_train_loss\": 1.752, \"gen4_eff_rank\": 501.19, \"gen4_log_det\": 2448.26, \"gen4_ppl\": 11.135, \"gen4_distinct4\": 0.4304, \"gen4_mix_ratio\": 0.5, \"gen4_triggered\": false, \"gen4_train_loss\": 1.572, \"gen5_eff_rank\": 512.5, \"gen5_log_det\": 2488.08, \"gen5_ppl\": 11.643, \"gen5_distinct4\": 0.373, \"gen5_mix_ratio\": 0.5, \"gen5_triggered\": false, \"gen5_train_loss\": 1.467, \"gen6_eff_rank\": 518.89, \"gen6_log_det\": 2507.62, \"gen6_ppl\": 12.144, \"gen6_distinct4\": 0.3556, \"gen6_mix_ratio\": 0.5, \"gen6_triggered\": false, \"gen6_train_loss\": 1.325, \"gen7_eff_rank\": 526.89, \"gen7_log_det\": 2526.19, \"gen7_ppl\": 12.723, \"gen7_distinct4\": 0.2905, \"gen7_mix_ratio\": 0.5, \"gen7_triggered\": false, \"gen7_train_loss\": 1.251, \"gen8_eff_rank\": 535.3, \"gen8_log_det\": 2542.89, \"gen8_ppl\": 13.397, \"gen8_distinct4\": 0.2558, \"gen8_mix_ratio\": 0.5, \"gen8_triggered\": false, \"gen8_train_loss\": 1.149, \"gen9_eff_rank\": 544.5, \"gen9_log_det\": 2560.14, \"gen9_ppl\": 14.159, \"gen9_distinct4\": 0.226, \"gen9_mix_ratio\": 0.5, \"gen9_triggered\": false, \"gen9_train_loss\": 1.062, \"gen10_eff_rank\": 553.76, \"gen10_log_det\": 2572.22, \"gen10_ppl\": 15.1, \"gen10_distinct4\": 0.2388, \"gen10_mix_ratio\": 0.5, \"gen10_triggered\": false, \"gen10_train_loss\": 0.991, \"total_generations\": 11, \"controller_ever_triggered\": false, \"final_eff_rank\": 553.76, \"final_ppl\": 15.1, \"final_distinct4\": 0.2388}, \"reproduce\": {\"finished_at\": \"2026-05-18T08:47:09.147Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T08:47:10.572135+00:00\"}]}, \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/adaptive_k10_seed42/\", \"log_path\": \"~/runs/spectral_collapse_ews/exp_006.log\", \"notes\": \"Adaptive controller (k=10, tau=0.002, per_gen log_det) NEVER triggered across 10 generations. mix_ratio stayed at 0.5 (default) throughout. Per-gen log_det deltas were too small to cross tau threshold, confirming the signal-decay paradox: the spectral signal that motivates intervention is precisely the one that decays too gradually to trigger it. Valuable negative result supporting r_crit claim.\", \"completed_at\": \"2026-05-18T08:49:12.740Z\"}, \"hint\": \"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2684}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31_
+
+Registry updated. exp_006 marked DONE (negative).
+
+## exp_006 完整结果
+
+| Gen | eff_rank | log_det | ppl | distinct4 | mix_ratio | triggered | train_loss |
+|-----|----------|---------|------|-----------|-----------|-----------|------------|
+| 0 | 417.55 | 2366.68 | 9.554 | 0.7414 | — | — | — |
+| 1 | 477.31 | 2365.10 | 10.089 | 0.7099 | 0.5 | false | 1.984 |
+| 2 | 487.08 | 2394.01 | 10.416 | 0.5995 | 0.5 | false | 1.934 |
+| 3 | 496.03 | 2423.83 | 10.760 | 0.4898 | 0.5 | false | 1.752 |
+| 4 | 501.19 | 2448.26 | 11.135 | 0.4304 | 0.5 | false | 1.572 |
+| 5 | 512.50 | 2488.08 | 11.643 | 0.3730 | 0.5 | false | 1.467 |
+| 6 | 518.89 | 2507.62 | 12.144 | 0.3556 | 0.5 | false | 1.325 |
+| 7 | 526.89 | 2526.19 | 12.723 | 0.2905 | 0.5 | false | 1.251 |
+| 8 | 535.30 | 2542.89 | 13.397 | 0.2558 | 0.5 | false | 1.149 |
+| 9 | 544.50 | 2560.14 | 14.159 | 0.2260 | 0.5 | false | 1.062 |
+| 10 | 553.76 | 2572.22 | 15.100 | 0.2388 | 0.5 | false | 0.991 |
+
+### Controller 分析
+
+- **从未触发**。mix_ratio 全程锁定 0.5（默认值），controller_ratio = 0.5 × 10 gen。
+- log_det per-gen delta 趋势：
+  - Gen 0→1: **-1.58**（微降）, 1→2: +28.9, 2→3: +29.8, 3→4: +24.4, 4→5: +39.8, 5→6: +19.5, 6→7: +18.6, 7→8: +16.7, 8→9: +17.3, 9→10: +12.1
+  - Delta 单调递减（从 ~30 降到 ~12），始终不够触发 tau=0.002 阈值。无拐点。
+
+### 结论：**NEGATIVE**
+
+假设被证伪：k=10 + tau=0.002 + per_gen mode 未能产生预期的 0.55-0.65 mix ratio 调节。原因是 per-gen log_det delta 归一化后远低于阈值，controller 形同虚设。
+
+这是一个 **有价值的 negative result**：与 exp_005（k=20，过早耗尽 budget）形成两极，共同说明 per_gen mode 下 log_det signal 的 delta 要么太小不触发（k=10），要么一旦触发就因高 gain 快速耗尽（k=20）。支持论文的 signal-decay paradox / r_crit claim。
+
+### Checkpoints
+
+所有 11 个 generation（gen_0 到 gen_10）checkpoint 完整存在。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "aa0fa3f7-db41-45c9-b628-c6c77c1c0c5d",
+  "uuid": "24faabc6-d4bf-4523-b9b0-4fb958063f31",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RcvYZj517m61NcHnT6sXtH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2347,
+      "cache_read_input_tokens": 46252,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2347
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 32_
+
+Registry updated. exp_006 marked DONE (negative).
+
+## exp_006 完整结果
+
+| Gen | eff_rank | log_det | ppl | distinct4 | mix_ratio | triggered | train_loss |
+|-----|----------|---------|------|-----------|-----------|-----------|------------|
+| 0 | 417.55 | 2366.68 | 9.554 | 0.7414 | — | — | — |
+| 1 | 477.31 | 2365.10 | 10.089 | 0.7099 | 0.5 | false | 1.984 |
+| 2 | 487.08 | 2394.01 | 10.416 | 0.5995 | 0.5 | false | 1.934 |
+| 3 | 496.03 | 2423.83 | 10.760 | 0.4898 | 0.5 | false | 1.752 |
+| 4 | 501.19 | 2448.26 | 11.135 | 0.4304 | 0.5 | false | 1.572 |
+| 5 | 512.50 | 2488.08 | 11.643 | 0.3730 | 0.5 | false | 1.467 |
+| 6 | 518.89 | 2507.62 | 12.144 | 0.3556 | 0.5 | false | 1.325 |
+| 7 | 526.89 | 2526.19 | 12.723 | 0.2905 | 0.5 | false | 1.251 |
+| 8 | 535.30 | 2542.89 | 13.397 | 0.2558 | 0.5 | false | 1.149 |
+| 9 | 544.50 | 2560.14 | 14.159 | 0.2260 | 0.5 | false | 1.062 |
+| 10 | 553.76 | 2572.22 | 15.100 | 0.2388 | 0.5 | false | 0.991 |
+
+### Controller 分析
+
+- **从未触发**。mix_ratio 全程锁定 0.5（默认值），controller_ratio = 0.5 × 10 gen。
+- log_det per-gen delta 趋势：
+  - Gen 0→1: **-1.58**（微降）, 1→2: +28.9, 2→3: +29.8, 3→4: +24.4, 4→5: +39.8, 5→6: +19.5, 6→7: +18.6, 7→8: +16.7, 8→9: +17.3, 9→10: +12.1
+  - Delta 单调递减（从 ~30 降到 ~12），始终不够触发 tau=0.002 阈值。无拐点。
+
+### 结论：**NEGATIVE**
+
+假设被证伪：k=10 + tau=0.002 + per_gen mode 未能产生预期的 0.55-0.65 mix ratio 调节。原因是 per-gen log_det delta 归一化后远低于阈值，controller 形同虚设。
+
+这是一个 **有价值的 negative result**：与 exp_005（k=20，过早耗尽 budget）形成两极，共同说明 per_gen mode 下 log_det signal 的 delta 要么太小不触发（k=10），要么一旦触发就因高 gain 快速耗尽（k=20）。支持论文的 signal-decay paradox / r_crit claim。
+
+### Checkpoints
+
+所有 11 个 generation（gen_0 到 gen_10）checkpoint 完整存在。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 73108,
+  "duration_api_ms": 73112,
+  "num_turns": 11,
+  "stop_reason": "end_turn",
+  "session_id": "aa0fa3f7-db41-45c9-b628-c6c77c1c0c5d",
+  "total_cost_usd": 0.43606350000000005,
+  "usage": {
+    "input_tokens": 10,
+    "cache_creation_input_tokens": 36758,
+    "cache_read_input_tokens": 180516,
+    "output_tokens": 4570,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 36758,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 1022,
+        "cache_read_input_tokens": 46252,
+        "cache_creation_input_tokens": 2347,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 2347
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1678,
+      "outputTokens": 18,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001768,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 10,
+      "outputTokens": 4570,
+      "cacheReadInputTokens": 180516,
+      "cacheCreationInputTokens": 36758,
+      "webSearchRequests": 0,
+      "costUSD": 0.43429549999999995,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "1158ad33-fca7-4b47-89e7-f867614da86f"
+}
+```
+
+</details>
+
+---

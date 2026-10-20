@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a5b8a92ed318632776c3",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "check exp003 startup v2",
+  "task_key": "worker_check_exp003_startup_v2_20260517T040830",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_exp003_startup_v2_20260517T040830_result.json",
+    "occurrence": 1,
+    "bytes": 562,
+    "sha256": "004588ec74fb064c13a2d19a522f591f9e9d1e7c5824c569e953612116bdfefc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 验证结果\n\n| 检查项 | 状态 |\n|--------|------|\n| PID 78069 存活 | ✓ 进程在运行 |\n| 模型从本地缓存加载 | ✓ 无网络错误，成功加载 |\n| Gen 0 训练开始 | ✓ 正在计算 Gen 0 指标（effective rank / perplexity / distinct-4） |\n| cuda:1 显存占用 | ✓ PID 78074 占用 19034MiB |\n\n**exp_003 已成功启动。** 模型从本地缓存加载成功（HF_HUB_OFFLINE=1 生效），当前正在执行 Generation 0 的 baseline 评估阶段。日志中有两个 padding 警告但不影响运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp003-startup-v2.md"
+}

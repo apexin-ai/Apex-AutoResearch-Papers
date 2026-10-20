@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3656f1450ba3709e85b5",
+  "project": "trace_distill_repair",
+  "kind": "result",
+  "title": "diag scoring progress",
+  "task_key": "worker_diag_scoring_progress_20260515T023008",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_scoring_progress_20260515T023008_result.json",
+    "occurrence": 1,
+    "bytes": 980,
+    "sha256": "cf817f47c6977cc5b4336fe92ce3788987e3b8288c0bb37bd0fc679396d36e45"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇总\n\n### Structural scoring (PID 85841)\n- **状态**: 已完成退出\n- **结果**: 38/38 实例全部完成，耗时 1024.6s（~17 分钟）\n- **Segments**: 491 个总计，351 scored，**140 failed**（fallback 23 次，其余为 API 返回 None content 导致的重试失败）\n- **输出**: `/root/trace_distill_repair/pipeline_output/phase2_structural_scores.json`\n\n### Line scoring v2 (PID 86816)\n- **状态**: 运行中（已跑 ~32 分钟）\n- **进度**: **10/38 实例完成**，正在处理第 11 个 `httpie_2`（130 segments）\n- **PARSE_FAILURE**: 0\n- **已完成实例**: black_14, black_1, black_2, black_5, cookiecutter_1, cookiecutter_2, cookiecutter_3, fastapi_1, fastapi_2, httpie_1\n- **已用时间**: ~1652s（~28 分钟）到第 10 个实例\n- **预估剩余**: 还剩 28 个实例。前 10 个平均 165s/实例，但 fastapi 实例（143-144 segments）各用了 ~10 分钟。保守估计还需 **40-60 分钟**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-scoring-progress.md"
+}

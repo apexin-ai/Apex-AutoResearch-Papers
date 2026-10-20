@@ -1,0 +1,60 @@
+{
+  "exp_id": "exp_020",
+  "model": "gpt2-medium",
+  "mixing_ratio": 0,
+  "seed": 42,
+  "source_file": "phase1_gpt2m_pure_collapse_seed42_results.json",
+  "generations": {
+    "gen_0": {
+      "effective_rank": 23.087,
+      "log_det": 689.441,
+      "perplexity": 15.454,
+      "distinct_4": 0.9127,
+      "sigma_1": 6598.112,
+      "top_10_singular_values": [6598.112, 778.078, 400.662, 143.973, 100.415, 82.333, 58.849, 51.313, 43.134, 39.553],
+      "train_loss": null,
+      "hellaswag_acc_norm": null
+    },
+    "gen_1": {
+      "effective_rank": 155.218,
+      "log_det": 885.302,
+      "perplexity": 16.420,
+      "distinct_4": 0.8907,
+      "sigma_1": 1463.462,
+      "top_10_singular_values": [1463.462, 654.349, 515.957, 199.602, 114.958, 101.807, 82.572, 58.396, 53.430, 48.759],
+      "train_loss": 2.358,
+      "hellaswag_acc_norm": null
+    },
+    "gen_2": {
+      "effective_rank": 185.368,
+      "log_det": 924.392,
+      "perplexity": 18.941,
+      "distinct_4": 0.8682,
+      "sigma_1": 1190.661,
+      "top_10_singular_values": [1190.661, 605.689, 492.712, 222.794, 124.184, 110.820, 86.132, 60.450, 59.008, 53.124],
+      "train_loss": 2.119,
+      "hellaswag_acc_norm": null
+    },
+    "gen_3": {
+      "effective_rank": 184.864,
+      "log_det": 889.704,
+      "perplexity": 23.335,
+      "distinct_4": 0.8368,
+      "sigma_1": 1172.312,
+      "top_10_singular_values": [1172.312, 606.322, 413.549, 232.315, 128.699, 114.935, 83.327, 62.667, 58.783, 54.300],
+      "train_loss": 2.052,
+      "hellaswag_acc_norm": null
+    },
+    "gen_4": {
+      "effective_rank": 169.561,
+      "log_det": 817.553,
+      "perplexity": 32.107,
+      "distinct_4": 0.7636,
+      "sigma_1": 1224.004,
+      "top_10_singular_values": [1224.004, 633.054, 361.016, 233.198, 130.240, 114.019, 78.902, 64.042, 57.939, 54.252],
+      "train_loss": 1.993,
+      "hellaswag_acc_norm": null
+    }
+  },
+  "notes": "Gen 0→1: massive r_eff jump (23→155) + σ₁ drop (6598→1463) = initial decompression. Gen 2 r_eff peak (185.4) + log_det peak (924.4). Gen 3 r_eff begins reversal (184.9), Gen 4 clear decline (169.6). Decompression peak at Gen 2, consistent with Pythia-410M pattern. HellaSwag not evaluated for GPT-2-medium. Alternative EWS (SLV/RankMe/isotropy) not computed for this experiment."
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6d3d8014f051b8cc8ec7",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "emergency disk full rescue",
+  "task_key": "worker_emergency_disk_full_rescue_20260516T131857",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_emergency_disk_full_rescue_20260516T131857_result.json",
+    "occurrence": 1,
+    "bytes": 404,
+    "sha256": "c14a026d0837dfa4897e6932efd7f99fd392bde56fce6556b0d1356ca5fbef6c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n| Step | 结果 |\n|------|------|\n| 1. checkpoints → 数据盘 | ✓ symlink 生效，exp_001 下次写 checkpoint 自动落到 `/root/autodl-tmp/` |\n| 2. checkpoints_1b 清理 | ✓ 释放空间 + symlink 就绪 |\n| 3. 根分区 | **100% → 84%**，5.1G 可用 |\n| 4. exp_002 重启 | ✓ PID=25232，日志 `~/runs/spectral_collapse_ews/exp_002.log` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/emergency-disk-full-rescue.md"
+}

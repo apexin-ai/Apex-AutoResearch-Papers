@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c6814ec5c39e1f4a7b75",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ssh exp016 017 progress",
+  "task_key": "worker_ssh_exp016-017-progress_20260522T073202",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp016-017-progress_20260522T073202_result.json",
+    "occurrence": 1,
+    "bytes": 1774,
+    "sha256": "c1eb891b105e3e668e8aeb1cd7dd63a6d9ed4cd4e22044869d519aa75f667782"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整汇总如下：\n\n---\n\n## 1. 进程存活\n\n| 实验 | PID | 状态 | 运行时间 |\n|------|-----|------|---------|\n| exp_016 | 614614 | **ALIVE** | 08:16:15 |\n| exp_017 | 648360 | **ALIVE** | 01:14:16 |\n\n## 2. GPU 状态\n\n| GPU | 利用率 | 显存占用 |\n|-----|--------|---------|\n| 0 | 93% | 25017 MiB |\n| 1 | 94% | 19045 MiB |\n\n## 3. exp_016 checkpoint 进度 (r=0.3, seed44)\n\n```\ngen_0, gen_1, gen_2, gen_3, gen_4\n```\n\n## 4. exp_017 checkpoint 进度 (r=0.2, seed43)\n\n- `fixed_mix_r02_seed43/`: **gen_0** (仅1个)\n- `fixed_mix_r020_seed43/`: 不存在\n\n## 5. exp_016 日志最后 30 行\n\n正在做 gen_4 的 sample generation 阶段：\n```\nGenerated 12160/35000 samples\nGenerated 12480/35000 samples\nGenerated 12800/35000 samples\n```\n（大量 right-padding 警告，可忽略）\n\n## 6. exp_017 日志最后 30 行\n\n正在做 sample generation 阶段（目标更大 40000）：\n```\nGenerated 26240/40000 samples\nGenerated 26560/40000 samples\nGenerated 26880/40000 samples\n```\n\n## 7. Results JSON 进度\n\n| 实验 | 文件 | generations 数 |\n|------|------|---------------|\n| exp_016 | `phase1_fixed_mix_r03_seed44_results.json` | 5 (gen 0–4)，当前正在跑 gen_4 的 sample generation |\n| exp_017 | `phase1_fixed_mix_r025_seed43_results.json` | 11 (gen 0–10) |\n| exp_017 | `phase1_fixed_mix_r025_seed43_summary.json` | 存在 |\n| exp_017 (r=0.2) | 无匹配文件 | — |\n\n**注意**：exp_017 的 results JSON 匹配到的是 `r025_seed43`（r=0.25）而非 `r02_seed43`（r=0.2）。exp_017 的 PID 进程（运行 1h14m）可能是刚启动的 r=0.2 任务，checkpoint 只有 gen_0，暂无 results JSON 输出。而 `r025_seed43` 的 11 代结果可能来自之前的运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exp016-017-progress.md"
+}

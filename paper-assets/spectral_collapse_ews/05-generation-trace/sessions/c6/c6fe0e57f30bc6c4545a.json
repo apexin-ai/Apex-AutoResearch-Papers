@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c6fe0e57f30bc6c4545a",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "analysis epsilon clipping verify",
+  "task_key": "worker_analysis_epsilon-clipping-verify_20260524T112351",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_epsilon-clipping-verify_20260524T112351_result.json",
+    "occurrence": 1,
+    "bytes": 1531,
+    "sha256": "c9f1a353143e259e37d690371c6997bc8650ec2db2095ff42acfc76d2caaf5cf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 验证结果\n\n### Gen 0 实证 SVD（基准 Pythia-410M，所有实验共用）\n\n| 指标 | 值 |\n|---|---|\n| 表示矩阵形状 | (1000, 1024) |\n| 奇异值数量 | 1000 |\n| max(σ_i) | 1942.82 |\n| σ₁₀ | 162.47 |\n| σ₁₀₀ | 48.86 |\n| σ₅₀₀ | 11.73 |\n| σ₉₀₀ | 1.99 |\n| **min(σ_i)** | **1.29×10⁻¹** |\n| min(σ)/ε | **1.29×10⁹** |\n| count(σ > ε) | **1000 / 1000** |\n| 条件数 | 15042 |\n\n### log_det 跨实验汇总（Gen 0–10）\n\n| 实验 | G0 | G1 | G5 | G10 | eff_rank 范围 |\n|---|---|---|---|---|---|\n| r=0.0 | 2366.7 | 2464.8 | 2370.2 | 2178.9 | 417–496 |\n| r=0.2 | 2366.7 | 2367.5 | 2398.9 | 2479.7 | 417–511 |\n| r=0.25 | 2366.7 | 2362.1 | 2421.2 | 2485.0 | 417–513 |\n| r=0.3 | 2366.7 | 2366.1 | 2431.2 | 2511.1 | 417–521 |\n| r=0.5 | 2366.7 | 2366.6 | 2486.3 | 2573.2 | 417–555 |\n\n### 结论\n\n- **ε-clipping 从未生效**。Gen 0 的 min(σ_i) = 0.129，比 ε=10⁻¹⁰ 大 **12.9 亿倍**。全部 1000 个奇异值均通过 ε 阈值。\n- 后续 generations 的 effective_rank 只增不减（从 417 上升到 442–555），表示奇异值分布更加均匀，min(σ_i) 不会退化到接近 ε 的量级。\n- 因此 SLV = Σlog(σ_i) 中的 `sv[sv > 1e-10]` 过滤始终是恒等操作（无 clipping 发生），SLV 等价于完整的 log-determinant。\n\n产出已保存至服务器 `/root/spectral_collapse_ews/artifacts/epsilon_clipping_verification.json` 和本地 `artifacts/epsilon_clipping_verification.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-epsilon-clipping-verify.md"
+}

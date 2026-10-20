@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f0da3077c0084f45c801",
+  "project": "prism_collapse_mixing",
+  "kind": "result",
+  "title": "research literature collapse decoupling",
+  "task_key": "worker_research_literature-collapse-decoupling_20260515T224520",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_literature-collapse-decoupling_20260515T224520_result.json",
+    "occurrence": 1,
+    "bytes": 1412,
+    "sha256": "115088391ef7566a54c037c2c509c65fa7b0f5f355009fc316de98293464b0d0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`literature_map.yaml` 已写入。调研结果：\n\n**Q1: 是否有人报告过 loss-collapse 信号脱钩？**\n没有直接的系统实证。但 Truong 2025 理论预测 collapsed 系统可保持 loss 稳定；Schaeffer 2025 区分了 population risk 与 tail risk 可脱钩；He 2025 在扩散模型上发现 entropy-泛化强相关（与我们 Gen 0 的 ρ=0.929 一致），但未追踪跨代 ρ 变化。\n\n**Q2: Collapse 信号监测方法论**\n- **Entropy**: He 2025 (NeurIPS Spotlight) 用训练数据 entropy 做 collapse indicator\n- **Spectral rank**: SIGMA (Gu 2026) 用 Gram matrix eigenspectrum；SA (Qiu 2025) 用 spectral alignment 分布\n- **Diversity**: Zhu 2025 (ICML) 系统比较了 n-gram diversity / self-BLEU / DCScore\n\n**Q3: 最相关 5 篇**\n\n| 论文 | 关系 |\n|------|------|\n| He 2025 (NeurIPS) | 对照基线：entropy-泛化强相关，但未跨代追踪 |\n| SIGMA (Gu 2026) | 方法互补：spectral 监测框架，未研究与 loss 的 ρ |\n| Truong 2025 | 理论支撑：预测 loss 稳定但 entropy 坍缩，未实证 |\n| Schaeffer 2025 Position | 概念框架：population risk ≠ tail risk |\n| Qiu 2025 SA | 方法启发：spectral 信号比 loss 更早预警 |\n\n**Novelty 定位**: 已有零散理论暗示，但缺乏系统实证验证。我们首次在 LLM 迭代合成训练中量化 ρ(loss, signal) 的跨代演变。novelty 成立。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-literature-collapse-decoupling.md"
+}

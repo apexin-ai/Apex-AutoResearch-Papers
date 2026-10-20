@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c9a6dda17a2cfd816c05",
+  "project": "spectral_collapse_ews",
+  "kind": "history",
+  "title": "director / loop_4.md",
+  "task_key": "loop_4",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_4.md",
+    "occurrence": 1,
+    "bytes": 3572,
+    "sha256": "70ce2440308bd141ff14d6911f0872e87efa0be199a175cf797644ee7021fcb2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: max_messages\nupdated: '2026-05-19T10:29:20+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 **cuda:0** 和 **cuda:1**（rtx6000-diagprobe 上的两张 RTX PRO 6000 Blackwell 98GB）\n- 论文 **8 pages 上限**（ACL format），新增内容必须同步压缩其他部分\n- r_crit bound 全文必须一致：当前 **(0.25, 0.3]**（§2.2/abstract/conclusion 已同步，§4.3 保留初步 bound (0.2, 0.5] 作叙事递进）\n- cron 回调不可靠——实验完成后 Agent 可能不自动接力，**必须主动 check + 手动启动下一个实验**\n- exp_007 (r=0.2) 只有 5gen 数据，论文中关于 r=0.2 的 claim 必须 hedge \"observed five generations\"\n\n### 2. 🖥️ 基础设施快照\n- 服务器：**rtx6000-diagprobe** (connect.westd.seetacloud.com)，user root\n- 工作目录：远程 `/root/spectral_collapse_ews`，本地 `/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews`\n- 论文：`paper/` 目录，latest commit `d7052de`\n- Launch scripts 全就绪：`/root/spectral_collapse_ews/scripts/launch_*.sh` + `resume_*.sh`（7 个脚本覆盖 Phase 2 全部实验）\n- 活跃进程：\n  - exp_009 (r=0.25, 10gen): cuda:0, tmux=exp_009, Gen ~3-4/10\n  - exp_010 (pure seed43, 10gen): cuda:1, tmux=exp_010, 刚启动 ~Gen 0-1\n- 分析输出：`/root/spectral_collapse_ews/results/second_order_analysis.json` + `controller_activation_analysis.json`\n\n### 3. 📊 当前状态\n刚完成 r_crit bound 级联更新 (0.25, 0.3] 全文同步（commit d7052de）。exp_008 (r=0.3) 10gen 完成（SLV=2511.1, Type III confirmed），exp_010 (pure seed43) 已在 cuda:1 接力启动。\n\n- **exp_009** (r=0.25, cuda:0): RUNNING, Gen 3/10, ~14h remaining. Gen 3 SLV=2380.9, Type II confirmed.\n- **exp_010** (pure seed43, cuda:1): RUNNING, 刚启动, ~20h. Phase 2 multi-seed 第一个实验。\n- 等待：exp_009 Gen 5+ 数据 → 更新 §4.5 r=0.25 描述；exp_010 完成 → 验证 C1 multi-seed\n\n### 4. 📋 待办\n- exp_009 Gen 5+ 数据到 → 更新 §4.5 r=0.25 完整描述 + 确认 10gen trajectory 是否持续 expand\n- exp_010 完成 → 验证三阶段 pattern seed 一致性 → cuda:1 启动 `launch_pure_collapse_seed44.sh 1`\n- exp_009 完成 → cuda:0 启动 `resume_fixed_mix_r02_seed42_gen5to10.sh 0`（exp_007 resume 10gen）\n- exp_007 resume 完成 → cuda:0 启动 `launch_fixed_mix_r02_seed43.sh 0`\n- multi-seed 有 2+ seeds 完成后 → Table 1 改为 mean±std，Limitations 更新\n- 所有 Phase 1+2 核心数据齐后 → Phase E: Discussion/Conclusion/Abstract 最终 pass\n\n### 5. 🎯 战略上下文\n- **核心结论链**：D020 (controller 失败 → negative result) → D023 (paradox 升级为 general principle) → D027 (C5 降为 future work) → D028 (r_crit = trajectory shape transition, 非 final outcome) → D029 (r_crit 收紧至 (0.25, 0.3])\n- **Soundness 当前 ~2.5/4**，达 3/4 需：multi-seed ≥1 组完成 + exp_007 resume 10gen。DDL May 25，GPU 预算充足 (~226h 剩余)\n- **易错**：(1) 论文 8p 上限，加内容必须同时压缩；(2) r=0.2 只有 5gen，不能说 \"long-term\"；(3) 二阶 EWS 已降为 Discussion level，不要升回 claim；(4) §4.3 的 (0.2, 0.5] 是故意保留的叙事递进，不要改；(5) spectral-downstream asymmetry 已覆盖（SLV 升 ≠ model 好），不需要独立 contribution\n- **Reviewer 上轮关键建议**：保持 \"phase diagram\" 不升级 \"phase transition\"；\"gradual crossover\" framing 比 \"sharp boundary\" 更准确；preempt \"why monitor if 20% prevents collapse?\" 已植入 Conclusion\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4.md"
+}

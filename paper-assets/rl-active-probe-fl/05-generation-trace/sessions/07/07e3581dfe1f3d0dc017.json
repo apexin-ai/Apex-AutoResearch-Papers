@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "07e3581dfe1f3d0dc017",
+  "project": "rl-active-probe-fl",
+  "kind": "result",
+  "title": "infra grpo env prep",
+  "task_key": "worker_infra_grpo-env-prep_20260514T062206",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_grpo-env-prep_20260514T062206_result.json",
+    "occurrence": 1,
+    "bytes": 1771,
+    "sha256": "e3e4db74f10405cd9ae0de32de878c9a923670700af7a4bedac84725d0e02ec6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GRPO 环境准备报告\n\n### 1. SFT 训练状态\n**未在运行。** 两张 GPU 均空闲（0MiB），无 Python 进程。`checkpoints/sft/` 目录为空，SFT 尚未产出 checkpoint。\n\n### 2. 代码同步\n**全部完成。** 通过 scp + tar 一次性传输：\n- `src/`: 12 个 .py 文件全部到位\n- `data/`: probes_train.jsonl (294条), eval.jsonl (202条), train.jsonl (294条)\n\n### 3. Import 测试\n**通过。** `torch=2.10.0+cu128, trl=1.1.0, peft=0.19.0`，CUDA 可用，2 GPU 检测正常。\n\n### 4. Sandbox 测试\n**通过。** execute_code、timeout、run_tests 全部 OK。\n- 修复：**pytest 未安装** → 已 `pip install pytest`\n\n### 5. Reward Function 测试\n**通过。** 函数签名正确，无 model 时对无 probe 格式的 completion 返回 0.0（不触发 model 调用路径）。\n\n### 6. train_grpo.py --help\n**通过。** 所有参数正常解析（`--sft-checkpoint`, `--gpu`, `--train-data`, etc.）\n\n### 7. 磁盘空间\n| 项目 | 大小 |\n|------|------|\n| 数据盘总量 | 250GB |\n| 已用 | 37GB (15%) |\n| 可用 | 214GB |\n| Qwen3-8B 模型 | 16GB |\n| GRPO 额外需求 | ~20GB |\n| **余量充裕** | ✓ |\n\n### 8. GPU 信息\n- GPU 0: NVIDIA RTX PRO 6000 Blackwell (94GB) — 空闲\n- GPU 1: NVIDIA RTX PRO 6000 Blackwell (94GB) — 空闲\n\n### 问题汇总\n| 问题 | 状态 |\n|------|------|\n| pytest 未安装 | **已修复** |\n| SFT 未在运行，无 checkpoint | **阻塞 GRPO 启动**（GRPO 需要 `--sft-checkpoint`） |\n| vLLM 版本警告 (0.18.1 vs TRL 0.11-0.17) | 不影响 GRPO（GRPO 不用 vLLM） |\n\n**结论：** GRPO 环境已就绪，所有依赖和组件验证通过。唯一阻塞项是 SFT checkpoint 不存在——需要先完成 SFT 训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-grpo-env-prep.md"
+}

@@ -1,0 +1,25 @@
+{
+  "seed42": {
+    "decompression_peak": {
+      "gen": 2,
+      "log_det": 2469.927734375
+    },
+    "onset": {
+      "gen": 3,
+      "log_det": 2440.565673828125
+    },
+    "collapse_confirmation": {
+      "gen": 4,
+      "ppl": 19.80407992794907,
+      "ppl_growth": 0.21898186602394906
+    }
+  },
+  "seed43": {
+    "decompression_peak": {
+      "gen": 2,
+      "log_det": 2466.6259765625
+    },
+    "onset": null,
+    "collapse_confirmation": null
+  }
+}

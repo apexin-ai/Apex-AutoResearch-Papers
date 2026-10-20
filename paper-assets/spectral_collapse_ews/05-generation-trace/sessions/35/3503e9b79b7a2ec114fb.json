@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3503e9b79b7a2ec114fb",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "research sigma comparison",
+  "task_key": "worker_research_sigma-comparison_20260521T090350",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_sigma-comparison_20260521T090350_result.json",
+    "occurrence": 1,
+    "bytes": 753,
+    "sha256": "a3fc7cf8f09076fa8443e6182f3febb265d351d5d572ecaeac9e267be933c857"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心结论：\n\n**SIGMA 共 8 个指标**，其中：\n- **1 个直接可比**：我们的 SLV = ½ × SIGMA 的 log det(G)，已有全部 11 代数据，零额外成本\n- **3 个可从现有 checkpoints 计算**：Track I (𝒢_KF)、Track II (𝒰_LLN,cov)、及其 drift 版本。需 ~2h 开发 + 6min GPU，基于 `compute_alternative_ews_v2.py` 的 `collect_embeddings()` 改造\n- **2 个需补算生成文本指标**：Distinct-2（我们有 Distinct-4 但缺 2-gram 版）和 HHI，~1h\n- **2 个不建议对比**：Overestimation Ratio ℛ（需真实分布协方差）和理论 bounds\n\n最小可行方案：先用已有 SLV drift 做定性对比（免费），再实现 Track I/II（半天内可完成）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-sigma-comparison.md"
+}

@@ -1,0 +1,48 @@
+# Worker execution logs
+
+[Back to trace guide](../README.md) · [Readable Markdown indexes](../readable/README.md)
+
+| Source record | Events | User turns | Readable Markdown | JSON |
+|---|---:|---:|---|---|
+| `logs/workers/worker_research_data-exploration_20260514T042336.log` (occurrence 1) | 49 | 0 | [Read transcript](../readable/worker-executions/research-data-exploration.md) | [Open JSON](../sessions/2f/2fa238910efbbb5d985d.json) |
+| `logs/workers/worker_code_data-pipeline_20260514T044707.log` (occurrence 1) | 53 | 0 | [Read transcript](../readable/worker-executions/code-data-pipeline.md) | [Open JSON](../sessions/80/802008b0c1a9a8124706.json) |
+| `logs/workers/worker_code_training-framework_20260514T044803.log` (occurrence 1) | 89 | 0 | [Read transcript](../readable/worker-executions/code-training-framework.md) | [Open JSON](../sessions/68/68664f894982bc2d3459.json) |
+| `logs/workers/worker_code_reward-fix-critical_20260514T045658.log` (occurrence 1) | 70 | 0 | [Read transcript](../readable/worker-executions/code-reward-fix-critical.md) | [Open JSON](../sessions/f0/f0711a986cfbe90dc530.json) |
+| `logs/workers/worker_code_lora-load-fix_20260514T051705.log` (occurrence 1) | 21 | 0 | [Read transcript](../readable/worker-executions/code-lora-load-fix.md) | [Open JSON](../sessions/8f/8fd91c6e52b487c43633.json) |
+| `logs/workers/worker_infra_env-setup-rtx6000_20260514T051824.log` (occurrence 1) | 164 | 0 | [Read transcript](../readable/worker-executions/infra-env-setup-rtx6000.md) | [Open JSON](../sessions/6a/6a94ec8f76d9495323c4.json) |
+| `logs/workers/worker_code_api-migration-openai_20260514T051918.log` (occurrence 1) | 39 | 0 | [Read transcript](../readable/worker-executions/code-api-migration-openai.md) | [Open JSON](../sessions/2a/2ae7633b054291cce1cb.json) |
+| `logs/workers/worker_code_test-gen-pilot_20260514T052144.log` (occurrence 1) | 65 | 0 | [Read transcript](../readable/worker-executions/code-test-gen-pilot.md) | [Open JSON](../sessions/63/63c35713fdf7f73aac92.json) |
+| `logs/workers/worker_code_test-gen-full_20260514T052735.log` (occurrence 1) | 98 | 0 | [Read transcript](../readable/worker-executions/code-test-gen-full.md) | [Open JSON](../sessions/a3/a3cc00cf944dae021168.json) |
+| `logs/workers/worker_infra_model-download-accelerate_20260514T053142.log` (occurrence 1) | 1,066 | 1 | [Read transcript](../readable/worker-executions/infra-model-download-accelerate.md) | [Open JSON](../sessions/9d/9d0960c68d156424577e.json) |
+| `logs/workers/worker_code_probe-distillation_20260514T061239.log` (occurrence 1) | 40 | 0 | [Read transcript](../readable/worker-executions/code-probe-distillation.md) | [Open JSON](../sessions/63/63221785d559057905ca.json) |
+| `logs/workers/worker_train_sft-mvp_20260514T062107.log` (occurrence 1) | 255 | 0 | [Read transcript](../readable/worker-executions/train-sft-mvp.md) | [Open JSON](../sessions/20/208867639bab78737a28.json) |
+| `logs/workers/worker_infra_grpo-env-prep_20260514T062206.log` (occurrence 1) | 113 | 0 | [Read transcript](../readable/worker-executions/infra-grpo-env-prep.md) | [Open JSON](../sessions/8d/8d117e28c72daeacd63d.json) |
+| `logs/workers/worker_train_grpo-mvp-v1_20260514T064405.log` (occurrence 1) | 37 | 0 | [Read transcript](../readable/worker-executions/train-grpo-mvp-v1.md) | [Open JSON](../sessions/ae/ae70c39d150b9aac9824.json) |
+| `logs/workers/worker_eval_base-v1_20260514T064416.log` (occurrence 1) | 39 | 0 | [Read transcript](../readable/worker-executions/eval-base-v1.md) | [Open JSON](../sessions/98/9821fb09d5ddca6ef754.json) |
+| `logs/workers/worker_code_grpo-fix-restart_20260514T070159.log` (occurrence 1) | 9 | 0 | [Read transcript](../readable/worker-executions/code-grpo-fix-restart.md) | [Open JSON](../sessions/38/3878a261a16be937a4ba.json) |
+| `logs/workers/worker_infra_download-qwen3-30b_20260514T070406.log` (occurrence 1) | 32 | 0 | [Read transcript](../readable/worker-executions/infra-download-qwen3-30b.md) | [Open JSON](../sessions/a5/a52580216e9d57b4b10a.json) |
+| `logs/workers/worker_code_grpo-fix-v2_20260514T070515.log` (occurrence 1) | 45 | 0 | [Read transcript](../readable/worker-executions/code-grpo-fix-v2.md) | [Open JSON](../sessions/c0/c0ac40a0ad9c4810fa52.json) |
+| `logs/workers/worker_code_grpo-reward-fix_20260514T071031.log` (occurrence 1) | 135 | 0 | [Read transcript](../readable/worker-executions/code-grpo-reward-fix.md) | [Open JSON](../sessions/70/703999a7538e1bd370d6.json) |
+| `logs/workers/worker_check_grpo-status_20260514T081411.log` (occurrence 1) | 49 | 0 | [Read transcript](../readable/worker-executions/check-grpo-status.md) | [Open JSON](../sessions/17/177e95eeedc18aa9543a.json) |
+| `logs/workers/worker_code_no-think-fix-eval_20260514T082030.log` (occurrence 1) | 33 | 0 | [Read transcript](../readable/worker-executions/code-no-think-fix-eval.md) | [Open JSON](../sessions/a6/a667daf61cc60575f2d9.json) |
+| `logs/workers/worker_check_eval-status-v2_20260514T082542.log` (occurrence 1) | 27 | 0 | [Read transcript](../readable/worker-executions/check-eval-status-v2.md) | [Open JSON](../sessions/ce/ce3c4ecafc21ddf18ac4.json) |
+| `logs/workers/worker_check_eval-final_20260514T091815.log` (occurrence 1) | 29 | 0 | [Read transcript](../readable/worker-executions/check-eval-final.md) | [Open JSON](../sessions/5e/5eb6b044bd8d99ab23b6.json) |
+| `logs/workers/worker_train_sft-v2-eval_20260514T092308.log` (occurrence 1) | 48 | 0 | [Read transcript](../readable/worker-executions/train-sft-v2-eval.md) | [Open JSON](../sessions/4a/4a1c848eab93b6a84453.json) |
+| `logs/workers/worker_train_sft-v2-retrain_20260514T093500.log` (occurrence 1) | 45 | 0 | [Read transcript](../readable/worker-executions/train-sft-v2-retrain.md) | [Open JSON](../sessions/51/511cd1cc7822b14cbe2c.json) |
+| `logs/workers/worker_eval_dual-v3_20260514T094512.log` (occurrence 1) | 52 | 0 | [Read transcript](../readable/worker-executions/eval-dual-v3.md) | [Open JSON](../sessions/18/181ba951018c2c287d60.json) |
+| `logs/workers/worker_check_eval-v3-status_20260514T103509.log` (occurrence 1) | 39 | 0 | [Read transcript](../readable/worker-executions/check-eval-v3-status.md) | [Open JSON](../sessions/1d/1d15b115324f7de190b8.json) |
+| `logs/workers/worker_diagnose_eval-failures-v3_20260514T105433.log` (occurrence 1) | 57 | 0 | [Read transcript](../readable/worker-executions/diagnose-eval-failures-v3.md) | [Open JSON](../sessions/e0/e0b953c326da58da2cac.json) |
+| `logs/workers/worker_check_eval-v3-extract_20260514T105518.log` (occurrence 1) | 26 | 0 | [Read transcript](../readable/worker-executions/check-eval-v3-extract.md) | [Open JSON](../sessions/68/68573f2b59ded111320a.json) |
+| `logs/workers/worker_train_grpo-v2-dual_20260514T105648.log` (occurrence 1) | 286 | 0 | [Read transcript](../readable/worker-executions/train-grpo-v2-dual.md) | [Open JSON](../sessions/fd/fd2b011fff473e5aa238.json) |
+| `logs/workers/worker_fix_eval-migrate-gpu1_20260514T111547.log` (occurrence 1) | 74 | 0 | [Read transcript](../readable/worker-executions/fix-eval-migrate-gpu1.md) | [Open JSON](../sessions/22/228c66f03a30de2190e5.json) |
+| `logs/workers/worker_monitor_grpo-v2-reward-check_20260514T113947.log` (occurrence 1) | 51 | 0 | [Read transcript](../readable/worker-executions/monitor-grpo-v2-reward-check.md) | [Open JSON](../sessions/d4/d402babc32a52bce9211.json) |
+| `logs/workers/worker_monitor_grpo-v2-early-check_20260514T114327.log` (occurrence 1) | 98 | 0 | [Read transcript](../readable/worker-executions/monitor-grpo-v2-early-check.md) | [Open JSON](../sessions/2b/2b06d04fcf30866029cb.json) |
+| `logs/workers/worker_monitor_grpo-v2-step5-reward_20260514T115958.log` (occurrence 1) | 88 | 0 | [Read transcript](../readable/worker-executions/monitor-grpo-v2-step5-reward.md) | [Open JSON](../sessions/ed/ed688255499b1da2cd37.json) |
+| `logs/workers/worker_monitor_grpo-v2-step5-qwen-dl_20260514T120059.log` (occurrence 1) | 51 | 0 | [Read transcript](../readable/worker-executions/monitor-grpo-v2-step5-qwen-dl.md) | [Open JSON](../sessions/28/283d7826457c2a22c6e6.json) |
+| `logs/workers/worker_diagnose_eval-sft-v2-ckpt_20260514T121743.log` (occurrence 1) | 20 | 0 | [Read transcript](../readable/worker-executions/diagnose-eval-sft-v2-ckpt.md) | [Open JSON](../sessions/66/66a698473ec404fce826.json) |
+| `logs/workers/worker_monitor_grpo-v2-metrics-recovery_20260514T122222.log` (occurrence 1) | 33 | 0 | [Read transcript](../readable/worker-executions/monitor-grpo-v2-metrics-recovery.md) | [Open JSON](../sessions/0e/0ea748ca5cd2a67ae589.json) |
+| `logs/workers/worker_diagnose_grpo-v2-reward-check_20260514T122237.log` (occurrence 1) | 40 | 0 | [Read transcript](../readable/worker-executions/diagnose-grpo-v2-reward-check.md) | [Open JSON](../sessions/6e/6efe448c840cb71f149d.json) |
+| `logs/workers/worker_check_qwen30b-download-status_20260514T122418.log` (occurrence 1) | 21 | 0 | [Read transcript](../readable/worker-executions/check-qwen30b-download-status.md) | [Open JSON](../sessions/78/781d5bcc0f7fbf886ffc.json) |
+| `logs/workers/worker_diagnose_grpo-v2-trainer-state_20260514T122645.log` (occurrence 1) | 88 | 0 | [Read transcript](../readable/worker-executions/diagnose-grpo-v2-trainer-state.md) | [Open JSON](../sessions/20/20aa403d828608c21b5a.json) |
+| `logs/workers/worker_setup_gpu-6000pro-1-env_20260514T124000.log` (occurrence 1) | 75 | 0 | [Read transcript](../readable/worker-executions/setup-gpu-6000pro-1-env.md) | [Open JSON](../sessions/7b/7b8b83e8c3ea4ad3fbff.json) |
+| `logs/workers/worker_code_prepare-eval-grpo_20260514T124018.log` (occurrence 1) | 37 | 0 | [Read transcript](../readable/worker-executions/code-prepare-eval-grpo.md) | [Open JSON](../sessions/13/13bb56cd383b32216b69.json) |

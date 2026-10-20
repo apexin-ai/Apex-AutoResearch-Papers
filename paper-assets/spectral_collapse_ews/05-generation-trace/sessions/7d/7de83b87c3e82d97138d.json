@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7de83b87c3e82d97138d",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "eval logdet gen012",
+  "task_key": "worker_eval_logdet_gen012_20260516T142415",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_logdet_gen012_20260516T142415_result.json",
+    "occurrence": 1,
+    "bytes": 994,
+    "sha256": "43e7f682c89c4f89e6868594065c14a68fe48a73e8ba1d59d08810ef1547e0ce"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n| Gen | effective_rank | log_det | top SV | \n|-----|---------------|---------|--------|\n| 0 | 417.55 | 2366.68 | 1942.82 |\n| 1 | 491.77 | 2464.76 | 803.96 |\n| 2 | 496.44 | 2469.93 | 712.03 |\n\n**关键发现：log_det 和 eff_rank 都是单调递增，不是递减。**\n\n分析：\n- Gen 0→1: eff_rank +74.2, log_det +98.1 — 大幅增加\n- Gen 1→2: eff_rank +4.7, log_det +5.2 — 增速急剧放缓（饱和趋势）\n- Top SV 下降明显（1943 → 804 → 712），说明表征从 Gen 0 的 \"单方向主导\" 逐步均匀化\n\n**解读**：410M 在 Gen 0-2 尚未出现 spectral collapse。相反，表征空间利用率在增加（self-distillation 在早期反而\"解压\"了表征）。但 Gen 1→2 增速已接近停滞 — 如果后续 gen 出现拐点/下降，那才是 collapse 的 EWS 信号。\n\n**对 go/no-go 判断**：log-det 目前不支持\"已经在 collapse\"的假设；需要 Gen 3+ 的数据来观察是否出现拐点。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-logdet-gen012.md"
+}

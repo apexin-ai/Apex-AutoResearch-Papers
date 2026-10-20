@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b29ff90ba9b0d17094f2",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "research literature linkage exp004",
+  "task_key": "worker_research_literature-linkage-exp004_20260518T102211",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_literature-linkage-exp004_20260518T102211_result.json",
+    "occurrence": 1,
+    "bytes": 2787,
+    "sha256": "ae705d417fa5ac417ac8a5c507ff64008bdd0947afacc091403202e9c6c39e80"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调研完成，写报告。\n\n---\n\n## 文献调研报告：Spectral vs Diversity Metrics Divergence\n\n### A) 文献中是否已有关于 spectral vs diversity divergence 的讨论\n\n**No — 没有论文直接报告过 spectral metrics（effective rank, SLV）在 real-data mixing 下保持健康而 diversity metrics（distinct-n）同时崩溃的现象。**\n\n最接近的是：\n\n- **SIGMA (gu2026sigma, 2601.03385)**：报告了 distinct-2 和 hashed n-gram HHI 作为\"operational sanity check\"，但将其定位为 spectral bounds 的**验证手段**，暗含假设两者相关。论文未研究 data mixing 场景，也未报告两类指标的 divergence。\n- **\"Where does output diversity collapse in post-training?\" (arXiv 2604.16027, Apr 2026)**：发现 post-training 中 semantic diversity 与 lexical diversity 可以反向运动（semantic diversity 从 0.54 降到 0.20，而 lexical diversity 从 0.23 升到 0.80）。概念上相关，但场景完全不同（RLHF post-training，非 recursive synthetic training）。\n\n### B) 与我们发现的对比\n\n- **Gerstgrasser et al. (2404.01413)**：证明 data accumulation 能稳定 test error，但**未报告 diversity metrics**。我们的 exp_004 补充了关键一环：固定 r=0.5 mixing 虽然保住了 spectral health，但 distinct-4 暴跌 86%，说明 test error 稳定 ≠ output diversity 稳定。\n- **Dohmatob et al. (2410.04840)**：纯理论分析，用 operator-valued free probability 推导 test error scaling，**无 diversity 讨论**。\n- **Briesch et al. (2311.16822)**：报告了 self-consuming loop 中 diversity 下降，但**无 spectral 分析**。正好是我们发现的反面视角。\n\n### C) 是否可作为额外 contribution\n\n**是的。** 这是一个有价值的 novel observation：\n\n> Spectral metrics (effective rank, log determinant) can be \"blind\" to diversity collapse when real data mixing stabilizes the representation geometry but fails to prevent mode narrowing in output space.\n\n这直接挑战了 SIGMA 等工作中 spectral metrics 作为 collapse 充分检测器的隐含假设。可以作为论文 Discussion 中的重要 finding，论证 spectral EWS 需要与 output-level diversity metrics 配合使用。\n\n### D) 建议补充到 literature_map.yaml 的论文\n\n1. **\"Where does output diversity collapse in post-training?\"** — arXiv 2604.16027 (Apr 2026), 研究 diversity metrics 之间的 divergence，概念上与我们的 spectral-diversity divergence 发现互补。建议加入 `synthetic_data_quality` cluster。\n\n其余搜索未发现需要新增的直接相关论文。现有 literature_map 覆盖已较完整。\n\n---\n\n需要我将这个发现更新到 `literature_map.yaml` 或 `report.md` 中吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-literature-linkage-exp004.md"
+}

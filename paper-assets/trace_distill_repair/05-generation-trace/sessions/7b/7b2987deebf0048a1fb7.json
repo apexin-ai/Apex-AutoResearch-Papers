@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "id": "7b2987deebf0048a1fb7",
+  "project": "trace_distill_repair",
+  "kind": "result",
+  "title": "code test execution eval",
+  "task_key": "worker_code_test_execution_eval_20260515T124853",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_test_execution_eval_20260515T124853_result.json",
+    "occurrence": 1,
+    "bytes": 1025207,
+    "sha256": "862abc219e96afd66380c58092889cd4d144567c11b8ba6deece828c9758a465"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "log": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "7b2987deebf0048a1fb7-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/task-results/code-test-execution-eval.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "081d3ff9f286a6ad95c1",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ssh p0 exp016 status",
+  "task_key": "worker_ssh_p0-exp016-status_20260521T232427",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_p0-exp016-status_20260521T232427_result.json",
+    "occurrence": 1,
+    "bytes": 1473,
+    "sha256": "8cf5cae3f5c8e2ac00297ec18ab5dc80868da4ebc8d72769aefac194c432cf2a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n### exp_016 (fixed_mix r=0.30, seed=44, GPU 0) — **存活，正常运行**\n\n- **PID 614614**: 存活，运行 8m47s\n- **GPU 0**: 49% 利用率, 19045 MiB / 97887 MiB — Director 之前看到 0% 是瞬时快照，现在正常\n- **进度**: Gen 0 评估已完成 (eff_rank=417.55, ppl=9.55, d4=0.7305)，Gen 1 正在生成样本 **1920/35000** (5.5%)\n- **检查点**: `fixed_mix_r03_seed44/gen_0` (May 22 07:19)\n\n**预估完成时间**: 参考 exp_015 每代 ~2h 的节奏，exp_016 有 10 代（gen 1-10），剩余约 **19h**。预计 **May 23 ~02:00 服务器时间**。\n\n---\n\n### exp_015 (fixed_mix r=0.25, seed=44, GPU 1) — **存活，正常运行**\n\n- **GPU 1**: 49% 利用率, 25017 MiB / 97887 MiB\n- **进度**: Gen 0-6 已完成，**Gen 7/10 正在生成样本 28800/37500** (76.8%)\n- 已完成代数指标:\n\n| Gen | eff_rank | ppl | distinct-4 | train_loss |\n|-----|----------|------|------------|------------|\n| 0 | 417.55 | 9.55 | 0.7305 | — |\n| 1 | 475.92 | 10.22 | 0.6379 | 1.8002 |\n| 2 | 484.39 | 10.64 | 0.5156 | 1.6887 |\n| 3 | 488.62 | 11.00 | 0.4518 | 1.4731 |\n| 4 | 493.01 | 11.33 | 0.4156 | 1.3883 |\n| 5 | 494.32 | 11.64 | 0.4008 | 1.3187 |\n| 6 | 498.74 | 11.97 | 0.3994 | 1.2940 |\n\n- **每代耗时**: ~2h（从 checkpoint 时间戳推算）\n- **剩余**: gen 7 剩约 35min + gen 8-10 共 3 代 × 2h = 6h → 共 **~6.5h**\n- **预估完成时间**: **May 22 ~14:30 服务器时间**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-p0-exp016-status.md"
+}

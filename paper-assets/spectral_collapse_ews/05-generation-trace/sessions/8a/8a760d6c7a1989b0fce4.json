@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8a760d6c7a1989b0fce4",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "code controller rewrite",
+  "task_key": "worker_code_controller_rewrite_20260516T084119",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_controller_rewrite_20260516T084119_result.json",
+    "occurrence": 1,
+    "bytes": 952,
+    "sha256": "26c48658e42c3e48be45dea24032957fa24c50673c9390a6ab65e9a13d3d4e7b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部通过。结果：\n\n```\nGen 1:  rank=100, ratio=0.5556, B_rem=4.4444\nGen 2:  rank=95,  ratio=0.5606, B_rem=3.8839\nGen 3:  rank=88,  ratio=0.5823, B_rem=3.3015\nGen 4:  rank=80,  ratio=0.5940, B_rem=2.7075\nGen 5:  rank=70,  ratio=0.6034, B_rem=2.1042\nGen 6:  rank=58,  ratio=0.6070, B_rem=1.4972\nGen 7:  rank=45,  ratio=0.5945, B_rem=0.9027\nGen 8:  rank=32,  ratio=0.5027, B_rem=0.4000\nGen 9:  rank=22,  ratio=0.2000, B_rem=0.2000\nGen 10: rank=15,  ratio=0.2000, B_rem=0.0000\n\nTotal budget used: 5.0000 / 5.0\nAll assertions passed!\n```\n\n原始代码的 budget clipping 有 off-by-one：`B_rem - (remaining_gens - 1) * r_min` 少预留了一代的 r_min，导致后期超支。修正为 `B_rem - remaining_gens * r_min`，确保每个未来代都能拿到至少 r_min。三项验证均通过：ratio 在 [0.2, 0.8] 内，总量恰好 5.0，rank 下降加速时 ratio 相应升高（Gen 1→6 单调增至 0.607）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-controller-rewrite.md"
+}

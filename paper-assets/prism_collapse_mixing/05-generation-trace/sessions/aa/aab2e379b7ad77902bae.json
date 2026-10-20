@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aab2e379b7ad77902bae",
+  "project": "prism_collapse_mixing",
+  "kind": "result",
+  "title": "ssh gpu gen2 status check",
+  "task_key": "worker_ssh_gpu_gen2_status_check_20260516T015929",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_gpu_gen2_status_check_20260516T015929_result.json",
+    "occurrence": 1,
+    "bytes": 1340,
+    "sha256": "c0ea9b2d707e3ff1bfeeffe8cc766140d915cb0d3bd29708902905e0da9536bf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇报\n\n### GPU\n| GPU | 利用率 | 显存占用 |\n|-----|--------|----------|\n| cuda:0 | **0%** | 7951 / 97887 MiB |\n| cuda:1 | **0%** | 7951 / 97887 MiB |\n\nGPU 利用率为 0%，但两张卡各有 ~8GB 显存占用。\n\n### gen2 当前阶段：信号计算（compute_signals），进行中\n\n两个 `compute_signals.py` 进程正在跑：\n- **seed42**: `per-example signals` 进度 ~36% (112/313)，速度 ~11s/it\n- **seed137**: `per-example signals` 进度 ~31% (98/313)，速度 ~13s/it\n\n这两个进程是 CPU-bound 的信号计算阶段（GPU 利用率 0% 印证了这点），由 `run_pipeline.py --seeds 42,137 --start_gen 1` 在 tmux session `mvp_collapse_decoupling` 中调度。\n\n### 已完成的阶段\n按时间线：\n1. gen0 信号计算 ✅ (02:18 / 02:39)\n2. gen1 训练 ✅ (checkpoints gen1_seed42, gen1_seed137 @ 05:27)\n3. gen1 信号计算 ✅ (06:41 / 06:42)\n4. gen1 可视化 ✅ (07:21)\n5. gen1 统计分析 ✅ (09:20 / 09:21)\n6. gen2 训练 ✅ (checkpoints gen2_seed42, gen2_seed137 @ 09:40)\n7. **gen2 信号计算 🔄 进行中** (~30-36%，两个 seed 并行)\n\n### 预计剩余时间\n- seed42: ~(313-112) × 11s ≈ **37 分钟**\n- seed137: ~(313-98) × 13s ≈ **47 分钟**\n\n信号计算完成后，pipeline 应会继续 gen2 的可视化和分析步骤。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-gpu-gen2-status-check.md"
+}

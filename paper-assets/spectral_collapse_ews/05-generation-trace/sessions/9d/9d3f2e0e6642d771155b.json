@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9d3f2e0e6642d771155b",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "figure fig7 rankme trajectories",
+  "task_key": "worker_figure_fig7-rankme-trajectories_20260523T125918",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_fig7-rankme-trajectories_20260523T125918_result.json",
+    "occurrence": 1,
+    "bytes": 343,
+    "sha256": "17143097d356f957039cdbb980f16291082ea191ad135d420e30d61964c39567"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure 7 已生成。4 个文件均已保存：\n- `figures/paper/fig7_rankme_trajectories.pdf/.png`\n- `paper/figures/rankme_trajectories.pdf/.png`\n\nr=0 (Type I) 单调下降，r≥0.2 四条线全部单调上升并聚在一起，右侧大括号标注 \"2-type only\"，清晰展示 r_eff 无法区分 Type II 和 Type III。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-fig7-rankme-trajectories.md"
+}

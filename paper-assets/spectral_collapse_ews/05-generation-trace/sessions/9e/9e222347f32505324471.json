@@ -1,0 +1,107 @@
+{
+  "schema_version": "1.0",
+  "id": "9e222347f32505324471",
+  "project": "spectral_collapse_ews",
+  "kind": "worker",
+  "title": "analysis sv distribution",
+  "task_key": "worker_analysis_sv-distribution_20260525T215424",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_sv-distribution_20260525T215424.log",
+    "occurrence": 1,
+    "bytes": 2235592,
+    "sha256": "cf8b280689162684f81dde39176c1a5f60955aa09575291a860978365c4c1142"
+  },
+  "statistics": {
+    "messages": 1932,
+    "user_turns": 2,
+    "tool_calls": 836,
+    "roles": {
+      "log": 1,
+      "system": 12,
+      "record": 1,
+      "assistant": 244,
+      "tool_call": 836,
+      "tool_result": 836,
+      "user": 2
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 753,
+      "chunks": [
+        {
+          "path": "9e222347f32505324471-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "9e222347f32505324471-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "9e222347f32505324471-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "9e222347f32505324471-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "9e222347f32505324471-part-0005.json",
+          "message_count": 33
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 1175,
+      "chunks": [
+        {
+          "path": "9e222347f32505324471-part-0005.json",
+          "message_count": 147
+        },
+        {
+          "path": "9e222347f32505324471-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "9e222347f32505324471-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "9e222347f32505324471-part-0008.json",
+          "message_count": 180
+        },
+        {
+          "path": "9e222347f32505324471-part-0009.json",
+          "message_count": 180
+        },
+        {
+          "path": "9e222347f32505324471-part-0010.json",
+          "message_count": 180
+        },
+        {
+          "path": "9e222347f32505324471-part-0011.json",
+          "message_count": 128
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 4,
+      "chunks": [
+        {
+          "path": "9e222347f32505324471-part-0011.json",
+          "message_count": 4
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-sv-distribution.md"
+}

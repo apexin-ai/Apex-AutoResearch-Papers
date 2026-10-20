@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e5b93140ba2186b6e14d",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ops extract training config",
+  "task_key": "worker_ops_extract_training_config_20260521T060547",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_extract_training_config_20260521T060547_result.json",
+    "occurrence": 1,
+    "bytes": 2407,
+    "sha256": "7432a9ad7e534a84c6abd2ccca719d6f815b901033b32a812a96d1fb7a11a6c4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have all the data needed. Here's the compiled output:\n\n```\nTraining Hyperparameters:\n- Model: EleutherAI/pythia-410m-deduped (410M params)\n- Optimizer: AdamW (weight_decay=0.01)\n- Learning rate: 5e-5, linear warmup + linear decay schedule\n- Batch size: 8 (gradient accumulation: 4, effective: 32)\n- Epochs per generation: 1\n- Warmup ratio: 0.05\n- Gradient clipping: max_norm=1.0\n- Training samples per generation: 50,000 (fixed volume; ratio controls real/synthetic split)\n- Generation: temperature=1.0, top_k=50, do_sample=True (no top_p)\n- Generation batch size: 32\n- Max sequence length: 512\n- Spectral eval samples: 1,000\n- Perplexity eval samples: 5,000\n- Distinct-4 eval samples: 1,000\n\nSpectralController defaults (adaptive condition):\n- k=20.0, τ=0.002, r_base=0.50, r_min=0.20, r_max=0.80\n- signal=log_det, signal_mode=per_gen, α_EMA=0.5\n\nCompute:\n- GPU: 2× NVIDIA RTX PRO 6000 Blackwell Server Edition (96 GB each)\n- Per-generation cycle (mixed conditions, r≥0.3): ~89 min\n  (verified: adaptive_k10_seed42 gen_1→gen_10 = 13h20m / 9 intervals)\n- Per-generation cycle (pure collapse, r=0): ~155 min\n  (verified: pure_collapse_seed43 gen_1→gen_10 = 23h17m / 9 intervals)\n- Full 10-gen pipeline: ~15h (mixed) to ~26h (pure collapse)\n- Completed Phase 1 pipelines (10 gens, 410M):\n    1. adaptive_k10_seed42       (~15h)\n    2. fixed_mix_seed42 r=0.5    (~15h)\n    3. fixed_mix_r02_seed42      (~22h est.)\n    4. fixed_mix_r025_seed42     (~20h est.)\n    5. fixed_mix_r03_seed42      (~19h est.)\n    6. pure_collapse_seed43      (~26h)\n- Partial Phase 1 runs: pure_collapse_seed44 (8/10), fixed_mix_r025_seed43 (3/10), fixed_mix_r03_seed43 (1/10) — ~31h est.\n- Phase 0 pilot: 410M 10-gen (~26h) + 1B 3-gen (~12h)\n- Earlier experimental runs (adaptive_k20, adaptive_k1): ~20h est.\n- HellaSwag + alternative EWS evaluations: ~10h est.\n- Estimated total: ~220 single-GPU hours on RTX PRO 6000\n\nSource files:\n- src/config.py (all defaults)\n- src/pipeline.py:214 (AdamW, weight_decay=0.01, gradient clipping)\n- src/generate.py (temperature, top_k, no top_p)\n- src/evaluate.py (eval sample counts)\n- src/controller.py (controller formula & params)\n- Timing: checkpoint directory stat timestamps under\n  /root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/\n  /root/autodl-tmp/spectral_collapse_ews/checkpoints_410m/\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-extract-training-config.md"
+}

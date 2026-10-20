@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5138a9244f3dfdfca529",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "launch exp 004 cuda1",
+  "task_key": "worker_launch_exp_004-cuda1_20260517T175518",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_launch_exp_004-cuda1_20260517T175518_result.json",
+    "occurrence": 1,
+    "bytes": 658,
+    "sha256": "664b1ce605a5940de47b9cb1b2dbd3ccd525cd2511bf2d9843936799b353461d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成，汇总：\n\n---\n\n**路径冲突检查**：无冲突。`fixed_mix_seed42/` 路径不存在，与 exp_005 的 `adaptive_k20_seed42/` 完全独立。\n\n**exp_004 状态**：\n- PID: **135411**（实际 python 进程）/ tmux session PID: 135406\n- 状态：正常运行，正在执行 Gen 0 评估（effective rank + perplexity）\n\n**nvidia-smi (cuda:1)**：\n| 进程 | PID | VRAM |\n|------|-----|------|\n| exp_005 (adaptive) | 116947 | 25,008 MiB |\n| exp_004 (fixed_mix) | 135411 | 18,980 MiB |\n| **合计** | | **43,988 MiB / 97,887 MiB (45%)** |\n\n安全余量充足，无 OOM 风险。两个实验均正常运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/launch-exp-004-cuda1.md"
+}

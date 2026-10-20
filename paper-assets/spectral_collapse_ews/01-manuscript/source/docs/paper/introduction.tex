@@ -1,0 +1,29 @@
+
+Synthetic data has become integral to language model training.
+Instruction tuning, knowledge distillation, and data augmentation all routinely use model-generated text, and as synthetic corpora are recycled into training pipelines, the process often becomes recursive: each generation of models is fine-tuned on outputs from the previous one.
+Recent work demonstrates that such recursive synthetic training triggers \textit{model collapse}, a progressive erosion of distributional tails and downstream capability~\cite{shumailov2024collapse, dohmatob2024tails, alemohammad2024mad}.
+The problem is especially pressing as web-scraped corpora increasingly contain model-generated content, a trend that introduces implicit recursive loops even without deliberate data reuse.
+
+While model collapse is now well-characterized through theoretical analysis of tail decay~\cite{dohmatob2024tails} and empirical studies across modalities~\cite{shumailov2024collapse, alemohammad2024mad}, its effect on the geometric structure of learned representations remains poorly understood.
+As recursive training erodes distributional diversity, the embedding space should contract onto a lower-dimensional subspace.
+Characterizing this spectral trajectory could yield computationally cheap collapse indicators from internal model states alone, without text generation or benchmark evaluation.
+
+Current collapse detection depends on downstream metrics such as perplexity and benchmark accuracy, or on analysis of generated text through lexical diversity measures.
+Both approaches require either costly inference or external evaluation infrastructure at every generation.
+SIGMA~\cite{gu2026sigma} introduced spectral monitoring through embedding covariance analysis and showed that spectral indicators can track collapse, but validated only on OPT-125M over short generation horizons.
+Three gaps remain open.
+First, no work has systematically characterized spectral dynamics beyond a few generations at 410M+ parameters.
+Second, the temporal relationship between spectral indicators and downstream degradation has not been examined.
+Third, no study has connected spectral early warning signals to closed-loop collapse prevention.
+
+We address these gaps by tracking spectral indicators of the embedding Gram matrix across 10 recursive generations of Pythia-410M-deduped~\cite{biderman2023pythia}, with pilot validation at the 1B scale.
+Our analysis reveals a reproducible three-phase pattern (Figure~\ref{fig:spectral_trajectory}): spectral decompression (Gen~0--2), where effective rank ($r_{\text{eff}}$) and spectral log-volume (SLV) rise while downstream performance already declines; collapse onset (Gen~2--4), where spectral indicators reverse; and accelerating collapse (Gen~4--10), where contraction proceeds 2.43$\times$ faster than during onset.
+Among these indicators, SLV is particularly suited for automated monitoring: it requires only a forward pass on held-out data (no text generation), captures distributed volume changes across all spectral directions, and declines monotonically after its peak.
+We further demonstrate a proof-of-concept proportional controller that uses SLV to guide real-synthetic data mixing, and identify a signal attenuation paradox where successful intervention dampens the spectral signal the controller relies on.
+
+Our contributions are:
+\begin{itemize}
+\item \textbf{C1:} A systematic spectral characterization of model collapse across 10 generations, revealing a three-phase pattern (decompression, onset, acceleration at 2.43$\times$ rate) validated on Pythia-410M and confirmed at 1B scale (\S\ref{subsec:phase0}, \S\ref{subsec:cross_scale}, Table~\ref{tab:phase0}).
+\item \textbf{C2:} Identification of SLV as a reliable, computationally efficient collapse monitor with monotonic post-peak decline, together with the HellaSwag-spectral asymmetry showing that downstream degradation precedes spectral collapse (\S\ref{subsec:phase0}, \S\ref{subsec:cross_scale}).
+\item \textbf{C3:} A closed-loop SLV-guided mixing controller (proof of concept) and the signal attenuation paradox insight for future controller design (\S\ref{subsec:controller}, \S\ref{subsec:phase1}).
+\end{itemize}

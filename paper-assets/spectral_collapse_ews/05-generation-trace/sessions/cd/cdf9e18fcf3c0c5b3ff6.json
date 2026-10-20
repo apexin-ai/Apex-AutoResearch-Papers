@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cdf9e18fcf3c0c5b3ff6",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "code check resume support",
+  "task_key": "worker_code_check-resume-support_20260518T095823",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_check-resume-support_20260518T095823_result.json",
+    "occurrence": 1,
+    "bytes": 1254,
+    "sha256": "0b3b4a2f592337d349aeb1b2ab33d519ec9abbdad26651bfa09851bab7ca67ed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### run_phase1.py 是否已支持 resume？\n`src/pipeline.py` 的 `run_recursive_training()` **已有** `resume_from_gen` 参数（完整逻辑：加载 `gen_{N-1}` checkpoint + 加载已有 results JSON + 从 gen N 开始循环）。但 `run_phase1.py` 之前没有暴露该参数。\n\n### 代码改动（2 处）\n- **Line 100-101**: 添加 `--start_gen` 参数定义\n- **Line 192**: 在 `run_recursive_training()` 调用中传入 `resume_from_gen=args.start_gen`\n\n### exp_007 (r=0.2) 状态\n- **Checkpoints**: 仅 `gen_0` 存在（pretrained baseline），无 gen_1 ~ gen_5\n- **Results JSON**: **不存在** (`phase1_fixed_mix_r02_seed42_results.json` 文件缺失)\n- 结论：exp_007 只完成了 Gen 0 评估和 checkpoint 保存，之后中断。**无法从 Gen 5 续跑**，需要从 Gen 0 重新开始\n\n### Launch script\n已创建 `/root/spectral_collapse_ews/scripts/launch_fixed_mix_r02_resume.sh`，接受两个参数：`GPU_ID`（默认 0）和 `START_GEN`（默认 0）。用法：\n```bash\n# 从头跑（当前状态只能这样）\nbash scripts/launch_fixed_mix_r02_resume.sh 0 0\n# 未来如果有 gen_4 checkpoint + results JSON，可以续跑\nbash scripts/launch_fixed_mix_r02_resume.sh 0 5\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-check-resume-support.md"
+}

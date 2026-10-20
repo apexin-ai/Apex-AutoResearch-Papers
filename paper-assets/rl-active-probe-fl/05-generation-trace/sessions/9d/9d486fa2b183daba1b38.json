@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9d486fa2b183daba1b38",
+  "project": "rl-active-probe-fl",
+  "kind": "result",
+  "title": "train sft mvp",
+  "task_key": "worker_train_sft-mvp_20260514T062107",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_sft-mvp_20260514T062107_result.json",
+    "occurrence": 1,
+    "bytes": 1073,
+    "sha256": "658f0bc4fe840a9455c005e0a56eac60a4fdd1d71c6ef2a82750a0437a7494f3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "SFT 训练已完成。汇总：\n\n## 同步文件\n- **代码**: 8 个 .py 文件 (src/ 目录, 含额外发现的 validate_tests.py)\n- **数据**: probes_train.jsonl (294 条), eval.jsonl (202 条) — 通过 scp 传输\n\n## 模型路径\n`/root/autodl-tmp/models/Qwen/Qwen3-8B`\n\n## 训练结果\n- **总步数**: 57 steps, 3 epochs\n- **总耗时**: 176.6 秒 (~3 分钟)\n- **GPU**: cuda:0, 56GB 显存使用 (RTX PRO 6000 Blackwell 94GB)\n\n### Loss 曲线\n| Step | Loss | Token Accuracy | Epoch |\n|------|------|---------------|-------|\n| 10 | 2.133 | 0.616 | 1.05 |\n| 20 | 1.803 | 0.630 | 1.59 |\n| 30 | 1.649 | 0.645 | 2.11 |\n| 40 | 1.550 | 0.654 | 2.65 |\n| **Avg** | **1.871** | **0.662** | **3.0** |\n\n## Checkpoint\n`/root/autodl-tmp/diagprobe/checkpoints/sft/` — LoRA adapter (174MB) + tokenizer\n\n## 修复的问题\n1. `eval.jsonl` 缺少 `good_probe` 字段 — 添加字段检查，跳过不兼容的 eval 数据\n2. trl 1.1.0 的 `SFTConfig` 参数 `max_seq_length` → `max_length`\n3. wandb 未登录 — 跳过 wandb logging"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-sft-mvp.md"
+}

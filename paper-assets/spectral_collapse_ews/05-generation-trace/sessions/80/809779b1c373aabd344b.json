@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "809779b1c373aabd344b",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "diagnose exp 002 exit",
+  "task_key": "worker_diagnose_exp_002_exit_20260516T130202",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp_002_exit_20260516T130202_result.json",
+    "occurrence": 1,
+    "bytes": 1029,
+    "sha256": "3d6c9780a094dc59e437121bfeef1d328300daebd0ca6bb81ec14a298f1099af"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n**状态：崩溃（Generation 0 评估完成后，保存 checkpoint 时磁盘满）**\n\n**错误信息：**\n```\nsafetensors_rust.SafetensorError: Error while serializing: I/O error: No space left on device (os error 28)\n```\n\n**崩溃位置：** `src/pipeline.py:79` — `model.save_pretrained(gen0_ckpt_path)` 保存 Gen 0 checkpoint 时失败。\n\n**已完成的工作：**\n- Gen 0 (pretrained baseline) 评估成功：**eff_rank=516.14, ppl=8.07, distinct4=0.7510**\n- Gen 0 checkpoint 实际已写入 2.04 GB（`checkpoints_1b/gen_0/model.safetensors`），但后续操作时磁盘耗尽\n\n**根因：** 根分区 30GB 已 100% 占满（仅剩 996K）。Pythia 1B 模型单个 checkpoint 约 2GB，多代训练 + 模型权重无法放在 30GB 根分区。\n\n**需要的修复：**\n1. 清理磁盘空间，或将 checkpoints 路径改到数据盘（如 `/root/autodl-tmp/`）\n2. 确认是否有数据盘可用，如果有则修改 `run_phase0_1b.py` 中的 checkpoint 输出路径"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-002-exit.md"
+}

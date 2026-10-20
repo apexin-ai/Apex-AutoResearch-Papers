@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d187098713a0ef8c607a",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "analysis exp 015",
+  "task_key": "worker_analysis_exp_015_20260522T061658",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_015_20260522T061658_result.json",
+    "occurrence": 1,
+    "bytes": 735,
+    "sha256": "8d0d76ac994c0d244d1b96e68d89f92a7db850bd868a24a8e7d2a3cc4a8e032a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp_015 分析完成。关键结果：\n\n**Type II 轨迹在 3 个 seed 上全部复现。** SLV 在 Gen1-2 出现浅 dip（平均深度 −3.59），Gen3 恢复后单调递增。\n\n**Gen10 三 seed 汇总（mean ± std）：**\n| Metric | Value |\n|--------|-------|\n| SLV (log_det) | 2488.11 ± 2.89 |\n| PPL | 13.409 ± 0.18 |\n| eff_rank | 513.82 ± 1.59 |\n| distinct-4 | 0.3422 ± 0.013 |\n| SLV 总变化 | +5.13% |\n\ncross-seed 方差极低（SLV CV=0.12%），r=0.25 条件下 collapse 动态高度可复现。\n\n产出：\n- 报告：`artifacts/exp_015/report/exp_015_cross_seed_analysis.md`（已注册 `art_20260522_c032c2`）\n- Registry：exp_015 → DONE (success)，含完整 per-gen metrics + notes"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-015.md"
+}

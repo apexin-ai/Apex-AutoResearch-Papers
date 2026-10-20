@@ -1,0 +1,24 @@
+% Cross-Architecture Validation Table (GPT-2-medium, 355M)
+% Goes in §3.6 or Appendix. Fill TBD after exp_020/exp_022c/exp_023 complete.
+
+\begin{table}[t]
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}clrrrlc@{}}
+\toprule
+$r$ & Type & SLV$_0$ & SLV$_3$ & $\Delta$SLV & EMA viol.? & Pythia? \\
+\midrule
+0    & I (collapse)      & 689          & 890          & $+$29.1\%    & N/A          & \checkmark   \\
+0.25 & II (transitional) & \texttt{TBD} & \texttt{TBD} & \texttt{TBD} & \texttt{TBD} & \texttt{TBD} \\
+0.30 & III (stable)      & \texttt{TBD} & \texttt{TBD} & \texttt{TBD} & \texttt{TBD} & \texttt{TBD} \\
+1.0  & Control           & 689          & 813          & $+$17.9\%    & No           & \checkmark   \\
+\bottomrule
+\end{tabular}
+\caption{Cross-architecture validation on GPT-2-medium (355M, 3~generations each).
+Trajectory types match Pythia-410M classification (\S\ref{subsec:phase_diagram_exp}).
+\textbf{EMA viol.?}: whether EMA-smoothed SLV violates the non-decreasing condition at any $t \geq 2$.
+\textbf{Pythia?}: whether the trajectory type matches the corresponding Pythia-410M mixing ratio.
+The $r{=}1.0$ control (exp\_021) confirms that real-data fine-tuning produces monotonic spectral expansion without Phase~II/III reversal.}
+\label{tab:cross_arch}
+\end{table}

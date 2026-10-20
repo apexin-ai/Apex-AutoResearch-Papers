@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9aa67bb8fae86ce19ba3",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "code compare seeds script",
+  "task_key": "worker_code_compare_seeds_script_20260519T124538",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_compare_seeds_script_20260519T124538_result.json",
+    "occurrence": 1,
+    "bytes": 704,
+    "sha256": "4d9069b05bffb9f8463a7a3a56ef957b34c1f24e1125d47cdb831d05f61c37ec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。\n\n**输出结果摘要：**\n\n- `scripts/compare_seeds.py` — 脚本已创建，支持任意数量 seed 文件\n- 双 seed 测试：seed42 (11 gens) + seed43 (3 gens)，seed43 缺失的 gen 3-10 正确显示 `n/a`\n- Phase boundaries：两个 seed 的 decompression peak 一致在 gen 2；seed42 onset=gen 3, collapse_confirmation=gen 4 (ppl_growth=21.9%, threshold=0.2)；seed43 数据不足无法检测 onset/collapse\n- LaTeX 表：gen 0-2 有 mean±std（跨两个 seed），gen 3-10 仅 seed42 值（std 省略）\n\n**已下载到本地 `results/`：**\n- `phase0_results.json` (seed42, 11 gens)\n- `phase1_pure_collapse_seed43_results.json` (seed43, 3 gens)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-compare-seeds-script-copy-2.md"
+}

@@ -1,0 +1,493 @@
+# analysis structural v3 deep
+
+**trace distill repair** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 15
+- **Recorded user turns:** 0
+- **Tool calls:** 7
+- **Original source:** `logs/chats/worker_analysis_structural_v3_deep_20260515T092549.jsonl`
+- **Structured JSON:** [`5de03e45373fd02bb695.json`](../../sessions/5d/5de03e45373fd02bb695.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+15 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-15T09:27:50.648754+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_structural_v3_deep_20260515T092549",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-15T09:27:50.649097+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_structural_v3_deep_20260515T092549",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-15T09:27:50.649291+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx6000-diagprobe",
+  "command": "cat /root/trace_distill_repair/pipeline_output/phase2_structural_scores.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_structural_v3_deep_20260515T092549",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx6000-diagprobe",
+    "command": "cat /root/trace_distill_repair/pipeline_output/phase2_structural_scores.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-15T09:27:50.649679+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"structural\\\",\\n  \\\"dry_run\\\": false,\\n  \\\"num_instances\\\": 33,\\n  \\\"total_segments\\\": 566,\\n  \\\"scored_segments\\\": 539,\\n  \\\"failed_segments\\\": 27,\\n  \\\"elapsed_seconds\\\": 824.1,\\n  \\\"excluded\\\": [\\n    \\\"fastapi_3\\\",\\n    \\\"fastapi_5\\\"\\n  ],\\n  \\\"annotations\\\": {\\n    \\\"httpie_1\\\": \\\"too_small\\\",\\n    \\\"tqdm_2\\\": \\\"too_small\\\",\\n    \\\"scrapy_4\\\": \\\"too_small\\\",\\n    \\\"scrapy_7\\\": \\\"too_small\\\",\\n    \\\"luigi_5\\\": \\\"low_segment_count\\\",\\n    \\\"luigi_10\\\": \\\"low_segment_count\\\",\\n    \\\"luigi_14\\\": \\\"low_segment_count\\\"\\n  },\\n  \\\"results\\\": {\\n    \\\"black_1\\\": {\\n      \\\"instance_key\\\": \\\"black_1\\\",\\n      \\\"annotation\\\": null,\\n      \\\"total_segments\\\": 10,\\n      \\\"scored_segments\\\": 9,\\n      \\\"mode\\\": \\\"structural\\\",\\n      \\\"sampling_info\\\": {\\n        \\\"total_segments\\\": 10,\\n        \\\"scored_segments\\\": 10,\\n        \\\"sampling_method\\\": \\\"full\\\"\\n      },\\n      \\\"scores\\\": [\\n        {\\n          \\\"segment_type\\\": \\\"call_subtree\\\",\\n          \\\"start_idx\\\": 0,\\n          \\\"end_idx\\\": 2,\\n          \\\"token_estimate\\\": 204,\\n          \\\"num_events\\\": 3,\\n          \\\"label\\\": \\\"drop\\\",\\n          \\\"confidence\\\": 0.95,\\n          \\\"reasoning\\\": \\\"The trace segment shows a simple module-level assignment returning None, which is normal behavior. It does not contain any information about AST traversal or recursive formatting issues mentioned in the bug report. Therefore, it is not useful for diagnosing the bug.\\\"\\n        },\\n        {\\n          \\\"segment_type\\\": \\\"basic_block\\\",\\n          \\\"start_idx\\\": 4,\\n          \\\"end_idx\\\": 20,\\n          \\\"token_estimate\\\": 1160,\\n          \\\"num_events\\\": 17,\\n          \\\"
+…[truncated 7618 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_structural_v3_deep_20260515T092549",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-15T09:27:50.649920+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx6000-diagprobe",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\n\nwith open('/root/trace_distill_repair/pipeline_output/phase2_structural_scores.json') as f:\n    data = json.load(f)\n\nresults = data['results']\nprint(f'Total instances: {len(results)}')\nprint()\n\n# Per-instance breakdown\nfor inst_key in sorted(results.keys()):\n    r = results[inst_key]\n    scores = r['scores']\n    keep = sum(1 for s in scores if s['label'] == 'keep')\n    drop = sum(1 for s in scores if s['label'] == 'drop')\n    error = sum(1 for s in scores if s['label'] == 'error')\n    total = len(scores)\n    annotation = r.get('annotation', '')\n    print(f'{inst_key:25s}  total={total:3d}  keep={keep:2d}  drop={drop:2d}  error={error:2d}  ann={annotation}')\n\nprint()\n# Summary\nall_keep = sum(1 for inst in results.values() for s in inst['scores'] if s['label'] == 'keep')\nall_drop = sum(1 for inst in results.values() for s in inst['scores'] if s['label'] == 'drop')\nall_error = sum(1 for inst in results.values() for s in inst['scores'] if s['label'] == 'error')\nprint(f'TOTAL: keep={all_keep}, drop={all_drop}, error={all_error}, sum={all_keep+all_drop+all_error}')\n\n# Subset A (keep>0) and B (keep=0)\nsubset_a = [k for k, v in results.items() if any(s['label'] == 'keep' for s in v['scores'])]\nsubset_b = [k for k, v in results.items() if not any(s['label'] == 'keep' for s in v['scores'])]\nprint(f'\\nSubset A (keep>0): {len(subset_a)} instances: {sorted(subset_a)}')\nprint(f'Subset B (keep=0): {len(subset_b)} instances: {sorted(subset_b)}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_structural_v3_deep_20260515T092549",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx6000-diagprobe",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\n\nwith open('/root/trace_distill_repair/pipeline_output/phase2_structural_scores.json') as f:\n    data = json.load(f)\n\nresults = data['results']\nprint(f'Total instances: {len(results)}')\nprint()\n\n# Per-instance breakdown\nfor inst_key in sorted(results.keys()):\n    r = results[inst_key]\n    scores = r['scores']\n    keep = sum(1 for s in scores if s['label'] == 'keep')\n    drop = sum(1 for s in scores if s['label'] == 'drop')\n    error = sum(1 for s in scores if s['label'] == 'error')\n    total = len(scores)\n    annotation = r.get('annotation', '')\n    print(f'{inst_key:25s}  total={total:3d}  keep={keep:2d}  drop={drop:2d}  error={error:2d}  ann={annotation}')\n\nprint()\n# Summary\nall_keep = sum(1 for inst in results.values() for s in inst['scores'] if s['label'] == 'keep')\nall_drop = sum(1 for inst in results.values() for s in inst['scores'] if s['label'] == 'drop')\nall_error = sum(1 for inst in results.values() for s in inst['scores'] if s['label'] == 'error')\nprint(f'TOTAL: keep={all_keep}, drop={all_drop}, error={all_error}, sum={all_keep+all_drop+all_error}')\n\n# Subset A (keep>0) and B (keep=0)\nsubset_a = [k for k, v in results.items() if any(s['label'] == 'keep' for s in v['scores'])]\nsubset_b = [k for k, v in results.items() if not any(s['label'] == 'keep' for s in v['scores'])]\nprint(f'\\nSubset A (keep>0): {len(subset_a)} instances: {sorted(subset_a)}')\nprint(f'Subset B (keep=0): {len(subset_b)} instances: {sorted(subset_b)}')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T09:27:50.650109+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Total instances: 33\\n\\nblack_1                    total= 10  keep= 2  drop= 7  error= 1  ann=None\\ncookiecutter_1             total= 20  keep= 6  drop=11  error= 3  ann=None\\ncookiecutter_2             total= 20  keep= 6  drop=14  error= 0  ann=None\\ncookiecutter_3             total=  6  keep= 2  drop= 4  error= 0  ann=None\\nfastapi_1                  total= 20  keep= 5  drop=12  error= 3  ann=None\\nfastapi_2                  total= 20  keep= 3  drop=15  error= 2  ann=None\\nhttpie_1                   total=  1  keep= 0  drop= 0  error= 1  ann=too_small\\nhttpie_2                   total= 12  keep= 0  drop=11  error= 1  ann=None\\nluigi_1                    total= 20  keep= 0  drop=19  error= 1  ann=None\\nluigi_10                   total= 20  keep= 0  drop=20  error= 0  ann=low_segment_count\\nluigi_14                   total= 20  keep= 0  drop=19  error= 1  ann=low_segment_count\\nluigi_2                    total= 20  keep= 0  drop=18  error= 2  ann=None\\nluigi_5                    total= 20  keep= 1  drop=17  error= 2  ann=low_segment_count\\nsanic_1                    total=  7  keep= 0  drop= 6  error= 1  ann=None\\nsanic_2                    total=  6  keep= 2  drop= 4  error= 0  ann=None\\nscrapy_1                   total= 20  keep= 0  drop=18  error= 2  ann=None\\nscrapy_2                   total= 20  keep= 2  drop=17  error= 1  ann=None\\nscrapy_3                   total= 20  keep= 0  drop=20  error= 0  ann=None\\nscrapy_4                   total=  4  keep= 0  drop= 3  error= 1  ann=too_small\\nscrapy_7                   total= 20  keep= 2  drop=18  error= 0  ann=too_small\\nthefuck_1                  total= 20  keep= 0  drop=20  error= 0  ann=None\\nthefuck_2                  total= 20  keep= 0  drop=20  error= 0  ann=None\\nthefuck_4                  total= 20  keep= 0  drop=20  error= 0  ann=None\\ntornado_1                  total= 20  keep= 0  drop=20  error= 0  ann=None\\ntornado_2        
+…[truncated 1344 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_structural_v3_deep_20260515T092549",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-15T09:27:50.650303+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx6000-diagprobe",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nfrom collections import Counter, defaultdict\n\nwith open('/root/trace_distill_repair/pipeline_output/phase2_structural_scores.json') as f:\n    data = json.load(f)\n\nresults = data['results']\n\n# ---- Subset A: keep segment type distribution ----\nprint('=== Subset A: keep segment type distribution ===')\nkeep_types = Counter()\nkeep_tokens = []\nkeep_events = []\nkeep_by_instance = defaultdict(list)\n\nfor inst_key, r in results.items():\n    for s in r['scores']:\n        if s['label'] == 'keep':\n            keep_types[s['segment_type']] += 1\n            keep_tokens.append(s['token_estimate'])\n            keep_events.append(s['num_events'])\n            keep_by_instance[inst_key].append(s['segment_type'])\n\nfor t, c in keep_types.most_common():\n    print(f'  {t}: {c} ({c/sum(keep_types.values())*100:.1f}%)')\n\nprint(f'\\nKeep segments: n={len(keep_tokens)}, avg_tokens={sum(keep_tokens)/len(keep_tokens):.0f}, median_tokens={sorted(keep_tokens)[len(keep_tokens)//2]:.0f}')\nprint(f'Keep events: avg={sum(keep_events)/len(keep_events):.1f}')\n\nprint('\\nPer-instance keep types:')\nfor inst in sorted(keep_by_instance):\n    types = Counter(keep_by_instance[inst])\n    print(f'  {inst}: {dict(types)}')\n\n# ---- Drop segment token stats ----\nprint('\\n=== Drop segment token stats ===')\ndrop_tokens = []\ndrop_events = []\nfor inst_key, r in results.items():\n    for s in r['scores']:\n        if s['label'] == 'drop':\n            drop_tokens.append(s['token_estimate'])\n            drop_events.append(s['num_events'])\n\nprint(f'Drop segments: n={len(drop_tokens)}, avg_tokens={sum(drop_tokens)/len(drop_tokens):.0f}, median_tokens={sorted(drop_tokens)[len(drop_tokens)//2]:.0f}')\nprint(f'Drop events: avg={sum(drop_events)/len(drop_events):.1f}')\n\n# ---- Subset B analysis: why all drop? ----\nprint('\\n=== Subset B: why all drop? ===')\nsubset_b = [k for k, v in results.items() if not any(s['label'] == 'keep' for s in v['scores'])]\nfor inst in sorted(subset_b):\n    r = results[inst]\n    scores = r['scores']\n    total = len(scores)\n    drops = [s for s in scores if s['label'] == 'drop']\n    errors = [s for s in scores if s['label'] == 'error']\n    ann = r.get('annotation', '')\n    avg_tok = sum(s['token_estimate'] for s in drops)/len(drops) if drops else 0\n    avg_conf = sum(s['confidence'] for s in drops)/len(drops) if drops else 0\n    print(f'{inst:25s}  segs={total:3d}  drops={len(drops):2d}  errors={len(errors):1d}  ann={ann or \\\"-\\\"}  avg_drop_tok={avg_tok:.0f}  avg_drop_conf={avg_conf:.2f}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_structural_v3_deep_20260515T092549",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx6000-diagprobe",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nfrom collections import Counter, defaultdict\n\nwith open('/root/trace_distill_repair/pipeline_output/phase2_structural_scores.json') as f:\n    data = json.load(f)\n\nresults = data['results']\n\n# ---- Subset A: keep segment type distribution ----\nprint('=== Subset A: keep segment type distribution ===')\nkeep_types = Counter()\nkeep_tokens = []\nkeep_events = []\nkeep_by_instance = defaultdict(list)\n\nfor inst_key, r in results.items():\n    for s in r['scores']:\n        if s['label'] == 'keep':\n            keep_types[s['segment_type']] += 1\n            keep_tokens.append(s['token_estimate'])\n            keep_events.append(s['num_events'])\n            keep_by_instance[inst_key].append(s['segment_type'])\n\nfor t, c in keep_types.most_common():\n    print(f'  {t}: {c} ({c/sum(keep_types.values())*100:.1f}%)')\n\nprint(f'\\nKeep segments: n={len(keep_tokens)}, avg_tokens={sum(keep_tokens)/len(keep_tokens):.0f}, median_tokens={sorted(keep_tokens)[len(keep_tokens)//2]:.0f}')\nprint(f'Keep events: avg={sum(keep_events)/len(keep_events):.1f}')\n\nprint('\\nPer-instance keep types:')\nfor inst in sorted(keep_by_instance):\n    types = Counter(keep_by_instance[inst])\n    print(f'  {inst}: {dict(types)}')\n\n# ---- Drop segment token stats ----\nprint('\\n=== Drop segment token stats ===')\ndrop_tokens = []\ndrop_events = []\nfor inst_key, r in results.items():\n    for s in r['scores']:\n        if s['label'] == 'drop':\n            drop_tokens.append(s['token_estimate'])\n            drop_events.append(s['num_events'])\n\nprint(f'Drop segments: n={len(drop_tokens)}, avg_tokens={sum(drop_tokens)/len(drop_tokens):.0f}, median_tokens={sorted(drop_tokens)[len(drop_tokens)//2]:.0f}')\nprint(f'Drop events: avg={sum(drop_events)/len(drop_events):.1f}')\n\n# ---- Subset B analysis: why all drop? ----\nprint('\\n=== Subset B: why all drop? ===')\nsubset_b = [k for k, v in results.items() if not any(s['label'] == 'keep' for s in v['scores'])]\nfor inst in sorted(subset_b):\n    r = results[inst]\n    scores = r['scores']\n    total = len(scores)\n    drops = [s for s in scores if s['label'] == 'drop']\n    errors = [s for s in scores if s['label'] == 'error']\n    ann = r.get('annotation', '')\n    avg_tok = sum(s['token_estimate'] for s in drops)/len(drops) if drops else 0\n    avg_conf = sum(s['confidence'] for s in drops)/len(drops) if drops else 0\n    print(f'{inst:25s}  segs={total:3d}  drops={len(drops):2d}  errors={len(errors):1d}  ann={ann or \\\"-\\\"}  avg_drop_tok={avg_tok:.0f}  avg_drop_conf={avg_conf:.2f}')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-15T09:27:50.650494+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== Subset A: keep segment type distribution ===\\n  call_subtree: 25 (61.0%)\\n  exception_chain: 12 (29.3%)\\n  loop_iteration: 4 (9.8%)\\n\\nKeep segments: n=41, avg_tokens=84824, median_tokens=438\\nKeep events: avg=1048.0\\n\\nPer-instance keep types:\\n  black_1: {'call_subtree': 1, 'exception_chain': 1}\\n  cookiecutter_1: {'call_subtree': 6}\\n  cookiecutter_2: {'call_subtree': 6}\\n  cookiecutter_3: {'call_subtree': 1, 'exception_chain': 1}\\n  fastapi_1: {'call_subtree': 4, 'loop_iteration': 1}\\n  fastapi_2: {'call_subtree': 3}\\n  luigi_5: {'exception_chain': 1}\\n  sanic_2: {'call_subtree': 1, 'exception_chain': 1}\\n  scrapy_2: {'exception_chain': 1, 'call_subtree': 1}\\n  scrapy_7: {'exception_chain': 2}\\n  tornado_2: {'call_subtree': 1}\\n  youtube-dl_1: {'call_subtree': 1, 'exception_chain': 2}\\n  youtube-dl_2: {'exception_chain': 1}\\n  youtube-dl_20: {'exception_chain': 1}\\n  youtube-dl_5: {'loop_iteration': 3, 'exception_chain': 1}\\n\\n=== Drop segment token stats ===\\nDrop segments: n=498, avg_tokens=1174, median_tokens=428\\nDrop events: avg=15.0\\n\\n=== Subset B: why all drop? ===\\nhttpie_1                   segs=  1  drops= 0  errors=1  ann=too_small  avg_drop_tok=0  avg_drop_conf=0.00\\nhttpie_2                   segs= 12  drops=11  errors=1  ann=-  avg_drop_tok=802  avg_drop_conf=0.97\\nluigi_1                    segs= 20  drops=19  errors=1  ann=-  avg_drop_tok=392  avg_drop_conf=0.85\\nluigi_10                   segs= 20  drops=20  errors=0  ann=low_segment_count  avg_drop_tok=449  avg_drop_conf=0.98\\nluigi_14                   segs= 20  drops=19  errors=1  ann=low_segment_count  avg_drop_tok=10644  avg_drop_conf=0.94\\nluigi_2                    segs= 20  drops=18  errors=2  ann=-  avg_drop_tok=1033  avg_drop_conf=0.85\\nsanic_1                    segs=  7  drops= 6  errors=1  ann=-  avg_drop_tok=1139  avg_drop_conf=0.95\\nscrapy_1                   segs= 20  drops=18  error
+…[truncated 1194 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_structural_v3_deep_20260515T092549",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-15T09:27:50.650736+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx6000-diagprobe",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nfrom collections import Counter, defaultdict\nimport statistics\n\nwith open('/root/trace_distill_repair/pipeline_output/phase2_structural_scores.json') as f:\n    data = json.load(f)\n\nresults = data['results']\n\n# ---- Keep token distribution (find outliers) ----\nprint('=== Keep segment token distribution ===')\nkeep_segs = []\nfor inst_key, r in results.items():\n    for s in r['scores']:\n        if s['label'] == 'keep':\n            keep_segs.append((inst_key, s['segment_type'], s['token_estimate'], s['num_events']))\n\nkeep_segs.sort(key=lambda x: -x[2])\nfor inst, stype, tok, ev in keep_segs:\n    print(f'  {inst:25s} {stype:20s} tokens={tok:8d}  events={ev:5d}')\n\ntok_vals = [x[2] for x in keep_segs]\nprint(f'\\nStats: min={min(tok_vals)}, p25={sorted(tok_vals)[len(tok_vals)//4]}, median={statistics.median(tok_vals):.0f}, p75={sorted(tok_vals)[3*len(tok_vals)//4]}, max={max(tok_vals)}')\nprint(f'Mean={statistics.mean(tok_vals):.0f}, Mean w/o top 5={statistics.mean(sorted(tok_vals)[:-5]):.0f}')\n\n# ---- Instance-level scale: Subset A vs B ----\nprint('\\n=== Instance scale: Subset A vs B ===')\nsubset_a_keys = [k for k, v in results.items() if any(s['label'] == 'keep' for s in v['scores'])]\nsubset_b_keys = [k for k, v in results.items() if not any(s['label'] == 'keep' for s in v['scores'])]\n\nfor label, keys in [('A', subset_a_keys), ('B', subset_b_keys)]:\n    seg_counts = [len(results[k]['scores']) for k in keys]\n    total_events = [sum(s['num_events'] for s in results[k]['scores']) for k in keys]\n    total_tokens = [sum(s['token_estimate'] for s in results[k]['scores']) for k in keys]\n    print(f'Subset {label} ({len(keys)} instances):')\n    print(f'  Segments/inst: mean={statistics.mean(seg_counts):.1f}, median={statistics.median(seg_counts):.0f}')\n    print(f'  Events/inst:   mean={statistics.mean(total_events):.0f}, median={statistics.median(total_events):.0f}')\n    print(f'  Tokens/inst:   mean={statistics.mean(total_tokens):.0f}, median={statistics.median(total_tokens):.0f}')\n\n# ---- Project-level pattern ----\nprint('\\n=== Project-level pattern ===')\nprojects = defaultdict(lambda: {'total': 0, 'keep_instances': 0, 'total_keep': 0})\nfor inst_key, r in results.items():\n    proj = inst_key.rsplit('_', 1)[0]\n    proj_data = projects[proj]\n    proj_data['total'] += 1\n    keep_count = sum(1 for s in r['scores'] if s['label'] == 'keep')\n    proj_data['total_keep'] += keep_count\n    if keep_count > 0:\n        proj_data['keep_instances'] += 1\n\nfor proj in sorted(projects):\n    p = projects[proj]\n    print(f'  {proj:20s}  instances={p[\\\"total\\\"]:2d}  keep_instances={p[\\\"keep_instances\\\"]:2d}  total_keep_segs={p[\\\"total_keep\\\"]:2d}')\n\n# ---- Subset B drop confidence distribution ----\nprint('\\n=== Subset B: drop confidence distribution ===')\nb_confs = []\nfor k in subset_b_keys:\n    for s in results[k]['scores']:\n        if s['label'] == 'drop':\n            b_confs.append(s['confidence'])\nif b_confs:\n    bins = [(0, 0.5), (0.5, 0.7), (0.7, 0.85), (0.85, 0.95), (0.95, 1.01)]\n    for lo, hi in bins:\n        c = sum(1 for v in b_confs if lo <= v < hi)\n        print(f'  [{lo:.2f}, {hi:.2f}): {c} ({c/len(b_confs)*100:.1f}%)')\n\n# ---- Subset B: segment type distribution (what types are they dropping?) ----\nprint('\\n=== Subset B: drop segment type distribution ===')\nb_drop_types = Counter()\nfor k in subset_b_keys:\n    for s in results[k]['scores']:\n        if s['label'] == 'drop':\n            b_drop_types[s['segment_type']] += 1\nfor t, c in b_drop_types.most_common():\n    print(f'  {t}: {c}')\n\n# ---- Subset A: drop segment type distribution ----\nprint('\\n=== Subset A: drop segment type distribution ===')\na_drop_types = Counter()\nfor k in subset_a_keys:\n    for s in results[k]['scores']:\n        if s['label'] == 'drop':\n            a_drop_types[s['segment_type']] += 1\nfor t, c in a_drop_types.most_common():\n    print(f'  {t}: {c}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_structural_v3_deep_20260515T092549",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx6000-diagprobe",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nfrom collections import Counter, defaultdict\nimport statistics\n\nwith open('/root/trace_distill_repair/pipeline_output/phase2_structural_scores.json') as f:\n    data = json.load(f)\n\nresults = data['results']\n\n# ---- Keep token distribution (find outliers) ----\nprint('=== Keep segment token distribution ===')\nkeep_segs = []\nfor inst_key, r in results.items():\n    for s in r['scores']:\n        if s['label'] == 'keep':\n            keep_segs.append((inst_key, s['segment_type'], s['token_estimate'], s['num_events']))\n\nkeep_segs.sort(key=lambda x: -x[2])\nfor inst, stype, tok, ev in keep_segs:\n    print(f'  {inst:25s} {stype:20s} tokens={tok:8d}  events={ev:5d}')\n\ntok_vals = [x[2] for x in keep_segs]\nprint(f'\\nStats: min={min(tok_vals)}, p25={sorted(tok_vals)[len(tok_vals)//4]}, median={statistics.median(tok_vals):.0f}, p75={sorted(tok_vals)[3*len(tok_vals)//4]}, max={max(tok_vals)}')\nprint(f'Mean={statistics.mean(tok_vals):.0f}, Mean w/o top 5={statistics.mean(sorted(tok_vals)[:-5]):.0f}')\n\n# ---- Instance-level scale: Subset A vs B ----\nprint('\\n=== Instance scale: Subset A vs B ===')\nsubset_a_keys = [k for k, v in results.items() if any(s['label'] == 'keep' for s in v['scores'])]\nsubset_b_keys = [k for k, v in results.items() if not any(s['label'] == 'keep' for s in v['scores'])]\n\nfor label, keys in [('A', subset_a_keys), ('B', subset_b_keys)]:\n    seg_counts = [len(results[k]['scores']) for k in keys]\n    total_events = [sum(s['num_events'] for s in results[k]['scores']) for k in keys]\n    total_tokens = [sum(s['token_estimate'] for s in results[k]['scores']) for k in keys]\n    print(f'Subset {label} ({len(keys)} instances):')\n    print(f'  Segments/inst: mean={statistics.mean(seg_counts):.1f}, median={statistics.median(seg_counts):.0f}')\n    print(f'  Events/inst:   mean={statistics.mean(total_events):.0f}, median={statistics.median(total_events):.0f}')\n    print(f'  Tokens/inst:   mean={statistics.mean(total_tokens):.0f}, median={statistics.median(total_tokens):.0f}')\n\n# ---- Project-level pattern ----\nprint('\\n=== Project-level pattern ===')\nprojects = defaultdict(lambda: {'total': 0, 'keep_instances': 0, 'total_keep': 0})\nfor inst_key, r in results.items():\n    proj = inst_key.rsplit('_', 1)[0]\n    proj_data = projects[proj]\n    proj_data['total'] += 1\n    keep_count = sum(1 for s in r['scores'] if s['label'] == 'keep')\n    proj_data['total_keep'] += keep_count\n    if keep_count > 0:\n        proj_data['keep_instances'] += 1\n\nfor proj in sorted(projects):\n    p = projects[proj]\n    print(f'  {proj:20s}  instances={p[\\\"total\\\"]:2d}  keep_instances={p[\\\"keep_instances\\\"]:2d}  total_keep_segs={p[\\\"total_keep\\\"]:2d}')\n\n# ---- Subset B drop confidence distribution ----\nprint('\\n=== Subset B: drop confidence distribution ===')\nb_confs = []\nfor k in subset_b_keys:\n    for s in results[k]['scores']:\n        if s['label'] == 'drop':\n            b_confs.append(s['confidence'])\nif b_confs:\n    bins = [(0, 0.5), (0.5, 0.7), (0.7, 0.85), (0.85, 0.95), (0.95, 1.01)]\n    for lo, hi in bins:\n        c = sum(1 for v in b_confs if lo <= v < hi)\n        print(f'  [{lo:.2f}, {hi:.2f}): {c} ({c/len(b_confs)*100:.1f}%)')\n\n# ---- Subset B: segment type distribution (what types are they dropping?) ----\nprint('\\n=== Subset B: drop segment type distribution ===')\nb_drop_types = Counter()\nfor k in subset_b_keys:\n    for s in results[k]['scores']:\n        if s['label'] == 'drop':\n            b_drop_types[s['segment_type']] += 1\nfor t, c in b_drop_types.most_common():\n    print(f'  {t}: {c}')\n\n# ---- Subset A: drop segment type distribution ----\nprint('\\n=== Subset A: drop segment type distribution ===')\na_drop_types = Counter()\nfor k in subset_a_keys:\n    for s in results[k]['scores']:\n        if s['label'] == 'drop':\n            a_drop_types[s['segment_type']] += 1\nfor t, c in a_drop_types.most_common():\n    print(f'  {t}: {c}')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T09:27:50.650964+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== Keep segment token distribution ===\\n  youtube-dl_1              exception_chain      tokens= 3350108  events=41463\\n  youtube-dl_1              exception_chain      tokens=   41930  events=  516\\n  fastapi_1                 loop_iteration       tokens=   31672  events=  450\\n  youtube-dl_2              exception_chain      tokens=   23416  events=  254\\n  youtube-dl_20             exception_chain      tokens=    5903  events=   68\\n  sanic_2                   exception_chain      tokens=    2744  events=   10\\n  black_1                   call_subtree         tokens=    2614  events=   28\\n  black_1                   exception_chain      tokens=    1747  events=    4\\n  cookiecutter_3            exception_chain      tokens=    1464  events=    6\\n  sanic_2                   call_subtree         tokens=    1436  events=   14\\n  scrapy_7                  exception_chain      tokens=    1174  events=    6\\n  scrapy_7                  exception_chain      tokens=    1174  events=    6\\n  scrapy_2                  exception_chain      tokens=    1051  events=    6\\n  youtube-dl_5              exception_chain      tokens=     822  events=    8\\n  cookiecutter_3            call_subtree         tokens=     753  events=    8\\n  scrapy_2                  call_subtree         tokens=     643  events=    7\\n  youtube-dl_5              loop_iteration       tokens=     637  events=    6\\n  youtube-dl_5              loop_iteration       tokens=     629  events=    6\\n  youtube-dl_5              loop_iteration       tokens=     625  events=    6\\n  fastapi_2                 call_subtree         tokens=     512  events=    7\\n  fastapi_1                 call_subtree         tokens=     438  events=    6\\n  fastapi_2                 call_subtree         tokens=     427  events=    6\\n  fastapi_1                 call_subtree         tokens=     376  events=    5\\n  youtube-dl_1              call_subtre
+…[truncated 3258 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_structural_v3_deep_20260515T092549",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-15T09:27:50.651197+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx6000-diagprobe",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 << 'PYEOF'\nimport json\nfrom collections import Counter, defaultdict\nimport statistics\n\nwith open('/root/trace_distill_repair/pipeline_output/phase2_structural_scores.json') as f:\n    data = json.load(f)\n\nresults = data['results']\n\nanalysis = {\n    \"meta\": {\n        \"source\": \"phase2_structural_scores.json\",\n        \"scoring_version\": \"v3_structural\",\n        \"total_instances\": 33,\n        \"total_segments\": 566,\n        \"total_keep\": 41,\n        \"total_drop\": 498,\n        \"total_error\": 27,\n        \"keep_rate\": round(41/566, 4),\n        \"error_rate\": round(27/566, 4),\n    },\n    \"instances\": {},\n    \"subset_a\": {\n        \"description\": \"Instances with at least one keep segment\",\n        \"instance_ids\": [],\n        \"stats\": {}\n    },\n    \"subset_b\": {\n        \"description\": \"Instances with zero keep segments\",\n        \"instance_ids\": [],\n        \"stats\": {}\n    },\n    \"keep_segment_type_distribution\": {},\n    \"project_level_pattern\": {},\n    \"key_findings\": []\n}\n\n# Per-instance\nfor inst_key in sorted(results.keys()):\n    r = results[inst_key]\n    scores = r['scores']\n    keep_segs = [s for s in scores if s['label'] == 'keep']\n    drop_segs = [s for s in scores if s['label'] == 'drop']\n    error_segs = [s for s in scores if s['label'] == 'error']\n    \n    keep_types = Counter(s['segment_type'] for s in keep_segs)\n    \n    inst_entry = {\n        \"keep_count\": len(keep_segs),\n        \"drop_count\": len(drop_segs),\n        \"error_count\": len(error_segs),\n        \"total_segments\": len(scores),\n        \"subset\": \"A\" if len(keep_segs) > 0 else \"B\",\n        \"annotation\": r.get('annotation'),\n        \"keep_segment_types\": dict(keep_types),\n        \"keep_token_estimates\": [s['token_estimate'] for s in keep_segs],\n        \"drop_avg_tokens\": round(statistics.mean([s['token_estimate'] for s in drop_segs]), 1) if drop_segs else None,\n        \"drop_avg_confidence\": round(statistics.mean([s['confidence'] for s in drop_segs]), 3) if drop_segs else None,\n        \"total_events\": sum(s['num_events'] for s in scores),\n        \"total_tokens\": sum(s['token_estimate'] for s in scores),\n    }\n    analysis[\"instances\"][inst_key] = inst_entry\n\n# Subsets\nsubset_a_keys = sorted([k for k, v in analysis[\"instances\"].items() if v[\"subset\"] == \"A\"])\nsubset_b_keys = sorted([k for k, v in analysis[\"instances\"].items() if v[\"subset\"] == \"B\"])\nanalysis[\"subset_a\"][\"instance_ids\"] = subset_a_keys\nanalysis[\"subset_b\"][\"instance_ids\"] = subset_b_keys\n\n# Subset A stats\na_insts = [analysis[\"instances\"][k] for k in subset_a_keys]\nanalysis[\"subset_a\"][\"stats\"] = {\n    \"count\": len(subset_a_keys),\n    \"avg_segments\": round(statistics.mean([i[\"total_segments\"] for i in a_insts]), 1),\n    \"avg_events\": round(statistics.mean([i[\"total_events\"] for i in a_insts]), 0),\n    \"median_events\": round(statistics.median([i[\"total_events\"] for i in a_insts]), 0),\n    \"avg_tokens\": round(statistics.mean([i[\"total_tokens\"] for i in a_insts]), 0),\n    \"median_tokens\": round(statistics.median([i[\"total_tokens\"] for i in a_insts]), 0),\n    \"avg_keep_per_instance\": round(statistics.mean([i[\"keep_count\"] for i in a_insts]), 2),\n}\n\n# Subset B stats\nb_insts = [analysis[\"instances\"][k] for k in subset_b_keys]\nanalysis[\"subset_b\"][\"stats\"] = {\n    \"count\": len(subset_b_keys),\n    \"avg_segments\": round(statistics.mean([i[\"total_segments\"] for i in b_insts]), 1),\n    \"avg_events\": round(statistics.mean([i[\"total_events\"] for i in b_insts]), 0),\n    \"median_events\": round(statistics.median([i[\"total_events\"] for i in b_insts]), 0),\n    \"avg_tokens\": round(statistics.mean([i[\"total_tokens\"] for i in b_insts]), 0),\n    \"median_tokens\": round(statistics.median([i[\"total_tokens\"] for i in b_insts]), 0),\n    \"drop_confidence_high_pct\": round(sum(1 for i in b_insts for s in results[subset_b_keys[b_insts.index(i)]]['scores'] if s['label']=='drop' and s['confidence']>=0.9) / max(1, sum(i['drop_count'] for i in b_insts)) * 100, 1),\n}\n\n# Keep segment type distribution\nall_keep_types = Counter()\nfor inst_key, r in results.items():\n    for s in r['scores']:\n        if s['label'] == 'keep':\n            all_keep_types[s['segment_type']] += 1\nanalysis[\"keep_segment_type_distribution\"] = {\n    t: {\"count\": c, \"pct\": round(c/sum(all_keep_types.values())*100, 1)}\n    for t, c in all_keep_types.most_common()\n}\n\n# Project-level pattern\nprojects = defaultdict(lambda: {'total_instances': 0, 'keep_instances': 0, 'total_keep_segs': 0})\nfor inst_key in results:\n    proj = inst_key.rsplit('_', 1)[0]\n    p = projects[proj]\n    p['total_instances'] += 1\n    keep_c = analysis[\"instances\"][inst_key][\"keep_count\"]\n    p['total_keep_segs'] += keep_c\n    if keep_c > 0:\n        p['keep_instances'] += 1\n\nanalysis[\"project_level_pattern\"] = {\n    proj: {\n        \"total_instances\": p[\"total_instances\"],\n        \"keep_instances\": p[\"keep_instances\"],\n        \"keep_rate\": round(p[\"keep_instances\"] / p[\"total_instances\"], 2),\n        \"total_keep_segments\": p[\"total_keep_segs\"]\n    }\n    for proj, p in sorted(projects.items())\n}\n\n# Key findings\nkeep_tokens_all = []\nfor inst_key, r in results.items():\n    for s in r['scores']:\n        if s['label'] == 'keep':\n            keep_tokens_all.append(s['token_estimate'])\ndrop_tokens_all = [s['token_estimate'] for r in results.values() for s in r['scores'] if s['label'] == 'drop']\n\nanalysis[\"key_findings\"] = [\n    \"Keep segments are dominated by call_subtree (61.0%) and exception_chain (29.3%); no basic_block segments are kept.\",\n    \"Keep segment tokens: median=438, but one extreme outlier (youtube-dl_1: 3.35M tokens, 41K events) pulls the mean to 84K. Excluding top 5, mean=688.\",\n    \"Drop segments have median=428 tokens — similar to keep median, suggesting token length alone does not discriminate keep vs drop.\",\n    f\"Subset B drops are high-confidence: 81.5% have confidence >= 0.95, indicating the model is consistently certain these are not diagnostic.\",\n    \"Project-level: cookiecutter (3/3), fastapi (2/2) always have keeps; thefuck (0/3), httpie (0/2) never do; luigi (1/5), tornado (1/5) rarely.\",\n    \"Subset A instances have higher median events (193 vs 126) and tokens (16769 vs 9732), suggesting richer traces produce more keepable segments.\",\n    \"Exception_chain type is disproportionately kept (29.3% of keeps but only 3.7% of drops in Subset A), making it the most 'keepable' type.\",\n    \"youtube-dl has the most diverse keep types (exception_chain + loop_iteration + call_subtree across instances).\",\n]\n\nout_path = '/root/trace_distill_repair/pipeline_output/structural_v3_analysis.json'\nwith open(out_path, 'w') as f:\n    json.dump(analysis, f, indent=2)\n\nprint(f'Written to {out_path}')\nprint(f'File size: {len(json.dumps(analysis, indent=2))} bytes')\nPYEOF\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_structural_v3_deep_20260515T092549",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx6000-diagprobe",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 << 'PYEOF'\nimport json\nfrom collections import Counter, defaultdict\nimport statistics\n\nwith open('/root/trace_distill_repair/pipeline_output/phase2_structural_scores.json') as f:\n    data = json.load(f)\n\nresults = data['results']\n\nanalysis = {\n    \"meta\": {\n        \"source\": \"phase2_structural_scores.json\",\n        \"scoring_version\": \"v3_structural\",\n        \"total_instances\": 33,\n        \"total_segments\": 566,\n        \"total_keep\": 41,\n        \"total_drop\": 498,\n        \"total_error\": 27,\n        \"keep_rate\": round(41/566, 4),\n        \"error_rate\": round(27/566, 4),\n    },\n    \"instances\": {},\n    \"subset_a\": {\n        \"description\": \"Instances with at least one keep segment\",\n        \"instance_ids\": [],\n        \"stats\": {}\n    },\n    \"subset_b\": {\n        \"description\": \"Instances with zero keep segments\",\n        \"instance_ids\": [],\n        \"stats\": {}\n    },\n    \"keep_segment_type_distribution\": {},\n    \"project_level_pattern\": {},\n    \"key_findings\": []\n}\n\n# Per-instance\nfor inst_key in sorted(results.keys()):\n    r = results[inst_key]\n    scores = r['scores']\n    keep_segs = [s for s in scores if s['label'] == 'keep']\n    drop_segs = [s for s in scores if s['label'] == 'drop']\n    error_segs = [s for s in scores if s['label'] == 'error']\n    \n    keep_types = Counter(s['segment_type'] for s in keep_segs)\n    \n    inst_entry = {\n        \"keep_count\": len(keep_segs),\n        \"drop_count\": len(drop_segs),\n        \"error_count\": len(error_segs),\n        \"total_segments\": len(scores),\n        \"subset\": \"A\" if len(keep_segs) > 0 else \"B\",\n        \"annotation\": r.get('annotation'),\n        \"keep_segment_types\": dict(keep_types),\n        \"keep_token_estimates\": [s['token_estimate'] for s in keep_segs],\n        \"drop_avg_tokens\": round(statistics.mean([s['token_estimate'] for s in drop_segs]), 1) if drop_segs else None,\n        \"drop_avg_confidence\": round(statistics.mean([s['confidence'] for s in drop_segs]), 3) if drop_segs else None,\n        \"total_events\": sum(s['num_events'] for s in scores),\n        \"total_tokens\": sum(s['token_estimate'] for s in scores),\n    }\n    analysis[\"instances\"][inst_key] = inst_entry\n\n# Subsets\nsubset_a_keys = sorted([k for k, v in analysis[\"instances\"].items() if v[\"subset\"] == \"A\"])\nsubset_b_keys = sorted([k for k, v in analysis[\"instances\"].items() if v[\"subset\"] == \"B\"])\nanalysis[\"subset_a\"][\"instance_ids\"] = subset_a_keys\nanalysis[\"subset_b\"][\"instance_ids\"] = subset_b_keys\n\n# Subset A stats\na_insts = [analysis[\"instances\"][k] for k in subset_a_keys]\nanalysis[\"subset_a\"][\"stats\"] = {\n    \"count\": len(subset_a_keys),\n    \"avg_segments\": round(statistics.mean([i[\"total_segments\"] for i in a_insts]), 1),\n    \"avg_events\": round(statistics.mean([i[\"total_events\"] for i in a_insts]), 0),\n    \"median_events\": round(statistics.median([i[\"total_events\"] for i in a_insts]), 0),\n    \"avg_tokens\": round(statistics.mean([i[\"total_tokens\"] for i in a_insts]), 0),\n    \"median_tokens\": round(statistics.median([i[\"total_tokens\"] for i in a_insts]), 0),\n    \"avg_keep_per_instance\": round(statistics.mean([i[\"keep_count\"] for i in a_insts]), 2),\n}\n\n# Subset B stats\nb_insts = [analysis[\"instances\"][k] for k in subset_b_keys]\nanalysis[\"subset_b\"][\"stats\"] = {\n    \"count\": len(subset_b_keys),\n    \"avg_segments\": round(statistics.mean([i[\"total_segments\"] for i in b_insts]), 1),\n    \"avg_events\": round(statistics.mean([i[\"total_events\"] for i in b_insts]), 0),\n    \"median_events\": round(statistics.median([i[\"total_events\"] for i in b_insts]), 0),\n    \"avg_tokens\": round(statistics.mean([i[\"total_tokens\"] for i in b_insts]), 0),\n    \"median_tokens\": round(statistics.median([i[\"total_tokens\"] for i in b_insts]), 0),\n    \"drop_confidence_high_pct\": round(sum(1 for i in b_insts for s in results[subset_b_keys[b_insts.index(i)]]['scores'] if s['label']=='drop' and s['confidence']>=0.9) / max(1, sum(i['drop_count'] for i in b_insts)) * 100, 1),\n}\n\n# Keep segment type distribution\nall_keep_types = Counter()\nfor inst_key, r in results.items():\n    for s in r['scores']:\n        if s['label'] == 'keep':\n            all_keep_types[s['segment_type']] += 1\nanalysis[\"keep_segment_type_distribution\"] = {\n    t: {\"count\": c, \"pct\": round(c/sum(all_keep_types.values())*100, 1)}\n    for t, c in all_keep_types.most_common()\n}\n\n# Project-level pattern\nprojects = defaultdict(lambda: {'total_instances': 0, 'keep_instances': 0, 'total_keep_segs': 0})\nfor inst_key in results:\n    proj = inst_key.rsplit('_', 1)[0]\n    p = projects[proj]\n    p['total_instances'] += 1\n    keep_c = analysis[\"instances\"][inst_key][\"keep_count\"]\n    p['total_keep_segs'] += keep_c\n    if keep_c > 0:\n        p['keep_instances'] += 1\n\nanalysis[\"project_level_pattern\"] = {\n    proj: {\n        \"total_instances\": p[\"total_instances\"],\n        \"keep_instances\": p[\"keep_instances\"],\n        \"keep_rate\": round(p[\"keep_instances\"] / p[\"total_instances\"], 2),\n        \"total_keep_segments\": p[\"total_keep_segs\"]\n    }\n    for proj, p in sorted(projects.items())\n}\n\n# Key findings\nkeep_tokens_all = []\nfor inst_key, r in results.items():\n    for s in r['scores']:\n        if s['label'] == 'keep':\n            keep_tokens_all.append(s['token_estimate'])\ndrop_tokens_all = [s['token_estimate'] for r in results.values() for s in r['scores'] if s['label'] == 'drop']\n\nanalysis[\"key_findings\"] = [\n    \"Keep segments are dominated by call_subtree (61.0%) and exception_chain (29.3%); no basic_block segments are kept.\",\n    \"Keep segment tokens: median=438, but one extreme outlier (youtube-dl_1: 3.35M tokens, 41K events) pulls the mean to 84K. Excluding top 5, mean=688.\",\n    \"Drop segments have median=428 tokens — similar to keep median, suggesting token length alone does not discriminate keep vs drop.\",\n    f\"Subset B drops are high-confidence: 81.5% have confidence >= 0.95, indicating the model is consistently certain these are not diagnostic.\",\n    \"Project-level: cookiecutter (3/3), fastapi (2/2) always have keeps; thefuck (0/3), httpie (0/2) never do; luigi (1/5), tornado (1/5) rarely.\",\n    \"Subset A instances have higher median events (193 vs 126) and tokens (16769 vs 9732), suggesting richer traces produce more keepable segments.\",\n    \"Exception_chain type is disproportionately kept (29.3% of keeps but only 3.7% of drops in Subset A), making it the most 'keepable' type.\",\n    \"youtube-dl has the most diverse keep types (exception_chain + loop_iteration + call_subtree across instances).\",\n]\n\nout_path = '/root/trace_distill_repair/pipeline_output/structural_v3_analysis.json'\nwith open(out_path, 'w') as f:\n    json.dump(analysis, f, indent=2)\n\nprint(f'Written to {out_path}')\nprint(f'File size: {len(json.dumps(analysis, indent=2))} bytes')\nPYEOF\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-15T09:27:50.651422+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Written to /root/trace_distill_repair/pipeline_output/structural_v3_analysis.json\\nFile size: 17681 bytes\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.58}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_structural_v3_deep_20260515T092549",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-15T09:27:50.651572+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx6000-diagprobe",
+  "command": "head -80 /root/trace_distill_repair/pipeline_output/structural_v3_analysis.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_structural_v3_deep_20260515T092549",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx6000-diagprobe",
+    "command": "head -80 /root/trace_distill_repair/pipeline_output/structural_v3_analysis.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-15T09:27:50.651772+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"meta\\\": {\\n    \\\"source\\\": \\\"phase2_structural_scores.json\\\",\\n    \\\"scoring_version\\\": \\\"v3_structural\\\",\\n    \\\"total_instances\\\": 33,\\n    \\\"total_segments\\\": 566,\\n    \\\"total_keep\\\": 41,\\n    \\\"total_drop\\\": 498,\\n    \\\"total_error\\\": 27,\\n    \\\"keep_rate\\\": 0.0724,\\n    \\\"error_rate\\\": 0.0477\\n  },\\n  \\\"instances\\\": {\\n    \\\"black_1\\\": {\\n      \\\"keep_count\\\": 2,\\n      \\\"drop_count\\\": 7,\\n      \\\"error_count\\\": 1,\\n      \\\"total_segments\\\": 10,\\n      \\\"subset\\\": \\\"A\\\",\\n      \\\"annotation\\\": null,\\n      \\\"keep_segment_types\\\": {\\n        \\\"call_subtree\\\": 1,\\n        \\\"exception_chain\\\": 1\\n      },\\n      \\\"keep_token_estimates\\\": [\\n        2614,\\n        1747\\n      ],\\n      \\\"drop_avg_tokens\\\": 1399.3,\\n      \\\"drop_avg_confidence\\\": 0.936,\\n      \\\"total_events\\\": 150,\\n      \\\"total_tokens\\\": 16769\\n    },\\n    \\\"cookiecutter_1\\\": {\\n      \\\"keep_count\\\": 6,\\n      \\\"drop_count\\\": 11,\\n      \\\"error_count\\\": 3,\\n      \\\"total_segments\\\": 20,\\n      \\\"subset\\\": \\\"A\\\",\\n      \\\"annotation\\\": null,\\n      \\\"keep_segment_types\\\": {\\n        \\\"call_subtree\\\": 6\\n      },\\n      \\\"keep_token_estimates\\\": [\\n        298,\\n        308,\\n        305,\\n        304,\\n        297,\\n        302\\n      ],\\n      \\\"drop_avg_tokens\\\": 402.2,\\n      \\\"drop_avg_confidence\\\": 0.782,\\n      \\\"total_events\\\": 97,\\n      \\\"total_tokens\\\": 7171\\n    },\\n    \\\"cookiecutter_2\\\": {\\n      \\\"keep_count\\\": 6,\\n      \\\"drop_count\\\": 14,\\n      \\\"error_count\\\": 0,\\n      \\\"total_segments\\\": 20,\\n      \\\"subset\\\": \\\"A\\\",\\n      \\\"annotation\\\": null,\\n      \\\"keep_segment_types\\\": {\\n        \\\"call_subtree\\\": 6\\n      },\\n      \\\"keep_token_
+…[truncated 417 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_structural_v3_deep_20260515T092549",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15 · 2026-05-15T09:27:50.651969+00:00_
+
+文件已生成。以下是完整分析结果：
+
+---
+
+## 1. Subset A / B 实例列表
+
+**Subset A (keep>0, 15 实例):**
+`black_1`, `cookiecutter_1/2/3`, `fastapi_1/2`, `luigi_5`, `sanic_2`, `scrapy_2/7`, `tornado_2`, `youtube-dl_1/2/5/20`
+
+**Subset B (keep=0, 18 实例):**
+`httpie_1/2`, `luigi_1/2/10/14`, `sanic_1`, `scrapy_1/3/4`, `thefuck_1/2/4`, `tornado_1/4/5/7`, `youtube-dl_10`
+
+## 2. Keep segment 类型分布 (41 segments)
+
+| Type | Count | Pct |
+|------|-------|-----|
+| call_subtree | 25 | 61.0% |
+| exception_chain | 12 | 29.3% |
+| loop_iteration | 4 | 9.8% |
+| basic_block | 0 | 0% |
+
+**basic_block 从未被 keep** — 这在论文叙事中很有价值：纯执行行序列缺乏诊断信息。
+
+## 3. 关键发现
+
+**什么区分 keep>0 vs keep=0：**
+
+1. **exception_chain 是最"可 keep"的类型**：占 keep 的 29.3%，但在 Subset A 的 drop 中仅占 ~2%。异常链天然包含错误上下文，诊断价值高。
+
+2. **实例规模有差异但不大**：Subset A median events=193, tokens=16769；Subset B median events=126, tokens=9732。更大的 trace 产生更多 keepable 段，但差异不如预期大。
+
+3. **Token 长度不区分 keep vs drop**：keep median=438, drop median=428。segment 是否被保留取决于内容相关性而非长度。
+
+4. **Subset B 的 drop 是高置信度的**：81.5% 的 confidence ≥ 0.95，模型非常确信这些段无诊断价值。
+
+5. **项目级模式明显**：
+   - cookiecutter (3/3) 和 fastapi (2/2) 100% 有 keep — bug 涉及明确的函数调用链/异常
+   - thefuck (0/3) 和 httpie (0/2) 完全没有 keep — trace 内容与 bug 描述关联弱
+   - luigi (1/5)、tornado (1/5) 很少有 keep — trace 多为框架内部调度，不直接暴露 bug
+
+6. **极端值**：youtube-dl_1 有一个 3.35M token 的 exception_chain（41K events），拉高了均值。去掉前 5 个极端值后，keep 平均 token = 688。
+
+## 4. 产出文件
+
+`/root/trace_distill_repair/pipeline_output/structural_v3_analysis.json` (17.7KB) — 包含逐实例的 keep/drop/error 分布、keep_segment_types、subset 标签，以及 Subset A/B 的 summary stats，可直接用于 Phase 3 conditional analysis。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_structural_v3_deep_20260515T092549"
+}
+```
+
+</details>
+
+---

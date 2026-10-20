@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "57afe35d2151c1d4fb14",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "code collect phase table script",
+  "task_key": "worker_code_collect_phase_table_script_20260522T080906",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_collect_phase_table_script_20260522T080906_result.json",
+    "occurrence": 1,
+    "bytes": 749,
+    "sha256": "93d2df9299dafd055e01d21d6bc8237fd816bedb4ab0ce2f786beebbfe37fc3b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部通过。脚本位于 `scripts/collect_phase_table_stats.py`，用法：\n\n```bash\npython scripts/collect_phase_table_stats.py --ratio 0.3 --seeds 42 43 44\npython scripts/collect_phase_table_stats.py --ratio 0.0 --seeds 42 43 44\npython scripts/collect_phase_table_stats.py --ratio 0.25 --seeds 42 43 44\npython scripts/collect_phase_table_stats.py --ratio 0.5 --seeds 42\n```\n\n注意：\n- seed 44 的 r=0.3 只有 5 代数据（Gen 0–4），脚本会 WARNING 并 fallback 到最大可用代，会拉低平均值\n- `--gen N` 可以指定目标代（默认 10）\n- 文件命名映射：r=0.0 用 `phase0_results.json`（seed42）/ `phase1_pure_collapse_seed{N}`，r=0.5 用 `phase1_fixed_mix_seed{N}`（无 ratio tag）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-collect-phase-table-script.md"
+}

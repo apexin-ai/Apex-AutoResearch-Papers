@@ -1,0 +1,71 @@
+{
+  "exp_id": "exp_023",
+  "project": "spectral_collapse_ews",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-24T07:47:34.066Z",
+    "updated_at": "2026-05-24T17:24:52.214Z",
+    "hypothesis": "GPT-2-medium (355M) under r=0.25 mixing exhibits Type II trajectory (transient EMA dip at Gen 1-2 followed by monotonic SLV recovery), verifying that the critical mixing ratio r_crit phase boundary holds cross-architecture. Combined with exp_020 (Type I at r=0) and exp_022c (Type III at r=0.3), this completes the GPT-2-medium phase diagram and confirms r_crit ∈ (0.25, 0.3] is architecture-independent.",
+    "parent": "exp_020",
+    "notes": "GPT-2-medium r=0.25 3-gen pilot 完成。Type II trajectory 确认：SLV Gen 1→2 下降 1.85% (748.06→734.21, dip=-13.85)，Gen 2→3 恢复 +0.50% (734.21→737.91)。与 Pythia-410M r=0.25 定性一致，支持 r_crit ∈ (0.25, 0.3] 架构无关。GPT-2-medium 初始谱极度集中 (eff_rank=23 vs Pythia=417)，decompression transient 更剧烈。产出: artifacts/exp_023/analysis_report.md",
+    "spec": {
+      "command": "bash -c \"cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python run_gpt2m_phase1.py --condition fixed_mix --real_ratio 0.25 --generations 3 --seed 42 --gpu 0\"",
+      "server": "rtx6000-diagprobe",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "881061",
+      "log_path": "~/runs/spectral_collapse_ews/exp_023.log",
+      "submitted_at": "2026-05-24T11:11:36.408Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 22395.8,
+      "gpu_hours": 6.22
+    },
+    "server": "rtx6000-diagprobe",
+    "gpu": "cuda:0",
+    "account": "root",
+    "pid": "881061",
+    "log_path": "~/runs/spectral_collapse_ews/exp_023.log",
+    "reproduce": {
+      "command": "bash -c \"cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python run_gpt2m_phase1.py --condition fixed_mix --real_ratio 0.25 --generations 3 --seed 42 --gpu 0\"",
+      "finished_at": "2026-05-24T17:18:49.676Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-24T17:18:52.025889+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "gen0_slv": 689.44,
+      "gen0_reff": 23.09,
+      "gen0_ppl": 15.45,
+      "gen1_slv": 748.06,
+      "gen1_reff": 142.37,
+      "gen1_ppl": 12.09,
+      "gen2_slv": 734.21,
+      "gen2_reff": 143.51,
+      "gen2_ppl": 12.05,
+      "gen3_slv": 737.91,
+      "gen3_reff": 149.42,
+      "gen3_ppl": 12.07,
+      "slv_dip_gen1_to_gen2": -13.85,
+      "slv_dip_pct": -1.85,
+      "slv_recovery_gen2_to_gen3": 3.7,
+      "trajectory_type": "II"
+    },
+    "conclusion": "success",
+    "checkpoint_path": "/root/spectral_collapse_ews/checkpoints/gpt2m_fixed_mix_r025_seed42/",
+    "completed_at": "2026-05-24T17:24:52.214Z"
+  },
+  "timestamp": "2026-05-24T17:24:52.320856+00:00",
+  "trigger": "update_registry"
+}

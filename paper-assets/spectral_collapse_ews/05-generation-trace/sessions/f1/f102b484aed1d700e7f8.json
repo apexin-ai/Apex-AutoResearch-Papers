@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f102b484aed1d700e7f8",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ssh exp 016 quick check 2",
+  "task_key": "worker_ssh_exp_016_quick_check_2_20260522T152546",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp_016_quick_check_2_20260522T152546_result.json",
+    "occurrence": 1,
+    "bytes": 347,
+    "sha256": "876d7c92b6da0357c4eb5ed208305f3a538a18233c8150729e604d09b827b112"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**exp_016 不存在。** 服务器上没有任何 exp_016 相关的日志、文件或 tmux session。\n\n现有日志最新到 **exp_013**（`logs/exp_013.log`）。没有 014、015、016 的痕迹。\n\nexp_016 可能还没有部署到服务器上。需要我查 exp_013 的状态，或者检查本地是否有 exp_016 的计划？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exp-016-quick-check-2.md"
+}

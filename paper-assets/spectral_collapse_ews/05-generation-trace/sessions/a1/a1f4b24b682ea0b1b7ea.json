@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a1f4b24b682ea0b1b7ea",
+  "project": "spectral_collapse_ews",
+  "kind": "history",
+  "title": "agent / loop_8_1779701385.md",
+  "task_key": "loop_8_1779701385",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_8_1779701385.md",
+    "occurrence": 1,
+    "bytes": 4869,
+    "sha256": "7a3cb4b0b74fb16f1e0e3bb147e237a2a0c517e5c33cf6364e83fedce192e68a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: idle_timeout\nupdated: '2026-05-24T02:03:57+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目 GPU 白名单：rtx6000-diagprobe 的 cuda:0 和 cuda:1，无其他分配。禁止使用白名单外 GPU\n- exp_020 是 GPT-2-medium 跨架构验证（D038），不是 Pythia 系列——分析时不要混用 Pythia 的 baseline 数值直接对比绝对值，只对比三阶段 trajectory pattern\n- exp_021 (PREPARING) 是 exp_020 的 real-data control，必须等 exp_020 完成确认 collapse 存在后再决定是否提交，否则 control 无意义\n- Table 3 r=0.2 行目前论文中用的是 single seed (seed42)（D037 决策），exp_019 完成后升级为 3-seed 需要 Director 确认是否更新论文\n- Round 2 修订已提交（apr_20260522T183554_d8x0），论文内容不要随意改动，等审稿反馈再动\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: rtx6000-diagprobe（2× NVIDIA RTX PRO 6000 Blackwell Server Edition）\n- **工作目录**: `/root/spectral_collapse_ews/`\n- **Python 环境**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`（conda base，不是 venv）\n- **模型缓存**: EleutherAI/pythia-410m-deduped、gpt2-medium（均已缓存在服务器）\n- **数据路径**: `/root/spectral_collapse_ews/data/`（50K real pool），OpenWebText（exp_020 用）\n- **Checkpoint 盘**: `/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/`（注意磁盘空间，exp_014 曾因磁盘满崩溃）\n- **脚本目录**: `/root/spectral_collapse_ews/scripts/`\n- **日志**: exp_019 → `~/runs/spectral_collapse_ews/exp_019.log`，exp_020 → `/root/spectral_collapse_ews/logs/exp_020.log`\n- **活跃进程**: exp_019 (PID 757587, tmux, cuda:1)，exp_020 (PID=exp_020 tmux session, cuda:0)\n- **Cron**: 2 个 active cron 分别监控 exp_019 和 exp_020\n\n### 3. 📊 当前状态\n刚完成 session-start 初始化和 reconcile_crons。两个实验在跑，无活跃 Worker。\n\n| exp_id | 状态 | 摘要 |\n|--------|------|------|\n| exp_019 | RUNNING | r=0.2 seed44, cuda:1, pythia-410m, 10 gen。第三 seed 补全 r=0.2 的 3-seed 覆盖 |\n| exp_020 | RUNNING | GPT-2-medium r=0 seed42, cuda:0, 跨架构验证（D038）。验证三阶段 trajectory 是否 architecture-independent |\n| exp_021 | PREPARING | GPT-2-medium r=1.0 real-data control，等 GPU 释放 |\n\n- **Registry 总览**: 22 个实验，15 success / 1 negative / 1 failed / 2 killed / 2 running / 1 preparing\n- **等待中**: 2 个 cron 回调（exp_019、exp_020 完成时触发）；无待处理的 Worker 回调或 Director 决策\n- **论文状态**: Round 2 修订已提交，等审稿反馈。论文 ≤8 页，15/16 issues resolved\n\n### 4. 📋 待办（条件触发式）\n- **exp_019 cron 回调到达** → spawn worker 收集 r=0.2 seed44 全 gen 数据 → 与 seed42(exp_007/011) + seed43(exp_017) 做 cross-seed 分析 → 判断 Type II trajectory 是否 3/3 复现 → 若是，用 `artifacts/plan_018/exp017_integration_template.md` 模板更新 Table 3 r=0.2 行为 3-seed mean → 汇报 Director 是否更新论文\n- **exp_020 cron 回调到达** → spawn worker 分析 GPT-2-medium 是否呈现三阶段 trajectory → 若 success：准备 exp_021 (real-data control) 提交审批、起草 cross-architecture 段落 → 若 negative：证伪 architecture-independence hypothesis，汇报 Director 调整 framing\n- **exp_021 GPU 就绪**（exp_019 或 exp_020 完成释放 cuda） → 提交审批 → 分配 GPU → submit_on_allocated\n- **Round 2 审稿反馈到手** → 按 review-report-action skill 处理，Holistic Pass → Per-Comment Action Matrix\n\n### 5. 🎯 战略上下文\n- **核心结论**: 递归合成训练引发嵌入空间三阶段谱坍缩（decompression → onset → acceleration），SLV 是计算廉价的早期预警信号，r_crit ∈ (0.25, 0.3] 是相变边界\n- **决策链关键节点**: D029 收紧 r_crit 至 (0.25, 0.3] → D031 维持此 bound → D034 改用 cross-seed mean 判断 → D037 保持 r=0.2 single seed 在论文中 → D038 启动 GPT-2-medium 跨架构验证\n- **exp_020 是当前最关键实验**: 如果 GPT-2-medium 复现三阶段 pattern，论文从\"Pythia-specific observation\"升级为\"architecture-independent phenomenon\"，审稿评分可能显著提升（R2-C2 直接回应）。但 GPT-2-medium 架构差异大（24 layers vs 24 layers, 不同 attention head 数/hidden dim），onset timing 可能不同——分析时关注 pattern 而非绝对数值\n- **易踩的坑**: (1) D-4 指标高方差（r=0 三 seed CV 远高于 SLV），不要用 D-4 做主要 claim 支撑 (2) exp_014 磁盘满教训——提交新实验前检查磁盘 (3) lm_eval 新版输出 `results_TIMESTAMP.json` 而非 `results.json`，收集脚本需 glob 匹配 (4) submit_training_job 不支持 shell builtin，命令需要用 `bash -c \"source ... && ...\"` 包装\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-8-1779701385.md"
+}

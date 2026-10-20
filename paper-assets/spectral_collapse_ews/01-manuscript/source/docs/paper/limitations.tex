@@ -1,0 +1,7 @@
+
+Our study has several limitations that scope the conclusions drawn above.
+First, all Phase~0 and Phase~1 experiments use a single random seed; results may not generalize across seeds without multi-seed replication with statistical testing.
+Second, we validate at two model scales only (Pythia-410M and a 1B pilot through Gen~3), leaving open whether the three-phase pattern holds at larger scales or with different architectures.
+Third, 10 recursive generations may be shorter than production synthetic data pipelines, and the spectral trajectory beyond this horizon is unknown.
+Fourth, our data domain is restricted to OpenWebText; collapse dynamics may differ for code, multilingual, or domain-specific corpora.
+Finally, the adaptive controller uses a simple proportional design with no integral or derivative terms, and the signal attenuation paradox identified in this work suggests that more sophisticated controller architectures are needed for effective long-horizon collapse prevention.

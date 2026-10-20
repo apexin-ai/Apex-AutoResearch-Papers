@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0bb95a15df27ac01ab03",
+  "project": "rl-active-probe-fl",
+  "kind": "result",
+  "title": "code probe distillation",
+  "task_key": "worker_code_probe-distillation_20260514T061239",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_probe-distillation_20260514T061239_result.json",
+    "occurrence": 1,
+    "bytes": 785,
+    "sha256": "f867a45ef6414e3ca995e52d6e1fcd994e70afb89b8cedaf35c059b9f6c48cb9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完美，294/294 全部 1:1 匹配。\n\n## 结果\n\n- **方案 A（API）**，全量成功，无需方案 B\n- **294/294** 条 distill 成功，0 失败\n- **API 用量**: 261,483 input tokens + 91,919 output tokens（295 requests，含测试 3 条）\n- 产出文件: `data/probes_train.jsonl`\n\n**样例 1** (`card-flipping-game`):\n- good_probe: `print(type(fronts), type(backs)); print(fronts - backs)` — 直接触发 TypeError 暴露 list 减法 bug\n- bad_probe: `print('bad set:', bad); print('fronts:', fronts)` — 检查无关变量\n\n**样例 2** (`count-equal-and-divisible-pairs-in-an-array`):\n- good_probe: 用 `ast.parse` 尝试解析源码，暴露多余括号导致的 SyntaxError\n- bad_probe: 打印 dict 内容，完全无法发现语法错误"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-probe-distillation.md"
+}

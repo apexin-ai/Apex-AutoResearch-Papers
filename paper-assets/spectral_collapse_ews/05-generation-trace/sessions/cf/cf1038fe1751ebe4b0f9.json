@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cf1038fe1751ebe4b0f9",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "code analyze phase0",
+  "task_key": "worker_code_analyze_phase0_20260516T125016",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_analyze_phase0_20260516T125016_result.json",
+    "occurrence": 1,
+    "bytes": 1027,
+    "sha256": "8ffd084a6b3a92fe41bc896d001b9a04e714e363ae4589d3603527b4068bc80d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。脚本已部署到 `/root/spectral_collapse_ews/analyze_phase0.py`，dry-run 验证通过。\n\n**Go/No-go 输出格式示例：**\n\n```\n============================================================\n  PHASE 0 ANALYSIS REPORT — 410M-mock\n============================================================\n\n[1] DECLINE RATES (baseline: Gen 1)\n    First half  (Gen 1→5): 34.1925 rank/gen\n    Second half (Gen 5→10): 58.0000 rank/gen\n    Acceleration ratio:     1.6963x\n\n[2] GO/NO-GO DECISION\n    Overall: ✓ PASS\n    ✓ condition_1_monotonic: rank increases: 0 (allowed: 1)\n    ✓ condition_2_acceleration: first_half_rate=34.1925, second_half_rate=58.0000, ratio=1.6963\n    ✓ condition_3_perplexity: ppl_gen1=11.3800, ppl_gen10=62.0000, increase=444.82%\n\n[3] τ/k CALIBRATION\n    τ (threshold):  0.071171\n    k (gain):       9.8354\n    max Δ_t:        0.132176\n```\n\n产出文件：`results/phase0_analysis_report.json` + `results/phase0_analysis_plots.png`（4 panel 图）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-analyze-phase0.md"
+}

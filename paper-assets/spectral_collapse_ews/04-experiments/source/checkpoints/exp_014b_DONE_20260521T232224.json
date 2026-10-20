@@ -1,0 +1,65 @@
+{
+  "exp_id": "exp_014b",
+  "project": "spectral_collapse_ews",
+  "state": "DONE",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T11:48:17.417Z",
+    "updated_at": "2026-05-21T23:22:23.968Z",
+    "hypothesis": "Resume of exp_014 (r=0.25 seed43) from gen 6 after disk-full crash. gen 0-5 data preserved. Continues to gen 10 to complete Type II trajectory validation.",
+    "parent": "exp_014",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition fixed_mix --seed 43 --generations 10 --signal log_det --tau 0.002 --k 0 --signal_mode per_gen --real_ratio 0.25 --gpu 0 --start_gen 6\"",
+      "server": "rtx6000-diagprobe",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "577216",
+      "log_path": "~/runs/spectral_collapse_ews/exp_014b.log",
+      "submitted_at": "2026-05-21T12:05:00.830Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 40643.1,
+      "gpu_hours": 11.29
+    },
+    "conclusion": "success",
+    "metrics": {
+      "gen0": {
+        "eff_rank": 417.55,
+        "log_det": 2366.68,
+        "ppl": 9.55,
+        "distinct4": 0.7415
+      },
+      "gen1": {
+        "eff_rank": 475.66,
+        "log_det": 2365.35,
+        "ppl": 10.23,
+        "distinct4": 0.6584
+      },
+      "gen2": {
+        "eff_rank": 483,
+        "log_det": 2362.54,
+        "ppl": 10.65,
+        "distinct4": 0.5574
+      },
+      "gen10": {
+        "eff_rank": 515.56,
+        "log_det": 2488.58,
+        "ppl": 13.611,
+        "distinct4": 0.338,
+        "sigma1": 758.92
+      },
+      "type": "II",
+      "slv_trajectory": "dip-then-recovery: 2366.68→2362.54(G2 dip)→2488.58(G10, +5.2%)",
+      "cross_seed_consistency": "Gen10 SLV diff vs exp_009(seed42) only 3.6 points (0.14%)"
+    },
+    "notes": "r=0.25 seed43 resume from gen6 (after exp_014 disk-full crash). Gen 0-10 complete, EXIT_CODE=0. Type II confirmed: SLV dip at Gen2 (2362.54) then recovery to 2488.58 (+5.2%). Cross-seed Gen10 SLV: exp_009(seed42)=2485.01, exp_014b(seed43)=2488.58, diff=3.6 (0.14%). Awaiting exp_015 (seed44) for 3-seed mean.",
+    "checkpoint_path": "/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r025_seed43/",
+    "completed_at": "2026-05-21T23:22:23.968Z"
+  },
+  "timestamp": "2026-05-21T23:22:24.041503+00:00",
+  "trigger": "update_registry"
+}

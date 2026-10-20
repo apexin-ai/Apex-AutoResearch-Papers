@@ -1,0 +1,43 @@
+{
+  "exp_id": "exp_002",
+  "project": "spectral_collapse_ews",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T12:02:30.232Z",
+    "updated_at": "2026-05-16T12:45:08.037Z",
+    "spec": {
+      "command": "bash -c \"export CUDA_VISIBLE_DEVICES=0,1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && python run_phase0_1b.py\"",
+      "server": "rtx6000-diagprobe",
+      "gpu": "cuda:1",
+      "pid": 22646,
+      "log_path": "~/runs/spectral_collapse_ews/exp_002.log",
+      "submitted_at": "2026-05-16T12:44:36.749Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "description": "Phase 0 (1B): Pure collapse characterization - Pythia 1B, 100% synthetic, 10 generations",
+      "hypothesis": "Effective rank collapse pattern transfers across model scale (410M → 1B)",
+      "model_name": "EleutherAI/pythia-1b-deduped",
+      "seed": 42,
+      "data_path": "/root/spectral_collapse_ews/data/",
+      "data_count": "50K train + 5K eval + 1K spectral",
+      "generations": 10,
+      "mix_ratio": "100% synthetic (pure collapse)",
+      "hyperparams": {
+        "lr": 5e-05,
+        "batch_size": 8,
+        "gradient_accumulation_steps": 4,
+        "warmup_ratio": 0.05,
+        "epochs_per_gen": 1,
+        "temperature": 1,
+        "top_k": 50,
+        "max_length": 512
+      }
+    }
+  },
+  "timestamp": "2026-05-16T12:45:08.045493+00:00",
+  "trigger": "update_registry"
+}

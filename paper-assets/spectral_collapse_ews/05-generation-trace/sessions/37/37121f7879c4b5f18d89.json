@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "37121f7879c4b5f18d89",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "fix phase1 blockers",
+  "task_key": "worker_fix_phase1_blockers_20260516T092109",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_phase1_blockers_20260516T092109_result.json",
+    "occurrence": 1,
+    "bytes": 670,
+    "sha256": "0ec80e906e782d4451aec087908f2e7a8d1be9d3f80c340910e6e4294220bd5d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两项验证均通过：\n\n**验证 1 (Controller off-by-one)**: 5 代全部运行，`B_rem` 归零，所有 ratio ≥ r_min。Budget 被完整消耗。\n\n**验证 2 (Pipeline dry-run)**: Controller 正确创建（budget=2.5, T=5），`get_first_gen_ratio()` 返回 0.50，后续各代根据 effective rank 下降自适应调高 ratio，最终 B_rem=0。\n\n两个 blocker 已修复：\n- `controller.py`: upper_clip 预留从 `remaining_gens` 改为 `max(0, remaining_gens - 1)`\n- `pipeline.py`: 初始化传入 `total_budget`/`total_generations`，循环内用 controller 驱动 ratio 而非固定 config 值，删除末尾重复的 controller update"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-phase1-blockers.md"
+}

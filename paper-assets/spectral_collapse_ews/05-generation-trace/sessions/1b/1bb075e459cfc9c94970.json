@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1bb075e459cfc9c94970",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ops check exp status",
+  "task_key": "worker_ops_check_exp_status_20260520T175548",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_exp_status_20260520T175548_result.json",
+    "occurrence": 1,
+    "bytes": 2178,
+    "sha256": "c8eadfc30a62859a9e899399a02d45b178f7404c02f0d38c91dd83d572c3c82b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n### exp_012 — Phase 1: fixed_mix (r=0.3, seed=43)\n\n| 项目 | 值 |\n|------|-----|\n| **状态** | **RUNNING** |\n| **GPU** | GPU 0 (94% util, 25GB/98GB) |\n| **进度** | Gen 8/10 — 生成样本中 32000/35000 (91%) |\n| **已运行** | ~14.9h (05-20 11:03 → 05-21 01:57 CST) |\n| **预计剩余** | ~3-4h (Gen 8 完成 + Gen 9 完整周期) |\n\n**已完成 Gen 0-7 指标：**\n\n| Gen | eff_rank | log_det | ppl | distinct4 | train_loss | σ₁ |\n|-----|----------|---------|------|-----------|------------|--------|\n| 0 | 417.55 | 2366.68 | 9.55 | 0.7415 | — | 1942.8 |\n| 1 | 476.75 | 2363.89 | 10.19 | 0.6676 | 1.837 | 948.7 |\n| 2 | 483.02 | 2363.64 | 10.58 | 0.5348 | 1.765 | 867.9 |\n| 3 | 489.31 | 2389.87 | 10.91 | 0.5225 | 1.544 | 827.0 |\n| 4 | 494.15 | 2408.14 | 11.25 | 0.5097 | 1.461 | 800.1 |\n| 5 | 498.80 | 2431.29 | 11.55 | 0.5046 | 1.441 | 778.2 |\n| 6 | 502.00 | 2445.24 | 11.88 | 0.4527 | 1.435 | 769.4 |\n| 7 | 505.90 | 2462.25 | 12.18 | 0.3219 | 1.328 | 760.0 |\n\n---\n\n### exp_013 — Phase 1: pure_collapse (r=0.0, seed=44)\n\n| 项目 | 值 |\n|------|-----|\n| **状态** | **RUNNING** |\n| **GPU** | GPU 1 (78% util, 25GB/98GB) |\n| **进度** | Gen 4/10 — 生成样本中 48000/50000 (96%) |\n| **已运行** | ~10h (05-20 15:52 → 05-21 01:57 CST) |\n| **预计剩余** | ~15h (Gen 4 完成 + Gen 5-9，每 gen 50000 样本，~2.5h/gen) |\n\n**已完成 Gen 0-3 指标：**\n\n| Gen | eff_rank | log_det | ppl | distinct4 | train_loss | σ₁ |\n|-----|----------|---------|------|-----------|------------|--------|\n| 0 | 417.55 | 2366.68 | 9.55 | 0.7305 | — | 1942.8 |\n| 1 | 490.77 | 2459.40 | 11.36 | 0.6019 | 1.626 | 808.1 |\n| 2 | 495.83 | 2467.38 | 13.54 | 0.4943 | 1.233 | 726.0 |\n| 3 | 493.45 | 2442.40 | 16.22 | 0.4283 | 1.024 | 710.0 |\n\n---\n\n**无 hellaswag 指标**（日志中未找到相关输出）。\n\nσ₁ 取自 `top_10_singular_values[0]`。pure_collapse 退化速度显著快于 fixed_mix：3 gen 内 ppl 从 9.55 飙到 16.22（+70%），而 fixed_mix 7 gen 后仅到 12.18（+28%）。eff_rank 在 pure_collapse 中 Gen 3 已出现回落（495.83→493.45）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-exp-status.md"
+}

@@ -1,0 +1,35 @@
+{
+  "exp_id": "mvp_trace_collect",
+  "project": "trace_distill_repair",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T14:58:26.912Z",
+    "updated_at": "2026-05-14T14:58:56.084Z",
+    "hypothesis": "≥80% BugsInPy 实例可成功收集 trace 并解析为结构化 segments",
+    "spec": {
+      "command": "python run_phase2_3.py",
+      "server": "gpu-6000pro-1",
+      "data_path": "/root/trace_distill_repair/pipeline_output/",
+      "data_count": 24,
+      "model_name": "n/a",
+      "seed": 0,
+      "checkpoint_path": "/root/trace_distill_repair/pipeline_output/",
+      "log_path": "/root/trace_distill_repair/pipeline_output/summary.json"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "setup_success": "25/30",
+      "trace_success": "24/25",
+      "segment_success": "24/24",
+      "end_to_end_rate": "80%",
+      "avg_events": 5184,
+      "pass_criterion_met": true
+    },
+    "completed_at": "2026-05-14T14:58:56.084Z"
+  },
+  "timestamp": "2026-05-14T14:58:56.090763+00:00",
+  "trigger": "update_registry"
+}

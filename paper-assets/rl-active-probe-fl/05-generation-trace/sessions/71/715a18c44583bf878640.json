@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "715a18c44583bf878640",
+  "project": "rl-active-probe-fl",
+  "kind": "result",
+  "title": "code data pipeline",
+  "task_key": "worker_code_data-pipeline_20260514T044707",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_data-pipeline_20260514T044707_result.json",
+    "occurrence": 1,
+    "bytes": 989,
+    "sha256": "77e7ce6e85cb80ddeec6d9149e7cbe72ba1ec3cb338b4b6f41763e8b90cd6a3f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。创建的文件：\n\n| 文件 | 说明 |\n|------|------|\n| `src/data_filter.py` | 从 HuggingFace 加载 DebugBench，过滤 Python single-bug 子集（683条），输出 JSONL |\n| `src/generate_tests.py` | 用 Claude API 为每个样本生成 pytest 测试用例，支持并发/断点续传 |\n| `src/validate_tests.py` | 验证 solution pass + buggy fail，只保留两者都符合的样本 |\n| `src/distill_probes.py` | 用 Claude API 生成 good_probe/bad_probe/rationale 三元组，支持并发/断点续传 |\n| `src/split_data.py` | 按 slug 去重分割 train/eval，seed=42 可复现 |\n| `data/debugbench_python_single.jsonl` | 已生成，683 条（syntax 38.1%, reference 33.2%, logic 28.7%） |\n\nPipeline 执行顺序：`data_filter.py` → `generate_tests.py` → `validate_tests.py` → `distill_probes.py` → `split_data.py`。后三步需要 `ANTHROPIC_API_KEY`（generate_tests 和 distill_probes）或 pytest（validate_tests）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-data-pipeline.md"
+}

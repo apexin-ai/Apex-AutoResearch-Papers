@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2284bea95544d4b54129",
+  "project": "trace_distill_repair",
+  "kind": "result",
+  "title": "diag line scoring v2 progress",
+  "task_key": "worker_diag_line_scoring_v2_progress_20260515T032626",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_line_scoring_v2_progress_20260515T032626_result.json",
+    "occurrence": 1,
+    "bytes": 1656,
+    "sha256": "4cf7634e4854151f9899a8289c1b103444e543bd24e1af5076286e8f12633f9f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## line_scoring_v2 进度报告\n\n### 进程状态\n- **PID 86816**: 存活，运行 01:28:08，RSS 3604 KB\n- **tmux**: 未检查（`||` 被阻止），但进程活跃，日志持续更新到 11:26:40\n\n### 进度：14/38 完成，第 15 个进行中\n\n| # | 实例 | segments | 耗时 |\n|---|------|----------|------|\n| 1 | black_14 | 9 | ~35s |\n| 2 | black_1 | 11 | ~23s |\n| 3 | black_2 | 10 | ~31s |\n| 4 | black_5 | 9 | ~25s |\n| 5 | cookiecutter_1 | 37 | ~2m39s |\n| 6 | cookiecutter_2 | 37 | ~2m10s |\n| 7 | cookiecutter_3 | 8 | ~26s |\n| 8 | fastapi_1 | 144 | ~8m15s |\n| 9 | fastapi_2 | 143 | ~11m57s |\n| 10 | httpie_1 | 1 [too_small] | ~12s |\n| 11 | httpie_2 | 130 | ~11m6s |\n| 12 | luigi_10 | 391 [low_segment_count] | ~14m40s |\n| 13 | luigi_14 | 390 [low_segment_count] | ~15m8s |\n| 14 | luigi_1 | 666 | ~17m47s |\n| **15** | **luigi_2** | **664 (进行中)** | — |\n\n### 错误统计\n- **PARSE_FAILURE**: 0\n- **API returned None**: 3 次（均为 attempt 1/5，自动重试成功）\n- **None content**: 3（同上）\n- 无其他 ERROR\n\n### 输出文件\n- `phase2_line_scores.json`: 1.83 MB（最后修改 09:39，v2 启动前的旧文件，v2 可能在全部完成后才写入）\n- `phase2_line_scores_v1_backup.json`: 1.83 MB（09:57 备份，大小一致）\n\n### 预估剩余时间\n- 已耗时 ~88 分钟完成 14 个实例，平均 ~6.1 min/instance\n- 剩余 23 个实例（含当前 luigi_2）\n- 若 segment 分布与前 14 个相似：**预估还需 ~2-2.5 小时**（约 13:30-14:00 完成）\n- 注意：如果剩余实例包含更多大型 luigi 级别实例（600+ segments），可能更久"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-line-scoring-v2-progress.md"
+}

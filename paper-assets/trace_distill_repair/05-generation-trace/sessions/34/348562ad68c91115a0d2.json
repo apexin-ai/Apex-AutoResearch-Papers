@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "348562ad68c91115a0d2",
+  "project": "trace_distill_repair",
+  "kind": "result",
+  "title": "code strong model pipeline",
+  "task_key": "worker_code_strong_model_pipeline_20260515T154807",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_strong_model_pipeline_20260515T154807_result.json",
+    "occurrence": 1,
+    "bytes": 963,
+    "sha256": "7152364869f38987d98f317ea1190febff5356b14f04e4d9146dcc9d0fd9a294"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`/root/trace_distill_repair/run_phase3_repair_v3_strong.py` 已部署（784 行），语法验证通过。\n\n**与 v2 的关键差异：**\n\n| 项目 | v2 | v3 |\n|------|----|----|\n| 默认模型 | `deepseek/deepseek-v4-flash` | `anthropic/claude-sonnet-4`（可通过 `REPAIR_MODEL` 环境变量覆盖） |\n| 实例列表 | 4 个（TARGET_INSTANCES 硬编码） | 全部 14 个 Tier 1 实例 |\n| API read timeout | 120s | **180s** |\n| API 客户端 | 通过 `MVPPipeline._get_repair_client()` | 独立创建 `OpenAI` 客户端，不依赖 Pipeline 内部方法 |\n| diff 提取 | 简单 markdown 剥离 | `extract_diff_from_response()` — 更鲁棒，处理 Claude 可能的前后解释文本 |\n| Oracle baseline | 仅遍历 `TARGET_INSTANCES` | 遍历 `args.instances`（与实际运行实例一致） |\n| 输出文件 | `phase3_v2_*.json/csv` | `phase3_v3_*.json/csv` |\n| 启动日志 | 无 | 打印模型名、实例数、条件数 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-strong-model-pipeline.md"
+}

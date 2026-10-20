@@ -1,0 +1,2115 @@
+{
+  "schema_version": "1.0",
+  "id": "3eec1ca2f20ad6bfee18",
+  "project": "spectral_collapse_ews",
+  "kind": "worker",
+  "title": "paper research citation verify",
+  "task_key": "worker_paper_research_citation_verify_20260517T204703",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_research_citation_verify_20260517T204703.log",
+    "occurrence": 1,
+    "bytes": 116031,
+    "sha256": "bcd4526b54f51d8e82af05e5b66c4bae4d67352bb8a3c3b22260fbf9432649bf"
+  },
+  "statistics": {
+    "messages": 42,
+    "user_turns": 0,
+    "tool_calls": 14,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "assistant": 10,
+      "record": 1,
+      "tool_call": 14,
+      "tool_result": 14,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews",
+                "session_id": "690b44ca-c5e0-40ca-8be0-3d070d0f9052",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__auto_build_provenance",
+                  "mcp__agent-ml-research__bootstrap_provenance",
+                  "mcp__agent-ml-research__check_paper_consistency",
+                  "mcp__agent-ml-research__check_provenance_completeness",
+                  "mcp__agent-ml-research__cleanup_pdf_images",
+                  "mcp__agent-ml-research__compute_coverage_matrix",
+                  "mcp__agent-ml-research__edit_paper_section",
+                  "mcp__agent-ml-research__get_image_info",
+                  "mcp__agent-ml-research__get_worker_status",
+                  "mcp__agent-ml-research__list_artifacts",
+                  "mcp__agent-ml-research__list_workers",
+                  "mcp__agent-ml-research__load_project_config",
+                  "mcp__agent-ml-research__overleaf_init",
+                  "mcp__agent-ml-research__overleaf_pull",
+                  "mcp__agent-ml-research__overleaf_push",
+                  "mcp__agent-ml-research__overleaf_status",
+                  "mcp__agent-ml-research__overleaf_sync",
+                  "mcp__agent-ml-research__paper_agent_post_to_director",
+                  "mcp__agent-ml-research__paper_agent_request_review",
+                  "mcp__agent-ml-research__paper_compile_and_check",
+                  "mcp__agent-ml-research__pdf_to_images",
+                  "mcp__agent-ml-research__read_experiment_plan_with_status",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__read_roadmap",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__save_project_file",
+                  "mcp__agent-ml-research__send_progress",
+                  "mcp__agent-ml-research__spawn_worker",
+                  "mcp__agent-ml-research__verify_references",
+                  "mcp__agent-ml-research__write_paper_section"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "ec5c9abd-71c0-4cff-852d-b5a95777c9c8",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-5-projects-spectral-collapse-ews/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll verify these 4 citations via web search. Let me start by loading the necessary tools and reading the current literature_map.yaml."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "690b44ca-c5e0-40ca-8be0-3d070d0f9052",
+            "uuid": "a272ebaf-9cbc-4a67-a4ad-dd3a4e58287b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Gpjeu1Z5hR8e29gtFiQLz1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13162,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13162
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779061200,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "c404f69e-52ce-45f2-b17f-e3a242e1e80c",
+                "session_id": "690b44ca-c5e0-40ca-8be0-3d070d0f9052"
+              }
+            }
+          ],
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DYo3Zag8MCFQo9RHbR2w8R",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebSearch",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "690b44ca-c5e0-40ca-8be0-3d070d0f9052",
+            "uuid": "a3223cd3-18dd-434b-878a-95a49a02d578",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Gpjeu1Z5hR8e29gtFiQLz1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13162,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13162
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-17T20:47:14.136Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01DYo3Zag8MCFQo9RHbR2w8R",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebSearch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "690b44ca-c5e0-40ca-8be0-3d070d0f9052",
+            "uuid": "24cd10a2-ef36-4565-a11a-f842d387ec64",
+            "tool_use_result": {
+              "matches": [
+                "WebSearch"
+              ],
+              "query": "select:WebSearch",
+              "total_deferred_tools": 50
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01G9uQh9ipJwU9HiDvTXAqtq",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/literature_map.yaml"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "690b44ca-c5e0-40ca-8be0-3d070d0f9052",
+            "uuid": "219817ee-533c-4f5f-9798-8622d16ac537",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Gpjeu1Z5hR8e29gtFiQLz1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13162,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13162
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-17T20:47:14.571Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01G9uQh9ipJwU9HiDvTXAqtq",
+              "type": "tool_result",
+              "content": "1\tpapers:\n2\t  # ============================================================\n3\t  # Cluster 1: model_collapse_core (6 papers)\n4\t  # ============================================================\n5\t  - bibtex_key: shumailov2024collapse\n6\t    title: \"AI models collapse when trained on recursively generated data\"\n7\t    authors: \"Shumailov, Ilia and Shumaylov, Zakhar and Zhao, Yiren and Papernot, Nicolas and Anderson, Ross and Gal, Yarin\"\n8\t    year: 2024\n9\t    venue: \"Nature\"\n10\t    arxiv_id: \"2305.17493\"\n11\t    doi: \"10.1038/s41586-024-07566-y\"\n12\t    category: model_collapse_core\n13\t    verified: true\n14\t    abstract_short: \"Shows that training on model-generated data causes irreversible defects where tails of the original content distribution disappear, leading to model collapse across LLMs, VAEs, and GMMs.\"\n15\t    relevance: \"Seminal paper defining model collapse. Our work provides spectral EWS to detect collapse onset before irreversible degradation.\"\n16\t\n17\t  - bibtex_key: dohmatob2024tails\n18\t    title: \"A Tale of Tails: Model Collapse as a Change of Scaling Laws\"\n19\t    authors: \"Dohmatob, Elvis and Feng, Yunzhen and Yang, Pu and Charton, Francois and Kempe, Julia\"\n20\t    year: 2024\n21\t    venue: \"ICML 2024\"\n22\t    arxiv_id: \"2402.07043\"\n23\t    doi: \"\"\n24\t    category: model_collapse_core\n25\t    verified: true\n26\t    abstract_short: \"Provides first theoretical framework for model collapse through scaling laws, showing how tail distributions vanish across generations with validated experiments on transformers.\"\n27\t    relevance: \"Theoretical foundation for understanding collapse dynamics. Our spectral metrics connect to their scaling law framework.\"\n28\t\n29\t  - bibtex_key: alemohammad2024mad\n30\t    title: \"Self-Consuming Generative Models Go MAD\"\n31\t    authors: \"Alemohammad, Sina and Casco-Rodriguez, Josue and Luzi, Lorenzo and Humayun, Ahmed Imtiaz and Babaei, Hossein and LeJeune, Daniel and Siahkoohi, Ali and Baraniuk, Richard G.\"\n32\t    year: 2024\n33\t    venue: \"ICLR 2024\"\n34\t    arxiv_id: \"2307.01850\"\n35\t    doi: \"\"\n36\t    category: model_collapse_core\n37\t    verified: true\n38\t    abstract_short: \"Introduces Model Autophagy Disorder (MAD) showing that without fresh real data, autophagous loops cause progressive quality/diversity loss in just a few generations.\"\n39\t    relevance: \"Establishes MAD framework for self-consuming loops. Our EWS can detect MADness onset before quality degrades.\"\n40\t\n41\t  - bibtex_key: gerstgrasser2024inevitable\n42\t    title: \"Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data\"\n43\t    authors: \"Gerstgrasser, Matthias and Schaeffer, Rylan and Dey, Apratim and Rafailov, Rafael and Sleight, Henry and Hughes, John and Korbak, Tomasz and Agrawal, Rajashree and Pai, Dhruv and Gromov, Andrey and Roberts, Daniel A. and Yang, Diyi and Donoho, David L. and Koyejo, Sanmi\"\n44\t    year: 2024\n45\t    venue: \"arXiv\"\n46\t    arxiv_id: \"2404.01413\"\n47\t    doi: \"\"\n48\t    category: model_collapse_core\n49\t    verified: true\n50\t    abstract_short: \"Shows that accumulating synthetic data alongside real data avoids model collapse, with finite upper bound on test error independent of iteration count.\"\n51\t    relevance: \"Key mitigation result. Our EWS enables knowing when to inject real data vs. when accumulation suffices.\"\n52\t\n53\t  - bibtex_key: dohmatob2024demystified\n54\t    title: \"Model Collapse Demystified: The Case of Regression\"\n55\t    authors: \"Dohmatob, Elvis and Feng, Yunzhen and Kempe, Julia\"\n56\t    year: 2024\n57\t    venue: \"NeurIPS 2024\"\n58\t    arxiv_id: \"2402.07712\"\n59\t    doi: \"\"\n60\t    category: model_collapse_core\n61\t    verified: true\n62\t    abstract_short: \"Derives analytical formulas for model collapse in high-dimensional regression, revealing modified scaling laws with crossover phenomena in both under- and over-parameterized regimes.\"\n63\t    relevance: \"Provides analytical collapse characterization. Our spectral metrics offer empirical detection aligned with their theory.\"\n64\t\n65\t  - bibtex_key: dohmatob2025strong\n66\t    title: \"Strong Model Collapse\"\n67\t    authors: \"Dohmatob, Elvis and Feng, Yunzhen and Subramonian, Arjun and Kempe, Julia\"\n68\t    year: 2025\n69\t    venue: \"ICLR 2025\"\n70\t    arxiv_id: \"2410.04840\"\n71\t    doi: \"\"\n72\t    category: model_collapse_core\n73\t    verified: true\n74\t    abstract_short: \"Proves that even 1% synthetic data in training corpus leads to model collapse within scaling laws paradigm, using operator-valued free probability theory.\"\n75\t    relevance: \"Strongest theoretical result on collapse inevitability. Motivates need for early detection even with small synthetic contamination.\"\n76\t\n77\t  # ============================================================\n78\t  # Cluster 2: spectral_analysis_collapse (5 papers)\n79\t  # ============================================================\n80\t  - bibtex_key: gu2026sigma\n81\t    title: \"SIGMA: Scalable Spectral Insights for LLM Model Collapse\"\n82\t    authors: \"Gu, Yi and Pang, Lingyou and Ye, Xiangkun and Wang, Tianyu and Lin, Jianyu and Priebe, Carey E. and Aue, Alexander\"\n83\t    year: 2026\n84\t    venue: \"arXiv\"\n85\t    arxiv_id: \"2601.03385\"\n86\t    doi: \"\"\n87\t    category: spectral_analysis_collapse\n88\t    verified: true\n89\t    abstract_short: \"Proposes SIGMA framework using spectral bounds of embedding Gram matrix to quantify model collapse, benchmarking on OPT-125M across recursive training generations.\"\n90\t    relevance: \"Most directly related work. Uses spectral analysis for collapse detection. Our contribution extends with EWS methodology and predictive capability.\"\n91\t\n92\t  - bibtex_key: naderi2025mindgap\n93\t    title: \"Mind the Gap: a Spectral Analysis of Rank Collapse and Signal Propagation in Attention Layers\"\n94\t    authors: \"Naderi, Alireza and Nait Saada, Thiziri and Tanner, Jared\"\n95\t    year: 2025\n96\t    venue: \"ICML 2025\"\n97\t    arxiv_id: \"2410.07799\"\n98\t    doi: \"\"\n99\t    category: spectral_analysis_collapse\n100\t    verified: true\n101\t    abstract_short: \"Uses Random Matrix Theory to uncover spectral gap between largest singular values as cause of rank collapse in attention, proposing eigenvalue removal as mitigation.\"\n102\t    relevance: \"Provides spectral characterization of rank collapse in transformers. Our work applies similar spectral analysis to detect data-driven collapse.\"\n103\t\n104\t  - bibtex_key: he2025spectral\n105\t    title: \"Spectral Collapse Drives Loss of Plasticity in Deep Continual Learning\"\n106\t    authors: \"He, Naicheng and Guo, Kaicheng and Prakash, Arjun and Tiwari, Saket and Tao, Ruo Yu and Serapio, Tyrone and Greenwald, Amy and Konidaris, George\"\n107\t    year: 2025\n108\t    venue: \"NeurIPS 2025\"\n109\t    arxiv_id: \"2509.22335\"\n110\t    doi: \"\"\n111\t    category: spectral_analysis_collapse\n112\t    verified: true\n113\t    abstract_short: \"Shows Hessian spectral collapse at new-task initialization prevents learning, proposing effective rank regularization and L2 penalties to preserve plasticity.\"\n114\t    relevance: \"Demonstrates spectral collapse as mechanism for plasticity loss. Parallels our finding that spectral signatures predict collapse in recursive training.\"\n115\t\n116\t  - bibtex_key: roy2007effectiverank\n117\t    title: \"The Effective Rank: A Measure of Effective Dimensionality\"\n118\t    authors: \"Roy, Olivier and Vetterli, Martin\"\n119\t    year: 2007\n120\t    venue: \"EUSIPCO 2007\"\n121\t    arxiv_id: \"\"\n122\t    doi: \"\"\n123\t    category: spectral_analysis_collapse\n124\t    verified: true\n125\t    abstract_short: \"Defines effective rank as exponential of Shannon entropy of normalized singular value distribution, providing continuous measure of matrix dimensionality.\"\n126\t    relevance: \"Foundation metric for our EWS. We track effective rank decline of representation matrices as collapse indicator.\"\n127\t\n128\t  - bibtex_key: martin2021implicit\n129\t    title: \"Implicit Self-Regularization in Deep Neural Networks: Evidence from Random Matrix Theory and Implications for Learning\"\n130\t    authors: \"Martin, Charles H. and Mahoney, Michael W.\"\n131\t    year: 2021\n132\t    venue: \"JMLR\"\n133\t    arxiv_id: \"1810.01075\"\n134\t    doi: \"\"\n135\t    category: spectral_analysis_collapse\n136\t    verified: true\n137\t    abstract_short: \"Applies RMT to analyze weight matrix spectra in DNNs, identifying implicit self-regularization through heavy-tailed spectral distributions correlated with model quality.\"\n138\t    relevance: \"Establishes spectral analysis of weight matrices as diagnostic tool. Our approach extends to representation matrices under recursive training.\"\n139\t\n140\t  # ============================================================\n141\t  # Cluster 3: data_mixing_strategies (4 papers)\n142\t  # ============================================================\n143\t  - bibtex_key: xie2023doremi\n144\t    title: \"DoReMi: Optimizing Data Mixtures Speeds Up Language Model Pretraining\"\n145\t    authors: \"Xie, Sang Michael and Pham, Hieu and Dong, Xuanyi and Du, Nan and Liu, Hanxiao and Lu, Yifeng and Liang, Percy and Le, Quoc V. and Ma, Tengyu and Yu, Adams Wei\"\n146\t    year: 2023\n147\t    venue: \"NeurIPS 2023\"\n148\t    arxiv_id: \"2305.10429\"\n149\t    doi: \"\"\n150\t    category: data_mixing_strategies\n151\t    verified: true\n152\t    abstract_short: \"Uses group DRO on proxy model to optimize domain mixture proportions, improving downstream accuracy by 6.5% and reaching baseline performance with 2.6x fewer steps.\"\n153\t    relevance: \"Establishes data mixing optimization. Our EWS can inform when to adjust mixing ratios during recursive training.\"\n154\t\n155\t  - bibtex_key: ye2025mixinglaws\n156\t    title: \"Data Mixing Laws: Optimizing Data Mixtures by Predicting Language Modeling Performance\"\n157\t    authors: \"Ye, Jiasheng and Liu, Peiju and Sun, Tianxiang and Zhan, Jun and Zhou, Yunhua and Qiu, Xipeng\"\n158\t    year: 2025\n159\t    venue: \"ICLR 2025\"\n160\t    arxiv_id: \"2403.16952\"\n161\t    doi: \"\"\n162\t    category: data_mixing_strategies\n163\t    verified: true\n164\t    abstract_short: \"Discovers quantitative data mixing laws predicting model performance from mixture proportions, enabling optimization of 1B model training with 48% fewer steps.\"\n165\t    relevance: \"Provides predictive framework for data mixing. Our spectral EWS complements by detecting when current mixture causes collapse.\"\n166\t\n167\t  - bibtex_key: chen2025aioli\n168\t    title: \"Aioli: A Unified Optimization Framework for Language Model Data Mixing\"\n169\t    authors: \"Chen, Mayee F. and Hu, Michael Y. and Lourie, Nicholas and Cho, Kyunghyun and R\\\\'{e}, Christopher\"\n170\t    year: 2025\n171\t    venue: \"ICLR 2025\"\n172\t    arxiv_id: \"2411.05735\"\n173\t    doi: \"\"\n174\t    category: data_mixing_strategies\n175\t    verified: true\n176\t    abstract_short: \"Unifies existing data mixing methods into common optimization framework, proposing online method that dynamically estimates mixing law parameters during training.\"\n177\t    relevance: \"Online mixing adjustment mechanism. Our EWS provides signal for when to trigger mixture proportion updates.\"\n178\t\n179\t  - bibtex_key: kazdan2024collapsethrive\n180\t    title: \"Collapse or Thrive? Perils and Promises of Synthetic Data in a Self-Generating World\"\n181\t    authors: \"Kazdan, Joshua and Schaeffer, Rylan and Dey, Apratim and Gerstgrasser, Matthias and Rafailov, Rafael and Donoho, David L. and Koyejo, Sanmi\"\n182\t    year: 2024\n183\t    venue: \"arXiv\"\n184\t    arxiv_id: \"2410.16713\"\n185\t    doi: \"\"\n186\t    category: data_mixing_strategies\n187\t    verified: true\n188\t    abstract_short: \"Studies three data workflows (replace/accumulate/fixed-compute) showing collapse only under replacement, with non-trivial real-synthetic data interactions.\"\n189\t    relevance: \"Characterizes when synthetic data helps vs. hurts. Our EWS enables real-time workflow selection based on spectral health.\"\n190\t\n191\t  # ============================================================\n192\t  # Cluster 4: synthetic_data_quality (3 papers)\n193\t  # ============================================================\n194\t  - bibtex_key: gudibande2024falsepromise\n195\t    title: \"The False Promise of Imitating Proprietary LLMs\"\n196\t    authors: \"Gudibande, Arnav and Wallace, Eric and Snell, Charlie and Geng, Xinyang and Liu, Hao and Abbeel, Pieter and Levine, Sergey and Song, Dawn\"\n197\t    year: 2024\n198\t    venue: \"ICLR 2024\"\n199\t    arxiv_id: \"2305.15717\"\n200\t    doi: \"\"\n201\t    category: synthetic_data_quality\n202\t    verified: true\n203\t    abstract_short: \"Shows imitation models trained on proprietary LLM outputs appear fluent but close little capability gap, revealing fundamental quality limitations of synthetic training data.\"\n204\t    relevance: \"Demonstrates quality degradation from synthetic imitation. Our spectral metrics can quantify this capability gap during training.\"\n205\t\n206\t  - bibtex_key: feng2024verification\n207\t    title: \"Beyond Model Collapse: Scaling Up with Synthesized Data Requires Verification\"\n208\t    authors: \"Feng, Yunzhen and Dohmatob, Elvis and Yang, Pu and Charton, Francois and Kempe, Julia\"\n209\t    year: 2024\n210\t    venue: \"arXiv\"\n211\t    arxiv_id: \"2406.07515\"\n212\t    doi: \"\"\n213\t    category: synthetic_data_quality\n214\t    verified: true\n215\t    abstract_short: \"Shows that even imperfect verifiers can prevent model collapse when scaling with synthetic data, providing theoretical conditions for effective verification.\"\n216\t    relevance: \"Verification as collapse prevention. Our EWS serves as a verification signal indicating when synthetic data quality degrades.\"\n217\t\n218\t  - bibtex_key: keisha2025knowledge\n219\t    title: \"Knowledge Collapse in LLMs: When Fluency Survives but Facts Fail under Recursive Synthetic Training\"\n220\t    authors: \"Keisha, Figarri and Wu, Zekun and Wang, Ze and Koshiyama, Adriano and Treleaven, Philip\"\n221\t    year: 2025\n222\t    venue: \"arXiv\"\n223\t    arxiv_id: \"2509.04796\"\n224\t    doi: \"\"\n225\t    category: synthetic_data_quality\n226\t    verified: true\n227\t    abstract_short: \"Defines three-stage knowledge collapse where factual accuracy erodes while fluency persists, creating confidently wrong outputs under recursive synthetic training.\"\n228\t    relevance: \"Identifies knowledge collapse as distinct from perplexity collapse. Our spectral EWS may detect this before factual degradation manifests.\"\n229\t\n230\t  # ============================================================\n231\t  # Cluster 5: early_warning_signals (3 papers)\n232\t  # ============================================================\n233\t  - bibtex_key: scheffer2009ews\n234\t    title: \"Early-warning signals for critical transitions\"\n235\t    authors: \"Scheffer, Marten and Bascompte, Jordi and Brock, William A. and Brovkin, Victor and Carpenter, Stephen R. and Dakos, Vasilis and Held, Hermann and van Nes, Egbert H. and Rietkerk, Max and Sugihara, George\"\n236\t    year: 2009\n237\t    venue: \"Nature\"\n238\t    arxiv_id: \"\"\n239\t    doi: \"10.1038/nature08227\"\n240\t    category: early_warning_signals\n241\t    verified: true\n242\t    abstract_short: \"Proposes generic early warning signals (rising variance, autocorrelation, spectral reddening) indicating proximity to critical tipping points in complex systems.\"\n243\t    relevance: \"Foundational EWS theory. We adapt critical slowing down indicators to neural network representation space for collapse detection.\"\n244\t\n245\t  - bibtex_key: bury2021deeplearning\n246\t    title: \"Deep learning for early warning signals of tipping points\"\n247\t    authors: \"Bury, Thomas M. and Sujith, R. I. and Pavithran, Induja and Scheffer, Marten and Lenton, Timothy M. and Anand, Madhur and Bauch, Chris T.\"\n248\t    year: 2021\n249\t    venue: \"PNAS\"\n250\t    arxiv_id: \"\"\n251\t    doi: \"10.1073/pnas.2106140118\"\n252\t    category: early_warning_signals\n253\t    verified: true\n254\t    abstract_short: \"Develops deep learning algorithm for EWS that generalizes across systems, providing higher sensitivity and fewer false positives than generic statistical indicators.\"\n255\t    relevance: \"Demonstrates ML-based EWS for tipping points. Inspires our approach of learning spectral EWS patterns for model collapse detection.\"\n256\t\n257\t  - bibtex_key: dakos2012methods\n258\t    title: \"Methods for Detecting Early Warnings of Critical Transitions in Time Series Illustrated Using Simulated Ecological Data\"\n259\t    authors: \"Dakos, Vasilis and Carpenter, Stephen R. and Brock, William A. and Ellison, Aaron M. and Guttal, Vishwesha and Ives, Anthony R. and Kefi, Saran and Livina, Vasilis and Seekell, David A. and van Nes, Egbert H. and Scheffer, Marten\"\n260\t    year: 2012\n261\t    venue: \"PLOS ONE\"\n262\t    arxiv_id: \"\"\n263\t    doi: \"10.1371/journal.pone.0041010\"\n264\t    category: early_warning_signals\n265\t    verified: true\n266\t    abstract_short: \"Comprehensive comparison of metric-based and model-based EWS methods for time series, providing practical toolbox for detecting approaching critical transitions.\"\n267\t    relevance: \"Methodological reference for EWS detection. We adapt their time-series indicators to spectral metric trajectories during training.\"\n268\t\n269\t  # ============================================================\n270\t  # Cluster 4 supplement: synthetic_data_quality (+1)\n271\t  # ============================================================\n272\t  - bibtex_key: briesch2023entropy\n273\t    title: \"Large Language Models Suffer From Their Own Output: An Analysis of the Self-Consuming Training Loop\"\n274\t    authors: \"Briesch, Martin and Sobania, Dominik and Rothlauf, Franz\"\n275\t    year: 2023\n276\t    venue: \"arXiv\"\n277\t    arxiv_id: \"2311.16822\"\n278\t    doi: \"\"\n279\t    category: synthetic_data_quality\n280\t    verified: true\n281\t    abstract_short: \"Analyzes self-consuming training loops in LLMs showing progressive quality degradation with reduced output diversity and increased repetition across generations.\"\n282\t    relevance: \"Provides complementary characterization of quality degradation in self-consuming loops. Our spectral metrics can quantify the diversity loss they observe.\"\n283\t\n284\t  # ============================================================\n285\t  # Infrastructure / Methodology\n286\t  # ============================================================\n287\t  - bibtex_key: biderman2023pythia\n288\t    title: \"Pythia: A Suite for Analyzing Large Language Models Across Training and Scaling\"\n289\t    authors: \"Biderman, Stella and Schoelkopf, Hailey and Anthony, Quentin and Bradley, Herbie and O'Brien, Kyle and Hallahan, Eric and Khan, Mohammad Aflah and Purohit, Shivanshu and Prashanth, USVSN Sai and Raff, Edward and Skowron, Aviya and Sutawika, Lintang and van der Wal, Oskar\"\n290\t    year: 2023\n291\t    venue: \"ICML 2023\"\n292\t    arxiv_id: \"2304.01373\"\n293\t    doi: \"\"\n294\t    category: methodology\n295\t    verified: true\n296\t    abstract_short: \"Introduces Pythia suite of 16 LLMs (70M-12B) trained on public data with consistent hyperparameters, enabling controlled scientific study of LLM training dynamics.\"\n297\t    relevance: \"Experimental platform. We use Pythia-410M and Pythia-1B for all recursive training experiments.\"\n298\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "690b44ca-c5e0-40ca-8be0-3d070d0f9052",
+            "uuid": "85fe35ae-af39-45d8-8c0f-af8b3f315cc5",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/literature_map.yaml",
+                "content": "papers:\n  # ============================================================\n  # Cluster 1: model_collapse_core (6 papers)\n  # ============================================================\n  - bibtex_key: shumailov2024collapse\n    title: \"AI models collapse when trained on recursively generated data\"\n    authors: \"Shumailov, Ilia and Shumaylov, Zakhar and Zhao, Yiren and Papernot, Nicolas and Anderson, Ross and Gal, Yarin\"\n    year: 2024\n    venue: \"Nature\"\n    arxiv_id: \"2305.17493\"\n    doi: \"10.1038/s41586-024-07566-y\"\n    category: model_collapse_core\n    verified: true\n    abstract_short: \"Shows that training on model-generated data causes irreversible defects where tails of the original content distribution disappear, leading to model collapse across LLMs, VAEs, and GMMs.\"\n    relevance: \"Seminal paper defining model collapse. Our work provides spectral EWS to detect collapse onset before irreversible degradation.\"\n\n  - bibtex_key: dohmatob2024tails\n    title: \"A Tale of Tails: Model Collapse as a Change of Scaling Laws\"\n    authors: \"Dohmatob, Elvis and Feng, Yunzhen and Yang, Pu and Charton, Francois and Kempe, Julia\"\n    year: 2024\n    venue: \"ICML 2024\"\n    arxiv_id: \"2402.07043\"\n    doi: \"\"\n    category: model_collapse_core\n    verified: true\n    abstract_short: \"Provides first theoretical framework for model collapse through scaling laws, showing how tail distributions vanish across generations with validated experiments on transformers.\"\n    relevance: \"Theoretical foundation for understanding collapse dynamics. Our spectral metrics connect to their scaling law framework.\"\n\n  - bibtex_key: alemohammad2024mad\n    title: \"Self-Consuming Generative Models Go MAD\"\n    authors: \"Alemohammad, Sina and Casco-Rodriguez, Josue and Luzi, Lorenzo and Humayun, Ahmed Imtiaz and Babaei, Hossein and LeJeune, Daniel and Siahkoohi, Ali and Baraniuk, Richard G.\"\n    year: 2024\n    venue: \"ICLR 2024\"\n    arxiv_id: \"2307.01850\"\n    doi: \"\"\n    category: model_collapse_core\n    verified: true\n    abstract_short: \"Introduces Model Autophagy Disorder (MAD) showing that without fresh real data, autophagous loops cause progressive quality/diversity loss in just a few generations.\"\n    relevance: \"Establishes MAD framework for self-consuming loops. Our EWS can detect MADness onset before quality degrades.\"\n\n  - bibtex_key: gerstgrasser2024inevitable\n    title: \"Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data\"\n    authors: \"Gerstgrasser, Matthias and Schaeffer, Rylan and Dey, Apratim and Rafailov, Rafael and Sleight, Henry and Hughes, John and Korbak, Tomasz and Agrawal, Rajashree and Pai, Dhruv and Gromov, Andrey and Roberts, Daniel A. and Yang, Diyi and Donoho, David L. and Koyejo, Sanmi\"\n    year: 2024\n    venue: \"arXiv\"\n    arxiv_id: \"2404.01413\"\n    doi: \"\"\n    category: model_collapse_core\n    verified: true\n    abstract_short: \"Shows that accumulating synthetic data alongside real data avoids model collapse, with finite upper bound on test error independent of iteration count.\"\n    relevance: \"Key mitigation result. Our EWS enables knowing when to inject real data vs. when accumulation suffices.\"\n\n  - bibtex_key: dohmatob2024demystified\n    title: \"Model Collapse Demystified: The Case of Regression\"\n    authors: \"Dohmatob, Elvis and Feng, Yunzhen and Kempe, Julia\"\n    year: 2024\n    venue: \"NeurIPS 2024\"\n    arxiv_id: \"2402.07712\"\n    doi: \"\"\n    category: model_collapse_core\n    verified: true\n    abstract_short: \"Derives analytical formulas for model collapse in high-dimensional regression, revealing modified scaling laws with crossover phenomena in both under- and over-parameterized regimes.\"\n    relevance: \"Provides analytical collapse characterization. Our spectral metrics offer empirical detection aligned with their theory.\"\n\n  - bibtex_key: dohmatob2025strong\n    title: \"Strong Model Collapse\"\n    authors: \"Dohmatob, Elvis and Feng, Yunzhen and Subramonian, Arjun and Kempe, Julia\"\n    year: 2025\n    venue: \"ICLR 2025\"\n    arxiv_id: \"2410.04840\"\n    doi: \"\"\n    category: model_collapse_core\n    verified: true\n    abstract_short: \"Proves that even 1% synthetic data in training corpus leads to model collapse within scaling laws paradigm, using operator-valued free probability theory.\"\n    relevance: \"Strongest theoretical result on collapse inevitability. Motivates need for early detection even with small synthetic contamination.\"\n\n  # ============================================================\n  # Cluster 2: spectral_analysis_collapse (5 papers)\n  # ============================================================\n  - bibtex_key: gu2026sigma\n    title: \"SIGMA: Scalable Spectral Insights for LLM Model Collapse\"\n    authors: \"Gu, Yi and Pang, Lingyou and Ye, Xiangkun and Wang, Tianyu and Lin, Jianyu and Priebe, Carey E. and Aue, Alexander\"\n    year: 2026\n    venue: \"arXiv\"\n    arxiv_id: \"2601.03385\"\n    doi: \"\"\n    category: spectral_analysis_collapse\n    verified: true\n    abstract_short: \"Proposes SIGMA framework using spectral bounds of embedding Gram matrix to quantify model collapse, benchmarking on OPT-125M across recursive training generations.\"\n    relevance: \"Most directly related work. Uses spectral analysis for collapse detection. Our contribution extends with EWS methodology and predictive capability.\"\n\n  - bibtex_key: naderi2025mindgap\n    title: \"Mind the Gap: a Spectral Analysis of Rank Collapse and Signal Propagation in Attention Layers\"\n    authors: \"Naderi, Alireza and Nait Saada, Thiziri and Tanner, Jared\"\n    year: 2025\n    venue: \"ICML 2025\"\n    arxiv_id: \"2410.07799\"\n    doi: \"\"\n    category: spectral_analysis_collapse\n    verified: true\n    abstract_short: \"Uses Random Matrix Theory to uncover spectral gap between largest singular values as cause of rank collapse in attention, proposing eigenvalue removal as mitigation.\"\n    relevance: \"Provides spectral characterization of rank collapse in transformers. Our work applies similar spectral analysis to detect data-driven collapse.\"\n\n  - bibtex_key: he2025spectral\n    title: \"Spectral Collapse Drives Loss of Plasticity in Deep Continual Learning\"\n    authors: \"He, Naicheng and Guo, Kaicheng and Prakash, Arjun and Tiwari, Saket and Tao, Ruo Yu and Serapio, Tyrone and Greenwald, Amy and Konidaris, George\"\n    year: 2025\n    venue: \"NeurIPS 2025\"\n    arxiv_id: \"2509.22335\"\n    doi: \"\"\n    category: spectral_analysis_collapse\n    verified: true\n    abstract_short: \"Shows Hessian spectral collapse at new-task initialization prevents learning, proposing effective rank regularization and L2 penalties to preserve plasticity.\"\n    relevance: \"Demonstrates spectral collapse as mechanism for plasticity loss. Parallels our finding that spectral signatures predict collapse in recursive training.\"\n\n  - bibtex_key: roy2007effectiverank\n    title: \"The Effective Rank: A Measure of Effective Dimensionality\"\n    authors: \"Roy, Olivier and Vetterli, Martin\"\n    year: 2007\n    venue: \"EUSIPCO 2007\"\n    arxiv_id: \"\"\n    doi: \"\"\n    category: spectral_analysis_collapse\n    verified: true\n    abstract_short: \"Defines effective rank as exponential of Shannon entropy of normalized singular value distribution, providing continuous measure of matrix dimensionality.\"\n    relevance: \"Foundation metric for our EWS. We track effective rank decline of representation matrices as collapse indicator.\"\n\n  - bibtex_key: martin2021implicit\n    title: \"Implicit Self-Regularization in Deep Neural Networks: Evidence from Random Matrix Theory and Implications for Learning\"\n    authors: \"Martin, Charles H. and Mahoney, Michael W.\"\n    year: 2021\n    venue: \"JMLR\"\n    arxiv_id: \"1810.01075\"\n    doi: \"\"\n    category: spectral_analysis_collapse\n    verified: true\n    abstract_short: \"Applies RMT to analyze weight matrix spectra in DNNs, identifying implicit self-regularization through heavy-tailed spectral distributions correlated with model quality.\"\n    relevance: \"Establishes spectral analysis of weight matrices as diagnostic tool. Our approach extends to representation matrices under recursive training.\"\n\n  # ============================================================\n  # Cluster 3: data_mixing_strategies (4 papers)\n  # ============================================================\n  - bibtex_key: xie2023doremi\n    title: \"DoReMi: Optimizing Data Mixtures Speeds Up Language Model Pretraining\"\n    authors: \"Xie, Sang Michael and Pham, Hieu and Dong, Xuanyi and Du, Nan and Liu, Hanxiao and Lu, Yifeng and Liang, Percy and Le, Quoc V. and Ma, Tengyu and Yu, Adams Wei\"\n    year: 2023\n    venue: \"NeurIPS 2023\"\n    arxiv_id: \"2305.10429\"\n    doi: \"\"\n    category: data_mixing_strategies\n    verified: true\n    abstract_short: \"Uses group DRO on proxy model to optimize domain mixture proportions, improving downstream accuracy by 6.5% and reaching baseline performance with 2.6x fewer steps.\"\n    relevance: \"Establishes data mixing optimization. Our EWS can inform when to adjust mixing ratios during recursive training.\"\n\n  - bibtex_key: ye2025mixinglaws\n    title: \"Data Mixing Laws: Optimizing Data Mixtures by Predicting Language Modeling Performance\"\n    authors: \"Ye, Jiasheng and Liu, Peiju and Sun, Tianxiang and Zhan, Jun and Zhou, Yunhua and Qiu, Xipeng\"\n    year: 2025\n    venue: \"ICLR 2025\"\n    arxiv_id: \"2403.16952\"\n    doi: \"\"\n    category: data_mixing_strategies\n    verified: true\n    abstract_short: \"Discovers quantitative data mixing laws predicting model performance from mixture proportions, enabling optimization of 1B model training with 48% fewer steps.\"\n    relevance: \"Provides predictive framework for data mixing. Our spectral EWS complements by detecting when current mixture causes collapse.\"\n\n  - bibtex_key: chen2025aioli\n    title: \"Aioli: A Unified Optimization Framework for Language Model Data Mixing\"\n    authors: \"Chen, Mayee F. and Hu, Michael Y. and Lourie, Nicholas and Cho, Kyunghyun and R\\\\'{e}, Christopher\"\n    year: 2025\n    venue: \"ICLR 2025\"\n    arxiv_id: \"2411.05735\"\n    doi: \"\"\n    category: data_mixing_strategies\n    verified: true\n    abstract_short: \"Unifies existing data mixing methods into common optimization framework, proposing online method that dynamically estimates mixing law parameters during training.\"\n    relevance: \"Online mixing adjustment mechanism. Our EWS provides signal for when to trigger mixture proportion updates.\"\n\n  - bibtex_key: kazdan2024collapsethrive\n    title: \"Collapse or Thrive? Perils and Promises of Synthetic Data in a Self-Generating World\"\n    authors: \"Kazdan, Joshua and Schaeffer, Rylan and Dey, Apratim and Gerstgrasser, Matthias and Rafailov, Rafael and Donoho, David L. and Koyejo, Sanmi\"\n    year: 2024\n    venue: \"arXiv\"\n    arxiv_id: \"2410.16713\"\n    doi: \"\"\n    category: data_mixing_strategies\n    verified: true\n    abstract_short: \"Studies three data workflows (replace/accumulate/fixed-compute) showing collapse only under replacement, with non-trivial real-synthetic data interactions.\"\n    relevance: \"Characterizes when synthetic data helps vs. hurts. Our EWS enables real-time workflow selection based on spectral health.\"\n\n  # ============================================================\n  # Cluster 4: synthetic_data_quality (3 papers)\n  # ============================================================\n  - bibtex_key: gudibande2024falsepromise\n    title: \"The False Promise of Imitating Proprietary LLMs\"\n    authors: \"Gudibande, Arnav and Wallace, Eric and Snell, Charlie and Geng, Xinyang and Liu, Hao and Abbeel, Pieter and Levine, Sergey and Song, Dawn\"\n    year: 2024\n    venue: \"ICLR 2024\"\n    arxiv_id: \"2305.15717\"\n    doi: \"\"\n    category: synthetic_data_quality\n    verified: true\n    abstract_short: \"Shows imitation models trained on proprietary LLM outputs appear fluent but close little capability gap, revealing fundamental quality limitations of synthetic training data.\"\n    relevance: \"Demonstrates quality degradation from synthetic imitation. Our spectral metrics can quantify this capability gap during training.\"\n\n  - bibtex_key: feng2024verification\n    title: \"Beyond Model Collapse: Scaling Up with Synthesized Data Requires Verification\"\n    authors: \"Feng, Yunzhen and Dohmatob, Elvis and Yang, Pu and Charton, Francois and Kempe, Julia\"\n    year: 2024\n    venue: \"arXiv\"\n    arxiv_id: \"2406.07515\"\n    doi: \"\"\n    category: synthetic_data_quality\n    verified: true\n    abstract_short: \"Shows that even imperfect verifiers can prevent model collapse when scaling with synthetic data, providing theoretical conditions for effective verification.\"\n    relevance: \"Verification as collapse prevention. Our EWS serves as a verification signal indicating when synthetic data quality degrades.\"\n\n  - bibtex_key: keisha2025knowledge\n    title: \"Knowledge Collapse in LLMs: When Fluency Survives but Facts Fail under Recursive Synthetic Training\"\n    authors: \"Keisha, Figarri and Wu, Zekun and Wang, Ze and Koshiyama, Adriano and Treleaven, Philip\"\n    year: 2025\n    venue: \"arXiv\"\n    arxiv_id: \"2509.04796\"\n    doi: \"\"\n    category: synthetic_data_quality\n    verified: true\n    abstract_short: \"Defines three-stage knowledge collapse where factual accuracy erodes while fluency persists, creating confidently wrong outputs under recursive synthetic training.\"\n    relevance: \"Identifies knowledge collapse as distinct from perplexity collapse. Our spectral EWS may detect this before factual degradation manifests.\"\n\n  # ============================================================\n  # Cluster 5: early_warning_signals (3 papers)\n  # ============================================================\n  - bibtex_key: scheffer2009ews\n    title: \"Early-warning signals for critical transitions\"\n    authors: \"Scheffer, Marten and Bascompte, Jordi and Brock, William A. and Brovkin, Victor and Carpenter, Stephen R. and Dakos, Vasilis and Held, Hermann and van Nes, Egbert H. and Rietkerk, Max and Sugihara, George\"\n    year: 2009\n    venue: \"Nature\"\n    arxiv_id: \"\"\n    doi: \"10.1038/nature08227\"\n    category: early_warning_signals\n    verified: true\n    abstract_short: \"Proposes generic early warning signals (rising variance, autocorrelation, spectral reddening) indicating proximity to critical tipping points in complex systems.\"\n    relevance: \"Foundational EWS theory. We adapt critical slowing down indicators to neural network representation space for collapse detection.\"\n\n  - bibtex_key: bury2021deeplearning\n    title: \"Deep learning for early warning signals of tipping points\"\n    authors: \"Bury, Thomas M. and Sujith, R. I. and Pavithran, Induja and Scheffer, Marten and Lenton, Timothy M. and Anand, Madhur and Bauch, Chris T.\"\n    year: 2021\n    venue: \"PNAS\"\n    arxiv_id: \"\"\n    doi: \"10.1073/pnas.2106140118\"\n    category: early_warning_signals\n    verified: true\n    abstract_short: \"Develops deep learning algorithm for EWS that generalizes across systems, providing higher sensitivity and fewer false positives than generic statistical indicators.\"\n    relevance: \"Demonstrates ML-based EWS for tipping points. Inspires our approach of learning spectral EWS patterns for model collapse detection.\"\n\n  - bibtex_key: dakos2012methods\n    title: \"Methods for Detecting Early Warnings of Critical Transitions in Time Series Illustrated Using Simulated Ecological Data\"\n    authors: \"Dakos, Vasilis and Carpenter, Stephen R. and Brock, William A. and Ellison, Aaron M. and Guttal, Vishwesha and Ives, Anthony R. and Kefi, Saran and Livina, Vasilis and Seekell, David A. and van Nes, Egbert H. and Scheffer, Marten\"\n    year: 2012\n    venue: \"PLOS ONE\"\n    arxiv_id: \"\"\n    doi: \"10.1371/journal.pone.0041010\"\n    category: early_warning_signals\n    verified: true\n    abstract_short: \"Comprehensive comparison of metric-based and model-based EWS methods for time series, providing practical toolbox for detecting approaching critical transitions.\"\n    relevance: \"Methodological reference for EWS detection. We adapt their time-series indicators to spectral metric trajectories during training.\"\n\n  # ============================================================\n  # Cluster 4 supplement: synthetic_data_quality (+1)\n  # ============================================================\n  - bibtex_key: briesch2023entropy\n    title: \"Large Language Models Suffer From Their Own Output: An Analysis of the Self-Consuming Training Loop\"\n    authors: \"Briesch, Martin and Sobania, Dominik and Rothlauf, Franz\"\n    year: 2023\n    venue: \"arXiv\"\n    arxiv_id: \"2311.16822\"\n    doi: \"\"\n    category: synthetic_data_quality\n    verified: true\n    abstract_short: \"Analyzes self-consuming training loops in LLMs showing progressive quality degradation with reduced output diversity and increased repetition across generations.\"\n    relevance: \"Provides complementary characterization of quality degradation in self-consuming loops. Our spectral metrics can quantify the diversity loss they observe.\"\n\n  # ============================================================\n  # Infrastructure / Methodology\n  # ============================================================\n  - bibtex_key: biderman2023pythia\n    title: \"Pythia: A Suite for Analyzing Large Language Models Across Training and Scaling\"\n    authors: \"Biderman, Stella and Schoelkopf, Hailey and Anthony, Quentin and Bradley, Herbie and O'Brien, Kyle and Hallahan, Eric and Khan, Mohammad Aflah and Purohit, Shivanshu and Prashanth, USVSN Sai and Raff, Edward and Skowron, Aviya and Sutawika, Lintang and van der Wal, Oskar\"\n    year: 2023\n    venue: \"ICML 2023\"\n    arxiv_id: \"2304.01373\"\n    doi: \"\"\n    category: methodology\n    verified: true\n    abstract_short: \"Introduces Pythia suite of 16 LLMs (70M-12B) trained on public data with consistent hyperparameters, enabling controlled scientific study of LLM training dynamics.\"\n    relevance: \"Experimental platform. We use Pythia-410M and Pythia-1B for all recursive training experiments.\"\n",
+                "numLines": 298,
+                "startLine": 1,
+                "totalLines": 298
+              }
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now let me search for all 4 citations in parallel.",
+              "signature": "Eu0BClkIDRgCKkDSKZ/bvx+BQ5BzhryFNGtU4Bio92Q3GR7y0uF2gsb0zQcZbE1gCE+oFNCbpsHfG/F8oIP+pxYYznQINlV+d7JVMg9jbGF1ZGUtb3B1cy00LTY4ABIM8z1adIW/xOpA07wMGgxeSQOg50AW4r5z8Z0iMBZrU9wGRPyIolFXl+fgEpBqt/ngdwQo3iwSzOiXbT8uUHfZGod8tuLH7X0Uxxdo2SpCcrgERo7tOenZVa1yse1dveFydBdu381oQj3sjzLsCYfsShufrNJ9iHFG+XZR+dH94pHOIUzeZ/hSt0BsYIjMnu+WGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "690b44ca-c5e0-40ca-8be0-3d070d0f9052",
+            "uuid": "6907d063-e8f5-4955-bc27-cfae8aee71b4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015YweKTER9CKTjzcHCMkCvE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 6537,
+                "cache_read_input_tokens": 25003,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6537
+                },
+                "output_tokens": 19,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now searching all 4 citations in parallel."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "690b44ca-c5e0-40ca-8be0-3d070d0f9052",
+            "uuid": "04517b52-d14a-4120-b3eb-27611199dd86",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015YweKTER9CKTjzcHCMkCvE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 6537,
+                "cache_read_input_tokens": 25003,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6537
+                },
+                "output_tokens": 19,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01C1djsooiqTm9KuLMRQgBAb",
+              "name": "WebSearch",
+              "input": {
+                "query": "arXiv 2512.24145"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "690b44ca-c5e0-40ca-8be0-3d070d0f9052",
+            "uuid": "cd372e87-5d6b-4f03-86b1-66054e00debc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015YweKTER9CKTjzcHCMkCvE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 6537,
+                "cache_read_input_tokens": 25003,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6537
+                },
+                "output_tokens": 19,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GUE5TykhGMRfYVduLSJFkP",
+              "name": "WebSearch",
+              "input": {
+                "query": "arXiv 2601.03385"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "690b44ca-c5e0-40ca-8be0-3d070d0f9052",
+            "uuid": "94ee5994-6fdc-483f-a5de-95d2240f251a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015YweKTER9CKTjzcHCMkCvE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 6537,
+                "cache_read_input_tokens": 25003,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6537
+                },
+                "output_tokens": 19,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01C5FDzCBTuYtPyVUEXrcxNt",
+              "name": "WebSearch",
+              "input": {
+                "query": "arXiv 2509.22335"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "690b44ca-c5e0-40ca-8be0-3d070d0f9052",
+            "uuid": "552fef8c-01c7-4cdc-aa1a-b1516b5e8722",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015YweKTER9CKTjzcHCMkCvE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 6537,
+                "cache_read_input_tokens": 25003,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6537
+                },
+                "output_tokens": 19,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01H1nt5K3ZwCKqt6HfaYvsaV",
+              "name": "WebSearch",
+              "input": {
+                "query": "arXiv 2509.04796"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "690b44ca-c5e0-40ca-8be0-3d070d0f9052",
+            "uuid": "22e67451-1f27-472e-9115-89db538140ef",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015YweKTER9CKTjzcHCMkCvE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 6537,
+                "cache_read_input_tokens": 25003,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6537
+                },
+                "output_tokens": 19,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-17T20:47:23.426Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01C1djsooiqTm9KuLMRQgBAb",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arXiv 2512.24145\"\n\nLinks: [{\"title\":\"[2512.24145] Paired Seed Evaluation: Statistical Reliability for Learning-Based Simulators\",\"url\":\"https://arxiv.org/abs/2512.24145\"},{\"title\":\"Machine Learning arXiv (@Memoirs) / X\",\"url\":\"https://x.com/Memoirs\"},{\"title\":\"Computer Science\",\"url\":\"https://arxiv.org/list/cs/recent?skip=1393&show=1000\"},{\"title\":\"Artificial Intelligence 2025\",\"url\":\"https://arxiv.org/list/cs.AI/2025?skip=43225&show=2000\"},{\"title\":\"[2503.24145] Resonance: Drawing from Memories to Imagine Positive Futures through AI-Augmented Journaling\",\"url\":\"https://arxiv.org/abs/2503.24145\"},{\"title\":\"Data Science Dojo on X: \\\"https://t.co/AChWx24qw4\\\" / X\",\"url\":\"https://x.com/DataScienceDojo/status/2001427192962531808\"},{\"title\":\"Computer Science\",\"url\":\"https://www.arxiv.org/list/cs/recent?skip=1659&show=1000\"},{\"title\":\"Arxiv\",\"url\":\"https://arxiv.org/pdf/2505.24145\"},{\"title\":\"Computation and Language 2025\",\"url\":\"https://arxiv.org/list/cs.CL/2025?skip=23575&show=50\"},{\"title\":\"Materials Science\",\"url\":\"https://arxiv.org/list/cond-mat.mtrl-sci/new\"}]\n\nBased on the search results, I found information about arXiv paper 2512.24145:\n\n**Title:** Paired Seed Evaluation: Statistical Reliability for Learning-Based Simulators\n\nThe paper addresses how learning-based simulators are used to compare algorithms and design choices, but evaluation outcomes often exhibit high variance. The authors show that standard independent evaluation designs fail to exploit shared sources of randomness across alternatives, and they formalize a paired seed evaluation design in which competing systems are evaluated under identical random seeds, inducing matched realisations of stochastic components and strict variance reduction whenever outcomes are positively correlated at the seed level.\n\nYou can access the full paper at: https://arxiv.org/abs/2512.24145\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "690b44ca-c5e0-40ca-8be0-3d070d0f9052",
+            "uuid": "dc51ae28-c89d-418e-86aa-e9fd8761b829",
+            "tool_use_result": {
+              "query": "arXiv 2512.24145",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_017wzvwRpmR6tc8mSbNiymok",
+                  "content": [
+                    {
+                      "title": "[2512.24145] Paired Seed Evaluation: Statistical Reliability for Learning-Based Simulators",
+                      "url": "https://arxiv.org/abs/2512.24145"
+                    },
+                    {
+                      "title": "Machine Learning arXiv (@Memoirs) / X",
+                      "url": "https://x.com/Memoirs"
+                    },
+                    {
+                      "title": "Computer Science",
+                      "url": "https://arxiv.org/list/cs/recent?skip=1393&show=1000"
+                    },
+                    {
+                      "title": "Artificial Intelligence 2025",
+                      "url": "https://arxiv.org/list/cs.AI/2025?skip=43225&show=2000"
+                    },
+                    {
+                      "title": "[2503.24145] Resonance: Drawing from Memories to Imagine Positive Futures through AI-Augmented Journaling",
+                      "url": "https://arxiv.org/abs/2503.24145"
+                    },
+                    {
+                      "title": "Data Science Dojo on X: \"https://t.co/AChWx24qw4\" / X",
+                      "url": "https://x.com/DataScienceDojo/status/2001427192962531808"
+                    },
+                    {
+                      "title": "Computer Science",
+                      "url": "https://www.arxiv.org/list/cs/recent?skip=1659&show=1000"
+                    },
+                    {
+                      "title": "Arxiv",
+                      "url": "https://arxiv.org/pdf/2505.24145"
+                    },
+                    {
+                      "title": "Computation and Language 2025",
+                      "url": "https://arxiv.org/list/cs.CL/2025?skip=23575&show=50"
+                    },
+                    {
+                      "title": "Materials Science",
+                      "url": "https://arxiv.org/list/cond-mat.mtrl-sci/new"
+                    }
+                  ]
+                },
+                "Based on the search results, I found information about arXiv paper 2512.24145:\n\n**Title:** Paired Seed Evaluation: Statistical Reliability for Learning-Based Simulators\n\nThe paper addresses how learning-based simulators are used to compare algorithms and design choices, but evaluation outcomes often exhibit high variance. The authors show that standard independent evaluation designs fail to exploit shared sources of randomness across alternatives, and they formalize a paired seed evaluation design in which competing systems are evaluated under identical random seeds, inducing matched realisations of stochastic components and strict variance reduction whenever outcomes are positively correlated at the seed level.\n\nYou can access the full paper at: https://arxiv.org/abs/2512.24145"
+              ],
+              "durationSeconds": 4.7849416640000015
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-17T20:47:24.006Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GUE5TykhGMRfYVduLSJFkP",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arXiv 2601.03385\"\n\nLinks: [{\"title\":\"[2601.03385] SIGMA: Scalable Spectral Insights for LLM Model Collapse\",\"url\":\"https://arxiv.org/abs/2601.03385\"},{\"title\":\"Sigma: Scalable Spectral Insights for LLM Model Collapse\",\"url\":\"https://arxiv.org/html/2601.03385\"},{\"title\":\"Computer Vision and Pattern Recognition\",\"url\":\"https://arxiv.org/list/cs.CV/pastweek?skip=7&show=1000\"},{\"title\":\"Arxiv\",\"url\":\"https://arxiv.org/pdf/2603.01549\"},{\"title\":\"Computer Science\",\"url\":\"https://arxiv.org/list/cs/recent?skip=474&show=500\"},{\"title\":\"my_arXiv_daily/README.md at main · BaiShuanghao/my_arXiv_daily\",\"url\":\"https://github.com/BaiShuanghao/my_arXiv_daily/blob/main/README.md\"},{\"title\":\"arXiv:1512.03385v1 [cs.CV] 10 Dec 2015\",\"url\":\"https://arxiv.org/pdf/1512.03385\"},{\"title\":\"[2601.03335] Digital Red Queen: Adversarial Program Evolution in Core War with LLMs\",\"url\":\"https://arxiv.org/abs/2601.03335\"},{\"title\":\"Materials Science\",\"url\":\"https://arxiv.org/list/cond-mat.mtrl-sci/new\"},{\"title\":\"VideoMemory: Toward Consistent Video Generation via Memory Integration | alphaXiv\",\"url\":\"https://www.alphaxiv.org/resources/2601.03655\"}]\n\nBased on the search results, arXiv 2601.03385 is a paper titled \"SIGMA: Scalable Spectral Insights for LLM Model Collapse,\" which introduces a unified framework that benchmarks model collapse through the spectral lens of the embedding Gram matrix. By deriving and utilizing deterministic and stochastic bounds on the matrix's spectrum, SIGMA provides a mathematically grounded metric to track the contraction of the representation space.\n\nThe paper addresses the technical challenge of \"model collapse,\" a degenerative process where recursive training on model-generated content leads to a contraction of distributional variance and representational quality. The authors are Yi Gu, Lingyou Pang, Xiangkun Ye, Tianyu Wang, Jianyu Lin, Carey E. Priebe, and Alexander Aue.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "690b44ca-c5e0-40ca-8be0-3d070d0f9052",
+            "uuid": "9e56f5d6-3e95-438d-9330-081a5cf8c8fe",
+            "tool_use_result": {
+              "query": "arXiv 2601.03385",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01SiVr2WJJpGiXUkGPWSpyq5",
+                  "content": [
+                    {
+                      "title": "[2601.03385] SIGMA: Scalable Spectral Insights for LLM Model Collapse",
+                      "url": "https://arxiv.org/abs/2601.03385"
+                    },
+                    {
+                      "title": "Sigma: Scalable Spectral Insights for LLM Model Collapse",
+                      "url": "https://arxiv.org/html/2601.03385"
+                    },
+                    {
+                      "title": "Computer Vision and Pattern Recognition",
+                      "url": "https://arxiv.org/list/cs.CV/pastweek?skip=7&show=1000"
+                    },
+                    {
+                      "title": "Arxiv",
+                      "url": "https://arxiv.org/pdf/2603.01549"
+                    },
+                    {
+                      "title": "Computer Science",
+                      "url": "https://arxiv.org/list/cs/recent?skip=474&show=500"
+                    },
+                    {
+                      "title": "my_arXiv_daily/README.md at main · BaiShuanghao/my_arXiv_daily",
+                      "url": "https://github.com/BaiShuanghao/my_arXiv_daily/blob/main/README.md"
+                    },
+                    {
+                      "title": "arXiv:1512.03385v1 [cs.CV] 10 Dec 2015",
+                      "url": "https://arxiv.org/pdf/1512.03385"
+                    },
+                    {
+                      "title": "[2601.03335] Digital Red Queen: Adversarial Program Evolution in Core War with LLMs",
+                      "url": "https://arxiv.org/abs/2601.03335"
+                    },
+                    {
+                      "title": "Materials Science",
+                      "url": "https://arxiv.org/list/cond-mat.mtrl-sci/new"
+                    },
+                    {
+                      "title": "VideoMemory: Toward Consistent Video Generation via Memory Integration | alphaXiv",
+                      "url": "https://www.alphaxiv.org/resources/2601.03655"
+                    }
+                  ]
+                },
+                "Based on the search results, arXiv 2601.03385 is a paper titled \"SIGMA: Scalable Spectral Insights for LLM Model Collapse,\" which introduces a unified framework that benchmarks model collapse through the spectral lens of the embedding Gram matrix. By deriving and utilizing deterministic and stochastic bounds on the matrix's spectrum, SIGMA provides a mathematically grounded metric to track the contraction of the representation space.\n\nThe paper addresses the technical challenge of \"model collapse,\" a degenerative process where recursive training on model-generated content leads to a contraction of distributional variance and representational quality. The authors are Yi Gu, Lingyou Pang, Xiangkun Ye, Tianyu Wang, Jianyu Lin, Carey E. Priebe, and Alexander Aue."
+              ],
+              "durationSeconds": 4.879762080000001
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-17T20:47:24.808Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01H1nt5K3ZwCKqt6HfaYvsaV",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arXiv 2509.04796\"\n\nLinks: [{\"title\":\"[2509.04796] Knowledge Collapse in LLMs: When Fluency Survives but Facts Fail under Recursive Synthetic Training\",\"url\":\"https://arxiv.org/abs/2509.04796\"},{\"title\":\"Knowledge Collapse in LLMs: When Fluency Survives but Facts Fail under Recursive Synthetic Training\",\"url\":\"https://arxiv.org/html/2509.04796\"},{\"title\":\"enhancing outlier knowledge for few-shot out-of- ...\",\"url\":\"https://arxiv.org/pdf/2409.04796\"},{\"title\":\"Zhihua Shen - Google 学术搜索\",\"url\":\"https://scholar.google.com/citations?user=dWNTEFIAAAAJ&hl=zh-CN\"},{\"title\":\"Computer Science\",\"url\":\"https://www.arxiv.org/list/cs/pastweek?skip=1373&show=500\"},{\"title\":\"[1606.01464] References and links\",\"url\":\"https://ar5iv.labs.arxiv.org/html/1606.01464\"},{\"title\":\"Arxiv\",\"url\":\"https://arxiv.org/pdf/2407.04796\"},{\"title\":\"Computer Science\",\"url\":\"https://arxiv.org/list/cs/pastweek?skip=1191&show=1000\"},{\"title\":\"Computer Science Nov 2024\",\"url\":\"https://arxiv.org/list/cs/2024-11?skip=2125&show=1000\"},{\"title\":\"[2507.04796] Alexandrov-Fenchel inequalities for convex anisotropic capillary hypersurfaces in the half-space\",\"url\":\"https://arxiv.org/abs/2507.04796\"}]\n\nBased on the search results, arXiv 2509.04796 is a paper titled \"Knowledge Collapse in LLMs: When Fluency Survives but Facts Fail under Recursive Synthetic Training\" that defines knowledge collapse as a distinct three-stage phenomenon where factual accuracy deteriorates while surface fluency persists, creating \"confidently wrong\" outputs that pose critical risks in accuracy-dependent domains.\n\nThe paper examines how large language models increasingly rely on synthetic data due to human-written content scarcity, yet recursive training on model-generated outputs leads to model collapse, a degenerative process threatening factual reliability. Through controlled experiments, the researchers demonstrate that collapse trajectory and timing depend critically on instruction format, and propose domain-specific synthetic training as a targeted mitigation strategy that achieves substantial improvements in collapse resistance while maintaining computational efficiency.\n\nThe paper was published on September 5, 2025.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "690b44ca-c5e0-40ca-8be0-3d070d0f9052",
+            "uuid": "04257e93-2fdd-478c-b2a9-dea73b9b8472",
+            "tool_use_result": {
+              "query": "arXiv 2509.04796",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01MfKx6tUcd4iQiv7WJ6xX8Z",
+                  "content": [
+                    {
+                      "title": "[2509.04796] Knowledge Collapse in LLMs: When Fluency Survives but Facts Fail under Recursive Synthetic Training",
+                      "url": "https://arxiv.org/abs/2509.04796"
+                    },
+                    {
+                      "title": "Knowledge Collapse in LLMs: When Fluency Survives but Facts Fail under Recursive Synthetic Training",
+                      "url": "https://arxiv.org/html/2509.04796"
+                    },
+                    {
+                      "title": "enhancing outlier knowledge for few-shot out-of- ...",
+                      "url": "https://arxiv.org/pdf/2409.04796"
+                    },
+                    {
+                      "title": "Zhihua Shen - Google 学术搜索",
+                      "url": "https://scholar.google.com/citations?user=dWNTEFIAAAAJ&hl=zh-CN"
+                    },
+                    {
+                      "title": "Computer Science",
+                      "url": "https://www.arxiv.org/list/cs/pastweek?skip=1373&show=500"
+                    },
+                    {
+                      "title": "[1606.01464] References and links",
+                      "url": "https://ar5iv.labs.arxiv.org/html/1606.01464"
+                    },
+                    {
+                      "title": "Arxiv",
+                      "url": "https://arxiv.org/pdf/2407.04796"
+                    },
+                    {
+                      "title": "Computer Science",
+                      "url": "https://arxiv.org/list/cs/pastweek?skip=1191&show=1000"
+                    },
+                    {
+                      "title": "Computer Science Nov 2024",
+                      "url": "https://arxiv.org/list/cs/2024-11?skip=2125&show=1000"
+                    },
+                    {
+                      "title": "[2507.04796] Alexandrov-Fenchel inequalities for convex anisotropic capillary hypersurfaces in the half-space",
+                      "url": "https://arxiv.org/abs/2507.04796"
+                    }
+                  ]
+                },
+                "Based on the search results, arXiv 2509.04796 is a paper titled \"Knowledge Collapse in LLMs: When Fluency Survives but Facts Fail under Recursive Synthetic Training\" that defines knowledge collapse as a distinct three-stage phenomenon where factual accuracy deteriorates while surface fluency persists, creating \"confidently wrong\" outputs that pose critical risks in accuracy-dependent domains.\n\nThe paper examines how large language models increasingly rely on synthetic data due to human-written content scarcity, yet recursive training on model-generated outputs leads to model collapse, a degenerative process threatening factual reliability. Through controlled experiments, the researchers demonstrate that collapse trajectory and timing depend critically on instruction format, and propose domain-specific synthetic training as a targeted mitigation strategy that achieves substantial improvements in collapse resistance while maintaining computational efficiency.\n\nThe paper was published on September 5, 2025."
+              ],
+              "durationSeconds": 5.098492279
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-17T20:47:27.507Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01C5FDzCBTuYtPyVUEXrcxNt",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arXiv 2509.22335\"\n\nLinks: [{\"title\":\"[2509.22335] Spectral Collapse Drives Loss of Plasticity in Deep Continual Learning\",\"url\":\"https://arxiv.org/abs/2509.22335\"},{\"title\":\"[2509.22773] Universality of Shallow Global Quenches in Critical Spin Chains\",\"url\":\"https://arxiv.org/abs/2509.22773\"},{\"title\":\"Alvaro Velasquez\",\"url\":\"https://sciprofiles.com/profile/author/bkMwQ01EczEybWcrMDZnU1BPM0x0Zz09\"},{\"title\":\"Machine Learning Sep 2025\",\"url\":\"https://arxiv.org/list/cs.LG/2025-09?skip=3125&show=2000\"},{\"title\":\"Extended Abstract Track Extended Abstract Track 1–13, 2025\",\"url\":\"https://www.arxiv.org/pdf/2509.23923\"},{\"title\":\"Rectified Noise: A Generative Model Using Positive-incentive Noise\",\"url\":\"https://arxiv.org/html/2511.07911v1\"},{\"title\":\"ImageNet-trained CNNs are not biased towards texture: Revisiting feature reliance through controlled suppression\",\"url\":\"https://arxiv.org/html/2509.20234v4\"},{\"title\":\"MARCH 2026 1 Authorship Impersonation via LLM Prompting does\",\"url\":\"https://arxiv.org/pdf/2603.29454\"},{\"title\":\"V-GRPO: Online Reinforcement Learning for Denoising Generative Models Is Easier than You Think\",\"url\":\"https://arxiv.org/html/2604.23380v1\"},{\"title\":\"[2509.03525] Speech-Based Cognitive Screening: A Systematic Evaluation of LLM Adaptation Strategies\",\"url\":\"https://arxiv.org/abs/2509.03525\"}]\n\nBased on the search results, here's what I found about arXiv paper 2509.22335:\n\n## Paper Information\n\nThe paper is titled \"Spectral Collapse Drives Loss of Plasticity in Deep Continual Learning\".\n\n## Summary\n\nThe paper investigates why deep neural networks suffer from loss of plasticity in deep continual learning, failing to learn new tasks without reinitializing parameters. \n\nThe researchers show that this failure is preceded by Hessian spectral collapse at new-task initialization, where meaningful curvature directions vanish and gradient descent becomes ineffective. \n\nTo characterize the necessary condition for successful training, they introduce the notion of τ-trainability and show that current plasticity preserving algorithms can be unified under this framework. The paper discusses the Kronecker factored approximation of the Hessian, which motivates two regularization enhancements: maintaining high effective feature rank and applying L2 penalties. Experiments on continual supervised and reinforcement learning tasks confirm that combining these two regularizers effectively preserves plasticity.\n\n## Authors\n\nThe paper is authored by Naicheng He, Kaicheng Guo, Arjun Prakash, Saket Tiwari, Ruo Yu Tao, Tyrone Serapio, Amy Greenwald, and George Konidaris.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "690b44ca-c5e0-40ca-8be0-3d070d0f9052",
+            "uuid": "ee7e3f02-01e3-4f3c-9980-68b7c52d5222",
+            "tool_use_result": {
+              "query": "arXiv 2509.22335",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_011aekh9P3uiT846tbggfgzN",
+                  "content": [
+                    {
+                      "title": "[2509.22335] Spectral Collapse Drives Loss of Plasticity in Deep Continual Learning",
+                      "url": "https://arxiv.org/abs/2509.22335"
+                    },
+                    {
+                      "title": "[2509.22773] Universality of Shallow Global Quenches in Critical Spin Chains",
+                      "url": "https://arxiv.org/abs/2509.22773"
+                    },
+                    {
+                      "title": "Alvaro Velasquez",
+                      "url": "https://sciprofiles.com/profile/author/bkMwQ01EczEybWcrMDZnU1BPM0x0Zz09"
+                    },
+                    {
+                      "title": "Machine Learning Sep 2025",
+                      "url": "https://arxiv.org/list/cs.LG/2025-09?skip=3125&show=2000"
+                    },
+                    {
+                      "title": "Extended Abstract Track Extended Abstract Track 1–13, 2025",
+                      "url": "https://www.arxiv.org/pdf/2509.23923"
+                    },
+                    {
+                      "title": "Rectified Noise: A Generative Model Using Positive-incentive Noise",
+                      "url": "https://arxiv.org/html/2511.07911v1"
+                    },
+                    {
+                      "title": "ImageNet-trained CNNs are not biased towards texture: Revisiting feature reliance through controlled suppression",
+                      "url": "https://arxiv.org/html/2509.20234v4"
+                    },
+                    {
+                      "title": "MARCH 2026 1 Authorship Impersonation via LLM Prompting does",
+                      "url": "https://arxiv.org/pdf/2603.29454"
+                    },
+                    {
+                      "title": "V-GRPO: Online Reinforcement Learning for Denoising Generative Models Is Easier than You Think",
+                      "url": "https://arxiv.org/html/2604.23380v1"
+                    },
+                    {
+                      "title": "[2509.03525] Speech-Based Cognitive Screening: A Systematic Evaluation of LLM Adaptation Strategies",
+                      "url": "https://arxiv.org/abs/2509.03525"
+                    }
+                  ]
+                },
+                "Based on the search results, here's what I found about arXiv paper 2509.22335:\n\n## Paper Information\n\nThe paper is titled \"Spectral Collapse Drives Loss of Plasticity in Deep Continual Learning\".\n\n## Summary\n\nThe paper investigates why deep neural networks suffer from loss of plasticity in deep continual learning, failing to learn new tasks without reinitializing parameters. \n\nThe researchers show that this failure is preceded by Hessian spectral collapse at new-task initialization, where meaningful curvature directions vanish and gradient descent becomes ineffective. \n\nTo characterize the necessary condition for successful training, they introduce the notion of τ-trainability and show that current plasticity preserving algorithms can be unified under this framework. The paper discusses the Kronecker factored approximation of the Hessian, which motivates two regularization enhancements: maintaining high effective feature rank and applying L2 penalties. Experiments on continual supervised and reinforcement learning tasks confirm that combining these two regularizers effectively preserves plasticity.\n\n## Authors\n\nThe paper is authored by Naicheng He, Kaicheng Guo, Arjun Prakash, Saket Tiwari, Ruo Yu Tao, Tyrone Serapio, Amy Greenwald, and George Konidaris."
+              ],
+              "durationSeconds": 7.876613444000002
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me now check for arXiv 2502.18049 as mentioned in the task for citation #3, and also verify the venue for paper #3 (2509.22335) - the literature_map says \"NeurIPS 2025\" but the search results don't confirm the venue. Let me also check the authors for paper #1 (2512.24145) to see if it matches anything in our literature_map.\n\nWait, let me re-read the task. The task says:\n\n1. arXiv 2512.24145 - \"Paired Seed Evaluation\" or similar - the search found it exists but it's about \"Statistical Reliability for Learning-Based Simulators\", not related to our project. \n\nSo the core question is whether these citations are actually real papers on arXiv, not whether they're correctly applied to our context. I found that 2512.24145 does exist as a real paper, just with a different title than what might be expected. The first paper isn't in our literature map, so while it exists on arXiv, I should note whether it's actually relevant to our work on spectral collapse—it seems to be about simulator evaluation rather than model collapse. For the second paper, SIGMA checks out completely with matching authors and title. The third one, on spectral collapse in continual learning, also exists with matching authors, though I need to verify the venue information.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "690b44ca-c5e0-40ca-8be0-3d070d0f9052",
+            "uuid": "462fbc09-11da-4c0f-a39a-463b0af46b98",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013KjwPxFyugtrFyqnR8eQcB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 675,
+                "cache_creation_input_tokens": 2311,
+                "cache_read_input_tokens": 31540,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2311
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 4 arXiv IDs exist. Let me do additional verification searches for specific details and the alternate ID mentioned in the task."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "690b44ca-c5e0-40ca-8be0-3d070d0f9052",
+            "uuid": "b7579f54-96b4-4d41-a51a-4d6e52418aa1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013KjwPxFyugtrFyqnR8eQcB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 675,
+                "cache_creation_input_tokens": 2311,
+                "cache_read_input_tokens": 31540,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2311
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018wG6zPG14QN69tueYXWZkD",
+              "name": "WebSearch",
+              "input": {
+                "query": "arXiv 2502.18049"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "690b44ca-c5e0-40ca-8be0-3d070d0f9052",
+            "uuid": "e6dd12c5-b4c5-4f0d-ba0a-c50eb1434a7d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013KjwPxFyugtrFyqnR8eQcB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 675,
+                "cache_creation_input_tokens": 2311,
+                "cache_read_input_tokens": 31540,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2311
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FsacCdSBxiQHBeH8jBQND6",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"2509.04796\" authors Keisha Wu Wang Koshiyama Treleaven"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "690b44ca-c5e0-40ca-8be0-3d070d0f9052",
+            "uuid": "29216446-aa70-4f00-95b1-d5e1d71e63cd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013KjwPxFyugtrFyqnR8eQcB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 675,
+                "cache_creation_input_tokens": 2311,
+                "cache_read_input_tokens": 31540,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2311
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011yuATK4cHWKjNcZZVnCmqY",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"2509.22335\" NeurIPS 2025 He Guo Prakash spectral collapse plasticity"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "690b44ca-c5e0-40ca-8be0-3d070d0f9052",
+            "uuid": "daaaf9a9-c5f9-4662-a195-2d3412f228d5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013KjwPxFyugtrFyqnR8eQcB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 675,
+                "cache_creation_input_tokens": 2311,
+                "cache_read_input_tokens": 31540,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2311
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-17T20:48:02.587Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FsacCdSBxiQHBeH8jBQND6",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"2509.04796\" authors Keisha Wu Wang Koshiyama Treleaven\"\n\nLinks: [{\"title\":\"[2509.04796] Knowledge Collapse in LLMs: When Fluency Survives but Facts Fail under Recursive Synthetic Training\",\"url\":\"https://arxiv.org/abs/2509.04796\"},{\"title\":\"[2509.04802] Mind the Gap: Evaluating Model- and Agentic-Level Vulnerabilities in LLMs with Action Graphs\",\"url\":\"https://arxiv.org/abs/2509.04802\"},{\"title\":\"From Text to Emoji: How PEFT-Driven Personality Manipulation Unleashes the Emoji Potential in LLMs - ACL Anthology\",\"url\":\"https://aclanthology.org/2025.findings-naacl.265/\"},{\"title\":\"[2509.04794] Personality as a Probe for LLM Evaluation: Method Trade-offs and Downstream Effects\",\"url\":\"https://arxiv.org/abs/2509.04794\"},{\"title\":\"HyPA-RAG: A Hybrid Parameter Adaptive Retrieval-Augmented Generation System for AI Legal and Policy Applications - ACL Anthology\",\"url\":\"https://aclanthology.org/2024.customnlp4u-1.18/\"},{\"title\":\"Towards algorithm auditing: managing legal, ethical and technological risks of AI, ML and associated algorithms - ORA - Oxford University Research Archive\",\"url\":\"https://ora.ox.ac.uk/objects/uuid:1e29f910-1c57-4d16-ad71-9f96e70bd4f5\"},{\"title\":\"Augmenting RAG with nonnegative matrix factorization-driven semantic chunking in embedding space | The Journal of Supercomputing | Springer Nature Link\",\"url\":\"https://link.springer.com/article/10.1007/s11227-026-08370-3\"},{\"title\":\"[2509.17259] Mind the Gap: Comparing Model- vs Agentic-Level Red Teaming with Action-Graph Observability on GPT-OSS-20B\",\"url\":\"https://arxiv.org/abs/2509.17259\"},{\"title\":\"Computer Science Sep 2024\",\"url\":\"https://arxiv.org/list/cs/2024-09?skip=3730&show=2000\"},{\"title\":\"(PDF) Investigating Algorithmic Bias in Student Progress Monitoring\",\"url\":\"https://www.researchgate.net/publication/382376021_Investigating_Algorithmic_Bias_in_Student_Progress_Monitoring\"}]\n\nI found the paper you're looking for! The paper \"Knowledge Collapse in LLMs: When Fluency Survives but Facts Fail under Recursive Synthetic Training\" with arXiv ID 2509.04796 is authored by Figarri Keisha, Zekun Wu, Ze Wang, Adriano Koshiyama, and Philip Treleaven.\n\nThe paper addresses how large language models increasingly rely on synthetic data, and recursive training on model-generated outputs leads to model collapse, where factual accuracy deteriorates while surface fluency persists, creating \"confidently wrong\" outputs. The authors propose domain-specific synthetic training as a targeted mitigation strategy that achieves substantial improvements in collapse resistance while maintaining computational efficiency.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "690b44ca-c5e0-40ca-8be0-3d070d0f9052",
+            "uuid": "82e02b15-7648-49fd-be65-42e008cb9ea8",
+            "tool_use_result": {
+              "query": "\"2509.04796\" authors Keisha Wu Wang Koshiyama Treleaven",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_019ZLhpbjzmSteZ6EA2qn761",
+                  "content": [
+                    {
+                      "title": "[2509.04796] Knowledge Collapse in LLMs: When Fluency Survives but Facts Fail under Recursive Synthetic Training",
+                      "url": "https://arxiv.org/abs/2509.04796"
+                    },
+                    {
+                      "title": "[2509.04802] Mind the Gap: Evaluating Model- and Agentic-Level Vulnerabilities in LLMs with Action Graphs",
+                      "url": "https://arxiv.org/abs/2509.04802"
+                    },
+                    {
+                      "title": "From Text to Emoji: How PEFT-Driven Personality Manipulation Unleashes the Emoji Potential in LLMs - ACL Anthology",
+                      "url": "https://aclanthology.org/2025.findings-naacl.265/"
+                    },
+                    {
+                      "title": "[2509.04794] Personality as a Probe for LLM Evaluation: Method Trade-offs and Downstream Effects",
+                      "url": "https://arxiv.org/abs/2509.04794"
+                    },
+                    {
+                      "title": "HyPA-RAG: A Hybrid Parameter Adaptive Retrieval-Augmented Generation System for AI Legal and Policy Applications - ACL Anthology",
+                      "url": "https://aclanthology.org/2024.customnlp4u-1.18/"
+                    },
+                    {
+                      "title": "Towards algorithm auditing: managing legal, ethical and technological risks of AI, ML and associated algorithms - ORA - Oxford University Research Archive",
+                      "url": "https://ora.ox.ac.uk/objects/uuid:1e29f910-1c57-4d16-ad71-9f96e70bd4f5"
+                    },
+                    {
+                      "title": "Augmenting RAG with nonnegative matrix factorization-driven semantic chunking in embedding space | The Journal of Supercomputing | Springer Nature Link",
+                      "url": "https://link.springer.com/article/10.1007/s11227-026-08370-3"
+                    },
+                    {
+                      "title": "[2509.17259] Mind the Gap: Comparing Model- vs Agentic-Level Red Teaming with Action-Graph Observability on GPT-OSS-20B",
+                      "url": "https://arxiv.org/abs/2509.17259"
+                    },
+                    {
+                      "title": "Computer Science Sep 2024",
+                      "url": "https://arxiv.org/list/cs/2024-09?skip=3730&show=2000"
+                    },
+                    {
+                      "title": "(PDF) Investigating Algorithmic Bias in Student Progress Monitoring",
+                      "url": "https://www.researchgate.net/publication/382376021_Investigating_Algorithmic_Bias_in_Student_Progress_Monitoring"
+                    }
+                  ]
+                },
+                "I found the paper you're looking for! The paper \"Knowledge Collapse in LLMs: When Fluency Survives but Facts Fail under Recursive Synthetic Training\" with arXiv ID 2509.04796 is authored by Figarri Keisha, Zekun Wu, Ze Wang, Adriano Koshiyama, and Philip Treleaven.\n\nThe paper addresses how large language models increasingly rely on synthetic data, and recursive training on model-generated outputs leads to model collapse, where factual accuracy deteriorates while surface fluency persists, creating \"confidently wrong\" outputs. The authors propose domain-specific synthetic training as a targeted mitigation strategy that achieves substantial improvements in collapse resistance while maintaining computational efficiency."
+              ],
+              "durationSeconds": 5.000868794999995
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-17T20:48:03.242Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018wG6zPG14QN69tueYXWZkD",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arXiv 2502.18049\"\n\nLinks: [{\"title\":\"[2502.18049] Golden Ratio Weighting Prevents Model Collapse\",\"url\":\"https://arxiv.org/abs/2502.18049\"},{\"title\":\"Golden Ratio Weighting Prevents Model Collapse Hengzhi He† Shirong Xu†∗\",\"url\":\"https://arxiv.org/pdf/2502.18049\"},{\"title\":\"Golden Ratio Weighting Prevents Model Collapse\",\"url\":\"https://arxiv.org/html/2502.18049\"},{\"title\":\"Statistics Feb 2025\",\"url\":\"https://www.arxiv.org/list/stat/2025-02?skip=625&show=250\"},{\"title\":\"[2509.18049] Global stability of ghostly field theories: Classical scattering in $(N+1)$ dimensions\",\"url\":\"https://arxiv.org/abs/2509.18049\"},{\"title\":\"[2602.18049] Optimal Competitive Ratio of Two-sided Online Bipartite Matching\",\"url\":\"https://arxiv.org/abs/2602.18049\"},{\"title\":\"Machine Learning Feb 2025\",\"url\":\"https://arxiv.org/list/stat.ML/2025-02?skip=200&show=25\"},{\"title\":\"[2507.18049] Enhanced continuous-variable quantum key distribution protocol via adaptive signal processing\",\"url\":\"https://arxiv.org/abs/2507.18049\"},{\"title\":\"Machine Learning Feb 2025 - stat.ML\",\"url\":\"https://arxiv.org/list/stat.ML/2025-02?skip=200&show=1000\"},{\"title\":\"[2510.18049] Online Randomness Extraction: Simulating Barely Random Algorithms in the Random Order Arrival Model\",\"url\":\"https://arxiv.org/abs/2510.18049\"}]\n\nBased on the search results, arXiv 2502.18049 is titled \"Golden Ratio Weighting Prevents Model Collapse\". \n\nThe paper addresses model collapse, a phenomenon in recursive generative model training where models trained on data generated by previous models exhibit severe performance degradation. The authors investigate this within a framework where generative models are iteratively trained on a combination of newly collected real data and synthetic data from the previous training step, evaluating a weighted training scheme in various scenarios including Gaussian distribution estimation, generalized linear models, and nonparametric estimation, to theoretically characterize the impact of the mixing proportion and weighting scheme of synthetic data on the final model's performance.\n\nThe paper is authored by Hengzhi He, Shirong Xu, and Guang Cheng, and is classified under Machine Learning (stat.ML) and Machine Learning (cs.LG).\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "690b44ca-c5e0-40ca-8be0-3d070d0f9052",
+            "uuid": "fbd3f42a-0a04-422d-98f2-da3bb6beac0b",
+            "tool_use_result": {
+              "query": "arXiv 2502.18049",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01KkX8wRCnai5yLgSGda32YD",
+                  "content": [
+                    {
+                      "title": "[2502.18049] Golden Ratio Weighting Prevents Model Collapse",
+                      "url": "https://arxiv.org/abs/2502.18049"
+                    },
+                    {
+                      "title": "Golden Ratio Weighting Prevents Model Collapse Hengzhi He† Shirong Xu†∗",
+                      "url": "https://arxiv.org/pdf/2502.18049"
+                    },
+                    {
+                      "title": "Golden Ratio Weighting Prevents Model Collapse",
+                      "url": "https://arxiv.org/html/2502.18049"
+                    },
+                    {
+                      "title": "Statistics Feb 2025",
+                      "url": "https://www.arxiv.org/list/stat/2025-02?skip=625&show=250"
+                    },
+                    {
+                      "title": "[2509.18049] Global stability of ghostly field theories: Classical scattering in $(N+1)$ dimensions",
+                      "url": "https://arxiv.org/abs/2509.18049"
+                    },
+                    {
+                      "title": "[2602.18049] Optimal Competitive Ratio of Two-sided Online Bipartite Matching",
+                      "url": "https://arxiv.org/abs/2602.18049"
+                    },
+                    {
+                      "title": "Machine Learning Feb 2025",
+                      "url": "https://arxiv.org/list/stat.ML/2025-02?skip=200&show=25"
+                    },
+                    {
+                      "title": "[2507.18049] Enhanced continuous-variable quantum key distribution protocol via adaptive signal processing",
+                      "url": "https://arxiv.org/abs/2507.18049"
+                    },
+                    {
+                      "title": "Machine Learning Feb 2025 - stat.ML",
+                      "url": "https://arxiv.org/list/stat.ML/2025-02?skip=200&show=1000"
+                    },
+                    {
+                      "title": "[2510.18049] Online Randomness Extraction: Simulating Barely Random Algorithms in the Random Order Arrival Model",
+                      "url": "https://arxiv.org/abs/2510.18049"
+                    }
+                  ]
+                },
+                "Based on the search results, arXiv 2502.18049 is titled \"Golden Ratio Weighting Prevents Model Collapse\". \n\nThe paper addresses model collapse, a phenomenon in recursive generative model training where models trained on data generated by previous models exhibit severe performance degradation. The authors investigate this within a framework where generative models are iteratively trained on a combination of newly collected real data and synthetic data from the previous training step, evaluating a weighted training scheme in various scenarios including Gaussian distribution estimation, generalized linear models, and nonparametric estimation, to theoretically characterize the impact of the mixing proportion and weighting scheme of synthetic data on the final model's performance.\n\nThe paper is authored by Hengzhi He, Shirong Xu, and Guang Cheng, and is classified under Machine Learning (stat.ML) and Machine Learning (cs.LG)."
+              ],
+              "durationSeconds": 6.136586041999996
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-17T20:48:06.273Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011yuATK4cHWKjNcZZVnCmqY",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"2509.22335\" NeurIPS 2025 He Guo Prakash spectral collapse plasticity\"\n\nLinks: [{\"title\":\"[2509.22335] Spectral Collapse Drives Loss of Plasticity in Deep Continual Learning\",\"url\":\"https://arxiv.org/abs/2509.22335\"},{\"title\":\"Preprint. Under Review. Spectral Collapse Drives Loss of Plasticity in Deep\",\"url\":\"https://arxiv.org/pdf/2509.22335\"},{\"title\":\"[PDF] Spectral Collapse Drives Loss of Plasticity in Deep Continual Learning | Semantic Scholar\",\"url\":\"https://api.semanticscholar.org/arXiv:2509.22335\"},{\"title\":\"(PDF) Spectral Collapse Drives Loss of Plasticity in Deep Continual Learning\",\"url\":\"https://www.researchgate.net/publication/395944214_Spectral_Collapse_Drives_Loss_of_Plasticity_in_Deep_Continual_Learning\"},{\"title\":\"NeurIPS Spectral Collapse Drives Loss of Plasticity in Deep Continual Learning\",\"url\":\"https://neurips.cc/virtual/2025/loc/san-diego/136070\"},{\"title\":\"Spectral Collapse Drives Loss of Plasticity in Deep Continual Learning | OpenReview\",\"url\":\"https://openreview.net/forum?id=l3ZwWmZ5Ht\"},{\"title\":\"NeurIPS Poster The Dual Nature of Plasticity Loss in Deep Continual Learning: Dissection and Mitigation\",\"url\":\"https://neurips.cc/virtual/2025/poster/115378\"},{\"title\":\"NeurIPS 2025 Papers\",\"url\":\"https://jalammar.github.io/assets/neurips_2025.html\"},{\"title\":\"The Dual Nature of Plasticity Loss in Deep Continual ...\",\"url\":\"https://neurips.cc/media/neurips-2025/Slides/115378_D8nLzn0.pdf\"},{\"title\":\"NeurIPS 2025 (Past) | Artificial Intelligence (AI) Program\",\"url\":\"https://ai.seas.upenn.edu/neurips-2025/\"}]\n\nBased on the search results, I found information about the paper you're looking for:\n\n## Paper Overview\n\nThe paper \"Spectral Collapse Drives Loss of Plasticity in Deep Continual Learning\" (arXiv:2509.22335) was authored by Naicheng He, Kaicheng Guo, Arjun Prakash, Saket Tiwari, Ruo Yu Tao, Tyrone Serapio, Amy Greenwald, and George Konidaris.\n\n## Main Contributions\n\nThe paper investigates why deep neural networks suffer from loss of plasticity in deep continual learning, failing to learn new tasks without reinitializing parameters. The researchers show that this failure is preceded by Hessian spectral collapse at new-task initialization, where meaningful curvature directions vanish and gradient descent becomes ineffective.\n\nTo characterize the necessary condition for successful training, the authors introduce the notion of τ-trainability and show that current plasticity preserving algorithms can be unified under this framework. Targeting spectral collapse directly, they discuss the Kronecker factored approximation of the Hessian, which motivates two regularization enhancements: maintaining high effective feature rank and applying L2 penalties.\n\nExperiments on continual supervised and reinforcement learning tasks confirm that combining these two regularizers effectively preserves plasticity.\n\nThe paper was submitted to arXiv on September 26, 2025, with a revised version on September 29, 2025, and appears to be under review for NeurIPS 2025.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "690b44ca-c5e0-40ca-8be0-3d070d0f9052",
+            "uuid": "7701da80-b4b7-4ea8-9214-5b8366cf55ec",
+            "tool_use_result": {
+              "query": "\"2509.22335\" NeurIPS 2025 He Guo Prakash spectral collapse plasticity",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01SWyWeqWArLUMvsoj1GXYv1",
+                  "content": [
+                    {
+                      "title": "[2509.22335] Spectral Collapse Drives Loss of Plasticity in Deep Continual Learning",
+                      "url": "https://arxiv.org/abs/2509.22335"
+                    },
+                    {
+                      "title": "Preprint. Under Review. Spectral Collapse Drives Loss of Plasticity in Deep",
+                      "url": "https://arxiv.org/pdf/2509.22335"
+                    },
+                    {
+                      "title": "[PDF] Spectral Collapse Drives Loss of Plasticity in Deep Continual Learning | Semantic Scholar",
+                      "url": "https://api.semanticscholar.org/arXiv:2509.22335"
+                    },
+                    {
+                      "title": "(PDF) Spectral Collapse Drives Loss of Plasticity in Deep Continual Learning",
+                      "url": "https://www.researchgate.net/publication/395944214_Spectral_Collapse_Drives_Loss_of_Plasticity_in_Deep_Continual_Learning"
+                    },
+                    {
+                      "title": "NeurIPS Spectral Collapse Drives Loss of Plasticity in Deep Continual Learning",
+                      "url": "https://neurips.cc/virtual/2025/loc/san-diego/136070"
+                    },
+                    {
+                      "title": "Spectral Collapse Drives Loss of Plasticity in Deep Continual Learning | OpenReview",
+                      "url": "https://openreview.net/forum?id=l3ZwWmZ5Ht"
+                    },
+                    {
+                      "title": "NeurIPS Poster The Dual Nature of Plasticity Loss in Deep Continual Learning: Dissection and Mitigation",
+                      "url": "https://neurips.cc/virtual/2025/poster/115378"
+                    },
+                    {
+                      "title": "NeurIPS 2025 Papers",
+                      "url": "https://jalammar.github.io/assets/neurips_2025.html"
+                    },
+                    {
+                      "title": "The Dual Nature of Plasticity Loss in Deep Continual ...",
+                      "url": "https://neurips.cc/media/neurips-2025/Slides/115378_D8nLzn0.pdf"
+                    },
+                    {
+                      "title": "NeurIPS 2025 (Past) | Artificial Intelligence (AI) Program",
+                      "url": "https://ai.seas.upenn.edu/neurips-2025/"
+                    }
+                  ]
+                },
+                "Based on the search results, I found information about the paper you're looking for:\n\n## Paper Overview\n\nThe paper \"Spectral Collapse Drives Loss of Plasticity in Deep Continual Learning\" (arXiv:2509.22335) was authored by Naicheng He, Kaicheng Guo, Arjun Prakash, Saket Tiwari, Ruo Yu Tao, Tyrone Serapio, Amy Greenwald, and George Konidaris.\n\n## Main Contributions\n\nThe paper investigates why deep neural networks suffer from loss of plasticity in deep continual learning, failing to learn new tasks without reinitializing parameters. The researchers show that this failure is preceded by Hessian spectral collapse at new-task initialization, where meaningful curvature directions vanish and gradient descent becomes ineffective.\n\nTo characterize the necessary condition for successful training, the authors introduce the notion of τ-trainability and show that current plasticity preserving algorithms can be unified under this framework. Targeting spectral collapse directly, they discuss the Kronecker factored approximation of the Hessian, which motivates two regularization enhancements: maintaining high effective feature rank and applying L2 penalties.\n\nExperiments on continual supervised and reinforcement learning tasks confirm that combining these two regularizers effectively preserves plasticity.\n\nThe paper was submitted to arXiv on September 26, 2025, with a revised version on September 29, 2025, and appears to be under review for NeurIPS 2025."
+              ],
+              "durationSeconds": 8.171628236999997
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have all the information I need. Let me summarize:\n\n1. **arXiv 2512.24145** - EXISTS. Title: \"Paired Seed Evaluation: Statistical Reliability for Learning-Based Simulators\". This is NOT in our literature_map.yaml. The paper exists but is about simulator evaluation, not about model collapse or spectral analysis. It's not in our literature_map, so nothing to update there. But the task says \"Director 和 Reviewer 标记了以下引用可能是 AI 幻觉\" - so these might be referenced in the paper itself. Let me check if this ID appears anywhere in the project.\n\n\nActually, re-reading the task more carefully - the concern is about the format itself. The ID 2512.XXXXX would represent December 2025, which is a future date, so they were flagging whether this citation format might be fabricated.\n\nFor the second citation, arXiv 2601.03385 (SIGMA) checks out completely - the title, authors, and content all match what's in the literature_map, so verified: true stands.\n\nThe third one, arXiv 2509.22335 by He et al., also exists with the correct title about spectral collapse in continual learning. The venue listing as NeurIPS 2025 appears accurate based on the search results showing it at the NeurIPS 2025 conference.\n\nI'm also noticing that arXiv 2502.18049 about golden ratio weighting is actually a separate paper from 2509.22335 - they're not the same despite both being by He and colleagues, so those are distinct entries.\n\nNow checking the fourth citation, arXiv 2509.04796 about knowledge collapse in LLMs...\n\nverified, all authors match. So all four citations check out as real papers on arXiv. The first one (2512.24145) isn't in the literature map and seems unrelated to the core topic, but since it exists on arXiv, it's a legitimate citation even if it's not directly connected to the research area.\n\nNow I need to search through the project files to see where this first citation is actually being used and whether it's being cited appropriately.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "690b44ca-c5e0-40ca-8be0-3d070d0f9052",
+            "uuid": "cd9f2211-dc5e-453d-a6ed-89c3253ca5bd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XMwWQw3oTFYbkM6ikfA6Ur",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4358,
+                "cache_read_input_tokens": 33851,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4358
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 4 arXiv IDs exist. Let me check where 2512.24145 is referenced in the project since it's not in the literature_map."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "690b44ca-c5e0-40ca-8be0-3d070d0f9052",
+            "uuid": "e06d2c93-d380-4b64-8b80-725cac732796",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XMwWQw3oTFYbkM6ikfA6Ur",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4358,
+                "cache_read_input_tokens": 33851,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4358
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XYafZxFaPgXKTt9tssgRHA",
+              "name": "Grep",
+              "input": {
+                "pattern": "2512.24145",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "690b44ca-c5e0-40ca-8be0-3d070d0f9052",
+            "uuid": "5891fb43-449a-49d7-824b-8140ab9e1a2c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XMwWQw3oTFYbkM6ikfA6Ur",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4358,
+                "cache_read_input_tokens": 33851,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4358
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HJFGSMcyAaXF1mdmTq8Gap",
+              "name": "Grep",
+              "input": {
+                "pattern": "2502.18049",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "690b44ca-c5e0-40ca-8be0-3d070d0f9052",
+            "uuid": "66e0d9bb-2316-4ef0-b257-b01da21436a3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XMwWQw3oTFYbkM6ikfA6Ur",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4358,
+                "cache_read_input_tokens": 33851,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4358
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-17T20:48:36.375Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HJFGSMcyAaXF1mdmTq8Gap",
+              "type": "tool_result",
+              "content": "Found 19 files\nlogs/workers/worker_paper_research_citation_verify_20260517T204703.log\nlogs/chats/feishu_group_oc_0f7710940ce53b9afd065fcc69817759_paper_agent.jsonl\nlogs/chats/feishu_group_oc_5bdb9114bcefff7f4872823fd76bb0ac_director.jsonl\nlogs/chats/archive/feishu_group_oc_0f7710940ce53b9afd065fcc69817759_reviewer_20260517T073540_515642.jsonl\nlogs/workers/worker_paper_results_section_20260516T231058.log\nlogs/chats/archive/feishu_group_oc_0f7710940ce53b9afd065fcc69817759_20260516T153658_854103.jsonl\nlogs/workers/worker_paper_abstract_conclusion_20260516T151821.log\nlogs/chats/worker_paper_bib_citations_20260516T142448.jsonl\nlogs/workers/worker_paper_bib_citations_20260516T142448.log\nlogs/workers/worker_paper_experiments_setup_20260516T135600.log\nlogs/chats/archive/feishu_group_oc_5bdb9114bcefff7f4872823fd76bb0ac_director_20260516T120718_769800.jsonl\nlogs/chats/archive/feishu_group_oc_0f7710940ce53b9afd065fcc69817759_reviewer_20260516T120715_292752.jsonl\nlogs/chats/worker_write_paper_experiments_20260516T120334.jsonl\nlogs/workers/worker_write_paper_experiments_20260516T120334.log\nlogs/workers/worker_write_paper_intro_abstract_20260516T112346.log\nlogs/workers/worker_fix_bib_remaining_authors_20260516T112318.log\nlogs/workers/worker_fix_bib_and_rw_polish_20260516T104434.log\nlogs/workers/worker_fix_paper_references_20260516T100917.log\ndocs/IDEA_BRIEF.md"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "690b44ca-c5e0-40ca-8be0-3d070d0f9052",
+            "uuid": "414f5533-8a1d-4056-bb4c-73b70b45773d",
+            "tool_use_result": {
+              "mode": "files_with_matches",
+              "filenames": [
+                "logs/workers/worker_paper_research_citation_verify_20260517T204703.log",
+                "logs/chats/feishu_group_oc_0f7710940ce53b9afd065fcc69817759_paper_agent.jsonl",
+                "logs/chats/feishu_group_oc_5bdb9114bcefff7f4872823fd76bb0ac_director.jsonl",
+                "logs/chats/archive/feishu_group_oc_0f7710940ce53b9afd065fcc69817759_reviewer_20260517T073540_515642.jsonl",
+                "logs/workers/worker_paper_results_section_20260516T231058.log",
+                "logs/chats/archive/feishu_group_oc_0f7710940ce53b9afd065fcc69817759_20260516T153658_854103.jsonl",
+                "logs/workers/worker_paper_abstract_conclusion_20260516T151821.log",
+                "logs/chats/worker_paper_bib_citations_20260516T142448.jsonl",
+                "logs/workers/worker_paper_bib_citations_20260516T142448.log",
+                "logs/workers/worker_paper_experiments_setup_20260516T135600.log",
+                "logs/chats/archive/feishu_group_oc_5bdb9114bcefff7f4872823fd76bb0ac_director_20260516T120718_769800.jsonl",
+                "logs/chats/archive/feishu_group_oc_0f7710940ce53b9afd065fcc69817759_reviewer_20260516T120715_292752.jsonl",
+                "logs/chats/worker_write_paper_experiments_20260516T120334.jsonl",
+                "logs/workers/worker_write_paper_experiments_20260516T120334.log",
+                "logs/workers/worker_write_paper_intro_abstract_20260516T112346.log",
+                "logs/workers/worker_fix_bib_remaining_authors_20260516T112318.log",
+                "logs/workers/worker_fix_bib_and_rw_polish_20260516T104434.log",
+                "logs/workers/worker_fix_paper_references_20260516T100917.log",
+                "docs/IDEA_BRIEF.md"
+              ],
+              "numFiles": 19
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-17T20:48:36.381Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XYafZxFaPgXKTt9tssgRHA",
+              "type": "tool_result",
+              "content": "Found 6 files\nlogs/workers/worker_paper_research_citation_verify_20260517T204703.log\nlogs/chats/feishu_group_oc_0f7710940ce53b9afd065fcc69817759_paper_agent.jsonl\nlogs/chats/feishu_group_oc_5bdb9114bcefff7f4872823fd76bb0ac_director.jsonl\nlogs/chats/feishu_group_oc_0f7710940ce53b9afd065fcc69817759_reviewer.jsonl\npaper_framing.md\ndocs/IDEA_BRIEF.md"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "690b44ca-c5e0-40ca-8be0-3d070d0f9052",
+            "uuid": "4a202915-5fcc-4d2d-98b3-4342f44a0d74",
+            "tool_use_result": {
+              "mode": "files_with_matches",
+              "filenames": [
+                "logs/workers/worker_paper_research_citation_verify_20260517T204703.log",
+                "logs/chats/feishu_group_oc_0f7710940ce53b9afd065fcc69817759_paper_agent.jsonl",
+                "logs/chats/feishu_group_oc_5bdb9114bcefff7f4872823fd76bb0ac_director.jsonl",
+                "logs/chats/feishu_group_oc_0f7710940ce53b9afd065fcc69817759_reviewer.jsonl",
+                "paper_framing.md",
+                "docs/IDEA_BRIEF.md"
+              ],
+              "numFiles": 6
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013GivY7e2Wk6hXMY6qhUSET",
+              "name": "Grep",
+              "input": {
+                "pattern": "2512.24145",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews",
+                "output_mode": "content",
+                "glob": "*.{md,tex,bib,yaml}"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "690b44ca-c5e0-40ca-8be0-3d070d0f9052",
+            "uuid": "c31b418a-8b96-4de2-bf8a-98de338620f5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015xGpY34Cqs9ELg4hpTTKJM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 589,
+                "cache_creation_input_tokens": 1451,
+                "cache_read_input_tokens": 38209,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1451
+                },
+                "output_tokens": 71,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-17T20:48:40.064Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013GivY7e2Wk6hXMY6qhUSET",
+              "type": "tool_result",
+              "content": "paper_framing.md:106:**Response**: Phase 2 targets 3 seeds minimum with paired design (arXiv 2512.24145). Pre-registered thresholds: adaptive vs fixed_mix ≥ 3 ppl (paired t-test p<0.1). Short paper acknowledges seed limitation.\ndocs/IDEA_BRIEF.md:42:[Omitted long matching line]\ndocs/IDEA_BRIEF.md:64:- Paired Seed Evaluation: Statistical Reliability for Learning-Based Simulators (arXiv 2512.24145, Dec 2025) — paired seed methodology that provably reduces variance when seed-level correlations are positive; we adopt this to maximize statistical power with 3 seeds per condition\ndocs/IDEA_BRIEF.md:79:[Omitted long matching line]"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "690b44ca-c5e0-40ca-8be0-3d070d0f9052",
+            "uuid": "aa585fb6-321a-45b3-8c5b-ea6925749a02",
+            "tool_use_result": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "paper_framing.md:106:**Response**: Phase 2 targets 3 seeds minimum with paired design (arXiv 2512.24145). Pre-registered thresholds: adaptive vs fixed_mix ≥ 3 ppl (paired t-test p<0.1). Short paper acknowledges seed limitation.\ndocs/IDEA_BRIEF.md:42:[Omitted long matching line]\ndocs/IDEA_BRIEF.md:64:- Paired Seed Evaluation: Statistical Reliability for Learning-Based Simulators (arXiv 2512.24145, Dec 2025) — paired seed methodology that provably reduces variance when seed-level correlations are positive; we adopt this to maximize statistical power with 3 seeds per condition\ndocs/IDEA_BRIEF.md:79:[Omitted long matching line]",
+              "numLines": 4
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GbCvynuZhGUaj3joABZ9oe",
+              "name": "Grep",
+              "input": {
+                "pattern": "Paired Seed Evaluation",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "690b44ca-c5e0-40ca-8be0-3d070d0f9052",
+            "uuid": "4e320a37-4de1-4348-8ea4-52afe40345c7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015xGpY34Cqs9ELg4hpTTKJM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 589,
+                "cache_creation_input_tokens": 1451,
+                "cache_read_input_tokens": 38209,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1451
+                },
+                "output_tokens": 71,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-17T20:48:40.489Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GbCvynuZhGUaj3joABZ9oe",
+              "type": "tool_result",
+              "content": "Found 4 files\nlogs/workers/worker_paper_research_citation_verify_20260517T204703.log\nlogs/chats/feishu_group_oc_0f7710940ce53b9afd065fcc69817759_paper_agent.jsonl\nlogs/chats/feishu_group_oc_5bdb9114bcefff7f4872823fd76bb0ac_director.jsonl\ndocs/IDEA_BRIEF.md"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "690b44ca-c5e0-40ca-8be0-3d070d0f9052",
+            "uuid": "d604088a-ca68-46b5-ab08-b8ac1916af64",
+            "tool_use_result": {
+              "mode": "files_with_matches",
+              "filenames": [
+                "logs/workers/worker_paper_research_citation_verify_20260517T204703.log",
+                "logs/chats/feishu_group_oc_0f7710940ce53b9afd065fcc69817759_paper_agent.jsonl",
+                "logs/chats/feishu_group_oc_5bdb9114bcefff7f4872823fd76bb0ac_director.jsonl",
+                "docs/IDEA_BRIEF.md"
+              ],
+              "numFiles": 4
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "So 2512.24145 (\"Paired Seed Evaluation: Statistical Reliability for Learning-Based Simulators\") is referenced in:\n- paper_framing.md - as a methodology reference for paired evaluation design\n- docs/IDEA_BRIEF.md - as a reference for paired seed methodology\n\nThe paper DOES exist on arXiv and IS about paired seed evaluation for learning-based simulators. So this citation is REAL and correctly used.\n\nLet me also check if it's in any .bib files.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "690b44ca-c5e0-40ca-8be0-3d070d0f9052",
+            "uuid": "8183f6ea-14cc-4256-a931-1a0d3104682b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019tJL58sn5rrHa8T2rLRHA4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1188,
+                "cache_read_input_tokens": 39660,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1188
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Wx1DSm6d78T9iqch1friNA",
+              "name": "Grep",
+              "input": {
+                "pattern": "2512.24145",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews",
+                "output_mode": "content",
+                "glob": "*.{bib,tex}"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "690b44ca-c5e0-40ca-8be0-3d070d0f9052",
+            "uuid": "c352d9c5-0e12-4209-b597-6d6eadf4168e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019tJL58sn5rrHa8T2rLRHA4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1188,
+                "cache_read_input_tokens": 39660,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1188
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-17T20:48:45.509Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Wx1DSm6d78T9iqch1friNA",
+              "type": "tool_result",
+              "content": "No matches found"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "690b44ca-c5e0-40ca-8be0-3d070d0f9052",
+            "uuid": "b4b86b69-32be-41c9-a9f4-44205920eb2c",
+            "tool_use_result": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "",
+              "numLines": 0
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "So 2512.24145 is referenced in docs (IDEA_BRIEF.md and paper_framing.md) but not in the actual paper (.tex/.bib files). It's a real paper and correctly described in those docs. No issue.\n\nNow let me compile the verification report.\n\nSummary:\n1. **2512.24145** - VERIFIED TRUE. \"Paired Seed Evaluation: Statistical Reliability for Learning-Based Simulators\" exists on arXiv. Referenced in IDEA_BRIEF.md and paper_framing.md for methodology (not in literature_map.yaml). No changes needed.\n\n\n2. **2601.03385** - VERIFIED TRUE. \"SIGMA: Scalable Spectral Insights for LLM Model Collapse\" by Gu et al. exists and matches the literature_map.yaml entry. No changes needed.\n3. **2509.22335** - VERIFIED TRUE. \"Spectral Collapse Drives Loss of Plasticity in Deep Continual Learning\" by He et al. confirmed at NeurIPS 2025 and matches the literature_map.yaml entry, though arXiv 2502.18049 is a separate paper.\n4. **2509.04796** - VERIFIED TRUE. \"Knowledge Collapse in LLMs: When Fluency Survives but Facts Fail under Recursive Synthetic Training\" matches the literature_map.yaml entry. All four citations check out, so no updates to the literature map are needed.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "690b44ca-c5e0-40ca-8be0-3d070d0f9052",
+            "uuid": "9c0d5793-8890-4aa2-903b-9f2768f843ac",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JJvmGwFtCjwEU3uuuSvuFr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 287,
+                "cache_read_input_tokens": 40848,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 287
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 验证报告\n\n| # | arXiv ID | 标题 | 结果 | 说明 |\n|---|----------|------|------|------|\n| 1 | [2512.24145](https://arxiv.org/abs/2512.24145) | Paired Seed Evaluation: Statistical Reliability for Learning-Based Simulators | **verified: true** | 真实存在。引用于 IDEA_BRIEF.md 和 paper_framing.md（作为实验方法论参考），未收录 literature_map.yaml。内容与描述一致。 |\n| 2 | [2601.03385](https://arxiv.org/abs/2601.03385) | SIGMA: Scalable Spectral Insights for LLM Model Collapse | **verified: true** | 真实存在。标题、作者（Gu, Pang, Ye, Wang, Lin, Priebe, Aue）、内容与 literature_map 条目 `gu2026sigma` 完全匹配。 |\n| 3 | [2509.22335](https://arxiv.org/abs/2509.22335) | Spectral Collapse Drives Loss of Plasticity in Deep Continual Learning | **verified: true** | 真实存在。作者（He, Guo, Prakash 等）匹配。已确认收录于 [NeurIPS 2025](https://neurips.cc/virtual/2025/loc/san-diego/136070)，venue 信息正确。arXiv 2502.18049 是**另一篇**不同论文（\"Golden Ratio Weighting Prevents Model Collapse\", He & Xu & Cheng），两者非同一篇。 |\n| 4 | [2509.04796](https://arxiv.org/abs/2509.04796) | Knowledge Collapse in LLMs: When Fluency Survives but Facts Fail under Recursive Synthetic Training | **verified: true** | 真实存在。作者（Keisha, Wu, Wang, Koshiyama, Treleaven）与 literature_map 条目 `keisha2025knowledge` 完全匹配。 |\n\n**结论：4 篇引用全部真实存在，标题/作者/内容均与 literature_map 描述一致。无需修改 literature_map.yaml。**"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "690b44ca-c5e0-40ca-8be0-3d070d0f9052",
+            "uuid": "d3075442-4e9d-4e5e-b89b-1240fbaa764c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JJvmGwFtCjwEU3uuuSvuFr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 287,
+                "cache_read_input_tokens": 40848,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 287
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 验证报告\n\n| # | arXiv ID | 标题 | 结果 | 说明 |\n|---|----------|------|------|------|\n| 1 | [2512.24145](https://arxiv.org/abs/2512.24145) | Paired Seed Evaluation: Statistical Reliability for Learning-Based Simulators | **verified: true** | 真实存在。引用于 IDEA_BRIEF.md 和 paper_framing.md（作为实验方法论参考），未收录 literature_map.yaml。内容与描述一致。 |\n| 2 | [2601.03385](https://arxiv.org/abs/2601.03385) | SIGMA: Scalable Spectral Insights for LLM Model Collapse | **verified: true** | 真实存在。标题、作者（Gu, Pang, Ye, Wang, Lin, Priebe, Aue）、内容与 literature_map 条目 `gu2026sigma` 完全匹配。 |\n| 3 | [2509.22335](https://arxiv.org/abs/2509.22335) | Spectral Collapse Drives Loss of Plasticity in Deep Continual Learning | **verified: true** | 真实存在。作者（He, Guo, Prakash 等）匹配。已确认收录于 [NeurIPS 2025](https://neurips.cc/virtual/2025/loc/san-diego/136070)，venue 信息正确。arXiv 2502.18049 是**另一篇**不同论文（\"Golden Ratio Weighting Prevents Model Collapse\", He & Xu & Cheng），两者非同一篇。 |\n| 4 | [2509.04796](https://arxiv.org/abs/2509.04796) | Knowledge Collapse in LLMs: When Fluency Survives but Facts Fail under Recursive Synthetic Training | **verified: true** | 真实存在。作者（Keisha, Wu, Wang, Koshiyama, Treleaven）与 literature_map 条目 `keisha2025knowledge` 完全匹配。 |\n\n**结论：4 篇引用全部真实存在，标题/作者/内容均与 literature_map 描述一致。无需修改 literature_map.yaml。**"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 117678,
+            "duration_api_ms": 148506,
+            "num_turns": 15,
+            "stop_reason": "end_turn",
+            "session_id": "690b44ca-c5e0-40ca-8be0-3d070d0f9052",
+            "total_cost_usd": 0.5790655,
+            "usage": {
+              "input_tokens": 1273,
+              "cache_creation_input_tokens": 29294,
+              "cache_read_input_tokens": 220952,
+              "output_tokens": 4355,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 29294,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 1045,
+                  "cache_read_input_tokens": 40848,
+                  "cache_creation_input_tokens": 287,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 287
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 88467,
+                "outputTokens": 2359,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 7,
+                "costUSD": 0.17026200000000002,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 1273,
+                "outputTokens": 4355,
+                "cacheReadInputTokens": 220952,
+                "cacheCreationInputTokens": 29294,
+                "webSearchRequests": 0,
+                "costUSD": 0.4088035,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "a6601f0e-314b-4aa0-a579-1813042e9dd6"
+          },
+          "id": "event-000042"
+        }
+      ],
+      "message_count": 42
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-research-citation-verify.md"
+}

@@ -1,0 +1,79 @@
+# agent / loop_5.md
+
+**Spectral Early Warning Signals for Model Collapse and Their Prevention–Detectability Tradeoff** · Context and loop notes
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `task_context/history/agent/loop_5.md`
+- **Structured JSON:** [`43c9b7f0b7ccc20ddb5f.json`](../../sessions/43/43c9b7f0b7ccc20ddb5f.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Context note
+
+_source line 1_
+
+---
+loop: 5
+reason: idle_timeout
+updated: '2026-05-19T11:44:35+00:00'
+---
+
+### 1. 🔴 硬约束 / 红线
+- 本项目只能用 rtx6000-diagprobe 的 cuda:0 和 cuda:1（gpu_ids=[0,1]）
+- GPU 编号脚本内始终从 0 开始（`--gpu 0`），CUDA_VISIBLE_DEVICES 由框架映射物理卡
+- exp_007 的 checkpoint 在 `/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r02_seed42/`，不可删除（r=0.2 是 r_crit 边界关键数据点）
+- 投稿目标 EMNLP 2026 ARR Long Paper (8p + refs)，DDL May 25（距今 6 天）
+- r_crit 当前 bound 是 (0.2, 0.3]，论文已写入此范围，修改需全文 re-audit
+
+### 2. 🖥️ 基础设施快照
+- 服务器：rtx6000-diagprobe，工作目录 `/root/spectral_collapse_ews`
+- Python：`/root/miniconda3/bin/python`（conda base 环境，用 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）
+- 模型：EleutherAI/pythia-410m-deduped（HF cache 本地，HF_HUB_OFFLINE=1）
+- 数据：`/root/spectral_collapse_ews/data/`（50K real pool + 5K eval + 1K spectral）
+- Checkpoint 盘：`/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/`
+- 结果文件：`/root/spectral_collapse_ews/results/phase1_*.json`
+- 活跃进程：exp_008 (PID 194372, tmux=exp_008, cuda:1, r=0.3 10gen)
+- cuda:0 空闲（exp_007 刚完成）
+
+### 3. 📊 当前状态
+**刚发生**：exp_007 (r=0.2, 5gen, cuda:0) CRON 回调到达，进程正常退出，状态已转 ANALYZING。我已 spawn Worker (`worker_analysis_exp_007_20260518T194203`) 去 SSH 读取结果文件，但 Worker 尚未返回——这是最高优先级待处理项。
+
+**Registry 状态**：
+- exp_007: ANALYZING — r=0.2 fixed mix, 5gen，等 Worker 返回 metrics 后判 conclusion → 更新 registry → 汇报 Director
+- exp_008: RUNNING — r=0.3 fixed mix, 10gen, cuda:1, Gen 4+/10，有 cron 监控
+
+**ROADMAP 已知的 exp_007 中间数据**（来自之前 Paper Agent patch）：
+- Gen 4 SLV 反弹至 2379.2（超基线 +12.5），轨迹 "transitional" 非 collapse
+- 三种 trajectory topology: Type I (r=0, collapse), Type II (r=0.2, transitional: dip→recovery), Type III (r≥0.3, expansion)
+
+### 4. 📋 待办（条件触发式）
+- **Worker `worker_analysis_exp_007` 返回** → 提取 Gen 0-5 全量 metrics → 判 conclusion（大概率 success：transitional 轨迹已确认）→ update_registry(conclusion, metrics, checkpoint_path, log_path) → 刷新 report.md → 汇报 Director（带 [资源] 行）
+- **exp_007 分析完成后** → cuda:0 空闲 → 按 D025 立即启动 r=0.25 实验（plan_025，P0 优先级），精确定位 r_crit 到 ±0.05
+- **exp_008 cron 回调到达** → 同样流程：读 metrics → 判 conclusion → 更新 → 汇报。r=0.3 预期 Type III (accelerating expansion)，10gen 完整数据将确认 r_crit 上界
+- **r=0.25 + exp_008 都完成后** → r_crit 精确到 [0.25, 0.3] 或 [0.2, 0.25]，论文 §4.5 phase diagram 定稿
+- **DDL May 25 倒计时** → Phase 2 multi-seed 和 Phase 3 cross-scale 需尽快铺开（双卡并行）
+
+### 5. 🎯 战略上下文
+**核心故事线**：SLV (½ log det G) 是 model collapse 的可靠 EWS，但 real data mixing 导致 signal attenuation paradox（C3）——越多 real data 越能防 collapse，但也越让 EWS 信号衰减到检测不到。r_crit 是 collapse boundary 的相变点。
+
+**决策链关键**：
+- D020: Controller claim 判定失败（adaptive controller 在 r=0.5 从未触发），论文 framing 已从 "controller works" 转向 "signal attenuation paradox + r_crit phase diagram"
+- D024/D025: 新增 r=0.25 实验替代 r=0.1 优先级，精确定位 r_crit
+- D026: 删除 linear_increasing 条件，§4.1 从四条件改为三条件
+- D027: C5 (second-order EWS) 从 Introduction contribution 列表中移除
+
+**易错点**：
+- exp_007 的 hypothesis 说 "spectral collapse will manifest within 5 gen"，但实际 Gen 4 已显示 recovery（transitional），所以 hypothesis 部分被证伪——不是 collapse 而是 dip→recovery。但这不是 negative result，而是 r=0.2 处于 Type II transitional 的 success 发现。判 conclusion 时别误判为 negative
+- r=0.2 的 log_det 轨迹是 dip→recovery，不是 monotonic decline。与 r=0（monotonic decline）和 r=0.5（monotonic rise）都不同，这才是论文最有价值的发现
+- Worker 池 < 2 = 失职。分析完 exp_007 后必须立即铺 r=0.25 实验 + 至少一个 CPU 任务（文献/论文）
+
+
+---

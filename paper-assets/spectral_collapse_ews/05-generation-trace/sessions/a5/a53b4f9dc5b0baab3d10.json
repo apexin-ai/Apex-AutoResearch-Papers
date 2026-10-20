@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a53b4f9dc5b0baab3d10",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "code phase1 1b adapt",
+  "task_key": "worker_code_phase1_1b_adapt_20260517T052614",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_phase1_1b_adapt_20260517T052614_result.json",
+    "occurrence": 1,
+    "bytes": 554,
+    "sha256": "e65a2e193cca6bdd8e2a691074d4cea37ffacf1ec65aa049ecab9038763dd067"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。`run_phase1.py` 已参数化支持 1B：\n\n- `--model pythia-1b` 使用 `EleutherAI/pythia-1b-deduped`\n- 默认 `--model pythia-410m`（向后兼容）\n- 1B checkpoint 写到 `checkpoints_phase1_1b/{condition}_seed{seed}/`\n- 1B results 写到 `phase1_1b_{condition}_seed{seed}_results.json`\n- 训练参数沿用现有 Config 默认值（lr=5e-5, batch_size=8, grad_accum=4），1B 在 98GB 卡上无需降低 batch_size\n- 模型已缓存在 `/root/.cache/huggingface/hub/models--EleutherAI--pythia-1b-deduped`，离线可用"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-phase1-1b-adapt.md"
+}

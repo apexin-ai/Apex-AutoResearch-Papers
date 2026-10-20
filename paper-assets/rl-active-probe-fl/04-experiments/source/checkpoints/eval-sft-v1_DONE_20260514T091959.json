@@ -1,0 +1,55 @@
+{
+  "exp_id": "eval-sft-v1",
+  "project": "rl-active-probe-fl",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T08:20:39.787Z",
+    "updated_at": "2026-05-14T09:19:59.463Z",
+    "hypothesis": "SFT model with thinking disabled can generate probe format output (probe_generation_rate > 50%)",
+    "parent": "sft-mvp-v1",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/diagprobe && python src/evaluate.py --mode sft --model-name /root/autodl-tmp/models/Qwen/Qwen3-8B --checkpoint-path /root/autodl-tmp/diagprobe/checkpoints/sft --data-path data/eval.jsonl --output-path results/eval_sft.json --gpu 0 --bf16\"",
+      "server": "rtx6000-diagprobe",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "18472",
+      "log_path": "~/runs/rl-active-probe-fl/eval-sft-v1.log",
+      "submitted_at": "2026-05-14T08:22:01.262Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/eval.jsonl",
+      "data_count": 202,
+      "model_name": "Qwen/Qwen3-8B",
+      "seed": 42,
+      "checkpoint_source": "sft-mvp-v1",
+      "eval_data": "data/eval.jsonl",
+      "checkpoint_path": "/root/autodl-tmp/diagprobe/checkpoints/sft",
+      "wall_clock_seconds": 3478.2,
+      "gpu_hours": 0.97
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "debug_accuracy": 0.2822,
+      "debug_accuracy_ci90": [
+        0.2277,
+        0.3317
+      ],
+      "probe_generation_rate": 0.9901,
+      "probe_executed": 0,
+      "probe_diagnostic": 0.005,
+      "probe_dependent": 0.0594,
+      "probe_dependent_ci90": [
+        0.0347,
+        0.0842
+      ]
+    },
+    "completed_at": "2026-05-14T09:19:59.463Z"
+  },
+  "timestamp": "2026-05-14T09:19:59.477051+00:00",
+  "trigger": "update_registry"
+}

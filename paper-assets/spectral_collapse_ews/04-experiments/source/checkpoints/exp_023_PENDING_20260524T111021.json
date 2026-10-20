@@ -1,0 +1,17 @@
+{
+  "exp_id": "exp_023",
+  "project": "spectral_collapse_ews",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-24T07:47:34.066Z",
+    "updated_at": "2026-05-24T11:10:21.756Z",
+    "hypothesis": "GPT-2-medium (355M) under r=0.25 mixing exhibits Type II trajectory (transient EMA dip at Gen 1-2 followed by monotonic SLV recovery), verifying that the critical mixing ratio r_crit phase boundary holds cross-architecture. Combined with exp_020 (Type I at r=0) and exp_022c (Type III at r=0.3), this completes the GPT-2-medium phase diagram and confirms r_crit ∈ (0.25, 0.3] is architecture-independent.",
+    "parent": "exp_020",
+    "notes": "DDL 约束改为 3-gen pilot (原计划 10-gen)。3-gen 足以判定 EMA dip（Pythia r=0.25 在 Gen 1-2 即出现）。启动命令: bash -c \"cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python run_gpt2m_phase1.py --condition fixed_mix --real_ratio 0.25 --generations 3 --seed 42 --gpu 0\""
+  },
+  "timestamp": "2026-05-24T11:10:21.866440+00:00",
+  "trigger": "update_registry"
+}

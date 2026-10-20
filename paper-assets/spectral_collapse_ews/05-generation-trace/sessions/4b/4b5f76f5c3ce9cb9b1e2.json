@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4b5f76f5c3ce9cb9b1e2",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "status exp 018 020 cuda0",
+  "task_key": "worker_status_exp_018_020_cuda0_20260523T092445",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_status_exp_018_020_cuda0_20260523T092445_result.json",
+    "occurrence": 1,
+    "bytes": 1543,
+    "sha256": "e9f2c9000b96fe5bbe79199c62c337b73547599fda0c9e684b6f44ad6f1ed9a4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "tmux scrollback 为空，无法查看实时进度。但根据时间线推算，Gen 10 应在 ~5 分钟内完成。\n\n## 当前状态汇总\n\n**exp_018 (r=0.5, seed43, cuda:0)**:\n- PID 716261，GPU-Util 96%，仍在训练 Gen 10（最终代）\n- Gen 0-9 指标已完成写入 results JSON\n- 预计 ~17:30 完成（每代 ~1.5h，gen_9 @ 15:59）\n- Checkpoint: `/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_seed43/`\n\n**exp_019 (r=0.2, seed44, cuda:1)**: PID 757601，正常运行\n\n**exp_020**: cuda:0 被 exp_018 占用，需等完成后启动\n\n**Gen 0-9 metrics 概览**（exp_018, r=0.5, seed43）:\n\n| Gen | eff_rank | log_det | PPL | D-4 | sigma1 |\n|-----|----------|---------|------|------|--------|\n| 0 | 417.5 | 2366.7 | 9.55 | 0.741 | 1942.8 |\n| 1 | 475.9 | 2361.7 | 10.08 | 0.671 | 956.5 |\n| 2 | 488.0 | 2393.6 | 10.41 | 0.571 | 873.1 |\n| 3 | 493.9 | 2419.3 | 10.73 | 0.544 | 849.7 |\n| 4 | 503.1 | 2454.9 | 11.12 | 0.463 | 817.0 |\n| 5 | 510.1 | 2479.8 | 11.60 | 0.419 | 785.6 |\n| 6 | 519.2 | 2507.7 | 12.12 | 0.411 | 752.5 |\n| 7 | 526.8 | 2528.1 | 12.69 | 0.361 | 728.2 |\n| 8 | 537.0 | 2548.0 | 13.46 | 0.299 | 676.8 |\n| 9 | 545.4 | 2560.1 | 14.21 | 0.231 | 647.4 |\n\n趋势符合预期：eff_rank ↑、PPL ↑、D-4 ↓、sigma1 ↓ — 典型 collapse 缓解但仍在退化。\n\n**下一步**：等 ~5 分钟后重新检查 exp_018 是否完成。完成后提取 Gen 10 metrics、更新 registry 为 DONE、然后启动 exp_020。要我现在等几分钟后再查吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/status-exp-018-020-cuda0.md"
+}

@@ -1,0 +1,100 @@
+{
+  "epsilon": 1e-10,
+  "spectral_samples": 1000,
+  "pythia_410m": {
+    "model": "EleutherAI/pythia-410m-deduped",
+    "gen0_empirical": {
+      "matrix_shape": [1000, 1024],
+      "n_singular_values": 1000,
+      "min_sv": 0.12916269898414612,
+      "max_sv": 1942.81640625,
+      "count_above_eps": 1000,
+      "count_total": 1000,
+      "ratio_min_to_eps": 1291627008.0,
+      "condition_number": 15041.62109375,
+      "percentile_svs": {
+        "p1_sv1": 1942.81640625,
+        "p10_sv10": 162.46688842773438,
+        "p100_sv100": 48.857879638671875,
+        "p500_sv500": 11.730152130126953,
+        "p900_sv900": 1.9944308996200562,
+        "p1000_sv_min": 0.12916269898414612
+      }
+    },
+    "all_experiments": {
+      "r=0.0 (exp_001)": {
+        "log_det_range": [2178.9, 2469.9],
+        "effective_rank_range": [417.5, 496.4]
+      },
+      "r=0.2 (exp_007)": {
+        "log_det_range": [2358.3, 2479.7],
+        "effective_rank_range": [417.5, 511.3]
+      },
+      "r=0.25 (exp_009)": {
+        "log_det_range": [2362.1, 2485.0],
+        "effective_rank_range": [417.5, 512.5]
+      },
+      "r=0.3 (exp_008)": {
+        "log_det_range": [2366.1, 2511.1],
+        "effective_rank_range": [417.5, 521.3]
+      },
+      "r=0.5 (exp_004)": {
+        "log_det_range": [2366.6, 2573.2],
+        "effective_rank_range": [417.5, 554.5]
+      }
+    }
+  },
+  "gpt2_medium": {
+    "model": "gpt2-medium",
+    "note": "Worst-case collapse: r=0 pure synthetic, eff_rank drops to 97.02 at Gen 10",
+    "gen_0": {
+      "generation": 0,
+      "effective_rank": 23.09,
+      "matrix_shape": [1000, 1024],
+      "n_singular_values": 1000,
+      "max_sv": 6598.1123,
+      "min_sv": 0.01839116,
+      "min_sv_over_eps": 1.84e+08,
+      "count_above_eps": 1000,
+      "count_total": 1000,
+      "condition_number": 358765.34,
+      "bottom_10_svs": [0.05643, 0.05380, 0.05107, 0.04947, 0.04595, 0.04209, 0.03817, 0.03322, 0.02878, 0.01839]
+    },
+    "gen_9": {
+      "generation": 9,
+      "effective_rank": 102.96,
+      "matrix_shape": [1000, 1024],
+      "n_singular_values": 1000,
+      "max_sv": 1570.6707,
+      "min_sv": 0.01912754,
+      "min_sv_over_eps": 1.91e+08,
+      "count_above_eps": 1000,
+      "count_total": 1000,
+      "condition_number": 82115.66,
+      "bottom_10_svs": [0.04744, 0.04400, 0.04121, 0.03927, 0.03569, 0.03032, 0.02817, 0.02437, 0.02338, 0.01913]
+    },
+    "gen_10": {
+      "generation": 10,
+      "effective_rank": 97.02,
+      "matrix_shape": [1000, 1024],
+      "n_singular_values": 1000,
+      "max_sv": 1497.6558,
+      "min_sv": 0.01603924,
+      "min_sv_over_eps": 1.60e+08,
+      "count_above_eps": 1000,
+      "count_total": 1000,
+      "condition_number": 93374.47,
+      "bottom_10_svs": [0.04118, 0.03829, 0.03543, 0.03405, 0.03126, 0.02960, 0.02578, 0.02178, 0.01920, 0.01604]
+    }
+  },
+  "summary": {
+    "clipping_ever_active": false,
+    "worst_case_model": "gpt2-medium",
+    "worst_case_condition": "r=0 pure synthetic, Gen 10",
+    "worst_case_eff_rank": 97.02,
+    "worst_case_min_sv": 0.01603924,
+    "worst_case_min_sv_over_eps": 1.60e+08,
+    "worst_case_count_above_eps": "1000/1000",
+    "conclusion": "Under the most extreme collapse observed (GPT-2-medium Gen 10, r=0, eff_rank=97.02), sigma_min = 1.60e-2, still 8 orders of magnitude above epsilon=1e-10. Clipping is never activated."
+  }
+}

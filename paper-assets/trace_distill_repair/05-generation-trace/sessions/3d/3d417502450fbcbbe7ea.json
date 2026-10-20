@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.0",
+  "id": "3d417502450fbcbbe7ea",
+  "project": "trace_distill_repair",
+  "kind": "worker",
+  "title": "ssh clean scoring pipeline",
+  "task_key": "worker_ssh_clean_scoring_pipeline_20260514T214240",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_clean_scoring_pipeline_20260514T214240.log",
+    "occurrence": 1,
+    "bytes": 1325492,
+    "sha256": "7c93ced2fb2731e4e5b9a2e730a3aea1db0ea7b1e7311aa7cbbceabc293d4dec"
+  },
+  "statistics": {
+    "messages": 1253,
+    "user_turns": 1,
+    "tool_calls": 538,
+    "roles": {
+      "log": 1,
+      "system": 42,
+      "record": 1,
+      "assistant": 130,
+      "tool_call": 538,
+      "tool_result": 538,
+      "user": 1,
+      "result": 2
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1202,
+      "chunks": [
+        {
+          "path": "3d417502450fbcbbe7ea-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "3d417502450fbcbbe7ea-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "3d417502450fbcbbe7ea-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "3d417502450fbcbbe7ea-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "3d417502450fbcbbe7ea-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "3d417502450fbcbbe7ea-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "3d417502450fbcbbe7ea-part-0007.json",
+          "message_count": 122
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 51,
+      "chunks": [
+        {
+          "path": "3d417502450fbcbbe7ea-part-0007.json",
+          "message_count": 51
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-clean-scoring-pipeline.md"
+}

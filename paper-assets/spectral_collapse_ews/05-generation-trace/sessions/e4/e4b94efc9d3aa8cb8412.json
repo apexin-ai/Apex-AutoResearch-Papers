@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e4b94efc9d3aa8cb8412",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ops exp019 check and extract",
+  "task_key": "worker_ops_exp019-check-and-extract_20260524T020626",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp019-check-and-extract_20260524T020626_result.json",
+    "occurrence": 1,
+    "bytes": 2153,
+    "sha256": "50e38d4d07577f85f4de7f86f4f5f4354ce6b0b7abe903efb68e4aa725b874d0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练每 gen 约 3125 步。Gen 10 在 2900/3125，训练快结束，但后面还有 50k sample generation + metrics。估计 ~30-60 min 完成。\n\n## 汇报\n\n### 1. exp_019 状态：未完成（Gen 10 训练中）\n\n进程 PID 757587 活跃（运行 22h），GPU 1，Gen 10 fine-tuning step 2900/~3125。训练即将结束但还需生成 50k samples + 计算 metrics，预计 **30-60 分钟**后 gen_10 写入结果文件。\n\n**Gen 0-9 Metrics（已就绪）：**\n\n| Gen | r_eff | log_det | PPL | D-4 | σ₁ |\n|-----|-------|---------|------|------|------|\n| 0 | 417.5 | 2366.7 | 9.55 | 0.730 | 1942.8 |\n| 1 | 476.6 | 2369.4 | 10.28 | 0.654 | 961.5 |\n| 2 | 483.2 | 2361.1 | 10.73 | 0.562 | 867.8 |\n| 3 | 486.5 | 2365.6 | 11.14 | 0.469 | 823.0 |\n| 4 | 489.2 | 2377.1 | 11.50 | 0.399 | 786.8 |\n| 5 | 493.1 | 2395.6 | 11.83 | 0.377 | 754.3 |\n| 6 | 494.1 | 2411.8 | 12.16 | 0.333 | 735.2 |\n| 7 | 495.7 | 2424.4 | 12.44 | 0.307 | 730.1 |\n| 8 | 497.2 | 2436.1 | 12.73 | 0.283 | 743.6 |\n| 9 | 502.6 | 2451.3 | 13.07 | 0.232 | 709.5 |\n\n### 2. exp_020 状态：Gen 7 生成中\n\n当前 gen_0-6 已完成。Gen 7 正在 sample generation（23360/50000）。\n\n| Gen | r_eff | log_det | PPL | D-4 | σ₁ |\n|-----|-------|---------|------|------|------|\n| 0 | 23.1 | 689.4 | 15.45 | 0.913 | 6598.1 |\n| 1 | 155.2 | 885.3 | 16.42 | 0.891 | 1463.5 |\n| 2 | 185.4 | 924.4 | 18.94 | 0.868 | 1190.7 |\n| 3 | 184.9 | 889.7 | 23.33 | 0.837 | 1172.3 |\n| 4 | 169.6 | 817.6 | 32.11 | 0.764 | 1224.0 |\n| 5 | 151.9 | 732.1 | 49.35 | 0.658 | 1317.5 |\n| 6 | 136.1 | 658.1 | 76.81 | 0.559 | 1449.3 |\n\nPure collapse 进展明显：PPL 爆炸 (15→77)，r_eff 下降 (23→136 先升后降)，σ₁ 从 gen_1 起反弹上升。\n\n### 3. GPU 状态\n\n| GPU | Utilization | Memory Used | Total |\n|-----|------------|-------------|-------|\n| 0 | 95% | 26.4 GB | 95.6 GB |\n| 1 | 96% | 25.0 GB | 95.6 GB |\n\n两块卡都在满载运行（exp_020 用 GPU 0，exp_019 用 GPU 1），无空闲 GPU。\n\n### 4. 本地保存\n\ngen_10 未就绪，暂不保存 `artifacts/exp_019/full_metrics.json`。建议 30-60 分钟后再提取。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp019-check-and-extract.md"
+}

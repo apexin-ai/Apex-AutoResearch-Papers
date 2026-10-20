@@ -1,0 +1,1035 @@
+# code compare seeds script
+
+**Spectral Early Warning Signals for Model Collapse and Their Prevention–Detectability Tradeoff** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 35
+- **Recorded user turns:** 0
+- **Tool calls:** 17
+- **Original source:** `logs/chats/worker_code_compare-seeds-script_20260519T123727.jsonl`
+- **Structured JSON:** [`af2f405db6d51e8e40bd.json`](../../sessions/af/af2f405db6d51e8e40bd.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+35 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-19T12:39:28.914440+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_compare-seeds-script_20260519T123727",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-19T12:39:28.914846+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_compare-seeds-script_20260519T123727",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-19T12:39:28.915031+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx6000-diagprobe",
+  "command": "ls /root/spectral_collapse_ews/results/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_compare-seeds-script_20260519T123727",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx6000-diagprobe",
+    "command": "ls /root/spectral_collapse_ews/results/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-19T12:39:28.915196+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"alternative_ews_comparison.json\\nalternative_ews_exp004_fixedmix.json\\nalternative_ews_exp006_adaptive.json\\nalternative_ews_r05_comparison.json\\nalternative_ews_v2_exp001.json\\nalternative_ews_v2_exp004.json\\nalternative_ews_v2_exp006.json\\nauto_eval.log\\ncontroller_activation_analysis.json\\nhellaswag_gen0\\nhellaswag_gen1\\nhellaswag_gen10\\nhellaswag_gen2\\nhellaswag_gen3\\nhellaswag_gen4\\nhellaswag_gen5\\nhellaswag_gen6\\nhellaswag_gen7\\nhellaswag_gen8\\nhellaswag_gen9\\nlogdet_gen012.json\\nphase0_1b\\nphase0_analysis.json\\nphase0_analysis_plots.png\\nphase0_analysis_report.json\\nphase0_gen4_run.log\\nphase0_plots.png\\nphase0_results.json\\nphase0_results.json.bak\\nphase0_results_mock.json\\nphase0_resume_run.log\\nphase0_run.log\\nphase0_summary.csv\\nphase1_adaptive_k10_seed42_results.json\\nphase1_adaptive_k10_seed42_results_controller.json\\nphase1_adaptive_k10_seed42_summary.json\\nphase1_adaptive_k20_seed42_results.json.bak\\nphase1_adaptive_k20_seed42_results_gen0-4_backup.json\\nphase1_adaptive_seed42_results.json\\nphase1_fixed_mix_r025_seed42_results.json\\nphase1_fixed_mix_r02_seed42_results.json\\nphase1_fixed_mix_r02_seed42_summary.json\\nphase1_fixed_mix_r03_seed42_results.json\\nphase1_fixed_mix_r03_seed42_summary.json\\nphase1_fixed_mix_seed42_results.json\\nphase1_fixed_mix_seed42_summary.json\\nphase1_pure_collapse_seed43_results.json\\nsecond_order_analysis.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.14}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_compare-seeds-script_20260519T123727",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-19T12:39:28.915352+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx6000-diagprobe",
+  "command": "ls /root/spectral_collapse_ews/results/phase1_pure_collapse_seed42*.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_compare-seeds-script_20260519T123727",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx6000-diagprobe",
+    "command": "ls /root/spectral_collapse_ews/results/phase1_pure_collapse_seed42*.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-19T12:39:28.915484+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/spectral_collapse_ews/results/phase1_pure_collapse_seed42*.json': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_compare-seeds-script_20260519T123727",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-19T12:39:28.915628+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx6000-diagprobe",
+  "command": "head -100 /root/spectral_collapse_ews/results/phase0_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_compare-seeds-script_20260519T123727",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx6000-diagprobe",
+    "command": "head -100 /root/spectral_collapse_ews/results/phase0_results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-19T12:39:28.915762+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx6000-diagprobe",
+  "command": "head -100 /root/spectral_collapse_ews/results/phase1_pure_collapse_seed43_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_compare-seeds-script_20260519T123727",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx6000-diagprobe",
+    "command": "head -100 /root/spectral_collapse_ews/results/phase1_pure_collapse_seed43_results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-19T12:39:28.915947+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"generation\\\": 0,\\n    \\\"effective_rank\\\": 417.5472106933594,\\n    \\\"perplexity\\\": 9.553585720044504,\\n    \\\"distinct_4\\\": 0.7414389763779528,\\n    \\\"top_10_singular_values\\\": [\\n      1942.81640625,\\n      488.3680419921875,\\n      407.61602783203125,\\n      284.3362121582031,\\n      227.26036071777344,\\n      210.67007446289062,\\n      181.43833923339844,\\n      171.5595703125,\\n      168.53977966308594,\\n      162.46688842773438\\n    ],\\n    \\\"log_det\\\": 2366.68359375\\n  },\\n  {\\n    \\\"generation\\\": 1,\\n    \\\"effective_rank\\\": 491.7675476074219,\\n    \\\"perplexity\\\": 11.383179598399748,\\n    \\\"distinct_4\\\": 0.6256200787401575,\\n    \\\"top_10_singular_values\\\": [\\n      803.9586791992188,\\n      508.54547119140625,\\n      443.276123046875,\\n      304.5213623046875,\\n      260.95745849609375,\\n      237.09011840820312,\\n      203.54544067382812,\\n      196.2337188720703,\\n      190.11251831054688,\\n      186.3628692626953\\n    ],\\n    \\\"train_loss\\\": 1.6227915806293487,\\n    \\\"log_det\\\": 2464.76220703125\\n  },\\n  {\\n    \\\"generation\\\": 2,\\n    \\\"effective_rank\\\": 496.44146728515625,\\n    \\\"perplexity\\\": 13.580982695800937,\\n    \\\"distinct_4\\\": 0.5153956692913386,\\n    \\\"top_10_singular_values\\\": [\\n      712.03125,\\n      487.2023010253906,\\n      426.35504150390625,\\n      307.8666687011719,\\n      264.7674865722656,\\n      234.6350860595703,\\n      201.30624389648438,\\n      195.36538696289062,\\n      193.6844940185547,\\n      187.17959594726562\\n    ],\\n    \\\"train_loss\\\": 1.2682369999027252,\\n    \\\"log_det\\\": 2469.927734375\\n  },\\n  {\\n    \\\"generation\\\": 3,\\n    \\\"effective_rank\\\": 493.3146057128906,\\n    \\\"log_det\\\": 2440.565673828125,\\n    \\\"perplexity\\\": 16.246410615233863,\\n    \\\"distinct_4\\\": 0.4899665354330709,\\n    \\\"top_1
+…[truncated 1069 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_compare-seeds-script_20260519T123727",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-19T12:39:28.916133+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"generation\\\": 0,\\n    \\\"effective_rank\\\": 417.5472106933594,\\n    \\\"log_det\\\": 2366.682861328125,\\n    \\\"perplexity\\\": 9.553585720044504,\\n    \\\"distinct_4\\\": 0.7414783464566929,\\n    \\\"top_10_singular_values\\\": [\\n      1942.81640625,\\n      488.3680419921875,\\n      407.61602783203125,\\n      284.3362121582031,\\n      227.26036071777344,\\n      210.67007446289062,\\n      181.43833923339844,\\n      171.5595703125,\\n      168.53977966308594,\\n      162.46688842773438\\n    ]\\n  },\\n  {\\n    \\\"generation\\\": 1,\\n    \\\"effective_rank\\\": 490.8340148925781,\\n    \\\"log_det\\\": 2462.61962890625,\\n    \\\"perplexity\\\": 11.37098454474816,\\n    \\\"distinct_4\\\": 0.599744094488189,\\n    \\\"top_10_singular_values\\\": [\\n      814.6142578125,\\n      513.8408813476562,\\n      447.2234191894531,\\n      303.140380859375,\\n      256.3912048339844,\\n      236.6864776611328,\\n      205.0189666748047,\\n      195.7064666748047,\\n      190.6744842529297,\\n      187.55303955078125\\n    ],\\n    \\\"train_loss\\\": 1.6244551236724853,\\n    \\\"mix_ratio\\\": 0.0,\\n    \\\"controller_ratio\\\": 0.0\\n  },\\n  {\\n    \\\"generation\\\": 2,\\n    \\\"effective_rank\\\": 496.2438659667969,\\n    \\\"log_det\\\": 2466.6259765625,\\n    \\\"perplexity\\\": 13.565253507239635,\\n    \\\"distinct_4\\\": 0.5047992125984252,\\n    \\\"top_10_singular_values\\\": [\\n      718.1212158203125,\\n      489.30389404296875,\\n      430.5401916503906,\\n      301.65911865234375,\\n      257.00213623046875,\\n      232.58033752441406,\\n      204.14691162109375,\\n      197.1549835205078,\\n      196.33206176757812,\\n      189.59495544433594\\n    ],\\n    \\\"train_loss\\\": 1.2609268804359437,\\n    \\\"mix_ratio\\\": 0.0,\\n    \\\"controller_ratio\\\": 0.0\\n  }\\n]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_second
+…[truncated 13 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_compare-seeds-script_20260519T123727",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-19T12:39:28.916317+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx6000-diagprobe",
+  "command": "python3 -c \"import json; d=json.load(open('/root/spectral_collapse_ews/results/phase0_results.json')); print(len(d), [x['generation'] for x in d])\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_compare-seeds-script_20260519T123727",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx6000-diagprobe",
+    "command": "python3 -c \"import json; d=json.load(open('/root/spectral_collapse_ews/results/phase0_results.json')); print(len(d), [x['generation'] for x in d])\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-19T12:39:28.916450+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_compare-seeds-script_20260519T123727",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-19T12:39:28.916573+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx6000-diagprobe",
+  "command": "python3 -c \"import json; d=json.load(open('/root/spectral_collapse_ews/results/phase1_pure_collapse_seed43_results.json')); print(len(d), [x['generation'] for x in d])\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_compare-seeds-script_20260519T123727",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx6000-diagprobe",
+    "command": "python3 -c \"import json; d=json.load(open('/root/spectral_collapse_ews/results/phase1_pure_collapse_seed43_results.json')); print(len(d), [x['generation'] for x in d])\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-19T12:39:28.916723+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_compare-seeds-script_20260519T123727",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-19T12:39:28.916841+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx6000-diagprobe",
+  "command": "ls /root/spectral_collapse_ews/scripts/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_compare-seeds-script_20260519T123727",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx6000-diagprobe",
+    "command": "ls /root/spectral_collapse_ews/scripts/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-19T12:39:28.916971+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"compute_alternative_ews.py\\ncompute_alternative_ews_v2.py\\ncompute_controller_activation.py\\ncompute_second_order_ews.py\\ndry_run_d014.py\\nlaunch_exp_004.sh\\nlaunch_fixed_mix_r005.sh\\nlaunch_fixed_mix_r01.sh\\nlaunch_fixed_mix_r02.sh\\nlaunch_fixed_mix_r025_seed42.sh\\nlaunch_fixed_mix_r02_resume.sh\\nlaunch_fixed_mix_r02_s43.sh\\nlaunch_fixed_mix_r02_s44.sh\\nlaunch_fixed_mix_r02_seed43.sh\\nlaunch_fixed_mix_r02_seed44.sh\\nlaunch_fixed_mix_r03.sh\\nlaunch_fixed_mix_r05_s43.sh\\nlaunch_fixed_mix_r05_s44.sh\\nlaunch_fixed_mix_r05_seed43.sh\\nlaunch_fixed_mix_r05_seed44.sh\\nlaunch_fixed_mix_r07.sh\\nlaunch_linear_increasing.sh\\nlaunch_pure_collapse_s43.sh\\nlaunch_pure_collapse_s44.sh\\nlaunch_pure_collapse_seed43.sh\\nlaunch_pure_collapse_seed44.sh\\nplot_phase_diagram.py\\nplot_spectral_trajectory.py\\nresume_fixed_mix_r02_seed42_gen5to10.sh\\nrun_ews_r05.sh\\nrun_ews_r05_gpu.sh\\nrun_ews_r05_v2.sh\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_compare-seeds-script_20260519T123727",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-19T12:39:28.917098+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx6000-diagprobe",
+  "command": "python3 -c \"import json; d=json.load(open('/root/spectral_collapse_ews/results/phase0_results.json')); print(len(d), [x['generation'] for x in d])\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_compare-seeds-script_20260519T123727",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx6000-diagprobe",
+    "command": "python3 -c \"import json; d=json.load(open('/root/spectral_collapse_ews/results/phase0_results.json')); print(len(d), [x['generation'] for x in d])\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-19T12:39:28.917223+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'python3 -c \\\"import json; d=json.load(open(\\\\'/root/spectral_collapse_ews/results/phase0_results.json\\\\')); print(len(d), [x[\\\\'generation\\\\'] for x in d])\\\"'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_compare-seeds-script_20260519T123727",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-19T12:39:28.917340+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx6000-diagprobe",
+  "command": "python3 -c \"import json; d=json.load(open('/root/spectral_collapse_ews/results/phase1_pure_collapse_seed43_results.json')); print(len(d), [x['generation'] for x in d])\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_compare-seeds-script_20260519T123727",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx6000-diagprobe",
+    "command": "python3 -c \"import json; d=json.load(open('/root/spectral_collapse_ews/results/phase1_pure_collapse_seed43_results.json')); print(len(d), [x['generation'] for x in d])\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-19T12:39:28.917462+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'python3 -c \\\"import json; d=json.load(open(\\\\'/root/spectral_collapse_ews/results/phase1_pure_collapse_seed43_results.json\\\\')); print(len(d), [x[\\\\'generation\\\\'] for x in d])\\\"'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.93}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_compare-seeds-script_20260519T123727",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-19T12:39:28.917576+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx6000-diagprobe",
+  "command": "which python",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_compare-seeds-script_20260519T123727",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx6000-diagprobe",
+    "command": "which python",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-19T12:39:28.917718+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'which python'\\n\\nExit code: 1\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.87}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_compare-seeds-script_20260519T123727",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-19T12:39:28.917839+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx6000-diagprobe",
+  "command": "ls /opt/conda/bin/python* 2>/dev/null || ls /usr/bin/python* 2>/dev/null || find / -name \"python*\" -type f 2>/dev/null | head -5",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_compare-seeds-script_20260519T123727",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx6000-diagprobe",
+    "command": "ls /opt/conda/bin/python* 2>/dev/null || ls /usr/bin/python* 2>/dev/null || find / -name \"python*\" -type f 2>/dev/null | head -5",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-19T12:39:28.917963+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/opt/nvidia/nsight-compute/2025.1.1/host/target-linux-x64/python/bin/python\\n/root/miniconda3/bin/python3.12\\n/root/miniconda3/bin/python3.12-config\\n/root/miniconda3/conda-meta/python-3.12.3-h996f2a0_1.json\\n/root/miniconda3/envs/bugsinpy/conda-meta/python-3.8.20-he870216_0.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_compare-seeds-script_20260519T123727",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-19T12:39:28.918080+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx6000-diagprobe",
+  "command": "/root/miniconda3/bin/python3.12 -c \"import json; d=json.load(open('/root/spectral_collapse_ews/results/phase0_results.json')); print(len(d), [x['generation'] for x in d])\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_compare-seeds-script_20260519T123727",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx6000-diagprobe",
+    "command": "/root/miniconda3/bin/python3.12 -c \"import json; d=json.load(open('/root/spectral_collapse_ews/results/phase0_results.json')); print(len(d), [x['generation'] for x in d])\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-19T12:39:28.918195+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"11 [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_compare-seeds-script_20260519T123727",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-19T12:39:28.918306+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx6000-diagprobe",
+  "command": "/root/miniconda3/bin/python3.12 -c \"import json; d=json.load(open('/root/spectral_collapse_ews/results/phase1_pure_collapse_seed43_results.json')); print(len(d), [x['generation'] for x in d])\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_compare-seeds-script_20260519T123727",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx6000-diagprobe",
+    "command": "/root/miniconda3/bin/python3.12 -c \"import json; d=json.load(open('/root/spectral_collapse_ews/results/phase1_pure_collapse_seed43_results.json')); print(len(d), [x['generation'] for x in d])\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-19T12:39:28.918422+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"3 [0, 1, 2]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_compare-seeds-script_20260519T123727",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-19T12:39:28.918626+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx6000-diagprobe",
+  "command": "cat << 'PYEOF' > /root/spectral_collapse_ews/scripts/compare_seeds.py\n\"\"\"\nSeed comparison script for spectral collapse experiments.\n\nReads multiple results JSON files (one per seed), computes per-generation\ncomparison tables, phase boundary consistency checks, and mean+/-std summaries.\n\nInput:  List of JSON file paths, each a list of per-generation dicts with keys\n        generation, log_det, effective_rank, perplexity, distinct_4, ...\nOutput: Formatted tables to stdout + JSON to results/seed_comparison.json.\n\nUsage:\n    python compare_seeds.py path1.json path2.json [--labels seed42 seed43]\n    python compare_seeds.py results/*.json --labels seed42 seed43 seed44\n\"\"\"\n\nimport argparse\nimport json\nimport math\nimport os\nimport sys\nfrom pathlib import Path\n\n\nMETRICS = [\"log_det\", \"effective_rank\", \"perplexity\", \"distinct_4\"]\nMETRIC_LABELS = {\"log_det\": \"SLV(log_det)\", \"effective_rank\": \"eff_rank\",\n                 \"perplexity\": \"ppl\", \"distinct_4\": \"distinct4\"}\n\n\ndef load_results(path):\n    \"\"\"Load a results JSON file and return list of per-generation dicts.\"\"\"\n    with open(path) as f:\n        data = json.load(f)\n    data.sort(key=lambda x: x[\"generation\"])\n    return data\n\n\ndef align_seeds(all_data):\n    \"\"\"Truncate all seed data to the shortest generation count.\"\"\"\n    min_len = min(len(d) for d in all_data)\n    return [d[:min_len] for d in all_data], min_len\n\n\ndef print_per_gen_table(all_data, labels, n_gen):\n    \"\"\"Print per-generation comparison table with pairwise deltas.\"\"\"\n    n_seeds = len(labels)\n    print(\"=\" * 80)\n    print(\"PER-GENERATION COMPARISON\")\n    print(\"=\" * 80)\n\n    for metric in METRICS:\n        ml = METRIC_LABELS[metric]\n        print(f\"\\n--- {ml} ---\")\n\n        header = f\"{'Gen':>4}\"\n        for lb in labels:\n            header += f\"  {lb:>12}\"\n        if n_seeds >= 2:\n            for i in range(n_seeds):\n                for j in range(i + 1, n_seeds):\n                    header += f\"  {'D(' + labels[i][:4] + '-' + labels[j][:4] + ')':>14}\"\n                    header += f\"  {'%diff':>7}\"\n        print(header)\n        print(\"-\" * len(header))\n\n        for g in range(n_gen):\n            vals = []\n            for sd in all_data:\n                vals.append(sd[g].get(metric, float(\"nan\")))\n            row = f\"{g:>4}\"\n            for v in vals:\n                row += f\"  {v:>12.4f}\"\n            if n_seeds >= 2:\n                for i in range(n_seeds):\n                    for j in range(i + 1, n_seeds):\n                        delta = vals[i] - vals[j]\n                        avg = (vals[i] + vals[j]) / 2 if (vals[i] + vals[j]) != 0 else 1e-9\n                        pct = delta / abs(avg) * 100\n                        row += f\"  {delta:>14.4f}\"\n                        row += f\"  {pct:>6.2f}%\"\n            print(row)\n\n\ndef detect_phase_boundaries(data):\n    \"\"\"\n    Detect three phase boundaries from SLV (log_det) trajectory.\n\n    Returns dict with:\n      decompression_peak: gen where SLV is maximal\n      onset: first gen after peak where SLV decreases\n      collapse: gen where SLV starts sustained decrease (3+ consecutive drops)\n    \"\"\"\n    slvs = [d.get(\"log_det\", float(\"nan\")) for d in data]\n    n = len(slvs)\n\n    peak_gen = max(range(n), key=lambda i: slvs[i])\n    peak_val = slvs[peak_gen]\n\n    onset_gen = None\n    for i in range(peak_gen + 1, n):\n        if slvs[i] < slvs[i - 1]:\n            onset_gen = i\n            break\n\n    collapse_gen = None\n    for i in range(peak_gen, n - 2):\n        if slvs[i] > slvs[i + 1] > slvs[i + 2]:\n            collapse_gen = i\n            break\n\n    return {\n        \"decompression_peak\": {\"gen\": peak_gen, \"slv\": peak_val},\n        \"onset\": {\"gen\": onset_gen, \"slv\": slvs[onset_gen] if onset_gen is not None else None},\n        \"collapse\": {\"gen\": collapse_gen, \"slv\": slvs[collapse_gen] if collapse_gen is not None else None},\n    }\n\n\ndef print_phase_boundaries(all_data, labels):\n    \"\"\"Print phase boundary analysis and cross-seed consistency.\"\"\"\n    print(\"\\n\" + \"=\" * 80)\n    print(\"PHASE BOUNDARY ANALYSIS\")\n    print(\"=\" * 80)\n\n    boundaries = []\n    for i, (data, lb) in enumerate(zip(all_data, labels)):\n        pb = detect_phase_boundaries(data)\n        boundaries.append(pb)\n        print(f\"\\n  [{lb}]\")\n        peak = pb[\"decompression_peak\"]\n        print(f\"    Decompression peak : Gen {peak['gen']} (SLV = {peak['slv']:.2f})\")\n        onset = pb[\"onset\"]\n        if onset[\"gen\"] is not None:\n            print(f\"    Onset (first drop) : Gen {onset['gen']} (SLV = {onset['slv']:.2f})\")\n        else:\n            print(f\"    Onset (first drop) : not detected (SLV never decreases after peak)\")\n        collapse = pb[\"collapse\"]\n        if collapse[\"gen\"] is not None:\n            print(f\"    Collapse (sustained): Gen {collapse['gen']} (SLV = {collapse['slv']:.2f})\")\n        else:\n            print(f\"    Collapse (sustained): not detected (no 3+ consecutive drops)\")\n\n    if len(labels) >= 2:\n        print(f\"\\n  CONSISTENCY CHECK:\")\n        for key, desc in [(\"decompression_peak\", \"Decompression peak\"),\n                          (\"onset\", \"Onset\"), (\"collapse\", \"Collapse\")]:\n            gens = [b[key][\"gen\"] for b in boundaries]\n            if all(g is not None for g in gens):\n                if len(set(gens)) == 1:\n                    print(f\"    {desc:25s}: CONSISTENT (all at Gen {gens[0]})\")\n                else:\n                    print(f\"    {desc:25s}: DIVERGENT  {dict(zip(labels, gens))}\")\n            else:\n                none_labels = [lb for lb, g in zip(labels, gens) if g is None]\n                print(f\"    {desc:25s}: INCOMPLETE (not detected for {none_labels})\")\n\n    return boundaries\n\n\ndef compute_mean_std(all_data, n_gen):\n    \"\"\"Compute per-gen mean and std across seeds for each metric.\"\"\"\n    summary = []\n    for g in range(n_gen):\n        entry = {\"generation\": g}\n        for metric in METRICS:\n            vals = [sd[g].get(metric, float(\"nan\")) for sd in all_data]\n            vals = [v for v in vals if not math.isnan(v)]\n            if vals:\n                mean = sum(vals) / len(vals)\n                if len(vals) > 1:\n                    var = sum((v - mean) ** 2 for v in vals) / (len(vals) - 1)\n                    std = math.sqrt(var)\n                else:\n                    std = 0.0\n                entry[metric + \"_mean\"] = mean\n                entry[metric + \"_std\"] = std\n            else:\n                entry[metric + \"_mean\"] = float(\"nan\")\n                entry[metric + \"_std\"] = float(\"nan\")\n        summary.append(entry)\n    return summary\n\n\ndef print_mean_std_table(summary):\n    \"\"\"Print mean +/- std table in Table 1 format.\"\"\"\n    print(\"\\n\" + \"=\" * 80)\n    print(\"MEAN +/- STD SUMMARY (Table 1 format)\")\n    print(\"=\" * 80)\n\n    header = f\"{'Gen':>4}\"\n    for metric in METRICS:\n        ml = METRIC_LABELS[metric]\n        header += f\"  {ml:>22}\"\n    print(header)\n    print(\"-\" * len(header))\n\n    for row in summary:\n        g = row[\"generation\"]\n        line = f\"{g:>4}\"\n        for metric in METRICS:\n            m = row[metric + \"_mean\"]\n            s = row[metric + \"_std\"]\n            if math.isnan(m):\n                line += f\"  {'N/A':>22}\"\n            elif s == 0.0:\n                line += f\"  {m:>22.4f}\"\n            else:\n                cell = f\"{m:.2f} +/- {s:.2f}\"\n                line += f\"  {cell:>22}\"\n            \n        print(line)\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"Compare results across seeds.\")\n    parser.add_argument(\"files\", nargs=\"+\", help=\"Paths to results JSON files\")\n    parser.add_argument(\"--labels\", nargs=\"*\", default=None,\n                        help=\"Labels for each seed (default: file basenames)\")\n    parser.add_argument(\"--output\", default=None,\n                        help=\"Output JSON path (default: results/seed_comparison.json)\")\n    args = parser.parse_args()\n\n    if args.labels and len(args.labels) != len(args.files):\n        print(f\"Error: {len(args.labels)} labels for {len(args.files)} files\", file=sys.stderr)\n        sys.exit(1)\n\n    all_data = []\n    labels = []\n    for i, fp in enumerate(args.files):\n        data = load_results(fp)\n        all_data.append(data)\n        if args.labels:\n            labels.append(args.labels[i])\n        else:\n            labels.append(Path(fp).stem)\n\n    aligned, n_gen = align_seeds(all_data)\n    if n_gen < len(all_data[0]):\n        lengths = {lb: len(d) for lb, d in zip(labels, all_data)}\n        print(f\"NOTE: Aligned to {n_gen} generations (shortest). Original lengths: {lengths}\\n\")\n\n    print_per_gen_table(aligned, labels, n_gen)\n    boundaries = print_phase_boundaries(all_data, labels)\n    summary = compute_mean_std(aligned, n_gen)\n    print_mean_std_table(summary)\n\n    output_path = args.output or os.path.join(\n        os.path.dirname(os.path.dirname(os.path.abspath(args.files[0]))),\n        \"results\", \"seed_comparison.json\"\n    )\n    os.makedirs(os.path.dirname(output_path), exist_ok=True)\n\n    output = {\n        \"labels\": labels,\n        \"n_gen_aligned\": n_gen,\n        \"per_gen_comparison\": [],\n        \"phase_boundaries\": {},\n        \"mean_std_summary\": summary,\n    }\n    for g in range(n_gen):\n        gen_entry = {\"generation\": g}\n        for metric in METRICS:\n            gen_entry[metric] = {lb: aligned[i][g].get(metric) for i, lb in enumerate(labels)}\n        output[\"per_gen_comparison\"].append(gen_entry)\n    for lb, pb in zip(labels, boundaries):\n        output[\"phase_boundaries\"][lb] = pb\n\n    with open(output_path, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"\\nJSON output saved to: {output_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_compare-seeds-script_20260519T123727",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx6000-diagprobe",
+    "command": "cat << 'PYEOF' > /root/spectral_collapse_ews/scripts/compare_seeds.py\n\"\"\"\nSeed comparison script for spectral collapse experiments.\n\nReads multiple results JSON files (one per seed), computes per-generation\ncomparison tables, phase boundary consistency checks, and mean+/-std summaries.\n\nInput:  List of JSON file paths, each a list of per-generation dicts with keys\n        generation, log_det, effective_rank, perplexity, distinct_4, ...\nOutput: Formatted tables to stdout + JSON to results/seed_comparison.json.\n\nUsage:\n    python compare_seeds.py path1.json path2.json [--labels seed42 seed43]\n    python compare_seeds.py results/*.json --labels seed42 seed43 seed44\n\"\"\"\n\nimport argparse\nimport json\nimport math\nimport os\nimport sys\nfrom pathlib import Path\n\n\nMETRICS = [\"log_det\", \"effective_rank\", \"perplexity\", \"distinct_4\"]\nMETRIC_LABELS = {\"log_det\": \"SLV(log_det)\", \"effective_rank\": \"eff_rank\",\n                 \"perplexity\": \"ppl\", \"distinct_4\": \"distinct4\"}\n\n\ndef load_results(path):\n    \"\"\"Load a results JSON file and return list of per-generation dicts.\"\"\"\n    with open(path) as f:\n        data = json.load(f)\n    data.sort(key=lambda x: x[\"generation\"])\n    return data\n\n\ndef align_seeds(all_data):\n    \"\"\"Truncate all seed data to the shortest generation count.\"\"\"\n    min_len = min(len(d) for d in all_data)\n    return [d[:min_len] for d in all_data], min_len\n\n\ndef print_per_gen_table(all_data, labels, n_gen):\n    \"\"\"Print per-generation comparison table with pairwise deltas.\"\"\"\n    n_seeds = len(labels)\n    print(\"=\" * 80)\n    print(\"PER-GENERATION COMPARISON\")\n    print(\"=\" * 80)\n\n    for metric in METRICS:\n        ml = METRIC_LABELS[metric]\n        print(f\"\\n--- {ml} ---\")\n\n        header = f\"{'Gen':>4}\"\n        for lb in labels:\n            header += f\"  {lb:>12}\"\n        if n_seeds >= 2:\n            for i in range(n_seeds):\n                for j in range(i + 1, n_seeds):\n                    header += f\"  {'D(' + labels[i][:4] + '-' + labels[j][:4] + ')':>14}\"\n                    header += f\"  {'%diff':>7}\"\n        print(header)\n        print(\"-\" * len(header))\n\n        for g in range(n_gen):\n            vals = []\n            for sd in all_data:\n                vals.append(sd[g].get(metric, float(\"nan\")))\n            row = f\"{g:>4}\"\n            for v in vals:\n                row += f\"  {v:>12.4f}\"\n            if n_seeds >= 2:\n                for i in range(n_seeds):\n                    for j in range(i + 1, n_seeds):\n                        delta = vals[i] - vals[j]\n                        avg = (vals[i] + vals[j]) / 2 if (vals[i] + vals[j]) != 0 else 1e-9\n                        pct = delta / abs(avg) * 100\n                        row += f\"  {delta:>14.4f}\"\n                        row += f\"  {pct:>6.2f}%\"\n            print(row)\n\n\ndef detect_phase_boundaries(data):\n    \"\"\"\n    Detect three phase boundaries from SLV (log_det) trajectory.\n\n    Returns dict with:\n      decompression_peak: gen where SLV is maximal\n      onset: first gen after peak where SLV decreases\n      collapse: gen where SLV starts sustained decrease (3+ consecutive drops)\n    \"\"\"\n    slvs = [d.get(\"log_det\", float(\"nan\")) for d in data]\n    n = len(slvs)\n\n    peak_gen = max(range(n), key=lambda i: slvs[i])\n    peak_val = slvs[peak_gen]\n\n    onset_gen = None\n    for i in range(peak_gen + 1, n):\n        if slvs[i] < slvs[i - 1]:\n            onset_gen = i\n            break\n\n    collapse_gen = None\n    for i in range(peak_gen, n - 2):\n        if slvs[i] > slvs[i + 1] > slvs[i + 2]:\n            collapse_gen = i\n            break\n\n    return {\n        \"decompression_peak\": {\"gen\": peak_gen, \"slv\": peak_val},\n        \"onset\": {\"gen\": onset_gen, \"slv\": slvs[onset_gen] if onset_gen is not None else None},\n        \"collapse\": {\"gen\": collapse_gen, \"slv\": slvs[collapse_gen] if collapse_gen is not None else None},\n    }\n\n\ndef print_phase_boundaries(all_data, labels):\n    \"\"\"Print phase boundary analysis and cross-seed consistency.\"\"\"\n    print(\"\\n\" + \"=\" * 80)\n    print(\"PHASE BOUNDARY ANALYSIS\")\n    print(\"=\" * 80)\n\n    boundaries = []\n    for i, (data, lb) in enumerate(zip(all_data, labels)):\n        pb = detect_phase_boundaries(data)\n        boundaries.append(pb)\n        print(f\"\\n  [{lb}]\")\n        peak = pb[\"decompression_peak\"]\n        print(f\"    Decompression peak : Gen {peak['gen']} (SLV = {peak['slv']:.2f})\")\n        onset = pb[\"onset\"]\n        if onset[\"gen\"] is not None:\n            print(f\"    Onset (first drop) : Gen {onset['gen']} (SLV = {onset['slv']:.2f})\")\n        else:\n            print(f\"    Onset (first drop) : not detected (SLV never decreases after peak)\")\n        collapse = pb[\"collapse\"]\n        if collapse[\"gen\"] is not None:\n            print(f\"    Collapse (sustained): Gen {collapse['gen']} (SLV = {collapse['slv']:.2f})\")\n        else:\n            print(f\"    Collapse (sustained): not detected (no 3+ consecutive drops)\")\n\n    if len(labels) >= 2:\n        print(f\"\\n  CONSISTENCY CHECK:\")\n        for key, desc in [(\"decompression_peak\", \"Decompression peak\"),\n                          (\"onset\", \"Onset\"), (\"collapse\", \"Collapse\")]:\n            gens = [b[key][\"gen\"] for b in boundaries]\n            if all(g is not None for g in gens):\n                if len(set(gens)) == 1:\n                    print(f\"    {desc:25s}: CONSISTENT (all at Gen {gens[0]})\")\n                else:\n                    print(f\"    {desc:25s}: DIVERGENT  {dict(zip(labels, gens))}\")\n            else:\n                none_labels = [lb for lb, g in zip(labels, gens) if g is None]\n                print(f\"    {desc:25s}: INCOMPLETE (not detected for {none_labels})\")\n\n    return boundaries\n\n\ndef compute_mean_std(all_data, n_gen):\n    \"\"\"Compute per-gen mean and std across seeds for each metric.\"\"\"\n    summary = []\n    for g in range(n_gen):\n        entry = {\"generation\": g}\n        for metric in METRICS:\n            vals = [sd[g].get(metric, float(\"nan\")) for sd in all_data]\n            vals = [v for v in vals if not math.isnan(v)]\n            if vals:\n                mean = sum(vals) / len(vals)\n                if len(vals) > 1:\n                    var = sum((v - mean) ** 2 for v in vals) / (len(vals) - 1)\n                    std = math.sqrt(var)\n                else:\n                    std = 0.0\n                entry[metric + \"_mean\"] = mean\n                entry[metric + \"_std\"] = std\n            else:\n                entry[metric + \"_mean\"] = float(\"nan\")\n                entry[metric + \"_std\"] = float(\"nan\")\n        summary.append(entry)\n    return summary\n\n\ndef print_mean_std_table(summary):\n    \"\"\"Print mean +/- std table in Table 1 format.\"\"\"\n    print(\"\\n\" + \"=\" * 80)\n    print(\"MEAN +/- STD SUMMARY (Table 1 format)\")\n    print(\"=\" * 80)\n\n    header = f\"{'Gen':>4}\"\n    for metric in METRICS:\n        ml = METRIC_LABELS[metric]\n        header += f\"  {ml:>22}\"\n    print(header)\n    print(\"-\" * len(header))\n\n    for row in summary:\n        g = row[\"generation\"]\n        line = f\"{g:>4}\"\n        for metric in METRICS:\n            m = row[metric + \"_mean\"]\n            s = row[metric + \"_std\"]\n            if math.isnan(m):\n                line += f\"  {'N/A':>22}\"\n            elif s == 0.0:\n                line += f\"  {m:>22.4f}\"\n            else:\n                cell = f\"{m:.2f} +/- {s:.2f}\"\n                line += f\"  {cell:>22}\"\n            \n        print(line)\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"Compare results across seeds.\")\n    parser.add_argument(\"files\", nargs=\"+\", help=\"Paths to results JSON files\")\n    parser.add_argument(\"--labels\", nargs=\"*\", default=None,\n                        help=\"Labels for each seed (default: file basenames)\")\n    parser.add_argument(\"--output\", default=None,\n                        help=\"Output JSON path (default: results/seed_comparison.json)\")\n    args = parser.parse_args()\n\n    if args.labels and len(args.labels) != len(args.files):\n        print(f\"Error: {len(args.labels)} labels for {len(args.files)} files\", file=sys.stderr)\n        sys.exit(1)\n\n    all_data = []\n    labels = []\n    for i, fp in enumerate(args.files):\n        data = load_results(fp)\n        all_data.append(data)\n        if args.labels:\n            labels.append(args.labels[i])\n        else:\n            labels.append(Path(fp).stem)\n\n    aligned, n_gen = align_seeds(all_data)\n    if n_gen < len(all_data[0]):\n        lengths = {lb: len(d) for lb, d in zip(labels, all_data)}\n        print(f\"NOTE: Aligned to {n_gen} generations (shortest). Original lengths: {lengths}\\n\")\n\n    print_per_gen_table(aligned, labels, n_gen)\n    boundaries = print_phase_boundaries(all_data, labels)\n    summary = compute_mean_std(aligned, n_gen)\n    print_mean_std_table(summary)\n\n    output_path = args.output or os.path.join(\n        os.path.dirname(os.path.dirname(os.path.abspath(args.files[0]))),\n        \"results\", \"seed_comparison.json\"\n    )\n    os.makedirs(os.path.dirname(output_path), exist_ok=True)\n\n    output = {\n        \"labels\": labels,\n        \"n_gen_aligned\": n_gen,\n        \"per_gen_comparison\": [],\n        \"phase_boundaries\": {},\n        \"mean_std_summary\": summary,\n    }\n    for g in range(n_gen):\n        gen_entry = {\"generation\": g}\n        for metric in METRICS:\n            gen_entry[metric] = {lb: aligned[i][g].get(metric) for i, lb in enumerate(labels)}\n        output[\"per_gen_comparison\"].append(gen_entry)\n    for lb, pb in zip(labels, boundaries):\n        output[\"phase_boundaries\"][lb] = pb\n\n    with open(output_path, \"w\") as f:\n        json.dump(output, f, indent=2)\n    print(f\"\\nJSON output saved to: {output_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-19T12:39:28.918884+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_compare-seeds-script_20260519T123727",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-19T12:39:28.919027+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx6000-diagprobe",
+  "command": "/root/miniconda3/bin/python3.12 /root/spectral_collapse_ews/scripts/compare_seeds.py /root/spectral_collapse_ews/results/phase0_results.json --labels seed42",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_compare-seeds-script_20260519T123727",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx6000-diagprobe",
+    "command": "/root/miniconda3/bin/python3.12 /root/spectral_collapse_ews/scripts/compare_seeds.py /root/spectral_collapse_ews/results/phase0_results.json --labels seed42",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-19T12:39:28.919191+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"================================================================================\\nPER-GENERATION COMPARISON\\n================================================================================\\n\\n--- SLV(log_det) ---\\n Gen        seed42\\n------------------\\n   0     2366.6836\\n   1     2464.7622\\n   2     2469.9277\\n   3     2440.5657\\n   4     2405.0498\\n   5     2370.1726\\n   6     2335.1653\\n   7     2304.1904\\n   8     2252.1189\\n   9     2207.5684\\n  10     2178.9490\\n\\n--- eff_rank ---\\n Gen        seed42\\n------------------\\n   0      417.5472\\n   1      491.7675\\n   2      496.4415\\n   3      493.3146\\n   4      485.6736\\n   5      479.2072\\n   6      473.0049\\n   7      464.1987\\n   8      456.7558\\n   9      448.4503\\n  10      442.4583\\n\\n--- ppl ---\\n Gen        seed42\\n------------------\\n   0        9.5536\\n   1       11.3832\\n   2       13.5810\\n   3       16.2464\\n   4       19.8041\\n   5       24.5927\\n   6       30.9139\\n   7       38.8888\\n   8       49.2899\\n   9       63.3248\\n  10       76.7808\\n\\n--- distinct4 ---\\n Gen        seed42\\n------------------\\n   0        0.7414\\n   1        0.6256\\n   2        0.5154\\n   3        0.4900\\n   4        0.4679\\n   5        0.4630\\n   6        0.4655\\n   7        0.4474\\n   8        0.4401\\n   9        0.4262\\n  10        0.4259\\n\\n================================================================================\\nPHASE BOUNDARY ANALYSIS\\n================================================================================\\n\\n  [seed42]\\n    Decompression peak : Gen 2 (SLV = 2469.93)\\n    Onset (first drop) : Gen 3 (SLV = 2440.57)\\n    Collapse (sustained): Gen 2 (SLV = 2469.93)\\n\\n================================================================================\\nMEAN +/- STD SUMMARY (Table 1 format)\\n================================================================================\\n G
+…[truncated 1525 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_compare-seeds-script_20260519T123727",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-19T12:39:28.919358+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx6000-diagprobe",
+  "command": "/root/miniconda3/bin/python3.12 /root/spectral_collapse_ews/scripts/compare_seeds.py /root/spectral_collapse_ews/results/phase0_results.json /root/spectral_collapse_ews/results/phase1_pure_collapse_seed43_results.json --labels seed42 seed43",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_compare-seeds-script_20260519T123727",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx6000-diagprobe",
+    "command": "/root/miniconda3/bin/python3.12 /root/spectral_collapse_ews/scripts/compare_seeds.py /root/spectral_collapse_ews/results/phase0_results.json /root/spectral_collapse_ews/results/phase1_pure_collapse_seed43_results.json --labels seed42 seed43",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-19T12:39:28.919518+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"NOTE: Aligned to 3 generations (shortest). Original lengths: {'seed42': 11, 'seed43': 3}\\n\\n================================================================================\\nPER-GENERATION COMPARISON\\n================================================================================\\n\\n--- SLV(log_det) ---\\n Gen        seed42        seed43    D(seed-seed)    %diff\\n---------------------------------------------------------\\n   0     2366.6836     2366.6829          0.0007    0.00%\\n   1     2464.7622     2462.6196          2.1426    0.09%\\n   2     2469.9277     2466.6260          3.3018    0.13%\\n\\n--- eff_rank ---\\n Gen        seed42        seed43    D(seed-seed)    %diff\\n---------------------------------------------------------\\n   0      417.5472      417.5472          0.0000    0.00%\\n   1      491.7675      490.8340          0.9335    0.19%\\n   2      496.4415      496.2439          0.1976    0.04%\\n\\n--- ppl ---\\n Gen        seed42        seed43    D(seed-seed)    %diff\\n---------------------------------------------------------\\n   0        9.5536        9.5536          0.0000    0.00%\\n   1       11.3832       11.3710          0.0122    0.11%\\n   2       13.5810       13.5653          0.0157    0.12%\\n\\n--- distinct4 ---\\n Gen        seed42        seed43    D(seed-seed)    %diff\\n---------------------------------------------------------\\n   0        0.7414        0.7415         -0.0000   -0.01%\\n   1        0.6256        0.5997          0.0259    4.22%\\n   2        0.5154        0.5048          0.0106    2.08%\\n\\n================================================================================\\nPHASE BOUNDARY ANALYSIS\\n================================================================================\\n\\n  [seed42]\\n    Decompression peak : Gen 2 (SLV = 2469.93)\\n    Onset (first drop) : Gen 3 (SLV = 2440.57)\\n    Collapse (sustained): Gen 2 (SLV = 2469.93)\\n\\n  [see
+…[truncated 1340 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_compare-seeds-script_20260519T123727",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35 · 2026-05-19T12:39:28.919719+00:00_
+
+双 seed 测试也通过。脚本功能正常：
+
+- **逐 Gen 对比表**：每个 metric 显示各 seed 值 + pairwise delta + %diff
+- **Phase boundary 分析**：Decompression peak 一致在 Gen 2；seed43 只有 3 gen 数据，onset/collapse 未检测到（符合预期）
+- **Mean±std 汇总表**：跨 seed 差异很小（SLV %diff < 0.13%，eff_rank < 0.19%），说明 seed 间可复现性好
+- **JSON 输出**：已保存到 `results/seed_comparison.json`
+
+脚本路径：`/root/spectral_collapse_ews/scripts/compare_seeds.py`
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_code_compare-seeds-script_20260519T123727"
+}
+```
+
+</details>
+
+---

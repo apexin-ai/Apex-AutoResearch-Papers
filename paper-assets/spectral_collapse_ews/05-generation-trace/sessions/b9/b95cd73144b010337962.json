@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b95cd73144b010337962",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ops d018 kill exp005",
+  "task_key": "worker_ops_d018-kill-exp005_20260517T211331",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d018-kill-exp005_20260517T211331_result.json",
+    "occurrence": 1,
+    "bytes": 828,
+    "sha256": "daadb435a97841e445de345422cc58afa984a8eec3496ef087e2d303a2b41d79"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成，汇报如下：\n\n## 结果\n\n| 项目 | 状态 |\n|------|------|\n| kill exp_005 (PID 116947) | ✓ 成功，进程已终止 |\n| 备份 results | ✓ 已保存至 `phase1_adaptive_k20_seed42_results_gen0-4_backup.json` |\n| cuda:1 残留检查 | ✓ 无 exp_005 残留 |\n| exp_004 独占 cuda:1 | ✓ 正常运行 |\n\n## nvidia-smi 输出\n\n```\nGPU 0: RTX PRO 6000 Black | 25017MiB/97887MiB | 74% util | PID 134918 (python)\nGPU 1: RTX PRO 6000 Black | 25017MiB/97887MiB | 86% util | PID 135411 (python)\n```\n\ncuda:1 上仅有 exp_004 (PID 135411) 在跑，GPU 利用率 86%，状态正常。\n\nexp_004 进程详情：`python run_phase1.py --condition fixed_mix --seed 42 --generations 10 --signal log_det --tau 0.002 --k 0 --signal_mode per_gen --gpu 0`（已运行约 3.3 小时）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-d018-kill-exp005.md"
+}

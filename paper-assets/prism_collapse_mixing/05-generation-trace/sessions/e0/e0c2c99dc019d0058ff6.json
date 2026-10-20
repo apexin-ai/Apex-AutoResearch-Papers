@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e0c2c99dc019d0058ff6",
+  "project": "prism_collapse_mixing",
+  "kind": "result",
+  "title": "code bootstrap ci analysis",
+  "task_key": "worker_code_bootstrap_ci_analysis_20260516T011707",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_bootstrap_ci_analysis_20260516T011707_result.json",
+    "occurrence": 1,
+    "bytes": 547,
+    "sha256": "57ea4b1388d3b1b7344ca00abe4995e5f4bd36a2b980d4f824ad110a0a3c9a74"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果摘要：\n\n**Entropy 信号**：\n- Gen0 ρ=0.929 CI [0.925, 0.934]，Gen1 ρ=0.912 CI [0.906, 0.917]  — CI 包含已知参考值\n- Δρ = -0.017，effect_size ≈ -5.8（显著下降）\n- Permutation test p=0.50（仅 2 代数据，置换检验力有限，预期行为）\n\n**Spectral_rank 信号**：\n- Δρ ≈ +0.006，effect_size ≈ 0.4（无显著变化）\n- Permutation test p=1.0（无下降趋势）\n\nJSON 已保存至 `results/bootstrap_analysis.json`。现有 Condition 1/2/3 逻辑未修改。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-bootstrap-ci-analysis.md"
+}

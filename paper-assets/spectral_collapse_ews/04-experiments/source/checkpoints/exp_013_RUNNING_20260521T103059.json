@@ -1,0 +1,93 @@
+{
+  "exp_id": "exp_013",
+  "project": "spectral_collapse_ews",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T07:51:49.117Z",
+    "updated_at": "2026-05-21T10:30:59.774Z",
+    "hypothesis": "Pure collapse (r=0, 100% synthetic) with seed 44 reproduces the three-phase spectral trajectory observed in exp_001 (seed 42) and exp_010 (seed 43). Third seed provides mean±std for Table 1 and strengthens C1 claim that spectral collapse is a deterministic structural phenomenon, not a seed-dependent artifact.",
+    "parent": "exp_001",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition pure_collapse --seed 44 --generations 10 --signal log_det --tau 0.002 --k 0 --signal_mode per_gen --gpu 0",
+      "server": "rtx6000-diagprobe",
+      "gpu": [
+        "cuda:1"
+      ],
+      "model_name": "EleutherAI/pythia-410m-deduped",
+      "seed": 44,
+      "data_path": "/root/spectral_collapse_ews/data/",
+      "data_count": "50K synthetic per gen (0% real)",
+      "generations": 10,
+      "condition": "pure_collapse",
+      "real_ratio": 0,
+      "checkpoint_dir": "/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/pure_collapse_seed44/",
+      "checkpoint_source": "EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)",
+      "eval_data": "/root/spectral_collapse_ews/data/eval_5k.jsonl",
+      "log_path": "/root/spectral_collapse_ews/logs/exp_013.log",
+      "checkpoint_path": "/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/pure_collapse_seed44/"
+    },
+    "metrics": {
+      "gen0": {
+        "eff_rank": 417.55,
+        "log_det": 2366.68,
+        "ppl": 9.55,
+        "distinct4": 0.7305
+      },
+      "gen1": {
+        "eff_rank": 490.77,
+        "log_det": 2459.4,
+        "ppl": 11.36,
+        "distinct4": 0.6019,
+        "train_loss": 1.6255
+      },
+      "gen2": {
+        "eff_rank": 495.83,
+        "log_det": 2467.38,
+        "ppl": 13.54,
+        "distinct4": 0.4943,
+        "train_loss": 1.2333
+      },
+      "gen3": {
+        "eff_rank": 493.45,
+        "log_det": 2442.4,
+        "ppl": 16.22,
+        "distinct4": 0.4283,
+        "train_loss": 1.0236
+      },
+      "gen4": {
+        "eff_rank": 488.35,
+        "log_det": 2408.35,
+        "ppl": 19.97,
+        "distinct4": 0.3731,
+        "train_loss": 0.9047
+      },
+      "gen5": {
+        "eff_rank": 480.04,
+        "log_det": 2362.67,
+        "ppl": 24.3,
+        "distinct4": 0.3569,
+        "train_loss": 0.8166
+      },
+      "gen6": {
+        "eff_rank": 472.3,
+        "log_det": 2318.17,
+        "ppl": 30.21,
+        "distinct4": 0.3326,
+        "train_loss": 0.7677
+      },
+      "gen7": {
+        "eff_rank": 463.93,
+        "log_det": 2283.98,
+        "ppl": 37.14,
+        "distinct4": 0.2862,
+        "train_loss": 0.7125
+      }
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-21T10:30:59.860394+00:00",
+  "trigger": "update_registry"
+}

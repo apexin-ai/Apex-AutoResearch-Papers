@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5c6034c89f8e36ddaa10",
+  "project": "rl-active-probe-fl",
+  "kind": "result",
+  "title": "infra download qwen3 30b",
+  "task_key": "worker_infra_download-qwen3-30b_20260514T070406",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_download-qwen3-30b_20260514T070406_result.json",
+    "occurrence": 1,
+    "bytes": 461,
+    "sha256": "2ba1e979ed672426fc867e43611f33749df1fadbf259795444f35e0644651463"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "下载已在后台运行，汇报如下：\n\n- **PID**: 12985\n- **状态**: 正在并行下载 16 个 safetensors 分片（每片 ~3.7GB）\n- **当前速度**: 0.4-1.2 MB/s（多线程并行）\n- **预估模型总大小**: ~60GB（16 × 3.7GB）\n- **磁盘可用**: 215GB，充裕\n- **不影响 GPU**: 纯 CPU + 网络 IO，GPU 0 的 GRPO 训练和 GPU 1 的 eval-base 不受影响\n\n后续查进度：`tail -5 /tmp/download_qwen3_30b.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-download-qwen3-30b.md"
+}

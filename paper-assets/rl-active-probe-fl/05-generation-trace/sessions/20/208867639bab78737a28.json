@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "208867639bab78737a28",
+  "project": "rl-active-probe-fl",
+  "kind": "worker",
+  "title": "train sft mvp",
+  "task_key": "worker_train_sft-mvp_20260514T062107",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_sft-mvp_20260514T062107.log",
+    "occurrence": 1,
+    "bytes": 674869,
+    "sha256": "7e4288791f53e5806459eb9ae8b263bc8f318e9e3cdf0fd1d9c2d6f0fd818998"
+  },
+  "statistics": {
+    "messages": 255,
+    "user_turns": 0,
+    "tool_calls": 94,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 63,
+      "tool_call": 94,
+      "tool_result": 94,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 255,
+      "chunks": [
+        {
+          "path": "208867639bab78737a28-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "208867639bab78737a28-part-0002.json",
+          "message_count": 75
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/train-sft-mvp.md"
+}

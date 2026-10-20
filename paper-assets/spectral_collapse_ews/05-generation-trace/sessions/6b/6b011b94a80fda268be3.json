@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6b011b94a80fda268be3",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ssh exp 017 018 progress check",
+  "task_key": "worker_ssh_exp_017_018_progress_check_20260523T030908",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp_017_018_progress_check_20260523T030908_result.json",
+    "occurrence": 1,
+    "bytes": 2456,
+    "sha256": "730855fda641129f6c0a0eb164b963b14ee862f86f041bc056756ff1362a441b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 训练进度汇总\n\n### exp_017 (r=0.2, seed43, cuda:1)\n- **进度**: Gen 10/10，正在生成样本 30720/40000 (77%)\n- **状态**: 运行中，日志最后更新 11:10 CST\n- **预计完成**: ~30-60 分钟内（样本生成完成后还需评估）\n- **已运行**: ~21 小时（05-22 14:18 启动）\n\n**Gen 0-9 完整 metrics:**\n\n| Gen | eff_rank | log_det | PPL | D-4 | train_loss |\n|-----|----------|---------|------|------|-----------|\n| 0 | 417.55 | 2366.68 | 9.55 | 0.7415 | — |\n| 1 | 475.29 | 2365.31 | 10.28 | 0.6842 | 1.768 |\n| 2 | 480.44 | 2358.84 | 10.74 | 0.4988 | 1.722 |\n| 3 | 487.00 | 2365.74 | 11.15 | 0.4780 | 1.425 |\n| 4 | 489.33 | 2377.37 | 11.49 | 0.4445 | 1.367 |\n| 5 | 492.09 | 2395.98 | 11.83 | 0.4435 | 1.273 |\n| 6 | 495.85 | 2411.37 | 12.15 | 0.4420 | 1.222 |\n| 7 | 498.05 | 2426.30 | 12.48 | 0.3433 | 1.191 |\n| 8 | 500.80 | 2436.78 | 12.76 | 0.3106 | 1.015 |\n| 9 | 504.08 | 2453.63 | 13.08 | 0.3060 | 0.955 |\n\n**与 seed42 Gen10 交叉对比** (seed42: log_det=2479.7, eff_rank=511.3, PPL=13.83, D-4=0.520):\n- Gen9 的 log_det(2453.6)、eff_rank(504.1)、PPL(13.08) 趋势一致，预计 Gen10 会接近 seed42 参考值\n- **D-4 显著偏低**: seed43 Gen9 = 0.306 vs seed42 Gen10 = 0.520。两个 seed 的多样性退化速度差异较大\n\n---\n\n### exp_018 (r=0.5, seed43, cuda:0)\n- **进度**: Gen 6/10，正在生成样本 24640/25000 (98.6%)\n- **状态**: 运行中，日志最后更新 11:10 CST\n- **预计完成**: ~5-6 小时（约 17:00 CST），每 gen 约 1.4 小时，剩余 Gen 7-10\n- **已运行**: ~8.5 小时（05-23 02:38 启动）\n\n**Gen 0-5 完整 metrics:**\n\n| Gen | eff_rank | log_det | PPL | D-4 | train_loss |\n|-----|----------|---------|------|------|-----------|\n| 0 | 417.55 | 2366.68 | 9.55 | 0.7415 | — |\n| 1 | 475.91 | 2361.66 | 10.08 | 0.6705 | 1.984 |\n| 2 | 488.01 | 2393.57 | 10.41 | 0.5708 | 1.912 |\n| 3 | 493.94 | 2419.34 | 10.73 | 0.5438 | 1.712 |\n| 4 | 503.05 | 2454.90 | 11.12 | 0.4632 | 1.643 |\n| 5 | 510.11 | 2479.81 | 11.60 | 0.4189 | 1.522 |\n\n**与 seed42 Gen10 交叉对比** (seed42: log_det=2573.2, eff_rank=554.5, PPL=15.20, D-4=0.095):\n- Gen5 的 log_det(2479.8) 和 eff_rank(510.1) 已接近 seed42 的 Gen5-6 水平，趋势吻合\n- r=0.5 的 collapse 速度更快（Gen5 eff_rank 510 vs r=0.2 Gen5 eff_rank 492）\n\n---\n\n**无异常**: 两个实验都在正常运行，日志持续更新，无错误信息。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exp-017-018-progress-check.md"
+}

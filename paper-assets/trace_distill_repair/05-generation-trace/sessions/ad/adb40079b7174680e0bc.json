@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "adb40079b7174680e0bc",
+  "project": "trace_distill_repair",
+  "kind": "result",
+  "title": "monitor v2 progress check",
+  "task_key": "worker_monitor_v2_progress_check_20260515T160828",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_v2_progress_check_20260515T160828_result.json",
+    "occurrence": 1,
+    "bytes": 921,
+    "sha256": "2ab864af102cffe06cc8473231bd1520c1e2799552372b7be61cafc983df19f7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## mvp_phase3_repair_v2 实验状态\n\n**PID 131777: ALIVE**（运行时间 2h40m）\n\n**完成进度: 10/14**\n\n已完成实例（按顺序）：\n1. black_1 (957s)\n2. cookiecutter_1 (884s)\n3. cookiecutter_2 (496s)\n4. cookiecutter_3 (403s)\n5. fastapi_2 (870s)\n6. httpie_2 (836s)\n7. luigi_5 (508s)\n8. sanic_2 (724s)\n9. scrapy_2 (1039s)\n10. scrapy_7 (1245s)\n\n**当前处理: tornado_2**（从 23:40 开始，已运行约 25 分钟）\n- 已完成 tornado_2 的 no_trace、full_trace、structural_filtered 三个条件\n- 正在处理第 4 个条件 line_filtered，遇到 API retry（00:02 → 00:05 连续重试中）\n\n**剩余实例: tornado_2（进行中）、youtube-dl_1、youtube-dl_5、youtube-dl_20**\n\n日志显示正常推进，API retry 间隔在秒级，属于正常 backoff。按当前速度（平均每实例 ~800s），预计还需约 50-60 分钟完成全部 14 个实例。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-v2-progress-check-copy-2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7ba84f97ce8fa8d16d6c",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "launch exp 013",
+  "task_key": "worker_launch_exp_013_20260520T075211",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_launch_exp_013_20260520T075211_result.json",
+    "occurrence": 1,
+    "bytes": 262,
+    "sha256": "d758befcff8a048b5b05ca8ff1de4a6fafaf9320552d6cf7113d1b09151e3b10"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp_013 已提交并确认运行中：\n\n- **tmux session**: `exp_013` (cuda:1)\n- **condition**: pure_collapse, seed 44, 10 generations\n- **registry**: RUNNING，provenance 已写入\n- **日志**: `/root/spectral_collapse_ews/logs/exp_013.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/launch-exp-013.md"
+}

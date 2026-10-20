@@ -1,0 +1,170 @@
+papers:
+  # ============================================================
+  # Direct Competitors — execution trace + APR / fault localization
+  # ============================================================
+
+  - id: "wang2025semantics"
+    title: "Do Code Semantics Help? A Comprehensive Study on Execution Trace-Based Information for Code Large Language Models"
+    authors: "Jian Wang, Xiaofei Xie, Qiang Hu, Shangqing Liu, Yi Li"
+    venue: "Findings of EMNLP 2025"
+    year: 2025
+    url: "https://arxiv.org/abs/2509.11686"
+    category: "direct-competitor"
+    relevance: "DTD 直接要修正的目标论文——其负面结论 (trace utility limited) 源于行级未过滤 trace"
+    key_findings: "语义信息（execution trace）对 Code LLM 的 SFT 和推理帮助有限；在 6 组 dataset/model 配置中仅 2 组有正向效果"
+    our_advantage: "DTD 用结构感知分段（函数子树/循环组/异常链）替代原始行级 trace，降低噪声，直接回应其负面结论"
+
+  - id: "bouzenia2023tracefixer"
+    title: "TraceFixer: Execution Trace-Driven Program Repair"
+    authors: "Islem Bouzenia, Yangruibo Ding, Kexin Pei, Baishakhi Ray, Michael Pradel"
+    venue: "arXiv preprint"
+    year: 2023
+    url: "https://arxiv.org/abs/2304.12743"
+    category: "direct-competitor"
+    relevance: "最早将 execution trace 直接融入神经修复模型的工作，trace 表示为局部变量值序列"
+    key_findings: "在 Python 单行 bug 上 top-1 修复率 57-63%，trace 带来 13-20% 提升；在 20 个真实 bug 中修复 10 个"
+    our_advantage: "TraceFixer 用扁平变量快照，DTD 用层次化结构分段；TraceFixer 限于单行 bug，DTD 处理多行复杂修复"
+
+  - id: "tracerepair2026"
+    title: "Runtime Execution Traces Guided Automated Program Repair with Multi-Agent Debate"
+    authors: "TraceRepair authors"
+    venue: "arXiv preprint"
+    year: 2026
+    url: "https://arxiv.org/abs/2604.02647"
+    category: "direct-competitor"
+    relevance: "最新的 trace-guided APR，用 multi-agent debate 将 trace 作为逻辑过滤器"
+    key_findings: "Probe Agent 注入日志捕获变量快照；多 agent 辩论用 trace 证据过滤幻觉补丁；Defects4J 上修复 392 个 bug"
+    our_advantage: "TraceRepair 依赖大 LLM agent 推理链，DTD 训练专用小模型做 trace 过滤，成本更低且可离线使用"
+
+  - id: "huang2025dynafix"
+    title: "DynaFix: Iterative Automated Program Repair Driven by Execution-Level Dynamic Information"
+    authors: "Zhili Huang, Ling Xu, Chao Liu, Weifeng Sun, Xu Zhang, Yan Lei, Meng Yan, Hongyu Zhang"
+    venue: "arXiv preprint"
+    year: 2025
+    url: "https://arxiv.org/abs/2512.24635"
+    category: "direct-competitor"
+    relevance: "迭代式利用运行时状态（变量值/分支路径/调用栈）驱动修复的闭环框架"
+    key_findings: "用 ByteTrace 工具收集细粒度执行状态；Defects4J-Trans 上比 SOTA 提升 15.6-32.1%；token 消耗降低 60-70%"
+    our_advantage: "DynaFix 每轮全量收集 trace 再让 LLM 推理，DTD 预先用小模型做结构化过滤，减少 LLM 输入噪声"
+
+  - id: "haque2025leveraging"
+    title: "Towards Effectively Leveraging Execution Traces for Program Repair with Code LLMs"
+    authors: "Mirazul Haque, Petr Babkin, Farima Farmahinifarahani, Manuela Veloso"
+    venue: "KnowledgeNLP Workshop 2025"
+    year: 2025
+    url: "https://arxiv.org/abs/2505.04441"
+    category: "direct-competitor"
+    relevance: "系统分析 trace 在 APR prompt 中的作用，发现 trace 复杂度增加时效果递减"
+    key_findings: "简单拼接 trace 仅在 2/6 配置有效；LLM-optimized trace 表示最一致；trace 复杂度越高效果越差"
+    our_advantage: "该论文验证了我们的核心假设：原始 trace 过长过杂会降低效果，结构化过滤是关键"
+
+  # ============================================================
+  # Method Components — distillation / structured analysis / teacher-student
+  # ============================================================
+
+  - id: "zhong2024ldb"
+    title: "LDB: A Large Language Model Debugger via Verifying Runtime Execution Step-by-step"
+    authors: "Li Zhong, Zilong Wang, Jingbo Shang"
+    venue: "Findings of ACL 2024"
+    year: 2024
+    url: "https://arxiv.org/abs/2402.16906"
+    category: "method-component"
+    relevance: "将程序按 basic block 分段、逐块验证变量值的思路与 DTD 的结构化分段理念一致"
+    key_findings: "按控制流图分 basic block，逐块追踪变量值并让 LLM 验证正确性；HumanEval/MBPP 上提升达 9.8%"
+    our_advantage: "LDB 用 LLM 在线逐块判断，DTD 训练专用小模型离线过滤，效率更高；DTD 分段粒度更丰富（函数子树/循环组/异常链）"
+
+  - id: "tracecoder2026"
+    title: "TraceCoder: A Trace-Driven Multi-Agent Framework for Automated Debugging of LLM-Generated Code"
+    authors: "TraceCoder authors"
+    venue: "ICSE 2026"
+    year: 2026
+    url: "https://arxiv.org/abs/2602.06875"
+    category: "method-component"
+    relevance: "trace-driven 多 agent 调试框架，含因果分析和历史学习模块"
+    key_findings: "细粒度运行时追踪 + 因果根因分析 + 历史失败学习；class-level 代码生成 Pass@1 提升达 34.43%"
+    our_advantage: "TraceCoder 面向代码生成调试，DTD 面向已有 bug 的修复；DTD 用蒸馏小模型替代多 agent 推理"
+
+  - id: "shi2024avatar"
+    title: "Greening Large Language Models of Code (Avatar)"
+    authors: "Jieke Shi, Zhou Yang, Hong Jin Kang, Bowen Xu, Junda He, David Lo"
+    venue: "ICSE-SEIS 2024"
+    year: 2024
+    url: "https://arxiv.org/abs/2309.04076"
+    category: "method-component"
+    relevance: "Code LLM 知识蒸馏的代表工作，SMT solver 优化蒸馏配置"
+    key_findings: "蒸馏后模型仅 3MB（160x 压缩），推理延迟降低 76x，能耗降低 184x，效果损失仅 1.67%"
+    our_advantage: "Avatar 面向通用代码理解任务蒸馏，DTD 专门针对 trace 结构过滤任务做蒸馏，任务特异性更强"
+
+  - id: "miniplm2025"
+    title: "MiniPLM: Knowledge Distillation for Pre-Training Language Models"
+    authors: "Yuxian Gu, Hao Zhou, Fandong Meng, Jie Zhou, Minlie Huang"
+    venue: "ICLR 2025"
+    year: 2025
+    url: "https://arxiv.org/abs/2410.17215"
+    category: "method-component"
+    relevance: "离线蒸馏框架，通过调整训练数据分布传递教师知识，跨模型族蒸馏"
+    key_findings: "Difference Sampling 基于教师/参考模型输出概率差异调整训练语料；9 个下游任务提升；减少预训练计算量"
+    our_advantage: "MiniPLM 是通用预训练蒸馏，DTD 是任务特异的 trace 过滤蒸馏；可借鉴其 Difference Sampling 思想"
+
+  - id: "kd_code_2025"
+    title: "An Empirical Study of Knowledge Distillation for Code Understanding Tasks"
+    authors: "Code KD study authors"
+    venue: "ICSE 2026"
+    year: 2025
+    url: "https://arxiv.org/abs/2508.15423"
+    category: "method-component"
+    relevance: "系统评估多种 KD 方法在代码理解任务上的表现，为 DTD 的蒸馏策略选择提供依据"
+    key_findings: "首次系统比较多种 KD 方法在代码理解任务（漏洞检测/克隆检测等）上的效果"
+    our_advantage: "DTD 可参考其 KD 方法选择建议，但 DTD 的蒸馏目标是 trace 结构过滤而非通用代码理解"
+
+  # ============================================================
+  # Evaluation — benchmarks and evaluation methodology
+  # ============================================================
+
+  - id: "widyasari2020bugsinpy"
+    title: "BugsInPy: A Database of Existing Bugs in Python Programs to Enable Controlled Testing and Debugging Studies"
+    authors: "Ratnadira Widyasari, Sheng Qin Sim, Camellia Lok, Haodi Qi, Jack Phan, Qijin Tay, Constance Tan, Fiona Wee, Jodie Ethelda Tan, Yuheng Yieh, Brian Goh, Ferdian Thung, Hong Jin Kang, Thong Hoang, David Lo, Eng Lieh Ouh"
+    venue: "ESEC/FSE 2020"
+    year: 2020
+    url: "https://dl.acm.org/doi/abs/10.1145/3368089.3417943"
+    category: "evaluation"
+    relevance: "DTD 的主要评估基准，Python 真实 bug 数据集，类比 Java 的 Defects4J"
+    key_findings: "17 个 Python 项目的 493 个真实 bug，每个 bug 附带失败测试用例；支持可控的测试和调试研究"
+    our_advantage: "N/A — 这是我们使用的评估基准"
+
+  - id: "jimenez2024swebench"
+    title: "SWE-bench: Can Language Models Resolve Real-World GitHub Issues?"
+    authors: "Carlos E. Jimenez, John Yang, Alexander Wettig, Shunyu Yao, Kexin Pei, Ofir Press, Karthik R. Narasimhan"
+    venue: "ICLR 2024"
+    year: 2024
+    url: "https://arxiv.org/abs/2310.06770"
+    category: "evaluation"
+    relevance: "大规模 Python APR 基准，12 个仓库 2294 个真实 issue，可作为 DTD 的扩展评估"
+    key_findings: "从 GitHub 真实 issue/PR 挖掘；需在大规模代码库中定位和修改代码；已成为 LLM-based APR 标准评估"
+    our_advantage: "N/A — 可作为补充评估基准，验证 DTD 在仓库级任务上的泛化性"
+
+  # ============================================================
+  # Background — LLM-based APR surveys / trace utility debate
+  # ============================================================
+
+  - id: "yang2025apr_survey"
+    title: "A Survey of LLM-based Automated Program Repair: Taxonomies, Design Paradigms, and Applications"
+    authors: "Yang, Cai et al."
+    venue: "arXiv preprint"
+    year: 2025
+    url: "https://arxiv.org/abs/2506.23749"
+    category: "background"
+    relevance: "最全面的 LLM-based APR 综述，覆盖 62 个系统，四种范式分类"
+    key_findings: "将 LLM-based APR 分为 fine-tuning / prompting / procedural pipeline / agentic 四种范式；系统梳理评估实践"
+    our_advantage: "DTD 属于 fine-tuning + structured preprocessing 的交叉范式，综述中此类工作较少"
+
+  - id: "bouzenia2025repairagent"
+    title: "RepairAgent: An Autonomous, LLM-Based Agent for Program Repair"
+    authors: "Islem Bouzenia, Premkumar Devanbu, Michael Pradel"
+    venue: "ICSE 2025"
+    year: 2025
+    url: "https://arxiv.org/abs/2403.17134"
+    category: "background"
+    relevance: "首个自主 LLM agent 做 APR，动态规划工具调用，代表 agentic APR 范式"
+    key_findings: "自主选择信息收集/修复/验证工具；Defects4J 上修复 164 个 bug（含 39 个新修复）；平均 270K tokens/bug"
+    our_advantage: "RepairAgent 是 agent 范式依赖大 LLM 推理，DTD 是轻量蒸馏模型做 trace 预处理，可作为 agent 的前端组件"

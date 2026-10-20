@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7d79c01fe9562b8ad1b6",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ops kill epsilon retrain check gpu",
+  "task_key": "worker_ops_kill-epsilon-retrain-check-gpu_20260524T122226",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-epsilon-retrain-check-gpu_20260524T122226_result.json",
+    "occurrence": 1,
+    "bytes": 646,
+    "sha256": "f09fbbc0bde0901c7fe92a84e168fa3fe48100317b32c30afdc8979b63265f68"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "### 结果\n\n**PID 885408/885409/885060 (replay_svd_gen10.py)** — 已全部杀掉。GPU 0 从 57431MiB 降到 19349MiB，释放了约 38GB 显存。这两个脚本是冗余的，因为 Gen 10 的完整数据（effective_rank=97.02, log_det=320.61, perplexity=545.97, top_10_singular_values 等）已存在于 `results/phase1_gpt2m_pure_collapse_seed42_results.json` 中。\n\n**实验状态：**\n- **exp_022c** (PID 881066, GPU 0, 19340MiB) — 正常运行，95% GPU 利用率\n- **exp_023** (PID 868285, GPU 1, 26422MiB) — 正常运行，94% GPU 利用率\n\n两个实验现在各独占一块 GPU，不再有资源竞争。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-epsilon-retrain-check-gpu.md"
+}

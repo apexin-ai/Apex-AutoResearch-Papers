@@ -1,0 +1,1077 @@
+# feishu dm oc c539bf9e80dc0bf47601f031e26b25b6 briefer
+
+**Spectral Early Warning Signals for Model Collapse and Their Prevention–Detectability Tradeoff** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 34
+- **Recorded user turns:** 4
+- **Tool calls:** 13
+- **Original source:** `logs/chats/feishu_dm_oc_c539bf9e80dc0bf47601f031e26b25b6_briefer.jsonl`
+- **Structured JSON:** [`cba66a14d5730864ef09.json`](../../sessions/cb/cba66a14d5730864ef09.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+8 recorded events
+
+### User
+
+_source line 1 · 2026-05-16T12:26:44.813315+00:00_
+
+[飞书用户 曹晓玉 (ou_1f5b56327a5079c28080a9d81ba46caa)]: 这个项目的idea是什么，用大白话和我说清楚
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "feishu:dm:oc_c539bf9e80dc0bf47601f031e26b25b6:briefer",
+  "source": "feishu:oc_c539bf9e80dc0bf47601f031e26b25b6"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-16T12:26:51.913146+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:dm:oc_c539bf9e80dc0bf47601f031e26b25b6:briefer",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-16T12:26:52.433733+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:dm:oc_c539bf9e80dc0bf47601f031e26b25b6:briefer",
+  "tool": "ToolSearch",
+  "elapsed_ms": 520
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-16T12:26:54.997895+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "spectral_collapse_ews",
+  "file": "memory.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:dm:oc_c539bf9e80dc0bf47601f031e26b25b6:briefer",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "spectral_collapse_ews",
+    "file": "memory.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-16T12:26:55.529505+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/memory.md\", \"content\": \"# Memory — spectral_collapse_ews\\n\\n## 决策记录\\n\\n### D004: Phase 0 decline rate baseline 调整 (2026-05-16)\\n- Gen 0→1 的 effective rank 上升 (417.55→491.77) 是 pretraining→fine-tuning 分布偏移，不是递归退化方向\\n- Go/No-go 判据中的 decline rate 分析以 **Gen 1 为基线**，不含 Gen 0\\n- 前 5 代 = Gen 1-5，后 5 代 = Gen 6-10\\n\\n## 经验教训\\n\\n### Gen 0→1 Effective Rank 上升 (2026-05-16)\\n- Pretrained model (Gen 0) 直接在合成数据上 fine-tune 一代后，effective rank ��而上升\\n- 可能原因：fine-tuning 初期表征空间扩散（模型适应新分布时特征维度利用率暂时增加）\\n- 后续代预计开始下降（随着合成数据递归训练导致模式坍缩）\\n\\n## 环境信息\\n\\n### rtx6000-diagprobe\\n- GPU: 2× NVIDIA RTX PRO 6000 Blackwell (94GB each)\\n- Python: 3.12.3 (conda base)\\n- CUDA: Driver 595.58, CUDA 13.2 (torch cu128)\\n- PyTorch: 2.10.0+cu128\\n- 镜像: aml-train (conda 环境，非 venv)\\n- 环境激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\\n\", \"total_chars\": 778, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:dm:oc_c539bf9e80dc0bf47601f031e26b25b6:briefer",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 531
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-16T12:26:55.529868+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "spectral_collapse_ews"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:dm:oc_c539bf9e80dc0bf47601f031e26b25b6:briefer",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "spectral_collapse_ews"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-16T12:26:56.059226+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/ROADMAP.md\", \"content\": \"# spectral_collapse_ews — Research Dashboard\\n\\n> 最后更新: 2026-05-16 07:50 UTC | 更新原因: 用户确认保持 EMNLP ARR May 25 目标，按最优方案推进\\n\\n## 核心方向\\n闭环光谱引导自适应数据混合：利用递归合成训练中嵌入 Gram 矩阵的光谱健康信号（有效秩/log-det），通过比例控制器自适应重分配固定真实数据预算，实现比均匀分配更好的 model collapse 防护。详见 paper_framing.md（MVP 后创建）。\\n\\n## 当前进展\\n- **阶段**: MVP 验证（Phase 0 进行中）\\n- **实验**: exp_001 PREPARING，Agent 环境搭建 + 代码实现中\\n- **基础设施**: rtx6000-diagprobe (2× RTX PRO 6000, 98GB each, cuda:0/1)\\n- **投稿目标**: EMNLP 2026 ARR May 25（DDL 9 天）\\n- **GPU 容量**: 2 卡 × 24h × 9 天 = 432 GPU·h 可用\\n\\n## 时间线（May 25 DDL 倒推）\\n- Day 1-2 (5/16-17): MVP Phase 0 + Phase 1 (~22h wall time)\\n- Day 3-4 (5/18-19): 补充实验（ECE baseline、HellaSwag、Pythia 1B pilot）\\n- Day 5-7 (5/20-22): 论文写作（Paper Agent 全流水线）\\n- Day 8-9 (5/23-24): 审稿 + 修改 + 提交\\n\\n## MVP 验证方案\\n\\n### 核心假设\\n给定固定真实数据预算，基于光谱健康信号的自适应时间分配优于均匀分配。\\n\\n### Phase 0 — Collapse 特征化（~3-5 GPU·h）\\n- Pythia 410M, 100% 合成数据, 10 代, 1 seed (seed=42)\\n- 每代计算: effective rank (RankMe), held-out perplexity, distinct-4\\n- Go/no-go: 有效秩单调下降 + 加速比 ≥ 1.5x + perplexity ≥ 20% 上升\\n- Fail → kill 项目\\n\\n### Phase 1 — 预算固定对比（~25-35 GPU·h）\\n- 3 条件 × 3 seeds (paired: 42/123/7) × 10 代\\n  - (a) Pure collapse (0% real)\\n  - (b) Fixed 50/50 均匀\\n  - (c) Spectral-guided adaptive (比例控制器)\\n- Pass: ≥ 3 ppl improvement (paired t-test p < 0.1)\\n- Borderline: 1-3 ppl → 加 seed 到 5\\n- Fail → kill\\n\\n## Post-MVP 补充（Day 3-4，MVP pass 后立即铺）\\n- [ ] ECE (calibration) 作为对比 controller signal（同预算、同控制器结构）\\n- [ ] HellaSwag 0-shot 评估（每代 checkpoint）\\n- [ ] Pythia 1B × 1 seed × 核心 2 条件（scale transfer pilot）\\n- [ ] 控制器参数敏感性（k × τ 小网格）\\n\\n## 近期任务\\n- [ ] Agent 环境搭建 + Phase 0 pipeline 完成（进行中）\\n- [ ] Phase 0 运行 + 结果汇报\\n- [ ] 审批 Phase 0，校准控制器，立即派 Phase 1（3 seeds 并行跑满 2 卡）\\n\\n## GPU 预算\\n- 分配: 2× RTX PRO 6000 (cuda:0/1, 98GB each)\\n- Phase 0: ~3-5 GPU·h\\n- Phase 1
+…[truncated 613 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:dm:oc_c539bf9e80dc0bf47601f031e26b25b6:briefer",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 529
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-16T12:27:10.245571+00:00_
+
+大白话解释：
+
+**问题：** 现在很多人用 AI 生成的数据去训练下一代 AI。但如果你反复这么做（用 AI 生成数据 → 训练新 AI → 新 AI 再生成数据 → 再训练……），模型会越来越"傻"——它学到的东西越来越单一、重复，丧失多样性。这叫 **model collapse**（模型坍缩）。
+
+**现有办法：** 掺一些真实数据进去可以缓解，但真实数据是有限的。常见做法是每一代都均匀掺入固定比例的真实数据（比如每代都 50% 真实 + 50% 合成）。
+
+**这个项目的 idea：** 不要"均匀撒胡椒面"，而是**看模型什么时候快要坍缩了，那时候多给真实数据；还没出问题时，少给。** 
+
+怎么判断"快坍缩了"？看模型内部嵌入层的**谱特征**（具体是 Gram 矩阵的有效秩）——有效秩下降意味着模型的表征空间在"塌缩"，多样性在丢失。项目用这个信号做一个自动控制器，动态调节每一代真实数据的比例。
+
+**一句话总结：** 用光谱健康指标当"体温计"，自动感知模型坍缩程度，智能分配有限的真实数据预算，比固定比例分配效果更好。
+
+目标投稿 EMNLP 2026，DDL 是 5 月 25 日，还剩 9 天。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "feishu:dm:oc_c539bf9e80dc0bf47601f031e26b25b6:briefer"
+}
+```
+
+</details>
+
+---
+
+## Round 2
+
+10 recorded events
+
+### User
+
+_source line 9 · 2026-05-17T15:37:29.450062+00:00_
+
+[飞书用户 曹晓玉 (ou_1f5b56327a5079c28080a9d81ba46caa)]: 实验都做了什么结果如何，现在在干什么，预计中稿率
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "feishu:dm:oc_c539bf9e80dc0bf47601f031e26b25b6:briefer",
+  "source": "feishu:oc_c539bf9e80dc0bf47601f031e26b25b6"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-17T15:37:38.689527+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__get_project_status",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:dm:oc_c539bf9e80dc0bf47601f031e26b25b6:briefer",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__get_project_status",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-17T15:37:39.231289+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:dm:oc_c539bf9e80dc0bf47601f031e26b25b6:briefer",
+  "tool": "ToolSearch",
+  "elapsed_ms": 541
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-17T15:37:42.542962+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "spectral_collapse_ews",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:dm:oc_c539bf9e80dc0bf47601f031e26b25b6:briefer",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "spectral_collapse_ews",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-17T15:37:43.056196+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp_005\": {\"status\": \"RUNNING\", \"retry_count\": 1, \"created_at\": \"2026-05-17T13:32:53.227Z\", \"updated_at\": \"2026-05-17T15:30:15.160Z\", \"hypothesis\": \"Spectral-guided adaptive mixing with amplified response (k=20, tau=0.002) produces meaningfully different ratio trajectories (0.5→0.7+) compared to fixed_mix, resulting in lower perplexity and higher effective rank. D012 calibration: k=1.0 produced negligible ratio variation (max +0.006), k=20 with Phase 0 deltas should yield ratio up to 0.62+ at Gen 5.\", \"parent\": \"exp_003\", \"reproduce\": {\"finished_at\": \"2026-05-17T13:41:59.604Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"completed_at\": \"2026-05-17T13:41:59.710Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-17T13:42:00.861640+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}, \"spec\": {\"description\": \"Phase 1: Adaptive spectral-guided mixing (D012: k=20, tau=0.002, log_det signal), seed 42\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python run_phase1.py --condition adaptive --seed 42 --num_gens 10 --signal log_det --tau 0.002 --k 20\\\"\", \"server\": \"rtx6000-diagprobe\", \"gpu\": \"cuda:1\", \"pid\": 116947, \"model_name\": \"EleutherAI/pythia-410m-deduped\", \"seed\": 42, \"data_path\": \"/root/spectral_collapse_ews/data/\", \"data_count\": \"50K real pool, total_per_gen=50K\", \"generations\": 10, \"condition\": \"adaptive\", \"controller_params\": {\"tau\": 0.002, \"k\": 20, \"r_min\": 0.2, \"r_max\": 0.8, \"alpha\": 0.5, \"signal\": \"log_det\"}, \"log_path\": \"/root/spectral_collapse_ews/logs/exp_003_v3_adaptive_k20_s42.log\", \"checkpoint_dir\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoint
+…[truncated 10035 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:dm:oc_c539bf9e80dc0bf47601f031e26b25b6:briefer",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 513
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-17T15:37:43.056539+00:00_
+
+called mcp__agent-ml-research__get_project_status
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_project_status</summary>
+
+```json
+{
+  "project": "spectral_collapse_ews"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:dm:oc_c539bf9e80dc0bf47601f031e26b25b6:briefer",
+  "tool": "mcp__agent-ml-research__get_project_status",
+  "tool_args": {
+    "project": "spectral_collapse_ews"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-17T15:37:43.574236+00:00_
+
+{"result":"**项目**: `spectral_collapse_ews`\n**阶段**: 🧪 MVP（验证阶段）\n\n── 📋 项目配置 ──\n✓ 服务器    rtx6000-diagprobe (connect.westd.seetacloud.com) [root]\n✓ 代码路径  /root/spectral_collapse_ews\n· Git       未配置（可选）\n· 弹性 GPU  未启用（可选）\n· W&B       未配置（可选）\n✓ 飞书      A群 + B群\n\n── 🗺️ 研究路线图 ──\n\n**决策日志**: 12 条记录\n\n── 📊 研究进度 ──\n实验: 5 个 (运行中 2 | 待处理 1 | 完成 2 | 成功 1)\n\n  exp_005  RUNNING\n  exp_001  RUNNING\n  exp_003  DONE (killed)\n  exp_004  PREPARING\n  exp_002  DONE (success)\n\n── 📝 最新报告 ──\n# Handover — 2026-05-17\n\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\n\n## 运行中\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\n|--------|------|------|---------|-----|\n| exp_005 | Spectral-guided adaptive mixing with amplified response (k=20, tau=0.002) produces meaningfully different ratio trajectories (0.5→0.7+) compared to fixed_mix, resulting in lower perplexity and higher effective rank. D012 calibration: k=1.0 produced negligible ratio variation (max +0.006), k=20 with Phase 0 deltas should yield ratio up to 0.62+ at Gen 5. | — | — | — |\n| exp_001 | — | — | — | — |\n\n## 待处理\n- exp_004: Fixed 50/50 real-synthetic m"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:dm:oc_c539bf9e80dc0bf47601f031e26b25b6:briefer",
+  "tool": "mcp__agent-ml-research__get_project_status",
+  "elapsed_ms": 517
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-17T15:37:43.574578+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "spectral_collapse_ews",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:dm:oc_c539bf9e80dc0bf47601f031e26b25b6:briefer",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "spectral_collapse_ews",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-17T15:37:44.096567+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/report.md\", \"content\": \"# Handover — 2026-05-17\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| exp_005 | Spectral-guided adaptive mixing with amplified response (k=20, tau=0.002) produces meaningfully different ratio trajectories (0.5→0.7+) compared to fixed_mix, resulting in lower perplexity and higher effective rank. D012 calibration: k=1.0 produced negligible ratio variation (max +0.006), k=20 with Phase 0 deltas should yield ratio up to 0.62+ at Gen 5. | — | — | — |\\n| exp_001 | — | — | — | — |\\n\\n## 待处理\\n- exp_004: Fixed 50/50 real-synthetic mixing provides intermediate collapse mitigation compared to pure collapse (0% real) but underperforms spectral-guided adaptive mixing (exp_003), because uniform allocation wastes real data budget on early generations where collapse signals are weak（准备中）\\n\\n## 近期结论\\n- **exp_003** (killed): Spectral-guided adaptive data mixing using log_det signal (tau=0.005, k=1.0, r_min=0.20, r_max=0.80) achieves lower perplexity and higher effective rank than fixed 50/50 mixing, because log_det provides earlier and more sensitive collapse detection than eff_rank (D010: tau=0.02 with eff_rank signal caused controller to never trigger) ← 基于 exp_001\\n- **exp_002** (success): —\\n\\n## 趋势\\n成功 1 / 负向 0 / 失败 0 / 共 2\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nrtx6000-diagprobe: 空闲 cuda:0, cuda:1\\n\\n## 告警\\n- exp_003: 已被终止 — unknown\\n\", \"total_chars\": 1409, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:dm:oc_c539bf9e80dc0bf47601f031e26b25b6:briefer",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 521
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18 · 2026-05-17T15:38:26.836850+00:00_
+
+## 实验进展
+
+### 已完成
+
+**exp_001 (Phase 0, Pythia 410M, 纯合成坍缩)** — 核心基线实验，基本跑完 (Gen 0-9 完成，Gen 10 在跑)
+- 坍缩信号非常清晰：effective rank 从 Gen 2 的 496 单调降到 Gen 9 的 448，perplexity 从 9.55 爆涨到 63.32（6.6 倍），HellaSwag 下降 27%
+- **Phase 0 go/no-go 通过** — 坍缩确实存在且加速
+
+**exp_002 (Phase 0, Pythia 1B)** — 跨规模验证，跑到 Gen 3 后磁盘满被 kill
+- 1B 模型展现与 410M 相同的 3 阶段模式，已足够作为 cross-scale 证据
+
+**exp_003 (Phase 1, 自适应混合 v1)** — 被 kill，发现控制器有 3 个 bug（预算扣减错误、baseline 缺失、ratio 物理上不可能超 0.5），数据作废
+
+### 正在跑
+
+**exp_005 (Phase 1, 自适应混合 v2)** — 修正参数后重跑 (k=20, tau=0.002)，当前 Gen 2/10，控制器尚未触发
+
+**exp_001** — Gen 10 收尾中
+
+### 还没跑
+
+**exp_004 (Phase 1, 固定 50/50 混合)** — PREPARING 状态，是最关键的对照组，还没启动
+
+## 现在在干什么
+
+Phase 1 的核心对比实验刚起步。自适应组 (exp_005) 在跑第 2 代，固定混合对照组 (exp_004) 还没开始。距离 EMNLP ARR May 25 DDL 还剩 **8 天**。按原计划需要 3 seeds × 3 条件 × 10 代，目前只有 1 seed 的自适应条件在跑。
+
+## 中稿率评估
+
+坦率说，**偏低，大概 15-25%**。原因：
+
+1. **时间极紧**：8 天内要完成 Phase 1 全部实验（目前才跑了 1/9 的工作量）+ 写完整篇论文 + 审稿修改
+2. **核心结果还没有**：项目的关键 claim 是"自适应混合优于均匀混合"，但这个对比实验刚开始，还不知道结果是否 positive
+3. **控制器已经翻车过一次**（exp_003 因 bug 作废），新参数 (k=20) 是否有效还是未知数
+4. **统计力度不足**：目前只有 seed=42 一个种子，需要至少 3 个才能做 paired t-test
+5. **贡献增量偏小**：光谱信号监测 model collapse 本身不算特别新颖，主要 novelty 在自适应控制器，但控制器还没被验证
+
+如果 Phase 1 结果清晰 positive 且写作质量高，有机会作为 short paper 或 findings 录用。但要作为 main conference paper，实验覆盖面（更多模型规模、更多 seed、消融实验）可能不够。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "feishu:dm:oc_c539bf9e80dc0bf47601f031e26b25b6:briefer"
+}
+```
+
+</details>
+
+---
+
+## Round 3
+
+8 recorded events
+
+### User
+
+_source line 19 · 2026-05-18T05:44:56.768090+00:00_
+
+[飞书用户 曹晓玉 (ou_1f5b56327a5079c28080a9d81ba46caa)]: 实验都做了什么结果如何，现在在干什么，预计中稿率
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "feishu:dm:oc_c539bf9e80dc0bf47601f031e26b25b6:briefer",
+  "source": "feishu:oc_c539bf9e80dc0bf47601f031e26b25b6"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-18T05:45:04.814942+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "spectral_collapse_ews",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:dm:oc_c539bf9e80dc0bf47601f031e26b25b6:briefer",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "spectral_collapse_ews",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-18T05:45:05.473210+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp_004\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-17T04:31:11.170Z\", \"updated_at\": \"2026-05-18T05:22:30.776Z\", \"hypothesis\": \"Fixed 50/50 real-synthetic mixing provides intermediate collapse mitigation compared to pure collapse (0% real) but underperforms spectral-guided adaptive mixing (exp_003), because uniform allocation wastes real data budget on early generations where collapse signals are weak\", \"parent\": \"exp_001\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition fixed_mix --seed 42 --generations 10 --signal log_det --tau 0.002 --k 0 --signal_mode per_gen --gpu 0\\\"\", \"server\": \"rtx6000-diagprobe\", \"gpu\": \"cuda:1\", \"pid\": 135411, \"log_path\": \"~/runs/spectral_collapse_ews/exp_004.log\", \"submitted_at\": \"2026-05-17T17:56:12.965Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"description\": \"Phase 1: Fixed 50/50 real-synthetic mixing (baseline condition), seed 42\", \"tmux_session\": \"exp_004\", \"model_name\": \"EleutherAI/pythia-410m-deduped\", \"seed\": 42, \"data_path\": \"/root/spectral_collapse_ews/data/\", \"data_count\": \"50K real pool, total_per_gen=50K\", \"generations\": 10, \"condition\": \"fixed_mix\", \"checkpoint_dir\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_seed42/\", \"results_file\": \"/root/spectral_collapse_ews/results/phase1_fixed_mix_seed42_results.json\", \"checkpoint_source\": \"EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)\", \"eval_data\": \"/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)\"}, \"metrics\": {\"gen0_eff_rank\": 417.55, \"gen0_log_det\": 2366.68, \"gen0_ppl\": 9.554, \"gen0_di
+…[truncated 16368 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:dm:oc_c539bf9e80dc0bf47601f031e26b25b6:briefer",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 658
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-18T05:45:05.473733+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "spectral_collapse_ews",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:dm:oc_c539bf9e80dc0bf47601f031e26b25b6:briefer",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "spectral_collapse_ews",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-18T05:45:06.064043+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/report.md\", \"content\": \"# Handover — 2026-05-17\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| exp_004 | Fixed 50/50 real-synthetic mixing provides intermediate collapse mitigation compared to pure collapse (0% real) but underperforms spectral-guided adaptive mixing (exp_003), because uniform allocation wastes real data budget on early generations where collapse signals are weak | — | — | — |\\n| exp_006 | Spectral-guided adaptive mixing with moderate gain (k=10, tau=0.002, per_gen mode) provides optimal balance between early response and budget conservation. k=10 is midpoint between k=20 (exp_005, fast budget depletion) and k=5 (cumulative mode, late trigger). Expect ratio to rise to ~0.55-0.65 at peak collapse gens, with more gradual budget consumption than k=20. | — | — | — |\\n\\n## 待处理\\n（无）\\n\\n## 近期结论\\n- **exp_005** (killed): Spectral-guided adaptive mixing with amplified response (k=20, tau=0.002) produces meaningfully different ratio trajectories (0.5→0.7+) compared to fixed_mix, resulting in lower perplexity and higher effective rank. D012 calibration: k=1.0 produced negligible ratio variation (max +0.006), k=20 with Phase 0 deltas should yield ratio up to 0.62+ at Gen 5. ← 基于 exp_003\\n- **exp_001** (success): Effective rank monotonically decreases over recursive synthetic training with accelerating collapse in later generations (baseline from Gen 1, not Gen 0). Pure 100% synthetic training causes exponential perplexity growth and monotonic spectral collapse across 10 generations.\\n  [spectral_trajectory_gen0-3](file:///root/spectral_collapse_ews/paper/figures/spectral_trajectory.pdf) | [fig1_spectral_trajectory](/api/workspace-files/projects/spectral_collapse_ews/artifacts/exp_001/chart/fig1_spectral_trajectory.png) | [fig1_spectr
+…[truncated 782 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:dm:oc_c539bf9e80dc0bf47601f031e26b25b6:briefer",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 590
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-18T05:45:06.114635+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "spectral_collapse_ews",
+  "file": "decisions.yaml",
+  "max_chars": "6000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:dm:oc_c539bf9e80dc0bf47601f031e26b25b6:briefer",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "spectral_collapse_ews",
+    "file": "decisions.yaml",
+    "max_chars": "6000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-18T05:45:06.165705+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/decisions.yaml\", \"content\": \"_next_id: 20\\ndecisions:\\n- id: D001\\n  date: 2026-05-16 07:36 UTC\\n  summary: MVP 方案确定：Phase 0 (collapse 特征化) + Phase 1 (预算固定对比)，Pythia 410M × 10 代 ×\\n    1 seed，用 RankMe 有效秩作为主信号\\n  rationale: 1) RankMe 优先于 SIGMA Track I：无公开代码、架构迁移风险、RankMe 已有成熟实现且 architecture-agnostic。2)\\n    10 代而非 5 代：IDEA_BRIEF 评审指出 5 代与动机中引用的 gen-20+ 非线性效应脱节。3) 1 seed 足够 MVP：只需验证信号存在性和控制器可行性，统计显著性留给\\n    research 阶段。4) EMNLP ARR May 25 已不可行（距今 9 天，从零开始），目标调整为 June 15 ARR cycle。\\n  related_experiments: []\\n  depends_on: []\\n- id: D002\\n  date: 2026-05-16 07:40 UTC\\n  summary: 采纳 Reviewer 审查建议：Phase 1 扩到 3 seeds (paired)、Phase 0 go/no-go 量化为加速比 ≥\\n    1.5x、补充 fail/borderline 决策树\\n  rationale: Reviewer 指出 1 seed 的 3 ppl 差异可能是噪声（IDEA_BRIEF 自身定义 3 seeds 为最低要求）。2×\\n    RTX PRO 6000 (98GB) 跑 Pythia 410M 极轻，3 seeds 增加 ~15 GPU·h 完全可承受。Phase 0 \\\"可见加速\\\"\\n    改为 decline_rate ratio ≥ 1.5x 避免确认偏差。Phase 0 fail 直接 kill（前提不成立则控制器无意义），Phase 1\\n    borderline 加 seed 到 5 再判。\\n  related_experiments: []\\n  depends_on:\\n  - D001\\n- id: D003\\n  date: 2026-05-16 07:50 UTC\\n  summary: 保持 EMNLP ARR May 25 投稿目标，不调整会议\\n  rationale: 用户明确指示\\\"不要调整会议，方案就按照最好的来\\\"。2× RTX PRO 6000 可提供 432 GPU·h（9 天），总需 ~100 GPU·h，容量充裕。短论文范围内时间线紧张但可行：MVP\\n    2 天 + 补充实验 2 天 + 写作 3 天 + 审稿提交 2 天。\\n  related_experiments: []\\n  depends_on:\\n  - D002\\n- id: D004\\n  date: 2026-05-16 11:28 UTC\\n  summary: Phase 0 go/no-go 基线从 Gen 0 (pretrained) 调整为 Gen 1 (首次 fine-tuned)，decline\\n    rate 计算范围改为 Gen 1-10\\n  rationale: Gen 0→1 的 effective rank 上升（417.5→491.8）源于 pretrained 模型 SVD 谱高度集中（top\\n    SV 1942.8），fine-tuning 打散谱结构导致有效秩反升。这是 pretraining→fine-tuning 的分布偏移效应，不是递归退化。SIGMA\\n    原文 50 代实验也从 fine-tuned 模型开始观察趋势。递归 collapse 应从 Gen 1 开始度量。调整后 go/no-go：Gen 1-10\\n    有效秩单调下降（允许 ≤1 代波动）+ decline_rate(Gen 6-10)/decline_rate(Gen 1-5) ≥ 1.5x。此调整在 Gen\\n
+…[truncated 4615 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:dm:oc_c539bf9e80dc0bf47601f031e26b25b6:briefer",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26 · 2026-05-18T05:45:44.009208+00:00_
+
+## 实验进展总结
+
+### 已完成的实验
+
+**exp_001 — Phase 0 纯 collapse 基线（410M，成功）**
+- Pythia 410M 纯合成数据递归训练 10 代
+- 结果非常清晰：perplexity 从 9.55 指数增长到 76.78（8倍），有效秩从 Gen 2 峰值 496 单调降到 442，HellaSwag 从 0.413 降到 0.301
+- 结论：**collapse 完全确认**，光谱信号可追踪
+
+**exp_002 — Phase 0 跨尺度验证（1B，成功）**
+- Pythia 1B 同样设置，因磁盘满只跑了 Gen 0-3
+- 已够用：确认 1B 和 410M 呈现相同的 3 阶段 pattern，且 log_det 比 eff_rank 早 1 代开始下降（支持"log_det 是 leading indicator"的论点）
+
+**exp_003、exp_005 — adaptive controller 早期尝试（被 kill）**
+- exp_003 发现 controller 有 3 个严重 bug，结果作废
+- exp_005 (k=20) 跑了 5 代，controller **从未触发**，被 kill 腾 GPU
+
+### 正在运行
+
+**exp_004 — fixed 50/50 基线**：到 Gen 6，ppl 9.55→12.16（+27%），distinct_4 从 0.74 暴跌到 0.22
+
+**exp_006 — adaptive (k=10) 主实验**：到 Gen 7，ppl 9.55→12.72。**controller 至今从未触发**，log_det 一直在上升。
+
+### 核心问题
+
+**adaptive controller 在混入 50% 真实数据后，检测不到 collapse 信号。** log_det 在 Phase 1 条件下是单调上升的（Phase 0 纯合成才会下降），所以 controller 永远不会触发，adaptive 条件退化为和 fixed 50/50 完全相同。这意味着论文的核心 claim——"基于光谱信号的自适应混合优于均匀混合"——**目前无法被实验支撑**。
+
+### 预计中稿率
+
+**很低，大约 5-10%。** 原因：
+
+1. **核心方法失效**：adaptive controller 跑了 3 个版本（exp_003/005/006），参数从 k=1 调到 k=20，没有一个让 controller 真正触发。这不是调参问题，而是在有真实数据混入时光谱信号的方向变了（上升而非下降）
+2. **时间极紧**：DDL 5月25日还剩 7 天，目前连 Phase 1 的核心对比都没做出差异
+3. **Phase 0 数据扎实但不够撑一篇论文**：collapse 的光谱特征化本身有价值，但作为"发现性"工作不够新颖（已有 model collapse 相关文献）
+
+如果要提高概率，需要从根本上重新设计 controller 的信号检测机制（比如用变化率的二阶导数、或换成不同的光谱指标），但 7 天内完成实验+写作+审稿的难度极大。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "feishu:dm:oc_c539bf9e80dc0bf47601f031e26b25b6:briefer"
+}
+```
+
+</details>
+
+---
+
+## Round 4
+
+8 recorded events
+
+### User
+
+_source line 27 · 2026-05-20T05:16:28.029564+00:00_
+
+[飞书用户 曹晓玉 (ou_1f5b56327a5079c28080a9d81ba46caa)]: 现在怎么样了，method还行吗
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "feishu:dm:oc_c539bf9e80dc0bf47601f031e26b25b6:briefer",
+  "source": "feishu:oc_c539bf9e80dc0bf47601f031e26b25b6"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-20T05:16:35.594978+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "spectral_collapse_ews",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:dm:oc_c539bf9e80dc0bf47601f031e26b25b6:briefer",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "spectral_collapse_ews",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-20T05:16:36.183754+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp_011\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T16:17:23.434Z\", \"updated_at\": \"2026-05-20T03:52:09.649Z\", \"hypothesis\": \"Extending r=0.2 from 5gen to 10gen will reveal whether the dip-then-recovery pattern (Type II) persists or transitions to sustained decline. If SLV continues rising through Gen 10 (like r=0.25), r=0.2 is firmly Type II. If SLV plateaus or declines after Gen 5, r=0.2 may be closer to the Type I/II boundary, providing finer resolution of the phase diagram near r_crit.\", \"parent\": \"exp_007\", \"spec\": {\"command\": \"bash -c \\\"bash /root/spectral_collapse_ews/scripts/resume_fixed_mix_r02_seed42_gen5to10.sh 0\\\"\", \"server\": \"rtx6000-diagprobe\", \"gpu\": \"cuda:0\", \"pid\": 319889, \"log_path\": \"~/runs/spectral_collapse_ews/exp_011.log\", \"submitted_at\": \"2026-05-19T16:17:48.185Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"description\": \"Phase 1: Resume r=0.2 fixed mix seed 42 from Gen 5 to Gen 10\", \"tmux_session\": \"exp_011\", \"model_name\": \"EleutherAI/pythia-410m-deduped\", \"seed\": 42, \"data_path\": \"/root/spectral_collapse_ews/data/\", \"data_count\": \"50K real pool, total_per_gen=50K (10K real + 40K synthetic per gen)\", \"generations\": \"5→10 (resume)\", \"condition\": \"fixed_mix\", \"real_ratio\": 0.2, \"checkpoint_dir\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r02_seed42/\", \"results_file\": \"/root/spectral_collapse_ews/results/phase1_fixed_mix_r02_seed42_results.json\", \"checkpoint_source\": \"exp_007 Gen 5 checkpoint\", \"eval_data\": \"/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)\", \"wall_clock_seconds\": 41661.5, \"gpu_hours\": 11.57}, \"metrics\": {\"gen0\": {\"eff_rank\": 417.55, \"log_det\": 2366.68, \"ppl\": 9.55, \"distinct4\": 0.741}, \"gen1\": {\"eff_rank\": 476.73, \"log_det\": 2367.46, \"p
+…[truncated 39703 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:dm:oc_c539bf9e80dc0bf47601f031e26b25b6:briefer",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 588
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-20T05:16:36.590251+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "spectral_collapse_ews",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:dm:oc_c539bf9e80dc0bf47601f031e26b25b6:briefer",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "spectral_collapse_ews",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-20T05:16:37.199077+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/report.md\", \"content\": \"# Handover — 2026-05-20\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| exp_012 | r=0.3 seed43 reproduces the Type II trajectory (monotonic SLV rise, no collapse) observed in exp_008 (seed42), confirming r=0.3 is robustly above r_crit across random seeds. Combined with exp_010 (r=0 seed43), this completes cross-seed validation of the phase diagram at both extremes (collapse vs. no-collapse). | — | — | — |\\n| exp_010 | Pure collapse (r=0, 100% synthetic) with seed 43 reproduces the three-phase spectral trajectory (decompression Gen 0-2, onset Gen 2-4, collapse Gen 4-10) observed in exp_001 (seed 42). This validates C1 claim that the spectral collapse pattern is reproducible across random seeds, not an artifact of a single training run. | — | — | — |\\n\\n## 待处理\\n（无）\\n\\n## 近期结论\\n- **exp_011** (success): Extending r=0.2 from 5gen to 10gen will reveal whether the dip-then-recovery pattern (Type II) persists or transitions to sustained decline. If SLV continues rising through Gen 10 (like r=0.25), r=0.2 is firmly Type II. If SLV plateaus or declines after Gen 5, r=0.2 may be closer to the Type I/II boundary, providing finer resolution of the phase diagram near r_crit. ← 基于 exp_007\\n- **exp_009** (success): At r=0.25 (25% real data), SLV trajectory will disambiguate the r_crit boundary between r=0.2 (dip-then-recovery, no collapse in 5gen) and r=0.3. If r=0.25 shows sustained SLV decline over 10 generations, r_crit lies in [0.2, 0.25]. If it recovers like r=0.2, r_crit is below 0.2. This precisely locates the phase transition boundary for the mixing-ratio phase diagram (C2 claim). ← 基于 exp_007\\n  [exp_009_r025_full_analysis](/api/workspace-files/projects/spectral_collapse_ews/artifacts/exp_009/report/exp_009_r025_full_ana
+…[truncated 734 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:dm:oc_c539bf9e80dc0bf47601f031e26b25b6:briefer",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 608
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-20T05:16:37.199566+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "spectral_collapse_ews",
+  "file": "decisions.yaml",
+  "max_chars": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "feishu:dm:oc_c539bf9e80dc0bf47601f031e26b25b6:briefer",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "spectral_collapse_ews",
+    "file": "decisions.yaml",
+    "max_chars": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-20T05:16:37.202753+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/decisions.yaml\", \"content\": \"_next_id: 33\\ndecisions:\\n- id: D001\\n  date: 2026-05-16 07:36 UTC\\n  summary: MVP 方案确定：Phase 0 (collapse 特征化) + Phase 1 (预算固定对比)，Pythia 410M × 10 代 ×\\n    1 seed，用 RankMe 有效秩作为主信号\\n  rationale: 1) RankMe 优先于 SIGMA Track I：无公开代码、架构迁移风险、RankMe 已有成熟实现且 architecture-agnostic。2)\\n    10 代而非 5 代：IDEA_BRIEF 评审指出 5 代与动机中引用的 gen-20+ 非线性效应脱节。3) 1 seed 足够 MVP：只需验证信号存在性和控制器可行性，统计显著性留给\\n    research 阶段。4) EMNLP ARR May 25 已不可行（距今 9 天，从零开始），目标调整为 June 15 ARR cycle。\\n  related_experiments: []\\n  depends_on: []\\n- id: D002\\n  date: 2026-05-16 07:40 UTC\\n  summary: 采纳 Reviewer 审查建议：Phase 1 扩到 3 seeds (paired)、Phase 0 go/no-go 量化为加速比 ≥\\n    1.5x、补充 fail/borderline 决策树\\n  rationale: Reviewer 指出 1 seed 的 3 ppl 差异可能是噪声（IDEA_BRIEF 自身定义 3 seeds 为最低要求）。2×\\n    RTX PRO 6000 (98GB) 跑 Pythia 410M 极轻，3 seeds 增加 ~15 GPU·h 完全可承受。Phase 0 \\\"可见加速\\\"\\n    改为 decline_rate ratio ≥ 1.5x 避免确认偏差。Phase 0 fail 直接 kill（前提不成立则控制器无意义），Phase 1\\n    borderline 加 seed 到 5 再判。\\n  related_experiments: []\\n  depends_on:\\n  - D001\\n- id: D003\\n  date: 2026-05-16 07:50 UTC\\n  summary: 保持 EMNLP ARR May 25 投稿目标，不调整会议\\n  rationale: 用户明确指示\\\"不要调整会议，方案就按照最好的来\\\"。2× RTX PRO 6000 可提供 432 GPU·h（9 天），总需 ~100 GPU·h，容量充裕。短论文范围内时间线紧张但可行：MVP\\n    2 天 + 补充实验 2 天 + 写作 3 天 + 审稿提交 2 天。\\n  related_experiments: []\\n  depends_on:\\n  - D002\\n- id: D004\\n  date: 2026-05-16 11:28 UTC\\n  summary: Phase 0 go/no-go 基线从 Gen 0 (pretrained) 调整为 Gen 1 (首次 fine-tuned)，decline\\n    rate 计算范围改为 Gen 1-10\\n  rationale: Gen 0→1 的 effective rank 上升（417.5→491.8）源于 pretrained 模型 SVD 谱高度集中（top\\n    SV 1942.8），fine-tuning 打散谱结构导致有效秩反升。这是 pretraining→fine-tuning 的分布偏移效应，不是递归退化。SIGMA\\n    原文 50 代实验也从 fine-tuned 模型开始观察趋势。递归 collapse 应从 Gen 1 开始度量。调整后 go/no-go：Gen 1-10\\n    有效秩单调下降（允许 ≤1 代波动）+ decline_rate(Gen 6-10)/decline_rate(Gen 1-5) ≥ 1.5x。此调整在 Gen\\n
+…[truncated 19324 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "feishu:dm:oc_c539bf9e80dc0bf47601f031e26b25b6:briefer",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 3
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34 · 2026-05-20T05:17:36.338664+00:00_
+
+读完了，总结如下。
+
+---
+
+## 实验全景
+
+共 12 个实验（10 完成 / 2 在跑），分三个阶段：
+
+### Phase 0 — Collapse 确认
+- **exp_001** (410M, r=0, seed42, 10gen): PPL 9.55→76.78（+704%），SLV 2469→2179 单调下降。Collapse 完全确认。
+- **exp_002** (1B, r=0, seed42, 3gen): 磁盘满被 kill，但 3gen 数据确认 1B 与 410M 相同的三阶段模式，且 log_det 比 eff_rank 早 1 代下降。
+- **exp_010** (410M, r=0, seed43, 在跑): Gen 0-8 完成，PPL 9.55→46.94，与 seed42 高度一致，快跑完了。
+
+### Phase 1 — 混合比消融（核心数据）
+| 实验 | 真实数据比 | 结果 | SLV 走势 |
+|------|-----------|------|----------|
+| exp_001 | r=0 | collapse | 2469→2179 单调下降 |
+| exp_011 | r=0.2 | Type II | 2367→2358(dip)→2480 先跌后涨 |
+| exp_009 | r=0.25 | Type II | 2367→2362(dip)→2485 先跌后涨 |
+| exp_008 | r=0.3 | Type III | 2367→2511 单调上升，无 collapse |
+| exp_004 | r=0.5 | Type III | 2367→2573 单调上升，无 collapse |
+
+**关键发现**: r_crit（collapse 临界点）被定位在 **(0.25, 0.3]** 区间。
+
+### Adaptive Controller — 失败
+- **exp_006** (k=10) / **exp_005** (k=20) / **exp_003** (k=1): controller 在 r=0.5 下**全程静默**，10 代从未触发。原因是**信号衰减悖论**——混入真实数据抑制了 collapse，但也同时消灭了 controller 用来检测 collapse 的光谱信号。干预本身消灭了干预的理由。
+
+### 当前在跑
+- **exp_010**: r=0 seed43 跨种子复现，Gen 8/10，快完成
+- **exp_012**: r=0.3 seed43 跨种子验证 r_crit bound
+
+---
+
+## Method 还行吗？
+
+**原始 method（自适应 controller）已经失败了。** D020 正式判定 controller claim 不成立。
+
+项目已在 D013/D019/D020 做了 **narrative pivot**，当前论文 4 个贡献：
+
+1. **C1**: 递归合成训练的三阶段光谱坍缩特征化（decompression → onset → collapse）
+2. **C2**: 混合比相变图，r_crit ∈ (0.25, 0.3]，发现 Type I/II/III 三种轨迹
+3. **C3**: 信号衰减悖论——所有 6 个候选 EWS 在混入真实数据后都失效（4/6 方向反转），这是 representation-level EWS 的结构性限制
+4. **C4**: Controller 作为 negative result / design limitation
+
+本质上从 **"我们有一个能用的方法"** 变成了 **"我们发现了一个有趣的现象和一个根本性限制"**。
+
+---
+
+## 预计中稿率
+
+目标：EMNLP 2026 Long Paper，ARR May 25（还剩 5 天）。
+
+**优势**：
+- 实验设计干净，数据充分（5 个 mixing ratio × 10 gen，正在补 multi-seed）
+- 信号衰减悖论是个有意思的 insight，有一定新颖性
+- 诚实的 negative result + phase diagram 有实用价值
+
+**劣势**：
+- 没有 working method，纯 characterization + negative result
+- 模型规模小（410M 为主，1B 只有 3gen pilot）
+- 理论贡献弱，主要是实验观察
+- 5 天写完 long paper 非常紧张
+
+**估计**：
+- Main conference（≥4.0）: **10-20%**
+- Findings（≥3.0）: **35-45%**
+- 综合拿到 Findings 或以上: **大约 40%**
+
+核心风险是审稿人觉得"没有 method 只有 observation"不够顶会门槛，尤其 long paper 期望更高。如果改投 short paper 反而可能更合适——characterization + negative result 的信息密度更适合 4 页。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "feishu:dm:oc_c539bf9e80dc0bf47601f031e26b25b6:briefer"
+}
+```
+
+</details>
+
+---

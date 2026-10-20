@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0eb4d6c5331f83cce475",
+  "project": "spectral_collapse_ews",
+  "kind": "history",
+  "title": "reviewer / loop_5.md",
+  "task_key": "loop_5",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_5.md",
+    "occurrence": 1,
+    "bytes": 3835,
+    "sha256": "cc57ba9622bb38ff55a374639fea91ad99e3386b5b565a7ffb9e9d81085591e0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: max_wall_time\nupdated: '2026-05-17T21:17:04+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0 和 cuda:1 only（rtx6000-diagprobe，2× RTX PRO 6000 Blackwell 98GB）\n- exp_005 已被 D018 kill（PID 116947 已死），不要重启\n- D015：论文主参数 k=10（exp_006），k=20（exp_005）仅为 sensitivity data\n- D004：Collapse 从 Gen 1 baseline 计算（Gen 0→1 上升是 pretrained decompression，不是 collapse）\n- Root 分区仅 5.2G free（83%），checkpoint 写 /root/autodl-tmp/，不要往 /root/ 写大文件\n\n### 2. 🖥️ 基础设施快照\n- 服务器：rtx6000-diagprobe (root)，代码根目录 /root/spectral_collapse_ews\n- Python：/root/miniconda3/bin/python（conda base）\n- 模型：EleutherAI/pythia-410m-deduped（HF cache，HF_HUB_OFFLINE=1）\n- 数据：/root/spectral_collapse_ews/data/（50K real pool + eval_5k.jsonl）\n- Checkpoint：/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/\n- 活跃进程：\n  - exp_006 (PID 134918, tmux=exp_006, cuda:0) — 主实验 adaptive k=10\n  - exp_004 (PID 135411, tmux=exp_004, cuda:1) — fixed_mix baseline\n- 无 wandb 配置，无 cron\n\n### 3. 📊 当前状态\n刚完成：\n- Introduction 重写审查 → PASS（幽灵引用清零，质量好）\n- Related Work 重写审查 → PASS（7处幻觉→0处）\n- exp_005 kill 验证 → GPU 1 已释放给 exp_004 独占\n- GPU 资源冲突报告 + 引用审查报告 + Introduction/Abstract/Conclusion/Related Work 综合审查均已 post to Director\n\nRegistry：\n- exp_006 RUNNING（adaptive k=10，主实验）Gen 0-2 完成，GPU 0 独占，~45min/gen\n- exp_004 RUNNING（fixed_mix baseline）Gen 0-1 完成，GPU 1 独占（刚释放），预计加速至 ~1-2h/gen\n- exp_005 DONE/killed，Gen 0-4 数据已保存\n- exp_001 DONE（Phase 0，Gen 0-10 完整）\n- linear_increasing 脚本已准备（/root/spectral_collapse_ews/scripts/launch_linear_increasing.sh），未启动\n\n### 4. 📋 待办\n- exp_006 到 Gen 3+ → 检查 controller 是否触发（k=10 下 log_det delta 是否超过 τ=0.002）。这是论文核心数据点\n- exp_004 完成或 exp_006 完成 → 释放的 GPU 启动 linear_increasing 实验\n- method.tex / experiments.tex 参数修复 worker 完成 → 验证 k=1.0→10, τ=0.005→0.002, T-t-1→T-t 是否全部修正（已报告 2 次 CRITICAL，至今未修）\n- 新 paper section worker 完成 → 审查引用是否全部来自 references.bib 验证条目\n- 论文编译 / 远程同步 → 验证本地 paper/sections/*.tex 已同步到远程 paper/*.tex（目前所有新版都只在本地，远程全是旧版带幽灵引用）\n\n### 5. 🎯 战略上下文\n- 项目：EMNLP 2026 ARR Short Paper，DDL May 25（~7天）\n- 核心 story：spectral collapse 三阶段表征 + SLV 作为 EWS + 自适应 controller（PoC）+ signal attenuation paradox\n- 决策链关键节点：D004（decompression baseline）→ D012（k calibration）→ D013（controller = PoC framing）→ D015（k=10 为主参数）→ D018（kill exp_005 释放 GPU）\n- **最易判断错的事**：\n  1. \"6.7× onset signal\" — 这个数字在 method.tex 和 conclusion 中出现，但我独立计算 410M 数据只有 ~1.9×。结论/方法中若仍有此数字必须修正\n  2. 论文文件双源问题 — 本地 paper/sections/*.tex 是新版（无幽灵引用），远程 paper/*.tex 是旧版（满是幽灵引用）。审查时必须先确认读的是哪个版本\n  3. exp_005 controller 从未触发（Gen 0-4 ratio=0.5）— 这不是 bug，是 signal attenuation paradox 的实证。50% mixing 下 log_det 持续上升，spectral collapse signal 被完全掩盖\n  4. references.bib 仍缺 rankme2023、gao2020pile、data_mixing_laws2024、garg2025 四个条目，introduction 和 related work 新版引用了它们但 bib 中不存在\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5-copy-3.md"
+}

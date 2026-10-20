@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6de0bb34828473f819e9",
+  "project": "rl-active-probe-fl",
+  "kind": "result",
+  "title": "code no think fix eval",
+  "task_key": "worker_code_no-think-fix-eval_20260514T082030",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_no-think-fix-eval_20260514T082030_result.json",
+    "occurrence": 1,
+    "bytes": 645,
+    "sha256": "58f4bd0ef51d2f8c60eaa7caa86732833e5a841debe2b635df048c111a483f08"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部就绪，汇总：\n\n### Dry-run 结果\n| Sample | think | probe | len |\n|--------|-------|-------|-----|\n| 0 | False | True | 324 |\n| 1 | False | True | 339 |\n| 2 | False | True | 225 |\n| 3 | False | True | 243 |\n| 4 | False | True | 194 |\n\n5/5 通过，no-think 修复生效。\n\n### 评估任务\n| Job | GPU | tmux session | 状态 |\n|-----|-----|-------------|------|\n| eval-sft-v1 | cuda:0 | eval-sft-v1 | 模型已加载，正在评估 202 样本 |\n| eval-base-v2 | cuda:1 | eval-base-v2 | 模型加载中 |\n\n### GPU 显存\n- GPU 0: 17.2 GB / 97.9 GB (68% util)\n- GPU 1: 16.4 GB / 97.9 GB (71% util)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-no-think-fix-eval.md"
+}

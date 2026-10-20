@@ -1,0 +1,45 @@
+{
+  "exp_id": "exp_001",
+  "project": "spectral_collapse_ews",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 1,
+    "created_at": "2026-05-16T07:39:16.853Z",
+    "updated_at": "2026-05-16T16:16:53.510Z",
+    "reproduce": {
+      "finished_at": "2026-05-16T16:10:05.042Z"
+    },
+    "failure_reason": "EXIT_CODE=124 (timeout — exceeded timeout_hours)",
+    "completed_at": "2026-05-16T16:10:05.673Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-16T16:10:06.276444+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    },
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 PYTHONUNBUFFERED=1 python run_phase0.py --resume_from_gen 3",
+      "server": "rtx6000-diagprobe",
+      "data_path": "/root/spectral_collapse_ews/data/",
+      "data_count": 50000,
+      "model_name": "EleutherAI/pythia-410m-deduped",
+      "seed": 42,
+      "resume_from_gen": 3,
+      "tmux_session": "exp_001_resume",
+      "pid": 36853,
+      "gpu": "cuda:0",
+      "checkpoint_source": "/root/spectral_collapse_ews/checkpoints/gen_2",
+      "note": "Resumed after 8h timeout. Gen 0-2 preserved. Remaining: gen 3-10."
+    }
+  },
+  "timestamp": "2026-05-16T16:16:53.519101+00:00",
+  "trigger": "update_registry"
+}

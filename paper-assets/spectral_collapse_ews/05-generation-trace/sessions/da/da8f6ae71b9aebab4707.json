@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "da8f6ae71b9aebab4707",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "analysis rankme extraction",
+  "task_key": "worker_analysis_rankme_extraction_20260523T042329",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_rankme_extraction_20260523T042329_result.json",
+    "occurrence": 1,
+    "bytes": 774,
+    "sha256": "f5787723c7d6f157294be4f0f235fee3c782636662628cbc22f14286fdfd8ee8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Written to `artifacts/plan_018/rankme_trajectory_analysis.md`.\n\n**Core finding: r_eff shows a 2-type phase diagram, not the 3-type SLV structure.**\n\n- **r=0** — peak at Gen 2 (496), then monotonic decline to 438. Matches SLV Type I (collapse).\n- **r=0.2** — monotonic increase 418→509. **No dip.** Does NOT match SLV Type II — indistinguishable from Type III.\n- **r=0.25/0.3/0.5** — monotonic increase, differing only in rate (higher r → faster expansion).\n\nThe Type II/III boundary that SLV captures (transient dip at r=0.2) is invisible to r_eff. This reinforces SLV's superiority as an early warning signal — it detects transient spectral stress that RankMe misses entirely. r_eff only distinguishes \"collapse\" from \"no collapse.\""
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-rankme-extraction.md"
+}

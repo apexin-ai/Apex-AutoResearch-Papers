@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c127e90cd4152428101e",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "analysis exp 018",
+  "task_key": "worker_analysis_exp_018_20260523T093707",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_018_20260523T093707_result.json",
+    "occurrence": 1,
+    "bytes": 1023,
+    "sha256": "339276c383b224b0ac8bf75469375b756c12e1d6a4895f5fa18591d4167752ab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**exp_018 分析完成。结论：SUCCESS。**\n\n关键结果：\n\n| 指标 | seed42 (exp_004) | seed43 (exp_018) | 2-seed Mean±Std |\n|------|------------------|------------------|-----------------|\n| Eff. Rank (gen10) | 554.51 | 552.40 | 553.46±1.49 |\n| SLV (gen10) | 2573.20 | 2570.09 | 2571.65±2.20 |\n| PPL (gen10) | 15.20 | 15.03 | 15.11±0.12 |\n| D-4 (gen10) | 0.0954 | 0.2088 | 0.1521±0.0802 |\n\n- **Type III trajectory confirmed**：两个 seed 的 eff_rank 和 SLV 均单调递增（gen1 有微小 SLV transient dip，之后持续上升），无 spectral collapse\n- **光谱指标高度可复现**：eff_rank 和 SLV 的跨 seed 相对 std <0.4%\n- **D-4 跨 seed 方差较大**：seed43 在 gen10 保持 2× 于 seed42 的 D-4 (0.209 vs 0.095)，说明表面多样性比光谱结构更受随机性影响\n- **PPL 涨幅一致**：seed42 +59.1%, seed43 +57.4%\n\nRegistry 已更新（metrics、conclusion=success、log_path、checkpoint_path）。报告已保存并注册到 artifacts。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-018.md"
+}

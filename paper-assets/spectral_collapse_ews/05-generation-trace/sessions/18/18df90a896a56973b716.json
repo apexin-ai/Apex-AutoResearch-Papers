@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "18df90a896a56973b716",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "figure fig5 controller signal",
+  "task_key": "worker_figure_fig5-controller-signal_20260523T125812",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_fig5-controller-signal_20260523T125812_result.json",
+    "occurrence": 1,
+    "bytes": 499,
+    "sha256": "022e83dcc345464cc3900deb7148df69c12a83e03a051b3a4bdcc270693e8172"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个文件全部生成。各 mixing ratio 的 max signal：\n\n| r | Max \\|ΔS̃_t\\| |\n|---|---|\n| 0 | 33.33 |\n| 0.2 | 2.41 |\n| 0.25 | 0.79 |\n| 0.3 | 0.45 |\n| 0.5 | 0.77 |\n\nr=0.3 和 r=0.5 的信号不严格为零（EMA 在初始几步有微小负差分），但相对 r=0 的 33.33 已经可以忽略（<1.5%），视觉上几乎贴近基线。\"signal = 0\" 标注未放置，因为值非零。如需强制标注或将小于某阈值的值截断为 0，告诉我即可。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-fig5-controller-signal.md"
+}

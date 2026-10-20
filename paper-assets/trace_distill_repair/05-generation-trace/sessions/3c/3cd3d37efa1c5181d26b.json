@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "3cd3d37efa1c5181d26b",
+  "project": "trace_distill_repair",
+  "kind": "result",
+  "title": "debug api curl test",
+  "task_key": "worker_debug_api_curl_test_20260515T122208",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_debug_api_curl_test_20260515T122208_result.json",
+    "occurrence": 1,
+    "bytes": 3375,
+    "sha256": "4dfb34be89411390da7b517c4b00d0970b786aa3e6b500827e49be5207cbf8c8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据收集完毕。以下是诊断报告。\n\n---\n\n## 诊断报告\n\n### 1. API 配置\n\n| 项目 | 值 |\n|---|---|\n| Key | `OPENROUTER_API_KEY=[REDACTED] (OpenRouter) |\n| Endpoint | `http://47.94.22.126/v1` (nginx 反代 → OpenRouter) |\n| Model (default) | `deepseek/deepseek-v4-pro` |\n| Client | OpenAI SDK, timeout=connect 30s / read 120s, max_retries=3 |\n\n### 2. curl 测试结果\n\n**API 连通正常。** HTTP 200，provider=AtlasCloud，2.7s 延迟。`deepseek/deepseek-v4-flash` 测试成功返回 \"Hello!\"。\n\n```\n< HTTP/1.1 200 OK\n< Server: nginx/1.26.2\nResponse: {\"id\":\"gen-1778847776-...\",\"choices\":[{\"message\":{\"content\":\"Hello!\"}}]}\n```\n\n### 3. v2 异常处理逻辑\n\n`empty_response` 有两条产生路径：\n\n**路径 A — API 异常被静默吞掉** (`run_phase3_repair_v2.py:530-534`)：\n```python\ntry:\n    generated_diff, tokens_in, tokens_out = call_repair_llm_v2(pipeline, prompt)\nexcept Exception as e:\n    logger.error(\"%s/%s LLM error: %s\", instance_key, condition, e)\n    generated_diff = \"\"     # ← 异常变空字符串，不抛出\n    tokens_in = estimate_tokens(prompt)\n    tokens_out = 0\n```\n随后 `if not generated_diff:` (line 537) → 直接标记 `eval_method: \"empty_response\"`，**不记录具体错误原因**。\n\n**路径 B — API 成功但 content 为 None** (`call_repair_llm_v2` line 329)：\n```python\nraw = response.choices[0].message.content\ntext = raw.strip() if raw else \"\"   # raw=None 时静默返回空串\n```\n这条路径**不触发任何异常或日志**，调用方无法区分\"API 返回空\"和\"正常返回空 diff\"。\n\n### 4. 根因判断：12/16 empty_response\n\n**注意：v2 目前没有任何结果文件**（无 checkpoint、无 CSV），说明 v2 尚未成功执行完毕，或结果是在另一次运行中产生的。\n\n基于代码分析，12/16 empty_response 的最可能根因按概率排序：\n\n1. **content_filter / 安全审查触发**（最可能）：DeepSeek-v4-pro 通过 OpenRouter+AtlasCloud 代理，当 prompt 包含大量源代码+trace 上下文时，provider 端的 content filter 可能将 `message.content` 设为 `None`。代码在路径 B 中静默吞掉这个 None，不留任何日志。v2 脚本**没有 `content_filter` 相关的检测代码**（grep 确认为空）。\n\n2. **timeout / 网络超时**：v2 的 `call_repair_llm_v2` 设了 `timeout=180`，但 `_get_repair_client` 设了 `read=120s`。对于 8192 max_tokens 的长生成，120s read timeout 可能不够。超时会走路径 A，被 `except Exception` 吞掉。\n\n3. **模型不匹配**：默认模型 `deepseek/deepseek-v4-pro`，但 curl 测试用的是 `deepseek-v4-flash`。如果 pro 在 OpenRouter 上不可用或被路由到不同 provider，可能返回空或报错。\n\n**根本问题不是 API 不通，而是 v2 脚本的错误处理把所有失败模式（content_filter、timeout、模型错误、空响应）都静默合并成了 `empty_response`，丢失了真正的错误信息。** 需要在 `call_repair_llm_v2` 中检查 `response.choices[0].finish_reason`（content_filter 时通常为 `\"content_filter\"` 而非 `\"stop\"`）并记录到结果中。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "id": "gen-1778847776-...",
+              "choices": [
+                {
+                  "message": {
+                    "content": "Hello!"
+                  }
+                }
+              ]
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/debug-api-curl-test.md"
+}

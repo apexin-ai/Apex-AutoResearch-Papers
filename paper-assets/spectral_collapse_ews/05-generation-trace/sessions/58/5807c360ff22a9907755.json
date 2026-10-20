@@ -1,0 +1,2178 @@
+{
+  "schema_version": "1.0",
+  "id": "5807c360ff22a9907755",
+  "project": "spectral_collapse_ews",
+  "kind": "conversation",
+  "title": "analysis rankme extraction",
+  "task_key": "worker_analysis_rankme_extraction_20260523T042329",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_rankme_extraction_20260523T042329.jsonl",
+    "occurrence": 1,
+    "bytes": 110609,
+    "sha256": "0cfdd520cf400aa9bd88b2d53274bf43e3793213c2ce593b5daf01eb580004b7"
+  },
+  "statistics": {
+    "messages": 109,
+    "user_turns": 0,
+    "tool_calls": 54,
+    "roles": {
+      "tool_call": 54,
+      "tool_result": 54,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-23T04:31:11.877564+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-23T04:31:11.877954+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-23T04:31:11.878104+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "spectral_collapse_ews",
+              "fields": "['*']",
+              "filters": "{'id': 'exp_001'}"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-23T04:31:11.878233+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "spectral_collapse_ews",
+              "fields": "['*']",
+              "filters": "{'id': 'exp_013'}"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-23T04:31:11.878359+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1378}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-23T04:31:11.878478+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1708}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-23T04:31:11.878591+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "spectral_collapse_ews",
+              "fields": "['*']",
+              "filters": "{'id': 'exp_010'}"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-23T04:31:11.878735+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1311}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-23T04:31:11.878851+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "spectral_collapse_ews",
+              "fields": "['*']",
+              "filters": "{'id': 'exp_007'}"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-23T04:31:11.878992+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1163}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-23T04:31:11.879107+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "spectral_collapse_ews",
+              "fields": "['*']",
+              "filters": "{'id': 'exp_009'}"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-23T04:31:11.879224+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1196}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-23T04:31:11.879343+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "spectral_collapse_ews",
+              "fields": "['*']",
+              "filters": "{'id': 'exp_014'}"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-23T04:31:11.879461+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1326}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-23T04:31:11.879571+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "spectral_collapse_ews",
+              "fields": "['*']",
+              "filters": "{'id': 'exp_015'}"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-23T04:31:11.879707+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1165}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-23T04:31:11.879817+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "spectral_collapse_ews",
+              "fields": "['*']",
+              "filters": "{'id': 'exp_008'}"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-23T04:31:11.879931+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1217}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-23T04:31:11.880038+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "spectral_collapse_ews",
+              "fields": "['*']",
+              "filters": "{'id': 'exp_012'}"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-23T04:31:11.880151+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1186}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-23T04:31:11.880257+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "spectral_collapse_ews",
+              "fields": "['*']",
+              "filters": "{'id': 'exp_016'}"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-23T04:31:11.880369+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.112}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-23T04:31:11.880473+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "spectral_collapse_ews",
+              "fields": "['*']",
+              "filters": "{'id': 'exp_006'}"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-23T04:31:11.880590+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1453}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-23T04:31:11.880743+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "spectral_collapse_ews",
+              "fields": "['*']",
+              "limit": "3"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-23T04:31:11.880989+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_019\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T04:05:17.129Z\\\", \\\"updated_at\\\": \\\"2026-05-23T04:08:30.958Z\\\", \\\"hypothesis\\\": \\\"r=0.2 with seed 44 reproduces Type II trajectory (transient dip + recovery) observed in exp_007 (seed42) and exp_017 (seed43). Third seed enables 3-seed coverage for r=0.2, resolving whether D-4 V-shaped recovery (seed42) is a 1/3 outlier or a majority pattern. Strengthens C3 signal attenuation claim and R1-N2 seed replication.\\\", \\\"parent\\\": \\\"exp_017\\\", \\\"server\\\": \\\"rtx6000-diagprobe\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"rtx6000-diagprobe\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-23T04:08:20.155Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cp /root/spectral_collapse_ews/scripts/launch_fixed_mix_r020_seed43.sh /root/spectral_collapse_ews/scripts/launch_fixed_mix_r020_seed44.sh && sed -i 's/seed=43/seed=44/g; s/seed43/seed44/g; s/SEED=43/SEED=44/g; s/--seed 43/--seed 44/g' /root/spectral_collapse_ews/scripts/launch_fixed_mix_r020_seed44.sh && bash /root/spectral_collapse_ews/scripts/launch_fixed_mix_r020_seed44.sh 0\\\\\\\"\\\"}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cp /root/spectral_collapse_ews/scripts/launch_fixed_mix_r020_seed43.sh /root/spectral_collapse_ews/scripts/launch_fixed_mix_r020_seed44.sh && sed -i 's/seed=43/seed=44/g; s/seed43/seed44/g; s/SEED=43/SEED=44/g; s/--seed 43/--seed 44/g' /root/spectral_collapse_ews/scripts/launch_fixed_mix_r020_seed44.sh && bash /root/spectral_collapse_ews/scripts/launch_fixed_mix_r020_seed44.sh 0\\\\\\\"\\\", \\\"server\\\": \\\"rtx6000-diagprobe\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"757587\\\", \\\"log_path\\\": \\\"~/runs/spectral_collapse_ews/exp_019.log\\\", \\\"submitted_at\\\": \\\"2026-05-23T04:08:21.748Z\\\", \\\"submitted_via\\\": \\\"submit_training_jo\n…[truncated 6134 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-23T04:31:11.881139+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/registry.yaml",
+              "limit": "100"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-23T04:31:11.881295+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tbaseline: null\n2\texperiments:\n3\t  exp_001:\n4\t    status: DONE\n5\t    retry_count: 2\n6\t    created_at: '2026-05-16T07:39:16.853Z'\n7\t    updated_at: '2026-05-17T17:32:40.200Z'\n8\t    reproduce:\n9\t      finished_at: '2026-05-16T23:20:59.926Z'\n10\t    failure_reason: EXIT_CODE=124 (timeout — exceeded timeout_hours)\n11\t    completed_at: '2026-05-16T16:10:05.673Z'\n12\t    extra:\n13\t      hook_events:\n14\t      - event: on_failed\n15\t        action: agent\n16\t        ts: '2026-05-16T16:10:06.276444+00:00'\n17\t      - event: on_failed\n18\t        action: agent\n19\t        ts: '2026-05-16T23:21:01.623970+00:00'\n20\t      previous_failure:\n21\t        conclusion: failed\n22\t        metrics:\n23\t          gen3_eff_rank: 493.31\n24\t          gen3_log_det: 2440.57\n25\t          gen3_ppl: 16.25\n26\t          gen3_distinct4: 0.49\n27\t          gen3_hellaswag: 0.3658\n28\t          gen3_train_loss: 1.134\n29\t          progress: Gen 4/10 generating\n30\t          trend: eff_rank first decline at Gen 3 (-3.13 from Gen 2)\n31\t    spec:\n32\t      pid: 59365\n33\t      command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate\n34\t        base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=0 PYTHONUNBUFFERED=1\n35\t        python run_phase0.py --resume_from_gen 4\"\n36\t      server: rtx6000-diagprobe\n37\t      gpu: cuda:0\n38\t      tmux_session: exp_001_gen4\n39\t      resume_from_gen: 4\n40\t      log_path: /root/spectral_collapse_ews/results/phase0_gen4_run.log\n41\t      checkpoint_path: /root/spectral_collapse_ews/checkpoints/gen_10/model.safetensors\n42\t      description: 'Phase 0: Pure collapse characterization - Gen 0-10 complete'\n43\t      hypothesis: Effective rank monotonically decreases over recursive synthetic\n44\t        training with accelerating collapse in later generations (baseline from Gen\n45\t        1, not Gen 0)\n46\t      model_name: EleutherAI/pythia-410m-deduped\n47\t      seed: 42\n48\t      data_path: /root/spectral_collapse_ews/data/\n49\t      data_count: 50K train + 5K ev\n…[truncated 2230 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-23T04:31:11.881473+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/registry.yaml",
+              "offset": "100",
+              "limit": "200"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-23T04:31:11.881673+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "100\t      gen0_ppl: 8.07\n101\t      gen0_distinct4: 0.751\n102\t      gen0_sigma1: 1661.2\n103\t      gen1_eff_rank: 570.75\n104\t      gen1_log_det: 2905.74\n105\t      gen1_ppl: 9.41\n106\t      gen1_distinct4: 0.634\n107\t      gen1_train_loss: 1.53\n108\t      gen1_sigma1: 1052.8\n109\t      gen2_eff_rank: 580.92\n110\t      gen2_log_det: 2893.85\n111\t      gen2_ppl: 11.04\n112\t      gen2_distinct4: 0.538\n113\t      gen2_train_loss: 1.218\n114\t      gen2_sigma1: 916.3\n115\t      gen3_eff_rank: 580.63\n116\t      gen3_log_det: 2864.78\n117\t      gen3_ppl: 13.44\n118\t      gen3_distinct4: 0.501\n119\t      gen3_train_loss: 1.027\n120\t      gen3_sigma1: 873.5\n121\t      progress: KILLED - zombie process cleaned, cuda:1 freed\n122\t      trend: '1B shows same 3-phase pattern: decompression peak Gen 2, log_det decline\n123\t        Gen 2→3, eff_rank plateau Gen 2→3'\n124\t      crash_reason: No space left on device (root partition, NOT checkpoint disk -\n125\t        checkpoints correctly symlinked to autodl-tmp)\n126\t      cleanup: PID 25237 killed, cuda:1 released, checkpoint data preserved on autodl-tmp\n127\t        (16GB)\n128\t    reproduce:\n129\t      finished_at: '2026-05-17T03:42:40.918Z'\n130\t    failure_reason: EXIT_CODE=143 (SIGTERM — graceful kill)\n131\t    conclusion: success\n132\t    completed_at: '2026-05-17T03:42:41.535Z'\n133\t    extra:\n134\t      hook_events:\n135\t      - event: on_failed\n136\t        action: agent\n137\t        ts: '2026-05-17T03:42:42.600274+00:00'\n138\t    notes: '失败原因: Root 分区 (30GB) 磁盘满，非 checkpoint 盘问题（checkpoint 已正确 symlink 到 autodl-tmp）|\n139\t      已有成果: Gen 0-3 完整数据，确认 1B 与 410M 相同 3-phase pattern（decompression peak Gen 2,\n140\t      log_det 先降, eff_rank plateau Gen 2→3）| 数据保存: autodl-tmp 16GB checkpoint 完好 |\n141\t      建议: 1B pilot 已获足够 cross-scale 验证数据，cuda:1 应立即投入 Phase 1'\n142\t  exp_003:\n143\t    status: DONE\n144\t    retry_count: 0\n145\t    created_at: '2026-05-17T04:04:34.425Z'\n146\t    updated_at: '2026-05-17T13:08:33.285Z'\n147\t    hypothesis: 'Spectral-guided adaptive data mixi\n…[truncated 6691 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-23T04:31:11.881833+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "spectral_collapse_ews",
+              "fields": "['*']",
+              "limit": "20"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-23T04:31:11.882194+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (68,693 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-5-projects-spectral-collapse-ews/96663250-c9a5-42fe-bd2c-5f4591bf061b/tool-results/mcp-agent-ml-research-read_registry-1779510243743.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-5-projects-spectral-collapse-ews/96663250-c9a5-42fe-bd2c-5f4591bf061b/tool-results/mcp-agent-ml-research-read_registry-1779510243743.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-5-projects-spectral-collapse-ews/96663250-c9a5-42fe-bd2c-5f4591bf061b/tool-results/mcp-agent-ml-research-read_registry-1779510243743.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-23T04:31:11.882380+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Agent"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Agent",
+            "tool_args": {
+              "description": "Extract r_eff trajectories from registry",
+              "prompt": "I need to extract effective rank (eff_rank) per-generation trajectories from a large registry file. The registry data is stored as JSON at:\n/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-5-projects-spectral-collapse-ews/96663250-c9a5-42fe-bd2c-5f4591bf061b/tool-results/mcp-agent-ml-research-read_registry-1779510243743.txt\n\nThe file is JSON with schema: {result: string} where the result string is itself JSON containing experiment data.\n\nI need per-generation eff_rank values for these specific experiments:\n- exp_001 (r=0, seed42)\n- exp_013 (r=0, seed43)\n- exp_010 (r=0, seed44)\n- exp_007 (r=0.2, seed42)\n- exp_017 (r=0.2, seed43)\n- exp_009 (r=0.25, seed42)\n- exp_014 (r=0.25, seed43)\n- exp_015 (r=0.25, seed44)\n- exp_008 (r=0.3, seed42)\n- exp_012 (r=0.3, seed43)\n- exp_016 (r=0.3, seed44)\n- exp_006 (r=0.5, seed42)\n- exp_004 (r=0.5, seed42) — this might be r=0.5 too, check\n\nSome experiments store metrics as flat keys like \"gen0_eff_rank\", \"gen1_eff_rank\", etc. Others store them in a nested \"per_gen\" dict like {\"gen0\": {\"eff_rank\": 417.55}, \"gen1\": {\"eff_rank\": 475.29}}.\n\nUse jq or python to:\n1. Parse the nested JSON\n2. Extract all experiments listed above\n3. For each experiment, extract gen0 through gen10 eff_rank values\n4. Also extract the SLV trajectory type classification if available (e.g., \"Type I\", \"Type II\", \"Type III\")\n5. Report the real_ratio for each experiment to confirm the mixing ratio\n\nOutput a clean table with columns: experiment_id, real_ratio, seed, gen0-gen10 eff_rank values, and trajectory type.\n\nAlso check if there's an exp_019 (r=0.2, seed44) that might have partial data.",
+              "subagent_type": "general-purpose"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-23T04:31:11.882566+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-5-projects-spectral-collapse-ews/96663250-c9a5-42fe-bd2c-5f4591bf061b/tool-results/mcp-agent-ml-research-read_registry-1779510243743.txt",
+              "limit": "50"
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-23T04:31:11.882712+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (30237 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-23T04:31:11.882838+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-5-projects-spectral-collapse-ews/96663250-c9a5-42fe-bd2c-5f4591bf061b/tool-results/mcp-agent-ml-research-read_registry-1779510243743.txt",
+              "limit": "30"
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-23T04:31:11.882963+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (30237 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-23T04:31:11.883081+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "wc -l /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-5-projects-spectral-collapse-ews/96663250-c9a5-42fe-bd2c-5f4591bf061b/tool-results/mcp-agent-ml-research-read_registry-1779510243743.txt",
+              "description": "Check file size"
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-23T04:31:11.883190+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "0 /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-5-projects-spectral-collapse-ews/96663250-c9a5-42fe-bd2c-5f4591bf061b/tool-results/mcp-agent-ml-research-read_registry-1779510243743.txt"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-23T04:31:11.883308+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 << 'PYEOF'\nimport json\n\nfpath = \"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-5-projects-spectral-collapse-ews/96663250-c9a5-42fe-bd2c-5f4591bf061b/tool-results/mcp-agent-ml-research-read_registry-1779510243743.txt\"\n\nwith open(fpath) as f:\n    raw = json.load(f)\n\n# The result field is itself JSON\ninner = json.loads(raw[\"result\"])\n\n# Check top-level keys\nprint(\"Top-level type:\", type(inner))\nif isinstance(inner, dict):\n    print(\"Top-level keys:\", list(inner.keys())[:20])\nelif isinstance(inner, list):\n    print(\"List length:\", len(inner))\n    if len(inner) > 0:\n        print(\"First item keys:\", list(inner[0].keys()) if isinstance(inner[0], dict) else type(inner[0]))\nPYEOF",
+              "description": "Parse registry JSON structure"
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-23T04:31:11.883420+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Top-level type: <class 'dict'>\nTop-level keys: ['success', 'data', 'error', 'metadata']"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-23T04:31:11.883543+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 << 'PYEOF'\nimport json\n\nfpath = \"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-5-projects-spectral-collapse-ews/96663250-c9a5-42fe-bd2c-5f4591bf061b/tool-results/mcp-agent-ml-research-read_registry-1779510243743.txt\"\n\nwith open(fpath) as f:\n    raw = json.load(f)\n\ninner = json.loads(raw[\"result\"])\ndata = inner[\"data\"]\n\nprint(\"Data type:\", type(data))\nif isinstance(data, dict):\n    print(\"Data keys:\", list(data.keys())[:30])\nelif isinstance(data, list):\n    print(\"Data length:\", len(data))\n    if len(data) > 0:\n        item = data[0]\n        print(\"First item keys:\", list(item.keys()) if isinstance(item, dict) else type(item))\nPYEOF",
+              "description": "Inspect data structure"
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-23T04:31:11.883677+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Data type: <class 'dict'>\nData keys: ['experiments', 'count', 'total', 'baseline']"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-23T04:31:11.883797+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 << 'PYEOF'\nimport json\n\nfpath = \"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-5-projects-spectral-collapse-ews/96663250-c9a5-42fe-bd2c-5f4591bf061b/tool-results/mcp-agent-ml-research-read_registry-1779510243743.txt\"\n\nwith open(fpath) as f:\n    raw = json.load(f)\n\ninner = json.loads(raw[\"result\"])\nexperiments = inner[\"data\"][\"experiments\"]\n\nprint(f\"Number of experiments: {len(experiments)}\")\nprint()\n\n# List all experiment IDs\nfor exp in experiments:\n    eid = exp.get(\"experiment_id\", exp.get(\"id\", \"?\"))\n    print(f\"  {eid}\")\nPYEOF",
+              "description": "List all experiment IDs"
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-23T04:31:11.883910+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\nNumber of experiments: 20\n\nTraceback (most recent call last):\n  File \"<stdin>\", line 16, in <module>\nAttributeError: 'str' object has no attribute 'get'"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-23T04:31:11.884027+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 << 'PYEOF'\nimport json\n\nfpath = \"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-5-projects-spectral-collapse-ews/96663250-c9a5-42fe-bd2c-5f4591bf061b/tool-results/mcp-agent-ml-research-read_registry-1779510243743.txt\"\n\nwith open(fpath) as f:\n    raw = json.load(f)\n\ninner = json.loads(raw[\"result\"])\nexperiments = inner[\"data\"][\"experiments\"]\n\nprint(f\"Type of experiments: {type(experiments)}\")\nif isinstance(experiments, dict):\n    print(\"Experiment keys:\", list(experiments.keys()))\nelif isinstance(experiments, list):\n    print(f\"Length: {len(experiments)}\")\n    print(f\"First element type: {type(experiments[0])}\")\n    print(f\"First element (truncated): {str(experiments[0])[:200]}\")\nPYEOF",
+              "description": "Check experiments structure"
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-23T04:31:11.884139+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Type of experiments: <class 'dict'>\nExperiment keys: ['exp_019', 'exp_017', 'exp_018', 'exp_016', 'exp_015', 'exp_012', 'exp_014b', 'exp_014', 'exp_013', 'exp_010', 'exp_011', 'exp_009', 'exp_008', 'exp_007', 'exp_004', 'exp_006', 'exp_005', 'exp_001', 'exp_003', 'exp_002']"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-23T04:31:11.884256+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 << 'PYEOF'\nimport json\n\nfpath = \"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-5-projects-spectral-collapse-ews/96663250-c9a5-42fe-bd2c-5f4591bf061b/tool-results/mcp-agent-ml-research-read_registry-1779510243743.txt\"\n\nwith open(fpath) as f:\n    raw = json.load(f)\n\ninner = json.loads(raw[\"result\"])\nexperiments = inner[\"data\"][\"experiments\"]\n\n# Look at one experiment to understand the schema\nexp1 = experiments[\"exp_001\"]\nprint(\"exp_001 type:\", type(exp1))\nprint(\"exp_001 keys:\", list(exp1.keys()) if isinstance(exp1, dict) else \"N/A\")\nprint()\n# Print the whole thing (truncated)\nprint(json.dumps(exp1, indent=2)[:3000])\nPYEOF",
+              "description": "Inspect exp_001 structure"
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-23T04:31:11.884388+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp_001 type: <class 'dict'>\nexp_001 keys: ['status', 'retry_count', 'created_at', 'updated_at', 'reproduce', 'failure_reason', 'completed_at', 'extra', 'spec', 'metrics', 'conclusion', 'hypothesis']\n\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 2,\n  \"created_at\": \"2026-05-16T07:39:16.853Z\",\n  \"updated_at\": \"2026-05-17T17:32:40.200Z\",\n  \"reproduce\": {\n    \"finished_at\": \"2026-05-16T23:20:59.926Z\"\n  },\n  \"failure_reason\": \"EXIT_CODE=124 (timeout \\u2014 exceeded timeout_hours)\",\n  \"completed_at\": \"2026-05-16T16:10:05.673Z\",\n  \"extra\": {\n    \"hook_events\": [\n      {\n        \"event\": \"on_failed\",\n        \"action\": \"agent\",\n        \"ts\": \"2026-05-16T16:10:06.276444+00:00\"\n      },\n      {\n        \"event\": \"on_failed\",\n        \"action\": \"agent\",\n        \"ts\": \"2026-05-16T23:21:01.623970+00:00\"\n      }\n    ],\n    \"previous_failure\": {\n      \"conclusion\": \"failed\",\n      \"metrics\": {\n        \"gen3_eff_rank\": 493.31,\n        \"gen3_log_det\": 2440.57,\n        \"gen3_ppl\": 16.25,\n        \"gen3_distinct4\": 0.49,\n        \"gen3_hellaswag\": 0.3658,\n        \"gen3_train_loss\": 1.134,\n        \"progress\": \"Gen 4/10 generating\",\n        \"trend\": \"eff_rank first decline at Gen 3 (-3.13 from Gen 2)\"\n      }\n    }\n  },\n  \"spec\": {\n    \"pid\": 59365,\n    \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=0 PYTHONUNBUFFERED=1 python run_phase0.py --resume_from_gen 4\\\"\",\n    \"server\": \"rtx6000-diagprobe\",\n    \"gpu\": \"cuda:0\",\n    \"tmux_session\": \"exp_001_gen4\",\n    \"resume_from_gen\": 4,\n    \"log_path\": \"/root/spectral_collapse_ews/results/phase0_gen4_run.log\",\n    \"checkpoint_path\": \"/root/spectral_collapse_ews/checkpoints/gen_10/model.safetensors\",\n    \"description\": \"Phase 0: Pure collapse characterization - Gen 0-10 complete\",\n    \"hypothesis\": \"Effective rank monotonically decreases over recursive synthetic training with accelerating collapse in later generations (baseline from Gen 1, not Gen 0)\",\n \n…[truncated 959 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-23T04:31:11.884533+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 << 'PYEOF'\nimport json\n\nfpath = \"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-5-projects-spectral-collapse-ews/96663250-c9a5-42fe-bd2c-5f4591bf061b/tool-results/mcp-agent-ml-research-read_registry-1779510243743.txt\"\n\nwith open(fpath) as f:\n    raw = json.load(f)\n\ninner = json.loads(raw[\"result\"])\nexperiments = inner[\"data\"][\"experiments\"]\n\n# Check all metric keys for exp_001\nexp1 = experiments[\"exp_001\"]\nprint(\"=== exp_001 all metric keys ===\")\nprint(sorted(exp1[\"metrics\"].keys()))\nprint()\n\n# Check if there's per_gen in extra\nif \"per_gen\" in exp1.get(\"extra\", {}):\n    print(\"Found per_gen in extra\")\nelif \"per_gen\" in exp1.get(\"metrics\", {}):\n    print(\"Found per_gen in metrics\")\nelse:\n    # Look for gen*_eff_rank pattern in metrics\n    eff_rank_keys = [k for k in exp1[\"metrics\"].keys() if \"eff_rank\" in k]\n    print(\"eff_rank keys in metrics:\", sorted(eff_rank_keys))\n\n# Also check extra for more metrics\nprint(\"\\n=== exp_001 extra keys ===\")\nprint(list(exp1.get(\"extra\", {}).keys()))\n\n# Check previous_failure metrics too\nprev = exp1.get(\"extra\", {}).get(\"previous_failure\", {}).get(\"metrics\", {})\nif prev:\n    print(\"\\nprevious_failure metric keys:\", sorted(prev.keys()))\nPYEOF",
+              "description": "Find per-gen eff_rank data locations"
+            }
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-23T04:31:11.884678+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== exp_001 all metric keys ===\n['gen10_eff_rank', 'gen10_log_det', 'gen10_ppl', 'progress', 'trend']\n\neff_rank keys in metrics: ['gen10_eff_rank']\n\n=== exp_001 extra keys ===\n['hook_events', 'previous_failure']\n\nprevious_failure metric keys: ['gen3_distinct4', 'gen3_eff_rank', 'gen3_hellaswag', 'gen3_log_det', 'gen3_ppl', 'gen3_train_loss', 'progress', 'trend']"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-23T04:31:11.884812+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 << 'PYEOF'\nimport json\n\nfpath = \"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-5-projects-spectral-collapse-ews/96663250-c9a5-42fe-bd2c-5f4591bf061b/tool-results/mcp-agent-ml-research-read_registry-1779510243743.txt\"\n\nwith open(fpath) as f:\n    raw = json.load(f)\n\ninner = json.loads(raw[\"result\"])\nexperiments = inner[\"data\"][\"experiments\"]\n\n# Target experiments\ntargets = [\"exp_001\",\"exp_013\",\"exp_010\",\"exp_007\",\"exp_017\",\"exp_009\",\"exp_014\",\"exp_015\",\"exp_008\",\"exp_012\",\"exp_016\",\"exp_006\",\"exp_004\",\"exp_019\"]\n\nfor eid in targets:\n    if eid not in experiments:\n        print(f\"{eid}: NOT FOUND\")\n        continue\n    exp = experiments[eid]\n    spec = exp.get(\"spec\", {})\n    metrics = exp.get(\"metrics\", {})\n    extra = exp.get(\"extra\", {})\n    \n    # Get mix ratio and seed\n    mix_ratio = spec.get(\"mix_ratio\", \"?\")\n    real_ratio = spec.get(\"real_ratio\", spec.get(\"real_data_ratio\", \"?\"))\n    seed = spec.get(\"seed\", \"?\")\n    \n    # Collect all eff_rank values from metrics\n    eff_ranks = {}\n    for k, v in metrics.items():\n        if \"eff_rank\" in k and isinstance(v, (int, float)):\n            eff_ranks[k] = v\n    \n    # Check if per_gen exists\n    per_gen = metrics.get(\"per_gen\", extra.get(\"per_gen\", None))\n    \n    # Check previous_failure for more data\n    prev_metrics = extra.get(\"previous_failure\", {}).get(\"metrics\", {})\n    for k, v in prev_metrics.items():\n        if \"eff_rank\" in k and isinstance(v, (int, float)):\n            eff_ranks[k] = v\n    \n    print(f\"\\n{'='*60}\")\n    print(f\"{eid}: seed={seed}, mix_ratio={mix_ratio}, real_ratio={real_ratio}\")\n    print(f\"  status={exp.get('status')}, conclusion={exp.get('conclusion')}\")\n    print(f\"  eff_rank keys in metrics: {sorted(eff_ranks.keys())}\")\n    print(f\"  eff_rank values: {json.dumps(eff_ranks, indent=4)}\")\n    if per_gen:\n        print(f\"  per_gen found: {type(per_gen)}\")\n        if isinstance(per_gen, dict):\n            print(f\"  per_gen keys: {sorted(per_gen.keys())[:5]}...\")\nPYEOF",
+              "description": "Extract eff_rank data for all target experiments"
+            }
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-23T04:31:11.884957+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "============================================================\nexp_001: seed=42, mix_ratio=100% synthetic (pure collapse), real_ratio=?\n  status=DONE, conclusion=success\n  eff_rank keys in metrics: ['gen10_eff_rank', 'gen3_eff_rank']\n  eff_rank values: {\n    \"gen10_eff_rank\": 442.46,\n    \"gen3_eff_rank\": 493.31\n}\n\n============================================================\nexp_013: seed=44, mix_ratio=?, real_ratio=0\n  status=DONE, conclusion=success\n  eff_rank keys in metrics: []\n  eff_rank values: {}\n\n============================================================\nexp_010: seed=43, mix_ratio=?, real_ratio=0\n  status=DONE, conclusion=success\n  eff_rank keys in metrics: []\n  eff_rank values: {}\n\n============================================================\nexp_007: seed=42, mix_ratio=?, real_ratio=0.2\n  status=DONE, conclusion=success\n  eff_rank keys in metrics: ['gen0_eff_rank', 'gen1_eff_rank', 'gen2_eff_rank', 'gen3_eff_rank', 'gen4_eff_rank', 'gen5_eff_rank']\n  eff_rank values: {\n    \"gen0_eff_rank\": 417.55,\n    \"gen1_eff_rank\": 476.73,\n    \"gen2_eff_rank\": 481.62,\n    \"gen3_eff_rank\": 486.54,\n    \"gen4_eff_rank\": 490.35,\n    \"gen5_eff_rank\": 492.66\n}\n\n============================================================\nexp_017: seed=43, mix_ratio=?, real_ratio=0.2\n  status=DONE, conclusion=success\n  eff_rank keys in metrics: []\n  eff_rank values: {}\n  per_gen found: <class 'dict'>\n  per_gen keys: ['gen0', 'gen1', 'gen10', 'gen2', 'gen3']...\n\n============================================================\nexp_009: seed=42, mix_ratio=?, real_ratio=0.25\n  status=DONE, conclusion=success\n  eff_rank keys in metrics: ['gen0_eff_rank', 'gen10_eff_rank', 'gen1_eff_rank', 'gen2_eff_rank', 'gen3_eff_rank', 'gen4_eff_rank', 'gen5_eff_rank', 'gen6_eff_rank', 'gen7_eff_rank', 'gen8_eff_rank', 'gen9_eff_rank']\n  eff_rank values: {\n    \"gen0_eff_rank\": 417.55,\n    \"gen1_eff_rank\": 476.66,\n    \"gen2_eff_rank\": 482.84,\n    \"gen3_eff_rank\": 489.47,\n    \"gen4_eff_rank\": 491.21,\n    \"gen5_eff_rank\n…[truncated 3277 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-23T04:31:11.885108+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 << 'PYEOF'\nimport json\n\nfpath = \"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-5-projects-spectral-collapse-ews/96663250-c9a5-42fe-bd2c-5f4591bf061b/tool-results/mcp-agent-ml-research-read_registry-1779510243743.txt\"\n\nwith open(fpath) as f:\n    raw = json.load(f)\n\ninner = json.loads(raw[\"result\"])\nexperiments = inner[\"data\"][\"experiments\"]\n\n# For experiments with per_gen in metrics, extract the data\nfor eid in [\"exp_017\", \"exp_013\", \"exp_010\", \"exp_012\", \"exp_015\", \"exp_016\", \"exp_014\", \"exp_019\"]:\n    if eid not in experiments:\n        continue\n    exp = experiments[eid]\n    metrics = exp.get(\"metrics\", {})\n    per_gen = metrics.get(\"per_gen\", None)\n    \n    print(f\"\\n{'='*60}\")\n    print(f\"{eid}: real_ratio={exp.get('spec',{}).get('real_ratio','?')}, seed={exp.get('spec',{}).get('seed','?')}\")\n    \n    if per_gen:\n        print(f\"  per_gen keys: {sorted(per_gen.keys())}\")\n        for gk in sorted(per_gen.keys(), key=lambda x: int(x.replace('gen',''))):\n            gv = per_gen[gk]\n            if isinstance(gv, dict):\n                er = gv.get(\"eff_rank\", \"?\")\n                print(f\"    {gk}: eff_rank={er}\")\n            else:\n                print(f\"    {gk}: {gv}\")\n    else:\n        # Check all metric keys\n        print(f\"  No per_gen. All metric keys: {sorted(metrics.keys())}\")\n        # Maybe there are genX_eff_rank flat keys?\n        eff_keys = [k for k in metrics if 'eff_rank' in k]\n        if eff_keys:\n            for k in sorted(eff_keys):\n                print(f\"    {k} = {metrics[k]}\")\n        \n        # Check extra\n        extra = exp.get(\"extra\", {})\n        extra_per_gen = extra.get(\"per_gen\", None)\n        if extra_per_gen:\n            print(f\"  per_gen in extra: {sorted(extra_per_gen.keys())}\")\n        \n        # Check full metrics dump\n        print(f\"  Full metrics: {json.dumps(metrics, indent=4)[:1000]}\")\nPYEOF",
+              "description": "Extract per_gen data for experiments with nested format"
+            }
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-23T04:31:11.885270+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "============================================================\nexp_017: real_ratio=0.2, seed=43\n  per_gen keys: ['gen0', 'gen1', 'gen10', 'gen2', 'gen3', 'gen4', 'gen5', 'gen6', 'gen7', 'gen8', 'gen9']\n    gen0: eff_rank=417.55\n    gen1: eff_rank=475.29\n    gen2: eff_rank=480.44\n    gen3: eff_rank=487\n    gen4: eff_rank=489.33\n    gen5: eff_rank=492.09\n    gen6: eff_rank=495.85\n    gen7: eff_rank=498.05\n    gen8: eff_rank=500.8\n    gen9: eff_rank=504.08\n    gen10: eff_rank=505.98\n\n============================================================\nexp_013: real_ratio=0, seed=44\n  No per_gen. All metric keys: ['gen0', 'gen1', 'gen10', 'gen2', 'gen3', 'gen4', 'gen5', 'gen6', 'gen7', 'gen8', 'gen9']\n  Full metrics: {\n    \"gen0\": {\n        \"eff_rank\": 417.55,\n        \"log_det\": 2366.68,\n        \"ppl\": 9.55,\n        \"distinct4\": 0.7305\n    },\n    \"gen1\": {\n        \"eff_rank\": 490.77,\n        \"log_det\": 2459.4,\n        \"ppl\": 11.36,\n        \"distinct4\": 0.6019,\n        \"train_loss\": 1.6255\n    },\n    \"gen2\": {\n        \"eff_rank\": 495.83,\n        \"log_det\": 2467.38,\n        \"ppl\": 13.54,\n        \"distinct4\": 0.4943,\n        \"train_loss\": 1.2333\n    },\n    \"gen3\": {\n        \"eff_rank\": 493.45,\n        \"log_det\": 2442.4,\n        \"ppl\": 16.22,\n        \"distinct4\": 0.4283,\n        \"train_loss\": 1.0236\n    },\n    \"gen4\": {\n        \"eff_rank\": 488.35,\n        \"log_det\": 2408.35,\n        \"ppl\": 19.97,\n        \"distinct4\": 0.3731,\n        \"train_loss\": 0.9047\n    },\n    \"gen5\": {\n        \"eff_rank\": 480.04,\n        \"log_det\": 2362.67,\n        \"ppl\": 24.3,\n        \"distinct4\": 0.3569,\n        \"train_loss\": 0.8166\n    },\n    \"gen6\": {\n        \"eff_rank\": 472.3,\n        \"log_det\": 2318.17,\n        \"ppl\": 30.21,\n\n============================================================\nexp_010: real_ratio=0, seed=43\n  No per_gen. All metric keys: ['gen0', 'gen1', 'gen10', 'gen2', 'gen3', 'gen4', 'gen5', 'gen6', 'gen7', 'gen8', 'gen9']\n  Full metrics: {\n    \"gen0\": {\n        \"eff_rank\": 417.55,\n        \"log\n…[truncated 5399 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-23T04:31:11.885423+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 << 'PYEOF'\nimport json\n\nfpath = \"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-5-projects-spectral-collapse-ews/96663250-c9a5-42fe-bd2c-5f4591bf061b/tool-results/mcp-agent-ml-research-read_registry-1779510243743.txt\"\n\nwith open(fpath) as f:\n    raw = json.load(f)\n\ninner = json.loads(raw[\"result\"])\nexperiments = inner[\"data\"][\"experiments\"]\n\n# Now let's also check exp_014b\nfor eid in [\"exp_014b\", \"exp_001\", \"exp_005\", \"exp_002\", \"exp_003\", \"exp_011\", \"exp_018\"]:\n    if eid not in experiments:\n        print(f\"{eid}: NOT FOUND\")\n        continue\n    exp = experiments[eid]\n    spec = exp.get(\"spec\", {})\n    metrics = exp.get(\"metrics\", {})\n    rr = spec.get(\"real_ratio\", spec.get(\"real_data_ratio\", \"?\"))\n    seed = spec.get(\"seed\", \"?\")\n    print(f\"\\n{eid}: real_ratio={rr}, seed={seed}, status={exp.get('status')}, conclusion={exp.get('conclusion')}\")\n    \n    # Check mix_ratio for exp_006/exp_004\n    mr = spec.get(\"mix_ratio\", \"?\")\n    if mr != \"?\":\n        print(f\"  mix_ratio: {mr}\")\n    \n    # Metric keys\n    mk = sorted(metrics.keys())\n    print(f\"  metric keys: {mk[:15]}\")\nPYEOF",
+              "description": "Check supplementary experiments"
+            }
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-23T04:31:11.885552+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp_014b: real_ratio=?, seed=?, status=DONE, conclusion=success\n  metric keys: ['cross_seed_consistency', 'gen0', 'gen1', 'gen10', 'gen2', 'slv_trajectory', 'type']\n\nexp_001: real_ratio=?, seed=42, status=DONE, conclusion=success\n  mix_ratio: 100% synthetic (pure collapse)\n  metric keys: ['gen10_eff_rank', 'gen10_log_det', 'gen10_ppl', 'progress', 'trend']\n\nexp_005: real_ratio=?, seed=42, status=DONE, conclusion=killed\n  metric keys: ['controller_status', 'gen0_distinct4', 'gen0_eff_rank', 'gen0_log_det', 'gen0_ppl', 'gen1_distinct4', 'gen1_eff_rank', 'gen1_log_det', 'gen1_mix_ratio', 'gen1_ppl', 'gen1_train_loss', 'gen1_triggered', 'gen2_distinct4', 'gen2_eff_rank', 'gen2_log_det']\n\nexp_002: real_ratio=?, seed=42, status=DONE, conclusion=success\n  mix_ratio: 100% synthetic (pure collapse)\n  metric keys: ['cleanup', 'crash_reason', 'gen0_distinct4', 'gen0_eff_rank', 'gen0_log_det', 'gen0_ppl', 'gen0_sigma1', 'gen1_distinct4', 'gen1_eff_rank', 'gen1_log_det', 'gen1_ppl', 'gen1_sigma1', 'gen1_train_loss', 'gen2_distinct4', 'gen2_eff_rank']\n\nexp_003: real_ratio=?, seed=42, status=DONE, conclusion=killed\n  metric keys: ['controller_status', 'delta_gen0_1', 'gen0_distinct4', 'gen0_eff_rank', 'gen0_log_det', 'gen0_ppl', 'gen1_distinct4', 'gen1_eff_rank', 'gen1_log_det', 'gen1_mix_ratio', 'gen1_ppl', 'gen1_train_loss', 'gen2_mix_ratio', 'gen2_training_step', 'progress']\n\nexp_011: real_ratio=0.2, seed=42, status=DONE, conclusion=success\n  metric keys: ['controller_ratio_fixed', 'gen0', 'gen1', 'gen10', 'gen2', 'gen3', 'gen4', 'gen5', 'gen6', 'gen7', 'gen8', 'gen9', 'slv_monotonic_from_gen2', 'slv_total_change_pct', 'type_ii_supported']\n\nexp_018: real_ratio=0.5, seed=43, status=RUNNING, conclusion=None\n  metric keys: []"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-23T04:31:11.885713+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 << 'PYEOF'\nimport json\n\nfpath = \"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-5-projects-spectral-collapse-ews/96663250-c9a5-42fe-bd2c-5f4591bf061b/tool-results/mcp-agent-ml-research-read_registry-1779510243743.txt\"\n\nwith open(fpath) as f:\n    raw = json.load(f)\n\ninner = json.loads(raw[\"result\"])\nexperiments = inner[\"data\"][\"experiments\"]\n\n# Check exp_006 and exp_004 spec for real_ratio/mix_ratio\nfor eid in [\"exp_006\", \"exp_004\"]:\n    exp = experiments[eid]\n    spec = exp.get(\"spec\", {})\n    print(f\"{eid} spec:\")\n    print(json.dumps(spec, indent=2))\n    print()\nPYEOF",
+              "description": "Check exp_006 and exp_004 specs"
+            }
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-23T04:31:11.885848+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp_006 spec:\n{\n  \"description\": \"Phase 1: Adaptive spectral-guided mixing (k=10, tau=0.002, per_gen mode, log_det signal), seed 42. \\u8bba\\u6587\\u4e3b\\u5b9e\\u9a8c.\",\n  \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition adaptive --seed 42 --generations 10 --signal log_det --tau 0.002 --k 10 --signal_mode per_gen --gpu 0\\\"\",\n  \"server\": \"rtx6000-diagprobe\",\n  \"gpu\": \"cuda:0\",\n  \"pid\": 134913,\n  \"tmux_session\": \"exp_006\",\n  \"model_name\": \"EleutherAI/pythia-410m-deduped\",\n  \"seed\": 42,\n  \"data_path\": \"/root/spectral_collapse_ews/data/\",\n  \"data_count\": \"50K real pool, total_per_gen=50K\",\n  \"generations\": 10,\n  \"condition\": \"adaptive\",\n  \"controller_params\": {\n    \"tau\": 0.002,\n    \"k\": 10,\n    \"r_min\": 0.2,\n    \"r_max\": 0.8,\n    \"alpha\": 0.5,\n    \"signal\": \"log_det\",\n    \"signal_mode\": \"per_gen\"\n  },\n  \"log_path\": \"~/runs/spectral_collapse_ews/exp_006.log\",\n  \"checkpoint_dir\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/adaptive_k10_seed42/\",\n  \"results_file\": \"/root/spectral_collapse_ews/results/phase1_adaptive_k10_seed42_results.json\",\n  \"checkpoint_source\": \"EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)\",\n  \"eval_data\": \"/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)\"\n}\n\nexp_004 spec:\n{\n  \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition fixed_mix --seed 42 --generations 10 --signal log_det --tau 0.002 --k 0 --signal_mode per_gen --gpu 0\\\"\",\n  \"server\": \"rtx6000-diagprobe\",\n  \"gpu\": \"cuda:1\",\n  \"pid\": 135411,\n  \"log_path\": \"~/runs/spectral_collapse_ews/exp_004.log\",\n  \"submitted_at\": \"2026-05-17T17:56:12.965Z\",\n  \"submitted_via\": \"sub\n…[truncated 822 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-23T04:31:11.886015+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 << 'PYEOF'\nimport json\n\nfpath = \"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-5-projects-spectral-collapse-ews/96663250-c9a5-42fe-bd2c-5f4591bf061b/tool-results/mcp-agent-ml-research-read_registry-1779510243743.txt\"\n\nwith open(fpath) as f:\n    raw = json.load(f)\n\ninner = json.loads(raw[\"result\"])\nexperiments = inner[\"data\"][\"experiments\"]\n\n# Full data extraction for ALL target experiments\ntarget_exps = {\n    \"exp_001\": {\"label\": \"r=0, seed42\"},\n    \"exp_010\": {\"label\": \"r=0, seed43\"},\n    \"exp_013\": {\"label\": \"r=0, seed44\"},\n    \"exp_007\": {\"label\": \"r=0.2, seed42\"},\n    \"exp_017\": {\"label\": \"r=0.2, seed43\"},\n    \"exp_009\": {\"label\": \"r=0.25, seed42\"},\n    \"exp_014\": {\"label\": \"r=0.25, seed43\"},\n    \"exp_015\": {\"label\": \"r=0.25, seed44\"},\n    \"exp_008\": {\"label\": \"r=0.3, seed42\"},\n    \"exp_012\": {\"label\": \"r=0.3, seed43\"},\n    \"exp_016\": {\"label\": \"r=0.3, seed44\"},\n    \"exp_006\": {\"label\": \"adaptive, seed42\"},\n    \"exp_004\": {\"label\": \"fixed_mix(0.5), seed42\"},\n    \"exp_019\": {\"label\": \"r=0.2, seed44\"},\n}\n\ndef extract_eff_ranks(exp):\n    \"\"\"Extract gen0-gen10 eff_rank from any format.\"\"\"\n    metrics = exp.get(\"metrics\", {})\n    extra = exp.get(\"extra\", {})\n    eff = {}\n    \n    # Format 1: flat keys gen0_eff_rank ... gen10_eff_rank\n    for g in range(11):\n        key = f\"gen{g}_eff_rank\"\n        if key in metrics:\n            eff[g] = metrics[key]\n    \n    # Format 2: per_gen in metrics\n    per_gen = metrics.get(\"per_gen\", None)\n    if per_gen and isinstance(per_gen, dict):\n        for g in range(11):\n            gkey = f\"gen{g}\"\n            if gkey in per_gen and isinstance(per_gen[gkey], dict):\n                if \"eff_rank\" in per_gen[gkey]:\n                    eff[g] = per_gen[gkey][\"eff_rank\"]\n    \n    # Format 3: gen0, gen1, etc directly in metrics (nested dicts)\n    for g in range(11):\n        gkey = f\"gen{g}\"\n        if gkey in metrics and isinstance(metrics[gkey], dict):\n            if \"eff_rank\" in metrics[gkey]:\n                eff[g] = metrics[gkey][\"eff_rank\"]\n    \n    # Format 4: check extra.previous_failure.metrics\n    prev = extra.get(\"previous_failure\", {}).get(\"metrics\", {})\n    for g in range(11):\n        key = f\"gen{g}_eff_rank\"\n        if key in prev and g not in eff:\n            eff[g] = prev[key]\n        gkey = f\"gen{g}\"\n        if gkey in prev and isinstance(prev[gkey], dict) and g not in eff:\n            if \"eff_rank\" in prev[gkey]:\n                eff[g] = prev[gkey][\"eff_rank\"]\n    \n    return eff\n\ndef extract_trajectory_type(exp):\n    \"\"\"Extract SLV trajectory type classification.\"\"\"\n    metrics = exp.get(\"metrics\", {})\n    # Check various possible keys\n    for key in [\"type\", \"slv_trajectory\", \"trajectory_type\", \"slv_type\"]:\n        if key in metrics:\n            return metrics[key]\n    # Check trend text for type mentions\n    trend = metrics.get(\"trend\", \"\")\n    if \"Type I\" in trend: return \"Type I\"\n    if \"Type II\" in trend: return \"Type II\"\n    if \"Type III\" in trend: return \"Type III\"\n    return None\n\n# Build the table\nprint(f\"{'Exp':>8} | {'real_ratio':>10} | {'seed':>4} | {'gen0':>7} {'gen1':>7} {'gen2':>7} {'gen3':>7} {'gen4':>7} {'gen5':>7} {'gen6':>7} {'gen7':>7} {'gen8':>7} {'gen9':>7} {'gen10':>7} | {'Type':>8} | Status\")\nprint(\"-\" * 175)\n\nfor eid, info in target_exps.items():\n    if eid not in experiments:\n        print(f\"{eid:>8} | {'N/A':>10} | {'?':>4} | {'NOT FOUND':>7}\")\n        continue\n    \n    exp = experiments[eid]\n    spec = exp.get(\"spec\", {})\n    \n    # Get real_ratio\n    rr = spec.get(\"real_ratio\", None)\n    if rr is None:\n        mr = spec.get(\"mix_ratio\", \"\")\n        if \"100% synthetic\" in str(mr):\n            rr = 0\n        elif \"fixed_mix\" in str(spec.get(\"condition\", \"\")):\n            rr = 0.5\n        elif \"adaptive\" in str(spec.get(\"condition\", \"\")):\n            rr = \"adaptive\"\n    \n    seed = spec.get(\"seed\", \"?\")\n    status = exp.get(\"status\", \"?\")\n    conclusion = exp.get(\"conclusion\", \"?\")\n    \n    eff = extract_eff_ranks(exp)\n    ttype = extract_trajectory_type(exp)\n    \n    vals = []\n    for g in range(11):\n        if g in eff:\n            vals.append(f\"{eff[g]:7.2f}\")\n        else:\n            vals.append(f\"{'---':>7}\")\n    \n    rr_str = f\"{rr}\" if rr is not None else \"?\"\n    ttype_str = ttype if ttype else \"---\"\n    \n    print(f\"{eid:>8} | {rr_str:>10} | {seed:>4} | {' '.join(vals)} | {ttype_str:>8} | {status}/{conclusion}\")\n\nPYEOF",
+              "description": "Build complete table of eff_rank trajectories"
+            }
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-23T04:31:11.886184+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "     Exp | real_ratio | seed |    gen0    gen1    gen2    gen3    gen4    gen5    gen6    gen7    gen8    gen9   gen10 |     Type | Status\n-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n exp_001 |          0 |   42 |     ---     ---     ---  493.31     ---     ---     ---     ---     ---     ---  442.46 |      --- | DONE/success\n exp_010 |          0 |   43 |  417.55  490.83  496.24  494.04  489.23  480.07  471.88  464.18  456.18  447.02  438.78 |      --- | DONE/success\n exp_013 |          0 |   44 |  417.55  490.77  495.83  493.45  488.35  480.04  472.30  463.93  454.56  444.33  432.91 |      --- | DONE/success\n exp_007 |        0.2 |   42 |  417.55  476.73  481.62  486.54  490.35  492.66     ---     ---     ---     ---     --- |      --- | DONE/success\n exp_017 |        0.2 |   43 |  417.55  475.29  480.44  487.00  489.33  492.09  495.85  498.05  500.80  504.08  505.98 | Type II: dip at Gen2 (2358.84, Δ=-7.84) then monotonic recovery to 2455.78 | DONE/success\n exp_009 |       0.25 |   42 |  417.55  476.66  482.84  489.47  491.21  495.84  498.59  500.66  505.82  509.59  512.46 |   Type I | DONE/success\n exp_014 |       0.25 |   43 |  417.55  475.66  483.00     ---     ---     ---     ---     ---     ---     ---     --- |      --- | DONE/failed\n exp_015 |       0.25 |   44 |  417.55  475.92  484.39  488.62  493.01  494.32  498.74  502.71  504.20  510.29  513.44 |      --- | DONE/success\n exp_008 |        0.3 |   42 |  417.55  476.91  484.17  489.48  492.59  497.86  501.63  506.30  511.71  515.92  521.26 |      --- | DONE/success\n exp_012 |        0.3 |   43 |  417.55  476.75  483.02  489.31  494.15  498.80  502.00  505.90  510.97  516.45  521.19 |      --- | DONE/success\n exp_016 |        0.3 |   44 |  417.55  476.91  484.43  490.15  494.35  496.99  502.01  506.72  511.33  517.18  520.89 |      --- | DONE/success\n exp_006 |   adaptive |  \n…[truncated 407 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-23T04:31:11.886329+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/exp_001/**/*.json",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews"
+            }
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-23T04:31:11.886448+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-23T04:31:11.886566+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/exp_001/*.json",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews"
+            }
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-23T04:31:11.886700+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-23T04:31:11.886818+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "artifacts/exp_001/*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews"
+            }
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-23T04:31:11.886932+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-23T04:31:11.887045+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "results/**/*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews"
+            }
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-23T04:31:11.887150+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "results/phase0_results.json\nresults/phase1_pure_collapse_seed43_results.json\nresults/comparison/comparison_table.txt\nresults/comparison/phase_boundaries.json\nresults/comparison/summary_mean_std.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-23T04:31:11.887264+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/results/phase0_results.json",
+              "limit": "100"
+            }
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-23T04:31:11.887387+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t[\n2\t  {\n3\t    \"generation\": 0,\n4\t    \"effective_rank\": 417.5472106933594,\n5\t    \"perplexity\": 9.553585720044504,\n6\t    \"distinct_4\": 0.7414389763779528,\n7\t    \"top_10_singular_values\": [\n8\t      1942.81640625,\n9\t      488.3680419921875,\n10\t      407.61602783203125,\n11\t      284.3362121582031,\n12\t      227.26036071777344,\n13\t      210.67007446289062,\n14\t      181.43833923339844,\n15\t      171.5595703125,\n16\t      168.53977966308594,\n17\t      162.46688842773438\n18\t    ],\n19\t    \"log_det\": 2366.68359375\n20\t  },\n21\t  {\n22\t    \"generation\": 1,\n23\t    \"effective_rank\": 491.7675476074219,\n24\t    \"perplexity\": 11.383179598399748,\n25\t    \"distinct_4\": 0.6256200787401575,\n26\t    \"top_10_singular_values\": [\n27\t      803.9586791992188,\n28\t      508.54547119140625,\n29\t      443.276123046875,\n30\t      304.5213623046875,\n31\t      260.95745849609375,\n32\t      237.09011840820312,\n33\t      203.54544067382812,\n34\t      196.2337188720703,\n35\t      190.11251831054688,\n36\t      186.3628692626953\n37\t    ],\n38\t    \"train_loss\": 1.6227915806293487,\n39\t    \"log_det\": 2464.76220703125\n40\t  },\n41\t  {\n42\t    \"generation\": 2,\n43\t    \"effective_rank\": 496.44146728515625,\n44\t    \"perplexity\": 13.580982695800937,\n45\t    \"distinct_4\": 0.5153956692913386,\n46\t    \"top_10_singular_values\": [\n47\t      712.03125,\n48\t      487.2023010253906,\n49\t      426.35504150390625,\n50\t      307.8666687011719,\n51\t      264.7674865722656,\n52\t      234.6350860595703,\n53\t      201.30624389648438,\n54\t      195.36538696289062,\n55\t      193.6844940185547,\n56\t      187.17959594726562\n57\t    ],\n58\t    \"train_loss\": 1.2682369999027252,\n59\t    \"log_det\": 2469.927734375\n60\t  },\n61\t  {\n62\t    \"generation\": 3,\n63\t    \"effective_rank\": 493.3146057128906,\n64\t    \"log_det\": 2440.565673828125,\n65\t    \"perplexity\": 16.246410615233863,\n66\t    \"distinct_4\": 0.4899665354330709,\n67\t    \"top_10_singular_values\": [\n68\t      700.6832885742188,\n69\t      457.8073425292969,\n70\t      409.37518310546875,\n71\t      298.635498046875,\n72\t      254.96\n…[truncated 790 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-23T04:31:11.887530+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/results/phase1_pure_collapse_seed43_results.json",
+              "limit": "100"
+            }
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-23T04:31:11.887668+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t[\n2\t  {\n3\t    \"generation\": 0,\n4\t    \"effective_rank\": 417.5472106933594,\n5\t    \"log_det\": 2366.682861328125,\n6\t    \"perplexity\": 9.553585720044504,\n7\t    \"distinct_4\": 0.7414783464566929,\n8\t    \"top_10_singular_values\": [\n9\t      1942.81640625,\n10\t      488.3680419921875,\n11\t      407.61602783203125,\n12\t      284.3362121582031,\n13\t      227.26036071777344,\n14\t      210.67007446289062,\n15\t      181.43833923339844,\n16\t      171.5595703125,\n17\t      168.53977966308594,\n18\t      162.46688842773438\n19\t    ]\n20\t  },\n21\t  {\n22\t    \"generation\": 1,\n23\t    \"effective_rank\": 490.8340148925781,\n24\t    \"log_det\": 2462.61962890625,\n25\t    \"perplexity\": 11.37098454474816,\n26\t    \"distinct_4\": 0.599744094488189,\n27\t    \"top_10_singular_values\": [\n28\t      814.6142578125,\n29\t      513.8408813476562,\n30\t      447.2234191894531,\n31\t      303.140380859375,\n32\t      256.3912048339844,\n33\t      236.6864776611328,\n34\t      205.0189666748047,\n35\t      195.7064666748047,\n36\t      190.6744842529297,\n37\t      187.55303955078125\n38\t    ],\n39\t    \"train_loss\": 1.6244551236724853,\n40\t    \"mix_ratio\": 0.0,\n41\t    \"controller_ratio\": 0.0\n42\t  },\n43\t  {\n44\t    \"generation\": 2,\n45\t    \"effective_rank\": 496.2438659667969,\n46\t    \"log_det\": 2466.6259765625,\n47\t    \"perplexity\": 13.565253507239635,\n48\t    \"distinct_4\": 0.5047992125984252,\n49\t    \"top_10_singular_values\": [\n50\t      718.1212158203125,\n51\t      489.30389404296875,\n52\t      430.5401916503906,\n53\t      301.65911865234375,\n54\t      257.00213623046875,\n55\t      232.58033752441406,\n56\t      204.14691162109375,\n57\t      197.1549835205078,\n58\t      196.33206176757812,\n59\t      189.59495544433594\n60\t    ],\n61\t    \"train_loss\": 1.2609268804359437,\n62\t    \"mix_ratio\": 0.0,\n63\t    \"controller_ratio\": 0.0\n64\t  }\n65\t]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-23T04:31:11.887802+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/results/phase0_results.json",
+              "offset": "100"
+            }
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-23T04:31:11.887930+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "100\t    \"train_loss\": 1.0979873160982132,\n101\t    \"mix_ratio\": 0.0\n102\t  },\n103\t  {\n104\t    \"generation\": 5,\n105\t    \"effective_rank\": 479.2071838378906,\n106\t    \"log_det\": 2370.172607421875,\n107\t    \"perplexity\": 24.592684816047168,\n108\t    \"distinct_4\": 0.46301181102362204,\n109\t    \"top_10_singular_values\": [\n110\t      741.0177001953125,\n111\t      430.2745361328125,\n112\t      403.6922912597656,\n113\t      286.8279113769531,\n114\t      247.03390502929688,\n115\t      226.84324645996094,\n116\t      200.7909393310547,\n117\t      192.89857482910156,\n118\t      185.97154235839844,\n119\t      179.4394073486328\n120\t    ],\n121\t    \"train_loss\": 1.0473691454076768,\n122\t    \"mix_ratio\": 0.0\n123\t  },\n124\t  {\n125\t    \"generation\": 6,\n126\t    \"effective_rank\": 473.0049133300781,\n127\t    \"log_det\": 2335.165283203125,\n128\t    \"perplexity\": 30.913906886836717,\n129\t    \"distinct_4\": 0.46551377952755907,\n130\t    \"top_10_singular_values\": [\n131\t      758.39794921875,\n132\t      421.9555969238281,\n133\t      394.31109619140625,\n134\t      277.37933349609375,\n135\t      246.3718719482422,\n136\t      220.70782470703125,\n137\t      199.03433227539062,\n138\t      194.8386688232422,\n139\t      183.6539764404297,\n140\t      174.92794799804688\n141\t    ],\n142\t    \"train_loss\": 1.0251788308906555,\n143\t    \"mix_ratio\": 0.0\n144\t  },\n145\t  {\n146\t    \"generation\": 7,\n147\t    \"effective_rank\": 464.19866943359375,\n148\t    \"log_det\": 2304.1904296875,\n149\t    \"perplexity\": 38.888782263133166,\n150\t    \"distinct_4\": 0.4474173228346457,\n151\t    \"top_10_singular_values\": [\n152\t      791.28369140625,\n153\t      425.1092529296875,\n154\t      393.92767333984375,\n155\t      276.1188049316406,\n156\t      245.67041015625,\n157\t      222.81744384765625,\n158\t      200.802001953125,\n159\t      193.6602020263672,\n160\t      183.23944091796875,\n161\t      175.7447509765625\n162\t    ],\n163\t    \"train_loss\": 1.0150514291620254,\n164\t    \"mix_ratio\": 0.0\n165\t  },\n166\t  {\n167\t    \"generation\": 8,\n168\t    \"effective_rank\": 456.7557678222656,\n169\t\n…[truncated 1758 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-23T04:31:11.888072+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "artifacts/exp_009/*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews"
+            }
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-23T04:31:11.888180+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-23T04:31:11.888292+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "artifacts/**/*.json",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews"
+            }
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-23T04:31:11.888399+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/plan_018/data/alternative_ews_comparison.json\nartifacts/alternative_ews_comparison.json\nartifacts/_project/data/alternative_ews_r05_comparison.json"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-23T04:31:11.888510+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/artifacts/exp_*/",
+              "description": "List experiment artifact directories"
+            }
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-23T04:31:11.888635+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/artifacts/exp_001/:\nchart\ndata\n\n/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/artifacts/exp_004/:\ndata\n\n/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/artifacts/exp_006/:\ndata\n\n/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/artifacts/exp_009/:\nreport\n\n/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/artifacts/exp_010/:\ndata\nreport\n\n/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/artifacts/exp_012/:\nreport\n\n/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/artifacts/exp_015/:\nreport\n\n/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/artifacts/exp_016/:\nreport\n\n/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/artifacts/exp_017/:\nreport"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-23T04:31:11.888769+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/artifacts/exp_001/data/ && ls /home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/artifacts/exp_004/data/ && ls /home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/artifacts/exp_006/data/ && ls /home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/artifacts/exp_010/data/",
+              "description": "List data files in experiment artifacts"
+            }
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-23T04:31:11.888879+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "alternative_ews_v2_exp001_summary.txt\nalternative_ews_v2_exp004_summary.txt\nalternative_ews_v2_exp006_summary.txt\nseed42_vs_seed43_comparison.txt"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-23T04:31:11.888997+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 << 'PYEOF'\nimport json\n\nfpath = \"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-5-projects-spectral-collapse-ews/96663250-c9a5-42fe-bd2c-5f4591bf061b/tool-results/mcp-agent-ml-research-read_registry-1779510243743.txt\"\n\nwith open(fpath) as f:\n    raw = json.load(f)\n\ninner = json.loads(raw[\"result\"])\nexperiments = inner[\"data\"][\"experiments\"]\n\n# exp_007 full dump to see what else is there\nexp7 = experiments[\"exp_007\"]\nprint(\"exp_007 full metrics:\")\nprint(json.dumps(exp7[\"metrics\"], indent=2))\nprint(\"\\nexp_007 spec:\")\nprint(json.dumps(exp7[\"spec\"], indent=2)[:500])\nPYEOF",
+              "description": "Check exp_007 full data"
+            }
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-23T04:31:11.889116+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp_007 full metrics:\n{\n  \"gen0_eff_rank\": 417.55,\n  \"gen0_log_det\": 2366.68,\n  \"gen0_ppl\": 9.554,\n  \"gen0_distinct4\": 0.7414,\n  \"gen1_eff_rank\": 476.73,\n  \"gen1_log_det\": 2367.46,\n  \"gen1_ppl\": 10.282,\n  \"gen1_distinct4\": 0.6737,\n  \"gen1_train_loss\": 1.7653,\n  \"gen2_eff_rank\": 481.62,\n  \"gen2_log_det\": 2358.31,\n  \"gen2_ppl\": 10.741,\n  \"gen2_distinct4\": 0.4978,\n  \"gen2_train_loss\": 1.6709,\n  \"gen3_eff_rank\": 486.54,\n  \"gen3_log_det\": 2362.52,\n  \"gen3_ppl\": 11.137,\n  \"gen3_distinct4\": 0.4665,\n  \"gen3_train_loss\": 1.4208,\n  \"gen4_eff_rank\": 490.35,\n  \"gen4_log_det\": 2379.19,\n  \"gen4_ppl\": 11.512,\n  \"gen4_distinct4\": 0.4515,\n  \"gen4_train_loss\": 1.3255,\n  \"gen5_eff_rank\": 492.66,\n  \"gen5_log_det\": 2398.93,\n  \"gen5_ppl\": 11.833,\n  \"gen5_distinct4\": 0.4384,\n  \"gen5_train_loss\": 1.3049,\n  \"progress\": \"Gen 0-5 complete. EXIT_CODE=0.\",\n  \"trend\": \"log_det 2367\\u21922359(Gen2 dip)\\u21922399(Gen5), dip-then-recovery. eff_rank 418\\u2192493 monotonic rise. ppl 9.55\\u219211.83 (+24%). d4 0.74\\u21920.44 (-41%). No spectral collapse at r=0.2.\"\n}\n\nexp_007 spec:\n{\n  \"description\": \"Phase 1: Fixed mix r=0.2 ablation (20% real + 80% synthetic), seed 42, 5 generations\",\n  \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition fixed_mix --seed 42 --generations 5 --signal log_det --tau 0.002 --k 0 --signal_mode per_gen --real_ratio 0.2 --gpu 0\\\"\",\n  \"server\": \"rtx6000-diag"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": "2026-05-23T04:31:11.889245+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 << 'PYEOF'\nimport json\n\nfpath = \"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-5-projects-spectral-collapse-ews/96663250-c9a5-42fe-bd2c-5f4591bf061b/tool-results/mcp-agent-ml-research-read_registry-1779510243743.txt\"\n\nwith open(fpath) as f:\n    raw = json.load(f)\n\ninner = json.loads(raw[\"result\"])\nexperiments = inner[\"data\"][\"experiments\"]\n\n# exp_011 full dump\nexp11 = experiments[\"exp_011\"]\nprint(\"exp_011 spec:\")\nprint(json.dumps(exp11[\"spec\"], indent=2)[:800])\nprint(\"\\nexp_011 metrics:\")\nprint(json.dumps(exp11[\"metrics\"], indent=2))\nPYEOF",
+              "description": "Check exp_011 full data (r=0.2 seed42 full run)"
+            }
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": "2026-05-23T04:31:11.889380+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp_011 spec:\n{\n  \"command\": \"bash -c \\\"bash /root/spectral_collapse_ews/scripts/resume_fixed_mix_r02_seed42_gen5to10.sh 0\\\"\",\n  \"server\": \"rtx6000-diagprobe\",\n  \"gpu\": \"cuda:0\",\n  \"pid\": 319889,\n  \"log_path\": \"~/runs/spectral_collapse_ews/exp_011.log\",\n  \"submitted_at\": \"2026-05-19T16:17:48.185Z\",\n  \"submitted_via\": \"submit_training_job\",\n  \"backend\": \"tmux\",\n  \"account\": \"root\",\n  \"description\": \"Phase 1: Resume r=0.2 fixed mix seed 42 from Gen 5 to Gen 10\",\n  \"tmux_session\": \"exp_011\",\n  \"model_name\": \"EleutherAI/pythia-410m-deduped\",\n  \"seed\": 42,\n  \"data_path\": \"/root/spectral_collapse_ews/data/\",\n  \"data_count\": \"50K real pool, total_per_gen=50K (10K real + 40K synthetic per gen)\",\n  \"generations\": \"5\\u219210 (resume)\",\n  \"condition\": \"fixed_mix\",\n  \"real_ratio\": 0.2,\n  \"checkpoint_dir\": \"/root/au\n\nexp_011 metrics:\n{\n  \"gen0\": {\n    \"eff_rank\": 417.55,\n    \"log_det\": 2366.68,\n    \"ppl\": 9.55,\n    \"distinct4\": 0.741\n  },\n  \"gen1\": {\n    \"eff_rank\": 476.73,\n    \"log_det\": 2367.46,\n    \"ppl\": 10.28,\n    \"distinct4\": 0.674,\n    \"train_loss\": 1.765\n  },\n  \"gen2\": {\n    \"eff_rank\": 481.62,\n    \"log_det\": 2358.31,\n    \"ppl\": 10.74,\n    \"distinct4\": 0.498,\n    \"train_loss\": 1.671\n  },\n  \"gen3\": {\n    \"eff_rank\": 486.54,\n    \"log_det\": 2362.52,\n    \"ppl\": 11.14,\n    \"distinct4\": 0.467,\n    \"train_loss\": 1.421\n  },\n  \"gen4\": {\n    \"eff_rank\": 490.35,\n    \"log_det\": 2379.19,\n    \"ppl\": 11.51,\n    \"distinct4\": 0.451,\n    \"train_loss\": 1.326\n  },\n  \"gen5\": {\n    \"eff_rank\": 492.65,\n    \"log_det\": 2398.93,\n    \"ppl\": 11.83,\n    \"distinct4\": 0.438,\n    \"train_loss\": 1.305\n  },\n  \"gen6\": {\n    \"eff_rank\": 496.42,\n    \"log_det\": 2429.83,\n    \"ppl\": 12.19,\n    \"distinct4\": 0.463,\n    \"train_loss\": 1.264\n  },\n  \"gen7\": {\n    \"eff_rank\": 496.24,\n    \"log_det\": 2436.35,\n    \"ppl\": 12.54,\n    \"distinct4\": 0.488,\n    \"train_loss\": 1.327\n  },\n  \"gen8\": {\n    \"eff_rank\": 501.49,\n    \"log_det\": 2454.3,\n    \"ppl\": 12.96,\n    \"distinct4\": 0.501,\n    \"train_loss\": 1.339\n  },\n  \"gen9\": {\n \n…[truncated 377 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000087"
+        },
+        {
+          "source_line": 88,
+          "timestamp": "2026-05-23T04:31:11.889523+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 << 'PYEOF'\nimport json\n\nfpath = \"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-5-projects-spectral-collapse-ews/96663250-c9a5-42fe-bd2c-5f4591bf061b/tool-results/mcp-agent-ml-research-read_registry-1779510243743.txt\"\n\nwith open(fpath) as f:\n    raw = json.load(f)\n\ninner = json.loads(raw[\"result\"])\nexperiments = inner[\"data\"][\"experiments\"]\n\n# exp_014b\nexp14b = experiments[\"exp_014b\"]\nprint(\"exp_014b spec:\")\nprint(json.dumps(exp14b[\"spec\"], indent=2)[:600])\nprint(\"\\nexp_014b metrics:\")\nprint(json.dumps(exp14b[\"metrics\"], indent=2))\nPYEOF",
+              "description": "Check exp_014b data"
+            }
+          },
+          "id": "event-000088"
+        },
+        {
+          "source_line": 89,
+          "timestamp": "2026-05-23T04:31:11.889666+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp_014b spec:\n{\n  \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition fixed_mix --seed 43 --generations 10 --signal log_det --tau 0.002 --k 0 --signal_mode per_gen --real_ratio 0.25 --gpu 0 --start_gen 6\\\"\",\n  \"server\": \"rtx6000-diagprobe\",\n  \"gpu\": [\n    \"cuda:0\"\n  ],\n  \"pid\": \"577216\",\n  \"log_path\": \"~/runs/spectral_collapse_ews/exp_014b.log\",\n  \"submitted_at\": \"2026-05-21T12:05:00.830Z\",\n  \"submitted_via\": \"submit_t\n\nexp_014b metrics:\n{\n  \"gen0\": {\n    \"eff_rank\": 417.55,\n    \"log_det\": 2366.68,\n    \"ppl\": 9.55,\n    \"distinct4\": 0.7415\n  },\n  \"gen1\": {\n    \"eff_rank\": 475.66,\n    \"log_det\": 2365.35,\n    \"ppl\": 10.23,\n    \"distinct4\": 0.6584\n  },\n  \"gen2\": {\n    \"eff_rank\": 483,\n    \"log_det\": 2362.54,\n    \"ppl\": 10.65,\n    \"distinct4\": 0.5574\n  },\n  \"gen10\": {\n    \"eff_rank\": 515.56,\n    \"log_det\": 2488.58,\n    \"ppl\": 13.611,\n    \"distinct4\": 0.338,\n    \"sigma1\": 758.92\n  },\n  \"type\": \"II\",\n  \"slv_trajectory\": \"dip-then-recovery: 2366.68\\u21922362.54(G2 dip)\\u21922488.58(G10, +5.2%)\",\n  \"cross_seed_consistency\": \"Gen10 SLV diff vs exp_009(seed42) only 3.6 points (0.14%)\"\n}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000089"
+        },
+        {
+          "source_line": 90,
+          "timestamp": "2026-05-23T04:31:11.889801+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 << 'PYEOF'\nimport json\n\nfpath = \"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-5-projects-spectral-collapse-ews/96663250-c9a5-42fe-bd2c-5f4591bf061b/tool-results/mcp-agent-ml-research-read_registry-1779510243743.txt\"\n\nwith open(fpath) as f:\n    raw = json.load(f)\n\ninner = json.loads(raw[\"result\"])\nexperiments = inner[\"data\"][\"experiments\"]\n\n# exp_019 full dump\nexp19 = experiments[\"exp_019\"]\nprint(\"exp_019:\")\nprint(json.dumps(exp19, indent=2)[:1500])\nPYEOF",
+              "description": "Check exp_019 full data"
+            }
+          },
+          "id": "event-000090"
+        },
+        {
+          "source_line": 91,
+          "timestamp": "2026-05-23T04:31:11.889920+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp_019:\n{\n  \"status\": \"RUNNING\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-23T04:05:17.129Z\",\n  \"updated_at\": \"2026-05-23T04:08:30.958Z\",\n  \"hypothesis\": \"r=0.2 with seed 44 reproduces Type II trajectory (transient dip + recovery) observed in exp_007 (seed42) and exp_017 (seed43). Third seed enables 3-seed coverage for r=0.2, resolving whether D-4 V-shaped recovery (seed42) is a 1/3 outlier or a majority pattern. Strengthens C3 signal attenuation claim and R1-N2 seed replication.\",\n  \"parent\": \"exp_017\",\n  \"server\": \"rtx6000-diagprobe\",\n  \"gpu\": \"cuda:1\",\n  \"account\": \"root\",\n  \"reproduce\": {\n    \"server\": \"rtx6000-diagprobe\",\n    \"gpu\": \"cuda:1\",\n    \"started_at\": \"2026-05-23T04:08:20.155Z\",\n    \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cp /root/spectral_collapse_ews/scripts/launch_fixed_mix_r020_seed43.sh /root/spectral_collapse_ews/scripts/launch_fixed_mix_r020_seed44.sh && sed -i 's/seed=43/seed=44/g; s/seed43/seed44/g; s/SEED=43/SEED=44/g; s/--seed 43/--seed 44/g' /root/spectral_collapse_ews/scripts/launch_fixed_mix_r020_seed44.sh && bash /root/spectral_collapse_ews/scripts/launch_fixed_mix_r020_seed44.sh 0\\\"\"\n  },\n  \"spec\": {\n    \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cp /root/spectral_collapse_ews/scripts/launch_fixed_mix_r020_seed43.sh /root/spectral_collapse_ews/scripts/launch_fixed_mix_r020_seed44.sh && sed -i 's/seed=43/seed=44/g; s/seed43/seed44/g; s/SEED=43/SEE"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000091"
+        },
+        {
+          "source_line": 92,
+          "timestamp": "2026-05-23T04:31:11.890051+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/artifacts/exp_009/report/ && ls /home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/artifacts/exp_010/report/ && ls /home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/artifacts/exp_010/data/",
+              "description": "List report and data files for more experiments"
+            }
+          },
+          "id": "event-000092"
+        },
+        {
+          "source_line": 93,
+          "timestamp": "2026-05-23T04:31:11.890162+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp_009_r025_full_analysis.md\nexp_010_analysis.md\nexp_010_analysis_f5d0dd.md\nseed42_vs_seed43_comparison.txt"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000093"
+        },
+        {
+          "source_line": 94,
+          "timestamp": "2026-05-23T04:31:11.890278+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 << 'PYEOF'\nimport json\n\nfpath = \"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-5-projects-spectral-collapse-ews/96663250-c9a5-42fe-bd2c-5f4591bf061b/tool-results/mcp-agent-ml-research-read_registry-1779510243743.txt\"\n\nwith open(fpath) as f:\n    raw = json.load(f)\n\ninner = json.loads(raw[\"result\"])\nexperiments = inner[\"data\"][\"experiments\"]\n\n# Now let me also check exp_013's full metrics for all gen data\nexp13 = experiments[\"exp_013\"]\nprint(\"exp_013 full metrics:\")\nprint(json.dumps(exp13[\"metrics\"], indent=2))\n\nprint(\"\\n\\nexp_010 full metrics:\")\nexp10 = experiments[\"exp_010\"]\nprint(json.dumps(exp10[\"metrics\"], indent=2))\nPYEOF",
+              "description": "Get full gen data for exp_013 and exp_010"
+            }
+          },
+          "id": "event-000094"
+        },
+        {
+          "source_line": 95,
+          "timestamp": "2026-05-23T04:31:11.890409+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp_013 full metrics:\n{\n  \"gen0\": {\n    \"eff_rank\": 417.55,\n    \"log_det\": 2366.68,\n    \"ppl\": 9.55,\n    \"distinct4\": 0.7305\n  },\n  \"gen1\": {\n    \"eff_rank\": 490.77,\n    \"log_det\": 2459.4,\n    \"ppl\": 11.36,\n    \"distinct4\": 0.6019,\n    \"train_loss\": 1.6255\n  },\n  \"gen2\": {\n    \"eff_rank\": 495.83,\n    \"log_det\": 2467.38,\n    \"ppl\": 13.54,\n    \"distinct4\": 0.4943,\n    \"train_loss\": 1.2333\n  },\n  \"gen3\": {\n    \"eff_rank\": 493.45,\n    \"log_det\": 2442.4,\n    \"ppl\": 16.22,\n    \"distinct4\": 0.4283,\n    \"train_loss\": 1.0236\n  },\n  \"gen4\": {\n    \"eff_rank\": 488.35,\n    \"log_det\": 2408.35,\n    \"ppl\": 19.97,\n    \"distinct4\": 0.3731,\n    \"train_loss\": 0.9047\n  },\n  \"gen5\": {\n    \"eff_rank\": 480.04,\n    \"log_det\": 2362.67,\n    \"ppl\": 24.3,\n    \"distinct4\": 0.3569,\n    \"train_loss\": 0.8166\n  },\n  \"gen6\": {\n    \"eff_rank\": 472.3,\n    \"log_det\": 2318.17,\n    \"ppl\": 30.21,\n    \"distinct4\": 0.3326,\n    \"train_loss\": 0.7677\n  },\n  \"gen7\": {\n    \"eff_rank\": 463.93,\n    \"log_det\": 2283.98,\n    \"ppl\": 37.14,\n    \"distinct4\": 0.2862,\n    \"train_loss\": 0.7125\n  },\n  \"gen8\": {\n    \"eff_rank\": 454.56,\n    \"log_det\": 2237.81,\n    \"ppl\": 44.48,\n    \"distinct4\": 0.1817,\n    \"train_loss\": 0.6171\n  },\n  \"gen9\": {\n    \"eff_rank\": 444.33,\n    \"log_det\": 2188.92,\n    \"ppl\": 54.34,\n    \"distinct4\": 0.1482,\n    \"train_loss\": 0.3899\n  },\n  \"gen10\": {\n    \"eff_rank\": 432.91,\n    \"log_det\": 2154.34,\n    \"ppl\": 65.7,\n    \"distinct4\": 0.1515,\n    \"train_loss\": 0.3271\n  }\n}\n\n\nexp_010 full metrics:\n{\n  \"gen0\": {\n    \"eff_rank\": 417.55,\n    \"log_det\": 2366.68,\n    \"ppl\": 9.554,\n    \"distinct4\": 0.7415\n  },\n  \"gen1\": {\n    \"eff_rank\": 490.83,\n    \"log_det\": 2462.62,\n    \"ppl\": 11.371,\n    \"distinct4\": 0.5997,\n    \"train_loss\": 1.6245\n  },\n  \"gen2\": {\n    \"eff_rank\": 496.24,\n    \"log_det\": 2466.63,\n    \"ppl\": 13.565,\n    \"distinct4\": 0.5048,\n    \"train_loss\": 1.2609\n  },\n  \"gen3\": {\n    \"eff_rank\": 494.04,\n    \"log_det\": 2438.38,\n    \"ppl\": 16.219,\n    \"distinct4\": 0.4778,\n    \"train_loss\": 1.1248\n  },\n  \"gen4\"\n…[truncated 922 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000095"
+        },
+        {
+          "source_line": 96,
+          "timestamp": "2026-05-23T04:31:11.890555+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 << 'PYEOF'\nimport json\n\nfpath = \"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-5-projects-spectral_collapse-ews/96663250-c9a5-42fe-bd2c-5f4591bf061b/tool-results/mcp-agent-ml-research-read_registry-1779510243743.txt\"\n\n# Correct path\nfpath = \"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-5-projects-spectral-collapse-ews/96663250-c9a5-42fe-bd2c-5f4591bf061b/tool-results/mcp-agent-ml-research-read_registry-1779510243743.txt\"\n\nwith open(fpath) as f:\n    raw = json.load(f)\n\ninner = json.loads(raw[\"result\"])\nexperiments = inner[\"data\"][\"experiments\"]\n\n# Print remaining experiments' metrics\nfor eid in [\"exp_012\", \"exp_015\", \"exp_016\"]:\n    exp = experiments[eid]\n    print(f\"\\n{'='*40}\")\n    print(f\"{eid} full metrics:\")\n    print(json.dumps(exp[\"metrics\"], indent=2))\nPYEOF",
+              "description": "Get full metrics for exp_012, exp_015, exp_016"
+            }
+          },
+          "id": "event-000096"
+        },
+        {
+          "source_line": 97,
+          "timestamp": "2026-05-23T04:31:11.890722+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "========================================\nexp_012 full metrics:\n{\n  \"gen0\": {\n    \"eff_rank\": 417.55,\n    \"log_det\": 2366.68,\n    \"ppl\": 9.554,\n    \"distinct4\": 0.7415\n  },\n  \"gen1\": {\n    \"eff_rank\": 476.75,\n    \"log_det\": 2363.89,\n    \"ppl\": 10.192,\n    \"distinct4\": 0.6676,\n    \"train_loss\": 1.837\n  },\n  \"gen2\": {\n    \"eff_rank\": 483.02,\n    \"log_det\": 2363.64,\n    \"ppl\": 10.578,\n    \"distinct4\": 0.5348,\n    \"train_loss\": 1.765\n  },\n  \"gen3\": {\n    \"eff_rank\": 489.31,\n    \"log_det\": 2389.87,\n    \"ppl\": 10.915,\n    \"distinct4\": 0.5225,\n    \"train_loss\": 1.544\n  },\n  \"gen4\": {\n    \"eff_rank\": 494.15,\n    \"log_det\": 2408.14,\n    \"ppl\": 11.246,\n    \"distinct4\": 0.5097,\n    \"train_loss\": 1.461\n  },\n  \"gen5\": {\n    \"eff_rank\": 498.8,\n    \"log_det\": 2431.29,\n    \"ppl\": 11.548,\n    \"distinct4\": 0.5046,\n    \"train_loss\": 1.441\n  },\n  \"gen6\": {\n    \"eff_rank\": 502,\n    \"log_det\": 2445.24,\n    \"ppl\": 11.876,\n    \"distinct4\": 0.4527,\n    \"train_loss\": 1.435\n  },\n  \"gen7\": {\n    \"eff_rank\": 505.9,\n    \"log_det\": 2462.25,\n    \"ppl\": 12.184,\n    \"distinct4\": 0.3219,\n    \"train_loss\": 1.328\n  },\n  \"gen8\": {\n    \"eff_rank\": 510.97,\n    \"log_det\": 2474.35,\n    \"ppl\": 12.567,\n    \"distinct4\": 0.2315,\n    \"train_loss\": 1.169\n  },\n  \"gen9\": {\n    \"eff_rank\": 516.45,\n    \"log_det\": 2493.43,\n    \"ppl\": 12.959,\n    \"distinct4\": 0.1833,\n    \"train_loss\": 1.087\n  },\n  \"gen10\": {\n    \"eff_rank\": 521.19,\n    \"log_det\": 2508.33,\n    \"ppl\": 13.306,\n    \"distinct4\": 0.1217,\n    \"train_loss\": 1.032\n  }\n}\n\n========================================\nexp_015 full metrics:\n{\n  \"gen0\": {\n    \"eff_rank\": 417.55,\n    \"log_det\": 2366.68,\n    \"ppl\": 9.554,\n    \"distinct4\": 0.7305,\n    \"sigma1\": 1942.82\n  },\n  \"gen1\": {\n    \"eff_rank\": 475.92,\n    \"log_det\": 2366.13,\n    \"ppl\": 10.221,\n    \"distinct4\": 0.6379,\n    \"sigma1\": 962.97,\n    \"train_loss\": 1.8\n  },\n  \"gen2\": {\n    \"eff_rank\": 484.39,\n    \"log_det\": 2364.59,\n    \"ppl\": 10.641,\n    \"distinct4\": 0.5156,\n    \"sigma1\": 853.62,\n    \"train_loss\": 1.689\n  \n…[truncated 2982 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000097"
+        },
+        {
+          "source_line": 98,
+          "timestamp": "2026-05-23T04:31:11.890895+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 << 'PYEOF'\nimport json\n\nfpath = \"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-5-projects-spectral-collapse-ews/96663250-c9a5-42fe-bd2c-5f4591bf061b/tool-results/mcp-agent-ml-research-read_registry-1779510243743.txt\"\n\nwith open(fpath) as f:\n    raw = json.load(f)\n\ninner = json.loads(raw[\"result\"])\nexperiments = inner[\"data\"][\"experiments\"]\n\n# Phase0 results for exp_001\nphase0_path = \"/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/results/phase0_results.json\"\nwith open(phase0_path) as f:\n    phase0 = json.load(f)\nphase0_by_gen = {d[\"generation\"]: d[\"effective_rank\"] for d in phase0}\n\ndef extract_eff_ranks(exp, exp_id):\n    \"\"\"Extract gen0-gen10 eff_rank from any format.\"\"\"\n    metrics = exp.get(\"metrics\", {})\n    extra = exp.get(\"extra\", {})\n    eff = {}\n    \n    # Special case: exp_001 uses phase0_results.json\n    if exp_id == \"exp_001\":\n        return phase0_by_gen\n    \n    # Format 1: flat keys gen0_eff_rank ... gen10_eff_rank\n    for g in range(11):\n        key = f\"gen{g}_eff_rank\"\n        if key in metrics:\n            eff[g] = metrics[key]\n    \n    # Format 2: per_gen in metrics\n    per_gen = metrics.get(\"per_gen\", None)\n    if per_gen and isinstance(per_gen, dict):\n        for g in range(11):\n            gkey = f\"gen{g}\"\n            if gkey in per_gen and isinstance(per_gen[gkey], dict):\n                if \"eff_rank\" in per_gen[gkey]:\n                    eff[g] = per_gen[gkey][\"eff_rank\"]\n    \n    # Format 3: gen0, gen1, etc directly in metrics (nested dicts)\n    for g in range(11):\n        gkey = f\"gen{g}\"\n        if gkey in metrics and isinstance(metrics[gkey], dict):\n            if \"eff_rank\" in metrics[gkey]:\n                eff[g] = metrics[gkey][\"eff_rank\"]\n    \n    return eff\n\ndef get_trajectory_type(exp, exp_id):\n    metrics = exp.get(\"metrics\", {})\n    \n    # Direct type field\n    if \"type\" in metrics:\n        t = metrics[\"type\"]\n        if t in (\"I\", \"II\", \"III\"):\n            return f\"Type {t}\"\n        return str(t)\n    \n    if \"slv_trajectory\" in metrics:\n        s = metrics[\"slv_trajectory\"]\n        if \"dip\" in s.lower():\n            return \"Type II\"\n        if \"monotonic\" in s.lower():\n            return \"Type I\"\n        return s[:30]\n    \n    # Infer from trend text\n    trend = metrics.get(\"trend\", \"\")\n    if \"Type I\" in trend: return \"Type I\"\n    if \"Type II\" in trend: return \"Type II\"\n    if \"Type III\" in trend: return \"Type III\"\n    \n    # For type_ii_supported\n    if metrics.get(\"type_ii_supported\"):\n        return \"Type II\"\n    \n    return None\n\n# Build the definitive table\n# Map of experiment_id -> (real_ratio, seed, notes)\nexp_map = [\n    # r=0 experiments\n    (\"exp_001\", 0.0, 42, \"pure synthetic\"),\n    (\"exp_010\", 0.0, 43, \"pure synthetic\"),\n    (\"exp_013\", 0.0, 44, \"pure synthetic\"),\n    # r=0.2 experiments \n    (\"exp_011\", 0.2, 42, \"full 10-gen (replaces exp_007 which was 5-gen)\"),\n    (\"exp_007\", 0.2, 42, \"original 5-gen only\"),\n    (\"exp_017\", 0.2, 43, \"\"),\n    (\"exp_019\", 0.2, 44, \"RUNNING - no data yet\"),\n    # r=0.25 experiments\n    (\"exp_009\", 0.25, 42, \"\"),\n    (\"exp_014b\", 0.25, 43, \"partial (gen0-2, gen10 only)\"),\n    (\"exp_014\", 0.25, 43, \"failed at gen2\"),\n    (\"exp_015\", 0.25, 44, \"\"),\n    # r=0.3 experiments\n    (\"exp_008\", 0.3, 42, \"\"),\n    (\"exp_012\", 0.3, 43, \"\"),\n    (\"exp_016\", 0.3, 44, \"\"),\n    # r=0.5 experiments\n    (\"exp_004\", 0.5, 42, \"fixed_mix 50/50\"),\n    (\"exp_006\", \"adaptive\", 42, \"adaptive controller\"),\n]\n\nprint(\"=\" * 200)\nprint(f\"{'Exp ID':>10} | {'r':>8} | {'seed':>4} | {'gen0':>7} {'gen1':>7} {'gen2':>7} {'gen3':>7} {'gen4':>7} {'gen5':>7} {'gen6':>7} {'gen7':>7} {'gen8':>7} {'gen9':>7} {'gen10':>7} | {'Traj Type':>10} | Notes\")\nprint(\"-\" * 200)\n\nfor eid, rr, seed, notes in exp_map:\n    if eid not in experiments:\n        continue\n    exp = experiments[eid]\n    eff = extract_eff_ranks(exp, eid)\n    ttype = get_trajectory_type(exp, eid)\n    \n    vals = []\n    for g in range(11):\n        if g in eff:\n            vals.append(f\"{eff[g]:7.2f}\")\n        else:\n            vals.append(f\"{'---':>7}\")\n    \n    rr_str = f\"{rr}\" if not isinstance(rr, str) else rr\n    ttype_str = ttype if ttype else \"---\"\n    status = exp.get(\"status\", \"?\")\n    concl = exp.get(\"conclusion\", \"?\")\n    \n    if notes:\n        notes_str = f\"{notes} [{status}/{concl}]\"\n    else:\n        notes_str = f\"[{status}/{concl}]\"\n    \n    print(f\"{eid:>10} | {rr_str:>8} | {seed:>4} | {' '.join(vals)} | {ttype_str:>10} | {notes_str}\")\n\nprint(\"=\" * 200)\n\n# Also print a clean version with just the eff_rank values for easy copy-paste\nprint(\"\\n\\nCLEAN DATA (tab-separated for spreadsheet):\")\nprint(\"exp_id\\treal_ratio\\tseed\\tgen0\\tgen1\\tgen2\\tgen3\\tgen4\\tgen5\\tgen6\\tgen7\\tgen8\\tgen9\\tgen10\\ttraj_type\")\nfor eid, rr, seed, notes in exp_map:\n    if eid not in experiments:\n        continue\n    exp = experiments[eid]\n    eff = extract_eff_ranks(exp, eid)\n    ttype = get_trajectory_type(exp, eid) or \"\"\n    \n    vals = []\n    for g in range(11):\n        if g in eff:\n            vals.append(f\"{eff[g]:.2f}\")\n        else:\n            vals.append(\"\")\n    \n    rr_str = f\"{rr}\"\n    print(f\"{eid}\\t{rr_str}\\t{seed}\\t\" + \"\\t\".join(vals) + f\"\\t{ttype}\")\n\nPYEOF",
+              "description": "Generate final clean table of all eff_rank trajectories"
+            }
+          },
+          "id": "event-000098"
+        },
+        {
+          "source_line": 99,
+          "timestamp": "2026-05-23T04:31:11.891083+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "========================================================================================================================================================================================================\n    Exp ID |        r | seed |    gen0    gen1    gen2    gen3    gen4    gen5    gen6    gen7    gen8    gen9   gen10 |  Traj Type | Notes\n--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n   exp_001 |      0.0 |   42 |  417.55  491.77  496.44  493.31  485.67  479.21  473.00  464.20  456.76  448.45  442.46 |        --- | pure synthetic [DONE/success]\n   exp_010 |      0.0 |   43 |  417.55  490.83  496.24  494.04  489.23  480.07  471.88  464.18  456.18  447.02  438.78 |        --- | pure synthetic [DONE/success]\n   exp_013 |      0.0 |   44 |  417.55  490.77  495.83  493.45  488.35  480.04  472.30  463.93  454.56  444.33  432.91 |        --- | pure synthetic [DONE/success]\n   exp_011 |      0.2 |   42 |  417.55  476.73  481.62  486.54  490.35  492.65  496.42  496.24  501.49  504.86  511.26 |    Type II | full 10-gen (replaces exp_007 which was 5-gen) [DONE/success]\n   exp_007 |      0.2 |   42 |  417.55  476.73  481.62  486.54  490.35  492.66     ---     ---     ---     ---     --- |        --- | original 5-gen only [DONE/success]\n   exp_017 |      0.2 |   43 |  417.55  475.29  480.44  487.00  489.33  492.09  495.85  498.05  500.80  504.08  505.98 |    Type II | [DONE/success]\n   exp_019 |      0.2 |   44 |     ---     ---     ---     ---     ---     ---     ---     ---     ---     ---     --- |        --- | RUNNING - no data yet [RUNNING/?]\n   exp_009 |     0.25 |   42 |  417.55  476.66  482.84  489.47  491.21  495.84  498.59  500.66  505.82  509.59  512.46 |     Type I | [DONE/success]\n  exp_014b |     0.25 |   43 |  417.55  475.66  483.00     ---     ---     ---     ---     ---     ---     ---  515.56 |    Type II | p\n…[truncated 2810 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000099"
+        },
+        {
+          "source_line": 100,
+          "timestamp": "2026-05-23T04:31:11.891276+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here is the complete extraction:\n\n---\n\n## Effective Rank (eff_rank) Per-Generation Trajectories\n\n### Data Sources\n- **exp_001 (r=0, seed42)**: Full data from `/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/results/phase0_results.json` (registry only had gen3 and gen10)\n- **exp_011 (r=0.2, seed42)**: Used instead of exp_007 -- exp_011 is the full 10-gen run (exp_007 only ran 5 generations). Both share identical gen0-gen5 values.\n- All other experiments: data from the registry file's metrics (nested `gen0.eff_rank` or flat `gen0_eff_rank` format).\n\n### Complete Table\n\n| Exp ID | r | seed | gen0 | gen1 | gen2 | gen3 | gen4 | gen5 | gen6 | gen7 | gen8 | gen9 | gen10 | Traj Type |\n|--------|-----|------|--------|--------|--------|--------|--------|--------|--------|--------|--------|--------|---------|-----------|\n| exp_001 | 0.0 | 42 | 417.55 | 491.77 | 496.44 | 493.31 | 485.67 | 479.21 | 473.00 | 464.20 | 456.76 | 448.45 | 442.46 | -- |\n| exp_010 | 0.0 | 43 | 417.55 | 490.83 | 496.24 | 494.04 | 489.23 | 480.07 | 471.88 | 464.18 | 456.18 | 447.02 | 438.78 | -- |\n| exp_013 | 0.0 | 44 | 417.55 | 490.77 | 495.83 | 493.45 | 488.35 | 480.04 | 472.30 | 463.93 | 454.56 | 444.33 | 432.91 | -- |\n| exp_011 | 0.2 | 42 | 417.55 | 476.73 | 481.62 | 486.54 | 490.35 | 492.65 | 496.42 | 496.24 | 501.49 | 504.86 | 511.26 | Type II |\n| exp_017 | 0.2 | 43 | 417.55 | 475.29 | 480.44 | 487.00 | 489.33 | 492.09 | 495.85 | 498.05 | 500.80 | 504.08 | 505.98 | Type II |\n| exp_009 | 0.25 | 42 | 417.55 | 476.66 | 482.84 | 489.47 | 491.21 | 495.84 | 498.59 | 500.66 | 505.82 | 509.59 | 512.46 | Type I |\n| exp_014b | 0.25 | 43 | 417.55 | 475.66 | 483.00 | -- | -- | -- | -- | -- | -- | -- | 515.56 | Type II |\n| exp_015 | 0.25 | 44 | 417.55 | 475.92 | 484.39 | 488.62 | 493.01 | 494.32 | 498.74 | 502.71 | 504.20 | 510.29 | 513.44 | -- |\n| exp_008 | 0.3 | 42 | 417.55 | 476.91 | 484.17 | 489.48 | 492.59 | 497.86 | 501.63 | 506.30 | 511.71 | 515.92 | 521.26 | -- |\n| exp_012\n…[truncated 1918 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Agent",
+            "elapsed_ms": 8
+          },
+          "id": "event-000100"
+        },
+        {
+          "source_line": 101,
+          "timestamp": "2026-05-23T04:31:11.891475+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/artifacts/plan_018/",
+              "description": "Check plan_018 directory exists"
+            }
+          },
+          "id": "event-000101"
+        },
+        {
+          "source_line": 102,
+          "timestamp": "2026-05-23T04:31:11.891600+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "data\nexp017_integration_template.md\nexp018_integration_template.md\npost_exp016_checklist.md\nreference_verification.md\ntable3_r03_template.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000102"
+        },
+        {
+          "source_line": 103,
+          "timestamp": "2026-05-23T04:31:11.891761+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/artifacts/plan_018/rankme_trajectory_analysis.md",
+              "content": "# RankMe (Effective Rank) Trajectory Analysis\n\n## Per-Experiment r_eff Trajectories\n\n### r = 0 (pure synthetic collapse)\n\n| Gen | exp_001 (s42) | exp_010 (s43) | exp_013 (s44) | **Mean** |\n|-----|---------------|---------------|---------------|----------|\n| 0   | 417.55        | 417.55        | 417.55        | **417.55** |\n| 1   | 491.77        | 490.83        | 490.77        | **491.12** |\n| 2   | 496.44        | 496.24        | 495.83        | **496.17** |\n| 3   | 493.31        | 494.04        | 493.45        | **493.60** |\n| 4   | 485.67        | 489.23        | 488.35        | **487.75** |\n| 5   | 479.21        | 480.07        | 480.04        | **479.77** |\n| 6   | 473.00        | 471.88        | 472.30        | **472.39** |\n| 7   | 464.20        | 464.18        | 463.93        | **464.10** |\n| 8   | 456.76        | 456.18        | 454.56        | **455.83** |\n| 9   | 448.45        | 447.02        | 444.33        | **446.60** |\n| 10  | 442.46        | 438.78        | 432.91        | **438.05** |\n\n### r = 0.2\n\n| Gen | exp_011 (s42) | exp_017 (s43) | **Mean** |\n|-----|---------------|---------------|----------|\n| 0   | 417.55        | 417.55        | **417.55** |\n| 1   | 476.73        | 475.29        | **476.01** |\n| 2   | 481.62        | 480.44        | **481.03** |\n| 3   | 486.54        | 487.00        | **486.77** |\n| 4   | 490.35        | 489.33        | **489.84** |\n| 5   | 492.65        | 492.09        | **492.37** |\n| 6   | 496.42        | 495.85        | **496.14** |\n| 7   | 496.24        | 498.05        | **497.15** |\n| 8   | 501.49        | 500.80        | **501.15** |\n| 9   | 504.86        | 504.08        | **504.47** |\n| 10  | 511.26        | 505.98        | **508.62** |\n\nNote: exp_019 (s44) is RUNNING — not yet included. exp_007 only ran 5 gens; exp_011 is the full 10-gen continuation.\n\n### r = 0.25\n\n| Gen | exp_009 (s42) | exp_015 (s44) | **Mean** |\n|-----|---------------|---------------|----------|\n| 0   | 417.55        | 417.55        | **417.55** |\n| 1   | 476.66        | 475.92        | **476.29** |\n| 2   | 482.84        | 484.39        | **483.62** |\n| 3   | 489.47        | 488.62        | **489.05** |\n| 4   | 491.21        | 493.01        | **492.11** |\n| 5   | 495.84        | 494.32        | **495.08** |\n| 6   | 498.59        | 498.74        | **498.67** |\n| 7   | 500.66        | 502.71        | **501.69** |\n| 8   | 505.82        | 504.20        | **505.01** |\n| 9   | 509.59        | 510.29        | **509.94** |\n| 10  | 512.46        | 513.44        | **512.95** |\n\nNote: exp_014b (s43) completed but only has gen0/1/2/10 in registry (gen10=515.56). Excluded from mean due to missing intermediate gens.\n\n### r = 0.3\n\n| Gen | exp_008 (s42) | exp_012 (s43) | exp_016 (s44) | **Mean** |\n|-----|---------------|---------------|---------------|----------|\n| 0   | 417.55        | 417.55        | 417.55        | **417.55** |\n| 1   | 476.91        | 476.75        | 476.91        | **476.86** |\n| 2   | 484.17        | 483.02        | 484.43        | **483.87** |\n| 3   | 489.48        | 489.31        | 490.15        | **489.65** |\n| 4   | 492.59        | 494.15        | 494.35        | **493.70** |\n| 5   | 497.86        | 498.80        | 496.99        | **497.88** |\n| 6   | 501.63        | 502.00        | 502.01        | **501.88** |\n| 7   | 506.30        | 505.90        | 506.72        | **506.31** |\n| 8   | 511.71        | 510.97        | 511.33        | **511.34** |\n| 9   | 515.92        | 516.45        | 517.18        | **516.52** |\n| 10  | 521.26        | 521.19        | 520.89        | **521.11** |\n\n### r = 0.5\n\n| Gen | exp_004 (s42) |\n|-----|---------------|\n| 0   | 417.55        |\n| 1   | 477.89        |\n| 2   | 487.92        |\n| 3   | 496.57        |\n| 4   | 502.05        |\n| 5   | 512.78        |\n| 6   | 519.78        |\n| 7   | 527.47        |\n| 8   | 536.39        |\n| 9   | 545.73        |\n| 10  | 554.51        |\n\n## Summary Table (Mean r_eff across seeds)\n\n| Gen | r=0     | r=0.2   | r=0.25  | r=0.3   | r=0.5   |\n|-----|---------|---------|---------|---------|---------|\n| 0   | 417.55  | 417.55  | 417.55  | 417.55  | 417.55  |\n| 1   | 491.12  | 476.01  | 476.29  | 476.86  | 477.89  |\n| 2   | 496.17  | 481.03  | 483.62  | 483.87  | 487.92  |\n| 3   | 493.60  | 486.77  | 489.05  | 489.65  | 496.57  |\n| 4   | 487.75  | 489.84  | 492.11  | 493.70  | 502.05  |\n| 5   | 479.77  | 492.37  | 495.08  | 497.88  | 512.78  |\n| 6   | 472.39  | 496.14  | 498.67  | 501.88  | 519.78  |\n| 7   | 464.10  | 497.15  | 501.69  | 506.31  | 527.47  |\n| 8   | 455.83  | 501.15  | 505.01  | 511.34  | 536.39  |\n| 9   | 446.60  | 504.47  | 509.94  | 516.52  | 545.73  |\n| 10  | 438.05  | 508.62  | 512.95  | 521.11  | 554.51  |\n| **Δ(0→10)** | **+20.50** | **+91.07** | **+95.40** | **+103.56** | **+136.96** |\n| **Peak gen** | **Gen 2** | **Gen 10** | **Gen 10** | **Gen 10** | **Gen 10** |\n\n## Phase Diagram Comparison: r_eff vs SLV\n\n### SLV classification (from paper)\n- **Type I** (r=0): Unbounded collapse — SLV peaks at Gen 2 then monotonically declines\n- **Type II** (r=0.2): Transient dip — SLV dips at Gen 2 (Δ≈−8) then recovers and rises\n- **Type III** (r≥0.25): Monotonic expansion — SLV rises from Gen 1 onward\n\n### r_eff classification\n- **r=0**: Peak at Gen 2 (496.17), then monotonic decline to 438.05. **Matches Type I.**\n- **r=0.2**: Monotonic increase from Gen 1 (476.01) to Gen 10 (508.62). No dip. **Does NOT match Type II — looks identical to Type III.**\n- **r=0.25**: Monotonic increase to 512.95. Same pattern as r=0.2.\n- **r=0.3**: Monotonic increase to 521.11. Same pattern.\n- **r=0.5**: Monotonic increase to 554.51. Strongest expansion.\n\n### Key finding\n\n**r_eff shows a 2-type phase diagram, not the 3-type structure of SLV.** The Type II / Type III boundary (r=0.2 vs r≥0.25) visible in SLV is invisible in r_eff. All mixing ratios r≥0.2 produce monotonic r_eff expansion; they differ only in rate (higher r → faster expansion). The Type I / non-collapse boundary is clearly visible: r=0 shows peak-then-decline, r≥0.2 shows sustained growth.\n\nThis supports the paper's argument that SLV (log-determinant) is a more sensitive early warning signal than RankMe (effective rank). SLV detects the transient instability at r=0.2 that r_eff completely misses. The r_eff metric only distinguishes \"collapse\" from \"no collapse\" but cannot resolve the intermediate regime where spectral structure is transiently stressed before stabilizing.\n\n### Rate of expansion (Δr_eff per generation, Gen 2→10)\n\n| r     | Δ/gen (mean) | Relative to r=0.5 |\n|-------|-------------|-------------------|\n| 0.0   | −7.27       | collapse           |\n| 0.2   | +3.45       | 40%                |\n| 0.25  | +3.67       | 43%                |\n| 0.3   | +4.66       | 54%                |\n| 0.5   | +8.32       | 100%               |\n\nThe expansion rate scales roughly linearly with mixing ratio for r≥0.2.\n"
+            }
+          },
+          "id": "event-000103"
+        },
+        {
+          "source_line": 104,
+          "timestamp": "2026-05-23T04:31:11.892098+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/artifacts/plan_018/rankme_trajectory_analysis.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000104"
+        },
+        {
+          "source_line": 105,
+          "timestamp": "2026-05-23T04:31:11.892244+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__register_artifact",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000105"
+        },
+        {
+          "source_line": 106,
+          "timestamp": "2026-05-23T04:31:11.892363+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000106"
+        },
+        {
+          "source_line": 107,
+          "timestamp": "2026-05-23T04:31:11.892476+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "rankme_trajectory_analysis",
+              "type": "report",
+              "description": "RankMe (r_eff) per-generation trajectories for all mixing ratios (r=0,0.2,0.25,0.3,0.5) with cross-seed means. Compares r_eff phase diagram to SLV: r_eff shows 2-type structure (collapse vs expansion) not the 3-type SLV structure.",
+              "project": "spectral_collapse_ews",
+              "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/artifacts/plan_018/rankme_trajectory_analysis.md",
+              "tags": "['rankme', 'eff_rank', 'phase_diagram', 'plan_018']"
+            }
+          },
+          "id": "event-000107"
+        },
+        {
+          "source_line": 108,
+          "timestamp": "2026-05-23T04:31:11.892651+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260523_4bd6ac\\\", \\\"name\\\": \\\"rankme_trajectory_analysis\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"RankMe (r_eff) per-generation trajectories for all mixing ratios (r=0,0.2,0.25,0.3,0.5) with cross-seed means. Compares r_eff phase diagram to SLV: r_eff shows 2-type structure (collapse vs expansion) not the 3-type SLV structure.\\\", \\\"path\\\": \\\"projects/spectral_collapse_ews/artifacts/_project/report/rankme_trajectory_analysis.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"spectral_collapse_ews\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-23T04:31:03.501363+00:00\\\", \\\"tags\\\": [\\\"rankme\\\", \\\"eff_rank\\\", \\\"phase_diagram\\\", \\\"plan_018\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000108"
+        },
+        {
+          "source_line": 109,
+          "timestamp": "2026-05-23T04:31:11.892838+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Written to `artifacts/plan_018/rankme_trajectory_analysis.md`.\n\n**Core finding: r_eff shows a 2-type phase diagram, not the 3-type SLV structure.**\n\n- **r=0** — peak at Gen 2 (496), then monotonic decline to 438. Matches SLV Type I (collapse).\n- **r=0.2** — monotonic increase 418→509. **No dip.** Does NOT match SLV Type II — indistinguishable from Type III.\n- **r=0.25/0.3/0.5** — monotonic increase, differing only in rate (higher r → faster expansion).\n\nThe Type II/III boundary that SLV captures (transient dip at r=0.2) is invisible to r_eff. This reinforces SLV's superiority as an early warning signal — it detects transient spectral stress that RankMe misses entirely. r_eff only distinguishes \"collapse\" from \"no collapse.\""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_rankme_extraction_20260523T042329"
+          },
+          "id": "event-000109"
+        }
+      ],
+      "message_count": 109
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-rankme-extraction.md"
+}

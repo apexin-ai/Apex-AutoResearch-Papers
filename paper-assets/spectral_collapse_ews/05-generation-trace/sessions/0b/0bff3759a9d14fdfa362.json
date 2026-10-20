@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0bff3759a9d14fdfa362",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "check phase0 progress 0517b",
+  "task_key": "worker_check_phase0_progress_0517b_20260517T033810",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_phase0_progress_0517b_20260517T033810_result.json",
+    "occurrence": 1,
+    "bytes": 2076,
+    "sha256": "6ce89a60741c01d356480e7aea185241d79f232d09d21d8d47d5e230638d1002"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Phase 0 实验进度汇总\n\n### exp_001 (Pythia-410M, cuda:0, PID 59365)\n\n**状态**: 运行中，正在执行 Gen 5（生成合成数据阶段，已完成 40320/50000 样本）\n\n| Gen | eff_rank | log_det | ppl | distinct4 | train_loss | sigma1 |\n|-----|----------|---------|-----|-----------|------------|--------|\n| 0 | 417.55 | 2366.68 | 9.55 | 0.741 | - | 1942.8 |\n| 1 | 491.77 | 2464.76 | 11.38 | 0.626 | 1.623 | 804.0 |\n| 2 | 496.44 | 2469.93 | 13.58 | 0.515 | 1.268 | 712.0 |\n| 3 | 493.31 | 2440.57 | 16.25 | 0.490 | 1.134 | 700.7 |\n| 4 | 485.67 | 2405.05 | 19.80 | 0.468 | 1.098 | 729.6 |\n\n**趋势**: log_det 和 eff_rank 在 Gen 2 达峰后开始下降，ppl 持续上升，distinct4 持续下降。sigma1 从 Gen 0 的 1942 急剧降到 Gen 1 的 804 后趋稳。collapse 信号明确。\n\n---\n\n### exp_002 (Pythia-1B, cuda:1, PID 25237)\n\n**状态**: **已崩溃** — `No space left on device` 错误（保存 Gen 0 checkpoint 时磁盘满）\n\n已保存的数据（Gen 0-3 的评估指标已记录）:\n\n| Gen | eff_rank | log_det | ppl | distinct4 | train_loss | sigma1 |\n|-----|----------|---------|-----|-----------|------------|--------|\n| 0 | 516.14 | 2835.32 | 8.07 | 0.751 | - | 1661.2 |\n| 1 | 570.75 | 2905.74 | 9.41 | 0.634 | 1.530 | 1052.8 |\n| 2 | 580.92 | 2893.85 | 11.04 | 0.538 | 1.218 | 916.3 |\n| 3 | 580.63 | 2864.78 | 13.44 | 0.501 | 1.027 | 873.5 |\n\n**注**: 虽然进程 PID 25237 仍在 GPU 1 上占用 39.7GB 显存，但日志显示已经 crash。进程可能处于僵死状态。\n\n---\n\n### GPU 状态\n\n| GPU | 型号 | 显存使用 | 利用率 | 温度 |\n|-----|------|---------|--------|------|\n| 0 | RTX PRO 6000 | 65.9 / 97.9 GB | 88% | 55°C |\n| 1 | RTX PRO 6000 | 39.8 / 97.9 GB | 94% | 66°C |\n\n---\n\n### 需要处理的问题\n\n1. **磁盘空间**: `/` 分区 30GB 已用 25GB (84%)，1B 模型 checkpoint 写入失败。需要清理空间或改用外挂存储后重启 exp_002。\n2. **僵尸进程**: PID 25237 占用 GPU 1 显存但已 crash，需要 kill 释放资源。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-phase0-progress-0517b.md"
+}

@@ -1,0 +1,96 @@
+paper_key: "collapse_demystified"
+title: "Model Collapse Demystified: The Case of Regression"
+venue: "NeurIPS 2024"
+full_text_available: true
+
+research:
+  baselines:
+    - "Clean data ridge regression (n=0 baseline)"
+    - "Unregularized least squares"
+    - "Classical ridge regression with fixed lambda"
+    - "Adaptively regularized ridge regression (Cui et al. 2022 scaling)"
+  metrics:
+    - {name: "Test error (E_test)", direction: "lower_better"}
+  datasets:
+    - {name: "Simulated Gaussian data", size: "d=300, T up to 10000, T_0=600"}
+    - {name: "MNIST (kernel ridge regression)", size: "standard"}
+  ablation_dimensions:
+    - "Number of synthetic generations n"
+    - "Sample size T"
+    - "Regularization parameter lambda"
+    - "Noise levels sigma and sigma_0"
+    - "Covariance spectrum type (isotropic vs power-law)"
+    - "Generator parametrization (under- vs over-parametrized)"
+    - "Design matrix dependence (shared X_n vs independent X_n)"
+    - "Label noise presence/absence"
+  training_recipe:
+    optimizer: "Closed-form ridge regression (no iterative optimization)"
+    lr: "N/A"
+    hardware: "Not specified (theoretical + lightweight simulations)"
+  method_family: "Random matrix theory / high-dimensional statistics"
+
+positioning:
+  core_claim: "Test error under iterative synthetic data retraining decomposes as E_test = E_test^clean + Delta_Bias + n * Scaling, revealing linear degradation with generation count n and enabling principled mitigation via adaptive regularization."
+  key_results: "Linear error growth with generation n; classical optimal regularization lambda=T^(-l_crit) diverges under model collapse; corrected adaptive regularization prevents divergence; over-parametrized noiseless generators with independent designs cause catastrophic collapse (bias grows with n), while shared designs cause constant bias shift independent of n."
+  limitations:
+    - "Restricted to linear/kernel regression -- no neural network analysis"
+    - "Gaussian design assumption may not capture real data distributions"
+    - "Does not model mixed clean/synthetic data regimes"
+    - "Single-task regression only, no classification or generation quality metrics"
+    - "Does not address online/streaming data generation scenarios"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "化繁为简型"
+  hook: "Opens with the practical crisis: LLMs and image generators degrade when trained on their own outputs ('model collapse'), establishing urgency via the proliferation of AI-generated content on the internet."
+  tension: "Despite widespread empirical observation of model collapse across multiple domains (LLMs, image generation), theoretical understanding is 'still missing'. The gap between alarming empirical reports and absence of principled explanations creates intellectual urgency."
+  key_insight: "The decomposition E_test = E_test^clean + Delta_Bias + n * Scaling is the core reveal, presented in Section 4.2 (Theorem 4.3). The insight that collapse is a linear additive penalty per generation -- not exponential or catastrophic in general -- demystifies the phenomenon and immediately suggests mitigation (adjust regularization to account for the n-dependent term)."
+  argument_chain: "problem (model collapse observed empirically) -> simplification (study in tractable regression setting) -> warm-up (unregularized case, Theorem 4.1) -> general formula (Theorem 4.3, decomposition) -> high-dimensional analysis via RMT (Theorem 4.6) -> special cases (under-parametrized generator, noiseless case) -> power-law spectra with modified scaling laws (Theorem 5.2) -> adaptive regularization fix (Corollary 5.3) -> experimental validation (simulated + MNIST)"
+  contribution_framing: "Two contributions explicitly listed: (1) exact analytic characterization of test error decomposition, (2) modified scaling laws for power-law spectra with adaptive regularization strategy. Framed as 'initiating a theoretical study' -- positioning as foundational rather than final."
+  intro_structure: "3 paragraphs: P1 defines model collapse and establishes real-world urgency via LLMs/image generators; P2 surveys empirical evidence and identifies the theoretical gap; P3 positions this work as the first principled theoretical study via kernel regression, previewing contributions."
+  notable_technique: "The 'warm-up then generalize' proof strategy is highly effective: first presents the clean unregularized case (Theorem 4.1) where the linear-in-n degradation is immediately visible, then generalizes to regularized (Theorem 4.3) and high-dimensional RMT (Theorem 4.6) settings. This scaffolding makes a technically dense random matrix theory paper accessible. Also notable: the careful distinction from self-distillation (which improves performance) prevents misframing."
+
+figures:
+  figure_count: 4
+  figure1:
+    type: "teaser_result"
+    description: "Two-panel plot showing test error evolution for ridge regression with isotropic covariance. Left panel: fixed T=1000, varying lambda, showing U-shaped error curves for large n (indicating optimal regularization exists). Right panel: fixed lambda=10^-3, varying T. Broken lines show theoretical predictions from Theorem 4.1. Setup: d=300, T_0=600, sigma=0.1, sigma_0=0.2."
+    narrative_role: "Immediately demonstrates the core finding visually -- model collapse is real, quantifiable, and matches theory. The U-shape in the left panel foreshadows the regularization mitigation strategy developed later."
+    design_elements: ["Two-panel layout for orthogonal parameter sweeps", "Theory vs experiment overlay (broken lines vs markers)", "Error bars for uncertainty", "Multiple curves per panel varying one parameter"]
+    visual_style: "Clean scientific plotting with line+marker format; broken lines for theory, solid/markers for experiments; multiple colors distinguishing parameter values; modest figure size typical of theory-heavy NeurIPS papers."
+  result_figures:
+    - figure_id: "Figure 1"
+      viz_type: "line_plot"
+      what_compared: "Test error across generation count n, varying regularization lambda (left) and sample size T (right), against theoretical predictions"
+      how_gain_highlighted: "Theory-experiment agreement highlighted via overlay of broken theoretical curves on experimental data points"
+      design_note: "U-shape discovery is the visual payoff -- reader sees that optimal regularization exists even under collapse, motivating Section 5."
+    - figure_id: "Figure 2"
+      viz_type: "line_plot"
+      what_compared: "Test error under power-law covariance spectrum; left panel shows T=10000 with varying n; right panel shows adaptive regularization lambda=T^(-l_crit) across T values"
+      how_gain_highlighted: "Right panel dramatically shows that classical optimal regularization DIVERGES under collapse -- the corrected exponent from this paper fixes it. Visual contrast between diverging and non-diverging curves is the key message."
+      design_note: "Power-law spectrum is the practically relevant case; placing it as Figure 2 elevates it beyond a special case. The divergence of classical regularization is visually striking and motivates the adaptive fix."
+  ablation_figures:
+    - figure_id: "Figure 3"
+      viz_type: "line_plot"
+      what_compared: "Noiseless over-parametrized generator: shared design matrices (3a) vs independent design matrices (3b). Tests whether collapse occurs without label noise."
+      dimensions_varied: ["Design matrix dependence (shared vs independent)", "Number of generations n"]
+      design_note: "Two-subfigure layout isolates the effect of design matrix independence. (3a) shows constant bias shift (no n-dependence), (3b) shows catastrophic growth -- a clean theoretical distinction made visually obvious."
+  figure_narrative_role: "Figure 4 (framework illustration, placed in Section 3) -> Figure 1 (isotropic main result, Section 6.1) -> Figure 2 (power-law main result, Section 6.1) -> Figure 3 (noiseless ablation, Section 6.1). Flow: setup -> core phenomenon -> practical spectrum -> edge case analysis. Figure 4 is the method/setup diagram placed early to ground notation; Figures 1-3 are all in the experiment section validating theory."
+
+tables:
+  table_count: 0
+  main_result_table:
+    table_id: "N/A"
+    row_axis: "N/A"
+    col_axis: "N/A"
+    row_organization: "N/A"
+    col_organization: "N/A"
+    highlight_strategy: "N/A"
+    statistical_reporting: "N/A"
+    num_baselines: 0
+    design_note: "No tables in this paper. All results are presented as theorems (analytic formulae) and validated via figures. This is typical of mathematical/theoretical ML papers where the 'results' are equations, not benchmark numbers."
+  ablation_tables: []
+  supplementary_tables:
+    in_appendix: false
+    content: "Appendices A, B, C contain detailed proofs (random matrix theory derivations), not tables."
+    reason: "Pure theory paper -- results are theorems and figures, not tabular comparisons."

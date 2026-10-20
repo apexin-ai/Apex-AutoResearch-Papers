@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1c22c38d73e0673fa2dd",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "figure phase diagram annotated",
+  "task_key": "worker_figure_phase_diagram_annotated_20260520T035820",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_phase_diagram_annotated_20260520T035820_result.json",
+    "occurrence": 1,
+    "bytes": 444,
+    "sha256": "24c08443f97cf3f3adb6c5362613b51cc8611b49135cb46f4b7f85299952e998"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。文件已生成并拷贝到本地：\n\n- **PDF** (30 KB): `paper/figures/phase_diagram.pdf`\n- **PNG** (124 KB): `paper/figures/phase_diagram.png`\n\n三项标注均已添加：\n1. **Type I / II / III 文字标注** — 斜体，分别对应下降/平稳/上升区域\n2. **$r_{\\mathrm{crit}}$ 灰色半透明带** — r=0.25 与 r=0.3 曲线之间 fill_between\n3. **$S_0$ 基线** — Gen 0 初始值处水平虚线"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-phase-diagram-annotated.md"
+}

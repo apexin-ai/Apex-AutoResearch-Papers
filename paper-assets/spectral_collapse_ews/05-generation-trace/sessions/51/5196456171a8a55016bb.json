@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5196456171a8a55016bb",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "paper batch fixes dip magnitude hedge",
+  "task_key": "worker_paper_batch-fixes-dip-magnitude-hedge_20260519T114803",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_batch-fixes-dip-magnitude-hedge_20260519T114803_result.json",
+    "occurrence": 1,
+    "bytes": 530,
+    "sha256": "2a7e73e71bcecbabf01250375f437d1aefd4fee8419e4ad927e8effd376ac853"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All three checks pass:\n\n1. **Dip magnitude inconsistency fixed:** \"initial SLV dip magnitude\" → \"Gen~1$\\to$Gen~2 SLV change\" (line 137 of experiments.tex). The values (-9.2, -4.6, +5.7) now have an accurate label that covers both negative and positive changes.\n2. **\"decelerating\" hedged:** Both occurrences now read \"generally decelerating\" with additional softening (\"indicates\" → \"suggests\", \"a precursor\" → \"a potential precursor\" in method.tex).\n3. **No em-dash/en-dash introduced.**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-batch-fixes-dip-magnitude-hedge.md"
+}

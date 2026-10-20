@@ -1,0 +1,72 @@
+{
+  "exp_id": "exp_019",
+  "project": "spectral_collapse_ews",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T04:05:17.129Z",
+    "updated_at": "2026-05-24T02:47:06.797Z",
+    "hypothesis": "r=0.2 with seed 44 reproduces Type II trajectory (transient dip + recovery) observed in exp_007 (seed42) and exp_017 (seed43). Third seed enables 3-seed coverage for r=0.2, resolving whether D-4 V-shaped recovery (seed42) is a 1/3 outlier or a majority pattern. Strengthens C3 signal attenuation claim and R1-N2 seed replication.",
+    "parent": "exp_017",
+    "server": "rtx6000-diagprobe",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "rtx6000-diagprobe",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-23T04:08:20.155Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cp /root/spectral_collapse_ews/scripts/launch_fixed_mix_r020_seed43.sh /root/spectral_collapse_ews/scripts/launch_fixed_mix_r020_seed44.sh && sed -i 's/seed=43/seed=44/g; s/seed43/seed44/g; s/SEED=43/SEED=44/g; s/--seed 43/--seed 44/g' /root/spectral_collapse_ews/scripts/launch_fixed_mix_r020_seed44.sh && bash /root/spectral_collapse_ews/scripts/launch_fixed_mix_r020_seed44.sh 0\"",
+      "finished_at": "2026-05-24T02:22:56.735Z",
+      "training_hours": 22.24
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cp /root/spectral_collapse_ews/scripts/launch_fixed_mix_r020_seed43.sh /root/spectral_collapse_ews/scripts/launch_fixed_mix_r020_seed44.sh && sed -i 's/seed=43/seed=44/g; s/seed43/seed44/g; s/SEED=43/SEED=44/g; s/--seed 43/--seed 44/g' /root/spectral_collapse_ews/scripts/launch_fixed_mix_r020_seed44.sh && bash /root/spectral_collapse_ews/scripts/launch_fixed_mix_r020_seed44.sh 0\"",
+      "server": "rtx6000-diagprobe",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "757587",
+      "log_path": "~/runs/spectral_collapse_ews/exp_019.log",
+      "submitted_at": "2026-05-23T04:08:21.748Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "model_name": "EleutherAI/pythia-410m-deduped",
+      "seed": 44,
+      "data_path": "/root/spectral_collapse_ews/data/",
+      "data_count": "50K real pool, total_per_gen=50K (10K real + 40K synthetic per gen)",
+      "generations": 10,
+      "condition": "fixed_mix",
+      "real_ratio": 0.2,
+      "wall_clock_seconds": 81525.0,
+      "gpu_hours": 22.65
+    },
+    "pid": "757587",
+    "log_path": "~/runs/spectral_collapse_ews/exp_019.log",
+    "notes": "r=0.2 seed44, 与 exp_017 (seed43) 相同配置。launch script 从 seed43 脚本 sed 生成。",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-24T02:22:58.624145+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "gen10_slv": 2467.2,
+      "gen10_reff": 508.1,
+      "gen10_ppl": 13.54,
+      "gen10_d4": 0.324,
+      "trajectory_type": "II",
+      "seeds_completed": "42,43,44"
+    },
+    "checkpoint_path": "/root/spectral_collapse_ews/checkpoints/exp_019/",
+    "completed_at": "2026-05-24T02:47:06.797Z"
+  },
+  "timestamp": "2026-05-24T02:47:06.885235+00:00",
+  "trigger": "update_registry"
+}

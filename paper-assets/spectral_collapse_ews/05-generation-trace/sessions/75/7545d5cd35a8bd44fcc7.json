@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7545d5cd35a8bd44fcc7",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ssh check exp progress 0519",
+  "task_key": "worker_ssh_check-exp-progress-0519_20260519T200335",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check-exp-progress-0519_20260519T200335_result.json",
+    "occurrence": 1,
+    "bytes": 1956,
+    "sha256": "07a332d75b2bbc142fe9b6d8841e17b14668902c41f213e94a64b6cdbd9a10bf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 训练进度报告\n\n### 状态总览\n\n| 实验 | PID | 运行时间 | GPU | GPU利用率 | 已完成Gen | 当前状态 |\n|------|-----|---------|-----|----------|----------|---------|\n| exp_010 (pure collapse seed43) | 283142 | 14h11m | cuda:1 | 92% | Gen 0-5 | 生成 Gen6 数据 (28480/50000) |\n| exp_011 (r=0.2 resume) | 319889 | 3h46m | cuda:0 | 95% | Gen 0-6 | 生成 Gen7 数据 (37760/40000) |\n\n---\n\n### exp_010 — Pure Collapse (seed43, r=0.0)\n\n```\nGen | raw SLV  | EMA SLV  | Δ_t\n0   | 2366.68  | 2366.68  | ---\n1   | 2462.62  | 2414.65  | -0.020268\n2   | 2466.63  | 2440.64  | -0.010981\n3   | 2438.38  | 2439.51  | +0.000478\n4   | 2404.60  | 2422.05  | +0.007375\n5   | 2365.13  | 2393.59  | +0.012024\n```\n\n- Raw SLV 在 Gen2 达峰 2466.63 后持续下降，Gen5 已回落至 2365.13（低于 Gen0 基线 2366.68）\n- EMA 从 Gen3 开始单调递减，collapse 信号明确\n- **max Δ_t = +0.012024 (Gen5)**，collapse 正在加速\n\n---\n\n### exp_011 — Fixed Mix r=0.2 (seed42)\n\n```\nGen | raw SLV  | EMA SLV  | Δ_t\n0   | 2366.68  | 2366.68  | ---\n1   | 2367.46  | 2367.07  | -0.000164\n2   | 2358.31  | 2362.69  | +0.001852\n3   | 2362.52  | 2362.61  | +0.000035\n4   | 2379.19  | 2370.90  | -0.003504\n5   | 2398.93  | 2384.92  | -0.005923\n6   | 2429.83  | 2407.37  | -0.009488\n```\n\n- **EMA 非递减起点：Gen 4**（S̃_3=2362.61 → S̃_4=2370.90 → S̃_5=2384.92 → S̃_6=2407.37，连续 3 代递增）\n- Raw SLV 从 Gen2 低谷 2358.31 开始恢复，Gen6 达 2429.83（+2.67% above baseline）\n- **max Δ_t = +0.001852 (Gen2)**，controller signal 极弱，r=0.2 下 SLV 没有实质性下降\n- 与 exp_010 对比：r=0.0 的 max Δ_t（+0.012）是 r=0.2 的 ~6.5 倍，符合 §4.5 Type II \"controller silence\" 结论\n\n---\n\n两个实验都在正常跑，无需干预。exp_010 还差 ~4 gen 完成全部 10 gen，预计 ~10h；exp_011 还差 ~3 gen，预计 ~5h。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-exp-progress-0519.md"
+}

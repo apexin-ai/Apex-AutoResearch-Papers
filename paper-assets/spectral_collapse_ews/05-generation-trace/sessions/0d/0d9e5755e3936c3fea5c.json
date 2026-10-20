@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0d9e5755e3936c3fea5c",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "paper results section",
+  "task_key": "worker_paper_results_section_20260516T231058",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_results_section_20260516T231058_result.json",
+    "occurrence": 1,
+    "bytes": 617,
+    "sha256": "d466769c60ca5c8d5033c6448b51e5be4d57b1c8581c13c64d46e0aa6a1014a1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "LaTeX 验证通过：括号配对正确，所有 `\\begin`/`\\end` 环境计数匹配，无 em-dash/en-dash。\n\n已写入 Results section（约 60 行，含两个子节）到 `experiments.tex` 末尾：\n- **§ Spectral Trajectory Characterization**: 三阶段叙事（Anisotropy Decompression → Decompression Peak → Collapse Onset），引用 `\\ref{fig:spectral_trajectory}`\n- **§ Collapse Indicators Cross-Validation**: 完整 metrics 表格 + 功能性指标 vs 谱指标的时序不对称分析\n\n所有数字严格来自提供的 Gen 0-3 数据，Gen 4-10 位置已用 `% TODO` 标记。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-results-section.md"
+}

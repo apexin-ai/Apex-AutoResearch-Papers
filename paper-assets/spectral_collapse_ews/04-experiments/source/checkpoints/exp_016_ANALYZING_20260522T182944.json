@@ -1,0 +1,48 @@
+{
+  "exp_id": "exp_016",
+  "project": "spectral_collapse_ews",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T09:29:07.345Z",
+    "updated_at": "2026-05-22T18:29:44.497Z",
+    "hypothesis": "r=0.3 with seed 44 reproduces Type III trajectory (monotonic expansion), providing 3rd seed for r_crit upper bound. Combined with exp_008 (seed42) and exp_012 (seed43), this completes 3-seed coverage at the boundary condition.",
+    "parent": "exp_008",
+    "server": "rtx6000-diagprobe",
+    "gpu": "",
+    "account": "root",
+    "reproduce": {
+      "server": "rtx6000-diagprobe",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-21T09:31:05.980Z",
+      "finished_at": "2026-05-22T18:29:44.338Z",
+      "training_hours": 32.98
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition fixed_mix --seed 44 --generations 10 --signal log_det --tau 0.002 --k 0 --signal_mode per_gen --real_ratio 0.3 --gpu 0\"",
+      "server": "gpu-6000pro-1",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "614614",
+      "log_path": "~/runs/spectral_collapse_ews/exp_016.log",
+      "submitted_at": "2026-05-21T23:16:08.255Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "model_name": "EleutherAI/pythia-410m-deduped",
+      "seed": 44,
+      "data_path": "/root/spectral_collapse_ews/data/",
+      "data_count": "50K real pool, total_per_gen=50K (15K real + 35K synthetic per gen)",
+      "real_ratio": 0.3,
+      "generations": 10,
+      "condition": "fixed_mix",
+      "checkpoint_source": "EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)",
+      "eval_data": "/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)"
+    }
+  },
+  "timestamp": "2026-05-22T18:29:44.565174+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,1311 @@
+# analysis phase0 summary table
+
+**Spectral Early Warning Signals for Model Collapse and Their Prevention–Detectability Tradeoff** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 43
+- **Recorded user turns:** 0
+- **Tool calls:** 21
+- **Original source:** `logs/chats/worker_analysis_phase0-summary-table_20260517T184857.jsonl`
+- **Structured JSON:** [`07f40e8dde424afa0c72.json`](../../sessions/07/07f40e8dde424afa0c72.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+43 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-17T18:52:27.258038+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_phase0-summary-table_20260517T184857",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-17T18:52:27.258338+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_phase0-summary-table_20260517T184857",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-17T18:52:27.258499+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx6000-diagprobe",
+  "command": "cat /root/spectral_collapse_ews/results/phase0_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_phase0-summary-table_20260517T184857",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx6000-diagprobe",
+    "command": "cat /root/spectral_collapse_ews/results/phase0_results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-17T18:52:27.258665+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx6000-diagprobe",
+  "command": "ls /root/spectral_collapse_ews/results/phase0*",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_phase0-summary-table_20260517T184857",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx6000-diagprobe",
+    "command": "ls /root/spectral_collapse_ews/results/phase0*",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-17T18:52:27.258909+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"generation\\\": 0,\\n    \\\"effective_rank\\\": 417.5472106933594,\\n    \\\"perplexity\\\": 9.553585720044504,\\n    \\\"distinct_4\\\": 0.7414389763779528,\\n    \\\"top_10_singular_values\\\": [\\n      1942.81640625,\\n      488.3680419921875,\\n      407.61602783203125,\\n      284.3362121582031,\\n      227.26036071777344,\\n      210.67007446289062,\\n      181.43833923339844,\\n      171.5595703125,\\n      168.53977966308594,\\n      162.46688842773438\\n    ],\\n    \\\"log_det\\\": 2366.68359375\\n  },\\n  {\\n    \\\"generation\\\": 1,\\n    \\\"effective_rank\\\": 491.7675476074219,\\n    \\\"perplexity\\\": 11.383179598399748,\\n    \\\"distinct_4\\\": 0.6256200787401575,\\n    \\\"top_10_singular_values\\\": [\\n      803.9586791992188,\\n      508.54547119140625,\\n      443.276123046875,\\n      304.5213623046875,\\n      260.95745849609375,\\n      237.09011840820312,\\n      203.54544067382812,\\n      196.2337188720703,\\n      190.11251831054688,\\n      186.3628692626953\\n    ],\\n    \\\"train_loss\\\": 1.6227915806293487,\\n    \\\"log_det\\\": 2464.76220703125\\n  },\\n  {\\n    \\\"generation\\\": 2,\\n    \\\"effective_rank\\\": 496.44146728515625,\\n    \\\"perplexity\\\": 13.580982695800937,\\n    \\\"distinct_4\\\": 0.5153956692913386,\\n    \\\"top_10_singular_values\\\": [\\n      712.03125,\\n      487.2023010253906,\\n      426.35504150390625,\\n      307.8666687011719,\\n      264.7674865722656,\\n      234.6350860595703,\\n      201.30624389648438,\\n      195.36538696289062,\\n      193.6844940185547,\\n      187.17959594726562\\n    ],\\n    \\\"train_loss\\\": 1.2682369999027252,\\n    \\\"log_det\\\": 2469.927734375\\n  },\\n  {\\n    \\\"generation\\\": 3,\\n    \\\"effective_rank\\\": 493.3146057128906,\\n    \\\"log_det\\\": 2440.565673828125,\\n    \\\"perplexity\\\": 16.246410615233863,\\n    \\\"distinct_4\\\": 0.4899665354330709,\\n    \\\"top_1
+…[truncated 4819 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_phase0-summary-table_20260517T184857",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-17T18:52:27.259077+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/spectral_collapse_ews/results/phase0_analysis.json\\n/root/spectral_collapse_ews/results/phase0_analysis_plots.png\\n/root/spectral_collapse_ews/results/phase0_analysis_report.json\\n/root/spectral_collapse_ews/results/phase0_gen4_run.log\\n/root/spectral_collapse_ews/results/phase0_plots.png\\n/root/spectral_collapse_ews/results/phase0_results.json\\n/root/spectral_collapse_ews/results/phase0_results.json.bak\\n/root/spectral_collapse_ews/results/phase0_results_mock.json\\n/root/spectral_collapse_ews/results/phase0_resume_run.log\\n/root/spectral_collapse_ews/results/phase0_run.log\\n\\n/root/spectral_collapse_ews/results/phase0_1b:\\nphase0_1b_run.log\\nphase0_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.89}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_phase0-summary-table_20260517T184857",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-17T18:52:27.259247+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx6000-diagprobe",
+  "command": "cat /root/spectral_collapse_ews/results/phase0_analysis.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_phase0-summary-table_20260517T184857",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx6000-diagprobe",
+    "command": "cat /root/spectral_collapse_ews/results/phase0_analysis.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-17T18:52:27.259375+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx6000-diagprobe",
+  "command": "cat /root/spectral_collapse_ews/results/phase0_analysis_report.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_phase0-summary-table_20260517T184857",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx6000-diagprobe",
+    "command": "cat /root/spectral_collapse_ews/results/phase0_analysis_report.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-17T18:52:27.259596+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"results\\\": [\\n    {\\n      \\\"generation\\\": 0,\\n      \\\"effective_rank\\\": 417.5472106933594,\\n      \\\"perplexity\\\": 9.553585720044504,\\n      \\\"distinct_4\\\": 0.7414389763779528,\\n      \\\"top_10_singular_values\\\": [\\n        1942.81640625,\\n        488.3680419921875,\\n        407.61602783203125,\\n        284.3362121582031,\\n        227.26036071777344,\\n        210.67007446289062,\\n        181.43833923339844,\\n        171.5595703125,\\n        168.53977966308594,\\n        162.46688842773438\\n      ],\\n      \\\"log_det\\\": 2366.68359375\\n    },\\n    {\\n      \\\"generation\\\": 1,\\n      \\\"effective_rank\\\": 491.7675476074219,\\n      \\\"perplexity\\\": 11.383179598399748,\\n      \\\"distinct_4\\\": 0.6256200787401575,\\n      \\\"top_10_singular_values\\\": [\\n        803.9586791992188,\\n        508.54547119140625,\\n        443.276123046875,\\n        304.5213623046875,\\n        260.95745849609375,\\n        237.09011840820312,\\n        203.54544067382812,\\n        196.2337188720703,\\n        190.11251831054688,\\n        186.3628692626953\\n      ],\\n      \\\"train_loss\\\": 1.6227915806293487,\\n      \\\"log_det\\\": 2464.76220703125\\n    },\\n    {\\n      \\\"generation\\\": 2,\\n      \\\"effective_rank\\\": 496.44146728515625,\\n      \\\"perplexity\\\": 13.580982695800937,\\n      \\\"distinct_4\\\": 0.5153956692913386,\\n      \\\"top_10_singular_values\\\": [\\n        712.03125,\\n        487.2023010253906,\\n        426.35504150390625,\\n        307.8666687011719,\\n        264.7674865722656,\\n        234.6350860595703,\\n        201.30624389648438,\\n        195.36538696289062,\\n        193.6844940185547,\\n        187.17959594726562\\n      ],\\n      \\\"train_loss\\\": 1.2682369999027252,\\n      \\\"log_det\\\": 2469.927734375\\n    },\\n    {\\n      \\\"generation\\\": 3,\\n      \\\"effective_rank\\\": 493.3146057128906,\\n
+…[truncated 5532 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_phase0-summary-table_20260517T184857",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-17T18:52:27.259824+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model_name\\\": \\\"410M-mock\\\",\\n  \\\"source_file\\\": \\\"results/phase0_results_mock.json\\\",\\n  \\\"num_generations\\\": 11,\\n  \\\"decline_rates\\\": {\\n    \\\"first_half_rate\\\": 34.192499999999995,\\n    \\\"second_half_rate\\\": 58.75,\\n    \\\"acceleration_ratio\\\": 1.7182130584192443,\\n    \\\"first_half_deltas\\\": [\\n      21.769999999999982,\\n      30.0,\\n      40.0,\\n      45.0\\n    ],\\n    \\\"second_half_deltas\\\": [\\n      60.0,\\n      65.0,\\n      60.0,\\n      50.0\\n    ]\\n  },\\n  \\\"go_nogo\\\": {\\n    \\\"overall\\\": \\\"PASS\\\",\\n    \\\"condition_1_monotonic\\\": {\\n      \\\"pass\\\": true,\\n      \\\"detail\\\": \\\"rank increases: 0 (allowed: 1)\\\"\\n    },\\n    \\\"condition_2_acceleration\\\": {\\n      \\\"pass\\\": true,\\n      \\\"detail\\\": \\\"first_half_rate=34.1925, second_half_rate=58.7500, ratio=1.7182\\\"\\n    },\\n    \\\"condition_3_perplexity\\\": {\\n      \\\"pass\\\": true,\\n      \\\"detail\\\": \\\"ppl_gen1=11.3800, ppl_gen10=62.0000, increase=444.82%\\\"\\n    }\\n  },\\n  \\\"calibration\\\": {\\n    \\\"tau\\\": 0.07117148260365619,\\n    \\\"k\\\": 3.2784666666666666,\\n    \\\"max_delta\\\": 0.1321756105496472,\\n    \\\"healthy_deltas\\\": [\\n      0.04426866217947411,\\n      0.06100412794599101,\\n      0.08133883726132135,\\n      0.09150619191898653\\n    ],\\n    \\\"all_deltas\\\": [\\n      0.04426866217947411,\\n      0.06100412794599101,\\n      0.08133883726132135,\\n      0.09150619191898653,\\n      0.11184090123431686,\\n      0.12200825589198203,\\n      0.1321756105496472,\\n      0.12200825589198203,\\n      0.10167354657665169\\n    ],\\n    \\\"notes\\\": {\\n      \\\"tau_method\\\": \\\"median of Gen 2-5 normalized deltas (healthy region)\\\",\\n      \\\"k_method\\\": \\\"target max_allocation=0.70, uniform_share=0.5000, r_max=0.8\\\"\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 
+…[truncated 65 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_phase0-summary-table_20260517T184857",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-17T18:52:27.260005+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx6000-diagprobe",
+  "command": "grep -r \"hellaswag\" /root/spectral_collapse_ews/results/ --include=\"*.json\" -l",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_phase0-summary-table_20260517T184857",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx6000-diagprobe",
+    "command": "grep -r \"hellaswag\" /root/spectral_collapse_ews/results/ --include=\"*.json\" -l",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-17T18:52:27.260143+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/spectral_collapse_ews/results/hellaswag_gen0/results.json\\n/root/spectral_collapse_ews/results/hellaswag_gen0/__root__spectral_collapse_ews__checkpoints__gen_0/results_2026-05-16T18-19-46.131926.json\\n/root/spectral_collapse_ews/results/hellaswag_gen1/results.json\\n/root/spectral_collapse_ews/results/hellaswag_gen2/results.json\\n/root/spectral_collapse_ews/results/hellaswag_gen3/results.json\\n/root/spectral_collapse_ews/results/hellaswag_gen4/results.json\\n/root/spectral_collapse_ews/results/hellaswag_gen5/results.json\\n/root/spectral_collapse_ews/results/hellaswag_gen6/results.json\\n/root/spectral_collapse_ews/results/hellaswag_gen7/results.json\\n/root/spectral_collapse_ews/results/hellaswag_gen8/results.json\\n/root/spectral_collapse_ews/results/hellaswag_gen9/results.json\\n/root/spectral_collapse_ews/results/hellaswag_gen10/results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.75}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_phase0-summary-table_20260517T184857",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-17T18:52:27.260277+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx6000-diagprobe",
+  "command": "find /root/spectral_collapse_ews -name \"*hellaswag*\" -o -name \"*eval*json\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_phase0-summary-table_20260517T184857",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx6000-diagprobe",
+    "command": "find /root/spectral_collapse_ews -name \"*hellaswag*\" -o -name \"*eval*json\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-17T18:52:27.260409+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/spectral_collapse_ews/results/hellaswag_gen0\\n/root/spectral_collapse_ews/results/hellaswag_gen1\\n/root/spectral_collapse_ews/results/hellaswag_gen2\\n/root/spectral_collapse_ews/results/hellaswag_gen3\\n/root/spectral_collapse_ews/results/hellaswag_gen4\\n/root/spectral_collapse_ews/results/hellaswag_gen5\\n/root/spectral_collapse_ews/results/hellaswag_gen6\\n/root/spectral_collapse_ews/results/hellaswag_gen7\\n/root/spectral_collapse_ews/results/hellaswag_gen8\\n/root/spectral_collapse_ews/results/hellaswag_gen9\\n/root/spectral_collapse_ews/results/hellaswag_gen10\\n/root/spectral_collapse_ews/eval_hellaswag.sh\\n/root/spectral_collapse_ews/auto_eval_hellaswag.sh\\n/root/spectral_collapse_ews/eval_hellaswag.py\\n/root/spectral_collapse_ews/hellaswag_cpu_eval.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.49}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_phase0-summary-table_20260517T184857",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-17T18:52:27.260558+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx6000-diagprobe",
+  "command": "grep \"acc_norm\" /root/spectral_collapse_ews/results/hellaswag_gen0/results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_phase0-summary-table_20260517T184857",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx6000-diagprobe",
+    "command": "grep \"acc_norm\" /root/spectral_collapse_ews/results/hellaswag_gen0/results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-17T18:52:27.260700+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx6000-diagprobe",
+  "command": "grep \"acc_norm\" /root/spectral_collapse_ews/results/hellaswag_gen1/results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_phase0-summary-table_20260517T184857",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx6000-diagprobe",
+    "command": "grep \"acc_norm\" /root/spectral_collapse_ews/results/hellaswag_gen1/results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-17T18:52:27.260823+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    \\\"acc_norm,none\\\": 0.4129655447122087,\\n    \\\"acc_norm_stderr,none\\\": 0.004913604782666059\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.75}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_phase0-summary-table_20260517T184857",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-17T18:52:27.260937+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx6000-diagprobe",
+  "command": "grep \"acc_norm\" /root/spectral_collapse_ews/results/hellaswag_gen2/results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_phase0-summary-table_20260517T184857",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx6000-diagprobe",
+    "command": "grep \"acc_norm\" /root/spectral_collapse_ews/results/hellaswag_gen2/results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-17T18:52:27.261055+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    \\\"acc_norm,none\\\": 0.38966341366261703,\\n    \\\"acc_norm_stderr,none\\\": 0.004866772373029655\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.24}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_phase0-summary-table_20260517T184857",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-17T18:52:27.261173+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx6000-diagprobe",
+  "command": "grep \"acc_norm\" /root/spectral_collapse_ews/results/hellaswag_gen3/results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_phase0-summary-table_20260517T184857",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx6000-diagprobe",
+    "command": "grep \"acc_norm\" /root/spectral_collapse_ews/results/hellaswag_gen3/results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-17T18:52:27.261286+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx6000-diagprobe",
+  "command": "grep \"acc_norm\" /root/spectral_collapse_ews/results/hellaswag_gen4/results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_phase0-summary-table_20260517T184857",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx6000-diagprobe",
+    "command": "grep \"acc_norm\" /root/spectral_collapse_ews/results/hellaswag_gen4/results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-17T18:52:27.261402+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    \\\"acc_norm,none\\\": 0.37641904003186616,\\n    \\\"acc_norm_stderr,none\\\": 0.004834969412883501\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.21}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_phase0-summary-table_20260517T184857",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-17T18:52:27.261512+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx6000-diagprobe",
+  "command": "grep \"acc_norm\" /root/spectral_collapse_ews/results/hellaswag_gen5/results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_phase0-summary-table_20260517T184857",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx6000-diagprobe",
+    "command": "grep \"acc_norm\" /root/spectral_collapse_ews/results/hellaswag_gen5/results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-17T18:52:27.261637+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx6000-diagprobe",
+  "command": "grep \"acc_norm\" /root/spectral_collapse_ews/results/hellaswag_gen6/results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_phase0-summary-table_20260517T184857",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx6000-diagprobe",
+    "command": "grep \"acc_norm\" /root/spectral_collapse_ews/results/hellaswag_gen6/results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-17T18:52:27.261760+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    \\\"acc_norm,none\\\": 0.3657637920732922,\\n    \\\"acc_norm_stderr,none\\\": 0.00480659342494242\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.3}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_phase0-summary-table_20260517T184857",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-17T18:52:27.261873+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx6000-diagprobe",
+  "command": "grep \"acc_norm\" /root/spectral_collapse_ews/results/hellaswag_gen7/results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_phase0-summary-table_20260517T184857",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx6000-diagprobe",
+    "command": "grep \"acc_norm\" /root/spectral_collapse_ews/results/hellaswag_gen7/results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-17T18:52:27.261983+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx6000-diagprobe",
+  "command": "grep \"acc_norm\" /root/spectral_collapse_ews/results/hellaswag_gen8/results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_phase0-summary-table_20260517T184857",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx6000-diagprobe",
+    "command": "grep \"acc_norm\" /root/spectral_collapse_ews/results/hellaswag_gen8/results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-17T18:52:27.262097+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    \\\"acc_norm,none\\\": 0.3558056164110735,\\n    \\\"acc_norm_stderr,none\\\": 0.004777782584817671\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.6}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_phase0-summary-table_20260517T184857",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-17T18:52:27.262208+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx6000-diagprobe",
+  "command": "grep \"acc_norm\" /root/spectral_collapse_ews/results/hellaswag_gen9/results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_phase0-summary-table_20260517T184857",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx6000-diagprobe",
+    "command": "grep \"acc_norm\" /root/spectral_collapse_ews/results/hellaswag_gen9/results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-17T18:52:27.262324+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "rtx6000-diagprobe",
+  "command": "grep \"acc_norm\" /root/spectral_collapse_ews/results/hellaswag_gen10/results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_phase0-summary-table_20260517T184857",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "rtx6000-diagprobe",
+    "command": "grep \"acc_norm\" /root/spectral_collapse_ews/results/hellaswag_gen10/results.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-17T18:52:27.262440+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    \\\"acc_norm,none\\\": 0.34385580561641105,\\n    \\\"acc_norm_stderr,none\\\": 0.004740229212473189\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.6}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_phase0-summary-table_20260517T184857",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-17T18:52:27.262553+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    \\\"acc_norm,none\\\": 0.3311093407687712,\\n    \\\"acc_norm_stderr,none\\\": 0.004696505101217762\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.24}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_phase0-summary-table_20260517T184857",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-17T18:52:27.262693+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    \\\"acc_norm,none\\\": 0.31866162119099783,\\n    \\\"acc_norm_stderr,none\\\": 0.004650052150094452\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.24}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_phase0-summary-table_20260517T184857",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-17T18:52:27.262807+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    \\\"acc_norm,none\\\": 0.31029675363473413,\\n    \\\"acc_norm_stderr,none\\\": 0.0046166958877616815\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.55}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_phase0-summary-table_20260517T184857",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-17T18:52:27.262916+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    \\\"acc_norm,none\\\": 0.3009360685122486,\\n    \\\"acc_norm_stderr,none\\\": 0.004577275844432393\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.23}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_phase0-summary-table_20260517T184857",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-17T18:52:27.263025+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    \\\"acc_norm,none\\\": 0.29506074487153955,\\n    \\\"acc_norm_stderr,none\\\": 0.004551379838155828\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.04}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_phase0-summary-table_20260517T184857",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-17T18:52:27.263209+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_phase0-summary-table_20260517T184857",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_execute",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-17T18:52:27.263339+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_phase0-summary-table_20260517T184857",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-17T18:52:27.263458+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx6000-diagprobe",
+  "command": "cat > /root/spectral_collapse_ews/results/phase0_summary.csv << 'CSVEOF'\ngen,eff_rank,log_det,ppl,hellaswag,distinct4,train_loss,sigma1,ppl_growth_factor,hellaswag_delta,eff_rank_delta,log_det_delta\n0,417.55,2366.68,9.5536,0.4130,0.7414,,,,,,,\n1,491.77,2464.76,11.3832,0.3897,0.6256,1.6228,803.96,1.1915,-0.0233,74.22,98.08\n2,496.44,2469.93,13.5810,0.3764,0.5154,1.2682,712.03,1.1930,-0.0132,4.67,5.17\n3,493.31,2440.57,16.2464,0.3658,0.4900,1.1340,700.68,1.1963,-0.0107,-3.13,-29.36\n4,485.67,2405.05,19.8041,0.3558,0.4679,1.0980,729.59,1.2190,-0.0100,-7.64,-35.52\n5,479.21,2370.17,24.5927,0.3439,0.4630,1.0474,741.02,1.2418,-0.0119,-6.47,-34.88\n6,473.00,2335.17,30.9139,0.3311,0.4655,1.0252,758.40,1.2570,-0.0127,-6.20,-35.01\n7,464.20,2304.19,38.8888,0.3187,0.4474,1.0151,791.28,1.2579,-0.0124,-8.81,-30.97\n8,456.76,2252.12,49.2899,0.3103,0.4401,0.9868,797.66,1.2675,-0.0084,-7.44,-52.07\n9,448.45,2207.57,63.3248,0.3009,0.4262,0.9968,814.13,1.2848,-0.0094,-8.31,-44.55\n10,442.46,2178.95,76.7808,0.2951,0.4259,0.9782,825.72,1.2125,-0.0059,-5.99,-28.62\n# decline_rate_ratio_eff_rank = 2.43\n# decline_rate_ratio_log_det = 1.65\n# total_ppl_growth = 8.04 (gen10/gen0)\n# total_hellaswag_drop = 0.1179 (gen0 - gen10)\nCSVEOF",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_phase0-summary-table_20260517T184857",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx6000-diagprobe",
+    "command": "cat > /root/spectral_collapse_ews/results/phase0_summary.csv << 'CSVEOF'\ngen,eff_rank,log_det,ppl,hellaswag,distinct4,train_loss,sigma1,ppl_growth_factor,hellaswag_delta,eff_rank_delta,log_det_delta\n0,417.55,2366.68,9.5536,0.4130,0.7414,,,,,,,\n1,491.77,2464.76,11.3832,0.3897,0.6256,1.6228,803.96,1.1915,-0.0233,74.22,98.08\n2,496.44,2469.93,13.5810,0.3764,0.5154,1.2682,712.03,1.1930,-0.0132,4.67,5.17\n3,493.31,2440.57,16.2464,0.3658,0.4900,1.1340,700.68,1.1963,-0.0107,-3.13,-29.36\n4,485.67,2405.05,19.8041,0.3558,0.4679,1.0980,729.59,1.2190,-0.0100,-7.64,-35.52\n5,479.21,2370.17,24.5927,0.3439,0.4630,1.0474,741.02,1.2418,-0.0119,-6.47,-34.88\n6,473.00,2335.17,30.9139,0.3311,0.4655,1.0252,758.40,1.2570,-0.0127,-6.20,-35.01\n7,464.20,2304.19,38.8888,0.3187,0.4474,1.0151,791.28,1.2579,-0.0124,-8.81,-30.97\n8,456.76,2252.12,49.2899,0.3103,0.4401,0.9868,797.66,1.2675,-0.0084,-7.44,-52.07\n9,448.45,2207.57,63.3248,0.3009,0.4262,0.9968,814.13,1.2848,-0.0094,-8.31,-44.55\n10,442.46,2178.95,76.7808,0.2951,0.4259,0.9782,825.72,1.2125,-0.0059,-5.99,-28.62\n# decline_rate_ratio_eff_rank = 2.43\n# decline_rate_ratio_log_det = 1.65\n# total_ppl_growth = 8.04 (gen10/gen0)\n# total_hellaswag_drop = 0.1179 (gen0 - gen10)\nCSVEOF",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-17T18:52:27.263584+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_phase0-summary-table_20260517T184857",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-17T18:52:27.263766+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "rtx6000-diagprobe",
+  "command": "cat > /root/spectral_collapse_ews/results/phase0_summary.csv << 'CSVEOF'\ngen,eff_rank,log_det,ppl,hellaswag,distinct4,train_loss,sigma1,ppl_growth_factor,hellaswag_delta,eff_rank_delta,log_det_delta\n0,417.55,2366.68,9.5536,0.4130,0.7414,,1942.82,,,\n1,491.77,2464.76,11.3832,0.3897,0.6256,1.6228,803.96,1.1915,-0.0233,74.22,98.08\n2,496.44,2469.93,13.5810,0.3764,0.5154,1.2682,712.03,1.1930,-0.0132,4.67,5.17\n3,493.31,2440.57,16.2464,0.3658,0.4900,1.1340,700.68,1.1963,-0.0107,-3.13,-29.36\n4,485.67,2405.05,19.8041,0.3558,0.4679,1.0980,729.59,1.2190,-0.0100,-7.64,-35.52\n5,479.21,2370.17,24.5927,0.3439,0.4630,1.0474,741.02,1.2418,-0.0119,-6.47,-34.88\n6,473.00,2335.17,30.9139,0.3311,0.4655,1.0252,758.40,1.2570,-0.0127,-6.20,-35.01\n7,464.20,2304.19,38.8888,0.3187,0.4474,1.0151,791.28,1.2579,-0.0124,-8.81,-30.97\n8,456.76,2252.12,49.2899,0.3103,0.4401,0.9868,797.66,1.2675,-0.0084,-7.44,-52.07\n9,448.45,2207.57,63.3248,0.3009,0.4262,0.9968,814.13,1.2848,-0.0094,-8.31,-44.55\n10,442.46,2178.95,76.7808,0.2951,0.4259,0.9782,825.72,1.2125,-0.0059,-5.99,-28.62\n# decline_rate_ratio_eff_rank = 2.43\n# decline_rate_ratio_log_det = 1.65\n# total_ppl_growth = 8.04 (gen10/gen0)\n# total_hellaswag_drop = 0.1179 (gen0 - gen10)\nCSVEOF",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_phase0-summary-table_20260517T184857",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "rtx6000-diagprobe",
+    "command": "cat > /root/spectral_collapse_ews/results/phase0_summary.csv << 'CSVEOF'\ngen,eff_rank,log_det,ppl,hellaswag,distinct4,train_loss,sigma1,ppl_growth_factor,hellaswag_delta,eff_rank_delta,log_det_delta\n0,417.55,2366.68,9.5536,0.4130,0.7414,,1942.82,,,\n1,491.77,2464.76,11.3832,0.3897,0.6256,1.6228,803.96,1.1915,-0.0233,74.22,98.08\n2,496.44,2469.93,13.5810,0.3764,0.5154,1.2682,712.03,1.1930,-0.0132,4.67,5.17\n3,493.31,2440.57,16.2464,0.3658,0.4900,1.1340,700.68,1.1963,-0.0107,-3.13,-29.36\n4,485.67,2405.05,19.8041,0.3558,0.4679,1.0980,729.59,1.2190,-0.0100,-7.64,-35.52\n5,479.21,2370.17,24.5927,0.3439,0.4630,1.0474,741.02,1.2418,-0.0119,-6.47,-34.88\n6,473.00,2335.17,30.9139,0.3311,0.4655,1.0252,758.40,1.2570,-0.0127,-6.20,-35.01\n7,464.20,2304.19,38.8888,0.3187,0.4474,1.0151,791.28,1.2579,-0.0124,-8.81,-30.97\n8,456.76,2252.12,49.2899,0.3103,0.4401,0.9868,797.66,1.2675,-0.0084,-7.44,-52.07\n9,448.45,2207.57,63.3248,0.3009,0.4262,0.9968,814.13,1.2848,-0.0094,-8.31,-44.55\n10,442.46,2178.95,76.7808,0.2951,0.4259,0.9782,825.72,1.2125,-0.0059,-5.99,-28.62\n# decline_rate_ratio_eff_rank = 2.43\n# decline_rate_ratio_log_det = 1.65\n# total_ppl_growth = 8.04 (gen10/gen0)\n# total_hellaswag_drop = 0.1179 (gen0 - gen10)\nCSVEOF",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-17T18:52:27.263899+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_phase0-summary-table_20260517T184857",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43 · 2026-05-17T18:52:27.264067+00:00_
+
+CSV 已写入。以下是完整数据表。
+
+---
+
+## Phase 0 完整数据表 (Pythia-410M, 100% Synthetic, 10 Generations)
+
+### 核心指标
+
+| Gen | eff_rank | log_det | ppl | hellaswag | distinct4 | train_loss | sigma1 |
+|-----|----------|---------|-----|-----------|-----------|------------|--------|
+| 0 | 417.55 | 2366.68 | 9.5536 | 0.4130 | 0.7414 | | 1942.82 |
+| 1 | 491.77 | 2464.76 | 11.3832 | 0.3897 | 0.6256 | 1.6228 | 803.96 |
+| 2 | 496.44 | 2469.93 | 13.5810 | 0.3764 | 0.5154 | 1.2682 | 712.03 |
+| 3 | 493.31 | 2440.57 | 16.2464 | 0.3658 | 0.4900 | 1.1340 | 700.68 |
+| 4 | 485.67 | 2405.05 | 19.8041 | 0.3558 | 0.4679 | 1.0980 | 729.59 |
+| 5 | 479.21 | 2370.17 | 24.5927 | 0.3439 | 0.4630 | 1.0474 | 741.02 |
+| 6 | 473.00 | 2335.17 | 30.9139 | 0.3311 | 0.4655 | 1.0252 | 758.40 |
+| 7 | 464.20 | 2304.19 | 38.8888 | 0.3187 | 0.4474 | 1.0151 | 791.28 |
+| 8 | 456.76 | 2252.12 | 49.2899 | 0.3103 | 0.4401 | 0.9868 | 797.66 |
+| 9 | 448.45 | 2207.57 | 63.3248 | 0.3009 | 0.4262 | 0.9968 | 814.13 |
+| 10 | 442.46 | 2178.95 | 76.7808 | 0.2951 | 0.4259 | 0.9782 | 825.72 |
+
+### 派生指标 (per-gen deltas)
+
+| Gen | ppl_growth_factor | hellaswag_delta | eff_rank_delta | log_det_delta |
+|-----|-------------------|-----------------|----------------|---------------|
+| 0 | | | | |
+| 1 | 1.1915 | -0.0233 | +74.22 | +98.08 |
+| 2 | 1.1930 | -0.0132 | +4.67 | +5.17 |
+| 3 | 1.1963 | -0.0107 | -3.13 | -29.36 |
+| 4 | 1.2190 | -0.0100 | -7.64 | -35.52 |
+| 5 | 1.2418 | -0.0119 | -6.47 | -34.88 |
+| 6 | 1.2570 | -0.0127 | -6.20 | -35.01 |
+| 7 | 1.2579 | -0.0124 | -8.81 | -30.97 |
+| 8 | 1.2675 | -0.0084 | -7.44 | -52.07 |
+| 9 | 1.2848 | -0.0094 | -8.31 | -44.55 |
+| 10 | 1.2125 | -0.0059 | -5.99 | -28.62 |
+
+### 汇总统计
+
+| 指标 | 值 |
+|------|-----|
+| decline_rate_ratio (eff_rank) | **2.43** (Gen 6-10 衰减速率 / Gen 1-5 衰减速率, >1 = 加速坍缩) |
+| decline_rate_ratio (log_det) | **1.65** |
+| total_ppl_growth (gen10/gen0) | **8.04x** |
+| total_hellaswag_drop (gen0 - gen10) | **0.1179** (从 0.413 降到 0.295) |
+
+### 关键观察
+
+- **eff_rank 先升后降**：Gen 0→2 从 417.55 升至 496.44（初代合成训练反而提升多样性），Gen 2 之后单调下降至 442.46
+- **sigma1 先骤降后持续上升**：Gen 0 的 1942.82 是原始预训练模型的主导奇异值，Gen 1 骤降至 803.96 后从 Gen 3 起持续攀升至 825.72，反映频谱越来越集中于少数方向
+- **ppl 增长因子逐代递增**：从 1.19 (Gen 1) 升至 1.28 (Gen 9)，Gen 10 略回落至 1.21，整体呈加速趋势
+- **distinct4 在 Gen 5-6 出现平台**：0.4630 → 0.4655（微升），之后继续下降
+
+CSV 已保存至 `/root/spectral_collapse_ews/results/phase0_summary.csv`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_phase0-summary-table_20260517T184857"
+}
+```
+
+</details>
+
+---

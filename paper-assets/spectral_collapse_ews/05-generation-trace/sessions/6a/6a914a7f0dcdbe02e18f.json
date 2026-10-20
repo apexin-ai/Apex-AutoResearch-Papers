@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "6a914a7f0dcdbe02e18f",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "code d011 bugfix verify",
+  "task_key": "worker_code_d011_bugfix_verify_20260517T130818",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d011_bugfix_verify_20260517T130818_result.json",
+    "occurrence": 1,
+    "bytes": 3785,
+    "sha256": "8e42de26b946a4c91edc661b054c843edd82ba414c698b8e8c95c6d53b73c136"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有信息已收集完毕。\n\n---\n\n## GPU 状态\n- GPU 0: RTX PRO 6000, 65909/97887 MiB, 90% util, PID 59365 (exp_001)\n- GPU 1: RTX PRO 6000, 23735/97887 MiB, 79% util, PID 88161 → **已 kill**\n\n## PID 88161\nkilled\n\n## D011 检查\n\n- **A (预算扣减): PASS** — `update()` 中 `self.B_rem -= r` 先按分配值扣减，然后 `report_actual(actual_ratio)` 修正差值：`self.B_rem += (allocated - actual_ratio)`。pipeline.py 对每个 gen 都调用了 `controller.report_actual(actual_ratio)`。两阶段设计等价于直接传 actual_ratio。\n\n- **B (set_baseline): PASS** — `set_baseline()` 方法已存在，正确设置 `S_tilde_0` 和 `S_tilde_prev`：\n  ```python\n  def set_baseline(self, spectral_metrics):\n      key = {\"eff_rank\": \"effective_rank\"}.get(self.signal, self.signal)\n      S_0 = spectral_metrics[key]\n      self.S_tilde_prev = S_0\n      self.S_tilde_0 = S_0\n  ```\n\n- **C (Gen 0 调用): PASS** — pipeline.py controller 初始化后立即调用：\n  ```python\n  gen0_metrics = results_all[0]\n  controller.set_baseline(gen0_metrics)\n  ```\n\n- **D (actual_ratio 回传): PASS** — pipeline.py 计算 `actual_ratio = num_real / total_per_gen`，对 gen >= 1 都调用 `controller.report_actual(actual_ratio)`。\n\n- **E (数据架构): PASS** — `total_per_gen = config.num_synthetic_samples = 50000`（固定总量），`num_real = int(total_per_gen * ratio)`，`num_synth = total_per_gen - num_real`。real pool = 50K（`train_real_50k.pt`），ratio=0.8 → 40K real 完全可行。另有 `num_real = min(num_real, len(real_train_data))` 安全上限。\n\n## Dry-run 表格\n\n```\nGen  S_tilde      delta      triggered  r_req    r_actual   B_rem    real     synth\n0    2366.684     N/A        N/A        0.5000   0.5000     4.5000   25000    25000\n1    2415.723     -0.020721  False      0.5000   0.5000     4.0000   25000    25000\n2    2442.825     -0.011452  False      0.5000   0.5000     3.5000   25000    25000\n3    2441.696     0.000477   False      0.5000   0.5000     3.0000   25000    25000\n4    2423.373     0.007742   True       0.5027   0.5027     2.4973   25137    24863\n5    2396.773     0.011239   True       0.5057   0.5057     1.9916   25284    24716\n6    2365.969     0.013016   True       0.5059   0.5059     1.4857   25295    24705\n7    2335.079     0.013052   True       0.5033   0.5033     0.9824   25163    24837\n8    2293.599     0.017527   True       0.5037   0.5037     0.4787   25186    24814\n```\n\n验证通过：\n1. Gen 0 baseline 正确（S_tilde_0 = 2366.684）\n2. Gen 1-2 log_det 上升（初始 fine-tuning \"扩散\"效应），delta 为负，不触发\n3. Gen 4 起 delta > tau=0.005，正确触发\n4. 所有 ratio 在 [0.2, 0.8] 范围内，real_samples 远低于 50K pool\n5. B_rem 在 Gen 8 后剩 0.4787，足够最后 1-2 代\n\n## tau 建议\n\ndelta 范围：[-0.021, 0.018]，正值均值 ~0.012。当前 tau=0.005 从 Gen 4 开始触发（5/8 代），时机合理（前 3 代 log_det 上升，属正常初始化效应）。\n\n**但 k=1.0 过小**：即使触发，ratio 调整幅度极小（最大 +0.006，即 0.5000→0.5059）。建议：\n- 保持 **tau=0.005**（触发时机正确）\n- 将 **k 提升到 5.0~10.0**，使 ratio 在触发后有实质性调整（如 0.5→0.55~0.60）\n\n## exp_001 状态\n\nGen 9/10 进行中，正在生成合成数据（21440/50000 samples）。phase0_results.json 含 Gen 0-8 共 9 代结果。Gen 8 metrics: eff_rank=456.76, ppl=49.29, distinct4=0.440, log_det=2252.12。预计还需完成 Gen 9 + Gen 10。\n\n1B 实验（phase0_1b）在 Gen 0 checkpoint 保存时因磁盘空间不足崩溃，仅有 Gen 0-3 结果。PID 88161 已被 kill。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "eff_rank": "effective_rank"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d011-bugfix-verify.md"
+}

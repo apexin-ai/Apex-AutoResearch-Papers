@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "acb29326c9cf3134e7ce",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ops fix exp021 duplicate",
+  "task_key": "worker_ops_fix-exp021-duplicate_20260524T040606",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix-exp021-duplicate_20260524T040606_result.json",
+    "occurrence": 1,
+    "bytes": 894,
+    "sha256": "7e9b7796b596c733a3ddf90d746275a832ca633318c550a849c9cb5567add6d7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 1. 进程清理\n- **已杀**: PID 845033 (+ 父进程 845028, timeout 845032) — 10:27:50 启动，无 HF_HUB_OFFLINE，旧的错误提交\n- **保留**: PID 846799 (wrapper 846794) — 10:45:52 启动，带 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1，修复版\n\n### 2. exp_021 当前进度\n完成 2 个 generation (gen 0, gen 1)，正在跑 gen 2：\n| Gen | r_eff | SLV |\n|-----|-------|-----|\n| 0 | 23.09 | 689.44 |\n| 1 | 121.17 | 760.73 |\n\n（PPL 字段未写入结果文件）\n\n### 3. exp_020 进度\n已完成 8 个 generation (gen 0–7)。\n\n### 4. GPU 状态\n| GPU | Util | 显存使用 |\n|-----|------|---------|\n| 0 | 94% | 26431 / 97887 MiB (exp_020) |\n| 1 | 97% | **26431** / 97887 MiB (exp_021，从 52858 降到 26431，释放了 ~26 GB) |\n\n### 5. tmux\n只有 2 个 session：`exp_020` 和 `exp_021`，无重复，无需清理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-exp021-duplicate.md"
+}

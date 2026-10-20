@@ -1,0 +1,132 @@
+{
+  "exp_id": "exp_017",
+  "project": "spectral_collapse_ews",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T23:25:24.156Z",
+    "updated_at": "2026-05-23T04:02:35.032Z",
+    "hypothesis": "r=0.2 with seed 43 reproduces Type II trajectory (transient dip + recovery) observed in exp_007 (seed42). Second seed validates that 20% real mixing is insufficient to prevent transient SLV violation, strengthening the r_crit lower bound evidence.",
+    "parent": "exp_007",
+    "spec": {
+      "model_name": "EleutherAI/pythia-410m-deduped",
+      "seed": 43,
+      "data_path": "/root/spectral_collapse_ews/data/",
+      "data_count": "50K real pool, total_per_gen=50K (10K real + 40K synthetic per gen)",
+      "generations": 10,
+      "condition": "fixed_mix",
+      "real_ratio": 0.2,
+      "checkpoint_dir": "/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r02_seed43/",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && bash /root/spectral_collapse_ews/scripts/launch_fixed_mix_r020_seed43.sh 0\"",
+      "server": "rtx6000-diagprobe",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "648360",
+      "tmux_session": "exp_017",
+      "account": "root",
+      "checkpoint_source": "EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)",
+      "eval_data": "/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)",
+      "checkpoint_path": "/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r02_seed43/",
+      "log_path": "~/runs/spectral_collapse_ews/exp_017.log"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-23T03:58:53.985Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-23T03:58:55.293400+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "gen0": {
+        "eff_rank": 417.55,
+        "log_det": 2366.68,
+        "ppl": 9.55,
+        "distinct4": 0.7415
+      },
+      "gen1": {
+        "eff_rank": 475.29,
+        "log_det": 2365.31,
+        "ppl": 10.28,
+        "distinct4": 0.6842,
+        "train_loss": 1.7676
+      },
+      "gen2": {
+        "eff_rank": 480.44,
+        "log_det": 2358.84,
+        "ppl": 10.74,
+        "distinct4": 0.4988,
+        "train_loss": 1.7217
+      },
+      "gen3": {
+        "eff_rank": 486.99,
+        "log_det": 2365.74,
+        "ppl": 11.15,
+        "distinct4": 0.478,
+        "train_loss": 1.4247
+      },
+      "gen4": {
+        "eff_rank": 489.33,
+        "log_det": 2377.37,
+        "ppl": 11.49,
+        "distinct4": 0.4445,
+        "train_loss": 1.3675
+      },
+      "gen5": {
+        "eff_rank": 492.09,
+        "log_det": 2395.98,
+        "ppl": 11.83,
+        "distinct4": 0.4435,
+        "train_loss": 1.273
+      },
+      "gen6": {
+        "eff_rank": 495.85,
+        "log_det": 2411.37,
+        "ppl": 12.15,
+        "distinct4": 0.442,
+        "train_loss": 1.2219
+      },
+      "gen7": {
+        "eff_rank": 498.05,
+        "log_det": 2426.3,
+        "ppl": 12.48,
+        "distinct4": 0.3433,
+        "train_loss": 1.1914
+      },
+      "gen8": {
+        "eff_rank": 500.8,
+        "log_det": 2436.78,
+        "ppl": 12.76,
+        "distinct4": 0.3106,
+        "train_loss": 1.0154
+      },
+      "gen9": {
+        "eff_rank": 504.08,
+        "log_det": 2453.63,
+        "ppl": 13.08,
+        "distinct4": 0.306,
+        "train_loss": 0.9546
+      },
+      "gen10": {
+        "eff_rank": 505.98,
+        "log_det": 2455.78,
+        "ppl": 13.4,
+        "distinct4": 0.2453,
+        "train_loss": 0.9375,
+        "sigma1": 714.87
+      }
+    },
+    "conclusion": "success",
+    "notes": "r=0.2 seed43 Type II 复现确认。SLV dip at Gen2 (2358.84, -7.84), recovery from Gen3, monotonic thereafter. Gen10: SLV=2455.78, eff_rank=505.98, PPL=13.40, D-4=0.2453. 2-seed Gen10: SLV=2467.7±16.9 (CV=0.69%), eff_rank=508.6±3.8, PPL=13.62±0.30 (CV=2.2%), D-4=0.383±0.194 (CV=50.8%). 谱指标跨 seed 高度一致，D-4 方差大（与 r=0.3 模式一致）。论文已更新: Table 3, §3.5, Figure 2 caption, Limitations, response letter。",
+    "completed_at": "2026-05-23T04:02:35.032Z"
+  },
+  "timestamp": "2026-05-23T04:02:35.109720+00:00",
+  "trigger": "update_registry"
+}

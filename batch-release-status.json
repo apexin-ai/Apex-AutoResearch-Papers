@@ -1091,6 +1091,65 @@
         }
       ],
       "workflow_run": "https://github.com/Zxy-MLlab/Release_examples/actions/runs/39396020640"
+    },
+    "spectral_collapse_ews/workspace.tar.gz": {
+      "status": "uploaded",
+      "source": {
+        "bytes": 3079257057,
+        "etag": "\"c0ae92a4be7a34b47800ce9ea64b4884-368\"",
+        "modified": "2026-05-31T17:34:24+00:00"
+      },
+      "archive_sha256": "a93321e25248cf25e29f7ae6c9415356e2fb9b9adc8bdc731eb9b804561771fd",
+      "projects": [
+        "trace_distill_repair",
+        "prism_collapse_mixing",
+        "spectral_collapse_ews",
+        "robust_circuit_editing",
+        "rl-active-probe-fl"
+      ],
+      "counts": [
+        {
+          "project": "trace_distill_repair",
+          "title": "trace distill repair",
+          "paper_pdf": null,
+          "code_count": 96,
+          "data_count": 126,
+          "trace_count": 410
+        },
+        {
+          "project": "prism_collapse_mixing",
+          "title": "prism collapse mixing",
+          "paper_pdf": null,
+          "code_count": 33,
+          "data_count": 15,
+          "trace_count": 104
+        },
+        {
+          "project": "spectral_collapse_ews",
+          "title": "Spectral Early Warning Signals for Model Collapse and Their Prevention–Detectability Tradeoff",
+          "paper_pdf": "paper.pdf",
+          "code_count": 191,
+          "data_count": 270,
+          "trace_count": 925
+        },
+        {
+          "project": "robust_circuit_editing",
+          "title": "robust circuit editing",
+          "paper_pdf": null,
+          "code_count": 10,
+          "data_count": 2,
+          "trace_count": 5
+        },
+        {
+          "project": "rl-active-probe-fl",
+          "title": "rl active probe fl",
+          "paper_pdf": null,
+          "code_count": 47,
+          "data_count": 70,
+          "trace_count": 110
+        }
+      ],
+      "workflow_run": "https://github.com/Zxy-MLlab/Release_examples/actions/runs/39396020640"
     }
   }
 }

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8d1340f1ee76507b5fe3",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ops check exp progress 0524",
+  "task_key": "worker_ops_check-exp-progress-0524_20260523T220651",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-exp-progress-0524_20260523T220651_result.json",
+    "occurrence": 1,
+    "bytes": 1031,
+    "sha256": "e475f745a7df027b288b1c60846a8e47fdda98b0877179242ef04f7093888c91"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 训练进度汇报\n\n### exp_019 (Pythia-410M, r=0.2, seed44) — cuda:1\n- **当前：Gen 9/10（最后一代），生成阶段 5760/40000 (14.4%)**\n- 结果文件已保存到 Gen 8，Gen 9 刚进入生成阶段\n- 生成完还需 fine-tune + eval，预计 **再跑 ~1.5-2 小时完成全部 10 代**\n- GPU 1 利用率 93%，显存 25.0/95.6 GB\n\n### exp_020 (GPT-2-medium, r=0, seed42) — cuda:0\n- **当前：Gen 5/10，生成阶段 44800/50000 (89.6%)**\n- 结果文件已保存到 Gen 4，Gen 5 生成即将完成\n- 还剩 5 代（Gen 5 生成尾声 + train/eval，再跑 Gen 6-10）\n- 启动约 12 小时跑了 5 代，预计 **再跑 ~10-12 小时**\n- GPU 0 利用率 58%（当前在生成阶段，训练时会更高），显存 25.8/95.6 GB\n\n### GPU 状态\n| GPU | 型号 | 利用率 | 显存 |\n|-----|------|--------|------|\n| 0 | RTX PRO 6000 Blackwell | 58% | 26.4/95.6 GB |\n| 1 | RTX PRO 6000 Blackwell | 93% | 25.0/95.6 GB |\n\nexp_019 即将完成；exp_020 大约明天早上跑完。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-exp-progress-0524.md"
+}

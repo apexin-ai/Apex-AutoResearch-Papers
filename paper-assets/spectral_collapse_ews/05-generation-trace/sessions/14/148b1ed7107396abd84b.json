@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "148b1ed7107396abd84b",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "code linear increasing prep",
+  "task_key": "worker_code_linear-increasing-prep_20260517T192515",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_linear-increasing-prep_20260517T192515_result.json",
+    "occurrence": 1,
+    "bytes": 1343,
+    "sha256": "e24db0f26c4681a876a9ae40322746a39c4d5dd2b513e2a4d23dfe66aa5c3cde"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。总结：\n\n### 产出\n\n**1. run_phase1.py 无需修改** — 已完整支持 `linear_increasing` 条件（argparse choices、r_min/r_max 参数、build_config 分支、run_tag 逻辑、summary 保存）。\n\n**2. Launch script 已创建**：`/root/spectral_collapse_ews/scripts/launch_linear_increasing.sh`\n\n**3. 验证结果**：\n```\ncondition=linear_increasing, seed=42, generations=10\nr_min=0.2, r_max=0.8\nrun_tag=linear_increasing_seed42\nratio_schedule=[0.2, 0.2667, 0.3333, 0.4, 0.4667, 0.5333, 0.6, 0.6667, 0.7333, 0.8]\n```\n\n路径格式：`checkpoints_phase1/linear_increasing_seed42/`\n\n**4. submit_training_job 命令（不启动）**：\n```\nbash /root/spectral_collapse_ews/scripts/launch_linear_increasing.sh 0\n```\n\n或直接用 `submit_training_job`：\n```python\nsubmit_training_job(\n    server=\"rtx6000-diagprobe\",\n    command=\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition linear_increasing --seed 42 --generations 10 --signal log_det --tau 0.002 --k 0 --signal_mode per_gen --r_min 0.20 --r_max 0.80 --gpu 0\",\n    job_name=\"exp_linear_increasing_seed42\",\n    account=\"root\"\n)\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-linear-increasing-prep.md"
+}

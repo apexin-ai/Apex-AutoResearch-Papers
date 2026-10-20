@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7f6bfc8cd29a417fc510",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "fix exp 002 disk",
+  "task_key": "worker_fix_exp_002_disk_20260516T154347",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_exp_002_disk_20260516T154347_result.json",
+    "occurrence": 1,
+    "bytes": 1146,
+    "sha256": "5a3a263db87226a3a47f44596e46229a39261067d7dcc9f46d55cde9aa3c2eb2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结论：exp_002 运行正常，无需修复或重启\n\n**误报原因**：`/root/spectral_collapse_ews/results/phase0_1b/phase0_1b_run.log` 中的 SafetensorError 来自**之前的手动运行**（symlink 还没建好时），不是 exp_002。\n\n**exp_002 实际状态**：\n| 项目 | 状态 |\n|------|------|\n| 进程 | PID 25237 (python)，`Rl` Running 状态，已运行 2h27m |\n| GPU | cuda:1，占用 25636 MiB |\n| Gen 0 checkpoint | 完整保存在数据盘（3.8G），symlink 正确 |\n| Gen 0 评估 | eff_rank=516.14, ppl=8.07, distinct4=0.7510 |\n| 当前进度 | 正在 Gen 1（checkpoint 目录只有 gen_0，尚无 phase0_results.json） |\n| exp_002.log | 只有 1416 行 HF padding 警告（stderr），stdout 因 Python block buffer 未刷到日志 |\n\n**为什么 exp_002.log 看不到进度**：submit_training_job 把 stdout 重定向到文件，Python 默认 block buffer，print 输出还没 flush。HF 警告走 stderr（unbuffered），所以只看到警告。\n\n**建议**：不做任何操作，等待实验自然完成。后续提交可加 `PYTHONUNBUFFERED=1` 让日志实时可见。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-exp-002-disk.md"
+}

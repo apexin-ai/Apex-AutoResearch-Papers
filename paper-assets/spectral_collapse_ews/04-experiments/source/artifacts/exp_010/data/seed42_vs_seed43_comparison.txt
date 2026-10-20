@@ -1,0 +1,1 @@
+Phase boundaries: CONSISTENT (both seeds peak Gen 2, onset Gen 3). Gen 10 mean+/-std: SLV=2194.86+/-22.50, eff_rank=440.62+/-2.60, ppl=73.64+/-4.44, distinct4=0.410+/-0.023. Max cross-seed SLV diff: 1.45%. Server path: /root/spectral_collapse_ews/results/comparison/seed_comparison.json

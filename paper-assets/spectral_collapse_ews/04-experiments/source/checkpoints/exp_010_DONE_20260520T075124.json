@@ -1,0 +1,137 @@
+{
+  "exp_id": "exp_010",
+  "project": "spectral_collapse_ews",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T05:52:19.811Z",
+    "updated_at": "2026-05-20T07:51:24.696Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition pure_collapse --seed 43 --generations 10 --signal log_det --tau 0.002 --k 0 --signal_mode per_gen --gpu 0\"",
+      "server": "rtx6000-diagprobe",
+      "gpu": "cuda:1",
+      "pid": 283142,
+      "log_path": "~/runs/spectral_collapse_ews/exp_010.log",
+      "submitted_at": "2026-05-19T05:52:19.743Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "description": "Phase 2: Pure collapse seed 43 (100% synthetic, r=0.0), 10 generations. Multi-seed replication of exp_001.",
+      "tmux_session": "exp_010",
+      "model_name": "EleutherAI/pythia-410m-deduped",
+      "seed": 43,
+      "data_path": "/root/spectral_collapse_ews/data/",
+      "data_count": "50K synthetic per gen (0% real)",
+      "generations": 10,
+      "condition": "pure_collapse",
+      "real_ratio": 0,
+      "checkpoint_dir": "/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/pure_collapse_seed43/",
+      "results_file": "/root/spectral_collapse_ews/results/phase1_pure_collapse_seed43_results.json",
+      "checkpoint_source": "EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)",
+      "eval_data": "/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)",
+      "wall_clock_seconds": 93545.0,
+      "gpu_hours": 25.98
+    },
+    "hypothesis": "Pure collapse (r=0, 100% synthetic) with seed 43 reproduces the three-phase spectral trajectory (decompression Gen 0-2, onset Gen 2-4, collapse Gen 4-10) observed in exp_001 (seed 42). This validates C1 claim that the spectral collapse pattern is reproducible across random seeds, not an artifact of a single training run.",
+    "parent": "exp_001",
+    "metrics": {
+      "gen0": {
+        "eff_rank": 417.55,
+        "log_det": 2366.68,
+        "ppl": 9.554,
+        "distinct4": 0.7415
+      },
+      "gen1": {
+        "eff_rank": 490.83,
+        "log_det": 2462.62,
+        "ppl": 11.371,
+        "distinct4": 0.5997,
+        "train_loss": 1.6245
+      },
+      "gen2": {
+        "eff_rank": 496.24,
+        "log_det": 2466.63,
+        "ppl": 13.565,
+        "distinct4": 0.5048,
+        "train_loss": 1.2609
+      },
+      "gen3": {
+        "eff_rank": 494.04,
+        "log_det": 2438.38,
+        "ppl": 16.219,
+        "distinct4": 0.4778,
+        "train_loss": 1.1248
+      },
+      "gen4": {
+        "eff_rank": 489.23,
+        "log_det": 2404.6,
+        "ppl": 19.94,
+        "distinct4": 0.4154,
+        "train_loss": 1.0686
+      },
+      "gen5": {
+        "eff_rank": 480.07,
+        "log_det": 2365.13,
+        "ppl": 24.603,
+        "distinct4": 0.4172,
+        "train_loss": 0.934
+      },
+      "gen6": {
+        "eff_rank": 471.88,
+        "log_det": 2325.01,
+        "ppl": 30.064,
+        "distinct4": 0.4082,
+        "train_loss": 0.934
+      },
+      "gen7": {
+        "eff_rank": 464.18,
+        "log_det": 2291.55,
+        "ppl": 37.442,
+        "distinct4": 0.3905,
+        "train_loss": 0.9476
+      },
+      "gen8": {
+        "eff_rank": 456.18,
+        "log_det": 2248.26,
+        "ppl": 46.943,
+        "distinct4": 0.388,
+        "train_loss": 0.9027
+      },
+      "gen9": {
+        "eff_rank": 447.02,
+        "log_det": 2234.8,
+        "ppl": 58.003,
+        "distinct4": 0.3749,
+        "train_loss": 0.9073
+      },
+      "gen10": {
+        "eff_rank": 438.78,
+        "log_det": 2210.77,
+        "ppl": 70.5,
+        "distinct4": 0.394,
+        "train_loss": 0.9147
+      }
+    },
+    "reproduce": {
+      "finished_at": "2026-05-20T07:47:09.514Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-20T07:47:11.521367+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "checkpoint_path": "/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/pure_collapse_seed43/",
+    "log_path": "~/runs/spectral_collapse_ews/exp_010.log",
+    "notes": "Three-phase collapse pattern fully replicated (seed 43 vs seed 42). Phase boundaries identical: peak Gen 2, onset Gen 3, sustained collapse Gen 2-10. SLV decline peak→Gen10: 11.07%±1.00%. Final SLV=2194.86±22.50, PPL=73.64±4.44, eff_rank=440.62±2.60. Cross-seed SLV difference <1.5% at all gens. Hypothesis confirmed — spectral collapse is reproducible across seeds. compare_seeds.py output saved to results/seed_comparison.json.",
+    "completed_at": "2026-05-20T07:51:24.696Z"
+  },
+  "timestamp": "2026-05-20T07:51:24.769505+00:00",
+  "trigger": "update_registry"
+}

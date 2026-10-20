@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "10d0f3a4a430d0c4c7de",
+  "project": "trace_distill_repair",
+  "kind": "result",
+  "title": "run phase3 v2 tier1",
+  "task_key": "worker_run_phase3_v2_tier1_20260515T130052",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_phase3_v2_tier1_20260515T130052_result.json",
+    "occurrence": 1,
+    "bytes": 737,
+    "sha256": "832189bf4edfec19ac47bbeb3638242ed2305da2b16430d9395cc7771d8e7704"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已确认正常运行。\n\n**汇总：**\n- **Job ID**: `mvp_phase3_repair_v2`（tmux session 同名）\n- **PID**: 129622\n- **实例数**: 14 个 Tier 1（非 15，instance_tiers.json 实际只有 14 个 tier=1）\n- **条件**: 4 个（no_trace, full_trace, structural_filtered, line_filtered）= 56 次 repair API 调用\n- **模型**: deepseek/deepseek-v4-pro\n- **并发**: max-workers=3\n- **日志**: `~/runs/trace_distill_repair/mvp_phase3_repair_v2.log`\n- **结果目录**: `/root/trace_distill_repair/pipeline_output/phase3_v2_results/`\n- **Checkpoint**: 同目录下 `phase3_checkpoint.json`，中断可恢复\n- **finish_reason**: 已加入 `call_repair_llm` 的日志和 CSV 输出\n- **超时**: 6 小时"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-phase3-v2-tier1.md"
+}

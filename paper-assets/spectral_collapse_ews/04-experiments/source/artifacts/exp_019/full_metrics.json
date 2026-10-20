@@ -1,0 +1,102 @@
+{
+  "exp_id": "exp_019",
+  "model": "pythia-410m",
+  "mixing_ratio": 0.2,
+  "seed": 44,
+  "generations": {
+    "gen_0": {
+      "effective_rank": 417.5472,
+      "log_det": 2366.6829,
+      "perplexity": 9.5536,
+      "distinct_4": 0.7305,
+      "sigma1": 1942.8164
+    },
+    "gen_1": {
+      "effective_rank": 476.5695,
+      "log_det": 2369.4258,
+      "perplexity": 10.2771,
+      "distinct_4": 0.6542,
+      "sigma1": 961.5131,
+      "train_loss": 1.7648
+    },
+    "gen_2": {
+      "effective_rank": 483.1635,
+      "log_det": 2361.1064,
+      "perplexity": 10.7269,
+      "distinct_4": 0.5619,
+      "sigma1": 867.7690,
+      "train_loss": 1.6473
+    },
+    "gen_3": {
+      "effective_rank": 486.4819,
+      "log_det": 2365.5503,
+      "perplexity": 11.1366,
+      "distinct_4": 0.4685,
+      "sigma1": 822.9881,
+      "train_loss": 1.4328
+    },
+    "gen_4": {
+      "effective_rank": 489.1625,
+      "log_det": 2377.0579,
+      "perplexity": 11.4966,
+      "distinct_4": 0.3990,
+      "sigma1": 786.7949,
+      "train_loss": 1.2658
+    },
+    "gen_5": {
+      "effective_rank": 493.0606,
+      "log_det": 2395.6187,
+      "perplexity": 11.8338,
+      "distinct_4": 0.3771,
+      "sigma1": 754.2687,
+      "train_loss": 1.1487
+    },
+    "gen_6": {
+      "effective_rank": 494.1035,
+      "log_det": 2411.7842,
+      "perplexity": 12.1595,
+      "distinct_4": 0.3330,
+      "sigma1": 735.2405,
+      "train_loss": 1.1335
+    },
+    "gen_7": {
+      "effective_rank": 495.6739,
+      "log_det": 2424.3687,
+      "perplexity": 12.4397,
+      "distinct_4": 0.3068,
+      "sigma1": 730.0585,
+      "train_loss": 1.0604
+    },
+    "gen_8": {
+      "effective_rank": 497.1823,
+      "log_det": 2436.0762,
+      "perplexity": 12.7335,
+      "distinct_4": 0.2834,
+      "sigma1": 743.6231,
+      "train_loss": 0.9960
+    },
+    "gen_9": {
+      "effective_rank": 502.5994,
+      "log_det": 2451.2527,
+      "perplexity": 13.0722,
+      "distinct_4": 0.2320,
+      "sigma1": 709.5333,
+      "train_loss": 0.9570
+    },
+    "gen_10": {
+      "effective_rank": 506.9511,
+      "log_det": 2466.1516,
+      "perplexity": 13.3907,
+      "distinct_4": 0.2061,
+      "sigma1": 700.9117,
+      "train_loss": 0.8667
+    }
+  },
+  "three_seed_analysis": {
+    "seeds": [42, 43, 44],
+    "mean_slv_trajectory": [2366.681, 2367.399, 2359.419, 2364.603, 2377.873, 2396.843, 2417.661, 2429.006, 2442.385, 2456.008, 2467.211],
+    "max_delta_t_raw": 3.8105,
+    "max_delta_t_normalized": 0.001610,
+    "old_2seed_normalized": 0.0017
+  }
+}

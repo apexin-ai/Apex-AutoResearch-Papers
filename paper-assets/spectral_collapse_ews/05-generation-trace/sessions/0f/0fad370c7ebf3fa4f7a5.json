@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "0fad370c7ebf3fa4f7a5",
+  "project": "spectral_collapse_ews",
+  "kind": "worker",
+  "title": "code exp 020 prep",
+  "task_key": "worker_code_exp_020_prep_20260523T043542",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_020_prep_20260523T043542.log",
+    "occurrence": 1,
+    "bytes": 734938,
+    "sha256": "4b18bc923e908a0bb249cc6833b560a875c886f16c650eb4e01ce9c097360af6"
+  },
+  "statistics": {
+    "messages": 404,
+    "user_turns": 0,
+    "tool_calls": 162,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 76,
+      "tool_call": 162,
+      "tool_result": 162,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 404,
+      "chunks": [
+        {
+          "path": "0fad370c7ebf3fa4f7a5-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "0fad370c7ebf3fa4f7a5-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "0fad370c7ebf3fa4f7a5-part-0003.json",
+          "message_count": 44
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp-020-prep.md"
+}

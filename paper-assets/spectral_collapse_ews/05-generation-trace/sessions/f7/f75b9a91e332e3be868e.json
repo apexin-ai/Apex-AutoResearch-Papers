@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f75b9a91e332e3be868e",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "data exp 018 integration",
+  "task_key": "worker_data_exp_018_integration_20260523T094602",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_exp_018_integration_20260523T094602_result.json",
+    "occurrence": 1,
+    "bytes": 1228,
+    "sha256": "56dd89dc59a068750ba774834526489c405ab94518b7bd586188c92684a07154"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All old values cleaned up. Here's the summary:\n\n## Part A — Data Extraction & Registry\n\n**exp_018 (r=0.5, seed43) complete metrics extracted** from `phase1_fixed_mix_seed43_results.json`. Per-gen data (Gen 0→10):\n- SLV: 2366.68 → 2570.09\n- eff_rank: 417.55 → 552.40\n- PPL: 9.55 → 15.03\n- D-4: 0.741 → 0.209\n- sigma1: 1942.82 → 622.69\n- train_loss: — → 1.051\n\n**Registry**: exp_018 → DONE(success), all 11 generations of metrics already populated.\n\n## Part B — Paper Integration (2-seed mean)\n\n**9 text edits** across 3 files:\n- `experiments.tex`: Table 3 r=0.5 row (2571.7/553.5/15.12/.152), Table 3 caption, Fig 1 caption (2572, 104pts, 2-seed mean), Fig 2 caption, §3.1 SLV value (2572/104), §3.1 PPL/D-4 (58%/79%), §3.5 SLV (2572)\n- `conclusion.tex`: 58%/79%\n- `limitations.tex`: r=0.2 single seed, r=0.5 2-seed mean\n\n**Figure 1** (`gen_fig1.py`): Rewritten to generate single-panel SLV trajectory with r=0 (3-seed mean, solid) and r=0.5 (2-seed mean, dashed). Outputs to `paper/figures/spectral_trajectory.pdf`.\n\n**Figure 2** (`gen_fig2.py`): r=0.5 array updated from single seed to 2-seed mean (exp_004 + exp_018). Outputs to `paper/figures/phase_diagram.pdf`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-exp-018-integration.md"
+}

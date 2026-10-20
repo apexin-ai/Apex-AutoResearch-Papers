@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "61076878e44e10fb2da8",
+  "project": "trace_distill_repair",
+  "kind": "result",
+  "title": "monitor v2 progress midpoint",
+  "task_key": "worker_monitor_v2_progress_midpoint_20260515T145912",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_v2_progress_midpoint_20260515T145912_result.json",
+    "occurrence": 1,
+    "bytes": 416,
+    "sha256": "8478f37e8d036319c8e12a8399e07635bf5928931f63931f2a8d2a52fd6a63fc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**v2 实验进度：**\n\n- **已完成 7/14 实例**：black_1, cookiecutter_1, cookiecutter_2, cookiecutter_3, fastapi_2, httpie_2, luigi_5\n- **当前处理**：sanic_2（正在跑 full_trace 条件，4 条件中的第 2 个）\n- **进程状态**：运行中，已跑 1h31m\n- **预计完成**：平均每实例 ~13 分钟，剩余 7 个约 90 分钟，预计 **00:30 左右**（5月16日凌晨）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-v2-progress-midpoint.md"
+}

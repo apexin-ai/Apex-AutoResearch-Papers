@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "85a007829da29fd603a0",
+  "project": "trace_distill_repair",
+  "kind": "worker",
+  "title": "validate intermediate v2",
+  "task_key": "worker_validate_intermediate_v2_20260515T123833",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_validate_intermediate_v2_20260515T123833.log",
+    "occurrence": 1,
+    "bytes": 697383,
+    "sha256": "0e2fd12b53fb28982f0be523101a4b1c45b687bfbb28a0ae0f25c2c9d6d16602"
+  },
+  "statistics": {
+    "messages": 337,
+    "user_turns": 0,
+    "tool_calls": 124,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 85,
+      "tool_call": 124,
+      "tool_result": 124,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 337,
+      "chunks": [
+        {
+          "path": "85a007829da29fd603a0-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "85a007829da29fd603a0-part-0002.json",
+          "message_count": 157
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/validate-intermediate-v2.md"
+}

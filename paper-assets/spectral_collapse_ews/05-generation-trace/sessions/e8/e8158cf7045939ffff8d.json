@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e8158cf7045939ffff8d",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "analysis exp 016",
+  "task_key": "worker_analysis_exp_016_20260522T183111",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_016_20260522T183111_result.json",
+    "occurrence": 1,
+    "bytes": 625,
+    "sha256": "cded6960f09712f6862f0cb13f639b098d2e7412df569462a79ac02c17fb75d9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**exp_016 结果**: Type III trajectory 确认 (conclusion=success)。seed44 的 SLV 从 2366.68 → 2505.25 (+5.86%)，gen2 起严格单调上升。\n\n**3-seed Gen10 统计** (r=0.3):\n| 指标 | Mean ± Std |\n|------|-----------|\n| SLV (log_det) | 2508.24 ± 2.94 |\n| eff_rank | 521.11 ± 0.20 |\n| ppl | 13.344 ± 0.036 |\n| distinct4 | 0.295 ± 0.155 |\n| SLV 总变化 | +5.98% ± 0.12% |\n\n谱指标 CV < 0.3%，3 seeds 高度一致。distinct4 跨 seed 方差大但不影响 Type III 分类。r=0.3 三 seed 验证完成，registry 已更新为 DONE，报告已保存并注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-016.md"
+}

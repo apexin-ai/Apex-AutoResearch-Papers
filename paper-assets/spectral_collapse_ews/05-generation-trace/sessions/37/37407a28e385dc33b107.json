@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "37407a28e385dc33b107",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "code hellaswag eval",
+  "task_key": "worker_code_hellaswag_eval_20260516T090120",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_hellaswag_eval_20260516T090120_result.json",
+    "occurrence": 1,
+    "bytes": 790,
+    "sha256": "522e69fa7046d9061528901284d6260fa2ceb4a056eb9b020416a22111c1317d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n## 结果汇报\n\n| 指标 | 值 |\n|------|------|\n| **acc_norm** | **0.4130** |\n| acc | 0.3450 |\n| acc_norm_stderr | 0.0049 |\n| acc_stderr | 0.0047 |\n\n- **模型路径**: `/root/spectral_collapse_ews/checkpoints/gen_0`\n- **评估耗时**: 94.4 秒（含模型加载）\n- **结果文件**: `/root/spectral_collapse_ews/results/hellaswag_gen0/results.json`\n- **批量脚本**: `/root/spectral_collapse_ews/eval_hellaswag.sh`（用法: `bash eval_hellaswag.sh 0 10 cuda:1`）\n\n注：Pythia-410M-deduped 的 HellaSwag acc_norm ~0.413 与公开基准一致。数据集因 AutoDL 网络限制需通过代理获取 HF 重定向 URL 后直连 xet CDN 下载，已缓存到 `/root/.cache/huggingface/hellaswag_manual/`，批量脚本可离线复用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-hellaswag-eval.md"
+}

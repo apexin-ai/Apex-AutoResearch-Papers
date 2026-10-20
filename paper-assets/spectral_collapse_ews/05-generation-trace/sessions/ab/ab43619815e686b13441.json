@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ab43619815e686b13441",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "check phase0 progress 0517",
+  "task_key": "worker_check_phase0_progress_0517_20260517T020650",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_phase0_progress_0517_20260517T020650_result.json",
+    "occurrence": 1,
+    "bytes": 2064,
+    "sha256": "8fbf6837dda82d7b062ccd60029ef7e28673486e9dae6fb739948f394b7010bb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验进度汇总\n\n---\n\n### exp_001 (125M) — Phase 0\n\n**已完成 Gen 0-4，当前正在跑 Gen 5（生成阶段 ~5440/50000）**\n\n| Gen | eff_rank | log_det | ppl | distinct4 | train_loss | σ₁ |\n|-----|----------|---------|-----|-----------|------------|-----|\n| 0 | 417.55 | 2366.68 | 9.55 | 0.7414 | — | 1942.82 |\n| 1 | 491.77 | 2464.76 | 11.38 | 0.6256 | 1.623 | 803.96 |\n| 2 | 496.44 | 2469.93 | 13.58 | 0.5154 | 1.268 | 712.03 |\n| 3 | 493.31 | 2440.57 | 16.25 | 0.4900 | 1.134 | 700.68 |\n| 4 | 485.67 | 2405.05 | 19.80 | 0.4679 | 1.098 | 729.59 |\n\n趋势：ppl 持续上升（9.55→19.80），distinct4 持续下降（0.74→0.47），eff_rank 在 Gen 1-2 上升后 Gen 3-4 开始下降，log_det 同步下降。collapse 信号明显。\n\n---\n\n### exp_002 (1B) — Phase 0\n\n**已完成 Gen 0-2，当前正在跑 Gen 3（生成阶段 ~4800/50000）**\n\n| Gen | eff_rank | log_det | ppl | distinct4 | train_loss | σ₁ |\n|-----|----------|---------|-----|-----------|------------|-----|\n| 0 | 516.14 | 2835.32 | 8.07 | 0.7510 | — | 1661.24 |\n| 1 | 570.75 | 2905.74 | 9.41 | 0.6335 | 1.530 | 1052.79 |\n| 2 | 580.92 | 2893.85 | 11.04 | 0.5382 | 1.218 | 916.30 |\n\n趋势：ppl 上升（8.07→11.04），distinct4 下降（0.75→0.54），但 eff_rank 仍在上升（516→581），log_det Gen 2 略降。1B 模型退化速度比 125M 慢。\n\n---\n\n### 进程状态\n\n| 实验 | PID | GPU | CPU | 状态 |\n|------|-----|-----|-----|------|\n| exp_001 (resume_from_gen 4) | 59365 | GPU 0 | 100% | Running, Gen 5 生成中 |\n| exp_002 (1B) | 25237 | GPU 1 | 74.6% | Running, Gen 3 生成中 |\n\n---\n\n### GPU 状态\n\n| GPU | 利用率 | 显存占用 |\n|-----|--------|----------|\n| 0 | 94% | 65909 MiB |\n| 1 | 90% | 39771 MiB |\n\n---\n\n### 磁盘状态\n\n| 挂载点 | 总量 | 已用 | 可用 | 使用率 |\n|--------|------|------|------|--------|\n| / | 30G | 25G | 5.1G | 84% |\n| /root/autodl-tmp | 250G | 111G | 140G | 45% |\n\n根分区 84% 需关注，但 autodl-tmp 空间充裕。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-phase0-progress-0517.md"
+}

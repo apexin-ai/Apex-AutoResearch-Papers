@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "53a1d75a21e24ea19d52",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "check exp003 d010 startup",
+  "task_key": "worker_check_exp003_d010_startup_20260517T063245",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_exp003_d010_startup_20260517T063245_result.json",
+    "occurrence": 1,
+    "bytes": 572,
+    "sha256": "8c1b9e644a1c3d2c1767709e452c2937727535b41775f205749df301f9d8ba82"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部确认通过：\n\n| 检查项 | 状态 |\n|--------|------|\n| 进程 PID 88156 | **存活** (Ss+)，参数含 `--signal log_det --tau 0.005` |\n| Controller 参数 | `signal=log_det, tau=0.005, k=1.0, r_min=0.2, r_max=0.8` ✓ |\n| 模型加载 | 成功（`TRANSFORMERS_OFFLINE=1`，本地缓存） |\n| 训练进度 | Gen 0 评估中（effective rank → perplexity → distinct-4） |\n| GPU cuda:1 | PID 88161 占用 19034 MiB，利用率 93% |\n| tmux session | `exp_003` 存在 |\n\n训练已正常启动，正在执行 Gen 0 baseline 评估。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp003-d010-startup.md"
+}

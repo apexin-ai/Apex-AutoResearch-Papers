@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "998309f46e4cb43b2cbd",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "figure fig4 ews heatmap",
+  "task_key": "worker_figure_fig4-ews-heatmap_20260523T121250",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_fig4-ews-heatmap_20260523T121250_result.json",
+    "occurrence": 1,
+    "bytes": 263,
+    "sha256": "043275f8d5a8d089b712e495562ccf56bb5b4b60238129f1e881bf6cc88fc98e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个文件全部生成成功。图表显示正确：SLV 行蓝底加粗高亮，Direction 列橙/红色区分 peak vs monotonic，Rel Δ% 用深浅色阶编码量级，Reverses 列绿/橙背景区分，底部注释标注 Raw PPL 是唯一例外。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-fig4-ews-heatmap.md"
+}

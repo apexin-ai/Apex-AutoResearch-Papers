@@ -1,0 +1,27 @@
+paper_key: "Knowledge Collapse in LLMs: When Fluency Survives but Facts Fail under Recursive Synthetic Training"
+title: "Knowledge Collapse in LLMs: When Fluency Survives but Facts Fail under Recursive Synthetic Training"
+venue: "arXiv 2025"
+full_text_available: false
+
+research:
+  baselines: ["standard recursive synthetic training (no mitigation)"]
+  metrics:
+    - {name: "factual accuracy", direction: "higher_better"}
+    - {name: "surface fluency", direction: "higher_better"}
+    - {name: "model-centric metrics (epistemic deterioration)", direction: "lower_better"}
+    - {name: "task-centric metrics", direction: "higher_better"}
+  datasets:
+    - {name: "N/A (not specified in abstract)", size: "N/A"}
+  ablation_dimensions: ["degradation phase (three-stage)", "domain-specific vs general synthetic training", "model-centric vs task-centric evaluation"]
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "N/A"}
+  method_family: "model collapse characterization / knowledge degradation analysis"
+
+positioning:
+  core_claim: "Recursive synthetic training causes a three-stage 'knowledge collapse' where factual accuracy deteriorates while surface fluency persists, creating confidently wrong outputs; domain-specific synthetic training can mitigate this."
+  key_results: "Identifies three distinct degradation phases; shows fluency-accuracy decoupling as a critical risk; proposes domain-specific synthetic training as mitigation."
+  limitations: ["Abstract does not mention explicit limitations"]
+  relation_to_us: "complementary"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

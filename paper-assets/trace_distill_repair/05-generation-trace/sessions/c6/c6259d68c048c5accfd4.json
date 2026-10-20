@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "c6259d68c048c5accfd4",
+  "project": "trace_distill_repair",
+  "kind": "worker",
+  "title": "code fix phase3 bugs",
+  "task_key": "worker_code_fix_phase3_bugs_20260514T204958",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_phase3_bugs_20260514T204958.log",
+    "occurrence": 1,
+    "bytes": 966057,
+    "sha256": "7417ecfe2a450e53faaed369b0dc0c58dc5adeb14c78e6eeb3837e23b9b361a6"
+  },
+  "statistics": {
+    "messages": 214,
+    "user_turns": 0,
+    "tool_calls": 79,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 52,
+      "tool_call": 79,
+      "tool_result": 79,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 214,
+      "chunks": [
+        {
+          "path": "c6259d68c048c5accfd4-part-0001.json",
+          "message_count": 111
+        },
+        {
+          "path": "c6259d68c048c5accfd4-part-0002.json",
+          "message_count": 103
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-fix-phase3-bugs.md"
+}

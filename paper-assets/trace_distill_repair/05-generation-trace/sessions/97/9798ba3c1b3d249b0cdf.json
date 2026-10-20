@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9798ba3c1b3d249b0cdf",
+  "project": "trace_distill_repair",
+  "kind": "result",
+  "title": "code prepare line rerun",
+  "task_key": "worker_code_prepare_line_rerun_20260514T200454",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prepare_line_rerun_20260514T200454_result.json",
+    "occurrence": 1,
+    "bytes": 3167,
+    "sha256": "704b8e1431f212f6bf2022f58f765dd7b9d9bffda0f141baace507cdaffc1808"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "代码修改完毕，dry-run 验证通过。以下是完整报告。\n\n---\n\n## 报告\n\n### 1. 重复 PID 调查结论\n\n- **PID 60414**：已不存在（进程已结束）\n- **PID 60524**：仍在运行，是当前唯一的 scoring 进程\n- **PID 60518**（60524 的父进程）：`bash -c rm -f phase2_line_scores.json && ... nohup python run_phase2_scoring.py --mode line --max-segments 200 --max-concurrent 5`\n\n**结论：无 race condition。** PID 60414 是更早的一次运行（已结束），60524 启动时先 `rm -f` 删除了旧输出文件再重新开始。日志中的重复编号是两次独立运行写入同一 log 文件导致的。当前只有 60524 在跑，快完成了（36/36 youtube-dl_5 是最后一个）。\n\n### 2. 代码修改清单\n\n**teacher_scorer.py — score_segment 方法重写**\n- 原来：1 次 retry（仅限 NoneType），其它异常直接 fallback\n- 改为：**3 次 retry + exponential backoff（1s/2s/4s）**，覆盖 NoneType 和所有 API 异常\n- 3 次重试仍失败则 fallback 为 `label=\"drop\"`, `confidence=0.0`，记录 warning\n- NoneType 不会导致整个 instance 失败\n\n**run_phase2_scoring.py — 三项修改**\n\n| 修改 | 原来 | 改后 |\n|------|------|------|\n| 截断逻辑 | `max_segments_per_instance=200` 参数 + 截断代码 | **完全移除**，不再截断 |\n| `--max-segments` 参数 | 存在 | **移除** |\n| 每 instance 记录字段 | `num_segments_original` / `num_segments_scored` / `truncated` | `total_segments` / `scored_segments`（无截断时两者相等） |\n| EXCLUDED_INSTANCES | `{\"fastapi_3\", \"fastapi_5\"}`（已正确） | 不变，fastapi_1/2 自动纳入 |\n\n**dry-run 验证结果：** 38 instances，62,322 total segments（之前 36 instances，~3,635 segments 因 max_segments=200 截断）。\n\n### 3. 重跑命令\n\n```bash\n# 1. 等当前进程 60524 结束（或确认已结束）\nps -p 60524 -o pid= 2>/dev/null && echo \"STILL RUNNING\" || echo \"DONE\"\n\n# 2. 启动全量重跑\ncd /root/trace_distill_repair\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\n\n# 清理旧结果\nrm -f /root/trace_distill_repair/pipeline_output/phase2_line_scores.json\n\n# 全量 line scoring（无截断，并发=5）\nnohup python run_phase2_scoring.py --mode line --max-concurrent 5 \\\n  > /tmp/phase2_line_scoring_v2.log 2>&1 &\necho \"PID=$!\"\n```\n\n### 4. 风险评估\n\n| 指标 | 值 |\n|------|-----|\n| 总 segments | 62,322 |\n| 之前截断后的量 | ~3,635（仅 5.8%） |\n| **增量 API 调用** | ~58,687 |\n| 每段耗时（实测） | ~1.6 秒 |\n| **估计耗时** | ~27 小时 |\n| API 费用 | DeepSeek V4 Flash 自托管端点（47.94.22.126），无直接费用，但需服务器持续运行 |\n\n**主要风险：**\n- **youtube-dl 5 个实例占 87.7%**（54,652 segments），单个最大 13,449 segments。若 API 端点不稳定，这些大实例最易受影响（retry 逻辑已覆盖）\n- 耗时 ~27 小时，需确保服务器和 API 端点在此期间稳定运行\n- 建议写 log 到 `/tmp/phase2_line_scoring_v2.log`（不同于原来的文件名）以避免混淆"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prepare-line-rerun.md"
+}

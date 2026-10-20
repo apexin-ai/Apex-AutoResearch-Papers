@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4fbe0bb2a8a338dfa7ba",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "code d014 cumulative controller",
+  "task_key": "worker_code_d014_cumulative_controller_20260517T163947",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d014_cumulative_controller_20260517T163947_result.json",
+    "occurrence": 1,
+    "bytes": 3502,
+    "sha256": "dcfff652b584d40674fd2ce87534e5d1c531977186fc61864090d3c877ad1202"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部就绪。产出汇总：\n\n---\n\n## Task 1: controller.py cumulative mode\n\n`/root/spectral_collapse_ews/src/controller.py` — 新增 `signal_mode` 参数 (默认 `\"per_gen\"`)\n\n关键 diff：\n- `__init__` 新增 `signal_mode=\"per_gen\"` 参数，存 `self.signal_mode`\n- `update()` 中 EMA 和 delta 计算按模式分支：\n  - **per_gen**: 原有 EMA 逻辑不变，`delta = (S̃_prev - S̃_cur) / |S̃_0|`\n  - **cumulative**: 跳过 EMA (`S_tilde = S_t`)，`delta = max(0, (S_0 - S_t) / |S_0|)`\n- `get_state()` 新增 `signal_mode` 字段\n\n## Task 2: run_phase1.py --signal_mode\n\n- L87: `parser.add_argument(\"--signal_mode\", ...)` choices=`['per_gen', 'cumulative']`\n- L138: `config.controller_signal_mode = args.signal_mode`\n- L141 (pipeline.py): `signal_mode=config.controller_signal_mode` 传入 controller\n- L52 (config.py): `controller_signal_mode: str = \"per_gen\"` 默认值\n\n## Task 3: Dry-run 对比表\n\n```\n=== per_gen (k=20, tau=0.002) ===\nGen   S_input     delta       trig   ratio    B_rem    real    synth\n0     2366.68     --          --     --       4.5000   --      --\n1     (none)      --          --     0.5000   4.0000   25000   25000\n2     2464.76     -0.020721   False  0.5000   3.5000   25000   25000\n3     2469.93     -0.011453   False  0.5000   3.0000   25000   25000\n4     2440.57     +0.000476   False  0.5000   2.5000   25000   25000\n5     2405.05     +0.007742   True   0.6148   1.8852   30742   19258\n6     2370.17     +0.011240   True   0.6561   1.2291   32804   17196\n7     2335.17     +0.013014   True   0.6300   0.5991   31499   18501\n8     2304.19     +0.013052   True   0.3991   0.2000   19955   30045\n9     2252.12     +0.017527   True   0.2000   0.0000   10000   40000\n\n=== cumulative (k=5, tau=0.01) ===\nGen   S_input     delta       trig   ratio    B_rem    real    synth\n0     2366.68     --          --     --       4.5000   --      --\n1     (none)      --          --     0.5000   4.0000   25000   25000\n2     2464.76     0.000000    False  0.5000   3.5000   25000   25000\n3     2469.93     0.000000    False  0.5000   3.0000   25000   25000\n4     2440.57     0.000000    False  0.5000   2.5000   25000   25000\n5     2405.05     0.000000    False  0.5000   2.0000   25000   25000\n6     2370.17     0.000000    False  0.5000   1.5000   25000   25000\n7     2335.17     0.013314    True   0.5166   0.9834   25828   24172\n8     2304.19     0.026404    True   0.5737   0.4097   28687   21313\n9     2252.12     0.048405    True   0.4097   0.0000   20484   29516\n```\n\n**对比结论**：\n- **per_gen** 从 Gen 5 开始触发（EMA 探测到 inter-gen 下降），早触发但 k=20 导致前期耗尽预算，Gen 8-9 被迫降至 r_min=0.20\n- **cumulative** 从 Gen 7 开始触发（log_det 跌破 Gen 0 baseline 后才有正 delta），触发更晚但 delta 单调增长，信号更稳定。预算分配更集中在真正需要的后期\n- cumulative 模式下 Gen 7-9 的总 real 样本 = 75,000 vs per_gen 的 Gen 5-9 总 real = 105,000，但 per_gen 在 Gen 8-9 被预算约束压到 r_min\n\n## Task 4: 脚本状态\n\n- **launch_exp_004.sh**: 存在，`fixed_mix --seed 42 --gpu 0 --generations 10`\n- **eval_hellaswag.py**: 存在于 `/root/spectral_collapse_ews/eval_hellaswag.py`\n- **Phase 0 Gen 9 checkpoint**: 不存在。`/root/autodl-tmp/` 下无 `phase0*gen_9` 目录或 safetensors 文件。需要确认 Phase 0 checkpoints 是否已被清理或存储在其他位置。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d014-cumulative-controller.md"
+}

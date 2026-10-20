@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "d2457bb3d6d9bdbd1879",
+  "project": "spectral_collapse_ews",
+  "kind": "worker",
+  "title": "audit data integrity full",
+  "task_key": "worker_audit_data-integrity-full_20260523T102939",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_data-integrity-full_20260523T102939.log",
+    "occurrence": 1,
+    "bytes": 766797,
+    "sha256": "6baf65d663c40b186921c9d68241027b599ca04ebe134cbf750685650735e915"
+  },
+  "statistics": {
+    "messages": 134,
+    "user_turns": 0,
+    "tool_calls": 53,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 24,
+      "tool_call": 53,
+      "tool_result": 53,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 134,
+      "chunks": [
+        {
+          "path": "d2457bb3d6d9bdbd1879-part-0001.json",
+          "message_count": 110
+        },
+        {
+          "path": "d2457bb3d6d9bdbd1879-part-0002.json",
+          "message_count": 24
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-data-integrity-full.md"
+}

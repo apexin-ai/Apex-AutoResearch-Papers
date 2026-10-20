@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cc2786999542215f1329",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "check exp003 startup",
+  "task_key": "worker_check_exp003_startup_20260517T040517",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_exp003_startup_20260517T040517_result.json",
+    "occurrence": 1,
+    "bytes": 864,
+    "sha256": "71f068b11d598fe793a9dc579c7e8466f8ab7703f06745841b6655057007f416"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 验证结果\n\n| 检查项 | 状态 |\n|--------|------|\n| PID 77663 存活 | ✓ 存在 |\n| tmux session exp_003 | ✓ 存在 |\n| Checkpoint 路径指向 autodl-tmp | ✓ `/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/adaptive_seed42/` |\n| GPU cuda:1 使用 | **✗ cuda:1 空闲（0% util, 3MiB）** |\n\n### 问题：网络不可达导致模型下载失败\n\n日志显示 HuggingFace 连接失败（`Network is unreachable`），正在重试下载 `EleutherAI/pythia-410m-deduped` tokenizer。进程卡在模型加载阶段，尚未开始训练。\n\n重试 5 次后大概率会 crash。需要确认：\n1. 服务器是否有外网访问权限，或需要配置代理\n2. 模型是否已有本地缓存（如有可设置 `HF_HUB_OFFLINE=1` 跳过网络请求）\n\n要我检查本地是否已有 pythia-410m-deduped 缓存？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp003-startup.md"
+}

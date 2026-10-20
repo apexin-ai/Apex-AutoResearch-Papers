@@ -1,0 +1,14 @@
+{
+  "exp_id": "sft-mvp-v1",
+  "project": "rl-active-probe-fl",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T06:42:11.550Z",
+    "updated_at": "2026-05-14T06:42:11.550Z"
+  },
+  "timestamp": "2026-05-14T06:42:11.600321+00:00",
+  "trigger": "update_registry"
+}

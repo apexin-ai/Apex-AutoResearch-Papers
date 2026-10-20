@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "563893cb23d45f32be9a",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "analysis verify gpt2m config",
+  "task_key": "worker_analysis_verify-gpt2m-config_20260525T215301",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_verify-gpt2m-config_20260525T215301_result.json",
+    "occurrence": 1,
+    "bytes": 1454,
+    "sha256": "aab085c34c4c69914ec46d78e12a16b9d457eb05b451ba4c85f96bd10f594259"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息已确认。汇总如下：\n\n---\n\n## 1. GPT-2-medium 实际配置\n\n| 属性 | 值 |\n|------|-----|\n| **总参数量** | **354,823,168 (~354.8M)** |\n| n_layer | 24 |\n| n_head | 16 |\n| n_embd | 1024 |\n| vocab_size | 50257 |\n\n论文写 \"355M\" 是合理的四舍五入，实际精确值 354.8M。\n\n## 2. exp_020 (pure_collapse, r=0) 代数\n\n**10 代训练**（gen_0 到 gen_10，共 11 个条目）。gen_0 是基线（预训练模型），gen_1~gen_10 是 10 轮递归训练。\n\n## 3. 其他 GPT-2m 实验代数\n\n| 实验 | condition | 结果文件代数 | checkpoints |\n|------|-----------|-------------|-------------|\n| pure_collapse_seed42 | r=0.0 | gen_0~gen_10 (**10代**) | gen_0~gen_10 |\n| fixed_mix_r025_seed42 | r=0.25 | gen_0~gen_3 (**3代**) | gen_0~gen_3 |\n| fixed_mix_r03_seed42 | r=0.30 | gen_0~gen_3 (**3代**) | gen_0~gen_3 |\n\n注意：没有找到 exp_021/022c/023 对应的 adaptive 或 linear_increasing 实验结果，只有以上 3 个 condition。\n\n## 4. 训练脚本默认配置（src/config.py）\n\n| 超参 | 值 |\n|------|-----|\n| learning_rate | 5e-5 |\n| batch_size | 8 |\n| gradient_accumulation_steps | 4 (有效 batch=32) |\n| warmup_ratio | 0.05 |\n| num_epochs_per_gen | 1 |\n| num_generations | **默认 10**（脚本 argparse 也是 `--generations` default=10）|\n| temperature | 1.0 |\n| top_k | 50 |\n| num_synthetic_samples | 50,000 |\n| max_length | 512 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-verify-gpt2m-config.md"
+}

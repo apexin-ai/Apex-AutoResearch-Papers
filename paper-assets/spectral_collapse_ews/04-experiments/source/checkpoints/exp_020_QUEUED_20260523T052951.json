@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_020",
+  "project": "spectral_collapse_ews",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T04:34:54.378Z",
+    "updated_at": "2026-05-23T05:29:51.712Z",
+    "hypothesis": "GPT-2-medium (355M, 24 layers) under pure-synthetic recursive training (r=0) exhibits the same three-phase spectral trajectory (decompression→onset→acceleration) as Pythia-410M, confirming that spectral collapse is architecture-independent. Cross-architecture replication addresses R2-C2 (single-architecture generalization) and strengthens C1."
+  },
+  "timestamp": "2026-05-23T05:29:51.808417+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eb8e9d9c3f2029bbb887",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ops verify exp023 startup",
+  "task_key": "worker_ops_verify-exp023-startup_20260524T111156",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-exp023-startup_20260524T111156_result.json",
+    "occurrence": 1,
+    "bytes": 1046,
+    "sha256": "d014ff27ebbdf65a15dcc51e5fe292f9632cc2eb7de17f351ddd8ba283fbf77f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### exp_023 — 已成功启动\n- **PID** 881066，运行 1 分 10 秒\n- **命令**: `run_gpt2m_phase1.py --condition fixed_mix --real_ratio 0.25 --generations 3 --seed 42 --gpu 0`\n- **GPU 0**: 19,282 MiB / 97% 利用率\n- **日志**: 仅 3 行（初始化警告），刚进入 Generation 0 评估阶段，正常\n\n### exp_022c — 正在跑 Generation 2/3\n- **PID** 868285，已运行 3 小时 32 分钟\n- **命令**: `run_gpt2m_phase1.py --condition fixed_mix --real_ratio 0.3 --generations 3 --seed 42`\n- **GPU 1**: 26,431 MiB / 97% 利用率\n- **进度**: Gen 0 (baseline eval) ✓ → Gen 1 ✓ → **Gen 2/3 进行中**（最后一代）\n- **日志**: 2,493 行\n- **预计剩余**: Gen 1 大约耗时 ~1.5h，Gen 2 类似，估计还需 **~1–1.5 小时**完成\n\n### GPU 状态\n| GPU | 实验 | 显存 | 利用率 |\n|-----|------|------|--------|\n| 0 | exp_023 (r=0.25) | 19.3 GB / 95.6 GB | 97% |\n| 1 | exp_022c (r=0.3) | 26.4 GB / 95.6 GB | 97% |\n\n两张卡都满载运行，一切正常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-exp023-startup.md"
+}

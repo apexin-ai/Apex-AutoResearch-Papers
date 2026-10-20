@@ -1,0 +1,14 @@
+_next_id: 3
+constraints:
+- id: C001
+  added: 2026-05-15 16:55 UTC
+  summary: 'GPU 使用限制: 仅允许 cuda:0 和 cuda:1 (rtx6000-diagprobe)'
+  scope: all
+  reason: 项目仅分配 rtx6000-diagprobe 上的 2 张 RTX 6000，防止越界使用其他 GPU
+  decision_id: D001
+- id: C002
+  added: 2026-05-16 01:23 UTC
+  summary: 论文/报告中的实验参数必须从实际代码读取，禁止从 IDEA_BRIEF / 规划文档 / 记忆复制
+  scope: worker
+  reason: paper_skeleton §3 Method 8 处参数与实际代码不符，根因是 Worker 从 IDEA_BRIEF 复制规划值。规划值
+    ≠ 实际运行值（如 LR 差 10×、generation 方式完全不同）。论文参数必须有代码来源（文件名:行号）。

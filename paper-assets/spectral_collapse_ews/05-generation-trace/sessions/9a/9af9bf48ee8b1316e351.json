@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9af9bf48ee8b1316e351",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "fix analyze phase0",
+  "task_key": "worker_fix_analyze_phase0_20260516T125354",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_analyze_phase0_20260516T125354_result.json",
+    "occurrence": 1,
+    "bytes": 474,
+    "sha256": "fb1030f564c604eb2168b99df3f5c59202b606b2dad9a769b742b43ac3929fa3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成，验证通过。结果摘要：\n\n**修改 1 (cond2 判定)**：`acceleration_ratio >= 1.5` → mock 数据 ratio=1.7182，PASS ✓\n\n**修改 2 (对称区间)**：\n- `first_half_deltas`: 4 个值 [21.77, 30.0, 40.0, 45.0] — 对应 Gen 1→2, 2→3, 3→4, 4→5\n- `second_half_deltas`: 4 个值 [60.0, 65.0, 60.0, 50.0] — 对应 Gen 6→7, 7→8, 8→9, 9→10\n- Gen 5→6 已跳过\n\nDry-run 全部三个条件 PASS，输出正常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-analyze-phase0.md"
+}

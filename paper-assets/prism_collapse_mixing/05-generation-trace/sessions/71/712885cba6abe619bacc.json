@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "712885cba6abe619bacc",
+  "project": "prism_collapse_mixing",
+  "kind": "result",
+  "title": "writing paper skeleton",
+  "task_key": "worker_writing_paper_skeleton_20260516T011740",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_paper_skeleton_20260516T011740_result.json",
+    "occurrence": 1,
+    "bytes": 789,
+    "sha256": "04da185aa362777c11f6b4a38acc087ceeb7eec9215d94dd2dad239fdffcfb47"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。输出文件：`artifacts/paper_skeleton.md`，已注册为 `art_20260516_363449`。\n\n内容覆盖：\n\n- **§2 Related Work**: 三个子方向（model collapse 理论与实证、data mixing 方法对 loss 的依赖、collapse 检测信号），末尾明确 gap statement——无人量化 ρ(loss, signal) 的跨代演变\n- **§3 Method**: 四个子节——迭代训练设置（模型/数据/配置/流程）、四类 collapse 信号的数学定义、统计方法（Spearman ρ + bootstrap CI + effect size + permutation test）、预注册 pass/fail 三条件（C1-C3）+ contingency\n- **References**: 17 篇，均来自 literature_map.yaml 或实验设计直接引用\n\n未写：Results、Discussion、Abstract、Introduction（依赖实验数据）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-paper-skeleton.md"
+}

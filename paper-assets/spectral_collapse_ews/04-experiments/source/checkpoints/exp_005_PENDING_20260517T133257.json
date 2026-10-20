@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp_005",
+  "project": "spectral_collapse_ews",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T13:32:53.227Z",
+    "updated_at": "2026-05-17T13:32:57.864Z",
+    "hypothesis": "Spectral-guided adaptive mixing with amplified response (k=20, tau=0.002) produces meaningfully different ratio trajectories (0.5→0.7+) compared to fixed_mix, resulting in lower perplexity and higher effective rank. D012 calibration: k=1.0 produced negligible ratio variation (max +0.006), k=20 with Phase 0 deltas should yield ratio up to 0.62+ at Gen 5.",
+    "parent": "exp_003"
+  },
+  "timestamp": "2026-05-17T13:32:57.903020+00:00",
+  "trigger": "update_registry"
+}

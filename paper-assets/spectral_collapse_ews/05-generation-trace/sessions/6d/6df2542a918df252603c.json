@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6df2542a918df252603c",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "monitor exp 001 progress",
+  "task_key": "worker_monitor_exp_001_progress_20260517T104348",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_exp_001_progress_20260517T104348_result.json",
+    "occurrence": 1,
+    "bytes": 1249,
+    "sha256": "581a81a0076f536588eecdc05d339a5959366aefde89e6c174d29a1840bd7936"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**exp_001 Phase 0 (410M pure collapse) 状态:**\n\n- **进程**: PID 59365 存活，已运行 11h24m\n- **当前 Generation**: 8/10 (第9轮，共10轮 gen 0-9)\n- **阶段**: generating — 25600/50000 samples (51.2%)\n- **Checkpoints**: gen_0 ~ gen_7 已存在 (`checkpoints_410m/`)\n\n**Gen 0-7 Metrics (已完成):**\n\n| Gen | eff_rank | log_det | ppl | distinct4 | train_loss |\n|-----|----------|---------|-----|-----------|------------|\n| 0 | 417.5 | 2366.7 | 9.55 | 0.741 | — |\n| 1 | 491.8 | 2464.8 | 11.38 | 0.626 | 1.623 |\n| 2 | 496.4 | 2469.9 | 13.58 | 0.515 | 1.268 |\n| 3 | 493.3 | 2440.6 | 16.25 | 0.490 | 1.134 |\n| 4 | 485.7 | 2405.0 | 19.80 | 0.468 | 1.098 |\n| 5 | 479.2 | 2370.2 | 24.59 | 0.463 | 1.047 |\n| 6 | 473.0 | 2335.2 | 30.91 | 0.466 | 1.025 |\n| 7 | 464.2 | 2304.2 | 38.89 | 0.447 | 1.015 |\n\n**趋势**: collapse 信号清晰 — eff_rank 持续下降 (417→464→496 peak 然后回落到 464)，log_det 从 Gen 2 后单调下降，ppl 指数级上升 (9.5→38.9)，distinct4 持续下降 (0.74→0.45)。train_loss 也在收敛递减。\n\n**时间估算** (基于每 generation ~2.5h，hellaswag 评估时间间隔):\n- Gen 8 完成: ~20:00-20:30\n- Gen 9 (最终) 完成: ~22:30-23:00 今晚"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-exp-001-progress.md"
+}

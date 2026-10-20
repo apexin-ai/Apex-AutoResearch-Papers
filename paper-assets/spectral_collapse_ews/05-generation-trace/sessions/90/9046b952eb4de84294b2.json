@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9046b952eb4de84294b2",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ops post restart check",
+  "task_key": "worker_ops_post-restart-check_20260518T125838",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_post-restart-check_20260518T125838_result.json",
+    "occurrence": 1,
+    "bytes": 1104,
+    "sha256": "648bb402417574329ef6687c5db779562c98fc96ef5609be3cd1265e42d431a5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n### exp_007 (r=0.2, 5 gens, GPU 0)\n- **进程**: ALIVE (PID 188503)\n- **进度**: Gen 1 已完成，Gen 2 正在训练中 (step 1900/~2000+)，即将完成 Gen 2 的 fine-tuning\n- **已保存结果**: gen 0 + gen 1\n  - gen 0: eff_rank=417.5, log_det=2366.7, ppl=9.55\n  - gen 1: eff_rank=476.7, log_det=2367.5, ppl=10.28, loss=1.77\n- **错误**: 无（padding_side 警告可忽略）\n\n### exp_008 (r=0.3, 10 gens, GPU 1)\n- **进程**: ALIVE (PID 194372)\n- **进度**: Gen 1 已完成，Gen 2 正在生成样本 (11840/35000)\n- **已保存结果**: gen 0 + gen 1\n  - gen 0: eff_rank=417.5, log_det=2366.7, ppl=9.55 (同一 base model)\n  - gen 1: eff_rank=476.9, log_det=2366.1, ppl=10.19, loss=1.84\n- **错误**: 无\n\n### GPU 状态\n| GPU | 显存占用 | 利用率 |\n|-----|---------|--------|\n| 0   | 25017 MiB | 97% |\n| 1   | 25017 MiB | 94% |\n\n### 结论\n两个实验均在服务器重启后存活，正常运行中，无需任何操作。exp_007 略领先于 exp_008（exp_007 已在 Gen 2 训练阶段，exp_008 还在 Gen 2 生成阶段）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-post-restart-check.md"
+}

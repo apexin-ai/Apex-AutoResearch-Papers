@@ -1,0 +1,31 @@
+{
+  "exp_id": "exp_001",
+  "project": "spectral_collapse_ews",
+  "state": "PREPARING",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 1,
+    "created_at": "2026-05-16T07:39:16.853Z",
+    "updated_at": "2026-05-16T16:11:25.906Z",
+    "reproduce": {
+      "finished_at": "2026-05-16T16:10:05.042Z"
+    },
+    "failure_reason": "EXIT_CODE=124 (timeout — exceeded timeout_hours)",
+    "completed_at": "2026-05-16T16:10:05.673Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-16T16:10:06.276444+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    }
+  },
+  "timestamp": "2026-05-16T16:11:25.957114+00:00",
+  "trigger": "update_registry"
+}

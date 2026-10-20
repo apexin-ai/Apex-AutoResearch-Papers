@@ -1,0 +1,82 @@
+\subsection{Spectral Metrics}
+\label{subsec:spectral_metrics}
+
+Given a language model at generation $t$, we extract last-layer embeddings for $n{=}1{,}000$ held-out samples to form $\mathbf{E} \in \mathbb{R}^{n \times d}$.
+Let $\sigma_1 \geq \sigma_2 \geq \cdots \geq \sigma_{\min(n,d)}$ denote the singular values of $\mathbf{E}$.
+We track three complementary spectral indicators:
+
+\paragraph{Spectral Log-Volume (SLV).}
+$\text{SLV} = \sum_{i:\,\sigma_i > \epsilon} \log \sigma_i$, where $\epsilon = 10^{-10}$ excludes numerically zero components.
+When $n < d$ (as in our setting with $n{=}1{,}000$, $d{=}1{,}024$), $\mathbf{E}$ has at most $n$ non-zero singular values; SLV thus measures the log-volume of the occupied subspace rather than the full $d$-dimensional space.
+Because it sums over all non-negligible singular values, SLV is sensitive to contraction along any spectral direction, not only the dominant ones.
+
+\paragraph{Finite-Sample Considerations.}
+Our aspect ratio $\gamma = n/d = 1000/1024 \approx 0.98$ falls in the regime where Marchenko--Pastur (MP) theory~\citep{bai2010spectral} predicts systematic bias in spectral statistics, but since $\gamma$ is constant across all conditions, this bias cancels in cross-generation comparisons.
+Empirically, the three-phase trajectory is stable across $n \in \{250, 5000\}$ (SLV CV $< 0.4\%$; see Limitations); the smallest observed singular value ($0.016$, GPT-2-medium Gen~10) remains eight orders of magnitude above $\epsilon$.
+Note that the $r_{\text{crit}}$ definition (\S\ref{subsec:controller}) depends on absolute SLV non-decrease rather than cross-condition comparison, so MP bias does not cancel by construction; however, at $\gamma \approx 0.98$ the bias magnitude is small relative to the SLV changes driving the boundary (${\sim}100$ units vs.\ a total SLV range of ${\sim}2400$), and the empirical stability of trajectory shapes across sample sizes confirms that this bias does not meaningfully shift $r_{\text{crit}}$.
+
+\paragraph{Effective Rank.}
+$r_{\text{eff}} = \exp(H(\mathbf{p}))$, where $p_i = \sigma_i / \sum_j \sigma_j$ and $H$ is the Shannon entropy, measuring how many dimensions carry substantial variance (uniform $\to \min(n,d)$, concentrated $\to 1$).
+
+\paragraph{Leading Singular Value.}
+$\sigma_1$ tracks the dominant spectral direction; rising $\sigma_1$ under falling $r_{\text{eff}}$ signals representational collapse into a low-dimensional subspace.
+
+\begin{table}[t]
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}ccccccc@{}}
+\toprule
+Gen & $r_{\text{eff}}$ & SLV & PPL & HeSw & D-4 & $\sigma_1$ \\
+\midrule
+0  & 417.55 & 2366.68 &  9.55 & .413 & .738 & 1942.8 \\
+2  & \textbf{496.17} & \textbf{2467.98} & 13.56 & .380 & .505 &  718.7 \\
+5  & 479.77 & 2365.99 & 24.50 & .341 & .412 &  749.2 \\
+7  & 464.10 & 2293.24 & 37.82 & .319 & .375 &  788.4 \\
+10 & 438.05 & 2181.35 & 70.99 & .296 & .324 &  874.6 \\
+\bottomrule
+\end{tabular}
+\caption{Spectral and downstream metrics at selected generations (Pythia-410M, mean of three seeds 42, 43, 44; sample s.d.\ at Gen~10: $r_{\text{eff}}$ $\pm$4.8, SLV $\pm$28.3, PPL $\pm$5.6, HeSw $\pm$.006, D-4 $\pm$.15). PPL = perplexity, HeSw = HellaSwag accuracy (0-shot), D-4 = distinct-4. Bold marks the spectral peak.}
+\label{tab:phase0}
+\end{table}
+
+\subsection{Adaptive Mixing Controller}
+\label{subsec:controller}
+
+To test whether spectral rate-of-change signals can drive automated collapse prevention, we design a closed-loop controller that adjusts the real-data mixing ratio $r_t$ at each generation.
+The update rule is:
+\begin{equation}
+\label{eq:controller}
+r_{t+1} = \operatorname{clip}\!\bigl(\tfrac{B_{\text{rem}}}{T - t} + k \cdot \max(0,\,\Delta_t - \tau),\; r_{\min},\, r_{\max}\bigr)
+\end{equation}
+where $B_{\text{rem}}$ is the remaining real-data budget (fraction of total budget not yet consumed), $T$ is the total number of generations, $\tau{=}0.002$ is a sensitivity threshold, and $k{=}10$ is the controller gain.
+The signal $\Delta_t$ is the baseline-normalized SLV drop: $\Delta_t = (\widetilde{S}_{t-1} - \widetilde{S}_t) / |\widetilde{S}_0|$, where $\widetilde{S}_t$ is the exponential moving average (EMA)-smoothed SLV ($\alpha{=}0.5$) and $\widetilde{S}_0$ is initialized from the pretrained model (Gen~0, SLV${=}2366.68$).
+The signed form ensures that spectral decompression ($\Delta_t < 0$) does not trigger the controller; only contraction activates the $\max(0, \cdot)$ gate in Eq.~\ref{eq:controller}.
+The output is clipped to $[r_{\min}, r_{\max}] = [0.20, 0.80]$ and subject to $\sum_t r_t \leq B_{\text{total}}$.
+The lower bound ensures a minimum synthetic fraction; $r_{\max}$ defines the controller's operational range.
+
+The first term distributes the remaining budget uniformly; the second injects additional real data proportional to spectral contraction severity.
+We set $\tau{=}0.002$ as the smallest threshold avoiding false activation during decompression, and $k{=}10$ so that a moderate signal adds approximately 2 percentage points of additional real data.
+
+\paragraph{Controller Silence Condition.}
+Define $r_{\text{crit}}$ as the minimum constant mixing ratio such that, within $T{=}10$ generations, the EMA-smoothed SLV is non-decreasing from the second generation onward: $\widetilde{S}_t \geq \widetilde{S}_{t-1}$ for all $t \in \{2, \ldots, T\}$ (excluding the initial fine-tuning transient at $t{=}1$). For conditions with multiple seeds, the condition is evaluated on the cross-seed mean trajectory.
+When a constant ratio $r \geq r_{\text{crit}}$ is applied, $\Delta_t \leq 0 < \tau$ for all $t \geq 2$ and any $\tau > 0$, so the controller boost is identically zero.
+This $\tau$-independence means the signal attenuation cannot be resolved by lowering the sensitivity threshold; the same argument extends to any rate-of-change-based controller variant (level-based triggers and cross-layer approaches are not covered by this argument).
+Our experiments (\S\ref{subsec:phase1}) empirically bound $0.25 < r_{\text{crit}} \leq 0.3$ over Gen~2--10 for Pythia-410M on OpenWebText.
+
+\paragraph{Second-Order Extension.}
+\label{subsec:second_order}
+A natural extension monitors the rate of change of the controller signal itself:
+\begin{equation}
+\label{eq:second_order}
+\Delta^2_t = \widetilde{\Delta}_{t-1} - \widetilde{\Delta}_t
+\end{equation}
+where $\widetilde{\Delta}_t$ is the EMA-smoothed first-order signal ($\alpha_2{=}0.3$).
+A sustained negative $\Delta^2_t$ indicates decelerating SLV growth, a potential precursor to stagnation even when SLV is still rising.
+We evaluate this indicator in \S\ref{subsec:phase_diagram_exp}.
+
+\subsection{Collapse Trajectory Classification}
+\label{subsec:phase_diagram}
+
+We define the \emph{collapse trajectory map} as the mapping from constant mixing ratio $r$ to the SLV trajectory over $T$ generations, classifying outcomes as \emph{collapse} (monotonic post-decompression decline), \emph{stable} (non-decreasing), or \emph{transitional} (non-monotonic after Gen~2).
+We estimate $r_{\text{crit}}$ by identifying the lowest $r$ for which $\widetilde{S}_t \geq \widetilde{S}_{t-1}$ holds for all $t \in \{2, \ldots, T\}$.

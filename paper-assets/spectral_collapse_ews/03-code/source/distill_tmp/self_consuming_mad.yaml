@@ -1,0 +1,215 @@
+paper_key: "self_consuming_mad"
+title: "Self-Consuming Generative Models Go MAD"
+venue: "ICLR 2024"
+full_text_available: true
+
+research:
+  baselines:
+    - "StyleGAN-2 (unconditional, FFHQ)"
+    - "DDPM (conditional, MNIST)"
+    - "WGAN-GP (MNIST)"
+    - "Normalizing Flows (GLOW, 2D Rosenbrock)"
+    - "Gaussian Mixture Models (25-mode)"
+    - "Multivariate Gaussian (analytical)"
+  metrics:
+    - {name: "FID (Frechet Inception Distance)", direction: "lower_better"}
+    - {name: "Precision (quality)", direction: "higher_better"}
+    - {name: "Recall (diversity)", direction: "higher_better"}
+    - {name: "Wasserstein Distance (WD)", direction: "lower_better"}
+    - {name: "Effective sample size ratio (n_e/n_r)", direction: "higher_better"}
+  datasets:
+    - {name: "FFHQ", size: "70k images, resized to 128x128"}
+    - {name: "MNIST", size: "60k images"}
+    - {name: "2D Rosenbrock distribution", size: "10k samples (synthetic)"}
+    - {name: "25-mode 2D GMM", size: "synthetic"}
+    - {name: "Multivariate Gaussian (d=100)", size: "synthetic, varying n"}
+  ablation_dimensions:
+    - "Autophagous loop type (fully synthetic / synthetic augmentation / fresh data)"
+    - "Sampling bias parameter lambda (0 to 1)"
+    - "Number of synthetic samples n_s"
+    - "Number of real samples n_r"
+    - "Number of initial real samples n_ini"
+    - "Number of previous generations accessed K"
+    - "Proportion of real data p in fresh data loop"
+    - "Generative model architecture (DDPM, StyleGAN-2, WGAN-GP, NF, Gaussian)"
+  training_recipe:
+    optimizer: "Not explicitly specified (standard for each architecture)"
+    lr: "Not explicitly specified"
+    hardware: "Not explicitly specified"
+    ddpm_details: "T=500 diffusion timesteps, 10% conditioning dropout for classifier-free guidance"
+    stylegan_details: "StyleGAN-2 architecture, unconditional, truncation for biased sampling"
+    normalizing_flow_details: "GLOW with 8 coupling layers, hidden dim 64, 20 epochs, batch size 256"
+    fid_computation: "LeNet features for MNIST (not Inception); standard Inception for FFHQ"
+    precision_recall: "k=5 nearest neighbors"
+  method_family: "Theoretical + empirical analysis of recursive synthetic data training (model autophagy)"
+
+positioning:
+  core_claim: "Without enough fresh real data in each generation of an autophagous (self-consuming) loop, future generative models are doomed to have their quality (precision) or diversity (recall) progressively decrease -- a condition termed Model Autophagy Disorder (MAD)."
+  key_results: >
+    Fully synthetic loop: both precision and recall drop to zero over generations (lambda=1);
+    with biased sampling (lambda<1), precision maintained but recall collapses faster.
+    Synthetic augmentation loop: fixed real data delays but does not prevent degradation.
+    Fresh data loop: sufficient fresh real data prevents MAD; small amounts of synthetic data
+    can actually boost effective sample size (n_e/n_r > 1), but excessive synthetic data harms;
+    a phase transition exists in admissible synthetic data amount.
+    Asymptotic convergence: in fresh data loop, performance converges to a value independent
+    of initial model quality, depending only on (n_r, n_s, lambda).
+    Variance collapse proven analytically: Sigma_t -> 0 a.s. for Gaussian fully synthetic loop
+    via martingale convergence theorem.
+  limitations:
+    - "Focused on image generation; text/LLM experiments left to future work (though concepts claimed to generalize)"
+    - "Theoretical analysis limited to Gaussian distributions; non-Gaussian theory is empirical"
+    - "Does not study combinations of the three loop families (e.g., some synthetic + some fixed real + some fresh real)"
+    - "Does not directly measure downstream task impact (e.g., classification accuracy from degraded generators)"
+    - "Training recipes and hyperparameters not extensively tuned or ablated"
+    - "Datasets relatively small-scale (MNIST, FFHQ-128); no experiments on ImageNet-scale"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "突破局限型"
+  hook: >
+    Opens with a vivid real-world observation: synthetic data is proliferating on the Internet,
+    generative models are increasingly trained on data that includes outputs of prior generative
+    models, and this creates an 'autophagous (self-consuming) loop' whose consequences are poorly
+    understood. The overheard quote from ICLR 2022 -- 'There will soon be more synthetic data
+    than real data on the Internet' -- serves as an attention-grabbing framing device.
+  tension: >
+    The tension is built through a multi-layered argument: (1) synthetic data is already in major
+    training datasets like LAION-5B (demonstrated with concrete evidence in Figure 2); (2) there
+    are many legitimate reasons to use synthetic data (cost, privacy, data scarcity, augmentation
+    benefits); (3) yet the consequences of recursive self-consumption are unknown. The paper
+    invokes biological analogy -- mad cow disease from feeding cattle their own remains -- to
+    make the stakes visceral and memorable. The mathematical framing (contraction mapping vs
+    positive feedback loop) adds rigor to the intuition.
+  key_insight: >
+    The key insight is revealed through the Gaussian martingale analysis (Section 3.1): the mean
+    undergoes a random walk while the covariance is a supermartingale guaranteed to converge to
+    zero. This dual failure mode (quality drift + diversity collapse) is the fundamental mechanism,
+    and the sampling bias parameter lambda controls the trade-off between them. This theoretical
+    insight is then systematically validated across increasingly realistic scenarios.
+  argument_chain: >
+    Problem (synthetic data proliferating, autophagous loops inevitable) ->
+    Formalization (three loop families: fully synthetic, synthetic augmentation, fresh data) ->
+    Theory (Gaussian martingale analysis proves variance collapse) ->
+    Empirical validation on simple models (GMM, normalizing flows) ->
+    Empirical validation on realistic models (StyleGAN-2 on FFHQ, DDPM on MNIST) ->
+    Progressive relaxation (fully synthetic is worst -> fixed real data delays -> fresh data can prevent) ->
+    Phase transition discovery (admissible synthetic data threshold in fresh data loop) ->
+    Discussion (practical recommendations, watermarking, future directions)
+  contribution_framing: >
+    Three numbered contributions stated explicitly in Section 1.2, each with a bold header
+    and a summary sentence. The contributions are: (1) Realistic models for autophagous loops
+    (three families), (2) Sampling bias plays a key role, (3) Behaviors hold across variety of
+    generative models and datasets. Each contribution previews the main result with italicized
+    conclusion sentences. The bottom line is stated in bold italics: 'without enough fresh real
+    data each generation, future generative models are doomed to go MAD.'
+  intro_structure: >
+    Two major subsections in the intro:
+    Section 1.1 'Generative models are training on synthetic data from generative models'
+    (5 long paragraphs): (P1) synthetic data proliferating -- sets scene with evidence;
+    (P2) unwitting use of synthetic data in training datasets like LAION-5B;
+    (P3) deliberate use of synthetic data -- 4 reasons enumerated;
+    (P4) autophagous loop definition + sampling bias concept + precision/recall framing;
+    (P5) potential ramifications -- artifacts, diversity loss, echo chambers, biological analogy (mad cow).
+    Section 1.2 'Contributions' (3 structured contributions with bold headers + paper organization paragraph).
+    Total intro: ~2.5 pages, heavily contextualized with real-world evidence.
+  notable_technique: >
+    The biological analogy (MAD = Model Autophagy Disorder, paralleling mad cow disease) is
+    brilliantly deployed: it makes the abstract mathematical concept (supermartingale convergence
+    of variance) visceral and memorable. The acronym MAD doubles as an adjective describing the
+    process outcome. The paper also excels at progressive revelation -- starting from the simplest
+    (worst-case) fully synthetic loop, then showing fixed data only delays, then showing fresh
+    data can prevent, creating a narrative arc from doom to qualified hope. The visual evidence
+    in Figure 1 (cross-hatching artifacts amplifying across generations) provides an immediately
+    compelling 'seeing is believing' hook before any theory.
+
+figures:
+  figure_count: 31
+  figure1:
+    type: "problem_illustration"
+    description: >
+      Shows StyleGAN-2 face generations across multiple iterations of a fully synthetic loop.
+      Cross-hatched artifacts progressively amplify in each new generation, visually demonstrating
+      model autophagy disorder. Real FFHQ samples shown at left for comparison.
+    narrative_role: >
+      Serves as the paper's visual hook -- before any theory or formalism, the reader sees the
+      problem with their own eyes. The progressive artifact amplification makes the abstract
+      concept of 'model collapse' immediately tangible and alarming.
+    design_elements:
+      - "Temporal progression (generations left to right)"
+      - "Real vs synthetic comparison"
+      - "Artifact amplification clearly visible"
+      - "High-resolution face images for visceral impact"
+    visual_style: >
+      Grid layout of generated face images organized by generation number. Clean, no decorations.
+      The degradation speaks for itself -- progressive cross-hatching artifacts become unmistakable
+      by later generations.
+  result_figures:
+    - figure_id: "Figure 4"
+      viz_type: "line_plot"
+      what_compared: "FID, precision, and recall across generations for fully synthetic loop without sampling bias (StyleGAN on FFHQ, DDPM on MNIST)"
+      how_gain_highlighted: "Three-panel layout (FID/precision/recall) shows all metrics degrading monotonically"
+      design_note: "Dual-model comparison (solid vs dashed lines) on same axes enables cross-architecture conclusions"
+    - figure_id: "Figure 6"
+      viz_type: "line_plot"
+      what_compared: "Fully synthetic loop WITH sampling bias -- FID, precision, recall across generations"
+      how_gain_highlighted: "Contrasts with Figure 4 to show precision can be maintained but recall drops faster; sampling bias creates quality-diversity tradeoff"
+      design_note: "Same three-panel format as Figure 4 for direct visual comparison"
+    - figure_id: "Figure 8"
+      viz_type: "line_plot"
+      what_compared: "Synthetic augmentation loop -- FID, precision, recall showing slower but inevitable degradation"
+      how_gain_highlighted: "Slower degradation compared to fully synthetic loop demonstrates fixed real data only delays MADness"
+      design_note: "Consistent three-panel format maintained throughout paper"
+    - figure_id: "Figure 9"
+      viz_type: "line_plot"
+      what_compared: "Synthetic augmentation loop with different lambda values on MNIST"
+      how_gain_highlighted: "Multiple lambda curves on same axes show how bias affects degradation speed"
+      design_note: "Color-coded lambda values with consistent axis scaling"
+    - figure_id: "Figure 10"
+      viz_type: "line_plot"
+      what_compared: "Fresh data loop convergence -- WD/FID vs generations for different n_ini values"
+      how_gain_highlighted: "All curves converge to same asymptote regardless of initial quality, demonstrating that only (n_r, n_s, lambda) matter"
+      design_note: "Two panels: Gaussian (left) and MNIST DDPM (right); multiple n_ini values shown converging"
+    - figure_id: "Figure 11"
+      viz_type: "heatmap"
+      what_compared: "Phase transition in fresh data loop: effective sample size ratio n_e/n_r as function of n_r and n_s"
+      how_gain_highlighted: "Blue region (admissible: n_e/n_r >= 1) vs non-blue (harmful); sharp phase boundary visible"
+      design_note: "Color-coded 2D map with clear admissible/inadmissible boundary; multiple lambda panels"
+    - figure_id: "Figure 12"
+      viz_type: "heatmap"
+      what_compared: "Effect of sampling bias on admissible synthetic data -- n_e/n_r for different lambda values"
+      how_gain_highlighted: "Smaller lambda (more bias) shrinks the admissible blue region, making the bias effect visually obvious"
+      design_note: "Same format as Figure 11 for direct comparison across lambda values"
+  ablation_figures:
+    - figure_id: "Figure 5"
+      viz_type: "scatter (t-SNE)"
+      dimensions_varied: ["generation number"]
+      design_note: "t-SNE visualization of MNIST modes drifting and merging across generations without bias; powerful qualitative evidence of mode collapse"
+    - figure_id: "Figure 7"
+      viz_type: "scatter (t-SNE)"
+      dimensions_varied: ["generation number"]
+      design_note: "t-SNE with bias: modes collapse onto themselves rather than merging, contrasting with Figure 5 to illustrate bias effect on collapse mechanism"
+    - figure_id: "Figure 17"
+      viz_type: "density_plot"
+      dimensions_varied: ["sampling bias lambda", "generation number"]
+      design_note: "Normalizing flow on 2D Rosenbrock distribution; density plots at different generations show tail loss; with/without bias comparison"
+  figure_narrative_role: >
+    Figure 1 (visual hook: artifact amplification) ->
+    Figure 2 (evidence: LAION-5B already contains synthetic data) ->
+    Figure 3 (framework: three autophagous loop diagrams) ->
+    Figures 4-7 (fully synthetic loop results: quantitative + qualitative) ->
+    Figures 8-9 (synthetic augmentation loop: delayed but inevitable) ->
+    Figures 10-12 (fresh data loop: convergence + phase transition) ->
+    Figures 13-17 (appendix: additional architectures confirming universality) ->
+    Figures 18-31 (appendix: qualitative image samples across generations).
+    The narrative follows a progressive relaxation structure: worst case -> mitigated -> preventable.
+
+tables:
+  table_count: 0
+  main_result_table:
+    note: "This paper contains NO tables. All results are presented as figures (line plots, heatmaps, t-SNE visualizations, and qualitative image grids). This is unusual for ML papers and reflects the paper's emphasis on visual/qualitative evidence of degradation and on trend curves rather than point comparisons."
+  ablation_tables: []
+  supplementary_tables:
+    in_appendix: false
+    content: "N/A -- no tables anywhere in the paper"
+    reason: "The paper's contribution is about trends across generations rather than point performance comparisons, making line plots and heatmaps more natural than tables"

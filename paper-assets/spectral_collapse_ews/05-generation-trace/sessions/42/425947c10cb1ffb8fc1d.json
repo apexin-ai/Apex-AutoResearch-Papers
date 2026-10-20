@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "425947c10cb1ffb8fc1d",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "paper provenance completion",
+  "task_key": "worker_paper_provenance-completion_20260519T171040",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_provenance-completion_20260519T171040_result.json",
+    "occurrence": 1,
+    "bytes": 1025,
+    "sha256": "12f6c0bbe5b6fb00c385c3703ddd01a3ef94ad8c5c249f715a8e929828a08cad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All checks pass. Summary:\n\n**Coverage: 15/25 → 25/27** (2 new claims added, 10 previously unmapped claims filled)\n\n**Fixes (3):**\n- C030, C046, C067: exp_005 (killed) → exp_006 (controller never triggered) + exp_007 (r=0.2 Δ_t=0.0019<τ) + exp_009 (r=0.25 Δ_t=0.00028<τ) + decisions D019/D020/D023\n\n**New claims (2):**\n- C070: r_crit ∈ (0.25, 0.3] — evidence: exp_009 (Type II EMA violation) + exp_008 (Type III EMA satisfied), decisions D029/D031\n- C071: Three trajectory types — evidence: exp_001 (Type I) + exp_007/exp_009 (Type II) + exp_004/exp_008 (Type III), decisions D028/D029\n\n**Newly mapped existing claims (8):**\n- C006/C010: controller rule/params → exp_006\n- C015: conditions budget → exp_001/exp_004/exp_006 + D026\n- C040: +exp_006 for closed-loop axis\n- C047/C049/C052/C056: limitations → relevant experiments\n- C061: proportional controller → exp_006 + D020\n\n**Remaining tier3 (2):** C001, C003 — pure math definitions, no experimental evidence needed."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-provenance-completion.md"
+}

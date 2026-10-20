@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "319b7688ea1798c1f452",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "code update sensitivity grid",
+  "task_key": "worker_code_update_sensitivity_grid_20260517T115943",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_update_sensitivity_grid_20260517T115943_result.json",
+    "occurrence": 1,
+    "bytes": 153,
+    "sha256": "d6818a8523c8a9174b818578e1b025c59e71a64993444b82ae5da0b46187a4f9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`run_sensitivity.py` 已处于目标状态，τ = [0.002, 0.005, 0.01]，k = [0.5, 1.0, 2.0]。脚本 parse 正常，无需任何修改。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-update-sensitivity-grid.md"
+}

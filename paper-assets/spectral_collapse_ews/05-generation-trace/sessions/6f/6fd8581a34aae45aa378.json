@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6fd8581a34aae45aa378",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "fix results reviewer warnings",
+  "task_key": "worker_fix_results_reviewer_warnings_20260516T232300",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_results_reviewer_warnings_20260516T232300_result.json",
+    "occurrence": 1,
+    "bytes": 1622,
+    "sha256": "5478525e627dfb03311532e4e2c58847a7ae26dcbbcec81c92a132eaa7882e04"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过：\n\n| 验证项 | 结果 |\n|--------|------|\n| `grep \"rules out\"` | 0 匹配 ✓ |\n| `grep \"detects before\"` | 0 匹配 ✓ |\n| `grep \"700.68\"` | line 175 ✓ |\n| `grep \"fig:spectral_trajectory\"` | line 139 (引用) + line 145 (label) ✓ |\n| `grep \"ing,\"` | 仅 line 22 (filtering, 属于列表项内容，非 -ing 分词结尾) ✓ |\n| `grep \"—\"` (em-dash) | 0 ✓ |\n\n---\n\n## 修改汇总\n\n| # | 旧文本 | 新文本 |\n|---|--------|--------|\n| 1 | `confirms the inflection point and rules out measurement noise as an explanation` | `is consistent with a genuine inflection point; confirmation with additional seeds across the full 10-generation trajectory follows in Phase 1` |\n| 2 | `since it detects tail-spectrum degradation before the effective rank registers a comparable change` | `since it captures tail-spectrum degradation at greater magnitude than the effective rank ($-1.2\\%$ vs $-0.6\\%$).  Preliminary results from the 1B pilot suggest that the log-determinant may also lead temporally: at Generation 2, the log-determinant has already begun declining while the effective rank remains at its peak.  Full-scale confirmation is pending.` |\n| 3 | `$\\sigma_1$ ... & ---` | `$\\sigma_1$ ... & 700.68` |\n| 4 | (无) | 插入 `\\begin{figure}[t]...\\end{figure}` float (line 141-147) |\n| 5 | `confirming that commonsense reasoning capability erodes alongside lexical diversity` | `which confirms that commonsense reasoning erodes alongside lexical diversity` |\n| 6 | `Calibrated from Phase~0 pilot` | `To be calibrated from Phase~0 pilot` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-results-reviewer-warnings.md"
+}

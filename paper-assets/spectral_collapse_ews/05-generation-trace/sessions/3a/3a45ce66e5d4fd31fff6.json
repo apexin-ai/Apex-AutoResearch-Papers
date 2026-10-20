@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3a45ce66e5d4fd31fff6",
+  "project": "spectral_collapse_ews",
+  "kind": "history",
+  "title": "agent / loop_1.md",
+  "task_key": "loop_1",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_1.md",
+    "occurrence": 1,
+    "bytes": 3228,
+    "sha256": "48afa7225af4c7381f337a03b03ba45f66f180e6f8307f2b211d7fb08f1a51d7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 1\nreason: max_wall_time\nupdated: '2026-05-16T15:36:58+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0 (exp_001, 410M) + cuda:1 (exp_002, 1B)，不可交叉占用\n- checkpoints 必须写 /root/autodl-tmp/（根分区 30GB，84% 占用，再写 checkpoint 会满）\n- checkpoints → /root/autodl-tmp/spectral_collapse_ews/checkpoints_410m/ (symlink)\n- checkpoints_1b → /root/autodl-tmp/spectral_collapse_ews/checkpoints_1b/ (symlink)\n- Go/no-go 未通过前禁止在论文中断言正向结果（Gen 0-2 eff_rank 仍在上升）\n- ECE 未接入 pipeline，论文中只能作为 \"planned extension / future work\"\n\n### 2. 🖥️ 基础设施快照\n- 服务器：rtx6000-diagprobe，SSH account: root\n- 工作目录：/root/spectral_collapse_ews/\n- Python：source /root/miniconda3/etc/profile.d/conda.sh && conda activate base\n- 模型缓存：/root/autodl-tmp/spectral_collapse_ews/models/\n- 数据：/root/spectral_collapse_ews/data/（pile-uncopyrighted, 50K train + 5K eval + 1K spectral）\n- 活跃进程：\n  - exp_001: PID 7396, cuda:0, Pythia 410M Phase 0 (已跑 ~6h+)\n  - exp_002: PID 25232, cuda:1, Pythia 1B Phase 0 (刚重启)\n- Cron: exp_001 (PID 7396, 120s) + exp_002 (PID 25232, 120s)\n- 无 W&B（本地 JSON 记录）\n\n### 3. 📊 当前状态\n刚完成论文跨章节一致性修复（intro/method/conclusion/abstract 贡献结构对齐）。所有论文章节框架就绪，等实验结果填 [TBD]。\n\nRegistry:\n- exp_001 RUNNING: Pythia 410M Phase 0, 100% synthetic, 10 gen, cuda:0 — 核心 go/no-go 实验\n- exp_002 RUNNING: Pythia 1B Phase 0, 同上, cuda:1 — scale transfer pilot\n\n等待中：\n- exp_001 cron 完成回调 → 跑 analyze_phase0.py → 报 Go/No-go\n- exp_002 cron 完成回调 → 分析 1B 结果\n- 无待处理的 Worker/Director 决策\n\n### 4. 📋 待办（条件触发式）\n- exp_001 完成 → `python analyze_phase0.py --results-path results/phase0_results.json` → 3 条件判断 → 汇报 Director Go/No-go\n- Go/No-go PASS → 校准 τ/k → 立即铺 Phase 1（3 seeds × 4 conditions，需 Director 审批 GPU 分配）\n- Go/No-go FAIL（eff_rank 不单调下降）→ 产出 Framing 调整提案（red-section skill），不默默跑下一实验\n- exp_002 完成 → 分析 1B collapse 动态，与 410M 对比 scale transfer\n- 两实验都完成后 → HellaSwag batch eval（之前被 kill 了）+ 补 Gen 0/1 log-det 到结果 JSON\n- Phase 1 开跑后 → 论文填充 [TBD] 占位符\n\n### 5. 🎯 战略上下文\n- 投稿目标：EMNLP 2026 ARR May 25（DDL 9 天，从 5/16 算起）\n- D004: decline rate baseline 从 Gen 1 开始（Gen 0→1 是 pretraining shift，不算 collapse）\n- **关键风险**：Gen 0-2 eff_rank 和 log-det 都在上升（417→492→496），波动容忍已用完。Gen 3 是生死线——如果继续升则 condition 1 失败。但增速急剧衰减（+74 → +4.7），大概率即将拐点。\n- ppl/distinct4/train_loss 已支持 degradation，只有 spectral 信号滞后\n- 论文已留条件性语言，不预设正向结果\n- 易错点：不要在 Phase 0 完成前断言 collapse 已确认；不要把 Gen 0→1 的增加算作 collapse 信号失败（这是 D004 已知的 pretraining shift）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-1-copy-2.md"
+}

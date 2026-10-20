@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3577ba896cd8bccab1ad",
+  "project": "trace_distill_repair",
+  "kind": "result",
+  "title": "eval test based reeval",
+  "task_key": "worker_eval_test_based_reeval_20260515T114100",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_test_based_reeval_20260515T114100_result.json",
+    "occurrence": 1,
+    "bytes": 3830,
+    "sha256": "a4e007544e248f97234da9528eadddd929ec6e67c6a7c8af6d0972610a881605"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No register_artifact tool available. Here's the complete analysis:\n\n---\n\n## Re-evaluation Results: 4 Instances × 4 Conditions\n\n### Oracle Baseline\n**Ground truth patch pass rate: 4/4 (100%)** — test infrastructure fully functional for all 4 instances after dependency fixes.\n\n### Per-Instance × Per-Condition Results\n\n| Instance | Condition | Pass | Judge | Overlap | Fix Len | Failure Reason |\n|---|---|---|---|---|---|---|\n| **black_1** | no_trace | N | 1 | 0.094 | 5000 (trunc) | SyntaxError |\n| | full_trace | N | 0 | 0.088 | 5000 (trunc) | SyntaxError |\n| | structural_filtered | N | 5 | 0.065 | 5000 (trunc) | SyntaxError |\n| | line_filtered | N | 0 | 0.033 | 3829 (trunc) | SyntaxError |\n| **fastapi_1** | no_trace | N | 4 | 0.413 | 4581 (trunc) | SyntaxError |\n| | full_trace | N | 5 | 0.588 | 5000 (trunc) | SyntaxError |\n| | structural_filtered | N | 1 | 0.913 | 5000 (trunc) | SyntaxError |\n| | line_filtered | N | 5 | 0.913 | 5000 (trunc) | SyntaxError |\n| **fastapi_2** | no_trace | N | 2 | 0.306 | 5000 (trunc) | SyntaxError |\n| | full_trace | N | 0 | 0.075 | 1519 (trunc) | SyntaxError |\n| | structural_filtered | N | 0 | 0.747 | 5000 (trunc) | SyntaxError |\n| | line_filtered | N | 5 | 0.761 | 5000 (trunc) | SyntaxError |\n| **httpie_2** | no_trace | N | 4 | 0.975 | 4544 | AssertionError (wrong fix) |\n| | full_trace | N | 2 | 0.992 | 4337 | AssertionError (wrong fix) |\n| | structural_filtered | N | 1 | 0.983 | 4339 | AssertionError (wrong fix) |\n| | line_filtered | N | 0 | 0.983 | 4355 | AssertionError (wrong fix) |\n\n### Condition Pass Rates\n| Condition | Pass Rate |\n|---|---|\n| structural_filtered | 0/4 |\n| line_filtered | 0/4 |\n| full_trace | 0/4 |\n| no_trace | 0/4 |\n| **ground_truth** | **4/4** |\n\n### Failure Categories\n- **SyntaxError (12/16)**: black_1 + fastapi_1 + fastapi_2 — LLM output capped at 4096 tokens (`max_tokens`), then checkpoint truncated to 5000 chars. For files of 27K–221K chars, this produces partial files. Even smart-diff extraction creates invalid Python.\n- **AssertionError (4/16)**: httpie_2 — the only instance with complete (non-truncated) fixes. File is small (4338 chars) and LLM reproduced it fully. But **none of the 4 conditions included the key fix** (`requests_session.max_redirects = args.max_redirects`). The \"fixes\" are essentially identical to the buggy code (overlap 0.97–0.99).\n\n### Conclusions\n\n1. **Structural filtering shows no advantage in test-based evaluation** — all conditions equally fail at 0/4. However, this is **not a fair comparison** because the evaluation is confounded by two systemic issues:\n\n2. **Primary confound: output truncation** (affects 12/16 entries). The repair LLM's `max_tokens=4096` is far too small for files >5K chars. black.py (221K), applications.py (27K), and routing.py (40K) cannot be reproduced within this budget. The \"output ONLY the fixed Python code\" prompt forces the LLM to regenerate the entire file, which is impossible for large files. A **diff-based repair prompt** would fix this.\n\n3. **Secondary confound: wrong target file** (fastapi_1). The repair targeted `changed_files[0]` = `fastapi/applications.py`, but the test checks `exclude_defaults` in `fastapi/encoders.py`. Even a perfect fix to applications.py wouldn't pass this test.\n\n4. **httpie_2 is the only clean signal**: complete, non-truncated fixes where all 4 conditions failed equally because the LLM didn't identify the actual bug. High line_overlap (0.97+) confirms the \"fixes\" barely changed anything.\n\n5. **LLM judge scores are unreliable**: judge=5 was given to fixes that produce SyntaxError (black_1/structural_filtered), while judge=0 was given to others that are structurally identical. The judge evaluated code similarity, not functional correctness."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-test-based-reeval.md"
+}

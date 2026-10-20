@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7d4035642effd89edf2b",
+  "project": "trace_distill_repair",
+  "kind": "result",
+  "title": "run oracle full validation",
+  "task_key": "worker_run_oracle_full_validation_20260515T140208",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_oracle_full_validation_20260515T140208_result.json",
+    "occurrence": 1,
+    "bytes": 1939,
+    "sha256": "979f40375cc0193b4d21e117220f331283e117fb7a30930a64270ad688525d70"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有 14 个实例 patch 都 apply 成功（`diff_apply=True`），10 个失败全是 test infra 问题。\n\n## Oracle 全量验证结果：4/14 PASS\n\n| Instance | test_pass | failure_reason |\n|---|---|---|\n| **black_1** | FAIL | 测试方法名不存在 (`BlackTestCase` 无 `test_works_in_mono_process_only_environment`) |\n| **cookiecutter_1** | FAIL | pytest-cov 未装 (`--cov-report` 参数不识别) |\n| **cookiecutter_2** | FAIL | pytest-cov 未装（同上） |\n| **cookiecutter_3** | FAIL | conftest ImportError（cookiecutter 循环导入） |\n| **fastapi_2** | FAIL | 测试方法不存在 (`test_router_ws_depends_with_override` not found) |\n| **httpie_2** | **PASS** | |\n| **luigi_5** | FAIL | `ModuleNotFoundError: No module named 'luigi'`（未 pip install -e .） |\n| **sanic_2** | FAIL | `ModuleNotFoundError: No module named 'sanic'`（未 pip install -e .） |\n| **scrapy_2** | FAIL | scrapy import 失败（`_monkeypatches.py` 依赖缺失） |\n| **scrapy_7** | FAIL | scrapy import 失败（同上） |\n| **tornado_2** | FAIL | 测试方法名不存在（截断的方法名） |\n| **youtube-dl_1** | **PASS** | |\n| **youtube-dl_5** | **PASS** | |\n| **youtube-dl_20** | **PASS** | |\n\n### 失败归类\n\n所有 10 个失败都是 **test infra 问题**（patch 本身都正确 apply），分 3 类：\n\n1. **测试方法名无效** (3): black_1, fastapi_2, tornado_2 — test command 引用了不存在的测试方法\n2. **缺少 pytest-cov 插件** (2): cookiecutter_1, cookiecutter_2 — bugsinpy env 没装 pytest-cov\n3. **项目包未安装/依赖缺失** (5): cookiecutter_3, luigi_5, sanic_2, scrapy_2, scrapy_7 — 项目自身未 `pip install -e .` 或缺关键依赖\n\n### 可用实例\n\n只有 **4 个实例的 test infra 可用**：httpie_2, youtube-dl_1, youtube-dl_5, youtube-dl_20。这 4 个是 v2 修复实验中唯一可以基于测试通过率评估的实例。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-oracle-full-validation.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f1893b9e5e9c40b451f8",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "paper phase diagram figure",
+  "task_key": "worker_paper_phase-diagram-figure_20260519T183235",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_phase-diagram-figure_20260519T183235_result.json",
+    "occurrence": 1,
+    "bytes": 515,
+    "sha256": "fab5e977da2ed3f30dc263ba9ad6833d9ddf0200ee70a9addae9c415e17f8e5e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图已完成，输出到：\n\n- **PDF**: `paper/figures/phase_diagram.pdf`\n- **PNG**: `paper/figures/phase_diagram.png`\n\n数据说明：\n- **r=0 (Type I)**: 仅 seed43 可用，Gen 0–4。SLV 先升至 2467 (Gen 2) 后回落至 2405 (Gen 4)，展示 collapse 特征\n- **r=0.2 (Type II)**: 截断至 Gen 5，空心 marker + \"5-gen\" 标注\n- **r=0.25 / r=0.3**: 灰色填充带标示 $r_{\\text{crit}} \\in (0.25, 0.3]$ 过渡区间\n- **r=0.5 (Type III)**: SLV 增长最快，Gen 10 达 2573"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-phase-diagram-figure.md"
+}

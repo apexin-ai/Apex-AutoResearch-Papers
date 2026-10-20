@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "65be37c4c40ee1ccd67b",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "fix d010 controller logdet",
+  "task_key": "worker_fix_d010_controller_logdet_20260517T062835",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_d010_controller_logdet_20260517T062835_result.json",
+    "occurrence": 1,
+    "bytes": 1166,
+    "sha256": "e4bbe66a2bb776e3fbdced41073eb759f42c86fe55e23695bca88c72f238f6b3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n---\n\n## 修改摘要\n\n### `src/controller.py`\n- `__init__`: 新增 `signal=\"log_det\"` 参数；`tau` 默认值 `0.02` → `0.005`\n- `update(S_t)` → `update(spectral_metrics)`: 接收 dict，用 `self.signal` 键取值（含 `eff_rank` → `effective_rank` 映射）\n- `get_state()` 增加 `signal` 字段\n\n### `src/config.py`\n- `controller_tau` 默认值 `0.02` → `0.005`\n- 新增 `controller_signal: str = \"log_det\"`\n\n### `src/pipeline.py`\n- Controller 初始化增加 `signal=config.controller_signal`\n- adaptive 模式下 `controller.update()` 改为传递 `{\"effective_rank\": ..., \"log_det\": ...}` dict\n\n### `run_phase1.py`\n- 新增 `--signal {log_det,eff_rank}` 参数（default=log_det）\n- `--tau` 默认值 `0.02` → `0.005`\n- `config.controller_signal = args.signal`\n- summary 和 print 输出包含 signal 信息\n\n### 清理\n- `/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/adaptive_seed42/` 已删除\n- `results/phase1_adaptive_seed42_results.json` 已删除\n\n### GPU 状态\n- GPU 0: 65.9GB 占用（其他实验）\n- **GPU 1: 已释放（0 MiB），可用**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-d010-controller-logdet.md"
+}

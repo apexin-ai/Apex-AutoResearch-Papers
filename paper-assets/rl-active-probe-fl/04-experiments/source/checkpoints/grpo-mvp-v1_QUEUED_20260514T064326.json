@@ -1,0 +1,14 @@
+{
+  "exp_id": "grpo-mvp-v1",
+  "project": "rl-active-probe-fl",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T06:43:26.196Z",
+    "updated_at": "2026-05-14T06:43:26.196Z"
+  },
+  "timestamp": "2026-05-14T06:43:26.203906+00:00",
+  "trigger": "update_registry"
+}

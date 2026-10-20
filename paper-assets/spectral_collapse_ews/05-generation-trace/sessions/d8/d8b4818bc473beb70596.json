@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d8b4818bc473beb70596",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "paper d010 experiments update",
+  "task_key": "worker_paper_d010_experiments_update_20260517T063539",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_d010_experiments_update_20260517T063539_result.json",
+    "occurrence": 1,
+    "bytes": 1196,
+    "sha256": "89f482a08826017c84a1f8a1b6a917e91913c0fea2902699458a7855068f5346"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有修改已完成。逐项总结：\n\n**(a) ppl increment 精确数值** — line 188: `1.83` → `2.20`，`\\to` → `\\rightarrow`（匹配实际数据 13.58 - 11.38 = 2.20）\n\n**(b) Temporal lag 描述** — line 194: 删除了原来的\"lags...by one generation\"及冗余前置句，替换为指定的 two-generation detection delay 表述\n\n**(c) σ₁ caption 说明** — line 170: table caption 末尾增加 \"$\\sigma_1$ values decrease during decompression and increase during collapse, with lower values indicating more isotropic representations.\"\n\n**(d) Advantage (2)** — line 194: 从\"can be computed from a single forward pass during training without additional generation\"改为\"spectral metrics require no held-out evaluation set or text generation, only a forward pass through a fixed probe set\"\n\n**(4) Controller 参数更新** — 三处变更:\n- line 87: τ=0.02 → τ=0.005，信号改为 \"normalized log-determinant decline\"，移除了 `†` 标记\n- line 92: 删除了 \"†To be calibrated from Phase~0 pilot.\" 脚注\n- line 117: 原 calibration 句后追加了阈值来源说明段落（Phase~0 Gen 3-5, 0.8%/gen decline rate）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-d010-experiments-update.md"
+}

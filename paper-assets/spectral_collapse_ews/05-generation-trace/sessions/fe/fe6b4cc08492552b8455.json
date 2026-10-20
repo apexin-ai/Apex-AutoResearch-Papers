@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fe6b4cc08492552b8455",
+  "project": "spectral_collapse_ews",
+  "kind": "history",
+  "title": "agent / loop_2_1779039880.md",
+  "task_key": "loop_2_1779039880",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_2_1779039880.md",
+    "occurrence": 1,
+    "bytes": 4757,
+    "sha256": "3d0d19fad2e0f6a297b9a220f5a710cf6876a1a129ad7955ed7ac7491bdd8c62"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: max_wall_time\nupdated: '2026-05-17T11:56:20+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: 只能用 rtx6000-diagprobe 的 cuda:0 和 cuda:1（get_project_resource_usage 确认）\n- 服务器无外网: 必须同时设 `HF_HUB_OFFLINE=1` 和 `TRANSFORMERS_OFFLINE=1`，否则 HEAD 请求浪费 ~50s/gen\n- CUDA_VISIBLE_DEVICES 映射: 脚本内 GPU 编号始终从 0 开始（框架自动映射物理卡）\n- exp_004 启动必须用 `submit_training_job`，不能用 nohup（否则 orphan 进程无监控无回调）\n- Python 不在 PATH: 启动命令必须 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base` 前置\n- D010 硬性参数: controller signal=log_det, τ=0.005（不是 eff_rank，不是 0.02）\n\n### 2. 🖥️ 基础设施快照\n- 服务器: rtx6000-diagprobe, 2× RTX PRO 6000 (98GB each)\n- 工作目录: `/root/spectral_collapse_ews/`\n- Python: `/root/miniconda3/bin/python` (conda base env)\n- 模型 cache: `/root/autodl-tmp/` 下 HF cache symlink, pythia-410m-deduped 已缓存\n- 数据: `/root/spectral_collapse_ews/data/` (train_real_50k.pt, eval_5k.pt, spectral_1k.pt)\n- Checkpoints Phase 0: `/root/autodl-tmp/spectral_collapse_ews/checkpoints/gen_0..gen_N/`\n- Checkpoints Phase 1: `/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/{condition}_seed{N}/`\n- 结果: `/root/spectral_collapse_ews/results/` (phase0_results.json, phase1_adaptive_seed42_results.json)\n- 磁盘: root 84% (5.1GB 可用, 偏紧), autodl-tmp 48% (132GB 可用)\n- 活跃进程:\n  - exp_001: PID 59365, tmux=exp_001_gen4, cuda:0, cron 已注册\n  - exp_003: PID 88156, tmux=exp_003, cuda:1, cron 已注册\n- W&B: 未使用\n\n### 3. 📊 当前状态\n刚完成 Director 三项任务: (1) HellaSwag Gen 6-7 已确认 (0.3311/0.3187), (2) experiments.tex 正文从 Gen 0-5 同步到 Gen 0-7 (14 处修改), (3) Table 1 + spectral trajectory 图更新。\n\n**等待中的 Worker 回调**: `worker_check_full_status_20260517_20260517T115450` — 正在做 Director 要求的全面状态检查（exp_001 是否完成、exp_003 Gen 2 controller 触发判断）。这个回调结果是下一步所有行动的基础。\n\nRegistry:\n- exp_001: RUNNING, Phase 0 410M pure collapse, Gen 8/10 generating (上次检查), cuda:0\n- exp_003: RUNNING, Phase 1 adaptive (log_det, τ=0.005), Gen 2 generating 97%, cuda:1\n- exp_004: PREPARING, Phase 1 fixed_mix s42, 预检已通过 ready to launch\n- exp_002: DONE/success, 1B pilot Gen 0-3 数据保留\n\n### 4. 📋 待办（条件触发式）\n- **worker_check_full_status 回调到达** → 读取结果，按 Director 格式汇报，根据内容分叉:\n  - exp_001 已完成 → 更新 registry DONE, 收集 Gen 0-9 metrics, 在 cuda:0 用 submit_training_job 启动 exp_004 (fixed_mix s42)\n  - exp_001 未完成 → 更新进度，继续等 cron 回调\n  - exp_003 Gen 2 数据已出 → 计算 Δ，按 Director 框架判断: Δ<0.003=WARNING, 0.003-0.005=观察, ≥0.005=已触发\n- **exp_003 Gen 2 Δ < 0.003** → 立即向 Director 预警\"controller 可能永不触发\"，建议降 τ 到 0.003，等 Director 决策是否 kill+restart\n- **exp_001 cron 报完成** → 执行 5 步计划: Gen 0-9 metrics → analyze_phase0.py → plot_spectral_trajectory.py → 清理旧 log → 启动 exp_004 + exp_005 dual-instance test\n- **exp_003 cron 报完成** → on-experiment-done 流程，核心看 adaptive vs fixed_mix 的 ppl/eff_rank 差异\n- **ScheduleWakeup 12:28 UTC 触发** → 如果 worker 回调已处理则取消，否则重新检查 exp_003 Gen 2\n\n### 5. 🎯 战略上下文\n- 项目目标: EMNLP 2026 ARR May 25 投稿 (DDL 8 天)\n- 核心 claim: spectral log-volume (SLV) 的 EMA 下降率可作为 model collapse EWS，驱动 adaptive data mixing controller\n- 决策链: D001(MVP方案) → D004(baseline从Gen1) → D005(controller参数) → D008(1B log_det领先) → D009(Go/no-go PASS) → D010(⚠️ signal改log_det+τ降0.005)\n- **最大风险**: exp_003 controller 可能永不触发。Phase 1 的 50/50 real data mixing 减缓了 collapse，log_det 下降可能始终 < τ=0.005。Gen 0→1 Δ=0.00423 已低于阈值。如果 Gen 2 Δ 仍 < 0.005，adaptive 实质等于 fixed_mix，论文核心 claim 失败\n- **易错点**: (1) Phase 0 和 Phase 1 的 log_det 轨迹不同——Phase 0 Gen 0→1 log_det 上升(decompression)，但 Phase 1 Gen 0→1 已经下降，不能直接类比 (2) 论文中已有\"spectral log-volume\"统一术语，不要写回\"log-determinant\" (3) sensitivity grid τ 已更新为 [0.002, 0.005, 0.01]，不是旧的 [0.01, 0.02, 0.05]\n- **Go/no-go 三条件全 CONFIRMED** (Gen 0-7): 单调下降✅, 加速比✅, ppl +242%✅\n- HellaSwag Gen 0→7 单调下降 (0.4130→0.3187, -22.8%)，downstream 证据强\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-1779039880.md"
+}

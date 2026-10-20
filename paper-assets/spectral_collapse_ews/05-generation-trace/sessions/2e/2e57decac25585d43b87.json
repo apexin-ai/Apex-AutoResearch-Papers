@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2e57decac25585d43b87",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "paper d010 method update",
+  "task_key": "worker_paper_d010_method_update_20260517T063527",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_d010_method_update_20260517T063527_result.json",
+    "occurrence": 1,
+    "bytes": 1088,
+    "sha256": "0ed23cfa4ffc31ef9ae02e193aaba0d3d42db52ed066cb37554ce9cc58e01d3c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "无破折号，无违规 -ing 短语。修改完成。\n\n**修改清单：**\n\n1. **信号从 eff_rank → log_det** — S_t 定义改为 log-determinant，公式改为 $\\sum_{i=1}^{d} \\log \\sigma_i$，删除 effective rank 的 Shannon entropy 公式\n2. **信号选择动机段** — 在信号定义后加入 Phase 0 calibration 对比段（0.66% 不足、log-det 6.7× 更强、Pythia 1B temporal lead）\n3. **τ = 0.005** — 从 0.02 改为 0.005，加入 calibration 方法说明（Phase 0 Generations 3-5 的 mean normalized decline rate）\n4. **删除 ECE 扩展句** — \"Token-level ECE is implemented as a planned extension\" 已删除\n5. **S̃_0 初始化说明** — 在 EMA 公式后补充 \"$\\tilde{S}_0$ is initialized from the spectral metrics computed on the first recursive generation (Generation 1), establishing the post-fine-tuning baseline.\"\n6. **其他参数不变** — k=1.0, α=0.5, r_min=0.20, r_max=0.80 保留，末尾显式列出全部参数值\n7. **条件列表 `(b)--(d)`** 改为 \"conditions (b) through (d)\"，消除 en-dash"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-d010-method-update.md"
+}

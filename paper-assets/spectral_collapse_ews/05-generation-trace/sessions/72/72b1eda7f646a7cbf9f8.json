@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "72b1eda7f646a7cbf9f8",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ssh persistent relay exp011",
+  "task_key": "worker_ssh_persistent-relay-exp011_20260520T012018",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_persistent-relay-exp011_20260520T012018_result.json",
+    "occurrence": 1,
+    "bytes": 172,
+    "sha256": "b2adc08597583d156e54da3c57fc43387636f51a1b4c854f1c3966e78bfe2c00"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp_011 仍在运行，已设置每 ~4.5 分钟轮询一次。等待进程完成后将自动执行：收集数据 → 启动 r=0.3 seed43 → 验证启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-persistent-relay-exp011.md"
+}

@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp_014",
+  "project": "spectral_collapse_ews",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T21:09:41.836Z",
+    "updated_at": "2026-05-20T22:24:43.702Z",
+    "hypothesis": "r=0.25 seed43 reproduces Type II trajectory and EMA violation at Gen 2, confirming r_crit bound under cross-seed mean definition. Combined with exp_009 (seed42), this provides 2-seed validation of the transitional regime classification.",
+    "parent": "exp_009"
+  },
+  "timestamp": "2026-05-20T22:24:43.759566+00:00",
+  "trigger": "update_registry"
+}

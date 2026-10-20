@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e66aa3e53c7533a2984e",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "analysis exp 012",
+  "task_key": "worker_analysis_exp_012_20260520T222011",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_012_20260520T222011_result.json",
+    "occurrence": 1,
+    "bytes": 518,
+    "sha256": "93c50ae6bb1c88462191a46eeffa8400dde2745a46d0cbf074ab9a01ab3ceedb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心结论：\n\n**Type III 复现确认。** seed43 与 seed42 的 SLV 轨迹高度一致（max divergence < 0.5%），均呈 ~6% 渐进上升。\n\n**Table 3 可升级为 2-seed mean±std：**\n- SLV: 2509.7 ± 2.0 (+6.0% ± 0.1%)\n- eff_rank: 521.2 ± 0.0\n- ppl: 13.34 ± 0.05\n\n**注意 d4 divergence 较大**：seed43 在 gen10 降至 0.12（seed42 为 0.34），std=0.156。建议 Table 3 中 d4 列加脚注或报告单独 seed 值。\n\n报告已注册：`art_20260520_ed2cc7`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-012.md"
+}

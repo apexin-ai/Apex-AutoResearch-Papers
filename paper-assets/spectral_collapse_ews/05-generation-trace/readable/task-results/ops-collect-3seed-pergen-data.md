@@ -1,0 +1,362 @@
+# ops collect 3seed pergen data
+
+**Spectral Early Warning Signals for Model Collapse and Their Prevention–Detectability Tradeoff** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_ops_collect-3seed-pergen-data_20260521T133350_result.json`
+- **Structured JSON:** [`98bf33216a78f2d79c7a.json`](../../sessions/98/98bf33216a78f2d79c7a.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+全部 198 个数值已收集完毕（3 seeds × 11 gens × 6 metrics）。
+
+```json
+{
+  "seed42": {
+    "gen0":  {"eff_rank": 417.547, "slv": 2366.684, "ppl":  9.554, "hellaswag": 0.4130, "d4": 0.7414, "sigma1": 1942.816},
+    "gen1":  {"eff_rank": 491.768, "slv": 2464.762, "ppl": 11.383, "hellaswag": 0.3897, "d4": 0.6256, "sigma1":  803.959},
+    "gen2":  {"eff_rank": 496.441, "slv": 2469.928, "ppl": 13.581, "hellaswag": 0.3764, "d4": 0.5154, "sigma1":  712.031},
+    "gen3":  {"eff_rank": 493.315, "slv": 2440.566, "ppl": 16.246, "hellaswag": 0.3658, "d4": 0.4900, "sigma1":  700.683},
+    "gen4":  {"eff_rank": 485.674, "slv": 2405.050, "ppl": 19.804, "hellaswag": 0.3558, "d4": 0.4679, "sigma1":  729.595},
+    "gen5":  {"eff_rank": 479.207, "slv": 2370.173, "ppl": 24.593, "hellaswag": 0.3439, "d4": 0.4630, "sigma1":  741.018},
+    "gen6":  {"eff_rank": 473.005, "slv": 2335.165, "ppl": 30.914, "hellaswag": 0.3311, "d4": 0.4655, "sigma1":  758.398},
+    "gen7":  {"eff_rank": 464.199, "slv": 2304.190, "ppl": 38.889, "hellaswag": 0.3187, "d4": 0.4474, "sigma1":  791.284},
+    "gen8":  {"eff_rank": 456.756, "slv": 2252.119, "ppl": 49.290, "hellaswag": 0.3103, "d4": 0.4401, "sigma1":  797.659},
+    "gen9":  {"eff_rank": 448.450, "slv": 2207.568, "ppl": 63.325, "hellaswag": 0.3009, "d4": 0.4262, "sigma1":  814.126},
+    "gen10": {"eff_rank": 442.458, "slv": 2178.949, "ppl": 76.781, "hellaswag": 0.2951, "d4": 0.4259, "sigma1":  825.723}
+  },
+  "seed43": {
+    "gen0":  {"eff_rank": 417.547, "slv": 2366.683, "ppl":  9.554, "hellaswag": 0.4130, "d4": 0.7415, "sigma1": 1942.816},
+    "gen1":  {"eff_rank": 490.834, "slv": 2462.620, "ppl": 11.371, "hellaswag": 0.3906, "d4": 0.5997, "sigma1":  814.614},
+    "gen2":  {"eff_rank": 496.244, "slv": 2466.626, "ppl": 13.565, "hellaswag": 0.3809, "d4": 0.5048, "sigma1":  718.121},
+    "gen3":  {"eff_rank": 494.043, "slv": 2438.376, "ppl": 16.219, "hellaswag": 0.3622, "d4": 0.4778, "sigma1":  715.544},
+    "gen4":  {"eff_rank": 489.235, "slv": 2404.598, "ppl": 19.940, "hellaswag": 0.3512, "d4": 0.4154, "sigma1":  723.061},
+    "gen5":  {"eff_rank": 480.070, "slv": 2365.135, "ppl": 24.603, "hellaswag": 0.3384, "d4": 0.4172, "sigma1":  753.632},
+    "gen6":  {"eff_rank": 471.883, "slv": 2325.009, "ppl": 30.064, "hellaswag": 0.3245, "d4": 0.4082, "sigma1":  765.976},
+    "gen7":  {"eff_rank": 464.184, "slv": 2291.548, "ppl": 37.442, "hellaswag": 0.3187, "d4": 0.3905, "sigma1":  790.032},
+    "gen8":  {"eff_rank": 456.178, "slv": 2248.256, "ppl": 46.943, "hellaswag": 0.3065, "d4": 0.3880, "sigma1":  813.312},
+    "gen9":  {"eff_rank": 447.023, "slv": 2234.798, "ppl": 58.003, "hellaswag": 0.2982, "d4": 0.3749, "sigma1":  858.357},
+    "gen10": {"eff_rank": 438.785, "slv": 2210.766, "ppl": 70.500, "hellaswag": 0.2900, "d4": 0.3940, "sigma1":  886.075}
+  },
+  "seed44": {
+    "gen0":  {"eff_rank": 417.547, "slv": 2366.683, "ppl":  9.554, "hellaswag": 0.4130, "d4": 0.7305, "sigma1": 1942.816},
+    "gen1":  {"eff_rank": 490.773, "slv": 2459.404, "ppl": 11.357, "hellaswag": 0.3911, "d4": 0.6019, "sigma1":  808.072},
+    "gen2":  {"eff_rank": 495.831, "slv": 2467.384, "ppl": 13.539, "hellaswag": 0.3841, "d4": 0.4943, "sigma1":  726.024},
+    "gen3":  {"eff_rank": 493.454, "slv": 2442.396, "ppl": 16.220, "hellaswag": 0.3721, "d4": 0.4283, "sigma1":  709.958},
+    "gen4":  {"eff_rank": 488.351, "slv": 2408.352, "ppl": 19.969, "hellaswag": 0.3554, "d4": 0.3731, "sigma1":  715.897},
+    "gen5":  {"eff_rank": 480.041, "slv": 2362.674, "ppl": 24.303, "hellaswag": 0.3418, "d4": 0.3569, "sigma1":  753.038},
+    "gen6":  {"eff_rank": 472.302, "slv": 2318.169, "ppl": 30.210, "hellaswag": 0.3315, "d4": 0.3326, "sigma1":  769.527},
+    "gen7":  {"eff_rank": 463.931, "slv": 2283.984, "ppl": 37.137, "hellaswag": 0.3191, "d4": 0.2862, "sigma1":  783.818},
+    "gen8":  {"eff_rank": 454.555, "slv": 2237.814, "ppl": 44.479, "hellaswag": 0.3157, "d4": 0.1817, "sigma1":  808.254},
+    "gen9":  {"eff_rank": 444.334, "slv": 2188.919, "ppl": 54.344, "hellaswag": 0.3033, "d4": 0.1482, "sigma1":  850.722},
+    "gen10": {"eff_rank": 432.912, "slv": 2154.336, "ppl": 65.698, "hellaswag": 0.3015, "d4": 0.1515, "sigma1":  911.874}
+  }
+}
+```
+
+**数据来源：**
+- seed42: `phase0_results.json` + `hellaswag_gen{0-10}/results.json`
+- seed43: `phase1_pure_collapse_seed43_results.json` + `hellaswag_seed43_gen{0-10}/results_*.json`
+- seed44: `phase1_pure_collapse_seed44_results.json` + `hellaswag_seed44_gen{0-10}/results.json`
+
+**备注：**
+- Gen 0 三个种子共享同一 base model，所以 eff_rank/slv/ppl/sigma1/hellaswag 完全相同，d4 有微小差异（生成采样随机性）
+- HellaSwag 使用 `acc_norm` (normalized accuracy)
+- sigma1 = `top_10_singular_values[0]`
+- 0 个 MISSING，198/198 完整
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "data": {
+    "seed42": {
+      "gen0": {
+        "eff_rank": 417.547,
+        "slv": 2366.684,
+        "ppl": 9.554,
+        "hellaswag": 0.413,
+        "d4": 0.7414,
+        "sigma1": 1942.816
+      },
+      "gen1": {
+        "eff_rank": 491.768,
+        "slv": 2464.762,
+        "ppl": 11.383,
+        "hellaswag": 0.3897,
+        "d4": 0.6256,
+        "sigma1": 803.959
+      },
+      "gen2": {
+        "eff_rank": 496.441,
+        "slv": 2469.928,
+        "ppl": 13.581,
+        "hellaswag": 0.3764,
+        "d4": 0.5154,
+        "sigma1": 712.031
+      },
+      "gen3": {
+        "eff_rank": 493.315,
+        "slv": 2440.566,
+        "ppl": 16.246,
+        "hellaswag": 0.3658,
+        "d4": 0.49,
+        "sigma1": 700.683
+      },
+      "gen4": {
+        "eff_rank": 485.674,
+        "slv": 2405.05,
+        "ppl": 19.804,
+        "hellaswag": 0.3558,
+        "d4": 0.4679,
+        "sigma1": 729.595
+      },
+      "gen5": {
+        "eff_rank": 479.207,
+        "slv": 2370.173,
+        "ppl": 24.593,
+        "hellaswag": 0.3439,
+        "d4": 0.463,
+        "sigma1": 741.018
+      },
+      "gen6": {
+        "eff_rank": 473.005,
+        "slv": 2335.165,
+        "ppl": 30.914,
+        "hellaswag": 0.3311,
+        "d4": 0.4655,
+        "sigma1": 758.398
+      },
+      "gen7": {
+        "eff_rank": 464.199,
+        "slv": 2304.19,
+        "ppl": 38.889,
+        "hellaswag": 0.3187,
+        "d4": 0.4474,
+        "sigma1": 791.284
+      },
+      "gen8": {
+        "eff_rank": 456.756,
+        "slv": 2252.119,
+        "ppl": 49.29,
+        "hellaswag": 0.3103,
+        "d4": 0.4401,
+        "sigma1": 797.659
+      },
+      "gen9": {
+        "eff_rank": 448.45,
+        "slv": 2207.568,
+        "ppl": 63.325,
+        "hellaswag": 0.3009,
+        "d4": 0.4262,
+        "sigma1": 814.126
+      },
+      "gen10": {
+        "eff_rank": 442.458,
+        "slv": 2178.949,
+        "ppl": 76.781,
+        "hellaswag": 0.2951,
+        "d4": 0.4259,
+        "sigma1": 825.723
+      }
+    },
+    "seed43": {
+      "gen0": {
+        "eff_rank": 417.547,
+        "slv": 2366.683,
+        "ppl": 9.554,
+        "hellaswag": 0.413,
+        "d4": 0.7415,
+        "sigma1": 1942.816
+      },
+      "gen1": {
+        "eff_rank": 490.834,
+        "slv": 2462.62,
+        "ppl": 11.371,
+        "hellaswag": 0.3906,
+        "d4": 0.5997,
+        "sigma1": 814.614
+      },
+      "gen2": {
+        "eff_rank": 496.244,
+        "slv": 2466.626,
+        "ppl": 13.565,
+        "hellaswag": 0.3809,
+        "d4": 0.5048,
+        "sigma1": 718.121
+      },
+      "gen3": {
+        "eff_rank": 494.043,
+        "slv": 2438.376,
+        "ppl": 16.219,
+        "hellaswag": 0.3622,
+        "d4": 0.4778,
+        "sigma1": 715.544
+      },
+      "gen4": {
+        "eff_rank": 489.235,
+        "slv": 2404.598,
+        "ppl": 19.94,
+        "hellaswag": 0.3512,
+        "d4": 0.4154,
+        "sigma1": 723.061
+      },
+      "gen5": {
+        "eff_rank": 480.07,
+        "slv": 2365.135,
+        "ppl": 24.603,
+        "hellaswag": 0.3384,
+        "d4": 0.4172,
+        "sigma1": 753.632
+      },
+      "gen6": {
+        "eff_rank": 471.883,
+        "slv": 2325.009,
+        "ppl": 30.064,
+        "hellaswag": 0.3245,
+        "d4": 0.4082,
+        "sigma1": 765.976
+      },
+      "gen7": {
+        "eff_rank": 464.184,
+        "slv": 2291.548,
+        "ppl": 37.442,
+        "hellaswag": 0.3187,
+        "d4": 0.3905,
+        "sigma1": 790.032
+      },
+      "gen8": {
+        "eff_rank": 456.178,
+        "slv": 2248.256,
+        "ppl": 46.943,
+        "hellaswag": 0.3065,
+        "d4": 0.388,
+        "sigma1": 813.312
+      },
+      "gen9": {
+        "eff_rank": 447.023,
+        "slv": 2234.798,
+        "ppl": 58.003,
+        "hellaswag": 0.2982,
+        "d4": 0.3749,
+        "sigma1": 858.357
+      },
+      "gen10": {
+        "eff_rank": 438.785,
+        "slv": 2210.766,
+        "ppl": 70.5,
+        "hellaswag": 0.29,
+        "d4": 0.394,
+        "sigma1": 886.075
+      }
+    },
+    "seed44": {
+      "gen0": {
+        "eff_rank": 417.547,
+        "slv": 2366.683,
+        "ppl": 9.554,
+        "hellaswag": 0.413,
+        "d4": 0.7305,
+        "sigma1": 1942.816
+      },
+      "gen1": {
+        "eff_rank": 490.773,
+        "slv": 2459.404,
+        "ppl": 11.357,
+        "hellaswag": 0.3911,
+        "d4": 0.6019,
+        "sigma1": 808.072
+      },
+      "gen2": {
+        "eff_rank": 495.831,
+        "slv": 2467.384,
+        "ppl": 13.539,
+        "hellaswag": 0.3841,
+        "d4": 0.4943,
+        "sigma1": 726.024
+      },
+      "gen3": {
+        "eff_rank": 493.454,
+        "slv": 2442.396,
+        "ppl": 16.22,
+        "hellaswag": 0.3721,
+        "d4": 0.4283,
+        "sigma1": 709.958
+      },
+      "gen4": {
+        "eff_rank": 488.351,
+        "slv": 2408.352,
+        "ppl": 19.969,
+        "hellaswag": 0.3554,
+        "d4": 0.3731,
+        "sigma1": 715.897
+      },
+      "gen5": {
+        "eff_rank": 480.041,
+        "slv": 2362.674,
+        "ppl": 24.303,
+        "hellaswag": 0.3418,
+        "d4": 0.3569,
+        "sigma1": 753.038
+      },
+      "gen6": {
+        "eff_rank": 472.302,
+        "slv": 2318.169,
+        "ppl": 30.21,
+        "hellaswag": 0.3315,
+        "d4": 0.3326,
+        "sigma1": 769.527
+      },
+      "gen7": {
+        "eff_rank": 463.931,
+        "slv": 2283.984,
+        "ppl": 37.137,
+        "hellaswag": 0.3191,
+        "d4": 0.2862,
+        "sigma1": 783.818
+      },
+      "gen8": {
+        "eff_rank": 454.555,
+        "slv": 2237.814,
+        "ppl": 44.479,
+        "hellaswag": 0.3157,
+        "d4": 0.1817,
+        "sigma1": 808.254
+      },
+      "gen9": {
+        "eff_rank": 444.334,
+        "slv": 2188.919,
+        "ppl": 54.344,
+        "hellaswag": 0.3033,
+        "d4": 0.1482,
+        "sigma1": 850.722
+      },
+      "gen10": {
+        "eff_rank": 432.912,
+        "slv": 2154.336,
+        "ppl": 65.698,
+        "hellaswag": 0.3015,
+        "d4": 0.1515,
+        "sigma1": 911.874
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---

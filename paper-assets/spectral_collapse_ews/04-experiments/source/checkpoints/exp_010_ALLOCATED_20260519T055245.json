@@ -1,0 +1,29 @@
+{
+  "exp_id": "exp_010",
+  "project": "spectral_collapse_ews",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T05:52:19.811Z",
+    "updated_at": "2026-05-19T05:52:45.583Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition pure_collapse --seed 43 --generations 10 --signal log_det --tau 0.002 --k 0 --signal_mode per_gen --gpu 0\"",
+      "server": "rtx6000-diagprobe",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "283142",
+      "log_path": "~/runs/spectral_collapse_ews/exp_010.log",
+      "submitted_at": "2026-05-19T05:52:19.743Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "Pure collapse (r=0, 100% synthetic) with seed 43 reproduces the three-phase spectral trajectory (decompression Gen 0-2, onset Gen 2-4, collapse Gen 4-10) observed in exp_001 (seed 42). This validates C1 claim that the spectral collapse pattern is reproducible across random seeds, not an artifact of a single training run.",
+    "parent": "exp_001"
+  },
+  "timestamp": "2026-05-19T05:52:45.632421+00:00",
+  "trigger": "update_registry"
+}

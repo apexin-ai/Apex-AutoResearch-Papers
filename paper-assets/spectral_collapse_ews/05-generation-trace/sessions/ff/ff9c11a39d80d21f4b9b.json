@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ff9c11a39d80d21f4b9b",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "analyze exp 010",
+  "task_key": "worker_analyze_exp_010_20260520T081317",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_exp_010_20260520T081317_result.json",
+    "occurrence": 1,
+    "bytes": 560,
+    "sha256": "a812df06d2b6ed7ff7c36d4f2b54a011b7653a2320a4496c44a5a6c8f1dd9f18"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n1. **exp_010 Gen 9-10 数据** — Registry 已有完整 Gen 0-10 数据（此前已更新），status=DONE, conclusion=success\n2. **compare_seeds.py** — 已运行，输出保存在服务器 `results/comparison/seed_comparison.json`，artifact 已注册\n3. **关键结论**：\n   - Phase boundaries 两个 seed 完全一致（peak Gen 2, onset Gen 3）\n   - Cross-seed SLV 差异全程 <1.5%\n   - Gen 10: SLV=2194.86±22.50, PPL=73.64±4.44\n   - 三阶段 collapse pattern 跨 seed 可复现，C1 claim 成立"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-exp-010.md"
+}

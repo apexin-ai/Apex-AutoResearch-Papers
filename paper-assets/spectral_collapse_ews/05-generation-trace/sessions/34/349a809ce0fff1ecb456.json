@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "349a809ce0fff1ecb456",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "emergency kill exp006 fix paths",
+  "task_key": "worker_emergency_kill-exp006-fix-paths_20260517T174938",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_emergency_kill-exp006-fix-paths_20260517T174938_result.json",
+    "occurrence": 1,
+    "bytes": 894,
+    "sha256": "825c4984f79e9a0a6a1fd8195365387625eb5c5dc33a5be0454447549ff9fee2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "路径确认正确。\n\n---\n\n## 汇报\n\n| # | 项目 | 结果 |\n|---|------|------|\n| 1 | **exp_006 kill** | PID 133199 (shell) + 133204 (python) 均已 kill，cuda:0 已释放 |\n| 2 | **备份** | results JSON → `phase1_adaptive_k20_seed42_results.json.bak`；checkpoints → `adaptive_k20_seed42_backup/` |\n| 3 | **代码修改** | `run_phase1.py` 三处路径 (`ckpt_dir`, `results_filename`, `summary_path`) 改为使用 `run_tag`。adaptive 条件下格式 `{condition}_k{k}_seed{seed}`，其他条件保持原 `{condition}_seed{seed}` |\n| 4 | **exp_005 完好性** | PID 116947 存活（运行 277min），Results JSON 含 Gen 0-3，Checkpoints gen_0~gen_3 完整，正在处理 Gen 4 |\n| 5 | **exp_006 重启** | 新 PID **134913**，checkpoint 路径 `adaptive_k10_seed42`，results 路径 `phase1_adaptive_k10_seed42_results.json`，已开始 Gen 0 评估 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/emergency-kill-exp006-fix-paths.md"
+}

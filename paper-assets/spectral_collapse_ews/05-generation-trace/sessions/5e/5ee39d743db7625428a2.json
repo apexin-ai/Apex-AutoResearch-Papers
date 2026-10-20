@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5ee39d743db7625428a2",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "eval hellaswag gen6 7",
+  "task_key": "worker_eval_hellaswag_gen6_7_20260517T111918",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_hellaswag_gen6_7_20260517T111918_result.json",
+    "occurrence": 1,
+    "bytes": 449,
+    "sha256": "0a30d1f256741f934ee2553c7d45dcdb5164760b079222d6c0bf9d9fd08500f4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已存在（由之前的 `auto_eval_hellaswag.sh` 完成），重复进程已杀掉。\n\n**HellaSwag 评估结果：**\n\n| Generation | acc_norm | acc | \n|---|---|---|\n| Gen 6 | **0.3311** ± 0.0047 | 0.3013 ± 0.0046 |\n| Gen 7 | **0.3187** ± 0.0047 | 0.2955 ± 0.0046 |\n\nGen 7 的 acc_norm 比 Gen 6 下降了约 1.2 个百分点（0.3311 → 0.3187），与 spectral collapse 导致模型质量退化的预期一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-hellaswag-gen6-7.md"
+}

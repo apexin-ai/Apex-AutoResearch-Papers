@@ -1,0 +1,10 @@
+
+We presented a systematic spectral characterization of model collapse across 10 recursive generations of Pythia-410M.
+The embedding Gram matrix exhibits a reproducible three-phase trajectory: spectral decompression (Gen~0--2), where effective rank and SLV rise even as downstream performance declines; collapse onset (Gen~2--4), where spectral indicators reverse; and accelerating collapse (Gen~4--10), where the contraction rate reaches 2.43$\times$ that of Phase~II.
+Pilot experiments on Pythia-1B confirm the same phase structure.
+Among the indicators we tracked, SLV is particularly well-suited for automated collapse monitoring: it requires only a forward pass on held-out data, declines monotonically after its peak, and captures distributed volume changes before they manifest as dimensionality reduction.
+Our proof-of-concept proportional controller demonstrates that SLV can guide real-synthetic mixing ratios in closed loop.
+
+These results also expose a fundamental tension.
+Successful intervention suppresses the very spectral signal the controller depends on, a signal attenuation paradox that limits reactive control strategies.
+Future work should explore cumulative indicators that do not rely on per-generation deltas, validate the three-phase pattern at larger scales and over longer generation horizons, and develop controller architectures that remain effective as their own interventions dampen the collapse signal.

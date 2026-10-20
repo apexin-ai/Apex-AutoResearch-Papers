@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1f00f190a96b0a5ab8b9",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "check full status 20260517",
+  "task_key": "worker_check_full_status_20260517_20260517T115450",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_full_status_20260517_20260517T115450_result.json",
+    "occurrence": 1,
+    "bytes": 2852,
+    "sha256": "5555cac2c7b42c1eabdf2c5fefb8e04aa1f93608496facb7e70394ebfaa8d75c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Status Report\n\n### GPU\n| GPU | Process | VRAM | Util | Temp |\n|-----|---------|------|------|------|\n| 0 | exp_001 (PID 59365) | 65.9/97.9 GB | 96% | 78°C |\n| 1 | exp_003 (PID 88161) | 23.7/97.9 GB | 97% | 81°C |\n\nBoth GPUs fully loaded, running normally.\n\n---\n\n### exp_001: **RUNNING** — Gen 8/9 (training, Step ~1600)\n\nResults JSON has Gen 0-7 complete. Gen 8 fine-tuning in progress. Still needs: Gen 8 eval + Gen 9 train+eval.\n\n**Phase 0 Data Table (Gen 0-7):**\n\n| Gen | eff_rank | log_det | ppl | distinct_4 | train_loss |\n|-----|----------|---------|-----|------------|------------|\n| 0 | 417.55 | 2366.68 | 9.55 | 0.741 | — |\n| 1 | 491.77 | 2464.76 | 11.38 | 0.626 | 1.623 |\n| 2 | 496.44 | 2469.93 | 13.58 | 0.515 | 1.268 |\n| 3 | 493.31 | 2440.57 | 16.25 | 0.490 | 1.134 |\n| 4 | 485.67 | 2405.05 | 19.80 | 0.468 | 1.098 |\n| 5 | 479.21 | 2370.17 | 24.59 | 0.463 | 1.047 |\n| 6 | 473.00 | 2335.17 | 30.91 | 0.466 | 1.025 |\n| 7 | 464.20 | 2304.19 | 38.89 | 0.447 | 1.015 |\n\nClear model collapse trajectory: log_det peaked at Gen 2 (2469.93) then monotonically decreasing. PPL 4x degradation (9.55 → 38.89). distinct_4 dropped from 0.741 → 0.447. Train loss converging toward 1.0 (memorization signal).\n\n---\n\n### exp_003: **RUNNING** — Gen 2/10 (training, Step ~3400), controller **TRIGGERED**\n\nResults JSON has Gen 0-1 complete. Gen 2 fine-tuning in progress with mix_ratio = 0.5625.\n\n**Phase 1 Adaptive Data (Gen 0-1):**\n\n| Gen | eff_rank | log_det | ppl | distinct_4 | train_loss | mix_ratio |\n|-----|----------|---------|-----|------------|------------|-----------|\n| 0 | 417.55 | 2366.68 | 9.55 | 0.741 | — | — |\n| 1 | 479.49 | 2356.68 | 10.01 | 0.711 | 1.983 | 0.5 |\n\n**Controller analysis:**\n- Δ(0→1) = (2366.68 - 2356.68) / 2366.68 = **0.00423**\n- τ = 0.005, so 0.003 ≤ Δ < 0.005 — near threshold\n- Gen 1 mix_ratio = 0.5 (at boundary); Gen 2 already at 0.5625 → controller is actively increasing real data proportion\n- No controller_log.json found at the expected path\n\n**exp_003 vs exp_001 at Gen 1:**\n| Metric | exp_001 (pure synth) | exp_003 (adaptive) |\n|--------|---------------------|--------------------|\n| log_det | 2464.76 (+4.1%) | 2356.68 (-0.4%) |\n| ppl | 11.38 | 10.01 |\n| distinct_4 | 0.626 | 0.711 |\n\nThe adaptive controller with real data mixing is dramatically better at preserving quality: log_det barely dropped (vs +4.1% spike in pure synthetic), diversity preserved at 0.711 vs 0.626.\n\n---\n\n**Summary:**\n- **exp_001**: ~2 generations remaining (Gen 8 training + Gen 9). Estimated completion in a few hours.\n- **exp_003**: 8 generations remaining (Gen 2 training + Gen 3-9). Controller is active, increasing real data ratio. Early results are promising.\n- No action taken per instructions — exp_004 not started."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-full-status-20260517.md"
+}

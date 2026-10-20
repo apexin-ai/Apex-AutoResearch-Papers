@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "86576cd029521a380519",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "fix exp003 hf offline",
+  "task_key": "worker_fix_exp003_hf_offline_20260517T040652",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_exp003_hf_offline_20260517T040652_result.json",
+    "occurrence": 1,
+    "bytes": 552,
+    "sha256": "5199707420200f1e6a02100bf42152ae4258f93b5f14bbda7175874d4bc45dd9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n**结果：**\n- **缓存路径**: `/root/.cache/huggingface/hub/models--EleutherAI--pythia-410m-deduped/snapshots/c4fc8d586d62df497f1f9b69d66d3ca419992d3e/` — 包含 `model.safetensors`、`tokenizer.json` 等，完整可用\n- **PID 77663**: 已 kill（force_killed）\n- **GPU 1**: 已释放（3 MiB）\n\n**结论**: 缓存完整，重新提交时加 `HF_HUB_OFFLINE=1` 环境变量即可从本地缓存加载，无需网络。请用 `submit_training_job` 重新提交，启动命令中增加该环境变量。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-exp003-hf-offline.md"
+}

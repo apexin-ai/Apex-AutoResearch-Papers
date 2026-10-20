@@ -1,0 +1,109 @@
+{
+  "exp_id": "mvp_phase3_repair",
+  "project": "trace_distill_repair",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T09:25:23.220Z",
+    "updated_at": "2026-05-15T12:15:31.711Z",
+    "hypothesis": "Structural-filtered trace 在 repair quality 上优于 line-filtered、full_trace（naive 16K truncation）和 no_trace，尤其在 structural keep>0 的 15 个实例子集上",
+    "parent": "mvp_line_scoring_v3",
+    "server": "rtx6000-diagprobe",
+    "gpu": "cuda:0",
+    "spec": {
+      "command": "bash -c \"source /root/trace_distill_repair/.env && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/trace_distill_repair && python run_phase3_repair.py --repair-model deepseek/deepseek-v4-flash\"",
+      "server": "rtx6000-diagprobe",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "116942",
+      "log_path": "~/runs/trace_distill_repair/mvp_phase3_repair.log",
+      "submitted_at": "2026-05-15T10:23:54.364Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "checkpoint_path": "/root/trace_distill_repair/pipeline_output/phase3_results/",
+      "wall_clock_seconds": 6697.3,
+      "gpu_hours": 1.86
+    },
+    "conclusion": "negative",
+    "pid": "116942",
+    "log_path": "~/runs/trace_distill_repair/mvp_phase3_repair.log",
+    "reproduce": {
+      "command": "bash -c \"source /root/trace_distill_repair/.env && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/trace_distill_repair && python run_phase3_repair.py --repair-model deepseek/deepseek-v4-flash\"",
+      "finished_at": "2026-05-15T11:27:02.987Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T11:27:03.839334+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "instances": 33,
+      "conditions": 4,
+      "total_api_calls": 132,
+      "judge_mean": {
+        "no_trace": 1.06,
+        "full_trace": 0.7,
+        "structural_filtered": 0.76,
+        "line_filtered": 0.88
+      },
+      "judge_gte4_pct": {
+        "no_trace": 6.1,
+        "full_trace": 3,
+        "structural_filtered": 3,
+        "line_filtered": 6.1
+      },
+      "h2h_structural_vs_line": {
+        "win": 5,
+        "tie": 23,
+        "loss": 5,
+        "win_rate": 0.5
+      },
+      "exact_match": 0,
+      "mean_line_overlap": {
+        "no_trace": 0.202,
+        "full_trace": 0.173,
+        "structural_filtered": 0.202,
+        "line_filtered": 0.208
+      },
+      "mean_input_tokens": {
+        "no_trace": 3372,
+        "full_trace": 16264,
+        "structural_filtered": 3632,
+        "line_filtered": 4574
+      },
+      "token_savings_vs_full": {
+        "structural": "77.7%",
+        "line": "71.9%"
+      },
+      "subset_a_h2h": {
+        "win": 4,
+        "tie": 8,
+        "loss": 3
+      },
+      "subset_b_h2h": {
+        "win": 1,
+        "tie": 15,
+        "loss": 2
+      },
+      "test_execution": "0/4 all conditions (confounded: output truncation + wrong target file)",
+      "test_oracle_baseline": "4/4 ground_truth pass",
+      "test_confounds": {
+        "output_truncation": "12/16 entries, max_tokens=4096 too small for 27K-221K files",
+        "wrong_target_file": "fastapi_1 repaired applications.py but test checks encoders.py",
+        "clean_signal": "httpie_2 only — all 4 conditions fail equally (LLM didnt find bug)"
+      }
+    },
+    "failure_reason": "INVALIDATED (D021/D022): 三重 confound 使结果无效——get_buggy_code 失败 + prompt 退化 + 输出截断。非假设被否定，而是数据/pipeline 问题。",
+    "completed_at": "2026-05-15T12:15:31.711Z"
+  },
+  "timestamp": "2026-05-15T12:15:31.763440+00:00",
+  "trigger": "update_registry"
+}

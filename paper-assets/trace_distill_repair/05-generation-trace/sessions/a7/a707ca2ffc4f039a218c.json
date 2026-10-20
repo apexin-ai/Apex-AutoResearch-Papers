@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a707ca2ffc4f039a218c",
+  "project": "trace_distill_repair",
+  "kind": "result",
+  "title": "analysis mvp phase3 repair v2",
+  "task_key": "worker_analysis_mvp_phase3_repair_v2_20260515T151951",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_mvp_phase3_repair_v2_20260515T151951_result.json",
+    "occurrence": 1,
+    "bytes": 1546,
+    "sha256": "12af0f3a3cee6b604ac05157e05c62113a3b8c77b572897a2f940bb3a86342be"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated. Here's the summary:\n\n---\n\n## mvp_phase3_repair_v2 结果：NEGATIVE / MVP FAIL\n\n**完成度**: 9/14（进程在 scrapy_7 的 API 调用处静默终止，非正常退出）\n\n**核心指标**:\n\n| Condition | test_pass | judge_mean | diff_apply_rate |\n|-----------|-----------|------------|-----------------|\n| no_trace | **0/9 (0%)** | 0.333 | 33.3% |\n| full_trace | 1/9 (11%) | 0.444 | 44.4% |\n| structural_filtered | **0/9 (0%)** | 0.444 | 44.4% |\n| line_filtered | 0/9 (0%) | 0.556 | 55.6% |\n\n**Head-to-head (structural vs no_trace)**:\n- Judge: W3/T4/L2（无显著差异）\n- test_pass: W0/T9/L0（全部为 0，完全无区分度）\n\n**Kill Criteria C001**: **FAIL**\n1. no_trace judge ≥ 3.0 → 0.333 ❌\n2. structural > no_trace (p<0.15) → 无显著性 ❌\n3. ≥1 condition test pass > 0% → full_trace 11.1% ✓（仅此一条勉强通过）\n\n**根本问题**: deepseek-v4-pro 在 BugsInPy 上的 repair 能力极差（44% diff 都无法 apply，judge mean < 0.6），trace 信息是否存在无法改变这个事实。Oracle baseline 也只有 1/4 通过——测试基础设施本身对多数实例不可靠。\n\n**v2 vs v1**: 修复了三重 confound（buggy_code 错误 / prompt 退化 / 输出截断），样本从 3 扩到 9，但结果依然 negative。v1 的 judge 分数更高（1.06 vs 0.33）可能本身就是 confound 的产物。\n\n分析报告已写入 `artifacts/mvp_phase3_repair_v2_analysis.md`，registry 已更新（status=DONE, conclusion=negative）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-mvp-phase3-repair-v2.md"
+}

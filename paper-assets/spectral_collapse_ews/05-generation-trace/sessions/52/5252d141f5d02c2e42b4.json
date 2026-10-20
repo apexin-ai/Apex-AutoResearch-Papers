@@ -1,0 +1,1784 @@
+{
+  "schema_version": "1.0",
+  "id": "5252d141f5d02c2e42b4",
+  "project": "spectral_collapse_ews",
+  "kind": "conversation",
+  "title": "research reference verification",
+  "task_key": "worker_research_reference_verification_20260523T042337",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_research_reference_verification_20260523T042337.jsonl",
+    "occurrence": 1,
+    "bytes": 99182,
+    "sha256": "6e6571ee88875a2ec7a2d3fad5af8e480db5ddc4254f1b606840d1e2a6a0524f"
+  },
+  "statistics": {
+    "messages": 91,
+    "user_turns": 0,
+    "tool_calls": 45,
+    "roles": {
+      "tool_call": 45,
+      "tool_result": 45,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-23T04:26:29.493002+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Agent"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "Agent",
+            "tool_args": {
+              "description": "Search for Seddik et al. 2024",
+              "prompt": "Use WebSearch to find the paper \"Seddik et al. 2024\" related to model collapse or synthetic data training. The likely title is \"How Bad is Training on Synthetic Data? A Statistical Analysis\" or similar.\n\nSearch queries to try:\n1. \"Seddik 2024 training synthetic data statistical analysis\"\n2. \"Seddik model collapse synthetic data 2024\"\n\nFor the paper you find, report:\n- Exact title\n- All authors\n- Venue/journal and year\n- arXiv ID if available\n- A BibTeX entry\n- Brief description of what the paper is about and whether it's relevant to spectral collapse / model collapse in recursive LLM training",
+              "subagent_type": "general-purpose"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-23T04:26:29.493335+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:WebSearch",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-23T04:26:29.493501+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-23T04:26:29.493676+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Agent"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "Agent",
+            "tool_args": {
+              "description": "Search for Self-Verification paper",
+              "prompt": "Use WebSearch to find a paper about \"LLM self-verification\" — where language models verify their own outputs. It might be by Weng et al. or similar authors.\n\nSearch queries to try:\n1. \"LLM self-verification outputs paper\"\n2. \"Weng self-verification language model\"\n3. \"self-verification large language model 2023 2024\"\n\nFor the paper you find, report:\n- Exact title\n- All authors\n- Venue/journal and year\n- arXiv ID if available\n- A BibTeX entry\n- Brief description of what the paper is about and whether it's relevant to spectral collapse / model collapse in recursive LLM training / early warning signals",
+              "subagent_type": "general-purpose"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-23T04:26:29.493864+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Seddik 2024 training synthetic data statistical analysis"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-23T04:26:29.493995+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Seddik model collapse synthetic data 2024"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-23T04:26:29.494116+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Agent"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "Agent",
+            "tool_args": {
+              "description": "Search for Escaping Collapse paper",
+              "prompt": "Use WebSearch to find a paper about \"escaping model collapse\" in recursive or iterative training with synthetic data or LLM-generated data.\n\nSearch queries to try:\n1. \"escaping model collapse recursive training\"\n2. \"escape collapse synthetic data language model training\"\n3. \"avoiding model collapse iterative training 2024\"\n\nFor the paper you find, report:\n- Exact title\n- All authors\n- Venue/journal and year\n- arXiv ID if available\n- A BibTeX entry\n- Brief description of what the paper is about and whether it's relevant to spectral collapse / model collapse in recursive LLM training / early warning signals",
+              "subagent_type": "general-purpose"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-23T04:26:29.494259+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:WebSearch",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-23T04:26:29.494377+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-23T04:26:29.494505+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "LLM self-verification outputs paper"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-23T04:26:29.494639+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Agent"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "Agent",
+            "tool_args": {
+              "description": "Search for Golden Ratio mixing paper",
+              "prompt": "Use WebSearch to find a paper about \"golden ratio\" in the context of data mixing ratios for LLM training, or optimal mixing of real and synthetic data.\n\nSearch queries to try:\n1. \"golden ratio data mixing LLM training\"\n2. \"optimal mixing ratio synthetic real data language model\"\n3. \"golden ratio model collapse data mixing 2024\"\n\nFor the paper you find, report:\n- Exact title\n- All authors\n- Venue/journal and year\n- arXiv ID if available\n- A BibTeX entry\n- Brief description of what the paper is about and whether it's relevant to spectral collapse / model collapse in recursive LLM training / early warning signals",
+              "subagent_type": "general-purpose"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-23T04:26:29.494797+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:WebSearch",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-23T04:26:29.494924+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-23T04:26:29.495042+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Weng self-verification language model"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-23T04:26:29.495160+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "self-verification large language model 2023 2024 arXiv"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-23T04:26:29.495287+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Seddik model collapse synthetic data 2024\"\n\nLinks: [{\"title\":\"MAXIMIZING THE POTENTIAL OF SYNTHETIC DATA\",\"url\":\"https://proceedings.iclr.cc/paper_files/paper/2025/file/7416573f05b50beac6d0aef3abc805c0-Paper-Conference.pdf\"},{\"title\":\"Strong Model Collapse\",\"url\":\"https://arxiv.org/html/2410.04840v1\"},{\"title\":\"Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data\",\"url\":\"https://arxiv.org/html/2404.01413v2\"},{\"title\":\"Maximizing the Potential of Synthetic Data: Insights from Random Matrix Theory\",\"url\":\"https://arxiv.org/html/2410.08942v1\"},{\"title\":\"Published as a conference paper at ICLR 2025 STRONG MODEL COLLAPSE\",\"url\":\"https://proceedings.iclr.cc/paper_files/paper/2025/file/284afdc2309f9667d2d4fb9290235b0c-Paper-Conference.pdf\"},{\"title\":\"[2404.05090] How Bad is Training on Synthetic Data? A Statistical Analysis of Language Model Collapse\",\"url\":\"https://arxiv.org/abs/2404.05090\"},{\"title\":\"Strong Model Collapse Elvis Dohmatob1 e.dohmatob@meta.com Yunzhen Feng1,2,∗\",\"url\":\"https://arxiv.org/pdf/2410.04840\"},{\"title\":\"Position: Model Collapse Does Not Mean What You Think Anonymous Author(s)\",\"url\":\"https://openreview.net/pdf?id=ygfzWIGDN8\"},{\"title\":\"A Note on Shumailov et al. (2024): `AI Models Collapse When Trained on   Recursively Generated Data'\",\"url\":\"https://arxiv.org/pdf/2410.12954\"}]\n\nBased on the search results, here's what I found about Seddik's work on model collapse and synthetic data from 2024:\n\n## Overview\n\nSeddik et al. (2024) investigated model collapse in recursive training settings, where new models are trained on data generated by previous models.\n\n## Key Findings\n\nRecursive training on purely synthetic data inevitably leads to performance degradation. However, mixing real and synthetic data can attenuate model collapse, though the proportion of real data must remain high to maintain model performance.\n\nSeddik et al. (2024) analyze the mixing of discrete original \n…[truncated 770 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-23T04:26:29.495435+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Seddik 2024 training synthetic data statistical analysis\"\n\nLinks: [{\"title\":\"Maximizing the Potential of Synthetic Data: Insights from Random Matrix Theory\",\"url\":\"https://arxiv.org/html/2410.08942v1\"},{\"title\":\"[PDF] How Bad is Training on Synthetic Data? A Statistical Analysis of Language Model Collapse | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/How-Bad-is-Training-on-Synthetic-Data-A-Statistical-Seddik-Chen/1f71820adfe5eaa344494b1158cbe46ca2d00fc3\"},{\"title\":\"MAXIMIZING THE POTENTIAL OF SYNTHETIC DATA\",\"url\":\"https://proceedings.iclr.cc/paper_files/paper/2025/file/7416573f05b50beac6d0aef3abc805c0-Paper-Conference.pdf\"},{\"title\":\"[2404.05090] How Bad is Training on Synthetic Data? A Statistical Analysis of Language Model Collapse\",\"url\":\"https://arxiv.org/abs/2404.05090\"},{\"title\":\"arXiv:2410.04840v2 [cs.LG] 8 Oct 2024\",\"url\":\"https://arxiv.org/pdf/2410.04840\"},{\"title\":\"[2410.08942] Maximizing the Potential of Synthetic Data: Insights from Random Matrix Theory\",\"url\":\"https://arxiv.org/abs/2410.08942\"},{\"title\":\"Maximizing the Potential of Synthetic Data: Insights from Random Matrix   Theory\",\"url\":\"https://arxiv.org/pdf/2410.08942\"},{\"title\":\"Published as a conference paper at ICLR 2025 STRONG MODEL COLLAPSE\",\"url\":\"https://proceedings.iclr.cc/paper_files/paper/2025/file/284afdc2309f9667d2d4fb9290235b0c-Paper-Conference.pdf\"},{\"title\":\"Maximizing the Potential of Synthetic Data: Insights from Random Matrix Theory | OpenReview\",\"url\":\"https://openreview.net/forum?id=I9Dsq0cVo9\"},{\"title\":\"How Bad is Training on Synthetic Data? A Statistical Analysis of   Language Model Collapse\",\"url\":\"https://arxiv.org/pdf/2404.05090\"}]\n\nBased on the search results, I found relevant information about Seddik et al.'s 2024 work on training with synthetic data:\n\n## Key Research\n\nSeddik et al. (2024) published research titled \"How bad is training on synthetic data? a statistical analysis of language model collapse.\" The authors in\n…[truncated 1109 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-23T04:26:29.495580+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "escaping model collapse recursive training synthetic data language model"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-23T04:26:29.495725+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:WebSearch",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-23T04:26:29.495836+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-23T04:26:29.495953+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "\"escaping model collapse\" iterative training LLM 2024 arXiv"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-23T04:26:29.496070+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Weng self-verification language model\"\n\nLinks: [{\"title\":\"GitHub - WENGSYX/Self-Verification: We have released the code and demo program required for LLM with self-verification\",\"url\":\"https://github.com/WENGSYX/Self-Verification\"},{\"title\":\"Large Language Models are reasoners with Self-Verification | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Large-Language-Models-are-reasoners-with-Weng-Zhu/f02e8f1c9b5ab12ddfb1977570f9f5445a99a973\"},{\"title\":\"Large Language Models are Better Reasoners with Self-Verification - ACL Anthology\",\"url\":\"https://aclanthology.org/2023.findings-emnlp.167/\"},{\"title\":\"[2212.09561v1] Large Language Models are reasoners with Self-Verification\",\"url\":\"https://arxiv.org/abs/2212.09561v1\"},{\"title\":\"Large Language Models are Better Reasoners with Self- ...\",\"url\":\"https://aclanthology.org/2023.findings-emnlp.167.pdf\"},{\"title\":\"Large Language Models are Better Reasoners with Self-Verification\",\"url\":\"https://arxiv.org/pdf/2212.09561\"},{\"title\":\"Large Language Models are reasoners with Self-Verification | Request PDF\",\"url\":\"https://www.researchgate.net/publication/366424001_Large_Language_Models_are_reasoners_with_Self-Verification\"},{\"title\":\"Yixuan Weng - Homepage\",\"url\":\"https://wengsyx.github.io/\"},{\"title\":\"Large Language Models are Better Reasoners with Self-Verification | OpenReview\",\"url\":\"https://openreview.net/forum?id=s4xIeYimGQ\"},{\"title\":\"[2212.09561] Large Language Models are Better Reasoners with Self-Verification\",\"url\":\"https://arxiv.org/abs/2212.09561\"}]\n\nBased on the search results, here's what I found about Weng's self-verification language model:\n\nThe self-verification method proposes that LLMs have similar self-verification abilities to humans. It takes the conclusion obtained by Chain of Thought (CoT) as one of the conditions for solving the original problem, and by performing a backward verification of the answers that the LLM deduced for itself, it can obtain interpretab\n…[truncated 799 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-23T04:26:29.496211+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"LLM self-verification outputs paper\"\n\nLinks: [{\"title\":\"Incentivizing LLMs to Self-Verify Their Answers\",\"url\":\"https://arxiv.org/html/2506.01369v1\"},{\"title\":\"GitHub - microsoft/clinical-self-verification: Self-verification for LLMs.\",\"url\":\"https://github.com/microsoft/clinical-self-verification\"},{\"title\":\"[2306.00024] Self-Verification Improves Few-Shot Clinical Information Extraction\",\"url\":\"https://arxiv.org/abs/2306.00024\"},{\"title\":\"Self-Verification Improves Few-Shot Clinical Information Extraction\",\"url\":\"https://arxiv.org/pdf/2306.00024\"},{\"title\":\"Experiments with self-verification using LLMS for clinical tasks. | clinical-self-verification\",\"url\":\"https://microsoft.github.io/clinical-self-verification/\"},{\"title\":\"Published as a conference paper at ICLR 2024 SELFCHECK:\",\"url\":\"https://ora.ox.ac.uk/objects/uuid:de3a892a-b00b-475e-9583-f86718874ac2/files/sqb98mh616\"},{\"title\":\"Self-Proving Models: Building LLMs That Can Verify Their Own Correctness | by Kashif Imteyaz | Medium\",\"url\":\"https://medium.com/@imteyazkashif8/self-proving-models-building-llms-that-can-verify-their-own-correctness-c5066ad76098\"},{\"title\":\"Learning to Self-Verify Makes Language Models Better Reasoners\",\"url\":\"https://arxiv.org/html/2602.07594v1\"}]\n\nBased on the search results, I found several papers related to LLM self-verification of outputs:\n\n1. **\"Incentivizing LLMs to Self-Verify Their Answers\"** (June 2025): This work presents a self-verification test-time method that can achieve better performance than compared baselines in most tasks. The approach adopts a multi-turn chat template to generate verification output by appending the problem and solution for a data sample, then adding the verification prompt in a fixed format.\n\n2. **\"Self-Verification Improves Few-Shot Clinical Information Extraction\"** (Gero et al., 2023): This paper explores a framework using self-verification that leverages the LLM to provide provenance for its own extraction an\n…[truncated 1011 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-23T04:26:29.496352+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "arxiv 2404.05090 \"How Bad is Training on Synthetic Data\" authors venue"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-23T04:26:29.496483+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"self-verification large language model 2023 2024 arXiv\"\n\nLinks: [{\"title\":\"[2311.07954] A Closer Look at the Self-Verification Abilities of Large Language Models in Logical Reasoning\",\"url\":\"https://arxiv.org/abs/2311.07954\"},{\"title\":\"Large Language Models are reasoners with Self-Verification | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Large-Language-Models-are-reasoners-with-Weng-Zhu/f02e8f1c9b5ab12ddfb1977570f9f5445a99a973\"},{\"title\":\"Variation in Verification: Understanding Verification Dynamics in Large Language Models\",\"url\":\"https://arxiv.org/html/2509.17995v1\"},{\"title\":\"Large Language Models are Better Reasoners with Self-Verification | OpenReview\",\"url\":\"https://openreview.net/forum?id=s4xIeYimGQ\"},{\"title\":\"[2212.09561] Large Language Models are Better Reasoners with Self-Verification\",\"url\":\"https://arxiv.org/abs/2212.09561\"},{\"title\":\"[2402.08115] On the Self-Verification Limitations of Large Language Models on Reasoning and Planning Tasks\",\"url\":\"https://arxiv.org/abs/2402.08115\"},{\"title\":\"GitHub - teacherpeterpan/self-correction-llm-papers: This is a collection of research papers for Self-Correcting Large Language Models with Automated Feedback. · GitHub\",\"url\":\"https://github.com/teacherpeterpan/self-correction-llm-papers\"},{\"title\":\"Large Language Models are Better Reasoners with Self-Verification\",\"url\":\"https://arxiv.org/pdf/2212.09561\"}]\n\nI found several relevant papers on self-verification in large language models from 2023-2024 on arXiv. Here are the key results:\n\n## Main Papers Found:\n\n1. **\"Large Language Models are Better Reasoners with Self-Verification\"** - This paper was first submitted in December 2022 and updated through October 2023, authored by Yixuan Weng and 8 other authors. The study proposes and demonstrates that large language models (LLMs) can self-verify their prediction results, enhancing their reasoning capability in arithmetic, commonsense, and logical reasoning tasks. The\n…[truncated 1023 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-23T04:26:29.496634+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"arxiv 2404.05090 \"How Bad is Training on Synthetic Data\" authors venue\"\n\nLinks: [{\"title\":\"[2404.05090] How Bad is Training on Synthetic Data? A Statistical Analysis of Language Model Collapse\",\"url\":\"https://arxiv.org/abs/2404.05090\"},{\"title\":\"How Bad is Training on Synthetic Data? A Statistical Analysis\",\"url\":\"https://arxiv.org/pdf/2404.05090\"},{\"title\":\"How Bad is Training on Synthetic Data? A Statistical Analysis of Language Model Collapse\",\"url\":\"https://arxiv.org/html/2404.05090v1\"},{\"title\":\"[PDF] How Bad is Training on Synthetic Data? A Statistical Analysis of Language Model Collapse | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/How-Bad-is-Training-on-Synthetic-Data-A-Statistical-Seddik-Chen/1f71820adfe5eaa344494b1158cbe46ca2d00fc3\"},{\"title\":\"How Bad is Training on Synthetic Data? A Statistical Analysis of Language Model Collapse | alphaXiv\",\"url\":\"https://www.alphaxiv.org/resources/2404.05090v1\"},{\"title\":\"How Bad is Training on Synthetic Data? A Statistical Analysis of Language Model Collapse - ADS\",\"url\":\"https://ui.adsabs.harvard.edu/abs/2024arXiv240405090E/abstract\"}]\n\nBased on the search results, here is the information about arxiv 2404.05090:\n\n**Title:** How Bad is Training on Synthetic Data? A Statistical Analysis of Language Model Collapse\n\n**Authors:** Mohamed El Amine Seddik, Suei-Wen Chen, Soufiane Hayou, Pierre Youssef, Merouane Debbah\n\n**Venue:** ArXiv\n\n**Submission Date:** Submitted on 7 Apr 2024\n\nThe paper addresses the phenomenon of model collapse, which occurs when new models are trained on synthetic data generated from previously trained models.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-23T04:26:29.496778+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "golden ratio data mixing LLM training"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-23T04:26:29.496904+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Weng Zhu Xia Li He Liu Zhao \"Large Language Models are Better Reasoners with Self-Verification\" EMNLP 2023 Findings"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-23T04:26:29.497026+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"escaping model collapse recursive training synthetic data language model\"\n\nLinks: [{\"title\":\"Escaping Model Collapse via Synthetic Data Verification:\",\"url\":\"https://arxiv.org/pdf/2510.16657\"},{\"title\":\"Escaping Collapse: The Strength of Weak Data for Large Language Model TrainingAuthors ordered alphabetically. Author contributions are listed at the end.\",\"url\":\"https://arxiv.org/html/2502.08924v2\"},{\"title\":\"Escaping Collapse: The Strength of Weak Data for Large Language Model Training∗\",\"url\":\"https://openreview.net/pdf?id=xpY3C8HxNh\"},{\"title\":\"Escaping Collapse: The Strength of Weak Data for Large Language Model Training∗\",\"url\":\"https://arxiv.org/pdf/2502.08924\"},{\"title\":\"Escaping Model Collapse via Synthetic Data Verification: Near-term Improvements and Long-term ConvergenceThis project is supported by the AI2050 program at Schmidt Sciences (Grant G-24-66104) and Army Research Office Award W911NF-23-1-0030. We also thank Cong Ma from UChicago, Hongning Wang and Bo Li from Tsinghua, Pinyan Lu and Gavin Tang from Shanghai University of Finance and Economics for helpful discussions and suggestions.\",\"url\":\"https://arxiv.org/html/2510.16657v1\"}]\n\nBased on the search results, here's what recent research has found about escaping model collapse in recursive training with synthetic data for language models:\n\n## The Problem: Model Collapse\n\nRecursively training models on synthetic data alone can lead to a degradation of quality, a phenomenon often coined model collapse.\n\n## Solutions for Avoiding Collapse\n\nSeveral approaches have been identified to mitigate or escape model collapse:\n\n1. **Combining Synthetic and Real Data**: Combining synthetic and labeled training data can mitigate this performance degradation. This combination can mitigate performance degradation and help achieve continuous improvement.\n\n2. **Data Curation and Verification**: A necessary condition for avoiding model collapse is that synthetic data is curated in some wa\n…[truncated 726 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-23T04:26:29.497167+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "golden ratio model collapse data mixing synthetic real data 2024"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-23T04:26:29.497291+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "\"How Bad is Training on Synthetic Data\" Seddik ICML NeurIPS ICLR 2024 2025 accepted conference"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-23T04:26:29.497415+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"\"escaping model collapse\" iterative training LLM 2024 arXiv\"\n\nLinks: [{\"title\":\"Escaping Collapse: The Strength of Weak Data for Large Language Model Training∗\",\"url\":\"https://openreview.net/pdf?id=xpY3C8HxNh\"},{\"title\":\"Escaping Model Collapse via Synthetic Data Verification:\",\"url\":\"https://arxiv.org/pdf/2510.16657\"},{\"title\":\"Escaping Collapse: The Strength of Weak Data for Large Language Model TrainingAuthors ordered alphabetically. Author contributions are listed at the end.\",\"url\":\"https://arxiv.org/html/2502.08924v2\"},{\"title\":\"Preprint. MODEL COLLAPSE IS NOT A BUG BUT A FEATURE IN\",\"url\":\"https://arxiv.org/pdf/2507.04219\"},{\"title\":\"Escaping Collapse: The Strength of Weak Data for Large Language Model Training∗\",\"url\":\"https://arxiv.org/pdf/2502.08924\"},{\"title\":\"[2502.08924] Escaping Collapse: The Strength of Weak Data for Large Language Model Training\",\"url\":\"https://arxiv.org/abs/2502.08924\"},{\"title\":\"Escaping Model Collapse via Synthetic Data Verification: Near-term Improvements and Long-term ConvergenceThis project is supported by the AI2050 program at Schmidt Sciences (Grant G-24-66104) and Army Research Office Award W911NF-23-1-0030. We also thank Cong Ma from UChicago, Hongning Wang and Bo Li from Tsinghua, Pinyan Lu and Gavin Tang from Shanghai University of Finance and Economics for helpful discussions and suggestions.\",\"url\":\"https://arxiv.org/html/2510.16657v1\"},{\"title\":\"Escaping Mode Collapse in LLM Generation via Geometric Regulation\",\"url\":\"https://arxiv.org/html/2605.00435\"}]\n\nI found several relevant results for your search on \"escaping model collapse\" and iterative training for LLMs in 2024 and beyond. Here are the key papers:\n\n## Primary Results\n\n**1. \"Escaping Collapse: The Strength of Weak Data for Large Language Model Training\"** (arXiv:2502.08924)\nThis paper analyzes a procedure for improving an LLM where the model iteratively generates synthetic responses, obtains responses from an exogenous source, an\n…[truncated 1113 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-23T04:26:29.497565+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "arxiv 2502.08924 \"Escaping Collapse\" authors venue ICML NeurIPS 2025"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-23T04:26:29.497717+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Weng Zhu Xia Li He Liu Zhao \"Large Language Models are Better Reasoners with Self-Verification\" EMNLP 2023 Findings\"\n\nLinks: [{\"title\":\"Large Language Models are Better Reasoners with Self-Verification - ACL Anthology\",\"url\":\"https://aclanthology.org/2023.findings-emnlp.167/\"},{\"title\":\"Large Language Models are Better Reasoners with Self- ...\",\"url\":\"https://aclanthology.org/2023.findings-emnlp.167.pdf\"},{\"title\":\"[2212.09561v5] Large Language Models are Better Reasoners with Self-Verification\",\"url\":\"https://arxiv.org/abs/2212.09561v5\"},{\"title\":\"[2212.09561] Large Language Models are Better Reasoners with Self-Verification\",\"url\":\"https://arxiv.org/abs/2212.09561\"},{\"title\":\"Leveraging Large Language Models for Document-Level Complex Relation Extraction Through Self-Verification and Tool-Assisted Relational Reasoning | Springer Nature Link\",\"url\":\"https://link.springer.com/chapter/10.1007/978-981-96-9812-7_32\"},{\"title\":\"[PDF] Large Language Models are Better Reasoners with Self-Verification | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Large-Language-Models-are-Better-Reasoners-with-Weng-Zhu/7715ba5e75f5256e1061c7473afe61bb0dbb9065\"},{\"title\":\"Findings - EMNLP 2023\",\"url\":\"https://2023.emnlp.org/program/accepted_findings/\"},{\"title\":\"(PDF) Large Language Models are Better Reasoners with Self-Verification\",\"url\":\"https://www.researchgate.net/publication/376401882_Large_Language_Models_are_Better_Reasoners_with_Self-Verification\"}]\n\nI found the paper you're looking for! Here are the search results:\n\nThe paper \"Large Language Models are Better Reasoners with Self-Verification\" was authored by Yixuan Weng, Minjun Zhu, Fei Xia, Bin Li, Shizhu He, Shengping Liu, Bin Sun, Kang Liu, and Jun Zhao.\n\nThe paper was published in Findings of the Association for Computational Linguistics: EMNLP 2023, pages 2550–2575, in Singapore.\n\n**Key Details:**\n- The paper addresses how large language models with chain of thought (CoT) prom\n…[truncated 582 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-23T04:26:29.497865+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"golden ratio data mixing LLM training\"\n\nLinks: [{\"title\":\"Golden Ratio Weighting Prevents Model Collapse\",\"url\":\"https://arxiv.org/html/2502.18049\"},{\"title\":\"Data Mixing Can Induce Phase Transitions in Knowledge Acquisition\",\"url\":\"https://arxiv.org/pdf/2505.18091\"},{\"title\":\"Olmix: A Framework for Data Mixing Throughout LM Development\",\"url\":\"https://arxiv.org/pdf/2602.12237\"},{\"title\":\"MergeMix: Optimizing Mid-Training Data Mixtures via Learnable Model Merging\",\"url\":\"https://arxiv.org/html/2601.17858v1\"},{\"title\":\"Data Mixing in LLMs: Phase Transitions\",\"url\":\"https://www.emergentmind.com/papers/2505.18091\"},{\"title\":\"Golden datasets: Evaluating fine-tuned large language models\",\"url\":\"https://sigma.ai/golden-datasets/\"},{\"title\":\"Demystifying Synthetic Data in LLM Pre-training: A Systematic Study of Scaling Laws, Benefits, and Pitfalls\",\"url\":\"https://arxiv.org/pdf/2510.01631\"},{\"title\":\"Golden Ratio Weighting Prevents Model Collapse\",\"url\":\"https://arxiv.org/pdf/2502.18049\"}]\n\nBased on the search results, here's what I found about the golden ratio in data mixing for LLM training:\n\n## Golden Ratio Weighting for LLM Training\n\nThe optimal weight of real data is the reciprocal of the golden ratio when the amounts of real and synthetic data remain the same in each training iteration. This is a surprising mathematical discovery in the field of generative model training.\n\nThe optimal weighting scheme under different proportions of synthetic data asymptotically follows a unified expression, revealing a fundamental trade-off between leveraging synthetic data and generative model performance. In some cases, the optimal weight assigned to real data corresponds to the reciprocal of the golden ratio.\n\n## Broader Context on Data Mixing in LLMs\n\nThe research also explores other aspects of data mixing for LLM training:\n\n- Knowledge acquisition from knowledge-dense datasets can exhibit phase transitions with respect to the mixing ratio and model \n…[truncated 587 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-23T04:26:29.498008+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "arxiv 2510.16657 \"Escaping Model Collapse via Synthetic Data Verification\" authors"
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-23T04:26:29.498134+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"golden ratio model collapse data mixing synthetic real data 2024\"\n\nLinks: [{\"title\":\"Golden Ratio Weighting Prevents Model Collapse\",\"url\":\"https://arxiv.org/html/2502.18049v3\"},{\"title\":\"Golden Ratio Weighting Prevents Model Collapse Hengzhi He† Shirong Xu†∗\",\"url\":\"https://arxiv.org/pdf/2502.18049\"},{\"title\":\"Escaping Model Collapse via Synthetic Data Verification:\",\"url\":\"https://arxiv.org/pdf/2510.16657\"},{\"title\":\"LLM Web Dynamics: Tracing Model Collapse in a Network of LLMs\",\"url\":\"https://arxiv.org/html/2506.15690v3\"},{\"title\":\"Published as a conference paper at ICLR 2025 STRONG MODEL COLLAPSE\",\"url\":\"https://par.nsf.gov/servlets/purl/10649434\"},{\"title\":\"[2502.18049] Golden Ratio Weighting Prevents Model Collapse\",\"url\":\"https://arxiv.org/abs/2502.18049\"},{\"title\":\"Preventing Model Collapse Under Overparametrization: Optimal Mixing Ratios for Interpolation Learning and Ridge Regression\",\"url\":\"https://arxiv.org/html/2509.22341v1\"},{\"title\":\"Preventing Model Collapse Under Overparametrization: Optimal Mixing Ratios for Interpolation Learning and Ridge Regression\",\"url\":\"https://arxiv.org/pdf/2509.22341\"}]\n\nBased on the search results, I found relevant research on this topic:\n\n## Golden Ratio Weighting and Model Collapse\n\nHe et al. (2025) prove that, for both mean and covariance estimation, the estimation error is minimized when the weight on real data equals the reciprocal of the golden ratio. This is the core finding of the \"Golden Ratio Weighting Prevents Model Collapse\" research.\n\n## Context: The Model Collapse Problem\n\nA recent study by Shumailov et al. (2024) reveals that AI models may collapse when trained on recursively generated data. The recursive training framework involves generative models trained on synthetic data produced by earlier generative models, and over successive training iterations, these models gradually lose information about the real data distribution, a phenomenon known as model collapse.\n\n## Research \n…[truncated 682 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-23T04:26:29.498277+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"arxiv 2510.16657 \"Escaping Model Collapse via Synthetic Data Verification\" authors\"\n\nLinks: [{\"title\":\"[2510.16657] Escaping Model Collapse via Synthetic Data Verification: Near-term Improvements and Long-term Convergence\",\"url\":\"https://arxiv.org/abs/2510.16657\"},{\"title\":\"Machine Learning Oct 2025 - stat.ML\",\"url\":\"https://arxiv.org/list/stat.ML/2025-10?skip=150&show=50\"},{\"title\":\"Synthetic Data\",\"url\":\"https://www.aussieai.com/research/synthetic-data\"},{\"title\":\"Machine Learning Oct 2025\",\"url\":\"https://arxiv.org/list/cs.LG/2025-10?skip=4175&show=25\"},{\"title\":\"Escaping Model Collapse via Synthetic Data Verification:\",\"url\":\"https://arxiv.org/pdf/2510.16657\"},{\"title\":\"Escaping Model Collapse via Synthetic Data Verification: Near-term Improvements and Long-term Convergence | OpenReview\",\"url\":\"https://openreview.net/forum?id=yfk6c39omW\"},{\"title\":\"Beyond Model Collapse: Scaling Up with Synthesized Data Requires   Verification\",\"url\":\"https://arxiv.org/pdf/2406.07515\"},{\"title\":\"Escaping Model Collapse via Synthetic Data Verification: Near-term Improvements and Long-term ConvergenceThis project is supported by the AI2050 program at Schmidt Sciences (Grant G-24-66104) and Army Research Office Award W911NF-23-1-0030. We also thank Cong Ma from UChicago, Hongning Wang and Bo Li from Tsinghua, Pinyan Lu and Gavin Tang from Shanghai University of Finance and Economics for helpful discussions and suggestions.\",\"url\":\"https://arxiv.org/html/2510.16657v1\"},{\"title\":\"Is Model Collapse Inevitable? Breaking the Curse of Recursion by   Accumulating Real and Synthetic Data\",\"url\":\"https://arxiv.org/pdf/2404.01413\"},{\"title\":\"Strong Model Collapse\",\"url\":\"https://arxiv.org/pdf/2410.04840\"}]\n\nBased on the search results, the authors of arxiv paper 2510.16657 \"Escaping Model Collapse via Synthetic Data Verification: Near-term Improvements and Long-term Convergence\" are Bingji Yi, Qiyuan Liu, Yuwei Cheng, and Haifeng Xu.\n\n\nREMINDER: You MUST include\n…[truncated 74 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-23T04:26:29.498419+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"\"How Bad is Training on Synthetic Data\" Seddik ICML NeurIPS ICLR 2024 2025 accepted conference\"\n\nLinks: [{\"title\":\"GitHub - pengr/LLM-Synthetic-Data: A live reading list for LLM data synthesis (Updated to July, 2025). · GitHub\",\"url\":\"https://github.com/pengr/LLM-Synthetic-Data\"},{\"title\":\"[2404.05090] How Bad is Training on Synthetic Data? A Statistical Analysis of Language Model Collapse\",\"url\":\"https://arxiv.org/abs/2404.05090\"},{\"title\":\"[PDF] How Bad is Training on Synthetic Data? A Statistical Analysis of Language Model Collapse | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/How-Bad-is-Training-on-Synthetic-Data-A-Statistical-Seddik-Chen/1f71820adfe5eaa344494b1158cbe46ca2d00fc3\"},{\"title\":\"How Bad is Training on Synthetic Data? A Statistical Analysis of   Language Model Collapse\",\"url\":\"https://arxiv.org/pdf/2404.05090\"},{\"title\":\"How Bad is Training on Synthetic Data? A Statistical Analysis of Language Model Collapse\",\"url\":\"https://arxiv.org/html/2404.05090v1\"},{\"title\":\"Maximizing the Potential of Synthetic Data: Insights from Random Matrix   Theory\",\"url\":\"https://arxiv.org/pdf/2410.08942\"},{\"title\":\"How bad is training on synthetic data? A statistical analysis of language model collapse | OpenReview\",\"url\":\"https://openreview.net/forum?id=t3z6UlV09o\"},{\"title\":\"Does Training on Synthetic Data Make Models Less Robust?\",\"url\":\"https://arxiv.org/pdf/2502.07164\"}]\n\nBased on the search results, I found information about the paper \"How Bad is Training on Synthetic Data?\" by Seddik and colleagues:\n\n## Paper Details\n\nThe paper is titled \"How Bad is Training on Synthetic Data? A Statistical Analysis of Language Model Collapse\" by Mohamed El Amine Seddik and 4 other authors. The co-authors are Suei-Wen Chen, Soufiane Hayou, Pierre Youssef, and Merouane Debbah.\n\n## Key Findings\n\nThe paper addresses the phenomenon of model collapse, which refers to the deterioration in performance that occurs when new models are traine\n…[truncated 784 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-23T04:26:29.498570+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "arxiv 2212.09561 \"Weng\" all authors complete list bibtex"
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-23T04:26:29.498723+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "arxiv 2502.18049 \"Golden Ratio Weighting Prevents Model Collapse\" authors venue"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-23T04:26:29.498849+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "site:arxiv.org 2502.18049 golden ratio weighting model collapse Hengzhi He Shirong Xu"
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-23T04:26:29.498986+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "site:openreview.net \"How bad is training on synthetic data\" Seddik"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-23T04:26:29.499113+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"arxiv 2502.08924 \"Escaping Collapse\" authors venue ICML NeurIPS 2025\"\n\nLinks: [{\"title\":\"[2502.08924] Escaping Collapse: The Strength of Weak Data for Large Language Model Training\",\"url\":\"https://arxiv.org/abs/2502.08924\"},{\"title\":\"Escaping Collapse: The Strength of Weak Data for Large Language Model Training∗\",\"url\":\"https://arxiv.org/pdf/2502.08924\"},{\"title\":\"Escaping Model Collapse via Synthetic Data Verification: Near-term Improvements and Long-term ConvergenceThis project is supported by the AI2050 program at Schmidt Sciences (Grant G-24-66104) and Army Research Office Award W911NF-23-1-0030. We also thank Cong Ma from UChicago, Hongning Wang and Bo Li from Tsinghua, Pinyan Lu and Gavin Tang from Shanghai University of Finance and Economics for helpful discussions and suggestions.\",\"url\":\"https://arxiv.org/html/2510.16657v1\"},{\"title\":\"Escaping Model Collapse via Synthetic Data Verification:\",\"url\":\"https://arxiv.org/pdf/2510.16657\"},{\"title\":\"Escaping Collapse: The Strength of Weak Data for Large Language Model Training | AI Research Paper Details\",\"url\":\"https://www.aimodels.fyi/papers/arxiv/escaping-collapse-strength-weak-data-large-language\"},{\"title\":\"[2510.16657] Escaping Model Collapse via Synthetic Data Verification: Near-term Improvements and Long-term Convergence\",\"url\":\"https://arxiv.org/abs/2510.16657\"},{\"title\":\"Escaping Collapse: The Strength of Weak Data for Large Language Model TrainingAuthors ordered alphabetically. Author contributions are listed at the end.\",\"url\":\"https://arxiv.org/html/2502.08924v2\"},{\"title\":\"Role of equation of states and thermodynamic potentials in avoidance of   trapped surfaces in gravitational collapse\",\"url\":\"https://arxiv.org/pdf/1903.01126\"},{\"title\":\"Network recovery based on system crash early warning in a cascading failure model\",\"url\":\"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5945858/\"},{\"title\":\"Predicting collapse of adaptive networked systems without knowing the network\"\n…[truncated 1145 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-23T04:26:29.499262+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"arxiv 2212.09561 \"Weng\" all authors complete list bibtex\"\n\nLinks: [{\"title\":\"[2212.09561] Large Language Models are Better Reasoners with Self-Verification\",\"url\":\"https://arxiv.org/abs/2212.09561\"},{\"title\":\"[2212.09561] Large Language Models are Better ... - ar5iv - arXiv\",\"url\":\"https://ar5iv.labs.arxiv.org/html/2212.09561\"},{\"title\":\"Large Language Models are Better Reasoners with Self-Verification\",\"url\":\"https://arxiv.org/pdf/2212.09561\"},{\"title\":\"Method and device for chinese concept embedding generation based on wikipedia link structure\",\"url\":\"https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/11244020\"},{\"title\":\"Evaluating Regional Diversity in Scientific Communication: A Comparative Analysis of COVID-19 Preprints and Peer-Reviewed Publications\",\"url\":\"https://www.medrxiv.org/content/10.1101/2025.01.04.25319994.full.pdf\"},{\"title\":\"RefDeduR: A text-normalization and decision-tree aided R package enabling accurate and high-throughput reference deduplication for large datasets\",\"url\":\"https://www.biorxiv.org/content/10.1101/2022.09.29.510210.full.pdf\"},{\"title\":\"Dual-Model LLM Ensemble via Web Chat Interfaces Reaches Near-Perfect Sensitivity for Systematic-Review Screening: A Multi-Domain Validation with Equivalence to API Access\",\"url\":\"https://www.medrxiv.org/content/10.1101/2025.11.03.25339455.full.pdf\"}]\n\nBased on the search results, the complete author list for arXiv paper 2212.09561 is: Yixuan Weng, Minjun Zhu, Fei Xia, Bin Li, Shizhu He, Shengping Liu, Bin Sun, Kang Liu, and Jun Zhao.\n\nThe paper is titled \"Large Language Models are Better Reasoners with Self-Verification.\"\n\nFor a BibTeX citation, here's the format based on the information available:\n\n```bibtex\n@article{Weng2212.09561,\n  title={Large Language Models are Better Reasoners with Self-Verification},\n  author={Weng, Yixuan and Zhu, Minjun and Xia, Fei and Li, Bin and He, Shizhu and Liu, Shengping and Sun, Bin and Liu, Kang and Zhao, Jun},\n  jour\n…[truncated 346 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-23T04:26:29.499404+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"arxiv 2502.18049 \"Golden Ratio Weighting Prevents Model Collapse\" authors venue\"\n\nLinks: [{\"title\":\"[2502.18049] Golden Ratio Weighting Prevents Model Collapse\",\"url\":\"https://arxiv.org/abs/2502.18049\"},{\"title\":\"Golden Ratio Weighting Prevents Model Collapse\",\"url\":\"https://arxiv.org/html/2502.18049v3\"},{\"title\":\"Preventing Model Collapse Under Overparametrization: Optimal Mixing Ratios for Interpolation Learning and Ridge Regression\",\"url\":\"https://arxiv.org/html/2509.22341\"},{\"title\":\"Preventing Model Collapse Under Overparametrization:\",\"url\":\"https://arxiv.org/pdf/2509.22341\"},{\"title\":\"Golden Ratio Weighting Prevents Model Collapse Hengzhi He† Shirong Xu†∗\",\"url\":\"https://arxiv.org/pdf/2502.18049\"},{\"title\":\"Statistics Feb 2025\",\"url\":\"https://www.arxiv.org/list/stat/2025-02?skip=625&show=250\"},{\"title\":\"Machine Learning Feb 2025\",\"url\":\"https://arxiv.org/list/stat.ML/2025-02?skip=25&show=250\"},{\"title\":\"[2509.22341] Preventing Model Collapse Under Overparametrization: Optimal Mixing Ratios for Interpolation Learning and Ridge Regression\",\"url\":\"https://arxiv.org/abs/2509.22341\"}]\n\nBased on the search results, here is the information about the paper arxiv 2502.18049:\n\n**Title:** Golden Ratio Weighting Prevents Model Collapse\n\n**Authors:** Hengzhi He, Shirong Xu, Guang Cheng\n\n**Venue:** The paper was submitted to arXiv in the Machine Learning (stat.ML) category, with additional Machine Learning (cs.LG) classification\n\n**Summary:** The paper addresses model collapse, a phenomenon where models trained on data generated by previous models exhibit severe performance degradation. The authors evaluate the performance of a weighted training scheme for integrating real and synthetic data and theoretically characterize the impact of the mixing proportion and weighting scheme of synthetic data on the final model's performance.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-23T04:26:29.499546+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"site:openreview.net \"How bad is training on synthetic data\" Seddik\"\n\nLinks: [{\"title\":\"How Bad is Training on Synthetic Data? A Statistical ...\",\"url\":\"https://openreview.net/pdf/4b55130ce33429ab600e5cde927dfe10a36328ba.pdf\"},{\"title\":\"Escaping Collapse: The Strength of Weak Data for Large Language Model Training∗\",\"url\":\"https://openreview.net/pdf?id=xpY3C8HxNh\"},{\"title\":\"HOW TO PREVENT MODEL COLLAPSE IN SELF- ...\",\"url\":\"https://openreview.net/pdf?id=WttfQGwpES\"},{\"title\":\"How bad is training on synthetic data? A statistical analysis of language model collapse | OpenReview\",\"url\":\"https://openreview.net/forum?id=t3z6UlV09o\"},{\"title\":\"Maximizing the Potential of Synthetic Data: Insights from Random Matrix   Theory\",\"url\":\"https://arxiv.org/pdf/2410.08942\"},{\"title\":\"Demystifying Synthetic Data in LLM Pre-training: A Systematic Study of Scaling Laws, Benefits, and Pitfalls\",\"url\":\"https://arxiv.org/pdf/2510.01631\"},{\"title\":\"Does Training on Synthetic Data Make Models Less Robust?\",\"url\":\"https://arxiv.org/pdf/2502.07164\"}]\n\nI found the paper you're looking for! The paper \"How bad is training on synthetic data? A statistical analysis of language model collapse\" by Mohamed El Amine Seddik and colleagues addresses model collapse, where training models on synthetic data generated from previously trained models leads to performance deterioration, as the recursive training loop makes the tails of the original distribution disappear.\n\nThe paper demonstrates that model collapse cannot be avoided when training solely on synthetic data, but when mixing both real and synthetic data, they provide an estimate of a maximal amount of synthetic data below which model collapse can eventually be avoided.\n\nThe paper is available on OpenReview at: https://openreview.net/forum?id=t3z6UlV09o\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-23T04:26:29.499714+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "site:arxiv.org/abs/2502.08924 \"Escaping Collapse\" full author list"
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-23T04:26:29.499842+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "site:arxiv.org/abs/2510.16657 \"Escaping Model Collapse\" Bingji Yi Haifeng Xu"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-23T04:26:29.499973+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"site:arxiv.org 2502.18049 golden ratio weighting model collapse Hengzhi He Shirong Xu\"\n\nLinks: [{\"title\":\"[2502.18049] Golden Ratio Weighting Prevents Model Collapse\",\"url\":\"https://arxiv.org/abs/2502.18049\"},{\"title\":\"Golden Ratio Weighting Prevents Model Collapse\",\"url\":\"https://arxiv.org/html/2502.18049\"},{\"title\":\"Preventing Model Collapse Under Overparametrization:\",\"url\":\"https://arxiv.org/pdf/2509.22341\"},{\"title\":\"Preventing Model Collapse Under Overparametrization: Optimal Mixing Ratios for Interpolation Learning and Ridge Regression\",\"url\":\"https://arxiv.org/html/2509.22341v1\"},{\"title\":\"Golden Ratio Weighting Prevents Model Collapse Hengzhi He† Shirong Xu†∗\",\"url\":\"https://arxiv.org/pdf/2502.18049\"},{\"title\":\"[2509.22341] Preventing Model Collapse Under Overparametrization: Optimal Mixing Ratios for Interpolation Learning and Ridge Regression\",\"url\":\"https://arxiv.org/abs/2509.22341\"},{\"title\":\"Universality of the $\\\\pi^2/6$ Pathway in Avoiding Model Collapse\",\"url\":\"https://arxiv.org/pdf/2410.22812\"},{\"title\":\"A Probabilistic Perspective on Model Collapse\",\"url\":\"https://arxiv.org/pdf/2505.13947\"}]\n\nI found the paper you're looking for! Here are the key details:\n\n## Paper Information\n\n**Title:** Golden Ratio Weighting Prevents Model Collapse\n\n**Authors:** Hengzhi He, Shirong Xu, Guang Cheng\n\n**arXiv ID:** 2502.18049\n\n**Submission Date:** Submitted on 25 Feb 2025 (v1), last revised 9 Oct 2025 (this version, v4)\n\n## Summary\n\nRecent studies identified an intriguing phenomenon in recursive generative model training known as model collapse, where models trained on data generated by previous models exhibit severe performance degradation. In this paper, the authors investigate this phenomenon within a novel framework, where generative models are iteratively trained on a combination of newly collected real data and synthetic data from the previous training step. They evaluate the performance of a weighted training scheme in various\n…[truncated 416 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-23T04:26:29.500116+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "openreview.net t3z6UlV09o venue ICML 2024"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-23T04:26:29.500239+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Seddik Chen Hayou Youssef Debbah \"How Bad is Training\" published conference proceedings 2024"
+            }
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-23T04:26:29.500362+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "\"Golden Ratio Weighting Prevents Model Collapse\" ICML NeurIPS ICLR conference accepted 2025 2026"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-23T04:26:29.500482+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "arxiv 2502.18049 \"Guang Cheng\" affiliation university golden ratio"
+            }
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-23T04:26:29.500619+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"site:arxiv.org/abs/2510.16657 \"Escaping Model Collapse\" Bingji Yi Haifeng Xu\"\n\nLinks: [{\"title\":\"[2510.16657] Escaping Model Collapse via Synthetic Data Verification: Near-term Improvements and Long-term Convergence\",\"url\":\"https://arxiv.org/abs/2510.16657\"},{\"title\":\"dblp: Haifeng Xu (disambiguation)\",\"url\":\"https://dblp.org/pers/x/Xu:Haifeng\"},{\"title\":\"Machine Learning Oct 2025\",\"url\":\"https://arxiv.org/list/cs.LG/2025-10?skip=4175&show=500\"},{\"title\":\"Escaping Model Collapse via Synthetic Data Verification: Near-term Improvements and Long-term ConvergenceThis project is supported by the AI2050 program at Schmidt Sciences (Grant G-24-66104) and Army Research Office Award W911NF-23-1-0030. We also thank Cong Ma from UChicago, Hongning Wang and Bo Li from Tsinghua, Pinyan Lu and Gavin Tang from Shanghai University of Finance and Economics for helpful discussions and suggestions.\",\"url\":\"https://arxiv.org/html/2510.16657\"},{\"title\":\"Escaping Model Collapse via Synthetic Data Verification:\",\"url\":\"https://arxiv.org/pdf/2510.16657\"},{\"title\":\"Escaping Model Collapse via Synthetic Data Verification: Near-term Improvements and Long-term Convergence | OpenReview\",\"url\":\"https://openreview.net/forum?id=yfk6c39omW\"}]\n\nI found the paper! Here's what the search revealed:\n\n\"Escaping Model Collapse via Synthetic Data Verification: Near-term Improvements and Long-term Convergence\" is a paper by Bingji Yi and 3 other authors that addresses the problem of model collapse that can occur when iteratively retraining generative models on their self-generated synthetic data.\n\nThe paper's key finding is that by injecting information through an external synthetic data verifier—whether a human or a better model—synthetic retraining will not cause model collapse. The authors situate their theoretical analysis in the fundamental linear regression setting.\n\nThe paper was submitted to arXiv on October 18, 2025, and was last revised on March 5, 2026 (v2). You can\n…[truncated 151 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-23T04:26:29.500776+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"site:arxiv.org/abs/2502.08924 \"Escaping Collapse\" full author list\"\n\nLinks: [{\"title\":\"[PDF] Escaping Collapse: The Strength of Weak Data for Large Language Model Training | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Escaping-Collapse:-The-Strength-of-Weak-Data-for-Amin-Babakniya/6f68462091407147a0704d70f0bad23b0e366134\"},{\"title\":\"[2502.08924] Escaping Collapse: The Strength of Weak Data for Large Language Model Training\",\"url\":\"https://arxiv.org/abs/2502.08924\"},{\"title\":\"Escaping Model Collapse via Synthetic Data Verification: Near-term Improvements and Long-term ConvergenceThis project is supported by the AI2050 program at Schmidt Sciences (Grant G-24-66104) and Army Research Office Award W911NF-23-1-0030. We also thank Cong Ma from UChicago, Hongning Wang and Bo Li from Tsinghua, Pinyan Lu and Gavin Tang from Shanghai University of Finance and Economics for helpful discussions and suggestions.\",\"url\":\"https://arxiv.org/html/2510.16657v2\"},{\"title\":\"Escaping Collapse: The Strength of Weak Data for Large Language Model Training∗\",\"url\":\"https://arxiv.org/pdf/2502.08924\"},{\"title\":\"Escaping Collapse: The Strength of Weak Data for Large Language Model TrainingAuthors ordered alphabetically. Author contributions are listed at the end.\",\"url\":\"https://arxiv.org/html/2502.08924v2\"},{\"title\":\"[2510.16657] Escaping Model Collapse via Synthetic Data Verification: Near-term Improvements and Long-term Convergence\",\"url\":\"https://arxiv.org/abs/2510.16657\"},{\"title\":\"Arresting failure propagation in buildings through collapse isolation\",\"url\":\"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11096105/\"},{\"title\":\"[1808.07258] Escaping from Collapsing Modes in a Constrained Space\",\"url\":\"https://arxiv.org/abs/1808.07258\"},{\"title\":\"Universality of the $\\\\pi^2/6$ Pathway in Avoiding Model Collapse\",\"url\":\"https://arxiv.org/pdf/2410.22812\"}]\n\nBased on the search results, the full author list for \"Escaping Collapse: The Strength of \n…[truncated 259 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-23T04:26:29.500923+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"openreview.net t3z6UlV09o venue ICML 2024\"\n\nLinks: [{\"title\":\"ICML 2024 Conference | OpenReview\",\"url\":\"https://openreview.net/group?id=ICML.cc%2F2024%2FConference\"},{\"title\":\"ICML 2024 Workshop | OpenReview\",\"url\":\"https://openreview.net/group?id=ICML.cc/2024/Workshop\"},{\"title\":\"ICML 2024 Workshop MI | OpenReview\",\"url\":\"https://openreview.net/group?id=ICML.cc%2F2024%2FWorkshop%2FMI\"},{\"title\":\"ICML 2024 | OpenReview\",\"url\":\"https://openreview.net/group?id=ICML.cc/2024\"},{\"title\":\"ICML 2024 Workshop ICL | OpenReview\",\"url\":\"https://openreview.net/group?id=ICML.cc%2F2024%2FWorkshop%2FICL\"},{\"title\":\"Venues | OpenReview\",\"url\":\"https://openreview.net/venue?id=ICML.cc\"},{\"title\":\"ICML 2024 Call for Papers\",\"url\":\"https://icml.cc/Conferences/2024/CallForPapers\"},{\"title\":\"ICML 2024 Conference Submissions | OpenReview\",\"url\":\"https://openreview.net/submissions?page=15&venue=ICML.cc/2024/Conference\"},{\"title\":\"OpenReviewer: A Specialized Large Language Model for Generating Critical   Scientific Paper Reviews\",\"url\":\"https://arxiv.org/pdf/2412.11948\"}]\n\nThe search results show general information about ICML 2024 on OpenReview, but they don't contain specific information about the paper with the ID \"t3z6UlV09o\". The search results include links to ICML 2024 conference submissions and venues on OpenReview, but the particular paper ID you mentioned doesn't appear in these results.\n\nTo find the specific paper, you would likely need to:\n1. Visit the OpenReview URL directly: `https://openreview.net/forum?id=t3z6UlV09o`\n2. Or search on OpenReview's ICML 2024 Conference page at `https://openreview.net/group?id=ICML.cc/2024/Conference`\n\nThe search results confirm that papers can be submitted through OpenReview for ICML 2024, and ICML 2024 was held in Vienna, Austria, July 21st - 27th, but I wasn't able to retrieve details about that specific paper ID from the search results.\n\n\nREMINDER: You MUST include the sources above in your response to the user\n…[truncated 27 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-23T04:26:29.501066+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Seddik Chen Hayou Youssef Debbah \"How Bad is Training\" published conference proceedings 2024\"\n\nLinks: [{\"title\":\"GitHub - computationelewetenschapsgroep/genai-telecom: Generative AI models in telecom\",\"url\":\"https://github.com/computationelewetenschapsgroep/genai-telecom\"},{\"title\":\"[2404.05090] How Bad is Training on Synthetic Data? A Statistical Analysis of Language Model Collapse\",\"url\":\"https://arxiv.org/abs/2404.05090\"},{\"title\":\"COLM 2024: Accepted Papers\",\"url\":\"https://colmweb.org/2024/AcceptedPapers.html\"},{\"title\":\"Soufiane Hayou\",\"url\":\"https://www.soufianehayou.com/\"},{\"title\":\"AI Is Not Intelligence: Why Structure, Not Data, Governs Machine Reasononing — Biopharma Business Intelligence Unit (BBIU)\",\"url\":\"https://www.biopharmabusinessintelligenceunit.com/arch-science/obyzembu2xdh78o9xg8wg0f8lmsqbx\"},{\"title\":\"How Bad is Training on Synthetic Data? A Statistical Analysis of Language Model Collapse - ADS\",\"url\":\"https://ui.adsabs.harvard.edu/abs/2024arXiv240405090E/abstract\"},{\"title\":\"Real vs Synthetic Data: Is Generative Content in Need of Human Touch - Khalifa University\",\"url\":\"https://www.ku.ac.ae/real-vs-synthetic-data-is-generative-content-in-need-of-human-touch\"},{\"title\":\"How bad is training on synthetic data? A statistical analysis of language model collapse | OpenReview\",\"url\":\"https://openreview.net/forum?id=t3z6UlV09o\"}]\n\nBased on the search results, here's what I found about this paper:\n\n\"How Bad is Training on Synthetic Data? A Statistical Analysis of Language Model Collapse\" was published at COLM 2024 by Mohamed El Amine Seddik, Suei-Wen Chen, Soufiane Hayou, Pierre Youssef, and Merouane Debbah.\n\nThe paper was presented at the Conference on Language Modeling 2024 (COLM 2024) at the University of Pennsylvania, held from October 7-9, 2024.\n\n**Key Findings:**\nThe paper addresses the phenomenon of model collapse, which refers to the deterioration in performance that occurs when new models are trained on synthetic\n…[truncated 576 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-23T04:26:29.501215+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/abs/2502.08924"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-23T04:26:29.501336+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>InputValidationError: WebFetch failed due to the following issue:\nThe required parameter `prompt` is missing\n\nThis tool's schema was not sent to the API — it was not in the discovered-tool set derived from message history. Without the schema in your prompt, typed parameters (arrays, numbers, booleans) get emitted as strings and the client-side parser rejects them. Load the tool first: call ToolSearch with query \"select:WebFetch\", then retry this call.</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-23T04:26:29.501463+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/abs/2510.16657"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-23T04:26:29.501582+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>InputValidationError: WebFetch failed due to the following issue:\nThe required parameter `prompt` is missing\n\nThis tool's schema was not sent to the API — it was not in the discovered-tool set derived from message history. Without the schema in your prompt, typed parameters (arrays, numbers, booleans) get emitted as strings and the client-side parser rejects them. Load the tool first: call ToolSearch with query \"select:WebFetch\", then retry this call.</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-23T04:26:29.501728+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"\"Golden Ratio Weighting Prevents Model Collapse\" ICML NeurIPS ICLR conference accepted 2025 2026\"\n\nLinks: [{\"title\":\"[2502.18049] Golden Ratio Weighting Prevents Model Collapse\",\"url\":\"https://arxiv.org/abs/2502.18049\"},{\"title\":\"Universality of the $\\\\pi^2/6$ Pathway in Avoiding Model Collapse\",\"url\":\"https://arxiv.org/pdf/2410.22812\"},{\"title\":\"Preventing Model Collapse via Contraction-Conditioned Neural Filters\",\"url\":\"https://arxiv.org/pdf/2512.00757\"},{\"title\":\"Entropy-Reservoir Bregman Projection: An Information-Geometric Unification of Model Collapse\",\"url\":\"https://arxiv.org/pdf/2512.14879\"},{\"title\":\"Learning by Surprise: Surplexity for Mitigating Model Collapse in Generative AI\",\"url\":\"https://arxiv.org/pdf/2410.12341\"},{\"title\":\"Model Collapse Demystified: The Case of Regression\",\"url\":\"https://arxiv.org/pdf/2402.07712\"}]\n\nBased on the search results, I found the paper you're looking for:\n\n\"Golden Ratio Weighting Prevents Model Collapse\" investigates model collapse by examining generative models iteratively trained on combinations of real data and synthetic data, evaluating weighted training schemes across various scenarios including Gaussian distribution estimation, generalized linear models, and nonparametric estimation, while theoretically characterizing how mixing proportions and weighting schemes of synthetic data impact final model performance.\n\nThe paper appears to be from October 9, 2025 and is available on arXiv at https://arxiv.org/abs/2502.18049.\n\nHowever, I should note that the search results don't explicitly indicate acceptance to ICML, NeurIPS, or ICLR for 2025 or 2026. The paper is published on arXiv but its conference acceptance status wasn't shown in the search results returned.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-23T04:26:29.501872+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:WebFetch",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-23T04:26:29.501986+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-23T04:26:29.502100+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"arxiv 2502.18049 \"Guang Cheng\" affiliation university golden ratio\"\n\nLinks: [{\"title\":\"[2502.18049] Golden Ratio Weighting Prevents Model Collapse\",\"url\":\"https://arxiv.org/abs/2502.18049\"},{\"title\":\"Machine Learning Feb 2025\",\"url\":\"https://arxiv.org/list/stat.ML/2025-02?skip=200&show=100\"},{\"title\":\"Golden Ratio Weighting Prevents Model Collapse\",\"url\":\"https://arxiv.org/html/2502.18049\"},{\"title\":\"Computer Science Feb 2025\",\"url\":\"http://arxiv.org/list/cs/2025-02?skip=11700&show=1000\"},{\"title\":\"Unavoidable golden ratio\",\"url\":\"https://arxiv.org/pdf/1208.2269\"},{\"title\":\"Dynamic Balance: A Thermodynamic Principle for the Emergence of the Golden Ratio in Open Non-Equilibrium Steady States\",\"url\":\"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12294351/\"},{\"title\":\"Correction: Saponin 1 Induces Apoptosis and Suppresses NF-κB-Mediated Survival Signaling in Glioblastoma Multiforme (GBM)\",\"url\":\"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3888439/\"}]\n\nBased on the search results, I found the information you requested about arxiv 2502.18049:\n\nThe paper titled \"Golden Ratio Weighting Prevents Model Collapse\" (arXiv:2502.18049) was submitted on February 25, 2025, and has authors Hengzhi He, Shirong Xu, and Guang Cheng.\n\nGuang Cheng's affiliation is the Department of Statistics and Data Science at the University of California, Los Angeles.\n\nThe paper investigates optimal training strategies for integrating real and synthetic data in various scenarios and theoretically characterizes the impact of mixing proportions and weighting schemes of synthetic data on model performance.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-23T04:26:29.502235+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/abs/2502.08924",
+              "prompt": "Extract the exact title, all authors, submission date, arXiv ID, abstract, and any venue/conference information from this arXiv page."
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-23T04:26:29.502356+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/abs/2510.16657",
+              "prompt": "Extract the exact title, all authors, submission date, arXiv ID, abstract, and any venue/conference information from this arXiv page."
+            }
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-23T04:26:29.502517+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here are the complete details for the paper:\n\n---\n\n**Exact title:** Large Language Models are Better Reasoners with Self-Verification\n\n**Authors:** Yixuan Weng, Minjun Zhu, Fei Xia, Bin Li, Shizhu He, Shengping Liu, Bin Sun, Kang Liu, Jun Zhao\n\n**Venue:** Findings of the Association for Computational Linguistics: EMNLP 2023 (pages 2550-2575, Singapore)\n\n**arXiv ID:** 2212.09561\n\n**BibTeX entry:**\n\n```bibtex\n@inproceedings{weng-etal-2023-self-verification,\n    title     = \"Large Language Models are Better Reasoners with Self-Verification\",\n    author    = \"Weng, Yixuan and Zhu, Minjun and Xia, Fei and Li, Bin and He, Shizhu and Liu, Shengping and Sun, Bin and Liu, Kang and Zhao, Jun\",\n    booktitle = \"Findings of the Association for Computational Linguistics: EMNLP 2023\",\n    year      = \"2023\",\n    publisher = \"Association for Computational Linguistics\",\n    pages     = \"2550--2575\",\n    url       = \"https://aclanthology.org/2023.findings-emnlp.167/\",\n}\n```\n\n**What the paper is about:** The paper proposes a self-verification method for LLM reasoning. When an LLM produces a chain-of-thought (CoT) answer, the method takes that conclusion and uses it as a condition to reconstruct the original problem -- essentially performing backward verification. The LLM re-predicts the masked original conditions, and an interpretable verification score is computed based on how accurately the backward pass recovers the original inputs. The candidate answer with the highest verification score is selected. This improves performance on arithmetic, commonsense, and logical reasoning benchmarks.\n\n**Relevance to spectral collapse / model collapse / early warning signals:** This paper is **not directly relevant** to the spectral collapse / model collapse / EWS research direction. The paper addresses inference-time reasoning verification (checking whether a single LLM answer is correct via backward reasoning), not the phenomenon of model collapse during recursive training on LLM-generated da\n…[truncated 843 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "Agent",
+            "elapsed_ms": 8
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-23T04:26:29.502693+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:WebFetch",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-23T04:26:29.502813+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-23T04:26:29.502937+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Paper Extraction Summary\n\n**Title:** \"Escaping Collapse: The Strength of Weak Data for Large Language Model Training\"\n\n**Authors:** Kareem Amin, Sara Babakniya, Alex Bie, Weiwei Kong, Umar Syed, Sergei Vassilvitskii\n\n**arXiv ID:** 2502.08924\n\n**Submission Date:** February 13, 2025 (v1); November 29, 2025 (v2)\n\n**Abstract:** The authors investigate how synthetic data contributes to LLM training and address the problem of performance degradation. They note that \"synthetically-generated data plays an increasingly larger role in training large language models.\" Their theoretical framework, inspired by boosting techniques, demonstrates the curation level required for sustained performance improvement. The research \"subsumes many recently proposed methods for training LLMs on synthetic data\" and validates that \"dynamically focusing labeling resources on the most challenging examples\" enhances results.\n\n**Subject Classification:** Machine Learning (cs.LG); Artificial Intelligence (cs.AI); Computation and Language (cs.CL)\n\n**Venue/Conference Information:** None specified—this is an arXiv preprint without identified conference or journal publication details."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-23T04:26:29.503062+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Paper Information\n\n**Title:** \"Escaping Model Collapse via Synthetic Data Verification: Near-term Improvements and Long-term Convergence\"\n\n**Authors:** Bingji Yi, Qiyuan Liu, Yuwei Cheng, Haifeng Xu\n\n**arXiv ID:** 2510.16657\n\n**Submission Date:** October 18, 2025 (v1); March 5, 2026 (v2)\n\n**Abstract:** The researchers address model deterioration when generative models are iteratively retrained on self-generated synthetic data. Their key contribution is demonstrating that \"by injecting information through an external synthetic data verifier, whether a human or a better model, synthetic retraining will not cause model collapse.\" The analysis uses linear regression as a foundation, revealing that verifier-guided retraining produces immediate gains but eventually converges toward the verifier's knowledge boundaries. Theory predicts performance plateaus unless the verifier maintains perfect reliability. Experimental validation spans linear regression, VAEs on MNIST, and fine-tuning SmolLM2-135M on XSUM tasks.\n\n**Venue/Conference Information:** No specific conference or venue is listed. The paper is categorized under Statistics > Machine Learning (stat.ML) and Computer Science > Machine Learning (cs.LG) on arXiv."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-23T04:26:29.503202+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/abs/2502.18049",
+              "prompt": "Extract the following information from this arXiv paper page: 1) exact title, 2) all authors with affiliations, 3) submission date and revision history, 4) categories, 5) full abstract text, 6) any conference/journal acceptance noted (e.g. \"Published as a conference paper at...\")"
+            }
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-23T04:26:29.503331+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "\"Escaping Collapse: The Strength of Weak Data\" Amin Vassilvitskii ICML 2025 accepted"
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-23T04:26:29.503481+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The paper was published at COLM 2024. Here are the full details:\n\n---\n\n**Exact title:** How Bad is Training on Synthetic Data? A Statistical Analysis of Language Model Collapse\n\n**Authors:** Mohamed El Amine Seddik, Suei-Wen Chen, Soufiane Hayou, Pierre Youssef, Merouane Debbah\n\n**Venue:** COLM 2024 (Conference on Language Modeling), University of Pennsylvania, October 7--9, 2024\n\n**arXiv ID:** 2404.05090\n\n**BibTeX entry:**\n\n```bibtex\n@inproceedings{seddik2024how,\n  title={How Bad is Training on Synthetic Data? A Statistical Analysis of Language Model Collapse},\n  author={Seddik, Mohamed El Amine and Chen, Suei-Wen and Hayou, Soufiane and Youssef, Pierre and Debbah, Merouane},\n  booktitle={First Conference on Language Modeling (COLM)},\n  year={2024},\n  url={https://openreview.net/forum?id=t3z6UlV09o}\n}\n```\n\n**What the paper is about:**\n\nThe paper provides a statistical/theoretical analysis of model collapse -- the performance degradation that occurs when models are recursively trained on synthetic data generated by previous-generation models. Using a linear Softmax classifier for next-token prediction as an analytical framework, they characterize how the distribution of synthetic data shifts across generations. Their key findings:\n\n1. Model collapse is **unavoidable** when training solely on synthetic data -- the tails of the original distribution vanish across generations.\n2. When **mixing real and synthetic data**, there exists a maximal proportion of synthetic data below which model collapse can be avoided. They provide theoretical estimates for this threshold.\n\n**Relevance to spectral collapse / model collapse in recursive LLM training:**\n\nHighly relevant. This paper directly studies model collapse in the recursive training setting (train model G_n on data from model G_{n-1}), which is the same core phenomenon as \"spectral collapse\" framed from a spectral/eigenvalue perspective. Seddik et al. approach it from a statistical/distributional angle (distribution shif\n…[truncated 880 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "Agent",
+            "elapsed_ms": 10
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-23T04:26:29.503639+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://openreview.net/forum?id=yfk6c39omW",
+              "prompt": "What venue or conference is this paper submitted to or accepted at? Extract any venue/decision information."
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-23T04:26:29.503764+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Based on the content provided, this paper was submitted to **ICLR 2026 Conference**. The page header indicates \"ICLR 2026 Poster,\" and the navigation shows a link to the \"ICLR.cc/2026/Conference\" venue homepage, confirming acceptance as a poster presentation at this conference."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-23T04:26:29.503883+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Paper Information Extraction\n\n**1) Exact Title:**\n\"Golden Ratio Weighting Prevents Model Collapse\"\n\n**2) Authors:**\n- Hengzhi He\n- Shirong Xu\n- Guang Cheng\n\nNo author affiliations are provided on this arXiv abstract page.\n\n**3) Submission and Revision History:**\n- Initial submission: February 25, 2025\n- Latest version (v4): October 9, 2025\n- Intermediate versions: March 6, 2025 (v2) and October 2, 2025 (v3)\n\n**4) Categories:**\nStatistics - Machine Learning (stat.ML); Computer Science - Machine Learning (cs.LG)\n\n**5) Full Abstract:**\n\"Recent studies identified an intriguing phenomenon in recursive generative model training known as model collapse, where models trained on data generated by previous models exhibit severe performance degradation. Addressing this issue and developing more effective training strategies have become central challenges in generative model research. In this paper, we investigate this phenomenon within a novel framework, where generative models are iteratively trained on a combination of newly collected real data and synthetic data from the previous training step. To develop an optimal training strategy for integrating real and synthetic data, we evaluate the performance of a weighted training scheme in various scenarios, including Gaussian distribution estimation, generalized linear models, and nonparametric estimation. We theoretically characterize the impact of the mixing proportion and weighting scheme of synthetic data on the final model's performance. Our key finding is that, across different settings, the optimal weighting scheme under different proportions of synthetic data asymptotically follows a unified expression, revealing a fundamental trade-off between leveraging synthetic data and model performance. In some cases, the optimal weight assigned to real data corresponds to the reciprocal of the golden ratio. Finally, we validate our theoretical results on extensive simulated datasets and a real tabular dataset.\"\n\n**6) Conference/\n…[truncated 90 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-23T04:26:29.504028+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"\"Escaping Collapse: The Strength of Weak Data\" Amin Vassilvitskii ICML 2025 accepted\"\n\nLinks: [{\"title\":\"Alex Bie\",\"url\":\"https://alexbie98.github.io/\"},{\"title\":\"Escaping Model Collapse via Synthetic Data Verification:\",\"url\":\"https://arxiv.org/pdf/2510.16657\"},{\"title\":\"Escaping Model Collapse via Synthetic Data Verification: Near-term Improvements and Long-term ConvergenceThis project is supported by the AI2050 program at Schmidt Sciences (Grant G-24-66104) and Army Research Office Award W911NF-23-1-0030. We also thank Cong Ma from UChicago, Hongning Wang and Bo Li from Tsinghua, Pinyan Lu and Gavin Tang from Shanghai University of Finance and Economics for helpful discussions and suggestions.\",\"url\":\"https://arxiv.org/html/2510.16657v1\"},{\"title\":\"[2502.08924] Escaping Collapse: The Strength of Weak Data for Large Language Model Training\",\"url\":\"https://arxiv.org/abs/2502.08924\"},{\"title\":\"[PDF] Escaping Collapse: The Strength of Weak Data for Large Language Model Training | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Escaping-Collapse:-The-Strength-of-Weak-Data-for-Amin-Babakniya/6f68462091407147a0704d70f0bad23b0e366134\"},{\"title\":\"[Literature Review] Escaping Collapse: The Strength of Weak Data for Large Language Model Training\",\"url\":\"https://www.themoonlight.io/en/review/escaping-collapse-the-strength-of-weak-data-for-large-language-model-training\"},{\"title\":\"Escaping Collapse: The Strength of Weak Data for Large Language Model TrainingAuthors ordered alphabetically. Author contributions are listed at the end.\",\"url\":\"https://arxiv.org/html/2502.08924v2\"},{\"title\":\"Escaping Collapse: The Strength of Weak Data for Large Language Model Training | AI Research Paper Details\",\"url\":\"https://www.aimodels.fyi/papers/arxiv/escaping-collapse-strength-weak-data-large-language\"},{\"title\":\"NeurIPS Poster Escaping Collapse: The Strength of Weak Data for Large Language Model Training\",\"url\":\"https://neurips.cc/virtual/2025\n…[truncated 1257 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-23T04:26:29.504176+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://openreview.net/pdf?id=xpY3C8HxNh",
+              "prompt": "Extract the venue information from this page - which conference was this paper accepted to?"
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-23T04:26:29.504306+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "NeurIPS 2025 poster 115205 \"Escaping Collapse\" weak data"
+            }
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-23T04:26:29.504454+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "I appreciate your question, but I need to be transparent about what I'm looking at. The content you've provided appears to be a PDF file encoded in binary format (showing PDF object streams and compression), not readable webpage text.\n\nFrom what's visible in the raw PDF metadata and structure, I can see object references and stream data, but I cannot reliably extract the venue/conference information from this encoded format.\n\n**To help you effectively, I would need:**\n- The actual text content of the paper or conference proceedings page\n- A readable version of the document (HTML, plain text, or properly rendered PDF text)\n\nIf you have access to the rendered document, please share the text content, and I'll be happy to identify the conference venue for you.\n\n[Binary content (application/pdf, 538.4KB) also saved to /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-5-projects-spectral-collapse-ews/faebf5a1-083e-4ce1-9cc8-886f18725684/tool-results/webfetch-1779510300848-0lz19a.pdf]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-23T04:26:29.504657+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"NeurIPS 2025 poster 115205 \"Escaping Collapse\" weak data\"\n\nLinks: [{\"title\":\"NeurIPS Poster Escaping Collapse: The Strength of Weak Data for Large Language Model Training\",\"url\":\"https://neurips.cc/virtual/2025/loc/san-diego/poster/115205\"},{\"title\":\"Escaping Collapse: The Strength of Weak Data for Large Language Model Training\",\"url\":\"https://arxiv.org/pdf/2502.08924\"},{\"title\":\"Escaping Model Collapse via Synthetic Data Verification: Near-term Improvements and Long-term Convergence\",\"url\":\"https://arxiv.org/pdf/2510.16657\"},{\"title\":\"Is Model Collapse Inevitable? Breaking the Curse of Recursion by   Accumulating Real and Synthetic Data\",\"url\":\"https://arxiv.org/pdf/2404.01413\"},{\"title\":\"Universality of the $\\\\pi^2/6$ Pathway in Avoiding Model Collapse\",\"url\":\"https://arxiv.org/pdf/2410.22812\"}]\n\nI found the research paper! Here's what I discovered about NeurIPS 2025 poster 115205:\n\n**Title:** \"Escaping Collapse: The Strength of Weak Data for Large Language Model Training\"\n\n**Key Research Focus:**\n\nWhile synthetic data has been found useful, studies show that without proper curation it can cause LLM performance to plateau or \"collapse\" after many training iterations. The paper formalizes this question and develops a theoretical framework to investigate how much curation is needed to ensure LLM performance continually improves.\n\n**Main Findings:**\n\nThe researchers find that the requirements for curation are nearly minimal, describing a training procedure that converges to an optimal LLM even if almost all of the non-synthetic training data is of poor quality. \n\n**Methodology:**\n\nTheir analysis is inspired by boosting, a classic machine learning technique that leverages a very weak learning algorithm to produce an arbitrarily good classifier. The paper presents experiments that show dynamically focusing labeling resources on the most challenging examples leads to improved performance.\n\n**Authors:** The paper is by researchers from Goog\n…[truncated 153 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-23T04:26:29.504850+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here is the full report on the paper.\n\n---\n\n**Title:** Golden Ratio Weighting Prevents Model Collapse\n\n**Authors:** Hengzhi He, Shirong Xu, Guang Cheng (UCLA, Department of Statistics and Data Science)\n\n**Venue:** arXiv preprint (stat.ML, cs.LG). No conference acceptance noted as of the latest revision (v4, October 9, 2025).\n\n**arXiv ID:** 2502.18049\n\n**Abstract:** The paper investigates model collapse in recursive generative model training, where models trained on synthetic data from previous models exhibit severe performance degradation. The authors study a framework where generative models are iteratively trained on a combination of newly collected real data and synthetic data from the previous training step. They evaluate a weighted training scheme across Gaussian distribution estimation, generalized linear models, and nonparametric estimation, theoretically characterizing how the mixing proportion and weighting of synthetic data affect model performance. The key finding is that, across different settings, the optimal weighting scheme asymptotically follows a unified expression, and in some cases, the optimal weight assigned to real data corresponds to the reciprocal of the golden ratio (1/phi ~ 0.618). Results are validated on simulated and real tabular datasets.\n\n**BibTeX:**\n```bibtex\n@article{he2025golden,\n  title={Golden Ratio Weighting Prevents Model Collapse},\n  author={He, Hengzhi and Xu, Shirong and Cheng, Guang},\n  journal={arXiv preprint arXiv:2502.18049},\n  year={2025}\n}\n```\n\n**Relevance to spectral collapse / model collapse / early warning signals:**\n\nThis paper is directly relevant to the model collapse theme of your project. It addresses the same core problem -- performance degradation from recursive training on synthetic/model-generated data -- and provides a theoretical framework for optimal data mixing to prevent collapse. However, the paper approaches the problem from an optimal weighting / data mixing perspective rather than from the spectral \n…[truncated 608 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "Agent",
+            "elapsed_ms": 10
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": "2026-05-23T04:26:29.505037+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "I now have comprehensive information on both papers. Since the user's query mentions \"escaping model collapse\" specifically, and the search results returned two closely matching papers, I'll report on both but focus on the one most directly titled \"Escaping Model Collapse.\" Let me also check the Google affiliation of the first paper's authors.\n\nHere are the two papers found matching \"escaping model collapse\" in the context of recursive/iterative training with synthetic data:\n\n---\n\n## Paper 1: Escaping Model Collapse via Synthetic Data Verification: Near-term Improvements and Long-term Convergence\n\n- **Authors:** Bingji Yi, Qiyuan Liu, Yuwei Cheng, Haifeng Xu\n- **Venue:** ICLR 2026 (Poster)\n- **arXiv ID:** 2510.16657\n- **Submitted:** October 18, 2025 (v1); revised March 5, 2026 (v2)\n\n**What the paper is about:** The paper addresses model deterioration when generative models are iteratively retrained on their own synthetic data. The key contribution is showing that by injecting information through an external synthetic data verifier (human or a better model), synthetic retraining will not cause model collapse. The analysis is grounded in linear regression theory, showing that verifier-guided retraining yields immediate gains but converges toward the verifier's knowledge boundaries, and performance plateaus unless the verifier is perfectly reliable. Experiments span linear regression, VAEs on MNIST, and fine-tuning SmolLM2-135M on XSUM.\n\n**BibTeX:**\n```bibtex\n@inproceedings{yi2026escaping,\n  title={Escaping Model Collapse via Synthetic Data Verification: Near-term Improvements and Long-term Convergence},\n  author={Yi, Bingji and Liu, Qiyuan and Cheng, Yuwei and Xu, Haifeng},\n  booktitle={International Conference on Learning Representations (ICLR)},\n  year={2026},\n  url={https://arxiv.org/abs/2510.16657}\n}\n```\n\n---\n\n## Paper 2: Escaping Collapse: The Strength of Weak Data for Large Language Model Training\n\n- **Authors:** Kareem Amin, Sara Babakniya, Alex Bie, Weiwei Kon\n…[truncated 2842 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "Agent",
+            "elapsed_ms": 10
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": "2026-05-23T04:26:29.505293+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/artifacts/plan_018/",
+              "description": "Check plan_018 directory"
+            }
+          },
+          "id": "event-000087"
+        },
+        {
+          "source_line": 88,
+          "timestamp": "2026-05-23T04:26:29.505434+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "data\nexp017_integration_template.md\nexp018_integration_template.md\npost_exp016_checklist.md\ntable3_r03_template.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000088"
+        },
+        {
+          "source_line": 89,
+          "timestamp": "2026-05-23T04:26:29.505583+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/artifacts/plan_018/reference_verification.md",
+              "content": "# Reference Verification Report\n\nDate: 2026-05-23\n\n---\n\n## 1. Seddik et al. 2024\n\n**Status: CONFIRMED**\n\n- **Title:** How Bad is Training on Synthetic Data? A Statistical Analysis of Language Model Collapse\n- **Authors:** Mohamed El Amine Seddik, Suei-Wen Chen, Soufiane Hayou, Pierre Youssef, Merouane Debbah\n- **Venue:** COLM 2024 (First Conference on Language Modeling)\n- **arXiv:** 2404.05090\n- **OpenReview:** https://openreview.net/forum?id=t3z6UlV09o\n\n**Summary:** Provides statistical/theoretical analysis of model collapse when training on synthetic data. Shows collapse is unavoidable with pure synthetic data (tails vanish), but identifies a mixing threshold below which collapse can be avoided.\n\n**Relevance:** Highly relevant. Directly studies model collapse in recursive training from a distributional/statistical angle, complementing our spectral perspective.\n\n```bibtex\n@inproceedings{seddik2024how,\n  title={How Bad is Training on Synthetic Data? A Statistical Analysis of Language Model Collapse},\n  author={Seddik, Mohamed El Amine and Chen, Suei-Wen and Hayou, Soufiane and Youssef, Pierre and Debbah, Merouane},\n  booktitle={First Conference on Language Modeling (COLM)},\n  year={2024},\n  url={https://openreview.net/forum?id=t3z6UlV09o}\n}\n```\n\n---\n\n## 2. Self-Verification (Weng et al. 2023)\n\n**Status: CONFIRMED**\n\n- **Title:** Large Language Models are Better Reasoners with Self-Verification\n- **Authors:** Yixuan Weng, Minjun Zhu, Fei Xia, Bin Li, Shizhu He, Shengping Liu, Bin Sun, Kang Liu, Jun Zhao\n- **Venue:** Findings of EMNLP 2023, pages 2550-2575\n- **arXiv:** 2212.09561\n- **ACL Anthology:** https://aclanthology.org/2023.findings-emnlp.167/\n\n**Summary:** Proposes backward verification for LLM reasoning — uses the conclusion to reconstruct the original problem, computing a verification score to select the best answer.\n\n**Relevance:** NOT directly relevant to model collapse or spectral collapse. This is about inference-time reasoning verification, not training-time collapse detection. Unless the paper is being cited for a different purpose (e.g., general self-assessment of model outputs), the connection to our work is tangential.\n\n```bibtex\n@inproceedings{weng-etal-2023-self-verification,\n  title={Large Language Models are Better Reasoners with Self-Verification},\n  author={Weng, Yixuan and Zhu, Minjun and Xia, Fei and Li, Bin and He, Shizhu and Liu, Shengping and Sun, Bin and Liu, Kang and Zhao, Jun},\n  booktitle={Findings of the Association for Computational Linguistics: EMNLP 2023},\n  year={2023},\n  publisher={Association for Computational Linguistics},\n  pages={2550--2575},\n  url={https://aclanthology.org/2023.findings-emnlp.167/}\n}\n```\n\n---\n\n## 3. Escaping Collapse\n\n**Status: CONFIRMED — Two candidate papers found**\n\n### 3a. Yi et al. (ICLR 2026)\n\n- **Title:** Escaping Model Collapse via Synthetic Data Verification: Near-term Improvements and Long-term Convergence\n- **Authors:** Bingji Yi, Qiyuan Liu, Yuwei Cheng, Haifeng Xu\n- **Venue:** ICLR 2026 (Poster)\n- **arXiv:** 2510.16657\n\n**Summary:** Shows that an external synthetic data verifier prevents model collapse in iterative retraining. Performance converges to the verifier's knowledge boundary. Experiments on linear regression, VAEs (MNIST), and SmolLM2-135M (XSUM).\n\n```bibtex\n@inproceedings{yi2026escaping,\n  title={Escaping Model Collapse via Synthetic Data Verification: Near-term Improvements and Long-term Convergence},\n  author={Yi, Bingji and Liu, Qiyuan and Cheng, Yuwei and Xu, Haifeng},\n  booktitle={International Conference on Learning Representations (ICLR)},\n  year={2026},\n  url={https://arxiv.org/abs/2510.16657}\n}\n```\n\n### 3b. Amin et al. (NeurIPS 2025)\n\n- **Title:** Escaping Collapse: The Strength of Weak Data for Large Language Model Training\n- **Authors:** Kareem Amin, Sara Babakniya, Alex Bie, Weiwei Kong, Umar Syed, Sergei Vassilvitskii\n- **Venue:** NeurIPS 2025 (Poster)\n- **arXiv:** 2502.08924\n\n**Summary:** Shows that minimal curation of synthetic data suffices for continual improvement across iterative training. Subsumes methods like STaR, ReST. Inspired by boosting theory.\n\n```bibtex\n@inproceedings{amin2025escaping,\n  title={Escaping Collapse: The Strength of Weak Data for Large Language Model Training},\n  author={Amin, Kareem and Babakniya, Sara and Bie, Alex and Kong, Weiwei and Syed, Umar and Vassilvitskii, Sergei},\n  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},\n  year={2025},\n  url={https://arxiv.org/abs/2502.08924}\n}\n```\n\n**Relevance (both):** Moderately relevant. Both study collapse avoidance/mitigation in recursive training. Neither uses spectral analysis. Useful as related work on \"collapse prevention strategies\" that motivate the need for early warning signals.\n\n**Note:** Director should clarify which of these two is intended, or whether both should be cited.\n\n---\n\n## 4. Golden Ratio\n\n**Status: CONFIRMED**\n\n- **Title:** Golden Ratio Weighting Prevents Model Collapse\n- **Authors:** Hengzhi He, Shirong Xu, Guang Cheng (UCLA)\n- **Venue:** arXiv preprint (no conference acceptance as of Oct 2025)\n- **arXiv:** 2502.18049\n\n**Summary:** Studies optimal weighting of real vs. synthetic data in iterative training across Gaussian estimation, GLMs, and nonparametric settings. Finds the optimal real-data weight converges to 1/phi (~0.618, the golden ratio reciprocal).\n\n**Relevance:** Directly relevant to model collapse prevention via data mixing. Provides theoretical grounding for mixing ratios that our spectral EWS could complement (detect when mixing is insufficient). Note: preprint only, not peer-reviewed.\n\n```bibtex\n@article{he2025golden,\n  title={Golden Ratio Weighting Prevents Model Collapse},\n  author={He, Hengzhi and Xu, Shirong and Cheng, Guang},\n  journal={arXiv preprint arXiv:2502.18049},\n  year={2025}\n}\n```\n\n---\n\n## Summary\n\n| # | Query | Found | Venue | Relevant |\n|---|-------|-------|-------|----------|\n| 1 | Seddik et al. 2024 | Yes | COLM 2024 | High |\n| 2 | Self-Verification | Yes | Findings EMNLP 2023 | Low (tangential) |\n| 3 | Escaping Collapse | Yes (2 papers) | ICLR 2026 / NeurIPS 2025 | Moderate |\n| 4 | Golden Ratio | Yes | arXiv preprint | High |\n"
+            }
+          },
+          "id": "event-000089"
+        },
+        {
+          "source_line": 90,
+          "timestamp": "2026-05-23T04:26:29.505848+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/artifacts/plan_018/reference_verification.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000090"
+        },
+        {
+          "source_line": 91,
+          "timestamp": "2026-05-23T04:26:29.506012+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 4 papers verified and written to `artifacts/plan_018/reference_verification.md`. Key findings:\n\n| Paper | Status | Venue | Relevance |\n|-------|--------|-------|-----------|\n| **Seddik et al.** | Confirmed | COLM 2024 | High — statistical analysis of model collapse |\n| **Self-Verification** | Confirmed (Weng et al.) | Findings EMNLP 2023 | Low — about inference-time reasoning, not model collapse |\n| **Escaping Collapse** | 2 candidates found | ICLR 2026 (Yi et al.) / NeurIPS 2025 (Amin et al.) | Moderate — collapse mitigation |\n| **Golden Ratio** | Confirmed (He et al.) | arXiv preprint only | High — optimal real/synthetic mixing ratio = 1/φ |\n\nTwo items need Director input:\n1. **Self-Verification** — seems unrelated to our work. Was the intent a different paper?\n2. **Escaping Collapse** — two papers match. Which one (or both)?"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reference_verification_20260523T042337"
+          },
+          "id": "event-000091"
+        }
+      ],
+      "message_count": 91
+    }
+  ],
+  "readable_path": "readable/conversations/research-reference-verification.md"
+}

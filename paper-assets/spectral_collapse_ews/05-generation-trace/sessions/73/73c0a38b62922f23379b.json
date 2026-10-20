@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "73c0a38b62922f23379b",
+  "project": "spectral_collapse_ews",
+  "kind": "history",
+  "title": "director / loop_2.md",
+  "task_key": "loop_2",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_2.md",
+    "occurrence": 1,
+    "bytes": 3898,
+    "sha256": "0edee59f2ccc11f1920cf41d86f510907de6aa195ce7c251df2919c2eb1008aa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: max_messages\nupdated: '2026-05-17T16:59:58+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:0 / cuda:1（rtx6000-diagprobe，2× RTX PRO 6000 98GB）\n- 服务器无外网：HF_HUB_OFFLINE=1, TRANSFORMERS_OFFLINE=1，所有模型/数据必须本地\n- 所有实验启动必须用 submit_training_job（自动 tmux + sentinel），禁止裸 nohup（M005 教训：cron 误判 5 次）\n- 同一实验的 cleanup 和 restart 不能并行派两个 worker（M004 教训：race condition 导致 checkpoint 被误删）\n- 缺 PYTHONUNBUFFERED → stdout 缓冲延迟，查进度看 results 文件不是 log\n- 论文主参数 k=10（D015），exp_005 用的 k=20 是 sensitivity 数据不是主实验\n\n### 2. 🖥️ 基础设施快照\n- 服务器：rtx6000-diagprobe (connect.westd.seetacloud.com)，账号 root\n- 工作目录：/root/spectral_collapse_ews\n- Python 路径：需 Agent 确认（之前未记录到 memory）\n- 模型：410M GPT-2 style（本地），1B Pythia（本地）\n- 数据：50K real samples + 合成生成，total_per_gen=50K\n- 活跃进程：exp_001 和 exp_005 标记 RUNNING 但 GPU health 报告空闲——**刚派 Agent 去确认实际状态，可能已结束或崩溃**\n- Cron：有实验监控 cron（自动检测 sentinel 变化）\n- W&B：未配置\n\n### 3. 📊 当前状态\n**刚做完**：\n- 更新 ROADMAP（D011-D015 全面同步）\n- 派 Agent 综合任务：检查 exp_001/exp_005 实际进程状态 + 启动 exp_004/exp_006\n\n**Registry 状态**：\n- exp_001 RUNNING — Phase 0 410M Gen 10/10（最后一代，应接近完成）\n- exp_005 RUNNING — Phase 1 adaptive k=20 s42（sensitivity 数据）\n- exp_004 PREPARING — fixed_mix s42（launch script 已在 /root/spectral_collapse_ews/scripts/launch_exp_004.sh）\n- exp_003 DONE(killed) — D011 bug 导致 adaptive ≡ fixed_mix\n- exp_002 DONE(success) — 1B pilot\n\n**等待中**：Agent 回复（刚派任务，idle 604s 后收到指令）\n\n### 4. 📋 待办\n- Agent 报告 exp_001 已完成 → 收集 Gen 0-10 metrics + HellaSwag Gen 9-10 + 启动 exp_004 (fixed_mix) on cuda:0\n- Agent 报告 exp_001 崩溃 → 从 checkpoint 恢复或重启 Gen 10\n- Agent 报告 exp_005 状态 → 如果到 Gen 3+，检查 ratio trajectory：ratio < 0.53 → 切 cumulative 模式重启(D014)；ratio > 0.55 → 继续 proportional\n- cuda:0 空出 → 评估双实例可行性（19GB×2 vs 98GB），启动 exp_004 + exp_006(adaptive k=10) 并行\n- Phase 1 核心对比出结果 → adaptive k=10 比 fixed_mix ≥3 ppl better (paired t-test p<0.1) → complete_mvp() 进入 research 阶段\n- MVP pass 后 → 创建 paper_framing.md + experiment_plan.yaml + dream_simulate(review_mode=\"full\") + post-mvp-kickoff skill\n\n### 5. 🎯 战略上下文\n**核心决策链**：D009(Phase 0 pass) → D010(signal→log_det) → D011(三层bug fix) → D012(k=1→20) → D013(claim pivot: EWS detection为主, controller为PoC) → D014(cumulative备选) → D015(论文k=20→10)\n\n**信号衰减悖论**（最重要的理论发现）：比例控制器存在自稳定负反馈环——干预→collapse减缓→信号减弱→干预减少→collapse恢复。即使 k=50 ratio 也只在 0.50-0.60 小幅波动。这不是 bug 是 fundamental limitation，论文要把它写成 insight 而非缺陷。\n\n**最容易判断错的事**：\n1. k=20 的 exp_005 不是论文主实验——它是 sensitivity 数据。论文主实验用 k=10 (exp_006，还没启动)\n2. Phase 0 Gen 0-5 有 decompression peak（log_det 高于 Gen 0），cumulative delta 在这段为 0。Phase 1 中混合抑制了 decompression，此问题不影响\n3. report_actual 调用位置在 min() cap 之前（pipeline.py line 175 vs 199），功能上目前正确但脆弱，防御性修复待做\n4. DDL 还剩 ~6 天（May 25），时间紧但 GPU 预算充裕（432h 总量），瓶颈在串行实验周期不是算力\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2.md"
+}

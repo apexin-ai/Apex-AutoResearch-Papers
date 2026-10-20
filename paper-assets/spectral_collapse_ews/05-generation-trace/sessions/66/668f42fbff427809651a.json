@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "668f42fbff427809651a",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "code phase2 multiseed launch scripts",
+  "task_key": "worker_code_phase2-multiseed-launch-scripts_20260518T210443",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_phase2-multiseed-launch-scripts_20260518T210443_result.json",
+    "occurrence": 1,
+    "bytes": 466,
+    "sha256": "9851022ebc815e24203198423fea0a7bf87e4058a270680d66c8caa93435149f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "5 个脚本全部创建完成，权限 `rwxr-xr-x`，格式与模板一致：\n\n| 脚本 | condition | real_ratio | seed |\n|---|---|---|---|\n| `launch_pure_collapse_seed44.sh` | pure_collapse | — | 44 |\n| `launch_fixed_mix_r05_seed43.sh` | fixed_mix | 0.5 | 43 |\n| `launch_fixed_mix_r05_seed44.sh` | fixed_mix | 0.5 | 44 |\n| `launch_fixed_mix_r02_seed43.sh` | fixed_mix | 0.2 | 43 |\n| `launch_fixed_mix_r02_seed44.sh` | fixed_mix | 0.2 | 44 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-phase2-multiseed-launch-scripts.md"
+}

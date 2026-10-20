@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d59252d69cf340490e53",
+  "project": "trace_distill_repair",
+  "kind": "result",
+  "title": "exp line scoring rerun v2",
+  "task_key": "worker_exp_line_scoring_rerun_v2_20260514T202039",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_line_scoring_rerun_v2_20260514T202039_result.json",
+    "occurrence": 1,
+    "bytes": 787,
+    "sha256": "ff542bbf29caf6cf4da274413c98d9a64ddebb1a26212f3a836e44e005baf658"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。\n\n### 结果汇总\n\n| 项目 | 状态 |\n|------|------|\n| 残留进程清理 | CLEAN，两块 GPU 均空闲（0 MiB） |\n| 代码验证 | EXCLUDED = {fastapi_3, fastapi_5}，无 max_segments 截断 |\n| Instance 数量 | 38 ✓ |\n| PID | 67855 |\n| tmux session | `mvp_line_scoring_rerun_v2` |\n| GPU | cuda:0 |\n| 日志 | `/tmp/phase2_line_scoring_rerun.log` |\n| 当前进度 | [1/38] black_14 (9 segments) 已开始 |\n\n**预估完成时间**：62,322 segments，单 GPU 串行，假设每 segment 平均 ~15-30 秒 API 调用（含 retry），约 260-520 小时。如果并发调用 API 或每 segment 更快（~3-5 秒），则约 52-87 小时。48 小时 timeout 可能不够——建议后续观察实际速度再决定是否调整。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-line-scoring-rerun-v2.md"
+}

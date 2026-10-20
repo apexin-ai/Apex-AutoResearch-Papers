@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "907786c783d1917b460c",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "paper related work expansion",
+  "task_key": "worker_paper_related-work-expansion_20260519T192113",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_related-work-expansion_20260519T192113_result.json",
+    "occurrence": 1,
+    "bytes": 1350,
+    "sha256": "5e039cc5a2c91f2b4c51a0e8ac685f3b70b9616385b4f16218cab61599fe78a8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Content looks good. Here's a summary of all changes:\n\n**New citations added (all verified via WebSearch):**\n\n| Citation | Title | Venue | Status |\n|---|---|---|---|\n| `longpre2024pretrainer` | A Pretrainer's Guide to Training Data: Measuring the Effects of Data Age, Domain Coverage, Quality, & Toxicity | NAACL 2024 | Verified |\n| `muennighoff2023scaling` | Scaling Data-Constrained Language Models | NeurIPS 2023 | Verified |\n| `scheffer2012anticipating` | Anticipating Critical Transitions | Science 338(6105), 2012 | Verified |\n\n**Edits by paragraph:**\n\n1. **Data Mixing** — Added Longpre (data composition effects at 1.5B scale) and Muennighoff (scaling laws for data repetition) before the existing optimization-focused works. Expanded the distinction: our phase diagram reveals how mixing ratio reshapes spectral geometry, a dimension loss-based metrics miss.\n\n2. **Early Warning Signals** — Added Scheffer (2012) on architectural features predisposing tipping points. Elevated the signal attenuation paradox with an explicit claim of novelty relative to ecological EWS literature.\n\n3. **Spectral Analysis / SIGMA** — Expanded the two-sentence SIGMA comparison into a structured five-axis contrast (scale, temporal depth, methodology, metric choice, signal attenuation paradox), each with concrete details."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-related-work-expansion.md"
+}

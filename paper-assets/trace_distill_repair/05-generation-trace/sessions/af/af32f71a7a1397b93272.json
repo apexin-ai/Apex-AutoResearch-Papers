@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "af32f71a7a1397b93272",
+  "project": "trace_distill_repair",
+  "kind": "result",
+  "title": "fix kill rogue v5",
+  "task_key": "worker_fix_kill_rogue_v5_20260515T111144",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_kill_rogue_v5_20260515T111144_result.json",
+    "occurrence": 1,
+    "bytes": 224,
+    "sha256": "a6c6a05faa2eeb195fa94581718f69fddf22b7f13ed0abe742992a1333643309"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n| 项目 | 状态 |\n|------|------|\n| PID 112847 | **已终止** |\n| 其他未注册 scoring 进程 | **无** |\n| Phase 3 (PID 116942) | **正常运行**，已运行 48:12，CPU 正常 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-kill-rogue-v5.md"
+}

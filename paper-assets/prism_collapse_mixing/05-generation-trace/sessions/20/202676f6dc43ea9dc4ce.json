@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "202676f6dc43ea9dc4ce",
+  "project": "prism_collapse_mixing",
+  "kind": "result",
+  "title": "ssh plot results",
+  "task_key": "worker_ssh_plot-results_20260515T191558",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_plot-results_20260515T191558_result.json",
+    "occurrence": 1,
+    "bytes": 575,
+    "sha256": "4d37d630aa7764aebe0057a2e0ba9685e3bfe2589efa3d28612830f369028399"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**产出文件：**\n\n| 文件 | 行数/大小 |\n|------|-----------|\n| `plot_results.py` | 271 行 |\n| `results/fig_rho_decay.pdf` | 15K |\n| `results/fig_corpus_trends.pdf` | 20K |\n| `results/fig_signal_distributions.pdf` | 41K |\n\n**dry-run 结果：** 成功。只有 Gen 0 的 2 个 seed 文件，脚本正确识别 2 files / gens=[0] / seeds=[42,137]，3 个 PDF 均正常生成，大小合理（含 KDE 曲线和散点图的 fig_signal_distributions 最大）。只有 1 个 generation 时每条线只画 1 个点，无报错。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-plot-results.md"
+}

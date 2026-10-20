@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "bedef9a304ffd3512879",
+  "project": "spectral_collapse_ews",
+  "kind": "worker",
+  "title": "analysis alt ews r02",
+  "task_key": "worker_analysis_alt-ews-r02_20260525T215610",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_alt-ews-r02_20260525T215610.log",
+    "occurrence": 1,
+    "bytes": 1074436,
+    "sha256": "5cbf970b5e1868a91e0b766a1935e63d0dcbf00565325299aa62f59a5e196c01"
+  },
+  "statistics": {
+    "messages": 438,
+    "user_turns": 1,
+    "tool_calls": 160,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 110,
+      "tool_call": 160,
+      "tool_result": 160,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 391,
+      "chunks": [
+        {
+          "path": "bedef9a304ffd3512879-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "bedef9a304ffd3512879-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "bedef9a304ffd3512879-part-0003.json",
+          "message_count": 31
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 47,
+      "chunks": [
+        {
+          "path": "bedef9a304ffd3512879-part-0003.json",
+          "message_count": 47
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-alt-ews-r02.md"
+}

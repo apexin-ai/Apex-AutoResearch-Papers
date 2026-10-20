@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6e5d8ef6e128315289ec",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "paper table3 r025 3seed",
+  "task_key": "worker_paper_table3-r025-3seed_20260522T061820",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_table3-r025-3seed_20260522T061820_result.json",
+    "occurrence": 1,
+    "bytes": 1162,
+    "sha256": "457a1baa63fc3d528aa18ebd41240e935e9ac2b495c35fa0f1e23a694c950f25"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译成功，11 页（含 references + appendix，符合 8 页正文限制）。\n\n**已完成的修改汇总：**\n\n| 位置 | 旧值 | 新值 |\n|------|------|------|\n| Table 3 (L180) SLV | 2485.0 | 2488.1 |\n| Table 3 (L180) eff_rank | 512.5 | 513.8 |\n| Table 3 (L180) PPL | 13.29 | 13.41 |\n| Table 3 (L180) D-4 | .357 | .342 |\n| §4.4 L142 Gen~10 SLV | $2485.0$, $+5.0\\%$ | $2488.1$, $+5.1\\%$ |\n| §4.4 L145 EMA 幅度 | $-0.6$ vs.\\ $-1.7$ | $-0.6$, $-1.7$, $-0.9$ |\n| Table 3 caption (L185) | r=0.25 single seed | r=0.25 mean of three seeds (42, 43, 44) |\n| §4.4 L162 D-4 | 0.357 | 0.342 |\n| Limitations (L5) | r∈{0.2, 0.25, 0.5} single seed | r∈{0.2, 0.5} single seed; r=0.25 three seeds |\n\n**未改动（按要求）：** Abstract L5。\n\n**全文 grep 旧值残留：** 无。`.tex` 文件中 `2485.0`、`512.5`、`13.29`、`.357` 均已清除。\n\n**注意：** L142 的早期 dip 值（$2362.1$、$2363.1$、$-4.6$）和 L143-144 的 EMA/controller 值未更新，因为 Director 只提供了 Gen~10 的 3-seed 统计值，无早期 generation 的 3-seed 数据。如需更新这些值，请提供对应数据。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-table3-r025-3seed.md"
+}

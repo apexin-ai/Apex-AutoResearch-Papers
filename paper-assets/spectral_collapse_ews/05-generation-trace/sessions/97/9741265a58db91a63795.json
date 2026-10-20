@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9741265a58db91a63795",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ops cleanup exp 012 checkpoints",
+  "task_key": "worker_ops_cleanup_exp_012_checkpoints_20260520T222640",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cleanup_exp_012_checkpoints_20260520T222640_result.json",
+    "occurrence": 1,
+    "bytes": 414,
+    "sha256": "e78ff295b4405e53f8a8d64fa4dca402aafbba4ad90493f1495be3d7a2e7edb6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。\n\n| 指标 | 删除前 | 删除后 |\n|------|--------|--------|\n| checkpoint 目录数 | 11 (gen_0~gen_10) | 2 (gen_0, gen_10) |\n| 磁盘已用 | 244GB (98%) | 230GB (92%) |\n| 可用空间 | 6.7GB | **21GB** |\n| 释放空间 | — | ~14.4GB |\n\n保留：`gen_0`、`gen_10`。已删除：`gen_1`~`gen_9`（9 个目录）。可用空间 21GB，满足 exp_014 的 >20GB 要求。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cleanup-exp-012-checkpoints.md"
+}

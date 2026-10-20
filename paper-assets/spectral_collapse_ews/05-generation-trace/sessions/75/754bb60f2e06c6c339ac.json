@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "754bb60f2e06c6c339ac",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "setup pythia 1b phase0",
+  "task_key": "worker_setup_pythia_1b_phase0_20260516T120310",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_setup_pythia_1b_phase0_20260516T120310_result.json",
+    "occurrence": 1,
+    "bytes": 672,
+    "sha256": "6cc3a0833a6b89ce6af7dca02cdd2f994041238c84adb31938a572ca18807bb3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 4 步完成：\n\n| Step | 状态 |\n|------|------|\n| 1. 停止 auto_eval_hellaswag | PID 14666 已 kill，cuda:1 显存 0 MiB |\n| 2. 下载 Pythia 1B | ModelScope 下载到 `/root/autodl-tmp/spectral_collapse_ews/models/EleutherAI/pythia-1b-deduped/` (根分区满，已将 models 目录 symlink 到数据盘) |\n| 3. 创建 run_phase0_1b.py | `/root/spectral_collapse_ews/run_phase0_1b.py` 就绪，model_name 指向本地路径 |\n| 4. 验证 | 1011.8M params, hidden_dim=2048, CPU 加载通过 |\n\n注意：根分区几乎满（28/30G），`models/` 已 symlink 到 `/root/autodl-tmp/`。训练时用 `CUDA_VISIBLE_DEVICES=1` 映射 cuda:1。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/setup-pythia-1b-phase0.md"
+}

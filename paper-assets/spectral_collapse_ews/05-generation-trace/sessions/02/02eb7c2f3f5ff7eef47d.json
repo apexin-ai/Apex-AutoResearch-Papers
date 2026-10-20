@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "02eb7c2f3f5ff7eef47d",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ops check exp004 status",
+  "task_key": "worker_ops_check-exp004-status_20260518T085116",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-exp004-status_20260518T085116_result.json",
+    "occurrence": 1,
+    "bytes": 1027,
+    "sha256": "e21652321b2e3d80c720ea8c97f7a8467848a81b266cc7f20060d6e5c746ba24"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**exp_004 尚未完成。**\n\n- PID 135411 仍在运行，已运行 14h55m，cuda:1 占用 25GB，GPU 利用率 95%\n- 结果文件包含 Gen 0–9（共 10 条），Gen 10 尚未写入，正在训练中\n\n当前已完成的 Gen 0–9 metrics：\n\n| Gen | eff_rank | log_det | perplexity | distinct_4 | train_loss |\n|-----|----------|---------|------------|------------|------------|\n| 0 | 417.55 | 2366.68 | 9.55 | 0.741 | — |\n| 1 | 477.89 | 2366.58 | 10.08 | 0.669 | 1.984 |\n| 2 | 487.92 | 2395.36 | 10.41 | 0.582 | 1.894 |\n| 3 | 496.57 | 2425.64 | 10.76 | 0.456 | 1.733 |\n| 4 | 502.05 | 2451.72 | 11.14 | 0.328 | 1.536 |\n| 5 | 512.78 | 2486.34 | 11.65 | 0.235 | 1.343 |\n| 6 | 519.78 | 2507.62 | 12.16 | 0.220 | 1.194 |\n| 7 | 527.47 | 2525.55 | 12.77 | 0.193 | 1.144 |\n| 8 | 536.39 | 2544.03 | 13.46 | 0.168 | 1.060 |\n| 9 | 545.73 | 2562.13 | 14.23 | 0.102 | 0.985 |\n\n**cuda:1 当前被 exp_004 占用（PID 135411）。** cuda:0 被 exp_007（real_ratio=0.2 实验）占用。两卡均忙。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-exp004-status.md"
+}

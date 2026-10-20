@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "50e20e22b7a60169c9a1",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ops exp014b status check",
+  "task_key": "worker_ops_exp014b-status-check_20260521T131338",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp014b-status-check_20260521T131338_result.json",
+    "occurrence": 1,
+    "bytes": 825,
+    "sha256": "c111808afa851d2caa1c64e12fa44092af43058d549bafc8bb20f64843cd61e7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp_014b 状态报告\n\n| 项目 | 状态 |\n|------|------|\n| **PID 577216** | 存活，运行 1h09m |\n| **当前进度** | Gen 6/10 — 数据生成阶段，已生成 25600/37500 samples（68%） |\n| **GPU 利用率** | GPU0: 58%, 51GB/98GB; GPU1: 87%, 25GB/98GB |\n| **磁盘** | /root/autodl-tmp 102GB 可用（60% 已用），充足 |\n| **Checkpoints** | gen_0 ~ gen_6 已保存（gen_6 checkpoint 已写入，当前在生成合成数据） |\n\n**进度分析：** 实验从 gen_6 开始（start_gen=6），当前仍在 gen_6 的数据生成步骤（25600/37500）。生成完成后还需训练，然后继续 gen_7~10。\n\n**预估完成时间：** 按每代 ~2h 计算，gen_6 剩余约 1.5h，gen_7~10 各 2h，总计还需约 **9.5h**，预计完成时间约明天凌晨 4:00-5:00 (UTC+8)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp014b-status-check.md"
+}

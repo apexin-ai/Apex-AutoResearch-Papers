@@ -1,0 +1,41 @@
+{
+  "exp_id": "exp_003",
+  "project": "spectral_collapse_ews",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T04:04:34.425Z",
+    "updated_at": "2026-05-17T04:05:56.862Z",
+    "hypothesis": "Spectral-guided adaptive data mixing (controller with tau=0.02, k=1.0, r_min=0.20, r_max=0.80) achieves lower perplexity and higher effective rank than fixed 50/50 mixing under the same total real data budget, by front-loading real data when spectral health signals indicate early collapse onset",
+    "parent": "exp_001",
+    "spec": {
+      "description": "Phase 1: Adaptive spectral-guided mixing, seed 42",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && PYTHONUNBUFFERED=1 python run_phase1.py --condition adaptive --seed 42 --k 1.0 --tau 0.02 --generations 10\"",
+      "server": "rtx6000-diagprobe",
+      "gpu": "cuda:1",
+      "pid": 77663,
+      "tmux_session": "exp_003",
+      "model_name": "EleutherAI/pythia-410m-deduped",
+      "seed": 42,
+      "data_path": "/root/spectral_collapse_ews/data/",
+      "data_count": "50K train + 5K eval + 1K spectral",
+      "generations": 10,
+      "condition": "adaptive",
+      "controller_params": {
+        "tau": 0.02,
+        "k": 1,
+        "r_min": 0.2,
+        "r_max": 0.8,
+        "alpha": 0.5
+      },
+      "checkpoint_dir": "/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/adaptive_seed42/",
+      "log_path": "~/runs/spectral_collapse_ews/exp_003.log",
+      "checkpoint_source": "EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)",
+      "eval_data": "/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)"
+    }
+  },
+  "timestamp": "2026-05-17T04:05:56.876483+00:00",
+  "trigger": "update_registry"
+}

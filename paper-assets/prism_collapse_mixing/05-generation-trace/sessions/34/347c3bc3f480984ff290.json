@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "347c3bc3f480984ff290",
+  "project": "prism_collapse_mixing",
+  "kind": "result",
+  "title": "ssh gen0 baseline",
+  "task_key": "worker_ssh_gen0-baseline_20260515T175938",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_gen0-baseline_20260515T175938_result.json",
+    "occurrence": 1,
+    "bytes": 1205,
+    "sha256": "ff3626b9b5355ff24943dea85e6dbb20ae56bf322a86b2bd608492ee7ee83cda"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 seed 的 Gen 0 baseline 信号计算全部完成。结果完全相同（符合预期，因为同一模型 checkpoint）。\n\n## Gen 0 Baseline 结果\n\n### Aggregated (per-example 信号)\n| 指标 | mean | std |\n|------|------|-----|\n| loss | 3.1565 | 0.5186 |\n| entropy | 3.1564 | 0.4432 |\n| spectral_rank | 163.72 | 8.65 |\n\n### Corpus-level 辅助信号\n| 指标 | 值 |\n|------|------|\n| sigma_spectral_rank | 4.42 |\n| distinct-1 | 0.0387 |\n| distinct-2 | 0.3412 |\n| distinct-3 | 0.6871 |\n\n### Spearman 相关\n| 对 | ρ | p-value |\n|---|---|---------|\n| loss ↔ entropy | 0.9292 | 0.0 |\n| loss ↔ spectral_rank | -0.2110 | 0.0 |\n\n### 运行信息\n- num_probe_samples: 5000\n- seed42 运行耗时: ~18 min（per-example ~12 min + distinct-n ~6 min）\n- seed137 运行耗时: ~20 min（稍慢，因与 build_train.py 共用 GPU 资源）\n- 两个 seed 结果完全一致（per-example loss/entropy/spectral_rank 逐元素相同），distinct-n 也相同（Gen 0 的 seed 只影响生成采样，但因为模型相同且 seed 设在生成前，实际输出一致）\n- 产出文件: `results/signals_gen0_seed42.json`, `results/signals_gen0_seed137.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-gen0-baseline.md"
+}

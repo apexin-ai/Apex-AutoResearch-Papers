@@ -1,0 +1,8 @@
+Remote path: /root/spectral_collapse_ews/results/alternative_ews_v2_exp001.json
+Server: rtx6000-diagprobe
+
+Key metrics (r=0, pure collapse):
+RankMe: 707->739->745->745->736->736->729->725->721->717->710 (decompression-then-collapse, peak Gen 2)
+SLV:    2367->2465->2470->2441->2405->2370->2335->2304->2252->2208->2179 (same pattern)
+Token entropy: 6.75->6.75->6.71->6.67->6.59->6.51->6.44->6.36->6.28->6.18->6.11 (monotonic decline)
+PPL growth rate: 0->1.83->2.20->2.67->3.56->4.79->6.32->7.97->10.40->14.03->13.46 (accelerating, peak Gen 9)

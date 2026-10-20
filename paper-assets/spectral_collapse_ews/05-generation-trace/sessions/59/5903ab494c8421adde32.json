@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5903ab494c8421adde32",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "launch exp 020",
+  "task_key": "worker_launch_exp_020_20260523T094531",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_launch_exp_020_20260523T094531_result.json",
+    "occurrence": 1,
+    "bytes": 323,
+    "sha256": "72c47ccd597d50262c7ebf9d4c47f12b9816e8eb41062e3cd28a62cb8871d1c2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp_020 已启动并注册：\n\n- **服务器**: rtx6000-diagprobe, cuda:0\n- **tmux session**: `exp_020`\n- **日志**: `/root/spectral_collapse_ews/logs/exp_020.log`\n- **状态**: RUNNING（正在准备 GPT-2 tokenized 数据，之后开始训练）\n- **Registry**: 已更新为 RUNNING，spec 已记录"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/launch-exp-020.md"
+}

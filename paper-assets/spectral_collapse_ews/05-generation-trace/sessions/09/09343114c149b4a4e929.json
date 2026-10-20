@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "09343114c149b4a4e929",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ops monitor and launch training",
+  "task_key": "worker_ops_monitor-and-launch-training_20260525T225049",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_monitor-and-launch-training_20260525T225049_result.json",
+    "occurrence": 1,
+    "bytes": 261,
+    "sha256": "9f9c3c9ee0c2117bb1f385f69fdf263db23ae71d99058413076a57d8ef03aa87"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "轮询已设置，270s 后第一次检查。预计 GPU 1 (EWS r=0.2) 约 15-20 分钟后完成，GPU 0 (SV 分布) 约 1.5h 后完成。每次轮询会检查进程状态和 GPU 利用率，进程结束后立即收集结果并启动对应训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-monitor-and-launch-training.md"
+}

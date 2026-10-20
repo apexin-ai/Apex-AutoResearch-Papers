@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "118d665aff1ecc513c8d",
+  "project": "trace_distill_repair",
+  "kind": "worker",
+  "title": "fix three confounds",
+  "task_key": "worker_fix_three_confounds_20260515T122721",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_three_confounds_20260515T122721.log",
+    "occurrence": 1,
+    "bytes": 598155,
+    "sha256": "21a04345b6f150bbe8d8c149098a506e0954bda8070fb6f31d288865a7b34e75"
+  },
+  "statistics": {
+    "messages": 168,
+    "user_turns": 0,
+    "tool_calls": 61,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 42,
+      "tool_call": 61,
+      "tool_result": 61,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 168,
+      "chunks": [
+        {
+          "path": "118d665aff1ecc513c8d-part-0001.json",
+          "message_count": 165
+        },
+        {
+          "path": "118d665aff1ecc513c8d-part-0002.json",
+          "message_count": 3
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/fix-three-confounds.md"
+}

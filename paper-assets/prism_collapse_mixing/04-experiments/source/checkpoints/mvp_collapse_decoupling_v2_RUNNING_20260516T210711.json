@@ -1,0 +1,107 @@
+{
+  "exp_id": "mvp_collapse_decoupling_v2",
+  "project": "prism_collapse_mixing",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T22:43:35.604Z",
+    "updated_at": "2026-05-16T21:07:11.827Z",
+    "hypothesis": "在迭代合成训练中，collapse 信号（entropy/spectral rank/diversity）与 validation loss 脱钩——loss 稳定/改善而 collapse 信号下降，表明 loss 无法捕获 collapse 退化。（v2: OOM 修复后延续运行）",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/prism_collapse_mixing && export HF_HUB_OFFLINE=1 && python run_pipeline.py --seeds 42,137 --start_gen 1\"",
+      "server": "rtx6000-diagprobe",
+      "gpu": [
+        "cuda:0",
+        "cuda:1"
+      ],
+      "pid": "197985",
+      "log_path": "/root/prism_collapse_mixing/pipeline.log",
+      "data_path": "/root/prism_collapse_mixing/data/",
+      "data_count": 579255,
+      "model_name": "EleutherAI/pythia-410m-deduped",
+      "seed": "42,137"
+    },
+    "parent": "mvp_collapse_decoupling",
+    "metrics": {
+      "gen0": {
+        "seed42": {
+          "rho_loss_entropy": 0.9292,
+          "rho_loss_spectral": -0.211,
+          "loss_mean": 3.1565,
+          "entropy_mean": 3.1564,
+          "spectral_rank_mean": 163.72,
+          "corpus_spectral_rank": 4.42,
+          "distinct_1": 0.0387,
+          "distinct_2": 0.3412,
+          "distinct_3": 0.6871
+        },
+        "seed137": {
+          "rho_loss_entropy": 0.9292,
+          "rho_loss_spectral": -0.211,
+          "loss_mean": 3.1565,
+          "entropy_mean": 3.1564,
+          "spectral_rank_mean": 163.72,
+          "corpus_spectral_rank": 4.42,
+          "distinct_1": 0.0386,
+          "distinct_2": 0.3414,
+          "distinct_3": 0.687
+        }
+      },
+      "gen1": {
+        "seed42": {
+          "rho_loss_entropy": 0.9118,
+          "rho_loss_spectral": -0.205,
+          "loss_mean": 3.1118,
+          "entropy_mean": 3.0437,
+          "spectral_rank_mean": 165,
+          "corpus_spectral_rank": 4.68,
+          "distinct_1": 0.0382,
+          "distinct_2": 0.3385,
+          "distinct_3": 0.6793
+        },
+        "seed137": {
+          "rho_loss_entropy": 0.9119,
+          "rho_loss_spectral": -0.2036,
+          "loss_mean": 3.1115,
+          "entropy_mean": 3.0472,
+          "spectral_rank_mean": 164.8,
+          "corpus_spectral_rank": 4.68,
+          "distinct_1": 0.0384,
+          "distinct_2": 0.3399,
+          "distinct_3": 0.6817
+        }
+      },
+      "gen2": {
+        "seed42": {
+          "rho_loss_entropy": 0.9125,
+          "rho_loss_spectral": -0.2384,
+          "loss_mean": 3.1064,
+          "entropy_mean": 3.077,
+          "spectral_rank_mean": 160.92,
+          "corpus_spectral_rank": 4.47,
+          "distinct_1": 0.0384,
+          "distinct_2": 0.3395,
+          "distinct_3": 0.6767
+        },
+        "seed137": {
+          "rho_loss_entropy": 0.9127,
+          "rho_loss_spectral": -0.2303,
+          "loss_mean": 3.1063,
+          "entropy_mean": 3.0795,
+          "spectral_rank_mean": 160.93,
+          "corpus_spectral_rank": 4.43,
+          "distinct_1": 0.0387,
+          "distinct_2": 0.3421,
+          "distinct_3": 0.6813
+        }
+      },
+      "current_stage": "gen3_synthetic_generation"
+    },
+    "failure_reason": "startup recovery: process dead, no active cron monitor",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-16T21:07:11.958021+00:00",
+  "trigger": "update_registry"
+}

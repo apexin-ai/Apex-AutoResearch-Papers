@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f969a6dc73aa6cf334f0",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "analysis exp 019",
+  "task_key": "worker_analysis_exp_019_20260524T022437",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_019_20260524T022437_result.json",
+    "occurrence": 1,
+    "bytes": 1220,
+    "sha256": "72ffc6c52f7d7099db0fa92392cb2ec5a559d4f6a1632a186e1f1a4283169749"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。核心结论：\n\n### exp_019 (seed44) 结果\n\n**Type II trajectory confirmed** — SLV dip at Gen2 (Δ=-5.58), then monotonic recovery to 2466.15 (+4.2%)。Gen10: eff_rank=506.95, PPL=13.39, D-4=0.2061。\n\n### D-4 V-recovery 结论\n\n**seed42 的 D-4 V-shaped recovery 是 1/3 outlier。** seed43 和 seed44 均为 monotonic decline（0.74→0.25, 0.73→0.21），只有 seed42 从 gen5 的 0.44 回升到 gen10 的 0.52。\n\n关键发现：seed42 的 V-recovery 与其 gen6-10 **train_loss 异常上升** 强相关（从 1.30 升到 1.39，而其他两颗种子 train_loss 从 ~1.2 降到 ~0.9）。这表明 V-recovery 很可能是 seed42 后段训练异常的 artifact，而非 genuine seed-dependent behavior。\n\n### 3-seed Gen10 统计\n\n| Metric | Mean ± Std |\n|--------|------------|\n| SLV | 2467.21 ± 12.00 |\n| eff_rank | 508.06 ± 2.81 |\n| PPL | 13.54 ± 0.25 |\n| D-4 (3-seed) | 0.324 ± 0.171 (high var due to seed42) |\n| D-4 (excl seed42) | 0.226 ± 0.028 |\n\n### 额外发现\n\n`phase1_fixed_mix_r02_seed42_results.json` 实际包含 gen0-10 数据，而非预期的 gen0-5。gen6-10 部分 train_loss 行为异常，建议核实该数据的来源和可靠性。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-019.md"
+}

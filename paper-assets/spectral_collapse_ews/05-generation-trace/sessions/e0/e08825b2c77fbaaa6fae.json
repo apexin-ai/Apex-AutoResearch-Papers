@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e08825b2c77fbaaa6fae",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ops exp013 gen8 10 metrics",
+  "task_key": "worker_ops_exp013-gen8-10-metrics_20260521T103922",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp013-gen8-10-metrics_20260521T103922_result.json",
+    "occurrence": 1,
+    "bytes": 523,
+    "sha256": "38504169664c84a468a9d80d1f31790cd6d18bf97a9e43595b197f6c73859495"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## gen8-10 metrics\n\n```\ngen8:  eff_rank=454.56, log_det=2237.81, ppl=44.48, distinct4=0.1817, train_loss=0.6171, sigma1=808.25\ngen9:  eff_rank=444.33, log_det=2188.92, ppl=54.34, distinct4=0.1482, train_loss=0.3899, sigma1=850.72\ngen10: eff_rank=432.91, log_det=2154.34, ppl=65.70, distinct4=0.1515, train_loss=0.3271, sigma1=911.87\n```\n\n## gen0-7 registry 一致性\n\nlog_det 和 ppl 全部一致，registry 记录正确。（registry 四舍五入到小数点后 2 位，与原始数据吻合。）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp013-gen8-10-metrics.md"
+}

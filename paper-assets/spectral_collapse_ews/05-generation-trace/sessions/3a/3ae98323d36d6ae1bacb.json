@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3ae98323d36d6ae1bacb",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ops disk cleanup",
+  "task_key": "worker_ops_disk_cleanup_20260520T081104",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_disk_cleanup_20260520T081104_result.json",
+    "occurrence": 1,
+    "bytes": 939,
+    "sha256": "ee803f0f91f8be8fc47153d459ad33cad0757d30f300c28a76dd393e8c839bc4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。结果：\n\n| 指标 | 清理前 | 清理后 |\n|------|--------|--------|\n| 可用空间 | 12G | **27G** |\n| 释放量 | — | **~15G** |\n| 使用率 | 96% | **90%** |\n\n27G 可用，未达 29G 目标（差 2G）。原因是 `linear_increasing_seed42` 实际只有 1.6G 而非预估更大。三个批准删除的目录已全部清除，剩余 `checkpoints_phase1/` 内容：\n\n| 目录 | 大小 | 备注 |\n|------|------|------|\n| adaptive_k10_seed42 | 17G | |\n| fixed_mix_r025_seed42 | 17G | |\n| fixed_mix_r02_seed42 | 17G | |\n| fixed_mix_r03_seed42 | 17G | |\n| fixed_mix_r03_seed43 | 4.6G | 可能正在运行 |\n| fixed_mix_seed42 | 17G | |\n| pure_collapse_seed43 | 17G | 正在运行 |\n| pure_collapse_seed44 | 1.6G | 正在运行 |\n\n27G 应足够支撑 exp_012 + exp_013 的 16-18G checkpoint 写入。如需严格达到 29G，需要你确认是否可以删除其他 phase1 checkpoint。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-disk-cleanup.md"
+}

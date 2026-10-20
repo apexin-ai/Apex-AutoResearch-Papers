@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "560ef8f8cae653510a35",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ssh relay r03 seed43 on exp011 done",
+  "task_key": "worker_ssh_relay-r03-seed43-on-exp011-done_20260520T011741",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_relay-r03-seed43-on-exp011-done_20260520T011741_result.json",
+    "occurrence": 1,
+    "bytes": 212,
+    "sha256": "1a34ee7f00ecb800ab4f290b2a68d103128069429a85dd439ad059b21de84d5f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp_011 当前状态：Generation 10/10，样本生成 26%（10560/40000）。已设置每 ~5 分钟轮询一次，完成后自动收集数据并启动 r=0.3 seed43。下次检查约 4 分钟后。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-relay-r03-seed43-on-exp011-done.md"
+}

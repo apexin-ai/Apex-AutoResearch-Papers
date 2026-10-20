@@ -1,0 +1,62 @@
+# Trace-Distill-Repair MVP 实验计划
+# 核心假设: 结构化 trace 分段 + teacher 打分产生的压缩 trace 在修复任务上优于行级过滤
+
+experiments:
+  - plan_id: mvp_trace_collect
+    name: "BugsInPy trace 收集 + 结构化分段"
+    hypothesis: "≥80% BugsInPy 实例可成功收集 trace 并解析为结构化 segments"
+    type: data_preparation
+    dependencies: []
+    dataset: "45 BugsInPy 候选实例（40 setup 成功）"
+    method:
+      trace_collection: "sys.settrace (Python 3.12+), 含 line events, max_events=100K, per-function 500 line cap"
+      structural_segmentation: "call subtrees / loop iterations / exception chains / basic blocks, cap 20 segments"
+    pass_criteria: "≥80% 实例成功收集 trace + 解析为结构化 segments"
+    kill_criteria: ">40% 解析失败 → 终止"
+    status: DONE
+    spec:
+      data_count: 38
+      success_rate: "38/40 = 95%"
+      total_segments: 491
+      segment_types: "loop_iteration=224, call_subtree=147, basic_block=84, exception_chain=36"
+
+  - plan_id: mvp_teacher_scoring
+    name: "Teacher 打分验证"
+    hypothesis: "DeepSeek-V4-Flash 对 structural segments 的 keep/drop 标注 precision ≥ 0.6"
+    type: evaluation
+    dependencies: [mvp_trace_collect]
+    method:
+      teacher_model: "DeepSeek-V4-Flash"
+      task: "对 structural / line-level segments 分别标注 keep/drop"
+      sample_size: 50
+    pass_criteria: "抽查 50 segments, precision ≥ 0.6"
+    kill_criteria: "precision < 0.5 → 换 teacher 或终止"
+    status: READY
+    note: "依赖已满足，仅等 DeepSeek API key"
+
+  - plan_id: mvp_repair_comparison
+    name: "4 条件修复对比"
+    hypothesis: "structural-filtered trace 在 >2K token 子集中 win rate > 50%"
+    type: experiment
+    dependencies: [mvp_trace_collect, mvp_teacher_scoring]
+    method:
+      repair_model: "DeepSeek-V4-Pro"
+      conditions:
+        - no-trace
+        - full-trace
+        - structural-filtered
+        - line-filtered
+      subset: ">2K token trace 实例"
+    pass_criteria: "structural win rate > 50% (p<0.15 directional signal) + 5 case 定性分析"
+    kill_criteria: "structural win rate ≤ 50% → 终止"
+    gray_zone: "win rate 50-55% 且 p>0.15 时，以 5 case 定性分析作为 tiebreaker"
+    status: BLOCKED
+
+  - plan_id: mvp_judgment
+    name: "MVP 综合判定"
+    hypothesis: "DTD 方法值得全面研究"
+    type: milestone
+    dependencies: [mvp_trace_collect, mvp_teacher_scoring, mvp_repair_comparison]
+    pass_criteria: "3 个子实验全部 pass"
+    kill_criteria: "任一子实验 kill → 终止"
+    status: BLOCKED

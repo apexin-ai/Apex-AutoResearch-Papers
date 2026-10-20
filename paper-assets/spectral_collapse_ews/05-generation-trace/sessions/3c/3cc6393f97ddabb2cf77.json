@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3cc6393f97ddabb2cf77",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ssh exp 017 018 urgent check",
+  "task_key": "worker_ssh_exp_017_018_urgent_check_20260523T013850",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp_017_018_urgent_check_20260523T013850_result.json",
+    "occurrence": 1,
+    "bytes": 679,
+    "sha256": "f70d237aebba5eb0a14d159baa6f46660f3dd8435bd394191445865ffbee963f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验进程都存活。汇总：\n\n---\n\n**exp_017** (r=0.2, seed43, cuda:1)\n- Generation: **9/10**\n- 状态: **running** — 训练阶段，Step 4700，avg_loss=0.9592\n- 训练 loss 已收敛（Step 3000 后在 0.96 附近波动），预计很快完成 Gen 9 训练 → 进入 Gen 9 评估 → Gen 10\n\n**exp_018** (r=0.5, seed43, cuda:0)\n- Generation: **5/10**\n- 状态: **running** — 生成阶段，24320/25000 samples\n- Gen 4 已完成的 metrics: eff_rank=503.05, ppl=11.12, distinct4=0.4632\n- 进度约 50%，还有 Gen 5-10 要跑\n\n两个进程均存活（共 6 个相关 PID）。exp_017 接近尾声，exp_018 还需要较长时间。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exp-017-018-urgent-check.md"
+}

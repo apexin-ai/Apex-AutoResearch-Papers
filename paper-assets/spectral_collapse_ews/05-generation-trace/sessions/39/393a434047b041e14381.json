@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "393a434047b041e14381",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "scp phase diagram",
+  "task_key": "worker_scp_phase_diagram_20260520T033043",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_scp_phase_diagram_20260520T033043_result.json",
+    "occurrence": 1,
+    "bytes": 190,
+    "sha256": "ea084c49659991e44725f9b39f15395a188edb20e118f3520398f3c882b0a2ff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "拷贝完成。\n\n- `paper/figures/phase_diagram.pdf` — 27,000 bytes\n- `paper/figures/phase_diagram.png` — 107,473 bytes\n\n大小与服务器端一致，文件完整。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/scp-phase-diagram.md"
+}

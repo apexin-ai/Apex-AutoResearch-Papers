@@ -1,0 +1,27 @@
+{
+  "exp_id": "mvp_line_scoring_v2",
+  "project": "trace_distill_repair",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T01:56:02.906Z",
+    "updated_at": "2026-05-15T01:58:54.564Z",
+    "hypothesis": "修复 max_tokens=1024 后全量重跑 line scoring，消除 JSON 截断导致的 keep 系统性低估（前次 error_rate 42.5%，预期降至 &lt;10%）",
+    "parent": "mvp_line_scoring_clean",
+    "spec": {
+      "command": "bash -c \"export OPENROUTER_API_KEY='[REDACTED]' && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/trace_distill_repair && python run_phase2_scoring.py --mode line --max-concurrent 3 > /tmp/line_scoring_v2.log 2>&1\"",
+      "server": "rtx6000-diagprobe",
+      "gpu": [],
+      "pid": "86816",
+      "log_path": "~/runs/trace_distill_repair/mvp_line_scoring_v2.log",
+      "submitted_at": "2026-05-15T01:58:38.068Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-15T01:58:54.604455+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,1572 @@
+{
+  "schema_version": "1.0",
+  "id": "c4a2f779d81a058de6ff",
+  "project": "spectral_collapse_ews",
+  "kind": "worker",
+  "title": "paper verify method params",
+  "task_key": "worker_paper_verify_method_params_20260517T062344",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_verify_method_params_20260517T062344.log",
+    "occurrence": 1,
+    "bytes": 106469,
+    "sha256": "0a51195847159ff2bec310a031ca7178ea3456a0958ecef79cb3188d108820ac"
+  },
+  "statistics": {
+    "messages": 37,
+    "user_turns": 0,
+    "tool_calls": 12,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 9,
+      "tool_call": 12,
+      "tool_result": 12,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews",
+                "session_id": "af37c6e3-c319-455f-b3a4-fe6e529897c1",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "2535837a-7436-4154-9417-5fc14750c6a0",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-5-projects-spectral-collapse-ews/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779006600,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "138fbaf9-c77d-4271-93da-307017760550",
+                "session_id": "af37c6e3-c319-455f-b3a4-fe6e529897c1"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me start by reading the method.tex file and the relevant code files from the server.",
+              "signature": "EpMCClkIDRgCKkAGhMZ3kEbFTN0c3E29F7EFHkiG0VXPllQCiokLdngTnp9lKgJD9PoTQg738Vmsu30jCe0yQ83IjnDMbrN9uA2bMg9jbGF1ZGUtb3B1cy00LTY4ABIM10bLFQxYaWz+O1MsGgzI5enJSb2i+ZXyyQciMCSsRzahjXRauin5LLTKLbBesTxJCu/NdiyY1QSWnmAMjcdFQHjkhQhHl325gqspUypoy5cD7mn/Pk/J8Ntog9qw106l4tFdJxM8Oyr/2bIJ9DlS4Dgdj3jJIXVOhpeDo0qw9PAsq0SDP1MX779M2rkLAdPm7Rpug957MaLYY1YuRY22EuABqlMNgfAFsaUpa559ZHp2GJcNoqgYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "af37c6e3-c319-455f-b3a4-fe6e529897c1",
+            "uuid": "ff494874-fbbf-4a2e-b596-587cfdc56713",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0169DPoUjKCCxv2CqZgWmkKK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12579,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12579
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QVxKWoXD3xBHFCFrUJ1MG2",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "af37c6e3-c319-455f-b3a4-fe6e529897c1",
+            "uuid": "c97e963b-c7cf-42f5-8cf6-4680f602f10e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0169DPoUjKCCxv2CqZgWmkKK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12579,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12579
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-17T06:23:54.177Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01QVxKWoXD3xBHFCFrUJ1MG2",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "af37c6e3-c319-455f-b3a4-fe6e529897c1",
+            "uuid": "9c0a2d94-7044-45ff-a863-6ff1253e538a",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only",
+                "mcp__agent-ml-research__ssh_execute"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me read the method.tex file and the relevant code files from the server.",
+              "signature": "EocCClkIDRgCKkACE+/WC0fRlgFTUjHCUZRLTqfYxwhHsbbSgY/Z7+uc19D57eF9Sg5XhiLUNxHI9cLSfByF4Oc3oR7QCgoJH13nMg9jbGF1ZGUtb3B1cy00LTY4ABIMu9NTHFju0+Zeyb4xGgxHlqKxlRe2SXFTpooiMNBAmFOfvW2FaDPaagimq3QssRiV4LDh8THRdXakaf3leJn8icbLx7wCTKy/lsUTeipcJPPFJ59wit4aP2acavDfnQK+fs9sHmd0HKI+H/pMZQ/qcIiosSlnnhwW5GqhlpAIs2ZxtZ1EboVCO24hYP884BZ1GT3pDee4gLS3xv/wdQWCi2/lD/B4ldiRP/8YAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "af37c6e3-c319-455f-b3a4-fe6e529897c1",
+            "uuid": "daa39e55-11d4-47a8-b149-8fff1c3b1d41",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01S1Em4TANdRYXpz2agHTQvw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 705,
+                "cache_read_input_tokens": 24420,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 705
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "unavailable"
+                }
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01ShqqfHHDm7aPLpEs92tnNM",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx6000-diagprobe",
+                "command": "cat /root/spectral_collapse_ews/paper/method.tex",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "af37c6e3-c319-455f-b3a4-fe6e529897c1",
+            "uuid": "9e165f83-b8a0-48b5-aebc-409984d18915",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01S1Em4TANdRYXpz2agHTQvw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 705,
+                "cache_read_input_tokens": 24420,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 705
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "unavailable"
+                }
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014Si4SXXbQpnu6TvjStb6bE",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx6000-diagprobe",
+                "command": "cat /root/spectral_collapse_ews/src/config.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "af37c6e3-c319-455f-b3a4-fe6e529897c1",
+            "uuid": "183c6ce8-0fda-4e73-96ac-09f8b1244a50",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01S1Em4TANdRYXpz2agHTQvw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 705,
+                "cache_read_input_tokens": 24420,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 705
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "unavailable"
+                }
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-17T06:24:00.064Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01ShqqfHHDm7aPLpEs92tnNM",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\\section{Method}\\\\n\\\\n\\\\\\\\subsection{Problem Formulation}\\\\n\\\\nWe consider \\\\\\\\emph{recursive synthetic training}: a sequence of models $M_0, M_1, \\\\\\\\ldots, M_T$ where each $M_t$ is trained on a mixture of real data and synthetic data generated by $M_{t-1}$.\\\\nLet $r_t \\\\\\\\in [0,1]$ denote the fraction of real data at generation $t$.\\\\nGiven a fixed total real-data budget $B = T \\\\\\\\cdot r_{\\\\\\\\text{base}}$ across $T$ generations, we seek an allocation $\\\\\\\\{r_1, \\\\\\\\ldots, r_T\\\\\\\\}$ satisfying $\\\\\\\\sum_t r_t = B$ that minimizes cumulative model degradation.\\\\n\\\\nThe core challenge is \\\\\\\\emph{temporal}: uniform allocation wastes real data on healthy generations while under-investing in critical collapse phases.\\\\nWe propose a closed-loop controller that monitors spectral health online and redistributes budget toward generations exhibiting early signs of representation collapse.\\\\n\\\\n\\\\\\\\subsection{Spectral Health Signal}\\\\n\\\\nWe adopt the \\\\\\\\emph{effective rank} (RankMe)~\\\\\\\\cite{rankme2023} of the output representation Gram matrix as our collapse indicator.\\\\nAt each generation $t$, we perform a forward pass of $M_t$ on a held-out probe set of $N$ examples, extract last-layer hidden states, and mean-pool to obtain a matrix $\\\\\\\\mathbf{Z} \\\\\\\\in \\\\\\\\mathbb{R}^{N \\\\\\\\times D}$.\\\\nWe compute the SVD of $\\\\\\\\mathbf{Z}$ to obtain singular values $\\\\\\\\sigma_1 \\\\\\\\geq \\\\\\\\sigma_2 \\\\\\\\geq \\\\\\\\cdots \\\\\\\\geq \\\\\\\\sigma_{\\\\\\\\min(N,D)}$, normalize them as $p_i = \\\\\\\\sigma_i / \\\\\\\\sum_j \\\\\\\\sigma_j$, and define:\\\\n\\\\\\\\begin{equation}\\\\n  S_t = \\\\\\\\rho(\\\\\\\\mathbf{Z}) = \\\\\\\\exp\\\\\\\\!\\\\\\\\left(-\\\\\\\\sum_i p_i \\\\\\\\log p_i\\\\\\\\right)\\\\n\\\\\\\\end{equation}\\\\nThe effective rank $S_t$ measures the diversity of learned representations: collapse concentrates the singular spectrum, causing $S_t$ to decrease.\\\\nThis signal is cheap to compute (one forward pass, no gradient) and prior work shows that calibration degradation (ECE) precedes accuracy loss by 1--2 iterations~\\\\\\\\cite{calibration2025}; whether spectral signals exhibit similar or earlier lead time is an empirical question we investigate.\\\\n\\\\n\\\\\\\\subsection{Proportional Controller with Budget Constraint}\\\\n\\\\nWe smooth the raw signal with an exponential moving average:\\\\n\\\\\\\\begin{equation}\\\\n  \\\\\\\\tilde{S}_t = \\\\\\\\alpha \\\\\\\\cdot S_t + (1 - \\\\\\\\alpha) \\\\\\\\cdot \\\\\\\\tilde{S}_{t-1}, \\\\\\\\quad \\\\\\\\alpha = 0.5\\\\n\\\\\\\\end{equation}\\\\nand define the normalized decline rate:\\\\n\\\\\\\\begin{equation}\\\\n  \\\\\\\\Delta_t = \\\\\\\\frac{\\\\\\\\tilde{S}_{t-1} - \\\\\\\\tilde{S}_t}{|\\\\\\\\tilde{S}_0|}\\\\n\\\\\\\\end{equation}\\\\n\\\\nThe controller computes a raw target ratio for the next generation:\\\\n\\\\\\\\begin{equation}\\\\n  r_{t+1}^{\\\\\\\\text{raw}} = \\\\\\\\underbrace{\\\\\\\\frac{B_{\\\\\\\\text{rem}}}{T - t}}_{\\\\\\\\text{uniform residual}} + \\\\\\\\underbrace{k \\\\\\\\cdot \\\\\\\\max(0,\\\\\\\\; \\\\\\\\Delta_t - \\\\\\\\tau)}_{\\\\\\\\text{reactive boost}}\\\\n\\\\\\\\end{equation}\\\\nwhere $B_{\\\\\\\\text{rem}} = B - \\\\\\\\sum_{i=1}^{t} r_i$ is the remaining budget, $\\\\\\\\tau$ is a dead-zone threshold below which no correction is applied, and $k$ is the proportional gain.\\\\n\\\\nBudget feasibility is enforced by clipping:\\\\n\\\\\\\\begin{equation}\\\\n  r_{t+1} = \\\\\\\\text{clip}\\\\\\\\!\\\\\\\\left(r_{t+1}^{\\\\\\\\text{raw}},\\\\\\\\; r_{\\\\\\\\min},\\\\\\\\; \\\\\\\\min\\\\\\\\!\\\\\\\\left(r_{\\\\\\\\max},\\\\\\\\; B_{\\\\\\\\text{rem}} - (T - t - 1) \\\\\\\\cdot r_{\\\\\\\\min}\\\\\\\\right)\\\\\\\\right)\\\\n\\\\\\\\end{equation}\\\\nguaranteeing that every future generation receives at least $r_{\\\\\\\\min}$.\\\\nThe first generation uses $r_1 = r_{\\\\\\\\text{base}}$ (no prior signal).\\\\n\\\\nController hyperparameters: threshold $\\\\\\\\tau$, gain $k$, EMA coefficient $\\\\\\\\alpha$, bounds $r_{\\\\\\\\min}$ and $r_{\\\\\\\\max}$.\\\\n\\\\n\\\\\\\\subsection{Experimental Design}\\\\n\\\\nWe compare four conditions; conditions (b)--(d) share an identical total real-data budget $B$:\\\\n\\\\\\\\begin{enumerate}[nosep]\\\\n  \\\\\\\\item[(a)] \\\\\\\\textbf{Pure synthetic} ($r_t = 0\\\\\\\\;\\\\\\\\forall t$): collapse reference establishing degradation ceiling.\\\\n  \\\\\\\\item[(b)] \\\\\\\\textbf{Fixed uniform} ($r_t = r_{\\\\\\\\text{base}}\\\\\\\\;\\\\\\\\forall t$): static baseline representing naive budget-spreading.\\\\n  \\\\\\\\item[(c)] \\\\\\\\textbf{Spectral-guided adaptive} (ours): closed-loop allocation via the controller above.\\\\n  \\\\\\\\item[(d)] \\\\\\\\textbf{Linear-increasing} (budget-matched open-loop control): $r_t = r_{\\\\\\\\min} + (r_{\\\\\\\\max} - r_{\\\\\\\\min}) \\\\\\\\cdot (t-1)/(T-1)$, which allocates increasing real-data proportions over generations without spectral feedback.\\\\n\\\\\\\\end{enumerate}\\\\n\\\\nAll conditions use the same base model, training hyperparameters, and synthetic generation procedure, differing only in real-data scheduling.\\\\nWe evaluate on: effective rank $\\\\\\\\rho$, log-determinant proxy $\\\\\\\\mathcal{D}(\\\\\\\\mathbf{Z})$, held-out perplexity, lexical diversity (distinct-4), and HellaSwag accuracy (acc\\\\\\\\_norm).\\\\nToken-level ECE is implemented as a planned extension for signal-flexibility validation.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "af37c6e3-c319-455f-b3a4-fe6e529897c1",
+            "uuid": "93553845-5f37-497a-99e4-dcfeaaefc9e8",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\\section{Method}\\\\n\\\\n\\\\\\\\subsection{Problem Formulation}\\\\n\\\\nWe consider \\\\\\\\emph{recursive synthetic training}: a sequence of models $M_0, M_1, \\\\\\\\ldots, M_T$ where each $M_t$ is trained on a mixture of real data and synthetic data generated by $M_{t-1}$.\\\\nLet $r_t \\\\\\\\in [0,1]$ denote the fraction of real data at generation $t$.\\\\nGiven a fixed total real-data budget $B = T \\\\\\\\cdot r_{\\\\\\\\text{base}}$ across $T$ generations, we seek an allocation $\\\\\\\\{r_1, \\\\\\\\ldots, r_T\\\\\\\\}$ satisfying $\\\\\\\\sum_t r_t = B$ that minimizes cumulative model degradation.\\\\n\\\\nThe core challenge is \\\\\\\\emph{temporal}: uniform allocation wastes real data on healthy generations while under-investing in critical collapse phases.\\\\nWe propose a closed-loop controller that monitors spectral health online and redistributes budget toward generations exhibiting early signs of representation collapse.\\\\n\\\\n\\\\\\\\subsection{Spectral Health Signal}\\\\n\\\\nWe adopt the \\\\\\\\emph{effective rank} (RankMe)~\\\\\\\\cite{rankme2023} of the output representation Gram matrix as our collapse indicator.\\\\nAt each generation $t$, we perform a forward pass of $M_t$ on a held-out probe set of $N$ examples, extract last-layer hidden states, and mean-pool to obtain a matrix $\\\\\\\\mathbf{Z} \\\\\\\\in \\\\\\\\mathbb{R}^{N \\\\\\\\times D}$.\\\\nWe compute the SVD of $\\\\\\\\mathbf{Z}$ to obtain singular values $\\\\\\\\sigma_1 \\\\\\\\geq \\\\\\\\sigma_2 \\\\\\\\geq \\\\\\\\cdots \\\\\\\\geq \\\\\\\\sigma_{\\\\\\\\min(N,D)}$, normalize them as $p_i = \\\\\\\\sigma_i / \\\\\\\\sum_j \\\\\\\\sigma_j$, and define:\\\\n\\\\\\\\begin{equation}\\\\n  S_t = \\\\\\\\rho(\\\\\\\\mathbf{Z}) = \\\\\\\\exp\\\\\\\\!\\\\\\\\left(-\\\\\\\\sum_i p_i \\\\\\\\log p_i\\\\\\\\right)\\\\n\\\\\\\\end{equation}\\\\nThe effective rank $S_t$ measures the diversity of learned representations: collapse concentrates the singular spectrum, causing $S_t$ to decrease.\\\\nThis signal is cheap to compute (one forward pass, no gradient) and prior work shows that calibration degradation (ECE) precedes accuracy loss by 1--2 iterations~\\\\\\\\cite{calibration2025}; whether spectral signals exhibit similar or earlier lead time is an empirical question we investigate.\\\\n\\\\n\\\\\\\\subsection{Proportional Controller with Budget Constraint}\\\\n\\\\nWe smooth the raw signal with an exponential moving average:\\\\n\\\\\\\\begin{equation}\\\\n  \\\\\\\\tilde{S}_t = \\\\\\\\alpha \\\\\\\\cdot S_t + (1 - \\\\\\\\alpha) \\\\\\\\cdot \\\\\\\\tilde{S}_{t-1}, \\\\\\\\quad \\\\\\\\alpha = 0.5\\\\n\\\\\\\\end{equation}\\\\nand define the normalized decline rate:\\\\n\\\\\\\\begin{equation}\\\\n  \\\\\\\\Delta_t = \\\\\\\\frac{\\\\\\\\tilde{S}_{t-1} - \\\\\\\\tilde{S}_t}{|\\\\\\\\tilde{S}_0|}\\\\n\\\\\\\\end{equation}\\\\n\\\\nThe controller computes a raw target ratio for the next generation:\\\\n\\\\\\\\begin{equation}\\\\n  r_{t+1}^{\\\\\\\\text{raw}} = \\\\\\\\underbrace{\\\\\\\\frac{B_{\\\\\\\\text{rem}}}{T - t}}_{\\\\\\\\text{uniform residual}} + \\\\\\\\underbrace{k \\\\\\\\cdot \\\\\\\\max(0,\\\\\\\\; \\\\\\\\Delta_t - \\\\\\\\tau)}_{\\\\\\\\text{reactive boost}}\\\\n\\\\\\\\end{equation}\\\\nwhere $B_{\\\\\\\\text{rem}} = B - \\\\\\\\sum_{i=1}^{t} r_i$ is the remaining budget, $\\\\\\\\tau$ is a dead-zone threshold below which no correction is applied, and $k$ is the proportional gain.\\\\n\\\\nBudget feasibility is enforced by clipping:\\\\n\\\\\\\\begin{equation}\\\\n  r_{t+1} = \\\\\\\\text{clip}\\\\\\\\!\\\\\\\\left(r_{t+1}^{\\\\\\\\text{raw}},\\\\\\\\; r_{\\\\\\\\min},\\\\\\\\; \\\\\\\\min\\\\\\\\!\\\\\\\\left(r_{\\\\\\\\max},\\\\\\\\; B_{\\\\\\\\text{rem}} - (T - t - 1) \\\\\\\\cdot r_{\\\\\\\\min}\\\\\\\\right)\\\\\\\\right)\\\\n\\\\\\\\end{equation}\\\\nguaranteeing that every future generation receives at least $r_{\\\\\\\\min}$.\\\\nThe first generation uses $r_1 = r_{\\\\\\\\text{base}}$ (no prior signal).\\\\n\\\\nController hyperparameters: threshold $\\\\\\\\tau$, gain $k$, EMA coefficient $\\\\\\\\alpha$, bounds $r_{\\\\\\\\min}$ and $r_{\\\\\\\\max}$.\\\\n\\\\n\\\\\\\\subsection{Experimental Design}\\\\n\\\\nWe compare four conditions; conditions (b)--(d) share an identical total real-data budget $B$:\\\\n\\\\\\\\begin{enumerate}[nosep]\\\\n  \\\\\\\\item[(a)] \\\\\\\\textbf{Pure synthetic} ($r_t = 0\\\\\\\\;\\\\\\\\forall t$): collapse reference establishing degradation ceiling.\\\\n  \\\\\\\\item[(b)] \\\\\\\\textbf{Fixed uniform} ($r_t = r_{\\\\\\\\text{base}}\\\\\\\\;\\\\\\\\forall t$): static baseline representing naive budget-spreading.\\\\n  \\\\\\\\item[(c)] \\\\\\\\textbf{Spectral-guided adaptive} (ours): closed-loop allocation via the controller above.\\\\n  \\\\\\\\item[(d)] \\\\\\\\textbf{Linear-increasing} (budget-matched open-loop control): $r_t = r_{\\\\\\\\min} + (r_{\\\\\\\\max} - r_{\\\\\\\\min}) \\\\\\\\cdot (t-1)/(T-1)$, which allocates increasing real-data proportions over generations without spectral feedback.\\\\n\\\\\\\\end{enumerate}\\\\n\\\\nAll conditions use the same base model, training hyperparameters, and synthetic generation procedure, differing only in real-data scheduling.\\\\nWe evaluate on: effective rank $\\\\\\\\rho$, log-determinant proxy $\\\\\\\\mathcal{D}(\\\\\\\\mathbf{Z})$, held-out perplexity, lexical diversity (distinct-4), and HellaSwag accuracy (acc\\\\\\\\_norm).\\\\nToken-level ECE is implemented as a planned extension for signal-flexibility validation.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\\section{Method}\\n\\n\\\\subsection{Problem Formulation}\\n\\nWe consider \\\\emph{recursive synthetic training}: a sequence of models $M_0, M_1, \\\\ldots, M_T$ where each $M_t$ is trained on a mixture of real data and synthetic data generated by $M_{t-1}$.\\nLet $r_t \\\\in [0,1]$ denote the fraction of real data at generation $t$.\\nGiven a fixed total real-data budget $B = T \\\\cdot r_{\\\\text{base}}$ across $T$ generations, we seek an allocation $\\\\{r_1, \\\\ldots, r_T\\\\}$ satisfying $\\\\sum_t r_t = B$ that minimizes cumulative model degradation.\\n\\nThe core challenge is \\\\emph{temporal}: uniform allocation wastes real data on healthy generations while under-investing in critical collapse phases.\\nWe propose a closed-loop controller that monitors spectral health online and redistributes budget toward generations exhibiting early signs of representation collapse.\\n\\n\\\\subsection{Spectral Health Signal}\\n\\nWe adopt the \\\\emph{effective rank} (RankMe)~\\\\cite{rankme2023} of the output representation Gram matrix as our collapse indicator.\\nAt each generation $t$, we perform a forward pass of $M_t$ on a held-out probe set of $N$ examples, extract last-layer hidden states, and mean-pool to obtain a matrix $\\\\mathbf{Z} \\\\in \\\\mathbb{R}^{N \\\\times D}$.\\nWe compute the SVD of $\\\\mathbf{Z}$ to obtain singular values $\\\\sigma_1 \\\\geq \\\\sigma_2 \\\\geq \\\\cdots \\\\geq \\\\sigma_{\\\\min(N,D)}$, normalize them as $p_i = \\\\sigma_i / \\\\sum_j \\\\sigma_j$, and define:\\n\\\\begin{equation}\\n  S_t = \\\\rho(\\\\mathbf{Z}) = \\\\exp\\\\!\\\\left(-\\\\sum_i p_i \\\\log p_i\\\\right)\\n\\\\end{equation}\\nThe effective rank $S_t$ measures the diversity of learned representations: collapse concentrates the singular spectrum, causing $S_t$ to decrease.\\nThis signal is cheap to compute (one forward pass, no gradient) and prior work shows that calibration degradation (ECE) precedes accuracy loss by 1--2 iterations~\\\\cite{calibration2025}; whether spectral signals exhibit similar or earlier lead time is an empirical question we investigate.\\n\\n\\\\subsection{Proportional Controller with Budget Constraint}\\n\\nWe smooth the raw signal with an exponential moving average:\\n\\\\begin{equation}\\n  \\\\tilde{S}_t = \\\\alpha \\\\cdot S_t + (1 - \\\\alpha) \\\\cdot \\\\tilde{S}_{t-1}, \\\\quad \\\\alpha = 0.5\\n\\\\end{equation}\\nand define the normalized decline rate:\\n\\\\begin{equation}\\n  \\\\Delta_t = \\\\frac{\\\\tilde{S}_{t-1} - \\\\tilde{S}_t}{|\\\\tilde{S}_0|}\\n\\\\end{equation}\\n\\nThe controller computes a raw target ratio for the next generation:\\n\\\\begin{equation}\\n  r_{t+1}^{\\\\text{raw}} = \\\\underbrace{\\\\frac{B_{\\\\text{rem}}}{T - t}}_{\\\\text{uniform residual}} + \\\\underbrace{k \\\\cdot \\\\max(0,\\\\; \\\\Delta_t - \\\\tau)}_{\\\\text{reactive boost}}\\n\\\\end{equation}\\nwhere $B_{\\\\text{rem}} = B - \\\\sum_{i=1}^{t} r_i$ is the remaining budget, $\\\\tau$ is a dead-zone threshold below which no correction is applied, and $k$ is the proportional gain.\\n\\nBudget feasibility is enforced by clipping:\\n\\\\begin{equation}\\n  r_{t+1} = \\\\text{clip}\\\\!\\\\left(r_{t+1}^{\\\\text{raw}},\\\\; r_{\\\\min},\\\\; \\\\min\\\\!\\\\left(r_{\\\\max},\\\\; B_{\\\\text{rem}} - (T - t - 1) \\\\cdot r_{\\\\min}\\\\right)\\\\right)\\n\\\\end{equation}\\nguaranteeing that every future generation receives at least $r_{\\\\min}$.\\nThe first generation uses $r_1 = r_{\\\\text{base}}$ (no prior signal).\\n\\nController hyperparameters: threshold $\\\\tau$, gain $k$, EMA coefficient $\\\\alpha$, bounds $r_{\\\\min}$ and $r_{\\\\max}$.\\n\\n\\\\subsection{Experimental Design}\\n\\nWe compare four conditions; conditions (b)--(d) share an identical total real-data budget $B$:\\n\\\\begin{enumerate}[nosep]\\n  \\\\item[(a)] \\\\textbf{Pure synthetic} ($r_t = 0\\\\;\\\\forall t$): collapse reference establishing degradation ceiling.\\n  \\\\item[(b)] \\\\textbf{Fixed uniform} ($r_t = r_{\\\\text{base}}\\\\;\\\\forall t$): static baseline representing naive budget-spreading.\\n  \\\\item[(c)] \\\\textbf{Spectral-guided adaptive} (ours): closed-loop allocation via the controller above.\\n  \\\\item[(d)] \\\\textbf{Linear-increasing} (budget-matched open-loop control): $r_t = r_{\\\\min} + (r_{\\\\max} - r_{\\\\min}) \\\\cdot (t-1)/(T-1)$, which allocates increasing real-data proportions over generations without spectral feedback.\\n\\\\end{enumerate}\\n\\nAll conditions use the same base model, training hyperparameters, and synthetic generation procedure, differing only in real-data scheduling.\\nWe evaluate on: effective rank $\\\\rho$, log-determinant proxy $\\\\mathcal{D}(\\\\mathbf{Z})$, held-out perplexity, lexical diversity (distinct-4), and HellaSwag accuracy (acc\\\\_norm).\\nToken-level ECE is implemented as a planned extension for signal-flexibility validation.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1}}"
+              }
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-17T06:24:00.590Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014Si4SXXbQpnu6TvjStb6bE",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"from dataclasses import dataclass\\\\n\\\\n\\\\n@dataclass\\\\nclass Config:\\\\n    # Model\\\\n    model_name: str = \\\\\\\"EleutherAI/pythia-410m-deduped\\\\\\\"\\\\n    model_cache_dir: str = \\\\\\\"/root/spectral_collapse_ews/models/\\\\\\\"\\\\n\\\\n    # Data\\\\n    data_dir: str = \\\\\\\"/root/spectral_collapse_ews/data/\\\\\\\"\\\\n    train_real_path: str = \\\\\\\"/root/spectral_collapse_ews/data/train_real_50k.pt\\\\\\\"\\\\n    eval_path: str = \\\\\\\"/root/spectral_collapse_ews/data/eval_5k.pt\\\\\\\"\\\\n    spectral_path: str = \\\\\\\"/root/spectral_collapse_ews/data/spectral_1k.pt\\\\\\\"\\\\n\\\\n    # Generation\\\\n    num_synthetic_samples: int = 50000\\\\n    max_length: int = 512\\\\n    temperature: float = 1.0\\\\n    top_k: int = 50\\\\n    gen_batch_size: int = 32\\\\n\\\\n    # Training\\\\n    num_generations: int = 10\\\\n    learning_rate: float = 5e-5\\\\n    batch_size: int = 8\\\\n    gradient_accumulation_steps: int = 4\\\\n    warmup_ratio: float = 0.05\\\\n    num_epochs_per_gen: int = 1\\\\n    seed: int = 42\\\\n\\\\n    # Evaluation\\\\n    num_eval_samples: int = 5000\\\\n    num_spectral_samples: int = 1000\\\\n    num_distinct_samples: int = 1000\\\\n\\\\n    # Paths\\\\n    checkpoint_dir: str = \\\\\\\"/root/spectral_collapse_ews/checkpoints/\\\\\\\"\\\\n    results_dir: str = \\\\\\\"/root/spectral_collapse_ews/results/\\\\\\\"\\\\n    results_filename: str = \\\\\\\"phase0_results.json\\\\\\\"\\\\n\\\\n    # Mixing\\\\n    real_data_ratio: float = 0.0\\\\n\\\\n    # SpectralController params (used when real_data_ratio < 0)\\\\n    controller_k: float = 1.0\\\\n    controller_tau: float = 0.02\\\\n    controller_r_min: float = 0.20\\\\n    controller_r_max: float = 0.80\\\\n    controller_r_base: float = 0.50\\\\n\\\\n    # Device\\\\n    device: str = \\\\\\\"cuda:0\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "af37c6e3-c319-455f-b3a4-fe6e529897c1",
+            "uuid": "ad96c49e-02c4-4fda-a011-ebc55884e8d4",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"from dataclasses import dataclass\\\\n\\\\n\\\\n@dataclass\\\\nclass Config:\\\\n    # Model\\\\n    model_name: str = \\\\\\\"EleutherAI/pythia-410m-deduped\\\\\\\"\\\\n    model_cache_dir: str = \\\\\\\"/root/spectral_collapse_ews/models/\\\\\\\"\\\\n\\\\n    # Data\\\\n    data_dir: str = \\\\\\\"/root/spectral_collapse_ews/data/\\\\\\\"\\\\n    train_real_path: str = \\\\\\\"/root/spectral_collapse_ews/data/train_real_50k.pt\\\\\\\"\\\\n    eval_path: str = \\\\\\\"/root/spectral_collapse_ews/data/eval_5k.pt\\\\\\\"\\\\n    spectral_path: str = \\\\\\\"/root/spectral_collapse_ews/data/spectral_1k.pt\\\\\\\"\\\\n\\\\n    # Generation\\\\n    num_synthetic_samples: int = 50000\\\\n    max_length: int = 512\\\\n    temperature: float = 1.0\\\\n    top_k: int = 50\\\\n    gen_batch_size: int = 32\\\\n\\\\n    # Training\\\\n    num_generations: int = 10\\\\n    learning_rate: float = 5e-5\\\\n    batch_size: int = 8\\\\n    gradient_accumulation_steps: int = 4\\\\n    warmup_ratio: float = 0.05\\\\n    num_epochs_per_gen: int = 1\\\\n    seed: int = 42\\\\n\\\\n    # Evaluation\\\\n    num_eval_samples: int = 5000\\\\n    num_spectral_samples: int = 1000\\\\n    num_distinct_samples: int = 1000\\\\n\\\\n    # Paths\\\\n    checkpoint_dir: str = \\\\\\\"/root/spectral_collapse_ews/checkpoints/\\\\\\\"\\\\n    results_dir: str = \\\\\\\"/root/spectral_collapse_ews/results/\\\\\\\"\\\\n    results_filename: str = \\\\\\\"phase0_results.json\\\\\\\"\\\\n\\\\n    # Mixing\\\\n    real_data_ratio: float = 0.0\\\\n\\\\n    # SpectralController params (used when real_data_ratio < 0)\\\\n    controller_k: float = 1.0\\\\n    controller_tau: float = 0.02\\\\n    controller_r_min: float = 0.20\\\\n    controller_r_max: float = 0.80\\\\n    controller_r_base: float = 0.50\\\\n\\\\n    # Device\\\\n    device: str = \\\\\\\"cuda:0\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"from dataclasses import dataclass\\n\\n\\n@dataclass\\nclass Config:\\n    # Model\\n    model_name: str = \\\"EleutherAI/pythia-410m-deduped\\\"\\n    model_cache_dir: str = \\\"/root/spectral_collapse_ews/models/\\\"\\n\\n    # Data\\n    data_dir: str = \\\"/root/spectral_collapse_ews/data/\\\"\\n    train_real_path: str = \\\"/root/spectral_collapse_ews/data/train_real_50k.pt\\\"\\n    eval_path: str = \\\"/root/spectral_collapse_ews/data/eval_5k.pt\\\"\\n    spectral_path: str = \\\"/root/spectral_collapse_ews/data/spectral_1k.pt\\\"\\n\\n    # Generation\\n    num_synthetic_samples: int = 50000\\n    max_length: int = 512\\n    temperature: float = 1.0\\n    top_k: int = 50\\n    gen_batch_size: int = 32\\n\\n    # Training\\n    num_generations: int = 10\\n    learning_rate: float = 5e-5\\n    batch_size: int = 8\\n    gradient_accumulation_steps: int = 4\\n    warmup_ratio: float = 0.05\\n    num_epochs_per_gen: int = 1\\n    seed: int = 42\\n\\n    # Evaluation\\n    num_eval_samples: int = 5000\\n    num_spectral_samples: int = 1000\\n    num_distinct_samples: int = 1000\\n\\n    # Paths\\n    checkpoint_dir: str = \\\"/root/spectral_collapse_ews/checkpoints/\\\"\\n    results_dir: str = \\\"/root/spectral_collapse_ews/results/\\\"\\n    results_filename: str = \\\"phase0_results.json\\\"\\n\\n    # Mixing\\n    real_data_ratio: float = 0.0\\n\\n    # SpectralController params (used when real_data_ratio < 0)\\n    controller_k: float = 1.0\\n    controller_tau: float = 0.02\\n    controller_r_min: float = 0.20\\n    controller_r_max: float = 0.80\\n    controller_r_base: float = 0.50\\n\\n    # Device\\n    device: str = \\\"cuda:0\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KvPzaCeqcvfbXa8Xww7Yb7",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx6000-diagprobe",
+                "command": "cat /root/spectral_collapse_ews/src/controller.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "af37c6e3-c319-455f-b3a4-fe6e529897c1",
+            "uuid": "17eca149-27fa-4008-9b76-973ead91f83f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QjpWEFY7h2eeJsz95EAJBk",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2817,
+                "cache_read_input_tokens": 25125,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2817
+                },
+                "output_tokens": 68,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-17T06:24:04.072Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KvPzaCeqcvfbXa8Xww7Yb7",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Budget-Constrained Spectral Controller.\\\\n\\\\n基于有效秩的自适应真实数据比例控制器。\\\\n核心公式: r_{t+1}^raw = B_rem/(T-t) + k·max(0, Δ_t - τ)\\\\n- EMA 平滑: S̃_t = α·S_t + (1-α)·S̃_{t-1}\\\\n- 归一化下降率: Δ_t = (S̃_{t-1} - S̃_t) / |S̃_0|\\\\n- Budget clipping: clip(r_raw, r_min, B_rem - (T-t-1)·r_min)\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n\\\\nclass SpectralController:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Spectral-guided adaptive real-data ratio controller.\\\\n    \\\\n    Args:\\\\n        total_budget: 总真实数据预算 (= T × r_base)\\\\n        total_generations: 总训练代数 T\\\\n        r_base: 基准比例 (第一代无信号时使用)\\\\n        r_min: 每代最低真实数据比例\\\\n        r_max: 每代最高真实数据比例\\\\n        k: 控制增益 (spectral decline → ratio adjustment 的放大系数)\\\\n        tau: 触发阈值 (只有 Δ_t > τ 才增加比例)\\\\n        alpha_ema: EMA 平滑系数 (0.5 = 等权当前值和历史)\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    def __init__(self, total_budget, total_generations, r_base=0.50,\\\\n                 r_min=0.20, r_max=0.80, k=1.0, tau=0.02, alpha_ema=0.5):\\\\n        self.B_rem = total_budget\\\\n        self.T = total_generations\\\\n        self.r_base = r_base\\\\n        self.r_min = r_min\\\\n        self.r_max = r_max\\\\n        self.k = k\\\\n        self.tau = tau\\\\n        self.alpha_ema = alpha_ema\\\\n        self.S_tilde_prev = None\\\\n        self.S_tilde_0 = None\\\\n        self.t = 0\\\\n        self.history = []\\\\n\\\\n    def update(self, S_t):\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"输入当前代的 spectral health (effective rank)，返回下一代的 real data ratio。\\\\n\\\\n        Args:\\\\n            S_t: 当前代的 effective rank\\\\n\\\\n        Returns:\\\\n            r: 下一代的真实数据比例 [r_min, r_max]\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"\\\\n        # EMA 平滑\\\\n        if self.S_tilde_prev is None:\\\\n            S_tilde = S_t\\\\n            self.S_tilde_0 = S_t\\\\n        else:\\\\n            S_tilde = self.alpha_ema * S_t + (1 - self.alpha_ema) * self.S_tilde_prev\\\\n\\\\n        self.t += 1\\\\n        remaining_gens = self.T - self.t\\\\n\\\\n        if remaining_gens <= 0:\\\\n            r = max(0, min(self.r_max, self.B_rem))\\\\n            self.B_rem = max(0, self.B_rem - r)\\\\n            self.S_tilde_prev = S_tilde\\\\n            self.history.append({\\\\n                \\\\\\\"t\\\\\\\": self.t, \\\\\\\"S_t\\\\\\\": S_t, \\\\\\\"S_tilde\\\\\\\": S_tilde,\\\\n                \\\\\\\"delta\\\\\\\": None, \\\\\\\"r\\\\\\\": r, \\\\\\\"B_rem\\\\\\\": self.B_rem\\\\n            })\\\\n            return r\\\\n\\\\n        # 归一化 spectral decline rate\\\\n        if self.S_tilde_prev is not None and self.S_tilde_0 != 0:\\\\n            delta = (self.S_tilde_prev - S_tilde) / abs(self.S_tilde_0)\\\\n        else:\\\\n            delta = 0.0\\\\n\\\\n        # 目标 real-data fraction\\\\n        r_raw = self.B_rem / remaining_gens + self.k * max(0, delta - self.tau)\\\\n\\\\n        # Budget-constrained clipping: reserve r_min for each remaining generation\\\\n        upper_clip = min(self.r_max, self.B_rem - remaining_gens * self.r_min)\\\\n        r = max(self.r_min, min(r_raw, upper_clip))\\\\n\\\\n        # 更新预算\\\\n        self.B_rem -= r\\\\n        self.S_tilde_prev = S_tilde\\\\n        self.history.append({\\\\n            \\\\\\\"t\\\\\\\": self.t, \\\\\\\"S_t\\\\\\\": S_t, \\\\\\\"S_tilde\\\\\\\": S_tilde,\\\\n            \\\\\\\"delta\\\\\\\": delta, \\\\\\\"r\\\\\\\": r, \\\\\\\"B_rem\\\\\\\": self.B_rem\\\\n        })\\\\n        return r\\\\n\\\\n    def get_first_gen_ratio(self):\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"第一代无先验信号，返回 r_base 并扣减预算。\\\\\\\"\\\\\\\"\\\\\\\"\\\\n        r = self.r_base\\\\n        self.B_rem -= r\\\\n        self.t += 1\\\\n        return r\\\\n\\\\n    def get_state(self):\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"返回控制器当前状态（用于日志/debug）。\\\\\\\"\\\\\\\"\\\\\\\"\\\\n        return {\\\\n            \\\\\\\"t\\\\\\\": self.t,\\\\n            \\\\\\\"B_rem\\\\\\\": self.B_rem,\\\\n            \\\\\\\"S_tilde_prev\\\\\\\": self.S_tilde_prev,\\\\n            \\\\\\\"S_tilde_0\\\\\\\": self.S_tilde_0,\\\\n            \\\\\\\"history\\\\\\\": self.history\\\\n        }\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "af37c6e3-c319-455f-b3a4-fe6e529897c1",
+            "uuid": "7c5ff2a8-0357-4cde-bd29-eb47d6f7dd71",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Budget-Constrained Spectral Controller.\\\\n\\\\n基于有效秩的自适应真实数据比例控制器。\\\\n核心公式: r_{t+1}^raw = B_rem/(T-t) + k·max(0, Δ_t - τ)\\\\n- EMA 平滑: S̃_t = α·S_t + (1-α)·S̃_{t-1}\\\\n- 归一化下降率: Δ_t = (S̃_{t-1} - S̃_t) / |S̃_0|\\\\n- Budget clipping: clip(r_raw, r_min, B_rem - (T-t-1)·r_min)\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n\\\\nclass SpectralController:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Spectral-guided adaptive real-data ratio controller.\\\\n    \\\\n    Args:\\\\n        total_budget: 总真实数据预算 (= T × r_base)\\\\n        total_generations: 总训练代数 T\\\\n        r_base: 基准比例 (第一代无信号时使用)\\\\n        r_min: 每代最低真实数据比例\\\\n        r_max: 每代最高真实数据比例\\\\n        k: 控制增益 (spectral decline → ratio adjustment 的放大系数)\\\\n        tau: 触发阈值 (只有 Δ_t > τ 才增加比例)\\\\n        alpha_ema: EMA 平滑系数 (0.5 = 等权当前值和历史)\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    def __init__(self, total_budget, total_generations, r_base=0.50,\\\\n                 r_min=0.20, r_max=0.80, k=1.0, tau=0.02, alpha_ema=0.5):\\\\n        self.B_rem = total_budget\\\\n        self.T = total_generations\\\\n        self.r_base = r_base\\\\n        self.r_min = r_min\\\\n        self.r_max = r_max\\\\n        self.k = k\\\\n        self.tau = tau\\\\n        self.alpha_ema = alpha_ema\\\\n        self.S_tilde_prev = None\\\\n        self.S_tilde_0 = None\\\\n        self.t = 0\\\\n        self.history = []\\\\n\\\\n    def update(self, S_t):\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"输入当前代的 spectral health (effective rank)，返回下一代的 real data ratio。\\\\n\\\\n        Args:\\\\n            S_t: 当前代的 effective rank\\\\n\\\\n        Returns:\\\\n            r: 下一代的真实数据比例 [r_min, r_max]\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"\\\\n        # EMA 平滑\\\\n        if self.S_tilde_prev is None:\\\\n            S_tilde = S_t\\\\n            self.S_tilde_0 = S_t\\\\n        else:\\\\n            S_tilde = self.alpha_ema * S_t + (1 - self.alpha_ema) * self.S_tilde_prev\\\\n\\\\n        self.t += 1\\\\n        remaining_gens = self.T - self.t\\\\n\\\\n        if remaining_gens <= 0:\\\\n            r = max(0, min(self.r_max, self.B_rem))\\\\n            self.B_rem = max(0, self.B_rem - r)\\\\n            self.S_tilde_prev = S_tilde\\\\n            self.history.append({\\\\n                \\\\\\\"t\\\\\\\": self.t, \\\\\\\"S_t\\\\\\\": S_t, \\\\\\\"S_tilde\\\\\\\": S_tilde,\\\\n                \\\\\\\"delta\\\\\\\": None, \\\\\\\"r\\\\\\\": r, \\\\\\\"B_rem\\\\\\\": self.B_rem\\\\n            })\\\\n            return r\\\\n\\\\n        # 归一化 spectral decline rate\\\\n        if self.S_tilde_prev is not None and self.S_tilde_0 != 0:\\\\n            delta = (self.S_tilde_prev - S_tilde) / abs(self.S_tilde_0)\\\\n        else:\\\\n            delta = 0.0\\\\n\\\\n        # 目标 real-data fraction\\\\n        r_raw = self.B_rem / remaining_gens + self.k * max(0, delta - self.tau)\\\\n\\\\n        # Budget-constrained clipping: reserve r_min for each remaining generation\\\\n        upper_clip = min(self.r_max, self.B_rem - remaining_gens * self.r_min)\\\\n        r = max(self.r_min, min(r_raw, upper_clip))\\\\n\\\\n        # 更新预算\\\\n        self.B_rem -= r\\\\n        self.S_tilde_prev = S_tilde\\\\n        self.history.append({\\\\n            \\\\\\\"t\\\\\\\": self.t, \\\\\\\"S_t\\\\\\\": S_t, \\\\\\\"S_tilde\\\\\\\": S_tilde,\\\\n            \\\\\\\"delta\\\\\\\": delta, \\\\\\\"r\\\\\\\": r, \\\\\\\"B_rem\\\\\\\": self.B_rem\\\\n        })\\\\n        return r\\\\n\\\\n    def get_first_gen_ratio(self):\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"第一代无先验信号，返回 r_base 并扣减预算。\\\\\\\"\\\\\\\"\\\\\\\"\\\\n        r = self.r_base\\\\n        self.B_rem -= r\\\\n        self.t += 1\\\\n        return r\\\\n\\\\n    def get_state(self):\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"返回控制器当前状态（用于日志/debug）。\\\\\\\"\\\\\\\"\\\\\\\"\\\\n        return {\\\\n            \\\\\\\"t\\\\\\\": self.t,\\\\n            \\\\\\\"B_rem\\\\\\\": self.B_rem,\\\\n            \\\\\\\"S_tilde_prev\\\\\\\": self.S_tilde_prev,\\\\n            \\\\\\\"S_tilde_0\\\\\\\": self.S_tilde_0,\\\\n            \\\\\\\"history\\\\\\\": self.history\\\\n        }\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Budget-Constrained Spectral Controller.\\n\\n基于有效秩的自适应真实数据比例控制器。\\n核心公式: r_{t+1}^raw = B_rem/(T-t) + k·max(0, Δ_t - τ)\\n- EMA 平滑: S̃_t = α·S_t + (1-α)·S̃_{t-1}\\n- 归一化下降率: Δ_t = (S̃_{t-1} - S̃_t) / |S̃_0|\\n- Budget clipping: clip(r_raw, r_min, B_rem - (T-t-1)·r_min)\\n\\\"\\\"\\\"\\n\\n\\nclass SpectralController:\\n    \\\"\\\"\\\"Spectral-guided adaptive real-data ratio controller.\\n    \\n    Args:\\n        total_budget: 总真实数据预算 (= T × r_base)\\n        total_generations: 总训练代数 T\\n        r_base: 基准比例 (第一代无信号时使用)\\n        r_min: 每代最低真实数据比例\\n        r_max: 每代最高真实数据比例\\n        k: 控制增益 (spectral decline → ratio adjustment 的放大系数)\\n        tau: 触发阈值 (只有 Δ_t > τ 才增加比例)\\n        alpha_ema: EMA 平滑系数 (0.5 = 等权当前值和历史)\\n    \\\"\\\"\\\"\\n\\n    def __init__(self, total_budget, total_generations, r_base=0.50,\\n                 r_min=0.20, r_max=0.80, k=1.0, tau=0.02, alpha_ema=0.5):\\n        self.B_rem = total_budget\\n        self.T = total_generations\\n        self.r_base = r_base\\n        self.r_min = r_min\\n        self.r_max = r_max\\n        self.k = k\\n        self.tau = tau\\n        self.alpha_ema = alpha_ema\\n        self.S_tilde_prev = None\\n        self.S_tilde_0 = None\\n        self.t = 0\\n        self.history = []\\n\\n    def update(self, S_t):\\n        \\\"\\\"\\\"输入当前代的 spectral health (effective rank)，返回下一代的 real data ratio。\\n\\n        Args:\\n            S_t: 当前代的 effective rank\\n\\n        Returns:\\n            r: 下一代的真实数据比例 [r_min, r_max]\\n        \\\"\\\"\\\"\\n        # EMA 平滑\\n        if self.S_tilde_prev is None:\\n            S_tilde = S_t\\n            self.S_tilde_0 = S_t\\n        else:\\n            S_tilde = self.alpha_ema * S_t + (1 - self.alpha_ema) * self.S_tilde_prev\\n\\n        self.t += 1\\n        remaining_gens = self.T - self.t\\n\\n        if remaining_gens <= 0:\\n            r = max(0, min(self.r_max, self.B_rem))\\n            self.B_rem = max(0, self.B_rem - r)\\n            self.S_tilde_prev = S_tilde\\n            self.history.append({\\n                \\\"t\\\": self.t, \\\"S_t\\\": S_t, \\\"S_tilde\\\": S_tilde,\\n                \\\"delta\\\": None, \\\"r\\\": r, \\\"B_rem\\\": self.B_rem\\n            })\\n            return r\\n\\n        # 归一化 spectral decline rate\\n        if self.S_tilde_prev is not None and self.S_tilde_0 != 0:\\n            delta = (self.S_tilde_prev - S_tilde) / abs(self.S_tilde_0)\\n        else:\\n            delta = 0.0\\n\\n        # 目标 real-data fraction\\n        r_raw = self.B_rem / remaining_gens + self.k * max(0, delta - self.tau)\\n\\n        # Budget-constrained clipping: reserve r_min for each remaining generation\\n        upper_clip = min(self.r_max, self.B_rem - remaining_gens * self.r_min)\\n        r = max(self.r_min, min(r_raw, upper_clip))\\n\\n        # 更新预算\\n        self.B_rem -= r\\n        self.S_tilde_prev = S_tilde\\n        self.history.append({\\n            \\\"t\\\": self.t, \\\"S_t\\\": S_t, \\\"S_tilde\\\": S_tilde,\\n            \\\"delta\\\": delta, \\\"r\\\": r, \\\"B_rem\\\": self.B_rem\\n        })\\n        return r\\n\\n    def get_first_gen_ratio(self):\\n        \\\"\\\"\\\"第一代无先验信号，返回 r_base 并扣减预算。\\\"\\\"\\\"\\n        r = self.r_base\\n        self.B_rem -= r\\n        self.t += 1\\n        return r\\n\\n    def get_state(self):\\n        \\\"\\\"\\\"返回控制器当前状态（用于日志/debug）。\\\"\\\"\\\"\\n        return {\\n            \\\"t\\\": self.t,\\n            \\\"B_rem\\\": self.B_rem,\\n            \\\"S_tilde_prev\\\": self.S_tilde_prev,\\n            \\\"S_tilde_0\\\": self.S_tilde_0,\\n            \\\"history\\\": self.history\\n        }\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now let me compare the parameters between the method.tex and the code:\n\n**method.tex states:**\n- τ (tau) = dead-zone threshold (value not explicitly stated in the text, but mentioned as a hyperparameter)\n- k = proportional gain (value not explicitly stated)\n- α (alpha, EMA smoothing) = 0.5 (explicitly stated in equation)\n- r_min and r_max = bounds (values not explicitly stated)\n\n**config.py states:**\n- controller_k = 1.0\n- controller_tau = 0.02\n- controller_r_min = 0.20\n\n\n- controller_r_max = 0.80\n- controller_r_base = 0.50\n\n**controller.py states:**\n- k=1.0, tau=0.02, alpha_ema=0.5, r_min=0.20, r_max=0.80, r_base=0.50\n\nNow I'm verifying the D005 parameters against the paper and implementation. The tau, k, and alpha values all match across the documentation and code, and the range bounds are consistently set from 0.20 to 0.80 with a base of 0.50.\n\nLooking at the EMA smoothing formula, the implementation correctly applies the exponential moving average with alpha=0.5, blending the current smoothed signal with the previous value. Now I'm checking how the normalized decline rate is calculated...\n\nThe decline rate formula divides the change in smoothed signal by the initial value, which matches the code exactly. Moving on to the controller formula itself—I need to verify that the budget allocation and penalty term are implemented correctly, particularly how the remaining generations factor into the raw rate calculation. I need to trace through the controller flow more carefully. When `get_first_gen_ratio()` runs for generation 1, it returns the base ratio and increments `t` to 1. Then when `update(S_t)` is called with the spectral health from generation t, it increments `t` again at the start, so `remaining_gens = T - self.t` gives the count of generations still to come after the current one. I'm tracing through the timing more carefully—when `update()` is called after observing generation 1's spectral health, `self.t` increments to 2, but that means `remaining_gens = T - 2 = 8`, which doesn't match the paper's formula where we should have T-1 generations left to allocate (generations 2 through T). There's an off-by-one issue in how the time step and remaining budget are being tracked. Ah, I see the issue now. Looking at the paper's formula, at generation t we've already allocated r_1 through r_t, and we're computing r_{t+1} using the remaining budget divided by the generations still needing allocation—which is T-t generations (from t+1 through T). So the code's remaining_gens = self.T - self.t is actually correct; it's counting how many generations still need their allocation after the current timestep. I'm tracing through the budget allocation logic more carefully now. After the first generation is allocated, when update gets called with the spectral health observation, the time counter increments and we're computing the allocation for the next generation. The paper formula allocates the remaining budget uniformly across all future generations, but I'm seeing a discrepancy between what the paper describes and what the code implements—specifically around how many generations are left to cover and whether the time index is off by one. The code's reservation formula actually matches the paper's—both reserve r_min for the remaining generations after the current allocation. But I'm noticing a potential discrepancy in how the uniform residual is divided: the paper divides by T-t (the total remaining generations including the current one), while the code appears to divide by T-t-1 (one fewer). Let me trace through this more carefully to see if there's an off-by-one error or if I'm misunderstanding the indexing. I'm tracing through the code execution to understand the timing: when computing r_2, the budget remaining is B minus r_1 (only the first generation's allocation), and this gets divided by 8 remaining generations, but the allocation being made is actually for generation 2, which will then be subtracted from B_rem. So there's definitely a bug here—the code increments `t` before calculating `remaining_gens`, which means it's dividing the residual budget by one fewer generation than it should. With `B_rem = 4.5` covering generations 2 through 10 (9 generations total), dividing by 8 instead of 9 gives a slightly inflated uniform residual allocation. Let me verify this makes sense logically by checking what the correct distribution should be. The \"uniform residual\" should be 4.5/9 = 0.5, but the code computes 4.5/8 = 0.5625 — that's a meaningful difference. Let me reconsider the paper's formula: r_{t+1}^raw = B_rem/(T-t) + k·max(0, Δ_t - τ), where at step t we've already allocated r_1 through r_t, and the remaining generations that need allocation are t+1 through T, giving us T - t generations. Now looking at the code flow: get_first_gen_ratio handles generation 1, then each update call handles the next generation in sequence. When update is called, self.t has already been incremented, so for the first update call (computing generation 2's ratio), self.t = 2 and remaining_gens = T - 2, which means we're only accounting for generations 3 through T instead of generations 2 through T. I'm seeing the core issue now: when computing the ratio for generation 2, the code uses `remaining_gens = T-2 = 8`, but the paper's formula with `t=1` gives `T-t = 9`. The discrepancy hinges on what `self.t` actually represents—whether it tracks completed generations or the current generation being allocated—and I need to trace through the state transitions carefully to resolve this. I'm noticing a real discrepancy between the paper and code formulas for the uniform residual allocation. The paper divides by T-t (the total remaining generations including the current one), but the code divides by T-t-1 (excluding the current one). Let me trace through the variable mappings more carefully to see if I've got the indexing wrong. I need to look more carefully at the update function logic. The key insight is that `remaining_gens` is computed right after incrementing `self.t`, and then `r` is calculated and subtracted from `B_rem` afterward—so the upper clip constraint uses the budget remaining before this generation's allocation is deducted.\n\nBut there's something off with the clipping formula: if `remaining_gens` includes the current generation, then to reserve `r_min` for all remaining generations, the upper bound should only reserve for the *other* remaining generations, not this one. The code reserves `remaining_gens * r_min`, which seems to over-constrain the current allocation. If remaining_gens EXCLUDES the current gen, then:\n- uniform: B_rem / remaining_gens → divides by future gens only (not including current)\n- clip: B_rem - remaining_gens * r_min → reserve r_min for each future gen\n\nThat makes the clip formula correct (reserve for future), but the uniform formula wrong (should include current gen in denominator for fair share).\n\nOR: If remaining_gens INCLUDES the current gen:\n- uniform: B_rem / remaining_gens → fair share ✓\n- clip: B_rem - remaining_gens * r_min → reserve for ALL remaining INCLUDING self... which doesn't make sense as an upper bound\n\nFor clipping as an upper bound, I need to ensure future generations can each get at least r_min, so the formula should be upper = B_rem - (future_gens * r_min). If remaining_gens includes the current generation, then future_gens = remaining_gens - 1. Let me check this against the paper's formula: upper = min(r_max, B_rem - (T-t-1)*r_min). At the first update call, remaining_gens = T-2, which matches the paper's (T-t-1) = T-2, so the logic is consistent. So remaining_gens in code = T-t-1 in paper = number of FUTURE generations (after the one being computed).\n\nThen for the uniform part:\n- Paper: B_rem / (T-t) where T-t = remaining_gens + 1 (includes current gen)\n- Code: B_rem / remaining_gens (excludes current gen → one less in denominator)\n\nThis IS a real discrepancy! The code divides by (T-t-1) when the paper says (T-t).\n\nSo the uniform residual in code is slightly larger than what the paper describes, because it divides by a smaller number. The code effectively says \"distribute remaining budget among future gens only\" while the paper says \"distribute among current + future gens.\"\n\nI'm reconsidering whether the code's interpretation might actually be the intended one—maybe the paper's formula is slightly off instead. If we're computing the current generation's ratio while accounting for future allocations, there's a reasonable case for using the future-only denominator as a baseline, then boosting above that if spectral decline applies. But ultimately, the paper and code don't match exactly—there's an off-by-one difference in how the uniform residual gets divided. The code's formula is r_raw = B_rem / (T - t - 1) + k * max(0, Δ_t - τ), where t is the current generation. This creates a division by zero problem when t approaches T-1, but the code handles this with an early return when remaining generations drop to zero or below. I'm seeing a real discrepancy between the paper's formula and the code implementation. The paper describes allocating remaining budget uniformly across T-t generations (from t+1 through T), but the code uses T-t-1 after incrementing self.t. Let me trace through the semantics more carefully to understand if this is a genuine bug or just a difference in how the indices are being counted. - get_first_gen_ratio: self.t = 1, returns r_base, subtracts from B_rem\n\nNow the first call to update is after observing gen 1:\n- self.t increments to 2\n- remaining_gens = T - 2\n\nBut B_rem at this point = B - r_1 (since only gen 1's r was subtracted in get_first_gen_ratio).\nWe're computing r for gen 2. After that, gens 3, 4, ..., T still need allocation = T-2 gens.\nIncluding gen 2, total remaining = T-1 gens.\n\nIf we divide B_rem by T-1 (paper), we get a fair share for gen 2 AND all future gens.\nIf we divide B_rem by T-2 (code), we get a slightly higher value (sharing among fewer), and the clip ensures feasibility.\n\nThe code might be intentionally more aggressive with front-loading—when spectral decline kicks in, the boost term amplifies this effect. So I'm seeing a consistent pattern where the code allocates slightly more upfront than the paper's approach.\n\nLet me verify the other parameters: τ=0.02, k=1.0, α=0.5, r_min=0.20, r_max=0.80 all match between paper and code. The EMA formula, normalized decline rate, and clipping formula also align. The only discrepancy is the uniform residual denominator—the paper uses T-t while the code uses T-t-1. So there's definitely a mismatch: the paper divides by T-1 when allocating to the remaining 9 generations, but the code is using T-2 as the denominator instead. The B_rem values match up correctly, so it's purely this off-by-one difference in how many future generations are being accounted for.\n\nSince the code is the ground truth here, I need to adjust the formula to match what's actually being computed: the denominator should be T-t-1, which represents the generations that come after the current one. This feels semantically odd though—if I have a budget and multiple future generations to cover, dividing by fewer generations would make each one get more, which is what's happening here.\n\nI think the interpretation is that the baseline allocation assumes I'm covering future generations evenly, and then the reactive boost sits on top of that. The clipping ensures the total stays feasible. Let me trace through the code logic more carefully to understand what self.t actually represents at the point of calculation. Let me trace through a concrete example with T=10 to verify the semantics are right. Starting with an initial budget of 5.0, I'll step through each generation and see how the remaining budget gets allocated across the subsequent slots—so when we're at generation t, we divide what's left among the T-t-1 generations that come after. 0.5625! This is a geometric property—when you allocate B_rem/n and subtract it from B_rem, you get B_rem*(n-1)/n, which divided by (n-1) gives you B_rem/n again. So every generation after the first receives the same allocation, meaning the budget is effectively distributed evenly across all remaining generations.\n\nWait, but that's not quite right. Let me recalculate: if there are 8 remaining generations after gen 2, then gen 2 gets 4.5/8 = 0.5625, but the fair share across all 9 generations (2-10) should be 4.5/9 = 0.5. So the code is actually front-loading slightly—gen 2 gets more than its proportional share. Let me trace through the actual logic to see what's happening. Looking at the allocation pattern, I see that generations 2 through 9 each get 0.5625 from the budget, which totals exactly 4.5. That means generation 10 arrives with no remaining budget and triggers an early exit before any allocation happens.\n\nBut the paper's formula handles this differently—it divides the remaining budget by the number of generations left, so every generation including the last one gets an equal share of 0.5.\n\nThe code seems to have a bug where generation 10 gets starved out due to the clipping logic. Let me trace through what happens at generation 9 with the clipping constraints to see if the boost changes things.\n\nWhen I work through the math with clipping included, generation 2 doesn't hit the upper bound, but later generations do. So the clipping behavior matters more than I initially thought.\n\nThe real issue is that there's a mismatch between the paper's formula and the code: the paper divides by T - t for the uniform residual, but the code actually divides by T - t - 1. Since the instructions say to treat the code as ground truth, I should update the paper to match. I could clarify this by defining R as the number of remaining generations after the target slot, which would be T - t - 1, and then rewrite the formula accordingly.\n\nBut I need to be careful about the edge case where t = T - 1 (the last generation), which would give a zero denominator. The code handles this with an early return, but the paper doesn't address edge cases at all. Let me trace through the indexing more carefully to understand what's actually happening. In the paper, we observe S_t after training generation t and compute r_{t+1} for the next generation, with B_rem representing what's left to allocate across generations t+1 through T. In the code, the update method is called after observing each generation's spectral health, and self.t gets incremented at the start of the call, so I need to map these two indexing schemes precisely to see where the discrepancy comes from. I'm tracing through the execution flow to see where the discrepancy comes from. When we call update(S_1) at step 4, we've just observed generation 1's spectral health, so the paper would use t=1 in its denominator (T-1), but the code computes remaining_gens as T-2 after incrementing self.t to 2. This one-generation offset suggests the paper and code might be using different conventions for what \"t\" represents—whether it's the generation just observed or the next generation about to be trained.\n\nLooking at the actual implementation, get_first_gen_ratio handles generation 1 separately with r_base, and then update() takes over from generation 2 onward, which means the indexing mismatch is real and not just a notational difference. Let me trace through how the off-by-one error propagates through the code's execution. After the first generation allocates its budget, the remaining budget needs to cover generations 2 through T, which is T-1 generations total, but the code divides by T-2 instead—treating it as if only T-2 generations remain after the current one.\n\nThe clipping mechanism compounds this: it calculates an upper bound that preserves enough budget for future generations (gens 3 through T), but since the baseline allocation for gen 2 is already inflated from dividing by too few generations, the clipping doesn't fully correct the imbalance, leading to budget exhaustion before reaching the final generation. So the paper uses (T-t-1) for the number of remaining generations, but the code divides by (T-2) on the first update, which corresponds to (T-t-1) only after the time step increments. The uniform residual baseline is off by one between them. I need to update the paper's formula to match what the code actually does: r_{t+1}^{raw} = B_rem / (T - t - 1) + k · max(0, Δ_t - τ), with \"budget baseline\" as the annotation.\n\nNow I'm double-checking the timing—when does the paper consider generation 1 allocated? Looking at the paper's definition, r_1 is used first with no prior signal, and B_rem = B - Σ_{i=1}^t r_i, so the r_{t+1} formula applies starting at t=1 after generation 1 completes. At that point, the denominator should be T-1-1 = T-2, which matches the code's behavior.\n\nI see the off-by-one issue now: the paper uses T-1 for remaining generations while the code uses T-2. I'm weighing two ways to fix this. Option 1 is to adjust the denominator directly to (T-t-1), but that's semantically unclear. Option 2 is to introduce a clearer variable like n_rem to represent the number of generations still needing allocation after the current one, making the formula more readable.\n\nActually, let me step back and verify my analysis is correct by working through a concrete example with T=3.\n\nStarting with generation 1 at the base rate of 0.5, I have 1.0 remaining budget. For generation 2, dividing that evenly across just the one remaining generation gives 1.0, but the clipping mechanism caps it at 0.8, leaving 0.2 for generation 3. So the allocation ends up being 0.5, 0.8, and 0.2 across the three generations.\n\nNow checking against the paper's formula with the (T-t) denominator approach: generation 2 would get 0.5 from the raw calculation, clipped to 0.8, leaving 0.5 in the budget. Generation 3 then gets 0.5 from its raw calculation, but the clipping constraint brings it down further.\n\nThe paper formula distributes evenly at 0.5 across all three generations, while the code front-loads with 0.5, 0.8, 0.2 — a meaningful difference. I should align the paper's formula with what the code actually does, updating the notation to reflect this forward-weighted allocation and adding a clarifying note about the approach.\n\nActually, let me step back and think about whether there's a cleaner way to express the code's logic altogether. The key insight is how it tracks remaining generations and applies the budget constraints.\n\nMapping the code's computation to paper notation: when processing generation g, the code calculates remaining generations as T minus g, then computes the raw allocation using the residual budget divided by remaining generations, plus a penalty term. The clipping bounds use the same remaining generation count to ensure feasibility. So the denominator (T-t-1) appears consistently in both the uniform residual and the upper bound calculation, whereas the paper currently uses (T-t) for the uniform term.\n\nI need to fix the LaTeX formula by changing the denominator from T-t to T-t-1 and updating the label from \"uniform residual\" to \"forward baseline\" to better reflect what this term represents—it's allocating the remaining budget across future generations, not the current one. I'm verifying the clipping formula matches the code implementation with the T-t-1 term for remaining generations. The EMA initialization looks fine even though the paper doesn't explicitly mention it. Now I'm checking whether the clipping constraint actually guarantees every future generation gets at least r_min by working through the math. I'm verifying the controller mechanism matches the paper's description: the EMA smoothing computes the normalized decline, and when it exceeds the threshold τ, the reactive boost activates proportionally to how much the decline exceeds that threshold. The code implements this correctly with the trigger condition checking if the normalized decline is positive after subtracting τ. I notice there might be a discrepancy in the denominator that needs fixing, and I should double-check whether the paper explicitly describes the EMA smoothing parameter.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "af37c6e3-c319-455f-b3a4-fe6e529897c1",
+            "uuid": "4de533b0-d455-4261-8768-d48fa25e1796",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TtFnU31ibYzQmXtLhbtM4V",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1813,
+                "cache_read_input_tokens": 27942,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1813
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "发现一处不一致。paper 中 uniform residual 的分母是 `T-t`，但代码中实际是 `T-t-1`（即 `remaining_gens = T - self.t`，其中 `self.t` 已先行递增）。其余参数和公式均一致。\n\n具体对比：\n- τ=0.02 ✓\n- k=1.0 ✓  \n- α=0.5 ✓\n- r_min=0.20 ✓\n- r_max=0.80 ✓\n- EMA 公式 ✓\n- 归一化下降率 Δ_t ✓\n- Clipping 公式（已用 T-t-1）✓\n- **Uniform residual 分母：paper 写 T-t，code 用 T-t-1** ✗\n\n修复 method.tex："
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "af37c6e3-c319-455f-b3a4-fe6e529897c1",
+            "uuid": "7af789c0-1c99-43ad-a75a-5e90f4776d51",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TtFnU31ibYzQmXtLhbtM4V",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1813,
+                "cache_read_input_tokens": 27942,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1813
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HLzsr3UwkV1ekXoxVcDM6K",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "rtx6000-diagprobe",
+                "command": "sed -i 's/\\\\underbrace{\\\\frac{B_{\\\\text{rem}}}{T - t}}_{\\\\text{uniform residual}}/\\\\underbrace{\\\\frac{B_{\\\\text{rem}}}{T - t - 1}}_{\\\\text{forward baseline}}/' /root/spectral_collapse_ews/paper/method.tex",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "af37c6e3-c319-455f-b3a4-fe6e529897c1",
+            "uuid": "10660889-8873-464e-bd3c-d6a064ad9eea",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TtFnU31ibYzQmXtLhbtM4V",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1813,
+                "cache_read_input_tokens": 27942,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1813
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-17T06:28:55.019Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HLzsr3UwkV1ekXoxVcDM6K",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "af37c6e3-c319-455f-b3a4-fe6e529897c1",
+            "uuid": "958c33ba-c489-4f99-8e8c-931f1285e2bb",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0188JuPb7cT35xqd82PxXxj4",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx6000-diagprobe",
+                "command": "grep -n \"forward baseline\\|uniform residual\\|T - t\" /root/spectral_collapse_ews/paper/method.tex",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "af37c6e3-c319-455f-b3a4-fe6e529897c1",
+            "uuid": "f6ab5030-97a0-4caa-bd94-7ebfce12d716",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015eTgt1XT6cJATbPM6vxL22",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 16679,
+                "cache_read_input_tokens": 29755,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 16679
+                },
+                "output_tokens": 62,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-17T06:28:58.472Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0188JuPb7cT35xqd82PxXxj4",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "af37c6e3-c319-455f-b3a4-fe6e529897c1",
+            "uuid": "1498caa7-74f9-4852-92d6-cc1551a8e676",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JyWXvdEbyVjzTRtLAEuYDR",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx6000-diagprobe",
+                "command": "grep -n \"forward baseline\" /root/spectral_collapse_ews/paper/method.tex",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "af37c6e3-c319-455f-b3a4-fe6e529897c1",
+            "uuid": "f6e104b5-7f97-47d9-b6e1-97d2e4228eab",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TNbhLtSqgca6usy6LEJuVV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 230,
+                "cache_read_input_tokens": 46434,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 230
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011BxzDwkpi6QXjX5KjinmuW",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx6000-diagprobe",
+                "command": "grep -n \"T - t\" /root/spectral_collapse_ews/paper/method.tex",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "af37c6e3-c319-455f-b3a4-fe6e529897c1",
+            "uuid": "4ce45b38-ee51-4aaf-aba6-22bc287b133c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TNbhLtSqgca6usy6LEJuVV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 230,
+                "cache_read_input_tokens": 46434,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 230
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-17T06:29:02.780Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JyWXvdEbyVjzTRtLAEuYDR",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"36:  r_{t+1}^{\\\\\\\\text{raw}} = \\\\\\\\underbrace{\\\\\\\\frac{B_{\\\\\\\\text{rem}}}{T - t - 1}}_{\\\\\\\\text{forward baseline}} + \\\\\\\\underbrace{k \\\\\\\\cdot \\\\\\\\max(0,\\\\\\\\; \\\\\\\\Delta_t - \\\\\\\\tau)}_{\\\\\\\\text{reactive boost}}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "af37c6e3-c319-455f-b3a4-fe6e529897c1",
+            "uuid": "35229e41-e1d2-4c5c-b5f2-88337e608de6",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"36:  r_{t+1}^{\\\\\\\\text{raw}} = \\\\\\\\underbrace{\\\\\\\\frac{B_{\\\\\\\\text{rem}}}{T - t - 1}}_{\\\\\\\\text{forward baseline}} + \\\\\\\\underbrace{k \\\\\\\\cdot \\\\\\\\max(0,\\\\\\\\; \\\\\\\\Delta_t - \\\\\\\\tau)}_{\\\\\\\\text{reactive boost}}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"36:  r_{t+1}^{\\\\text{raw}} = \\\\underbrace{\\\\frac{B_{\\\\text{rem}}}{T - t - 1}}_{\\\\text{forward baseline}} + \\\\underbrace{k \\\\cdot \\\\max(0,\\\\; \\\\Delta_t - \\\\tau)}_{\\\\text{reactive boost}}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-17T06:29:03.315Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011BxzDwkpi6QXjX5KjinmuW",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"36:  r_{t+1}^{\\\\\\\\text{raw}} = \\\\\\\\underbrace{\\\\\\\\frac{B_{\\\\\\\\text{rem}}}{T - t - 1}}_{\\\\\\\\text{forward baseline}} + \\\\\\\\underbrace{k \\\\\\\\cdot \\\\\\\\max(0,\\\\\\\\; \\\\\\\\Delta_t - \\\\\\\\tau)}_{\\\\\\\\text{reactive boost}}\\\\n42:  r_{t+1} = \\\\\\\\text{clip}\\\\\\\\!\\\\\\\\left(r_{t+1}^{\\\\\\\\text{raw}},\\\\\\\\; r_{\\\\\\\\min},\\\\\\\\; \\\\\\\\min\\\\\\\\!\\\\\\\\left(r_{\\\\\\\\max},\\\\\\\\; B_{\\\\\\\\text{rem}} - (T - t - 1) \\\\\\\\cdot r_{\\\\\\\\min}\\\\\\\\right)\\\\\\\\right)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "af37c6e3-c319-455f-b3a4-fe6e529897c1",
+            "uuid": "b289ea6a-289b-4101-8f2a-d91ed51cd9a0",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"36:  r_{t+1}^{\\\\\\\\text{raw}} = \\\\\\\\underbrace{\\\\\\\\frac{B_{\\\\\\\\text{rem}}}{T - t - 1}}_{\\\\\\\\text{forward baseline}} + \\\\\\\\underbrace{k \\\\\\\\cdot \\\\\\\\max(0,\\\\\\\\; \\\\\\\\Delta_t - \\\\\\\\tau)}_{\\\\\\\\text{reactive boost}}\\\\n42:  r_{t+1} = \\\\\\\\text{clip}\\\\\\\\!\\\\\\\\left(r_{t+1}^{\\\\\\\\text{raw}},\\\\\\\\; r_{\\\\\\\\min},\\\\\\\\; \\\\\\\\min\\\\\\\\!\\\\\\\\left(r_{\\\\\\\\max},\\\\\\\\; B_{\\\\\\\\text{rem}} - (T - t - 1) \\\\\\\\cdot r_{\\\\\\\\min}\\\\\\\\right)\\\\\\\\right)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"36:  r_{t+1}^{\\\\text{raw}} = \\\\underbrace{\\\\frac{B_{\\\\text{rem}}}{T - t - 1}}_{\\\\text{forward baseline}} + \\\\underbrace{k \\\\cdot \\\\max(0,\\\\; \\\\Delta_t - \\\\tau)}_{\\\\text{reactive boost}}\\n42:  r_{t+1} = \\\\text{clip}\\\\!\\\\left(r_{t+1}^{\\\\text{raw}},\\\\; r_{\\\\min},\\\\; \\\\min\\\\!\\\\left(r_{\\\\max},\\\\; B_{\\\\text{rem}} - (T - t - 1) \\\\cdot r_{\\\\min}\\\\right)\\\\right)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+              }
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The fix was applied. Now both formulas in the paper consistently use T-t-1, matching the code. Let me also update the description text that follows the formula. Let me check what text currently accompanies it.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "af37c6e3-c319-455f-b3a4-fe6e529897c1",
+            "uuid": "5211d40c-3a22-4ab9-8f16-8ba21475ac0b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XaLVmCgb7bF1TsKgFZs2f1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 754,
+                "cache_read_input_tokens": 46664,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 754
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复成功。现在 uniform residual（第36行）和 clipping（第42行）的分母都一致使用 `T-t-1`，与代码匹配。\n\n让我更新公式后的文字描述，使其正确解释 `T-t-1` 的含义。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "af37c6e3-c319-455f-b3a4-fe6e529897c1",
+            "uuid": "2600e95a-c57e-468b-a5c8-983ff5ede0ea",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XaLVmCgb7bF1TsKgFZs2f1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 754,
+                "cache_read_input_tokens": 46664,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 754
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BHdGFeRkeAtUB7wmvt4xYK",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx6000-diagprobe",
+                "command": "sed -n '37,44p' /root/spectral_collapse_ews/paper/method.tex",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "af37c6e3-c319-455f-b3a4-fe6e529897c1",
+            "uuid": "b8d5c378-2131-4210-b299-984a9ed36c60",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XaLVmCgb7bF1TsKgFZs2f1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 754,
+                "cache_read_input_tokens": 46664,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 754
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-17T06:29:09.733Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BHdGFeRkeAtUB7wmvt4xYK",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "af37c6e3-c319-455f-b3a4-fe6e529897c1",
+            "uuid": "4264819d-5469-436e-9fc9-7006c89519b2",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01So4DP8q1pMs423nB9SQjJC",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx6000-diagprobe",
+                "command": "head -50 /root/spectral_collapse_ews/paper/method.tex",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "af37c6e3-c319-455f-b3a4-fe6e529897c1",
+            "uuid": "d5811510-f260-4ed9-881c-d9d254e46b5b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LetNuiJZqhAw6RTpH8n7e6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 469,
+                "cache_read_input_tokens": 47418,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 469
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-17T06:29:13.333Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01So4DP8q1pMs423nB9SQjJC",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\\section{Method}\\\\n\\\\n\\\\\\\\subsection{Problem Formulation}\\\\n\\\\nWe consider \\\\\\\\emph{recursive synthetic training}: a sequence of models $M_0, M_1, \\\\\\\\ldots, M_T$ where each $M_t$ is trained on a mixture of real data and synthetic data generated by $M_{t-1}$.\\\\nLet $r_t \\\\\\\\in [0,1]$ denote the fraction of real data at generation $t$.\\\\nGiven a fixed total real-data budget $B = T \\\\\\\\cdot r_{\\\\\\\\text{base}}$ across $T$ generations, we seek an allocation $\\\\\\\\{r_1, \\\\\\\\ldots, r_T\\\\\\\\}$ satisfying $\\\\\\\\sum_t r_t = B$ that minimizes cumulative model degradation.\\\\n\\\\nThe core challenge is \\\\\\\\emph{temporal}: uniform allocation wastes real data on healthy generations while under-investing in critical collapse phases.\\\\nWe propose a closed-loop controller that monitors spectral health online and redistributes budget toward generations exhibiting early signs of representation collapse.\\\\n\\\\n\\\\\\\\subsection{Spectral Health Signal}\\\\n\\\\nWe adopt the \\\\\\\\emph{effective rank} (RankMe)~\\\\\\\\cite{rankme2023} of the output representation Gram matrix as our collapse indicator.\\\\nAt each generation $t$, we perform a forward pass of $M_t$ on a held-out probe set of $N$ examples, extract last-layer hidden states, and mean-pool to obtain a matrix $\\\\\\\\mathbf{Z} \\\\\\\\in \\\\\\\\mathbb{R}^{N \\\\\\\\times D}$.\\\\nWe compute the SVD of $\\\\\\\\mathbf{Z}$ to obtain singular values $\\\\\\\\sigma_1 \\\\\\\\geq \\\\\\\\sigma_2 \\\\\\\\geq \\\\\\\\cdots \\\\\\\\geq \\\\\\\\sigma_{\\\\\\\\min(N,D)}$, normalize them as $p_i = \\\\\\\\sigma_i / \\\\\\\\sum_j \\\\\\\\sigma_j$, and define:\\\\n\\\\\\\\begin{equation}\\\\n  S_t = \\\\\\\\rho(\\\\\\\\mathbf{Z}) = \\\\\\\\exp\\\\\\\\!\\\\\\\\left(-\\\\\\\\sum_i p_i \\\\\\\\log p_i\\\\\\\\right)\\\\n\\\\\\\\end{equation}\\\\nThe effective rank $S_t$ measures the diversity of learned representations: collapse concentrates the singular spectrum, causing $S_t$ to decrease.\\\\nThis signal is cheap to compute (one forward pass, no gradient) and prior work shows that calibration degradation (ECE) precedes accuracy loss by 1--2 iterations~\\\\\\\\cite{calibration2025}; whether spectral signals exhibit similar or earlier lead time is an empirical question we investigate.\\\\n\\\\n\\\\\\\\subsection{Proportional Controller with Budget Constraint}\\\\n\\\\nWe smooth the raw signal with an exponential moving average:\\\\n\\\\\\\\begin{equation}\\\\n  \\\\\\\\tilde{S}_t = \\\\\\\\alpha \\\\\\\\cdot S_t + (1 - \\\\\\\\alpha) \\\\\\\\cdot \\\\\\\\tilde{S}_{t-1}, \\\\\\\\quad \\\\\\\\alpha = 0.5\\\\n\\\\\\\\end{equation}\\\\nand define the normalized decline rate:\\\\n\\\\\\\\begin{equation}\\\\n  \\\\\\\\Delta_t = \\\\\\\\frac{\\\\\\\\tilde{S}_{t-1} - \\\\\\\\tilde{S}_t}{|\\\\\\\\tilde{S}_0|}\\\\n\\\\\\\\end{equation}\\\\n\\\\nThe controller computes a raw target ratio for the next generation:\\\\n\\\\\\\\begin{equation}\\\\n  r_{t+1}^{\\\\\\\\text{raw}} = \\\\\\\\underbrace{\\\\\\\\frac{B_{\\\\\\\\text{rem}}}{T - t - 1}}_{\\\\\\\\text{forward baseline}} + \\\\\\\\underbrace{k \\\\\\\\cdot \\\\\\\\max(0,\\\\\\\\; \\\\\\\\Delta_t - \\\\\\\\tau)}_{\\\\\\\\text{reactive boost}}\\\\n\\\\\\\\end{equation}\\\\nwhere $B_{\\\\\\\\text{rem}} = B - \\\\\\\\sum_{i=1}^{t} r_i$ is the remaining budget, $\\\\\\\\tau$ is a dead-zone threshold below which no correction is applied, and $k$ is the proportional gain.\\\\n\\\\nBudget feasibility is enforced by clipping:\\\\n\\\\\\\\begin{equation}\\\\n  r_{t+1} = \\\\\\\\text{clip}\\\\\\\\!\\\\\\\\left(r_{t+1}^{\\\\\\\\text{raw}},\\\\\\\\; r_{\\\\\\\\min},\\\\\\\\; \\\\\\\\min\\\\\\\\!\\\\\\\\left(r_{\\\\\\\\max},\\\\\\\\; B_{\\\\\\\\text{rem}} - (T - t - 1) \\\\\\\\cdot r_{\\\\\\\\min}\\\\\\\\right)\\\\\\\\right)\\\\n\\\\\\\\end{equation}\\\\nguaranteeing that every future generation receives at least $r_{\\\\\\\\min}$.\\\\nThe first generation uses $r_1 = r_{\\\\\\\\text{base}}$ (no prior signal).\\\\n\\\\nController hyperparameters: threshold $\\\\\\\\tau$, gain $k$, EMA coefficient $\\\\\\\\alpha$, bounds $r_{\\\\\\\\min}$ and $r_{\\\\\\\\max}$.\\\\n\\\\n\\\\\\\\subsection{Experimental Design}\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "af37c6e3-c319-455f-b3a4-fe6e529897c1",
+            "uuid": "7f9913e6-d2a7-4d95-997b-648b826dfe3f",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\\section{Method}\\\\n\\\\n\\\\\\\\subsection{Problem Formulation}\\\\n\\\\nWe consider \\\\\\\\emph{recursive synthetic training}: a sequence of models $M_0, M_1, \\\\\\\\ldots, M_T$ where each $M_t$ is trained on a mixture of real data and synthetic data generated by $M_{t-1}$.\\\\nLet $r_t \\\\\\\\in [0,1]$ denote the fraction of real data at generation $t$.\\\\nGiven a fixed total real-data budget $B = T \\\\\\\\cdot r_{\\\\\\\\text{base}}$ across $T$ generations, we seek an allocation $\\\\\\\\{r_1, \\\\\\\\ldots, r_T\\\\\\\\}$ satisfying $\\\\\\\\sum_t r_t = B$ that minimizes cumulative model degradation.\\\\n\\\\nThe core challenge is \\\\\\\\emph{temporal}: uniform allocation wastes real data on healthy generations while under-investing in critical collapse phases.\\\\nWe propose a closed-loop controller that monitors spectral health online and redistributes budget toward generations exhibiting early signs of representation collapse.\\\\n\\\\n\\\\\\\\subsection{Spectral Health Signal}\\\\n\\\\nWe adopt the \\\\\\\\emph{effective rank} (RankMe)~\\\\\\\\cite{rankme2023} of the output representation Gram matrix as our collapse indicator.\\\\nAt each generation $t$, we perform a forward pass of $M_t$ on a held-out probe set of $N$ examples, extract last-layer hidden states, and mean-pool to obtain a matrix $\\\\\\\\mathbf{Z} \\\\\\\\in \\\\\\\\mathbb{R}^{N \\\\\\\\times D}$.\\\\nWe compute the SVD of $\\\\\\\\mathbf{Z}$ to obtain singular values $\\\\\\\\sigma_1 \\\\\\\\geq \\\\\\\\sigma_2 \\\\\\\\geq \\\\\\\\cdots \\\\\\\\geq \\\\\\\\sigma_{\\\\\\\\min(N,D)}$, normalize them as $p_i = \\\\\\\\sigma_i / \\\\\\\\sum_j \\\\\\\\sigma_j$, and define:\\\\n\\\\\\\\begin{equation}\\\\n  S_t = \\\\\\\\rho(\\\\\\\\mathbf{Z}) = \\\\\\\\exp\\\\\\\\!\\\\\\\\left(-\\\\\\\\sum_i p_i \\\\\\\\log p_i\\\\\\\\right)\\\\n\\\\\\\\end{equation}\\\\nThe effective rank $S_t$ measures the diversity of learned representations: collapse concentrates the singular spectrum, causing $S_t$ to decrease.\\\\nThis signal is cheap to compute (one forward pass, no gradient) and prior work shows that calibration degradation (ECE) precedes accuracy loss by 1--2 iterations~\\\\\\\\cite{calibration2025}; whether spectral signals exhibit similar or earlier lead time is an empirical question we investigate.\\\\n\\\\n\\\\\\\\subsection{Proportional Controller with Budget Constraint}\\\\n\\\\nWe smooth the raw signal with an exponential moving average:\\\\n\\\\\\\\begin{equation}\\\\n  \\\\\\\\tilde{S}_t = \\\\\\\\alpha \\\\\\\\cdot S_t + (1 - \\\\\\\\alpha) \\\\\\\\cdot \\\\\\\\tilde{S}_{t-1}, \\\\\\\\quad \\\\\\\\alpha = 0.5\\\\n\\\\\\\\end{equation}\\\\nand define the normalized decline rate:\\\\n\\\\\\\\begin{equation}\\\\n  \\\\\\\\Delta_t = \\\\\\\\frac{\\\\\\\\tilde{S}_{t-1} - \\\\\\\\tilde{S}_t}{|\\\\\\\\tilde{S}_0|}\\\\n\\\\\\\\end{equation}\\\\n\\\\nThe controller computes a raw target ratio for the next generation:\\\\n\\\\\\\\begin{equation}\\\\n  r_{t+1}^{\\\\\\\\text{raw}} = \\\\\\\\underbrace{\\\\\\\\frac{B_{\\\\\\\\text{rem}}}{T - t - 1}}_{\\\\\\\\text{forward baseline}} + \\\\\\\\underbrace{k \\\\\\\\cdot \\\\\\\\max(0,\\\\\\\\; \\\\\\\\Delta_t - \\\\\\\\tau)}_{\\\\\\\\text{reactive boost}}\\\\n\\\\\\\\end{equation}\\\\nwhere $B_{\\\\\\\\text{rem}} = B - \\\\\\\\sum_{i=1}^{t} r_i$ is the remaining budget, $\\\\\\\\tau$ is a dead-zone threshold below which no correction is applied, and $k$ is the proportional gain.\\\\n\\\\nBudget feasibility is enforced by clipping:\\\\n\\\\\\\\begin{equation}\\\\n  r_{t+1} = \\\\\\\\text{clip}\\\\\\\\!\\\\\\\\left(r_{t+1}^{\\\\\\\\text{raw}},\\\\\\\\; r_{\\\\\\\\min},\\\\\\\\; \\\\\\\\min\\\\\\\\!\\\\\\\\left(r_{\\\\\\\\max},\\\\\\\\; B_{\\\\\\\\text{rem}} - (T - t - 1) \\\\\\\\cdot r_{\\\\\\\\min}\\\\\\\\right)\\\\\\\\right)\\\\n\\\\\\\\end{equation}\\\\nguaranteeing that every future generation receives at least $r_{\\\\\\\\min}$.\\\\nThe first generation uses $r_1 = r_{\\\\\\\\text{base}}$ (no prior signal).\\\\n\\\\nController hyperparameters: threshold $\\\\\\\\tau$, gain $k$, EMA coefficient $\\\\\\\\alpha$, bounds $r_{\\\\\\\\min}$ and $r_{\\\\\\\\max}$.\\\\n\\\\n\\\\\\\\subsection{Experimental Design}\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\\section{Method}\\n\\n\\\\subsection{Problem Formulation}\\n\\nWe consider \\\\emph{recursive synthetic training}: a sequence of models $M_0, M_1, \\\\ldots, M_T$ where each $M_t$ is trained on a mixture of real data and synthetic data generated by $M_{t-1}$.\\nLet $r_t \\\\in [0,1]$ denote the fraction of real data at generation $t$.\\nGiven a fixed total real-data budget $B = T \\\\cdot r_{\\\\text{base}}$ across $T$ generations, we seek an allocation $\\\\{r_1, \\\\ldots, r_T\\\\}$ satisfying $\\\\sum_t r_t = B$ that minimizes cumulative model degradation.\\n\\nThe core challenge is \\\\emph{temporal}: uniform allocation wastes real data on healthy generations while under-investing in critical collapse phases.\\nWe propose a closed-loop controller that monitors spectral health online and redistributes budget toward generations exhibiting early signs of representation collapse.\\n\\n\\\\subsection{Spectral Health Signal}\\n\\nWe adopt the \\\\emph{effective rank} (RankMe)~\\\\cite{rankme2023} of the output representation Gram matrix as our collapse indicator.\\nAt each generation $t$, we perform a forward pass of $M_t$ on a held-out probe set of $N$ examples, extract last-layer hidden states, and mean-pool to obtain a matrix $\\\\mathbf{Z} \\\\in \\\\mathbb{R}^{N \\\\times D}$.\\nWe compute the SVD of $\\\\mathbf{Z}$ to obtain singular values $\\\\sigma_1 \\\\geq \\\\sigma_2 \\\\geq \\\\cdots \\\\geq \\\\sigma_{\\\\min(N,D)}$, normalize them as $p_i = \\\\sigma_i / \\\\sum_j \\\\sigma_j$, and define:\\n\\\\begin{equation}\\n  S_t = \\\\rho(\\\\mathbf{Z}) = \\\\exp\\\\!\\\\left(-\\\\sum_i p_i \\\\log p_i\\\\right)\\n\\\\end{equation}\\nThe effective rank $S_t$ measures the diversity of learned representations: collapse concentrates the singular spectrum, causing $S_t$ to decrease.\\nThis signal is cheap to compute (one forward pass, no gradient) and prior work shows that calibration degradation (ECE) precedes accuracy loss by 1--2 iterations~\\\\cite{calibration2025}; whether spectral signals exhibit similar or earlier lead time is an empirical question we investigate.\\n\\n\\\\subsection{Proportional Controller with Budget Constraint}\\n\\nWe smooth the raw signal with an exponential moving average:\\n\\\\begin{equation}\\n  \\\\tilde{S}_t = \\\\alpha \\\\cdot S_t + (1 - \\\\alpha) \\\\cdot \\\\tilde{S}_{t-1}, \\\\quad \\\\alpha = 0.5\\n\\\\end{equation}\\nand define the normalized decline rate:\\n\\\\begin{equation}\\n  \\\\Delta_t = \\\\frac{\\\\tilde{S}_{t-1} - \\\\tilde{S}_t}{|\\\\tilde{S}_0|}\\n\\\\end{equation}\\n\\nThe controller computes a raw target ratio for the next generation:\\n\\\\begin{equation}\\n  r_{t+1}^{\\\\text{raw}} = \\\\underbrace{\\\\frac{B_{\\\\text{rem}}}{T - t - 1}}_{\\\\text{forward baseline}} + \\\\underbrace{k \\\\cdot \\\\max(0,\\\\; \\\\Delta_t - \\\\tau)}_{\\\\text{reactive boost}}\\n\\\\end{equation}\\nwhere $B_{\\\\text{rem}} = B - \\\\sum_{i=1}^{t} r_i$ is the remaining budget, $\\\\tau$ is a dead-zone threshold below which no correction is applied, and $k$ is the proportional gain.\\n\\nBudget feasibility is enforced by clipping:\\n\\\\begin{equation}\\n  r_{t+1} = \\\\text{clip}\\\\!\\\\left(r_{t+1}^{\\\\text{raw}},\\\\; r_{\\\\min},\\\\; \\\\min\\\\!\\\\left(r_{\\\\max},\\\\; B_{\\\\text{rem}} - (T - t - 1) \\\\cdot r_{\\\\min}\\\\right)\\\\right)\\n\\\\end{equation}\\nguaranteeing that every future generation receives at least $r_{\\\\min}$.\\nThe first generation uses $r_1 = r_{\\\\text{base}}$ (no prior signal).\\n\\nController hyperparameters: threshold $\\\\tau$, gain $k$, EMA coefficient $\\\\alpha$, bounds $r_{\\\\min}$ and $r_{\\\\max}$.\\n\\n\\\\subsection{Experimental Design}\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+              }
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The fix is in place. Let me now also update the description text to explain T-t-1 correctly. Currently it says:\n\n\"where $B_{\\text{rem}} = B - \\sum_{i=1}^{t} r_i$ is the remaining budget, $\\tau$ is a dead-zone threshold below which no correction is applied, and $k$ is the proportional gain.\"\n\nI should add a note about T-t-1 being the number of subsequent generations. Let me update this line.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "af37c6e3-c319-455f-b3a4-fe6e529897c1",
+            "uuid": "41dbe221-4525-416c-8a60-f4728d3d8e09",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Baa2CY1Ds2eVm5TPDGEgYz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1509,
+                "cache_read_input_tokens": 47887,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1509
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "需要更新公式后的描述文字，解释 `T-t-1`。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "af37c6e3-c319-455f-b3a4-fe6e529897c1",
+            "uuid": "e8db21cf-d88c-496e-a875-895776675233",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Baa2CY1Ds2eVm5TPDGEgYz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1509,
+                "cache_read_input_tokens": 47887,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1509
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0125srzkKEWZVd633hezhpeb",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "rtx6000-diagprobe",
+                "command": "sed -i 's/where $B_{\\\\text{rem}} = B - \\\\sum_{i=1}^{t} r_i$ is the remaining budget, $\\\\tau$ is a dead-zone threshold below which no correction is applied, and $k$ is the proportional gain./where $B_{\\\\text{rem}} = B - \\\\sum_{i=1}^{t} r_i$ is the remaining budget, $T-t-1$ is the number of subsequent generations (from $t+2$ to $T$), $\\\\tau$ is a dead-zone threshold below which no correction is applied, and $k$ is the proportional gain./' /root/spectral_collapse_ews/paper/method.tex",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "af37c6e3-c319-455f-b3a4-fe6e529897c1",
+            "uuid": "44fabe14-5b2a-4e87-aad1-b6e97d2f7364",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Baa2CY1Ds2eVm5TPDGEgYz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1509,
+                "cache_read_input_tokens": 47887,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1509
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-17T06:29:22.859Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0125srzkKEWZVd633hezhpeb",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "af37c6e3-c319-455f-b3a4-fe6e529897c1",
+            "uuid": "5cf8cc95-95d1-4d52-a2c3-6ff8da56b85f",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0176ZPCjxNWcaqtRA23zt8xB",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "rtx6000-diagprobe",
+                "command": "grep -n \"remaining budget\" /root/spectral_collapse_ews/paper/method.tex",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "af37c6e3-c319-455f-b3a4-fe6e529897c1",
+            "uuid": "15815b4f-9dc9-4258-8bb6-3c55c9647220",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01U2s8UjDydFK9ntcsaKw1gM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 498,
+                "cache_read_input_tokens": 49396,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 498
+                },
+                "output_tokens": 70,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-17T06:29:29.081Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0176ZPCjxNWcaqtRA23zt8xB",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"38:where $B_{\\\\\\\\text{rem}} = B - \\\\\\\\sum_{i=1}^{t} r_i$ is the remaining budget, $T-t-1$ is the number of subsequent generations (from $t+2$ to $T$), $\\\\\\\\tau$ is a dead-zone threshold below which no correction is applied, and $k$ is the proportional gain.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "af37c6e3-c319-455f-b3a4-fe6e529897c1",
+            "uuid": "50609267-c7d4-4ac1-a10a-8a5fd7be0967",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"38:where $B_{\\\\\\\\text{rem}} = B - \\\\\\\\sum_{i=1}^{t} r_i$ is the remaining budget, $T-t-1$ is the number of subsequent generations (from $t+2$ to $T$), $\\\\\\\\tau$ is a dead-zone threshold below which no correction is applied, and $k$ is the proportional gain.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"38:where $B_{\\\\text{rem}} = B - \\\\sum_{i=1}^{t} r_i$ is the remaining budget, $T-t-1$ is the number of subsequent generations (from $t+2$ to $T$), $\\\\tau$ is a dead-zone threshold below which no correction is applied, and $k$ is the proportional gain.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+              }
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成。\n\n## 检查结果\n\n**参数一致性：全部一致**\n| 参数 | method.tex | config.py / controller.py |\n|------|-----------|--------------------------|\n| τ | 0.02 (隐含) | 0.02 ✓ |\n| k | (隐含) | 1.0 ✓ |\n| α | 0.5 | 0.5 ✓ |\n| r_min | (隐含) | 0.20 ✓ |\n| r_max | (隐含) | 0.80 ✓ |\n\n**公式不一致（已修复）：**\n- uniform residual 分母：paper 原为 `T-t`，code 为 `T-t-1`（`remaining_gens = T - self.t`，self.t 在计算前已递增）\n- 已修正为 `T-t-1` 并改 underbrace 标注为 \"forward baseline\"\n- 添加了 `$T-t-1$ is the number of subsequent generations (from $t+2$ to $T$)` 说明\n\n**Controller 触发机制（代码验证）：**\n1. 每代训练后，对 probe set 做 forward pass 计算 effective rank S_t\n2. EMA 平滑：S̃_t = 0.5·S_t + 0.5·S̃_{t-1}\n3. 归一化下降率：Δ_t = (S̃_{t-1} - S̃_t) / |S̃_0|\n4. 仅当 Δ_t > τ=0.02 时触发 reactive boost（死区内不响应）\n5. boost 大小 = k·(Δ_t - τ)，与下降速率成正比\n6. 输出经 budget-constrained clipping 保证剩余每代至少获得 r_min"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "af37c6e3-c319-455f-b3a4-fe6e529897c1",
+            "uuid": "6cc99441-59a5-4d8e-bba4-0b34d23e2682",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Rfz2AmkB8PPxZZ9KFqn8a3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 292,
+                "cache_read_input_tokens": 49894,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 292
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成。\n\n## 检查结果\n\n**参数一致性：全部一致**\n| 参数 | method.tex | config.py / controller.py |\n|------|-----------|--------------------------|\n| τ | 0.02 (隐含) | 0.02 ✓ |\n| k | (隐含) | 1.0 ✓ |\n| α | 0.5 | 0.5 ✓ |\n| r_min | (隐含) | 0.20 ✓ |\n| r_max | (隐含) | 0.80 ✓ |\n\n**公式不一致（已修复）：**\n- uniform residual 分母：paper 原为 `T-t`，code 为 `T-t-1`（`remaining_gens = T - self.t`，self.t 在计算前已递增）\n- 已修正为 `T-t-1` 并改 underbrace 标注为 \"forward baseline\"\n- 添加了 `$T-t-1$ is the number of subsequent generations (from $t+2$ to $T$)` 说明\n\n**Controller 触发机制（代码验证）：**\n1. 每代训练后，对 probe set 做 forward pass 计算 effective rank S_t\n2. EMA 平滑：S̃_t = 0.5·S_t + 0.5·S̃_{t-1}\n3. 归一化下降率：Δ_t = (S̃_{t-1} - S̃_t) / |S̃_0|\n4. 仅当 Δ_t > τ=0.02 时触发 reactive boost（死区内不响应）\n5. boost 大小 = k·(Δ_t - τ)，与下降速率成正比\n6. 输出经 budget-constrained clipping 保证剩余每代至少获得 r_min"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 350661,
+            "duration_api_ms": 347787,
+            "num_turns": 13,
+            "stop_reason": "end_turn",
+            "session_id": "af37c6e3-c319-455f-b3a4-fe6e529897c1",
+            "total_cost_usd": 0.91945425,
+            "usage": {
+              "input_tokens": 15,
+              "cache_creation_input_tokens": 38345,
+              "cache_read_input_tokens": 406776,
+              "output_tokens": 19003,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 38345,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 522,
+                  "cache_read_input_tokens": 49894,
+                  "cache_creation_input_tokens": 292,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 292
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1170,
+                "outputTokens": 18,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.00126,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 15,
+                "outputTokens": 19003,
+                "cacheReadInputTokens": 406776,
+                "cacheCreationInputTokens": 38345,
+                "webSearchRequests": 0,
+                "costUSD": 0.91819425,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "539c57e3-ba06-417f-b501-95e54636b1f0"
+          },
+          "id": "event-000037"
+        }
+      ],
+      "message_count": 37
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-verify-method-params.md"
+}

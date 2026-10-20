@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "621b305e862098263eee",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "status exp 018 019 check",
+  "task_key": "worker_status_exp_018_019_check_20260523T073106",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_status_exp_018_019_check_20260523T073106_result.json",
+    "occurrence": 1,
+    "bytes": 1706,
+    "sha256": "45f893f6123bf831547184b2c4569efd65f31a6b84d5e6b5d08c2d538c971ef2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 训练状态汇总\n\n### exp_018 (r=0.5, seed43, cuda:0)\n- **当前进度**: Gen 9/10 生成阶段（22080/25000 samples）\n- **状态**: 运行中，GPU 利用率 69%\n- **已完成 Gen 0–8 的 metrics**:\n\n| Gen | eff_rank | PPL | D-4 | σ₁ | loss |\n|-----|----------|------|------|------|------|\n| 0 | 417.55 | 9.55 | 0.741 | 1942.8 | — |\n| 1 | 475.91 | 10.08 | 0.671 | 956.5 | 1.984 |\n| 2 | 488.01 | 10.41 | 0.571 | 873.1 | 1.912 |\n| 3 | 493.94 | 10.73 | 0.544 | 849.7 | 1.712 |\n| 4 | 503.05 | 11.12 | 0.463 | 817.0 | 1.643 |\n| 5 | 510.11 | 11.60 | 0.419 | 785.6 | 1.522 |\n| 6 | 519.21 | 12.12 | 0.411 | 752.5 | 1.417 |\n| 7 | 526.83 | 12.69 | 0.361 | 728.2 | 1.349 |\n| 8 | 536.98 | 13.46 | 0.299 | 676.8 | 1.263 |\n\n趋势：eff_rank 持续上升（417→537），σ₁ 持续下降（1943→677），PPL 逐步升高，D-4 下降明显——典型的 spectral collapse 演进，但因 r=0.5 real data 混入，退化速度比纯合成慢。\n\n**预计完成时间**: Gen 9 生成快完了，之后还有 Gen 9 训练+评估 + Gen 10 全流程。估计还需 ~2-3 小时（约 16:00-17:00 UTC）。\n\n### exp_019 (r=0.2, seed44, cuda:1)\n- **当前进度**: Gen 2/10 生成阶段（27200/40000 samples）\n- **状态**: 运行中，GPU 利用率 95%\n- **已完成 Gen 0–1 的 metrics**:\n\n| Gen | eff_rank | PPL | D-4 | σ₁ | loss |\n|-----|----------|------|------|------|------|\n| 0 | 417.55 | 9.55 | 0.730 | 1942.8 | — |\n| 1 | 476.57 | 10.28 | 0.654 | 961.5 | 1.765 |\n\n注意 exp_019 每 gen 生成 40000 samples（vs exp_018 的 25000），因为 r=0.2 意味着更多合成数据。进度会比 exp_018 慢，预计还需 ~12-15 小时完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/status-exp-018-019-check.md"
+}

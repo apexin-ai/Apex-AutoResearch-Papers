@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1f381598c1fbb4b44351",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "analysis exp005 controller trajectory",
+  "task_key": "worker_analysis_exp005-controller-trajectory_20260517T190910",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp005-controller-trajectory_20260517T190910_result.json",
+    "occurrence": 1,
+    "bytes": 3467,
+    "sha256": "5a2945bd9ee42bc3a59addd280d96984a699b16cb682eb757f11751873fd5a99"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据齐全。现在根据源码手动重建 controller 轨迹。\n\n## 完整 Controller 数据轨迹 (exp_005, Gen 0-3)\n\n### 配置参数\n\n| 参数 | 值 |\n|------|-----|\n| signal | log_det |\n| signal_mode | per_gen |\n| tau | 0.002 |\n| k | 20.0 |\n| r_base | 0.50 |\n| r_min | 0.20 |\n| r_max | 0.80 |\n| alpha_ema | 0.5 |\n| total_budget | 5.0 (= 10 gens × 0.50) |\n| T (total_generations) | 10 |\n\n### 评估指标表\n\n| Gen | log_det | eff_rank | ppl | distinct4 | train_loss |\n|-----|---------|----------|-----|-----------|------------|\n| 0 | 2366.682861328125 | 417.5472106933594 | 9.553585720044504 | 0.7414389763779528 | — |\n| 1 | 2366.46484375 | 476.93048095703125 | 10.094571790418478 | 0.660757874015748 | 1.9863090271759034 |\n| 2 | 2395.23291015625 | 486.8538513183594 | 10.423844428836501 | 0.6148799212598425 | 1.8810884401130676 |\n| 3 | 2425.44921875 | 496.11138916015625 | 10.759529530959501 | 0.43998622047244096 | 1.7803794955730439 |\n\n### Controller 决策轨迹\n\n| Gen | 决策方式 | S_t (log_det) | S_tilde (EMA) | S_tilde_prev | delta | triggered | r (mix_ratio) | B_rem |\n|-----|---------|---------------|---------------|--------------|-------|-----------|---------------|-------|\n| 0 | set_baseline | 2366.6829 | — | — | — | — | — | 5.0 |\n| 1 | get_first_gen_ratio | — | — | 2366.6829 | — | False | 0.5 | 4.5 |\n| 2 | update(Gen1) | 2366.4648 | 2366.5739 | 2366.6829 | +0.00004605 | False | 0.5 | 4.0 |\n| 3 | update(Gen2) | 2395.2329 | 2380.9034 | 2366.5739 | -0.006054 | False | 0.5 | 3.5 |\n\n### Delta 计算详解\n\n**per_gen 模式公式：** `delta = (S_tilde_prev - S_tilde_new) / |S_tilde_0|`\n\n**S_tilde_0 (baseline) = 2366.682861328125** (Gen 0 设定，不再变化)\n\n**Gen 1:** `get_first_gen_ratio()` 直接返回 `r_base=0.5`，不使用 spectral 信号。\n\n**Gen 2 (输入 Gen 1 的 log_det=2366.4648):**\n```\nS_tilde = 0.5 × 2366.4648 + 0.5 × 2366.6829 = 2366.5739\ndelta   = (2366.6829 - 2366.5739) / 2366.6829 = 0.1090 / 2366.6829 = +0.00004605\ntriggered = 0.00004605 > 0.002 → False\nr_raw   = 4.5/9 + 20 × max(0, 0.00004605 - 0.002) = 0.5 + 0 = 0.5\n```\n\n**Gen 3 (输入 Gen 2 的 log_det=2395.2329):**\n```\nS_tilde = 0.5 × 2395.2329 + 0.5 × 2366.5739 = 2380.9034\ndelta   = (2366.5739 - 2380.9034) / 2366.6829 = -14.3295 / 2366.6829 = -0.006054\ntriggered = -0.006054 > 0.002 → False\nr_raw   = 4.0/8 + 20 × max(0, -0.006054 - 0.002) = 0.5 + 0 = 0.5\n```\n\n### 为什么 Controller 从未触发\n\n**根本原因：log_det 在上升，不在下降。**\n\n- Gen 0 → 1: log_det 几乎不变 (2366.68 → 2366.46, 变化 -0.22)\n- Gen 1 → 2: log_det 上升 (+28.77)\n- Gen 2 → 3: log_det 继续上升 (+30.22)\n\nper_gen 模式下 `delta = (S_tilde_prev - S_tilde_new) / |S_tilde_0|`：\n- 正 delta = spectral 信号恶化（谱坍缩）\n- 负 delta = spectral 信号改善（谱扩展）\n\nGen 2 的 delta 仅 +0.000046（远小于 tau=0.002），Gen 3 的 delta 为负值 (-0.006)，意味着 log_det 在增长，谱空间在扩张而非坍缩。Controller 的触发条件 `delta > tau` 从未满足。\n\n**但值得注意的是**：distinct-4 从 0.741 暴跌到 0.440（-40.6%），输出多样性在显著退化，而 log_det 不但没有检测到这一退化，反而显示谱在\"改善\"。这说明 log_det 作为 spectral collapse 的早期预警信号，在这种设置下未能捕捉到实际的 diversity collapse。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp005-controller-trajectory.md"
+}

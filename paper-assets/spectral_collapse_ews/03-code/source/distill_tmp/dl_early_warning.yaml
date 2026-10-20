@@ -1,0 +1,43 @@
+paper_key: "Deep learning for early warning signals of tipping points"
+title: "Deep learning for early warning signals of tipping points"
+venue: "PNAS 2021"
+full_text_available: false
+
+research:
+  baselines:
+    - autocorrelation at lag-1 (AR1)
+    - variance
+    - detrended fluctuation analysis (DFA)
+    - spectral reddening
+    - AIC-based model fitting (fold/Hopf/null)
+  metrics:
+    - {name: "AUC (area under ROC curve)", direction: "higher_better"}
+    - {name: "accuracy of transition prediction", direction: "higher_better"}
+    - {name: "false positive rate", direction: "lower_better"}
+    - {name: "Kendall tau trend statistic", direction: "higher_better"}
+  datasets:
+    - {name: "simulated bifurcation models (fold, transcritical, Hopf)", size: "synthetic, thousands of trajectories"}
+    - {name: "paleoclimate transitions (end of greenhouse Earth)", size: "empirical"}
+    - {name: "thermoacoustic instability data", size: "empirical"}
+    - {name: "lake sediment phosphorus data", size: "empirical"}
+  ablation_dimensions:
+    - bifurcation type (fold, transcritical, Hopf, period-doubling)
+    - time series length
+    - noise amplitude
+    - proportion of pre-transition data used
+    - LSTM vs conventional indicators
+  training_recipe: {optimizer: "Adam", lr: "N/A", hardware: "N/A"}
+  method_family: "deep learning (LSTM) for critical transition detection"
+
+positioning:
+  core_claim: "A deep learning classifier (LSTM) trained on simulated data can detect early warning signals of tipping points more reliably than traditional statistical indicators, generalizing across bifurcation types and to real-world empirical systems."
+  key_results: "LSTM outperforms variance and autocorrelation indicators in detecting approaching transitions; successfully generalizes from synthetic training data to empirical paleoclimate and thermoacoustic datasets."
+  limitations:
+    - "Trained on specific bifurcation types; may not generalize to all transition mechanisms"
+    - "Requires labeled synthetic data for training"
+    - "Black-box nature limits interpretability compared to theory-grounded indicators"
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

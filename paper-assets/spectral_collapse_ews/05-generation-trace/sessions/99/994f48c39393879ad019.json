@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "994f48c39393879ad019",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ssh exp 017 final collect",
+  "task_key": "worker_ssh_exp_017_final_collect_20260523T034516",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp_017_final_collect_20260523T034516_result.json",
+    "occurrence": 1,
+    "bytes": 933,
+    "sha256": "9b56500cdc57d0046f3259ade875198a35f04e59e70de0686b354ccfb9a68e0c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp_017 (r=0.2, seed43) Gen 10 完成。\n\n## exp_017 Gen 10 最终 Metrics (seed43)\n\n| 指标 | 值 |\n|------|-----|\n| **log_det (SLV)** | 2455.78 |\n| **eff_rank** | 505.98 |\n| **PPL** | 13.40 |\n| **distinct-4** | 0.2453 |\n| **train_loss** | 0.9375 |\n| **sigma1** | 714.87 |\n\n## 2-Seed 均值 & CV (seed42 vs seed43)\n\n| 指标 | seed42 | seed43 | Mean | Std | CV% |\n|------|--------|--------|------|-----|-----|\n| **SLV** | 2479.70 | 2455.78 | 2467.74 | 16.92 | 0.69% |\n| **eff_rank** | 511.30 | 505.98 | 508.64 | 3.76 | 0.74% |\n| **PPL** | 13.83 | 13.40 | 13.62 | 0.30 | 2.24% |\n| **D-4** | 0.520 | 0.245 | 0.383 | 0.194 | 50.8% |\n\n所有谱指标（SLV, eff_rank）跨 seed 高度一致（CV < 1%）。PPL 也稳定（CV 2.2%）。D-4 变异大（CV 50.8%），两个 seed 趋势一致（单调下降）但绝对值差距显著。\n\n**exp_018 进度**: Gen 1 样本生成中（8960/25000）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exp-017-final-collect.md"
+}

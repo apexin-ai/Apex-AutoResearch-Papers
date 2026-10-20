@@ -1,0 +1,1235 @@
+# paper fix gonogo tolerance
+
+**Spectral Early Warning Signals for Model Collapse and Their Prevention–Detectability Tradeoff** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 26
+- **Recorded user turns:** 0
+- **Tool calls:** 8
+- **Original source:** `logs/workers/worker_paper_fix_gonogo_tolerance_20260516T140356.log`
+- **Structured JSON:** [`0814f65268a15e9db0c5.json`](../../sessions/08/0814f65268a15e9db0c5.json)
+
+## Before a recorded user message
+
+26 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews",
+  "session_id": "b47f8ec9-3dcd-49ac-ab29-e7ad61b7f835",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "e10737e9-b7d6-419a-ac43-67cdea54fb3c",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-5-projects-spectral-collapse-ews/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778957400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "d4016722-5d0c-4ea7-9379-19a8c397d366",
+  "session_id": "b47f8ec9-3dcd-49ac-ab29-e7ad61b7f835"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me first read the experiments.tex file on the remote server to find the exact text that needs to be changed.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b47f8ec9-3dcd-49ac-ab29-e7ad61b7f835",
+  "uuid": "4ec7eeed-9639-4273-bdbd-41361f801c62",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012XGqXMYHedf2DjJ1uepw6A",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 10992,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10992
+      },
+      "output_tokens": 31,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01HTWLtQi9DkriMoBnyiWj5u`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b47f8ec9-3dcd-49ac-ab29-e7ad61b7f835",
+  "uuid": "dc506927-4a6b-48c1-850f-75544704d76f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012XGqXMYHedf2DjJ1uepw6A",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 10992,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10992
+      },
+      "output_tokens": 31,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-16T14:04:08.411Z_
+
+<details><summary>↩ Tool result · `toolu_01HTWLtQi9DkriMoBnyiWj5u`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b47f8ec9-3dcd-49ac-ab29-e7ad61b7f835",
+  "uuid": "8bd5f8ca-39df-4683-b58a-bcfe34434268",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FiMkSb4nE3EYvdzVUJYMDg`</summary>
+
+```json
+{
+  "server": "rtx6000-diagprobe",
+  "command": "grep -n \"monotonically\" /root/spectral_collapse_ews/paper/experiments.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b47f8ec9-3dcd-49ac-ab29-e7ad61b7f835",
+  "uuid": "78156110-dc73-48d0-8e0c-3632a662d25f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JD34ZHM2b1Jc9qPBpJyuZi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 465,
+      "cache_read_input_tokens": 22833,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 465
+      },
+      "output_tokens": 5,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-16T14:04:12.654Z_
+
+<details><summary>↩ Tool result · `toolu_01FiMkSb4nE3EYvdzVUJYMDg`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.09}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b47f8ec9-3dcd-49ac-ab29-e7ad61b7f835",
+  "uuid": "cadd4e7e-6650-4e0d-adc9-9ec82cb01fba",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.09}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.09}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9_
+
+No match for "monotonically". Let me search more broadly for the go/no-go criteria.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b47f8ec9-3dcd-49ac-ab29-e7ad61b7f835",
+  "uuid": "24d08566-8b7e-4111-95e3-5936509990dd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LTrGvfogyKVUwjrUxPqFwg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 209,
+      "cache_read_input_tokens": 23298,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 209
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01StxPAvVbeEvtLYxAn4A552`</summary>
+
+```json
+{
+  "server": "rtx6000-diagprobe",
+  "command": "grep -n -i \"go.no.go\\|effective rank\\|decreasing\" /root/spectral_collapse_ews/paper/experiments.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b47f8ec9-3dcd-49ac-ab29-e7ad61b7f835",
+  "uuid": "64ebf348-653b-4e22-a1fa-5e37cf3f1a8b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LTrGvfogyKVUwjrUxPqFwg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 209,
+      "cache_read_input_tokens": 23298,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 209
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-16T14:04:16.777Z_
+
+<details><summary>↩ Tool result · `toolu_01StxPAvVbeEvtLYxAn4A552`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b47f8ec9-3dcd-49ac-ab29-e7ad61b7f835",
+  "uuid": "a992d4d8-dc38-4127-8524-17bd780f746b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015PfqDWw1nhrKYu4x4harjF`</summary>
+
+```json
+{
+  "server": "rtx6000-diagprobe",
+  "command": "grep -n -i \"go.no.go\" /root/spectral_collapse_ews/paper/experiments.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b47f8ec9-3dcd-49ac-ab29-e7ad61b7f835",
+  "uuid": "bad6e437-9267-4097-8149-160d435d65e4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y8GnqPCAT9evBXJgMDMeXS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 256,
+      "cache_read_input_tokens": 23507,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 256
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-16T14:04:20.008Z_
+
+<details><summary>↩ Tool result · `toolu_015PfqDWw1nhrKYu4x4harjF`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"109:\\\\paragraph{Phase~0 go/no-go criteria.}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b47f8ec9-3dcd-49ac-ab29-e7ad61b7f835",
+  "uuid": "bf8ff8bf-3656-467f-acae-42e7476f1ca1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"109:\\\\\\\\paragraph{Phase~0 go/no-go criteria.}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"109:\\\\paragraph{Phase~0 go/no-go criteria.}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14_
+
+Found it at line 109. Let me read the surrounding context.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b47f8ec9-3dcd-49ac-ab29-e7ad61b7f835",
+  "uuid": "45418599-cdd9-40a9-9535-af3dd99a7fef",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XGaKEVTQF7x9x846SoA67b",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 224,
+      "cache_read_input_tokens": 23763,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 224
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FZoeXJFiaAb6yhnPz34BXP`</summary>
+
+```json
+{
+  "server": "rtx6000-diagprobe",
+  "command": "head -130 /root/spectral_collapse_ews/paper/experiments.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b47f8ec9-3dcd-49ac-ab29-e7ad61b7f835",
+  "uuid": "fc797dab-5a4f-4a6b-af3e-cfabdf2e38d2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XGaKEVTQF7x9x846SoA67b",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 224,
+      "cache_read_input_tokens": 23763,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 224
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-16T14:04:24.492Z_
+
+<details><summary>↩ Tool result · `toolu_01FZoeXJFiaAb6yhnPz34BXP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\\section{Experimental Setup}\\n\\n\\\\subsection{Models and Datasets}\\n\\nWe use \\\\textbf{Pythia-410M-deduped} (405M parameters, $D{=}1024$) as the primary model and \\\\textbf{Pythia-1B-deduped} (1042M parameters, $D{=}2048$) for scale-transfer validation.\\nBoth are decoder-only transformers pretrained on the deduplicated Pile.\\n\\nFrom the Pile (uncopyrighted split, \\\\texttt{monology/pile-uncopyrighted}), we sample three disjoint subsets:\\n\\\\begin{itemize}[nosep]\\n  \\\\item \\\\textbf{Training pool}: 50{,}000 sequences of 512 tokens for fine-tuning.\\n  \\\\item \\\\textbf{Evaluation set}: 5{,}000 held-out sequences for perplexity measurement.\\n  \\\\item \\\\textbf{Spectral probe set}: 1{,}000 held-out sequences for effective rank computation.\\n\\\\end{itemize}\\nAll sequences are tokenized with the GPTNeoX tokenizer (vocabulary size 50{,}304) and truncated or padded to 512 tokens.\\nWe retain only sequences with at least 256 non-padding tokens ($\\\\geq$50\\\\% fill ratio) to ensure sufficient context for representation extraction.\\n\\n\\\\subsection{Recursive Training Protocol}\\n\\nGeneration~0 is the pretrained checkpoint with no additional fine-tuning.\\nFor each subsequent generation $t = 1, \\\\ldots, T$ with $T{=}10$:\\n\\\\begin{enumerate}[nosep]\\n  \\\\item \\\\textbf{Synthetic generation.} Sample 50{,}000 sequences from $M_{t-1}$ via ancestral sampling (temperature $= 1.0$, top-$k = 50$, no nucleus filtering, max length 512 tokens, batch size 32).\\n  \\\\item \\\\textbf{Data mixing.} Combine synthetic samples with real data at condition-specific ratio $r_t$ (see \\\\S\\\\ref{sec:conditions}).  The number of real samples mixed in is $\\\\lfloor n_{\\\\text{syn}} \\\\cdot r_t / (1 - r_t) \\\\rfloor$, drawn uniformly without replacement from the training pool.\\n  \\\\item \\\\textbf{Fine-tuning.} Train $M_{t-1}$ for 1 epoch on the mixed corpus $\\\\rightarrow M_t$.\\n  \\\\item \\\\textbf{Checkpoint and evaluate.} Save $M_t$; measure all metrics on held-out data.\\n\\\\end{enumerate}\\n\\nTraining hyperparameters are fixed across all conditions: AdamW optimizer with learning rate $5{\\\\times}10^{-5}$, weight decay $0.01$, batch size~8 with gradient accumulation~4 (effective batch size~32), linear warmup over 5\\\\% of steps followed by linear decay, and gradient clipping at $\\\\|\\\\mathbf{g}\\\\|_{\\\\max} = 1.0$.\\nThe number of optimizer steps per generation varies with the mixing ratio: ${\\\\sim}1{,}562$ steps for pure synthetic ($r_t = 0$) to ${\\\\sim}3{,}125$ steps at $r_t = 0.50$.\\n\\n\\\\subsection{Evaluation Metrics}\\n\\n\\\\paragraph{Effective Rank (RankMe).}\\nFollowing \\\\citet{rankme2023}, we forward-pass the 1{,}000 spectral probe samples through $M_t$, extract last-layer hidden states, mean-pool across sequence length to obtain $\\\\mathbf{Z} \\\\in \\\\mathbb{R}^{1000 \\\\times D}$, compute its SVD, and report\\n\\\\begin{equation}\\n  \\\\rho(\\\\mathbf{Z}) = \\\\exp\\\\!\\\\Bigl(-\\\\sum_i p_i \\\\log p_i\\\\Bigr), \\\\quad p_i = \\\\frac{\\\\sigma_i}{\\\\sum_j \\\\sigma_j},\\n\\\\end{equation}\\nwhere $\\\\sigma_i$ are the singular values of $\\\\mathbf{Z}$.\\nLower effective rank signals representation collapse.\\nWe measure spectral decline relative to Generation~1 (post-adaptation baseline) rather than Generation~0 (pretrained), as the pretrained-to-fine-tuned transition induces a shift in representation anisotropy unrelated to recursive collapse.\\nWe use RankMe rather than SIGMA's Track~I bound~\\\\cite{sigma2026} because (a)~no public implementation of SIGMA exists as of May 2026, (b)~RankMe is architecture-agnostic and hyperparameter-free, and (c)~RankMe's spectral entropy formulation provides a smooth, monotonic collapse indicator suitable for closed-loop control.\\n\\n\\\\paragraph{Log-Determinant Proxy.}\\nFrom the same SVD decomposition, we compute\\n\\\\begin{equation}\\n  \\\\mathcal{D}(\\\\mathbf{Z}) = \\\\sum_{i:\\\\,\\\\sigma_i > \\\\epsilon} \\\\log \\\\sigma_i, \\\\quad \\\\epsilon = 10^{-10},\\n\\\\end{equation}\\nwhich equals $\\\\tfrac{1}{2}\\\\log\\\\det(\\\\mathbf{Z}^\\\\top\\\\mathbf{Z})$ up to the threshold $\\\\epsilon$.\\nThis captures the overall representational volume on a logarithmic scale and is more sensitive to the tail of the singular spectrum than effective rank, which is dominated by\\n\\n... [截断: 输出过长，省略 1451 字符] ...\\n\\nsec:conditions}\\n\\nAll non-collapse conditions share an identical total real-data budget $B = T \\\\times r_{\\\\text{base}} = 10 \\\\times 0.50 = 5.0$ (in units of dataset-equivalents), ensuring differences arise solely from temporal allocation.\\nTable~\\\\ref{tab:conditions} summarizes the four experimental conditions.\\n\\n\\\\begin{table}[t]\\n\\\\centering\\n\\\\caption{Phase~1 experimental conditions.  Conditions (b)--(d) are iso-budget ($B = 5.0$); only the temporal allocation of real data differs.}\\n\\\\label{tab:conditions}\\n\\\\small\\n\\\\begin{tabular}{@{}llp{5.0cm}@{}}\\n\\\\toprule\\n\\\\textbf{Condition} & \\\\textbf{$r_t$ schedule} & \\\\textbf{Description} \\\\\\\\\\n\\\\midrule\\n(a) Pure synthetic & $r_t = 0 \\\\;\\\\forall\\\\, t$ & Collapse reference with no real-data intervention (lower bound). \\\\\\\\[3pt]\\n(b) Fixed uniform & $r_t = 0.50 \\\\;\\\\forall\\\\, t$ & Static baseline distributing budget equally across generations. \\\\\\\\[3pt]\\n(c) Spectral-guided & Closed-loop (\\\\S3.3) & Our method: proportional controller with $k{=}1.0$\\\\textsuperscript{\\\\dag}, $\\\\tau{=}0.02$\\\\textsuperscript{\\\\dag}, $\\\\alpha_{\\\\text{ema}}{=}0.5$, $r_{\\\\min}{=}0.20$, $r_{\\\\max}{=}0.80$. \\\\\\\\[3pt]\\n(d) Linear-increasing & $r_t = r_{\\\\min} + (r_{\\\\max} - r_{\\\\min})\\\\frac{t{-}1}{T{-}1}$ & Budget-matched open-loop heuristic; front-loads synthetic, back-loads real data, no feedback. \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}\\n\\n\\\\vspace{2pt}\\n{\\\\footnotesize \\\\textsuperscript{\\\\dag}Calibrated from Phase~0 pilot.}\\n\\\\end{table}\\n\\nConditions (b), (c), and (d) consume exactly the same total real data ($B = 5.0$); only the temporal distribution differs.\\nThis iso-budget design isolates the effect of \\\\emph{when} real data is introduced from \\\\emph{how much} is used~\\\\cite{garg2025, data_mixing_laws2024}.\\nCondition~(d) interpolates linearly from $r_1 = r_{\\\\min} = 0.20$ to $r_T = r_{\\\\max} = 0.80$; the resulting sum $\\\\sum_t r_t = 5.0$ matches the budget exactly.\\n\\n\\\\subsection{Statistical Design}\\n\\nEach condition is run with 3 random seeds (42, 123, 7), paired across conditions (i.e., all four conditions share the same seed set) to reduce variance from initialization and data ordering.\\nWe report mean $\\\\pm$ standard deviation across seeds.\\n\\nSignificance testing uses paired $t$-tests on per-seed final metrics.\\nWe adopt $\\\\alpha=0.10$ following our pre-registered protocol, given the pragmatic minimum of 3 seeds.\\nEffect sizes are reported as Cohen's $d$ with 95\\\\% bootstrap confidence intervals (10{,}000 resamples).\\n\\n\\\\paragraph{Phase~0 go/no-go criteria.}\\nBefore launching Phase~1, we execute a single-seed ($s{=}42$) pure-synthetic run ($r_t = 0\\\\;\\\\forall\\\\, t$, 10 generations) and require all of the following:\\n\\\\begin{enumerate}[nosep]\\n  \\\\item Monotonically decreasing effective rank across Generations~1--10.\\n  \\\\item Acceleration ratio $\\\\geq 1.5{\\\\times}$: mean per-generation rank decline in Generations~6--10 divided by that in Generations~1--5.\\n  \\\\item Held-out perplexity increase $> 20\\\\%$ from Generation~1 to Generation~10.\\n\\\\end{enumerate}\\nFailure on any criterion aborts the experiment and triggers hyperparameter revision.\\nController parameters $k$ and $\\\\tau$ are calibrated from the Phase~0 spectral trajectory.\\n\\n\\\\paragraph{Pre-registered hypotheses.}\\nWe pre-register two primary comparisons at Generation~$T{=}10$:\\n\\\\begin{enumerate}[nosep]\\n  \\\\item Adaptive vs.\\\\ fixed uniform: $\\\\geq$3 perplexity point improvement.\\n  \\\\item Closed-loop (adaptive) vs.\\\\ open-loop (linear-increasing): $\\\\geq$1.5 perplexity point improvement.\\n\\\\end{enumerate}\\n\\n\\\\paragraph{Compute budget.}\\nThe full experiment comprises 1 Phase~0 pilot chain (single seed, 10 generations) and 12 Phase~1 chains (4 conditions $\\\\times$ 3 seeds $\\\\times$ 10 generations), totaling 130 generation-steps.\\nEach generation-step involves sampling 50{,}000 synthetic sequences, fine-tuning for 1 epoch (${\\\\sim}$1{,}562--3{,}125 optimizer steps depending on the mixing ratio), and evaluating all metrics including 1{,}000-sample generation for Distinct-4.\\n\\nResults tables follow the format: [PLACEHOLDER---final numeric results pending experiment completion].\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b47f8ec9-3dcd-49ac-ab29-e7ad61b7f835",
+  "uuid": "2cbcbe39-3707-4d8e-8435-0e542ebe4547",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\\section{Experimental Setup}\\\\n\\\\n\\\\\\\\subsection{Models and Datasets}\\\\n\\\\nWe use \\\\\\\\textbf{Pythia-410M-deduped} (405M parameters, $D{=}1024$) as the primary model and \\\\\\\\textbf{Pythia-1B-deduped} (1042M parameters, $D{=}2048$) for scale-transfer validation.\\\\nBoth are decoder-only transformers pretrained on the deduplicated Pile.\\\\n\\\\nFrom the Pile (uncopyrighted split, \\\\\\\\texttt{monology/pile-uncopyrighted}), we sample three disjoint subsets:\\\\n\\\\\\\\begin{itemize}[nosep]\\\\n  \\\\\\\\item \\\\\\\\textbf{Training pool}: 50{,}000 sequences of 512 tokens for fine-tuning.\\\\n  \\\\\\\\item \\\\\\\\textbf{Evaluation set}: 5{,}000 held-out sequences for perplexity measurement.\\\\n  \\\\\\\\item \\\\\\\\textbf{Spectral probe set}: 1{,}000 held-out sequences for effective rank computation.\\\\n\\\\\\\\end{itemize}\\\\nAll sequences are tokenized with the GPTNeoX tokenizer (vocabulary size 50{,}304) and truncated or padded to 512 tokens.\\\\nWe retain only sequences with at least 256 non-padding tokens ($\\\\\\\\geq$50\\\\\\\\% fill ratio) to ensure sufficient context for representation extraction.\\\\n\\\\n\\\\\\\\subsection{Recursive Training Protocol}\\\\n\\\\nGeneration~0 is the pretrained checkpoint with no additional fine-tuning.\\\\nFor each subsequent generation $t = 1, \\\\\\\\ldots, T$ with $T{=}10$:\\\\n\\\\\\\\begin{enumerate}[nosep]\\\\n  \\\\\\\\item \\\\\\\\textbf{Synthetic generation.} Sample 50{,}000 sequences from $M_{t-1}$ via ancestral sampling (temperature $= 1.0$, top-$k = 50$, no nucleus filtering, max length 512 tokens, batch size 32).\\\\n  \\\\\\\\item \\\\\\\\textbf{Data mixing.} Combine synthetic samples with real data at condition-specific ratio $r_t$ (see \\\\\\\\S\\\\\\\\ref{sec:conditions}).  The number of real samples mixed in is $\\\\\\\\lfloor n_{\\\\\\\\text{syn}} \\\\\\\\cdot r_t / (1 - r_t) \\\\\\\\rfloor$, drawn uniformly without replacement from the training pool.\\\\n  \\\\\\\\item \\\\\\\\textbf{Fine-tuning.} Train $M_{t-1}$ for 1 epoch on the mixed corpus $\\\\\\\\rightarrow M_t$.\\\\n  \\\\\\\\item \\\\\\\\textbf{Checkpoint and evaluate.} Save $M_t$; measure all metrics on held-out data.\\\\n\\\\\\\\end{enumerate}\\\\n\\\\nTraining hyperparameters are fixed across all conditions: AdamW optimizer with learning rate $5{\\\\\\\\times}10^{-5}$, weight decay $0.01$, batch size~8 with gradient accumulation~4 (effective batch size~32), linear warmup over 5\\\\\\\\% of steps followed by linear decay, and gradient clipping at $\\\\\\\\|\\\\\\\\mathbf{g}\\\\\\\\|_{\\\\\\\\max} = 1.0$.\\\\nThe number of optimizer steps per generation varies with the mixing ratio: ${\\\\\\\\sim}1{,}562$ steps for pure synthetic ($r_t = 0$) to ${\\\\\\\\sim}3{,}125$ steps at $r_t = 0.50$.\\\\n\\\\n\\\\\\\\subsection{Evaluation Metrics}\\\\n\\\\n\\\\\\\\paragraph{Effective Rank (RankMe).}\\\\nFollowing \\\\\\\\citet{rankme2023}, we forward-pass the 1{,}000 spectral probe samples through $M_t$, extract last-layer hidden states, mean-pool across sequence length to obtain $\\\\\\\\mathbf{Z} \\\\\\\\in \\\\\\\\mathbb{R}^{1000 \\\\\\\\times D}$, compute its SVD, and report\\\\n\\\\\\\\begin{equation}\\\\n  \\\\\\\\rho(\\\\\\\\mathbf{Z}) = \\\\\\\\exp\\\\\\\\!\\\\\\\\Bigl(-\\\\\\\\sum_i p_i \\\\\\\\log p_i\\\\\\\\Bigr), \\\\\\\\quad p_i = \\\\\\\\frac{\\\\\\\\sigma_i}{\\\\\\\\sum_j \\\\\\\\sigma_j},\\\\n\\\\\\\\end{equation}\\\\nwhere $\\\\\\\\sigma_i$ are the singular values of $\\\\\\\\mathbf{Z}$.\\\\nLower effective rank signals representation collapse.\\\\nWe measure spectral decline relative to Generation~1 (post-adaptation baseline) rather than Generation~0 (pretrained), as the pretrained-to-fine-tuned transition induces a shift in representation anisotropy unrelated to recursive collapse.\\\\nWe use RankMe rather than SIGMA's Track~I bound~\\\\\\\\cite{sigma2026} because (a)~no public implementation of SIGMA exists as of May 2026, (b)~RankMe is architecture-agnostic and hyperparameter-free, and (c)~RankMe's spectral entropy formulation provides a smooth, monotonic collapse indicator suitable for closed-loop control.\\\\n\\\\n\\\\\\\\paragraph{Log-Determinant Proxy.}\\\\nFrom the same SVD decomposition, we compute\\\\n\\\\\\\\begin{equation}\\\\n  \\\\\\\\mathcal{D}(\\\\\\\\mathbf{Z}) = \\\\\\\\sum_{i:\\\\\\\\,\\\\\\\\sigma_i > \\\\\\\\epsilon} \\\\\\\\log \\\\\\\\sigma_i, \\\\\\\\quad \\\\\\\\epsilon = 10^{-10},\\\\n\\\\\\\\end{equation}\\\\nwhich equals $\\\\\\\\tfrac{1}{2}\\\\\\\\log\\\\\\\\det(\\\\\\\\mathbf{Z}^\\\\\\\\top\\\\\\\\mathbf{Z})$ up to the threshold $\\\\\\\\epsilon$.\\\\nThis captures the overall representational volume on a logarithmic scale and is more sensitive to the tail of the singular spectrum than effective rank, which is dominated by\\\\n\\\\n... [截断: 输出过长，省略 1451 字符] ...\\\\n\\\\nsec:conditions}\\\\n\\\\nAll non-collapse conditions share an identical total real-data budget $B = T \\\\\\\\times r_{\\\\\\\\text{base}} = 10 \\\\\\\\times 0.50 = 5.0$ (in units of dataset-equivalents), ensuring differences arise solely from temporal allocation.\\\\nTable~\\\\\\\\ref{tab:conditions} summarizes the four experimental conditions.\\\\n\\\\n\\\\\\\\begin{table}[t]\\\\n\\\\\\\\centering\\\\n\\\\\\\\caption{Phase~1 experimental conditions.  Conditions (b)--(d) are iso-budget ($B = 5.0$); only the temporal allocation of real data differs.}\\\\n\\\\\\\\label{tab:conditions}\\\\n\\\\\\\\small\\\\n\\\\\\\\begin{tabular}{@{}llp{5.0cm}@{}}\\\\n\\\\\\\\toprule\\\\n\\\\\\\\textbf{Condition} & \\\\\\\\textbf{$r_t$ schedule} & \\\\\\\\textbf{Description} \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n(a) Pure synthetic & $r_t = 0 \\\\\\\\;\\\\\\\\forall\\\\\\\\, t$ & Collapse reference with no real-data intervention (lower bound). \\\\\\\\\\\\\\\\[3pt]\\\\n(b) Fixed uniform & $r_t = 0.50 \\\\\\\\;\\\\\\\\forall\\\\\\\\, t$ & Static baseline distributing budget equally across generations. \\\\\\\\\\\\\\\\[3pt]\\\\n(c) Spectral-guided & Closed-loop (\\\\\\\\S3.3) & Our method: proportional controller with $k{=}1.0$\\\\\\\\textsuperscript{\\\\\\\\dag}, $\\\\\\\\tau{=}0.02$\\\\\\\\textsuperscript{\\\\\\\\dag}, $\\\\\\\\alpha_{\\\\\\\\text{ema}}{=}0.5$, $r_{\\\\\\\\min}{=}0.20$, $r_{\\\\\\\\max}{=}0.80$. \\\\\\\\\\\\\\\\[3pt]\\\\n(d) Linear-increasing & $r_t = r_{\\\\\\\\min} + (r_{\\\\\\\\max} - r_{\\\\\\\\min})\\\\\\\\frac{t{-}1}{T{-}1}$ & Budget-matched open-loop heuristic; front-loads synthetic, back-loads real data, no feedback. \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}\\\\n\\\\n\\\\\\\\vspace{2pt}\\\\n{\\\\\\\\footnotesize \\\\\\\\textsuperscript{\\\\\\\\dag}Calibrated from Phase~0 pilot.}\\\\n\\\\\\\\end{table}\\\\n\\\\nConditions (b), (c), and (d) consume exactly the same total real data ($B = 5.0$); only the temporal distribution differs.\\\\nThis iso-budget design isolates the effect of \\\\\\\\emph{when} real data is introduced from \\\\\\\\emph{how much} is used~\\\\\\\\cite{garg2025, data_mixing_laws2024}.\\\\nCondition~(d) interpolates linearly from $r_1 = r_{\\\\\\\\min} = 0.20$ to $r_T = r_{\\\\\\\\max} = 0.80$; the resulting sum $\\\\\\\\sum_t r_t = 5.0$ matches the budget exactly.\\\\n\\\\n\\\\\\\\subsection{Statistical Design}\\\\n\\\\nEach condition is run with 3 random seeds (42, 123, 7), paired across conditions (i.e., all four conditions share the same seed set) to reduce variance from initialization and data ordering.\\\\nWe report mean $\\\\\\\\pm$ standard deviation across seeds.\\\\n\\\\nSignificance testing uses paired $t$-tests on per-seed final metrics.\\\\nWe adopt $\\\\\\\\alpha=0.10$ following our pre-registered protocol, given the pragmatic minimum of 3 seeds.\\\\nEffect sizes are reported as Cohen's $d$ with 95\\\\\\\\% bootstrap confidence intervals (10{,}000 resamples).\\\\n\\\\n\\\\\\\\paragraph{Phase~0 go/no-go criteria.}\\\\nBefore launching Phase~1, we execute a single-seed ($s{=}42$) pure-synthetic run ($r_t = 0\\\\\\\\;\\\\\\\\forall\\\\\\\\, t$, 10 generations) and require all of the following:\\\\n\\\\\\\\begin{enumerate}[nosep]\\\\n  \\\\\\\\item Monotonically decreasing effective rank across Generations~1--10.\\\\n  \\\\\\\\item Acceleration ratio $\\\\\\\\geq 1.5{\\\\\\\\times}$: mean per-generation rank decline in Generations~6--10 divided by that in Generations~1--5.\\\\n  \\\\\\\\item Held-out perplexity increase $> 20\\\\\\\\%$ from Generation~1 to Generation~10.\\\\n\\\\\\\\end{enumerate}\\\\nFailure on any criterion aborts the experiment and triggers hyperparameter revision.\\\\nController parameters $k$ and $\\\\\\\\tau$ are calibrated from the Phase~0 spectral trajectory.\\\\n\\\\n\\\\\\\\paragraph{Pre-registered hypotheses.}\\\\nWe pre-register two primary comparisons at Generation~$T{=}10$:\\\\n\\\\\\\\begin{enumerate}[nosep]\\\\n  \\\\\\\\item Adaptive vs.\\\\\\\\ fixed uniform: $\\\\\\\\geq$3 perplexity point improvement.\\\\n  \\\\\\\\item Closed-loop (adaptive) vs.\\\\\\\\ open-loop (linear-increasing): $\\\\\\\\geq$1.5 perplexity point improvement.\\\\n\\\\\\\\end{enumerate}\\\\n\\\\n\\\\\\\\paragraph{Compute budget.}\\\\nThe full experiment comprises 1 Phase~0 pilot chain (single seed, 10 generations) and 12 Phase~1 chains (4 conditions $\\\\\\\\times$ 3 seeds $\\\\\\\\times$ 10 generations), totaling 130 generation-steps.\\\\nEach generation-step involves sampling 50{,}000 synthetic sequences, fine-tuning for 1 epoch (${\\\\\\\\sim}$1{,}562--3{,}125 optimizer steps depending on the mixing ratio), and evaluating all metrics including 1{,}000-sample generation for Distinct-4.\\\\n\\\\nResults tables follow the format: [PLACEHOLDER---final numeric results pending experiment completion].\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\\section{Experimental Setup}\\n\\n\\\\subsection{Models and Datasets}\\n\\nWe use \\\\textbf{Pythia-410M-deduped} (405M parameters, $D{=}1024$) as the primary model and \\\\textbf{Pythia-1B-deduped} (1042M parameters, $D{=}2048$) for scale-transfer validation.\\nBoth are decoder-only transformers pretrained on the deduplicated Pile.\\n\\nFrom the Pile (uncopyrighted split, \\\\texttt{monology/pile-uncopyrighted}), we sample three disjoint subsets:\\n\\\\begin{itemize}[nosep]\\n  \\\\item \\\\textbf{Training pool}: 50{,}000 sequences of 512 tokens for fine-tuning.\\n  \\\\item \\\\textbf{Evaluation set}: 5{,}000 held-out sequences for perplexity measurement.\\n  \\\\item \\\\textbf{Spectral probe set}: 1{,}000 held-out sequences for effective rank computation.\\n\\\\end{itemize}\\nAll sequences are tokenized with the GPTNeoX tokenizer (vocabulary size 50{,}304) and truncated or padded to 512 tokens.\\nWe retain only sequences with at least 256 non-padding tokens ($\\\\geq$50\\\\% fill ratio) to ensure sufficient context for representation extraction.\\n\\n\\\\subsection{Recursive Training Protocol}\\n\\nGeneration~0 is the pretrained checkpoint with no additional fine-tuning.\\nFor each subsequent generation $t = 1, \\\\ldots, T$ with $T{=}10$:\\n\\\\begin{enumerate}[nosep]\\n  \\\\item \\\\textbf{Synthetic generation.} Sample 50{,}000 sequences from $M_{t-1}$ via ancestral sampling (temperature $= 1.0$, top-$k = 50$, no nucleus filtering, max length 512 tokens, batch size 32).\\n  \\\\item \\\\textbf{Data mixing.} Combine synthetic samples with real data at condition-specific ratio $r_t$ (see \\\\S\\\\ref{sec:conditions}).  The number of real samples mixed in is $\\\\lfloor n_{\\\\text{syn}} \\\\cdot r_t / (1 - r_t) \\\\rfloor$, drawn uniformly without replacement from the training pool.\\n  \\\\item \\\\textbf{Fine-tuning.} Train $M_{t-1}$ for 1 epoch on the mixed corpus $\\\\rightarrow M_t$.\\n  \\\\item \\\\textbf{Checkpoint and evaluate.} Save $M_t$; measure all metrics on held-out data.\\n\\\\end{enumerate}\\n\\nTraining hyperparameters are fixed across all conditions: AdamW optimizer with learning rate $5{\\\\times}10^{-5}$, weight decay $0.01$, batch size~8 with gradient accumulation~4 (effective batch size~32), linear warmup over 5\\\\% of steps followed by linear decay, and gradient clipping at $\\\\|\\\\mathbf{g}\\\\|_{\\\\max} = 1.0$.\\nThe number of optimizer steps per generation varies with the mixing ratio: ${\\\\sim}1{,}562$ steps for pure synthetic ($r_t = 0$) to ${\\\\sim}3{,}125$ steps at $r_t = 0.50$.\\n\\n\\\\subsection{Evaluation Metrics}\\n\\n\\\\paragraph{Effective Rank (RankMe).}\\nFollowing \\\\citet{rankme2023}, we forward-pass the 1{,}000 spectral probe samples through $M_t$, extract last-layer hidden states, mean-pool across sequence length to obtain $\\\\mathbf{Z} \\\\in \\\\mathbb{R}^{1000 \\\\times D}$, compute its SVD, and report\\n\\\\begin{equation}\\n  \\\\rho(\\\\mathbf{Z}) = \\\\exp\\\\!\\\\Bigl(-\\\\sum_i p_i \\\\log p_i\\\\Bigr), \\\\quad p_i = \\\\frac{\\\\sigma_i}{\\\\sum_j \\\\sigma_j},\\n\\\\end{equation}\\nwhere $\\\\sigma_i$ are the singular values of $\\\\mathbf{Z}$.\\nLower effective rank signals representation collapse.\\nWe measure spectral decline relative to Generation~1 (post-adaptation baseline) rather than Generation~0 (pretrained), as the pretrained-to-fine-tuned transition induces a shift in representation anisotropy unrelated to recursive collapse.\\nWe use RankMe rather than SIGMA's Track~I bound~\\\\cite{sigma2026} because (a)~no public implementation of SIGMA exists as of May 2026, (b)~RankMe is architecture-agnostic and hyperparameter-free, and (c)~RankMe's spectral entropy formulation provides a smooth, monotonic collapse indicator suitable for closed-loop control.\\n\\n\\\\paragraph{Log-Determinant Proxy.}\\nFrom the same SVD decomposition, we compute\\n\\\\begin{equation}\\n  \\\\mathcal{D}(\\\\mathbf{Z}) = \\\\sum_{i:\\\\,\\\\sigma_i > \\\\epsilon} \\\\log \\\\sigma_i, \\\\quad \\\\epsilon = 10^{-10},\\n\\\\end{equation}\\nwhich equals $\\\\tfrac{1}{2}\\\\log\\\\det(\\\\mathbf{Z}^\\\\top\\\\mathbf{Z})$ up to the threshold $\\\\epsilon$.\\nThis captures the overall representational volume on a logarithmic scale and is more sensitive to the tail of the singular spectrum than effective rank, which is dominated by\\n\\n... [截断: 输出过长，省略 1451 字符] ...\\n\\nsec:conditions}\\n\\nAll non-collapse conditions share an identical total real-data budget $B = T \\\\times r_{\\\\text{base}} = 10 \\\\times 0.50 = 5.0$ (in units of dataset-equivalents), ensuring differences arise solely from temporal allocation.\\nTable~\\\\ref{tab:conditions} summarizes the four experimental conditions.\\n\\n\\\\begin{table}[t]\\n\\\\centering\\n\\\\caption{Phase~1 experimental conditions.  Conditions (b)--(d) are iso-budget ($B = 5.0$); only the temporal allocation of real data differs.}\\n\\\\label{tab:conditions}\\n\\\\small\\n\\\\begin{tabular}{@{}llp{5.0cm}@{}}\\n\\\\toprule\\n\\\\textbf{Condition} & \\\\textbf{$r_t$ schedule} & \\\\textbf{Description} \\\\\\\\\\n\\\\midrule\\n(a) Pure synthetic & $r_t = 0 \\\\;\\\\forall\\\\, t$ & Collapse reference with no real-data intervention (lower bound). \\\\\\\\[3pt]\\n(b) Fixed uniform & $r_t = 0.50 \\\\;\\\\forall\\\\, t$ & Static baseline distributing budget equally across generations. \\\\\\\\[3pt]\\n(c) Spectral-guided & Closed-loop (\\\\S3.3) & Our method: proportional controller with $k{=}1.0$\\\\textsuperscript{\\\\dag}, $\\\\tau{=}0.02$\\\\textsuperscript{\\\\dag}, $\\\\alpha_{\\\\text{ema}}{=}0.5$, $r_{\\\\min}{=}0.20$, $r_{\\\\max}{=}0.80$. \\\\\\\\[3pt]\\n(d) Linear-increasing & $r_t = r_{\\\\min} + (r_{\\\\max} - r_{\\\\min})\\\\frac{t{-}1}{T{-}1}$ & Budget-matched open-loop heuristic; front-loads synthetic, back-loads real data, no feedback. \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}\\n\\n\\\\vspace{2pt}\\n{\\\\footnotesize \\\\textsuperscript{\\\\dag}Calibrated from Phase~0 pilot.}\\n\\\\end{table}\\n\\nConditions (b), (c), and (d) consume exactly the same total real data ($B = 5.0$); only the temporal distribution differs.\\nThis iso-budget design isolates the effect of \\\\emph{when} real data is introduced from \\\\emph{how much} is used~\\\\cite{garg2025, data_mixing_laws2024}.\\nCondition~(d) interpolates linearly from $r_1 = r_{\\\\min} = 0.20$ to $r_T = r_{\\\\max} = 0.80$; the resulting sum $\\\\sum_t r_t = 5.0$ matches the budget exactly.\\n\\n\\\\subsection{Statistical Design}\\n\\nEach condition is run with 3 random seeds (42, 123, 7), paired across conditions (i.e., all four conditions share the same seed set) to reduce variance from initialization and data ordering.\\nWe report mean $\\\\pm$ standard deviation across seeds.\\n\\nSignificance testing uses paired $t$-tests on per-seed final metrics.\\nWe adopt $\\\\alpha=0.10$ following our pre-registered protocol, given the pragmatic minimum of 3 seeds.\\nEffect sizes are reported as Cohen's $d$ with 95\\\\% bootstrap confidence intervals (10{,}000 resamples).\\n\\n\\\\paragraph{Phase~0 go/no-go criteria.}\\nBefore launching Phase~1, we execute a single-seed ($s{=}42$) pure-synthetic run ($r_t = 0\\\\;\\\\forall\\\\, t$, 10 generations) and require all of the following:\\n\\\\begin{enumerate}[nosep]\\n  \\\\item Monotonically decreasing effective rank across Generations~1--10.\\n  \\\\item Acceleration ratio $\\\\geq 1.5{\\\\times}$: mean per-generation rank decline in Generations~6--10 divided by that in Generations~1--5.\\n  \\\\item Held-out perplexity increase $> 20\\\\%$ from Generation~1 to Generation~10.\\n\\\\end{enumerate}\\nFailure on any criterion aborts the experiment and triggers hyperparameter revision.\\nController parameters $k$ and $\\\\tau$ are calibrated from the Phase~0 spectral trajectory.\\n\\n\\\\paragraph{Pre-registered hypotheses.}\\nWe pre-register two primary comparisons at Generation~$T{=}10$:\\n\\\\begin{enumerate}[nosep]\\n  \\\\item Adaptive vs.\\\\ fixed uniform: $\\\\geq$3 perplexity point improvement.\\n  \\\\item Closed-loop (adaptive) vs.\\\\ open-loop (linear-increasing): $\\\\geq$1.5 perplexity point improvement.\\n\\\\end{enumerate}\\n\\n\\\\paragraph{Compute budget.}\\nThe full experiment comprises 1 Phase~0 pilot chain (single seed, 10 generations) and 12 Phase~1 chains (4 conditions $\\\\times$ 3 seeds $\\\\times$ 10 generations), totaling 130 generation-steps.\\nEach generation-step involves sampling 50{,}000 synthetic sequences, fine-tuning for 1 epoch (${\\\\sim}$1{,}562--3{,}125 optimizer steps depending on the mixing ratio), and evaluating all metrics including 1{,}000-sample generation for Distinct-4.\\n\\nResults tables follow the format: [PLACEHOLDER---final numeric results pending experiment completion].\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17_
+
+找到了，在第 111 行附近。当前文本是：
+
+```
+\item Monotonically decreasing effective rank across Generations~1--10.
+```
+
+需要改为允许 1 次波动的表述。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b47f8ec9-3dcd-49ac-ab29-e7ad61b7f835",
+  "uuid": "9b54e9f1-6ad5-4650-9c37-69a3411aa963",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RBRym3HxzX4w44o4LGuKGm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3271,
+      "cache_read_input_tokens": 23987,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3271
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01UP1WNE8hg27D9qb8o9s26K`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b47f8ec9-3dcd-49ac-ab29-e7ad61b7f835",
+  "uuid": "72bc90b1-d8df-466e-ae32-316297fded33",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RBRym3HxzX4w44o4LGuKGm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3271,
+      "cache_read_input_tokens": 23987,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3271
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-16T14:04:29.633Z_
+
+<details><summary>↩ Tool result · `toolu_01UP1WNE8hg27D9qb8o9s26K`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b47f8ec9-3dcd-49ac-ab29-e7ad61b7f835",
+  "uuid": "309a7bbe-cfec-4f06-acc0-f3fa4c373cc2",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Hn915rEm6W6PRPyBChwmGE`</summary>
+
+```json
+{
+  "server": "rtx6000-diagprobe",
+  "command": "sed -i 's/Monotonically decreasing effective rank across Generations~1--10\\./Monotonically decreasing effective rank across Generations~1--10 (allowing at most one non-monotone generation)./' /root/spectral_collapse_ews/paper/experiments.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b47f8ec9-3dcd-49ac-ab29-e7ad61b7f835",
+  "uuid": "45c3d12a-4aac-40e3-bae6-fb7962287d70",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PuMt9QKjS66UKK7D9eYCGH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 404,
+      "cache_read_input_tokens": 27258,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 404
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-16T14:04:34.185Z_
+
+<details><summary>↩ Tool result · `toolu_01Hn915rEm6W6PRPyBChwmGE`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.69}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b47f8ec9-3dcd-49ac-ab29-e7ad61b7f835",
+  "uuid": "1ccaacd6-97b7-46d2-85e8-db44a049525b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.69}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.69}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22_
+
+验证替换结果：
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b47f8ec9-3dcd-49ac-ab29-e7ad61b7f835",
+  "uuid": "cc00ce53-b333-4b5a-8b4d-25684b870908",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019WVHnG11wfEYM8PCrXSGCY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 348,
+      "cache_read_input_tokens": 27662,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 348
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Vqti2xdgkJehha8gssHsMk`</summary>
+
+```json
+{
+  "server": "rtx6000-diagprobe",
+  "command": "grep -n \"non-monotone\" /root/spectral_collapse_ews/paper/experiments.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b47f8ec9-3dcd-49ac-ab29-e7ad61b7f835",
+  "uuid": "fce5077e-f481-4d6c-926a-13df850d64cf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019WVHnG11wfEYM8PCrXSGCY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 348,
+      "cache_read_input_tokens": 27662,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 348
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-16T14:04:38.128Z_
+
+<details><summary>↩ Tool result · `toolu_01Vqti2xdgkJehha8gssHsMk`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"112:  \\\\item Monotonically decreasing effective rank across Generations~1--10 (allowing at most one non-monotone generation).\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "b47f8ec9-3dcd-49ac-ab29-e7ad61b7f835",
+  "uuid": "01f12f7a-26fe-41e7-9043-733f2c8da6b6",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"112:  \\\\\\\\item Monotonically decreasing effective rank across Generations~1--10 (allowing at most one non-monotone generation).\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"112:  \\\\item Monotonically decreasing effective rank across Generations~1--10 (allowing at most one non-monotone generation).\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25_
+
+已完成。第 112 行现在读作：
+
+```
+\item Monotonically decreasing effective rank across Generations~1--10 (allowing at most one non-monotone generation).
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "b47f8ec9-3dcd-49ac-ab29-e7ad61b7f835",
+  "uuid": "c03debdb-2a0f-41be-964b-fd30183f04b7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012RoRBShe6rdoDrMcHdiyPp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 246,
+      "cache_read_input_tokens": 28010,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 246
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 26_
+
+已完成。第 112 行现在读作：
+
+```
+\item Monotonically decreasing effective rank across Generations~1--10 (allowing at most one non-monotone generation).
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 36086,
+  "duration_api_ms": 34335,
+  "num_turns": 9,
+  "stop_reason": "end_turn",
+  "session_id": "b47f8ec9-3dcd-49ac-ab29-e7ad61b7f835",
+  "total_cost_usd": 0.23948624999999996,
+  "usage": {
+    "input_tokens": 15,
+    "cache_creation_input_tokens": 16415,
+    "cache_read_input_tokens": 212159,
+    "output_tokens": 1192,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 16415,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 51,
+        "cache_read_input_tokens": 28010,
+        "cache_creation_input_tokens": 246,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 246
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 843,
+      "outputTokens": 19,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.000938,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 15,
+      "outputTokens": 1192,
+      "cacheReadInputTokens": 212159,
+      "cacheCreationInputTokens": 16415,
+      "webSearchRequests": 0,
+      "costUSD": 0.23854824999999996,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "98983b3e-f44b-4629-aa58-53f72119cf0b"
+}
+```
+
+</details>
+
+---

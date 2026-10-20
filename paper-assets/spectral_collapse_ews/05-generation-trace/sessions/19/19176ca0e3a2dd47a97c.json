@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "19176ca0e3a2dd47a97c",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ssh gpu model check",
+  "task_key": "worker_ssh_gpu-model-check_20260522T005404",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_gpu-model-check_20260522T005404_result.json",
+    "occurrence": 1,
+    "bytes": 227,
+    "sha256": "d844faa36fd09d50e489f4991835002e107e5d357f3e66a46c7b5060a2300595"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nGPU 0: NVIDIA RTX PRO 6000 Blackwell Server Edition (UUID: GPU-cd33e1aa-8d2c-dba2-db28-8fe8acacf9b6)\nGPU 1: NVIDIA RTX PRO 6000 Blackwell Server Edition (UUID: GPU-51df6041-f690-7723-3f65-a76607daba56)\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-gpu-model-check.md"
+}

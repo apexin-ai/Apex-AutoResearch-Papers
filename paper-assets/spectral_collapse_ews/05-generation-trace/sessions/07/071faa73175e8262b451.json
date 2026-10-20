@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "071faa73175e8262b451",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "paper figure",
+  "task_key": "worker_paper_figure_20260517T202230",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_20260517T202230_result.json",
+    "occurrence": 1,
+    "bytes": 639,
+    "sha256": "2d2b8980867f5521eee895fea4ee74526ac4a4cc50791ccd7502aba01ab797da"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图已生成并注册。\n\n输出文件：\n- **PDF**: `figures/paper/fig1_spectral_trajectory.pdf` (43K, 矢量)\n- **PNG**: `figures/paper/fig1_spectral_trajectory.png` (346K, 预览)\n- **脚本**: `figures/paper/gen_fig1.py`\n\n四面板内容：\n- **(a)** Effective Rank + Log-det 双 Y 轴，标注 \"2.43× acceleration\"\n- **(b)** Perplexity log scale，标注 9.55 → 76.8 (+704%)\n- **(c)** HellaSwag 单调下降，标注 −5.6% (Gen 0→1)\n- **(d)** σ₁ 轨迹，标注 Decompression 和 Concentration recovery\n\n三个 Phase 以统一半透明色带区分（蓝/黄/红），标签缩写避免重叠。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure.md"
+}

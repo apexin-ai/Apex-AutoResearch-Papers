@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5a4ab1dff1941f44c133",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "code exp 001 status",
+  "task_key": "worker_code_exp_001_status_20260517T124626",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_001_status_20260517T124626_result.json",
+    "occurrence": 1,
+    "bytes": 1729,
+    "sha256": "56f92deefa2c9740db7aab2957e6ca9e2f08c4d3cf8b070eb043bf1faa9371f0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp_001 Phase 0 状态报告\n\n### 进程\n- **PID 59365**: 已死\n- **Pipeline 仍在运行**: log 文件持续更新（最后修改 20:48:17），实际运行进程 PID 已更换\n\n### 当前进度: Gen 9/9 — 数据生成中 13,120/50,000 (26.2%)\n\n### Gen 0-8 全量 Metrics\n\n| Gen | eff_rank | log_det | ppl | distinct4 | hellaswag | train_loss |\n|-----|----------|---------|-----|-----------|-----------|------------|\n| 0 | 417.5 | 2366.7 | 9.55 | 0.741 | 0.413 | — |\n| 1 | 491.8 | 2464.8 | 11.38 | 0.626 | 0.390 | 1.623 |\n| 2 | 496.4 | 2469.9 | 13.58 | 0.515 | 0.376 | 1.268 |\n| 3 | 493.3 | 2440.6 | 16.25 | 0.490 | 0.366 | 1.134 |\n| 4 | 485.7 | 2405.0 | 19.80 | 0.468 | 0.356 | 1.098 |\n| 5 | 479.2 | 2370.2 | 24.59 | 0.463 | 0.344 | 1.047 |\n| 6 | 473.0 | 2335.2 | 30.91 | 0.466 | 0.331 | 1.025 |\n| 7 | 464.2 | 2304.2 | 38.89 | 0.447 | 0.319 | 1.015 |\n| 8 | 456.8 | 2252.1 | 49.29 | 0.440 | 0.310 | 0.987 |\n\n### Collapse 趋势（Gen 2 为转折点）\n\n- **eff_rank**: 峰值 496.4 (Gen 2) → 456.8 (Gen 8)，持续下降\n- **log_det**: 峰值 2469.9 (Gen 2) → 2252.1 (Gen 8)，持续下降\n- **ppl**: 9.55 → 49.29，单调恶化 5.2x\n- **distinct4**: 0.741 → 0.440，多样性持续丢失\n- **hellaswag**: 0.413 → 0.310，能力单调退化\n- **train_loss**: 1.623 → 0.987，单调下降（过拟合信号）\n\n### 预估完成时间\n- Gen 7→8 周期约 2.5h（hellaswag_gen7 17:38 → hellaswag_gen8 20:16）\n- Gen 9 生成始于 ~20:16，当前 26%\n- **预计 Gen 9 完成（含 train+eval）: ~23:00-23:30 北京时间**\n\n### 附注\n`phase1_adaptive_seed42_results.json` 已存在（Gen 0-2, mix_ratio=0.5），Phase 1 自适应实验已并行启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-001-status.md"
+}

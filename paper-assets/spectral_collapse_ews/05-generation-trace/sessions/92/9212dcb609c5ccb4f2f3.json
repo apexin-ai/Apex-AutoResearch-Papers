@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9212dcb609c5ccb4f2f3",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ssh update phase diagram r02 9gen",
+  "task_key": "worker_ssh_update-phase-diagram-r02-9gen_20260520T025628",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_update-phase-diagram-r02-9gen_20260520T025628_result.json",
+    "occurrence": 1,
+    "bytes": 455,
+    "sha256": "8bd4d4a04073b48faa7bc10b3f72e199caf7b83a6afadc36bcd2f07f22d19c5c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图已更新完成。r=0.2 线（橙色方块）现在从 Gen 0 延伸到 Gen 9，共 10 个数据点，实心 marker，无截断标记。\n\n四条线的行为清晰分层：\n- **r=0**（红）：持续下降，明显 collapse\n- **r=0.2**（橙）：缓慢上升，从 ~2367 到 ~2463\n- **r=0.3**（绿）：稳定上升\n- **r=0.5**（蓝）：上升最快\n\nPDF 和 PNG 已同步到服务器 `paper/figures/` 和本地项目目录。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-update-phase-diagram-r02-9gen.md"
+}

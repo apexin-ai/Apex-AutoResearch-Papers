@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "56f327ad736cd74f0795",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ops disk emergency cleanup",
+  "task_key": "worker_ops_disk-emergency-cleanup_20260521T113957",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_disk-emergency-cleanup_20260521T113957_result.json",
+    "occurrence": 1,
+    "bytes": 1704,
+    "sha256": "3d6fe8bfc602a1a72738b53efe04e226e8607bd86390b43043f012df44622caa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息已收集。结果汇总：\n\n---\n\n### 1. 磁盘清理\n- **清理前**：250G / 100% 满\n- **清理后**：148G 使用 / 103G 可用 / **59%**\n- **释放**：~102GB\n- 保留目录正确：`fixed_mix_r025_seed42`、`fixed_mix_r025_seed43`、`fixed_mix_r025_seed44`\n\n### 2. exp_015 状态：**存活**\n- PID 516836，GPU 1，19GB 显存，94% 利用率\n- 当前：**Gen 1 fine-tuning 中**（Gen 0 已完成，生成 37500 样本后正在训练）\n- 磁盘清理及时，exp_015 未受影响\n\n### 3. exp_014 崩溃详情\n- **崩溃原因**：`No space left on device (os error 28)` — Gen 6 训练完成（loss=1.0873），保存 checkpoint 时磁盘满\n- **数据完整性**：\n  - gen_0 ~ gen_5：完整（每个目录 190 bytes 的元数据）\n  - gen_6：**不完整** — 有 model.safetensors（1.3GB）和 config，但训练后的 metrics/results 未记录（崩溃在 save_pretrained）\n  - gen_7 ~ gen_9：未执行\n\n### 4. 断点续跑：**支持**\n- `run_phase1.py` 支持 `--start_gen` 参数（line 100-101）\n- exp_014 可从 gen 6 重跑（gen_6 checkpoint 虽然保存了 model.safetensors，但需确认完整性）\n- 重启命令示例：\n  ```bash\n  python run_phase1.py --condition fixed_mix --seed 43 --generations 10 \\\n    --signal log_det --tau 0.002 --k 0 --signal_mode per_gen \\\n    --real_ratio 0.25 --gpu 0 --start_gen 6\n  ```\n\n### 5. exp_015 无需重启\n进程正常运行，磁盘空间已充足（103GB 可用），可继续完成剩余 gen。\n\n**建议**：等 exp_015 跑完后（占用 GPU 1），再用空闲 GPU 重启 exp_014 从 `--start_gen 6`。或者如果想并行，可在 GPU 0 上重启 exp_014。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-disk-emergency-cleanup.md"
+}

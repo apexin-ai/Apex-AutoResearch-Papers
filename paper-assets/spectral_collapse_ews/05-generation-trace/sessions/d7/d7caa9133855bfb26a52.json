@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d7caa9133855bfb26a52",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ops verify audit and exp020 metrics",
+  "task_key": "worker_ops_verify-audit-and-exp020-metrics_20260523T220148",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-audit-and-exp020-metrics_20260523T220148_result.json",
+    "occurrence": 1,
+    "bytes": 2184,
+    "sha256": "c5bf561025ff93be759bdef0a9fc756bcfd7d0951b79d757e303182d6482b395"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected and verified. Here are the results:\n\n---\n\n## 任务 A：数据审计验证\n\n### A1: r=0.25 SLV dip = −2.1\n\n原始 log_det (SLV) 值 (Gen 0 → Gen 1):\n| Seed | Gen 0 | Gen 1 | Gen 2 |\n|------|-------|-------|-------|\n| 42 (exp_004) | 2366.683 | 2362.135 | 2363.102 |\n| 43 (exp_012) | 2366.683 | 2365.352 | 2362.542 |\n| 44 (exp_016) | 2366.683 | 2366.125 | 2364.587 |\n\n3-seed mean:\n- Gen 0: 2366.683\n- Gen 1: (2362.135 + 2365.352 + 2366.125) / 3 = **2364.537**\n- Gen 2: (2363.102 + 2362.542 + 2364.587) / 3 = **2363.410**\n\nMean trajectory deltas:\n- Δ₁ = 2364.537 − 2366.683 = **−2.146**\n- Δ₂ = 2363.410 − 2364.537 = −1.127\n\nMax dip = −2.146 ≈ **−2.1** → **MATCH** ✅\n\n### A2: r=0.3 SLV dip = −1.5\n\n原始 log_det 值:\n| Seed | Gen 0 | Gen 1 |\n|------|-------|-------|\n| 42 (exp_006) | 2366.683 | 2366.134 |\n| 43 (exp_009) | 2366.683 | 2363.895 |\n| 44 (exp_015) | 2366.683 | 2365.486 |\n\n3-seed mean Gen 1: (2366.134 + 2363.895 + 2365.486) / 3 = **2365.172**\n\nΔ₁ = 2365.172 − 2366.683 = **−1.511** ≈ **−1.5** → **MATCH** ✅\n\n### A3: Signal ratio ~3.5×\n\nTable 2 (paper line 160-161):\n- r=0.2: max Δₜ = 0.0017\n- r=0.25: max Δₜ = 0.0005\n\n0.0017 / 0.0005 = **3.4**\n\n论文写 ~3.5×。精确值 3.4，~ 前缀表示近似值，在 3% 误差范围内。 → **MATCH (within ~ approximation)** ✅\n\n### A4: Figure 1 caption \"SLV falls 12% from peak\"\n\n原始 log_det (r=0, pure collapse):\n| Seed | Gen 2 (peak) | Gen 10 (final) |\n|------|-------------|---------------|\n| 42 (exp_001/phase0) | 2469.928 | 2178.949 |\n| 43 (exp_010) | 2466.626 | 2210.766 |\n| 44 (exp_013) | 2467.384 | 2154.336 |\n\n3-seed mean:\n- Peak (Gen 2): **2467.979**\n- Final (Gen 10): **2181.350**\n\n(2467.979 − 2181.350) / 2467.979 × 100% = **11.61%** → 四舍五入 **12%** → **MATCH** ✅\n\n---\n\n## 任务 B：exp_020 Gen 0-3 metrics\n\nJSON 已保存至:\n`artifacts/exp_020/gen0_3_metrics.json`\n\n数据来自 `phase1_gpt2m_pure_collapse_seed42_results.json`，使用 `slv`/`ppl`/`r_eff` 字段命名。Gen 2 SLV peak (924.39) 与 Gen 3 reversal (889.70) 确认。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-audit-and-exp020-metrics.md"
+}

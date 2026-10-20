@@ -1,0 +1,146 @@
+{
+  "figures_found": [
+    {
+      "number": "1",
+      "env_type": "figure",
+      "image_path": "figures/spectral_trajectory.pdf",
+      "caption": "SLV across 10 recursive generations of Pythia-410M (solid: $r{=}0$, 3-seed mean; dashed: $r{=}0.5$, 2-seed mean) under pure-synthetic training and 50\\% real-data mixing. Three phases are visible in th",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": true,
+      "source_file": "sections/experiments.tex"
+    },
+    {
+      "number": "2",
+      "env_type": "figure",
+      "image_path": "figures/seed_variability.pdf",
+      "caption": "Cross-seed reproducibility of SLV under pure-synthetic training ($r{=}0$). Thin lines: individual seeds (42, 43, 44); thick line: 3-seed mean; shaded band: $\\pm$1 s.d. The coefficient of variation rem",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "sections/experiments.tex"
+    },
+    {
+      "number": "3",
+      "env_type": "figure",
+      "image_path": "figures/slv_ppl_decoupling.pdf",
+      "caption": "SLV (top) and perplexity (bottom) across 10 recursive generations ($r{=}0$, 3-seed mean). In Phase~I (Gen~0--2), both metrics rise simultaneously. The SLV increase reflects distributional broadening, ",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "sections/experiments.tex"
+    },
+    {
+      "number": "4",
+      "env_type": "figure",
+      "image_path": "figures/controller_signal.pdf",
+      "caption": "Maximum controller signal magnitude ($\\max|\\Delta\\tilde{S}_t|$, $t \\geq 2$) across mixing ratios. The signal drops $10\\times$ from $r{=}0$ to $r{=}0.2$ and is exactly zero for $r \\geq 0.3$ (``silent''",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "sections/experiments.tex"
+    },
+    {
+      "number": "5",
+      "env_type": "figure",
+      "image_path": "figures/ews_heatmap.pdf",
+      "caption": "Visual summary of eight EWS indicators under pure-synthetic training ($r{=}0$). Direction: trajectory shape at $r{=}0$. Rel~$\\Delta\\%$: total relative change magnitude. Reverses?: whether the indicato",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "sections/experiments.tex"
+    },
+    {
+      "number": "6",
+      "env_type": "figure",
+      "image_path": "figures/phase_diagram.pdf",
+      "caption": "SLV trajectories across mixing ratios (Pythia-410M; $r{=}0$, $r{=}0.2$, $r{=}0.25$, $r{=}0.3$: 3-seed mean, solid lines; $r{=}0.5$: 2-seed mean, dashed line). Type~I ($r{=}0$): decompression then mono",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "sections/experiments.tex"
+    },
+    {
+      "number": "7",
+      "env_type": "figure",
+      "image_path": "figures/rankme_trajectories.pdf",
+      "caption": "Effective rank ($r_{\\mathrm{eff}}$) trajectories across mixing ratios. Unlike SLV (Figure~\\ref{fig:phase_diagram}), $r_{\\mathrm{eff}}$ rises monotonically for all $r \\geq 0.2$, providing only a 2-type",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "sections/experiments.tex"
+    }
+  ],
+  "results": [],
+  "post_review": {
+    "compile": {
+      "success": true,
+      "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/_latex_iso_cy97yf0q/main.pdf"
+    },
+    "figure_check": {
+      "passed": false,
+      "critical": [
+        {
+          "kind": "missing_required_section",
+          "message": "Venue requires a 'Limitations' section but none was found",
+          "location": "cross-file"
+        }
+      ],
+      "warning": [
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:conclusion} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:experiments} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:related} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:method} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:intro} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "missing_required_section",
+          "message": "Venue requires a 'Ethics Statement' section but none was found",
+          "location": "cross-file"
+        }
+      ],
+      "info": [],
+      "summary": "1 critical, 6 warning, 0 info"
+    },
+    "consistency": {
+      "paper_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/paper",
+      "sections": [],
+      "critical": [],
+      "warning": [
+        {
+          "kind": "no_paper_tex",
+          "message": "No section .tex files found under /home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/paper",
+          "location": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/paper"
+        }
+      ],
+      "info": [],
+      "summary": {
+        "critical": 0,
+        "warning": 1,
+        "info": 0
+      }
+    }
+  },
+  "backup_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/paper/_figure_backups/20260524_164638",
+  "error": "",
+  "timestamp": "2026-05-24T16:47:38.237198+00:00"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "a3a90a0591565f766dba",
+  "project": "spectral_collapse_ews",
+  "kind": "worker",
+  "title": "code hellaswag eval",
+  "task_key": "worker_code_hellaswag_eval_20260516T090120",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_hellaswag_eval_20260516T090120.log",
+    "occurrence": 1,
+    "bytes": 854394,
+    "sha256": "5906a302d03c0690c8ce7126435fe7ca20fd47537ee59f92291e640638c0ee1f"
+  },
+  "statistics": {
+    "messages": 272,
+    "user_turns": 0,
+    "tool_calls": 94,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 80,
+      "tool_call": 94,
+      "tool_result": 94,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 272,
+      "chunks": [
+        {
+          "path": "a3a90a0591565f766dba-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "a3a90a0591565f766dba-part-0002.json",
+          "message_count": 92
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-hellaswag-eval.md"
+}

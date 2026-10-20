@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e63b445d0eec2970c13e",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "preflight post exp001 scripts",
+  "task_key": "worker_preflight_post_exp001_scripts_20260517T105158",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_preflight_post_exp001_scripts_20260517T105158_result.json",
+    "occurrence": 1,
+    "bytes": 2499,
+    "sha256": "ca4896b6f0f347ab6f834ba664b9aba4b2fb23be2a32cf891208b19918bd984a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部检查完毕。汇总如下：\n\n---\n\n## 预检结果\n\n### 1. `analyze_phase0.py` — **就绪**\n- **功能**: 从 `phase0_results.json` 读数据，执行 Go/No-go 三条件判定（单调下降、加速比 ≥1.5、PPL 增幅 >20%）+ τ/k 校准\n- **输出**: 控制台报告 + `phase0_analysis_report.json` + `phase0_analysis_plots.png`（4 panel: rank、Δ_t、PPL、HellaSwag/distinct-4）\n- **参数**:\n  ```\n  --results-path  (默认 results/phase0_results.json)\n  --model-name    (默认 410M)\n  --output-dir    (默认 results/)\n  ```\n- **dry-run `--help`**: 通过\n- **依赖**: numpy 2.2.6, matplotlib 3.10.5, json — 全部已装\n\n### 2. `scripts/plot_spectral_trajectory.py` — **就绪**\n- **功能**: 生成 5-panel 论文级图（eff_rank、log_det、PPL、distinct-4、HellaSwag），自动从 `results/phase0_results.json` 加载数据（找不到则用硬编码 fallback）\n- **输出**: `paper/figures/spectral_trajectory.pdf` + `.png`\n- **参数**: 无 CLI 参数，直接 `python scripts/plot_spectral_trajectory.py`\n- **注意**: hellaswag 数据在 fallback 值中只到 Gen 5，实际运行时会从 JSON 读取（但 JSON 中无 hellaswag 字段时 hellaswag panel 会用 fallback 值）\n\n### 3. `auto_eval_hellaswag.sh` — **就绪，GPU 参数已修复**\n- GPU 参数: `GPU=\"${1:-cuda:0}\"` — 已正确参数化\n- 用法: `bash auto_eval_hellaswag.sh [cuda:X]`\n- 当前状态: gen0-gen7 已评估完成，gen8-10 待评\n\n### 4. `results/` 目录现状\n| 文件 | 说明 |\n|------|------|\n| `phase0_results.json` | 主结果文件 (4.0KB, 最后更新 17:37) |\n| `phase0_analysis_report.json` | 上一次分析报告 (May 16 20:58) |\n| `phase0_analysis_plots.png` | 上一次分析图 |\n| `hellaswag_gen0/` ~ `hellaswag_gen7/` | Gen 0-7 HellaSwag 结果 |\n| `phase1_adaptive_seed42_results.json` | Phase 1 自适应种子结果 |\n| `phase0_1b/` | 1B 模型 Phase 0 结果 |\n\n### 5. exp_001 完成后的执行命令\n\n```bash\n# 激活环境\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\ncd /root/spectral_collapse_ews\n\n# 1) Go/No-go 分析\npython analyze_phase0.py --results-path results/phase0_results.json --model-name 410M\n\n# 2) 论文图\npython scripts/plot_spectral_trajectory.py\n\n# 3) HellaSwag 自动评估（如果还有未评估的 gen）\nnohup bash auto_eval_hellaswag.sh cuda:0 > results/auto_eval.log 2>&1 &\n```\n\n所有脚本和依赖均可立即执行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/preflight-post-exp001-scripts.md"
+}

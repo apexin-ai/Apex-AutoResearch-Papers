@@ -1,0 +1,64 @@
+- id: art_20260514_c904fa
+  name: DTD MVP Code Framework
+  type: intermediate
+  description: MVP 代码框架：7 个模块（dtd_types, trace_collector, structural_segmenter, line_segmenter,
+    teacher_scorer, bugsinpy_setup, mvp_pipeline），实现 trace 收集→结构化分段→teacher 打分→4 条件
+    repair 对比的完整流水线
+  path: projects/trace_distill_repair/artifacts/_project/intermediate/mvp_pipeline.py
+  url: null
+  project: trace_distill_repair
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T13:12:13.397682+00:00'
+  tags:
+  - mvp
+  - code
+  - framework
+- id: art_20260514_76557e
+  name: literature_map
+  type: data
+  description: DTD 项目文献地图：15 篇论文，覆盖 direct-competitor / method-component / evaluation
+    / background 四维度
+  path: projects/trace_distill_repair/artifacts/_project/data/literature_map.yaml
+  url: null
+  project: trace_distill_repair
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T13:55:52.976582+00:00'
+  tags:
+  - literature
+  - survey
+  - mvp
+- id: art_20260514_28c430
+  name: Phase 2 Structural Scoring Report
+  type: report
+  description: Per-instance keep/drop 分布、segment type 别 keep rate、>2K token 子集分析、line
+    vs structural segment 数量对比
+  path: projects/trace_distill_repair/artifacts/mvp_teacher_scoring/report/phase2_structural_scoring_report.md
+  url: null
+  project: trace_distill_repair
+  exp_id: mvp_teacher_scoring
+  skill: ''
+  created_at: '2026-05-14T20:47:58.662149+00:00'
+  tags:
+  - phase2
+  - structural
+  - scoring
+  - statistics
+- id: art_20260515_dcadaf
+  name: mvp_phase3_repair_v2_analysis
+  type: report
+  description: Phase 3 v2 repair experiment analysis — 9/14 instances completed, NEGATIVE
+    result, MVP FAIL per C001 kill criteria
+  path: projects/trace_distill_repair/artifacts/mvp_phase3_repair_v2/report/mvp_phase3_repair_v2_analysis.md
+  url: null
+  project: trace_distill_repair
+  exp_id: mvp_phase3_repair_v2
+  skill: ''
+  created_at: '2026-05-15T15:24:24.447939+00:00'
+  tags:
+  - phase3
+  - repair
+  - analysis
+  - negative
+  - kill-criteria

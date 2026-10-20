@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "41744a6cc17d3507acd3",
+  "project": "trace_distill_repair",
+  "kind": "worker",
+  "title": "exp phase3 dryrun",
+  "task_key": "worker_exp_phase3_dryrun_20260514T202705",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_phase3_dryrun_20260514T202705.log",
+    "occurrence": 1,
+    "bytes": 717685,
+    "sha256": "a9cef2d9f1efc435c7d4fbb432da50d7edb972a2621a3046e61892b3737497bc"
+  },
+  "statistics": {
+    "messages": 338,
+    "user_turns": 0,
+    "tool_calls": 128,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 78,
+      "tool_call": 128,
+      "tool_result": 128,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 338,
+      "chunks": [
+        {
+          "path": "41744a6cc17d3507acd3-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "41744a6cc17d3507acd3-part-0002.json",
+          "message_count": 158
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-phase3-dryrun.md"
+}

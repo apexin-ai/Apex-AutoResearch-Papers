@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "49995ecd7f1bd2adc6e1",
+  "project": "spectral_collapse_ews",
+  "kind": "history",
+  "title": "agent / loop_6_1779505473.md",
+  "task_key": "loop_6_1779505473",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_6_1779505473.md",
+    "occurrence": 1,
+    "bytes": 4236,
+    "sha256": "49ad78b4c54f324c33b51659906d74623ecae451949e3964353c79968b3da88b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 6\nreason: max_wall_time\nupdated: '2026-05-22T00:47:17+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0 和 cuda:1（rtx6000-diagprobe），不得用其他卡\n- Registry API 与 registry.yaml 存在同步问题：submit_on_allocated 读 YAML，update_registry 写 API store。**提交实验一律用 submit_training_job**，不要用 submit_on_allocated\n- 服务器名在不同工具里有两个别名：`rtx6000-diagprobe`（registry/spawn_worker 用）和 `gpu-6000pro-1`（check_job_status 用）。同一台物理机\n- exp_014b 的 checkpoint 路径包含 seed43 但实际是 exp_014 的 resume（从 gen6 开始），不要误删\n- Paper 数值修改必须全文 grep 旧值确认无残留，上次 \"2.43x\" 残留被 Reviewer 抓到过\n\n### 2. 🖥️ 基础设施快照\n- 服务器：rtx6000-diagprobe，account: root，工作目录 /root/spectral_collapse_ews\n- Python：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`（conda 环境，不是 venv）\n- 模型：EleutherAI/pythia-410m-deduped（HF cache 本地，HF_HUB_OFFLINE=1）\n- 数据：/root/spectral_collapse_ews/data/（50K real pool + eval_5k.jsonl）\n- Checkpoints：/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/\n- 磁盘：/root/autodl-tmp 250G，已用 163G，剩余 88G（34%）\n- 活跃进程：\n  - exp_015: PID 516824, tmux=exp_015, cuda:1, r=0.25 seed44, Gen 7/10\n  - exp_016: PID 614614, tmux=exp_016, cuda:0, r=0.3 seed44, Gen 0/10\n- Cron：exp_015（已有）、exp_016（刚注册，interval=300s）\n- 论文本地路径：/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/paper/\n\n### 3. 📊 当前状态\n刚完成 Director 的紧急状态检查指令：确认 exp_014b 完成（DONE/success），在释放的 cuda:0 上零空窗启动 exp_016，向 Director 汇报完毕。收到 Director standing orders 后，预创建了 exp_017 (r=0.2 seed43, PREPARING) 和 exp_018 (r=0.5 seed43, PREPARING) 的 registry 条目。\n\nRegistry 状态：\n- exp_015: RUNNING — r=0.25 seed44, cuda:1, ~May 22 09:00 UTC 完成\n- exp_016: RUNNING — r=0.3 seed44, cuda:0, ~May 22 23:00 UTC 完成（注意：registry API 可能仍显示 QUEUED，实际已 RUNNING 且 cron 已注册）\n- exp_017: PREPARING — r=0.2 seed43, 等 cuda:1 释放\n- exp_018: PREPARING — r=0.5 seed43, 等 cuda:0 释放\n\n等待中：\n- Worker `worker_ssh_p0-exp016-status_20260521T232427`（P0 状态确认，应已完成但回调未到）\n- Worker `worker_ssh_prep-p1-experiments_20260521T232506`（P1 启动脚本准备 + dry-run）\n\n### 4. 📋 待办\n- exp_015 cron 回调（~May 22 09:00 UTC）→ spawn worker 收集 r=0.25 seed44 全 11 gen 数据 → 与 exp_009(seed42)+exp_014b(seed43) 合并算 3-seed mean → 检查磁盘 >20G → 立即在 cuda:1 启动 exp_017 (r=0.2 seed43)\n- exp_016 cron 回调（~May 22 23:00 UTC）→ spawn worker 收集 r=0.3 seed44 全 11 gen 数据 → 与 exp_008(seed42)+exp_012(seed43) 合并算 3-seed mean → 检查磁盘 >20G → 立即在 cuda:0 启动 exp_018 (r=0.5 seed43)\n- exp_015 + exp_016 都完成后 → Table 3 r=0.25 行和 r=0.3 行升级 3-seed → Abstract L5 \"two random seeds\" → \"three random seeds\" → 全文 grep 旧值\n- P1 prep worker 回调 → 确认启动脚本已就绪（launch_fixed_mix_r020_seed43.sh / launch_fixed_mix_r050_seed43.sh）\n\n### 5. 🎯 战略上下文\n- 项目核心：SLV 作为 model collapse 的 spectral early warning signal，三相轨迹（decompression→onset→acceleration），r_crit ∈ (0.25, 0.3] 是 Type II/III 分界线\n- 3-seed 覆盖进度：r=0 ✅(3 seeds) | r=0.2 单 seed | r=0.25 2 seeds(等 exp_015) | r=0.3 2 seeds(等 exp_016) | r=0.5 单 seed\n- EMNLP 2026 ARR deadline May 25，论文主体已完成（8 页 + appendix），Phase E fixes 全部提交（最新 commit d577eeb）\n- Provenance 27/27 tier3=0，R1-W1 rebuttal draft 已备好\n- 易踩坑：(1) registry API 和 YAML 不同步，永远用 submit_training_job 而非 submit_on_allocated (2) D-4 cross-seed variance 极高（CV=46%@Gen10），不要对 D-4 做 cross-seed 精确比较 (3) exp_014b 的 gen0-5 数据来自 exp_014（同 seed 同参数，只是 resume），合并时注意用 exp_014b 的完整轨迹\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-6-1779505473.md"
+}

@@ -1,0 +1,22 @@
+{
+  "exp_id": "sft-v2",
+  "project": "rl-active-probe-fl",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T09:34:34.846Z",
+    "updated_at": "2026-05-14T10:01:52.764Z",
+    "spec": {
+      "hypothesis": "SFT v2 with fixed sandbox (auto-import preamble + improved INSERT parsing + re-dedent) — probe execution rate should be ~90% on valid code",
+      "parent": "sft-mvp-v1",
+      "model_name": "Qwen/Qwen3-8B",
+      "data_path": "data/probes_train.jsonl",
+      "data_count": 294,
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-14T10:01:52.802230+00:00",
+  "trigger": "update_registry"
+}

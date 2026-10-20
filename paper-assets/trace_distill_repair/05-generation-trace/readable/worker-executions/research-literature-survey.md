@@ -1,0 +1,4898 @@
+# research literature survey
+
+**trace distill repair** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 72
+- **Recorded user turns:** 0
+- **Tool calls:** 29
+- **Original source:** `logs/workers/worker_research_literature_survey_20260514T134901.log`
+- **Structured JSON:** [`137778441323a0b5e4e6.json`](../../sessions/13/137778441323a0b5e4e6.json)
+
+## Before a recorded user message
+
+72 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/trace_distill_repair",
+  "session_id": "18ed2b9f-1977-41b1-85d6-a1835ac2d484",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__save_project_file"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "0d2f26a1-a066-45c1-a585-708ef526acc7",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-5-projects-trace-distill-repair/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778767800,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "7b2f5401-c0e3-4e0a-a7a6-9ac4cc855c80",
+  "session_id": "18ed2b9f-1977-41b1-85d6-a1835ac2d484"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+I'll conduct a literature survey across the four dimensions using web search, then compile the results into `literature_map.yaml`.
+
+Let me search all dimensions in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "18ed2b9f-1977-41b1-85d6-a1835ac2d484",
+  "uuid": "ac5b74c8-ad9f-40db-90f1-7391b74cd039",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0115YQdu1zr2eauRJxt2cXFa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11347,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11347
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01ToXbCtWNSrKie77TiSpJAV`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "18ed2b9f-1977-41b1-85d6-a1835ac2d484",
+  "uuid": "48c95421-6109-4a7f-aa58-276e5137b49b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0115YQdu1zr2eauRJxt2cXFa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11347,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11347
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-14T13:49:14.802Z_
+
+<details><summary>↩ Tool result · `toolu_01ToXbCtWNSrKie77TiSpJAV`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "18ed2b9f-1977-41b1-85d6-a1835ac2d484",
+  "uuid": "a09f66fa-e73a-4d73-9c78-6f03d5794267",
+  "tool_use_result": {
+    "matches": [
+      "WebSearch"
+    ],
+    "query": "select:WebSearch",
+    "total_deferred_tools": 22
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me search all dimensions in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "18ed2b9f-1977-41b1-85d6-a1835ac2d484",
+  "uuid": "b10d0761-bad8-41e4-87c8-f8b235cde2b3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JLftDDtzEjZhuE5WKbfXMd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 640,
+      "cache_read_input_tokens": 23188,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 640
+      },
+      "output_tokens": 27,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+Starting parallel searches across all four dimensions.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "18ed2b9f-1977-41b1-85d6-a1835ac2d484",
+  "uuid": "58ee9a87-eda0-4c42-a564-e638bb184ae0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JLftDDtzEjZhuE5WKbfXMd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 640,
+      "cache_read_input_tokens": 23188,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 640
+      },
+      "output_tokens": 27,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HzZ6JVKwmBi8NJXS2KRJ7o`</summary>
+
+```json
+{
+  "query": "EMNLP 2025 \"Do Code Semantics Help\" execution trace program repair"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "18ed2b9f-1977-41b1-85d6-a1835ac2d484",
+  "uuid": "3c0c1215-86e8-4b17-86e1-cfaefceee41d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JLftDDtzEjZhuE5WKbfXMd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 640,
+      "cache_read_input_tokens": 23188,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 640
+      },
+      "output_tokens": 27,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-14T13:49:28.512Z_
+
+<details><summary>↩ Tool result · `toolu_01HzZ6JVKwmBi8NJXS2KRJ7o`</summary>
+
+```text
+Web search results for query: "EMNLP 2025 "Do Code Semantics Help" execution trace program repair"
+
+Links: [{"title":"Do Code Semantics Help? A Comprehensive Study on ...","url":"https://aclanthology.org/2025.findings-emnlp.548.pdf"},{"title":"Do Code Semantics Help? A Comprehensive Study on Execution Trace-Based Information for Code Large Language Models - ACL Anthology","url":"https://aclanthology.org/2025.findings-emnlp.548/"},{"title":"[2509.11686] Do Code Semantics Help? A Comprehensive Study on Execution Trace-Based Information for Code Large Language Models","url":"https://arxiv.org/abs/2509.11686"},{"title":"Do Code Semantics Help? A Comprehensive Study on Execution Trace-Based Information for Code Large Language Models","url":"https://arxiv.org/html/2509.11686v3"},{"title":"[2509.11686v3] Do Code Semantics Help? A Comprehensive Study on Execution Trace-Based Information for Code Large Language Models","url":"https://arxiv.org/abs/2509.11686v3"},{"title":"Do Code Semantics Help? A Comprehensive Study on Execution","url":"https://arxiv.org/pdf/2509.11686"}]
+
+I found the paper you're looking for! Here's what I discovered:
+
+The paper "Do Code Semantics Help? A Comprehensive Study on Execution Trace-Based Information for Code Large Language Models" by Wang, Xie, Hu, Liu, and Li was published in the Findings of the Association for Computational Linguistics: EMNLP 2025, pages 10367–10385, in Suzhou, China.
+
+The paper addresses limitations in Code Large Language Models' ability to reason about runtime behavior and understand the actual functionality of programs. The researchers investigate the usefulness of trace-based semantic information in boosting supervised fine-tuning and post-phase inference of Code LLMs, and their experimental results surprisingly demonstrate that semantic information has limited usefulness for supervised fine-tuning and test time scaling of Code LLMs.
+
+The paper introduces a generic framework to support integrating semantic information (e.g., execution trace) to code task-relevant prompts, and conducts a comprehensive study to explore the role of semantic information in enhancing the reasoning ability of Code LLMs.
+
+The paper is available on both the ACL Anthology and arXiv, and includes evaluation on various tasks including code repair, code synthesis, and code reasoning.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "18ed2b9f-1977-41b1-85d6-a1835ac2d484",
+  "uuid": "529aa9a2-1c7b-4506-aa4d-d6cfb316b227",
+  "tool_use_result": {
+    "query": "EMNLP 2025 \"Do Code Semantics Help\" execution trace program repair",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_012H8pYHvBgm18WHApTcEGKr",
+        "content": [
+          {
+            "title": "Do Code Semantics Help? A Comprehensive Study on ...",
+            "url": "https://aclanthology.org/2025.findings-emnlp.548.pdf"
+          },
+          {
+            "title": "Do Code Semantics Help? A Comprehensive Study on Execution Trace-Based Information for Code Large Language Models - ACL Anthology",
+            "url": "https://aclanthology.org/2025.findings-emnlp.548/"
+          },
+          {
+            "title": "[2509.11686] Do Code Semantics Help? A Comprehensive Study on Execution Trace-Based Information for Code Large Language Models",
+            "url": "https://arxiv.org/abs/2509.11686"
+          },
+          {
+            "title": "Do Code Semantics Help? A Comprehensive Study on Execution Trace-Based Information for Code Large Language Models",
+            "url": "https://arxiv.org/html/2509.11686v3"
+          },
+          {
+            "title": "[2509.11686v3] Do Code Semantics Help? A Comprehensive Study on Execution Trace-Based Information for Code Large Language Models",
+            "url": "https://arxiv.org/abs/2509.11686v3"
+          },
+          {
+            "title": "Do Code Semantics Help? A Comprehensive Study on Execution",
+            "url": "https://arxiv.org/pdf/2509.11686"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here's what I discovered:\n\nThe paper \"Do Code Semantics Help? A Comprehensive Study on Execution Trace-Based Information for Code Large Language Models\" by Wang, Xie, Hu, Liu, and Li was published in the Findings of the Association for Computational Linguistics: EMNLP 2025, pages 10367–10385, in Suzhou, China.\n\nThe paper addresses limitations in Code Large Language Models' ability to reason about runtime behavior and understand the actual functionality of programs. The researchers investigate the usefulness of trace-based semantic information in boosting supervised fine-tuning and post-phase inference of Code LLMs, and their experimental results surprisingly demonstrate that semantic information has limited usefulness for supervised fine-tuning and test time scaling of Code LLMs.\n\nThe paper introduces a generic framework to support integrating semantic information (e.g., execution trace) to code task-relevant prompts, and conducts a comprehensive study to explore the role of semantic information in enhancing the reasoning ability of Code LLMs.\n\nThe paper is available on both the ACL Anthology and arXiv, and includes evaluation on various tasks including code repair, code synthesis, and code reasoning."
+    ],
+    "durationSeconds": 7.0506852580000015
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01EL4UqETFq9wYidw4B6fj4X`</summary>
+
+```json
+{
+  "query": "execution trace automated program repair fault localization 2023 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "18ed2b9f-1977-41b1-85d6-a1835ac2d484",
+  "uuid": "2fd933c5-85e1-48a1-ae2f-583aa8852608",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011aCExZmTZJUe4LNWaK749c",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 734,
+      "cache_read_input_tokens": 23828,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 734
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-14T13:49:40.358Z_
+
+<details><summary>↩ Tool result · `toolu_01EL4UqETFq9wYidw4B6fj4X`</summary>
+
+```text
+Web search results for query: "execution trace automated program repair fault localization 2023 2024 2025"
+
+Links: [{"title":"Runtime Execution Traces Guided Automated Program Repair with Multi-Agent Debate","url":"https://arxiv.org/html/2604.02647"},{"title":"A Survey of LLM-based Automated Program Repair: Taxonomies, Design Paradigms, and Applications","url":"https://arxiv.org/html/2506.23749v1"},{"title":"DynaFix: Iterative Automated Program Repair Driven by Execution-Level Dynamic Information","url":"https://arxiv.org/html/2512.24635v2"},{"title":"Towards Practical and Useful Automated Program Repair for Debugging","url":"https://arxiv.org/html/2407.08958v1"},{"title":"Can test cases generated by large language models facilitate automated program repair? | Empirical Software Engineering | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s10664-026-10802-w"},{"title":"Automated Program Repair","url":"https://www.emergentmind.com/topics/automated-program-repair"},{"title":"Evaluating Fault Localization and Program Repair Capabilities of Existing Closed-Source General-Purpose LLMs (LLM4Code 2024) - ICSE 2024","url":"https://conf.researchr.org/details/icse-2024/llm4code-2024-papers/24/Evaluating-Fault-Localization-and-Program-Repair-Capabilities-of-Existing-Closed-Sour"},{"title":"Enhancing Automated Program Repair via Faulty Token Localization and Quality-Aware Patch Refinement","url":"https://arxiv.org/html/2511.18001"},{"title":"Evaluating the usage of fault localization in automated program repair: an empirical study | Frontiers of Computer Science | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s11704-020-9263-1"},{"title":"Advancements in automated program repair: a comprehensive review | Knowledge and Information Systems | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s10115-025-02383-9"}]
+
+I found several relevant research papers and resources on execution traces, automated program repair, and fault localization from 2023-2025. Here's a summary of the key findings:
+
+## Recent Work on Execution Traces in APR
+
+Several recent studies have begun to explore the use of execution-level dynamic information for APR. TraceFixer (Bouzenia et al., 2023) incorporates local variable values and expected execution states during CodeT5 fine-tuning to enhance repair accuracy.
+
+Towards Effectively Leveraging Execution Traces (Haque et al., 2025) systematically analyzes the role of execution traces in APR and demonstrates their utility for explaining failing test behaviors. Additionally, LDB (Zhong et al., 2024) partitions programs into basic blocks, tracks intermediate variable values, and employs LLMs for step-by-step verification of program states.
+
+## Integration with LLM-Based APR
+
+Context-enriched fine-tuning adds static-analysis results, execution traces, or retrieved patches to the input so the model can reason beyond the local snippet (Bouzenia et al., 2023; Jin et al., 2023; Chow et al., 2024; Huang et al., 2024b).
+
+A particularly notable recent work is TraceRepair, which uses runtime execution traces guided automated program repair with multi-agent debate (April 2026), representing cutting-edge research in this area.
+
+## Fault Localization Techniques
+
+Spectrum-based fault localization (SBFL), which relies on dynamic coverage data and assigns statistical "suspiciousness" scores (e.g., Ochiai, Jaccard, Tarantula metrics), is a staple in both classical and LLM-based systems.
+
+These resources provide comprehensive coverage of the intersection between execution traces, automated program repair, and fault localization research from 2023 onwards.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "18ed2b9f-1977-41b1-85d6-a1835ac2d484",
+  "uuid": "278490a6-5880-4262-a669-51c537f7ca39",
+  "tool_use_result": {
+    "query": "execution trace automated program repair fault localization 2023 2024 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_018qhpMXcwZPkpCWzJ9v6dmc",
+        "content": [
+          {
+            "title": "Runtime Execution Traces Guided Automated Program Repair with Multi-Agent Debate",
+            "url": "https://arxiv.org/html/2604.02647"
+          },
+          {
+            "title": "A Survey of LLM-based Automated Program Repair: Taxonomies, Design Paradigms, and Applications",
+            "url": "https://arxiv.org/html/2506.23749v1"
+          },
+          {
+            "title": "DynaFix: Iterative Automated Program Repair Driven by Execution-Level Dynamic Information",
+            "url": "https://arxiv.org/html/2512.24635v2"
+          },
+          {
+            "title": "Towards Practical and Useful Automated Program Repair for Debugging",
+            "url": "https://arxiv.org/html/2407.08958v1"
+          },
+          {
+            "title": "Can test cases generated by large language models facilitate automated program repair? | Empirical Software Engineering | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s10664-026-10802-w"
+          },
+          {
+            "title": "Automated Program Repair",
+            "url": "https://www.emergentmind.com/topics/automated-program-repair"
+          },
+          {
+            "title": "Evaluating Fault Localization and Program Repair Capabilities of Existing Closed-Source General-Purpose LLMs (LLM4Code 2024) - ICSE 2024",
+            "url": "https://conf.researchr.org/details/icse-2024/llm4code-2024-papers/24/Evaluating-Fault-Localization-and-Program-Repair-Capabilities-of-Existing-Closed-Sour"
+          },
+          {
+            "title": "Enhancing Automated Program Repair via Faulty Token Localization and Quality-Aware Patch Refinement",
+            "url": "https://arxiv.org/html/2511.18001"
+          },
+          {
+            "title": "Evaluating the usage of fault localization in automated program repair: an empirical study | Frontiers of Computer Science | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s11704-020-9263-1"
+          },
+          {
+            "title": "Advancements in automated program repair: a comprehensive review | Knowledge and Information Systems | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s10115-025-02383-9"
+          }
+        ]
+      },
+      "I found several relevant research papers and resources on execution traces, automated program repair, and fault localization from 2023-2025. Here's a summary of the key findings:\n\n## Recent Work on Execution Traces in APR\n\nSeveral recent studies have begun to explore the use of execution-level dynamic information for APR. TraceFixer (Bouzenia et al., 2023) incorporates local variable values and expected execution states during CodeT5 fine-tuning to enhance repair accuracy.\n\nTowards Effectively Leveraging Execution Traces (Haque et al., 2025) systematically analyzes the role of execution traces in APR and demonstrates their utility for explaining failing test behaviors. Additionally, LDB (Zhong et al., 2024) partitions programs into basic blocks, tracks intermediate variable values, and employs LLMs for step-by-step verification of program states.\n\n## Integration with LLM-Based APR\n\nContext-enriched fine-tuning adds static-analysis results, execution traces, or retrieved patches to the input so the model can reason beyond the local snippet (Bouzenia et al., 2023; Jin et al., 2023; Chow et al., 2024; Huang et al., 2024b).\n\nA particularly notable recent work is TraceRepair, which uses runtime execution traces guided automated program repair with multi-agent debate (April 2026), representing cutting-edge research in this area.\n\n## Fault Localization Techniques\n\nSpectrum-based fault localization (SBFL), which relies on dynamic coverage data and assigns statistical \"suspiciousness\" scores (e.g., Ochiai, Jaccard, Tarantula metrics), is a staple in both classical and LLM-based systems.\n\nThese resources provide comprehensive coverage of the intersection between execution traces, automated program repair, and fault localization research from 2023 onwards."
+    ],
+    "durationSeconds": 8.857662038000003
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0178B9onMvCkSQKRD813EcWx`</summary>
+
+```json
+{
+  "query": "TraceRepair multi-agent debate execution trace program repair arxiv 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "18ed2b9f-1977-41b1-85d6-a1835ac2d484",
+  "uuid": "3d55e8a0-234c-4705-acb8-6299bcfde329",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LvEzCvR2BeR17dxmdFhWUx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1086,
+      "cache_read_input_tokens": 24562,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1086
+      },
+      "output_tokens": 46,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-14T13:49:51.343Z_
+
+<details><summary>↩ Tool result · `toolu_0178B9onMvCkSQKRD813EcWx`</summary>
+
+```text
+Web search results for query: "TraceRepair multi-agent debate execution trace program repair arxiv 2026"
+
+Links: [{"title":"Runtime Execution Traces Guided Automated Program Repair with Multi-Agent Debate","url":"https://arxiv.org/html/2604.02647"},{"title":"[2604.02647] Runtime Execution Traces Guided Automated Program Repair with Multi-Agent Debate","url":"https://arxiv.org/abs/2604.02647"},{"title":"Runtime Execution Traces Guided Automated Program Repair","url":"https://arxiv.org/pdf/2604.02647"},{"title":"TraceFix: Repairing Agent Coordination Protocols with TLA+ Counterexamples","url":"https://arxiv.org/html/2605.07935v1"},{"title":"TraceCoder: A Trace-Driven Multi-Agent Framework for Automated Debugging of LLM-Generated Code","url":"https://arxiv.org/html/2602.06875"},{"title":"[2605.07935v1] TraceFix: Repairing Agent Coordination Protocols with TLA+ Counterexamples","url":"https://arxiv.org/abs/2605.07935v1"},{"title":"[2602.06875] TraceCoder: A Trace-Driven Multi-Agent Framework for Automated Debugging of LLM-Generated Code","url":"https://arxiv.org/abs/2602.06875"},{"title":"GitHub - VoltAgent/awesome-ai-agent-papers: A curated collection of AI agent research papers released in 2026, covering agent engineering, memory, evaluation, workflows, and autonomous systems. · GitHub","url":"https://github.com/VoltAgent/awesome-ai-agent-papers"},{"title":"TraceSIR: A Multi-Agent Framework for Structured Analysis and Reporting of Agentic Execution Traces","url":"https://arxiv.org/html/2603.00623"},{"title":"Towards Effectively Leveraging Execution Traces for Program Repair with Code LLMs","url":"https://arxiv.org/html/2505.04441v1"}]
+
+Based on the search results, I found detailed information about TraceRepair:
+
+## TraceRepair Overview
+
+TraceRepair is an agentic framework that combines runtime trace collection with multi-agent debate. Unlike approaches that rely solely on static code analysis, TraceRepair grounds the repair process in runtime evidence.
+
+## How It Works
+
+The framework employs an autonomous Probe Agent to inject logging statements into the buggy program, capturing detailed variable snapshots to pinpoint the root cause. Guided by these traces, TraceRepair initializes repair agents with defensive, causal, and semantic reasoning perspectives, enabling the generation of diverse fix candidates.
+
+These agents engage in an iterative debate where the captured execution data serves as objective evidence to filter out hallucinations; proposals contradicted by the runtime state are challenged by peer agents. Finally, a Judge Agent arbitrates the debate and synthesizes the validated insights into a definitive fix.
+
+## Key Innovation
+
+TraceRepair transforms execution traces from passive observations into active logical filters, grounding the entire repair process in what the program actually did rather than what static analysis assumes it did. This fundamentally shifts the reasoning basis of repair agents: instead of inferring error propagation paths from source code, agents reason directly from runtime evidence to identify the true root cause. Meanwhile, the multi-agent debate mechanism ensures that every patch candidate must remain consistent with the observed execution facts, filtering out patches that appear logically sound in isolation but contradict actual program behavior.
+
+## Performance
+
+TraceRepair correctly fixes 392 bugs on the Defects4J benchmark, outperforming existing LLM-based APR methods.
+
+The paper was published on April 3, 2026 (arXiv:2604.02647).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "18ed2b9f-1977-41b1-85d6-a1835ac2d484",
+  "uuid": "3f5d9368-d187-4332-ac16-b9808022da73",
+  "tool_use_result": {
+    "query": "TraceRepair multi-agent debate execution trace program repair arxiv 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_011gUepuWksMpddX2Cz4nhAn",
+        "content": [
+          {
+            "title": "Runtime Execution Traces Guided Automated Program Repair with Multi-Agent Debate",
+            "url": "https://arxiv.org/html/2604.02647"
+          },
+          {
+            "title": "[2604.02647] Runtime Execution Traces Guided Automated Program Repair with Multi-Agent Debate",
+            "url": "https://arxiv.org/abs/2604.02647"
+          },
+          {
+            "title": "Runtime Execution Traces Guided Automated Program Repair",
+            "url": "https://arxiv.org/pdf/2604.02647"
+          },
+          {
+            "title": "TraceFix: Repairing Agent Coordination Protocols with TLA+ Counterexamples",
+            "url": "https://arxiv.org/html/2605.07935v1"
+          },
+          {
+            "title": "TraceCoder: A Trace-Driven Multi-Agent Framework for Automated Debugging of LLM-Generated Code",
+            "url": "https://arxiv.org/html/2602.06875"
+          },
+          {
+            "title": "[2605.07935v1] TraceFix: Repairing Agent Coordination Protocols with TLA+ Counterexamples",
+            "url": "https://arxiv.org/abs/2605.07935v1"
+          },
+          {
+            "title": "[2602.06875] TraceCoder: A Trace-Driven Multi-Agent Framework for Automated Debugging of LLM-Generated Code",
+            "url": "https://arxiv.org/abs/2602.06875"
+          },
+          {
+            "title": "GitHub - VoltAgent/awesome-ai-agent-papers: A curated collection of AI agent research papers released in 2026, covering agent engineering, memory, evaluation, workflows, and autonomous systems. · GitHub",
+            "url": "https://github.com/VoltAgent/awesome-ai-agent-papers"
+          },
+          {
+            "title": "TraceSIR: A Multi-Agent Framework for Structured Analysis and Reporting of Agentic Execution Traces",
+            "url": "https://arxiv.org/html/2603.00623"
+          },
+          {
+            "title": "Towards Effectively Leveraging Execution Traces for Program Repair with Code LLMs",
+            "url": "https://arxiv.org/html/2505.04441v1"
+          }
+        ]
+      },
+      "Based on the search results, I found detailed information about TraceRepair:\n\n## TraceRepair Overview\n\nTraceRepair is an agentic framework that combines runtime trace collection with multi-agent debate. Unlike approaches that rely solely on static code analysis, TraceRepair grounds the repair process in runtime evidence.\n\n## How It Works\n\nThe framework employs an autonomous Probe Agent to inject logging statements into the buggy program, capturing detailed variable snapshots to pinpoint the root cause. Guided by these traces, TraceRepair initializes repair agents with defensive, causal, and semantic reasoning perspectives, enabling the generation of diverse fix candidates.\n\nThese agents engage in an iterative debate where the captured execution data serves as objective evidence to filter out hallucinations; proposals contradicted by the runtime state are challenged by peer agents. Finally, a Judge Agent arbitrates the debate and synthesizes the validated insights into a definitive fix.\n\n## Key Innovation\n\nTraceRepair transforms execution traces from passive observations into active logical filters, grounding the entire repair process in what the program actually did rather than what static analysis assumes it did. This fundamentally shifts the reasoning basis of repair agents: instead of inferring error propagation paths from source code, agents reason directly from runtime evidence to identify the true root cause. Meanwhile, the multi-agent debate mechanism ensures that every patch candidate must remain consistent with the observed execution facts, filtering out patches that appear logically sound in isolation but contradict actual program behavior.\n\n## Performance\n\nTraceRepair correctly fixes 392 bugs on the Defects4J benchmark, outperforming existing LLM-based APR methods.\n\nThe paper was published on April 3, 2026 (arXiv:2604.02647)."
+    ],
+    "durationSeconds": 8.204948791000003
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01BtyJcj82M91pkhduiKWuey`</summary>
+
+```json
+{
+  "query": "DynaFix execution-level dynamic information automated program repair arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "18ed2b9f-1977-41b1-85d6-a1835ac2d484",
+  "uuid": "1b88fd01-1ea8-41ba-ba96-7f9f6e895832",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014oV4455Rmz1mCTf4yskjTf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 983,
+      "cache_read_input_tokens": 25648,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 983
+      },
+      "output_tokens": 50,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-14T13:50:04.751Z_
+
+<details><summary>↩ Tool result · `toolu_01BtyJcj82M91pkhduiKWuey`</summary>
+
+```text
+Web search results for query: "DynaFix execution-level dynamic information automated program repair arxiv"
+
+Links: [{"title":"[2512.24635] DynaFix: Iterative Automated Program Repair Driven by Execution-Level Dynamic Information","url":"https://arxiv.org/abs/2512.24635"},{"title":"DynaFix: Iterative Automated Program Repair Driven by Execution-Level Dynamic Information","url":"https://arxiv.org/html/2512.24635v2"},{"title":"DynaFix: Iterative Automated Program Repair Driven by Execution-Level Dynamic Information | alphaXiv","url":"https://www.alphaxiv.org/resources/2512.24635"},{"title":"Software Engineering on X: \"DynaFix: Iterative Automated Program Repair Driven by Execution-Level Dynamic Information Zhili Huang, Ling Xu, Chao Liu, Weifeng Sun, Xu Zhang, Yan Lei, Meng Yan, Hongyu Zhang https://t.co/A38a8o0Phr https://t.co/Dly8ThVLPp\" / X","url":"https://x.com/ComputerPapers/status/2006633302124269963"},{"title":"Hybrid Automated Program Repair by Combining Large Language Models and Program Analysis | Request PDF","url":"https://www.researchgate.net/publication/388377814_Hybrid_Automated_Program_Repair_by_Combining_Large_Language_Models_and_Program_Analysis"},{"title":"Staged program repair with condition synthesis | Request PDF","url":"https://www.researchgate.net/publication/299909645_Staged_program_repair_with_condition_synthesis"},{"title":"Copiloting the Copilots: Fusing Large Language Models with Completion Engines for Automated Program Repair","url":"https://www.researchgate.net/publication/376095186_Copiloting_the_Copilots_Fusing_Large_Language_Models_with_Completion_Engines_for_Automated_Program_Repair"},{"title":"Practical program repair via bytecode mutation | Request PDF","url":"https://www.researchgate.net/publication/334410407_Practical_program_repair_via_bytecode_mutation"},{"title":"Impact of Code Language Models on Automated Program Repair | Request PDF","url":"https://www.researchgate.net/publication/372387738_Impact_of_Code_Language_Models_on_Automated_Program_Repair"},{"title":"A Survey of LLM-based Automated Program Repair: Taxonomies, Design Paradigms, and Applications","url":"https://arxiv.org/html/2506.23749v1"}]
+
+Based on the search results, I found detailed information about DynaFix:
+
+## DynaFix: Iterative Automated Program Repair
+
+DynaFix is an execution-level dynamic information-driven APR method that iteratively leverages runtime information to refine the repair process.
+
+### Problem It Addresses
+
+Recent approaches leveraging large language models (LLMs) have shown promise but face limitations. Most rely solely on static analysis, ignoring runtime behaviors. Some attempt to incorporate dynamic signals, but these are often restricted to training or fine-tuning, or injected only once into the repair prompt, without iterative use.
+
+### How It Works
+
+In each repair round, DynaFix collects fine-grained execution states, such as variable states, branch paths, and call stacks, using ByteTrace, a lightweight and non-intrusive instrumentation tool. Guided by this dynamic feedback, the LLM generates candidate patches, which are subsequently validated through re-execution. When validation fails, updated execution traces are collected and incorporated into the next repair iteration, forming a closed-loop process that continuously grounds the model's reasoning in concrete runtime behavior.
+
+### Key Advantages
+
+Unlike static features, such execution-level signals directly reflect program semantics and remain stable under syntactic perturbations. This design closely mirrors how developers iteratively diagnose and fix bugs through debugging feedback, effectively avoiding unguided trial-and-error.
+
+### Results
+
+By leveraging execution-level semantic invariants, it consistently outperforms state-of-the-art (SOTA) methods across multiple LLM backends on the RWB and achieves a relative improvement of 15.6%–32.1% on Defects4J-Trans. In addition, DynaFix is cost-effective, requiring an average of 80,058 tokens per bug, yielding a 60%–70% reduction in token consumption compared to existing SOTA LLM-based APR methods.
+
+The paper is published on arXiv as paper 2512.24635 with authors Zhili Huang, Ling Xu, Chao Liu, Weifeng Sun, Xu Zhang, Yan Lei, Meng Yan, and Hongyu Zhang.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "18ed2b9f-1977-41b1-85d6-a1835ac2d484",
+  "uuid": "ea8b5272-be83-4032-a650-0de26b0e2a19",
+  "tool_use_result": {
+    "query": "DynaFix execution-level dynamic information automated program repair arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01TKffANuhGhMJU5R9cr8nsK",
+        "content": [
+          {
+            "title": "[2512.24635] DynaFix: Iterative Automated Program Repair Driven by Execution-Level Dynamic Information",
+            "url": "https://arxiv.org/abs/2512.24635"
+          },
+          {
+            "title": "DynaFix: Iterative Automated Program Repair Driven by Execution-Level Dynamic Information",
+            "url": "https://arxiv.org/html/2512.24635v2"
+          },
+          {
+            "title": "DynaFix: Iterative Automated Program Repair Driven by Execution-Level Dynamic Information | alphaXiv",
+            "url": "https://www.alphaxiv.org/resources/2512.24635"
+          },
+          {
+            "title": "Software Engineering on X: \"DynaFix: Iterative Automated Program Repair Driven by Execution-Level Dynamic Information Zhili Huang, Ling Xu, Chao Liu, Weifeng Sun, Xu Zhang, Yan Lei, Meng Yan, Hongyu Zhang https://t.co/A38a8o0Phr https://t.co/Dly8ThVLPp\" / X",
+            "url": "https://x.com/ComputerPapers/status/2006633302124269963"
+          },
+          {
+            "title": "Hybrid Automated Program Repair by Combining Large Language Models and Program Analysis | Request PDF",
+            "url": "https://www.researchgate.net/publication/388377814_Hybrid_Automated_Program_Repair_by_Combining_Large_Language_Models_and_Program_Analysis"
+          },
+          {
+            "title": "Staged program repair with condition synthesis | Request PDF",
+            "url": "https://www.researchgate.net/publication/299909645_Staged_program_repair_with_condition_synthesis"
+          },
+          {
+            "title": "Copiloting the Copilots: Fusing Large Language Models with Completion Engines for Automated Program Repair",
+            "url": "https://www.researchgate.net/publication/376095186_Copiloting_the_Copilots_Fusing_Large_Language_Models_with_Completion_Engines_for_Automated_Program_Repair"
+          },
+          {
+            "title": "Practical program repair via bytecode mutation | Request PDF",
+            "url": "https://www.researchgate.net/publication/334410407_Practical_program_repair_via_bytecode_mutation"
+          },
+          {
+            "title": "Impact of Code Language Models on Automated Program Repair | Request PDF",
+            "url": "https://www.researchgate.net/publication/372387738_Impact_of_Code_Language_Models_on_Automated_Program_Repair"
+          },
+          {
+            "title": "A Survey of LLM-based Automated Program Repair: Taxonomies, Design Paradigms, and Applications",
+            "url": "https://arxiv.org/html/2506.23749v1"
+          }
+        ]
+      },
+      "Based on the search results, I found detailed information about DynaFix:\n\n## DynaFix: Iterative Automated Program Repair\n\nDynaFix is an execution-level dynamic information-driven APR method that iteratively leverages runtime information to refine the repair process.\n\n### Problem It Addresses\n\nRecent approaches leveraging large language models (LLMs) have shown promise but face limitations. Most rely solely on static analysis, ignoring runtime behaviors. Some attempt to incorporate dynamic signals, but these are often restricted to training or fine-tuning, or injected only once into the repair prompt, without iterative use.\n\n### How It Works\n\nIn each repair round, DynaFix collects fine-grained execution states, such as variable states, branch paths, and call stacks, using ByteTrace, a lightweight and non-intrusive instrumentation tool. Guided by this dynamic feedback, the LLM generates candidate patches, which are subsequently validated through re-execution. When validation fails, updated execution traces are collected and incorporated into the next repair iteration, forming a closed-loop process that continuously grounds the model's reasoning in concrete runtime behavior.\n\n### Key Advantages\n\nUnlike static features, such execution-level signals directly reflect program semantics and remain stable under syntactic perturbations. This design closely mirrors how developers iteratively diagnose and fix bugs through debugging feedback, effectively avoiding unguided trial-and-error.\n\n### Results\n\nBy leveraging execution-level semantic invariants, it consistently outperforms state-of-the-art (SOTA) methods across multiple LLM backends on the RWB and achieves a relative improvement of 15.6%–32.1% on Defects4J-Trans. In addition, DynaFix is cost-effective, requiring an average of 80,058 tokens per bug, yielding a 60%–70% reduction in token consumption compared to existing SOTA LLM-based APR methods.\n\nThe paper is published on arXiv as paper 2512.24635 with authors Zhili Huang, Ling Xu, Chao Liu, Weifeng Sun, Xu Zhang, Yan Lei, Meng Yan, and Hongyu Zhang."
+    ],
+    "durationSeconds": 10.577407731
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01APwvFcxNb36fDRXvdCjNMx`</summary>
+
+```json
+{
+  "query": "TraceFixer execution trace code repair Bouzenia 2023 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "18ed2b9f-1977-41b1-85d6-a1835ac2d484",
+  "uuid": "96ecd7fc-8c57-43f8-9314-b0b3fe5bd263",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0154Uv2Z3YfkvLLB1NnXiBD3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1256,
+      "cache_read_input_tokens": 26631,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1256
+      },
+      "output_tokens": 59,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-14T13:50:14.965Z_
+
+<details><summary>↩ Tool result · `toolu_01APwvFcxNb36fDRXvdCjNMx`</summary>
+
+```text
+Web search results for query: "TraceFixer execution trace code repair Bouzenia 2023 arxiv"
+
+Links: [{"title":"TraceFixer: Execution Trace-Guided Program Repair Islem Bouzenia","url":"https://arxiv.org/pdf/2304.12743"},{"title":"[2304.12743] TraceFixer: Execution Trace-Driven Program Repair","url":"https://arxiv.org/abs/2304.12743"},{"title":"Towards Effectively Leveraging Execution Traces for Program Repair with Code LLMs","url":"https://arxiv.org/html/2505.04441v1"},{"title":"A Survey of LLM-based Automated Program Repair: Taxonomies, Design Paradigms, and Applications","url":"https://arxiv.org/html/2506.23749v1"},{"title":"Runtime Execution Traces Guided Automated Program Repair with Multi-Agent Debate","url":"https://arxiv.org/html/2604.02647"},{"title":"(PDF) TraceFixer: Execution Trace-Driven Program Repair","url":"https://www.researchgate.net/publication/370262708_TraceFixer_Execution_Trace-Driven_Program_Repair"},{"title":"Towards Effectively Leveraging Execution Traces","url":"https://arxiv.org/pdf/2505.04441"},{"title":"A Survey of LLM-based Software Repair: Taxonomies, Design Paradigms, and Applications","url":"https://arxiv.org/html/2506.23749v2"},{"title":"Towards Effectively Leveraging Execution Traces for ...","url":"https://aclanthology.org/2025.knowledgenlp-1.17.pdf"},{"title":"TraceCoder: A Trace-Driven Multi-Agent Framework for Automated Debugging of LLM-Generated Code","url":"https://arxiv.org/html/2602.06875"}]
+
+I found comprehensive information about TraceFixer. Here are the key details:
+
+## TraceFixer: Execution Trace-Driven Program Repair
+
+TraceFixer is a technique for predicting how to edit source code so that it does not diverge from the expected behavior. The paper was authored by Islem Bouzenia and 4 other authors, and was published on April 25, 2023 on arXiv.
+
+### Core Approach
+
+The key idea is to train a neural program repair model that not only learns from source code edits but also exploits excerpts of runtime traces. The input to the model is a partial execution trace of the incorrect code, which can be obtained automatically through code instrumentation, and the correct state that the program should reach.
+
+### Evaluation Results
+
+TraceFixer was evaluated on single-line bugs in Python, and the model successfully repairs 57%–63% of the bugs with its top-most suggestion, and 82%–87% of the bugs within the top-10 suggestions. Out of a set of 20 real-world Python bugs, TraceFixer successfully fixes 10.
+
+### Performance Improvement
+
+Exploiting execution traces improves the bug-fixing ability by 13% to 20% (depending on the dataset, within the top-10 predictions) compared to a baseline that learns from source code edits only.
+
+The arXiv paper is available at: https://arxiv.org/abs/2304.12743
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "18ed2b9f-1977-41b1-85d6-a1835ac2d484",
+  "uuid": "0655f311-e384-411d-9ea6-0c66e80fec01",
+  "tool_use_result": {
+    "query": "TraceFixer execution trace code repair Bouzenia 2023 arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_015sbXgC8CCZWa4RCBvgJGEK",
+        "content": [
+          {
+            "title": "TraceFixer: Execution Trace-Guided Program Repair Islem Bouzenia",
+            "url": "https://arxiv.org/pdf/2304.12743"
+          },
+          {
+            "title": "[2304.12743] TraceFixer: Execution Trace-Driven Program Repair",
+            "url": "https://arxiv.org/abs/2304.12743"
+          },
+          {
+            "title": "Towards Effectively Leveraging Execution Traces for Program Repair with Code LLMs",
+            "url": "https://arxiv.org/html/2505.04441v1"
+          },
+          {
+            "title": "A Survey of LLM-based Automated Program Repair: Taxonomies, Design Paradigms, and Applications",
+            "url": "https://arxiv.org/html/2506.23749v1"
+          },
+          {
+            "title": "Runtime Execution Traces Guided Automated Program Repair with Multi-Agent Debate",
+            "url": "https://arxiv.org/html/2604.02647"
+          },
+          {
+            "title": "(PDF) TraceFixer: Execution Trace-Driven Program Repair",
+            "url": "https://www.researchgate.net/publication/370262708_TraceFixer_Execution_Trace-Driven_Program_Repair"
+          },
+          {
+            "title": "Towards Effectively Leveraging Execution Traces",
+            "url": "https://arxiv.org/pdf/2505.04441"
+          },
+          {
+            "title": "A Survey of LLM-based Software Repair: Taxonomies, Design Paradigms, and Applications",
+            "url": "https://arxiv.org/html/2506.23749v2"
+          },
+          {
+            "title": "Towards Effectively Leveraging Execution Traces for ...",
+            "url": "https://aclanthology.org/2025.knowledgenlp-1.17.pdf"
+          },
+          {
+            "title": "TraceCoder: A Trace-Driven Multi-Agent Framework for Automated Debugging of LLM-Generated Code",
+            "url": "https://arxiv.org/html/2602.06875"
+          }
+        ]
+      },
+      "I found comprehensive information about TraceFixer. Here are the key details:\n\n## TraceFixer: Execution Trace-Driven Program Repair\n\nTraceFixer is a technique for predicting how to edit source code so that it does not diverge from the expected behavior. The paper was authored by Islem Bouzenia and 4 other authors, and was published on April 25, 2023 on arXiv.\n\n### Core Approach\n\nThe key idea is to train a neural program repair model that not only learns from source code edits but also exploits excerpts of runtime traces. The input to the model is a partial execution trace of the incorrect code, which can be obtained automatically through code instrumentation, and the correct state that the program should reach.\n\n### Evaluation Results\n\nTraceFixer was evaluated on single-line bugs in Python, and the model successfully repairs 57%–63% of the bugs with its top-most suggestion, and 82%–87% of the bugs within the top-10 suggestions. Out of a set of 20 real-world Python bugs, TraceFixer successfully fixes 10.\n\n### Performance Improvement\n\nExploiting execution traces improves the bug-fixing ability by 13% to 20% (depending on the dataset, within the top-10 predictions) compared to a baseline that learns from source code edits only.\n\nThe arXiv paper is available at: https://arxiv.org/abs/2304.12743"
+    ],
+    "durationSeconds": 7.595960574999998
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014fTii3K6YeKYWDDMMjWmQ2`</summary>
+
+```json
+{
+  "query": "\"Towards Effectively Leveraging Execution Traces\" Haque 2025 program repair code LLMs"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "18ed2b9f-1977-41b1-85d6-a1835ac2d484",
+  "uuid": "45c5547c-88fa-4f23-b0ea-3b42f865ff43",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L4QgXjHwEUNoT4swzA3N4J",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 893,
+      "cache_read_input_tokens": 27887,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 893
+      },
+      "output_tokens": 50,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-14T13:50:23.677Z_
+
+<details><summary>↩ Tool result · `toolu_014fTii3K6YeKYWDDMMjWmQ2`</summary>
+
+```text
+Web search results for query: ""Towards Effectively Leveraging Execution Traces" Haque 2025 program repair code LLMs"
+
+Links: [{"title":"[2505.04441] Towards Effectively Leveraging Execution Traces for Program Repair with Code LLMs","url":"https://arxiv.org/abs/2505.04441"},{"title":"Towards Effectively Leveraging Execution Traces for ...","url":"https://aclanthology.org/2025.knowledgenlp-1.17.pdf"},{"title":"Towards Effectively Leveraging Execution Traces for Program Repair with Code LLMs","url":"https://arxiv.org/html/2505.04441v1"},{"title":"A Survey of LLM-based Automated Program Repair: Taxonomies, Design Paradigms, and Applications","url":"https://arxiv.org/html/2506.23749v1"},{"title":"Debugging Code World Models","url":"https://arxiv.org/html/2602.07672v2"},{"title":"A Survey of LLM-based Software Repair: Taxonomies, Design Paradigms, and Applications","url":"https://arxiv.org/html/2506.23749v2"},{"title":"Bug Fixing with Broader Context: Enhancing LLM-Based Program Repair via Layered Knowledge Injection","url":"https://arxiv.org/html/2506.24015v1"},{"title":"HAFixAgent: History-Aware Automated Program Repair Agent","url":"https://arxiv.org/html/2511.01047v1"},{"title":"Automated Cloud Infrastructure-as-Code Reconciliation with AI Agents","url":"https://arxiv.org/html/2510.20211v1"},{"title":"Petr Babkin's research works | Palo Alto Research Center and other places","url":"https://www.researchgate.net/scientific-contributions/Petr-Babkin-2224003926"}]
+
+I found the paper you're looking for! Here's what I found about "Towards Effectively Leveraging Execution Traces for Program Repair with Code LLMs":
+
+## Paper Overview
+
+The paper is by Mirazul Haque and 3 other authors (Petr Babkin, Farima Farmahinifarahani, and Manuela Veloso). It addresses how Large Language Models (LLMs) show promising performance on Automatic Program Repair (APR), but most approaches are limited to static analysis while disregarding runtime behavior. The authors aim to remedy this by augmenting standard APR prompts with program execution traces.
+
+## Key Findings
+
+The researchers evaluated their approach using the GPT family of models on three popular APR datasets, finding that simply incorporating execution traces into the prompt provides limited performance improvement over trace-free baselines in only 2 out of 6 tested dataset/model configurations.
+
+The effectiveness of execution traces for APR diminishes as their complexity increases. The authors explored several strategies for leveraging traces in prompts and demonstrated that LLM-optimized prompts help outperform trace-free prompts more consistently.
+
+Additionally, the researchers showed trace-based prompting to be superior to finetuning a smaller LLM on a small-scale dataset, and conducted probing studies reinforcing the notion that execution traces can complement the reasoning abilities of LLMs.
+
+## Publication Details
+
+The paper was submitted on May 7, 2025. It was accepted to the 4th International Workshop on Knowledge-Augmented Methods for Natural Language Processing (KnowledgeNLP).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "18ed2b9f-1977-41b1-85d6-a1835ac2d484",
+  "uuid": "7b695506-06c6-4c46-887e-97091472a4a7",
+  "tool_use_result": {
+    "query": "\"Towards Effectively Leveraging Execution Traces\" Haque 2025 program repair code LLMs",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01NLTfRxDwWxpijJ59NDp2QW",
+        "content": [
+          {
+            "title": "[2505.04441] Towards Effectively Leveraging Execution Traces for Program Repair with Code LLMs",
+            "url": "https://arxiv.org/abs/2505.04441"
+          },
+          {
+            "title": "Towards Effectively Leveraging Execution Traces for ...",
+            "url": "https://aclanthology.org/2025.knowledgenlp-1.17.pdf"
+          },
+          {
+            "title": "Towards Effectively Leveraging Execution Traces for Program Repair with Code LLMs",
+            "url": "https://arxiv.org/html/2505.04441v1"
+          },
+          {
+            "title": "A Survey of LLM-based Automated Program Repair: Taxonomies, Design Paradigms, and Applications",
+            "url": "https://arxiv.org/html/2506.23749v1"
+          },
+          {
+            "title": "Debugging Code World Models",
+            "url": "https://arxiv.org/html/2602.07672v2"
+          },
+          {
+            "title": "A Survey of LLM-based Software Repair: Taxonomies, Design Paradigms, and Applications",
+            "url": "https://arxiv.org/html/2506.23749v2"
+          },
+          {
+            "title": "Bug Fixing with Broader Context: Enhancing LLM-Based Program Repair via Layered Knowledge Injection",
+            "url": "https://arxiv.org/html/2506.24015v1"
+          },
+          {
+            "title": "HAFixAgent: History-Aware Automated Program Repair Agent",
+            "url": "https://arxiv.org/html/2511.01047v1"
+          },
+          {
+            "title": "Automated Cloud Infrastructure-as-Code Reconciliation with AI Agents",
+            "url": "https://arxiv.org/html/2510.20211v1"
+          },
+          {
+            "title": "Petr Babkin's research works | Palo Alto Research Center and other places",
+            "url": "https://www.researchgate.net/scientific-contributions/Petr-Babkin-2224003926"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here's what I found about \"Towards Effectively Leveraging Execution Traces for Program Repair with Code LLMs\":\n\n## Paper Overview\n\nThe paper is by Mirazul Haque and 3 other authors (Petr Babkin, Farima Farmahinifarahani, and Manuela Veloso). It addresses how Large Language Models (LLMs) show promising performance on Automatic Program Repair (APR), but most approaches are limited to static analysis while disregarding runtime behavior. The authors aim to remedy this by augmenting standard APR prompts with program execution traces.\n\n## Key Findings\n\nThe researchers evaluated their approach using the GPT family of models on three popular APR datasets, finding that simply incorporating execution traces into the prompt provides limited performance improvement over trace-free baselines in only 2 out of 6 tested dataset/model configurations.\n\nThe effectiveness of execution traces for APR diminishes as their complexity increases. The authors explored several strategies for leveraging traces in prompts and demonstrated that LLM-optimized prompts help outperform trace-free prompts more consistently.\n\nAdditionally, the researchers showed trace-based prompting to be superior to finetuning a smaller LLM on a small-scale dataset, and conducted probing studies reinforcing the notion that execution traces can complement the reasoning abilities of LLMs.\n\n## Publication Details\n\nThe paper was submitted on May 7, 2025. It was accepted to the 4th International Workshop on Knowledge-Augmented Methods for Natural Language Processing (KnowledgeNLP)."
+    ],
+    "durationSeconds": 6.067240938000003
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01L1F5Gp4Ns1ANLX2FZri7kh`</summary>
+
+```json
+{
+  "query": "knowledge distillation code understanding teacher student software engineering 2023 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "18ed2b9f-1977-41b1-85d6-a1835ac2d484",
+  "uuid": "128bdffd-6f18-430e-8447-592d2c0033d3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016qsQtXGyfvWwp7VqmNwXNz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 937,
+      "cache_read_input_tokens": 28780,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 937
+      },
+      "output_tokens": 38,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-14T13:50:34.319Z_
+
+<details><summary>↩ Tool result · `toolu_01L1F5Gp4Ns1ANLX2FZri7kh`</summary>
+
+```text
+Web search results for query: "knowledge distillation code understanding teacher student software engineering 2023 2024 2025"
+
+Links: [{"title":"An Empirical Study of Knowledge Distillation for Code Understanding Tasks","url":"https://arxiv.org/html/2508.15423v1"},{"title":"Knowledge Distillation and Dataset Distillation of Large ...","url":"https://arxiv.org/pdf/2504.14772"},{"title":"A survey on knowledge distillation: Recent advancements - ScienceDirect","url":"https://www.sciencedirect.com/science/article/pii/S2666827024000811"},{"title":"MINIPLM: KNOWLEDGE DISTILLATION FOR PRE","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/ea05e4fc0299c27648c9985266abad47-Paper-Conference.pdf"},{"title":"Joint class attention knowledge and self-knowledge for multi-teacher knowledge distillation - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S0952197625019244"},{"title":"Teacher-Student Knowledge Distillation","url":"https://www.emergentmind.com/topics/teacher-student-knowledge-distillation"},{"title":"Teachers That Listen: Adaptive Student-Aware Distillation for Reasoning | OpenReview","url":"https://openreview.net/forum?id=tds7TrLx9N"},{"title":"DTDES-KGE: Dual-Teacher Knowledge Distillation with ...","url":"https://aclanthology.org/2025.findings-emnlp.262.pdf"},{"title":"[2308.04268] Teacher-Student Architecture for Knowledge Distillation: A Survey","url":"https://arxiv.org/abs/2308.04268"},{"title":"SPECULATIVE KNOWLEDGE DISTILLATION: BRIDG","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/a2747a3844ca1e4667fbff3f558eb39b-Paper-Conference.pdf"}]
+
+Based on the web search results, here are the key findings about knowledge distillation in code understanding and software engineering from 2023-2025:
+
+## Recent Research on Knowledge Distillation for Code Understanding
+
+An empirical study published in 2025 examines knowledge distillation for code understanding tasks, with research appearing at the 48th IEEE/ACM International Conference on Software Engineering in 2026.
+
+### Key Methods and Approaches
+
+While knowledge distillation methods have proven effective in NLP and computer vision domains, their potential in code understanding remains underexplored, with comprehensive and systematic studies evaluating diverse KD methods for code understanding still missing.
+
+For code understanding tasks, Compressor (2022) uses a genetic algorithm to find optimal model hyperparameters before KD, while its successor Avatar (2024) prunes the hyperparameter space with an SMT solver, fine-tunes hyperparameters, and proceeds with KD.
+
+### Motivation and Challenges
+
+Code understanding models such as CodeBERT and UniXcoder leverage Transformer architectures trained on large code corpora, and general-purpose models like ModernBERT are trained for both text and code processing, though these models typically feature hundreds of millions of parameters, making them resource-intensive to deploy.
+
+Developers often require real-time responsiveness and cannot tolerate delays of seconds or minutes during basic development activities.
+
+### Broader Knowledge Distillation Advances
+
+Teacher-Student architectures enable simple student networks with few parameters to achieve comparable performance to deep teacher networks with many parameters, and have been effectively embraced on various KD objectives including knowledge compression, expansion, adaptation, and enhancement.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "18ed2b9f-1977-41b1-85d6-a1835ac2d484",
+  "uuid": "b7cf97ba-5308-45c7-aa31-9b691d579113",
+  "tool_use_result": {
+    "query": "knowledge distillation code understanding teacher student software engineering 2023 2024 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01BYTE4o5Z8wxSKCPY6ZfGm6",
+        "content": [
+          {
+            "title": "An Empirical Study of Knowledge Distillation for Code Understanding Tasks",
+            "url": "https://arxiv.org/html/2508.15423v1"
+          },
+          {
+            "title": "Knowledge Distillation and Dataset Distillation of Large ...",
+            "url": "https://arxiv.org/pdf/2504.14772"
+          },
+          {
+            "title": "A survey on knowledge distillation: Recent advancements - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/pii/S2666827024000811"
+          },
+          {
+            "title": "MINIPLM: KNOWLEDGE DISTILLATION FOR PRE",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/ea05e4fc0299c27648c9985266abad47-Paper-Conference.pdf"
+          },
+          {
+            "title": "Joint class attention knowledge and self-knowledge for multi-teacher knowledge distillation - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/abs/pii/S0952197625019244"
+          },
+          {
+            "title": "Teacher-Student Knowledge Distillation",
+            "url": "https://www.emergentmind.com/topics/teacher-student-knowledge-distillation"
+          },
+          {
+            "title": "Teachers That Listen: Adaptive Student-Aware Distillation for Reasoning | OpenReview",
+            "url": "https://openreview.net/forum?id=tds7TrLx9N"
+          },
+          {
+            "title": "DTDES-KGE: Dual-Teacher Knowledge Distillation with ...",
+            "url": "https://aclanthology.org/2025.findings-emnlp.262.pdf"
+          },
+          {
+            "title": "[2308.04268] Teacher-Student Architecture for Knowledge Distillation: A Survey",
+            "url": "https://arxiv.org/abs/2308.04268"
+          },
+          {
+            "title": "SPECULATIVE KNOWLEDGE DISTILLATION: BRIDG",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/a2747a3844ca1e4667fbff3f558eb39b-Paper-Conference.pdf"
+          }
+        ]
+      },
+      "Based on the web search results, here are the key findings about knowledge distillation in code understanding and software engineering from 2023-2025:\n\n## Recent Research on Knowledge Distillation for Code Understanding\n\nAn empirical study published in 2025 examines knowledge distillation for code understanding tasks, with research appearing at the 48th IEEE/ACM International Conference on Software Engineering in 2026.\n\n### Key Methods and Approaches\n\nWhile knowledge distillation methods have proven effective in NLP and computer vision domains, their potential in code understanding remains underexplored, with comprehensive and systematic studies evaluating diverse KD methods for code understanding still missing.\n\nFor code understanding tasks, Compressor (2022) uses a genetic algorithm to find optimal model hyperparameters before KD, while its successor Avatar (2024) prunes the hyperparameter space with an SMT solver, fine-tunes hyperparameters, and proceeds with KD.\n\n### Motivation and Challenges\n\nCode understanding models such as CodeBERT and UniXcoder leverage Transformer architectures trained on large code corpora, and general-purpose models like ModernBERT are trained for both text and code processing, though these models typically feature hundreds of millions of parameters, making them resource-intensive to deploy.\n\nDevelopers often require real-time responsiveness and cannot tolerate delays of seconds or minutes during basic development activities.\n\n### Broader Knowledge Distillation Advances\n\nTeacher-Student architectures enable simple student networks with few parameters to achieve comparable performance to deep teacher networks with many parameters, and have been effectively embraced on various KD objectives including knowledge compression, expansion, adaptation, and enhancement."
+    ],
+    "durationSeconds": 7.624674526000002
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012Sac6UGvmN4JkwzSE9XGFk`</summary>
+
+```json
+{
+  "query": "BugsInPy dataset Python automated program repair benchmark 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "18ed2b9f-1977-41b1-85d6-a1835ac2d484",
+  "uuid": "f584a5f7-a985-490d-b3a6-31e33eb406a9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X8yrACeSVk9M6QGjZ6kQ79",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1086,
+      "cache_read_input_tokens": 29717,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1086
+      },
+      "output_tokens": 35,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-14T13:50:44.409Z_
+
+<details><summary>↩ Tool result · `toolu_012Sac6UGvmN4JkwzSE9XGFk`</summary>
+
+```text
+Web search results for query: "BugsInPy dataset Python automated program repair benchmark 2024 2025"
+
+Links: [{"title":"BugsInPy: a database of existing bugs in Python programs to enable controlled testing and debugging studies | Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering","url":"https://dl.acm.org/doi/abs/10.1145/3368089.3417943"},{"title":"GitHub - soarsmu/BugsInPy: BugsInPy: Benchmarking Bugs in Python Projects · GitHub","url":"https://github.com/soarsmu/BugsInPy"},{"title":"BugsInPy: A Database of Existing Bugs in Python Programs to","url":"https://arxiv.org/pdf/2401.15481"},{"title":"BugsInPy: a database of existing bugs in Python programs to enable controlled testing and debugging studies | Request PDF","url":"https://www.researchgate.net/publication/347697366_BugsInPy_a_database_of_existing_bugs_in_Python_programs_to_enable_controlled_testing_and_debugging_studies"},{"title":"GitHub - reproducing-research-projects/BugsInPy: Reproducing BugsInPy: Benchmarking Bugs in Python Projects · GitHub","url":"https://github.com/reproducing-research-projects/BugsInPy"},{"title":"[PDF] BugsInPy: a database of existing bugs in Python programs to enable controlled testing and debugging studies | Semantic Scholar","url":"https://www.semanticscholar.org/paper/BugsInPy:-a-database-of-existing-bugs-in-Python-to-Widyasari-Sim/df0c1c146d6ea0694d955dfddc6f7bc4e1ba987a"},{"title":"[2401.15481] BugsInPy: A Database of Existing Bugs in Python Programs to Enable Controlled Testing and Debugging Studies","url":"https://arxiv.org/abs/2401.15481"},{"title":"BugsPHP: A dataset for Automated Program Repair in PHP K.D. Pramod","url":"https://rshariffdeen.com/paper/MSR24.pdf"},{"title":"BugsInPy: A database of existing bugs in Python programs ...","url":"https://ink.library.smu.edu.sg/cgi/viewcontent.cgi?article=6633&context=sis_research"},{"title":"pyr-benchmark-wrangling · PyPI","url":"https://pypi.org/project/pyr-benchmark-wrangling/"}]
+
+I've found comprehensive information about the BugsInPy dataset. Here's what I discovered:
+
+## Overview
+
+BugsInPy is a benchmark for bugs in Python projects. It was proposed inspired by Defects4J, which was originally proposed to support software testing research for Java programs.
+
+## Purpose and Design
+
+BugsInPy is a dataset that collects real world bugs from Python programs, where each is accompanied by a failing test case that passes once the bug is fixed. Bug-fix benchmarks are essential for evaluating methodologies in automatic program repair (APR) and fault localization (FL).
+
+The dataset aims to address a critical gap in Python research. Defects4J ensures that the bugs are reproducible, and each is accompanied by a failing test case that passes once the bug is fixed, and BugsInPy follows a similar quality approach for Python.
+
+## Usage and Tools
+
+The bugsinpy-testall script automates the execution of the BugsInPy dataset, which contains bugs in various Python projects, reproduces the bugs, executes tests, and records the results.
+
+The BugsInPy CLI is a command-line tool designed for interacting with and running Python bugs from the BugsInPy dataset and streamlines the process of setting up bug repositories, cloning specific bugs or repositories, preparing the environment, running tests, and more.
+
+## Recent Research Impact
+
+More recent efforts including SWE-Bench, Defects4J, and BugsInPy extend evaluation to class- and repository-level settings, showing that BugsInPy remains relevant in current program repair research alongside newer benchmarks introduced in 2024-2025.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "18ed2b9f-1977-41b1-85d6-a1835ac2d484",
+  "uuid": "890abdcc-6b58-41de-8d0b-9f7a0a9b545c",
+  "tool_use_result": {
+    "query": "BugsInPy dataset Python automated program repair benchmark 2024 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01LMfXhMfUkEvzoX4Ne4pBjG",
+        "content": [
+          {
+            "title": "BugsInPy: a database of existing bugs in Python programs to enable controlled testing and debugging studies | Proceedings of the 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering",
+            "url": "https://dl.acm.org/doi/abs/10.1145/3368089.3417943"
+          },
+          {
+            "title": "GitHub - soarsmu/BugsInPy: BugsInPy: Benchmarking Bugs in Python Projects · GitHub",
+            "url": "https://github.com/soarsmu/BugsInPy"
+          },
+          {
+            "title": "BugsInPy: A Database of Existing Bugs in Python Programs to",
+            "url": "https://arxiv.org/pdf/2401.15481"
+          },
+          {
+            "title": "BugsInPy: a database of existing bugs in Python programs to enable controlled testing and debugging studies | Request PDF",
+            "url": "https://www.researchgate.net/publication/347697366_BugsInPy_a_database_of_existing_bugs_in_Python_programs_to_enable_controlled_testing_and_debugging_studies"
+          },
+          {
+            "title": "GitHub - reproducing-research-projects/BugsInPy: Reproducing BugsInPy: Benchmarking Bugs in Python Projects · GitHub",
+            "url": "https://github.com/reproducing-research-projects/BugsInPy"
+          },
+          {
+            "title": "[PDF] BugsInPy: a database of existing bugs in Python programs to enable controlled testing and debugging studies | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/BugsInPy:-a-database-of-existing-bugs-in-Python-to-Widyasari-Sim/df0c1c146d6ea0694d955dfddc6f7bc4e1ba987a"
+          },
+          {
+            "title": "[2401.15481] BugsInPy: A Database of Existing Bugs in Python Programs to Enable Controlled Testing and Debugging Studies",
+            "url": "https://arxiv.org/abs/2401.15481"
+          },
+          {
+            "title": "BugsPHP: A dataset for Automated Program Repair in PHP K.D. Pramod",
+            "url": "https://rshariffdeen.com/paper/MSR24.pdf"
+          },
+          {
+            "title": "BugsInPy: A database of existing bugs in Python programs ...",
+            "url": "https://ink.library.smu.edu.sg/cgi/viewcontent.cgi?article=6633&context=sis_research"
+          },
+          {
+            "title": "pyr-benchmark-wrangling · PyPI",
+            "url": "https://pypi.org/project/pyr-benchmark-wrangling/"
+          }
+        ]
+      },
+      "I've found comprehensive information about the BugsInPy dataset. Here's what I discovered:\n\n## Overview\n\nBugsInPy is a benchmark for bugs in Python projects. It was proposed inspired by Defects4J, which was originally proposed to support software testing research for Java programs.\n\n## Purpose and Design\n\nBugsInPy is a dataset that collects real world bugs from Python programs, where each is accompanied by a failing test case that passes once the bug is fixed. Bug-fix benchmarks are essential for evaluating methodologies in automatic program repair (APR) and fault localization (FL).\n\nThe dataset aims to address a critical gap in Python research. Defects4J ensures that the bugs are reproducible, and each is accompanied by a failing test case that passes once the bug is fixed, and BugsInPy follows a similar quality approach for Python.\n\n## Usage and Tools\n\nThe bugsinpy-testall script automates the execution of the BugsInPy dataset, which contains bugs in various Python projects, reproduces the bugs, executes tests, and records the results.\n\nThe BugsInPy CLI is a command-line tool designed for interacting with and running Python bugs from the BugsInPy dataset and streamlines the process of setting up bug repositories, cloning specific bugs or repositories, preparing the environment, running tests, and more.\n\n## Recent Research Impact\n\nMore recent efforts including SWE-Bench, Defects4J, and BugsInPy extend evaluation to class- and repository-level settings, showing that BugsInPy remains relevant in current program repair research alongside newer benchmarks introduced in 2024-2025."
+    ],
+    "durationSeconds": 7.186894092999995
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HRjkS8Z4uArBjeSKXF57Uq`</summary>
+
+```json
+{
+  "query": "LLM-based automated program repair survey 2024 2025 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "18ed2b9f-1977-41b1-85d6-a1835ac2d484",
+  "uuid": "72e9c49c-6534-403a-ae52-187fe3bbc495",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Uh1tgkgpdoTEEzAAecuzqS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1127,
+      "cache_read_input_tokens": 30803,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1127
+      },
+      "output_tokens": 47,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-14T13:50:54.742Z_
+
+<details><summary>↩ Tool result · `toolu_01HRjkS8Z4uArBjeSKXF57Uq`</summary>
+
+```text
+Web search results for query: "LLM-based automated program repair survey 2024 2025 arxiv"
+
+Links: [{"title":"A Survey of LLM-based Automated Program Repair: Taxonomies, Design Paradigms, and Applications","url":"https://arxiv.org/html/2506.23749v1"},{"title":"[2506.23749] A Survey of LLM-based Automated Program Repair: Taxonomies, Design Paradigms, and Applications","url":"https://arxiv.org/abs/2506.23749"},{"title":"GitHub - iSEngLab/AwesomeLLM4APR: [TOSEM 2026]A Systematic Literature Review on Large Language Models for Automated Program Repair · GitHub","url":"https://github.com/iSEngLab/AwesomeLLM4APR"},{"title":"GitHub - GLEAM-Lab/ProgramRepair: A Survey of LLM-based Automated Program Repair: Taxonomies, Design Paradigms, and Applications · GitHub","url":"https://github.com/GLEAM-Lab/ProgramRepair"},{"title":"A Survey of LLM-based Automated Program Repair: Taxonomies, Design Paradigms, and Applications - ADS","url":"https://ui.adsabs.harvard.edu/abs/2025arXiv250623749Y/abstract"},{"title":"A Survey of LLM-based Automated Program Repair","url":"https://arxiv.org/pdf/2506.23749"},{"title":"LLM-Based Program Repair Survey","url":"https://www.emergentmind.com/papers/2506.23749"},{"title":"[2506.23749v1] A Survey of LLM-based Automated Program Repair: Taxonomies, Design Paradigms, and Applications","url":"https://arxiv.org/abs/2506.23749v1"},{"title":"[PDF] A Survey of LLM-based Automated Program Repair: Taxonomies, Design Paradigms, and Applications | Semantic Scholar","url":"https://www.semanticscholar.org/paper/A-Survey-of-LLM-based-Automated-Program-Repair:-and-Yang-Cai/22133a71e3ddc9e42b316895fbc14ebd30d0a62a"},{"title":"The use of large language models for program repair - ScienceDirect","url":"https://www.sciencedirect.com/science/article/pii/S092054892400120X"}]
+
+Based on the web search results, I found a highly relevant survey paper that matches your query:
+
+## Recent LLM-based Program Repair Survey on arXiv
+
+The paper "A Survey of LLM-based Automated Program Repair: Taxonomies, Design Paradigms, and Applications" presents a unified taxonomy that groups 62 recent LLM-based repair systems into four paradigms. The paper was published on June 30, 2025 with arXiv identifier 2506.23749.
+
+### Key Details:
+
+**Scope:** The survey covers papers from January 2022 to June 2025.
+
+**Four Main Paradigms:** The survey treats fine-tuning, prompting, procedural pipelines, and agentic frameworks as first-class paradigms and systematically maps representative systems to each of these paradigms.
+
+**Cross-cutting Layers:** Retrieval-Augmented Generation (RAG) refers to augmenting the LLM's input with external knowledge (such as relevant code snippets, documentation, or historical fixes), which is one of the cross-cutting enhancements discussed.
+
+**Research Contributions:** The authors consolidate evaluation practice on common benchmarks by recording benchmark scope, pass@k, and fault-localization assumptions to support a more meaningful comparison of reported success rates.
+
+**Artifacts:** The survey's materials are available on GitHub at https://github.com/GLEAM-Lab/ProgramRepair.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "18ed2b9f-1977-41b1-85d6-a1835ac2d484",
+  "uuid": "44cf1c8a-d13d-470e-9a38-c739edb57c1c",
+  "tool_use_result": {
+    "query": "LLM-based automated program repair survey 2024 2025 arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_018Rnnw7YX8sNdHjTLVoVwM9",
+        "content": [
+          {
+            "title": "A Survey of LLM-based Automated Program Repair: Taxonomies, Design Paradigms, and Applications",
+            "url": "https://arxiv.org/html/2506.23749v1"
+          },
+          {
+            "title": "[2506.23749] A Survey of LLM-based Automated Program Repair: Taxonomies, Design Paradigms, and Applications",
+            "url": "https://arxiv.org/abs/2506.23749"
+          },
+          {
+            "title": "GitHub - iSEngLab/AwesomeLLM4APR: [TOSEM 2026]A Systematic Literature Review on Large Language Models for Automated Program Repair · GitHub",
+            "url": "https://github.com/iSEngLab/AwesomeLLM4APR"
+          },
+          {
+            "title": "GitHub - GLEAM-Lab/ProgramRepair: A Survey of LLM-based Automated Program Repair: Taxonomies, Design Paradigms, and Applications · GitHub",
+            "url": "https://github.com/GLEAM-Lab/ProgramRepair"
+          },
+          {
+            "title": "A Survey of LLM-based Automated Program Repair: Taxonomies, Design Paradigms, and Applications - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2025arXiv250623749Y/abstract"
+          },
+          {
+            "title": "A Survey of LLM-based Automated Program Repair",
+            "url": "https://arxiv.org/pdf/2506.23749"
+          },
+          {
+            "title": "LLM-Based Program Repair Survey",
+            "url": "https://www.emergentmind.com/papers/2506.23749"
+          },
+          {
+            "title": "[2506.23749v1] A Survey of LLM-based Automated Program Repair: Taxonomies, Design Paradigms, and Applications",
+            "url": "https://arxiv.org/abs/2506.23749v1"
+          },
+          {
+            "title": "[PDF] A Survey of LLM-based Automated Program Repair: Taxonomies, Design Paradigms, and Applications | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/A-Survey-of-LLM-based-Automated-Program-Repair:-and-Yang-Cai/22133a71e3ddc9e42b316895fbc14ebd30d0a62a"
+          },
+          {
+            "title": "The use of large language models for program repair - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/pii/S092054892400120X"
+          }
+        ]
+      },
+      "Based on the web search results, I found a highly relevant survey paper that matches your query:\n\n## Recent LLM-based Program Repair Survey on arXiv\n\nThe paper \"A Survey of LLM-based Automated Program Repair: Taxonomies, Design Paradigms, and Applications\" presents a unified taxonomy that groups 62 recent LLM-based repair systems into four paradigms. The paper was published on June 30, 2025 with arXiv identifier 2506.23749.\n\n### Key Details:\n\n**Scope:** The survey covers papers from January 2022 to June 2025.\n\n**Four Main Paradigms:** The survey treats fine-tuning, prompting, procedural pipelines, and agentic frameworks as first-class paradigms and systematically maps representative systems to each of these paradigms.\n\n**Cross-cutting Layers:** Retrieval-Augmented Generation (RAG) refers to augmenting the LLM's input with external knowledge (such as relevant code snippets, documentation, or historical fixes), which is one of the cross-cutting enhancements discussed.\n\n**Research Contributions:** The authors consolidate evaluation practice on common benchmarks by recording benchmark scope, pass@k, and fault-localization assumptions to support a more meaningful comparison of reported success rates.\n\n**Artifacts:** The survey's materials are available on GitHub at https://github.com/GLEAM-Lab/ProgramRepair."
+    ],
+    "durationSeconds": 8.045864175000009
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Uh74QVR3fAyEVyB5US7hCh`</summary>
+
+```json
+{
+  "query": "knowledge distillation code LLM small model structured trace analysis 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "18ed2b9f-1977-41b1-85d6-a1835ac2d484",
+  "uuid": "4863fe02-6716-43eb-9559-ad73f050a960",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y3DVchjYCokcXyJoDxBc6B",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1028,
+      "cache_read_input_tokens": 31930,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1028
+      },
+      "output_tokens": 42,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-14T13:51:06.539Z_
+
+<details><summary>↩ Tool result · `toolu_01Uh74QVR3fAyEVyB5US7hCh`</summary>
+
+```text
+Web search results for query: "knowledge distillation code LLM small model structured trace analysis 2024 2025"
+
+Links: [{"title":"Knowledge Distillation and Dataset Distillation of Large ...","url":"https://arxiv.org/pdf/2504.14772"},{"title":"Knowledge distillation and dataset distillation of large language models: emerging trends, challenges, and future directions | Artificial Intelligence Review | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s10462-025-11423-3"},{"title":"[2402.13116] A Survey on Knowledge Distillation of Large Language Models","url":"https://arxiv.org/abs/2402.13116"},{"title":"Knowledge distillation and dataset distillation of large language models: emerging trends, challenges, and future directions - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC12634706/"},{"title":"Chain-of-Thought Curriculum Distillation: Teaching Smaller Models to Reason Step-by-Step | Proceedings of the 2025 2nd International Symposium on Artificial Intelligence for Education","url":"https://dl.acm.org/doi/10.1145/3775073.3775200"},{"title":"Knowledge Distillation with Structured Chain-of-Thought for Text-to-SQL","url":"https://arxiv.org/html/2512.17053v1"},{"title":"A Survey on Small Language Models","url":"https://acl-bg.org/proceedings/2025/RANLP%202025/pdf/2025.ranlp-1.93.pdf"},{"title":"The Graph’s Apprentice: Teaching an LLM Low-Level Knowledge for Circuit","url":"https://www.ijcai.org/proceedings/2025/1033.pdf"},{"title":"How to Distill a LLM: Step-by-step | Data Science Collective","url":"https://medium.com/data-science-collective/how-to-distill-a-llm-step-by-step-58f06fcf4bfa"},{"title":"Survey on Knowledge Distillation for Large Language Models: Methods, Evaluation, and Application | ACM Transactions on Intelligent Systems and Technology","url":"https://dl.acm.org/doi/10.1145/3699518"}]
+
+Based on the search results, here's what I found regarding knowledge distillation for code LLMs with small models and structured trace analysis in 2024-2025:
+
+## Key Research Areas
+
+**Knowledge Distillation with Structured Approaches for Code:**
+
+Struct-SQL is a novel KD method that enables single-pass knowledge distillation for code generation tasks. The Struct-SQL framework systematically evaluates whether structure-based reasoning transfer, specifically QP-CoT, improves the distillation for Text-to-SQL. This work demonstrates the application of structured chain-of-thought reasoning to code distillation.
+
+**Combining Knowledge Distillation with Dataset Distillation:**
+
+When applied to LLMs, dataset distillation acts as a critical enabler for KD by identifying high-impact training examples that reflect the teacher's reasoning processes, with emergent abilities like chain-of-thought reasoning requiring precise and sophisticated knowledge transfer techniques.
+
+**Chain-of-Thought Structured Reasoning:**
+
+For reasoning tasks, LLM-generated Chain-of-Thought rationales embody rich logical structures and problem-solving strategies, and distilling only final answers may inadequately transfer this reasoning knowledge, with the hypothesis that guiding student models to learn the teacher's reasoning processes will more effectively enhance their reasoning capabilities.
+
+**Recent Comprehensive Surveys (2024-2025):**
+
+Comprehensive surveys provide analysis of Knowledge Distillation and Dataset Distillation paradigms, both aimed at compressing LLMs while preserving their advanced reasoning capabilities and linguistic diversity.
+
+These recent works indicate a clear trend toward combining structured trace analysis and reasoning transfer methods to make knowledge distillation more effective for smaller language models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "18ed2b9f-1977-41b1-85d6-a1835ac2d484",
+  "uuid": "3df177ed-0e45-4353-927d-0c62ca856fdf",
+  "tool_use_result": {
+    "query": "knowledge distillation code LLM small model structured trace analysis 2024 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_011LJXkTFDbnfCRbh3dHqTWj",
+        "content": [
+          {
+            "title": "Knowledge Distillation and Dataset Distillation of Large ...",
+            "url": "https://arxiv.org/pdf/2504.14772"
+          },
+          {
+            "title": "Knowledge distillation and dataset distillation of large language models: emerging trends, challenges, and future directions | Artificial Intelligence Review | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s10462-025-11423-3"
+          },
+          {
+            "title": "[2402.13116] A Survey on Knowledge Distillation of Large Language Models",
+            "url": "https://arxiv.org/abs/2402.13116"
+          },
+          {
+            "title": "Knowledge distillation and dataset distillation of large language models: emerging trends, challenges, and future directions - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12634706/"
+          },
+          {
+            "title": "Chain-of-Thought Curriculum Distillation: Teaching Smaller Models to Reason Step-by-Step | Proceedings of the 2025 2nd International Symposium on Artificial Intelligence for Education",
+            "url": "https://dl.acm.org/doi/10.1145/3775073.3775200"
+          },
+          {
+            "title": "Knowledge Distillation with Structured Chain-of-Thought for Text-to-SQL",
+            "url": "https://arxiv.org/html/2512.17053v1"
+          },
+          {
+            "title": "A Survey on Small Language Models",
+            "url": "https://acl-bg.org/proceedings/2025/RANLP%202025/pdf/2025.ranlp-1.93.pdf"
+          },
+          {
+            "title": "The Graph’s Apprentice: Teaching an LLM Low-Level Knowledge for Circuit",
+            "url": "https://www.ijcai.org/proceedings/2025/1033.pdf"
+          },
+          {
+            "title": "How to Distill a LLM: Step-by-step | Data Science Collective",
+            "url": "https://medium.com/data-science-collective/how-to-distill-a-llm-step-by-step-58f06fcf4bfa"
+          },
+          {
+            "title": "Survey on Knowledge Distillation for Large Language Models: Methods, Evaluation, and Application | ACM Transactions on Intelligent Systems and Technology",
+            "url": "https://dl.acm.org/doi/10.1145/3699518"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found regarding knowledge distillation for code LLMs with small models and structured trace analysis in 2024-2025:\n\n## Key Research Areas\n\n**Knowledge Distillation with Structured Approaches for Code:**\n\nStruct-SQL is a novel KD method that enables single-pass knowledge distillation for code generation tasks. The Struct-SQL framework systematically evaluates whether structure-based reasoning transfer, specifically QP-CoT, improves the distillation for Text-to-SQL. This work demonstrates the application of structured chain-of-thought reasoning to code distillation.\n\n**Combining Knowledge Distillation with Dataset Distillation:**\n\nWhen applied to LLMs, dataset distillation acts as a critical enabler for KD by identifying high-impact training examples that reflect the teacher's reasoning processes, with emergent abilities like chain-of-thought reasoning requiring precise and sophisticated knowledge transfer techniques.\n\n**Chain-of-Thought Structured Reasoning:**\n\nFor reasoning tasks, LLM-generated Chain-of-Thought rationales embody rich logical structures and problem-solving strategies, and distilling only final answers may inadequately transfer this reasoning knowledge, with the hypothesis that guiding student models to learn the teacher's reasoning processes will more effectively enhance their reasoning capabilities.\n\n**Recent Comprehensive Surveys (2024-2025):**\n\nComprehensive surveys provide analysis of Knowledge Distillation and Dataset Distillation paradigms, both aimed at compressing LLMs while preserving their advanced reasoning capabilities and linguistic diversity.\n\nThese recent works indicate a clear trend toward combining structured trace analysis and reasoning transfer methods to make knowledge distillation more effective for smaller language models."
+    ],
+    "durationSeconds": 9.078559635000012
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01AUy8ExQV1LpYvUjWTqeB6R`</summary>
+
+```json
+{
+  "query": "TraceCoder trace-driven multi-agent debugging LLM-generated code arxiv 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "18ed2b9f-1977-41b1-85d6-a1835ac2d484",
+  "uuid": "e80011da-459e-4a08-95ee-6bb16cd69d9c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TtX1YYfFWFK34WpseFHbWd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1036,
+      "cache_read_input_tokens": 32958,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1036
+      },
+      "output_tokens": 38,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-14T13:51:17.352Z_
+
+<details><summary>↩ Tool result · `toolu_01AUy8ExQV1LpYvUjWTqeB6R`</summary>
+
+```text
+Web search results for query: "TraceCoder trace-driven multi-agent debugging LLM-generated code arxiv 2025"
+
+Links: [{"title":"TraceCoder: A Trace-Driven Multi-Agent Framework for Automated Debugging of LLM-Generated Code","url":"https://arxiv.org/html/2602.06875"},{"title":"[2602.06875] TraceCoder: A Trace-Driven Multi-Agent Framework for Automated Debugging of LLM-Generated Code","url":"https://arxiv.org/abs/2602.06875"},{"title":"TraceFix: Repairing Agent Coordination Protocols with TLA+ Counterexamples","url":"https://arxiv.org/html/2605.07935v1"},{"title":"Enhancing LLM Code Generation: A Systematic Evaluation of Multi-Agent Collaboration and Runtime Debugging for Improved Accuracy, Reliability, and Latency","url":"https://arxiv.org/html/2505.02133"},{"title":"[2505.02133] Enhancing LLM Code Generation: A Systematic Evaluation of Multi-Agent Collaboration and Runtime Debugging for Improved Accuracy, Reliability, and Latency","url":"https://arxiv.org/abs/2505.02133"},{"title":"A Survey on Code Generation with LLM-based Agents","url":"https://arxiv.org/html/2508.00083v1"},{"title":"CodeTracer: Towards Traceable Agent States","url":"https://arxiv.org/html/2604.11641v3"},{"title":"TraceCoder: A Trace-Driven Multi-Agent Framework for Automated Debugging of LLM-Generated Code (ICSE 2026 - Research Track) - ICSE 2026","url":"https://conf.researchr.org/details/icse-2026/icse-2026-research-track/145/TraceCoder-A-Trace-Driven-Multi-Agent-Framework-for-Automated-Debugging-of-LLM-Gener"},{"title":"Trace-Based Diagnostics","url":"https://www.emergentmind.com/topics/trace-based-diagnostics"},{"title":"DoVer: Intervention-Driven Auto Debugging for LLM Multi-Agent Systems","url":"https://arxiv.org/html/2512.06749v1/"}]
+
+Based on the search results, I found comprehensive information about TraceCoder. Here's what the research reveals:
+
+## Overview
+
+TraceCoder is a modular collaborative multi-agent framework that emulates the human debugging workflow to enable automated repair of LLM-generated code. Large Language Models (LLMs) often generate code with subtle but critical bugs, especially for complex tasks.
+
+## Key Approach
+
+TraceCoder is a collaborative multi-agent framework that emulates the observe-analyze-repair process of human experts. The framework first instruments the code with diagnostic probes to capture fine-grained runtime traces, enabling deep insight into its internal execution.
+
+The framework incorporates several key innovations:
+
+1. **Fine-grained Runtime Tracing**: It enables fine-grained runtime tracing, allowing the system to capture semantically rich execution signals.
+
+2. **Historical Learning**: A novel HLLM learns from prior failures to inform subsequent repairs and prevent recurring mistakes.
+
+3. **Causal Analysis**: It conducts causal analysis on these traces to accurately identify the root cause of the failure.
+
+## Performance Results
+
+Comprehensive evaluations demonstrate that TraceCoder substantially outperforms advanced baselines, achieving up to a 34.43% relative improvement in Pass@1 accuracy on challenging class-level code generation benchmarks.
+
+## Evaluation
+
+TraceCoder was evaluated on four widely adopted benchmark datasets: HumanEval, HumanEval+, BigCodeBench, and ClassEval.
+
+The paper was published on arxiv in February 2026 (arxiv 2602.06875) and an open-source implementation of TraceCoder was released to support reproducibility and facilitate future research.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "18ed2b9f-1977-41b1-85d6-a1835ac2d484",
+  "uuid": "7311e399-dfc5-4bdf-957f-e6ee8c5eb230",
+  "tool_use_result": {
+    "query": "TraceCoder trace-driven multi-agent debugging LLM-generated code arxiv 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01K6AbUWszqcZJD4Gw7Lg78T",
+        "content": [
+          {
+            "title": "TraceCoder: A Trace-Driven Multi-Agent Framework for Automated Debugging of LLM-Generated Code",
+            "url": "https://arxiv.org/html/2602.06875"
+          },
+          {
+            "title": "[2602.06875] TraceCoder: A Trace-Driven Multi-Agent Framework for Automated Debugging of LLM-Generated Code",
+            "url": "https://arxiv.org/abs/2602.06875"
+          },
+          {
+            "title": "TraceFix: Repairing Agent Coordination Protocols with TLA+ Counterexamples",
+            "url": "https://arxiv.org/html/2605.07935v1"
+          },
+          {
+            "title": "Enhancing LLM Code Generation: A Systematic Evaluation of Multi-Agent Collaboration and Runtime Debugging for Improved Accuracy, Reliability, and Latency",
+            "url": "https://arxiv.org/html/2505.02133"
+          },
+          {
+            "title": "[2505.02133] Enhancing LLM Code Generation: A Systematic Evaluation of Multi-Agent Collaboration and Runtime Debugging for Improved Accuracy, Reliability, and Latency",
+            "url": "https://arxiv.org/abs/2505.02133"
+          },
+          {
+            "title": "A Survey on Code Generation with LLM-based Agents",
+            "url": "https://arxiv.org/html/2508.00083v1"
+          },
+          {
+            "title": "CodeTracer: Towards Traceable Agent States",
+            "url": "https://arxiv.org/html/2604.11641v3"
+          },
+          {
+            "title": "TraceCoder: A Trace-Driven Multi-Agent Framework for Automated Debugging of LLM-Generated Code (ICSE 2026 - Research Track) - ICSE 2026",
+            "url": "https://conf.researchr.org/details/icse-2026/icse-2026-research-track/145/TraceCoder-A-Trace-Driven-Multi-Agent-Framework-for-Automated-Debugging-of-LLM-Gener"
+          },
+          {
+            "title": "Trace-Based Diagnostics",
+            "url": "https://www.emergentmind.com/topics/trace-based-diagnostics"
+          },
+          {
+            "title": "DoVer: Intervention-Driven Auto Debugging for LLM Multi-Agent Systems",
+            "url": "https://arxiv.org/html/2512.06749v1/"
+          }
+        ]
+      },
+      "Based on the search results, I found comprehensive information about TraceCoder. Here's what the research reveals:\n\n## Overview\n\nTraceCoder is a modular collaborative multi-agent framework that emulates the human debugging workflow to enable automated repair of LLM-generated code. Large Language Models (LLMs) often generate code with subtle but critical bugs, especially for complex tasks.\n\n## Key Approach\n\nTraceCoder is a collaborative multi-agent framework that emulates the observe-analyze-repair process of human experts. The framework first instruments the code with diagnostic probes to capture fine-grained runtime traces, enabling deep insight into its internal execution.\n\nThe framework incorporates several key innovations:\n\n1. **Fine-grained Runtime Tracing**: It enables fine-grained runtime tracing, allowing the system to capture semantically rich execution signals.\n\n2. **Historical Learning**: A novel HLLM learns from prior failures to inform subsequent repairs and prevent recurring mistakes.\n\n3. **Causal Analysis**: It conducts causal analysis on these traces to accurately identify the root cause of the failure.\n\n## Performance Results\n\nComprehensive evaluations demonstrate that TraceCoder substantially outperforms advanced baselines, achieving up to a 34.43% relative improvement in Pass@1 accuracy on challenging class-level code generation benchmarks.\n\n## Evaluation\n\nTraceCoder was evaluated on four widely adopted benchmark datasets: HumanEval, HumanEval+, BigCodeBench, and ClassEval.\n\nThe paper was published on arxiv in February 2026 (arxiv 2602.06875) and an open-source implementation of TraceCoder was released to support reproducibility and facilitate future research."
+    ],
+    "durationSeconds": 8.179729535000005
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01NTk6WCvetxAphd7FcHehGK`</summary>
+
+```json
+{
+  "query": "SWE-bench Python program repair benchmark evaluation 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "18ed2b9f-1977-41b1-85d6-a1835ac2d484",
+  "uuid": "f649d664-2ea0-4f8a-b5bc-c2fa49888e37",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019Rap1CLdveZ6VxkTK11wkU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1039,
+      "cache_read_input_tokens": 33994,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1039
+      },
+      "output_tokens": 58,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-14T13:51:28.695Z_
+
+<details><summary>↩ Tool result · `toolu_01NTk6WCvetxAphd7FcHehGK`</summary>
+
+```text
+Web search results for query: "SWE-bench Python program repair benchmark evaluation 2024 2025"
+
+Links: [{"title":"SWE-bench Verified | Epoch AI","url":"https://epoch.ai/benchmarks/swe-bench-verified"},{"title":"SWE-Bench Verified Benchmark Leaderboard","url":"https://llm-stats.com/benchmarks/swe-bench-verified"},{"title":"SWE-bench-Verified Benchmark","url":"https://www.emergentmind.com/topics/swe-bench-verified-68233829-9998-47b4-a508-46198b489321"},{"title":"[2602.04449] What's in a Benchmark? The Case of SWE-Bench in Automated Program Repair","url":"https://arxiv.org/abs/2602.04449"},{"title":"SWE-bench Leaderboards","url":"https://www.swebench.com/"},{"title":"arXiv:2509.16941v2 [cs.SE] 14 Nov 2025 SWE-Bench Pro: Can AI Agents Solve","url":"https://arxiv.org/pdf/2509.16941"},{"title":"SWE-bench Verified","url":"https://www.vals.ai/benchmarks/swebench"},{"title":"SWE-Bench-Lite: Python APR Benchmark","url":"https://www.emergentmind.com/topics/swe-bench-lite"},{"title":"Published as a conference paper at ICLR 2024 SWE-BENCH:","url":"https://arxiv.org/pdf/2310.06770"},{"title":"GitHub - SWE-bench/SWE-bench: SWE-bench: Can Language Models Resolve Real-world Github Issues? · GitHub","url":"https://github.com/SWE-bench/SWE-bench"}]
+
+Based on the search results, here's comprehensive information about SWE-bench as a Python program repair benchmark:
+
+## Overview
+
+SWE-bench is a benchmark for evaluating large language models on real world software issues collected from GitHub. SWE-Bench is a benchmark designed to evaluate repair systems using real issues mined from popular open-source Python repositories.
+
+## Benchmark Variants
+
+SWE-bench Verified is a human-validated section of the SWE-bench dataset released by OpenAI in August 2024, with a curated set of 500 high-quality test cases from the original benchmark. SWE-Bench-Lite is constructed by subsampling the original SWE-Bench dataset from 12 popular open-source Python projects, including sympy, matplotlib, scikit-learn, flask, astropy, requests, seaborn, sphinx, xarray, pylint, pytest, and Django.
+
+SWE-BENCH PRO consists of a total of 1865 human-verified and augmented problems, with 731 instances released openly on HuggingFace.
+
+## 2024-2025 Evaluation Results
+
+Claude Mythos Preview leads with 93.9%, followed by Claude Opus 4.7 at 87.6% and Claude Opus 4.5 at 80.9%. On SWE-Bench Pro, CLAUDE SONNET 4.5 and CLAUDE SONNET 4 achieve the highest resolve rates at 43.6% and 42.7% respectively.
+
+SWE-bench-Verified has become the standard for public evaluation in APR and LLM-based agent research, with over 99 leaderboard submissions spanning both open-source and proprietary systems.
+
+## Recent Developments
+
+The benchmark has spurred advances in agent architecture and evaluation methodology. The SWE-bench Verified scaffold was significantly upgraded in February 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "18ed2b9f-1977-41b1-85d6-a1835ac2d484",
+  "uuid": "4bc40290-2ecb-47c1-814f-30d4e4ee3575",
+  "tool_use_result": {
+    "query": "SWE-bench Python program repair benchmark evaluation 2024 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0161XXUmYH2vKNJ3gCHUt1v7",
+        "content": [
+          {
+            "title": "SWE-bench Verified | Epoch AI",
+            "url": "https://epoch.ai/benchmarks/swe-bench-verified"
+          },
+          {
+            "title": "SWE-Bench Verified Benchmark Leaderboard",
+            "url": "https://llm-stats.com/benchmarks/swe-bench-verified"
+          },
+          {
+            "title": "SWE-bench-Verified Benchmark",
+            "url": "https://www.emergentmind.com/topics/swe-bench-verified-68233829-9998-47b4-a508-46198b489321"
+          },
+          {
+            "title": "[2602.04449] What's in a Benchmark? The Case of SWE-Bench in Automated Program Repair",
+            "url": "https://arxiv.org/abs/2602.04449"
+          },
+          {
+            "title": "SWE-bench Leaderboards",
+            "url": "https://www.swebench.com/"
+          },
+          {
+            "title": "arXiv:2509.16941v2 [cs.SE] 14 Nov 2025 SWE-Bench Pro: Can AI Agents Solve",
+            "url": "https://arxiv.org/pdf/2509.16941"
+          },
+          {
+            "title": "SWE-bench Verified",
+            "url": "https://www.vals.ai/benchmarks/swebench"
+          },
+          {
+            "title": "SWE-Bench-Lite: Python APR Benchmark",
+            "url": "https://www.emergentmind.com/topics/swe-bench-lite"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2024 SWE-BENCH:",
+            "url": "https://arxiv.org/pdf/2310.06770"
+          },
+          {
+            "title": "GitHub - SWE-bench/SWE-bench: SWE-bench: Can Language Models Resolve Real-world Github Issues? · GitHub",
+            "url": "https://github.com/SWE-bench/SWE-bench"
+          }
+        ]
+      },
+      "Based on the search results, here's comprehensive information about SWE-bench as a Python program repair benchmark:\n\n## Overview\n\nSWE-bench is a benchmark for evaluating large language models on real world software issues collected from GitHub. SWE-Bench is a benchmark designed to evaluate repair systems using real issues mined from popular open-source Python repositories.\n\n## Benchmark Variants\n\nSWE-bench Verified is a human-validated section of the SWE-bench dataset released by OpenAI in August 2024, with a curated set of 500 high-quality test cases from the original benchmark. SWE-Bench-Lite is constructed by subsampling the original SWE-Bench dataset from 12 popular open-source Python projects, including sympy, matplotlib, scikit-learn, flask, astropy, requests, seaborn, sphinx, xarray, pylint, pytest, and Django.\n\nSWE-BENCH PRO consists of a total of 1865 human-verified and augmented problems, with 731 instances released openly on HuggingFace.\n\n## 2024-2025 Evaluation Results\n\nClaude Mythos Preview leads with 93.9%, followed by Claude Opus 4.7 at 87.6% and Claude Opus 4.5 at 80.9%. On SWE-Bench Pro, CLAUDE SONNET 4.5 and CLAUDE SONNET 4 achieve the highest resolve rates at 43.6% and 42.7% respectively.\n\nSWE-bench-Verified has become the standard for public evaluation in APR and LLM-based agent research, with over 99 leaderboard submissions spanning both open-source and proprietary systems.\n\n## Recent Developments\n\nThe benchmark has spurred advances in agent architecture and evaluation methodology. The SWE-bench Verified scaffold was significantly upgraded in February 2026."
+    ],
+    "durationSeconds": 8.734185849000001
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01186WDfr16zx8pUrrAWc6K6`</summary>
+
+```json
+{
+  "query": "LDB debugging LLM basic blocks variable values verification Zhong 2024"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "18ed2b9f-1977-41b1-85d6-a1835ac2d484",
+  "uuid": "7b0cdb9a-341c-4704-8753-a89e022c5a2f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y3MXARs3rKVwCw1uzMA6RS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 995,
+      "cache_read_input_tokens": 35033,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 995
+      },
+      "output_tokens": 37,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-14T13:51:39.536Z_
+
+<details><summary>↩ Tool result · `toolu_01186WDfr16zx8pUrrAWc6K6`</summary>
+
+```text
+Web search results for query: "LDB debugging LLM basic blocks variable values verification Zhong 2024"
+
+Links: [{"title":"GitHub - FloridSleeves/LLMDebugger: LDB: A Large Language Model Debugger via Verifying Runtime Execution Step by Step (ACL'24) · GitHub","url":"https://github.com/FloridSleeves/LLMDebugger"},{"title":"[2402.16906] Debug like a Human: A Large Language Model Debugger via Verifying Runtime Execution Step-by-step","url":"https://arxiv.org/abs/2402.16906"},{"title":"LDB: A Large Language Model Debugger via Verifying Runtime Execution Step by Step","url":"https://arxiv.org/html/2402.16906v1"},{"title":"[2402.16906v3] LDB: A Large Language Model Debugger via Verifying Runtime Execution Step-by-step","url":"https://arxiv.org/abs/2402.16906v3"},{"title":"A Large Language Model Debugger via Verifying Runtime ...","url":"https://aclanthology.org/2024.findings-acl.49.pdf"},{"title":"Debug like a Human: A Large Language Model Debugger via Verifying Runtime Execution Step by Step - ACL Anthology","url":"https://aclanthology.org/2024.findings-acl.49/"},{"title":"Paper page - LDB: A Large Language Model Debugger via Verifying Runtime Execution Step-by-step","url":"https://huggingface.co/papers/2402.16906"},{"title":"Paper Review — Debug like a Human: A Large Language Model Debugger via Verifying Runtime Execution Step-by-step (ACL 2024) | by Riley Learning | Medium","url":"https://rileylearning.medium.com/paper-review-debug-like-a-human-a-large-language-model-debugger-via-verifying-runtime-execution-3872e931cf40"},{"title":"LDB: A Large Language Model Debugger via Verifying ...","url":"https://openreview.net/pdf/e8212bc1c05ed071e24d6586e1c10b0b0cf763e2.pdf"},{"title":"fly51fly on X: \"[CL] LDB: A Large Language Model Debugger via Verifying Runtime Execution Step-by-step L Zhong, Z Wang, J Shang [University of California, San Diego] (2024) https://t.co/9iDi9Bmg5m - The paper proposes LDB, a novel debugging framework that enables LLMs to refine their generated https://t.co/GLFYfvRu5p\" / X","url":"https://x.com/fly51fly/status/1764275980502433834"}]
+
+Based on the search results, I found comprehensive information about LDB (Large Language Model Debugger) from the 2024 research by Zhong and colleagues.
+
+## Overview
+
+LDB is a novel debugging framework that enables LLMs to refine their generated programs with the runtime execution information. The work was published in the Findings of the Association for Computational Linguistics (ACL 2024) by authors Zhong, Li, Wang, Zilong, and Shang, Jingbo.
+
+## Key Technical Approach
+
+LDB segments programs into basic blocks and tracks the values of intermediate variables after each block throughout the runtime execution. This allows LLMs to concentrate on simpler code units within the overall execution flow, verify their correctness against the task description block by block, and efficiently pinpoint any potential errors.
+
+## Workflow
+
+LDB decomposes the seed program into basic blocks based on the control flow graph and feeds in a failed visible test case to acquire the execution trace. LDB further inspects the runtime states of variables after each basic block during the runtime execution. Gathering the runtime execution information, LDB queries a LLM for verdicts on the correctness of the blocks in relation to the task description. Finally, the LLM regenerates a refined program with the debugging feedbacks by LDB.
+
+## Performance Results
+
+Experiments demonstrate that LDB consistently enhances the baseline performance by up to 9.8% across the HumanEval, MBPP, and TransCoder benchmarks, achieving new state-of-the-art performance in code debugging for various LLM selections.
+
+The approach is inspired by how human developers debug code, utilizing runtime information to guide LLMs through iterative code refinement.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "18ed2b9f-1977-41b1-85d6-a1835ac2d484",
+  "uuid": "814a5e08-96c6-440b-acb2-131b09b87a3f",
+  "tool_use_result": {
+    "query": "LDB debugging LLM basic blocks variable values verification Zhong 2024",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01SLDvfd65n2YRBQpD839wwp",
+        "content": [
+          {
+            "title": "GitHub - FloridSleeves/LLMDebugger: LDB: A Large Language Model Debugger via Verifying Runtime Execution Step by Step (ACL'24) · GitHub",
+            "url": "https://github.com/FloridSleeves/LLMDebugger"
+          },
+          {
+            "title": "[2402.16906] Debug like a Human: A Large Language Model Debugger via Verifying Runtime Execution Step-by-step",
+            "url": "https://arxiv.org/abs/2402.16906"
+          },
+          {
+            "title": "LDB: A Large Language Model Debugger via Verifying Runtime Execution Step by Step",
+            "url": "https://arxiv.org/html/2402.16906v1"
+          },
+          {
+            "title": "[2402.16906v3] LDB: A Large Language Model Debugger via Verifying Runtime Execution Step-by-step",
+            "url": "https://arxiv.org/abs/2402.16906v3"
+          },
+          {
+            "title": "A Large Language Model Debugger via Verifying Runtime ...",
+            "url": "https://aclanthology.org/2024.findings-acl.49.pdf"
+          },
+          {
+            "title": "Debug like a Human: A Large Language Model Debugger via Verifying Runtime Execution Step by Step - ACL Anthology",
+            "url": "https://aclanthology.org/2024.findings-acl.49/"
+          },
+          {
+            "title": "Paper page - LDB: A Large Language Model Debugger via Verifying Runtime Execution Step-by-step",
+            "url": "https://huggingface.co/papers/2402.16906"
+          },
+          {
+            "title": "Paper Review — Debug like a Human: A Large Language Model Debugger via Verifying Runtime Execution Step-by-step (ACL 2024) | by Riley Learning | Medium",
+            "url": "https://rileylearning.medium.com/paper-review-debug-like-a-human-a-large-language-model-debugger-via-verifying-runtime-execution-3872e931cf40"
+          },
+          {
+            "title": "LDB: A Large Language Model Debugger via Verifying ...",
+            "url": "https://openreview.net/pdf/e8212bc1c05ed071e24d6586e1c10b0b0cf763e2.pdf"
+          },
+          {
+            "title": "fly51fly on X: \"[CL] LDB: A Large Language Model Debugger via Verifying Runtime Execution Step-by-step L Zhong, Z Wang, J Shang [University of California, San Diego] (2024) https://t.co/9iDi9Bmg5m - The paper proposes LDB, a novel debugging framework that enables LLMs to refine their generated https://t.co/GLFYfvRu5p\" / X",
+            "url": "https://x.com/fly51fly/status/1764275980502433834"
+          }
+        ]
+      },
+      "Based on the search results, I found comprehensive information about LDB (Large Language Model Debugger) from the 2024 research by Zhong and colleagues.\n\n## Overview\n\nLDB is a novel debugging framework that enables LLMs to refine their generated programs with the runtime execution information. The work was published in the Findings of the Association for Computational Linguistics (ACL 2024) by authors Zhong, Li, Wang, Zilong, and Shang, Jingbo.\n\n## Key Technical Approach\n\nLDB segments programs into basic blocks and tracks the values of intermediate variables after each block throughout the runtime execution. This allows LLMs to concentrate on simpler code units within the overall execution flow, verify their correctness against the task description block by block, and efficiently pinpoint any potential errors.\n\n## Workflow\n\nLDB decomposes the seed program into basic blocks based on the control flow graph and feeds in a failed visible test case to acquire the execution trace. LDB further inspects the runtime states of variables after each basic block during the runtime execution. Gathering the runtime execution information, LDB queries a LLM for verdicts on the correctness of the blocks in relation to the task description. Finally, the LLM regenerates a refined program with the debugging feedbacks by LDB.\n\n## Performance Results\n\nExperiments demonstrate that LDB consistently enhances the baseline performance by up to 9.8% across the HumanEval, MBPP, and TransCoder benchmarks, achieving new state-of-the-art performance in code debugging for various LLM selections.\n\nThe approach is inspired by how human developers debug code, utilizing runtime information to guide LLMs through iterative code refinement."
+    ],
+    "durationSeconds": 7.8580977200000195
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0116RT4Ka8j1ieJVmPAN2zvi`</summary>
+
+```json
+{
+  "query": "MINIPL knowledge distillation pre-training code language model ICLR 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "18ed2b9f-1977-41b1-85d6-a1835ac2d484",
+  "uuid": "f94e812c-6210-49e0-a8eb-4a8406c4764d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JnC32ht8AUgFF41RMg6WPG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1159,
+      "cache_read_input_tokens": 36028,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1159
+      },
+      "output_tokens": 41,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-14T13:51:48.416Z_
+
+<details><summary>↩ Tool result · `toolu_0116RT4Ka8j1ieJVmPAN2zvi`</summary>
+
+```text
+Web search results for query: "MINIPL knowledge distillation pre-training code language model ICLR 2025"
+
+Links: [{"title":"GitHub - thu-coai/MiniPLM: [ICLR 2025] MiniPLM: Knowledge Distillation for Pre-Training Language Models","url":"https://github.com/thu-coai/MiniPLM"},{"title":"ICLR Poster MiniPLM: Knowledge Distillation for Pre-training Language Models","url":"https://iclr.cc/virtual/2025/poster/28062"},{"title":"MiniPLM: Knowledge Distillation for Pre-training Language Models | OpenReview","url":"https://openreview.net/forum?id=tJHDw8XfeC"},{"title":"MINIPLM: KNOWLEDGE DISTILLATION FOR PRE","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/ea05e4fc0299c27648c9985266abad47-Paper-Conference.pdf"},{"title":"[2410.17215] MiniPLM: Knowledge Distillation for Pre-Training Language Models","url":"https://arxiv.org/abs/2410.17215"},{"title":"Knowledge Distillation for Pre-Training Language Models","url":"https://arxiv.org/pdf/2410.17215"},{"title":"MiniLLM: Knowledge Distillation of Large Language Models | OpenReview","url":"https://openreview.net/forum?id=5h0qf7IBZZ"},{"title":"MiniPLM: Knowledge Distillation for Pre-training Language Models","url":"https://arxiv.org/html/2410.17215v3"},{"title":"Pre-training Distillation for Large Language Models","url":"https://aclanthology.org/2025.acl-long.181.pdf"},{"title":"Paper page - MiniPLM: Knowledge Distillation for Pre-Training Language Models","url":"https://huggingface.co/papers/2410.17215"}]
+
+Based on the search results, here's what I found about MiniPLM:
+
+## Overview
+
+MiniPLM is a knowledge distillation (KD) framework for pre-training language models by refining the training data distribution with the teacher LM's knowledge. The paper was accepted at ICLR 2025.
+
+## Key Features
+
+MiniPLM addresses three main challenges in knowledge distillation for pre-training:
+
+**Efficiency:** MiniPLM performs offline teacher inference, allowing KD for multiple student LMs without adding training costs.
+
+**Flexibility:** MiniPLM operates solely on the training corpus, enabling KD across model families.
+
+**Effectiveness:** MiniPLM leverages the differences between large and small LMs to enhance the training data difficulty and diversity, helping student LMs acquire versatile and sophisticated knowledge.
+
+## Technical Approach
+
+MiniPLM distills the knowledge of the teacher LM into the student LM by adjusting the pre-training corpus of the student LM through offline Difference Sampling, based on the output probability discrepancy between the teacher LM and a small reference LM.
+
+## Results
+
+Extensive experiments demonstrate that MiniPLM boosts the student LMs' performance on 9 common downstream tasks, improves language modeling capabilities, and reduces pre-training computation. The benefit of MiniPLM extends to larger training scales, evidenced by the scaling curve extrapolation.
+
+## Resources
+
+Code, data, and models can be found at https://github.com/thu-coai/MiniPLM.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "18ed2b9f-1977-41b1-85d6-a1835ac2d484",
+  "uuid": "130f8580-0f5b-48a3-867c-ae6f3dfc31e6",
+  "tool_use_result": {
+    "query": "MINIPL knowledge distillation pre-training code language model ICLR 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01NbSy9U6amPXZyRPdRFyXrA",
+        "content": [
+          {
+            "title": "GitHub - thu-coai/MiniPLM: [ICLR 2025] MiniPLM: Knowledge Distillation for Pre-Training Language Models",
+            "url": "https://github.com/thu-coai/MiniPLM"
+          },
+          {
+            "title": "ICLR Poster MiniPLM: Knowledge Distillation for Pre-training Language Models",
+            "url": "https://iclr.cc/virtual/2025/poster/28062"
+          },
+          {
+            "title": "MiniPLM: Knowledge Distillation for Pre-training Language Models | OpenReview",
+            "url": "https://openreview.net/forum?id=tJHDw8XfeC"
+          },
+          {
+            "title": "MINIPLM: KNOWLEDGE DISTILLATION FOR PRE",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/ea05e4fc0299c27648c9985266abad47-Paper-Conference.pdf"
+          },
+          {
+            "title": "[2410.17215] MiniPLM: Knowledge Distillation for Pre-Training Language Models",
+            "url": "https://arxiv.org/abs/2410.17215"
+          },
+          {
+            "title": "Knowledge Distillation for Pre-Training Language Models",
+            "url": "https://arxiv.org/pdf/2410.17215"
+          },
+          {
+            "title": "MiniLLM: Knowledge Distillation of Large Language Models | OpenReview",
+            "url": "https://openreview.net/forum?id=5h0qf7IBZZ"
+          },
+          {
+            "title": "MiniPLM: Knowledge Distillation for Pre-training Language Models",
+            "url": "https://arxiv.org/html/2410.17215v3"
+          },
+          {
+            "title": "Pre-training Distillation for Large Language Models",
+            "url": "https://aclanthology.org/2025.acl-long.181.pdf"
+          },
+          {
+            "title": "Paper page - MiniPLM: Knowledge Distillation for Pre-Training Language Models",
+            "url": "https://huggingface.co/papers/2410.17215"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about MiniPLM:\n\n## Overview\n\nMiniPLM is a knowledge distillation (KD) framework for pre-training language models by refining the training data distribution with the teacher LM's knowledge. The paper was accepted at ICLR 2025.\n\n## Key Features\n\nMiniPLM addresses three main challenges in knowledge distillation for pre-training:\n\n**Efficiency:** MiniPLM performs offline teacher inference, allowing KD for multiple student LMs without adding training costs.\n\n**Flexibility:** MiniPLM operates solely on the training corpus, enabling KD across model families.\n\n**Effectiveness:** MiniPLM leverages the differences between large and small LMs to enhance the training data difficulty and diversity, helping student LMs acquire versatile and sophisticated knowledge.\n\n## Technical Approach\n\nMiniPLM distills the knowledge of the teacher LM into the student LM by adjusting the pre-training corpus of the student LM through offline Difference Sampling, based on the output probability discrepancy between the teacher LM and a small reference LM.\n\n## Results\n\nExtensive experiments demonstrate that MiniPLM boosts the student LMs' performance on 9 common downstream tasks, improves language modeling capabilities, and reduces pre-training computation. The benefit of MiniPLM extends to larger training scales, evidenced by the scaling curve extrapolation.\n\n## Resources\n\nCode, data, and models can be found at https://github.com/thu-coai/MiniPLM."
+    ],
+    "durationSeconds": 6.113636285000015
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01A4VYJQGpJZe962TXSDxNKE`</summary>
+
+```json
+{
+  "query": "execution trace value debate debugging LLM program repair structured filtering 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "18ed2b9f-1977-41b1-85d6-a1835ac2d484",
+  "uuid": "152ae200-3b67-4708-abaa-e69e3b0694e6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0195QAF4SHEfrr7DNVTwSNpG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 958,
+      "cache_read_input_tokens": 37187,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 958
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-14T13:52:01.895Z_
+
+<details><summary>↩ Tool result · `toolu_01A4VYJQGpJZe962TXSDxNKE`</summary>
+
+```text
+Web search results for query: "execution trace value debate debugging LLM program repair structured filtering 2024 2025"
+
+Links: [{"title":"LADYBUG: an LLM Agent DeBUGger for data-driven applications Joel Rorseth","url":"https://openproceedings.org/2025/conf/edbt/paper-313.pdf"},{"title":"Towards Effectively Leveraging Execution Traces for ...","url":"https://aclanthology.org/2025.knowledgenlp-1.17.pdf"},{"title":"Towards Effectively Leveraging Execution Traces for Program Repair with Code LLMs","url":"https://arxiv.org/html/2505.04441"},{"title":"A Large Language Model Debugger via Verifying Runtime ...","url":"https://aclanthology.org/2024.findings-acl.49.pdf"},{"title":"GitHub - FloridSleeves/LLMDebugger: LDB: A Large Language Model Debugger via Verifying Runtime Execution Step by Step (ACL'24) · GitHub","url":"https://github.com/FloridSleeves/LLMDebugger"},{"title":"How to Debug LLM Failures: A Practical Guide for AI Engineers - DEV Community","url":"https://dev.to/kuldeep_paul/how-to-debug-llm-failures-a-practical-guide-for-ai-engineers-n27"},{"title":"Do Code Semantics Help? A Comprehensive Study on ...","url":"https://aclanthology.org/2025.findings-emnlp.548.pdf"},{"title":"Trace-Based Diagnostics","url":"https://www.emergentmind.com/topics/trace-based-diagnostics"},{"title":"Runtime Execution Traces Guided Automated Program Repair with Multi-Agent Debate","url":"https://arxiv.org/html/2604.02647v1"},{"title":"DoVer: Intervention-Driven Auto Debugging for LLM Multi-Agent Systems","url":"https://arxiv.org/html/2512.06749v3"}]
+
+Based on the web search results, I found several recent research papers and tools related to execution traces, debugging, LLM program repair, and structured filtering from 2024-2025:
+
+## Key Research Areas
+
+**Execution Traces for Program Repair:**
+
+Recent work aims to augment automated program repair (APR) prompts with program execution traces, inspired by knowledge-augmented NLP approaches. Studies show that simply incorporating execution traces provides limited performance improvement over trace-free baselines in only 2 out of 6 tested configurations, and the effectiveness of execution traces diminishes as their complexity increases.
+
+Researchers have experimented with three different representations of execution traces: traces in collated format, LLM-optimized traces, and traces conditionally selected based on the LLM's confidence, finding that LLM-optimized trace-based prompts provide the most consistent results.
+
+**LLM Debugging Frameworks:**
+
+LADYBUG is a novel debugging tool that enables users to trace, modify, and efficiently re-execute the intermediate steps of an LLM agent, facilitating diagnosis and repair of hallucinations and other issues.
+
+LDB (LLM Debugger) is a debugging framework that enables LLMs to refine their generated programs with runtime execution information by segmenting programs into basic blocks and tracking variable values after each block, allowing LLMs to verify correctness block-by-block.
+
+**Multi-Agent Debate and Program Repair:**
+
+TraceRepair with multi-agent debate using DeepSeek-V3.2 correctly resolves 392 defects, outperforming compared methods in terms of correctly fixed defects.
+
+**Structured Trace Optimization:**
+
+Recent work explores structurally filtering and optimizing trace information to improve LLM reasoning about program execution behavior.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "18ed2b9f-1977-41b1-85d6-a1835ac2d484",
+  "uuid": "0e90e718-782d-477d-af38-53637691dd36",
+  "tool_use_result": {
+    "query": "execution trace value debate debugging LLM program repair structured filtering 2024 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0166TorBbrPhgL77iYjFodiP",
+        "content": [
+          {
+            "title": "LADYBUG: an LLM Agent DeBUGger for data-driven applications Joel Rorseth",
+            "url": "https://openproceedings.org/2025/conf/edbt/paper-313.pdf"
+          },
+          {
+            "title": "Towards Effectively Leveraging Execution Traces for ...",
+            "url": "https://aclanthology.org/2025.knowledgenlp-1.17.pdf"
+          },
+          {
+            "title": "Towards Effectively Leveraging Execution Traces for Program Repair with Code LLMs",
+            "url": "https://arxiv.org/html/2505.04441"
+          },
+          {
+            "title": "A Large Language Model Debugger via Verifying Runtime ...",
+            "url": "https://aclanthology.org/2024.findings-acl.49.pdf"
+          },
+          {
+            "title": "GitHub - FloridSleeves/LLMDebugger: LDB: A Large Language Model Debugger via Verifying Runtime Execution Step by Step (ACL'24) · GitHub",
+            "url": "https://github.com/FloridSleeves/LLMDebugger"
+          },
+          {
+            "title": "How to Debug LLM Failures: A Practical Guide for AI Engineers - DEV Community",
+            "url": "https://dev.to/kuldeep_paul/how-to-debug-llm-failures-a-practical-guide-for-ai-engineers-n27"
+          },
+          {
+            "title": "Do Code Semantics Help? A Comprehensive Study on ...",
+            "url": "https://aclanthology.org/2025.findings-emnlp.548.pdf"
+          },
+          {
+            "title": "Trace-Based Diagnostics",
+            "url": "https://www.emergentmind.com/topics/trace-based-diagnostics"
+          },
+          {
+            "title": "Runtime Execution Traces Guided Automated Program Repair with Multi-Agent Debate",
+            "url": "https://arxiv.org/html/2604.02647v1"
+          },
+          {
+            "title": "DoVer: Intervention-Driven Auto Debugging for LLM Multi-Agent Systems",
+            "url": "https://arxiv.org/html/2512.06749v3"
+          }
+        ]
+      },
+      "Based on the web search results, I found several recent research papers and tools related to execution traces, debugging, LLM program repair, and structured filtering from 2024-2025:\n\n## Key Research Areas\n\n**Execution Traces for Program Repair:**\n\nRecent work aims to augment automated program repair (APR) prompts with program execution traces, inspired by knowledge-augmented NLP approaches. Studies show that simply incorporating execution traces provides limited performance improvement over trace-free baselines in only 2 out of 6 tested configurations, and the effectiveness of execution traces diminishes as their complexity increases.\n\nResearchers have experimented with three different representations of execution traces: traces in collated format, LLM-optimized traces, and traces conditionally selected based on the LLM's confidence, finding that LLM-optimized trace-based prompts provide the most consistent results.\n\n**LLM Debugging Frameworks:**\n\nLADYBUG is a novel debugging tool that enables users to trace, modify, and efficiently re-execute the intermediate steps of an LLM agent, facilitating diagnosis and repair of hallucinations and other issues.\n\nLDB (LLM Debugger) is a debugging framework that enables LLMs to refine their generated programs with runtime execution information by segmenting programs into basic blocks and tracking variable values after each block, allowing LLMs to verify correctness block-by-block.\n\n**Multi-Agent Debate and Program Repair:**\n\nTraceRepair with multi-agent debate using DeepSeek-V3.2 correctly resolves 392 defects, outperforming compared methods in terms of correctly fixed defects.\n\n**Structured Trace Optimization:**\n\nRecent work explores structurally filtering and optimizing trace information to improve LLM reasoning about program execution behavior."
+    ],
+    "durationSeconds": 10.038149328
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VeGdwCMUVjs82FqPMt7j1f`</summary>
+
+```json
+{
+  "query": "spectrum-based fault localization deep learning SBFL neural 2023 2024 survey"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "18ed2b9f-1977-41b1-85d6-a1835ac2d484",
+  "uuid": "2401e642-c4d5-4a1b-84ba-08395c78a756",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bnmq86YusUiRx8aMnyoJyN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 998,
+      "cache_read_input_tokens": 38145,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 998
+      },
+      "output_tokens": 39,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-14T13:52:12.659Z_
+
+<details><summary>↩ Tool result · `toolu_01VeGdwCMUVjs82FqPMt7j1f`</summary>
+
+```text
+Web search results for query: "spectrum-based fault localization deep learning SBFL neural 2023 2024 survey"
+
+Links: [{"title":"Two-Phase Software Fault Localization Based on Relational Graph Convolutional Neural Networks - ScienceDirect","url":"https://www.sciencedirect.com/org/science/article/pii/S1546221825000888"},{"title":"SBEST: Spectrum-based fault localization without fault-triggering tests | Empirical Software Engineering | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s10664-025-10761-8"},{"title":"CMC | Two-Phase Software Fault Localization Based on Relational Graph Convolutional Neural Networks","url":"https://www.techscience.com/cmc/v82n2/59452"},{"title":"Combi-FL: Neural network and SBFL based fault localization using mutation analysis | Request PDF","url":"https://www.researchgate.net/publication/354263016_Combi-FL_Neural_network_and_SBFL_based_fault_localization_using_mutation_analysis"},{"title":"The Effects of Soft Assertion on Spectrum-Based Fault Localization | Springer Nature Link","url":"https://link.springer.com/chapter/10.1007/978-3-031-49266-2_26"},{"title":"Spectrum‐based fault localization using empirical mode decomposition algorithm - Fan - 2024 - Journal of Software: Evolution and Process - Wiley Online Library","url":"https://onlinelibrary.wiley.com/doi/10.1002/smr.2546"},{"title":"[2310.18987] Path Analysis for Effective Fault Localization in Deep Neural Networks","url":"https://arxiv.org/abs/2310.18987"},{"title":"Do Exceptional Behavior Tests Matter on Spectrum-Based Fault Localization? | Springer Nature Link","url":"https://link.springer.com/chapter/10.1007/978-3-031-49266-2_28"},{"title":"Improving fault localization via weighted execution graph and graph attention network - Yan - 2024 - Journal of Software: Evolution and Process - Wiley Online Library","url":"https://onlinelibrary.wiley.com/doi/10.1002/smr.2619"},{"title":"Augmenting Automated Spectrum Based Fault Localization for Multiple Faults","url":"https://www.ijcai.org/proceedings/2023/0350.pdf"}]
+
+Based on the web search results, I found several relevant papers and recent research on spectrum-based fault localization (SBFL) combined with deep learning and neural networks from 2023-2024:
+
+## Key Recent Research (2023-2024):
+
+**Deep Learning-based SBFL Approaches:**
+
+1. Two-RGCNFL (Two-Phase Software Fault Localization): This approach uses relational graph convolutional neural networks, constructing a method call dependence graph to extract intra-class and inter-class dependencies. It improves Top-1 accuracy by 262.86% compared to traditional SBFL.
+
+2. WEGAT (Weighted Execution Graph and Graph Attention Network): Uses a graph structure to represent coverage information between test cases and program elements, with a weighted execution graph generated by applying predicate execution sequences.
+
+3. EMD-SBFL: A technique using empirical mode decomposition that was tested on Siemens programs and Defects4j, significantly locating nearly doubled faults compared to pure SBFL.
+
+**Hybrid Neural and SBFL Approaches:**
+
+Combi-FL combines SBFL techniques and neural network-based techniques with mutation analysis, using ten prominent FL techniques that are combined using learning-to-rank algorithms.
+
+**DNN-Specific Approaches:**
+
+NP-SBFL leverages Layer-wise Relevance Propagation to identify essential faulty neural pathways in deep neural networks.
+
+These recent works show the trend of combining traditional spectrum-based techniques with neural network architectures like graph convolutional networks and attention mechanisms to improve fault localization accuracy.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "18ed2b9f-1977-41b1-85d6-a1835ac2d484",
+  "uuid": "16053299-ac9c-4dd0-9f9e-cc964818cd3c",
+  "tool_use_result": {
+    "query": "spectrum-based fault localization deep learning SBFL neural 2023 2024 survey",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_019HyJsxhTJzb16M9FS5dUSb",
+        "content": [
+          {
+            "title": "Two-Phase Software Fault Localization Based on Relational Graph Convolutional Neural Networks - ScienceDirect",
+            "url": "https://www.sciencedirect.com/org/science/article/pii/S1546221825000888"
+          },
+          {
+            "title": "SBEST: Spectrum-based fault localization without fault-triggering tests | Empirical Software Engineering | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s10664-025-10761-8"
+          },
+          {
+            "title": "CMC | Two-Phase Software Fault Localization Based on Relational Graph Convolutional Neural Networks",
+            "url": "https://www.techscience.com/cmc/v82n2/59452"
+          },
+          {
+            "title": "Combi-FL: Neural network and SBFL based fault localization using mutation analysis | Request PDF",
+            "url": "https://www.researchgate.net/publication/354263016_Combi-FL_Neural_network_and_SBFL_based_fault_localization_using_mutation_analysis"
+          },
+          {
+            "title": "The Effects of Soft Assertion on Spectrum-Based Fault Localization | Springer Nature Link",
+            "url": "https://link.springer.com/chapter/10.1007/978-3-031-49266-2_26"
+          },
+          {
+            "title": "Spectrum‐based fault localization using empirical mode decomposition algorithm - Fan - 2024 - Journal of Software: Evolution and Process - Wiley Online Library",
+            "url": "https://onlinelibrary.wiley.com/doi/10.1002/smr.2546"
+          },
+          {
+            "title": "[2310.18987] Path Analysis for Effective Fault Localization in Deep Neural Networks",
+            "url": "https://arxiv.org/abs/2310.18987"
+          },
+          {
+            "title": "Do Exceptional Behavior Tests Matter on Spectrum-Based Fault Localization? | Springer Nature Link",
+            "url": "https://link.springer.com/chapter/10.1007/978-3-031-49266-2_28"
+          },
+          {
+            "title": "Improving fault localization via weighted execution graph and graph attention network - Yan - 2024 - Journal of Software: Evolution and Process - Wiley Online Library",
+            "url": "https://onlinelibrary.wiley.com/doi/10.1002/smr.2619"
+          },
+          {
+            "title": "Augmenting Automated Spectrum Based Fault Localization for Multiple Faults",
+            "url": "https://www.ijcai.org/proceedings/2023/0350.pdf"
+          }
+        ]
+      },
+      "Based on the web search results, I found several relevant papers and recent research on spectrum-based fault localization (SBFL) combined with deep learning and neural networks from 2023-2024:\n\n## Key Recent Research (2023-2024):\n\n**Deep Learning-based SBFL Approaches:**\n\n1. Two-RGCNFL (Two-Phase Software Fault Localization): This approach uses relational graph convolutional neural networks, constructing a method call dependence graph to extract intra-class and inter-class dependencies. It improves Top-1 accuracy by 262.86% compared to traditional SBFL.\n\n2. WEGAT (Weighted Execution Graph and Graph Attention Network): Uses a graph structure to represent coverage information between test cases and program elements, with a weighted execution graph generated by applying predicate execution sequences.\n\n3. EMD-SBFL: A technique using empirical mode decomposition that was tested on Siemens programs and Defects4j, significantly locating nearly doubled faults compared to pure SBFL.\n\n**Hybrid Neural and SBFL Approaches:**\n\nCombi-FL combines SBFL techniques and neural network-based techniques with mutation analysis, using ten prominent FL techniques that are combined using learning-to-rank algorithms.\n\n**DNN-Specific Approaches:**\n\nNP-SBFL leverages Layer-wise Relevance Propagation to identify essential faulty neural pathways in deep neural networks.\n\nThese recent works show the trend of combining traditional spectrum-based techniques with neural network architectures like graph convolutional networks and attention mechanisms to improve fault localization accuracy."
+    ],
+    "durationSeconds": 8.10665369799998
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01AfiwxfZv98ATUUGAnrP8xc`</summary>
+
+```json
+{
+  "query": "\"empirical study\" knowledge distillation code understanding Avatar Compressor CodeBERT 2024 ICSE"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "18ed2b9f-1977-41b1-85d6-a1835ac2d484",
+  "uuid": "8c139c02-3acc-4ec9-872d-10763de4b8b6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QXBsNF9ThWkgN8jFsVZzQc",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1077,
+      "cache_read_input_tokens": 39143,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1077
+      },
+      "output_tokens": 40,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-14T13:52:22.781Z_
+
+<details><summary>↩ Tool result · `toolu_01AfiwxfZv98ATUUGAnrP8xc`</summary>
+
+```text
+Web search results for query: ""empirical study" knowledge distillation code understanding Avatar Compressor CodeBERT 2024 ICSE"
+
+Links: [{"title":"Greening Large Language Models of Code","url":"https://arxiv.org/pdf/2309.04076"},{"title":"An Empirical Study of Knowledge Distillation for Code Understanding Tasks","url":"https://arxiv.org/html/2508.15423v1"},{"title":"A Metamorphic Testing Perspective on Knowledge Distillation for Language Models of Code: Does the Student Deeply Mimic the Teacher?","url":"https://arxiv.org/html/2511.05476"},{"title":"Leveraging Mixture of Experts (MoE) to Improve Knowledge Distillation for Language Models of Code","url":"https://arxiv.org/html/2603.13213"},{"title":"Metamorphic-Based Many-Objective Distillation of LLMs for Code-Related Tasks | IEEE Conference Publication | IEEE Xplore","url":"https://ieeexplore.ieee.org/iel8/11029684/11029718/11029766.pdf"},{"title":"(PDF) An Empirical Study of Knowledge Distillation for Code Understanding Tasks","url":"https://www.researchgate.net/publication/394831258_An_Empirical_Study_of_Knowledge_Distillation_for_Code_Understanding_Tasks"},{"title":"(PDF) On the Compression of Language Models for Code: An Empirical Study on CodeBERT","url":"https://www.researchgate.net/publication/387184626_On_the_Compression_of_Language_Models_for_Code_An_Empirical_Study_on_CodeBERT"},{"title":"Model Compression vs. Adversarial Robustness","url":"https://arxiv.org/pdf/2508.03949"},{"title":"[2508.15423] An Empirical Study of Knowledge Distillation for Code Understanding Tasks","url":"https://arxiv.org/abs/2508.15423"},{"title":"GitHub - saltudelft/ml4se: A curated list of papers, theses, datasets, and tools related to the application of Machine Learning for Software Engineering · GitHub","url":"https://github.com/saltudelft/ml4se"}]
+
+I found several relevant research papers related to your search query. Here's a summary of the key findings:
+
+## Main Research Papers Found
+
+An empirical study titled "An Empirical Study of Knowledge Distillation for Code Understanding Tasks" examines knowledge distillation for code understanding, which directly matches your search query.
+
+## Related Work on Avatar and Compressor
+
+Avatar was presented at ICSE-SEIS'24 (April 14–20, 2024, Lisbon, Portugal) and includes evaluation results on CodeBERT and GraphCodeBERT. The evaluation focuses on optimizing CodeBERT and GraphCodeBERT using two datasets for automated software engineering tasks: vulnerability prediction and clone detection.
+
+Compressor (Shi et al., 2022) uses a genetic algorithm to find optimal model hyperparameters before knowledge distillation, and its successor Avatar (Shi et al., 2024) prunes the hyperparameter space with an SMT solver before proceeding with knowledge distillation.
+
+## Performance Results
+
+Avatar produces optimized models with a compact size of 3 MB (a 160× reduction compared to original models), reducing inference latency by up to 76× and optimizing energy consumption by up to 184× less.
+
+The search results provide several related papers examining knowledge distillation effectiveness, compression techniques, and robustness considerations for code understanding tasks using models like CodeBERT and GraphCodeBERT.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "18ed2b9f-1977-41b1-85d6-a1835ac2d484",
+  "uuid": "078b48d0-c960-4f91-bea6-754248595ac8",
+  "tool_use_result": {
+    "query": "\"empirical study\" knowledge distillation code understanding Avatar Compressor CodeBERT 2024 ICSE",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01TbbbitFFS7Xg7nCSHBSQzq",
+        "content": [
+          {
+            "title": "Greening Large Language Models of Code",
+            "url": "https://arxiv.org/pdf/2309.04076"
+          },
+          {
+            "title": "An Empirical Study of Knowledge Distillation for Code Understanding Tasks",
+            "url": "https://arxiv.org/html/2508.15423v1"
+          },
+          {
+            "title": "A Metamorphic Testing Perspective on Knowledge Distillation for Language Models of Code: Does the Student Deeply Mimic the Teacher?",
+            "url": "https://arxiv.org/html/2511.05476"
+          },
+          {
+            "title": "Leveraging Mixture of Experts (MoE) to Improve Knowledge Distillation for Language Models of Code",
+            "url": "https://arxiv.org/html/2603.13213"
+          },
+          {
+            "title": "Metamorphic-Based Many-Objective Distillation of LLMs for Code-Related Tasks | IEEE Conference Publication | IEEE Xplore",
+            "url": "https://ieeexplore.ieee.org/iel8/11029684/11029718/11029766.pdf"
+          },
+          {
+            "title": "(PDF) An Empirical Study of Knowledge Distillation for Code Understanding Tasks",
+            "url": "https://www.researchgate.net/publication/394831258_An_Empirical_Study_of_Knowledge_Distillation_for_Code_Understanding_Tasks"
+          },
+          {
+            "title": "(PDF) On the Compression of Language Models for Code: An Empirical Study on CodeBERT",
+            "url": "https://www.researchgate.net/publication/387184626_On_the_Compression_of_Language_Models_for_Code_An_Empirical_Study_on_CodeBERT"
+          },
+          {
+            "title": "Model Compression vs. Adversarial Robustness",
+            "url": "https://arxiv.org/pdf/2508.03949"
+          },
+          {
+            "title": "[2508.15423] An Empirical Study of Knowledge Distillation for Code Understanding Tasks",
+            "url": "https://arxiv.org/abs/2508.15423"
+          },
+          {
+            "title": "GitHub - saltudelft/ml4se: A curated list of papers, theses, datasets, and tools related to the application of Machine Learning for Software Engineering · GitHub",
+            "url": "https://github.com/saltudelft/ml4se"
+          }
+        ]
+      },
+      "I found several relevant research papers related to your search query. Here's a summary of the key findings:\n\n## Main Research Papers Found\n\nAn empirical study titled \"An Empirical Study of Knowledge Distillation for Code Understanding Tasks\" examines knowledge distillation for code understanding, which directly matches your search query.\n\n## Related Work on Avatar and Compressor\n\nAvatar was presented at ICSE-SEIS'24 (April 14–20, 2024, Lisbon, Portugal) and includes evaluation results on CodeBERT and GraphCodeBERT. The evaluation focuses on optimizing CodeBERT and GraphCodeBERT using two datasets for automated software engineering tasks: vulnerability prediction and clone detection.\n\nCompressor (Shi et al., 2022) uses a genetic algorithm to find optimal model hyperparameters before knowledge distillation, and its successor Avatar (Shi et al., 2024) prunes the hyperparameter space with an SMT solver before proceeding with knowledge distillation.\n\n## Performance Results\n\nAvatar produces optimized models with a compact size of 3 MB (a 160× reduction compared to original models), reducing inference latency by up to 76× and optimizing energy consumption by up to 184× less.\n\nThe search results provide several related papers examining knowledge distillation effectiveness, compression techniques, and robustness considerations for code understanding tasks using models like CodeBERT and GraphCodeBERT."
+    ],
+    "durationSeconds": 7.200403948999999
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QVhpnvfEg3wcdUbqDnZ6ZX`</summary>
+
+```json
+{
+  "query": "Greening large language models code Compressor Avatar knowledge distillation software arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "18ed2b9f-1977-41b1-85d6-a1835ac2d484",
+  "uuid": "1a166cfe-86a8-46d4-ab18-c59e862b230f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018stW21z3n2WZCxw8TwzzXS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1082,
+      "cache_read_input_tokens": 40220,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1082
+      },
+      "output_tokens": 41,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-14T13:52:33.567Z_
+
+<details><summary>↩ Tool result · `toolu_01QVhpnvfEg3wcdUbqDnZ6ZX`</summary>
+
+```text
+Web search results for query: "Greening large language models code Compressor Avatar knowledge distillation software arxiv"
+
+Links: [{"title":"Greening Large Language Models of Code","url":"https://arxiv.org/pdf/2309.04076"},{"title":"Greening Large Language Models of Code | Green AI — Annotated Bibliography","url":"https://luiscruz.github.io/green-ai/publications/2024-04-shi-greening.html"},{"title":"[2309.04076] Greening Large Language Models of Code","url":"https://arxiv.org/abs/2309.04076"},{"title":"Model Compression and Efficient Inference for Large Language Models: A Survey","url":"https://arxiv.org/html/2402.09748v1"},{"title":"Compact Language Models via Pruning and Knowledge Distillation","url":"https://arxiv.org/html/2407.14679v1"},{"title":"Knowledge Distillation for Large Language Models","url":"https://arxiv.org/html/2603.13765"},{"title":"[2407.14679] Compact Language Models via Pruning and Knowledge Distillation","url":"https://arxiv.org/abs/2407.14679"},{"title":"GitHub - HuangOwen/Awesome-LLM-Compression: Awesome LLM compression research papers and tools. · GitHub","url":"https://github.com/HuangOwen/Awesome-LLM-Compression"},{"title":"GREEN-CODE: Optimizing Energy Efficiency in Large Language Models for Code Generation","url":"https://arxiv.org/html/2501.11006v1"},{"title":"[2603.13765] Knowledge Distillation for Large Language Models","url":"https://arxiv.org/abs/2603.13765"}]
+
+Based on the search results, I found relevant information about the paper "Greening Large Language Models of Code" and related concepts:
+
+## Key Findings
+
+Avatar is a novel approach that crafts a deployable model from a large language model of code by optimizing it in terms of model size, inference latency, energy consumption, and carbon footprint while maintaining a comparable level of effectiveness.
+
+### Methodology
+
+The approach follows Compressor to evenly divide the training set into two mutually exclusive halves, with one half used for fine-tuning the language models, while the other, with erased labels, serves to train the model with configurations generated by Avatar. The SMT solver is used to form an appropriate configuration space, while the optimization algorithm identifies the Pareto-optimal set of configurations for training the optimized models using knowledge distillation.
+
+### Results
+
+Avatar produces optimized models with a small size (3 MB), which is 160x smaller than the original large models. On the two tasks, the optimized models significantly reduce the energy consumption (up to 184x less), carbon footprint (up to 157x less), and inference latency (up to 76x faster), with only a negligible loss in effectiveness (1.67% on average).
+
+### Evaluation Tasks
+
+Avatar is assessed on two popular software engineering tasks: vulnerability prediction and clone detection.
+
+The paper demonstrates an effective approach to creating efficient, environmentally-friendly code language models suitable for deployment on developers' devices.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "18ed2b9f-1977-41b1-85d6-a1835ac2d484",
+  "uuid": "2b8490ee-a03c-4e75-9d31-427b847df6b2",
+  "tool_use_result": {
+    "query": "Greening large language models code Compressor Avatar knowledge distillation software arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01DYEiMKzrtZLpbZg6Fm8179",
+        "content": [
+          {
+            "title": "Greening Large Language Models of Code",
+            "url": "https://arxiv.org/pdf/2309.04076"
+          },
+          {
+            "title": "Greening Large Language Models of Code | Green AI — Annotated Bibliography",
+            "url": "https://luiscruz.github.io/green-ai/publications/2024-04-shi-greening.html"
+          },
+          {
+            "title": "[2309.04076] Greening Large Language Models of Code",
+            "url": "https://arxiv.org/abs/2309.04076"
+          },
+          {
+            "title": "Model Compression and Efficient Inference for Large Language Models: A Survey",
+            "url": "https://arxiv.org/html/2402.09748v1"
+          },
+          {
+            "title": "Compact Language Models via Pruning and Knowledge Distillation",
+            "url": "https://arxiv.org/html/2407.14679v1"
+          },
+          {
+            "title": "Knowledge Distillation for Large Language Models",
+            "url": "https://arxiv.org/html/2603.13765"
+          },
+          {
+            "title": "[2407.14679] Compact Language Models via Pruning and Knowledge Distillation",
+            "url": "https://arxiv.org/abs/2407.14679"
+          },
+          {
+            "title": "GitHub - HuangOwen/Awesome-LLM-Compression: Awesome LLM compression research papers and tools. · GitHub",
+            "url": "https://github.com/HuangOwen/Awesome-LLM-Compression"
+          },
+          {
+            "title": "GREEN-CODE: Optimizing Energy Efficiency in Large Language Models for Code Generation",
+            "url": "https://arxiv.org/html/2501.11006v1"
+          },
+          {
+            "title": "[2603.13765] Knowledge Distillation for Large Language Models",
+            "url": "https://arxiv.org/abs/2603.13765"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about the paper \"Greening Large Language Models of Code\" and related concepts:\n\n## Key Findings\n\nAvatar is a novel approach that crafts a deployable model from a large language model of code by optimizing it in terms of model size, inference latency, energy consumption, and carbon footprint while maintaining a comparable level of effectiveness.\n\n### Methodology\n\nThe approach follows Compressor to evenly divide the training set into two mutually exclusive halves, with one half used for fine-tuning the language models, while the other, with erased labels, serves to train the model with configurations generated by Avatar. The SMT solver is used to form an appropriate configuration space, while the optimization algorithm identifies the Pareto-optimal set of configurations for training the optimized models using knowledge distillation.\n\n### Results\n\nAvatar produces optimized models with a small size (3 MB), which is 160x smaller than the original large models. On the two tasks, the optimized models significantly reduce the energy consumption (up to 184x less), carbon footprint (up to 157x less), and inference latency (up to 76x faster), with only a negligible loss in effectiveness (1.67% on average).\n\n### Evaluation Tasks\n\nAvatar is assessed on two popular software engineering tasks: vulnerability prediction and clone detection.\n\nThe paper demonstrates an effective approach to creating efficient, environmentally-friendly code language models suitable for deployment on developers' devices."
+    ],
+    "durationSeconds": 7.673191503999988
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45_
+
+Now let me search for a few more specific papers to round out the survey.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "18ed2b9f-1977-41b1-85d6-a1835ac2d484",
+  "uuid": "8edfab7a-8738-4509-95ae-9a58e48f9579",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HdkZmdFnPBCAUvua7EnTad",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 851,
+      "cache_read_input_tokens": 41302,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 851
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01BG8XFdna1Ca5ssA1tgT3jn`</summary>
+
+```json
+{
+  "query": "RepairAgent autonomous LLM agent program repair 2024 ISSTA"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "18ed2b9f-1977-41b1-85d6-a1835ac2d484",
+  "uuid": "28865b48-2233-4079-83c1-220c08826947",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HdkZmdFnPBCAUvua7EnTad",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 851,
+      "cache_read_input_tokens": 41302,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 851
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-14T13:52:43.499Z_
+
+<details><summary>↩ Tool result · `toolu_01BG8XFdna1Ca5ssA1tgT3jn`</summary>
+
+```text
+Web search results for query: "RepairAgent autonomous LLM agent program repair 2024 ISSTA"
+
+Links: [{"title":"[2403.17134] RepairAgent: An Autonomous, LLM-Based Agent for Program Repair","url":"https://arxiv.org/abs/2403.17134"},{"title":"RepairAgent: An Autonomous, LLM-Based Agent for Program Repair | Proceedings of the IEEE/ACM 47th International Conference on Software Engineering","url":"https://dl.acm.org/doi/10.1109/ICSE55347.2025.00157"},{"title":"GitHub - sola-st/RepairAgent: RepairAgent is an autonomous LLM-based agent for software repair. · GitHub","url":"https://github.com/sola-st/RepairAgent"},{"title":"RepairAgent: An Autonomous, LLM-Based Agent for Program Repair Islem Bouzenia","url":"https://jespereggers.com/wp-content/uploads/2024/10/Bouzenia-et-al.-2024-RepairAgent-An-Autonomous-LLM-Based-Agent-for-Pr-1.pdf"},{"title":"Automated Program Repair via Conversation:","url":"https://lingming.cs.illinois.edu/publications/issta2024.pdf"},{"title":"GitHub - FudanSELab/Agent4SE-Paper-List: Repository for the paper \"Large Language Model-Based Agents for Software Engineering: A Survey\". Keep updating. · GitHub","url":"https://github.com/FudanSELab/Agent4SE-Paper-List"},{"title":"RepairAgent: An Autonomous, LLM-Based Agent for Program Repair | IEEE Conference Publication | IEEE Xplore","url":"https://ieeexplore.ieee.org/document/11029914/"},{"title":"GitHub - GLEAM-Lab/ProgramRepair: A Survey of LLM-based Automated Program Repair: Taxonomies, Design Paradigms, and Applications · GitHub","url":"https://github.com/GLEAM-Lab/ProgramRepair"},{"title":"RepairAgent: An Autonomous, LLM-Based Agent for Program Repair | Request PDF","url":"https://www.researchgate.net/publication/392956389_RepairAgent_An_Autonomous_LLM-Based_Agent_for_Program_Repair"},{"title":"RepairAgent: An Autonomous, LLM-Based Agent for Program Repair Islem Bouzenia","url":"https://software-lab.org/publications/icse2025_RepairAgent.pdf"}]
+
+Based on the search results, here's what I found about RepairAgent:
+
+## Overview
+
+RepairAgent is the first work to address the program repair challenge through an autonomous agent based on a large language model (LLM). Unlike existing deep learning-based approaches that use fixed prompts or feedback loops, RepairAgent treats the LLM as an agent capable of autonomously planning and executing actions to fix bugs by invoking suitable tools, and freely interleaves gathering information about the bug, gathering repair ingredients, and validating fixes.
+
+## Key Technical Contributions
+
+Key contributions include a set of tools useful for program repair, a dynamically updated prompt format that allows the LLM to interact with these tools, and a finite state machine that guides the agent in invoking the tools.
+
+## Performance Results
+
+On the popular Defects4J dataset, RepairAgent autonomously repaired 164 bugs, including 39 bugs not fixed by prior techniques. Interacting with the LLM imposes an average cost of 270,000 tokens per bug, which translates to 14 cents USD per bug under current OpenAI GPT-3.5 pricing.
+
+## Publication Venue
+
+RepairAgent was published at ICSE 2025. (Note: While your search query mentioned ISSTA, the paper was actually published at ICSE 2025, not ISSTA 2024.)
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "18ed2b9f-1977-41b1-85d6-a1835ac2d484",
+  "uuid": "1276d72f-61b3-49d2-a732-75ca6df0369e",
+  "tool_use_result": {
+    "query": "RepairAgent autonomous LLM agent program repair 2024 ISSTA",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_018m58DSLZc4webkzWzHRr4s",
+        "content": [
+          {
+            "title": "[2403.17134] RepairAgent: An Autonomous, LLM-Based Agent for Program Repair",
+            "url": "https://arxiv.org/abs/2403.17134"
+          },
+          {
+            "title": "RepairAgent: An Autonomous, LLM-Based Agent for Program Repair | Proceedings of the IEEE/ACM 47th International Conference on Software Engineering",
+            "url": "https://dl.acm.org/doi/10.1109/ICSE55347.2025.00157"
+          },
+          {
+            "title": "GitHub - sola-st/RepairAgent: RepairAgent is an autonomous LLM-based agent for software repair. · GitHub",
+            "url": "https://github.com/sola-st/RepairAgent"
+          },
+          {
+            "title": "RepairAgent: An Autonomous, LLM-Based Agent for Program Repair Islem Bouzenia",
+            "url": "https://jespereggers.com/wp-content/uploads/2024/10/Bouzenia-et-al.-2024-RepairAgent-An-Autonomous-LLM-Based-Agent-for-Pr-1.pdf"
+          },
+          {
+            "title": "Automated Program Repair via Conversation:",
+            "url": "https://lingming.cs.illinois.edu/publications/issta2024.pdf"
+          },
+          {
+            "title": "GitHub - FudanSELab/Agent4SE-Paper-List: Repository for the paper \"Large Language Model-Based Agents for Software Engineering: A Survey\". Keep updating. · GitHub",
+            "url": "https://github.com/FudanSELab/Agent4SE-Paper-List"
+          },
+          {
+            "title": "RepairAgent: An Autonomous, LLM-Based Agent for Program Repair | IEEE Conference Publication | IEEE Xplore",
+            "url": "https://ieeexplore.ieee.org/document/11029914/"
+          },
+          {
+            "title": "GitHub - GLEAM-Lab/ProgramRepair: A Survey of LLM-based Automated Program Repair: Taxonomies, Design Paradigms, and Applications · GitHub",
+            "url": "https://github.com/GLEAM-Lab/ProgramRepair"
+          },
+          {
+            "title": "RepairAgent: An Autonomous, LLM-Based Agent for Program Repair | Request PDF",
+            "url": "https://www.researchgate.net/publication/392956389_RepairAgent_An_Autonomous_LLM-Based_Agent_for_Program_Repair"
+          },
+          {
+            "title": "RepairAgent: An Autonomous, LLM-Based Agent for Program Repair Islem Bouzenia",
+            "url": "https://software-lab.org/publications/icse2025_RepairAgent.pdf"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about RepairAgent:\n\n## Overview\n\nRepairAgent is the first work to address the program repair challenge through an autonomous agent based on a large language model (LLM). Unlike existing deep learning-based approaches that use fixed prompts or feedback loops, RepairAgent treats the LLM as an agent capable of autonomously planning and executing actions to fix bugs by invoking suitable tools, and freely interleaves gathering information about the bug, gathering repair ingredients, and validating fixes.\n\n## Key Technical Contributions\n\nKey contributions include a set of tools useful for program repair, a dynamically updated prompt format that allows the LLM to interact with these tools, and a finite state machine that guides the agent in invoking the tools.\n\n## Performance Results\n\nOn the popular Defects4J dataset, RepairAgent autonomously repaired 164 bugs, including 39 bugs not fixed by prior techniques. Interacting with the LLM imposes an average cost of 270,000 tokens per bug, which translates to 14 cents USD per bug under current OpenAI GPT-3.5 pricing.\n\n## Publication Venue\n\nRepairAgent was published at ICSE 2025. (Note: While your search query mentioned ISSTA, the paper was actually published at ICSE 2025, not ISSTA 2024.)"
+    ],
+    "durationSeconds": 6.631187885000021
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FzuMweGUmxtteXGLhpMFPT`</summary>
+
+```json
+{
+  "query": "SWE-bench Jimenez 2024 ICLR real world GitHub issues benchmark"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "18ed2b9f-1977-41b1-85d6-a1835ac2d484",
+  "uuid": "76253915-e2bc-46a1-ad89-c87f5c2bee14",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012fkZkfgM3BDZ9W24fg1ViW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1046,
+      "cache_read_input_tokens": 42153,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1046
+      },
+      "output_tokens": 39,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-14T13:52:54.278Z_
+
+<details><summary>↩ Tool result · `toolu_01FzuMweGUmxtteXGLhpMFPT`</summary>
+
+```text
+Web search results for query: "SWE-bench Jimenez 2024 ICLR real world GitHub issues benchmark"
+
+Links: [{"title":"GitHub - SWE-bench/SWE-bench: SWE-bench: Can Language Models Resolve Real-world Github Issues? · GitHub","url":"https://github.com/swe-bench/SWE-bench"},{"title":"Can Language Models Resolve Real-world Github Issues?","url":"https://www.swebench.com/original.html"},{"title":"Published as a conference paper at ICLR 2024 SWE-BENCH:","url":"https://arxiv.org/pdf/2310.06770"},{"title":"[2310.06770] SWE-bench: Can Language Models Resolve Real-World GitHub Issues?","url":"https://arxiv.org/abs/2310.06770"},{"title":"GitHub - METR/SWE-bench-fork: [ICLR 2024] SWE-bench: Can Language Models Resolve Real-world Github Issues? · GitHub","url":"https://github.com/METR/SWE-bench-fork"},{"title":"GitHub - Laredo-Labs/SWEbench: [ICLR 2024] SWE-Bench: Can Language Models Resolve Real-world Github Issues? · GitHub","url":"https://github.com/Laredo-Labs/SWEbench"},{"title":"SWE-bench: Can Language Models Resolve Real-world Github Issues? | OpenReview","url":"https://openreview.net/forum?id=VTF8yNQM66"},{"title":"Overview - SWE-bench","url":"https://www.swebench.com/SWE-bench/"},{"title":"SWE-bench Lite","url":"https://www.swebench.com/lite.html"},{"title":"GitHub - lifehyun/SWE-bench-LLM_model-: [ICLR 2024] SWE-Bench: Can Language Models Resolve Real-world Github Issues?","url":"https://github.com/lifehyun/SWE-bench-LLM_model-"}]
+
+I found comprehensive information about SWE-bench. Here's what I found:
+
+## Overview
+
+SWE-bench was accepted to ICLR 2024 as an oral presentation and is a benchmark for evaluating large language models on real world software issues collected from GitHub.
+
+## Benchmark Details
+
+SWE-bench is an evaluation framework consisting of 2,294 software engineering problems drawn from real GitHub issues and corresponding pull requests across 12 popular Python repositories. Given a codebase along with a description of an issue to be resolved, a language model is tasked with editing the codebase to address the issue.
+
+## Data Collection
+
+The benchmark was created by crawling Pull Requests and Issues from 12 popular Python repositories with 2,294 task instances. Issue descriptions are typically long and detailed (195 words on average), and codebases regularly contain many thousands of files, requiring identifying the relatively small number of lines that need to be edited to solve an issue amongst a sea of context.
+
+## Performance Results
+
+Evaluations show that both state-of-the-art proprietary models and a fine-tuned model SWE-Llama can resolve only the simplest issues, with the best-performing model, Claude 2, able to solve a mere 1.96% of the issues.
+
+## Authors
+
+The paper was authored by Carlos E Jimenez, John Yang, Alexander Wettig, Shunyu Yao, Kexin Pei, Ofir Press, and Karthik R Narasimhan.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "18ed2b9f-1977-41b1-85d6-a1835ac2d484",
+  "uuid": "c11e4288-1971-4c6a-adaf-5db62160b1ad",
+  "tool_use_result": {
+    "query": "SWE-bench Jimenez 2024 ICLR real world GitHub issues benchmark",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01L4svs5GbMAQ5BHdsCFk4Wd",
+        "content": [
+          {
+            "title": "GitHub - SWE-bench/SWE-bench: SWE-bench: Can Language Models Resolve Real-world Github Issues? · GitHub",
+            "url": "https://github.com/swe-bench/SWE-bench"
+          },
+          {
+            "title": "Can Language Models Resolve Real-world Github Issues?",
+            "url": "https://www.swebench.com/original.html"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2024 SWE-BENCH:",
+            "url": "https://arxiv.org/pdf/2310.06770"
+          },
+          {
+            "title": "[2310.06770] SWE-bench: Can Language Models Resolve Real-World GitHub Issues?",
+            "url": "https://arxiv.org/abs/2310.06770"
+          },
+          {
+            "title": "GitHub - METR/SWE-bench-fork: [ICLR 2024] SWE-bench: Can Language Models Resolve Real-world Github Issues? · GitHub",
+            "url": "https://github.com/METR/SWE-bench-fork"
+          },
+          {
+            "title": "GitHub - Laredo-Labs/SWEbench: [ICLR 2024] SWE-Bench: Can Language Models Resolve Real-world Github Issues? · GitHub",
+            "url": "https://github.com/Laredo-Labs/SWEbench"
+          },
+          {
+            "title": "SWE-bench: Can Language Models Resolve Real-world Github Issues? | OpenReview",
+            "url": "https://openreview.net/forum?id=VTF8yNQM66"
+          },
+          {
+            "title": "Overview - SWE-bench",
+            "url": "https://www.swebench.com/SWE-bench/"
+          },
+          {
+            "title": "SWE-bench Lite",
+            "url": "https://www.swebench.com/lite.html"
+          },
+          {
+            "title": "GitHub - lifehyun/SWE-bench-LLM_model-: [ICLR 2024] SWE-Bench: Can Language Models Resolve Real-world Github Issues?",
+            "url": "https://github.com/lifehyun/SWE-bench-LLM_model-"
+          }
+        ]
+      },
+      "I found comprehensive information about SWE-bench. Here's what I found:\n\n## Overview\n\nSWE-bench was accepted to ICLR 2024 as an oral presentation and is a benchmark for evaluating large language models on real world software issues collected from GitHub.\n\n## Benchmark Details\n\nSWE-bench is an evaluation framework consisting of 2,294 software engineering problems drawn from real GitHub issues and corresponding pull requests across 12 popular Python repositories. Given a codebase along with a description of an issue to be resolved, a language model is tasked with editing the codebase to address the issue.\n\n## Data Collection\n\nThe benchmark was created by crawling Pull Requests and Issues from 12 popular Python repositories with 2,294 task instances. Issue descriptions are typically long and detailed (195 words on average), and codebases regularly contain many thousands of files, requiring identifying the relatively small number of lines that need to be edited to solve an issue amongst a sea of context.\n\n## Performance Results\n\nEvaluations show that both state-of-the-art proprietary models and a fine-tuned model SWE-Llama can resolve only the simplest issues, with the best-performing model, Claude 2, able to solve a mere 1.96% of the issues.\n\n## Authors\n\nThe paper was authored by Carlos E Jimenez, John Yang, Alexander Wettig, Shunyu Yao, Kexin Pei, Ofir Press, and Karthik R Narasimhan."
+    ],
+    "durationSeconds": 7.596550419000007
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 50_
+
+Now let me get the exact author details for the EMNLP paper and a couple more searches to fill gaps.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "18ed2b9f-1977-41b1-85d6-a1835ac2d484",
+  "uuid": "fba0bc2a-ac06-4bc2-9ba8-f87b775330aa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A4ipxx53Hw2YvaouE4Udnh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 973,
+      "cache_read_input_tokens": 43199,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 973
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01H2mimAgQQamUc4H3VWLFaS`</summary>
+
+```json
+{
+  "query": "arxiv 2509.11686 \"Do Code Semantics Help\" authors Wang Xie complete author list"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "18ed2b9f-1977-41b1-85d6-a1835ac2d484",
+  "uuid": "eb3d9fba-96dd-4871-b7e1-635a2bcbb23a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A4ipxx53Hw2YvaouE4Udnh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 973,
+      "cache_read_input_tokens": 43199,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 973
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-14T13:53:02.804Z_
+
+<details><summary>↩ Tool result · `toolu_01H2mimAgQQamUc4H3VWLFaS`</summary>
+
+```text
+Web search results for query: "arxiv 2509.11686 "Do Code Semantics Help" authors Wang Xie complete author list"
+
+Links: [{"title":"[2509.11686] Do Code Semantics Help? A Comprehensive Study on Execution Trace-Based Information for Code Large Language Models","url":"https://arxiv.org/abs/2509.11686"},{"title":"[2509.11686v3] Do Code Semantics Help? A Comprehensive Study on Execution Trace-Based Information for Code Large Language Models","url":"https://arxiv.org/abs/2509.11686v3"},{"title":"Do Code Semantics Help? A Comprehensive Study on Execution","url":"https://arxiv.org/pdf/2509.11686"},{"title":"Do Code Semantics Help? A Comprehensive Study on Execution Trace-Based Information for Code Large Language Models","url":"https://arxiv.org/html/2509.11686"},{"title":"Computer Science","url":"https://www.arxiv.org/list/cs/pastweek?skip=2376&show=25"},{"title":"Computer Science","url":"https://arxiv.org/list/cs/recent?skip=474&show=1000"},{"title":"Computation and Language","url":"https://www.arxiv.org/list/cs.CL/pastweek?skip=4&show=500"},{"title":"[2509.24708] SenSE: Semantic-Aware High-Fidelity Universal Speech Enhancement","url":"https://arxiv.org/abs/2509.24708"},{"title":"Computation and Language Mar 2025","url":"https://arxiv.org/list/cs.CL/2025-03?skip=1000&show=1000"},{"title":"Computer Science Jun 2024","url":"https://www.arxiv.org/list/cs/2024-06?skip=100&show=2000"}]
+
+Based on the search results, here is the complete author list for the arxiv paper 2509.11686:
+
+The authors are: Jian Wang, Xiaofei Xie, Qiang Hu, Shangqing Liu, Yi Li
+
+Their affiliations are: Jian Wang and Yi Li are from Nanyang Technological University, Singapore; Xiaofei Xie is from Singapore Management University, Singapore; Qiang Hu is from Tianjin University, China; and Shangqing Liu is from State Key Laboratory for Novel Software Technology, Nanjing University, China.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "18ed2b9f-1977-41b1-85d6-a1835ac2d484",
+  "uuid": "46f63db0-8c8a-4c9c-88c3-d0c5a2493930",
+  "tool_use_result": {
+    "query": "arxiv 2509.11686 \"Do Code Semantics Help\" authors Wang Xie complete author list",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01698594Y1nDmZdQjTotc5WD",
+        "content": [
+          {
+            "title": "[2509.11686] Do Code Semantics Help? A Comprehensive Study on Execution Trace-Based Information for Code Large Language Models",
+            "url": "https://arxiv.org/abs/2509.11686"
+          },
+          {
+            "title": "[2509.11686v3] Do Code Semantics Help? A Comprehensive Study on Execution Trace-Based Information for Code Large Language Models",
+            "url": "https://arxiv.org/abs/2509.11686v3"
+          },
+          {
+            "title": "Do Code Semantics Help? A Comprehensive Study on Execution",
+            "url": "https://arxiv.org/pdf/2509.11686"
+          },
+          {
+            "title": "Do Code Semantics Help? A Comprehensive Study on Execution Trace-Based Information for Code Large Language Models",
+            "url": "https://arxiv.org/html/2509.11686"
+          },
+          {
+            "title": "Computer Science",
+            "url": "https://www.arxiv.org/list/cs/pastweek?skip=2376&show=25"
+          },
+          {
+            "title": "Computer Science",
+            "url": "https://arxiv.org/list/cs/recent?skip=474&show=1000"
+          },
+          {
+            "title": "Computation and Language",
+            "url": "https://www.arxiv.org/list/cs.CL/pastweek?skip=4&show=500"
+          },
+          {
+            "title": "[2509.24708] SenSE: Semantic-Aware High-Fidelity Universal Speech Enhancement",
+            "url": "https://arxiv.org/abs/2509.24708"
+          },
+          {
+            "title": "Computation and Language Mar 2025",
+            "url": "https://arxiv.org/list/cs.CL/2025-03?skip=1000&show=1000"
+          },
+          {
+            "title": "Computer Science Jun 2024",
+            "url": "https://www.arxiv.org/list/cs/2024-06?skip=100&show=2000"
+          }
+        ]
+      },
+      "Based on the search results, here is the complete author list for the arxiv paper 2509.11686:\n\nThe authors are: Jian Wang, Xiaofei Xie, Qiang Hu, Shangqing Liu, Yi Li\n\nTheir affiliations are: Jian Wang and Yi Li are from Nanyang Technological University, Singapore; Xiaofei Xie is from Singapore Management University, Singapore; Qiang Hu is from Tianjin University, China; and Shangqing Liu is from State Key Laboratory for Novel Software Technology, Nanjing University, China."
+    ],
+    "durationSeconds": 4.505488955000008
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Vib1yQirh8R2jLh2Q49sro`</summary>
+
+```json
+{
+  "query": "TraceFixer 2304.12743 authors complete list ICSE 2024"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "18ed2b9f-1977-41b1-85d6-a1835ac2d484",
+  "uuid": "357d1df3-b2da-471c-b8f6-2c4d769bdccf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011ycTHVMTCWrhkSPxyecv8H",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 727,
+      "cache_read_input_tokens": 44172,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 727
+      },
+      "output_tokens": 37,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-14T13:53:09.919Z_
+
+<details><summary>↩ Tool result · `toolu_01Vib1yQirh8R2jLh2Q49sro`</summary>
+
+```text
+Web search results for query: "TraceFixer 2304.12743 authors complete list ICSE 2024"
+
+Links: [{"title":"[2304.12743] TraceFixer: Execution Trace-Driven Program Repair","url":"https://arxiv.org/abs/2304.12743"},{"title":"TraceFixer: Execution Trace-Guided Program Repair Islem Bouzenia","url":"https://software-lab.org/publications/TraceFixer_arXiv_2304.12743.pdf"},{"title":"ICSE 2024 - Research Track - ICSE 2024 - conf.researchr.org","url":"https://conf.researchr.org/track/icse-2024/icse-2024-research-track"},{"title":"ICSE 2024 - Artifact Evaluation - conf.researchr.org","url":"https://conf.researchr.org/track/icse-2024/icse-2024-artifact-evaluation"},{"title":"ICSE 2024 - conf.researchr.org","url":"https://conf.researchr.org/home/icse-2024"},{"title":"ICSE 2024 - Journal-first Papers - ICSE 2024","url":"https://conf.researchr.org/track/icse-2024/icse-2024-journal-first-papers"},{"title":"Research Track - ICSE 2024 - Conferences","url":"https://conf.researchr.org/committee/icse-2024/icse-2024-research-track"},{"title":"Awards - ICSE 2024 - conf.researchr.org","url":"https://conf.researchr.org/info/icse-2024/awards"},{"title":"Program - ICSE 2024","url":"https://conf.researchr.org/program/icse-2024/program-icse-2024/"},{"title":"International Workshop on Automated Program Repair","url":"https://program-repair.org/workshop-2024/"}]
+
+Based on the search results, the authors of the TraceFixer paper (arXiv:2304.12743) are: Islem Bouzenia, Yangruibo Ding, Kexin Pei, Baishakhi Ray, and Michael Pradel.
+
+However, I should note that the search results show this paper is from arXiv (submitted April 25, 2023), and while the results reference ICSE 2024, they don't explicitly confirm that TraceFixer was published at ICSE 2024. The arXiv posting predates the ICSE 2024 conference, so it may have been an earlier preprint. If you need confirmation of the paper's official publication venue, you may want to check the ICSE 2024 program directly.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "18ed2b9f-1977-41b1-85d6-a1835ac2d484",
+  "uuid": "7a97dd17-bac9-4408-89f9-0cd1d7e47eab",
+  "tool_use_result": {
+    "query": "TraceFixer 2304.12743 authors complete list ICSE 2024",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01FvYYASoMqB1bTiNQNdWVPX",
+        "content": [
+          {
+            "title": "[2304.12743] TraceFixer: Execution Trace-Driven Program Repair",
+            "url": "https://arxiv.org/abs/2304.12743"
+          },
+          {
+            "title": "TraceFixer: Execution Trace-Guided Program Repair Islem Bouzenia",
+            "url": "https://software-lab.org/publications/TraceFixer_arXiv_2304.12743.pdf"
+          },
+          {
+            "title": "ICSE 2024 - Research Track - ICSE 2024 - conf.researchr.org",
+            "url": "https://conf.researchr.org/track/icse-2024/icse-2024-research-track"
+          },
+          {
+            "title": "ICSE 2024 - Artifact Evaluation - conf.researchr.org",
+            "url": "https://conf.researchr.org/track/icse-2024/icse-2024-artifact-evaluation"
+          },
+          {
+            "title": "ICSE 2024 - conf.researchr.org",
+            "url": "https://conf.researchr.org/home/icse-2024"
+          },
+          {
+            "title": "ICSE 2024 - Journal-first Papers - ICSE 2024",
+            "url": "https://conf.researchr.org/track/icse-2024/icse-2024-journal-first-papers"
+          },
+          {
+            "title": "Research Track - ICSE 2024 - Conferences",
+            "url": "https://conf.researchr.org/committee/icse-2024/icse-2024-research-track"
+          },
+          {
+            "title": "Awards - ICSE 2024 - conf.researchr.org",
+            "url": "https://conf.researchr.org/info/icse-2024/awards"
+          },
+          {
+            "title": "Program - ICSE 2024",
+            "url": "https://conf.researchr.org/program/icse-2024/program-icse-2024/"
+          },
+          {
+            "title": "International Workshop on Automated Program Repair",
+            "url": "https://program-repair.org/workshop-2024/"
+          }
+        ]
+      },
+      "Based on the search results, the authors of the TraceFixer paper (arXiv:2304.12743) are: Islem Bouzenia, Yangruibo Ding, Kexin Pei, Baishakhi Ray, and Michael Pradel.\n\nHowever, I should note that the search results show this paper is from arXiv (submitted April 25, 2023), and while the results reference ICSE 2024, they don't explicitly confirm that TraceFixer was published at ICSE 2024. The arXiv posting predates the ICSE 2024 conference, so it may have been an earlier preprint. If you need confirmation of the paper's official publication venue, you may want to check the ICSE 2024 program directly."
+    ],
+    "durationSeconds": 4.625112865000003
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Mrpb51hYQzGMqLf8E9NJRS`</summary>
+
+```json
+{
+  "query": "TraceFixer Bouzenia venue published ICSE 2024 or ISSTA accepted conference"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "18ed2b9f-1977-41b1-85d6-a1835ac2d484",
+  "uuid": "3f19b8c1-f89a-4d27-9f19-bb519b7d09fb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011vNxMKvuPQcMc7yxa16YUC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 776,
+      "cache_read_input_tokens": 44899,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 776
+      },
+      "output_tokens": 46,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-14T13:53:19.514Z_
+
+<details><summary>↩ Tool result · `toolu_01Mrpb51hYQzGMqLf8E9NJRS`</summary>
+
+```text
+Web search results for query: "TraceFixer Bouzenia venue published ICSE 2024 or ISSTA accepted conference"
+
+Links: [{"title":"TraceFixer: Execution Trace-Guided Program Repair Islem Bouzenia","url":"https://arxiv.org/pdf/2304.12743"},{"title":"ICSE 2024 - conf.researchr.org","url":"https://conf.researchr.org/home/icse-2024"},{"title":"Sign Up - ISSTA 2024","url":"https://2021.icse-conferences.org/signup/issta-2024"},{"title":"dblp: Michael Pradel","url":"https://dblp.org/pid/25/2188.html"},{"title":"ISSTA 2024 - conf.researchr.org","url":"https://conf.researchr.org/home/issta-2024"},{"title":"[2304.12743] TraceFixer: Execution Trace-Driven Program Repair","url":"https://arxiv.org/abs/2304.12743"},{"title":"ISSTA/ECOOP 2024 - conf.researchr.org","url":"https://conf.researchr.org/home/issta-ecoop-2024"},{"title":"ICSE 2024 - Research Track - ICSE 2024 - conf.researchr.org","url":"https://conf.researchr.org/track/icse-2024/icse-2024-research-track"},{"title":"ISSTA/ECOOP 2024 - Tool Demonstrations - ISSTA 2024","url":"https://2024.issta.org/track/issta-ecoop-2024-tool-demonstrations"},{"title":"ICSE 2024 - Journal First","url":"https://icse2024-jf.hotcrp.com/"}]
+
+Based on the search results, I found information about TraceFixer by Islem Bouzenia. TraceFixer is an execution trace-guided program repair approach, and the paper was authored by Islem Bouzenia and 4 other authors.
+
+However, the search results show that the paper was originally submitted to arXiv on April 25, 2023. The search results do not contain specific information indicating that TraceFixer was published at ICSE 2024 or accepted at ISSTA. The results show the arXiv preprint and general information about both conferences, but no explicit venue designation for the TraceFixer paper in either of these 2024 conferences.
+
+To get more specific information about where TraceFixer was officially published, you may want to check the full metadata on the arXiv page or search directly on the ICSE 2024 or ISSTA 2024 conference proceedings websites.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "18ed2b9f-1977-41b1-85d6-a1835ac2d484",
+  "uuid": "3b16ce56-3084-4a93-9530-b13ead673a2c",
+  "tool_use_result": {
+    "query": "TraceFixer Bouzenia venue published ICSE 2024 or ISSTA accepted conference",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01LbJj5vvo7bXyzo2WRCr2LG",
+        "content": [
+          {
+            "title": "TraceFixer: Execution Trace-Guided Program Repair Islem Bouzenia",
+            "url": "https://arxiv.org/pdf/2304.12743"
+          },
+          {
+            "title": "ICSE 2024 - conf.researchr.org",
+            "url": "https://conf.researchr.org/home/icse-2024"
+          },
+          {
+            "title": "Sign Up - ISSTA 2024",
+            "url": "https://2021.icse-conferences.org/signup/issta-2024"
+          },
+          {
+            "title": "dblp: Michael Pradel",
+            "url": "https://dblp.org/pid/25/2188.html"
+          },
+          {
+            "title": "ISSTA 2024 - conf.researchr.org",
+            "url": "https://conf.researchr.org/home/issta-2024"
+          },
+          {
+            "title": "[2304.12743] TraceFixer: Execution Trace-Driven Program Repair",
+            "url": "https://arxiv.org/abs/2304.12743"
+          },
+          {
+            "title": "ISSTA/ECOOP 2024 - conf.researchr.org",
+            "url": "https://conf.researchr.org/home/issta-ecoop-2024"
+          },
+          {
+            "title": "ICSE 2024 - Research Track - ICSE 2024 - conf.researchr.org",
+            "url": "https://conf.researchr.org/track/icse-2024/icse-2024-research-track"
+          },
+          {
+            "title": "ISSTA/ECOOP 2024 - Tool Demonstrations - ISSTA 2024",
+            "url": "https://2024.issta.org/track/issta-ecoop-2024-tool-demonstrations"
+          },
+          {
+            "title": "ICSE 2024 - Journal First",
+            "url": "https://icse2024-jf.hotcrp.com/"
+          }
+        ]
+      },
+      "Based on the search results, I found information about TraceFixer by Islem Bouzenia. TraceFixer is an execution trace-guided program repair approach, and the paper was authored by Islem Bouzenia and 4 other authors.\n\nHowever, the search results show that the paper was originally submitted to arXiv on April 25, 2023. The search results do not contain specific information indicating that TraceFixer was published at ICSE 2024 or accepted at ISSTA. The results show the arXiv preprint and general information about both conferences, but no explicit venue designation for the TraceFixer paper in either of these 2024 conferences.\n\nTo get more specific information about where TraceFixer was officially published, you may want to check the full metadata on the arXiv page or search directly on the ICSE 2024 or ISSTA 2024 conference proceedings websites."
+    ],
+    "durationSeconds": 6.8385685349999985
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01KNtrtMLJyup6oXqTFPqPPS`</summary>
+
+```json
+{
+  "query": "BugsInPy Widyasari 2020 ESEC/FSE authors venue"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "18ed2b9f-1977-41b1-85d6-a1835ac2d484",
+  "uuid": "87ed8364-4add-4548-b3c9-b92ed8af7442",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LoaZbL9Ck5XjKnVx6iaNE5",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 763,
+      "cache_read_input_tokens": 45675,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 763
+      },
+      "output_tokens": 35,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-14T13:53:26.628Z_
+
+<details><summary>↩ Tool result · `toolu_01KNtrtMLJyup6oXqTFPqPPS`</summary>
+
+```text
+Web search results for query: "BugsInPy Widyasari 2020 ESEC/FSE authors venue"
+
+Links: [{"title":"BugsInPy: A Database of Existing Bugs in Python Programs to Enable Controlled Testing and Debugging Studies (ESEC/FSE 2020 - Tool Demos) - ESEC/FSE 2020","url":"https://2020.esec-fse.org/details/esecfse-2020-tool-demos/26/BugsInPy-A-Database-of-Existing-Bugs-in-Python-Programs-to-Enable-Controlled-Testing"},{"title":"Ratnadira Widyasari - Singapore Management University | LinkedIn","url":"https://www.linkedin.com/in/ratnadira-widyasari/"},{"title":"Figure 1 from BugsInPy: a database of existing bugs in Python programs to enable controlled testing and debugging studies | Semantic Scholar","url":"https://www.semanticscholar.org/paper/BugsInPy:-a-database-of-existing-bugs-in-Python-to-Widyasari-Sim/df0c1c146d6ea0694d955dfddc6f7bc4e1ba987a/figure/0"},{"title":"Table 1 from BugsInPy: a database of existing bugs in Python programs to enable controlled testing and debugging studies | Semantic Scholar","url":"https://www.semanticscholar.org/paper/BugsInPy:-a-database-of-existing-bugs-in-Python-to-Widyasari-Sim/df0c1c146d6ea0694d955dfddc6f7bc4e1ba987a/figure/1"},{"title":"BugsInPy: A Database of Existing Bugs in Python Programs to Enable Control... (Video, ESEC/FSE 2020) - YouTube","url":"https://www.youtube.com/watch?v=uYNVn4xZD4o"},{"title":"BugsInPy: a database of existing bugs in Python programs to enable controlled testing and debugging studies | Request PDF","url":"https://www.researchgate.net/publication/347697366_BugsInPy_a_database_of_existing_bugs_in_Python_programs_to_enable_controlled_testing_and_debugging_studies"},{"title":"[PDF] BugsInPy: a database of existing bugs in Python programs to enable controlled testing and debugging studies | Semantic Scholar","url":"https://www.semanticscholar.org/paper/BugsInPy:-a-database-of-existing-bugs-in-Python-to-Widyasari-Sim/df0c1c146d6ea0694d955dfddc6f7bc4e1ba987a"},{"title":"BugsInPy: A Database of Existing Bugs in Python Programs to Enable Contr... (Teaser, ESEC/FSE 2020) - YouTube","url":"https://www.youtube.com/watch?v=8K1NEIONrzU"},{"title":"BugsInPy: A Database of Existing Bugs in Python Projects (SDD 2023) - ESEC/FSE 2023","url":"https://2023.esec-fse.org/details/sdd-2023-papers/7/BugsInPy-A-Database-of-Existing-Bugs-in-Python-Projects"},{"title":"Publications | Thong Hoang (James)","url":"https://hvdthong.github.io/publications/"}]
+
+Based on the search results, here is the information about BugsInPy:
+
+**Authors:** Ratnadira Widyasari, Sheng Qin Sim, Camellia Lok, Haodi Qi, Jack Phan, Qijin Tay, Constance Tan, Fiona Wee, Jodie Ethelda Tan, Yuheng Yieh, Brian Goh, Ferdian Thung, Hong Jin Kang, Thong Hoang, David Lo, and Eng Lieh Ouh
+
+**Venue:** 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering (ESEC/FSE), 2020
+
+The paper presents BugsInPy, a database of existing bugs in Python programs designed to enable controlled testing and debugging studies.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "18ed2b9f-1977-41b1-85d6-a1835ac2d484",
+  "uuid": "f1c2375e-e00f-4422-83cd-787a1702e24b",
+  "tool_use_result": {
+    "query": "BugsInPy Widyasari 2020 ESEC/FSE authors venue",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01PvFhqJewPj6w962Rnh4JnZ",
+        "content": [
+          {
+            "title": "BugsInPy: A Database of Existing Bugs in Python Programs to Enable Controlled Testing and Debugging Studies (ESEC/FSE 2020 - Tool Demos) - ESEC/FSE 2020",
+            "url": "https://2020.esec-fse.org/details/esecfse-2020-tool-demos/26/BugsInPy-A-Database-of-Existing-Bugs-in-Python-Programs-to-Enable-Controlled-Testing"
+          },
+          {
+            "title": "Ratnadira Widyasari - Singapore Management University | LinkedIn",
+            "url": "https://www.linkedin.com/in/ratnadira-widyasari/"
+          },
+          {
+            "title": "Figure 1 from BugsInPy: a database of existing bugs in Python programs to enable controlled testing and debugging studies | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/BugsInPy:-a-database-of-existing-bugs-in-Python-to-Widyasari-Sim/df0c1c146d6ea0694d955dfddc6f7bc4e1ba987a/figure/0"
+          },
+          {
+            "title": "Table 1 from BugsInPy: a database of existing bugs in Python programs to enable controlled testing and debugging studies | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/BugsInPy:-a-database-of-existing-bugs-in-Python-to-Widyasari-Sim/df0c1c146d6ea0694d955dfddc6f7bc4e1ba987a/figure/1"
+          },
+          {
+            "title": "BugsInPy: A Database of Existing Bugs in Python Programs to Enable Control... (Video, ESEC/FSE 2020) - YouTube",
+            "url": "https://www.youtube.com/watch?v=uYNVn4xZD4o"
+          },
+          {
+            "title": "BugsInPy: a database of existing bugs in Python programs to enable controlled testing and debugging studies | Request PDF",
+            "url": "https://www.researchgate.net/publication/347697366_BugsInPy_a_database_of_existing_bugs_in_Python_programs_to_enable_controlled_testing_and_debugging_studies"
+          },
+          {
+            "title": "[PDF] BugsInPy: a database of existing bugs in Python programs to enable controlled testing and debugging studies | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/BugsInPy:-a-database-of-existing-bugs-in-Python-to-Widyasari-Sim/df0c1c146d6ea0694d955dfddc6f7bc4e1ba987a"
+          },
+          {
+            "title": "BugsInPy: A Database of Existing Bugs in Python Programs to Enable Contr... (Teaser, ESEC/FSE 2020) - YouTube",
+            "url": "https://www.youtube.com/watch?v=8K1NEIONrzU"
+          },
+          {
+            "title": "BugsInPy: A Database of Existing Bugs in Python Projects (SDD 2023) - ESEC/FSE 2023",
+            "url": "https://2023.esec-fse.org/details/sdd-2023-papers/7/BugsInPy-A-Database-of-Existing-Bugs-in-Python-Projects"
+          },
+          {
+            "title": "Publications | Thong Hoang (James)",
+            "url": "https://hvdthong.github.io/publications/"
+          }
+        ]
+      },
+      "Based on the search results, here is the information about BugsInPy:\n\n**Authors:** Ratnadira Widyasari, Sheng Qin Sim, Camellia Lok, Haodi Qi, Jack Phan, Qijin Tay, Constance Tan, Fiona Wee, Jodie Ethelda Tan, Yuheng Yieh, Brian Goh, Ferdian Thung, Hong Jin Kang, Thong Hoang, David Lo, and Eng Lieh Ouh\n\n**Venue:** 28th ACM Joint Meeting on European Software Engineering Conference and Symposium on the Foundations of Software Engineering (ESEC/FSE), 2020\n\nThe paper presents BugsInPy, a database of existing bugs in Python programs designed to enable controlled testing and debugging studies."
+    ],
+    "durationSeconds": 3.9279014190000017
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 59_
+
+Now I have enough information gathered. Let me compile the `literature_map.yaml` file.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "18ed2b9f-1977-41b1-85d6-a1835ac2d484",
+  "uuid": "e8ec8a6e-92a6-4911-926b-74152d15bfd3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VVF3c6Zjn35w1Z4j5yraqi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1181,
+      "cache_read_input_tokens": 46438,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1181
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01Cy5eUE9kFDg2e3E3Cqhueq`</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/trace_distill_repair/",
+  "description": "List project directory contents"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "18ed2b9f-1977-41b1-85d6-a1835ac2d484",
+  "uuid": "07e85e4f-fdc2-4ef5-a7fb-b77c567e8834",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VVF3c6Zjn35w1Z4j5yraqi",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1181,
+      "cache_read_input_tokens": 46438,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1181
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-14T13:53:31.211Z_
+
+<details><summary>↩ Tool result · `toolu_01Cy5eUE9kFDg2e3E3Cqhueq`</summary>
+
+```text
+AGENTS.md
+ROADMAP.lock
+ROADMAP.md
+artifacts
+decisions.lock
+decisions.yaml
+docs
+experiment_plan.yaml
+logs
+study_status.lock
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "18ed2b9f-1977-41b1-85d6-a1835ac2d484",
+  "uuid": "f6786871-7860-4f9c-943a-79f00a89c619",
+  "tool_use_result": {
+    "stdout": "AGENTS.md\nROADMAP.lock\nROADMAP.md\nartifacts\ndecisions.lock\ndecisions.yaml\ndocs\nexperiment_plan.yaml\nlogs\nstudy_status.lock",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62_
+
+<details open><summary>🔧 Tool call — Write · `toolu_018gUtrbnjV8eCPPLRs7E18t`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/trace_distill_repair/literature_map.yaml",
+  "content": "papers:\n  # ============================================================\n  # Direct Competitors — execution trace + APR / fault localization\n  # ============================================================\n\n  - id: \"wang2025semantics\"\n    title: \"Do Code Semantics Help? A Comprehensive Study on Execution Trace-Based Information for Code Large Language Models\"\n    authors: \"Jian Wang, Xiaofei Xie, Qiang Hu, Shangqing Liu, Yi Li\"\n    venue: \"Findings of EMNLP 2025\"\n    year: 2025\n    url: \"https://arxiv.org/abs/2509.11686\"\n    category: \"direct-competitor\"\n    relevance: \"DTD 直接要修正的目标论文——其负面结论 (trace utility limited) 源于行级未过滤 trace\"\n    key_findings: \"语义信息（execution trace）对 Code LLM 的 SFT 和推理帮助有限；在 6 组 dataset/model 配置中仅 2 组有正向效果\"\n    our_advantage: \"DTD 用结构感知分段（函数子树/循环组/异常链）替代原始行级 trace，降低噪声，直接回应其负面结论\"\n\n  - id: \"bouzenia2023tracefixer\"\n    title: \"TraceFixer: Execution Trace-Driven Program Repair\"\n    authors: \"Islem Bouzenia, Yangruibo Ding, Kexin Pei, Baishakhi Ray, Michael Pradel\"\n    venue: \"arXiv preprint\"\n    year: 2023\n    url: \"https://arxiv.org/abs/2304.12743\"\n    category: \"direct-competitor\"\n    relevance: \"最早将 execution trace 直接融入神经修复模型的工作，trace 表示为局部变量值序列\"\n    key_findings: \"在 Python 单行 bug 上 top-1 修复率 57-63%，trace 带来 13-20% 提升；在 20 个真实 bug 中修复 10 个\"\n    our_advantage: \"TraceFixer 用扁平变量快照，DTD 用层次化结构分段；TraceFixer 限于单行 bug，DTD 处理多行复杂修复\"\n\n  - id: \"tracerepair2026\"\n    title: \"Runtime Execution Traces Guided Automated Program Repair with Multi-Agent Debate\"\n    authors: \"TraceRepair authors\"\n    venue: \"arXiv preprint\"\n    year: 2026\n    url: \"https://arxiv.org/abs/2604.02647\"\n    category: \"direct-competitor\"\n    relevance: \"最新的 trace-guided APR，用 multi-agent debate 将 trace 作为逻辑过滤器\"\n    key_findings: \"Probe Agent 注入日志捕获变量快照；多 agent 辩论用 trace 证据过滤幻觉补丁；Defects4J 上修复 392 个 bug\"\n    our_advantage: \"TraceRepair 依赖大 LLM agent 推理链，DTD 训练专用小模型做 trace 过滤，成本更低且可离线使用\"\n\n  - id: \"huang2025dynafix\"\n    title: \"DynaFix: Iterative Automated Program Repair Driven by Execution-Level Dynamic Information\"\n    authors: \"Zhili Huang, Ling Xu, Chao Liu, Weifeng Sun, Xu Zhang, Yan Lei, Meng Yan, Hongyu Zhang\"\n    venue: \"arXiv preprint\"\n    year: 2025\n    url: \"https://arxiv.org/abs/2512.24635\"\n    category: \"direct-competitor\"\n    relevance: \"迭代式利用运行时状态（变量值/分支路径/调用栈）驱动修复的闭环框架\"\n    key_findings: \"用 ByteTrace 工具收集细粒度执行状态；Defects4J-Trans 上比 SOTA 提升 15.6-32.1%；token 消耗降低 60-70%\"\n    our_advantage: \"DynaFix 每轮全量收集 trace 再让 LLM 推理，DTD 预先用小模型做结构化过滤，减少 LLM 输入噪声\"\n\n  - id: \"haque2025leveraging\"\n    title: \"Towards Effectively Leveraging Execution Traces for Program Repair with Code LLMs\"\n    authors: \"Mirazul Haque, Petr Babkin, Farima Farmahinifarahani, Manuela Veloso\"\n    venue: \"KnowledgeNLP Workshop 2025\"\n    year: 2025\n    url: \"https://arxiv.org/abs/2505.04441\"\n    category: \"direct-competitor\"\n    relevance: \"系统分析 trace 在 APR prompt 中的作用，发现 trace 复杂度增加时效果递减\"\n    key_findings: \"简单拼接 trace 仅在 2/6 配置有效；LLM-optimized trace 表示最一致；trace 复杂度越高效果越差\"\n    our_advantage: \"该论文验证了我们的核心假设：原始 trace 过长过杂会降低效果，结构化过滤是关键\"\n\n  # ============================================================\n  # Method Components — distillation / structured analysis / teacher-student\n  # ============================================================\n\n  - id: \"zhong2024ldb\"\n    title: \"LDB: A Large Language Model Debugger via Verifying Runtime Execution Step-by-step\"\n    authors: \"Li Zhong, Zilong Wang, Jingbo Shang\"\n    venue: \"Findings of ACL 2024\"\n    year: 2024\n    url: \"https://arxiv.org/abs/2402.16906\"\n    category: \"method-component\"\n    relevance: \"将程序按 basic block 分段、逐块验证变量值的思路与 DTD 的结构化分段理念一致\"\n    key_findings: \"按控制流图分 basic block，逐块追踪变量值并让 LLM 验证正确性；HumanEval/MBPP 上提升达 9.8%\"\n    our_advantage: \"LDB 用 LLM 在线逐块判断，DTD 训练专用小模型离线过滤，效率更高；DTD 分段粒度更丰富（函数子树/循环组/异常链）\"\n\n  - id: \"tracecoder2026\"\n    title: \"TraceCoder: A Trace-Driven Multi-Agent Framework for Automated Debugging of LLM-Generated Code\"\n    authors: \"TraceCoder authors\"\n    venue: \"ICSE 2026\"\n    year: 2026\n    url: \"https://arxiv.org/abs/2602.06875\"\n    category: \"method-component\"\n    relevance: \"trace-driven 多 agent 调试框架，含因果分析和历史学习模块\"\n    key_findings: \"细粒度运行时追踪 + 因果根因分析 + 历史失败学习；class-level 代码生成 Pass@1 提升达 34.43%\"\n    our_advantage: \"TraceCoder 面向代码生成调试，DTD 面向已有 bug 的修复；DTD 用蒸馏小模型替代多 agent 推理\"\n\n  - id: \"shi2024avatar\"\n    title: \"Greening Large Language Models of Code (Avatar)\"\n    authors: \"Jieke Shi, Zhou Yang, Hong Jin Kang, Bowen Xu, Junda He, David Lo\"\n    venue: \"ICSE-SEIS 2024\"\n    year: 2024\n    url: \"https://arxiv.org/abs/2309.04076\"\n    category: \"method-component\"\n    relevance: \"Code LLM 知识蒸馏的代表工作，SMT solver 优化蒸馏配置\"\n    key_findings: \"蒸馏后模型仅 3MB（160x 压缩），推理延迟降低 76x，能耗降低 184x，效果损失仅 1.67%\"\n    our_advantage: \"Avatar 面向通用代码理解任务蒸馏，DTD 专门针对 trace 结构过滤任务做蒸馏，任务特异性更强\"\n\n  - id: \"miniplm2025\"\n    title: \"MiniPLM: Knowledge Distillation for Pre-Training Language Models\"\n    authors: \"Yuxian Gu, Hao Zhou, Fandong Meng, Jie Zhou, Minlie Huang\"\n    venue: \"ICLR 2025\"\n    year: 2025\n    url: \"https://arxiv.org/abs/2410.17215\"\n    category: \"method-component\"\n    relevance: \"离线蒸馏框架，通过调整训练数据分布传递教师知识，跨模型族蒸馏\"\n    key_findings: \"Difference Sampling 基于教师/参考模型输出概率差异调整训练语料；9 个下游任务提升；减少预训练计算量\"\n    our_advantage: \"MiniPLM 是通用预训练蒸馏，DTD 是任务特异的 trace 过滤蒸馏；可借鉴其 Difference Sampling 思想\"\n\n  - id: \"kd_code_2025\"\n    title: \"An Empirical Study of Knowledge Distillation for Code Understanding Tasks\"\n    authors: \"Code KD study authors\"\n    venue: \"ICSE 2026\"\n    year: 2025\n    url: \"https://arxiv.org/abs/2508.15423\"\n    category: \"method-component\"\n    relevance: \"系统评估多种 KD 方法在代码理解任务上的表现，为 DTD 的蒸馏策略选择提供依据\"\n    key_findings: \"首次系统比较多种 KD 方法在代码理解任务（漏洞检测/克隆检测等）上的效果\"\n    our_advantage: \"DTD 可参考其 KD 方法选择建议，但 DTD 的蒸馏目标是 trace 结构过滤而非通用代码理解\"\n\n  # ============================================================\n  # Evaluation — benchmarks and evaluation methodology\n  # ============================================================\n\n  - id: \"widyasari2020bugsinpy\"\n    title: \"BugsInPy: A Database of Existing Bugs in Python Programs to Enable Controlled Testing and Debugging Studies\"\n    authors: \"Ratnadira Widyasari, Sheng Qin Sim, Camellia Lok, Haodi Qi, Jack Phan, Qijin Tay, Constance Tan, Fiona Wee, Jodie Ethelda Tan, Yuheng Yieh, Brian Goh, Ferdian Thung, Hong Jin Kang, Thong Hoang, David Lo, Eng Lieh Ouh\"\n    venue: \"ESEC/FSE 2020\"\n    year: 2020\n    url: \"https://dl.acm.org/doi/abs/10.1145/3368089.3417943\"\n    category: \"evaluation\"\n    relevance: \"DTD 的主要评估基准，Python 真实 bug 数据集，类比 Java 的 Defects4J\"\n    key_findings: \"17 个 Python 项目的 493 个真实 bug，每个 bug 附带失败测试用例；支持可控的测试和调试研究\"\n    our_advantage: \"N/A — 这是我们使用的评估基准\"\n\n  - id: \"jimenez2024swebench\"\n    title: \"SWE-bench: Can Language Models Resolve Real-World GitHub Issues?\"\n    authors: \"Carlos E. Jimenez, John Yang, Alexander Wettig, Shunyu Yao, Kexin Pei, Ofir Press, Karthik R. Narasimhan\"\n    venue: \"ICLR 2024\"\n    year: 2024\n    url: \"https://arxiv.org/abs/2310.06770\"\n    category: \"evaluation\"\n    relevance: \"大规模 Python APR 基准，12 个仓库 2294 个真实 issue，可作为 DTD 的扩展评估\"\n    key_findings: \"从 GitHub 真实 issue/PR 挖掘；需在大规模代码库中定位和修改代码；已成为 LLM-based APR 标准评估\"\n    our_advantage: \"N/A — 可作为补充评估基准，验证 DTD 在仓库级任务上的泛化性\"\n\n  # ============================================================\n  # Background — LLM-based APR surveys / trace utility debate\n  # ============================================================\n\n  - id: \"yang2025apr_survey\"\n    title: \"A Survey of LLM-based Automated Program Repair: Taxonomies, Design Paradigms, and Applications\"\n    authors: \"Yang, Cai et al.\"\n    venue: \"arXiv preprint\"\n    year: 2025\n    url: \"https://arxiv.org/abs/2506.23749\"\n    category: \"background\"\n    relevance: \"最全面的 LLM-based APR 综述，覆盖 62 个系统，四种范式分类\"\n    key_findings: \"将 LLM-based APR 分为 fine-tuning / prompting / procedural pipeline / agentic 四种范式；系统梳理评估实践\"\n    our_advantage: \"DTD 属于 fine-tuning + structured preprocessing 的交叉范式，综述中此类工作较少\"\n\n  - id: \"bouzenia2025repairagent\"\n    title: \"RepairAgent: An Autonomous, LLM-Based Agent for Program Repair\"\n    authors: \"Islem Bouzenia, Premkumar Devanbu, Michael Pradel\"\n    venue: \"ICSE 2025\"\n    year: 2025\n    url: \"https://arxiv.org/abs/2403.17134\"\n    category: \"background\"\n    relevance: \"首个自主 LLM agent 做 APR，动态规划工具调用，代表 agentic APR 范式\"\n    key_findings: \"自主选择信息收集/修复/验证工具；Defects4J 上修复 164 个 bug（含 39 个新修复）；平均 270K tokens/bug\"\n    our_advantage: \"RepairAgent 是 agent 范式依赖大 LLM 推理，DTD 是轻量蒸馏模型做 trace 预处理，可作为 agent 的前端组件\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "18ed2b9f-1977-41b1-85d6-a1835ac2d484",
+  "uuid": "135cd774-3c49-455a-9295-4696bfacf803",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XCg6qrEVdH6ghy7fVfi1kZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 279,
+      "cache_read_input_tokens": 47619,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 279
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-14T13:54:50.013Z_
+
+<details><summary>↩ Tool result · `toolu_018gUtrbnjV8eCPPLRs7E18t`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/trace_distill_repair/literature_map.yaml
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "18ed2b9f-1977-41b1-85d6-a1835ac2d484",
+  "uuid": "b344c4fa-4b21-4136-97ec-dbce21fce4e3",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/trace_distill_repair/literature_map.yaml",
+    "content": "papers:\n  # ============================================================\n  # Direct Competitors — execution trace + APR / fault localization\n  # ============================================================\n\n  - id: \"wang2025semantics\"\n    title: \"Do Code Semantics Help? A Comprehensive Study on Execution Trace-Based Information for Code Large Language Models\"\n    authors: \"Jian Wang, Xiaofei Xie, Qiang Hu, Shangqing Liu, Yi Li\"\n    venue: \"Findings of EMNLP 2025\"\n    year: 2025\n    url: \"https://arxiv.org/abs/2509.11686\"\n    category: \"direct-competitor\"\n    relevance: \"DTD 直接要修正的目标论文——其负面结论 (trace utility limited) 源于行级未过滤 trace\"\n    key_findings: \"语义信息（execution trace）对 Code LLM 的 SFT 和推理帮助有限；在 6 组 dataset/model 配置中仅 2 组有正向效果\"\n    our_advantage: \"DTD 用结构感知分段（函数子树/循环组/异常链）替代原始行级 trace，降低噪声，直接回应其负面结论\"\n\n  - id: \"bouzenia2023tracefixer\"\n    title: \"TraceFixer: Execution Trace-Driven Program Repair\"\n    authors: \"Islem Bouzenia, Yangruibo Ding, Kexin Pei, Baishakhi Ray, Michael Pradel\"\n    venue: \"arXiv preprint\"\n    year: 2023\n    url: \"https://arxiv.org/abs/2304.12743\"\n    category: \"direct-competitor\"\n    relevance: \"最早将 execution trace 直接融入神经修复模型的工作，trace 表示为局部变量值序列\"\n    key_findings: \"在 Python 单行 bug 上 top-1 修复率 57-63%，trace 带来 13-20% 提升；在 20 个真实 bug 中修复 10 个\"\n    our_advantage: \"TraceFixer 用扁平变量快照，DTD 用层次化结构分段；TraceFixer 限于单行 bug，DTD 处理多行复杂修复\"\n\n  - id: \"tracerepair2026\"\n    title: \"Runtime Execution Traces Guided Automated Program Repair with Multi-Agent Debate\"\n    authors: \"TraceRepair authors\"\n    venue: \"arXiv preprint\"\n    year: 2026\n    url: \"https://arxiv.org/abs/2604.02647\"\n    category: \"direct-competitor\"\n    relevance: \"最新的 trace-guided APR，用 multi-agent debate 将 trace 作为逻辑过滤器\"\n    key_findings: \"Probe Agent 注入日志捕获变量快照；多 agent 辩论用 trace 证据过滤幻觉补丁；Defects4J 上修复 392 个 bug\"\n    our_advantage: \"TraceRepair 依赖大 LLM agent 推理链，DTD 训练专用小模型做 trace 过滤，成本更低且可离线使用\"\n\n  - id: \"huang2025dynafix\"\n    title: \"DynaFix: Iterative Automated Program Repair Driven by Execution-Level Dynamic Information\"\n    authors: \"Zhili Huang, Ling Xu, Chao Liu, Weifeng Sun, Xu Zhang, Yan Lei, Meng Yan, Hongyu Zhang\"\n    venue: \"arXiv preprint\"\n    year: 2025\n    url: \"https://arxiv.org/abs/2512.24635\"\n    category: \"direct-competitor\"\n    relevance: \"迭代式利用运行时状态（变量值/分支路径/调用栈）驱动修复的闭环框架\"\n    key_findings: \"用 ByteTrace 工具收集细粒度执行状态；Defects4J-Trans 上比 SOTA 提升 15.6-32.1%；token 消耗降低 60-70%\"\n    our_advantage: \"DynaFix 每轮全量收集 trace 再让 LLM 推理，DTD 预先用小模型做结构化过滤，减少 LLM 输入噪声\"\n\n  - id: \"haque2025leveraging\"\n    title: \"Towards Effectively Leveraging Execution Traces for Program Repair with Code LLMs\"\n    authors: \"Mirazul Haque, Petr Babkin, Farima Farmahinifarahani, Manuela Veloso\"\n    venue: \"KnowledgeNLP Workshop 2025\"\n    year: 2025\n    url: \"https://arxiv.org/abs/2505.04441\"\n    category: \"direct-competitor\"\n    relevance: \"系统分析 trace 在 APR prompt 中的作用，发现 trace 复杂度增加时效果递减\"\n    key_findings: \"简单拼接 trace 仅在 2/6 配置有效；LLM-optimized trace 表示最一致；trace 复杂度越高效果越差\"\n    our_advantage: \"该论文验证了我们的核心假设：原始 trace 过长过杂会降低效果，结构化过滤是关键\"\n\n  # ============================================================\n  # Method Components — distillation / structured analysis / teacher-student\n  # ============================================================\n\n  - id: \"zhong2024ldb\"\n    title: \"LDB: A Large Language Model Debugger via Verifying Runtime Execution Step-by-step\"\n    authors: \"Li Zhong, Zilong Wang, Jingbo Shang\"\n    venue: \"Findings of ACL 2024\"\n    year: 2024\n    url: \"https://arxiv.org/abs/2402.16906\"\n    category: \"method-component\"\n    relevance: \"将程序按 basic block 分段、逐块验证变量值的思路与 DTD 的结构化分段理念一致\"\n    key_findings: \"按控制流图分 basic block，逐块追踪变量值并让 LLM 验证正确性；HumanEval/MBPP 上提升达 9.8%\"\n    our_advantage: \"LDB 用 LLM 在线逐块判断，DTD 训练专用小模型离线过滤，效率更高；DTD 分段粒度更丰富（函数子树/循环组/异常链）\"\n\n  - id: \"tracecoder2026\"\n    title: \"TraceCoder: A Trace-Driven Multi-Agent Framework for Automated Debugging of LLM-Generated Code\"\n    authors: \"TraceCoder authors\"\n    venue: \"ICSE 2026\"\n    year: 2026\n    url: \"https://arxiv.org/abs/2602.06875\"\n    category: \"method-component\"\n    relevance: \"trace-driven 多 agent 调试框架，含因果分析和历史学习模块\"\n    key_findings: \"细粒度运行时追踪 + 因果根因分析 + 历史失败学习；class-level 代码生成 Pass@1 提升达 34.43%\"\n    our_advantage: \"TraceCoder 面向代码生成调试，DTD 面向已有 bug 的修复；DTD 用蒸馏小模型替代多 agent 推理\"\n\n  - id: \"shi2024avatar\"\n    title: \"Greening Large Language Models of Code (Avatar)\"\n    authors: \"Jieke Shi, Zhou Yang, Hong Jin Kang, Bowen Xu, Junda He, David Lo\"\n    venue: \"ICSE-SEIS 2024\"\n    year: 2024\n    url: \"https://arxiv.org/abs/2309.04076\"\n    category: \"method-component\"\n    relevance: \"Code LLM 知识蒸馏的代表工作，SMT solver 优化蒸馏配置\"\n    key_findings: \"蒸馏后模型仅 3MB（160x 压缩），推理延迟降低 76x，能耗降低 184x，效果损失仅 1.67%\"\n    our_advantage: \"Avatar 面向通用代码理解任务蒸馏，DTD 专门针对 trace 结构过滤任务做蒸馏，任务特异性更强\"\n\n  - id: \"miniplm2025\"\n    title: \"MiniPLM: Knowledge Distillation for Pre-Training Language Models\"\n    authors: \"Yuxian Gu, Hao Zhou, Fandong Meng, Jie Zhou, Minlie Huang\"\n    venue: \"ICLR 2025\"\n    year: 2025\n    url: \"https://arxiv.org/abs/2410.17215\"\n    category: \"method-component\"\n    relevance: \"离线蒸馏框架，通过调整训练数据分布传递教师知识，跨模型族蒸馏\"\n    key_findings: \"Difference Sampling 基于教师/参考模型输出概率差异调整训练语料；9 个下游任务提升；减少预训练计算量\"\n    our_advantage: \"MiniPLM 是通用预训练蒸馏，DTD 是任务特异的 trace 过滤蒸馏；可借鉴其 Difference Sampling 思想\"\n\n  - id: \"kd_code_2025\"\n    title: \"An Empirical Study of Knowledge Distillation for Code Understanding Tasks\"\n    authors: \"Code KD study authors\"\n    venue: \"ICSE 2026\"\n    year: 2025\n    url: \"https://arxiv.org/abs/2508.15423\"\n    category: \"method-component\"\n    relevance: \"系统评估多种 KD 方法在代码理解任务上的表现，为 DTD 的蒸馏策略选择提供依据\"\n    key_findings: \"首次系统比较多种 KD 方法在代码理解任务（漏洞检测/克隆检测等）上的效果\"\n    our_advantage: \"DTD 可参考其 KD 方法选择建议，但 DTD 的蒸馏目标是 trace 结构过滤而非通用代码理解\"\n\n  # ============================================================\n  # Evaluation — benchmarks and evaluation methodology\n  # ============================================================\n\n  - id: \"widyasari2020bugsinpy\"\n    title: \"BugsInPy: A Database of Existing Bugs in Python Programs to Enable Controlled Testing and Debugging Studies\"\n    authors: \"Ratnadira Widyasari, Sheng Qin Sim, Camellia Lok, Haodi Qi, Jack Phan, Qijin Tay, Constance Tan, Fiona Wee, Jodie Ethelda Tan, Yuheng Yieh, Brian Goh, Ferdian Thung, Hong Jin Kang, Thong Hoang, David Lo, Eng Lieh Ouh\"\n    venue: \"ESEC/FSE 2020\"\n    year: 2020\n    url: \"https://dl.acm.org/doi/abs/10.1145/3368089.3417943\"\n    category: \"evaluation\"\n    relevance: \"DTD 的主要评估基准，Python 真实 bug 数据集，类比 Java 的 Defects4J\"\n    key_findings: \"17 个 Python 项目的 493 个真实 bug，每个 bug 附带失败测试用例；支持可控的测试和调试研究\"\n    our_advantage: \"N/A — 这是我们使用的评估基准\"\n\n  - id: \"jimenez2024swebench\"\n    title: \"SWE-bench: Can Language Models Resolve Real-World GitHub Issues?\"\n    authors: \"Carlos E. Jimenez, John Yang, Alexander Wettig, Shunyu Yao, Kexin Pei, Ofir Press, Karthik R. Narasimhan\"\n    venue: \"ICLR 2024\"\n    year: 2024\n    url: \"https://arxiv.org/abs/2310.06770\"\n    category: \"evaluation\"\n    relevance: \"大规模 Python APR 基准，12 个仓库 2294 个真实 issue，可作为 DTD 的扩展评估\"\n    key_findings: \"从 GitHub 真实 issue/PR 挖掘；需在大规模代码库中定位和修改代码；已成为 LLM-based APR 标准评估\"\n    our_advantage: \"N/A — 可作为补充评估基准，验证 DTD 在仓库级任务上的泛化性\"\n\n  # ============================================================\n  # Background — LLM-based APR surveys / trace utility debate\n  # ============================================================\n\n  - id: \"yang2025apr_survey\"\n    title: \"A Survey of LLM-based Automated Program Repair: Taxonomies, Design Paradigms, and Applications\"\n    authors: \"Yang, Cai et al.\"\n    venue: \"arXiv preprint\"\n    year: 2025\n    url: \"https://arxiv.org/abs/2506.23749\"\n    category: \"background\"\n    relevance: \"最全面的 LLM-based APR 综述，覆盖 62 个系统，四种范式分类\"\n    key_findings: \"将 LLM-based APR 分为 fine-tuning / prompting / procedural pipeline / agentic 四种范式；系统梳理评估实践\"\n    our_advantage: \"DTD 属于 fine-tuning + structured preprocessing 的交叉范式，综述中此类工作较少\"\n\n  - id: \"bouzenia2025repairagent\"\n    title: \"RepairAgent: An Autonomous, LLM-Based Agent for Program Repair\"\n    authors: \"Islem Bouzenia, Premkumar Devanbu, Michael Pradel\"\n    venue: \"ICSE 2025\"\n    year: 2025\n    url: \"https://arxiv.org/abs/2403.17134\"\n    category: \"background\"\n    relevance: \"首个自主 LLM agent 做 APR，动态规划工具调用，代表 agentic APR 范式\"\n    key_findings: \"自主选择信息收集/修复/验证工具；Defects4J 上修复 164 个 bug（含 39 个新修复）；平均 270K tokens/bug\"\n    our_advantage: \"RepairAgent 是 agent 范式依赖大 LLM 推理，DTD 是轻量蒸馏模型做 trace 预处理，可作为 agent 的前端组件\"\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 64_
+
+注册产出文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "18ed2b9f-1977-41b1-85d6-a1835ac2d484",
+  "uuid": "c905c5ba-cb13-49af-833f-70728c2f9b89",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WNskzDRkZgivieM1RumCMC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4134,
+      "cache_read_input_tokens": 47898,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4134
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_019RUTvBghbwT1jBR4iFHgZE`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__save_project_file",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "18ed2b9f-1977-41b1-85d6-a1835ac2d484",
+  "uuid": "79155991-3017-43c9-a324-45e2165bad7f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WNskzDRkZgivieM1RumCMC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4134,
+      "cache_read_input_tokens": 47898,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4134
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-14T13:54:53.119Z_
+
+<details><summary>↩ Tool result · `toolu_019RUTvBghbwT1jBR4iFHgZE`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "18ed2b9f-1977-41b1-85d6-a1835ac2d484",
+  "uuid": "3acb6345-1316-4ffd-ab34-1183cfc87fd6",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "query": "select:mcp__agent-ml-research__save_project_file",
+    "total_deferred_tools": 22
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 67_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The `save_project_file` only allows writing to a whitelist of files (memory.md, writing_plan.yaml, paper_framing.md). `literature_map.yaml` is not in the whitelist, so I can't use this tool to save it. But I already wrote it directly using the Write tool, so it's done.
+
+Let me check if there's a `register_artifact` tool I should use instead.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "18ed2b9f-1977-41b1-85d6-a1835ac2d484",
+  "uuid": "88efb86b-3654-45d5-95db-04e6ab439916",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YErvcb1TqD5wSGf2CfuVK2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 371,
+      "cache_read_input_tokens": 52032,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 371
+      },
+      "output_tokens": 27,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 68_
+
+`literature_map.yaml` 不在 `save_project_file` 的白名单中，但已通过 Write 工具直接写入。让我检查是否需要用 `register_artifact` 注册。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "18ed2b9f-1977-41b1-85d6-a1835ac2d484",
+  "uuid": "25ad2e39-8ea8-4cf8-86e1-1f1fbbc92918",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YErvcb1TqD5wSGf2CfuVK2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 371,
+      "cache_read_input_tokens": 52032,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 371
+      },
+      "output_tokens": 27,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01N5EZryq52N3anTjY91jZa8`</summary>
+
+```json
+{
+  "query": "register_artifact",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "18ed2b9f-1977-41b1-85d6-a1835ac2d484",
+  "uuid": "c73f8a94-893a-46e4-b002-be9297c6e2e1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YErvcb1TqD5wSGf2CfuVK2",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 371,
+      "cache_read_input_tokens": 52032,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 371
+      },
+      "output_tokens": 27,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-14T13:54:58.907Z_
+
+<details><summary>↩ Tool result · `toolu_01N5EZryq52N3anTjY91jZa8`</summary>
+
+```text
+No matching deferred tools found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "18ed2b9f-1977-41b1-85d6-a1835ac2d484",
+  "uuid": "0728e121-0bcd-472a-8eb1-a91e6aac9dda",
+  "tool_use_result": {
+    "matches": [],
+    "query": "register_artifact",
+    "total_deferred_tools": 22
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 71_
+
+没有 `register_artifact` 工具可用。文件已写入完毕。
+
+产出文件：`/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/trace_distill_repair/literature_map.yaml`
+
+共收录 **15 篇论文**，按四个维度分布：
+
+| 维度 | 数量 | 代表论文 |
+|------|------|----------|
+| Direct Competitors | 5 | Wang2025 (EMNLP目标论文), TraceFixer, TraceRepair, DynaFix, Haque2025 |
+| Method Components | 5 | LDB, TraceCoder, Avatar, MiniPLM, KD for Code |
+| Evaluation | 2 | BugsInPy, SWE-bench |
+| Background | 3 | APR Survey, RepairAgent |
+
+关键发现对 DTD 立项的支撑：
+- **Haque2025** 和 **Wang2025** 都证实原始 trace 直接拼入 prompt 效果有限，且 trace 复杂度越高效果越差——这正是 DTD 结构化过滤要解决的问题
+- **LDB** 的 basic block 分段验证思路验证了结构化分段的可行性，但依赖大 LLM 在线推理
+- **DynaFix/TraceRepair** 代表最新竞争者，均用全量 trace + 大模型推理，DTD 用蒸馏小模型做预过滤是差异化路线
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "18ed2b9f-1977-41b1-85d6-a1835ac2d484",
+  "uuid": "5d4c9506-e736-469d-b791-5717321dfe96",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N8rqrCojUCy1yyt1aAb8Y7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 263,
+      "cache_read_input_tokens": 52403,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 263
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 72_
+
+没有 `register_artifact` 工具可用。文件已写入完毕。
+
+产出文件：`/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/trace_distill_repair/literature_map.yaml`
+
+共收录 **15 篇论文**，按四个维度分布：
+
+| 维度 | 数量 | 代表论文 |
+|------|------|----------|
+| Direct Competitors | 5 | Wang2025 (EMNLP目标论文), TraceFixer, TraceRepair, DynaFix, Haque2025 |
+| Method Components | 5 | LDB, TraceCoder, Avatar, MiniPLM, KD for Code |
+| Evaluation | 2 | BugsInPy, SWE-bench |
+| Background | 3 | APR Survey, RepairAgent |
+
+关键发现对 DTD 立项的支撑：
+- **Haque2025** 和 **Wang2025** 都证实原始 trace 直接拼入 prompt 效果有限，且 trace 复杂度越高效果越差——这正是 DTD 结构化过滤要解决的问题
+- **LDB** 的 basic block 分段验证思路验证了结构化分段的可行性，但依赖大 LLM 在线推理
+- **DynaFix/TraceRepair** 代表最新竞争者，均用全量 trace + 大模型推理，DTD 用蒸馏小模型做预过滤是差异化路线
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 357680,
+  "duration_api_ms": 359615,
+  "num_turns": 30,
+  "stop_reason": "end_turn",
+  "session_id": "18ed2b9f-1977-41b1-85d6-a1835ac2d484",
+  "total_cost_usd": 1.70042775,
+  "usage": {
+    "input_tokens": 36,
+    "cache_creation_input_tokens": 40825,
+    "cache_read_input_tokens": 1085313,
+    "output_tokens": 6855,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 40825,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 427,
+        "cache_read_input_tokens": 52403,
+        "cache_creation_input_tokens": 263,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 263
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 432895,
+      "outputTokens": 11633,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 24,
+      "costUSD": 0.7310599999999998,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 36,
+      "outputTokens": 6855,
+      "cacheReadInputTokens": 1085313,
+      "cacheCreationInputTokens": 40825,
+      "webSearchRequests": 0,
+      "costUSD": 0.96936775,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "7a7bad8b-0033-4440-a929-4ef46471cfff"
+}
+```
+
+</details>
+
+---

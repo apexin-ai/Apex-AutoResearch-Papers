@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0c823eaf4cde28f995c0",
+  "project": "trace_distill_repair",
+  "kind": "result",
+  "title": "ops cleanup and scoring v3",
+  "task_key": "worker_ops_cleanup_and_scoring_v3_20260515T053557",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cleanup_and_scoring_v3_20260515T053557_result.json",
+    "occurrence": 1,
+    "bytes": 1581,
+    "sha256": "17ec9cabd6008c04e78fad31b2b67dc095c80dd423cf4d6a1ac33cee1e0155f9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个任务都已正常运行，在处理 33 个实例。\n\n---\n\n## 执行报告\n\n### 1. 清理的文件（20个）\n\n**5个失败实例（15个文件）：**\n- `black_2_{line_segments,structural_segments,trace}.json`\n- `black_5_{line_segments,structural_segments,trace}.json`\n- `black_14_{line_segments,structural_segments,trace}.json`\n- `tqdm_1_{line_segments,structural_segments,trace}.json`\n- `tqdm_2_{line_segments,structural_segments,trace}.json`\n\n**旧 scoring 产物（5个文件）：**\n- `phase2_line_scores.json`\n- `phase2_structural_scores.json`\n- `phase2_line_scores_fastapi_supplement.json`\n- `phase2_structural_scores_patched.json`\n- `recovery_analysis.json`\n\n全部移至 `/root/trace_distill_repair/pipeline_output/v1_backup/`\n\n### 2. 清理后目录\n\n33 个 v2 实例 × 3 文件 = 99 个 segment/trace 文件 + `summary.json` + 4 个目录/备份文件\n\n### 3. Line segment 总数\n\n**51,430**（远超 10,000 阈值）。youtube-dl 系列尤其大（youtube-dl_2 单实例 9,995 segments）。可能需要采样策略，但已按要求不阻塞启动。\n\n### 4. Scoring 任务\n\n| 任务 | tmux session | PID | 日志 |\n|------|-------------|-----|------|\n| Structural scoring | `mvp_structural_scoring_v3` | 100912 | `~/runs/trace_distill_repair/mvp_structural_scoring_v3.log` |\n| Line scoring | `mvp_line_scoring_v3` | 100937 | `~/runs/trace_distill_repair/mvp_line_scoring_v3.log` |\n\n注：首次提交因 `.bashrc` 非交互 shell 保护导致 API key 不可见，第三次通过直接 export key 解决。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cleanup-and-scoring-v3.md"
+}

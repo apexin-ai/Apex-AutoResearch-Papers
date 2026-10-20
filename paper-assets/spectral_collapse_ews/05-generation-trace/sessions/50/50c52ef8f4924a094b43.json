@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "50c52ef8f4924a094b43",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ops verify exp006 exp005 status",
+  "task_key": "worker_ops_verify_exp006_exp005_status_20260517T174807",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify_exp006_exp005_status_20260517T174807_result.json",
+    "occurrence": 1,
+    "bytes": 1381,
+    "sha256": "bacc3e408e3151d5fdeb11673c184a9d6fcfce532490ad09176fc1e8d19de48b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态汇总\n\n### exp_006 (k=10, cuda:0)\n| 项目 | 状态 |\n|------|------|\n| 进程 | **存活** — PID 133199 (wrapper) → 133204 (python), 运行 ~16 min |\n| tmux | `exp_006` session 存在 |\n| GPU 0 | 19036 MiB, 79% 利用率 |\n| 当前阶段 | **Gen 1 数据生成中** — 4800/25000 samples (~19%) |\n| Gen 0 baseline | eff_rank=417.55, ppl=9.55, distinct4=0.7414 |\n| 报错 | 无（padding_side 警告可忽略） |\n\n启动成功，正常运行。\n\n---\n\n### exp_005 (k=20, cuda:1)\n| 项目 | 状态 |\n|------|------|\n| 进程 | **存活** — PID 116947, 运行 ~4.5h |\n| tmux | 无独立 session（直接后台运行） |\n| GPU 1 | 25008 MiB, 94% 利用率 |\n| 当前阶段 | **Gen 3 完成，Gen 4 数据生成中**（log 末尾有 padding 警告，正在生成 samples） |\n\n**exp_005 各代指标：**\n\n| Gen | loss | eff_rank | ppl | distinct4 |\n|-----|------|----------|-----|-----------|\n| 0 | — | 417.55 | 9.55 | 0.7414 |\n| 1 | 1.9863 | 476.93 | 10.09 | 0.6608 |\n| 2 | 1.8811 | 486.85 | 10.42 | 0.6149 |\n| 3 | 1.7804 | 496.11 | 10.76 | 0.4400 |\n\n趋势：eff_rank 持续上升（417→496），ppl 缓慢上升（9.55→10.76），distinct4 明显下降（0.74→0.44）。典型的 spectral collapse 进展特征——多样性下降伴随有效秩膨胀。\n\n两个实验均正常运行，无报错。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-exp006-exp005-status.md"
+}

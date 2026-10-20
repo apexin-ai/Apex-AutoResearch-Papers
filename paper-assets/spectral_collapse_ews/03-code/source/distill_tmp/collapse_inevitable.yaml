@@ -1,0 +1,38 @@
+paper_key: "collapse_inevitable"
+title: "Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data"
+venue: "arXiv 2024"
+full_text_available: false
+
+research:
+  baselines:
+    - data replacement strategy (prior model collapse work)
+    - data accumulation strategy (proposed)
+    - linear model analytical framework
+  metrics:
+    - {name: "test error", direction: "lower_better"}
+    - {name: "generation quality across iterations", direction: "higher_better"}
+    - {name: "model collapse severity", direction: "lower_better"}
+  datasets:
+    - {name: "text corpora (language model pretraining)", size: "N/A"}
+    - {name: "molecule conformation data (diffusion models)", size: "N/A"}
+    - {name: "image data (VAE)", size: "N/A"}
+  ablation_dimensions:
+    - data strategy (replace vs accumulate)
+    - model size
+    - model architecture
+    - hyperparameters
+    - data modality (text, molecules, images)
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "N/A"}
+  method_family: "model collapse mitigation / data accumulation"
+
+positioning:
+  core_claim: "Model collapse is not inevitable: accumulating successive generations of synthetic data alongside original real data avoids collapse, with a provable finite upper bound on test error independent of iteration count."
+  key_results: "Data replacement → model collapse confirmed; data accumulation → collapse avoided across LMs, diffusion models (molecules), VAEs (images); analytical proof that accumulated data yields bounded test error."
+  limitations:
+    - "Requires retaining all historical data (storage cost)"
+    - "Analytical proof limited to linear model framework"
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

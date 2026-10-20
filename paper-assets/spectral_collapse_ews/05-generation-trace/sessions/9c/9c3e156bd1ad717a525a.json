@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "9c3e156bd1ad717a525a",
+  "project": "spectral_collapse_ews",
+  "kind": "worker",
+  "title": "eval hellaswag seed43",
+  "task_key": "worker_eval_hellaswag_seed43_20260520T092756",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_hellaswag_seed43_20260520T092756.log",
+    "occurrence": 1,
+    "bytes": 1322971,
+    "sha256": "c9d87e353530fb592406bea82dc706cb450cfd2110df1635401c06f097b1a3d5"
+  },
+  "statistics": {
+    "messages": 697,
+    "user_turns": 1,
+    "tool_calls": 270,
+    "roles": {
+      "log": 1,
+      "system": 36,
+      "record": 1,
+      "assistant": 117,
+      "tool_call": 270,
+      "tool_result": 270,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 454,
+      "chunks": [
+        {
+          "path": "9c3e156bd1ad717a525a-part-0001.json",
+          "message_count": 153
+        },
+        {
+          "path": "9c3e156bd1ad717a525a-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "9c3e156bd1ad717a525a-part-0003.json",
+          "message_count": 121
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 243,
+      "chunks": [
+        {
+          "path": "9c3e156bd1ad717a525a-part-0003.json",
+          "message_count": 59
+        },
+        {
+          "path": "9c3e156bd1ad717a525a-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "9c3e156bd1ad717a525a-part-0005.json",
+          "message_count": 4
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-hellaswag-seed43.md"
+}

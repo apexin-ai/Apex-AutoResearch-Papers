@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f349e69b3080dd7e5aa8",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ops verify exp022c startup",
+  "task_key": "worker_ops_verify-exp022c-startup_20260524T074041",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-exp022c-startup_20260524T074041_result.json",
+    "occurrence": 1,
+    "bytes": 1133,
+    "sha256": "9fe7aad12ee8125013c2a7be86c5e0a00f85a68c65db0ffa14db0dfbb6a53940"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验状态汇总：\n\n### exp_022c (GPT-2-medium, r=0.3, fixed_mix) — cuda:1\n- **进程**: PID 868285 在 GPU 1 上运行，占用 19,282 MiB 显存，GPU 利用率 97%\n- **命令**: `run_gpt2m_phase1.py --condition fixed_mix --real_ratio 0.3 --generations 3 --seed 42 --gpu 0`（通过 `CUDA_VISIBLE_DEVICES=1` 映射到物理 GPU 1）\n- **日志**: 目前只有模型加载阶段的 warning（loss_type、padding_side），说明正在完成第一轮 generation 的样本生成或 fine-tuning，尚未输出第一个 `[Gen X] Results`\n- **状态**: ✅ 已成功启动，正在训练中\n\n### exp_020 (GPT-2-medium, pure_collapse) — cuda:0\n- **进程**: PID 783957 在 GPU 0 上运行，占用 26,422 MiB 显存，GPU 利用率 94%\n- **进度**: 已完成 Gen 0-8 的完整循环，正在 Gen 9（最后一轮）生成 50,000 个 synthetic samples\n- **趋势**: eff_rank 从 23.09→110.92 先升后降，ppl 从 15.45→198.01 持续恶化，distinct-4 从 0.91→0.46 持续下降 — 符合预期的 collapse 模式\n- **状态**: ✅ 正常运行，接近完成（10 代中已完成 9 代）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-exp022c-startup.md"
+}

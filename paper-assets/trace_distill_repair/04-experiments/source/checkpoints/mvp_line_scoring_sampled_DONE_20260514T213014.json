@@ -1,0 +1,35 @@
+{
+  "exp_id": "mvp_line_scoring_sampled",
+  "project": "trace_distill_repair",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T20:51:53.462Z",
+    "updated_at": "2026-05-14T21:30:14.306Z",
+    "spec": {
+      "command": "python run_phase2_scoring.py --mode line (sampled, buggy code)",
+      "server": "westd-18314",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "70545",
+      "log_path": "/tmp/phase2_line_scoring_sampled.log",
+      "submitted_at": "2026-05-14T20:51:53.453Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/trace_distill_repair/pipeline_output/",
+      "data_count": 38,
+      "model_name": "deepseek/deepseek-v4-flash",
+      "seed": 0,
+      "wall_clock_seconds": 2300.9,
+      "gpu_hours": 0.64
+    },
+    "conclusion": "failed",
+    "completed_at": "2026-05-14T21:30:14.306Z"
+  },
+  "timestamp": "2026-05-14T21:30:14.318911+00:00",
+  "trigger": "update_registry"
+}

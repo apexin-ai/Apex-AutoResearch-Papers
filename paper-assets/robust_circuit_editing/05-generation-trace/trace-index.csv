@@ -1,0 +1,6 @@
+source_archive,member_path,source_bytes,sanitized_bytes,processing
+spectral_collapse_ews/workspace.tar.gz,logs/workers/worker_research_circuit_discovery_repos_20260516T072827.log,94771,94141,Credentials and binary attachments redacted
+spectral_collapse_ews/workspace.tar.gz,logs/workers/worker_setup_env_rtx6000_20260516T072810.log,75517,75517,Credentials and binary attachments redacted
+spectral_collapse_ews/workspace.tar.gz,logs/chats/feishu_group_oc_5bc869653bcbebb111521d0c9f17c173.jsonl,35457,34813,Credentials and binary attachments redacted
+spectral_collapse_ews/workspace.tar.gz,logs/chats/feishu_group_oc_5bc869653bcbebb111521d0c9f17c173_reviewer.jsonl,37766,37138,Credentials and binary attachments redacted
+spectral_collapse_ews/workspace.tar.gz,logs/chats/feishu_group_oc_d4f772d7bbec86e7412630d9e09fe064_director.jsonl,55866,54909,Credentials and binary attachments redacted

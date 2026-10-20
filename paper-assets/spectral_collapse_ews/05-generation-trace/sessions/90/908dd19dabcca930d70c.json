@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "908dd19dabcca930d70c",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ops extract gen4 urgent",
+  "task_key": "worker_ops_extract-gen4-urgent_20260518T163209",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_extract-gen4-urgent_20260518T163209_result.json",
+    "occurrence": 1,
+    "bytes": 940,
+    "sha256": "5335ccd055e348e3dc312050efed6b9233fd061f4b4440881102b6528ad646b1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验各有 gen0-gen3（共 4 代），**没有 Gen 4 数据**（每个文件只有 4 条记录，generation 0-3）。\n\n### exp_007 (r=0.2)\n\n| gen | log_det | eff_rank | ppl | d4 |\n|-----|---------|----------|-----|-----|\n| 0 | 2366.68 | 417.55 | 9.55 | 0.741 |\n| 1 | 2367.46 | 476.73 | 10.28 | 0.674 |\n| 2 | 2358.31 | 481.62 | 10.74 | 0.498 |\n| 3 | 2362.52 | 486.54 | 11.14 | 0.467 |\n\n### exp_008 (r=0.3)\n\n| gen | log_det | eff_rank | ppl | d4 |\n|-----|---------|----------|-----|-----|\n| 0 | 2366.68 | 417.55 | 9.55 | 0.741 |\n| 1 | 2366.13 | 476.91 | 10.19 | 0.689 |\n| 2 | 2372.45 | 484.17 | 10.59 | 0.489 |\n| 3 | 2386.72 | 489.48 | 10.90 | 0.465 |\n\n两个实验最新数据只到 **gen3**，Gen 4 尚未生成。两者 gen0 完全一致（同一 base model），之后 r=0.3 的 log_det 在 gen3 出现上升趋势（2386.72 vs 2362.52），ppl 略低于 r=0.2（10.90 vs 11.14），d4 相近。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-extract-gen4-urgent.md"
+}

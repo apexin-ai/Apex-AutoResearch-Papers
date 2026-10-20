@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "999650f158c1bfa016af",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ssh exp 016 017 progress 3",
+  "task_key": "worker_ssh_exp_016_017_progress_3_20260522T175850",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp_016_017_progress_3_20260522T175850_result.json",
+    "occurrence": 1,
+    "bytes": 765,
+    "sha256": "9af8c46a759784721d3fab25ccb3d85046065fbd6071eb4adef52b84ad4d3632"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验进度报告\n\n### exp_016\n- **配置**: Phase 1, fixed_mix, pythia-410m, seed=44, r03, 35000 samples/gen\n- **当前**: Generation **10/10**，生成阶段 — 32960/35000 samples（~94%）\n- **状态**: 运行中，未完成\n- **Gen 9 metrics**: eff_rank=517.18, ppl=12.98, distinct4=0.4268\n\n### exp_017\n- **配置**: Phase 1, fixed_mix, pythia-410m, seed=43, r02, 40000 samples/gen\n- **当前**: Generation **6/10**，生成阶段 — 18880/40000 samples（~47%）\n- **状态**: 运行中，未完成\n- **Gen 5 metrics**: eff_rank=492.09, ppl=11.83, distinct4=0.4435\n\nexp_016 即将完成最后一个 generation 的样本生成，之后还有训练+评估就结束。exp_017 还需跑完 Gen 6-10，预计还需较长时间。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exp-016-017-progress-3.md"
+}

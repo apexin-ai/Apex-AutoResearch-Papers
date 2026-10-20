@@ -1,0 +1,126 @@
+paper_key: "data_mixing_laws"
+title: "Data Mixing Laws: Optimizing Data Mixtures by Predicting Language Modeling Performance"
+venue: "ICLR 2025"
+full_text_available: true
+
+research:
+  baselines:
+    - "Default RedPajama mixture"
+    - "DoReMi (Xie et al., 2024)"
+    - "DoGE-universal (Fan et al., 2024)"
+    - "DoGE-OOD (Fan et al., 2024)"
+    - "Uniform mixture"
+    - "Random baseline (Table 1)"
+  metrics:
+    - {name: "validation perplexity (Pile)", direction: "lower_better"}
+    - {name: "domain-specific validation loss", direction: "lower_better"}
+    - {name: "mean absolute error (MAE) of predictions", direction: "lower_better"}
+    - {name: "overall loss (weighted domain losses)", direction: "lower_better"}
+  datasets:
+    - {name: "The Pile", size: "800GB+ text corpus, used for validation and domain source"}
+    - {name: "RedPajama", size: "1.2T tokens, 7 domains used for 1B pretraining"}
+    - {name: "Pile subsets (GitHub, Pile-CC, Books3)", size: "subsets for 2/3-domain experiments"}
+    - {name: "Python code subset", size: "used for continual pretraining experiment"}
+  ablation_dimensions:
+    - "candidate function forms (M1-M4)"
+    - "number of training mixture samples for fitting"
+    - "number of implicit domains K (5-30)"
+    - "explicit vs implicit domain aggregation"
+    - "model sizes for scaling law fitting (70M, 160M, 305M, 410M)"
+    - "number of domains (2, 3, 5, 7)"
+  training_recipe:
+    optimizer: "not explicitly stated (likely AdamW based on standard practice)"
+    lr: "cosine decay with 2k warmup, decaying to 0.1x max LR at 100k steps"
+    batch_size: "1M tokens"
+    hardware: "not explicitly stated"
+    small_models: "70M, 160M, 305M, 410M parameters, 30B tokens each"
+    target_model: "1B parameters, 100B tokens"
+    architecture: "autoregressive Transformer (specific arch not named)"
+    tokenizer: "not explicitly stated"
+  method_family: "data mixture optimization via predictive scaling laws"
+
+positioning:
+  core_claim: "Domain-specific validation losses follow a predictable exponential function of training data mixture proportions, enabling optimization of pretraining data composition from small-scale experiments alone."
+  key_results: "Optimized RedPajama mixture for 1B model achieves parity with default mixture using only 73% of training steps (48% fewer additional steps); domain loss prediction MAE < 0.04; nested scaling pipeline predicts 1B model performance from 70M-410M experiments."
+  limitations:
+    - "Dependency on clear domain boundary definitions"
+    - "Lack of theoretical explanation for why exponential form works"
+    - "Extension to dynamic/evolving data schedules remains prospective"
+    - "Optimal mixture varies with model size and training steps (not a single universal answer)"
+    - "Fitting requires ~20-40 mixture training runs at small scale"
+  relation_to_us: "complementary"  # Data mixing laws predict training quality from data composition; our spectral EWS predict training quality from weight dynamics. Orthogonal signals that could be combined.
+
+narrative:
+  story_type: "化繁为简型"  # Reduces complex empirical data mixture search to a predictive formula
+  hook: "Data mixture proportions critically affect LLM pretraining quality, yet current approaches rely on heuristics or expensive grid search."
+  tension: "Existing methods (DoReMi, DoGE) tune mixtures via proxy objectives but cannot predict loss values for unseen mixtures; scaling laws exist for compute but not for data composition."
+  key_insight: "Domain losses follow an exponential function L_i(r) = c_i + k_i * exp(sum(t_ij * r_j)) of mixture proportions, discovered empirically from 2-domain log-linear plots (Figure 2) then generalized to multi-domain via interaction terms."
+  argument_chain: "empirical observation of log-linear relationship in 2 domains -> propose exponential functional form -> validate on 3 domains with candidate function comparison (Table 1) -> extend to multi-domain via interaction matrix -> nest with scaling laws for steps and model size -> demonstrate end-to-end optimization on 1B RedPajama -> show applications to continual pretraining and capability balancing"
+  contribution_framing: "Three contributions framed as discover/propose/verify: (1) discover quantitative predictability and data mixing laws, (2) propose nested scaling law pipeline, (3) verify through experiments on optimization, balancing, and scheduling."
+  intro_structure: "4 paragraphs: P1 - importance of data mixture for LLM quality; P2 - existing heuristic approaches lack quantitative prediction; P3 - discovery of exponential functional relationship; P4 - three-step pipeline overview and contribution list"
+  notable_technique: "The domain interaction matrix visualization (Figure 4) is a powerful narrative device - it visually reveals which domain pairs facilitate, conflict with, or are independent of each other, making the abstract exponential formula intuitively graspable."
+
+figures:
+  figure_count: 10  # at least 10 in main paper, additional in appendix
+  figure1:
+    type: "method_overview"
+    description: "Pipeline illustration showing the three-step prediction approach: Step 1 uses scaling laws of training steps, Step 2 uses scaling laws of model sizes, Step 3 applies data mixing laws to predict performance on unseen mixtures. Left shows the pipeline, right shows the prediction flow."
+    narrative_role: "Establishes the full method at a glance before diving into each component. Anchors the reader's understanding of how small-scale experiments connect to large-scale predictions."
+    design_elements: ["three-step sequential layout", "left-to-right pipeline flow", "scale progression visualization (small -> large)"]
+    visual_style: "Schematic pipeline diagram with clear stage separation. Likely uses arrows to show information flow between scaling law stages."
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "scatter_with_fit"
+      what_compared: "Log-scale linear relationship between domain loss and mixture proportion in 2-domain setting (GitHub + Pile-CC)"
+      how_gain_highlighted: "Shows tight fit of exponential model to empirical data points, establishing the core empirical finding"
+      design_note: "Log-scale y-axis reveals linearity, making the exponential relationship visually obvious - elegant choice"
+    - figure_id: "Figure 3"
+      viz_type: "scatter_with_fit"
+      what_compared: "Prediction accuracy of domain losses and overall losses in the 3-domain experiment"
+      how_gain_highlighted: "Predicted vs actual comparison showing low MAE"
+      design_note: "Extends Figure 2 to multi-domain, demonstrating generalization"
+    - figure_id: "Figure 8"
+      viz_type: "line_plot"
+      what_compared: "Validation perplexity curves: optimized mixture vs default RedPajama mixture for 1B models over 100B tokens"
+      how_gain_highlighted: "Optimized mixture converges faster, reaching default's final performance at ~73% of training steps"
+      design_note: "Training-progress x-axis makes compute savings immediately visible"
+    - figure_id: "Figure 9"
+      viz_type: "bar_chart"
+      what_compared: "Language modeling performance of different data mixtures (1B models, 100B tokens) including DoReMi, DoGE variants, default, and optimized"
+      how_gain_highlighted: "Direct comparison shows optimized mixture outperforms all baselines on same budget"
+      design_note: "Head-to-head baseline comparison - the definitive main result figure"
+  ablation_figures:
+    - figure_id: "Figure 5"
+      viz_type: "scatter_with_fit"
+      what_compared: "Domain loss predictability on 3-domain mixtures (GitHub, Books3, Pile-CC) - extends Figure 2"
+      dimensions_varied: ["mixture proportions across 3 domains"]
+      design_note: "Shows the functional form holds beyond 2 domains"
+    - figure_id: "Figure 6"
+      viz_type: "line_plot"
+      what_compared: "Sample efficiency: MAE of fitted data mixing laws vs number of training mixture samples"
+      dimensions_varied: ["number of mixture samples for fitting"]
+      design_note: "Demonstrates practical feasibility - don't need exhaustive grid search"
+    - figure_id: "Figure 7"
+      viz_type: "bar_or_line"
+      what_compared: "Prediction errors with explicit vs implicit domain aggregation, varying implicit domain count K (5-30)"
+      dimensions_varied: ["aggregation method (explicit/implicit)", "number of implicit domains K"]
+      design_note: "Shows implicit approach is robust to K choice, removing need for domain boundary knowledge"
+  figure_narrative_role: "Figure 1 (pipeline overview) -> Figure 2 (core empirical discovery in 2D) -> Figure 3-5 (generalization to 3+ domains) -> Figure 4 (domain interactions insight) -> Figure 6-7 (practical considerations: sample efficiency, implicit domains) -> Figure 8-9 (main results at 1B scale) -> Figure 10 (application to continual pretraining)"
+
+tables:
+  table_count: 1  # 1 in main paper, additional in appendix
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "methods"  # candidate functional forms M1-M4 + random baseline
+    col_axis: "domains x metrics"  # GitHub, Books3, Pile-CC with Train/Val MAE each
+    row_organization: "by_category"  # ordered by function complexity
+    col_organization: "grouped_by_dataset"  # each domain has train and validation error columns
+    highlight_strategy: "comparison of MAE values across function forms, M4 selected for simplicity + accuracy trade-off"
+    statistical_reporting: "mean absolute error (MAE)"
+    num_baselines: 5  # M1, M2, M3, M4, random
+    design_note: "Functional form selection table - not a typical baselines table. Uses model selection criteria (accuracy + parsimony) rather than just best number. Unusual that the main 'table' is about method design rather than final performance - final performance comparison is in Figure 9 instead."
+  ablation_tables: []  # ablations primarily shown as figures rather than tables
+  supplementary_tables:
+    in_appendix: true
+    content: "Appendix F: supplemented experimental results; Appendix G: loss prediction results with nested scaling laws (likely detailed numerical predictions at different scales)"
+    reason: "Main paper uses figures for visual impact of key findings; appendix tables provide numerical details for reproducibility"

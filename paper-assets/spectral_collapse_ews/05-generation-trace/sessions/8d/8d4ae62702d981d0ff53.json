@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8d4ae62702d981d0ff53",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ssh poll exp011 launch r03s43",
+  "task_key": "worker_ssh_poll-exp011-launch-r03s43_20260520T011050",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_poll-exp011-launch-r03s43_20260520T011050_result.json",
+    "occurrence": 1,
+    "bytes": 142,
+    "sha256": "b30e23d4d97dbe604eaf16a899594ea27242010f7253acb59405484bd83c8532"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp_011 仍在运行。已设置每 ~4.5 分钟轮询一次，进程结束后自动执行数据收集和 r=0.3 seed43 启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-poll-exp011-launch-r03s43.md"
+}

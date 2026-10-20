@@ -1,0 +1,29 @@
+{
+  "exp_id": "exp_011",
+  "project": "spectral_collapse_ews",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T16:17:23.434Z",
+    "updated_at": "2026-05-19T17:43:38.204Z",
+    "hypothesis": "Extending r=0.2 from 5gen to 10gen will reveal whether the dip-then-recovery pattern (Type II) persists or transitions to sustained decline. If SLV continues rising through Gen 10 (like r=0.25), r=0.2 is firmly Type II. If SLV plateaus or declines after Gen 5, r=0.2 may be closer to the Type I/II boundary, providing finer resolution of the phase diagram near r_crit.",
+    "parent": "exp_007",
+    "spec": {
+      "command": "bash -c \"bash /root/spectral_collapse_ews/scripts/resume_fixed_mix_r02_seed42_gen5to10.sh 0\"",
+      "server": "rtx6000-diagprobe",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "319889",
+      "log_path": "~/runs/spectral_collapse_ews/exp_011.log",
+      "submitted_at": "2026-05-19T16:17:48.185Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-19T17:43:38.303653+00:00",
+  "trigger": "update_registry"
+}

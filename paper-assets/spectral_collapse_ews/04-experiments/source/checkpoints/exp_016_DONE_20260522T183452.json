@@ -1,0 +1,153 @@
+{
+  "exp_id": "exp_016",
+  "project": "spectral_collapse_ews",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T09:29:07.345Z",
+    "updated_at": "2026-05-22T18:34:52.025Z",
+    "hypothesis": "r=0.3 with seed 44 reproduces Type III trajectory (monotonic expansion), providing 3rd seed for r_crit upper bound. Combined with exp_008 (seed42) and exp_012 (seed43), this completes 3-seed coverage at the boundary condition.",
+    "parent": "exp_008",
+    "server": "rtx6000-diagprobe",
+    "gpu": "",
+    "account": "root",
+    "reproduce": {
+      "server": "rtx6000-diagprobe",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-21T09:31:05.980Z",
+      "finished_at": "2026-05-22T18:29:44.338Z",
+      "training_hours": 32.98
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition fixed_mix --seed 44 --generations 10 --signal log_det --tau 0.002 --k 0 --signal_mode per_gen --real_ratio 0.3 --gpu 0\"",
+      "server": "gpu-6000pro-1",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "614614",
+      "log_path": "~/runs/spectral_collapse_ews/exp_016.log",
+      "submitted_at": "2026-05-21T23:16:08.255Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "model_name": "EleutherAI/pythia-410m-deduped",
+      "seed": 44,
+      "data_path": "/root/spectral_collapse_ews/data/",
+      "data_count": "50K real pool, total_per_gen=50K (15K real + 35K synthetic per gen)",
+      "real_ratio": 0.3,
+      "generations": 10,
+      "condition": "fixed_mix",
+      "checkpoint_source": "EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)",
+      "eval_data": "/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)",
+      "wall_clock_seconds": 69523.8,
+      "gpu_hours": 19.31
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-22T18:29:46.035273+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "gen0": {
+        "eff_rank": 417.55,
+        "log_det": 2366.68,
+        "ppl": 9.554,
+        "distinct4": 0.7305,
+        "sigma1": 1942.82
+      },
+      "gen1": {
+        "eff_rank": 476.91,
+        "log_det": 2365.49,
+        "ppl": 10.185,
+        "distinct4": 0.6714,
+        "sigma1": 956.44,
+        "train_loss": 1.836
+      },
+      "gen2": {
+        "eff_rank": 484.43,
+        "log_det": 2371.06,
+        "ppl": 10.572,
+        "distinct4": 0.5271,
+        "sigma1": 860.81,
+        "train_loss": 1.748
+      },
+      "gen3": {
+        "eff_rank": 490.15,
+        "log_det": 2389.22,
+        "ppl": 10.913,
+        "distinct4": 0.4937,
+        "sigma1": 822.21,
+        "train_loss": 1.52
+      },
+      "gen4": {
+        "eff_rank": 494.35,
+        "log_det": 2414.51,
+        "ppl": 11.244,
+        "distinct4": 0.472,
+        "sigma1": 794.63,
+        "train_loss": 1.425
+      },
+      "gen5": {
+        "eff_rank": 496.99,
+        "log_det": 2425.2,
+        "ppl": 11.53,
+        "distinct4": 0.4405,
+        "sigma1": 779.31,
+        "train_loss": 1.391
+      },
+      "gen6": {
+        "eff_rank": 502.01,
+        "log_det": 2451.59,
+        "ppl": 11.873,
+        "distinct4": 0.4297,
+        "sigma1": 757.36,
+        "train_loss": 1.329
+      },
+      "gen7": {
+        "eff_rank": 506.72,
+        "log_det": 2465.51,
+        "ppl": 12.219,
+        "distinct4": 0.4402,
+        "sigma1": 747.76,
+        "train_loss": 1.29
+      },
+      "gen8": {
+        "eff_rank": 511.33,
+        "log_det": 2479.89,
+        "ppl": 12.582,
+        "distinct4": 0.4286,
+        "sigma1": 729.67,
+        "train_loss": 1.265
+      },
+      "gen9": {
+        "eff_rank": 517.18,
+        "log_det": 2499.64,
+        "ppl": 12.979,
+        "distinct4": 0.4268,
+        "sigma1": 712.85,
+        "train_loss": 1.226
+      },
+      "gen10": {
+        "eff_rank": 520.89,
+        "log_det": 2505.25,
+        "ppl": 13.349,
+        "distinct4": 0.4197,
+        "sigma1": 695.97,
+        "train_loss": 1.185
+      }
+    },
+    "checkpoint_path": "/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r03_seed44/",
+    "log_path": "~/runs/spectral_collapse_ews/exp_016.log",
+    "conclusion": "success",
+    "notes": "r=0.3 seed44 Type III 复现确认。SLV 2366.68→2505.25 (+5.86%)，与 seed42 (+6.10%) / seed43 (+5.98%) 高度一致。3-seed Gen10: SLV=2508.24±2.94, eff_rank=521.11±0.20, ppl=13.344±0.036。distinct4 跨 seed 方差大 (seed42:.342, seed43:.122, seed44:.420, std=.155)，但谱指标 CV<0.3%。r=0.3 三 seed 验证完成，确认 r_crit 上界。",
+    "completed_at": "2026-05-22T18:34:52.025Z"
+  },
+  "timestamp": "2026-05-22T18:34:52.099749+00:00",
+  "trigger": "update_registry"
+}

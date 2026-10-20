@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ab31da8de748b570a2f9",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "paper update trajectory plot",
+  "task_key": "worker_paper_update_trajectory_plot_20260517T062316",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_update_trajectory_plot_20260517T062316_result.json",
+    "occurrence": 1,
+    "bytes": 661,
+    "sha256": "42f6dd19ed0fc2d68ba4819fc90555a752c788dc1c88cf0a8c7c392e0cd3c1f2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。5-panel 图已生成。\n\n**布局**：上排 3 panel (eff_rank, log_det, ppl)，下排 2 panel (distinct-4, HellaSwag)。\n\n**使用数据**：Gen 0-5 全部 6 代，其中：\n- eff_rank / log_det / ppl / distinct4：从 `results/phase0_results.json` 读取实际值\n- HellaSwag：使用提供的数据 [0.4130, 0.3897, 0.3764, 0.3658, 0.3558, 0.3439]\n\n**Gen 5 实际值**：eff_rank=479.21, log_det=2370.17, ppl=24.59, distinct4=0.463\n\n**图表特征**：\n- Gen 2 \"decompression peak\" 标注在 eff_rank 和 log_det panel（红色虚线 + 箭头）\n- HellaSwag panel 标注 16.7% decline\n- Y 轴范围收紧以突出趋势"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-update-trajectory-plot.md"
+}

@@ -1,0 +1,34 @@
+{
+  "exp_id": "exp_020",
+  "project": "spectral_collapse_ews",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T04:34:54.378Z",
+    "updated_at": "2026-05-23T09:46:37.577Z",
+    "hypothesis": "GPT-2-medium (355M, 24 layers) under pure-synthetic recursive training (r=0) exhibits the same three-phase spectral trajectory (decompression→onset→acceleration) as Pythia-410M, confirming that spectral collapse is architecture-independent. Cross-architecture replication addresses R2-C2 (single-architecture generalization) and strengthens C1.",
+    "server": "rtx6000-diagprobe",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "rtx6000-diagprobe",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-23T05:30:06.654Z"
+    },
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && bash /root/spectral_collapse_ews/scripts/launch_gpt2medium_r0_seed42.sh 0",
+      "server": "rtx6000-diagprobe",
+      "gpu_id": 0,
+      "model_name": "gpt2-medium",
+      "seed": 42,
+      "data_path": "OpenWebText 50K",
+      "data_count": 50000,
+      "tmux_session": "exp_020",
+      "log_path": "/root/spectral_collapse_ews/logs/exp_020.log"
+    }
+  },
+  "timestamp": "2026-05-23T09:46:37.680176+00:00",
+  "trigger": "update_registry"
+}

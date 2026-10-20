@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8f8b198042d69b0cba93",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ops exp020 finish exp023 launch",
+  "task_key": "worker_ops_exp020-finish-exp023-launch_20260524T083922",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp020-finish-exp023-launch_20260524T083922_result.json",
+    "occurrence": 1,
+    "bytes": 1561,
+    "sha256": "fe006c96970cf9248a1b8bd2a1e6ccdc8fe14e8ed94f60798898b09d8c1bfbaf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "现在汇总报告。\n\n---\n\n## 报告\n\n### 任务 1: exp_020 状态\n\n**未完成，正在 Gen 10 样本生成阶段 (5760/50000)**\n\n- PID 783957 存活，已运行 22 小时\n- GPU 0: 96% 利用率，26GB VRAM 占用\n- Gen 0-9 已完成，Gen 10 正在生成样本，预计还需 1.5-2 小时（含训练+评估）\n\nGen 0-9 数据摘要（pure_collapse, seed42, mix_ratio=0.0）：\n\n| Gen | eff_rank | PPL | D-4 | σ₁ |\n|-----|----------|-----|-----|----|\n| 0 | 23.09 | 15.45 | 0.9127 | 6598.1 |\n| 1 | 155.22 | 16.42 | 0.8907 | 1463.5 |\n| 2 | 185.37 | 18.94 | 0.8682 | 1190.7 |\n| 3 | 184.86 | 23.33 | 0.8368 | 1172.3 |\n| 4 | 169.56 | 32.11 | 0.7636 | 1224.0 |\n| 5 | 151.94 | 49.35 | 0.6583 | 1317.5 |\n| 6 | 136.09 | 76.81 | 0.5590 | 1449.3 |\n| 7 | 121.29 | 123.66 | 0.5008 | 1548.4 |\n| 8 | 110.92 | 198.01 | 0.4598 | 1592.7 |\n| 9 | 102.96 | 328.75 | 0.4200 | 1570.7 |\n\n结果 JSON 中无单独的 SLV 字段，只有 top_10_singular_values 和 eff_rank/log_det。\n\n### 任务 2: exp_022c 状态\n\n**正常运行，处于 Gen 0 评估阶段**\n\n- PID 868285 存活，运行 1 小时\n- GPU 1: 94% 利用率，19GB VRAM\n- 命令: `run_gpt2m_phase1.py --condition fixed_mix --real_ratio 0.3 --generations 3 --seed 42`\n- 日志 807 行全是 padding 警告，无 Gen 完成标记——说明仍在 Gen 0 文本生成/评估阶段\n- GPU 高利用率确认进程未卡住，只是生成较慢\n\n### 任务 3: exp_023\n\n**未启动。** cuda:0 被 exp_020 (PID 783957) 占用，需等 exp_020 完成后再启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp020-finish-exp023-launch.md"
+}

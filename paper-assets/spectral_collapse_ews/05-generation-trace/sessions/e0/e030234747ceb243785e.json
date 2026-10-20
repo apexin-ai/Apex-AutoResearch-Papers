@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e030234747ceb243785e",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "fix intro wording",
+  "task_key": "worker_fix_intro_wording_20260516T112906",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_intro_wording_20260516T112906_result.json",
+    "occurrence": 1,
+    "bytes": 187,
+    "sha256": "91b5ccaa0fb60629f73df5314db948bc2b3dc6bded01c1c6094828d7b3ee5a8b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\"substantially better collapse prevention\" 已替换为 \"improved collapse prevention\"，验证通过：无 \"substantially\" 残留，新措辞匹配正确。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-intro-wording.md"
+}

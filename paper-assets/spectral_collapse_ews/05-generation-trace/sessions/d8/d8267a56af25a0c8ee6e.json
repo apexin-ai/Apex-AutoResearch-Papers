@@ -1,0 +1,439 @@
+{
+  "schema_version": "1.0",
+  "id": "d8267a56af25a0c8ee6e",
+  "project": "spectral_collapse_ews",
+  "kind": "conversation",
+  "title": "paper writing related work",
+  "task_key": "worker_paper_writing_related_work_20260517T205658",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_writing_related_work_20260517T205658.jsonl",
+    "occurrence": 1,
+    "bytes": 23275,
+    "sha256": "f011560935cd46b45a0e90499ee1fa6e34fdb75a695941666b1d8d0200d960d6"
+  },
+  "statistics": {
+    "messages": 21,
+    "user_turns": 0,
+    "tool_calls": 10,
+    "roles": {
+      "tool_call": 10,
+      "tool_result": 10,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-17T20:58:47.352174+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260517T205658",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-17T20:58:47.352777+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: latex-paper\n3\tdescription: ML 顶会论文 LaTeX 写作全流程——Claim-Evidence 方法论、引用防幻觉、顶会模板速查、投稿工程链、会议转投。写论文/投稿时参考。\n4\tscope: global\n5\ttags:\n6\t- latex\n7\t- paper-writing\n8\t- academic\n9\t- citation\n10\t- submission\n11\tversion: 1\n12\troles:\n13\t- agent\n14\t- worker\n15\t---\n16\t\n17\t# LaTeX 论文写作全流程\n18\t\n19\tML/AI 顶会论文从草稿到投稿的完整指南。整合 Orchestra Research、VibeSkills、claim2evidence 三方最佳实践。\n20\t\n21\t---\n22\t\n23\t## 1. 工作模式\n24\t\n25\t开始前选择模式：\n26\t\n27\t| 模式 | 说明 | 适用 |\n28\t|------|------|------|\n29\t| **Build** | 从实验笔记/结果/代码生成论文 | 新稿 |\n30\t| **Improve** | 改写已有章节，强化论证 | 修改稿 |\n31\t| **Audit** | 输出风险列表 + 缺失证据 + 修复建议 | 投前检查 |\n32\t\n33\t---\n34\t\n35\t## 2. Claim-Evidence 方法论\n36\t\n37\t**核心原则：论文是一个有中心贡献的故事，不是实验的堆砌。**\n38\t\n39\t### 2.1 一句话贡献\n40\t\n41\t在写任何内容之前，必须能用一句话说清贡献。如果不能，说明还没准备好写论文。\n42\t\n43\t### 2.2 Claim-Evidence Map\n44\t\n45\t为每个 contribution 建立 claim→evidence 映射表：\n46\t\n47\t| Contribution | Claim | Evidence | Table/Figure |\n48\t|-------------|-------|----------|-------------|\n49\t| C1: 方法 X 在 Y 上 SOTA | 比所有 baseline 高 ≥2% | 5-seed 平均，p<0.05 | Table 1 |\n50\t| C2: 消融证明 Z 是关键 | 去掉 Z 后掉 >5% | 消融实验 | Table 2 |\n51\t| C3: 计算效率 | 比 baseline 快 3× | FLOPs + wall-clock | Figure 3 |\n52\t\n53\t**没有直接证据支撑的 claim 必须删除或降级为 discussion。**\n54\t\n55\t### 2.3 章节起草顺序\n56\t\n57\t```\n58\t1. Introduction + Experiments（先确定 claim 和 evidence）\n59\t2. Method（评估问题稳定后再写细节）\n60\t3. Related Work\n61\t4. Abstract + Title（核心 claim 定型后最后写）\n62\t```\n63\t\n64\t### 2.4 Quality Gates\n65\t\n66\t投稿前必须通过：\n67\t- [ ] 前两段出现显式 novelty 声明\n68\t- [ ] 每个 contribution 有可验证的 evidence\n69\t- [ ] Abstract / Intro / Conclusion 的 claim 一致\n70\t- [ ] Limitations 真实且技术性诚实\n71\t- [ ] 审稿人两分钟内能识别 delta\n72\t\n73\t---\n74\t\n75\t## 3. 引用防幻觉（CRITICAL）\n76\t\n77\t**AI 生成引用有 ~40% 错误率。绝对禁止凭记忆写 BibTeX。**\n78\t\n79\t### 3.1 黄金法则\n80\t\n81\t```\n82\tIF 无法程序化获取引用:\n83\t    → 标记 [CITATION NEEDED] 或 \\cite{PLACEHOLDER_verify}\n84\t    → 明确告知用户\n85\t    → 绝不编造看似合理的引用\n86\t```\n87\t\n88\t### 3.2 五步验证流程\n89\t\n90\t```\n91\t1. SEARCH  → Semantic Scholar API 搜索关键词\n92\t2. VERIFY  → 至少 2 个来源确认论文存在（S2 + arXiv/CrossRef）\n93\t3. RETRIEVE → 通过 DOI 获取 BibTeX（程序化，非记忆）\n94\t4. CHECK   → 确认\n…[truncated 7201 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260517T205658",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-17T20:58:47.352970+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260517T205658",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-17T20:58:47.353308+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: paper-writing-norms\n3\tdescription: 顶会级别论文写作风格规范——章节写法（Abstract/Intro/Related Work）、去 AI 风格、视觉密度、叙事哲学。Paper Agent 和 Worker 写论文章节时必须加载。\n4\tallowed-tools: [Read, Write, Edit, Glob, Grep]\n5\tscope: global\n6\tversion: 2\n7\tpriority: 9\n8\ttags:\n9\t  - writing\n10\t  - paper\n11\t  - style\n12\t  - norms\n13\troles:\n14\t  - agent\n15\t  - worker\n16\t  - paper_agent\n17\t---\n18\t\n19\t# 论文写作风格规范\n20\t\n21\t> 核心哲学：**论文是一个有说服力的故事，不是实验报告。** 审稿人在几十秒内判断论文价值——如果 Abstract 和 Introduction 读起来像实验日志，论文就已经失败了。\n22\t\n23\t---\n24\t\n25\t## 一、总体写作哲学\n26\t\n27\t### 1.1 故事驱动，不是数据堆砌\n28\t\n29\t- 论文必须以\"故事线\"为核心展开：问题 → 洞察 → 方法 → 验证\n30\t- 禁止大量实验数据堆砌——每个数字出现必须服务于叙事推进\n31\t- 附录内容必须在正文中有明确引用且融入叙事，禁止简单堆砌\n32\t- 如果附录数据对核心叙事有重大影响，根据附录数据调整论文 framing\n33\t\n34\t### 1.2 主线统一性\n35\t\n36\t- 当 idea 在研究过程中发生变化后，**必须重审全文逻辑**\n37\t- 常见问题：Introduction 讲的故事 A，Method 做的是故事 B，Results 又在讲故事 C\n38\t- 修复方式：从最终实验结论反推，重写 Introduction 的问题定义和动机\n39\t- 每次 idea 调整后检查：Abstract → Introduction → Method → Results → Discussion → Conclusion 是否形成一条连贯主线\n40\t\n41\t### 1.3 专有名词必须有定义\n42\t\n43\t- 首次出现的专有名词/缩写必须给出完整定义和解释\n44\t- Abstract 中使用的缩写也必须在 Abstract 内定义（如 LLM = Large Language Model）\n45\t- 不能假设读者知道你自己定义的术语——论文从来没解释过的概念不能直接使用\n46\t- 通用规则：如果一个非标准术语第一次出现时没有括号定义，就是写作 bug\n47\t\n48\t### 1.4 写作前必读同类优秀论文\n49\t\n50\t- 每个章节动笔前，找 **2-3 篇目标会议近 1-2 年的高分论文**作为风格参考——同类问题或同类方法皆可\n51\t- 重点学：\n52\t  - Abstract 怎么用最少篇幅讲完故事\n53\t  - Introduction 怎么从大问题切入到具体贡献\n54\t  - Related Work 怎么 positioning 自己（不是 survey）\n55\t  - Table/Figure 怎么压缩信息密度\n56\t- **不是抄袭**，是学习同行的故事节奏和审美——不同子领域叙事节奏差异很大\n57\t- 实操：Paper Agent 可以从 `literature_map.yaml` 中挑 `role=foundation` 或 `role=direct-competitor` 的论文，把 `{title, venue, year, abstract}` 附在 Worker 的 task_prompt 中作为概念参考；如需学习写作风格本身，让 Worker 通过 WebSearch 取得论文链接并 fetch 全文\n58\t\n59\t---\n60\t\n61\t## 二、Abstract 写作规范\n62\t\n63\t### 2.1 四个必答问题（150-250 words）\n64\t\n65\tAbstract 必须在很短的篇幅内清楚回答：\n66\t1. **研究什么问题** — 1-2 句话交代背景和痛点\n67\t2. **为什么重要** — 现有方法的不足（不用写太多）\n68\t3. **本文提出什么** — 核心贡献的关键机制（简要，不堆砌细节）\n69\t4. **结果说明什么** — 用具体实验结论支撑贡献\n70\t\n71\t### 2.2 禁忌\n72\t\n73\t- **禁止堆砌数据**：Abstract 不是 Results 的缩写。最多引用 2-3 个关键数字，要服务于 claim\n74\t- **\n…[truncated 4866 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260517T205658",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-17T20:58:47.353477+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260517T205658",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/paper/sections/introduction.tex"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-17T20:58:47.353653+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\n2\tSynthetic data has become integral to language model training.\n3\tInstruction tuning, knowledge distillation, and data augmentation all routinely use model-generated text, and as synthetic corpora are recycled into training pipelines, the process often becomes recursive: each generation of models is fine-tuned on outputs from the previous one.\n4\tRecent work demonstrates that such recursive synthetic training triggers \\textit{model collapse}, a progressive erosion of distributional tails and downstream capability~\\cite{shumailov2024collapse, dohmatob2024tails, alemohammad2024mad}.\n5\tThe problem is especially pressing as web-scraped corpora increasingly contain model-generated content, a trend that introduces implicit recursive loops even without deliberate data reuse.\n6\t\n7\tWhile model collapse is now well-characterized through theoretical analysis of tail decay~\\cite{dohmatob2024tails} and empirical studies across modalities~\\cite{shumailov2024collapse, alemohammad2024mad}, its effect on the geometric structure of learned representations remains poorly understood.\n8\tAs recursive training erodes distributional diversity, the embedding space should contract onto a lower-dimensional subspace.\n9\tCharacterizing this spectral trajectory could yield computationally cheap collapse indicators from internal model states alone, without text generation or benchmark evaluation.\n10\t\n11\tCurrent collapse detection depends on downstream metrics such as perplexity and benchmark accuracy, or on analysis of generated text through lexical diversity measures.\n12\tBoth approaches require either costly inference or external evaluation infrastructure at every generation.\n13\tSIGMA~\\cite{gu2026sigma} introduced spectral monitoring through embedding covariance analysis and showed that spectral indicators can track collapse, but validated only on OPT-125M over short generation horizons.\n14\tThree gaps remain open.\n15\tFirst, no work has systematically characterized spectral dynamics beyond a fe\n…[truncated 2288 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260517T205658",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-17T20:58:47.353812+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260517T205658",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/paper/sections/method.tex"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-17T20:58:47.353967+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\subsection{Spectral Metrics}\n2\t\\label{subsec:spectral_metrics}\n3\t\n4\tGiven a language model at generation $t$, we extract last-layer embeddings for $n{=}1{,}000$ held-out samples to form $\\mathbf{E} \\in \\mathbb{R}^{n \\times d}$ and compute the Gram matrix $\\mathbf{G} = \\mathbf{E}^\\top \\mathbf{E}$.\n5\tLet $\\sigma_1 \\geq \\sigma_2 \\geq \\cdots \\geq \\sigma_d$ denote the singular values of $\\mathbf{E}$.\n6\tWe track three complementary spectral indicators:\n7\t\n8\t\\paragraph{Spectral Log-Volume (SLV).}\n9\t$\\text{SLV} = \\sum_i \\log \\sigma_i = \\frac{1}{2} \\log \\det \\mathbf{G}$.\n10\tThis quantity measures the total volume spanned by the embedding cloud in log-space.\n11\tBecause it sums over all singular values, SLV is sensitive to contraction along any spectral direction, not only the dominant ones.\n12\t\n13\t\\paragraph{Effective Rank.}\n14\t$r_{\\text{eff}} = \\exp(H(\\mathbf{p}))$, where $p_i = \\sigma_i / \\sum_j \\sigma_j$ and $H$ is the Shannon entropy.\n15\tEffective rank quantifies how many dimensions carry substantial variance.\n16\tA uniform spectrum yields $r_{\\text{eff}} \\approx d$; concentration onto few directions drives $r_{\\text{eff}}$ toward~1.\n17\t\n18\t\\paragraph{Leading Singular Value.}\n19\t$\\sigma_1$ tracks the energy in the most dominant spectral direction.\n20\tRising $\\sigma_1$ under falling $r_{\\text{eff}}$ signals that variance is concentrating into a low-dimensional subspace, a hallmark of representational collapse.\n21\t\n22\tThese three metrics capture complementary collapse signatures: SLV detects global volume loss, $r_{\\text{eff}}$ measures dimensionality reduction, and $\\sigma_1$ isolates spectral concentration.\n23\t\n24\t\\subsection{Adaptive Mixing Controller}\n25\t\\label{subsec:controller}\n26\t\n27\tWe propose a closed-loop controller that adjusts the real-data mixing ratio $r_t$ at each generation based on the rate of spectral change.\n28\tThe update rule is:\n29\t\\begin{equation}\n30\t\\label{eq:controller}\n31\tr_{t+1} = \\frac{B_{\\text{rem}}}{T - t} + k \\cdot \\max(0,\\; \\Delta_t - \\tau)\n\n…[truncated 2057 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260517T205658",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-17T20:58:47.354143+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260517T205658",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/paper/sections/related_work.tex 2>/dev/null; echo \"exit: $?\"",
+              "description": "Check if related_work.tex exists"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-17T20:58:47.354264+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/paper/sections/related_work.tex\nexit: 0"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260517T205658",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-17T20:58:47.354379+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260517T205658",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/paper/sections/related_work.tex"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-17T20:58:47.354491+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\todo{Related Work to be written in Step 4.}\n2\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260517T205658",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-17T20:58:47.354708+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260517T205658",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\\\citet|\\\\citep|\\\\cite\\b|natbib|\\\\usepackage.*cite",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/paper",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-17T20:58:47.354884+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "paper/acl.sty:186:\\RequirePackage{natbib}\npaper/acl.sty:188:% \\citep, \\citet, and \\citeyearpar for compatibility with natbib, or\npaper/acl.sty:189:% \\cite, \\newcite, and \\shortcite for compatibility with older ACL .sty files\npaper/acl.sty:190:\\renewcommand\\cite{\\citep}  % to get \"(Author Year)\" with natbib\npaper/acl.sty:191:\\newcommand\\shortcite{\\citeyearpar}% to get \"(Year)\" with natbib\npaper/acl.sty:192:\\newcommand\\newcite{\\citet} % to get \"Author (Year)\" with natbib\npaper/acl.sty:193:\\newcommand{\\citeposs}[1]{\\citeauthor{#1}'s (\\citeyear{#1})} % to get \"Author's (Year)\"\npaper/acl.sty:195:\\bibliographystyle{acl_natbib}\npaper/acl.sty:299:% The hyperref manual (section 9) says hyperref should be loaded after natbib\npaper/acl.sty:309:  % This is necessary because \\href command is used in the acl_natbib.bst file.\npaper/main.log:129:(/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty\npaper/main.log:130:Package: natbib 2010/09/13 8.31b (PWD, AO)\npaper/main.log:133:LaTeX Info: Redefining \\cite on input line 694.\npaper/sections/experiments.tex:5:We use Pythia-410M-deduped \\cite{biderman2023pythia} as our base model and fine-tune on a 50K-subset of OpenWebText.\npaper/sections/introduction.tex:4:Recent work demonstrates that such recursive synthetic training triggers \\textit{model collapse}, a progressive erosion of distributional tails and downstream capability~\\cite{shumailov2024collapse, dohmatob2024tails, alemohammad2024mad}.\npaper/sections/introduction.tex:7:While model collapse is now well-characterized through theoretical analysis of tail decay~\\cite{dohmatob2024tails} and empirical studies across modalities~\\cite{shumailov2024collapse, alemohammad2024mad}, its effect on the geometric structure of learned representations remains poorly understood.\npaper/sections/introduction.tex:13:SIGMA~\\cite{gu2026sigma} introduced spectral monitoring through embedding covariance analysis and showed that spectral indicators can track collapse, but validated only on OPT-125M \n…[truncated 1650 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260517T205658",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-17T20:58:47.355077+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260517T205658",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/paper/sections/related_work.tex",
+              "content": "\n\\paragraph{Model Collapse.}\nRecursive training on synthetic data causes progressive distributional narrowing, a phenomenon termed model collapse.\n\\citet{shumailov2024collapse} provided the first systematic evidence across multiple model families, showing that tail distributions erode over successive generations.\nTheoretical analysis by \\citet{dohmatob2024tails} established scaling laws for this tail decay, and subsequent work demonstrated that contamination levels as low as 1\\% synthetic data can trigger strong collapse~\\cite{dohmatob2025strong}.\nThe MAD framework~\\cite{alemohammad2024mad} formalized the dynamics of self-consuming generative models, confirming that iterative loops converge to degenerate distributions without fresh data injection.\n\\citet{gerstgrasser2024inevitable} showed that accumulating real data across generations can prevent collapse entirely.\nThese studies characterize collapse through output distribution metrics, perplexity, or benchmark scores.\nOur work complements this line of research: we track collapse through the spectral geometry of learned representations and connect distributional tail decay to measurable contraction in the embedding space.\n\n\\paragraph{Spectral Analysis of Representations.}\nSpectral properties of neural networks have been studied from several angles.\n\\citet{martin2021implicit} applied Random Matrix Theory to weight matrices of pretrained networks, showing that heavy-tailed spectral density encodes implicit regularization.\n\\citet{roy2007effectiverank} defined effective rank as a continuous dimensionality measure based on singular value entropy, which has since become standard in representation analysis~\\cite{rankme2023}.\nIn training dynamics, \\citet{he2025spectral} linked spectral collapse of representation covariance matrices to catastrophic forgetting in continual learning.\nClosest to our setting, \\citet{gu2026sigma} proposed the SIGMA framework for spectral monitoring during recursive synthetic training, with validation on OPT-125M over short generation horizons.\nWe extend this direction along three axes: systematic tracking over 10 generations, validation at the 410M and 1B scale, and the connection from spectral indicators to closed-loop collapse prevention.\n\n\\paragraph{Data Mixing for LLM Training.}\nControlling training data composition is critical for language model quality.\nDoReMi~\\cite{xie2023doremi} trains a small proxy model to reweight domain mixtures before the main training run.\nData Mixing Laws~\\cite{ye2025mixinglaws, data_mixing_laws2024} predict optimal ratios from small-scale experiments so that mixture optimization does not require full-scale retraining.\nBoth paradigms determine ratios prior to training and hold them fixed throughout.\nOur adaptive controller differs fundamentally: it adjusts the real-synthetic mixing ratio online during recursive training, guided by real-time spectral feedback from the model's own representations rather than a priori proxy estimates.\n"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-17T20:58:47.355334+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/paper/sections/related_work.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260517T205658",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-17T20:58:47.355489+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260517T205658",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/paper/sections && echo \"=== em-dash ===\" && grep -n \"—\" related_work.tex; echo \"=== en-dash ===\" && grep -n \" – \" related_work.tex; echo \"=== -ing phrase endings ===\" && grep -n \"ing\\.$\" related_work.tex; echo \"=== leverage/utilize/facilitate ===\" && grep -ni \"leverage\\|utilize\\|facilitate\" related_work.tex; echo \"=== word count ===\" && wc -w related_work.tex",
+              "description": "Check forbidden patterns and word count"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-17T20:58:47.355674+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== em-dash ===\n=== en-dash ===\n=== -ing phrase endings ===\n15:In training dynamics, \\citet{he2025spectral} linked spectral collapse of representation covariance matrices to catastrophic forgetting in continual learning.\n22:Data Mixing Laws~\\cite{ye2025mixinglaws, data_mixing_laws2024} predict optimal ratios from small-scale experiments so that mixture optimization does not require full-scale retraining.\n=== leverage/utilize/facilitate ===\n=== word count ===\n355 related_work.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260517T205658",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-17T20:58:47.355856+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260517T205658",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/paper && for key in shumailov2024collapse dohmatob2024tails dohmatob2025strong alemohammad2024mad gerstgrasser2024inevitable martin2021implicit roy2007effectiverank rankme2023 he2025spectral gu2026sigma xie2023doremi ye2025mixinglaws data_mixing_laws2024; do if grep -q \"@.*{${key},\" references.bib; then echo \"OK: $key\"; else echo \"MISSING: $key\"; fi; done",
+              "description": "Verify all citation keys exist in references.bib"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-17T20:58:47.355987+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "OK: shumailov2024collapse\nOK: dohmatob2024tails\nOK: dohmatob2025strong\nOK: alemohammad2024mad\nOK: gerstgrasser2024inevitable\nOK: martin2021implicit\nOK: roy2007effectiverank\nOK: rankme2023\nOK: he2025spectral\nOK: gu2026sigma\nOK: xie2023doremi\nOK: ye2025mixinglaws\nOK: data_mixing_laws2024"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260517T205658",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-17T20:58:47.356133+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 13 citation keys verified. \n\nRelated Work written to `paper/sections/related_work.tex`. Three paragraph groups (~355 words total): Model Collapse (7 citations, positioning our spectral approach), Spectral Analysis of Representations (5 citations, extending SIGMA along scale/generations/closed-loop), Data Mixing for LLM Training (3 citations, contrasting fixed a priori methods with our online spectral-guided controller)."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_related_work_20260517T205658"
+          },
+          "id": "event-000021"
+        }
+      ],
+      "message_count": 21
+    }
+  ],
+  "readable_path": "readable/conversations/paper-writing-related-work.md"
+}

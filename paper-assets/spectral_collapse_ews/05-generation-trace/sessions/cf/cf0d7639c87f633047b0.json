@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cf0d7639c87f633047b0",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "setup env and data",
+  "task_key": "worker_setup_env_and_data_20260516T073949",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_setup_env_and_data_20260516T073949_result.json",
+    "occurrence": 1,
+    "bytes": 447,
+    "sha256": "b7f8adde227a4d97095b03b4060f545621fc49f0a5eed20996ac0845349a55dc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n| 项目 | 状态 |\n|------|------|\n| **GPU** | 2× NVIDIA RTX PRO 6000 Blackwell (94GB each) |\n| **Python** | 3.12.3 (conda base) |\n| **CUDA** | Driver 595.58, CUDA 13.2 (torch uses cu128) |\n| **PyTorch** | 2.10.0+cu128 |\n| **数据** | train=50,000 / eval=5,000 / spectral=1,000 (seq_len=512, 从 80,280 样本中筛选) |\n| **模型** | EleutherAI/pythia-410m-deduped — 1024d, 405.3M params |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/setup-env-and-data.md"
+}

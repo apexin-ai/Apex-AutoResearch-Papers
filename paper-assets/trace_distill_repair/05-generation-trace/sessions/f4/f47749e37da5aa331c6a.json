@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f47749e37da5aa331c6a",
+  "project": "trace_distill_repair",
+  "kind": "result",
+  "title": "diag gpu env sanity",
+  "task_key": "worker_diag_gpu_env_sanity_20260515T022956",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_gpu_env_sanity_20260515T022956_result.json",
+    "occurrence": 1,
+    "bytes": 1192,
+    "sha256": "9a8de34162be14942ef3f659085bc5567fdedc02de3467253598f5b4e53b72f4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证完成。汇总报告：\n\n---\n\n## 环境验证报告\n\n### GPU\n| GPU | 型号 | 显存 | 空闲显存 | 驱动 |\n|-----|------|------|---------|------|\n| 0 | RTX PRO 6000 Blackwell Server Edition | 96GB | ~95GB | 595.58.03 |\n| 1 | RTX PRO 6000 Blackwell Server Edition | 96GB | ~95GB | 595.58.03 |\n\n### PyTorch Sanity Check\n- **torch**: 2.10.0+cu128\n- **CUDA**: OK\n- **Mixed precision (AMP)**: OK（`torch.cuda.amp` 已 deprecated，建议后续用 `torch.amp`）\n- **DataParallel (2 GPUs)**: OK\n\n### 已有模型\n| 模型 | 路径 | 大小 |\n|------|------|------|\n| Qwen3-8B | `/root/autodl-tmp/models/Qwen/Qwen3-8B/` | 16GB |\n| Qwen3-30B-A3B | `/root/autodl-tmp/models/Qwen/Qwen3-30B-A3B/` | 57GB |\n\n- Qwen3-8B load + inference 验证通过，`device_map=\"auto\"` 自动分到两张卡（layers 0-15 → GPU0, 16-35 → GPU1）\n\n### 磁盘\n| 分区 | 总量 | 已用 | 可用 |\n|------|------|------|------|\n| 根分区 `/` | 30GB | 7.8GB | 23GB |\n| 数据盘 `/root/autodl-tmp` | 250GB | 76GB | 175GB |\n\n- 项目目录 `/root/trace_distill_repair/`: 979MB\n- **175GB 数据盘空余**，足够容纳 student model + training data"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-gpu-env-sanity.md"
+}

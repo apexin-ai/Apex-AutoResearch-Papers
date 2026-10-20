@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c72a600d51c8cf729504",
+  "project": "trace_distill_repair",
+  "kind": "result",
+  "title": "analysis mvp strong model disambig",
+  "task_key": "worker_analysis_mvp_strong_model_disambig_20260515T161705",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_mvp_strong_model_disambig_20260515T161705_result.json",
+    "occurrence": 1,
+    "bytes": 3835,
+    "sha256": "2e97bf7a87e323e9eaad7dc7a75ebde2638ebcd6e27c99530f50f3bd216e6f0e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## mvp_strong_model_disambig 实验结果分析\n\n### Per-Condition Summary\n\n| Condition | N | Judge Mean | Judge>=4 | Test Pass | Diff Apply |\n|---|---|---|---|---|---|\n| **no_trace** | 14 | **1.29** | 7.1% | **6/14 (42.9%)** | 12/14 (85.7%) |\n| full_trace | 14 | 1.00 | 0.0% | 4/14 (28.6%) | 8/14 (57.1%) |\n| structural_filtered | 14 | 1.00 | 0.0% | 5/14 (35.7%) | 9/14 (64.3%) |\n| line_filtered | 14 | 1.14 | 0.0% | 6/14 (42.9%) | 10/14 (71.4%) |\n\n### Head-to-Head 对比\n\n| 对比 | W-T-L | Sign Test p | 结论 |\n|---|---|---|---|\n| structural vs no_trace | **0-11-3** | p=1.000 | no_trace 更优，structural 0胜 |\n| line vs no_trace | **2-10-2** | p=0.688 | 持平 |\n| structural vs line | **1-10-3** | p=0.938 | line 更优 |\n| full_trace vs no_trace | **0-10-4** | p=1.000 | no_trace 明显更优 |\n\n### Per-Instance Detail\n\n| Instance | no_trace | full_trace | structural | line |\n|---|---|---|---|---|\n| black_1 | j=1 FAIL da=Y | j=1 FAIL da=N | j=1 FAIL da=N | j=1 FAIL da=Y |\n| cookiecutter_1 | j=1 **PASS** | j=1 **PASS** | j=1 **PASS** | j=1 **PASS** |\n| cookiecutter_2 | j=1 FAIL | j=1 FAIL | j=1 FAIL | j=1 FAIL |\n| cookiecutter_3 | j=1 FAIL | j=1 FAIL | j=1 FAIL | j=1 FAIL |\n| fastapi_2 | j=1 FAIL | j=1 FAIL | j=1 FAIL | j=1 FAIL |\n| httpie_2 | j=1 FAIL | j=1 FAIL | j=1 FAIL | j=1 FAIL |\n| luigi_5 | j=1 FAIL | j=1 FAIL | j=1 FAIL | j=1 FAIL |\n| sanic_2 | j=1 FAIL | j=1 FAIL | j=1 FAIL | j=1 **PASS** |\n| scrapy_2 | **j=4 PASS** | j=1 **PASS** | j=1 **PASS** | j=1 **PASS** |\n| scrapy_7 | j=1 **PASS** | j=1 **PASS** | j=1 **PASS** | j=1 **PASS** |\n| tornado_2 | j=1 FAIL | j=1 FAIL | j=1 FAIL | j=1 FAIL |\n| youtube-dl_1 | j=1 **PASS** | j=1 FAIL | j=1 **PASS** | j=2 **PASS** |\n| youtube-dl_20 | j=1 **PASS** | j=1 FAIL | j=1 FAIL | j=1 **PASS** |\n| youtube-dl_5 | j=2 **PASS** | j=1 **PASS** | j=1 **PASS** | j=2 FAIL |\n\n### C001 Kill Criteria 判定\n\n| 条件 | 要求 | 实际 | 结果 |\n|---|---|---|---|\n| (1) no_trace judge >= 3.0 | judge_mean >= 3.0 | **1.29** | **FAIL** |\n| (2) structural > no_trace (p<0.15) | sign test p<0.15 | **0-11-3, p=1.000** | **FAIL** |\n| (3) 至少1个条件 test_pass > 0% | any > 0% | 6/14 = 42.9% | PASS |\n\n**C001 判定：MVP FAIL。** 三条中只有第(3)条满足，(1)(2)均 FAIL。\n\n### 关键发现\n\n1. **强模型下 structural 不优于 no_trace，反而更差。** structural 0胜3负，是所有 trace 条件中表现最差的。\n\n2. **强模型未翻转 line > structural 趋势。** v4-pro 阶段 structural vs line = 1-3-6（line 领先），Claude Sonnet 4 下 structural vs line = 1-10-3（line 仍然领先）。趋势一致。\n\n3. **trace 信息在强模型上非但没有放大正向信号，反而表现出负面影响：**\n   - full_trace 是所有条件中最差的（test_pass 28.6%，diff_apply 57.1%）\n   - no_trace 反而是最好的（test_pass 42.9%，diff_apply 85.7%）\n   - 提供 trace 降低了 diff 应用成功率，说明 trace 可能干扰了模型生成正确格式的补丁\n\n4. **judge 评分全面崩溃：** 几乎所有结果 judge=1，意味着生成的修复与 ground truth 完全无关。唯一的 judge>=4 出现在 scrapy_2 的 no_trace 条件（j=4）。模型虽然能通过部分测试，但修复路径与 ground truth 不同。\n\n5. **与 v4-pro 对比：** 强模型换用 Claude Sonnet 4 并未带来改善。no_trace 基线 judge=1.29 远低于 kill criteria 要求的 3.0，说明这批 benchmark 实例本身对 LLM 修复来说太难了，trace 信息无法弥补。\n\n### 建议\n\n根据 C001 kill criteria，**实验明确 FAIL，应终止消歧线路。** structural trace 在两代模型（deepseek-v4-pro 和 Claude Sonnet 4）上都未能超越 no_trace baseline，且强模型实验是 C001 规定的最后一次消歧机会。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-mvp-strong-model-disambig.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6a300b15c583271b733b",
+  "project": "trace_distill_repair",
+  "kind": "result",
+  "title": "analysis structural scoring stats",
+  "task_key": "worker_analysis_structural_scoring_stats_20260514T202717",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_structural_scoring_stats_20260514T202717_result.json",
+    "occurrence": 1,
+    "bytes": 628,
+    "sha256": "342f8ae474b018825df3910eef2f23749a012f369b8fe867b8379a48ff295a95"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/phase2_structural_scoring_report.md`。\n\n核心数据：\n\n- **451 segments across 36 instances**, keep 23 (5.1%), 22 个 instance 全部 drop\n- **按 segment type**: exception_chain keep rate 最高 (13.9%) > call_subtree (9.5%) > loop_iteration (2.0%) > basic_block (1.2%)\n- **Keep 的 23 segments**: call_subtree 占 56.5%，token 中位数 319，confidence 均值仅 0.61\n- **Line scoring 对比**: line segments 总计 ~61K (vs structural 451)，大 trace 上 ratio 达 600x+，line scoring LLM 调用量将是 structural 的 ~136 倍\n- **>2K token 子集**: 32/36 instances"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-structural-scoring-stats.md"
+}

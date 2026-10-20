@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bc6553afaa2067b155fe",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "monitor exp progress check",
+  "task_key": "worker_monitor_exp_progress_check_20260517T210201",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_exp_progress_check_20260517T210201_result.json",
+    "occurrence": 1,
+    "bytes": 2262,
+    "sha256": "ae82cc44c2592992efb0a7043d8c167b67f03cd88d8f411da08fd94311560f2c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个进程均在运行。汇总如下：\n\n---\n\n## exp_005 — adaptive k=20 (PID 116947, 运行 7h45m, 当前正在训练 Gen 5)\n\n| Gen | eff_rank | log_det | ppl | distinct_4 | mix_ratio | controller |\n|-----|----------|---------|-----|------------|-----------|------------|\n| 0 | 417.5 | 2366.7 | 9.55 | 0.741 | — | — |\n| 1 | 476.9 | 2366.5 | 10.09 | 0.661 | 0.5 | 未触发 |\n| 2 | 486.9 | 2395.2 | 10.42 | 0.615 | 0.5 | 未触发 |\n| 3 | 496.1 | 2425.4 | 10.76 | 0.440 | 0.5 | 未触发 |\n| 4 | 501.8 | **2450.7** | 11.13 | **0.384** | 0.5 | 未触发 |\n\n**关键发现：log_det 持续上升（2366→2395→2425→2450），没有下降趋势。Controller 从未触发（ratio 始终 0.5）。** distinct_4 从 0.74 剧烈下降到 0.38，多样性已显著退化，但 log_det 信号没有检测到这一点（因为 log_det 在涨而非跌）。effective_rank 也在持续上升。\n\n---\n\n## exp_006 — adaptive k=10 (PID 134913, 运行 3h09m, 当前正在训练 Gen 3)\n\n| Gen | eff_rank | log_det | ppl | distinct_4 | mix_ratio | controller |\n|-----|----------|---------|-----|------------|-----------|------------|\n| 0 | 417.5 | 2366.7 | 9.55 | 0.741 | — | — |\n| 1 | 477.3 | 2365.1 | 10.09 | 0.710 | 0.5 | 未触发 |\n| 2 | 487.1 | 2394.0 | 10.42 | 0.600 | 0.5 | 未触发 |\n\nController 未触发。趋势与 exp_005 前两代一致（log_det 微降后回升）。\n\n---\n\n## exp_004 — fixed_mix baseline (PID 135411, 运行 3h06m, 当前正在训练 Gen 2)\n\n| Gen | eff_rank | log_det | ppl | distinct_4 | mix_ratio | controller |\n|-----|----------|---------|-----|------------|-----------|------------|\n| 0 | 417.5 | 2366.7 | 9.55 | 0.741 | — | — |\n| 1 | 477.9 | 2366.6 | 10.08 | 0.669 | 0.5 | — |\n\n固定 mix baseline，进度较慢，刚完成 Gen 1。\n\n---\n\n## 核心问题\n\n**exp_005 的 controller 在 5 代中从未触发。** log_det 不仅没下降，反而单调上升了 84 点（2366→2450）。这意味着 log_det 作为 collapse 预警信号在当前设置下失效了——模型多样性（distinct_4）已经腰斩（0.74→0.38），但 log_det 完全没有反映出退化趋势。tau=0.002 的阈值和 log_det 信号的方向可能都需要重新审视。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-exp-progress-check.md"
+}

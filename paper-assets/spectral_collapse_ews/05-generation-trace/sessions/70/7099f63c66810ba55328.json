@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7099f63c66810ba55328",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "eval hellaswag intermediate",
+  "task_key": "worker_eval_hellaswag_intermediate_20260516T100202",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_hellaswag_intermediate_20260516T100202_result.json",
+    "occurrence": 1,
+    "bytes": 894,
+    "sha256": "5d325f213e300cbbe0beeed0806635f327ea61f7590120a475515208270141e2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "HellaSwag 数据就位。\n\n## 汇报\n\n**当前 checkpoint 可用情况：**\n- `gen_0` — 已存在，已评估\n\n**gen_0 HellaSwag 结果：**\n- acc_norm = **0.4130**\n- acc = 0.3450\n\n**训练进度：**\n- Phase 0 训练正在 GPU 0 上运行（95% 利用率，~19GB 显存），仍在 gen_1 阶段（生成 50k 合成样本 + 训练），尚无 gen_1 checkpoint 产出\n- 配置：10 代，每代 50k 样本，Pythia-410M\n\n**已部署的后台评估：**\n- 监控脚本 `auto_eval_hellaswag.sh` 已在后台运行 (PID 14666)，在 cuda:1 上持续等待新 checkpoint 出现并自动评估\n- 结果将写入 `results/hellaswag_genX/results.json`\n- 日志：`results/auto_eval.log`\n\n**趋势判断：** 目前只有 gen_0 基线（0.4130），无法判断趋势。随着后续 checkpoint 产出，监控脚本会自动评估。需要稍后回来查看结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-hellaswag-intermediate.md"
+}

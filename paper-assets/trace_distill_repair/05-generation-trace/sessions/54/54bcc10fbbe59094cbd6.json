@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "54bcc10fbbe59094cbd6",
+  "project": "trace_distill_repair",
+  "kind": "result",
+  "title": "code strong model repair",
+  "task_key": "worker_code_strong_model_repair_20260515T154746",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_strong_model_repair_20260515T154746_result.json",
+    "occurrence": 1,
+    "bytes": 616,
+    "sha256": "94ae8e1320466991d6e8e62af76c6c410d20deae926ab4671e350358d918854e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。验证结果：\n\n- **脚本部署**: `/root/trace_distill_repair/run_phase3_repair_strong.py`\n- **API 调用成功**: Claude Sonnet 4 via OpenRouter，6.1s 延迟，in=4137 out=294 tokens\n- **diff 格式正确**: diff apply 成功，test PASS\n- **v2 对比正常**: 自动加载 v2 checkpoint 并显示 judge 分数对比\n- **checkpoint/CSV 正常**: 写入 `phase3_strong_checkpoint.json` 和 `phase3_strong_claude_sonnet_4_results.csv`\n\nTier 1 默认实例列表（13个）：black_1, cookiecutter_1/2/3, fastapi_2, httpie_2, luigi_5, sanic_2, scrapy_7, tornado_2, youtube-dl_1/5/20"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-strong-model-repair.md"
+}

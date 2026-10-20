@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "811d306020c345ecd712",
+  "project": "trace_distill_repair",
+  "kind": "result",
+  "title": "fix mvp line scoring v4 apikey",
+  "task_key": "worker_fix_mvp_line_scoring_v4_apikey_20260515T091903",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_mvp_line_scoring_v4_apikey_20260515T091903_result.json",
+    "occurrence": 1,
+    "bytes": 527,
+    "sha256": "3f6fa7505a9748bed71507ffc8d0717ea143236198ca7acb3ad5cdd60b304ad1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已正常运行，API 调用成功返回 200。\n\n**结果汇总：**\n\n| 项目 | 详情 |\n|------|------|\n| Key 来源 | `/root/.bashrc` 第109行，`OPENROUTER_API_KEY` |\n| 失败原因 | `.bashrc` 第6行 `[ -z \"$PS1\" ] && return` 导致非交互式 shell 跳过 export |\n| 修复方式 | 创建 `/root/trace_distill_repair/.env`（权限600），训练命令改为 `source .env` |\n| 实验状态 | `mvp_line_scoring_v5` 已提交，33个实例开始 scoring，API 调用正常（HTTP 200） |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-mvp-line-scoring-v4-apikey.md"
+}

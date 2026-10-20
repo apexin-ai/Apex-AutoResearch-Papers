@@ -1,0 +1,634 @@
+# cron hook exp 018
+
+**Spectral Early Warning Signals for Model Collapse and Their Prevention–Detectability Tradeoff** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 20
+- **Recorded user turns:** 1
+- **Tool calls:** 9
+- **Original source:** `logs/chats/cron_hook_exp_018.jsonl`
+- **Structured JSON:** [`c9ee547d2d106fe74757.json`](../../sessions/c9/c9ee547d2d106fe74757.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+20 recorded events
+
+### User
+
+_source line 1 · 2026-05-24T02:03:58.029245+00:00_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #9。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- 本项目 GPU 白名单：rtx6000-diagprobe 的 cuda:0 和 cuda:1，无其他分配。禁止使用白名单外 GPU
+- exp_020 是 GPT-2-medium 跨架构验证（D038），不是 Pythia 系列——分析时不要混用 Pythia 的 baseline 数值直接对比绝对值，只对比三阶段 trajectory pattern
+- exp_021 (PREPARING) 是 exp_020 的 real-data control，必须等 exp_020 完成确认 collapse 存在后再决定是否提交，否则 control 无意义
+- Table 3 r=0.2 行目前论文中用的是 single seed (seed42)（D037 决策），exp_019 完成后升级为 3-seed 需要 Director 确认是否更新论文
+- Round 2 修订已提交（apr_20260522T183554_d8x0），论文内容不要随意改动，等审稿反馈再动
+
+### 2. 🖥️ 基础设施快照
+- **服务器**: rtx6000-diagprobe（2× NVIDIA RTX PRO 6000 Blackwell Server Edition）
+- **工作目录**: `/root/spectral_collapse_ews/`
+- **Python 环境**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`（conda base，不是 venv）
+- **模型缓存**: EleutherAI/pythia-410m-deduped、gpt2-medium（均已缓存在服务器）
+- **数据路径**: `/root/spectral_collapse_ews/data/`（50K real pool），OpenWebText（exp_020 用）
+- **Checkpoint 盘**: `/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/`（注意磁盘空间，exp_014 曾因磁盘满崩溃）
+- **脚本目录**: `/root/spectral_collapse_ews/scripts/`
+- **日志**: exp_019 → `~/runs/spectral_collapse_ews/exp_019.log`，exp_020 → `/root/spectral_collapse_ews/logs/exp_020.log`
+- **活跃进程**: exp_019 (PID 757587, tmux, cuda:1)，exp_020 (PID=exp_020 tmux session, cuda:0)
+- **Cron**: 2 个 active cron 分别监控 exp_019 和 exp_020
+
+### 3. 📊 当前状态
+刚完成 session-start 初始化和 reconcile_crons。两个实验在跑，无活跃 Worker。
+
+| exp_id | 状态 | 摘要 |
+|--------|------|------|
+| exp_019 | RUNNING | r=0.2 seed44, cuda:1, pythia-410m, 10 gen。第三 seed 补全 r=0.2 的 3-seed 覆盖 |
+| exp_020 | RUNNING | GPT-2-medium r=0 seed42, cuda:0, 跨架构验证（D038）。验证三阶段 trajectory 是否 architecture-independent |
+| exp_021 | PREPARING | GPT-2-medium r=1.0 real-data control，等 GPU 释放 |
+
+- **Registry 总览**: 22 个实验，15 success / 1 negative / 1 failed / 2 killed / 2 running / 1 preparing
+- **等待中**: 2 个 cron 回调（exp_019、exp_020 完成时触发）；无待处理的 Worker 回调或 Director 决策
+- **论文状态**: Round 2 修订已提交，等审稿反馈。论文 ≤8 页，15/16 issues resolved
+
+### 4. 📋 待办（条件触发式）
+- **exp_019 cron 回调到达** → spawn worker 收集 r=0.2 seed44 全 gen 数据 → 与 seed42(exp_007/011) + seed43(exp_017) 做 cross-seed 分析 → 判断 Type II trajectory 是否 3/3 复现 → 若是，用 `artifacts/plan_018/exp017_integration_template.md` 模板更新 Table 3 r=0.2 行为 3-seed mean → 汇报 Director 是否更新论文
+- **exp_020 cron 回调到达** → spawn worker 分析 GPT-2-medium 是否呈现三阶段 trajectory → 若 success：准备 exp_021 (real-data control) 提交审批、起草 cross-architecture 段落 → 若 negative：证伪 architecture-independence hypothesis，汇报 Director 调整 framing
+- **exp_021 GPU 就绪**（exp_019 或 exp_020 完成释放 cuda） → 提交审批 → 分配 GPU → submit_on_allocated
+- **Round 2 审稿反馈到手** → 按 review-report-action skill 处理，Holistic Pass → Per-Comment Action Matrix
+
+### 5. 🎯 战略上下文
+- **核心结论**: 递归合成训练引发嵌入空间三阶段谱坍缩（decompression → onset → acceleration），SLV 是计算廉价的早期预警信号，r_crit ∈ (0.25, 0.3] 是相变边界
+- **决策链关键节点**: D029 收紧 r_crit 至 (0.25, 0.3] → D031 维持此 bound → D034 改用 cross-seed mean 判断 → D037 保持 r=0.2 single seed 在论文中 → D038 启动 GPT-2-medium 跨架构验证
+- **exp_020 是当前最关键实验**: 如果 GPT-2-medium 复现三阶段 pattern，论文从"Pythia-specific observation"升级为"architecture-independent phenomenon"，审稿评分可能显著提升（R2-C2 直接回应）。但 GPT-2-medium 架构差异大（24 layers vs 24 layers, 不同 attention head 数/hidden dim），onset timing 可能不同——分析时关注 pattern 而非绝对数值
+- **易踩的坑**: (1) D-4 指标高方差（r=0 三 seed CV 远高于 SLV），不要用 D-4 做主要 claim 支撑 (2) exp_014 磁盘满教训——提交新实验前检查磁盘 (3) lm_eval 新版输出 `results_TIMESTAMP.json` 而非 `results.json`，收集脚本需 glob 匹配 (4) submit_training_job 不支持 shell builtin，命令需要用 `bash -c "source ... && ..."` 包装
+
+## 项目硬约束 (memory.md 节选)
+
+## 环境信息
+
+### rtx6000-diagprobe
+- conda 环境: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`
+- 项目路径: `/root/spectral_collapse_ews`
+- checkpoint 盘: `/root/autodl-tmp/spectral_collapse_ews/`
+- GPU: 2x RTX 6000 Ada
+
+### 模型版本
+- Pythia-410M: EleutherAI/pythia-410m-deduped (已缓存在服务器)
+- Pythia-1B: EleutherAI/pythia-1b-deduped (已缓存)
+- lm_eval: 需要注意 results 文件命名格式变化
+
+## 可查的历史
+前 11 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:exp_018",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-24T02:04:11.218686+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_018",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-24T02:04:11.319561+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_018",
+  "tool": "ToolSearch",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-24T02:04:13.328727+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'RUNNING'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_018",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'RUNNING'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-24T02:04:13.831198+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_018",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-24T02:04:13.831599+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0111}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_018",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 502
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-24T02:04:14.283574+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "spectral_collapse_ews",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_018",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "spectral_collapse_ews",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-24T02:04:14.635574+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "spectral_collapse_ews"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_018",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "spectral_collapse_ews"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-24T02:04:17.461479+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 2, \"results\": [{\"exp_id\": \"exp_019\", \"success\": true, \"actions\": [\"Job still running (pid=757587)\"]}, {\"exp_id\": \"exp_020\", \"success\": true, \"actions\": [\"Job still running (pid=exp_020)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_018",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 3630
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-24T02:04:17.462050+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/report.md\", \"content\": \"# Handover — 2026-05-23\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| exp_020 | GPT-2-medium (355M, 24 layers) under pure-synthetic recursive training (r=0) exhibits the same three-phase spectral trajectory (decompression→onset→acceleration) as Pythia-410M, confirming that spectral collapse is architecture-independent. Cross-architecture replication addresses R2-C2 (single-architecture generalization) and strengthens C1. | — | — | — |\\n| exp_019 | r=0.2 with seed 44 reproduces Type II trajectory (transient dip + recovery) observed in exp_007 (seed42) and exp_017 (seed43). Third seed enables 3-seed coverage for r=0.2, resolving whether D-4 V-shaped recovery (seed42) is a 1/3 outlier or a majority pattern. Strengthens C3 signal attenuation claim and R1-N2 seed replication. | — | — | — |\\n\\n## 待处理\\n- exp_021（准备中）\\n\\n## 近期结论\\n- **exp_018** (success): r=0.5 with seed 43 reproduces Type III trajectory (monotonic expansion) observed in the r=0.5 seed42 run. Second seed validates that 50% real mixing reliably prevents spectral collapse, strengthening the stable regime classification and providing 2-seed coverage for Table 3. ← 基于 exp_004\\n  [exp018_integration_template_v2](/api/workspace-files/projects/spectral_collapse_ews/artifacts/exp_018/intermediate/exp018_integration_template_v2.md) | [exp_018_cross_seed_analysis](/api/workspace-files/projects/spectral_collapse_ews/artifacts/exp_018/report/exp_018_cross_seed_analysis_b83931.md)\\n- **exp_017** (success): r=0.2 with seed 43 reproduces Type II trajectory (transient dip + recovery) observed in exp_007 (seed42). Second seed validates that 20% real mixing is insufficient to prevent transient SLV violation, strengthening the r_crit lower bound evidence. ← 基于 exp_007\\n  
+…[truncated 860 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_018",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 3178
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-24T02:04:17.512768+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/ROADMAP.md\", \"content\": \"# spectral_collapse_ews — Research Dashboard\\n\\n> 最后更新: 2026-05-22 07:40 UTC | 更新原因: exp_015 完成、exp_017 已启动、Table 3 r=0.25 升级 3-seed、论文压缩至 8 页\\n\\n## 核心方向\\n递归合成训练中嵌入空间的谱坍缩三阶段模式（decompression → onset → acceleration），SLV 作为计算廉价的坍缩监测器，以及临界混合比 r_crit ∈ (0.25, 0.3] 的相图刻画。详见 paper_framing.md。\\n\\n## 当前进展\\n- **阶段**: Research + Review（Round 1 得分 3.0，目标 3.5）\\n- **审稿修复**: 15/16 issues resolved（含 2 internal），仅 R1-N2 (multi-seed) 和 R1-W1 (r_crit coarseness, rebuttal) 未完结\\n- **数据完整性**: Table 1 全 30 cell 3-seed 验证 PASS，Table 3 r=0.50 混源修复 PASS，全文旧值残留扫描 CLEAN\\n- **论文状态**: 编译 ≤ 8 页 ✓，appendix per-gen variance 表已加入 (R1-W2)，SIGMA 等价性已诚实披露\\n- **Seed 覆盖**: r=0 ✅3-seed | r=0.2 🔄1-seed + exp_017 🟢运行中 | r=0.25 ✅3-seed | r=0.3 ✅2-seed + exp_016 🟢运行中 | r=0.5 ⬜1-seed\\n\\n## 近期任务\\n- [x] 磁盘清理紧急修复（释放 102GB）\\n- [x] Table 3 r=0.50 统一为 fixed_mix_seed42 (commit 94cbf2f)\\n- [x] Table 1 全表 3-seed 替换 + 全文一致性 (commit 94cbf2f)\\n- [x] L163 D-4 baseline / L166 CV 倍数修复 (commit 58c3536)\\n- [x] R1-W2 appendix per-gen variance 表 (commit 98a14f5)\\n- [x] HellaSwag 3-seed eval 完成 + 数据集成\\n- [x] n-sensitivity 分析 (CV < 0.4%)\\n- [x] SIGMA 等价性诚实披露\\n- [x] exp_014b 完成 (r=0.25 seed43, gen6→10, DONE/success)\\n- [x] exp_015 完成 (r=0.25 seed44, gen0→10, DONE/success)\\n- [x] Table 3 r=0.25 行升级 3-seed (SLV 2488.1±2.9, eff_rank 513.8±1.6, PPL 13.41±0.17, D-4 0.342±0.014)\\n- [x] 论文压缩至 ≤ 8 页 (commit 6ad024a)\\n- [ ] exp_016 完成 (r=0.3 seed44, cuda:0, 🟢RUNNING, ~May 23 01:00 UTC)\\n- [ ] exp_017 完成 (r=0.2 seed43, cuda:1, 🟢RUNNING, ~May 23 03:00 UTC)\\n- [ ] P1: r=0.5 seed43（exp_016 完成后 cuda:0 启动 exp_018）\\n- [ ] Round 2 审稿提交（全部 P0 数据集成后）\\n\\n## GPU 预算\\nrtx6000-diagprobe: 2× NVIDIA RTX PRO 6000 Blackwell Server Edition\\n- cuda:0: exp_016 (r=0.3 seed44, ~Gen 4-5/10)\\n- cuda:1: exp_017 (r=0.2 seed43, ~Gen 1/10)\\n- 两卡满载\\n\\n## 时间线\\n- May 22 ~07:0
+…[truncated 1466 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_018",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 2877
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-24T02:04:33.078538+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'RUNNING'}",
+  "fields": "['*']",
+  "project": "spectral_collapse_ews"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_018",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'RUNNING'}",
+    "fields": "['*']",
+    "project": "spectral_collapse_ews"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-24T02:04:33.530777+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp_020\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T04:34:54.378Z\", \"updated_at\": \"2026-05-23T09:46:37.577Z\", \"hypothesis\": \"GPT-2-medium (355M, 24 layers) under pure-synthetic recursive training (r=0) exhibits the same three-phase spectral trajectory (decompression→onset→acceleration) as Pythia-410M, confirming that spectral collapse is architecture-independent. Cross-architecture replication addresses R2-C2 (single-architecture generalization) and strengthens C1.\", \"server\": \"rtx6000-diagprobe\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"rtx6000-diagprobe\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-23T05:30:06.654Z\"}, \"spec\": {\"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && bash /root/spectral_collapse_ews/scripts/launch_gpt2medium_r0_seed42.sh 0\", \"server\": \"rtx6000-diagprobe\", \"gpu_id\": 0, \"model_name\": \"gpt2-medium\", \"seed\": 42, \"data_path\": \"OpenWebText 50K\", \"data_count\": 50000, \"tmux_session\": \"exp_020\", \"log_path\": \"/root/spectral_collapse_ews/logs/exp_020.log\"}}, \"exp_019\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T04:05:17.129Z\", \"updated_at\": \"2026-05-23T04:08:30.958Z\", \"hypothesis\": \"r=0.2 with seed 44 reproduces Type II trajectory (transient dip + recovery) observed in exp_007 (seed42) and exp_017 (seed43). Third seed enables 3-seed coverage for r=0.2, resolving whether D-4 V-shaped recovery (seed42) is a 1/3 outlier or a majority pattern. Strengthens C3 signal attenuation claim and R1-N2 seed replication.\", \"parent\": \"exp_017\", \"server\": \"rtx6000-diagprobe\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"rtx6000-diagprobe\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-23T04:08:20.155Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.s
+…[truncated 1760 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_018",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 452
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-24T02:04:33.833768+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "spectral_collapse_ews",
+  "limit": "5",
+  "fields": "['status', 'conclusion', 'hypothesis']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_018",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "spectral_collapse_ews",
+    "limit": "5",
+    "fields": "['status', 'conclusion', 'hypothesis']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-24T02:04:33.934657+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp_021\": {\"status\": \"PREPARING\", \"hypothesis\": \"Real-data fine-tuning control for cross-architecture claim: GPT-2-medium fine-tuned on pure real OpenWebText (r=1.0) will exhibit Phase I decompression (r_eff increase) but NOT Phase II/III reversal and acceleration, demonstrating that the three-phase spectral collapse trajectory is specific to synthetic recursive training rather than a generic fine-tuning artifact.\"}, \"exp_018\": {\"status\": \"DONE\", \"hypothesis\": \"r=0.5 with seed 43 reproduces Type III trajectory (monotonic expansion) observed in the r=0.5 seed42 run. Second seed validates that 50% real mixing reliably prevents spectral collapse, strengthening the stable regime classification and providing 2-seed coverage for Table 3.\", \"conclusion\": \"success\"}, \"exp_020\": {\"status\": \"RUNNING\", \"hypothesis\": \"GPT-2-medium (355M, 24 layers) under pure-synthetic recursive training (r=0) exhibits the same three-phase spectral trajectory (decompression→onset→acceleration) as Pythia-410M, confirming that spectral collapse is architecture-independent. Cross-architecture replication addresses R2-C2 (single-architecture generalization) and strengthens C1.\"}, \"exp_019\": {\"status\": \"RUNNING\", \"hypothesis\": \"r=0.2 with seed 44 reproduces Type II trajectory (transient dip + recovery) observed in exp_007 (seed42) and exp_017 (seed43). Third seed enables 3-seed coverage for r=0.2, resolving whether D-4 V-shaped recovery (seed42) is a 1/3 outlier or a majority pattern. Strengthens C3 signal attenuation claim and R1-N2 seed replication.\"}, \"exp_017\": {\"status\": \"DONE\", \"hypothesis\": \"r=0.2 with seed 43 reproduces Type II trajectory (transient dip + recovery) observed in exp_007 (seed42). Second seed validates that 20% real mixing is insufficient to prevent transient SLV violation, strengthening the r_crit lower bound evidence.\", \"conclusion\": \"success\"}}, \"count\": 5
+…[truncated 99 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_018",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-24T02:04:58.612287+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__send_progress",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_018",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__send_progress",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-24T02:04:58.713189+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_018",
+  "tool": "ToolSearch",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-24T02:05:07.255959+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "text": "[资源] GPU 2/2 | Worker 0 (GPU 0 / CPU 0) | 两卡满载等回调\n\nLoop #9 session-start 状态同步：\n\n| exp_id | GPU | 状态 | 已运行 | 说明 |\n|--------|-----|------|--------|------|\n| exp_019 | cuda:1 | RUNNING | ~44h | r=0.2 seed44, Pythia-410M, 第三 seed |\n| exp_020 | cuda:0 | RUNNING | ~42h | GPT-2-medium r=0 seed42, 跨架构验证 |\n| exp_021 | — | PREPARING | — | GPT-2-medium r=1.0 control, 等 GPU |\n\n两个 cron 活跃，reconcile 确认进程存活。Round 2 修订已提交，论文冻结等审稿反馈。\n\n当前无阻塞项，等 cron 回调触发后续分析。",
+  "project": "spectral_collapse_ews"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_018",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "text": "[资源] GPU 2/2 | Worker 0 (GPU 0 / CPU 0) | 两卡满载等回调\n\nLoop #9 session-start 状态同步：\n\n| exp_id | GPU | 状态 | 已运行 | 说明 |\n|--------|-----|------|--------|------|\n| exp_019 | cuda:1 | RUNNING | ~44h | r=0.2 seed44, Pythia-410M, 第三 seed |\n| exp_020 | cuda:0 | RUNNING | ~42h | GPT-2-medium r=0 seed42, 跨架构验证 |\n| exp_021 | — | PREPARING | — | GPT-2-medium r=1.0 control, 等 GPU |\n\n两个 cron 活跃，reconcile 确认进程存活。Round 2 修订已提交，论文冻结等审稿反馈。\n\n当前无阻塞项，等 cron 回调触发后续分析。",
+    "project": "spectral_collapse_ews"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-24T02:05:10.973906+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5bdb9114bcefff7f4872823fd76bb0ac:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_018",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "elapsed_ms": 3717
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20 · 2026-05-24T02:05:21.587144+00:00_
+
+Session-start 初始化完成，已向 Director 汇报。
+
+当前状态：两卡满载（exp_019 cuda:1, exp_020 cuda:0），2 个 cron 监控中，等待实验完成回调。无待处理事项。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:exp_018"
+}
+```
+
+</details>
+
+---

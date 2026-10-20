@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4dd5a3f3c6012e9c1672",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ops exp019 gen10 and maxdt",
+  "task_key": "worker_ops_exp019-gen10-and-maxdt_20260524T022814",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp019-gen10-and-maxdt_20260524T022814_result.json",
+    "occurrence": 1,
+    "bytes": 662,
+    "sha256": "ef28065a960398a0fd116f84555b1e63f833c6a30499e1a275a86da657176c5a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n**1. Seed44 SLV 轨迹 (gen_0 → gen_10):**\n\n| Gen | SLV |\n|-----|-----|\n| 0 | 2366.6829 |\n| 1 | 2369.4258 |\n| 2 | 2361.1064 |\n| 3 | 2365.5503 |\n| 4 | 2377.0579 |\n| 5 | 2395.6187 |\n| 6 | 2411.7842 |\n| 7 | 2424.3687 |\n| 8 | 2436.0762 |\n| 9 | 2451.2527 |\n| 10 | 2466.1516 |\n\n**2. 3-seed mean maxΔ_t:**\n- Raw: **3.8105**\n- Normalized: **0.001610**\n\n**3. 与旧值对比:**\n- 旧 2-seed normalized: 0.0017\n- 新 3-seed normalized: 0.0016\n- 差异: 0.000090（下降约 5.3%）\n\nmaxΔ_t 略微下降但量级不变，seed44 加入后信号稳定。\n\n**4. JSON 已保存:** `artifacts/exp_019/full_metrics.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp019-gen10-and-maxdt.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "224c8a3adc6d6beeeff5",
+  "project": "trace_distill_repair",
+  "kind": "result",
+  "title": "fix test files from fixed commit",
+  "task_key": "worker_fix_test_files_from_fixed_commit_20260515T152745",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_test_files_from_fixed_commit_20260515T152745_result.json",
+    "occurrence": 1,
+    "bytes": 864,
+    "sha256": "f7b070330f9e2050813f9c378267300d9ffea870f3094970108679ebd74c9fc5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个实例全部修复成功。测试文件已从 fixed commit 拷贝到 buggy checkout，oracle 测试均可正常运行且在 buggy 代码上 **预期失败**：\n\n| 实例 | 测试方法 | 结果 | 失败原因（预期） |\n|------|---------|------|-----------------|\n| **tornado_2** | `test_redirect_put_without_body` | ERROR | 超时 - buggy redirect 处理导致 stream closed |\n| **black_1** | `test_works_in_mono_process_only_environment` | FAIL | exit_code 1 != 0 - buggy 代码在单进程环境下崩溃 |\n| **fastapi_2** | `test_router_ws_depends_with_override` | FAIL | `'Socket Dependency' != 'Override'` - buggy 代码未正确处理 WS 依赖覆盖 |\n\n之前 oracle FAIL 是因为测试方法不存在（找不到方法），现在是因为 buggy 代码触发了真正的断言失败——这才是正确的 oracle 行为。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-test-files-from-fixed-commit.md"
+}

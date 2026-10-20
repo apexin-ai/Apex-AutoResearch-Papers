@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3ebb5fc1f51d82dade9f",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "update phase1 schedule d009",
+  "task_key": "worker_update_phase1_schedule_d009_20260517T031417",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_update_phase1_schedule_d009_20260517T031417_result.json",
+    "occurrence": 1,
+    "bytes": 385,
+    "sha256": "76afa3d900de2ea097dc760c5b47c6a3e73fc043d63feb24efd0d0e7c6ef5e80"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`phase1_schedule.md` 已按 D009 新优先级重写完成：\n\n- **阶段 A**（~24h）：cuda:0 串行跑 adaptive vs fixed_mix 核心对比，3 seeds × 2 conditions = 6 runs\n- **阶段 B**（~12h）：exp_002 释放 cuda:1 后双卡并行跑 pure_collapse + linear_increasing\n- 自动触发规则：exp_001 完成 → 直接启动 Batch 1a，不等 Director 确认"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/update-phase1-schedule-d009.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1fe568d20e67a3879072",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "fix controller budget leak",
+  "task_key": "worker_fix_controller_budget_leak_20260516T092448",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_controller_budget_leak_20260516T092448_result.json",
+    "occurrence": 1,
+    "bytes": 402,
+    "sha256": "79cbb1f18612313140e5f04356229e131bbe89c0b464eb4614f7e100bff31133"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证通过。修复内容：\n\n1. **`get_first_gen_ratio`** — 扣减 `B_rem` 并递增 `t`\n2. **`upper_clip` 公式** — `(remaining_gens - 1)` → `remaining_gens`，为最后一代正确预留 `r_min`\n3. **`remaining_gens <= 0` 分支** — 不再强制分配 `r_min`，改为 `max(0, min(r_max, B_rem))`\n\n总预算 2.5 精确消耗完毕，每代至少分配 `r_min=0.20`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-controller-budget-leak.md"
+}

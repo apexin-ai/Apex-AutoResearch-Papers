@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "4aff36dab549319c74e1",
+  "project": "spectral_collapse_ews",
+  "kind": "worker",
+  "title": "eval logdet gen012",
+  "task_key": "worker_eval_logdet_gen012_20260516T142415",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_logdet_gen012_20260516T142415.log",
+    "occurrence": 1,
+    "bytes": 1038812,
+    "sha256": "51a065d9d64d02cb8f6727f266e70e9e7a76cd4f013af743bd634b09d77a0b5b"
+  },
+  "statistics": {
+    "messages": 942,
+    "user_turns": 0,
+    "tool_calls": 365,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 208,
+      "tool_call": 365,
+      "tool_result": 365,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 942,
+      "chunks": [
+        {
+          "path": "4aff36dab549319c74e1-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "4aff36dab549319c74e1-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "4aff36dab549319c74e1-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "4aff36dab549319c74e1-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "4aff36dab549319c74e1-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "4aff36dab549319c74e1-part-0006.json",
+          "message_count": 42
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-logdet-gen012.md"
+}

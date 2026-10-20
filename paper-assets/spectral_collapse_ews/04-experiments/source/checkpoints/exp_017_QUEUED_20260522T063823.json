@@ -1,0 +1,26 @@
+{
+  "exp_id": "exp_017",
+  "project": "spectral_collapse_ews",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T23:25:24.156Z",
+    "updated_at": "2026-05-22T06:38:23.059Z",
+    "hypothesis": "r=0.2 with seed 43 reproduces Type II trajectory (transient dip + recovery) observed in exp_007 (seed42). Second seed validates that 20% real mixing is insufficient to prevent transient SLV violation, strengthening the r_crit lower bound evidence.",
+    "parent": "exp_007",
+    "spec": {
+      "model_name": "EleutherAI/pythia-410m-deduped",
+      "seed": 43,
+      "data_path": "/root/spectral_collapse_ews/data/",
+      "data_count": "50K real pool, total_per_gen=50K (10K real + 40K synthetic per gen)",
+      "generations": 10,
+      "condition": "fixed_mix",
+      "real_ratio": 0.2,
+      "checkpoint_dir": "/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r02_seed43/"
+    }
+  },
+  "timestamp": "2026-05-22T06:38:23.155144+00:00",
+  "trigger": "update_registry"
+}

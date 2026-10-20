@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "035324c9290085dcb530",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "analyze exp 011",
+  "task_key": "worker_analyze_exp_011_20260520T033057",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_exp_011_20260520T033057_result.json",
+    "occurrence": 1,
+    "bytes": 442,
+    "sha256": "44626dcfbc3fd7407be92476ee9c184e50b5fcd41f466512e08664b487b1289b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。\n\n**关键结论：**\n- Gen 10 SLV = 2479.70，相比 Gen 9 继续上升 +16.56（+0.67%），总增幅 +4.78%\n- SLV 从 Gen 2 起严格单调递增 8 代，controller 始终锁死 r=0.2 → **确认 Type II（controller silence）**\n- r=0.2 增幅 (+4.78%) < r=0.3 增幅 (+6.1%)，符合「更少 real data → 更慢 spectral expansion」的预期，进一步支持 r_crit ∈ (0.25, 0.3] 的判断"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-exp-011.md"
+}

@@ -709,6 +709,22 @@
       }
     },
     {
+      "project": "prism_collapse_mixing",
+      "title": "prism collapse mixing",
+      "catalog": "../paper-assets/prism_collapse_mixing/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 104,
+        "messages": 6679,
+        "user_turns": 217,
+        "tool_calls": 2596,
+        "unparsed_lines": 38,
+        "result": 38,
+        "worker": 38,
+        "conversation": 25,
+        "history": 3
+      }
+    },
+    {
       "project": "prod42",
       "title": "prod42",
       "catalog": "../paper-assets/prod42/05-generation-trace/catalog.json",
@@ -807,6 +823,35 @@
       }
     },
     {
+      "project": "rl-active-probe-fl",
+      "title": "rl active probe fl",
+      "catalog": "../paper-assets/rl-active-probe-fl/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 110,
+        "messages": 7227,
+        "user_turns": 226,
+        "tool_calls": 2737,
+        "unparsed_lines": 42,
+        "worker": 42,
+        "result": 41,
+        "conversation": 27
+      }
+    },
+    {
+      "project": "robust_circuit_editing",
+      "title": "robust circuit editing",
+      "catalog": "../paper-assets/robust_circuit_editing/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 5,
+        "messages": 287,
+        "user_turns": 10,
+        "tool_calls": 121,
+        "unparsed_lines": 2,
+        "worker": 2,
+        "conversation": 3
+      }
+    },
+    {
       "project": "schema-conform-ie-training",
       "title": "schema conform ie training",
       "catalog": "../paper-assets/schema-conform-ie-training/05-generation-trace/catalog.json",
@@ -887,6 +932,22 @@
       }
     },
     {
+      "project": "spectral_collapse_ews",
+      "title": "Spectral Early Warning Signals for Model Collapse and Their Prevention–Detectability Tradeoff",
+      "catalog": "../paper-assets/spectral_collapse_ews/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 925,
+        "messages": 64614,
+        "user_turns": 2706,
+        "tool_calls": 26096,
+        "unparsed_lines": 371,
+        "worker": 374,
+        "result": 361,
+        "conversation": 160,
+        "history": 30
+      }
+    },
+    {
       "project": "structfuse-context",
       "title": "StructFuse: Structure-Grounded Hard Negative Mining for Contrastive Code Context Retrieval",
       "catalog": "../paper-assets/structfuse-context/05-generation-trace/catalog.json",
@@ -962,6 +1023,22 @@
         "result": 19,
         "worker": 25,
         "conversation": 8
+      }
+    },
+    {
+      "project": "trace_distill_repair",
+      "title": "trace distill repair",
+      "catalog": "../paper-assets/trace_distill_repair/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 410,
+        "messages": 31538,
+        "user_turns": 848,
+        "tool_calls": 12504,
+        "unparsed_lines": 171,
+        "result": 154,
+        "worker": 166,
+        "conversation": 76,
+        "history": 14
       }
     },
     {

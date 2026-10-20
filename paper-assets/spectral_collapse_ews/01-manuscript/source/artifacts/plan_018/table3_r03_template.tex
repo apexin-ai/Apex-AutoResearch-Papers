@@ -1,0 +1,20 @@
+% Table 3 r=0.3 row template — fill [FILL] after exp_016 completes
+% Current (2-seed mean, exp_008+exp_012):
+% 0.30 & III & 2509.7 & 521.2 & 13.34 & .232 & 0     & 10 \\
+%
+% After exp_016 (3-seed mean, exp_008+exp_012+exp_016):
+0.30 & III & [FILL_SLV] & [FILL_REFF] & [FILL_PPL] & [FILL_D4] & 0     & 10 \\
+%
+% Caption update (L181):
+% FROM: $r{=}0.3$ the mean of two seeds
+% TO:   $r{=}0.3$ the mean of three seeds (42, 43, 44)
+%
+% Text updates needed (experiments.tex):
+% L148: "SLV expands monotonically from Gen~2 to 2509.7 at Gen~10 ($+$6.0\%)"
+%   → replace 2509.7 and 6.0% with 3-seed values
+% L150: "Under a second seed" → "Under additional seeds" or "Across individual seeds"
+% L161: "s.d.\ $= 0.156$ vs.\ SLV s.d.\ $= 2.0$" → update to 3-seed s.d.
+%
+% 2-seed reference values for validation:
+% seed42 (exp_008): SLV=2511.13, eff_rank=521.26, PPL=13.377, D-4=0.3422
+% seed43 (exp_012): SLV=2508.33, eff_rank=521.19, PPL=13.306, D-4=0.1217

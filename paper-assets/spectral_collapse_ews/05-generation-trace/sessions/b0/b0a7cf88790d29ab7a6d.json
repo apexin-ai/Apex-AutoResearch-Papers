@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b0a7cf88790d29ab7a6d",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "figure spectral trajectory",
+  "task_key": "worker_figure_spectral_trajectory_20260516T223325",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_spectral_trajectory_20260516T223325_result.json",
+    "occurrence": 1,
+    "bytes": 680,
+    "sha256": "2582e78fbb9fd7424950253f15e337f599372dc295dd78dc4cd77d7d94f09a42"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**结果汇总：**\n\n- **Gen 4 数据**：尚未生成，`phase0_results.json` 只有 Gen 0-3。\n- **图表已生成**：\n  - PDF: `/root/spectral_collapse_ews/paper/figures/spectral_trajectory.pdf` (22.9 KB)\n  - PNG: `/root/spectral_collapse_ews/paper/figures/spectral_trajectory.png` (240 KB, 300dpi)\n- **4-panel 布局**：(a) Effective Rank, (b) Log-Determinant, (c) Perplexity, (d) Distinct-4，均含 Gen 1 baseline 虚线、peak 标注（a/b）、panel 标签。\n- **脚本位置**：`/root/spectral_collapse_ews/scripts/plot_spectral_trajectory.py`，Gen 4+ 数据到位后重跑即可自动包含（前提是 JSON 中记录数 > 4）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-spectral-trajectory.md"
+}

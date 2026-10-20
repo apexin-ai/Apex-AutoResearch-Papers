@@ -1,0 +1,1666 @@
+{
+  "schema_version": "1.0",
+  "id": "801d84f2fb220fff002c",
+  "project": "spectral_collapse_ews",
+  "kind": "conversation",
+  "title": "paper notation consistency",
+  "task_key": "worker_paper_notation-consistency_20260519T181220",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_notation-consistency_20260519T181220.jsonl",
+    "occurrence": 1,
+    "bytes": 63916,
+    "sha256": "d82c6eca7ff8fb754bfc73027a32231e98bbb988d446f741bde3c33cadbeb6d0"
+  },
+  "statistics": {
+    "messages": 81,
+    "user_turns": 0,
+    "tool_calls": 40,
+    "roles": {
+      "tool_call": 40,
+      "tool_result": 40,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T18:17:17.705050+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/paper"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T18:17:17.705501+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "paper/sections/related_work.tex\npaper/sections/introduction.tex\npaper/sections/abstract.tex\npaper/sections/method.tex\npaper/sections/experiments.tex\npaper/sections/conclusion.tex\npaper/main.tex\npaper/sections/limitations.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T18:17:17.705742+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/paper/main.tex"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T18:17:17.705903+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\documentclass[11pt]{article}\n2\t\n3\t\\usepackage[review]{acl}\n4\t\n5\t\\usepackage{times}\n6\t\\usepackage{latexsym}\n7\t\\usepackage[T1]{fontenc}\n8\t\\usepackage[utf8]{inputenc}\n9\t\\usepackage{microtype}\n10\t% \\usepackage{inconsolata}\n11\t\\usepackage{graphicx}\n12\t\\usepackage{booktabs}\n13\t\\usepackage{amsmath}\n14\t\\usepackage{amssymb}\n15\t\\usepackage{xcolor}\n16\t\\usepackage{subcaption}\n17\t\n18\t\\newcommand{\\todo}[1]{\\textcolor{red}{[TODO: #1]}}\n19\t\n20\t\\title{Spectral Early Warning Signals for Model Collapse in Recursive Synthetic Training}\n21\t\n22\t\\author{Anonymous}\n23\t\n24\t\\begin{document}\n25\t\\maketitle\n26\t\n27\t\\begin{abstract}\n28\t\\input{sections/abstract}\n29\t\\end{abstract}\n30\t\n31\t\\section{Introduction}\n32\t\\label{sec:intro}\n33\t\\input{sections/introduction}\n34\t\n35\t\\section{Method}\n36\t\\label{sec:method}\n37\t\\input{sections/method}\n38\t\n39\t\\section{Experiments}\n40\t\\label{sec:experiments}\n41\t\\input{sections/experiments}\n42\t\n43\t\\section{Related Work}\n44\t\\label{sec:related}\n45\t\\input{sections/related_work}\n46\t\n47\t\\section{Conclusion}\n48\t\\label{sec:conclusion}\n49\t\\input{sections/conclusion}\n50\t\n51\t\\input{sections/limitations}\n52\t\n53\t\\bibliography{references}\n54\t\n55\t\\end{document}\n56\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T18:17:17.706041+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/paper/sections/abstract.tex"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T18:17:17.706174+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tRecursive synthetic training, where each model generation fine-tunes on its predecessor's outputs, causes model collapse: a progressive loss of distributional diversity and downstream capability.\n2\tDetecting collapse currently requires costly text generation or benchmark evaluation at every generation.\n3\tSpectral analysis of internal representations offers a cheaper alternative, but the spectral dynamics of recursive collapse lack systematic characterization, and no prior work connects spectral indicators to closed-loop prevention.\n4\tWe track spectral properties of the embedding Gram matrix across 10 recursive generations of Pythia-410M, with pilot validation on Pythia-1B.\n5\tOur analysis reveals a reproducible three-phase pattern: spectral decompression (generations 0--2), where effective rank and spectral log-volume (SLV) increase even as downstream performance degrades; collapse onset (generations 2--4), where spectral indicators reverse; and accelerating collapse (generations 4--10), where spectral contraction proceeds at 2.43$\\times$ the onset-generation rate.\n6\tAmong the indicators we examine, SLV is particularly suited for automated monitoring: it requires only a forward pass on held-out data, captures distributed volume changes across all spectral directions, and exhibits post-decompression monotonic decline amenable to threshold-based control.\n7\tBy varying the real-data mixing ratio across five levels, we construct a collapse phase diagram that localizes the critical mixing ratio $r_{\\text{crit}}$ to the interval $(0.25, 0.3]$, separating monotonic spectral expansion from a transitional regime with initial contraction followed by recovery.\n8\tWe further design a proof-of-concept proportional controller and discover a signal attenuation paradox: moderate real-data mixing prevents the spectral contraction that would activate the controller, so reactive spectral feedback becomes ineffective precisely when prevention succeeds.\n9\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T18:17:17.706318+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/paper/sections/introduction.tex"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T18:17:17.706466+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\n2\tSynthetic data has become integral to language model training.\n3\tInstruction tuning, knowledge distillation, and data augmentation all routinely use model-generated text, and as synthetic corpora are recycled into training pipelines, the process often becomes recursive: each generation of models is fine-tuned on outputs from the previous one.\n4\tRecent work demonstrates that such recursive synthetic training triggers \\textit{model collapse}, a progressive erosion of distributional tails and downstream capability~\\cite{shumailov2024collapse, dohmatob2024tails, alemohammad2024mad}.\n5\tThe problem is especially pressing as web-scraped corpora increasingly contain model-generated content, a trend that introduces implicit recursive loops even without deliberate data reuse.\n6\t\n7\tWhile model collapse is now well-characterized through theoretical analysis~\\cite{dohmatob2024tails} and empirical studies~\\cite{shumailov2024collapse, alemohammad2024mad}, its effect on the geometric structure of learned representations remains poorly understood.\n8\tCharacterizing how the embedding space contracts during recursive training could yield computationally cheap collapse indicators from internal model states alone, without text generation or benchmark evaluation.\n9\t\n10\tCurrent collapse detection depends on downstream metrics such as perplexity and benchmark accuracy, or on analysis of generated text through lexical diversity measures.\n11\tBoth approaches require either costly inference or external evaluation infrastructure at every generation.\n12\tSIGMA~\\cite{gu2026sigma} introduced spectral monitoring through embedding covariance analysis and showed that spectral indicators can track collapse, but validated only on OPT-125M over short generation horizons.\n13\tFour gaps remain open.\n14\tFirst, no work has systematically characterized spectral dynamics beyond a few generations at 410M+ parameters.\n15\tSecond, the temporal relationship between spectral indicators and downstream degradation \n…[truncated 2634 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T18:17:17.706692+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/paper/sections/method.tex"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-19T18:17:17.706896+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\subsection{Spectral Metrics}\n2\t\\label{subsec:spectral_metrics}\n3\t\n4\tGiven a language model at generation $t$, we extract last-layer embeddings for $n{=}1{,}000$ held-out samples to form $\\mathbf{E} \\in \\mathbb{R}^{n \\times d}$ and compute the Gram matrix $\\mathbf{G} = \\mathbf{E}^\\top \\mathbf{E}$.\n5\tLet $\\sigma_1 \\geq \\sigma_2 \\geq \\cdots \\geq \\sigma_d$ denote the singular values of $\\mathbf{E}$.\n6\tWe track three complementary spectral indicators:\n7\t\n8\t\\paragraph{Spectral Log-Volume (SLV).}\n9\t$\\text{SLV} = \\sum_i \\log \\sigma_i = \\frac{1}{2} \\log \\det \\mathbf{G}$.\n10\tThis quantity measures the total volume spanned by the embedding cloud in log-space.\n11\tBecause it sums over all singular values, SLV is sensitive to contraction along any spectral direction, not only the dominant ones.\n12\t\n13\t\\paragraph{Effective Rank.}\n14\t$r_{\\text{eff}} = \\exp(H(\\mathbf{p}))$, where $p_i = \\sigma_i / \\sum_j \\sigma_j$ and $H$ is the Shannon entropy, measuring how many dimensions carry substantial variance (uniform $\\to d$, concentrated $\\to 1$).\n15\t\n16\t\\paragraph{Leading Singular Value.}\n17\t$\\sigma_1$ tracks the dominant spectral direction; rising $\\sigma_1$ under falling $r_{\\text{eff}}$ signals representational collapse into a low-dimensional subspace.\n18\t\n19\t\\subsection{Adaptive Mixing Controller}\n20\t\\label{subsec:controller}\n21\t\n22\tWe propose a closed-loop controller that adjusts the real-data mixing ratio $r_t$ at each generation based on the rate of spectral change.\n23\tThe update rule is:\n24\t\\begin{equation}\n25\t\\label{eq:controller}\n26\tr_{t+1} = \\frac{B_{\\text{rem}}}{T - t} + k \\cdot \\max(0,\\; \\Delta_t - \\tau)\n27\t\\end{equation}\n28\twhere $B_{\\text{rem}}$ is the remaining real-data budget (fraction of total budget not yet consumed), $T$ is the total number of generations, $\\tau{=}0.002$ is a sensitivity threshold, and $k{=}10$ is the controller gain.\n29\tThe signal $\\Delta_t$ is the baseline-normalized SLV drop: $\\Delta_t = (\\widetilde{S}_{t-1} - \\widetilde{S}_t) / |\\widetilde{S}_\n…[truncated 3571 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-19T18:17:17.707054+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/paper/sections/experiments.tex"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T18:17:17.707255+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\n2\t\\subsection{Experimental Setup}\n3\t\\label{subsec:setup}\n4\t\n5\tWe use Pythia-410M-deduped \\cite{biderman2023pythia} as our base model and fine-tune on a 50K-subset of OpenWebText.\n6\tStarting from the pretrained checkpoint (generation~0), each subsequent generation fine-tunes on synthetic text produced by the previous generation, for a total of 10 recursive generations.\n7\tAt each generation we compute the spectral indicators from \\S\\ref{subsec:spectral_metrics} on the Gram matrix of 1K held-out last-layer embeddings, paired with three downstream metrics: perplexity, HellaSwag accuracy (0-shot), and distinct-4.\n8\t\n9\tFor the mixing comparison (\\S\\ref{subsec:phase1}), we evaluate three strategies sharing the same total real-data budget:\n10\t(1)~\\textbf{pure collapse} ($r_t{=}0$),\n11\t(2)~\\textbf{fixed mix} ($r_t{=}0.50$), and\n12\t(3)~\\textbf{adaptive} ($k{=}10$, Eq.~\\ref{eq:controller}).\n13\t\n14\t\\subsection{Spectral Collapse Characterization}\n15\t\\label{subsec:phase0}\n16\t\n17\tTable~\\ref{tab:phase0} reports spectral and downstream metrics across 10 recursive generations, which reveal a three-phase structure.\n18\t\n19\t\\begin{table}[t]\n20\t\\centering\n21\t\\small\n22\t\\begin{tabular}{@{}rrrrrrc@{}}\n23\t\\toprule\n24\tGen & $r_{\\text{eff}}$ & SLV & PPL & HeSw & D-4 & $\\sigma_1$ \\\\\n25\t\\midrule\n26\t0  & 417.55 & 2366.68 &  9.55 & .413 & .741 & 1942.8 \\\\\n27\t2  & \\textbf{496.44} & \\textbf{2469.93} & 13.58 & .376 & .515 &  712.0 \\\\\n28\t5  & 479.21 & 2370.17 & 24.59 & .344 & .463 &  741.0 \\\\\n29\t7  & 464.20 & 2304.19 & 38.89 & .319 & .447 &  791.3 \\\\\n30\t10 & 442.46 & 2178.95 & 76.78 & .295 & .426 &  825.7 \\\\\n31\t\\bottomrule\n32\t\\end{tabular}\n33\t\\caption{Spectral and downstream metrics at selected generations (Pythia-410M; full trajectory described in text). Bold marks the spectral peak before collapse onset.}\n34\t\\label{tab:phase0}\n35\t\\end{table}\n36\t\n37\t\\begin{figure}[t]\n38\t\\centering\n39\t\\includegraphics[width=\\columnwidth]{figures/spectral_trajectory.pdf}\n40\t\\caption{SLV across 10 recursive generatio\n…[truncated 11750 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-19T18:17:17.707406+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/paper/sections/conclusion.tex"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-19T18:17:17.707542+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\n2\tWe presented a systematic spectral characterization of model collapse across 10 recursive generations of Pythia-410M and identified a three-phase trajectory (decompression, onset, 2.43$\\times$ acceleration) confirmed at the 1B scale.\n3\tSLV is particularly suited for automated monitoring: it requires only a forward pass, declines monotonically after its peak, and captures volume changes before they manifest as dimensionality reduction.\n4\tBy varying the mixing ratio across five levels, we construct a collapse phase diagram that localizes $r_{\\text{crit}} \\in (0.25, 0.3]$: above this threshold SLV expands monotonically (Type~III), while just below it a transitional regime (Type~II) exhibits an initial contraction transient followed by recovery.\n5\tA proof-of-concept proportional controller exposes a signal attenuation paradox.\n6\tThe maximum per-generation controller signal weakens monotonically with the real-data fraction: $\\max \\Delta_t = 0.0019$ at $r{=}0.2$ (just below $\\tau{=}0.002$), $0.00028$ at $r{=}0.25$ ($6.7\\times$ weaker), and no decline signal at $r \\geq 0.3$ where SLV expands monotonically.\n7\tThe controller falls silent along a continuous gradient, not at a single threshold.\n8\tBecause all seven EWS indicators reverse under sufficient mixing (\\S\\ref{subsec:alt_ews}), this paradox generalizes beyond SLV: any per-generation reactive controller faces the same tradeoff between prevention and detectability~\\cite{scheffer2009ews}.\n9\tEven when mixing prevents spectral collapse, monitoring retains value: $r_{\\text{crit}}$ varies across domains and architectures, and spectral indicators reveal whether the current ratio lies in the transitional or stable zone without waiting for downstream degradation.\n10\t\n11\tThe signal attenuation paradox motivates three directions for future work.\n12\tFirst, cumulative indicators that integrate spectral trajectory shape across generations may detect sub-critical regimes where per-generation differences vanish.\n13\tSecond, non-spe\n…[truncated 400 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-19T18:17:17.707754+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/paper/sections/related_work.tex"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-19T18:17:17.707910+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\n2\t\\paragraph{Model Collapse.}\n3\t\\citet{shumailov2024collapse} showed that recursive training on model-generated data progressively erodes the tails of learned distributions, a phenomenon they termed \\emph{model collapse}.\n4\t\\citet{dohmatob2024tails} formalized this decay through scaling laws that predict tail erosion as a function of recursive depth, and \\citet{dohmatob2024demystified} provided a regression-theoretic analysis of the underlying mechanism.\n5\tThe self-consuming loop accelerates collapse even under data accumulation~\\cite{alemohammad2024mad}, and \\citet{dohmatob2025strong} demonstrated that as little as 1\\% synthetic contamination suffices to trigger degradation, though \\citet{gerstgrasser2024inevitable} showed that preserving all prior real data can delay it.\n6\tThese studies diagnose collapse through output distributions, benchmark scores, or theoretical scaling laws.\n7\tWe complement them by tracking collapse through the spectral geometry of internal representations, which requires no text generation or external evaluation.\n8\t\n9\t\\paragraph{Spectral Analysis of Representations.}\n10\tRandom matrix theory (RMT) applied to neural network weights reveals implicit regularization structure in the eigenspectrum~\\cite{martin2021implicit}.\n11\tEffective rank~\\cite{roy2007effectiverank} and its normalized variant RankMe~\\cite{rankme2023} have become standard tools for quantifying representational dimensionality.\n12\tRecent work has connected spectral properties to training pathologies: \\citet{he2025spectral} linked spectral collapse in hidden representations to plasticity loss in continual learning, and \\citet{naderi2025mindgap} identified spectral rank collapse in attention matrices as a failure mode of deep transformers.\n13\tMost directly relevant, \\citet{gu2026sigma} proposed SIGMA, a spectral monitoring framework that tracks singular-value distributions during recursive training on OPT-125M over short horizons.\n14\tWe extend this line of work along several axes\n…[truncated 2078 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-19T18:17:17.708055+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/paper/sections/limitations.tex"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-19T18:17:17.708178+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Limitations}\n2\t\\label{sec:limitations}\n3\t\n4\tAll experiments use a single random seed; multi-seed replication is needed to establish statistical robustness.\n5\tWe validate at two model scales only (Pythia-410M and a 1B pilot through Gen~3), leaving open whether the three-phase pattern holds at larger scales or with different architectures.\n6\tTen recursive generations may be shorter than production pipelines, and the spectral trajectory beyond this horizon is unknown.\n7\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-19T18:17:17.708326+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "r_\\{?\\\\text\\{crit\\}|r_\\{?crit\\}|r_\\\\text\\{crit",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/paper",
+              "output_mode": "content",
+              "glob": "*.tex"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-19T18:17:17.708471+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "paper/sections/experiments.tex:72:Since pure collapse ($r{=}0$) produces SLV decline from Gen~3 while fixed mix ($r{=}0.5$) yields sustained growth from Gen~2, and $r{=}0.2$ falls below $r_{\\text{crit}}$ (\\S\\ref{subsec:phase_diagram_exp}), we bound $0.2 < r_{\\text{crit}} \\leq 0.5$.\npaper/sections/experiments.tex:110:This universality confirms that the signal attenuation paradox (\\S\\ref{subsec:controller}) is not specific to SLV: any per-generation reactive controller based on these indicators will fall silent when mixing exceeds $r_{\\text{crit}}$.\npaper/sections/experiments.tex:125:Because $\\widetilde{S}_2 < \\widetilde{S}_1$, the non-decreasing condition is violated and $r{=}0.2$ formally lies below $r_{\\text{crit}}$.\npaper/sections/experiments.tex:135:SLV rises monotonically from Gen~2 onward, reaching 2572 at Gen~10 ($+$8.7\\% above baseline), consistent with $r{=}0.5 \\geq r_{\\text{crit}}$ (\\S\\ref{subsec:phase1}).\npaper/sections/experiments.tex:137:These three types partition the mixing-ratio axis into collapse ($r < r_{\\text{crit}}$), transitional, and stable ($r \\geq r_{\\text{crit}}$) zones.\npaper/sections/experiments.tex:139:This confirms $r{=}0.3 \\geq r_{\\text{crit}}$ over the full 10-generation horizon, tightening the bound to $0.25 < r_{\\text{crit}} \\leq 0.3$.\npaper/sections/experiments.tex:142:The Type~II trajectory clarifies what $r_{\\text{crit}}$ marks in practice: not a boundary between collapse and stability in final outcome, but a transition in trajectory shape.\npaper/sections/experiments.tex:143:Below $r_{\\text{crit}}$, real-data mixing fails to suppress the initial SLV contraction transient but sustains spectral expansion over the observed five generations once the transient passes.\npaper/sections/conclusion.tex:4:By varying the mixing ratio across five levels, we construct a collapse phase diagram that localizes $r_{\\text{crit}} \\in (0.25, 0.3]$: above this threshold SLV expands monotonically (Type~III), while just below it a transitional regime (Typ\n…[truncated 2312 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-19T18:17:17.708662+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\\\tilde\\{|\\\\widetilde\\{",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/paper",
+              "output_mode": "content",
+              "glob": "*.tex"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-19T18:17:17.708820+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "paper/sections/experiments.tex:125:Because $\\widetilde{S}_2 < \\widetilde{S}_1$, the non-decreasing condition is violated and $r{=}0.2$ formally lies below $r_{\\text{crit}}$.\npaper/sections/experiments.tex:128:The effective rank still rises at Gen~2 ($476.7 \\to 481.6$) while the EMA-smoothed SLV registers a net decline ($\\widetilde{S}_2 < \\widetilde{S}_1$), evidence that smoothed SLV detects spectral contraction earlier at this mixing ratio.\npaper/sections/experiments.tex:131:The EMA-smoothed sequence confirms the sub-critical classification: $\\widetilde{S}_1 = 2364.4$, $\\widetilde{S}_2 = 2363.8$, satisfying $\\widetilde{S}_2 < \\widetilde{S}_1$ and violating the non-decreasing condition.\npaper/sections/method.tex:29:The signal $\\Delta_t$ is the baseline-normalized SLV drop: $\\Delta_t = (\\widetilde{S}_{t-1} - \\widetilde{S}_t) / |\\widetilde{S}_0|$, where $\\widetilde{S}_t$ is the exponential moving average (EMA)-smoothed SLV ($\\alpha{=}0.5$) and $\\widetilde{S}_0$ is initialized from the pretrained model (Gen~0, SLV${=}2366.68$).\npaper/sections/method.tex:38:Define $r_{\\text{crit}}$ as the minimum constant mixing ratio such that SLV is non-decreasing from the second generation onward: $\\widetilde{S}_t \\geq \\widetilde{S}_{t-1}$ for all $t \\in \\{2, \\ldots, T\\}$ (excluding the initial fine-tuning transient at $t{=}1$).\npaper/sections/method.tex:50:\\Delta^2_t = \\widetilde{\\Delta}_{t-1} - \\widetilde{\\Delta}_t\npaper/sections/method.tex:52:where $\\widetilde{\\Delta}_t$ is the EMA-smoothed first-order signal with smoothing parameter $\\alpha_2$ (a tunable hyperparameter; we use $\\alpha_2{=}0.3$ in our experiments).\npaper/sections/method.tex:62:We estimate $r_{\\text{crit}}$ by evaluating multiple constant ratios and identifying the lowest $r$ for which $\\widetilde{S}_t \\geq \\widetilde{S}_{t-1}$ holds for all $t \\in \\{2, \\ldots, T\\}$."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-19T18:17:17.708957+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "r_\\{?\\\\text\\{eff\\}|r_\\{?eff\\}|r_\\\\text\\{eff",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/paper",
+              "output_mode": "content",
+              "glob": "*.tex"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-19T18:17:17.709094+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "paper/sections/experiments.tex:24:Gen & $r_{\\text{eff}}$ & SLV & PPL & HeSw & D-4 & $\\sigma_1$ \\\\\npaper/sections/experiments.tex:45:We identify phase boundaries at inflection points where $r_{\\text{eff}}$ and SLV transition from rising to declining.\npaper/sections/experiments.tex:46:In the first two generations, $r_{\\text{eff}}$ rises from 417.55 to 496.44 (+18.9\\%) and SLV increases from 2366.68 to 2469.93 (+4.4\\%), while $\\sigma_1$ drops sharply from 1942.8 to 712.0 as spectral mass redistributes from the dominant direction to smaller components.\npaper/sections/experiments.tex:53:Both $r_{\\text{eff}}$ and SLV reverse after Gen~2 ($r_{\\text{eff}}$: 496.44$\\to$493.31, SLV: 2470$\\to$2441), and this reversal marks the transition from decompression to collapse while perplexity continues its monotonic rise.\npaper/sections/experiments.tex:56:Spectral contraction accelerates: the mean per-generation percentage $r_{\\text{eff}}$ decline in Phase~III is 2.43$\\times$ the onset-generation rate (Gen~2$\\to$3).\npaper/sections/experiments.tex:57:By Gen~10, $r_{\\text{eff}}$ falls to 442.46 ($-$10.9\\% from peak), SLV drops to 2178.95 ($-$7.9\\% from baseline), perplexity reaches 76.78 ($+$704\\%), and $\\sigma_1$ reverses its earlier decline (700.7$\\to$825.7), a sign of renewed spectral concentration (Figure~\\ref{fig:spectral_trajectory}).\npaper/sections/experiments.tex:62:Repeating the protocol on Pythia-1B (Gen~0--3) confirms the same decompression-onset structure ($r_{\\text{eff}}$ peak at Gen~2, SLV peak one generation earlier). SLV's low cost and monotonic post-peak decline make it well-suited as an automated collapse monitor.\npaper/sections/method.tex:14:$r_{\\text{eff}} = \\exp(H(\\mathbf{p}))$, where $p_i = \\sigma_i / \\sum_j \\sigma_j$ and $H$ is the Shannon entropy, measuring how many dimensions carry substantial variance (uniform $\\to d$, concentrated $\\to 1$).\npaper/sections/method.tex:17:$\\sigma_1$ tracks the dominant spectral direction; rising $\\sigma_1$ under falling $r_{\\text\n…[truncated 533 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-19T18:17:17.709240+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\\\Delta_t|\\\\Delta t|\\\\Delta\\^2_t|\\\\Delta_\\{t",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/paper",
+              "output_mode": "content",
+              "glob": "*.tex"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-19T18:17:17.709380+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "paper/sections/experiments.tex:70:The adaptive controller ($k{=}10$) remains silent through all ten generations: $\\Delta_t$ is non-positive from Gen~2 onward, and the sole positive value ($\\Delta_1 \\approx 0.0003$) falls $6\\times$ below $\\tau{=}0.002$.\npaper/sections/experiments.tex:71:Since $\\Delta_t \\leq 0$ for all $t \\geq 2$, the controller stays silent for any finite $k$ and any $\\tau > 0$ (\\S\\ref{subsec:controller}); larger gain values do not escape the paradox.\npaper/sections/experiments.tex:127:Even at $r{=}0.2$, where SLV dips at Gen~2, the smoothed signal never exceeds the controller threshold ($\\max \\Delta_t = 0.0019 < \\tau = 0.002$), so as little as 20\\% real data silences the controller entirely.\npaper/sections/experiments.tex:132:Controller silence is more pronounced than at $r{=}0.2$: $\\max \\Delta_t = 0.00028 < \\tau = 0.002$, a $6.7\\times$ weaker signal than the $r{=}0.2$ maximum ($0.0019$), consistent with further signal attenuation as the real-data fraction increases.\npaper/sections/conclusion.tex:6:The maximum per-generation controller signal weakens monotonically with the real-data fraction: $\\max \\Delta_t = 0.0019$ at $r{=}0.2$ (just below $\\tau{=}0.002$), $0.00028$ at $r{=}0.25$ ($6.7\\times$ weaker), and no decline signal at $r \\geq 0.3$ where SLV expands monotonically.\npaper/sections/method.tex:26:r_{t+1} = \\frac{B_{\\text{rem}}}{T - t} + k \\cdot \\max(0,\\; \\Delta_t - \\tau)\npaper/sections/method.tex:29:The signal $\\Delta_t$ is the baseline-normalized SLV drop: $\\Delta_t = (\\widetilde{S}_{t-1} - \\widetilde{S}_t) / |\\widetilde{S}_0|$, where $\\widetilde{S}_t$ is the exponential moving average (EMA)-smoothed SLV ($\\alpha{=}0.5$) and $\\widetilde{S}_0$ is initialized from the pretrained model (Gen~0, SLV${=}2366.68$).\npaper/sections/method.tex:30:The signed form ensures that spectral decompression ($\\Delta_t < 0$) does not trigger the controller; only contraction activates the $\\max(0, \\cdot)$ gate in Eq.~\\ref{eq:controller}.\npaper/sections/method.tex:3\n…[truncated 701 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-19T18:17:17.709523+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "r\\{=\\}|r=0\\.|r =",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/paper",
+              "output_mode": "content",
+              "glob": "*.tex"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-19T18:17:17.709718+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "paper/sections/experiments.tex:72:Since pure collapse ($r{=}0$) produces SLV decline from Gen~3 while fixed mix ($r{=}0.5$) yields sustained growth from Gen~2, and $r{=}0.2$ falls below $r_{\\text{crit}}$ (\\S\\ref{subsec:phase_diagram_exp}), we bound $0.2 < r_{\\text{crit}} \\leq 0.5$.\npaper/sections/experiments.tex:83:Table~\\ref{tab:ews_comparison} summarizes the comparison under pure-synthetic training ($r{=}0$).\npaper/sections/experiments.tex:105:\\caption{Alternative early warning indicators under pure-synthetic training ($r{=}0$, Pythia-410M, 10 gen). \\textbf{Peak}: generation at which the indicator reverses (--- = monotonic from Gen~0). \\textbf{Mono?}: post-peak monotonicity (\\checkmark\\ = yes; number = violations). \\textbf{Rel $\\Delta$}: total relative change Gen~0--10. \\textbf{Rev.?}: direction reversal under $r{=}0.5$ mixing (\\checkmark\\ = reversed).}\npaper/sections/experiments.tex:119:\\paragraph{Type~I: Pure Collapse ($r{=}0$).}\npaper/sections/experiments.tex:123:\\paragraph{Type~II: Near-critical Mixing ($r{=}0.2$).}\npaper/sections/experiments.tex:124:Twenty percent real data suppresses the SLV decompression phase: SLV rises only 0.8 points from Gen~0 to Gen~1 (vs.\\ $+$98 under $r{=}0$), dips at Gen~2 ($2367.5 \\to 2358.3$, $-9.2$), then recovers through Gen~3--5 ($2362.5 \\to 2379.2 \\to 2399.0$, accelerating at $+4.2$, $+16.7$, $+19.7$ per generation), surpassing the Gen~0 baseline by 32.2 points at Gen~5.\npaper/sections/experiments.tex:125:Because $\\widetilde{S}_2 < \\widetilde{S}_1$, the non-decreasing condition is violated and $r{=}0.2$ formally lies below $r_{\\text{crit}}$.\npaper/sections/experiments.tex:127:Even at $r{=}0.2$, where SLV dips at Gen~2, the smoothed signal never exceeds the controller threshold ($\\max \\Delta_t = 0.0019 < \\tau = 0.002$), so as little as 20\\% real data silences the controller entirely.\npaper/sections/experiments.tex:130:At $r{=}0.25$, the full 10-generation trajectory follows the same Type~II pattern: SLV dips from Gen~0 to Gen~1\n…[truncated 1718 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-19T18:17:17.709874+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\\\sigma_1",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/paper",
+              "output_mode": "content",
+              "glob": "*.tex"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-19T18:17:17.710005+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "paper/sections/experiments.tex:24:Gen & $r_{\\text{eff}}$ & SLV & PPL & HeSw & D-4 & $\\sigma_1$ \\\\\npaper/sections/experiments.tex:46:In the first two generations, $r_{\\text{eff}}$ rises from 417.55 to 496.44 (+18.9\\%) and SLV increases from 2366.68 to 2469.93 (+4.4\\%), while $\\sigma_1$ drops sharply from 1942.8 to 712.0 as spectral mass redistributes from the dominant direction to smaller components.\npaper/sections/experiments.tex:57:By Gen~10, $r_{\\text{eff}}$ falls to 442.46 ($-$10.9\\% from peak), SLV drops to 2178.95 ($-$7.9\\% from baseline), perplexity reaches 76.78 ($+$704\\%), and $\\sigma_1$ reverses its earlier decline (700.7$\\to$825.7), a sign of renewed spectral concentration (Figure~\\ref{fig:spectral_trajectory}).\npaper/sections/method.tex:5:Let $\\sigma_1 \\geq \\sigma_2 \\geq \\cdots \\geq \\sigma_d$ denote the singular values of $\\mathbf{E}$.\npaper/sections/method.tex:17:$\\sigma_1$ tracks the dominant spectral direction; rising $\\sigma_1$ under falling $r_{\\text{eff}}$ signals representational collapse into a low-dimensional subspace."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-19T18:17:17.710182+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\\\label\\{(tab|fig):",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/paper",
+              "output_mode": "content",
+              "glob": "*.tex"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-19T18:17:17.710311+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "paper/sections/experiments.tex:34:\\label{tab:phase0}\npaper/sections/experiments.tex:41:\\label{fig:spectral_trajectory}\npaper/sections/experiments.tex:106:\\label{tab:ews_comparison}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-19T18:17:17.710429+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\\\ref\\{(tab|fig):",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/paper",
+              "output_mode": "content",
+              "glob": "*.tex"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-19T18:17:17.710551+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "paper/sections/experiments.tex:17:Table~\\ref{tab:phase0} reports spectral and downstream metrics across 10 recursive generations, which reveal a three-phase structure.\npaper/sections/experiments.tex:57:By Gen~10, $r_{\\text{eff}}$ falls to 442.46 ($-$10.9\\% from peak), SLV drops to 2178.95 ($-$7.9\\% from baseline), perplexity reaches 76.78 ($+$704\\%), and $\\sigma_1$ reverses its earlier decline (700.7$\\to$825.7), a sign of renewed spectral concentration (Figure~\\ref{fig:spectral_trajectory}).\npaper/sections/experiments.tex:83:Table~\\ref{tab:ews_comparison} summarizes the comparison under pure-synthetic training ($r{=}0$).\npaper/sections/experiments.tex:109:The final column of Table~\\ref{tab:ews_comparison} reveals that all seven indicators reverse direction under 50\\% real-data mixing.\npaper/sections/introduction.tex:20:Our analysis reveals a reproducible three-phase pattern (Figure~\\ref{fig:spectral_trajectory}): spectral decompression (Gen~0--2), where effective rank ($r_{\\text{eff}}$) and spectral log-volume (SLV) rise while downstream performance already declines; collapse onset (Gen~2--4), where spectral indicators reverse; and accelerating collapse (Gen~4--10), where contraction proceeds at 2.43$\\times$ the onset-generation rate.\npaper/sections/introduction.tex:26:\\item \\textbf{C1:} The first joint spectral-downstream characterization at 410M+ scale: a three-phase collapse pattern (decompression, onset, 2.43$\\times$ acceleration) across 10 generations (\\S\\ref{subsec:phase0}, Table~\\ref{tab:phase0})."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-19T18:17:17.710725+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\\\cite\\b|\\\\citet\\b|\\\\citep\\b",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/paper",
+              "output_mode": "content",
+              "glob": "*.tex"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-19T18:17:17.710881+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "paper/sections/related_work.tex:3:\\citet{shumailov2024collapse} showed that recursive training on model-generated data progressively erodes the tails of learned distributions, a phenomenon they termed \\emph{model collapse}.\npaper/sections/related_work.tex:4:\\citet{dohmatob2024tails} formalized this decay through scaling laws that predict tail erosion as a function of recursive depth, and \\citet{dohmatob2024demystified} provided a regression-theoretic analysis of the underlying mechanism.\npaper/sections/related_work.tex:5:The self-consuming loop accelerates collapse even under data accumulation~\\cite{alemohammad2024mad}, and \\citet{dohmatob2025strong} demonstrated that as little as 1\\% synthetic contamination suffices to trigger degradation, though \\citet{gerstgrasser2024inevitable} showed that preserving all prior real data can delay it.\npaper/sections/related_work.tex:10:Random matrix theory (RMT) applied to neural network weights reveals implicit regularization structure in the eigenspectrum~\\cite{martin2021implicit}.\npaper/sections/related_work.tex:11:Effective rank~\\cite{roy2007effectiverank} and its normalized variant RankMe~\\cite{rankme2023} have become standard tools for quantifying representational dimensionality.\npaper/sections/related_work.tex:12:Recent work has connected spectral properties to training pathologies: \\citet{he2025spectral} linked spectral collapse in hidden representations to plasticity loss in continual learning, and \\citet{naderi2025mindgap} identified spectral rank collapse in attention matrices as a failure mode of deep transformers.\npaper/sections/related_work.tex:13:Most directly relevant, \\citet{gu2026sigma} proposed SIGMA, a spectral monitoring framework that tracks singular-value distributions during recursive training on OPT-125M over short horizons.\npaper/sections/related_work.tex:17:The theory of early warning signals (EWS) for critical transitions originates in ecology, where \\citet{scheffer2009ews} established that rising auto\n…[truncated 3364 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-19T18:17:17.711029+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "Gen[ ~]",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/paper",
+              "output_mode": "content",
+              "glob": "*.tex"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-19T18:17:17.711190+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "paper/sections/experiments.tex:24:Gen & $r_{\\text{eff}}$ & SLV & PPL & HeSw & D-4 & $\\sigma_1$ \\\\\npaper/sections/experiments.tex:40:\\caption{SLV across 10 recursive generations of Pythia-410M under pure-synthetic training (solid) and 50\\% real-data mixing (dashed). Three phases are visible in the pure-synthetic trajectory: decompression (Gen~0--2, SLV peaks at 2470), onset (Gen~2--4), and acceleration (Gen~4--10, SLV falls 12\\% from peak to 2179). Under 50\\% mixing, SLV rises monotonically (except a negligible Gen~1 dip) to 2572 at Gen~10, 8.7\\% above baseline and 102 points above the pure-collapse peak.}\npaper/sections/experiments.tex:44:\\paragraph{Phase I: Spectral Decompression (Gen 0--2).}\npaper/sections/experiments.tex:48:HellaSwag already declines 5.6\\% from Gen~0 to Gen~1, precisely when spectral indicators are still rising; this asymmetry suggests that decompression captures distributional broadening rather than preservation of task-supporting representations.\npaper/sections/experiments.tex:52:\\paragraph{Phase II: Collapse Onset (Gen 2--4).}\npaper/sections/experiments.tex:53:Both $r_{\\text{eff}}$ and SLV reverse after Gen~2 ($r_{\\text{eff}}$: 496.44$\\to$493.31, SLV: 2470$\\to$2441), and this reversal marks the transition from decompression to collapse while perplexity continues its monotonic rise.\npaper/sections/experiments.tex:55:\\paragraph{Phase III: Accelerating Collapse (Gen 4--10).}\npaper/sections/experiments.tex:56:Spectral contraction accelerates: the mean per-generation percentage $r_{\\text{eff}}$ decline in Phase~III is 2.43$\\times$ the onset-generation rate (Gen~2$\\to$3).\npaper/sections/experiments.tex:57:By Gen~10, $r_{\\text{eff}}$ falls to 442.46 ($-$10.9\\% from peak), SLV drops to 2178.95 ($-$7.9\\% from baseline), perplexity reaches 76.78 ($+$704\\%), and $\\sigma_1$ reverses its earlier decline (700.7$\\to$825.7), a sign of renewed spectral concentration (Figure~\\ref{fig:spectral_trajectory}).\npaper/sections/experiments.tex:62:Repeating the protoco\n…[truncated 6381 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-19T18:17:17.711337+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\\\%",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/paper",
+              "output_mode": "content",
+              "glob": "*.tex"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-19T18:17:17.711484+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "paper/sections/related_work.tex:5:The self-consuming loop accelerates collapse even under data accumulation~\\cite{alemohammad2024mad}, and \\citet{dohmatob2025strong} demonstrated that as little as 1\\% synthetic contamination suffices to trigger degradation, though \\citet{gerstgrasser2024inevitable} showed that preserving all prior real data can delay it.\npaper/sections/experiments.tex:40:\\caption{SLV across 10 recursive generations of Pythia-410M under pure-synthetic training (solid) and 50\\% real-data mixing (dashed). Three phases are visible in the pure-synthetic trajectory: decompression (Gen~0--2, SLV peaks at 2470), onset (Gen~2--4), and acceleration (Gen~4--10, SLV falls 12\\% from peak to 2179). Under 50\\% mixing, SLV rises monotonically (except a negligible Gen~1 dip) to 2572 at Gen~10, 8.7\\% above baseline and 102 points above the pure-collapse peak.}\npaper/sections/experiments.tex:46:In the first two generations, $r_{\\text{eff}}$ rises from 417.55 to 496.44 (+18.9\\%) and SLV increases from 2366.68 to 2469.93 (+4.4\\%), while $\\sigma_1$ drops sharply from 1942.8 to 712.0 as spectral mass redistributes from the dominant direction to smaller components.\npaper/sections/experiments.tex:47:Crucially, this decompression does not indicate improved model quality: HellaSwag drops from 0.413 to 0.376 ($-$8.9\\%) and distinct-4 falls from 0.741 to 0.515 ($-$30.5\\%) during the same interval.\npaper/sections/experiments.tex:48:HellaSwag already declines 5.6\\% from Gen~0 to Gen~1, precisely when spectral indicators are still rising; this asymmetry suggests that decompression captures distributional broadening rather than preservation of task-supporting representations.\npaper/sections/experiments.tex:57:By Gen~10, $r_{\\text{eff}}$ falls to 442.46 ($-$10.9\\% from peak), SLV drops to 2178.95 ($-$7.9\\% from baseline), perplexity reaches 76.78 ($+$704\\%), and $\\sigma_1$ reverses its earlier decline (700.7$\\to$825.7), a sign of renewed spectral concentration (Figure~\\ref{fig:spect\n…[truncated 2905 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-19T18:17:17.711641+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "SLV|EWS|EMA|PPL",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/paper/sections/abstract.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-19T18:17:17.711771+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "5:Our analysis reveals a reproducible three-phase pattern: spectral decompression (generations 0--2), where effective rank and spectral log-volume (SLV) increase even as downstream performance degrades; collapse onset (generations 2--4), where spectral indicators reverse; and accelerating collapse (generations 4--10), where spectral contraction proceeds at 2.43$\\times$ the onset-generation rate.\n6:Among the indicators we examine, SLV is particularly suited for automated monitoring: it requires only a forward pass on held-out data, captures distributed volume changes across all spectral directions, and exhibits post-decompression monotonic decline amenable to threshold-based control."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-19T18:17:17.711991+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\bEWS\\b",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/paper",
+              "output_mode": "content",
+              "glob": "*.tex"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-19T18:17:17.712132+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "paper/sections/related_work.tex:17:The theory of early warning signals (EWS) for critical transitions originates in ecology, where \\citet{scheffer2009ews} established that rising autocorrelation and variance precede regime shifts in complex systems.\npaper/sections/related_work.tex:18:\\citet{dakos2012methods} developed a methodological toolbox for detecting these signals, and \\citet{bury2021deeplearning} showed that deep learning can identify EWS in systems where classical indicators fail.\npaper/sections/related_work.tex:19:A central tension in EWS theory is that stabilization interventions suppress the very precursors they rely on~\\cite{scheffer2009ews}.\npaper/sections/experiments.tex:77:\\subsection{Alternative EWS Comparison}\npaper/sections/conclusion.tex:8:Because all seven EWS indicators reverse under sufficient mixing (\\S\\ref{subsec:alt_ews}), this paradox generalizes beyond SLV: any per-generation reactive controller faces the same tradeoff between prevention and detectability~\\cite{scheffer2009ews}.\npaper/sections/conclusion.tex:14:Third, hybrid approaches combining spectral EWS with periodic probing at reduced real-data fractions may sustain controller sensitivity without sacrificing collapse prevention."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-19T18:17:17.712263+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\bEMA\\b",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/paper",
+              "output_mode": "content",
+              "glob": "*.tex"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-19T18:17:17.712388+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "paper/sections/experiments.tex:128:The effective rank still rises at Gen~2 ($476.7 \\to 481.6$) while the EMA-smoothed SLV registers a net decline ($\\widetilde{S}_2 < \\widetilde{S}_1$), evidence that smoothed SLV detects spectral contraction earlier at this mixing ratio.\npaper/sections/experiments.tex:131:The EMA-smoothed sequence confirms the sub-critical classification: $\\widetilde{S}_1 = 2364.4$, $\\widetilde{S}_2 = 2363.8$, satisfying $\\widetilde{S}_2 < \\widetilde{S}_1$ and violating the non-decreasing condition.\npaper/sections/method.tex:29:The signal $\\Delta_t$ is the baseline-normalized SLV drop: $\\Delta_t = (\\widetilde{S}_{t-1} - \\widetilde{S}_t) / |\\widetilde{S}_0|$, where $\\widetilde{S}_t$ is the exponential moving average (EMA)-smoothed SLV ($\\alpha{=}0.5$) and $\\widetilde{S}_0$ is initialized from the pretrained model (Gen~0, SLV${=}2366.68$).\npaper/sections/method.tex:52:where $\\widetilde{\\Delta}_t$ is the EMA-smoothed first-order signal with smoothing parameter $\\alpha_2$ (a tunable hyperparameter; we use $\\alpha_2{=}0.3$ in our experiments)."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-19T18:17:17.712511+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\bPPL\\b",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/paper",
+              "output_mode": "content",
+              "glob": "*.tex"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-19T18:17:17.712645+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "paper/sections/experiments.tex:24:Gen & $r_{\\text{eff}}$ & SLV & PPL & HeSw & D-4 & $\\sigma_1$ \\\\\npaper/sections/experiments.tex:102:PPL growth  & ppl       & ---   & $\\sim$\\,(1) &  ---   & \\checkmark \\\\"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-19T18:17:17.712767+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "generation [0-9]|generations [0-9]",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/paper",
+              "output_mode": "content",
+              "glob": "*.tex"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-19T18:17:17.712888+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "paper/sections/abstract.tex:5:Our analysis reveals a reproducible three-phase pattern: spectral decompression (generations 0--2), where effective rank and spectral log-volume (SLV) increase even as downstream performance degrades; collapse onset (generations 2--4), where spectral indicators reverse; and accelerating collapse (generations 4--10), where spectral contraction proceeds at 2.43$\\times$ the onset-generation rate."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-19T18:17:17.713006+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "Gen [0-9]",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/paper",
+              "output_mode": "content",
+              "glob": "*.tex"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-19T18:17:17.713122+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "paper/sections/experiments.tex:44:\\paragraph{Phase I: Spectral Decompression (Gen 0--2).}\npaper/sections/experiments.tex:52:\\paragraph{Phase II: Collapse Onset (Gen 2--4).}\npaper/sections/experiments.tex:55:\\paragraph{Phase III: Accelerating Collapse (Gen 4--10).}\npaper/sections/experiments.tex:96:SLV         & emb-Gram  & Gen 2 & \\checkmark & 11.8\\% & \\checkmark \\\\\npaper/sections/experiments.tex:97:RankMe      & emb-SVD   & Gen 2 & \\checkmark &  4.7\\% & \\checkmark \\\\"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-19T18:17:17.713236+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "[0-9]-[0-9]",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/paper",
+              "output_mode": "content",
+              "glob": "*.tex"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-19T18:17:17.713345+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-19T18:17:17.713522+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\\\label\\{subsec:",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/paper",
+              "output_mode": "content",
+              "glob": "*.tex"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-19T18:17:17.713671+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "paper/sections/experiments.tex:3:\\label{subsec:setup}\npaper/sections/experiments.tex:15:\\label{subsec:phase0}\npaper/sections/experiments.tex:60:\\label{subsec:cross_scale}\npaper/sections/experiments.tex:65:\\label{subsec:phase1}\npaper/sections/experiments.tex:78:\\label{subsec:alt_ews}\npaper/sections/experiments.tex:114:\\label{subsec:phase_diagram_exp}\npaper/sections/method.tex:2:\\label{subsec:spectral_metrics}\npaper/sections/method.tex:20:\\label{subsec:controller}\npaper/sections/method.tex:44:\\label{subsec:second_order}\npaper/sections/method.tex:57:\\label{subsec:phase_diagram}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-19T18:17:17.713797+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\\\ref\\{subsec:",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/paper",
+              "output_mode": "content",
+              "glob": "*.tex"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-19T18:17:17.713941+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "paper/sections/related_work.tex:20:We encounter a parallel tension in model collapse, but the failure mode is distinct: ecological stabilization reduces the signal-to-noise ratio while preserving signal direction, whereas real-data mixing reverses the spectral trajectory and eliminates the signal entirely (\\S\\ref{subsec:controller}).\npaper/sections/experiments.tex:7:At each generation we compute the spectral indicators from \\S\\ref{subsec:spectral_metrics} on the Gram matrix of 1K held-out last-layer embeddings, paired with three downstream metrics: perplexity, HellaSwag accuracy (0-shot), and distinct-4.\npaper/sections/experiments.tex:9:For the mixing comparison (\\S\\ref{subsec:phase1}), we evaluate three strategies sharing the same total real-data budget:\npaper/sections/experiments.tex:67:Under pure synthetic training (\\S\\ref{subsec:phase0}), SLV peaks at Gen~2 (2470) and declines monotonically thereafter.\npaper/sections/experiments.tex:71:Since $\\Delta_t \\leq 0$ for all $t \\geq 2$, the controller stays silent for any finite $k$ and any $\\tau > 0$ (\\S\\ref{subsec:controller}); larger gain values do not escape the paradox.\npaper/sections/experiments.tex:72:Since pure collapse ($r{=}0$) produces SLV decline from Gen~3 while fixed mix ($r{=}0.5$) yields sustained growth from Gen~2, and $r{=}0.2$ falls below $r_{\\text{crit}}$ (\\S\\ref{subsec:phase_diagram_exp}), we bound $0.2 < r_{\\text{crit}} \\leq 0.5$.\npaper/sections/experiments.tex:75:This reinforces the asymmetry from \\S\\ref{subsec:phase0}: spectral health under mixed training does not guarantee model health, and the signal attenuation paradox renders per-generation reactive controllers ineffective precisely when collapse prevention succeeds.\npaper/sections/experiments.tex:80:To assess whether the spectral patterns in \\S\\ref{subsec:phase0} reflect a broader embedding-level geometric phenomenon rather than an artifact of a single metric, we compare SLV against six alternative collapse indicators from three signal sourc\n…[truncated 3050 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-19T18:17:17.714131+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "True",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/paper/sections/introduction.tex",
+              "old_string": "~\\cite{",
+              "new_string": "~\\citep{"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-19T18:17:17.714285+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/paper/sections/introduction.tex has been updated. All occurrences were successfully replaced."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-19T18:17:17.714411+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "True",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/paper/sections/related_work.tex",
+              "old_string": "~\\cite{",
+              "new_string": "~\\citep{"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-19T18:17:17.714558+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/paper/sections/related_work.tex has been updated. All occurrences were successfully replaced."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-19T18:17:17.714717+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "True",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/paper/sections/experiments.tex",
+              "old_string": "~\\cite{",
+              "new_string": "~\\citep{"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-19T18:17:17.714889+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/paper/sections/experiments.tex has been updated. All occurrences were successfully replaced."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-19T18:17:17.715020+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "True",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/paper/sections/conclusion.tex",
+              "old_string": "~\\cite{",
+              "new_string": "~\\citep{"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-19T18:17:17.715153+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/paper/sections/conclusion.tex has been updated. All occurrences were successfully replaced."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-19T18:17:17.715283+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/paper/sections/experiments.tex",
+              "old_string": "Pythia-410M-deduped \\cite{biderman2023pythia}",
+              "new_string": "Pythia-410M-deduped \\citep{biderman2023pythia}"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-19T18:17:17.715442+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/paper/sections/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-19T18:17:17.715561+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/paper/sections/experiments.tex",
+              "old_string": "(Gen 0--2)",
+              "new_string": "(Gen~0--2)"
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-19T18:17:17.715743+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/paper/sections/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-19T18:17:17.715865+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/paper/sections/experiments.tex",
+              "old_string": "(Gen 2--4)",
+              "new_string": "(Gen~2--4)"
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-19T18:17:17.716022+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/paper/sections/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-19T18:17:17.716141+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/paper/sections/experiments.tex",
+              "old_string": "(Gen 4--10)",
+              "new_string": "(Gen~4--10)"
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-19T18:17:17.716296+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/paper/sections/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-19T18:17:17.716414+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/paper/sections/introduction.tex",
+              "old_string": "early warning signals~\\citep{scheffer2009ews}",
+              "new_string": "early warning signals (EWS)~\\citep{scheffer2009ews}"
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-19T18:17:17.716553+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/paper/sections/introduction.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-19T18:17:17.716708+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\\\cite\\{",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/paper",
+              "output_mode": "content",
+              "glob": "*.tex"
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-19T18:17:17.716825+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-19T18:17:17.716938+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "Gen [0-9]",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/paper",
+              "output_mode": "content",
+              "glob": "*.tex"
+            }
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-19T18:17:17.717051+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "paper/sections/experiments.tex:96:SLV         & emb-Gram  & Gen 2 & \\checkmark & 11.8\\% & \\checkmark \\\\\npaper/sections/experiments.tex:97:RankMe      & emb-SVD   & Gen 2 & \\checkmark &  4.7\\% & \\checkmark \\\\"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-19T18:17:17.717229+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All `\\cite{}` converted — zero bare `\\cite{` remaining. The two `Gen 2` in table cells are acceptable (no line-break risk).\n\n## 汇总\n\n### 已修复：22 个问题\n\n| 类别 | 数量 | 文件 |\n|------|------|------|\n| `\\cite{}` → `\\citep{}` (parenthetical引用) | 18 | introduction.tex (6), related_work.tex (8), experiments.tex (3), conclusion.tex (1) |\n| `Gen 0--2` → `Gen~0--2` (段落标题缺 `~`) | 3 | experiments.tex (lines 44, 52, 55) |\n| EWS 缩写首次展开 | 1 | introduction.tex line 16: 添加 \"(EWS)\" |\n\n### 检查通过（无需修改）\n\n- `$r_{\\text{crit}}$` — 全文统一 ✅\n- `$\\widetilde{S}_t$` — 全文统一，无 `\\tilde` 混用 ✅\n- `$r_{\\text{eff}}$` — 全文统一 ✅\n- `$\\sigma_1$` — 全文统一 ✅\n- `$\\Delta_t$` — 全文统一 ✅\n- `$r{=}0.x$` thin space — 全文统一 ✅\n- Table/Figure 引用 — 3 个 label 全部有对应 ref，无 undefined ✅\n- En-dash `--` 数值范围 — 全文统一，无 hyphen 混用 ✅\n- `\\%` 格式 — 全文统一（无空格） ✅\n- SLV 缩写 — abstract + introduction 均展开 ✅\n- EMA 缩写 — method 首次使用时展开 ✅\n- Subsection labels — 全部 `\\ref` 有对应 `\\label` ✅\n\n### 待确认：2 个\n\n1. **PPL 缩写**：仅出现在 Table 1/2 列头（`PPL`、`PPL growth`），正文均用全称 \"perplexity\"。作为 NLP 标准缩写可接受，但如需严谨可在 Table 1 caption 中注明。\n2. **未被引用的 subsection labels**：`subsec:cross_scale` 和 `subsec:second_order` 定义了但未被 `\\ref` 引用。如果需要正文交叉引用可补上。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_notation-consistency_20260519T181220"
+          },
+          "id": "event-000081"
+        }
+      ],
+      "message_count": 81
+    }
+  ],
+  "readable_path": "readable/conversations/paper-notation-consistency.md"
+}

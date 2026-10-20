@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "66c2f5b0550912a9f731",
+  "project": "trace_distill_repair",
+  "kind": "result",
+  "title": "code mvp analysis",
+  "task_key": "worker_code_mvp_analysis_20260514T135913",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mvp_analysis_20260514T135913_result.json",
+    "occurrence": 1,
+    "bytes": 854,
+    "sha256": "34483e88a12f2611922a32323cb8325dc7ba683e2b1c0c735bb4cd85c7fbcbab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "服务器上运行正常。脚本已部署到 `/root/trace_distill_repair/mvp_analysis.py`。\n\n功能总结：\n- **Criterion 1**: 从 CSV 统计 trace 收集+结构化解析成功率，阈值 ≥80% pass / <60% kill\n- **Criterion 2**: 从 `teacher_scores.json` 或 `teacher_scores/` 目录读取 scored segments，随机抽样计算 precision；支持 ground truth 对比和 confidence proxy 两种模式；数据缺失时标记 DATA_MISSING\n- **Criterion 3**: 筛选 >2K token trace 子集，配对比较 structural vs line 的 win rate，exact binomial test 计算 p-value\n- **Case study**: 自动选 5 个 structural exclusive win case，按 compression ratio 排序\n- **输出**: 格式化判定表 + `mvp_judgment.json` + case study 列表\n- **CLI**: `python mvp_analysis.py --results-dir ./mvp_results` 或 `--dry-run` 测试"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-mvp-analysis.md"
+}

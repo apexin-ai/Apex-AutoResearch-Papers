@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5b3d8413c69c4f21339e",
+  "project": "prism_collapse_mixing",
+  "kind": "result",
+  "title": "knowledge figure layout",
+  "task_key": "worker_knowledge_figure_layout_20260516T003832",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_knowledge_figure_layout_20260516T003832_result.json",
+    "occurrence": 1,
+    "bytes": 549,
+    "sha256": "bbd089cf54f1fb223a815af3ffc6016ea591a87d97c71f2bd3d07c8e52e87cef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入并注册。共规划 13 项：\n\n**Must (8)**：pipeline 图、ρ decay 曲线、loss-entropy 散点 grid、corpus-level trends 2×2、cross-seed 一致性图、实验配置表、全 signal 数值表、pass/fail verdict 表\n\n**Should (4)**：distribution shift KDE、dual-axis decoupling 图、C2 degradation detail 表、full ρ+p-value 表\n\n**Optional (1)**：5-gen extension 图（仅 3-gen fail 时启用）\n\n其中 Fig 2/4/5 已有 `plot_results_fixed.py` 支持，Fig 3/6/7 和 Tab 5 需新建或扩展脚本。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/knowledge-figure-layout.md"
+}

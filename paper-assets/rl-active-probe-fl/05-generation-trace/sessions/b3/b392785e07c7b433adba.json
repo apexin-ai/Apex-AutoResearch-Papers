@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b392785e07c7b433adba",
+  "project": "rl-active-probe-fl",
+  "kind": "result",
+  "title": "check eval final",
+  "task_key": "worker_check_eval-final_20260514T091815",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_eval-final_20260514T091815_result.json",
+    "occurrence": 1,
+    "bytes": 1394,
+    "sha256": "0aa7e822170bd6750cfd61b947c53bd2c75169dd57e88766d90a48051ae06f97"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n### eval-sft-v1 — 已完成 ✓\n- 模型: Qwen3-8B + SFT checkpoint\n- 样本数: 202\n- 退出码: 0\n\n| Metric | Mean | 90% CI Low | 90% CI High |\n|--------|------|------------|-------------|\n| debug_accuracy | 0.2822 | 0.2277 | 0.3317 |\n| probe_executed | 0.0000 | 0.0000 | 0.0000 |\n| probe_diagnostic | 0.0050 | 0.0000 | 0.0149 |\n| probe_dependent | 0.0594 | 0.0347 | 0.0842 |\n| probe_generation_rate | 0.9901 | — | — |\n\n### eval-base-v2 — 已完成 ✓\n- 模型: Qwen3-8B (base, no checkpoint)\n- 样本数: 202\n- 退出码: 0\n\n| Metric | Mean | 90% CI Low | 90% CI High |\n|--------|------|------------|-------------|\n| debug_accuracy | 0.2871 | 0.2376 | 0.3366 |\n| probe_executed | 0.0050 | 0.0000 | 0.0149 |\n| probe_diagnostic | 0.0099 | 0.0000 | 0.0198 |\n| probe_dependent | 0.0545 | 0.0297 | 0.0842 |\n| probe_generation_rate | 1.0000 | — | — |\n\n### 对比小结\n\nSFT 在所有 probe 质量指标上均未超过 base，CI 完全重叠。SFT 的 probe_executed 甚至降到 0.0（base 0.5%），probe_generation_rate 也略低（99.0% vs 100%）。debug_accuracy 两者无显著差异（28.2% vs 28.7%）。\n\n### Qwen3-30B-A3B 下载 — 进行中\n- 已下载: 15GB，当前下载第 10/16 个 shard（84%, 3.11G/3.73G）\n- 速度: ~434 kB/s，预计当前 shard 还需 ~25 分钟\n- modelscope 进程仍在运行"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-eval-final.md"
+}

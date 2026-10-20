@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "88cbce81f4851f8497f4",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "fix clear exit file",
+  "task_key": "worker_fix_clear_exit_file_20260516T232445",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_clear_exit_file_20260516T232445_result.json",
+    "occurrence": 1,
+    "bytes": 52,
+    "sha256": "2a94720fda1bde59e1a796095624b1a21e88fbc40db3d42fccdf8852056906f4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已删除，确认输出 `CLEANED`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-clear-exit-file.md"
+}

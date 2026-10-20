@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "834db0ac81ad826284b1",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "bugfix numpy bool phase0",
+  "task_key": "worker_bugfix_numpy-bool-phase0_20260517T190853",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_bugfix_numpy-bool-phase0_20260517T190853_result.json",
+    "occurrence": 1,
+    "bytes": 621,
+    "sha256": "81ece3b1aef9c437e2da146e70dc7b321cda9fd636bd1ddb84e5f2115ecc41bf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n**修复内容：**\n- `analyze_phase0.py`: 添加 `NumpyEncoder` 类（处理 `np.integer`/`np.floating`/`np.bool_`/`np.ndarray`），`json.dump` 使用 `cls=NumpyEncoder`\n- `run_phase0.py`: `is_accelerating` 加 `bool()` 包装；`json.dump` 添加 `default` lambda 处理 numpy 类型\n\n**生成结果：**\n- `results/phase0_analysis.json` 和 `results/phase0_analysis_report.json` 均有效\n- Keys: `['model_name', 'source_file', 'num_generations', 'decline_rates', 'go_nogo', 'calibration']`\n- Go/No-go: **PASS**（三条件全通过）\n- 校准参数: τ=0.009754, k=24.53"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/bugfix-numpy-bool-phase0.md"
+}

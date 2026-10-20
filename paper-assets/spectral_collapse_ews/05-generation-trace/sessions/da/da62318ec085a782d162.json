@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "da62318ec085a782d162",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ops monitor cuda1 launch exp026",
+  "task_key": "worker_ops_monitor-cuda1-launch-exp026_20260525T231239",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_monitor-cuda1-launch-exp026_20260525T231239_result.json",
+    "occurrence": 1,
+    "bytes": 123,
+    "sha256": "b475bd6586eae4a19168f1b825796ff555f754cab0dea40603ecf067d27342cb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PID 3923 is still running (49 min elapsed, script: `fast_r02_regen_and_ews.py`). Polling again in 3 minutes."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-monitor-cuda1-launch-exp026.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c42d2cd78b045c4d75e8",
+  "project": "trace_distill_repair",
+  "kind": "history",
+  "title": "agent / loop_4_1778858797.md",
+  "task_key": "loop_4_1778858797",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1778858797.md",
+    "occurrence": 1,
+    "bytes": 4162,
+    "sha256": "2cfa8e8d2f89755e7da4e39261c470fe88345c5dbb86e74ba5a0fcf2660cc735"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-15T14:30:50+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 rtx6000-diagprobe 的 cuda:0 和 cuda:1（gpu_ids 白名单）\n- MVP 阶段全程 API-only（deepseek/deepseek-v4-flash via OpenRouter），GPU 为 Research 阶段 student training 预留，不跑训练\n- submit_training_job 的 tmux session 不继承手动 export 的环境变量——命令必须自带 `source /root/trace_distill_repair/.env`（已踩坑 v4）\n- 55% 实例 structural keep=0，论文叙事不能 claim \"structural > line\" 全局优势，需按 keep>0 / keep=0 分层分析\n\n### 2. 🖥️ 基础设施快照\n- 服务器：rtx6000-diagprobe，工作目录 `/root/trace_distill_repair/`\n- Python：`/root/miniconda3/bin/python`（conda base，激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- API Key：持久化在 `/root/trace_distill_repair/.env`（OPENROUTER_API_KEY / DEEPSEEK_API_KEY）\n- 数据/输出目录：`/root/trace_distill_repair/pipeline_output/`\n- Phase 2 scoring 结果：`phase2_structural_scores.json`（566 segments）、`phase2_line_scores.json`（4091 segments on v2 data）\n- 日志目录：`~/runs/trace_distill_repair/`\n- 活跃进程：无（mvp_phase3_repair 刚退出）\n- Cron：reconcile 结果为空，无活跃 cron\n\n### 3. 📊 当前状态\n**刚收到 CRON 回调**：mvp_phase3_repair 进程正常退出，状态转 ANALYZING。但 registry 中 conclusion 显示 \"killed\"（矛盾——CRON 说 \"Process exited cleanly\"）。\n\n**已派 Worker**：`worker_analyze_mvp_phase3_repair_20260515T112816` 正在 SSH 读取日志和输出文件，分析 4 条件（structural_filtered / line_filtered / full_trace / no_trace）的修复率对比。**Worker 尚未回调**。\n\nRegistry 概况：\n- ANALYZING: mvp_phase3_repair（等 Worker 分析）\n- PREPARING: mvp_structural_scoring_v2（已 CANCELLED by D013，残留状态）\n- DONE(success): phase1_trace_v2, mvp_structural_scoring_v3, mvp_line_scoring_v3, mvp_line_scoring_v2, mvp_structural_scoring_clean, mvp_line_scoring_clean, mvp_trace_collect（7 个）\n- DONE(killed/failed): 7 个（历史迭代残留）\n\nGPU：cuda:0 和 cuda:1 均空闲（MVP 阶段 API-only，GPU 预留给 Research 阶段）\n\n### 4. 📋 待办\n- Worker `worker_analyze_mvp_phase3_repair` 回调 → 读取分析报告 → 根据结论更新 registry（conclusion 应改为 success/negative，修正当前错误的 \"killed\"）→ 更新 report.md → 向 Director 汇报 Phase 3 结果 + MVP 判定\n- Phase 3 结果为 success（structural win rate 显著）→ 按 on-experiment-done/success 流程：对标 experiment-matrix、建议 Research 阶段启动 student distillation training\n- Phase 3 结果为 negative（structural 无优势）→ 按 red-section 产出 Framing 调整提案，禁止默默跑下一个实验，等 Director 决策\n- Phase 3 结果需分两层：Overall（33 实例）+ Conditional（Subset A: structural keep>0 约 15 实例 / Subset B: keep=0 约 18 实例）\n- mvp_structural_scoring_v2 残留 PREPARING 状态 → 清理为 killed（已被 D013 取消）\n\n### 5. 🎯 战略上下文\n- 核心方向：execution trace 的价值在结构而非逐行内容。用结构化分段 + 蒸馏过滤 trace，把 trace 从噪声源变修复信号。目标 EMNLP 2026 ARR May（DDL 5/25，还剩 10 天）\n- Phase 3 是 MVP 的最终判定实验——如果 structural_filtered 在 keep>0 子集上显著优于其他条件，核心 claim 成立；否则需要 pivot narrative\n- 决策链关键节点：D010 将 claim 从 \"keep rate 差异\" 转向 \"连贯上下文 + token 效率\"；D013/D014 发现 Phase 1 trace bug（未用 failing test）并修复为 v2；D016 确认 segment cap 问题留到 Research 阶段\n- 易错点：registry 中 mvp_phase3_repair 的 conclusion=\"killed\" 很可能是错误状态（CRON 回调说正常退出）——下一个\"你\"收到 Worker 回调时需要根据实际日志修正 conclusion\n- Research 阶段前置准备已完成：Qwen3-Reranker-0.6B 下载 + QLoRA 验证 + student training 数据转换脚本，MVP 通过后可立即启动 student distillation\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1778858797.md"
+}

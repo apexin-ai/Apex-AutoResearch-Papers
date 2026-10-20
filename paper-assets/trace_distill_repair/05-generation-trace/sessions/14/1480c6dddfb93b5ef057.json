@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1480c6dddfb93b5ef057",
+  "project": "trace_distill_repair",
+  "kind": "result",
+  "title": "monitor v2 progress check",
+  "task_key": "worker_monitor_v2_progress_check_20260515T143101",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_v2_progress_check_20260515T143101_result.json",
+    "occurrence": 1,
+    "bytes": 1026,
+    "sha256": "24093d8e584578721093aa5112f7323d40dcd6fd61453b1c8b3e29169392f8fd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验进度汇报：\n\n| 项目 | 状态 |\n|------|------|\n| **进程** | PID 131772 运行中，已运行 1h03m |\n| **已完成实例** | **5/14**（black_1, cookiecutter_1, cookiecutter_2, cookiecutter_3, fastapi_2） |\n| **当前处理** | httpie_2（正在执行第 2 个条件 full_trace） |\n| **已完成 API 调用** | 20/56（5 实例 × 4 条件） |\n| **模型** | deepseek/deepseek-v4-pro |\n\n**耗时统计：**\n- black_1: 958s, cookiecutter_1: 884s, cookiecutter_2: ~480s, cookiecutter_3: 403s, fastapi_2: 870s\n- 平均每实例 ~719s（约 12 分钟）\n\n**异常：**\n- 有多次 API retry（3 分钟超时后重试），但均成功恢复，无致命错误\n- 截至目前所有实例 test_pass 全部为 False\n\n**结果文件：**\n- checkpoint 文件已有（30KB），CSV 尚未生成（可能最终汇总时写入）\n- phase3_v2_results 目录已创建但为空\n\n**预估剩余：** 还剩 9 个实例 × ~12 min ≈ **108 分钟**（约 1h48m），预计 ~00:20 完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-v2-progress-check.md"
+}

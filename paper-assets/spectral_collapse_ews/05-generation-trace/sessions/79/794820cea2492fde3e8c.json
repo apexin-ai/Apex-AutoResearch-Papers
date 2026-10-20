@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "794820cea2492fde3e8c",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ops check exp progress 0524b",
+  "task_key": "worker_ops_check-exp-progress-0524b_20260524T053926",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-exp-progress-0524b_20260524T053926_result.json",
+    "occurrence": 1,
+    "bytes": 873,
+    "sha256": "c78dc1d7a05ceaa57f324d28930c4091c769ce63cca79d4b1033010e7bb9c5bb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总如下：\n\n## exp_020 — GPT-2-medium pure collapse\n- **进度**: Gen 8/10，Step ~1800/6200\n- **已完成**: Gen 0-7（checkpoint 已保存）\n- **每代耗时**: ~2h24m（从 checkpoint 时间戳推算）\n- **预计剩余**: Gen 8 剩 ~1h15m + Gen 9 ~2h24m + Gen 10 ~2h24m ≈ **~6h**\n- GPU 0，26.4GB 显存，100% 利用率\n\n## exp_021 — GPT-2-medium real-data control (r=1.0)\n- **进度**: Gen 3/3（最后一代），Step ~4900/6200\n- **已完成**: Gen 0-2（checkpoint 已保存）\n- **预计剩余**: 训练剩 ~1300 步 + eval ≈ **~30-45min**，之后完成\n- GPU 1，29.1GB 显存，100% 利用率\n\n## 服务器状态\n- 2× RTX PRO 6000 Blackwell (96GB)，均 100% 满载\n- 磁盘 `/root/autodl-tmp/`: 118GB/250GB 已用 (48%)\n\nexp_021 预计今天下午 ~14:15 前完成；exp_020 预计今晚 ~19:30-20:00 完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-exp-progress-0524b.md"
+}

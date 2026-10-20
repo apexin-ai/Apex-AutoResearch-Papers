@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6eb23c5853dc18dbacda",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ops check exp020 status",
+  "task_key": "worker_ops_check-exp020-status_20260524T073011",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-exp020-status_20260524T073011_result.json",
+    "occurrence": 1,
+    "bytes": 1250,
+    "sha256": "935b5526b1e7b879714dc6a00232c7fdf59e65ea81a9f4b629129c75c2ec97ab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Exp_020 状态: **RUNNING** — 正在执行最后一代 (Gen 9)\n\n**进程**: PID 783957, 自 May 23 启动, CPU 100%\n**当前阶段**: Gen 9 合成数据生成中, 37760/50000 samples (75.5%)\n- 生成完毕后还需 training + evaluating, 预计 **1-2 小时**内完成全部 10 代\n\n**磁盘**: `/root/autodl-tmp/` 130G 可用 (49%), 充足\n\n### 已完成 Gen 0-8 Metrics\n\n| Gen | eff_rank | log_det (SLV) | PPL | D-4 | σ₁ |\n|-----|----------|---------------|------|-------|------|\n| 0 | 23.09 | 689.44 | 15.45 | 0.913 | 6598 |\n| 1 | 155.22 | 885.30 | 16.42 | 0.891 | 1463 |\n| 2 | 185.37 | 924.39 | 18.94 | 0.868 | 1191 |\n| 3 | 184.86 | 889.70 | 23.33 | 0.837 | 1172 |\n| 4 | 169.56 | 817.55 | 32.11 | 0.764 | 1224 |\n| 5 | 151.94 | 732.12 | 49.35 | 0.658 | 1318 |\n| 6 | 136.09 | 658.12 | 76.81 | 0.559 | 1449 |\n| 7 | 121.29 | 576.61 | 123.66 | 0.501 | 1548 |\n| 8 | 110.92 | 500.89 | 198.01 | 0.460 | 1593 |\n\n**趋势**: pure-synthetic (r=0) 呈现清晰的 spectral collapse — log_det 从 Gen 2 峰值 924 持续下降至 Gen 8 的 501, eff_rank 从 185 降至 111, PPL 从 15 飙升至 198, D-4 从 0.91 降至 0.46, σ₁ 从 Gen 1 起持续增长(1463→1593)。各指标单调恶化，符合预期。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-exp020-status.md"
+}

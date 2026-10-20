@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "cbe78d939bf0b2b6c26a",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "paper redraw figures v2",
+  "task_key": "worker_paper_redraw-figures-v2_20260524T204205",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_redraw-figures-v2_20260524T204205_result.json",
+    "occurrence": 1,
+    "bytes": 2111421,
+    "sha256": "10a71e5a948a36b98e11c48d403417f00e28f116eb3e9549d755e82baf89e626"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2111441,
+                "serialized_sha256": "a1b3ae41cebbe08fd3579d00c633ad959054b76f994c2bdddf9e1e911f1ec045",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-redraw-figures-v2.md"
+}

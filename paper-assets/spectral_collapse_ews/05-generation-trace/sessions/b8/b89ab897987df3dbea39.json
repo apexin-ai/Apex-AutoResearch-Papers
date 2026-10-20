@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b89ab897987df3dbea39",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "paper s44 mixed source fix",
+  "task_key": "worker_paper_s44-mixed-source-fix_20260522T063940",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_s44-mixed-source-fix_20260522T063940_result.json",
+    "occurrence": 1,
+    "bytes": 635,
+    "sha256": "be0d8bb7af3945739105450affcb6f8fe9a528e330251d7f79fb7ada91c17c5a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译成功，12 页（含 appendix/references，正文 ≤8 页）。\n\n**验证汇总：**\n\n| 位置 | \"4.6\" / \"2362\" 出现 | 状态 |\n|------|---------------------|------|\n| L142 `$-4.6$` dip | 已标注 `seed~42, representative trajectory` | ✓ |\n| L142 `$2362.1$` | 同上句，已覆盖 | ✓ |\n| L142 `$2488.1$` 终值 | 已标注 `three-seed mean` | ✓ |\n| L158 `$-4.6$` 引用 | 已标注 `seed~42` | ✓ |\n| L137 `$2362.7$` (r=0.2 EMA) | 不同数据点，无需改 | — |\n| L180 Table 3 `2488.1` | 已是 3-seed mean，无需改 | — |\n| L32/L61 `874.6` | 不相关（σ₁ 值） | — |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-s44-mixed-source-fix.md"
+}

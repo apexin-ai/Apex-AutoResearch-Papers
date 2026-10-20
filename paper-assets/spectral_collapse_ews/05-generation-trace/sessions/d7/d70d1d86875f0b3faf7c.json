@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d70d1d86875f0b3faf7c",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ssh exp 017 progress urgent",
+  "task_key": "worker_ssh_exp_017_progress_urgent_20260523T031116",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp_017_progress_urgent_20260523T031116_result.json",
+    "occurrence": 1,
+    "bytes": 1504,
+    "sha256": "30f1538f80dd6b4e41a2c814c8eb7f4f9bc97aef6cef596b86ec2fcb8c30c818"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇总\n\n### exp_017 (r=0.2, seed43) — Running, Gen 10 生成中 (31360/40000)\n\n即将完成，只差 Gen 10 的生成+训练+评估。\n\n| Gen | eff_rank | PPL | D-4 | train_loss |\n|-----|----------|------|------|------------|\n| 0 | 417.55 | 9.55 | 0.7415 | — |\n| 1 | 475.29 | 10.28 | 0.6842 | 1.7676 |\n| 2 | 480.44 | 10.74 | 0.4988 | 1.7217 |\n| 3 | 486.99 | 11.15 | 0.4780 | 1.4247 |\n| 4 | 489.33 | 11.49 | 0.4445 | 1.3675 |\n| 5 | 492.09 | 11.83 | 0.4435 | 1.2730 |\n| 6 | 495.85 | 12.15 | 0.4420 | 1.2219 |\n| 7 | 498.05 | 12.48 | 0.3433 | 1.1914 |\n| 8 | 500.80 | 12.76 | 0.3106 | 1.0154 |\n| 9 | 504.08 | 13.08 | 0.3060 | 0.9546 |\n| 10 | *生成中* | — | — | — |\n\nseed42 参考值: eff_rank=511.3, PPL=13.83, D-4=0.520 → seed43 的 eff_rank/PPL 走势一致，D-4 偏低（0.306 vs 0.520 @ Gen 9）。\n\n---\n\n### exp_018 (r=0.5, seed43) — Running, Gen 6 训练中 (Step 300)\n\n大约完成 60%。\n\n| Gen | eff_rank | PPL | D-4 | train_loss |\n|-----|----------|------|------|------------|\n| 0 | 417.55 | 9.55 | 0.7415 | — |\n| 1 | 475.91 | 10.08 | 0.6705 | 1.9836 |\n| 2 | 488.01 | 10.41 | 0.5708 | 1.9122 |\n| 3 | 493.94 | 10.73 | 0.5438 | 1.7120 |\n| 4 | 503.05 | 11.12 | 0.4632 | 1.6435 |\n| 5 | 510.11 | 11.60 | 0.4189 | 1.5218 |\n| 6 | *训练中* | — | — | Step 300 loss=1.3394 |\n\nseed42 参考值: eff_rank=554.5, PPL=15.20, D-4=0.095 → 走势匹配，r=0.5 的 eff_rank 增长更快（510 @ Gen 5 vs exp_017 的 492）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exp-017-progress-urgent.md"
+}

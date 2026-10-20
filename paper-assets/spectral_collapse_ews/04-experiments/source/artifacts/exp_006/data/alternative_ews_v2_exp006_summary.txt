@@ -1,0 +1,8 @@
+Remote path: /root/spectral_collapse_ews/results/alternative_ews_v2_exp006.json
+Server: rtx6000-diagprobe
+
+Key metrics (r=0.5, adaptive k10):
+RankMe: 706->733->742->750->756->770->776->780->794->800->811 (monotonic UP, no collapse)
+SLV:    2367->2365->2394->2424->2448->2488->2508->2526->2543->2560->2572 (monotonic UP)
+Token entropy: 6.75->6.76->6.78->6.80->6.82->6.84->6.85->6.88->6.89->6.91->6.91 (monotonic UP)
+PPL growth rate: 0->0.54->0.33->0.34->0.38->0.51->0.50->0.58->0.67->0.76->0.94 (gradual increase)

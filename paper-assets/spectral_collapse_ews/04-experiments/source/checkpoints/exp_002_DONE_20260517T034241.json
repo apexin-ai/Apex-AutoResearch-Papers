@@ -1,0 +1,73 @@
+{
+  "exp_id": "exp_002",
+  "project": "spectral_collapse_ews",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T12:02:30.232Z",
+    "updated_at": "2026-05-17T03:42:41.535Z",
+    "spec": {
+      "description": "Phase 0 (1B): Pure collapse characterization - Pythia 1B, 100% synthetic, 10 generations",
+      "hypothesis": "Effective rank collapse pattern transfers across model scale (410M → 1B)",
+      "model_name": "EleutherAI/pythia-1b-deduped",
+      "server": "rtx6000-diagprobe",
+      "gpu": "cuda:1",
+      "seed": 42,
+      "data_path": "/root/spectral_collapse_ews/data/",
+      "data_count": "50K train + 5K eval + 1K spectral",
+      "generations": 10,
+      "mix_ratio": "100% synthetic (pure collapse)",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && python run_phase0_1b.py\"",
+      "pid": 25237,
+      "hyperparams": {
+        "lr": 5e-05,
+        "batch_size": 8,
+        "gradient_accumulation_steps": 4,
+        "warmup_ratio": 0.05,
+        "epochs_per_gen": 1,
+        "temperature": 1,
+        "top_k": 50,
+        "max_length": 512
+      },
+      "notes": "实际 PID 25237（tmux 内 python 进程）。Gen 0 完成：eff_rank=516.14, ppl=8.07, distinct4=0.7510。当前 Gen 1 进行中。checkpoint 正确写入数据盘。"
+    },
+    "metrics": {
+      "gen0_eff_rank": 516.14,
+      "gen0_log_det": 2835.32,
+      "gen0_ppl": 8.07,
+      "gen0_distinct4": 0.751,
+      "gen0_sigma1": 1661.2,
+      "gen1_eff_rank": 570.75,
+      "gen1_log_det": 2905.74,
+      "gen1_ppl": 9.41,
+      "gen1_distinct4": 0.634,
+      "gen1_train_loss": 1.53,
+      "gen1_sigma1": 1052.8,
+      "gen2_eff_rank": 580.92,
+      "gen2_log_det": 2893.85,
+      "gen2_ppl": 11.04,
+      "gen2_distinct4": 0.538,
+      "gen2_train_loss": 1.218,
+      "gen2_sigma1": 916.3,
+      "gen3_eff_rank": 580.63,
+      "gen3_log_det": 2864.78,
+      "gen3_ppl": 13.44,
+      "gen3_distinct4": 0.501,
+      "gen3_train_loss": 1.027,
+      "gen3_sigma1": 873.5,
+      "progress": "CRASHED at Gen 3+ (disk full)",
+      "trend": "1B shows same 3-phase pattern: decompression peak Gen 2, log_det decline Gen 2→3, eff_rank plateau Gen 2→3",
+      "crash_reason": "No space left on device (/ partition 84% full, 1B checkpoint ~3.8GB)"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-17T03:42:40.918Z"
+    },
+    "failure_reason": "EXIT_CODE=143 (SIGTERM — graceful kill)",
+    "conclusion": "failed",
+    "completed_at": "2026-05-17T03:42:41.535Z"
+  },
+  "timestamp": "2026-05-17T03:42:41.545818+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "57f483a219edbd87127a",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ops hellaswag collect results",
+  "task_key": "worker_ops_hellaswag-collect-results_20260521T103556",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_hellaswag-collect-results_20260521T103556_result.json",
+    "occurrence": 1,
+    "bytes": 1844,
+    "sha256": "fd48358ffb8aa7c5ff6dab824343ee12e5dd5f228ec3d90e5f905be887663c69"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n### 进程状态：仍在运行\n\n| 任务 | 当前进度 | GPU |\n|------|----------|-----|\n| Seed43 eval | 正在跑 gen1（PID 568262） | GPU 0 |\n| Seed44 eval | 正在跑 gen5（PID 568031，~83% loglikelihood） | GPU 0 |\n\n### HellaSwag acc_norm 结果\n\n| Gen | Seed42 | Seed43 | Seed44 | Mean | Std |\n|-----|--------|--------|--------|------|-----|\n| 0 | 0.4130 | MISS | 0.4130 | 0.4130 | 0.0000 |\n| 1 | 0.3897 | MISS | 0.3911 | 0.3904 | 0.0010 |\n| 2 | 0.3764 | MISS | 0.3841 | 0.3803 | 0.0054 |\n| 3 | 0.3658 | MISS | 0.3721 | 0.3690 | 0.0045 |\n| 4 | 0.3558 | MISS | 0.3554 | 0.3556 | 0.0003 |\n| 5 | 0.3439 | MISS | MISS | — | — |\n| 6 | 0.3311 | MISS | MISS | — | — |\n| 7 | 0.3187 | MISS | MISS | — | — |\n| 8 | 0.3103 | MISS | MISS | — | — |\n| 9 | 0.3009 | MISS | MISS | — | — |\n| 10 | 0.2951 | MISS | MISS | — | — |\n\n**完成度**: Seed42 11/11, Seed43 0/11, Seed44 5/11（gen0-4完成，gen5正在跑）\n\n### σ₁ 数据（3 seeds 完整，gen 0-10）\n\n| Gen | Seed42 | Seed43 | Seed44 |\n|-----|--------|--------|--------|\n| 0 | 1942.82 | 1942.82 | 1942.82 |\n| 1 | 803.96 | 814.61 | 808.07 |\n| 2 | 712.03 | 718.12 | 726.02 |\n| 3 | 700.68 | 715.54 | 709.96 |\n| 4 | 729.59 | 723.06 | 715.90 |\n| 5 | 741.02 | 753.63 | 753.04 |\n| 6 | 758.40 | 765.98 | 769.53 |\n| 7 | 791.28 | 790.03 | 783.82 |\n| 8 | 797.66 | 813.31 | 808.25 |\n| 9 | 814.13 | 858.36 | 850.72 |\n| 10 | 825.72 | 886.08 | 911.87 |\n\nσ₁ 数据还有 per-layer 版本（`alternative_ews_comparison.json` 含 attn_dense_sigma1 和 ffn_down_sigma1），但仅 seed42 有。\n\n**预计剩余时间**：每个 gen 约 6-7 分钟。Seed44 还需 ~6 gen × 7min ≈ 42min，Seed43 还需 ~10 gen × 7min ≈ 70min。两者共享 GPU 0 可能串行运行，总计约 2 小时完成全部。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-hellaswag-collect-results.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1f12e0cff923fcf309fc",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "verify ssh remaining",
+  "task_key": "worker_verify_ssh-remaining_20260525T203659",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_ssh-remaining_20260525T203659_result.json",
+    "occurrence": 1,
+    "bytes": 521,
+    "sha256": "9783ebe3b76a072959e012e3c7a30703fbd26f3db1d41e2bf3a5b0daa8d0b628"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完成。所有论文数值与服务器原始数据一致：\n\n**GPT-2-medium r=0:**\n- Gen 9 SLV=415.1 ✅, PPL=328.8 ✅, σ₁=1570.7 ✅\n- U-shape 确认: 6598→1191(Gen2 min)→1571(Gen9)\n\n**Pythia-1B pilot:**\n- Gen 0 SLV=2835.3/PPL=8.07 ✅, Gen 1 r_eff=570.7 ✅, Gen 2 r_eff=580.9 ✅, Gen 3 SLV=2864.8/PPL=13.44 ✅\n\n**GPU-hours:** ~366 GPU-hours (含调试), 有效约 300-350h, 2× RTX PRO 6000 (98GB), 跨度 10 天。\n\n报告已写入 `artifacts/server_data_verification.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-ssh-remaining.md"
+}

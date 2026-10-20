@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1fddbe15913b06e4aeb5",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "check calibration and gen5",
+  "task_key": "worker_check_calibration_and_gen5_20260517T030946",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_calibration_and_gen5_20260517T030946_result.json",
+    "occurrence": 1,
+    "bytes": 1392,
+    "sha256": "d8663e2d2f40946cac9aef0549b99b5cae9b33b199a384a0955071afe5293967"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### 当前数据（5 generations, Gen 0-4）\n\n| Gen | eff_rank | log_det | ppl | distinct4 | train_loss | σ₁ |\n|-----|----------|---------|-----|-----------|------------|-----|\n| 0 | 417.55 | 2366.68 | 9.55 | 0.741 | N/A | 1942.8 |\n| 1 | 491.77 | 2464.76 | 11.38 | 0.626 | 1.623 | 804.0 |\n| 2 | 496.44 | 2469.93 | 13.58 | 0.515 | 1.268 | 712.0 |\n| 3 | 493.31 | 2440.57 | 16.25 | 0.490 | 1.134 | 700.7 |\n| 4 | 485.67 | 2405.05 | 19.80 | 0.468 | 1.098 | 729.6 |\n\n### 进程状态\n- **PID 59365** (GPU 0, 94%, 66GB): `run_phase0.py --resume_from_gen 4` — 正在跑 Gen 5\n- **PID 25237** (GPU 1, 94%, 40GB): `run_phase0_1b.py` — 1B 模型实验并行进行中\n\n### Go/No-go 条件\n\n| 条件 | 状态 | 值 |\n|------|------|-----|\n| 1. Peak 后单调下降 | **PASS** | Gen 2 (496.44) → Gen 3 → Gen 4 单调递减 |\n| 2. 加速比 ≥ 1.5x | **PASS** | 2.44x (Gen 3→4 decline / Gen 2→3 decline) |\n| 3. PPL 增幅 ≥ 20% | **PASS** | +74.0% (11.38 → 19.80) |\n\n### τ 预校准\n\n- 估算 τ = 0.0108（decline_rate / peak_eff_rank）\n- 当前 D005 设定 τ = 0.02\n- **建议：保持当前 τ=0.02 不变**（估算值 0.0108 在同量级，0.02 更保守，作为 EWS 阈值合理）\n\n三个 Go/No-go 条件全部 PASS，collapse 信号清晰。等 Gen 5 完成后 analyze_phase0.py 仍需 10 代才能正式运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-calibration-and-gen5.md"
+}

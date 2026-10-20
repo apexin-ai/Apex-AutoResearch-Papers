@@ -1,0 +1,419 @@
+meta:
+  venue: EMNLP 2026 ARR
+  track: Machine Learning for NLP (Long Paper)
+  special_theme: "New Missions for NLP Research — synthetic data feedback loops, data contamination"
+  template: templates/latex/acl2026/
+  template_note: "Official acl-org/acl-style-files (GitHub), used for all *ACL venues including EMNLP 2026"
+  page_limit: 8  # + unlimited Limitations + References + optional Appendix
+  deadline: 2026-05-25
+  commitment_deadline: 2026-08-02
+  core_claim: >
+    Spectral log-volume (SLV) of embedding Gram matrices provides a reliable, monotonic early
+    warning signal for model collapse in recursive synthetic training, following a reproducible
+    three-phase pattern (decompression → onset → accelerating contraction) with quantifiable
+    acceleration (2.43x), validated across three model scales (160M/410M/1B) and seven mixing
+    ratios. A signal attenuation paradox structurally limits all per-generation reactive controllers.
+  title_working: "Spectral Early Warning Signals for Model Collapse in Recursive Synthetic Training"
+  created_at: 2026-05-17T20:00:00Z
+  updated_at: 2026-05-18T12:00:00Z
+  upgrade_from: "4p short paper → 8p long paper"
+
+# ============================================================
+# 8-PAGE CHAPTER OUTLINE
+# ============================================================
+# Current body: ~2130w (4p). Target: ~5800-6200w (8p ACL 2-column).
+# Net expansion needed: ~3700-4100w.
+# Figure/table budget: ~5 figures + ~3 tables (占 ~2.5p).
+
+paper_outline:
+  - section: abstract
+    word_budget: 250
+    current_words: 205
+    delta: "+45w (expand)"
+    action: rewrite
+    core_bullets:
+      - "Problem: recursive synthetic training → model collapse; detection relies on costly downstream metrics"
+      - "Method: embedding Gram matrix spectral analysis across 10 gen × 3 scales (160M/410M/1B) × 7 mixing ratios"
+      - "Finding 1: three-phase spectral pattern (decompression, onset, 2.43× acceleration); SLV as monotonic EWS"
+      - "Finding 2: r_crit phase diagram precisely locates collapse boundary (r_crit ≈ 0.1-0.15)"
+      - "Finding 3: signal attenuation paradox — moderate mixing eliminates spectral signal; second-order indicators as escape path"
+      - "Scale: multi-seed validation (SLV CoV <0.25%), cross-scale consistency"
+    dependencies: [experiments, method, discussion, conclusion]
+
+  - section: introduction
+    word_budget: 700
+    current_words: 475
+    delta: "+225w (expand)"
+    action: expand_in_place
+    changes:
+      - "Para 1-2: 保留，轻微扩展 web-scraping implicit loop 的 urgency"
+      - "Para 3 (gaps): 扩展为 4 gaps (加 'no phase diagram' 和 'no multi-scale validation beyond OPT-125M')"
+      - "Para 4 (our work): 加入 3-scale + 7-ratio + multi-seed scope"
+      - "Contributions: C1-C3 保留, 加 C4 (r_crit phase diagram) 和 C5 (second-order EWS direction)"
+    core_bullets:
+      - "C1: Three-phase spectral characterization at 3 scales (160M/410M/1B), 10 gen, multi-seed"
+      - "C2: SLV as computationally cheap collapse monitor (monotonic, robust CoV<0.25%)"
+      - "C3: Signal attenuation paradox formalized via r_crit"
+      - "C4: First spectral collapse phase diagram (7 mixing ratios, precise r_crit localization)"
+      - "C5: Second-order growth-rate decline as candidate escape from the paradox"
+
+  - section: related_work
+    word_budget: 550
+    current_words: 215
+    delta: "+335w (major expansion)"
+    action: rewrite
+    core_bullets:
+      - "Model Collapse (expanded): Shumailov+2024, Dohmatob+2024 tails, Dohmatob+2025 strong, Alemohammad+2024 MAD, Gerstgrasser+2024 accumulation → positioning: output-level characterization, we add geometric lens"
+      - "Spectral Analysis of Representations (expanded): Martin+2021 implicit regularization, Roy+2007 eff_rank, RankMe+2023, He+2025 spectral→plasticity, SIGMA Gu+2026 → positioning: SIGMA closest, we extend to 10-gen + 3 scales + phase diagram"
+      - "Early Warning Signals (expanded): Scheffer+2009, Dakos+2012 methods, Bury+2021 deep learning EWS → ecology parallel: stabilization-suppresses-EWS; our contribution: signal direction reversal (not just SNR reduction)"
+      - "Data Mixing (expanded): DoReMi Xie+2023, Data Mixing Laws Ye+2025, Aioli Chen+2025 → positioning: all fix ratios pre-training; we adjust online via spectral feedback"
+      - "NEW cluster — Critical Transitions in ML: loss of plasticity, phase transitions in training, grokking connection"
+    new_citations_needed: 8-12
+
+  - section: method
+    word_budget: 700
+    current_words: 472
+    delta: "+228w (expand)"
+    action: expand_in_place
+    changes:
+      - "§2.1 Spectral Metrics: 保留，加 formal connection to EWS framework (critical slowing down → spectral contraction)"
+      - "§2.2 Controller: 保留 equation + r_crit, 加 formal analysis of controller dynamics"
+      - "§2.3 NEW: Second-order Indicators — define growth rate g_t = Δ_t - Δ_{t-1}, discuss why second-order survives when first-order is suppressed"
+      - "§2.4 NEW: Phase Diagram Construction — formal definition of r_crit as function of T, experimental protocol for phase boundary estimation"
+
+  - section: experiments
+    word_budget: 2800
+    current_words: 805
+    delta: "+1995w (major expansion)"
+    action: restructure_and_expand
+    subsections:
+      - subsection: "§4.1 Experimental Setup"
+        word_budget: 350
+        action: expand
+        changes:
+          - "加入 3 model scales (160M/410M/1B) 的具体参数"
+          - "加入 multi-seed protocol (seeds 42/43/44, 3 conditions)"
+          - "加入 7 mixing ratios 的完整条件列表"
+          - "加入 compute budget summary"
+
+      - subsection: "§4.2 Spectral Collapse Characterization (Phase 0)"
+        word_budget: 550
+        action: expand
+        changes:
+          - "Table 1 扩展为 11 行 (Gen 0-10 全量)"
+          - "三阶段描述保留，加入 acceleration ratio 的 formal computation"
+          - "加入 multi-seed error bars: mean ± std for key metrics"
+          - "Figure 1 升级为 4-panel (SLV+r_eff / ppl / HellaSwag / σ₁)"
+
+      - subsection: "§4.3 Cross-Scale Validation"
+        word_budget: 400
+        action: rewrite_from_scratch
+        changes:
+          - "从 1 句话扩展为完整 subsection"
+          - "160M + 410M + 1B 全 10-gen SLV 轨迹对比"
+          - "三阶段 pattern 在 3 个 scale 的一致性分析"
+          - "SLV peak generation 和 acceleration ratio 的 scaling trend"
+          - "Figure 3: 三 scale overlay 图"
+
+      - subsection: "§4.4 Spectral Collapse Phase Diagram"
+        word_budget: 450
+        action: new_section
+        changes:
+          - "7 mixing ratios (0, 0.05, 0.1, 0.2, 0.3, 0.5, 0.7) × 10 gen"
+          - "SLV trajectory per ratio → identify r_crit (first ratio where SLV non-decreasing from Gen 2)"
+          - "Heatmap: x=mixing ratio, y=generation, color=SLV delta"
+          - "Precise r_crit localization (目标: ±0.05 bracket)"
+          - "Table 2: r_crit summary per scale (if cross-scale data available)"
+          - "Figure 2: phase diagram heatmap"
+
+      - subsection: "§4.5 Signal Attenuation Analysis"
+        word_budget: 450
+        action: expand
+        changes:
+          - "保留 current §4.4 core content (controller silence, τ-independence, k-independence)"
+          - "加入 r_crit 曲线数据作为 quantitative support"
+          - "加入 second-order analysis: growth rate g_t decline even under mixing"
+          - "加入 HellaSwag under mixing 数据: spectral-downstream asymmetry in mixed regime"
+          - "Discuss: paradox is structural, not parametric"
+
+      - subsection: "§4.6 Alternative EWS Comparison"
+        word_budget: 350
+        action: new_section
+        changes:
+          - "SLV vs gradient norm / embedding isotropy / token frequency entropy / weight spectral norm / effective rank"
+          - "比较维度: monotonicity, detection lag (gen), compute cost, robustness (multi-seed variance)"
+          - "Table 3: comparison matrix"
+          - "Conclusion: SLV dominates on monotonicity + cost; some candidates better on lag"
+
+      - subsection: "§4.7 Robustness Analysis"
+        word_budget: 250
+        action: new_section
+        changes:
+          - "Multi-seed variance: SLV CoV < 0.25% vs distinct-4 CoV 86%"
+          - "Cross-implementation: exp_004 vs exp_006 identical r=0.5 但独立 code path"
+          - "Argument: SLV is implementation-robust, text metrics are not"
+
+  - section: discussion
+    word_budget: 450
+    current_words: 0
+    delta: "+450w (new section)"
+    action: new_section
+    core_bullets:
+      - "Second-order EWS as escape from paradox: growth rate decline detectable even when SLV rises (preliminary evidence)"
+      - "Connection to ecology: stabilization-suppresses-EWS parallel, but signal reversal is unique to ML"
+      - "Practical implications: monitoring recommendations (SLV for detection, second-order for mixed regimes)"
+      - "Phase diagram as engineering tool: r_crit lookup for deployment"
+      - "Limitations of phase diagram: single architecture family, single data domain"
+
+  - section: conclusion
+    word_budget: 250
+    current_words: 165
+    delta: "+85w (expand)"
+    action: expand_in_place
+    changes:
+      - "加入 phase diagram 和 second-order EWS 结论"
+      - "Limitations 保留 in-section (ACL allows)"
+      - "Future work: 更具体 (cumulative controllers, architecture diversity, production-scale validation)"
+
+# ============================================================
+# FIGURES & TABLES PLAN
+# ============================================================
+
+visualization_plan:
+  - fig_id: fig1_spectral_trajectory
+    type: statistical
+    tool: matplotlib
+    status: EXISTS_needs_upgrade
+    description: >
+      UPGRADE from single-panel to 4-panel (2×2):
+      (a) SLV + r_eff dual y-axis, three phases annotated
+      (b) Perplexity (log scale)
+      (c) HellaSwag accuracy with Gen 0→1 asymmetry highlighted
+      (d) σ₁ decompression → re-concentration
+      Pure-synthetic (solid) vs 50% mix (dashed) overlaid on all panels.
+    data_source: "registry: exp_001 (pure), exp_006 (mixed)"
+    placement: "§4.2"
+    width: "\\textwidth"
+    priority: P0
+
+  - fig_id: fig2_phase_diagram
+    type: statistical
+    tool: matplotlib
+    status: NEW
+    description: >
+      Heatmap: x-axis = mixing ratio (0, 0.05, 0.1, 0.2, 0.3, 0.5, 0.7),
+      y-axis = generation (0-10), color = per-generation SLV delta.
+      Annotate r_crit boundary (transition from red to blue).
+      Side panel: SLV at Gen 10 vs mixing ratio (line plot).
+    data_source: "registry: r_crit sweep experiments"
+    placement: "§4.4"
+    width: "\\columnwidth"
+    priority: P0
+
+  - fig_id: fig3_cross_scale
+    type: statistical
+    tool: matplotlib
+    status: NEW
+    description: >
+      Three overlaid SLV trajectories (160M / 410M / 1B), normalized to Gen 0 baseline.
+      Annotate phase boundaries per scale. Inset or side table: acceleration ratio per scale.
+    data_source: "registry: cross-scale experiments"
+    placement: "§4.3"
+    width: "\\columnwidth"
+    priority: P0
+
+  - fig_id: fig4_ews_comparison
+    type: statistical
+    tool: matplotlib
+    status: NEW
+    description: >
+      Multi-panel or grouped bar chart comparing SLV against 5 alternative EWS candidates.
+      Metrics: monotonicity score, detection lag (generations), compute cost (relative),
+      cross-seed CoV. Highlight SLV advantages.
+    data_source: "registry: alternative EWS experiments"
+    placement: "§4.6"
+    width: "\\columnwidth"
+    priority: P1
+
+  - fig_id: fig5_multiseed
+    type: statistical
+    tool: matplotlib
+    status: NEW
+    description: >
+      SLV trajectory with confidence bands (mean ± 1 std across 3 seeds)
+      for pure-synthetic and r=0.5 conditions. Show SLV stability vs distinct-4 instability
+      (dual panel: left=SLV tight bands, right=distinct-4 wide bands).
+    data_source: "registry: multi-seed experiments"
+    placement: "§4.7"
+    width: "\\columnwidth"
+    priority: P1
+
+table_plan:
+  - table_id: tab1_phase0_full
+    status: EXISTS_needs_expansion
+    caption: "Spectral and downstream metrics across 10 recursive generations (Pythia-410M, pure synthetic). Bold marks spectral peak at Gen 2."
+    placement: "§4.2"
+    type: statistics
+    columns: [Gen, r_eff, SLV, PPL, HeSw, D-4, σ₁]
+    rows: 11  # Gen 0-10 全量 (currently 5 rows)
+    data_source: "registry: exp_001"
+    changes: "从 5 行 (Gen 0,2,5,7,10) 扩展为 11 行 (Gen 0-10)"
+
+  - table_id: tab2_phase_diagram_summary
+    status: NEW
+    caption: "Collapse phase diagram: SLV trend and r_crit status across 7 mixing ratios (Pythia-410M, 10 generations)."
+    placement: "§4.4"
+    type: comparison
+    columns: [Mixing Ratio, SLV_Gen10, SLV_Trend, Peak_Gen, r_crit_Status]
+    rows: 7
+    data_source: "registry: r_crit sweep experiments"
+
+  - table_id: tab3_ews_comparison
+    status: NEW
+    caption: "Comparison of SLV against alternative early warning signal candidates on four criteria."
+    placement: "§4.6"
+    type: comparison
+    columns: [Indicator, Monotonicity, Detection_Lag, Compute_Cost, Cross-seed_CoV]
+    rows: 6  # SLV + 5 alternatives
+    data_source: "registry: alternative EWS experiments"
+
+# ============================================================
+# PRESERVATION vs REWRITE ANALYSIS
+# ============================================================
+
+content_disposition:
+  preserve_directly:
+    - "§2.1 Spectral Metrics definitions (SLV, r_eff, σ₁) — core math unchanged"
+    - "§2.2 Controller equation + r_crit definition + τ-independence proof"
+    - "§4.2 Phase I/II/III descriptions — core narrative unchanged, expand with error bars"
+    - "§4.5 (current §4.4) controller silence analysis — core argument unchanged"
+    - "Table 1 data rows — keep existing, add Gen 1,3,4,6,8,9"
+    - "Figure 1 PDF — keep as fallback if 4-panel upgrade not ready"
+
+  expand_in_place:
+    - "Abstract: +45w, add phase diagram + multi-scale + second-order mention"
+    - "Introduction: +225w, add 2 more gaps + 2 more contributions (C4, C5)"
+    - "Method §2.1-2.2: +100w, add EWS formal connection"
+    - "§4.2 Phase 0: +150w, add multi-seed error bars + acceleration formal computation"
+    - "§4.5 Signal Attenuation: +200w, add r_crit curve data + second-order analysis"
+    - "Conclusion: +85w, add phase diagram + second-order conclusions"
+
+  rewrite_from_scratch:
+    - "Related Work: 215w → 550w, add 2 new clusters + deeper positioning"
+    - "§4.3 Cross-Scale: 1 sentence → 400w full subsection with 3-scale data"
+
+  new_sections:
+    - "Method §2.3: Second-order indicators (~100w)"
+    - "Method §2.4: Phase diagram construction protocol (~100w)"
+    - "§4.4 Phase Diagram: 450w, entirely new (r_crit sweep data)"
+    - "§4.6 Alternative EWS: 350w, entirely new (comparison table)"
+    - "§4.7 Robustness: 250w, entirely new (multi-seed + SLV vs d4 stability)"
+    - "§5 Discussion: 450w, entirely new (second-order EWS, ecology parallel, practical implications)"
+
+# ============================================================
+# WRITING ORDER (data dependency aware)
+# ============================================================
+
+writing_order:
+  # --- Phase A: Can start NOW (no new experiments needed) ---
+  - section: related_work
+    priority: A_now
+    reason: "不依赖新数据，仅需文献搜索。扩展后为 intro 的 gap 叙事提供基础。"
+    data_dependency: none
+
+  - section: method
+    priority: A_now
+    reason: "§2.3 second-order + §2.4 phase diagram 定义不依赖实验结果，先固化数学框架。"
+    data_dependency: none
+
+  - section: introduction
+    priority: A_now
+    reason: "Gap/contribution 结构可先写，具体数字用 placeholder。"
+    data_dependency: "partial — C4/C5 数字待填"
+
+  # --- Phase B: Need Phase 0 multi-seed data ---
+  - section: "experiments §4.2 (expand)"
+    priority: B_multiseed
+    reason: "Table 1 扩行 + error bars 需要 multi-seed 数据。"
+    data_dependency: "multi-seed exp (3 seeds × pure)"
+
+  - section: "experiments §4.7 (new)"
+    priority: B_multiseed
+    reason: "Robustness analysis 核心依赖 multi-seed variance 数据。"
+    data_dependency: "multi-seed exp (3 seeds × 3 conditions)"
+
+  # --- Phase C: Need r_crit sweep data ---
+  - section: "experiments §4.4 (new)"
+    priority: C_rcrit
+    reason: "Phase diagram 需要 7 mixing ratios 完整数据。"
+    data_dependency: "r_crit sweep (7 ratios × 10 gen)"
+
+  - section: "experiments §4.5 (expand)"
+    priority: C_rcrit
+    reason: "Signal attenuation 的 quantitative support 来自 r_crit 曲线。"
+    data_dependency: "r_crit sweep + HellaSwag under mixing"
+
+  # --- Phase D: Need cross-scale + alternative EWS data ---
+  - section: "experiments §4.3 (rewrite)"
+    priority: D_crossscale
+    reason: "需要 160M + 1B 全 10-gen 数据。"
+    data_dependency: "cross-scale exp (160M + 1B full 10 gen)"
+
+  - section: "experiments §4.6 (new)"
+    priority: D_alternative
+    reason: "需要 5 个 alternative EWS candidates 的计算结果。"
+    data_dependency: "alternative EWS comparison exp"
+
+  # --- Phase E: After all experiments ---
+  - section: discussion
+    priority: E_last
+    reason: "需要所有实验结果才能写 second-order EWS 分析和 practical implications。"
+    data_dependency: "all experiments"
+
+  - section: conclusion
+    priority: E_last
+    reason: "需要所有结果。"
+    data_dependency: "all experiments"
+
+  - section: abstract
+    priority: E_last
+    reason: "最后写，需要所有 section 的内容。"
+    data_dependency: "all sections"
+
+  # --- Figure generation order ---
+  figure_order:
+    - fig_id: fig1_spectral_trajectory
+      priority: B_multiseed
+      reason: "4-panel 升级需要 multi-seed error bars + mixed trajectory"
+    - fig_id: fig3_cross_scale
+      priority: D_crossscale
+      reason: "需要 3 scale 全 10-gen 数据"
+    - fig_id: fig2_phase_diagram
+      priority: C_rcrit
+      reason: "需要 7 ratio sweep 数据"
+    - fig_id: fig5_multiseed
+      priority: B_multiseed
+      reason: "需要 3 seeds 数据"
+    - fig_id: fig4_ews_comparison
+      priority: D_alternative
+      reason: "需要 alternative EWS 计算结果"
+
+literature_strategy:
+  citation_budget: 35  # long paper, expanded from 25
+  new_clusters:
+    - cluster_name: "critical_transitions_ml"
+      search_queries:
+        - "phase transitions deep learning training 2024 2025"
+        - "loss of plasticity neural networks spectral"
+        - "critical slowing down machine learning"
+      must_cite: []
+      target_count: 3
+  existing_cluster_expansions:
+    - cluster: "model_collapse_core"
+      new_target: 8  # from 6
+    - cluster: "spectral_analysis_collapse"
+      new_target: 7  # from 5
+    - cluster: "data_mixing_strategies"
+      new_target: 5  # from 4
+    - cluster: "early_warning_signals"
+      new_target: 5  # from 3

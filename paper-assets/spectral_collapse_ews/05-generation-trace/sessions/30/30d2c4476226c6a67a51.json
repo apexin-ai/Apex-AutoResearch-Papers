@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "30d2c4476226c6a67a51",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "fix exp 001 resume",
+  "task_key": "worker_fix_exp_001_resume_20260516T161152",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_exp_001_resume_20260516T161152_result.json",
+    "occurrence": 1,
+    "bytes": 420,
+    "sha256": "9173824e6062e14663cb19d6ab520021bdd851f5bc5e6282ac195e6384e8fc07"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已正常运行：\n\n- **Gen 3/10** 正在生成 50000 合成样本\n- **GPU 0**: 24% 利用率，51053 MiB 显存占用\n- **GPU 1**: exp_002 不受影响（92%, 29967 MiB）\n- **tmux session**: `exp_001_resume`，PID 36853\n- **Registry**: exp_001 状态已更新为 RUNNING\n\npadding_side 警告是无害的（原始 run 也有），不影响结果。Gen 3-10 共 8 代，预计 ~20h 完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-exp-001-resume.md"
+}

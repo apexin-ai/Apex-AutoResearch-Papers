@@ -1,0 +1,297 @@
+papers:
+  # ============================================================
+  # Cluster 1: model_collapse_core (6 papers)
+  # ============================================================
+  - bibtex_key: shumailov2024collapse
+    title: "AI models collapse when trained on recursively generated data"
+    authors: "Shumailov, Ilia and Shumaylov, Zakhar and Zhao, Yiren and Papernot, Nicolas and Anderson, Ross and Gal, Yarin"
+    year: 2024
+    venue: "Nature"
+    arxiv_id: "2305.17493"
+    doi: "10.1038/s41586-024-07566-y"
+    category: model_collapse_core
+    verified: true
+    abstract_short: "Shows that training on model-generated data causes irreversible defects where tails of the original content distribution disappear, leading to model collapse across LLMs, VAEs, and GMMs."
+    relevance: "Seminal paper defining model collapse. Our work provides spectral EWS to detect collapse onset before irreversible degradation."
+
+  - bibtex_key: dohmatob2024tails
+    title: "A Tale of Tails: Model Collapse as a Change of Scaling Laws"
+    authors: "Dohmatob, Elvis and Feng, Yunzhen and Yang, Pu and Charton, Francois and Kempe, Julia"
+    year: 2024
+    venue: "ICML 2024"
+    arxiv_id: "2402.07043"
+    doi: ""
+    category: model_collapse_core
+    verified: true
+    abstract_short: "Provides first theoretical framework for model collapse through scaling laws, showing how tail distributions vanish across generations with validated experiments on transformers."
+    relevance: "Theoretical foundation for understanding collapse dynamics. Our spectral metrics connect to their scaling law framework."
+
+  - bibtex_key: alemohammad2024mad
+    title: "Self-Consuming Generative Models Go MAD"
+    authors: "Alemohammad, Sina and Casco-Rodriguez, Josue and Luzi, Lorenzo and Humayun, Ahmed Imtiaz and Babaei, Hossein and LeJeune, Daniel and Siahkoohi, Ali and Baraniuk, Richard G."
+    year: 2024
+    venue: "ICLR 2024"
+    arxiv_id: "2307.01850"
+    doi: ""
+    category: model_collapse_core
+    verified: true
+    abstract_short: "Introduces Model Autophagy Disorder (MAD) showing that without fresh real data, autophagous loops cause progressive quality/diversity loss in just a few generations."
+    relevance: "Establishes MAD framework for self-consuming loops. Our EWS can detect MADness onset before quality degrades."
+
+  - bibtex_key: gerstgrasser2024inevitable
+    title: "Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data"
+    authors: "Gerstgrasser, Matthias and Schaeffer, Rylan and Dey, Apratim and Rafailov, Rafael and Sleight, Henry and Hughes, John and Korbak, Tomasz and Agrawal, Rajashree and Pai, Dhruv and Gromov, Andrey and Roberts, Daniel A. and Yang, Diyi and Donoho, David L. and Koyejo, Sanmi"
+    year: 2024
+    venue: "arXiv"
+    arxiv_id: "2404.01413"
+    doi: ""
+    category: model_collapse_core
+    verified: true
+    abstract_short: "Shows that accumulating synthetic data alongside real data avoids model collapse, with finite upper bound on test error independent of iteration count."
+    relevance: "Key mitigation result. Our EWS enables knowing when to inject real data vs. when accumulation suffices."
+
+  - bibtex_key: dohmatob2024demystified
+    title: "Model Collapse Demystified: The Case of Regression"
+    authors: "Dohmatob, Elvis and Feng, Yunzhen and Kempe, Julia"
+    year: 2024
+    venue: "NeurIPS 2024"
+    arxiv_id: "2402.07712"
+    doi: ""
+    category: model_collapse_core
+    verified: true
+    abstract_short: "Derives analytical formulas for model collapse in high-dimensional regression, revealing modified scaling laws with crossover phenomena in both under- and over-parameterized regimes."
+    relevance: "Provides analytical collapse characterization. Our spectral metrics offer empirical detection aligned with their theory."
+
+  - bibtex_key: dohmatob2025strong
+    title: "Strong Model Collapse"
+    authors: "Dohmatob, Elvis and Feng, Yunzhen and Subramonian, Arjun and Kempe, Julia"
+    year: 2025
+    venue: "ICLR 2025"
+    arxiv_id: "2410.04840"
+    doi: ""
+    category: model_collapse_core
+    verified: true
+    abstract_short: "Proves that even 1% synthetic data in training corpus leads to model collapse within scaling laws paradigm, using operator-valued free probability theory."
+    relevance: "Strongest theoretical result on collapse inevitability. Motivates need for early detection even with small synthetic contamination."
+
+  # ============================================================
+  # Cluster 2: spectral_analysis_collapse (5 papers)
+  # ============================================================
+  - bibtex_key: gu2026sigma
+    title: "SIGMA: Scalable Spectral Insights for LLM Model Collapse"
+    authors: "Gu, Yi and Pang, Lingyou and Ye, Xiangkun and Wang, Tianyu and Lin, Jianyu and Priebe, Carey E. and Aue, Alexander"
+    year: 2026
+    venue: "arXiv"
+    arxiv_id: "2601.03385"
+    doi: ""
+    category: spectral_analysis_collapse
+    verified: true
+    abstract_short: "Proposes SIGMA framework using spectral bounds of embedding Gram matrix to quantify model collapse, benchmarking on OPT-125M across recursive training generations."
+    relevance: "Most directly related work. Uses spectral analysis for collapse detection. Our contribution extends with EWS methodology and predictive capability."
+
+  - bibtex_key: naderi2025mindgap
+    title: "Mind the Gap: a Spectral Analysis of Rank Collapse and Signal Propagation in Attention Layers"
+    authors: "Naderi, Alireza and Nait Saada, Thiziri and Tanner, Jared"
+    year: 2025
+    venue: "ICML 2025"
+    arxiv_id: "2410.07799"
+    doi: ""
+    category: spectral_analysis_collapse
+    verified: true
+    abstract_short: "Uses Random Matrix Theory to uncover spectral gap between largest singular values as cause of rank collapse in attention, proposing eigenvalue removal as mitigation."
+    relevance: "Provides spectral characterization of rank collapse in transformers. Our work applies similar spectral analysis to detect data-driven collapse."
+
+  - bibtex_key: he2025spectral
+    title: "Spectral Collapse Drives Loss of Plasticity in Deep Continual Learning"
+    authors: "He, Naicheng and Guo, Kaicheng and Prakash, Arjun and Tiwari, Saket and Tao, Ruo Yu and Serapio, Tyrone and Greenwald, Amy and Konidaris, George"
+    year: 2025
+    venue: "NeurIPS 2025"
+    arxiv_id: "2509.22335"
+    doi: ""
+    category: spectral_analysis_collapse
+    verified: true
+    abstract_short: "Shows Hessian spectral collapse at new-task initialization prevents learning, proposing effective rank regularization and L2 penalties to preserve plasticity."
+    relevance: "Demonstrates spectral collapse as mechanism for plasticity loss. Parallels our finding that spectral signatures predict collapse in recursive training."
+
+  - bibtex_key: roy2007effectiverank
+    title: "The Effective Rank: A Measure of Effective Dimensionality"
+    authors: "Roy, Olivier and Vetterli, Martin"
+    year: 2007
+    venue: "EUSIPCO 2007"
+    arxiv_id: ""
+    doi: ""
+    category: spectral_analysis_collapse
+    verified: true
+    abstract_short: "Defines effective rank as exponential of Shannon entropy of normalized singular value distribution, providing continuous measure of matrix dimensionality."
+    relevance: "Foundation metric for our EWS. We track effective rank decline of representation matrices as collapse indicator."
+
+  - bibtex_key: martin2021implicit
+    title: "Implicit Self-Regularization in Deep Neural Networks: Evidence from Random Matrix Theory and Implications for Learning"
+    authors: "Martin, Charles H. and Mahoney, Michael W."
+    year: 2021
+    venue: "JMLR"
+    arxiv_id: "1810.01075"
+    doi: ""
+    category: spectral_analysis_collapse
+    verified: true
+    abstract_short: "Applies RMT to analyze weight matrix spectra in DNNs, identifying implicit self-regularization through heavy-tailed spectral distributions correlated with model quality."
+    relevance: "Establishes spectral analysis of weight matrices as diagnostic tool. Our approach extends to representation matrices under recursive training."
+
+  # ============================================================
+  # Cluster 3: data_mixing_strategies (4 papers)
+  # ============================================================
+  - bibtex_key: xie2023doremi
+    title: "DoReMi: Optimizing Data Mixtures Speeds Up Language Model Pretraining"
+    authors: "Xie, Sang Michael and Pham, Hieu and Dong, Xuanyi and Du, Nan and Liu, Hanxiao and Lu, Yifeng and Liang, Percy and Le, Quoc V. and Ma, Tengyu and Yu, Adams Wei"
+    year: 2023
+    venue: "NeurIPS 2023"
+    arxiv_id: "2305.10429"
+    doi: ""
+    category: data_mixing_strategies
+    verified: true
+    abstract_short: "Uses group DRO on proxy model to optimize domain mixture proportions, improving downstream accuracy by 6.5% and reaching baseline performance with 2.6x fewer steps."
+    relevance: "Establishes data mixing optimization. Our EWS can inform when to adjust mixing ratios during recursive training."
+
+  - bibtex_key: ye2025mixinglaws
+    title: "Data Mixing Laws: Optimizing Data Mixtures by Predicting Language Modeling Performance"
+    authors: "Ye, Jiasheng and Liu, Peiju and Sun, Tianxiang and Zhan, Jun and Zhou, Yunhua and Qiu, Xipeng"
+    year: 2025
+    venue: "ICLR 2025"
+    arxiv_id: "2403.16952"
+    doi: ""
+    category: data_mixing_strategies
+    verified: true
+    abstract_short: "Discovers quantitative data mixing laws predicting model performance from mixture proportions, enabling optimization of 1B model training with 48% fewer steps."
+    relevance: "Provides predictive framework for data mixing. Our spectral EWS complements by detecting when current mixture causes collapse."
+
+  - bibtex_key: chen2025aioli
+    title: "Aioli: A Unified Optimization Framework for Language Model Data Mixing"
+    authors: "Chen, Mayee F. and Hu, Michael Y. and Lourie, Nicholas and Cho, Kyunghyun and R\\'{e}, Christopher"
+    year: 2025
+    venue: "ICLR 2025"
+    arxiv_id: "2411.05735"
+    doi: ""
+    category: data_mixing_strategies
+    verified: true
+    abstract_short: "Unifies existing data mixing methods into common optimization framework, proposing online method that dynamically estimates mixing law parameters during training."
+    relevance: "Online mixing adjustment mechanism. Our EWS provides signal for when to trigger mixture proportion updates."
+
+  - bibtex_key: kazdan2024collapsethrive
+    title: "Collapse or Thrive? Perils and Promises of Synthetic Data in a Self-Generating World"
+    authors: "Kazdan, Joshua and Schaeffer, Rylan and Dey, Apratim and Gerstgrasser, Matthias and Rafailov, Rafael and Donoho, David L. and Koyejo, Sanmi"
+    year: 2024
+    venue: "arXiv"
+    arxiv_id: "2410.16713"
+    doi: ""
+    category: data_mixing_strategies
+    verified: true
+    abstract_short: "Studies three data workflows (replace/accumulate/fixed-compute) showing collapse only under replacement, with non-trivial real-synthetic data interactions."
+    relevance: "Characterizes when synthetic data helps vs. hurts. Our EWS enables real-time workflow selection based on spectral health."
+
+  # ============================================================
+  # Cluster 4: synthetic_data_quality (3 papers)
+  # ============================================================
+  - bibtex_key: gudibande2024falsepromise
+    title: "The False Promise of Imitating Proprietary LLMs"
+    authors: "Gudibande, Arnav and Wallace, Eric and Snell, Charlie and Geng, Xinyang and Liu, Hao and Abbeel, Pieter and Levine, Sergey and Song, Dawn"
+    year: 2024
+    venue: "ICLR 2024"
+    arxiv_id: "2305.15717"
+    doi: ""
+    category: synthetic_data_quality
+    verified: true
+    abstract_short: "Shows imitation models trained on proprietary LLM outputs appear fluent but close little capability gap, revealing fundamental quality limitations of synthetic training data."
+    relevance: "Demonstrates quality degradation from synthetic imitation. Our spectral metrics can quantify this capability gap during training."
+
+  - bibtex_key: feng2024verification
+    title: "Beyond Model Collapse: Scaling Up with Synthesized Data Requires Verification"
+    authors: "Feng, Yunzhen and Dohmatob, Elvis and Yang, Pu and Charton, Francois and Kempe, Julia"
+    year: 2024
+    venue: "arXiv"
+    arxiv_id: "2406.07515"
+    doi: ""
+    category: synthetic_data_quality
+    verified: true
+    abstract_short: "Shows that even imperfect verifiers can prevent model collapse when scaling with synthetic data, providing theoretical conditions for effective verification."
+    relevance: "Verification as collapse prevention. Our EWS serves as a verification signal indicating when synthetic data quality degrades."
+
+  - bibtex_key: keisha2025knowledge
+    title: "Knowledge Collapse in LLMs: When Fluency Survives but Facts Fail under Recursive Synthetic Training"
+    authors: "Keisha, Figarri and Wu, Zekun and Wang, Ze and Koshiyama, Adriano and Treleaven, Philip"
+    year: 2025
+    venue: "arXiv"
+    arxiv_id: "2509.04796"
+    doi: ""
+    category: synthetic_data_quality
+    verified: true
+    abstract_short: "Defines three-stage knowledge collapse where factual accuracy erodes while fluency persists, creating confidently wrong outputs under recursive synthetic training."
+    relevance: "Identifies knowledge collapse as distinct from perplexity collapse. Our spectral EWS may detect this before factual degradation manifests."
+
+  # ============================================================
+  # Cluster 5: early_warning_signals (3 papers)
+  # ============================================================
+  - bibtex_key: scheffer2009ews
+    title: "Early-warning signals for critical transitions"
+    authors: "Scheffer, Marten and Bascompte, Jordi and Brock, William A. and Brovkin, Victor and Carpenter, Stephen R. and Dakos, Vasilis and Held, Hermann and van Nes, Egbert H. and Rietkerk, Max and Sugihara, George"
+    year: 2009
+    venue: "Nature"
+    arxiv_id: ""
+    doi: "10.1038/nature08227"
+    category: early_warning_signals
+    verified: true
+    abstract_short: "Proposes generic early warning signals (rising variance, autocorrelation, spectral reddening) indicating proximity to critical tipping points in complex systems."
+    relevance: "Foundational EWS theory. We adapt critical slowing down indicators to neural network representation space for collapse detection."
+
+  - bibtex_key: bury2021deeplearning
+    title: "Deep learning for early warning signals of tipping points"
+    authors: "Bury, Thomas M. and Sujith, R. I. and Pavithran, Induja and Scheffer, Marten and Lenton, Timothy M. and Anand, Madhur and Bauch, Chris T."
+    year: 2021
+    venue: "PNAS"
+    arxiv_id: ""
+    doi: "10.1073/pnas.2106140118"
+    category: early_warning_signals
+    verified: true
+    abstract_short: "Develops deep learning algorithm for EWS that generalizes across systems, providing higher sensitivity and fewer false positives than generic statistical indicators."
+    relevance: "Demonstrates ML-based EWS for tipping points. Inspires our approach of learning spectral EWS patterns for model collapse detection."
+
+  - bibtex_key: dakos2012methods
+    title: "Methods for Detecting Early Warnings of Critical Transitions in Time Series Illustrated Using Simulated Ecological Data"
+    authors: "Dakos, Vasilis and Carpenter, Stephen R. and Brock, William A. and Ellison, Aaron M. and Guttal, Vishwesha and Ives, Anthony R. and Kefi, Saran and Livina, Vasilis and Seekell, David A. and van Nes, Egbert H. and Scheffer, Marten"
+    year: 2012
+    venue: "PLOS ONE"
+    arxiv_id: ""
+    doi: "10.1371/journal.pone.0041010"
+    category: early_warning_signals
+    verified: true
+    abstract_short: "Comprehensive comparison of metric-based and model-based EWS methods for time series, providing practical toolbox for detecting approaching critical transitions."
+    relevance: "Methodological reference for EWS detection. We adapt their time-series indicators to spectral metric trajectories during training."
+
+  # ============================================================
+  # Cluster 4 supplement: synthetic_data_quality (+1)
+  # ============================================================
+  - bibtex_key: briesch2023entropy
+    title: "Large Language Models Suffer From Their Own Output: An Analysis of the Self-Consuming Training Loop"
+    authors: "Briesch, Martin and Sobania, Dominik and Rothlauf, Franz"
+    year: 2023
+    venue: "arXiv"
+    arxiv_id: "2311.16822"
+    doi: ""
+    category: synthetic_data_quality
+    verified: true
+    abstract_short: "Analyzes self-consuming training loops in LLMs showing progressive quality degradation with reduced output diversity and increased repetition across generations."
+    relevance: "Provides complementary characterization of quality degradation in self-consuming loops. Our spectral metrics can quantify the diversity loss they observe."
+
+  # ============================================================
+  # Infrastructure / Methodology
+  # ============================================================
+  - bibtex_key: biderman2023pythia
+    title: "Pythia: A Suite for Analyzing Large Language Models Across Training and Scaling"
+    authors: "Biderman, Stella and Schoelkopf, Hailey and Anthony, Quentin and Bradley, Herbie and O'Brien, Kyle and Hallahan, Eric and Khan, Mohammad Aflah and Purohit, Shivanshu and Prashanth, USVSN Sai and Raff, Edward and Skowron, Aviya and Sutawika, Lintang and van der Wal, Oskar"
+    year: 2023
+    venue: "ICML 2023"
+    arxiv_id: "2304.01373"
+    doi: ""
+    category: methodology
+    verified: true
+    abstract_short: "Introduces Pythia suite of 16 LLMs (70M-12B) trained on public data with consistent hyperparameters, enabling controlled scientific study of LLM training dynamics."
+    relevance: "Experimental platform. We use Pythia-410M and Pythia-1B for all recursive training experiments."

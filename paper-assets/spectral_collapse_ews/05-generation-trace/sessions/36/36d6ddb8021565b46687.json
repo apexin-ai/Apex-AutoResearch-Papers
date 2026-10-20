@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "36d6ddb8021565b46687",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "analysis table1 mean std",
+  "task_key": "worker_analysis_table1_mean_std_20260520T081955",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_table1_mean_std_20260520T081955_result.json",
+    "occurrence": 1,
+    "bytes": 1568,
+    "sha256": "5566c71d72df5a341534447dd594297cbdbef64b5687a098911f55b67f97e2d0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Seed43 没有 HellaSwag 评估。以下是完整数据汇总。\n\n---\n\n## 原始数据\n\n### σ1 (top singular value)\n\n| Gen | seed42 | seed43 |\n|-----|--------|--------|\n| 0 | 1942.82 | 1942.82 |\n| 2 | 712.03 | 718.12 |\n| 5 | 741.02 | 753.63 |\n| 7 | 791.28 | 790.03 |\n| 10 | 825.72 | 886.08 |\n\n### HellaSwag (acc_norm, seed42 only)\n\n| Gen | seed42 | seed43 |\n|-----|--------|--------|\n| 0 | 0.4130 | MISSING |\n| 2 | 0.3764 | MISSING |\n| 5 | 0.3439 | MISSING |\n| 7 | 0.3187 | MISSING |\n| 10 | 0.2951 | MISSING |\n\n---\n\n## Table 1: mean±std (n=2, s = |x₁−x₂|/√2)\n\n| Gen | eff_rank | SLV (log_det) | PPL | HeSw | D-4 | σ₁ |\n|-----|----------|---------------|-----|------|-----|----|\n| 0 | 417.5±0.0 | 2366.7±0.0 | 9.55±0.00 | 0.413 (seed42 only) | 0.741±0.000 | 1942.8±0.0 |\n| 2 | 496.3±0.14 | 2468.3±2.33 | 13.57±0.01 | 0.376 (seed42 only) | 0.510±0.007 | 715.1±4.3 |\n| 5 | 479.6±0.61 | 2367.7±3.56 | 24.60±0.01 | 0.344 (seed42 only) | 0.440±0.032 | 747.3±8.9 |\n| 7 | 464.2±0.01 | 2297.9±8.94 | 38.17±1.02 | 0.319 (seed42 only) | 0.419±0.040 | 790.7±0.9 |\n| 10 | 440.6±2.60 | 2194.9±22.50 | 73.64±4.44 | 0.295 (seed42 only) | 0.410±0.023 | 855.9±42.7 |\n\n---\n\n**关键发现：**\n- eff_rank, log_det, PPL 两个 seed 高度一致（std 很小）\n- distinct_4 和 σ₁ 在后期 generations 方差较大（σ₁ gen10 std=42.7）\n- **HellaSwag seed43 完全缺失**——需要在 rtx6000-diagprobe 上对 seed43 的 gen 0/2/5/7/10 checkpoints 跑 lm-eval hellaswag 才能补齐"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-table1-mean-std.md"
+}

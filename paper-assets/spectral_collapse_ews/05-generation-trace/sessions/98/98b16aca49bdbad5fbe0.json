@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "98b16aca49bdbad5fbe0",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "status exp 018 019 progress",
+  "task_key": "worker_status_exp_018_019_progress_20260523T053417",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_status_exp_018_019_progress_20260523T053417_result.json",
+    "occurrence": 1,
+    "bytes": 701,
+    "sha256": "31c79cd29b4ccf6dc155f29641d5f82e37fd9aeffeb8c5e89686016083d8a106"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nexp_018: Gen 8/10 (正在生成合成数据 11840/25000=47%)，预计 2026-05-23 ~09:30 UTC 完成\n  已完成 gen_0–gen_7 | 每 gen ≈89 min | 剩余 ≈3h50m\n\nexp_019: Gen 1/10 (正在生成合成数据 31360/40000=78%)，预计 2026-05-24 ~02:00–04:00 UTC 完成\n  已完成 gen_0 | 每 gen 生成量 40k(比 exp_018 的 25k 多 1.6x) | 剩余 ≈20–22h\n\nGPU 状态:\n  GPU 0: 92% util, 25017/97887 MiB (exp_018)\n  GPU 1: 66% util, 19045/97887 MiB (exp_019)\n```\n\n注意：exp_019 只完成了 1 个 gen，每 gen 耗时缺乏足够数据点，完成时间估算误差较大。exp_018 基于 gen_1→gen_7 的 6 个周期（平均 89 min/gen），估算可靠。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/status-exp-018-019-progress.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "37d36f7b99da7f2afda4",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "check exp001 current gen",
+  "task_key": "worker_check_exp001_current_gen_20260517T041110",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_exp001_current_gen_20260517T041110_result.json",
+    "occurrence": 1,
+    "bytes": 1139,
+    "sha256": "380847c2e9a0f4eb79aa8dfd1e07cfa4355abed1240a34e95058744e136eda47"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp_001 状态报告\n\n**状态：仍在运行**，进程 59365 活跃，GPU 0 满载 (100%, 78°C, 65.9GB/97.9GB)。\n\n**当前进度：正在训练 Gen 5**（fine-tuning 阶段，已到 step 2500）。\n\n### 已完成代数 (Gen 0–4) 指标\n\n| Gen | eff_rank | log_det | perplexity | distinct_4 | sigma_1 |\n|-----|----------|---------|------------|------------|---------|\n| 0 | 417.55 | 2366.68 | 9.55 | 0.741 | 1942.82 |\n| 1 | 491.77 | 2464.76 | 11.38 | 0.626 | 803.96 |\n| 2 | 496.44 | 2469.93 | 13.58 | 0.515 | 712.03 |\n| 3 | 493.31 | 2440.57 | 16.25 | 0.490 | 700.68 |\n| 4 | 485.67 | 2405.05 | 19.80 | 0.468 | 729.59 |\n\n**趋势观察：**\n- perplexity 稳定上升 (9.5 → 19.8)，distinct_4 持续下降 (0.74 → 0.47) — 符合 model collapse 预期\n- eff_rank 在 Gen 1-2 升高后开始回落 (496 → 485)\n- sigma_1 在 Gen 0 极高 (1942)，Gen 1 后稳定在 700-800 范围\n\n**预估剩余时间：** 进程已运行约 292 分钟完成了 Gen 4 并正在做 Gen 5 (即约 4h52m 跑了 ~5.5 代)。每代约 53 分钟，还剩 Gen 5(部分)–9，约 **4 小时**完成全部 10 代。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp001-current-gen.md"
+}

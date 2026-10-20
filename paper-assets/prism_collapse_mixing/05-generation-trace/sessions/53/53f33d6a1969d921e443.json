@@ -1,0 +1,93 @@
+{
+  "schema_version": "1.0",
+  "id": "53f33d6a1969d921e443",
+  "project": "prism_collapse_mixing",
+  "kind": "worker",
+  "title": "ssh data prep",
+  "task_key": "worker_ssh_data-prep_20260515T165907",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_data-prep_20260515T165907.log",
+    "occurrence": 1,
+    "bytes": 2146446,
+    "sha256": "b25a8d1123c5d33a977b73cb185fae010eef7eec1877427bd7808e7fd4ed9d8f"
+  },
+  "statistics": {
+    "messages": 1696,
+    "user_turns": 1,
+    "tool_calls": 682,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 10,
+      "assistant": 315,
+      "tool_call": 682,
+      "tool_result": 682,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 801,
+      "chunks": [
+        {
+          "path": "53f33d6a1969d921e443-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "53f33d6a1969d921e443-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "53f33d6a1969d921e443-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "53f33d6a1969d921e443-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "53f33d6a1969d921e443-part-0005.json",
+          "message_count": 81
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 895,
+      "chunks": [
+        {
+          "path": "53f33d6a1969d921e443-part-0005.json",
+          "message_count": 99
+        },
+        {
+          "path": "53f33d6a1969d921e443-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "53f33d6a1969d921e443-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "53f33d6a1969d921e443-part-0008.json",
+          "message_count": 180
+        },
+        {
+          "path": "53f33d6a1969d921e443-part-0009.json",
+          "message_count": 180
+        },
+        {
+          "path": "53f33d6a1969d921e443-part-0010.json",
+          "message_count": 76
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-data-prep.md"
+}

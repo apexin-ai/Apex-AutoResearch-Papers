@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5bf194c4f23acbf8a1a8",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ssh exp 016 progress",
+  "task_key": "worker_ssh_exp_016_progress_20260522T144725",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp_016_progress_20260522T144725_result.json",
+    "occurrence": 1,
+    "bytes": 1039,
+    "sha256": "9af0085e83ee46cd50c25f97af3bfdb07ad7b58332c4add1ac4bf22811284b4c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整进度数据已拿到。\n\n## exp_016 进度报告\n\n**配置**: `fixed_mix`, seed=44, generations=10, real_ratio=0.3\n\n**当前状态**: **Generation 9/10 — 正在生成合成样本 3200/35000 (9.1%)**\n\n### 已完成 Generations\n\n| Gen | eff_rank | ppl | distinct4 | training_loss |\n|-----|----------|-----|-----------|---------------|\n| 0 | 417.55 | 9.55 | 0.7305 | — |\n| 1 | 476.91 | 10.19 | 0.6714 | 1.8361 |\n| 2 | 484.43 | 10.57 | 0.5271 | 1.7482 |\n| 3 | 490.15 | 10.91 | 0.4937 | 1.5195 |\n| 4 | 494.35 | 11.24 | 0.4720 | 1.4254 |\n| 5 | 496.99 | 11.53 | 0.4405 | 1.3911 |\n| 6 | 502.01 | 11.87 | 0.4297 | 1.3286 |\n| 7 | 506.72 | 12.22 | 0.4402 | 1.2898 |\n| 8 | 511.33 | 12.58 | 0.4286 | 1.2650 |\n\n### 时间估算\n\n- 启动时间: 07:16 UTC, 已运行 ~15.5h\n- 8 个完整 generation cycle 已完成 → 平均 **~1.9h / generation**\n- 剩余: Gen 9 的 ~91% 生成 + 训练 + 评估 + Gen 10 完整 cycle ≈ **~3.7h**\n- **预计完成: ~02:30 UTC, May 23 (约 3 小时 40 分钟后)**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exp-016-progress.md"
+}

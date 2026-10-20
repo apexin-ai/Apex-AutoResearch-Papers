@@ -1,0 +1,63 @@
+# analysis alternative ews plan018
+
+**Spectral Early Warning Signals for Model Collapse and Their Prevention–Detectability Tradeoff** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_analysis_alternative-ews-plan018_20260518T110312_result.json`
+- **Structured JSON:** [`0baf97aa0bd45e4cd3bd.json`](../../sessions/0b/0baf97aa0bd45e4cd3bd.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+完成。以下是对比结果：
+
+## Raw Metrics Table (Gen 0-10)
+
+| Metric | G0 | G1 | G2 | G3 | G4 | G5 | G6 | G7 | G8 | G9 | G10 |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| **Isotropy** (avg cos) | **0.311** | 0.087 | 0.065 | 0.062 | 0.059 | 0.063 | 0.065 | 0.068 | 0.070 | 0.074 | 0.076 |
+| **Token entropy** | 6.752 | 6.750 | 6.714 | 6.670 | 6.595 | 6.511 | 6.441 | 6.361 | 6.279 | 6.183 | **6.106** |
+| **Spectral norm (attn)** | 2.447 | 2.444 | 2.450 | 2.457 | 2.466 | 2.483 | 2.504 | 2.532 | 2.564 | 2.601 | **2.642** |
+| **Spectral norm (ffn)** | 8.374 | 8.380 | 8.379 | 8.385 | 8.391 | 8.399 | 8.407 | 8.412 | 8.418 | 8.424 | **8.429** |
+| **Stable rank (attn)** | 33.83 | 33.88 | 33.72 | 33.51 | 33.26 | 32.83 | 32.29 | 31.59 | 30.82 | 29.99 | **29.09** |
+| **Stable rank (ffn)** | **36.66** | 36.75 | 36.85 | 36.88 | 36.91 | 36.92 | 36.92 | 36.95 | 36.97 | 37.00 | 37.03 |
+| **Gradient norm** | **24.84** | 13.93 | 12.71 | 11.85 | 11.49 | 11.28 | 11.05 | 11.03 | 11.14 | 11.04 | 11.10 |
+| **SLV (log_det)** | 2366.7 | — | **2469.6** | 2440.6 | — | — | — | — | — | — | 2178.9 |
+
+## Analysis Summary
+
+| Metric | Peak Gen | Monotonic post-peak? | Detection lag | Rel. change pk→G10 | Avg s/ckpt |
+|---|---|---|---|---|---|
+| Isotropy | Gen 0 | No (6 violations) | Gen 3 | 75.4% | 0.3s |
+| Token entropy | — | **Yes (monotonic G0→G10)** | — | 9.6% | 3.2s |
+| Spectral norm (attn) | — | **Yes (monotonic G0→G10)** | — | 7.9% | 0.2s |
+| Spectral norm (ffn) | — | **Yes (monotonic G0→G10)** | — | 0.7% | 0.2s |
+| Stable rank (attn) | — | **Yes (monotonic G1→G10)** | — | 14.0% | 0.2s |
+| Stable rank (ffn) | Gen 0 | Yes | Gen 3 | 1.0% | 0.2s |
+| Gradient norm | Gen 0 | Yes | — | 55.3% | 1.5s |
+| **SLV (log_det)** | **Gen 2** | **Yes** | **Gen 3** | **11.8%** | ~2.0s |
+
+## 关键发现
+
+1. **Token entropy 和 stable rank (attn) 是最强的 monotonic 替代指标**：从 Gen 0 到 Gen 10 严格单调变化，没有违反点。Token entropy 下降 9.6%，stable rank (attn) 下降 14.0%，信号强度接近 SLV (11.8%)。
+
+2. **SLV 独特的非单调性**：SLV 是唯一在 Gen 2 出现 peak 再下降的指标。其他指标要么从 Gen 0 起就单调变化（token entropy, spectral norm, stable rank），要么在 Gen 0 有异常高值后快速衰减（isotropy, gradient norm）。这意味着 SLV 捕捉到了一个**其他指标看不到的初始"健康"阶段**（Gen 0→2 上升），这对 EWS 至关重要。
+
+3. **Isotropy 信号噪声大**：Gen 0 异常高 (0.311)，Gen 1 骤降到 0.087，Gen 4 触底后反弹，6 次违反单调性。不适合作为可靠 EWS。
+
+4. **Gradient norm 饱和过快**：Gen 0→1 从 24.8 降到 13.9（44% drop），之后 Gen 3-10 几乎持平（~11.0-11.5），无法区分 collapse 程度。
+
+5. **Spectral norm (ffn) 和 stable rank (ffn) 变化极小**（分别 0.7% 和 1.0%），FFN 层对 collapse 不敏感，attention 层更敏感。
+
+---

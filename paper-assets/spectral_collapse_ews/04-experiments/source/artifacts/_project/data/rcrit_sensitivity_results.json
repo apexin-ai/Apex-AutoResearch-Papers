@@ -1,0 +1,261 @@
+{
+  "T_values": [
+    3,
+    5,
+    7,
+    10
+  ],
+  "r_values": [
+    0.0,
+    0.2,
+    0.25,
+    0.3,
+    0.5
+  ],
+  "classifications": {
+    "0.0": {
+      "3": {
+        "per_seed": {
+          "seed42": "III",
+          "seed43": "III",
+          "seed44": "III"
+        },
+        "majority_type": "III",
+        "unanimous": true
+      },
+      "5": {
+        "per_seed": {
+          "seed42": "I",
+          "seed43": "I",
+          "seed44": "I"
+        },
+        "majority_type": "I",
+        "unanimous": true
+      },
+      "7": {
+        "per_seed": {
+          "seed42": "I",
+          "seed43": "I",
+          "seed44": "I"
+        },
+        "majority_type": "I",
+        "unanimous": true
+      },
+      "10": {
+        "per_seed": {
+          "seed42": "I",
+          "seed43": "I",
+          "seed44": "I"
+        },
+        "majority_type": "I",
+        "unanimous": true
+      }
+    },
+    "0.2": {
+      "3": {
+        "per_seed": {
+          "seed42": "II",
+          "seed43": "II",
+          "seed44": "II"
+        },
+        "majority_type": "II",
+        "unanimous": true
+      },
+      "5": {
+        "per_seed": {
+          "seed42": "II",
+          "seed43": "II",
+          "seed44": "II"
+        },
+        "majority_type": "II",
+        "unanimous": true
+      },
+      "7": {
+        "per_seed": {
+          "seed42": "II",
+          "seed43": "II",
+          "seed44": "II"
+        },
+        "majority_type": "II",
+        "unanimous": true
+      },
+      "10": {
+        "per_seed": {
+          "seed42": "II",
+          "seed43": "II",
+          "seed44": "II"
+        },
+        "majority_type": "II",
+        "unanimous": true
+      }
+    },
+    "0.25": {
+      "3": {
+        "per_seed": {
+          "seed42": "II",
+          "seed43": "II",
+          "seed44": "III"
+        },
+        "majority_type": "II",
+        "unanimous": false
+      },
+      "5": {
+        "per_seed": {
+          "seed42": "II",
+          "seed43": "II",
+          "seed44": "III"
+        },
+        "majority_type": "II",
+        "unanimous": false
+      },
+      "7": {
+        "per_seed": {
+          "seed42": "II",
+          "seed43": "II",
+          "seed44": "III"
+        },
+        "majority_type": "II",
+        "unanimous": false
+      },
+      "10": {
+        "per_seed": {
+          "seed42": "II",
+          "seed43": "II",
+          "seed44": "III"
+        },
+        "majority_type": "II",
+        "unanimous": false
+      }
+    },
+    "0.3": {
+      "3": {
+        "per_seed": {
+          "seed42": "III",
+          "seed43": "II",
+          "seed44": "III"
+        },
+        "majority_type": "III",
+        "unanimous": false
+      },
+      "5": {
+        "per_seed": {
+          "seed42": "III",
+          "seed43": "II",
+          "seed44": "III"
+        },
+        "majority_type": "III",
+        "unanimous": false
+      },
+      "7": {
+        "per_seed": {
+          "seed42": "III",
+          "seed43": "II",
+          "seed44": "III"
+        },
+        "majority_type": "III",
+        "unanimous": false
+      },
+      "10": {
+        "per_seed": {
+          "seed42": "III",
+          "seed43": "II",
+          "seed44": "III"
+        },
+        "majority_type": "III",
+        "unanimous": false
+      }
+    },
+    "0.5": {
+      "3": {
+        "per_seed": {
+          "seed42": "III",
+          "seed43": "II"
+        },
+        "majority_type": "III",
+        "unanimous": false
+      },
+      "5": {
+        "per_seed": {
+          "seed42": "III",
+          "seed43": "II"
+        },
+        "majority_type": "III",
+        "unanimous": false
+      },
+      "7": {
+        "per_seed": {
+          "seed42": "III",
+          "seed43": "II"
+        },
+        "majority_type": "III",
+        "unanimous": false
+      },
+      "10": {
+        "per_seed": {
+          "seed42": "III",
+          "seed43": "II"
+        },
+        "majority_type": "III",
+        "unanimous": false
+      }
+    }
+  },
+  "rcrit_estimates": {
+    "3": {
+      "range": "(0.25, 0.3]",
+      "type_by_r": {
+        "0.0": "III",
+        "0.2": "II",
+        "0.25": "II",
+        "0.3": "III",
+        "0.5": "III"
+      },
+      "last_type2_r": 0.25,
+      "first_type3_r": 0.3
+    },
+    "5": {
+      "range": "(0.25, 0.3]",
+      "type_by_r": {
+        "0.0": "I",
+        "0.2": "II",
+        "0.25": "II",
+        "0.3": "III",
+        "0.5": "III"
+      },
+      "last_type2_r": 0.25,
+      "first_type3_r": 0.3
+    },
+    "7": {
+      "range": "(0.25, 0.3]",
+      "type_by_r": {
+        "0.0": "I",
+        "0.2": "II",
+        "0.25": "II",
+        "0.3": "III",
+        "0.5": "III"
+      },
+      "last_type2_r": 0.25,
+      "first_type3_r": 0.3
+    },
+    "10": {
+      "range": "(0.25, 0.3]",
+      "type_by_r": {
+        "0.0": "I",
+        "0.2": "II",
+        "0.25": "II",
+        "0.3": "III",
+        "0.5": "III"
+      },
+      "last_type2_r": 0.25,
+      "first_type3_r": 0.3
+    }
+  },
+  "detailed_metrics": {},
+  "summary": {
+    "rcrit_stable": true,
+    "rcrit_range_all_T": "(0.25, 0.3]",
+    "type_I_min_T": 5,
+    "type_II_III_boundary_stable": true,
+    "conclusion": "r=0.25 consistently classified as Type II (near-critical); r=0.3 consistently classified as Type III (stable); \u2192 r_crit \u2208 (0.25, 0.3] is STABLE across T=3..10; Note: Type I (collapse) detection requires T\u22655 to distinguish from transient dip"
+  }
+}

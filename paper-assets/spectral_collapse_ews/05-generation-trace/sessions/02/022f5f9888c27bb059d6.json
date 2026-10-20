@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "022f5f9888c27bb059d6",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "paper cross r summary table",
+  "task_key": "worker_paper_cross-r-summary-table_20260519T183255",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_cross-r-summary-table_20260519T183255_result.json",
+    "occurrence": 1,
+    "bytes": 328,
+    "sha256": "ac298a7a29d39a5d1fdec2638e3f0820c719e3d37d4a3a1deae452c3e56ba40e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Table inserted at the end of §4.5 with a reference sentence at line 144. All values sourced from registry: exp_001 (r=0), exp_007 (r=0.2, 5gen†), exp_009 (r=0.25), exp_008 (r=0.3), exp_006 (r=0.5). The r=0.5 row uses exp_006 data (adaptive controller that never triggered), consistent with existing §4.4 text."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-cross-r-summary-table.md"
+}

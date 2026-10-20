@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b79e47e6ce65e87c9f91",
+  "project": "trace_distill_repair",
+  "kind": "result",
+  "title": "exp structural fastapi supplement",
+  "task_key": "worker_exp_structural_fastapi_supplement_20260514T204809",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_structural_fastapi_supplement_20260514T204809_result.json",
+    "occurrence": 1,
+    "bytes": 792,
+    "sha256": "432654a12f2bf2623148171f12fcebe84be6bd0c45d593158d09221eabd9099d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "补跑完成，但两个实例各有 8/20 segments 因 API 返回 None 而 fallback 为 error。error 率 40% 偏高，可能是 API 对这些 segments（包含较大 token 的 exception_chain/call_subtree）返回空内容。\n\n**结果汇总：**\n\n| 实例 | Segments | Keep | Drop | Error |\n|------|----------|------|------|-------|\n| fastapi_1 | 20 | 1 | 11 | 8 |\n| fastapi_2 | 20 | 1 | 11 | 8 |\n\n**更新后全局统计：**\n- Total instances: 38（原 36 + 2）\n- Excluded: 仅剩 `fastapi_3`, `fastapi_5`\n- Grand total: 491 segs, 25 keep (5.1%), 450 drop, 16 error\n\nerror segments 有 16 个（fastapi_1/2 各 8），这些都是 API 返回 None content 导致的 fallback。如果需要重跑 error segments 可以再处理，否则补跑任务已完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-structural-fastapi-supplement.md"
+}

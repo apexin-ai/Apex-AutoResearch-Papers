@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "9ed30badd006015a3a16",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ops s3 backup final",
+  "task_key": "worker_ops_s3-backup-final_20260525T212222",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_s3-backup-final_20260525T212222_result.json",
+    "occurrence": 1,
+    "bytes": 2460377,
+    "sha256": "ee1ed281c6ae571460097d4aa87a5f1b1b80f6a43a0078431f670d538dbfbc18"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2460397,
+                "serialized_sha256": "9620e94aede75ec89a993c7698b504473f61aa2729724f6c4457a6eff1301a08",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-s3-backup-final.md"
+}

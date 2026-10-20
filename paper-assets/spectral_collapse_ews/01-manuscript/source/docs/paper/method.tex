@@ -1,0 +1,53 @@
+\subsection{Spectral Metrics}
+\label{subsec:spectral_metrics}
+
+Given a language model at generation $t$, we extract last-layer embeddings for $n{=}1{,}000$ held-out samples to form $\mathbf{E} \in \mathbb{R}^{n \times d}$ and compute the Gram matrix $\mathbf{G} = \mathbf{E}^\top \mathbf{E}$.
+Let $\sigma_1 \geq \sigma_2 \geq \cdots \geq \sigma_d$ denote the singular values of $\mathbf{E}$.
+We track three complementary spectral indicators:
+
+\paragraph{Spectral Log-Volume (SLV).}
+$\text{SLV} = \sum_i \log \sigma_i = \frac{1}{2} \log \det \mathbf{G}$.
+This quantity measures the total volume spanned by the embedding cloud in log-space.
+Because it sums over all singular values, SLV is sensitive to contraction along any spectral direction, not only the dominant ones.
+
+\paragraph{Effective Rank.}
+$r_{\text{eff}} = \exp(H(\mathbf{p}))$, where $p_i = \sigma_i / \sum_j \sigma_j$ and $H$ is the Shannon entropy.
+Effective rank quantifies how many dimensions carry substantial variance.
+A uniform spectrum yields $r_{\text{eff}} \approx d$; concentration onto few directions drives $r_{\text{eff}}$ toward~1.
+
+\paragraph{Leading Singular Value.}
+$\sigma_1$ tracks the energy in the most dominant spectral direction.
+Rising $\sigma_1$ under falling $r_{\text{eff}}$ signals that variance is concentrating into a low-dimensional subspace, a hallmark of representational collapse.
+
+These three metrics capture complementary collapse signatures: SLV detects global volume loss, $r_{\text{eff}}$ measures dimensionality reduction, and $\sigma_1$ isolates spectral concentration.
+
+\subsection{Adaptive Mixing Controller}
+\label{subsec:controller}
+
+We propose a closed-loop controller that adjusts the real-data mixing ratio $r_t$ at each generation based on the rate of spectral change.
+The update rule is:
+\begin{equation}
+\label{eq:controller}
+r_{t+1} = \frac{B_{\text{rem}}}{T - t} + k \cdot \max(0,\; \Delta_t - \tau)
+\end{equation}
+where $B_{\text{rem}}$ is the remaining real-data budget (fraction of total budget not yet consumed), $T$ is the total number of generations, $\Delta_t$ is the magnitude of the per-generation SLV change, $\tau{=}0.002$ is a sensitivity threshold, and $k{=}10$ is the controller gain.
+The output is clipped to $[r_{\min}, r_{\max}] = [0.20, 0.80]$ and subject to the global constraint $\sum_t r_t \leq B_{\text{total}}$.
+
+The first term distributes the remaining budget uniformly across future generations, ensuring graceful degradation even without spectral signal.
+The second term injects additional real data when SLV contraction exceeds the threshold $\tau$, proportional to the severity of the spectral drop.
+This design requires no lookahead and operates with a single hyperparameter choice ($k$) beyond the budget constraint.
+
+\subsection{Experimental Conditions}
+\label{subsec:conditions}
+
+We compare four mixing strategies that share the same total real-data budget to isolate the effect of allocation timing:
+
+\begin{enumerate}
+\item \textbf{Pure collapse} ($r_t{=}0$): all training data is synthetic after Gen~0. This baseline characterizes unmitigated collapse.
+\item \textbf{Fixed mix} ($r_t{=}0.50$): a static 50/50 real-synthetic ratio at every generation.
+\item \textbf{Linear increasing}: $r_t$ grows linearly from 0.20 to 0.80 across generations, an open-loop heuristic that front-loads synthetic data.
+\item \textbf{Adaptive} ($k{=}10$): the SLV-guided controller from Eq.~\ref{eq:controller}.
+\end{enumerate}
+
+All conditions use Pythia-410M-deduped fine-tuned on a 50K-sample OpenWebText subset for 10 recursive generations.
+We evaluate with perplexity, HellaSwag accuracy (0-shot), distinct-4, and the three spectral metrics defined above.

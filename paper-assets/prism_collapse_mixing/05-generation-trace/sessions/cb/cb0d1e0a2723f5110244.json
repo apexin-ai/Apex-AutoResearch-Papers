@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cb0d1e0a2723f5110244",
+  "project": "prism_collapse_mixing",
+  "kind": "result",
+  "title": "ssh data prep resume",
+  "task_key": "worker_ssh_data-prep-resume_20260515T180618",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_data-prep-resume_20260515T180618_result.json",
+    "occurrence": 1,
+    "bytes": 698,
+    "sha256": "19ca62a6b894340138514c07fab8ef56e5df5cef293e34bd6753c10e38875406"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。\n\n## 数据状态报告\n\n| 文件 | 行数 | 大小 | Token 数 | 状态 |\n|------|------|------|----------|------|\n| `probe_set.jsonl` | 5,000 | 5.8 MB | 1,280,000 (每条 256) | ✓ |\n| `val_set.jsonl` | 14,881 | 44 MB | 10,002,013 (10.0M) | ✓ |\n| `real_pool.jsonl` | 579,255 | 1.7 GB | 400,000,299 (400.0M) | ✓ |\n\n- 格式：每行一个 JSON，含 `text` 字段（probe_set 额外有 `token_count`）\n- 数据来源互不交集：probe+val 来自 `014_00000.parquet`，real_pool 来自 `000_00000.parquet`\n- Token 计数使用 Pythia tokenizer 实际编码验证，与生成脚本一致\n\n**数据完整就绪，可进入下一步实验。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-data-prep-resume.md"
+}

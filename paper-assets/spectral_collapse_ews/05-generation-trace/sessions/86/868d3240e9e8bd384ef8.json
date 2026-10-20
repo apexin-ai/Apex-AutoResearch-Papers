@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "868d3240e9e8bd384ef8",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ops hellaswag final collect",
+  "task_key": "worker_ops_hellaswag-final-collect_20260521T111731",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_hellaswag-final-collect_20260521T111731_result.json",
+    "occurrence": 1,
+    "bytes": 1287,
+    "sha256": "32710b2153f191a69df79b4085538133abe5dafa67d667efd4806937f81b678e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果如下：\n\n### 3-SEED SUMMARY（2-seed only, seed43 全部缺失）\n\n| Gen | Seed42 | Seed43 | Seed44 | Mean | Std |\n|-----|--------|--------|--------|------|-----|\n| 0 | 0.4130 | MISS | 0.4130 | 0.4130 | 0.0000 |\n| 1 | 0.3897 | MISS | 0.3911 | 0.3904 | 0.0010 |\n| 2 | 0.3764 | MISS | 0.3841 | 0.3803 | 0.0054 |\n| 3 | 0.3658 | MISS | 0.3721 | 0.3690 | 0.0045 |\n| 4 | 0.3558 | MISS | 0.3554 | 0.3556 | 0.0003 |\n| 5 | 0.3439 | MISS | 0.3418 | 0.3428 | 0.0015 |\n| 6 | 0.3311 | MISS | 0.3315 | 0.3313 | 0.0003 |\n| 7 | 0.3187 | MISS | 0.3191 | 0.3189 | 0.0003 |\n| 8 | 0.3103 | MISS | 0.3157 | 0.3130 | 0.0038 |\n| 9 | 0.3009 | MISS | 0.3033 | 0.3021 | 0.0017 |\n| 10 | 0.2951 | MISS | 0.3015 | 0.2983 | 0.0046 |\n\n### Paper Values (2-seed)\n- Gen 0 mean: **0.4130**, Gen 10 mean: **0.2983**, drop: **27.8%**\n- Gen 2 mean: 0.3803 | Gen 5 mean: 0.3428 | Gen 7 mean: 0.3189\n\n### 缺失项：Seed43 全部 11 个 gen (gen0–gen10)\n\nSeed43 的 eval 目录存在，但里面只有 lm-eval 的 cache 子目录（如 `__root__autodl-tmp__spectral_collapse_ews__checkpoints_phase1__pure_collapse_seed43__gen_0`），没有 `results.json`。没有 eval 进程在运行。说明 seed43 的 lm_eval 评估从未成功完成——可能中途失败或被中断。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-hellaswag-final-collect.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "35375fccae9613cf2cc3",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "paper research",
+  "task_key": "worker_paper_research_20260517T201057",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_research_20260517T201057_result.json",
+    "occurrence": 1,
+    "bytes": 914,
+    "sha256": "5ce1adb81b2ce479fae35a70ef498b6ba67c0be9f0a97fe52d4c5c250ae7c5b8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文献搜索完成。共 21 篇 verified 论文，分布如下：\n\n| Cluster | 数量 | 关键论文 |\n|---------|------|---------|\n| **model_collapse_core** | 6 | Shumailov 2024 Nature, Dohmatob 2024 ICML/NeurIPS, Alemohammad 2024 ICLR, Gerstgrasser 2024, Dohmatob 2025 ICLR |\n| **spectral_analysis_collapse** | 5 | Gu 2026 SIGMA, Naderi 2025 ICML, He 2025 NeurIPS, Roy 2007 effective rank, Martin 2021 JMLR |\n| **data_mixing_strategies** | 4 | Xie 2023 DoReMi, Ye 2025 ICLR, Chen 2025 AIOLI, Kazdan 2024 |\n| **synthetic_data_quality** | 3 | Gudibande 2024 ICLR, Feng 2024 verification, Keisha 2025 knowledge collapse |\n| **early_warning_signals** | 3 | Scheffer 2009 Nature, Bury 2021 PNAS, Dakos 2012 PLOS ONE |\n\n输出文件：\n- `literature_map.yaml` -- 完整论文元数据（title, authors, venue, arxiv_id, category, relevance）\n- `paper/references.bib` -- 21 条 BibTeX 条目"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-research.md"
+}

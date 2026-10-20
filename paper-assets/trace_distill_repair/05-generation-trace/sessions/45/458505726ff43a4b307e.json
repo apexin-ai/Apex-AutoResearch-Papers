@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "458505726ff43a4b307e",
+  "project": "trace_distill_repair",
+  "kind": "result",
+  "title": "exp phase2 line v2",
+  "task_key": "worker_exp_phase2_line_v2_20260514T182543",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_phase2_line_v2_20260514T182543_result.json",
+    "occurrence": 1,
+    "bytes": 234,
+    "sha256": "40d2a084087fd2b07d517c6420b81b0a8e6636485b2936e4b570aa97454b7d38"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "打分后台运行中 (PID=60518)，总量约 3,635 segments（200/instance 上限）。已修复模型为 `deepseek/deepseek-v4-flash`，修复了 None content 导致的 strip 错误。~5 分钟后自动检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-phase2-line-v2.md"
+}

@@ -1,0 +1,29 @@
+{
+  "exp_id": "exp_009",
+  "project": "spectral_collapse_ews",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T19:47:07.558Z",
+    "updated_at": "2026-05-18T19:47:48.202Z",
+    "hypothesis": "At r=0.25 (25% real data), SLV trajectory will disambiguate the r_crit boundary between r=0.2 (dip-then-recovery, no collapse in 5gen) and r=0.3. If r=0.25 shows sustained SLV decline over 10 generations, r_crit lies in [0.2, 0.25]. If it recovers like r=0.2, r_crit is below 0.2. This precisely locates the phase transition boundary for the mixing-ratio phase diagram (C2 claim).",
+    "parent": "exp_007",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition fixed_mix --seed 42 --generations 10 --signal log_det --tau 0.002 --k 0 --signal_mode per_gen --real_ratio 0.25 --gpu 0\"",
+      "server": "rtx6000-diagprobe",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "247492",
+      "log_path": "~/runs/spectral_collapse_ews/exp_009.log",
+      "submitted_at": "2026-05-18T19:47:27.851Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-18T19:47:48.237705+00:00",
+  "trigger": "update_registry"
+}

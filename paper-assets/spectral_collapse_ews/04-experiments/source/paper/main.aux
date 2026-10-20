@@ -1,0 +1,975 @@
+\relax 
+\bibstyle{acl_natbib}
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{shumailov2024collapse,dohmatob2024tails,dohmatob2024demystified,alemohammad2024mad}
+\citation{dohmatob2025strong}
+\citation{dohmatob2024tails,seddik2024synthetic}
+\citation{shumailov2024collapse,alemohammad2024mad,gerstgrasser2024inevitable}
+\citation{ethayarajh2019contextual,martin2021implicit}
+\citation{gu2026sigma}
+\citation{he2025spectral}
+\citation{naderi2025mindgap}
+\citation{scheffer2009ews,scheffer2012anticipating}
+\citation{longpre2024pretrainer,xie2023doremi}
+\@LN@col{1}
+\@LN{0}{0}
+\@LN{1}{0}
+\@LN{2}{0}
+\@LN{3}{0}
+\@LN{4}{0}
+\@LN{5}{0}
+\@LN{6}{0}
+\@LN{7}{0}
+\@LN{8}{0}
+\@LN{9}{0}
+\@LN{10}{0}
+\@LN{11}{0}
+\@LN{12}{0}
+\@LN{13}{0}
+\@LN{14}{0}
+\@LN{15}{0}
+\@LN{16}{0}
+\@LN{17}{0}
+\@LN{18}{0}
+\@LN{19}{0}
+\@LN{20}{0}
+\@LN{21}{0}
+\@LN{22}{0}
+\@LN{23}{0}
+\@LN{24}{0}
+\@LN{25}{0}
+\@LN{26}{0}
+\@LN{27}{0}
+\@LN{28}{0}
+\@LN{29}{0}
+\@LN{30}{0}
+\@LN{31}{0}
+\@LN{32}{0}
+\@LN{33}{0}
+\@LN{34}{0}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\newlabel{sec:intro}{{1}{1}{Introduction}{section.1}{}}
+\@LN{35}{0}
+\@LN{36}{0}
+\@LN{37}{0}
+\@LN{38}{0}
+\@LN{39}{0}
+\@LN{40}{0}
+\@LN@col{2}
+\@LN{41}{0}
+\@LN{42}{0}
+\@LN{43}{0}
+\@LN{44}{0}
+\@LN{45}{0}
+\@LN{46}{0}
+\@LN{47}{0}
+\@LN{48}{0}
+\@LN{49}{0}
+\@LN{50}{0}
+\@LN{51}{0}
+\@LN{52}{0}
+\@LN{53}{0}
+\@LN{54}{0}
+\@LN{55}{0}
+\@LN{56}{0}
+\@LN{57}{0}
+\@LN{58}{0}
+\@LN{59}{0}
+\@LN{60}{0}
+\@LN{61}{0}
+\@LN{62}{0}
+\@LN{63}{0}
+\@LN{64}{0}
+\@LN{65}{0}
+\@LN{66}{0}
+\@LN{67}{0}
+\@LN{68}{0}
+\@LN{69}{0}
+\@LN{70}{0}
+\@LN{71}{0}
+\@LN{72}{0}
+\@LN{73}{0}
+\@LN{74}{0}
+\@LN{75}{0}
+\@LN{76}{0}
+\@LN{77}{0}
+\@LN{78}{0}
+\@LN{79}{0}
+\@LN{80}{0}
+\@LN{81}{0}
+\citation{biderman2023pythia}
+\citation{radford2019language}
+\citation{roy2007effectiverank}
+\citation{shumailov2024collapse}
+\citation{dohmatob2024tails,dohmatob2024demystified,seddik2024synthetic}
+\citation{alemohammad2024mad}
+\citation{dohmatob2025strong}
+\citation{gerstgrasser2024inevitable}
+\citation{fu2025selfverification}
+\citation{amin2025escaping}
+\@LN@col{1}
+\@LN{82}{1}
+\@LN{83}{1}
+\@LN{84}{1}
+\@LN{85}{1}
+\@LN{86}{1}
+\@LN{87}{1}
+\@LN{88}{1}
+\@LN{89}{1}
+\@LN{90}{1}
+\@LN{91}{1}
+\@LN{92}{1}
+\@LN{93}{1}
+\@LN{94}{1}
+\@LN{95}{1}
+\@LN{96}{1}
+\@LN{97}{1}
+\@LN{98}{1}
+\@LN{99}{1}
+\@LN{100}{1}
+\@LN{101}{1}
+\@LN{102}{1}
+\@LN{103}{1}
+\@LN{104}{1}
+\@LN{105}{1}
+\@LN{106}{1}
+\@LN{107}{1}
+\@LN{108}{1}
+\@LN{109}{1}
+\@LN{110}{1}
+\@LN{111}{1}
+\@LN{112}{1}
+\@LN{113}{1}
+\@LN{114}{1}
+\@LN{115}{1}
+\@LN{116}{1}
+\@LN{117}{1}
+\@LN{118}{1}
+\@LN{119}{1}
+\@LN{120}{1}
+\@LN{121}{1}
+\@LN{122}{1}
+\@LN{123}{1}
+\@LN{124}{1}
+\@LN{125}{1}
+\@LN{126}{1}
+\@LN{127}{1}
+\@LN{128}{1}
+\@LN{129}{1}
+\@LN{130}{1}
+\@LN{131}{1}
+\@LN{132}{1}
+\@LN@col{2}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces SLV across 10 recursive generations of Pythia-410M (solid: $r{=}0$, 3-seed mean; dashed: $r{=}0.5$, 2-seed mean) under pure-synthetic training and 50\% real-data mixing. Three phases are visible in the pure-synthetic trajectory: decompression (Gen~0--2, SLV peaks at 2468), onset (Gen~2--4), and acceleration (Gen~4--10, SLV falls 11.6\% from peak to 2181). Under 50\% mixing, SLV rises monotonically (except a negligible Gen~1 dip) to 2572 at Gen~10, 8.7\% above baseline and 104 points above the pure-collapse peak.}}{2}{figure.caption.1}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig:spectral_trajectory}{{1}{2}{SLV across 10 recursive generations of Pythia-410M (solid: $r{=}0$, 3-seed mean; dashed: $r{=}0.5$, 2-seed mean) under pure-synthetic training and 50\% real-data mixing. Three phases are visible in the pure-synthetic trajectory: decompression (Gen~0--2, SLV peaks at 2468), onset (Gen~2--4), and acceleration (Gen~4--10, SLV falls 11.6\% from peak to 2181). Under 50\% mixing, SLV rises monotonically (except a negligible Gen~1 dip) to 2572 at Gen~10, 8.7\% above baseline and 104 points above the pure-collapse peak}{figure.caption.1}{}}
+\@LN{133}{1}
+\@LN{134}{1}
+\@LN{135}{1}
+\@LN{136}{1}
+\@LN{137}{1}
+\@LN{138}{1}
+\@LN{139}{1}
+\@LN{140}{1}
+\@LN{141}{1}
+\@LN{142}{1}
+\@LN{143}{1}
+\@LN{144}{1}
+\@LN{145}{1}
+\@LN{146}{1}
+\@LN{147}{1}
+\@LN{148}{1}
+\@LN{149}{1}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\newlabel{sec:related}{{2}{2}{Related Work}{section.2}{}}
+\@writefile{toc}{\contentsline {paragraph}{Model Collapse.}{2}{section*.3}\protected@file@percent }
+\@LN{150}{1}
+\@LN{151}{1}
+\@LN{152}{1}
+\@LN{153}{1}
+\@LN{154}{1}
+\@LN{155}{1}
+\@LN{156}{1}
+\@LN{157}{1}
+\@LN{158}{1}
+\@LN{159}{1}
+\@LN{160}{1}
+\citation{martin2021implicit}
+\citation{roy2007effectiverank}
+\citation{rankme2023}
+\citation{he2025spectral}
+\citation{naderi2025mindgap}
+\citation{gu2026sigma}
+\citation{scheffer2009ews,scheffer2012anticipating}
+\citation{dakos2012methods}
+\citation{bury2021deeplearning}
+\citation{scheffer2009ews}
+\citation{longpre2024pretrainer,muennighoff2023scaling}
+\citation{xie2023doremi,ye2025mixinglaws,chen2025aioli}
+\citation{gu2026sigma}
+\citation{he2025spectral}
+\citation{gu2026sigma}
+\citation{he2025spectral}
+\citation{bai2010spectral}
+\@LN@col{1}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Experimental pipeline. Each generation fine-tunes on synthetic text mixed with real data at ratio $r_t$. Spectral monitoring extracts last-layer embeddings from held-out data, computes a singular value decomposition (SVD), and derives SLV, $r_{\text  {eff}}$, and $\sigma _1$. A proportional controller (dashed) can adjust $r_{t+1}$ based on the SLV rate of change. The three phases (decompression (I), onset (II), and acceleration (III)) are annotated along the generation axis.}}{3}{figure.caption.2}\protected@file@percent }
+\newlabel{fig:pipeline}{{2}{3}{Experimental pipeline. Each generation fine-tunes on synthetic text mixed with real data at ratio $r_t$. Spectral monitoring extracts last-layer embeddings from held-out data, computes a singular value decomposition (SVD), and derives SLV, $r_{\text {eff}}$, and $\sigma _1$. A proportional controller (dashed) can adjust $r_{t+1}$ based on the SLV rate of change. The three phases (decompression (I), onset (II), and acceleration (III)) are annotated along the generation axis}{figure.caption.2}{}}
+\@LN{161}{2}
+\@LN{162}{2}
+\@LN{163}{2}
+\@LN{164}{2}
+\@LN{165}{2}
+\@LN{166}{2}
+\@LN{167}{2}
+\@LN{168}{2}
+\@LN{169}{2}
+\@writefile{toc}{\contentsline {paragraph}{Spectral Analysis of Representations.}{3}{section*.4}\protected@file@percent }
+\@LN{170}{2}
+\@LN{171}{2}
+\@LN{172}{2}
+\@LN{173}{2}
+\@LN{174}{2}
+\@LN{175}{2}
+\@LN{176}{2}
+\@LN{177}{2}
+\@LN{178}{2}
+\@LN{179}{2}
+\@LN{180}{2}
+\@LN{181}{2}
+\@LN{182}{2}
+\@LN{183}{2}
+\@LN{184}{2}
+\@LN{185}{2}
+\@LN{186}{2}
+\@writefile{toc}{\contentsline {paragraph}{Early Warning Signals and Critical Transitions.}{3}{section*.5}\protected@file@percent }
+\@LN{187}{2}
+\@LN{188}{2}
+\@LN{189}{2}
+\@LN{190}{2}
+\@LN{191}{2}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Positioning relative to recent spectral-collapse studies. SLV $\equiv \tfrac  {1}{2}\log \det G$. SIGMA: \citet  {gu2026sigma}; He+: \citet  {he2025spectral}.}}{3}{table.caption.7}\protected@file@percent }
+\newlabel{tab:related_comparison}{{1}{3}{Positioning relative to recent spectral-collapse studies. SLV $\equiv \tfrac {1}{2}\log \det G$. SIGMA: \citet {gu2026sigma}; He+: \citet {he2025spectral}}{table.caption.7}{}}
+\@LN{192}{2}
+\@LN{193}{2}
+\@LN{194}{2}
+\@LN{195}{2}
+\@LN{196}{2}
+\@writefile{toc}{\contentsline {paragraph}{Data Mixing for LLM Training.}{3}{section*.6}\protected@file@percent }
+\@LN{197}{2}
+\@LN{198}{2}
+\@LN{199}{2}
+\@LN{200}{2}
+\@LN{201}{2}
+\@LN{202}{2}
+\@LN{203}{2}
+\@LN{204}{2}
+\@LN{205}{2}
+\@LN{206}{2}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{3}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{3}{Method}{section.3}{}}
+\@LN{207}{2}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Spectral Metrics}{3}{subsection.3.1}\protected@file@percent }
+\newlabel{subsec:spectral_metrics}{{3.1}{3}{Spectral Metrics}{subsection.3.1}{}}
+\@LN{208}{2}
+\@LN{209}{2}
+\@LN{210}{2}
+\@LN{211}{2}
+\@LN{212}{2}
+\@writefile{toc}{\contentsline {paragraph}{Spectral Log-Volume (SLV).}{3}{section*.8}\protected@file@percent }
+\@LN{213}{2}
+\@LN{214}{2}
+\@LN{215}{2}
+\@LN{216}{2}
+\@LN{217}{2}
+\@LN{218}{2}
+\@LN{219}{2}
+\@LN{220}{2}
+\@LN{221}{2}
+\@LN{222}{2}
+\@writefile{toc}{\contentsline {paragraph}{Finite-Sample Considerations.}{3}{section*.9}\protected@file@percent }
+\@LN{223}{2}
+\@LN{224}{2}
+\@LN{225}{2}
+\@LN{226}{2}
+\@LN{227}{2}
+\@LN{228}{2}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Spectral and downstream metrics at selected generations (Pythia-410M, mean of three seeds 42, 43, 44; sample s.d.\ at Gen~10: $r_{\text  {eff}}$ $\pm $4.8, SLV $\pm $28.3, PPL $\pm $5.6, HeSw $\pm $.006, D-4 $\pm $.15). PPL = perplexity, HeSw = HellaSwag accuracy (0-shot), D-4 = distinct-4. Bold marks the spectral peak.}}{4}{table.caption.12}\protected@file@percent }
+\newlabel{tab:phase0}{{2}{4}{Spectral and downstream metrics at selected generations (Pythia-410M, mean of three seeds 42, 43, 44; sample s.d.\ at Gen~10: $r_{\text {eff}}$ $\pm $4.8, SLV $\pm $28.3, PPL $\pm $5.6, HeSw $\pm $.006, D-4 $\pm $.15). PPL = perplexity, HeSw = HellaSwag accuracy (0-shot), D-4 = distinct-4. Bold marks the spectral peak}{table.caption.12}{}}
+\@LN{229}{3}
+\@LN{230}{3}
+\@LN{231}{3}
+\@LN{232}{3}
+\@LN{233}{3}
+\@LN{234}{3}
+\@LN{235}{3}
+\@LN{236}{3}
+\@LN{237}{3}
+\@LN{238}{3}
+\@LN{239}{3}
+\@LN{240}{3}
+\@LN{241}{3}
+\@LN{242}{3}
+\@writefile{toc}{\contentsline {paragraph}{Effective Rank.}{4}{section*.10}\protected@file@percent }
+\@LN{243}{3}
+\@LN{244}{3}
+\@LN{245}{3}
+\@LN{246}{3}
+\@writefile{toc}{\contentsline {paragraph}{Leading Singular Value.}{4}{section*.11}\protected@file@percent }
+\@LN{247}{3}
+\@LN{248}{3}
+\@LN{249}{3}
+\@LN{250}{3}
+\@LN{251}{3}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Adaptive Mixing Controller}{4}{subsection.3.2}\protected@file@percent }
+\newlabel{subsec:controller}{{3.2}{4}{Adaptive Mixing Controller}{subsection.3.2}{}}
+\@LN{252}{3}
+\@LN{253}{3}
+\@LN{254}{3}
+\@LN{255}{3}
+\@LN{256}{3}
+\newlabel{eq:controller}{{1}{4}{Adaptive Mixing Controller}{equation.1}{}}
+\@LN{257}{3}
+\@LN{258}{3}
+\@LN{259}{3}
+\@LN{260}{3}
+\@LN{261}{3}
+\@LN{262}{3}
+\@LN{263}{3}
+\@LN@col{2}
+\@LN{264}{3}
+\@LN{265}{3}
+\@LN{266}{3}
+\@LN{267}{3}
+\@LN{268}{3}
+\@LN{269}{3}
+\@LN{270}{3}
+\@LN{271}{3}
+\@LN{272}{3}
+\@LN{273}{3}
+\@LN{274}{3}
+\@LN{275}{3}
+\@LN{276}{3}
+\@LN{277}{3}
+\@LN{278}{3}
+\@LN{279}{3}
+\@LN{280}{3}
+\@writefile{toc}{\contentsline {paragraph}{Controller Silence Condition.}{4}{section*.13}\protected@file@percent }
+\@LN{281}{3}
+\@LN{282}{3}
+\@LN{283}{3}
+\@LN{284}{3}
+\@LN{285}{3}
+\@LN{286}{3}
+\@LN{287}{3}
+\@LN{288}{3}
+\@LN{289}{3}
+\@LN{290}{3}
+\@LN{291}{3}
+\@LN{292}{3}
+\@LN{293}{3}
+\@LN{294}{3}
+\@LN{295}{3}
+\@LN{296}{3}
+\@LN{297}{3}
+\@LN{298}{3}
+\newlabel{subsec:second_order}{{3.2}{4}{Second-Order Extension}{section*.14}{}}
+\@writefile{toc}{\contentsline {paragraph}{Second-Order Extension.}{4}{section*.14}\protected@file@percent }
+\@LN{299}{3}
+\@LN{300}{3}
+\@LN{301}{3}
+\newlabel{eq:second_order}{{2}{4}{Second-Order Extension}{equation.2}{}}
+\@LN{302}{3}
+\@LN{303}{3}
+\@LN{304}{3}
+\@LN{305}{3}
+\@LN{306}{3}
+\@LN{307}{3}
+\@LN{308}{3}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Collapse Trajectory Classification}{4}{subsection.3.3}\protected@file@percent }
+\newlabel{subsec:phase_diagram}{{3.3}{4}{Collapse Trajectory Classification}{subsection.3.3}{}}
+\@LN{309}{3}
+\@LN{310}{3}
+\@LN{311}{3}
+\@LN{312}{3}
+\citation{biderman2023pythia}
+\@LN@col{1}
+\@LN{313}{4}
+\@LN{314}{4}
+\@LN{315}{4}
+\@LN{316}{4}
+\@LN{317}{4}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{5}{section.4}\protected@file@percent }
+\newlabel{sec:experiments}{{4}{5}{Experiments}{section.4}{}}
+\@LN{318}{4}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Experimental Setup}{5}{subsection.4.1}\protected@file@percent }
+\newlabel{subsec:setup}{{4.1}{5}{Experimental Setup}{subsection.4.1}{}}
+\@LN{319}{4}
+\@LN{320}{4}
+\@LN{321}{4}
+\@LN{322}{4}
+\@LN{323}{4}
+\@LN{324}{4}
+\@LN{325}{4}
+\@LN{326}{4}
+\@LN{327}{4}
+\@LN{328}{4}
+\@LN{329}{4}
+\@LN{330}{4}
+\@LN{331}{4}
+\@LN{332}{4}
+\@LN{333}{4}
+\@LN{334}{4}
+\@LN{335}{4}
+\@LN{336}{4}
+\@LN{337}{4}
+\@LN{338}{4}
+\@LN{339}{4}
+\@LN{340}{4}
+\@LN{341}{4}
+\@LN{342}{4}
+\@LN{343}{4}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Spectral Collapse Characterization}{5}{subsection.4.2}\protected@file@percent }
+\newlabel{subsec:phase0}{{4.2}{5}{Spectral Collapse Characterization}{subsection.4.2}{}}
+\@LN{344}{4}
+\@LN{345}{4}
+\@LN{346}{4}
+\@writefile{toc}{\contentsline {paragraph}{Phase I: Spectral Decompression (Gen~0--2).}{5}{section*.15}\protected@file@percent }
+\@LN{347}{4}
+\@LN{348}{4}
+\@LN{349}{4}
+\@LN{350}{4}
+\@LN{351}{4}
+\@LN{352}{4}
+\@LN{353}{4}
+\@LN{354}{4}
+\@LN{355}{4}
+\@LN{356}{4}
+\@LN{357}{4}
+\@LN{358}{4}
+\@LN@col{2}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Cross-seed reproducibility of SLV under pure-synthetic training ($r{=}0$). Thin lines: individual seeds (42, 43, 44); thick line: 3-seed mean; shaded band: $\pm $1 s.d. The coefficient of variation remains below 1.3\% at all generations; spectral collapse follows a deterministic trajectory.}}{5}{figure.caption.16}\protected@file@percent }
+\newlabel{fig:seed_variability}{{3}{5}{Cross-seed reproducibility of SLV under pure-synthetic training ($r{=}0$). Thin lines: individual seeds (42, 43, 44); thick line: 3-seed mean; shaded band: $\pm $1 s.d. The coefficient of variation remains below 1.3\% at all generations; spectral collapse follows a deterministic trajectory}{figure.caption.16}{}}
+\@writefile{toc}{\contentsline {paragraph}{Phase II: Collapse Onset (Gen~2--4).}{5}{section*.18}\protected@file@percent }
+\@LN{359}{4}
+\@LN{360}{4}
+\@LN{361}{4}
+\@LN{362}{4}
+\@LN{363}{4}
+\@LN{364}{4}
+\@LN{365}{4}
+\@LN{366}{4}
+\@LN{367}{4}
+\@LN{368}{4}
+\@LN{369}{4}
+\@LN{370}{4}
+\@writefile{toc}{\contentsline {paragraph}{Phase III: Accelerating Collapse (Gen~4--10).}{5}{section*.19}\protected@file@percent }
+\@LN{371}{4}
+\@LN{372}{4}
+\@LN{373}{4}
+\@LN{374}{4}
+\@LN{375}{4}
+\@LN{376}{4}
+\@LN{377}{4}
+\@LN{378}{4}
+\@LN{379}{4}
+\@LN{380}{4}
+\@LN{381}{4}
+\@LN{382}{4}
+\@LN{383}{4}
+\@LN{384}{4}
+\@LN{385}{4}
+\@writefile{toc}{\contentsline {paragraph}{Cross-Scale Pilot.}{5}{section*.20}\protected@file@percent }
+\@LN{386}{4}
+\@LN{387}{4}
+\@LN{388}{4}
+\@LN{389}{4}
+\@LN{390}{4}
+\citation{scheffer2009ews}
+\citation{rankme2023}
+\@LN@col{1}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces SLV (top) and perplexity (bottom) across 10 recursive generations ($r{=}0$, 3-seed mean). In Phase~I (Gen~0--2), both metrics rise simultaneously. The SLV increase reflects distributional broadening, not model health. From Phase~III onward (Gen~4--10), the two metrics diverge: SLV declines monotonically while perplexity accelerates, which confirms that post-decompression SLV faithfully tracks structural collapse.}}{6}{figure.caption.17}\protected@file@percent }
+\newlabel{fig:slv_ppl_decoupling}{{4}{6}{SLV (top) and perplexity (bottom) across 10 recursive generations ($r{=}0$, 3-seed mean). In Phase~I (Gen~0--2), both metrics rise simultaneously. The SLV increase reflects distributional broadening, not model health. From Phase~III onward (Gen~4--10), the two metrics diverge: SLV declines monotonically while perplexity accelerates, which confirms that post-decompression SLV faithfully tracks structural collapse}{figure.caption.17}{}}
+\@LN{391}{5}
+\@LN{392}{5}
+\@LN{393}{5}
+\@LN{394}{5}
+\@LN{395}{5}
+\@LN{396}{5}
+\@LN{397}{5}
+\@LN{398}{5}
+\@LN{399}{5}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Adaptive Mixing Comparison}{6}{subsection.4.3}\protected@file@percent }
+\newlabel{subsec:phase1}{{4.3}{6}{Adaptive Mixing Comparison}{subsection.4.3}{}}
+\@LN{400}{5}
+\@LN{401}{5}
+\@LN{402}{5}
+\@LN{403}{5}
+\@LN{404}{5}
+\@LN{405}{5}
+\@LN{406}{5}
+\@LN{407}{5}
+\@LN{408}{5}
+\@LN{409}{5}
+\@LN{410}{5}
+\@LN{411}{5}
+\@LN{412}{5}
+\@LN{413}{5}
+\@LN{414}{5}
+\@LN{415}{5}
+\@LN{416}{5}
+\@LN@col{2}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Maximum controller signal magnitude ($\max |\Delta \tilde  {S}_t|$, $t \geq 2$) across mixing ratios. The signal drops $10\times $ from $r{=}0$ to $r{=}0.2$ and is exactly zero for $r \geq 0.3$ (``silent''), rate-based controllers are therefore ineffective.}}{6}{figure.caption.21}\protected@file@percent }
+\newlabel{fig:controller_signal}{{5}{6}{Maximum controller signal magnitude ($\max |\Delta \tilde {S}_t|$, $t \geq 2$) across mixing ratios. The signal drops $10\times $ from $r{=}0$ to $r{=}0.2$ and is exactly zero for $r \geq 0.3$ (``silent''), rate-based controllers are therefore ineffective}{figure.caption.21}{}}
+\@LN{417}{5}
+\@LN{418}{5}
+\@LN{419}{5}
+\@LN{420}{5}
+\@LN{421}{5}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Alternative EWS Comparison}{6}{subsection.4.4}\protected@file@percent }
+\newlabel{subsec:alt_ews}{{4.4}{6}{Alternative EWS Comparison}{subsection.4.4}{}}
+\@LN{422}{5}
+\@LN{423}{5}
+\@LN{424}{5}
+\@LN{425}{5}
+\@LN{426}{5}
+\@LN{427}{5}
+\@LN{428}{5}
+\@LN{429}{5}
+\@LN{430}{5}
+\@LN{431}{5}
+\@LN{432}{5}
+\@LN{433}{5}
+\@LN{434}{5}
+\@LN{435}{5}
+\@LN{436}{5}
+\@LN{437}{5}
+\@LN{438}{5}
+\@LN{439}{5}
+\@LN{440}{5}
+\@LN{441}{5}
+\@LN{442}{5}
+\@LN{443}{5}
+\@LN{444}{5}
+\@LN{445}{5}
+\@LN{446}{5}
+\@LN{447}{5}
+\@LN{448}{5}
+\@LN{449}{5}
+\@LN{450}{5}
+\@LN{451}{5}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Eight EWS indicators under pure-synthetic training ($r{=}0$, Pythia-410M). \textbf  {Direction}: trajectory shape (Peak G$n$ = decompression peak at generation $n$; mono.\ = monotonic post-peak or throughout). \textbf  {Rel $\Delta $}: total relative change. \textbf  {Rev.}: whether the indicator reverses under $r{=}0.5$ mixing. Seven of eight reverse; raw PPL is the sole exception. Full data in Appendix Table~\ref {tab:ews_comparison}.}}{7}{table.caption.22}\protected@file@percent }
+\newlabel{tab:ews_main}{{3}{7}{Eight EWS indicators under pure-synthetic training ($r{=}0$, Pythia-410M). \textbf {Direction}: trajectory shape (Peak G$n$ = decompression peak at generation $n$; mono.\ = monotonic post-peak or throughout). \textbf {Rel $\Delta $}: total relative change. \textbf {Rev.}: whether the indicator reverses under $r{=}0.5$ mixing. Seven of eight reverse; raw PPL is the sole exception. Full data in Appendix Table~\ref {tab:ews_comparison}}{table.caption.22}{}}
+\@LN{452}{6}
+\@LN{453}{6}
+\@LN{454}{6}
+\@LN{455}{6}
+\@LN{456}{6}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Collapse Trajectory Classification}{7}{subsection.4.5}\protected@file@percent }
+\newlabel{subsec:phase_diagram_exp}{{4.5}{7}{Collapse Trajectory Classification}{subsection.4.5}{}}
+\@LN{457}{6}
+\@LN{458}{6}
+\@LN{459}{6}
+\@LN{460}{6}
+\@LN{461}{6}
+\@writefile{toc}{\contentsline {paragraph}{Type~I: Pure Collapse ($r{=}0$).}{7}{section*.24}\protected@file@percent }
+\@LN{462}{6}
+\@LN{463}{6}
+\@LN{464}{6}
+\@writefile{toc}{\contentsline {paragraph}{Type~II: Near-critical Mixing ($r{=}0.2$, $r{=}0.25$).}{7}{section*.25}\protected@file@percent }
+\@LN{465}{6}
+\@LN{466}{6}
+\@LN{467}{6}
+\@LN{468}{6}
+\@LN{469}{6}
+\@LN{470}{6}
+\@LN{471}{6}
+\@LN{472}{6}
+\@LN{473}{6}
+\@LN{474}{6}
+\@LN{475}{6}
+\@LN{476}{6}
+\@LN{477}{6}
+\@LN{478}{6}
+\@writefile{toc}{\contentsline {paragraph}{Type~III: Super-critical Mixing ($r \geq 0.3$).}{7}{section*.27}\protected@file@percent }
+\@LN{479}{6}
+\@LN{480}{6}
+\@LN{481}{6}
+\@LN{482}{6}
+\@LN{483}{6}
+\@LN@col{2}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces SLV trajectories across mixing ratios (Pythia-410M; $r{=}0$, $r{=}0.2$, $r{=}0.25$, $r{=}0.3$: 3-seed mean, solid lines; $r{=}0.5$: 2-seed mean, dashed line). Type~I ($r{=}0$): decompression then monotonic collapse. Type~II ($r{=}0.2$, $r{=}0.25$): transient dip followed by recovery. Type~III ($r{=}0.3$, $r{=}0.5$): monotonic expansion from Gen~2 onward. The shaded band marks the critical threshold $r_{\text  {crit}} \in (0.25, 0.3]$. The dashed horizontal line indicates the Gen~0 baseline.}}{7}{figure.caption.23}\protected@file@percent }
+\newlabel{fig:phase_diagram}{{6}{7}{SLV trajectories across mixing ratios (Pythia-410M; $r{=}0$, $r{=}0.2$, $r{=}0.25$, $r{=}0.3$: 3-seed mean, solid lines; $r{=}0.5$: 2-seed mean, dashed line). Type~I ($r{=}0$): decompression then monotonic collapse. Type~II ($r{=}0.2$, $r{=}0.25$): transient dip followed by recovery. Type~III ($r{=}0.3$, $r{=}0.5$): monotonic expansion from Gen~2 onward. The shaded band marks the critical threshold $r_{\text {crit}} \in (0.25, 0.3]$. The dashed horizontal line indicates the Gen~0 baseline}{figure.caption.23}{}}
+\@LN{484}{6}
+\@LN{485}{6}
+\@LN{486}{6}
+\@LN{487}{6}
+\@LN{488}{6}
+\@LN{489}{6}
+\@LN{490}{6}
+\@LN{491}{6}
+\@LN{492}{6}
+\@writefile{toc}{\contentsline {paragraph}{Output Diversity Divergence.}{7}{section*.28}\protected@file@percent }
+\@LN{493}{6}
+\@LN{494}{6}
+\@LN{495}{6}
+\@LN{496}{6}
+\@LN{497}{6}
+\@LN{498}{6}
+\@LN{499}{6}
+\@LN{500}{6}
+\@LN{501}{6}
+\@LN{502}{6}
+\@LN{503}{6}
+\@writefile{toc}{\contentsline {paragraph}{Practical Implications.}{7}{section*.29}\protected@file@percent }
+\@LN{504}{6}
+\@LN{505}{6}
+\@LN{506}{6}
+\@LN{507}{6}
+\@LN{508}{6}
+\@LN{509}{6}
+\@LN{510}{6}
+\citation{radford2019language}
+\@LN@col{1}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Effective rank ($r_{\mathrm  {eff}}$) trajectories across mixing ratios. Unlike SLV (Figure~\ref {fig:phase_diagram}), $r_{\mathrm  {eff}}$ rises monotonically for all $r \geq 0.2$, providing only a 2-type classification and failing to identify the Type~II transitional regime.}}{8}{figure.caption.26}\protected@file@percent }
+\newlabel{fig:rankme_trajectories}{{7}{8}{Effective rank ($r_{\mathrm {eff}}$) trajectories across mixing ratios. Unlike SLV (Figure~\ref {fig:phase_diagram}), $r_{\mathrm {eff}}$ rises monotonically for all $r \geq 0.2$, providing only a 2-type classification and failing to identify the Type~II transitional regime}{figure.caption.26}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Final-generation spectral and downstream metrics across mixing ratios (all runs to Gen~10). PPL = perplexity, D-4 = distinct-4. $\max \Delta _t$ computed for $t \geq 2$, excluding the initial fine-tuning transient. Type classification follows \S  \ref {subsec:phase_diagram}. $r{=}0$ reports the mean of three seeds (42, 43, 44); $r{=}0.3$ the mean of three seeds (42, 43, 44); $r{=}0.2$ the mean of three seeds (42, 43, 44); $r{=}0.5$ the mean of two seeds (42, 43; $n{=}2$ precludes reliable uncertainty estimation); $r{=}0.25$ the mean of three seeds (42, 43, 44). D-4 exhibits high cross-seed variance at $r{=}0$ (s.d.\ $= 0.15$) and $r{=}0.3$ (s.d.\ $= 0.155$).}}{8}{table.caption.30}\protected@file@percent }
+\newlabel{tab:phase_summary}{{4}{8}{Final-generation spectral and downstream metrics across mixing ratios (all runs to Gen~10). PPL = perplexity, D-4 = distinct-4. $\max \Delta _t$ computed for $t \geq 2$, excluding the initial fine-tuning transient. Type classification follows \S \ref {subsec:phase_diagram}. $r{=}0$ reports the mean of three seeds (42, 43, 44); $r{=}0.3$ the mean of three seeds (42, 43, 44); $r{=}0.2$ the mean of three seeds (42, 43, 44); $r{=}0.5$ the mean of two seeds (42, 43; $n{=}2$ precludes reliable uncertainty estimation); $r{=}0.25$ the mean of three seeds (42, 43, 44). D-4 exhibits high cross-seed variance at $r{=}0$ (s.d.\ $= 0.15$) and $r{=}0.3$ (s.d.\ $= 0.155$)}{table.caption.30}{}}
+\@LN{511}{7}
+\@LN{512}{7}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Cross-Architecture Validation}{8}{subsection.4.6}\protected@file@percent }
+\newlabel{subsec:cross_arch}{{4.6}{8}{Cross-Architecture Validation}{subsection.4.6}{}}
+\@LN{513}{7}
+\@LN{514}{7}
+\@LN{515}{7}
+\@LN{516}{7}
+\@LN{517}{7}
+\@LN{518}{7}
+\@LN{519}{7}
+\@LN{520}{7}
+\@LN{521}{7}
+\@LN{522}{7}
+\@LN{523}{7}
+\@LN{524}{7}
+\@LN{525}{7}
+\@LN{526}{7}
+\@LN{527}{7}
+\@LN{528}{7}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Cross-architecture validation on GPT-2-medium (355M, seed~42). \textbf  {Match}: whether the trajectory type matches the corresponding Pythia-410M classification. $\dagger $\,Three-generation horizon does not resolve the Type~II/III distinction at this ratio.}}{8}{table.caption.31}\protected@file@percent }
+\newlabel{tab:cross_arch}{{5}{8}{Cross-architecture validation on GPT-2-medium (355M, seed~42). \textbf {Match}: whether the trajectory type matches the corresponding Pythia-410M classification. $\dagger $\,Three-generation horizon does not resolve the Type~II/III distinction at this ratio}{table.caption.31}{}}
+\@LN{529}{7}
+\@LN{530}{7}
+\@LN{531}{7}
+\@LN{532}{7}
+\@LN{533}{7}
+\@LN{534}{7}
+\@LN{535}{7}
+\@LN{536}{7}
+\@LN{537}{7}
+\@LN{538}{7}
+\@LN{539}{7}
+\@LN{540}{7}
+\@LN{541}{7}
+\@LN{542}{7}
+\@LN{543}{7}
+\@LN{544}{7}
+\@LN{545}{7}
+\@LN{546}{7}
+\@LN{547}{7}
+\@LN{548}{7}
+\@LN{549}{7}
+\@LN{550}{7}
+\@LN{551}{7}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion and Conclusion}{8}{section.5}\protected@file@percent }
+\newlabel{sec:conclusion}{{5}{8}{Discussion and Conclusion}{section.5}{}}
+\@LN{552}{7}
+\@LN{553}{7}
+\@LN{554}{7}
+\@LN{555}{7}
+\@LN{556}{7}
+\@LN{557}{7}
+\@LN{558}{7}
+\@LN{559}{7}
+\@LN{560}{7}
+\@LN{561}{7}
+\@LN{562}{7}
+\@LN{563}{7}
+\@LN{564}{7}
+\bibdata{references}
+\bibcite{alemohammad2024mad}{{1}{2024}{{Alemohammad et~al.}}{{Alemohammad, Casco-Rodriguez, Luzi, Humayun, Babaei, LeJeune, Siahkoohi, and Baraniuk}}}
+\bibcite{amin2025escaping}{{2}{2025}{{Amin et~al.}}{{Amin, Babakniya, Bie, Kong, Syed, and Vassilvitskii}}}
+\bibcite{bai2010spectral}{{3}{2010}{{Bai and Silverstein}}{{}}}
+\bibcite{biderman2023pythia}{{4}{2023}{{Biderman et~al.}}{{Biderman, Schoelkopf, Anthony, Bradley, O'Brien, Hallahan, Khan, Purohit, Prashanth, Raff, Skowron, Sutawika, and van~der Wal}}}
+\bibcite{bury2021deeplearning}{{5}{2021}{{Bury et~al.}}{{Bury, Sujith, Pavithran, Scheffer, Lenton, Anand, and Bauch}}}
+\bibcite{chen2025aioli}{{6}{2025}{{Chen et~al.}}{{Chen, Hu, Lourie, Cho, and R\'{e}}}}
+\bibcite{dakos2012methods}{{7}{2012}{{Dakos et~al.}}{{Dakos, Carpenter, Brock, Ellison, Guttal, Ives, K\'{e}fi, Livina, Seekell, van Nes, and Scheffer}}}
+\bibcite{dohmatob2024demystified}{{8}{2024{a}}{{Dohmatob et~al.}}{{Dohmatob, Feng, and Kempe}}}
+\bibcite{dohmatob2025strong}{{9}{2025}{{Dohmatob et~al.}}{{Dohmatob, Feng, Subramonian, and Kempe}}}
+\bibcite{dohmatob2024tails}{{10}{2024{b}}{{Dohmatob et~al.}}{{Dohmatob, Feng, Yang, Charton, and Kempe}}}
+\bibcite{ethayarajh2019contextual}{{11}{2019}{{Ethayarajh}}{{}}}
+\bibcite{fu2025selfverification}{{12}{2025}{{Fu et~al.}}{{Fu, Wang, Chen, Shen, and Tao}}}
+\bibcite{rankme2023}{{13}{2023}{{Garrido et~al.}}{{Garrido, Balestriero, Najman, and LeCun}}}
+\bibcite{gerstgrasser2024inevitable}{{14}{2024}{{Gerstgrasser et~al.}}{{Gerstgrasser, Schaeffer, Dey, Rafailov, Sleight, Hughes, Korbak, Agrawal, Pai, Gromov, Roberts, Yang, Donoho, and Koyejo}}}
+\bibcite{gu2026sigma}{{15}{2026}{{Gu et~al.}}{{Gu, Pang, Ye, Wang, Lin, Priebe, and Aue}}}
+\@LN@col{1}
+\@LN{565}{8}
+\@writefile{toc}{\contentsline {paragraph}{Scale and Scope.}{9}{section*.33}\protected@file@percent }
+\@LN{566}{8}
+\@LN{567}{8}
+\@LN{568}{8}
+\@LN{569}{8}
+\@LN{570}{8}
+\@LN{571}{8}
+\@LN{572}{8}
+\@LN{573}{8}
+\@LN{574}{8}
+\@LN{575}{8}
+\@LN{576}{8}
+\@writefile{toc}{\contentsline {paragraph}{Temporal Horizon.}{9}{section*.34}\protected@file@percent }
+\@LN{577}{8}
+\@LN{578}{8}
+\@LN{579}{8}
+\@LN{580}{8}
+\@LN{581}{8}
+\@LN{582}{8}
+\@LN{583}{8}
+\@LN{584}{8}
+\@writefile{toc}{\contentsline {paragraph}{Generalization.}{9}{section*.35}\protected@file@percent }
+\@LN{585}{8}
+\@LN{586}{8}
+\@LN{587}{8}
+\@LN{588}{8}
+\@LN{589}{8}
+\@LN{590}{8}
+\@LN{591}{8}
+\@LN{592}{8}
+\@LN{593}{8}
+\@LN{594}{8}
+\@LN{595}{8}
+\@LN{596}{8}
+\@LN{597}{8}
+\@LN{598}{8}
+\@LN{599}{8}
+\@LN{600}{8}
+\@LN{601}{8}
+\@LN{602}{8}
+\@LN{603}{8}
+\@LN{604}{8}
+\@LN{605}{8}
+\@LN{606}{8}
+\@LN{607}{8}
+\@LN{608}{8}
+\@LN{609}{8}
+\@LN{610}{8}
+\@LN{611}{8}
+\@LN{612}{8}
+\@LN{613}{8}
+\@LN{614}{8}
+\@LN@col{2}
+\@LN{615}{8}
+\@LN{616}{8}
+\@LN{617}{8}
+\@LN{618}{8}
+\@LN{619}{8}
+\@LN{620}{8}
+\@LN{621}{8}
+\@LN{622}{8}
+\@LN{623}{8}
+\@LN{624}{8}
+\@LN{625}{8}
+\@LN{626}{8}
+\@LN{627}{8}
+\@LN{628}{8}
+\@LN{629}{8}
+\@LN{630}{8}
+\@LN{631}{8}
+\@LN{632}{8}
+\@LN{633}{8}
+\@LN{634}{8}
+\@LN{635}{8}
+\@LN{636}{8}
+\@LN{637}{8}
+\@LN{638}{8}
+\@LN{639}{8}
+\@LN{640}{8}
+\@LN{641}{8}
+\@LN{642}{8}
+\@LN{643}{8}
+\@LN{644}{8}
+\@LN{645}{8}
+\@LN{646}{8}
+\@LN{647}{8}
+\@LN{648}{8}
+\@LN{649}{8}
+\@LN{650}{8}
+\@LN{651}{8}
+\@LN{652}{8}
+\@LN{653}{8}
+\@LN{654}{8}
+\@LN{655}{8}
+\@LN{656}{8}
+\@LN{657}{8}
+\@LN{658}{8}
+\@LN{659}{8}
+\@LN{660}{8}
+\@LN{661}{8}
+\@LN{662}{8}
+\@LN{663}{8}
+\@LN{664}{8}
+\@LN{665}{8}
+\@LN{666}{8}
+\@LN{667}{8}
+\@LN{668}{8}
+\@LN{669}{8}
+\@LN{670}{8}
+\@LN{671}{8}
+\bibcite{he2025spectral}{{16}{2025}{{He et~al.}}{{He, Guo, Prakash, Tiwari, Tao, Serapio, Greenwald, and Konidaris}}}
+\bibcite{longpre2024pretrainer}{{17}{2024}{{Longpre et~al.}}{{Longpre, Yauney, Reif, Lee, Roberts, Zoph, Zhou, Wei, Robinson, Mimno, and Ippolito}}}
+\bibcite{martin2021implicit}{{18}{2021}{{Martin and Mahoney}}{{}}}
+\bibcite{muennighoff2023scaling}{{19}{2023}{{Muennighoff et~al.}}{{Muennighoff, Rush, Barak, Le~Scao, Piktus, Tazi, Pyysalo, Wolf, and Raffel}}}
+\bibcite{naderi2025mindgap}{{20}{2025}{{Nait~Saada et~al.}}{{Nait~Saada, Naderi, and Tanner}}}
+\bibcite{radford2019language}{{21}{2019}{{Radford et~al.}}{{Radford, Wu, Child, Luan, Amodei, and Sutskever}}}
+\bibcite{roy2007effectiverank}{{22}{2007}{{Roy and Vetterli}}{{}}}
+\bibcite{scheffer2009ews}{{23}{2009}{{Scheffer et~al.}}{{Scheffer, Bascompte, Brock, Brovkin, Carpenter, Dakos, Held, van Nes, Rietkerk, and Sugihara}}}
+\bibcite{scheffer2012anticipating}{{24}{2012}{{Scheffer et~al.}}{{Scheffer, Carpenter, Lenton, Bascompte, Brock, Dakos, van~de Koppel, van~de Leemput, Levin, van Nes, Pascual, and Vandermeer}}}
+\bibcite{seddik2024synthetic}{{25}{2024}{{Seddik et~al.}}{{Seddik, Chen, Hayou, Youssef, and Debbah}}}
+\bibcite{shumailov2024collapse}{{26}{2024}{{Shumailov et~al.}}{{Shumailov, Shumaylov, Zhao, Papernot, Anderson, and Gal}}}
+\bibcite{xie2023doremi}{{27}{2023}{{Xie et~al.}}{{Xie, Pham, Dong, Du, Liu, Lu, Liang, Le, Ma, and Yu}}}
+\bibcite{ye2025mixinglaws}{{28}{2025}{{Ye et~al.}}{{Ye, Liu, Sun, Zhan, Zhou, and Qiu}}}
+\@LN@col{1}
+\@LN{672}{9}
+\@LN{673}{9}
+\@LN{674}{9}
+\@LN{675}{9}
+\@LN{676}{9}
+\@LN{677}{9}
+\@LN{678}{9}
+\@LN{679}{9}
+\@LN{680}{9}
+\@LN{681}{9}
+\@LN{682}{9}
+\@LN{683}{9}
+\@LN{684}{9}
+\@LN{685}{9}
+\@LN{686}{9}
+\@LN{687}{9}
+\@LN{688}{9}
+\@LN{689}{9}
+\@LN{690}{9}
+\@LN{691}{9}
+\@LN{692}{9}
+\@LN{693}{9}
+\@LN{694}{9}
+\@LN{695}{9}
+\@LN{696}{9}
+\@LN{697}{9}
+\@LN{698}{9}
+\@LN{699}{9}
+\@LN{700}{9}
+\@LN{701}{9}
+\@LN{702}{9}
+\@LN{703}{9}
+\@LN{704}{9}
+\@LN{705}{9}
+\@LN{706}{9}
+\@LN{707}{9}
+\@LN{708}{9}
+\@LN{709}{9}
+\@LN{710}{9}
+\@LN{711}{9}
+\@LN{712}{9}
+\@LN{713}{9}
+\@LN{714}{9}
+\@LN{715}{9}
+\@LN{716}{9}
+\@LN{717}{9}
+\@LN{718}{9}
+\@LN{719}{9}
+\@LN{720}{9}
+\@LN{721}{9}
+\@LN{722}{9}
+\@LN{723}{9}
+\@LN{724}{9}
+\@LN{725}{9}
+\@LN{726}{9}
+\@LN{727}{9}
+\@LN@col{2}
+\@LN{728}{9}
+\@LN{729}{9}
+\@LN{730}{9}
+\@LN{731}{9}
+\@LN{732}{9}
+\@LN{733}{9}
+\@LN{734}{9}
+\@LN{735}{9}
+\@LN{736}{9}
+\@LN{737}{9}
+\@LN{738}{9}
+\@LN{739}{9}
+\@LN{740}{9}
+\@LN{741}{9}
+\@LN{742}{9}
+\@LN{743}{9}
+\@LN{744}{9}
+\@LN{745}{9}
+\@LN{746}{9}
+\@LN{747}{9}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Alternative EWS Indicator Details}{10}{appendix.A}\protected@file@percent }
+\newlabel{app:ews_details}{{A}{10}{Alternative EWS Indicator Details}{appendix.A}{}}
+\@LN{748}{9}
+\@LN{749}{9}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Alternative early warning indicators under pure-synthetic training ($r{=}0$, seed 42, Pythia-410M, 10 gen). \textbf  {Peak}: generation at which the indicator reverses (--- = monotonic from Gen~0). \textbf  {Mono.}: post-peak monotonicity (\text  {$\mathsurround \z@ \mathchar "558$}\ = yes; number = violations). \textbf  {Rel $\Delta $}: magnitude of total relative change; for peaked indicators (SLV, RankMe), computed as $|v_{10} - v_{\text  {peak}}|/|v_{\text  {peak}}|$; for monotonic indicators, $|v_{10} - v_0|/|v_0|$. \textbf  {Rev.}: direction reversal under $r{=}0.5$ mixing (\text  {$\mathsurround \z@ \mathchar "558$}\ = reversed). Note: Raw PPL Rel~$\Delta $ is 704\% for seed~42; the main text reports 643\% (3-seed mean).}}{10}{table.caption.37}\protected@file@percent }
+\newlabel{tab:ews_comparison}{{6}{10}{Alternative early warning indicators under pure-synthetic training ($r{=}0$, seed 42, Pythia-410M, 10 gen). \textbf {Peak}: generation at which the indicator reverses (--- = monotonic from Gen~0). \textbf {Mono.}: post-peak monotonicity (\checkmark \ = yes; number = violations). \textbf {Rel $\Delta $}: magnitude of total relative change; for peaked indicators (SLV, RankMe), computed as $|v_{10} - v_{\text {peak}}|/|v_{\text {peak}}|$; for monotonic indicators, $|v_{10} - v_0|/|v_0|$. \textbf {Rev.}: direction reversal under $r{=}0.5$ mixing (\checkmark \ = reversed). Note: Raw PPL Rel~$\Delta $ is 704\% for seed~42; the main text reports 643\% (3-seed mean)}{table.caption.37}{}}
+\@LN{750}{9}
+\@writefile{toc}{\contentsline {section}{\numberline {B}Per-Generation Cross-Seed Variance}{10}{appendix.B}\protected@file@percent }
+\newlabel{app:pergen_variance}{{B}{10}{Per-Generation Cross-Seed Variance}{appendix.B}{}}
+\@LN{751}{9}
+\@LN{752}{9}
+\@LN{753}{9}
+\@LN{754}{9}
+\@LN{755}{9}
+\@LN{756}{9}
+\@LN{757}{9}
+\@LN{758}{9}
+\@LN{759}{9}
+\@LN@col{1}
+\@LN{760}{10}
+\@LN{761}{10}
+\@LN{762}{10}
+\@LN{763}{10}
+\@LN{764}{10}
+\@LN{765}{10}
+\@LN{766}{10}
+\@LN{767}{10}
+\@writefile{toc}{\contentsline {section}{\numberline {C}Controller Signal Sensitivity to EMA Smoothing Parameter}{11}{appendix.C}\protected@file@percent }
+\newlabel{app:alpha_robustness}{{C}{11}{Controller Signal Sensitivity to EMA Smoothing Parameter}{appendix.C}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Normalized maximum controller signal magnitude ($\max |\Delta \tilde  {S}_t| / \tilde  {S}_t$, $t \geq 2$) across mixing ratios and EMA smoothing parameters. The critical threshold $r_{\text  {crit}} \in (0.25, 0.3]$ is invariant to $\alpha $: signal is exactly zero for $r \geq 0.3$ at all three smoothing values, the phase boundary is a structural property of the trajectory rather than an artifact of smoothing.}}{11}{table.caption.40}\protected@file@percent }
+\newlabel{tab:alpha_robustness}{{9}{11}{Normalized maximum controller signal magnitude ($\max |\Delta \tilde {S}_t| / \tilde {S}_t$, $t \geq 2$) across mixing ratios and EMA smoothing parameters. The critical threshold $r_{\text {crit}} \in (0.25, 0.3]$ is invariant to $\alpha $: signal is exactly zero for $r \geq 0.3$ at all three smoothing values, the phase boundary is a structural property of the trajectory rather than an artifact of smoothing}{table.caption.40}{}}
+\@LN{768}{10}
+\@writefile{toc}{\contentsline {section}{\numberline {D}Training and Compute Details}{11}{appendix.D}\protected@file@percent }
+\newlabel{app:training_details}{{D}{11}{Training and Compute Details}{appendix.D}{}}
+\@LN{769}{10}
+\@LN{770}{10}
+\@LN{771}{10}
+\@LN{772}{10}
+\@LN{773}{10}
+\@LN{774}{10}
+\@LN{775}{10}
+\@LN{776}{10}
+\@LN{777}{10}
+\@LN{778}{10}
+\@LN{779}{10}
+\@writefile{toc}{\contentsline {section}{\numberline {E}Use of AI Assistance}{11}{appendix.E}\protected@file@percent }
+\@LN{780}{10}
+\@LN{781}{10}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Per-generation metrics under pure-synthetic training ($r{=}0$, Pythia-410M, mean$_{\pm \text  {s.d.}}$ across seeds 42, 43, 44). Gen~0 shares a single pretrained checkpoint; D-4 variance at Gen~0 reflects generation sampling. Bold marks the spectral peak.}}{12}{table.caption.38}\protected@file@percent }
+\newlabel{tab:pergen_variance}{{7}{12}{Per-generation metrics under pure-synthetic training ($r{=}0$, Pythia-410M, mean$_{\pm \text {s.d.}}$ across seeds 42, 43, 44). Gen~0 shares a single pretrained checkpoint; D-4 variance at Gen~0 reflects generation sampling. Bold marks the spectral peak}{table.caption.38}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Per-generation metrics under transitional mixing ($r{=}0.2$, Pythia-410M, mean$_{\pm \text  {s.d.}}$ across seeds 42, 43, 44). Gen~0 shares a single pretrained checkpoint; D-4 variance at Gen~0 reflects generation sampling. HellaSwag was not evaluated for mixing experiments.}}{12}{table.caption.39}\protected@file@percent }
+\newlabel{tab:pergen_variance_r02}{{8}{12}{Per-generation metrics under transitional mixing ($r{=}0.2$, Pythia-410M, mean$_{\pm \text {s.d.}}$ across seeds 42, 43, 44). Gen~0 shares a single pretrained checkpoint; D-4 variance at Gen~0 reflects generation sampling. HellaSwag was not evaluated for mixing experiments}{table.caption.39}{}}
+\gdef \@abspage@last{12}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0355a43bb07509dc688f",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "viz figure1 spectral trajectory",
+  "task_key": "worker_viz_figure1-spectral-trajectory_20260518T093237",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_viz_figure1-spectral-trajectory_20260518T093237_result.json",
+    "occurrence": 1,
+    "bytes": 493,
+    "sha256": "4152ad7c086349e49c95fa11add6221b06c60a675a5c9cdd98d36a005918e042"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure 1 完成。视觉检查：\n\n- ✅ 两条线颜色区分明显（橙色 warm vs 蓝色 cold）\n- ✅ 三阶段背景带可见但不抢眼\n- ✅ Gen 2 peak 标注移到左上方，不遮挡数据点，箭头不穿越蓝线\n- ✅ 字体 ≥ 8pt\n- ✅ 图例清晰\n- ✅ 白底，网格线淡灰\n- ✅ PDF 矢量格式\n\n文件位置：\n- PDF: `paper/figures/spectral_trajectory.pdf`（本地 + 远程）\n- PNG 预览: `figures/spectral_trajectory.png`（本地）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/viz-figure1-spectral-trajectory.md"
+}

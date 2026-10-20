@@ -1,0 +1,51 @@
+{
+  "exp_id": "mvp_line_scoring_v3",
+  "project": "trace_distill_repair",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T05:33:59.176Z",
+    "updated_at": "2026-05-15T09:24:21.093Z",
+    "hypothesis": "在 v2 traces（33 实例，51430 line segments）上用修复后 teacher_scorer（max_tokens=1024）进行 line scoring，预期 error_rate < 5%",
+    "parent": "phase1_trace_v2",
+    "spec": {
+      "command": "python run_phase2_scoring.py --mode line --max-concurrent 3",
+      "server": "rtx6000-diagprobe",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "100942",
+      "log_path": "~/runs/trace_distill_repair/mvp_line_scoring_v3.log",
+      "submitted_at": "2026-05-15T05:38:24.230Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/trace_distill_repair/pipeline_output/",
+      "data_count": "33 instances, 51430 line segments",
+      "model_name": "deepseek-v4-flash",
+      "seed": "N/A",
+      "checkpoint_source": "N/A (API scoring, no checkpoint)",
+      "eval_data": "/root/trace_distill_repair/pipeline_output/*_line_segments.json",
+      "wall_clock_seconds": 12664.4,
+      "gpu_hours": 3.52
+    },
+    "conclusion": "success",
+    "failure_reason": "",
+    "completed_at": "2026-05-15T09:09:28.636Z",
+    "metrics": {
+      "instances": 33,
+      "total_segments": 4091,
+      "keep": 226,
+      "drop": 3676,
+      "error": 189,
+      "keep_rate_pct": 5.5,
+      "error_rate_pct": 4.6,
+      "content_verification": "PASS - contains v2 data with failing test execution features",
+      "reviewer": "PASS"
+    }
+  },
+  "timestamp": "2026-05-15T09:24:21.129184+00:00",
+  "trigger": "update_registry"
+}

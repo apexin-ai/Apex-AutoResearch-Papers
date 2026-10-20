@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a10205c75a15dbb63c60",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "eval hellaswag seed43",
+  "task_key": "worker_eval_hellaswag_seed43_20260520T092756",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_hellaswag_seed43_20260520T092756_result.json",
+    "occurrence": 1,
+    "bytes": 938,
+    "sha256": "f1f1037545167b91492a9815e975e3312badba1136954bf4d55185bacd4d6194"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All seed43 HellaSwag evaluations complete. Here are the results:\n\n## exp_010 (seed43, pure collapse) — HellaSwag 0-shot (acc_norm)\n\n```\nGen  0: HeSw = 0.4130  (pretrained baseline, shared across seeds)\nGen  2: HeSw = 0.3809\nGen  5: HeSw = 0.3384\nGen  7: HeSw = 0.3187\nGen 10: HeSw = 0.2900\n```\n\nFull precision from JSON:\n- gen_2: 0.3809\n- gen_5: 0.3384\n- gen_7: 0.3187\n- gen_10: 0.2900\n\n**Cross-seed comparison (seed42 vs seed43):**\n\n| Gen | seed42 | seed43 | Δ |\n|-----|--------|--------|---|\n| 0 | 0.4130 | 0.4130 | — |\n| 2 | 0.3760 | 0.3809 | +0.0049 |\n| 5 | 0.3440 | 0.3384 | −0.0056 |\n| 7 | 0.3190 | 0.3187 | −0.0003 |\n| 10 | 0.2950 | 0.2900 | −0.0050 |\n\nVery tight agreement between the two seeds — differences are all within ±0.005. Monotonic degradation trend confirmed for both.\n\n**seed44 (exp_013):** Only gen_0 exists; training still in progress. Cannot run evals yet."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-hellaswag-seed43.md"
+}

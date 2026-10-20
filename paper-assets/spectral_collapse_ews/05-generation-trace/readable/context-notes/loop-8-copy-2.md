@@ -1,0 +1,83 @@
+# reviewer / loop_8.md
+
+**Spectral Early Warning Signals for Model Collapse and Their Prevention–Detectability Tradeoff** · Context and loop notes
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `task_context/history/reviewer/loop_8.md`
+- **Structured JSON:** [`2392a94eb387ef3deca2.json`](../../sessions/23/2392a94eb387ef3deca2.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Context note
+
+_source line 1_
+
+---
+loop: 8
+reason: max_wall_time
+updated: '2026-05-22T00:47:25+00:00'
+---
+
+### 1. 🔴 硬约束 / 红线
+- 项目未配置 `gpu_ids` 白名单，cuda:0 和 cuda:1 均可用，但必须确认进程实际在哪张卡上（exp_015 log 写 `gpu=0` 但实际通过 `CUDA_VISIBLE_DEVICES=1` 跑在物理 GPU 1）
+- GPU 型号是 **RTX PRO 6000 Blackwell 96GB**，不是 Ada（ROADMAP 曾写错为 Ada）
+- 数据盘 `/root/autodl-tmp/`，根分区只有 ~30GB——checkpoint 必须在数据盘。之前 exp_014 因磁盘满崩溃过
+- r=0.25 的 HellaSwag 数据 seed43 存储格式特殊：嵌套子目录 + `results_TIMESTAMP.json`，不是平铺 `results.json`。Worker 搜索时容易漏
+
+### 2. 🖥️ 基础设施快照
+- 服务器：`rtx6000-diagprobe`，account=root，项目代码 `/root/spectral_collapse_ews`
+- Python：`/root/miniconda3/bin/python`（conda base 环境，不是 venv）
+- Checkpoints：`/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/`
+- Results JSON：`/root/spectral_collapse_ews/results/phase1_fixed_mix_r{ratio}_seed{N}_results.json`
+- 本地 workspace：`/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/`
+- 论文源码：`{workspace}/paper/sections/`（experiments.tex, introduction.tex, appendix.tex 等）
+- 活跃进程（截至 handoff 时刻）：
+  - exp_015 PID 516824 (cuda:1) — r=0.25 seed44, Gen 7 评估中
+  - exp_016 PID 614614 (cuda:0) — r=0.3 seed44, Gen 1 生成中
+- P1 启动脚本已就绪：`/root/spectral_collapse_ews/scripts/launch_fixed_mix_r020_seed43.sh` 和 `launch_fixed_mix_r050_seed43.sh`
+- 磁盘：`/root/autodl-tmp` 88GB 可用（34%）
+
+### 3. 📊 当前状态
+**刚完成的审查：**
+- commit 98a14f5 appendix per-gen variance table (R1-W2) — 6 项全 PASS
+- exp_014b 完成核实 — Type II 确认，SLV dip at Gen 2 (-4.14), recovery to 2488.58
+- exp_015 Type II 风险评估 — SSH 读取 SLV 确认有 dip (-2.10 at Gen 2)，EMA 违反，3-seed 全部 Type II
+- 叙事强度评估 — 5 项建议已发 Director（推荐 §4.1 加 "cross-seed robust"、§4.5 加 r=0.25 CV 对比句）
+- ROADMAP 审查 — GPU 型号写错(Ada→Blackwell)、时间线合理、GPU-hours 充足
+
+**Registry 状态：**
+- exp_014b: QUEUED（应为 DONE，Agent 未更新）
+- exp_015: RUNNING — r=0.25 seed44, ~Gen 7, 预计 May 22 ~14:30 服务器时间完成
+- exp_016: RUNNING — r=0.3 seed44, Gen 1 生成中, 预计 May 23 ~02:00 服务器时间完成
+- 其余全 DONE
+
+**Paper provenance 过时：** C018/C041/C062 仍引用 "2.43x rate"（已改为 1.78±0.22%/gen），C047 仍称 single seed。已报 Director 建议刷新。
+
+### 4. 📋 待办（条件触发式）
+- exp_015 完成 → 验证 Gen 10 SLV 与 seed42/43 cross-seed 一致性；确认 3-seed r=0.25 Type II；检查 Table 3 r=0.25 行是否更新为 3-seed mean
+- exp_016 完成 → 验证 Type III 轨迹（SLV 单调上升）；3-seed r=0.3 cross-seed mean；Table 3 r=0.3 行更新为 3-seed
+- P1 实验启动（exp_015/016 完成释放 GPU 后）→ 确认 launch script 使用正确的 CUDA_VISIBLE_DEVICES
+- Abstract L5 "across two random seeds" → 当 r=0.25 和 r=0.3 都有 3-seed 后必须更新为 "three"
+- Limitations L5 seed 覆盖描述 → 随实验完成更新
+- Phase E final pass → 全文数字对齐 + 编译 ≤ 8 页验证（DDL May 25）
+- Director 转发章节审查 → 加载 paper-quality-lessons skill，按 §5 模式 B 审查
+
+### 5. 🎯 战略上下文
+- **核心结论**：递归合成训练产生三阶段谱坍缩（decompression→onset→acceleration），SLV 是最有效监测器，r_crit ∈ (0.25, 0.3] 分隔 Type I/II/III
+- **决策链关键节点**：D029 收紧 r_crit 至 (0.25,0.3]，D031 撤回下修，D033 废弃 2.43× 改用绝对速率，D034 改用 cross-seed mean 判据
+- **最易判断错的事**：
+  1. exp_015 的 SLV dip 幅度小（-2.1 vs seed42/43 的 -4），**但 EMA 仍然违反非递增**，Type II 成立。不要因为 dip 小就误判为 Type III
+  2. Table 3 r=0.5 数据来自 exp_004 (fixed_mix seed42)，**不是** exp_006 (adaptive)。之前混源导致 D-4 错误（.095 vs .239），已在 commit 94cbf2f 修复
+  3. 论文中 Phase III decline rate 是 **1.78 ± 0.22%/gen**（3-seed 绝对速率），不是旧的 2.43× 相对加速度。Provenance 里还有残留旧值
+  4. HellaSwag 数据不在 results JSON 里，需要单独从 `lm-eval-harness` 输出目录收集。seed43 的嵌套目录结构与 seed42/44 不同
+
+
+---

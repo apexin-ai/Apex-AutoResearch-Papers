@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "118718c0d241d05a1be3",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "figure phase diagram v2",
+  "task_key": "worker_figure_phase_diagram_v2_20260520T040145",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_phase_diagram_v2_20260520T040145_result.json",
+    "occurrence": 1,
+    "bytes": 402,
+    "sha256": "3377bb385db64bc369130a90ad6148ea4a5562e9c8cc43eeedc5c6421b65371c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三处修正全部生效：\n\n1. **多色配色** — r=0 红、r=0.2 橙、r=0.25 金、r=0.3 绿、r=0.5 蓝，Type I/II/III 标注颜色已同步\n2. **Y 轴标签** — 已改为 SLV (½ log det **G**)\n3. **r_crit 标签** — 已移至 Gen 8 附近灰色带内，不再与 S₀ 标签重叠\n\n文件已存放至 `paper/figures/phase_diagram.{pdf,png}`（PDF 33KB, PNG 124KB）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-phase-diagram-v2.md"
+}

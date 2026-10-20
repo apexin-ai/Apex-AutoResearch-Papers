@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "66eaa4f2e0ea3245dd5c",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "paper writing related work 8p",
+  "task_key": "worker_paper_writing_related_work_8p_20260518T110849",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_related_work_8p_20260518T110849_result.json",
+    "occurrence": 1,
+    "bytes": 178,
+    "sha256": "af29da05256d71a578f8e91f4edcc76f2b896e80981dc459c02762a680dc0194"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "554 words (includes LaTeX commands; actual prose is ~550). File written with all 5 clusters, 19 cite keys, positioning at end of each cluster, no style violations."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-related-work-8p.md"
+}

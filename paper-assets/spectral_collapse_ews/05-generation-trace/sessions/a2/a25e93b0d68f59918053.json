@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a25e93b0d68f59918053",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "paper update r02 10gen 0520",
+  "task_key": "worker_paper_update-r02-10gen-0520_20260520T025209",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_update-r02-10gen-0520_20260520T025209_result.json",
+    "occurrence": 1,
+    "bytes": 552,
+    "sha256": "7648e558206d4202fd5619c6f1df59a97554ff5a3bf84eb723c2ec87189b1721"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译通过。5 处修改：\n\n1. **Type II 段落**：扩展为 Gen 0-9 完整轨迹（per-gen gains +4.2→+30.9→moderating，终值 2463.1 = +4.1%），EMA 精确值 S̃_2=2362.7 < S̃_1=2367.1，max Δ_t = 0.00185\n2. **图注**：移除 \"truncated at Gen~5 (open marker)\"\n3. **Table 5 r=0.2 行**：SLV 2463.1, r_eff 504.9, PPL 13.39, D-4 .508, Gen 9（去掉 † 标记）\n4. **表注**：†脚注改为 \"(r=0.2 runs to Gen~9; all others to Gen~10)\"\n5. **Line 150**：\"observed five generations\" → \"through Gen~9\""
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-update-r02-10gen-0520.md"
+}

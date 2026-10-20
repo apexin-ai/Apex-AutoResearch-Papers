@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0d5350b1ebb3f9a300c1",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ops check exp020 progress",
+  "task_key": "worker_ops_check-exp020-progress_20260523T125939",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-exp020-progress_20260523T125939_result.json",
+    "occurrence": 1,
+    "bytes": 1496,
+    "sha256": "2305b9eaa42eb736e15cb60a42316e66a7461f5e74893552f0b90f74ca4586f3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp_020 状态报告\n\n### 1. 运行状态\n**正在运行。** 日志最后修改时间 2026-05-23 21:00:14，实验从 17:46 启动。\n\n### 2. 当前进度\n**Gen 1 fine-tuning 中**，step 4500 / ~6250（72%）。Gen 0 已完成评估。\n\n### 3. Gen 0 Metrics（GPT-2-medium pretrained baseline）\n\n| Metric | GPT-2-medium (355M) | Pythia-410M (对比) |\n|--------|---------------------|-------------------|\n| eff_rank | **23.09** | 417.55 |\n| PPL | **15.45** | 9.55 |\n| distinct-4 | **0.9127** | 0.7414 |\n\nGPT-2-medium 的 eff_rank 远低于 Pythia（23 vs 418），说明其 pretrained representation 已经高度集中在低维子空间。PPL 更高（15.45 vs 9.55）符合预期（GPT-2-medium 比 Pythia-410M 弱一些）。distinct-4 更高说明生成更多样。\n\n### 4. 预估完成时间\n- 配置：10 generations，batch_size=8，50000 samples/gen，1 epoch/gen\n- 已耗时 ~3.25h 完成 Gen 0 eval + Gen 1 的 72% training\n- 预估每 gen ~2.5-3h（generation + training + eval）\n- **剩余 ~9 gen，预计还需 22-27 小时**，即约 **5月24日 19:00-24:00 完成**\n\n### 5. SLV 轨迹数据\n目前只有 Gen 0 数据，尚无多代 SLV 轨迹。Gen 1 完成后会写入第一个 post-training 数据点。\n\n**注意**：eff_rank=23.09 的 baseline 值得关注——如果 GPT-2-medium 的表征本身就高度低秩，collapse 的演化轨迹可能与 Pythia 有本质差异（decompression peak 可能不明显或完全缺失）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-exp020-progress.md"
+}

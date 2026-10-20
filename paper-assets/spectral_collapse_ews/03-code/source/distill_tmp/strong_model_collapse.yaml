@@ -1,0 +1,105 @@
+paper_key: "strong_model_collapse"
+title: "Strong Model Collapse"
+venue: "ICLR 2025"
+full_text_available: true
+
+research:
+  baselines:
+    - ridge regression on pure real data (no synthetic contamination)
+    - random projections model on pure real data
+    - weighted data mixing strategies (alpha_1 L_1 + alpha_2 L_2)
+    - dynamic multi-step data mixing
+    - Dohmatob et al. (2024a) pure synthetic training analysis
+    - Bach (2023) double-descent analysis without contamination
+  metrics:
+    - {name: "test error on true distribution P1", direction: "lower_better"}
+    - {name: "bias term B", direction: "lower_better"}
+    - {name: "variance term V", direction: "lower_better"}
+    - {name: "collapse term zeta", direction: "lower_better"}
+    - {name: "synthetic data quality c^2(Delta)", direction: "lower_better"}
+  datasets:
+    - {name: "Synthetic Gaussian data", size: "n=500, d=600 (main figures)"}
+    - {name: "MNIST", size: "standard 60K/10K split"}
+    - {name: "BabiStories", size: "language modeling corpus for GPT-2"}
+  ablation_dimensions:
+    - synthetic data fraction p2 (0% to 100%)
+    - synthetic data quality c^2 (0, 0.1, 0.5, 1.0)
+    - model size (network width m, parametrization ratio psi = m/n)
+    - regularization strength lambda
+    - data mixing strategy (single-step vs multi-step)
+    - aspect ratio phi = d/n (under- vs over-parametrized regime)
+  training_recipe:
+    optimizer: "ridge regression (closed-form); SGD for neural net experiments"
+    lr: "not specified for neural nets; lambda varied for ridge"
+    hardware: "not specified"
+  method_family: "theoretical analysis of model collapse / high-dimensional statistics / random matrix theory"
+
+positioning:
+  core_claim: "Model collapse persists even with arbitrarily small fractions of synthetic data (as little as 1%), and cannot be prevented by any static data mixing strategy -- the synthetic fraction must vanish asymptotically to zero."
+  key_results: "Collapse term scales as Omega(p2^2 * c^2) even for small p2; double-descent in collapse severity w.r.t. model size -- larger models amplify collapse below interpolation threshold but become more robust above it; even 1% synthetic data causes measurable degradation."
+  limitations:
+    - "Theory limited to linear models and random projections (proxy for neural networks)"
+    - "Gaussian feature/label assumptions; non-Gaussian settings not characterized"
+    - "Practical mitigation via data curation/filtering mentioned but not analyzed"
+    - "Fixed-point equations require numerical solution; closed forms only for isotropic special cases"
+    - "Classification setting not covered (regression only)"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "Opens with the definition of model collapse as 'critical degradation' in AI models, immediately grounding in the practical concern that synthetic data is increasingly contaminating web-scraped training corpora (ChatGPT, Llama). Poses two sharp research questions (Q1: Is collapse inevitable? Q2: Does model size matter?) that the paper will definitively answer."
+  tension: "Prior work studied model collapse only in the 'pure synthetic' extreme -- training entirely on generated data. The practical scenario is mixed data (real + synthetic), and the community implicitly assumed that keeping synthetic fraction small would suffice. The paper reveals this assumption is false: collapse is 'strong' -- it persists for any fixed fraction, no matter how small."
+  key_insight: "The new bias-variance decomposition E_test = B + V + zeta isolates a third 'collapse term' zeta that is irreducible under any static mixing. This term scales as p2^2 * c^2, meaning it vanishes only if p2 -> 0. The insight emerges in Section 3 through Theorem 1 and is crystallized in Corollary 1 for the isotropic case."
+  argument_chain: "Define model collapse risk precisely (Q1, Q2) -> Set up mixed-data framework with quality metric c^2 -> Derive exact bias-variance-collapse decomposition via operator-valued free probability theory -> Prove collapse term is irreducible (Theorem 1) -> Show model size creates double-descent in collapse severity (Theorem 2) -> Validate on Gaussian toy, MNIST neural nets, GPT-2 language modeling -> Prove data mixing strategies cannot escape the bound (Section 5) -> Conclude collapse requires p2 -> 0."
+  contribution_framing: "Two results, explicitly numbered and named: 'Result #1: Strong Model Collapse' (negative result -- collapse is unavoidable) and 'Result #2: Model Size and Model Collapse' (nuanced -- bigger models amplify collapse below interpolation but mitigate above). The framing is deliberately stark: Result 1 is a 'robust negative result'."
+  intro_structure: "2 paragraphs before Section 1.1. Para 1: Define model collapse, cite Shumailov et al., explain feedback loop mechanism. Para 2: Practical urgency (ChatGPT/Llama, web contamination), pose Q1 and Q2. Then Section 1.1 (Main Contributions) with two numbered results, followed by Section 1.2 (Related Work)."
+  notable_technique: "The two sharp questions (Q1, Q2) at the end of the intro setup create a clear contract with the reader. Each is answered definitively (Q1: yes, collapse is inevitable unless p2->0; Q2: it depends on the parametrization regime). The paper also masterfully uses the bias-variance decomposition -- a familiar framework -- and adds a third term (zeta) as the 'surprise' that carries the main message. This makes the core insight accessible despite heavy mathematical machinery."
+
+figures:
+  figure_count: 5
+  figure1:
+    type: "teaser_result"
+    description: "Pareto diagram showing test error of random projections model trained on mixed data (y-axis) vs real data only (x-axis). Different curves for varying synthetic data quality c^2. Higher Pareto frontiers = more severe collapse. Shows that even small synthetic fractions shift the curve upward."
+    narrative_role: "Immediately demonstrates the 'strong collapse' phenomenon visually -- the reader sees that mixed training is always worse than pure real training, and the gap does not vanish. Sets up the theoretical framework that follows."
+    design_elements: ["Pareto frontier comparison", "color-coded by data quality c^2", "dotted diagonal for reference (no collapse line)", "multiple model sizes along each curve"]
+    visual_style: "Clean scatter-like plot with connected curves. Multiple c^2 levels shown as separate colored curves. Axes are test error values. Dotted y=x line as baseline. Legend with c^2 values."
+  result_figures:
+    - figure_id: "Figure 2"
+      viz_type: "line_plot"
+      what_compared: "Bias-variance-zeta decomposition as a function of parametrization ratio psi=m/n. Shows how B, V, and zeta evolve across under- and over-parametrized regimes."
+      how_gain_highlighted: "The collapse term zeta is shown as a distinct curve that persists across all regimes, making it visually clear it cannot be eliminated."
+      design_note: "Decomposing total error into named components is pedagogically powerful -- the reader can see exactly where collapse lives in the error budget."
+    - figure_id: "Figure 3"
+      viz_type: "line_plot"
+      what_compared: "Test error vs synthetic fraction p2 for various data quality levels c^2 in the classical linear model. Empirical points vs Corollary 1 theoretical predictions."
+      how_gain_highlighted: "Theory-experiment agreement emphasized through overlaid curves and scatter points. Even at p2 as low as 0.01-0.05, visible error increase."
+      design_note: "Direct validation plot -- key for a theory paper to show predictions match. Multiple c^2 values in one panel show universality of the phenomenon."
+    - figure_id: "Figure 4"
+      viz_type: "line_plot"
+      what_compared: "Test error vs model size (width m) for various synthetic fractions p2, at different data quality levels c^2. Shows double-descent behavior."
+      how_gain_highlighted: "Multiple panels for different c^2 values; within each panel, darker curves = higher p2. The separation between curves reveals how model size interacts with contamination level."
+      design_note: "Multi-panel layout with consistent color scheme across panels. Double-descent visible in individual curves. Systematic exploration of the c^2 x p2 x m parameter space."
+  ablation_figures:
+    - figure_id: "Figure 4"
+      viz_type: "line_plot"
+      dimensions_varied: ["model size m (width)", "synthetic fraction p2", "data quality c^2"]
+      design_note: "Serves dual purpose as both result and ablation -- systematically varies three dimensions to reveal the interaction between model size and contamination. The multi-panel layout (one per c^2) keeps each panel readable."
+  figure_narrative_role: "Figure 1 (Pareto teaser: collapse exists and is strong) -> Figure 2 (decomposition: where collapse lives in error budget) -> Figure 3 (validation: theory matches for classical model) -> Figure 4 (model size effects: double-descent in collapse) -> Figure 5 (additional validation/phase diagrams in appendix context). The flow is: surprise -> explanation -> validation -> nuance."
+
+tables:
+  table_count: 0
+  main_result_table:
+    table_id: "N/A"
+    row_axis: "N/A"
+    col_axis: "N/A"
+    row_organization: "N/A"
+    col_organization: "N/A"
+    highlight_strategy: "N/A"
+    statistical_reporting: "N/A"
+    num_baselines: 0
+    design_note: "This is a theory paper -- all results are presented as theorems with corollaries and validated through figures. No tables in the main paper. The absence of tables is characteristic of high-dimensional statistics / random matrix theory papers where results are expressed as equations and validated graphically."
+  ablation_tables: []
+  supplementary_tables:
+    in_appendix: false
+    content: "N/A -- appendix contains proofs (Sections B-F), experimental details (Section A), and phase diagrams (Section G), but no tables."
+    reason: "Theoretical paper where results are equations validated by plots, not empirical comparisons requiring tabular format."

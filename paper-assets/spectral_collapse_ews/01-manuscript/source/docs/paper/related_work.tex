@@ -1,0 +1,24 @@
+
+\paragraph{Model Collapse.}
+Recursive training on synthetic data causes progressive distributional narrowing, a phenomenon termed model collapse.
+\citet{shumailov2024collapse} provided the first systematic evidence across multiple model families, showing that tail distributions erode over successive generations.
+Theoretical analysis by \citet{dohmatob2024tails} established scaling laws for this tail decay, and subsequent work demonstrated that contamination levels as low as 1\% synthetic data can trigger strong collapse~\cite{dohmatob2025strong}.
+The MAD framework~\cite{alemohammad2024mad} formalized the dynamics of self-consuming generative models, confirming that iterative loops converge to degenerate distributions without fresh data injection.
+\citet{gerstgrasser2024inevitable} showed that accumulating real data across generations can prevent collapse entirely.
+These studies characterize collapse through output distribution metrics, perplexity, or benchmark scores.
+Our work complements this line of research: we track collapse through the spectral geometry of learned representations and connect distributional tail decay to measurable contraction in the embedding space.
+
+\paragraph{Spectral Analysis of Representations.}
+Spectral properties of neural networks have been studied from several angles.
+\citet{martin2021implicit} applied Random Matrix Theory to weight matrices of pretrained networks, showing that heavy-tailed spectral density encodes implicit regularization.
+\citet{roy2007effectiverank} defined effective rank as a continuous dimensionality measure based on singular value entropy, which has since become standard in representation analysis~\cite{rankme2023}.
+In training dynamics, \citet{he2025spectral} linked spectral collapse of representation covariance matrices to catastrophic forgetting in continual learning.
+Closest to our setting, \citet{gu2026sigma} proposed the SIGMA framework for spectral monitoring during recursive synthetic training, with validation on OPT-125M over short generation horizons.
+We extend this direction along three axes: systematic tracking over 10 generations, validation at the 410M and 1B scale, and the connection from spectral indicators to closed-loop collapse prevention.
+
+\paragraph{Data Mixing for LLM Training.}
+Controlling training data composition is critical for language model quality.
+DoReMi~\cite{xie2023doremi} trains a small proxy model to reweight domain mixtures before the main training run.
+Data Mixing Laws~\cite{ye2025mixinglaws, data_mixing_laws2024} predict optimal ratios from small-scale experiments so that mixture optimization does not require full-scale retraining.
+Both paradigms determine ratios prior to training and hold them fixed throughout.
+Our adaptive controller differs fundamentally: it adjusts the real-synthetic mixing ratio online during recursive training, guided by real-time spectral feedback from the model's own representations rather than a priori proxy estimates.

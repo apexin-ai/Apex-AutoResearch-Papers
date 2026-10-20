@@ -1,0 +1,44 @@
+{
+  "exp_id": "exp_006",
+  "project": "spectral_collapse_ews",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T17:29:14.060Z",
+    "updated_at": "2026-05-17T17:54:58.956Z",
+    "hypothesis": "Spectral-guided adaptive mixing with moderate gain (k=10, tau=0.002, per_gen mode) provides optimal balance between early response and budget conservation. k=10 is midpoint between k=20 (exp_005, fast budget depletion) and k=5 (cumulative mode, late trigger). Expect ratio to rise to ~0.55-0.65 at peak collapse gens, with more gradual budget consumption than k=20.",
+    "parent": "exp_005",
+    "spec": {
+      "description": "Phase 1: Adaptive spectral-guided mixing (k=10, tau=0.002, per_gen mode, log_det signal), seed 42. 论文主实验.",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition adaptive --seed 42 --generations 10 --signal log_det --tau 0.002 --k 10 --signal_mode per_gen --gpu 0\"",
+      "server": "rtx6000-diagprobe",
+      "gpu": "cuda:0",
+      "pid": 134913,
+      "tmux_session": "exp_006",
+      "model_name": "EleutherAI/pythia-410m-deduped",
+      "seed": 42,
+      "data_path": "/root/spectral_collapse_ews/data/",
+      "data_count": "50K real pool, total_per_gen=50K",
+      "generations": 10,
+      "condition": "adaptive",
+      "controller_params": {
+        "tau": 0.002,
+        "k": 10,
+        "r_min": 0.2,
+        "r_max": 0.8,
+        "alpha": 0.5,
+        "signal": "log_det",
+        "signal_mode": "per_gen"
+      },
+      "log_path": "~/runs/spectral_collapse_ews/exp_006.log",
+      "checkpoint_dir": "/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/adaptive_k10_seed42/",
+      "results_file": "/root/spectral_collapse_ews/results/phase1_adaptive_k10_seed42_results.json",
+      "checkpoint_source": "EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)",
+      "eval_data": "/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)"
+    }
+  },
+  "timestamp": "2026-05-17T17:54:58.978044+00:00",
+  "trigger": "update_registry"
+}

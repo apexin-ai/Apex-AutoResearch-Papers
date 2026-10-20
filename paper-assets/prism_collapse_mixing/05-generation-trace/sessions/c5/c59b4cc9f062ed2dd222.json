@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c59b4cc9f062ed2dd222",
+  "project": "prism_collapse_mixing",
+  "kind": "result",
+  "title": "code fix corpus erank desc",
+  "task_key": "worker_code_fix_corpus_erank_desc_20260516T020037",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_corpus_erank_desc_20260516T020037_result.json",
+    "occurrence": 1,
+    "bytes": 514,
+    "sha256": "d27f50ac99d6f614a88e95a0499c19d58339ab03606364eccec1f9c134a36abf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "§3.2.4 已修改。改动内容：\n\n1. 删除了 \"using the same formula as §3.2.2\"\n2. 写出了显式公式，明确使用 eigenvalues λ_i（而非 singular values σ_i）\n3. 说明 mean-pool 是对 token positions 取平均\n4. 列出与 §3.2.2 的两点区别：(a) inter-example Gram matrix vs intra-sequence hidden-state matrix；(b) eigenvalues λ_i of G (= σ_i² of H_corpus) vs singular values directly\n5. 所有描述均来自 `compute_signals.py` 第 115-132 行的实际代码"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-corpus-erank-desc.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1d3a887cc34bfadb229d",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "diagnose exp 001 timeout",
+  "task_key": "worker_diagnose_exp_001_timeout_20260516T161127",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp_001_timeout_20260516T161127_result.json",
+    "occurrence": 1,
+    "bytes": 2474,
+    "sha256": "9039b0ee06c01acd3b4be307d9e65b402731bc1ba4843542f205f01f581bc5b5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据已经足够了。以下是诊断报告。\n\n---\n\n## exp_001 超时诊断报告\n\n### 完成进度：3/10 代（gen 0 baseline + gen 1 + gen 2），gen 3 在生成合成数据阶段被 kill\n\n### 时间线\n| 事件 | 时间 (CST) | 耗时 |\n|------|-----------|------|\n| 脚本启动 | 16:08 | - |\n| Gen 0 baseline 评估完成 + checkpoint | 16:21 | ~13 min |\n| Gen 1 完整周期 (生成 50k + 训练 + 评估) | 16:21 → 18:53 | **~2h32m** |\n| Gen 2 完整周期 | 18:53 → 21:28 | **~2h35m** |\n| Gen 3 开始生成 → 被 kill | 21:28 → 23:53 | ~2h25m (仅完成 4800/50000 样本) |\n| **总运行时间** | | **~7h45m** |\n\n每代完整周期约 **2.5h**。10 代需要 **~25h**，8h timeout 远远不够。\n\n### 已保存的 Metrics（完整可用）\n\n| Gen | Eff Rank | Perplexity | Distinct-4 | HellaSwag acc_norm | Train Loss |\n|-----|----------|------------|------------|-------------------|------------|\n| 0 | 417.55 | 9.55 | 0.7414 | 0.4130 | - |\n| 1 | 491.77 | 11.38 | 0.6256 | 0.3897 | 1.6228 |\n| 2 | 496.44 | 13.58 | 0.5154 | 0.3764 | 1.2682 |\n\n**崩塌趋势清晰**：perplexity 上升 (9.55→13.58)，distinct-4 下降 (0.74→0.52)，HellaSwag 下降 (0.413→0.376)。Effective rank 反而上升，说明权重矩阵谱结构在扩散而非集中。\n\n`logdet_gen012.json` 也包含 log-determinant 和 top-10 singular values 数据，均完好。\n\n### 可恢复资源\n- **Checkpoints**：`gen_0/`, `gen_1/`, `gen_2/` 各含完整 model.safetensors (~1.6G)\n- **Metrics**：`phase0_results.json`, `logdet_gen012.json`, `hellaswag_gen{0,1,2}/results.json`\n- **可从 gen_2 checkpoint 断点续跑 gen 3~9**\n\n### 致超时原因\n每代生成 50000 条合成数据 + fine-tune + 评估，单代 ~2.5h。10 代需 ~25h，而 timeout 仅 8h。此外日志被 `right-padding` 警告刷屏（~4785 条），虽不影响运行但污染诊断。\n\n### 建议\n\n**方案 A（推荐）：从 gen_2 断点续跑**，timeout 设为 20h，跳过 gen 0-2，直接从 gen_3 开始。需要代码支持 `--resume-from-gen 3`。\n\n**方案 B：已有 3 代数据先用**。趋势已经很明显，可先做初步分析/绘图，同时后台跑完剩余 7 代。\n\n**方案 C：加速优化**。减少每代生成样本数（50k→20k），或减少 fine-tune 步数，将单代压到 ~1h 以内，10 代 <12h。\n\n**附带修复**：代码中 tokenizer 需设置 `padding_side='left'`，消除警告刷屏。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-001-timeout.md"
+}

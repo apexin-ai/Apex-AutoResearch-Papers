@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "53f7625e8801b33c35fc",
+  "project": "spectral_collapse_ews",
+  "kind": "worker",
+  "title": "ops kill sv and rerun cpu",
+  "task_key": "worker_ops_kill-sv-and-rerun-cpu_20260525T225201",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-sv-and-rerun-cpu_20260525T225201.log",
+    "occurrence": 1,
+    "bytes": 650677,
+    "sha256": "0ee411e9239124304f8eeb73ba73f9a4f3b48d44f95c2e66f71ef965e965629d"
+  },
+  "statistics": {
+    "messages": 604,
+    "user_turns": 0,
+    "tool_calls": 264,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 72,
+      "tool_call": 264,
+      "tool_result": 264,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 604,
+      "chunks": [
+        {
+          "path": "53f7625e8801b33c35fc-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "53f7625e8801b33c35fc-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "53f7625e8801b33c35fc-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "53f7625e8801b33c35fc-part-0004.json",
+          "message_count": 64
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-kill-sv-and-rerun-cpu.md"
+}

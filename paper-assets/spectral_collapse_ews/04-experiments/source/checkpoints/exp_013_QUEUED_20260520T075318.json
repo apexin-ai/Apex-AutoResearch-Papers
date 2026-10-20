@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp_013",
+  "project": "spectral_collapse_ews",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T07:51:49.117Z",
+    "updated_at": "2026-05-20T07:53:18.619Z",
+    "hypothesis": "Pure collapse (r=0, 100% synthetic) with seed 44 reproduces the three-phase spectral trajectory observed in exp_001 (seed 42) and exp_010 (seed 43). Third seed provides mean±std for Table 1 and strengthens C1 claim that spectral collapse is a deterministic structural phenomenon, not a seed-dependent artifact.",
+    "parent": "exp_001"
+  },
+  "timestamp": "2026-05-20T07:53:18.709875+00:00",
+  "trigger": "update_registry"
+}

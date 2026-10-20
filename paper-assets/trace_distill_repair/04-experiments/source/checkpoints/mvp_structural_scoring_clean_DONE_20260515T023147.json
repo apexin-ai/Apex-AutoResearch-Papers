@@ -1,0 +1,37 @@
+{
+  "exp_id": "mvp_structural_scoring_clean",
+  "project": "trace_distill_repair",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T01:44:43.856Z",
+    "updated_at": "2026-05-15T02:31:47.088Z",
+    "hypothesis": "重跑 structural scoring 清除旧 bug 脏数据",
+    "spec": {
+      "command": "cd /root/trace_distill_repair && python run_phase2_scoring.py --mode structural",
+      "server": "rtx6000-diagprobe",
+      "data_path": "/root/trace_distill_repair/pipeline_output/",
+      "data_count": 38,
+      "model_name": "deepseek/deepseek-v4-flash",
+      "seed": 0,
+      "pid": "85831",
+      "checkpoint_path": "/root/trace_distill_repair/pipeline_output/phase2_structural_scores.json",
+      "log_path": "/tmp/structural_scoring.log"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "instances": 38,
+      "total_segments": 491,
+      "scored": 351,
+      "failed": 140,
+      "failure_rate_pct": 28.5,
+      "elapsed_seconds": 1024.6,
+      "output_file": "/root/trace_distill_repair/pipeline_output/phase2_structural_scores.json"
+    },
+    "completed_at": "2026-05-15T02:31:47.088Z"
+  },
+  "timestamp": "2026-05-15T02:31:47.107531+00:00",
+  "trigger": "update_registry"
+}

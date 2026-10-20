@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4663f8c68a690864bd64",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ops status check latest",
+  "task_key": "worker_ops_status-check-latest_20260518T192858",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_status-check-latest_20260518T192858_result.json",
+    "occurrence": 1,
+    "bytes": 1392,
+    "sha256": "4c5218aafdf79464fdbbac0103b562dfe3b5866f07cf9b09ebca26599317c7d3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n### exp_007 (r=0.2) — 5 entries (gen0-4), PID 188503 ALIVE (uptime 10h38m)\n\n| gen | eff_rank | log_det | ppl | d4 | loss | sv1 |\n|-----|----------|---------|------|--------|--------|-------|\n| 0 | 417.5 | 2366.7 | 9.554 | 0.7414 | - | 1942.8 |\n| 1 | 476.7 | 2367.5 | 10.282 | 0.6737 | 1.7653 | 960.9 |\n| 2 | 481.6 | 2358.3 | 10.741 | 0.4978 | 1.6709 | 882.0 |\n| 3 | 486.5 | 2362.5 | 11.137 | 0.4665 | 1.4208 | 806.1 |\n| 4 | 490.3 | 2379.2 | 11.512 | 0.4515 | 1.3255 | 760.2 |\n\n### exp_008 (r=0.3) — 5 entries (gen0-4), PID 194372 ALIVE (uptime 9h11m)\n\n| gen | eff_rank | log_det | ppl | d4 | loss | sv1 |\n|-----|----------|---------|------|--------|--------|-------|\n| 0 | 417.5 | 2366.7 | 9.554 | 0.7414 | - | 1942.8 |\n| 1 | 476.9 | 2366.1 | 10.193 | 0.6894 | 1.8359 | 951.7 |\n| 2 | 484.2 | 2372.4 | 10.589 | 0.4892 | 1.7744 | 878.0 |\n| 3 | 489.5 | 2386.7 | 10.901 | 0.4646 | 1.5056 | 824.6 |\n| 4 | 492.6 | 2404.0 | 11.226 | 0.4682 | 1.4455 | 789.9 |\n\n### GPU\n| GPU | Memory | Util |\n|-----|--------|------|\n| 0 | 25017 MiB | 97% |\n| 1 | 25017 MiB | 88% |\n\n两个实验都在运行中（目标 10 gen，当前各完成 gen0-4），均在训练 gen5。r=0.3 的 log_det 在 gen3-4 出现回升趋势（2366→2372→2387→2404），d4 在 gen4 也微弱反弹（0.4646→0.4682），而 r=0.2 的 log_det 和 d4 持续下降。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-status-check-latest.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "94dd77a4fb848586c69a",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "analysis exp 010",
+  "task_key": "worker_analysis_exp_010_20260520T074817",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_010_20260520T074817_result.json",
+    "occurrence": 1,
+    "bytes": 591,
+    "sha256": "c296197339c785c48423130142d84a2aaae3a723f1a25ee25f883d747a410e94"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。exp_010 → DONE (success)。\n\n**结论：三阶段 pattern 跨 seed 完全复现。**\n\n关键数字：\n- Phase boundaries 完全一致：peak Gen 2, onset Gen 3, sustained collapse Gen 2→10\n- Gen 10 SLV: **2194.86 ± 22.50**（decline from peak: -11.07% ± 1.00%）\n- Gen 10 PPL: **73.64 ± 4.44**（+670.7% from Gen 0）\n- Gen 10 eff_rank: **440.62 ± 2.60**\n- 跨 seed SLV 差异全程 <1.5%，eff_rank <1%\n\n报告已写入 `artifacts/exp_010/report/exp_010_analysis.md`，`seed_comparison.json` 已更新为完整 11 代数据，registry 已更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-010.md"
+}

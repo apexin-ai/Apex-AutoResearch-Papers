@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "90b96c8f7680ac5c06cb",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ssh exp 017 018 progress",
+  "task_key": "worker_ssh_exp_017_018_progress_20260522T191441",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exp_017_018_progress_20260522T191441_result.json",
+    "occurrence": 1,
+    "bytes": 642,
+    "sha256": "a2270300e9815e9b973c638308e1f6be372e0e8470ffe1163693aec2cfd72660"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态报告\n\n### exp_017 (r=0.2, seed43, cuda:1)\n- **Generation**: 6/10\n- **状态**: Running — Gen 6 训练已完成 (loss=1.2219)，正在评估中 (computing effective rank + perplexity)\n- 评估完成后进入 Gen 7，还剩 4 个 generation\n\n### exp_018 (r=0.5, seed43, cuda:0)\n- **Generation**: 1/10\n- **状态**: Running — Gen 1 样本生成阶段，12,800/25,000 samples (~51%)\n- 生成完还要训练+评估才算 Gen 1 结束，整体进度很早期\n\n日志中无时间戳，无法精确估算完成时间。exp_017 预计还需跑约 40% 的总工作量（4/10 gens），exp_018 约 90%+。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exp-017-018-progress.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6619571c71df38fbafee",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "code phase1 script",
+  "task_key": "worker_code_phase1_script_20260516T154224",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_phase1_script_20260516T154224_result.json",
+    "occurrence": 1,
+    "bytes": 1169,
+    "sha256": "2290e83758a027f86d513d72ff4b374b97d881a8ce7760f90eaf6928f9009470"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证通过。\n\n**完成的修改：**\n\n### `src/config.py`\n- 新增 `results_filename` 字段（默认 `\"phase0_results.json\"`，向后兼容）\n- 新增 SpectralController 参数：`controller_k`, `controller_tau`, `controller_r_min`, `controller_r_max`, `controller_r_base`\n\n### `src/pipeline.py`\n- `run_recursive_training` 新增可选参数 `results_dir`, `checkpoint_dir`, `results_filename`（None 时回退到 Config 默认值）\n- Controller 创建改用 Config 中的参数（不再硬编码）\n- 每代结果追加 `mix_ratio` 字段\n\n### `run_phase1.py`（新文件）\n- CLI 参数：`--condition` (pure_collapse/fixed_mix/adaptive), `--seed`, `--tau`, `--k`, `--r_min`, `--r_max`, `--gpu`, `--generations`\n- 三种条件映射：pure_collapse → ratio=0.0, fixed_mix → ratio=0.5, adaptive → ratio=-1.0 + controller 参数\n- Checkpoint 写入 `/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/{condition}_seed{seed}/`\n- 结果写入 `results/phase1_{condition}_seed{seed}_results.json`\n- 训练结束后额外保存带完整元数据的 `_summary.json`\n- 全链路 seed 控制（random/numpy/torch/cudnn）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-phase1-script.md"
+}

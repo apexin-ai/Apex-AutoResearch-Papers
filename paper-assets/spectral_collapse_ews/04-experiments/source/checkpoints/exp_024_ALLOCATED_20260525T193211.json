@@ -1,0 +1,17 @@
+{
+  "exp_id": "exp_024",
+  "project": "spectral_collapse_ews",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-25T19:30:11.220Z",
+    "updated_at": "2026-05-25T19:32:11.067Z",
+    "hypothesis": "Third seed (seed44) for r=0.5 fixed_mix to complete 3-seed coverage, directly addressing R1-N2 camera-ready commitment. With exp_015 (seed42) and exp_018 (seed43) both showing Type III trajectory at r=0.5, seed44 tests reproducibility. If consistent Type III → confirms r=0.5 is firmly above r_crit with 3-seed statistical backing.",
+    "parent": "exp_018",
+    "spec": "placeholder"
+  },
+  "timestamp": "2026-05-25T19:32:11.193343+00:00",
+  "trigger": "update_registry"
+}

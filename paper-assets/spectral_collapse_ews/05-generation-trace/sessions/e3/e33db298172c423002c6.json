@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e33db298172c423002c6",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "paper writing related work",
+  "task_key": "worker_paper_writing_related_work_20260517T205658",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_related_work_20260517T205658_result.json",
+    "occurrence": 1,
+    "bytes": 444,
+    "sha256": "4185213dfb25ef3cb270286c6de694a344a2df9fca0fb0078d5a471487ddd960"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 13 citation keys verified. \n\nRelated Work written to `paper/sections/related_work.tex`. Three paragraph groups (~355 words total): Model Collapse (7 citations, positioning our spectral approach), Spectral Analysis of Representations (5 citations, extending SIGMA along scale/generations/closed-loop), Data Mixing for LLM Training (3 citations, contrasting fixed a priori methods with our online spectral-guided controller)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-related-work.md"
+}

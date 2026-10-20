@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0",
+  "id": "781446a5a4b8bfbd2526",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "analysis exp 008",
+  "task_key": "worker_analysis_exp_008_20260519T055140",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_008_20260519T055140_result.json",
+    "occurrence": 1,
+    "bytes": 3581,
+    "sha256": "7948074b3b6f9cb7b11401f8e9815da696ed931d19517506b7e743815d3f647d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results file is complete with all 11 generations (Gen 0–10). Here's the full analysis:\n\n## Complete Metrics — exp_008 (r=0.3, seed 42)\n\n| Gen | eff_rank | log_det | ppl | distinct_4 | train_loss |\n|-----|----------|---------|------|-----------|------------|\n| 0 | 417.55 | 2366.68 | 9.55 | 0.7414 | — |\n| 1 | 476.91 | 2366.13 | 10.19 | 0.6894 | 1.836 |\n| 2 | 484.17 | 2372.45 | 10.59 | 0.4892 | 1.774 |\n| 3 | 489.48 | 2386.72 | 10.90 | 0.4646 | 1.506 |\n| 4 | 492.59 | 2404.02 | 11.23 | 0.4683 | 1.446 |\n| 5 | 497.86 | 2431.17 | 11.54 | 0.4508 | 1.407 |\n| 6 | 501.63 | 2452.00 | 11.88 | 0.4176 | 1.368 |\n| 7 | 506.30 | 2467.05 | 12.22 | 0.3964 | 1.349 |\n| 8 | 511.71 | 2485.91 | 12.61 | 0.4058 | 1.320 |\n| 9 | 515.92 | 2497.30 | 12.96 | 0.3732 | 1.325 |\n| 10 | 521.26 | 2511.13 | 13.38 | 0.3422 | 1.304 |\n\n## log_det Trajectory Analysis\n\n**Pattern: Monotonic rise** (Δ total = +144.45)\n\nGen-to-gen deltas:\n- Gen 0→1: **−0.55** (negligible, <0.025%)\n- Gen 1→2: +6.31\n- Gen 2→3: +14.27\n- Gen 3→4: +17.30\n- Gen 4→5: +27.15\n- Gen 5→6: +20.83\n- Gen 6→7: +15.05\n- Gen 7→8: +18.86\n- Gen 8→9: +11.39\n- Gen 9→10: +13.83\n\nThe Gen 0→1 dip is negligible (−0.55 on a base of 2366). From Gen 1 onward, strictly monotonic rise. This is the **same pattern as r=0.5** (monotonic rise, no collapse).\n\n## Cross-Experiment Comparison\n\n| Experiment | r | log_det trajectory | Pattern |\n|-----------|-----|-------------------|---------|\n| exp_001 | 0.0 | 2469→2179 | **Monotonic decline (collapse)** |\n| exp_007 | 0.2 | 2367→2358(dip)→2399 | **Dip-then-recovery** |\n| **exp_008** | **0.3** | **2367→2366→2511** | **Monotonic rise (no collapse)** |\n| exp_004 | 0.5 | 2367→2573 | **Monotonic rise (no collapse)** |\n\n## Other Trends\n\n- **eff_rank**: monotonic rise 417.55 → 521.26 (+24.8%) — spectral diversity steadily increasing\n- **distinct_4**: monotonic decline 0.7414 → 0.3422 (−53.8%) — text diversity drops despite spectral health\n- **train_loss**: generally decreasing 1.836 → 1.304 (tiny uptick at Gen 9: 1.325)\n- **ppl**: monotonic rise 9.55 → 13.38\n\n## Conclusion\n\n**r=0.3 shows NO spectral collapse.** log_det rises monotonically across all 10 training generations. This places **r_crit ∈ (0.2, 0.3]** — r=0.2 exhibits spectral stress (dip-then-recovery), while r=0.3 is clean. exp_009 (r=0.25) will narrow the bound further.\n\nNotable: distinct_4 declines 54% even with healthy spectrum, suggesting text diversity loss is a separate phenomenon from spectral collapse at this mixing ratio.\n\n### Gen 9 & Gen 10 JSON for registry update:\n\n```json\n{\n  \"gen_9\": {\n    \"effective_rank\": 515.92,\n    \"log_det\": 2497.30,\n    \"perplexity\": 12.955,\n    \"distinct_4\": 0.3732,\n    \"train_loss\": 1.3248,\n    \"mix_ratio\": 0.3,\n    \"controller_ratio\": 0.3\n  },\n  \"gen_10\": {\n    \"effective_rank\": 521.26,\n    \"log_det\": 2511.13,\n    \"perplexity\": 13.377,\n    \"distinct_4\": 0.3422,\n    \"train_loss\": 1.3036,\n    \"mix_ratio\": 0.3,\n    \"controller_ratio\": 0.3\n  }\n}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "gen_9": {
+                "effective_rank": 515.92,
+                "log_det": 2497.3,
+                "perplexity": 12.955,
+                "distinct_4": 0.3732,
+                "train_loss": 1.3248,
+                "mix_ratio": 0.3,
+                "controller_ratio": 0.3
+              },
+              "gen_10": {
+                "effective_rank": 521.26,
+                "log_det": 2511.13,
+                "perplexity": 13.377,
+                "distinct_4": 0.3422,
+                "train_loss": 1.3036,
+                "mix_ratio": 0.3,
+                "controller_ratio": 0.3
+              }
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-008.md"
+}

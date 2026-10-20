@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4358d05d5903afe617fc",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "code compare seeds script",
+  "task_key": "worker_code_compare-seeds-script_20260519T123727",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_compare-seeds-script_20260519T123727_result.json",
+    "occurrence": 1,
+    "bytes": 557,
+    "sha256": "11dcb2e46e2f53a8ab519623153e61bc16bd7497f0771db48dd7ae771a94cd56"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "双 seed 测试也通过。脚本功能正常：\n\n- **逐 Gen 对比表**：每个 metric 显示各 seed 值 + pairwise delta + %diff\n- **Phase boundary 分析**：Decompression peak 一致在 Gen 2；seed43 只有 3 gen 数据，onset/collapse 未检测到（符合预期）\n- **Mean±std 汇总表**：跨 seed 差异很小（SLV %diff < 0.13%，eff_rank < 0.19%），说明 seed 间可复现性好\n- **JSON 输出**：已保存到 `results/seed_comparison.json`\n\n脚本路径：`/root/spectral_collapse_ews/scripts/compare_seeds.py`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-compare-seeds-script.md"
+}

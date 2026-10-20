@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ae60c346fb72bdd8f480",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "paper verify method params",
+  "task_key": "worker_paper_verify_method_params_20260517T062344",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_verify_method_params_20260517T062344_result.json",
+    "occurrence": 1,
+    "bytes": 1138,
+    "sha256": "39c4a3d5e135df2d4e96a000b67bb63e56645583f91e41c45b9962b2fae01abb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成。\n\n## 检查结果\n\n**参数一致性：全部一致**\n| 参数 | method.tex | config.py / controller.py |\n|------|-----------|--------------------------|\n| τ | 0.02 (隐含) | 0.02 ✓ |\n| k | (隐含) | 1.0 ✓ |\n| α | 0.5 | 0.5 ✓ |\n| r_min | (隐含) | 0.20 ✓ |\n| r_max | (隐含) | 0.80 ✓ |\n\n**公式不一致（已修复）：**\n- uniform residual 分母：paper 原为 `T-t`，code 为 `T-t-1`（`remaining_gens = T - self.t`，self.t 在计算前已递增）\n- 已修正为 `T-t-1` 并改 underbrace 标注为 \"forward baseline\"\n- 添加了 `$T-t-1$ is the number of subsequent generations (from $t+2$ to $T$)` 说明\n\n**Controller 触发机制（代码验证）：**\n1. 每代训练后，对 probe set 做 forward pass 计算 effective rank S_t\n2. EMA 平滑：S̃_t = 0.5·S_t + 0.5·S̃_{t-1}\n3. 归一化下降率：Δ_t = (S̃_{t-1} - S̃_t) / |S̃_0|\n4. 仅当 Δ_t > τ=0.02 时触发 reactive boost（死区内不响应）\n5. boost 大小 = k·(Δ_t - τ)，与下降速率成正比\n6. 输出经 budget-constrained clipping 保证剩余每代至少获得 r_min"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-verify-method-params.md"
+}

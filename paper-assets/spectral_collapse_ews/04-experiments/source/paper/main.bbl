@@ -1,0 +1,235 @@
+\begin{thebibliography}{28}
+\providecommand{\natexlab}[1]{#1}
+
+\bibitem[{Alemohammad et~al.(2024)Alemohammad, Casco-Rodriguez, Luzi, Humayun,
+  Babaei, LeJeune, Siahkoohi, and Baraniuk}]{alemohammad2024mad}
+Sina Alemohammad, Josue Casco-Rodriguez, Lorenzo Luzi, Ahmed~Imtiaz Humayun,
+  Hossein Babaei, Daniel LeJeune, Ali Siahkoohi, and Richard~G. Baraniuk. 2024.
+\newblock Self-consuming generative models go {MAD}.
+\newblock In \emph{The Twelfth International Conference on Learning
+  Representations (ICLR)}.
+
+\bibitem[{Amin et~al.(2025)Amin, Babakniya, Bie, Kong, Syed, and
+  Vassilvitskii}]{amin2025escaping}
+Kareem Amin, Sara Babakniya, Alex Bie, Weiwei Kong, Umar Syed, and Sergei
+  Vassilvitskii. 2025.
+\newblock Escaping collapse: The strength of weak data for large language model
+  training.
+\newblock In \emph{Advances in Neural Information Processing Systems
+  (NeurIPS)}.
+
+\bibitem[{Bai and Silverstein(2010)}]{bai2010spectral}
+Zhidong Bai and Jack~W. Silverstein. 2010.
+\newblock \href {https://doi.org/10.1007/978-1-4419-0661-8} {\emph{Spectral
+  Analysis of Large Dimensional Random Matrices}}, 2nd edition.
+\newblock Springer.
+
+\bibitem[{Biderman et~al.(2023)Biderman, Schoelkopf, Anthony, Bradley, O'Brien,
+  Hallahan, Khan, Purohit, Prashanth, Raff, Skowron, Sutawika, and van~der
+  Wal}]{biderman2023pythia}
+Stella Biderman, Hailey Schoelkopf, Quentin Anthony, Herbie Bradley, Kyle
+  O'Brien, Eric Hallahan, Mohammad~Aflah Khan, Shivanshu Purohit, USVSN~Sai
+  Prashanth, Edward Raff, Aviya Skowron, Lintang Sutawika, and Oskar van~der
+  Wal. 2023.
+\newblock Pythia: A suite for analyzing large language models across training
+  and scaling.
+\newblock In \emph{Proceedings of the 40th International Conference on Machine
+  Learning (ICML)}.
+
+\bibitem[{Bury et~al.(2021)Bury, Sujith, Pavithran, Scheffer, Lenton, Anand,
+  and Bauch}]{bury2021deeplearning}
+Thomas~M. Bury, R.~I. Sujith, Induja Pavithran, Marten Scheffer, Timothy~M.
+  Lenton, Madhur Anand, and Chris~T. Bauch. 2021.
+\newblock \href {https://doi.org/10.1073/pnas.2106140118} {Deep learning for
+  early warning signals of tipping points}.
+\newblock \emph{Proceedings of the National Academy of Sciences},
+  118(39):e2106140118.
+
+\bibitem[{Chen et~al.(2025)Chen, Hu, Lourie, Cho, and R\'{e}}]{chen2025aioli}
+Mayee~F. Chen, Michael~Y. Hu, Nicholas Lourie, Kyunghyun Cho, and Christopher
+  R\'{e}. 2025.
+\newblock Aioli: A unified optimization framework for language model data
+  mixing.
+\newblock In \emph{The Thirteenth International Conference on Learning
+  Representations (ICLR)}.
+
+\bibitem[{Dakos et~al.(2012)Dakos, Carpenter, Brock, Ellison, Guttal, Ives,
+  K\'{e}fi, Livina, Seekell, van Nes, and Scheffer}]{dakos2012methods}
+Vasilis Dakos, Stephen~R. Carpenter, William~A. Brock, Aaron~M. Ellison,
+  Vishwesha Guttal, Anthony~R. Ives, Sonia K\'{e}fi, Valerie Livina, David~A.
+  Seekell, Egbert~H. van Nes, and Marten Scheffer. 2012.
+\newblock \href {https://doi.org/10.1371/journal.pone.0041010} {Methods for
+  detecting early warnings of critical transitions in time series illustrated
+  using simulated ecological data}.
+\newblock \emph{PLOS ONE}, 7(7):e41010.
+
+\bibitem[{Dohmatob et~al.(2024{\natexlab{a}})Dohmatob, Feng, and
+  Kempe}]{dohmatob2024demystified}
+Elvis Dohmatob, Yunzhen Feng, and Julia Kempe. 2024{\natexlab{a}}.
+\newblock Model collapse demystified: The case of regression.
+\newblock In \emph{Advances in Neural Information Processing Systems 37
+  (NeurIPS)}.
+
+\bibitem[{Dohmatob et~al.(2025)Dohmatob, Feng, Subramonian, and
+  Kempe}]{dohmatob2025strong}
+Elvis Dohmatob, Yunzhen Feng, Arjun Subramonian, and Julia Kempe. 2025.
+\newblock Strong model collapse.
+\newblock In \emph{The Thirteenth International Conference on Learning
+  Representations (ICLR)}.
+
+\bibitem[{Dohmatob et~al.(2024{\natexlab{b}})Dohmatob, Feng, Yang, Charton, and
+  Kempe}]{dohmatob2024tails}
+Elvis Dohmatob, Yunzhen Feng, Pu~Yang, Francois Charton, and Julia Kempe.
+  2024{\natexlab{b}}.
+\newblock A tale of tails: Model collapse as a change of scaling laws.
+\newblock In \emph{Proceedings of the 41st International Conference on Machine
+  Learning (ICML)}.
+
+\bibitem[{Ethayarajh(2019)}]{ethayarajh2019contextual}
+Kawin Ethayarajh. 2019.
+\newblock How contextual are contextualized word representations? comparing the
+  geometry of bert, elmo, and gpt-2 embeddings.
+\newblock In \emph{Proceedings of the 2019 Conference on Empirical Methods in
+  Natural Language Processing (EMNLP-IJCNLP)}, pages 55--65.
+
+\bibitem[{Fu et~al.(2025)Fu, Wang, Chen, Shen, and
+  Tao}]{fu2025selfverification}
+Shi Fu, Yingjie Wang, Yuzhu Chen, Li~Shen, and Dacheng Tao. 2025.
+\newblock Self-verification provably prevents model collapse in recursive
+  synthetic training.
+\newblock In \emph{Advances in Neural Information Processing Systems
+  (NeurIPS)}.
+
+\bibitem[{Garrido et~al.(2023)Garrido, Balestriero, Najman, and
+  LeCun}]{rankme2023}
+Quentin Garrido, Randall Balestriero, Laurent Najman, and Yann LeCun. 2023.
+\newblock {RankMe}: Assessing the downstream performance of pretrained
+  self-supervised representations by their rank.
+\newblock In \emph{Proceedings of the 40th International Conference on Machine
+  Learning (ICML)}.
+
+\bibitem[{Gerstgrasser et~al.(2024)Gerstgrasser, Schaeffer, Dey, Rafailov,
+  Sleight, Hughes, Korbak, Agrawal, Pai, Gromov, Roberts, Yang, Donoho, and
+  Koyejo}]{gerstgrasser2024inevitable}
+Matthias Gerstgrasser, Rylan Schaeffer, Apratim Dey, Rafael Rafailov, Henry
+  Sleight, John Hughes, Tomasz Korbak, Rajashree Agrawal, Dhruv Pai, Andrey
+  Gromov, Daniel~A. Roberts, Diyi Yang, David~L. Donoho, and Sanmi Koyejo.
+  2024.
+\newblock Is model collapse inevitable? breaking the curse of recursion by
+  accumulating real and synthetic data.
+\newblock In \emph{Conference on Language Modeling (COLM)}.
+
+\bibitem[{Gu et~al.(2026)Gu, Pang, Ye, Wang, Lin, Priebe, and
+  Aue}]{gu2026sigma}
+Yi~Gu, Lingyou Pang, Xiangkun Ye, Tianyu Wang, Jianyu Lin, Carey~E. Priebe, and
+  Alexander Aue. 2026.
+\newblock {SIGMA}: Scalable spectral insights for {LLM} model collapse.
+\newblock \emph{arXiv preprint arXiv:2601.03385}.
+
+\bibitem[{He et~al.(2025)He, Guo, Prakash, Tiwari, Tao, Serapio, Greenwald, and
+  Konidaris}]{he2025spectral}
+Naicheng He, Kaicheng Guo, Arjun Prakash, Saket Tiwari, Ruo~Yu Tao, Tyrone
+  Serapio, Amy Greenwald, and George Konidaris. 2025.
+\newblock Spectral collapse drives loss of plasticity in deep continual
+  learning.
+\newblock In \emph{Advances in Neural Information Processing Systems 38
+  (NeurIPS)}.
+
+\bibitem[{Longpre et~al.(2024)Longpre, Yauney, Reif, Lee, Roberts, Zoph, Zhou,
+  Wei, Robinson, Mimno, and Ippolito}]{longpre2024pretrainer}
+Shayne Longpre, Gregory Yauney, Emily Reif, Katherine Lee, Adam Roberts, Barret
+  Zoph, Denny Zhou, Jason Wei, Kevin Robinson, David Mimno, and Daphne
+  Ippolito. 2024.
+\newblock A pretrainer's guide to training data: Measuring the effects of data
+  age, domain coverage, quality, \& toxicity.
+\newblock In \emph{Proceedings of the 2024 Conference of the North American
+  Chapter of the Association for Computational Linguistics (NAACL)}.
+
+\bibitem[{Martin and Mahoney(2021)}]{martin2021implicit}
+Charles~H. Martin and Michael~W. Mahoney. 2021.
+\newblock Implicit self-regularization in deep neural networks: Evidence from
+  random matrix theory and implications for learning.
+\newblock \emph{Journal of Machine Learning Research}, 22(165):1--73.
+
+\bibitem[{Muennighoff et~al.(2023)Muennighoff, Rush, Barak, Le~Scao, Piktus,
+  Tazi, Pyysalo, Wolf, and Raffel}]{muennighoff2023scaling}
+Niklas Muennighoff, Alexander~M. Rush, Boaz Barak, Teven Le~Scao, Aleksandra
+  Piktus, Nouamane Tazi, Sampo Pyysalo, Thomas Wolf, and Colin Raffel. 2023.
+\newblock Scaling data-constrained language models.
+\newblock In \emph{Advances in Neural Information Processing Systems 36
+  (NeurIPS)}.
+
+\bibitem[{Nait~Saada et~al.(2025)Nait~Saada, Naderi, and
+  Tanner}]{naderi2025mindgap}
+Thiziri Nait~Saada, Alireza Naderi, and Jared Tanner. 2025.
+\newblock Mind the gap: a spectral analysis of rank collapse and signal
+  propagation in attention layers.
+\newblock In \emph{Proceedings of the 42nd International Conference on Machine
+  Learning (ICML)}.
+
+\bibitem[{Radford et~al.(2019)Radford, Wu, Child, Luan, Amodei, and
+  Sutskever}]{radford2019language}
+Alec Radford, Jeffrey Wu, Rewon Child, David Luan, Dario Amodei, and Ilya
+  Sutskever. 2019.
+\newblock Language models are unsupervised multitask learners.
+\newblock \emph{OpenAI Blog}.
+
+\bibitem[{Roy and Vetterli(2007)}]{roy2007effectiverank}
+Olivier Roy and Martin Vetterli. 2007.
+\newblock The effective rank: A measure of effective dimensionality.
+\newblock In \emph{15th European Signal Processing Conference (EUSIPCO)}.
+
+\bibitem[{Scheffer et~al.(2009)Scheffer, Bascompte, Brock, Brovkin, Carpenter,
+  Dakos, Held, van Nes, Rietkerk, and Sugihara}]{scheffer2009ews}
+Marten Scheffer, Jordi Bascompte, William~A. Brock, Victor Brovkin, Stephen~R.
+  Carpenter, Vasilis Dakos, Hermann Held, Egbert~H. van Nes, Max Rietkerk, and
+  George Sugihara. 2009.
+\newblock \href {https://doi.org/10.1038/nature08227} {Early-warning signals
+  for critical transitions}.
+\newblock \emph{Nature}, 461:53--59.
+
+\bibitem[{Scheffer et~al.(2012)Scheffer, Carpenter, Lenton, Bascompte, Brock,
+  Dakos, van~de Koppel, van~de Leemput, Levin, van Nes, Pascual, and
+  Vandermeer}]{scheffer2012anticipating}
+Marten Scheffer, Stephen~R. Carpenter, Timothy~M. Lenton, Jordi Bascompte,
+  William Brock, Vasilis Dakos, Johan van~de Koppel, Ingrid~A. van~de Leemput,
+  Simon~A. Levin, Egbert~H. van Nes, Mercedes Pascual, and John Vandermeer.
+  2012.
+\newblock \href {https://doi.org/10.1126/science.1225244} {Anticipating
+  critical transitions}.
+\newblock \emph{Science}, 338(6105):344--348.
+
+\bibitem[{Seddik et~al.(2024)Seddik, Chen, Hayou, Youssef, and
+  Debbah}]{seddik2024synthetic}
+Mohamed El~Amine Seddik, Suei-Wen Chen, Soufiane Hayou, Pierre Youssef, and
+  Merouane Debbah. 2024.
+\newblock How bad is training on synthetic data? a statistical analysis of
+  language model collapse.
+\newblock In \emph{Conference on Language Modeling (COLM)}.
+
+\bibitem[{Shumailov et~al.(2024)Shumailov, Shumaylov, Zhao, Papernot, Anderson,
+  and Gal}]{shumailov2024collapse}
+Ilia Shumailov, Zakhar Shumaylov, Yiren Zhao, Nicolas Papernot, Ross Anderson,
+  and Yarin Gal. 2024.
+\newblock \href {https://doi.org/10.1038/s41586-024-07566-y} {Ai models
+  collapse when trained on recursively generated data}.
+\newblock \emph{Nature}, 631:755--759.
+
+\bibitem[{Xie et~al.(2023)Xie, Pham, Dong, Du, Liu, Lu, Liang, Le, Ma, and
+  Yu}]{xie2023doremi}
+Sang~Michael Xie, Hieu Pham, Xuanyi Dong, Nan Du, Hanxiao Liu, Yifeng Lu, Percy
+  Liang, Quoc~V. Le, Tengyu Ma, and Adams~Wei Yu. 2023.
+\newblock {DoReMi}: Optimizing data mixtures speeds up language model
+  pretraining.
+\newblock In \emph{Advances in Neural Information Processing Systems 36
+  (NeurIPS)}.
+
+\bibitem[{Ye et~al.(2025)Ye, Liu, Sun, Zhan, Zhou, and Qiu}]{ye2025mixinglaws}
+Jiasheng Ye, Peiju Liu, Tianxiang Sun, Jun Zhan, Yunhua Zhou, and Xipeng Qiu.
+  2025.
+\newblock Data mixing laws: Optimizing data mixtures by predicting language
+  modeling performance.
+\newblock In \emph{The Thirteenth International Conference on Learning
+  Representations (ICLR)}.
+
+\end{thebibliography}

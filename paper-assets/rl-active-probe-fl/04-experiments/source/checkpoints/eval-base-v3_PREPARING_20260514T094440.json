@@ -1,0 +1,21 @@
+{
+  "exp_id": "eval-base-v3",
+  "project": "rl-active-probe-fl",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T09:44:40.883Z",
+    "updated_at": "2026-05-14T09:44:40.883Z",
+    "spec": {
+      "hypothesis": "Base Qwen3-8B eval with fixed sandbox (auto-import + test_code driver + INSERT parsing). Expect probe_executed >> 0.5%.",
+      "model_name": "Qwen/Qwen3-8B",
+      "data_path": "data/eval.jsonl",
+      "data_count": 202,
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-14T09:44:40.897923+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3e6eee154f794982420b",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ops check exp progress 0521",
+  "task_key": "worker_ops_check_exp_progress_0521_20260521T024400",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_exp_progress_0521_20260521T024400_result.json",
+    "occurrence": 1,
+    "bytes": 710,
+    "sha256": "d7429634852213a81e17984ee7ef5d4ee52b5313b4846ebcd700b7e90e446cdf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n**GPU**: 双卡均在使用，GPU 0 利用率 89%（25GB VRAM），GPU 1 利用率 69%（25GB VRAM）。\n\n### exp_013\n- **当前**: Generation 8/10，generating 阶段\n- **进度**: 13120/50000 samples generated\n- **未完成**，还有 Gen 8 的 generating 剩余 + Gen 9-10 待跑\n\n### exp_014\n- **当前**: Generation 3/10，generating 阶段\n- **进度**: 4160/37500 samples generated\n- **未完成**，还有 Gen 3 的 generating 剩余 + Gen 4-10 待跑\n\n### 最新 results JSON\n- `phase1_fixed_mix_r025_seed43_results.json` — 今天 10:32（仅 1.5KB，可能只含部分结果）\n- `phase1_pure_collapse_seed44_results.json` — 今天 10:09（4.3KB）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-exp-progress-0521.md"
+}

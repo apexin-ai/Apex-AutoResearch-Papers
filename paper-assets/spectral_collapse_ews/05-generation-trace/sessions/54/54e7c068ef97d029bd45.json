@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "54e7c068ef97d029bd45",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "analysis exp 009",
+  "task_key": "worker_analysis_exp_009_20260519T161544",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp_009_20260519T161544_result.json",
+    "occurrence": 1,
+    "bytes": 939,
+    "sha256": "c67c25e196de07c7098fda40338e2aa8734e31293fb53c6af95495129bc3c377"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp_009 分析完成，registry 已更新为 DONE。\n\n## 核心结论\n\n**log_det dip 梯度确认 r_crit ∈ (0.25, 0.3]**：\n| r | Dip Δ | Dip Gen | 模式 |\n|---|-------|---------|------|\n| 0.20 | −8.37 | Gen 2 | dip-then-recovery |\n| 0.25 | −4.55 | Gen 1 | dip-then-recovery (浅) |\n| 0.30 | −0.55 | — | 无 dip，单调上升 |\n\n**关键发现**：\n1. r=0.25 的 dip 仍可测（−4.55），但 controller Δ_t = −0.0019 刚好 < τ=0.002，确认 **Type II boundary case**（controller silence at threshold edge）\n2. 终态 r=0.25 vs r=0.3 几乎无差异（ppl 13.29 vs 13.38, d4 0.36 vs 0.34），区别仅在早期 spectral dynamics\n3. σ₁ 单调下降 1943→703 (−64%)，谱持续扁平化但无 collapse\n4. Checkpoints: `gen_0` ~ `gen_10` 完整存于 `/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r025_seed42/`\n\n产出已注册为 `art_20260519_1fc711`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-009.md"
+}

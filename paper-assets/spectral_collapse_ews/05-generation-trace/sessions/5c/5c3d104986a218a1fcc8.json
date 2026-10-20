@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5c3d104986a218a1fcc8",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ops check exp progress",
+  "task_key": "worker_ops_check-exp-progress_20260523T131535",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-exp-progress_20260523T131535_result.json",
+    "occurrence": 1,
+    "bytes": 1243,
+    "sha256": "cf6c7cdaf625cd0d4b8b81c477825c8bd0bef9e31920de87213b6d7591f7e950"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验都在运行。\n\n---\n\n## exp_019 — fixed_mix r=0.2, seed44\n- **状态**: 运行中 (PID 757601, 100% CPU)\n- **已跑**: 9h+ (12:08 启动)\n- **当前进度**: gen 0–4 完成 (eval + 4 个训练周期), 共需 10 个训练周期\n- **Metrics** (已完成的 gen):\n\n| Gen | eff_rank | log_det | PPL | distinct-4 |\n|-----|----------|---------|-----|-----------|\n| 0 | 417.5 | 2366.7 | 9.55 | 0.730 |\n| 1 | 476.6 | 2369.4 | 10.28 | 0.654 |\n| 2 | 483.2 | 2361.1 | 10.73 | 0.562 |\n| 3 | 486.5 | 2365.6 | 11.14 | 0.469 |\n| 4 | 489.2 | 2377.1 | 11.50 | 0.399 |\n\n- **预估剩余**: ~2.25h/cycle × 6 cycles ≈ **13.5h**, ETA ~明天 10:40 (+0800)\n\n---\n\n## exp_020 — GPT-2-medium pure_collapse, seed42\n- **状态**: 运行中 (PID 783957, 100% CPU)\n- **已跑**: 2.5h+ (18:43 启动)\n- **当前进度**: gen 0–1 完成, gen 2 数据生成阶段 (2880/50000 ≈ 5.8%), 共需 10 个训练周期\n- **Metrics** (已完成的 gen):\n\n| Gen | eff_rank | log_det | PPL | distinct-4 |\n|-----|----------|---------|-----|-----------|\n| 0 | 23.1 | 689.4 | 15.45 | 0.913 |\n| 1 | 155.2 | 885.3 | 16.42 | 0.891 |\n\n- **预估剩余**: ~2.5h/cycle × 9 cycles ≈ **22.5h**, ETA ~明天 17:00 (+0800)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-exp-progress.md"
+}

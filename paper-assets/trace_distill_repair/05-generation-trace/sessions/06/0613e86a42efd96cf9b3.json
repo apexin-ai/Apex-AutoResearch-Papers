@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0613e86a42efd96cf9b3",
+  "project": "trace_distill_repair",
+  "kind": "result",
+  "title": "ssh preinstall research deps",
+  "task_key": "worker_ssh_preinstall_research_deps_20260514T221601",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_preinstall_research_deps_20260514T221601_result.json",
+    "occurrence": 1,
+    "bytes": 951,
+    "sha256": "7b19b4e781b697ff2ea2e1b99015177d33c1ea7f6cb475ef09857ad4beb0461d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "环境准备完成。汇报如下：\n\n---\n\n**1. GPU + PyTorch**\n- 2× NVIDIA RTX PRO 6000 Blackwell (96GB each)\n- Driver 595.58.03, CUDA 13.2\n- torch=2.10.0+cu128, CUDA=True, GPUs=2\n\n**2. 已装训练依赖**\n\n| 包 | 版本 |\n|---|---|\n| transformers | 4.57.6 |\n| accelerate | 1.13.0 |\n| datasets | 4.8.4 |\n| peft | 0.19.0 |\n| trl | 1.1.0 |\n| einops | 0.8.2 |\n| wandb | 0.26.0 |\n| bitsandbytes | 0.49.2 |\n| flashinfer-python | 0.6.6 |\n| torchvision | 0.25.0+cu128 |\n| torchaudio | 2.10.0 |\n\n全部就绪，无需额外安装。\n\n**3. Base model**\n- 项目中未找到明确的 student/distill base model 定义\n- repair 阶段使用 API 调用 (deepseek-v4-pro)，非本地模型\n- `/root/autodl-tmp/models/Qwen/` 已有 Qwen3-8B 和 Qwen3-30B-A3B（共 73GB），可作为候选 base model\n\n**4. 磁盘**\n- 根分区：23GB 可用 / 30GB（26% used）\n- 数据盘：175GB 可用 / 250GB（31% used）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-preinstall-research-deps.md"
+}

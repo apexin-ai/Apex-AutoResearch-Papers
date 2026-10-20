@@ -1,0 +1,409 @@
+{
+  "phase1": {
+    "figure_check": {
+      "passed": false,
+      "critical": [
+        {
+          "kind": "missing_required_section",
+          "message": "Venue requires a 'Limitations' section but none was found",
+          "location": "cross-file"
+        }
+      ],
+      "warning": [
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:conclusion} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:experiments} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:related} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:method} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:intro} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "missing_required_section",
+          "message": "Venue requires a 'Ethics Statement' section but none was found",
+          "location": "cross-file"
+        }
+      ],
+      "info": [],
+      "summary": "1 critical, 6 warning, 0 info"
+    },
+    "consistency": {
+      "paper_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/paper",
+      "sections": [],
+      "critical": [],
+      "warning": [
+        {
+          "kind": "no_paper_tex",
+          "message": "No section .tex files found under /home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/paper",
+          "location": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/paper"
+        }
+      ],
+      "info": [],
+      "summary": {
+        "critical": 0,
+        "warning": 1,
+        "info": 0
+      }
+    },
+    "compile_result": {
+      "success": true,
+      "passed": true,
+      "compiled": {
+        "success": true,
+        "pdf_path": "<compiled-in-isolated-tmpdir>",
+        "paper_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/_audit_compile_ahtb6zzl",
+        "main_tex": "main.tex",
+        "log_tail": "\n[6 <./figures/controller_signal.pdf>]\n<figures/phase_diagram.pdf, id=540, 233.95758pt x 219.09415pt>\nFile: figures/phase_diagram.pdf Graphic file (type pdf)\n<use figures/phase_diagram.pdf>\nPackage pdftex.def Info: figures/phase_diagram.pdf  used on input line 117.\n(pdftex.def)             Requested size: 201.55884pt x 188.75493pt.\n<figures/rankme_trajectories.pdf, id=544, 232.9983pt x 161.29909pt>\nFile: figures/rankme_trajectories.pdf Graphic file (type pdf)\n<use figures/rankme_trajectories.pdf>\nPackage pdftex.def Info: figures/rankme_trajectories.pdf  used on input line 13\n3.\n(pdftex.def)             Requested size: 201.55884pt x 139.54146pt.\n\nUnderfull \\vbox (badness 1953) has occurred while \\output is active []\n\n [7 <./figures/phase_diagram.pdf> <./figures/rankme_trajectories.pdf>]\nUnderfull \\hbox (badness 1424) in paragraph at lines 192--192\n[]\\T1/ptm/m/n/10 (+20) Table 5: |Cross-architecture val-i-da-tion on GPT-2-\n []\n\n) (./sections/conclusion.tex) (./sections/limitations.tex [8]) (./main.bbl\nUnderfull \\hbox (badness 2351) in paragraph at lines 113--120\n\\T1/ptm/m/n/10 (+20) Rafael Rafailov, Henry Sleight, John Hughes,\n []\n\n[9]) (./sections/appendix.tex\nUnderfull \\vbox (badness 10000) has occurred while \\output is active []\n\n [10]\nUnderfull \\hbox (badness 1092) in paragraph at lines 121--123\n[]\\T1/ptm/b/n/10.95 (+20) Code: \\T1/ptm/m/n/10.95 (+20) draft-ing ex-per-i-ment\n scripts, data-\n []\n\n) [11] (./main.aux)\n ***********\nLaTeX2e <2025-11-01>\nL3 programming layer <2026-01-19>\n ***********\nPackage rerunfilecheck Info: File `main.out' has not changed.\n(rerunfilecheck)             Checksum: EA19668963576081C897AC7807E8D560;3562.\n ) \nHere is how much of TeX's memory you used:\n 16122 strings out of 469438\n 253466 string characters out of 5468411\n 733105 words of memory out of 5000000\n 43993 multiletter control sequences out of 15000+600000\n 703794 words of font info for 405 fonts, out of 8000000 for 9000\n 59 hyphenation exceptions out of 8191\n 84i,13n,93p,1001b,644s stack positions out of 10000i,1000n,20000p,200000b,200000s\n</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us\nr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/shar\ne/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texl\nive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/tex\nmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist\n/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/\ntype1/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/p\nublic/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a\nmsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/\ncm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.\npfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></us\nr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/shar\ne/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texli\nve/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texm\nf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/\nfonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/t\nype1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/ty\npe1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/fonts/typ\ne1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvet\nic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><\n/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texl\nive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>\nOutput written on main.pdf (11 pages, 3395366 bytes).\nPDF statistics:\n 843 PDF objects out of 1000 (max. 8388607)\n 541 compressed objects within 6 object streams\n 102 named destinations out of 1000 (max. 500000)\n 69828 words of extra memory for PDF output out of 74296 (max. 10000000)\n",
+        "error": "",
+        "pages": 11,
+        "warnings": []
+      },
+      "pages": 11,
+      "page_status": "ok",
+      "max_pages": null,
+      "min_pages": null,
+      "critical_warnings": [],
+      "minor_warnings": [
+        "Underfull \\hbox (badness 10000) in paragraph at lines 8--8",
+        "Underfull \\vbox (badness 5787) has occurred while \\output is active []",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 9--12",
+        "Underfull \\hbox (badness 2197) in paragraph at lines 9--12",
+        "Underfull \\hbox (badness 1394) in paragraph at lines 53--57",
+        "Underfull \\hbox (badness 1424) in paragraph at lines 69--69",
+        "Underfull \\vbox (badness 1953) has occurred while \\output is active []",
+        "Underfull \\hbox (badness 1424) in paragraph at lines 192--192",
+        "Underfull \\hbox (badness 2351) in paragraph at lines 113--120",
+        "Underfull \\vbox (badness 10000) has occurred while \\output is active []",
+        "Underfull \\hbox (badness 1092) in paragraph at lines 121--123"
+      ],
+      "issues": [],
+      "summary": "PASS"
+    },
+    "refs_result": null,
+    "internal_leak": {
+      "passed": true,
+      "critical": [],
+      "warning": [],
+      "info": [],
+      "summary": "0 critical, 0 warning, 0 info"
+    }
+  },
+  "content_findings": [
+    {
+      "severity": "info",
+      "dimension": "叙事一致性",
+      "message": "Title 使用 \"Early Warning Signals\" 但论文核心发现 (C3) 是 EWS 在防御态下因信号衰减而失效——审稿人可能认为标题暗示提出了 working EWS system，与正文 \"offline calibration replaces real-time monitoring\" 的实际结论有张力。建议考虑 \"Spectral Indicators\" 或在 title 中暗示 limitation 维度"
+    },
+    {
+      "severity": "info",
+      "dimension": "叙事一致性",
+      "message": "Intro C2 贡献引用只指向 §4.2，但 §4.4 (Alternative EWS Comparison) 是支撑 \"SLV is the most effective\" 这一 claim 的关键证据来源，建议补充 \\S\\ref{subsec:alt_ews} 引用"
+    },
+    {
+      "severity": "info",
+      "dimension": "叙事一致性",
+      "message": "Abstract → Intro → Method → Experiments → Conclusion 主线一致：问题(误导性spectral expansion)、方法(SLV+controller+trajectory map)、三个贡献均有对应实验支撑，无漂移"
+    },
+    {
+      "severity": "info",
+      "dimension": "章节结构",
+      "message": "Abstract 回答四个问题（问题✓ 方法✓ 结果✓ 意义✓），~191 words，结构良好"
+    },
+    {
+      "severity": "info",
+      "dimension": "章节结构",
+      "message": "Intro 五段结构完整（背景→问题→gap→本文方法→贡献列表），四个 gap 与三个贡献一一对应"
+    },
+    {
+      "severity": "info",
+      "dimension": "章节结构",
+      "message": "Related Work 按主题归纳（Model Collapse / Spectral Analysis / EWS / Data Mixing），非堆砌式，附定位表"
+    },
+    {
+      "severity": "warning",
+      "dimension": "章节结构",
+      "message": "Figure 1 (pipeline_overview.pdf) 的 \\begin{figure} 位于 related_work.tex:1-6，方法流程图应属于 Method 或 Intro 末尾，而非 Related Work 源文件"
+    },
+    {
+      "severity": "warning",
+      "dimension": "章节结构",
+      "message": "Discussion and Conclusion (§5) 仅 2 段约 7 句，higher-level 解读有限——第一段解释 decompression 机制，第二段总结贡献，缺少对 broader implications（如 web-scale implicit loops、其他 modality）的展望性讨论"
+    },
+    {
+      "severity": "info",
+      "dimension": "贡献-范围对齐",
+      "message": "C1 → §4.2 + Table 1 ✓; C2 → §4.2 + §4.4 + Table 3 ✓; C3 → §4.3 + §4.5 ✓; 支撑发现(trajectory map, cross-arch) → §4.5 + §4.6 ✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "贡献-范围对齐",
+      "message": "无孤儿章节——所有实验小节均服务于声明的贡献或支撑发现"
+    },
+    {
+      "severity": "info",
+      "dimension": "贡献-范围对齐",
+      "message": "Title/Abstract 范围词与实验匹配：\"three seeds\" ✓, \"five levels\" ✓, \"GPT-2-medium\" ✓, \"eight candidate indicators\" ✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "Claim强度",
+      "message": "所有定量 claim 与表格数字交叉验证通过：HellaSwag -3.3pp ✓, SLV -11.6% ✓, PPL +643% (3-seed mean) ✓, 信号衰减 10× ✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "Claim强度",
+      "message": "\"significantly\" 仅出现 1 次 (related_work.tex:46)，是引用他人结论而非自身 claim ✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "Claim强度",
+      "message": "\"most effective\" claim (abstract, §4.2) 有 §4.4 八指标对比表支撑，基于多属性组合（decompression peak + 单调性 + 2.5× SNR + sub-second cost），逻辑自洽"
+    },
+    {
+      "severity": "info",
+      "dimension": "Claim强度",
+      "message": "Cross-architecture 结论用了 \"preliminary\" 限定词，单 seed (42) 实验未 overclaim ✓"
+    },
+    {
+      "severity": "warning",
+      "dimension": "实验严谨性",
+      "message": "Table 1 (tab:phase0) 主结果表 error bars 仅在 caption 文字中报告 Gen 10 的 s.d.，而非 inline 显示——审稿人可能期望在表格每行看到 ±std 或至少在关键行（peak, final）标注"
+    },
+    {
+      "severity": "info",
+      "dimension": "实验严谨性",
+      "message": "Appendix Table 2-3 提供完整 per-generation mean±s.d.，数据完整"
+    },
+    {
+      "severity": "info",
+      "dimension": "实验严谨性",
+      "message": "Baselines 覆盖近年工作（SIGMA 2026, He+ 2025, RankMe 2023），定位表清晰"
+    },
+    {
+      "severity": "info",
+      "dimension": "实验严谨性",
+      "message": "Ablation: EMA α 3 值、mixing ratio 5 级、3 seeds——对 characterization 论文覆盖面合理"
+    },
+    {
+      "severity": "warning",
+      "dimension": "可复现性",
+      "message": "50K-subset of OpenWebText 的子集选择方法未说明（random? sequential? stratified?）——影响可复现性"
+    },
+    {
+      "severity": "info",
+      "dimension": "可复现性",
+      "message": "超参 ✓ (Appendix §D: AdamW, lr=5e-5, wd=0.01, warmup 5%, bs=32, grad clip 1.0)"
+    },
+    {
+      "severity": "info",
+      "dimension": "可复现性",
+      "message": "GPU/时间 ✓ (RTX PRO 6000, 15-26 hrs/pipeline, ~220 GPU-hrs total)"
+    },
+    {
+      "severity": "info",
+      "dimension": "可复现性",
+      "message": "生成参数 ✓ (temp=1.0, top-k=50, max_len=512)"
+    },
+    {
+      "severity": "info",
+      "dimension": "可复现性",
+      "message": "代码链接 ✓ (anonymous GitHub)"
+    },
+    {
+      "severity": "info",
+      "dimension": "符号一致性",
+      "message": "核心符号（SLV, r_eff, σ₁, r_crit, Δ_t, τ, k, α）全文定义一致，无含义漂移"
+    },
+    {
+      "severity": "info",
+      "dimension": "符号一致性",
+      "message": "\"distinct-4\" (running text) vs \"D-4\" (tables) 混用，but D-4 在 table caption 中定义，可接受"
+    },
+    {
+      "severity": "info",
+      "dimension": "逻辑流",
+      "message": "Intro → Related Work → Method → Experiments 逻辑流畅，每节开头自然承接前节"
+    },
+    {
+      "severity": "info",
+      "dimension": "逻辑流",
+      "message": "§4.2 末 \"Cross-Scale Pilot\" 自然衔接到 §4.3 mixing comparison"
+    },
+    {
+      "severity": "info",
+      "dimension": "Limitations",
+      "message": "3 个 distinct limitations (Scale/Scope, Temporal Horizon, Generalization)，~150 words，实质性内容（非 \"future work will...\" 回避式）。满足 EMNLP 2026 \"一小段覆盖 3 个点\" 要求"
+    },
+    {
+      "severity": "info",
+      "dimension": "Limitations",
+      "message": "正文一个 Limitations section ✓，appendix 无 Limitations section ✓"
+    },
+    {
+      "severity": "warning",
+      "dimension": "去AI",
+      "message": "related_work.tex:4 LaTeX em-dash `---` 出现在 Figure caption 中: \"The three phases---decompression (I), onset (II), and acceleration (III)---are annotated...\" → 编译后渲染为 em-dash，应改为逗号或括号"
+    },
+    {
+      "severity": "critical",
+      "dimension": "去AI",
+      "message": "全文共 13 处 trailing participle phrase (\", confirming/rendering/demonstrating/indicating/revealing that...\")，其中 \"confirming that...\" 出现 7 次——这是最典型的 AI 写作模式，审稿人极易识别。具体位置："
+    },
+    {
+      "severity": "info",
+      "dimension": "内部信息",
+      "message": "无 exp_\\d\\d\\d 编号、无内部 IP/服务器名、无 TODO/PLACEHOLDER/TBD 残留"
+    },
+    {
+      "severity": "info",
+      "dimension": "内部信息",
+      "message": "无语义级内部流程泄露（\"第 N 轮实验\"、内部工具引用等）"
+    },
+    {
+      "severity": "info",
+      "dimension": "写作规则",
+      "message": "Abstract ~191 words ≤ 200 word limit ✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "写作规则",
+      "message": "正文有且仅有一个 Limitations section ✓，appendix 无 Limitations ✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "写作规则",
+      "message": "论文 PDF 中未包含 ARR Responsible NLP Checklist ✓（留给 OpenReview form）"
+    },
+    {
+      "severity": "info",
+      "dimension": "审稿规则",
+      "message": "编译 11 页（含 appendix + references + limitations）。主正文（§1-§5）预估约 7-8 页，在 8 页限制内（需 PDF 实测确认）"
+    },
+    {
+      "severity": "info",
+      "dimension": "审稿规则",
+      "message": "使用 \\usepackage[review]{acl} 模板，review 模式 ✓"
+    }
+  ],
+  "visual_findings": [
+    {
+      "severity": "warning",
+      "dimension": "page 3",
+      "message": "Figure 2 pipeline 图内文字（\"Fine-tune\"、\"Generate\"、\"SVD\"、数学符号 r_t、Δ_t 等）字号偏小，目测低于正文字号的 70%（约 6-7pt vs 正文 10pt）。建议改为 figure*（全宽）或精简框内文字、增大字号至 ≥8pt"
+    },
+    {
+      "severity": "warning",
+      "dimension": "page 5",
+      "message": "Figure 3 和 Figure 4 各占单栏，信息密度较高但图内标注（axis label、legend）字号偏小，尤其 Figure 4 双面板叠放后每个子图高度有限，y 轴标签紧凑。建议适当增大 tick label 字号或改为 figure* 双面板并排"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 1",
+      "message": "首页纯文本（Title + Abstract + Intro），无 display item。第一个视觉锚点（Figure 1）出现在第 2 页右栏，尚在前 3 页范围内，可接受。Figure 1 清晰传达核心 message（SLV 三阶段坍缩轨迹），Title-Abstract-Figure 1 story 一致"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 2",
+      "message": "Figure 1 caption 自包含，描述了三个阶段和 mixing 对比，读者无需回到正文即可理解。颜色方案（实线/虚线 + 蓝/红）清晰可区分"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 3",
+      "message": "Table 1 使用 booktabs 风格（✓标记，无竖线），排版规范。Figure 2 caption 自包含"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 4",
+      "message": "Table 2 全宽 booktabs 风格，最优值加粗标注，列内小数精度一致（τ_eff 2 位、SLV 2 位、PPL 2 位）。Eq.(1) 渲染正确，无 LaTeX 残留"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 5",
+      "message": "Figure 3 shaded band（±1 s.e.）标注方差，实践规范。Figure 4 caption 说明\"top/bottom\"与实际上下双面板一致"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 6",
+      "message": "Figure 5 柱状图清晰，颜色可区分。Table 3 列头 \"Rel .3\" 和 \"Rev\" 略显晦涩，建议展开为 \"Rel Δ ≥0.3\" 和 \"Reversal\" 以提高自包含性"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 7",
+      "message": "Figure 6 和 Figure 7 对 Type I/II/III 使用一致的颜色编码，跨图语义一致性好。Table 4 全宽 booktabs，加粗标注，精度一致"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 8",
+      "message": "Table 5 booktabs 风格，\"Match\" 列用 ✓ 标记。§5 Discussion & Conclusion 占右栏上方约 60%，§6 Limitations 占下方约 40%，主文（§1-5）约 7.7 页，符合 8 页限制"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 8",
+      "message": "Limitations 段落简短（约 15-20 行，覆盖 Scale/Scope、Temporal Horizon、Generalization 三个点），符合 EMNLP 2026 \"一小段、3 点左右\" 要求"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 9",
+      "message": "References 整页，格式统一（author-year），未见 [?] 未解析引用，无 overfull box"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 10-11",
+      "message": "Appendix Tables 6-9 均使用 booktabs 风格，精度一致。Page 11 内容填充约 85%，无大面积空白"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 1-8",
+      "message": "布局节奏良好：除 P1（标准首页）外，每页至少有 1 个 display item。无连续 ≥2 页纯文本，无连续 ≥2 页纯图表。Section heading 均有 ≥2-3 行跟随文字，无孤悬"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 1-8",
+      "message": "未检测到 margin 溢出、内容截断或异常空白（>1/4 页）"
+    },
+    {
+      "severity": "info",
+      "dimension": "写作规则",
+      "message": "Abstract 目测接近 200 词上限（约 190-200 词），建议从源码精确计数确认未超限"
+    },
+    {
+      "severity": "info",
+      "dimension": "写作规则",
+      "message": "PDF 中无 ARR Responsible NLP Checklist（正确，应在 OpenReview submission form 填写）"
+    },
+    {
+      "severity": "info",
+      "dimension": "写作规则",
+      "message": "全文仅 §6 一处 Limitations section（在正文中），Appendix 无重复 Limitations section"
+    },
+    {
+      "severity": "info",
+      "dimension": "审稿规则",
+      "message": "主文（§1-5）约 7.7 页 + Limitations 不计入 = 符合 8 页限制。References 无限制，Appendix 为补充材料"
+    }
+  ],
+  "counts": {
+    "critical": 2,
+    "warning": 25,
+    "info": 50
+  },
+  "error": "",
+  "timestamp": "2026-05-25T09:56:30.232698+00:00"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "62f998e6c7ab3c28a230",
+  "project": "trace_distill_repair",
+  "kind": "result",
+  "title": "code check kill duplicate pids",
+  "task_key": "worker_code_check_kill_duplicate_pids_20260514T213604",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_check_kill_duplicate_pids_20260514T213604_result.json",
+    "occurrence": 1,
+    "bytes": 360,
+    "sha256": "ecf9bc13eb11a9a464dc5e329042a1aabed50712954d17a2e09cc97260b856d4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "服务器名 `westd-18314` 不在已配置列表中。可用服务器为：\n- `gpu-6000pro-1`\n- `rtx6000-diagprobe`\n\n`westd-18314` 可能需要先在 `resources.yaml` 中注册。请确认：\n1. 这台服务器对应的是上面哪个别名？\n2. 还是需要新增配置？如果是，请提供 SSH 连接信息（host、port、user）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-check-kill-duplicate-pids.md"
+}

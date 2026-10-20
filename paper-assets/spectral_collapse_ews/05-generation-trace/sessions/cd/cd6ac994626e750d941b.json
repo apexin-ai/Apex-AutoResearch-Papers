@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cd6ac994626e750d941b",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "figure fig3 slv ppl decoupling",
+  "task_key": "worker_figure_fig3-slv-ppl-decoupling_20260523T115625",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_fig3-slv-ppl-decoupling_20260523T115625_result.json",
+    "occurrence": 1,
+    "bytes": 375,
+    "sha256": "54451746f5be833be3e24e7624c218f10a7b7989ba9a100da10d9afc2d4394ce"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个输出文件全部生成，图表清晰展示了三个 Phase 中 SLV 和 PPL 的解耦现象：Phase I 中 SLV↑ 但 PPL 也↑，Phase III 中 SLV↓ PPL↑ 加速分离。\n\n脚本：`figures/paper/gen_fig3.py`\nSeed42 PPL 来源：服务器 `/root/spectral_collapse_ews/results/phase0_results.json`，gen0=9.55 到 gen10=76.78，与验证点一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-fig3-slv-ppl-decoupling.md"
+}

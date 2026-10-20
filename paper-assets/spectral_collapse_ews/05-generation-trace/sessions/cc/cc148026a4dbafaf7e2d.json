@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cc148026a4dbafaf7e2d",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ops progress check 0518",
+  "task_key": "worker_ops_progress-check-0518_20260518T052021",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_progress-check-0518_20260518T052021_result.json",
+    "occurrence": 1,
+    "bytes": 2312,
+    "sha256": "57533d9e5d2a8ab6af3f6067b98850c8bffacdce72dfa2d9398f17cd65c1141f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验进度汇报\n\n### exp_006 — adaptive (k=10, seed=42)\n\n**状态**: 运行中，GPU 0，已运行 ~11h 27m（01:53 UTC 启动）  \n**完成**: gen 0–7 / 10\n\n| Gen | PPL | Eff Rank | log_det | distinct_4 | mix_ratio |\n|-----|------|----------|---------|------------|-----------|\n| 0 | 9.55 | 417.5 | 2366.7 | 0.741 | — |\n| 1 | 10.09 | 477.3 | 2365.1 | 0.710 | 0.5 |\n| 2 | 10.42 | 487.1 | 2394.0 | 0.600 | 0.5 |\n| 3 | 10.76 | 496.0 | 2423.8 | 0.490 | 0.5 |\n| 4 | 11.14 | 501.2 | 2448.3 | 0.430 | 0.5 |\n| 5 | 11.64 | 512.5 | 2488.1 | 0.373 | 0.5 |\n| 6 | 12.14 | 518.9 | 2507.6 | 0.356 | 0.5 |\n| 7 | 12.72 | 526.9 | 2526.2 | 0.290 | 0.5 |\n\n**预计**: ~98 min/gen → 剩 2 gen → **ETA ~16:36 UTC**\n\n---\n\n### exp_004 — fixed_mix (seed=42)\n\n**状态**: 运行中，GPU 1，已运行 ~11h 24m（01:56 UTC 启动）  \n**完成**: gen 0–6 / 10\n\n| Gen | PPL | Eff Rank | log_det | distinct_4 | mix_ratio |\n|-----|------|----------|---------|------------|-----------|\n| 0 | 9.55 | 417.5 | 2366.7 | 0.741 | — |\n| 1 | 10.08 | 477.9 | 2366.6 | 0.669 | 0.5 |\n| 2 | 10.41 | 487.9 | 2395.4 | 0.582 | 0.5 |\n| 3 | 10.76 | 496.6 | 2425.6 | 0.456 | 0.5 |\n| 4 | 11.14 | 502.0 | 2451.7 | 0.328 | 0.5 |\n| 5 | 11.65 | 512.8 | 2486.3 | 0.235 | 0.5 |\n| 6 | 12.16 | 519.8 | 2507.6 | 0.220 | 0.5 |\n\n**预计**: ~114 min/gen → 剩 3 gen → **ETA ~19:02 UTC**\n\n---\n\n### GPU 使用\n\n| GPU | 利用率 | 显存 |\n|-----|--------|------|\n| 0 | 94% | 25017 / 97887 MiB |\n| 1 | 72% | 25017 / 97887 MiB |\n\n---\n\n### log_det 趋势分析 (exp_006)\n\n| Gen | log_det | Δ |\n|-----|---------|-----|\n| 5 | 2488.1 | — |\n| 6 | 2507.6 | +19.5 |\n| 7 | 2526.2 | +18.6 |\n\n**仍在单调上升**，未见拐点。增幅从早期的 +25~+40 收窄到 +18~+19，有减速趋势但远未饱和。\n\n### 关键观察\n\n**controller_ratio 全程 = 0.5**。adaptive 条件的 k=10 意味着需要 10 个 gen 的信号才开始调整，但实验总共只跑 10 gen，所以 adaptive controller 实质上从未生效。两个实验在 mix_ratio 上完全相同，区别仅来自代码路径差异导致的随机性。distinct_4 在 exp_004 中下降更快（gen 6: 0.220 vs exp_006 gen 7: 0.290），但核心指标 (PPL, eff_rank, log_det) 两者走势几乎一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-progress-check-0518.md"
+}

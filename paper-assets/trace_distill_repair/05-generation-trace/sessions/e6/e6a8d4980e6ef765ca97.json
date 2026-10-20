@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e6a8d4980e6ef765ca97",
+  "project": "trace_distill_repair",
+  "kind": "result",
+  "title": "check phase3 progress",
+  "task_key": "worker_check_phase3_progress_20260515T105708",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_phase3_progress_20260515T105708_result.json",
+    "occurrence": 1,
+    "bytes": 1468,
+    "sha256": "54e870445a9d69e7f0cef666fa45549c0600f9d2a3674b934588a2c07beb189c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Phase 3 Repair Comparison 状态\n\n| 项目 | 状态 |\n|------|------|\n| **进程** | ALIVE (PID 116942, 运行 33m36s) |\n| **进度** | **18/33 实例已完成** (54.5%) |\n| **预估剩余** | ~28 分钟 (按 ~1.9 min/instance) |\n\n### 当前结果（从日志观察）\n\n所有实例 `success=False` (test_execution 全部失败)，judge 分数低 (0-2 范围)。\n\nsummary.json 是 18:06 的旧快照（31 实例的上一轮），当前 33 实例的运行尚未生成最终 summary。从旧 summary 看：\n\n| Condition | Avg Input Tokens | Avg Output Tokens | Success Rate | Avg Judge |\n|-----------|-----------------|-------------------|-------------|-----------|\n| no_trace | 1,067 | 2,363 | 0% | 0.0 |\n| full_trace | 13,532 | 2,933 | 0% | 0.0 |\n| structural_filtered | 1,333 | 2,696 | 0% | 0.0 |\n| line_filtered | 2,274 | 2,660 | 0% | 0.0 |\n\n### 异常\n\n- **所有 condition 的 success rate 都是 0%**，test execution 全部失败\n- 评估方法显示 114 次 `line_overlap_fallback` + 10 次 `empty_response`，说明测试执行环境可能有系统性问题\n- judge 分数在日志中出现 1-2 的值，但 summary 显示 0.0（可能 summary 统计逻辑有差异）\n- Token 使用符合预期：full_trace 远高于其他条件（13.5k vs 1-2.3k）\n\n**关键问题**：0% success rate 是系统性测试执行失败，不是模型能力问题。建议等运行完成后检查测试执行的具体错误信息。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-phase3-progress.md"
+}

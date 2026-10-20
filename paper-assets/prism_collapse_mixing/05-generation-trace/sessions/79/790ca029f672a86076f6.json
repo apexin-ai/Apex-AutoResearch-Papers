@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "790ca029f672a86076f6",
+  "project": "prism_collapse_mixing",
+  "kind": "result",
+  "title": "ssh env setup",
+  "task_key": "worker_ssh_env-setup_20260515T165606",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_env-setup_20260515T165606_result.json",
+    "occurrence": 1,
+    "bytes": 609,
+    "sha256": "bab4e4adb390cf47e68bf0acbe652f02578b3cba594042c84aca69d8553178d5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "环境搭建完成。\n\n| 项目 | 结果 |\n|------|------|\n| Python | 3.12.3 (conda base) |\n| PyTorch | 2.10.0+cu128, CUDA 可用 |\n| GPU | 2x NVIDIA RTX PRO 6000 Blackwell Server Edition, 各 94GB |\n| 依赖 | transformers 4.57.6, datasets 4.8.4, einops 0.8.2, accelerate 1.13.0, wandb 0.26.0, scipy 1.17.1, scikit-learn 1.8.0 — 全部就绪 |\n| 项目目录 | `/root/prism_collapse_mixing` 已创建 |\n| 问题 | 无，所有包已预装在 conda base 环境中 |\n\n**注意**：使用时需先激活 conda：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-env-setup.md"
+}

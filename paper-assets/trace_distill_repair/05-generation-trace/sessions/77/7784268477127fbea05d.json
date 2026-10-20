@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7784268477127fbea05d",
+  "project": "trace_distill_repair",
+  "kind": "result",
+  "title": "monitor strong model progress",
+  "task_key": "worker_monitor_strong_model_progress_20260515T160800",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_strong_model_progress_20260515T160800_result.json",
+    "occurrence": 1,
+    "bytes": 1011,
+    "sha256": "853c2565dc7c27b26ce6a558703a5d2d1b541843e9e04ce0cc2388d9961e55ec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 强模型消歧实验 (mvp_strong_model_disambig)\n\n**进程状态**: PID 141440 存活，已运行 12 分钟，正在处理 sanic_2\n\n**进度**: 7/14 实例已完成，当前第 8 个\n\n**test_pass**: 4/28 (14.3%) — 全部来自 cookiecutter_1\n\n| 实例 | test_pass |\n|------|-----------|\n| black_1 | 0/4 |\n| cookiecutter_1 | **4/4** |\n| cookiecutter_2 | 0/4 |\n| cookiecutter_3 | 0/4 |\n| fastapi_2 | 0/4 |\n| httpie_2 | 0/4 |\n| luigi_5 | 0/4 |\n\n所有 judge 分数均为 1（最低分）。无错误，运行正常。\n\n---\n\n## v2 实验\n\n**进度**: 10/14 实例已完成（比强模型跑得快，已提前完成更多）\n\n**test_pass**: 3/40 (7.5%)\n\n---\n\n**初步信号**：目前 test_pass 率极低，judge 分数全为 1。cookiecutter_1 是唯一在强模型下全部通过的实例。还剩 7 个实例（sanic_2 正在跑 + scrapy_2, scrapy_7, tornado_2, youtube-dl_1, youtube-dl_5, youtube-dl_20），最终结果需等完成后再评估 kill criteria。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-strong-model-progress.md"
+}

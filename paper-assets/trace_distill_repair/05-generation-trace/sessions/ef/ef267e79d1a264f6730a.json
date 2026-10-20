@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "ef267e79d1a264f6730a",
+  "project": "trace_distill_repair",
+  "kind": "worker",
+  "title": "code sync server to local",
+  "task_key": "worker_code_sync_server_to_local_20260514T134005",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_sync_server_to_local_20260514T134005.log",
+    "occurrence": 1,
+    "bytes": 780930,
+    "sha256": "efae3528552816dce2ca0d24938de9d948ef8cc8ef21cd8ee75745040821bf25"
+  },
+  "statistics": {
+    "messages": 135,
+    "user_turns": 0,
+    "tool_calls": 47,
+    "roles": {
+      "log": 1,
+      "system": 3,
+      "record": 1,
+      "assistant": 35,
+      "tool_call": 47,
+      "tool_result": 47,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 135,
+      "chunks": [
+        {
+          "path": "ef267e79d1a264f6730a-part-0001.json",
+          "message_count": 87
+        },
+        {
+          "path": "ef267e79d1a264f6730a-part-0002.json",
+          "message_count": 48
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-sync-server-to-local.md"
+}

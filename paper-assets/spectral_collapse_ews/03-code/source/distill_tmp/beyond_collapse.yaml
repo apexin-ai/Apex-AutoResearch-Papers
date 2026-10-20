@@ -1,0 +1,27 @@
+paper_key: "Beyond Model Collapse: Scaling Up with Synthesized Data Requires Verification"
+title: "Beyond Model Collapse: Scaling Up with Synthesized Data Requires Verification"
+venue: "arXiv 2024"
+full_text_available: false
+
+research:
+  baselines: ["training without verification (pure synthetic data)", "Gaussian mixture model baselines"]
+  metrics:
+    - {name: "task performance (eigenvalue computation accuracy)", direction: "higher_better"}
+    - {name: "summarization quality", direction: "higher_better"}
+    - {name: "proxy metric (correlation with actual performance)", direction: "higher_better"}
+  datasets:
+    - {name: "matrix eigenvalue computation (transformer-based)", size: "N/A"}
+    - {name: "news summarization", size: "N/A"}
+  ablation_dimensions: ["verifier quality (imperfect vs perfect)", "verification mechanism type"]
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "N/A"}
+  method_family: "verified synthetic data / data quality filtering"
+
+positioning:
+  core_claim: "Even imperfect verifiers on synthesized training data can mitigate model collapse, with theoretically grounded proxy metrics that correlate with actual performance."
+  key_results: "Both eigenvalue computation and news summarization tasks show collapse with unverified synthetic data but recovery with verification; proxy metric strongly correlates with performance."
+  limitations: ["Abstract does not mention explicit limitations"]
+  relation_to_us: "complementary"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

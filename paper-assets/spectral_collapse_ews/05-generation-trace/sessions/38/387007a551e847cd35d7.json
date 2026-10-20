@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "387007a551e847cd35d7",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "analysis alt ews r02",
+  "task_key": "worker_analysis_alt-ews-r02_20260525T215610",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_alt-ews-r02_20260525T215610_result.json",
+    "occurrence": 1,
+    "bytes": 219,
+    "sha256": "a2cf7700279776f4e8e35f8820b3f13000da82d44c8de69977a485740c605f4c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Script relaunched with correct parameters (4000 synthetic samples/gen). Generating at ~13 samples/s on GPU 1. Estimated completion: ~80 minutes. I'll check back periodically and process results when done."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-alt-ews-r02.md"
+}

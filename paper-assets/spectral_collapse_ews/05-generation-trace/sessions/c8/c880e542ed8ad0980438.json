@@ -1,0 +1,138 @@
+{
+  "schema_version": "1.0",
+  "id": "c880e542ed8ad0980438",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ops exp014b full results",
+  "task_key": "worker_ops_exp014b-full-results_20260521T231620",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp014b-full-results_20260521T231620_result.json",
+    "occurrence": 1,
+    "bytes": 3905,
+    "sha256": "93164670bcc246a89ff8ec13d2af9d323a2b9ea51e8ec4cfb14e76ba7bf1fb39"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results JSON 包含所有需要的字段。整理如下：\n\n```json\n{\n  \"0\":  {\"eff_rank\": 417.55, \"log_det\": 2366.68, \"ppl\": 9.554,  \"distinct4\": 0.7415, \"sigma1\": 1942.82, \"train_loss\": null},\n  \"1\":  {\"eff_rank\": 475.66, \"log_det\": 2365.35, \"ppl\": 10.226, \"distinct4\": 0.6584, \"sigma1\": 963.01,  \"train_loss\": 1.802},\n  \"2\":  {\"eff_rank\": 483.00, \"log_det\": 2362.54, \"ppl\": 10.649, \"distinct4\": 0.5574, \"sigma1\": 864.90,  \"train_loss\": 1.722},\n  \"3\":  {\"eff_rank\": 488.96, \"log_det\": 2380.55, \"ppl\": 11.003, \"distinct4\": 0.4772, \"sigma1\": 827.00,  \"train_loss\": 1.521},\n  \"4\":  {\"eff_rank\": 491.74, \"log_det\": 2395.05, \"ppl\": 11.346, \"distinct4\": 0.3735, \"sigma1\": 795.62,  \"train_loss\": 1.363},\n  \"5\":  {\"eff_rank\": 495.60, \"log_det\": 2414.84, \"ppl\": 11.668, \"distinct4\": 0.3378, \"sigma1\": 767.08,  \"train_loss\": 1.200},\n  \"6\":  {\"eff_rank\": 497.83, \"log_det\": 2426.55, \"ppl\": 12.005, \"distinct4\": 0.3374, \"sigma1\": 782.76,  \"train_loss\": 1.053},\n  \"7\":  {\"eff_rank\": 502.04, \"log_det\": 2448.42, \"ppl\": 12.406, \"distinct4\": 0.3700, \"sigma1\": 777.69,  \"train_loss\": 1.060},\n  \"8\":  {\"eff_rank\": 506.76, \"log_det\": 2465.02, \"ppl\": 12.767, \"distinct4\": 0.3586, \"sigma1\": 780.81,  \"train_loss\": 1.093},\n  \"9\":  {\"eff_rank\": 510.49, \"log_det\": 2477.84, \"ppl\": 13.184, \"distinct4\": 0.3848, \"sigma1\": 775.38,  \"train_loss\": 1.073},\n  \"10\": {\"eff_rank\": 515.56, \"log_det\": 2488.58, \"ppl\": 13.611, \"distinct4\": 0.3380, \"sigma1\": 758.92,  \"train_loss\": 1.061}\n}\n```\n\n关键观察：\n- **sigma1** 从 Gen0 的 1942.8 骤降至 Gen1 的 963.0，之后逐代缓降至 Gen10 的 758.9（Gen6 有小反弹至 782.8）\n- **log_det (SLV)** Gen0-2 微降（2366→2362），Gen3 起单调上升至 Gen10 的 2488.6\n- **eff_rank** 单调上升 417.5 → 515.6\n- **distinct4** 单调下降 0.74 → 0.34（Gen5-6 触底后轻微波动）\n- **ppl** 单调上升 9.55 → 13.61"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "0": {
+                "eff_rank": 417.55,
+                "log_det": 2366.68,
+                "ppl": 9.554,
+                "distinct4": 0.7415,
+                "sigma1": 1942.82,
+                "train_loss": null
+              },
+              "1": {
+                "eff_rank": 475.66,
+                "log_det": 2365.35,
+                "ppl": 10.226,
+                "distinct4": 0.6584,
+                "sigma1": 963.01,
+                "train_loss": 1.802
+              },
+              "2": {
+                "eff_rank": 483.0,
+                "log_det": 2362.54,
+                "ppl": 10.649,
+                "distinct4": 0.5574,
+                "sigma1": 864.9,
+                "train_loss": 1.722
+              },
+              "3": {
+                "eff_rank": 488.96,
+                "log_det": 2380.55,
+                "ppl": 11.003,
+                "distinct4": 0.4772,
+                "sigma1": 827.0,
+                "train_loss": 1.521
+              },
+              "4": {
+                "eff_rank": 491.74,
+                "log_det": 2395.05,
+                "ppl": 11.346,
+                "distinct4": 0.3735,
+                "sigma1": 795.62,
+                "train_loss": 1.363
+              },
+              "5": {
+                "eff_rank": 495.6,
+                "log_det": 2414.84,
+                "ppl": 11.668,
+                "distinct4": 0.3378,
+                "sigma1": 767.08,
+                "train_loss": 1.2
+              },
+              "6": {
+                "eff_rank": 497.83,
+                "log_det": 2426.55,
+                "ppl": 12.005,
+                "distinct4": 0.3374,
+                "sigma1": 782.76,
+                "train_loss": 1.053
+              },
+              "7": {
+                "eff_rank": 502.04,
+                "log_det": 2448.42,
+                "ppl": 12.406,
+                "distinct4": 0.37,
+                "sigma1": 777.69,
+                "train_loss": 1.06
+              },
+              "8": {
+                "eff_rank": 506.76,
+                "log_det": 2465.02,
+                "ppl": 12.767,
+                "distinct4": 0.3586,
+                "sigma1": 780.81,
+                "train_loss": 1.093
+              },
+              "9": {
+                "eff_rank": 510.49,
+                "log_det": 2477.84,
+                "ppl": 13.184,
+                "distinct4": 0.3848,
+                "sigma1": 775.38,
+                "train_loss": 1.073
+              },
+              "10": {
+                "eff_rank": 515.56,
+                "log_det": 2488.58,
+                "ppl": 13.611,
+                "distinct4": 0.338,
+                "sigma1": 758.92,
+                "train_loss": 1.061
+              }
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp014b-full-results.md"
+}

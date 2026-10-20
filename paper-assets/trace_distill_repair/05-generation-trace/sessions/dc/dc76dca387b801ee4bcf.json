@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dc76dca387b801ee4bcf",
+  "project": "trace_distill_repair",
+  "kind": "result",
+  "title": "code mvp framework",
+  "task_key": "worker_code_mvp_framework_20260514T123238",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mvp_framework_20260514T123238_result.json",
+    "occurrence": 1,
+    "bytes": 782,
+    "sha256": "ccc8a8665390d8d6e6a04137dae1780497926f77249e9dc62163a5d2c2fd81af"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 7 个模块导入通过（pandas 未安装，mvp_pipeline 已做 conditional import 处理，不影响导入）。\n\n创建完成：\n- `dtd_types.py` — 共享 dataclass（TraceEvent, TraceSegment, ScoredSegment）和序列化工具\n- `trace_collector.py` — sys.settrace 注入收集 trace，subprocess 隔离执行\n- `structural_segmenter.py` — 按 call subtree / loop iteration / exception chain 分段\n- `line_segmenter.py` — 固定窗口 baseline 分段\n- `teacher_scorer.py` — DeepSeek API 打分，并发批处理，JSON 解析带 fallback\n- `bugsinpy_setup.py` — 30 个候选 bug 实例，checkout buggy/fixed 版本\n- `mvp_pipeline.py` — 端到端 4-condition 对比（no_trace / full_trace / structural_filtered / line_filtered）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-mvp-framework.md"
+}

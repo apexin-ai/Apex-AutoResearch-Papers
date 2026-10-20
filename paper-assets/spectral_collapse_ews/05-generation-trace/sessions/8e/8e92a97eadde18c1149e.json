@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8e92a97eadde18c1149e",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "check exp003 controller status",
+  "task_key": "worker_check_exp003_controller_status_20260517T102242",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_exp003_controller_status_20260517T102242_result.json",
+    "occurrence": 1,
+    "bytes": 1212,
+    "sha256": "c3659c6ae40ec2dd53970b92c95a5c8354f829607c4dca4e613012b4483b0034"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp_003 状态汇报\n\n### 进度\n- **当前**: Gen 2，正在生成合成数据 **19840/50000** (~39.7%)\n- 进程 PID 88156 存活，日志持续写入（2634 行）\n- 已完成: Gen 0 (baseline eval) + Gen 1 (生成 → 训练 → eval)\n\n### Controller 触发状态\n- Controller 已初始化: `signal=log_det, tau=0.005, k=1.0, r_min=0.2, r_max=0.8`\n- **Gen 1 mixing ratio = 0.5000**（默认 50/50，controller 未触发调整）\n- Gen 2 尚在生成阶段，还没到 mixing 决策点\n\n### Spectral Metrics 趋势\n\n| Gen | eff_rank | ppl | distinct4 |\n|-----|----------|------|-----------|\n| 0 (baseline) | 417.55 | 9.55 | 0.7414 |\n| 1 | 479.49 (+14.8%) | 10.01 (+4.8%) | 0.7108 (-4.1%) |\n\neff_rank 上升说明频谱尚未开始坍缩，ppl 和 distinct4 有轻微退化但幅度很小。log_det 信号大概率未达到 tau=0.005 阈值，因此 controller 维持默认 ratio。Gen 2 完成 eval 后是关键观察点——如果累积退化触发阈值，mixing ratio 将开始偏移。\n\n### 错误\n无任何 error/exception/traceback/OOM。\n\n### 磁盘\n- `/` (root): 84% (剩余 5.1G) — 偏紧，注意监控\n- `/root/autodl-tmp`: 48% (剩余 132G) — 充足"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp003-controller-status.md"
+}

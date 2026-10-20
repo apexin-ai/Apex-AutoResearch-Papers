@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "905557a7b7f73494326a",
+  "project": "prism_collapse_mixing",
+  "kind": "result",
+  "title": "ssh hotfix dtype",
+  "task_key": "worker_ssh_hotfix-dtype_20260515T172754",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_hotfix-dtype_20260515T172754_result.json",
+    "occurrence": 1,
+    "bytes": 384,
+    "sha256": "95b6d86f222be63c155c296c5c3413211bccac04974f02477067da678b641600"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个文件语法验证通过。\n\n修改汇总：\n\n| 文件 | 行号 | 修改 |\n|------|------|------|\n| `compute_signals.py` | 184 | `dtype=torch.bfloat16` → `torch_dtype=torch.bfloat16` |\n| `train.py` | 89 | `dtype=torch.bfloat16` → `torch_dtype=torch.bfloat16` |\n| `generate_synthetic.py` | 44 | `dtype=torch.bfloat16` → `torch_dtype=torch.bfloat16` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-hotfix-dtype.md"
+}

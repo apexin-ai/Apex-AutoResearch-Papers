@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f56772fcc71e1a6f14b0",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "code prep exp 014",
+  "task_key": "worker_code_prep_exp_014_20260520T204957",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prep_exp_014_20260520T204957_result.json",
+    "occurrence": 1,
+    "bytes": 986,
+    "sha256": "9b26308f92bec96a999e88015a8acaf25025a94d040c1683971dad8c6b9d2ac4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Script created and validated. Here's the summary:\n\n---\n\n**1. exp_009 原始启动命令**\n```bash\nCUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 \\\npython run_phase1.py --condition fixed_mix --seed 42 --generations 10 \\\n  --signal log_det --tau 0.002 --k 0 --signal_mode per_gen --real_ratio 0.25 --gpu 0\n```\n\n**2. exp_014 脚本**\n- 路径: `/root/spectral_collapse_ews/scripts/launch_fixed_mix_r025_seed43.sh`\n- 与 exp_009 唯一差异: `--seed 43`\n- 输出会自动生成为:\n  - Results: `results/phase1_fixed_mix_r025_seed43_results.json`\n  - Summary: `results/phase1_fixed_mix_r025_seed43_summary.json`\n  - Checkpoints: `/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r025_seed43/`\n- `bash -n` 语法检查通过，checkpoint 目录存在\n\n**3. 启动命令**\n```bash\ncd /root/spectral_collapse_ews && nohup bash scripts/launch_fixed_mix_r025_seed43.sh 0 > logs/exp_014.log 2>&1 &\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prep-exp-014.md"
+}

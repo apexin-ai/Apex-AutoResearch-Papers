@@ -1,0 +1,40 @@
+{
+  "exp_id": "exp_019",
+  "project": "spectral_collapse_ews",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T04:05:17.129Z",
+    "updated_at": "2026-05-23T04:08:22.242Z",
+    "hypothesis": "r=0.2 with seed 44 reproduces Type II trajectory (transient dip + recovery) observed in exp_007 (seed42) and exp_017 (seed43). Third seed enables 3-seed coverage for r=0.2, resolving whether D-4 V-shaped recovery (seed42) is a 1/3 outlier or a majority pattern. Strengthens C3 signal attenuation claim and R1-N2 seed replication.",
+    "parent": "exp_017",
+    "server": "rtx6000-diagprobe",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "rtx6000-diagprobe",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-23T04:08:20.155Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cp /root/spectral_collapse_ews/scripts/launch_fixed_mix_r020_seed43.sh /root/spectral_collapse_ews/scripts/launch_fixed_mix_r020_seed44.sh && sed -i 's/seed=43/seed=44/g; s/seed43/seed44/g; s/SEED=43/SEED=44/g; s/--seed 43/--seed 44/g' /root/spectral_collapse_ews/scripts/launch_fixed_mix_r020_seed44.sh && bash /root/spectral_collapse_ews/scripts/launch_fixed_mix_r020_seed44.sh 0\""
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cp /root/spectral_collapse_ews/scripts/launch_fixed_mix_r020_seed43.sh /root/spectral_collapse_ews/scripts/launch_fixed_mix_r020_seed44.sh && sed -i 's/seed=43/seed=44/g; s/seed43/seed44/g; s/SEED=43/SEED=44/g; s/--seed 43/--seed 44/g' /root/spectral_collapse_ews/scripts/launch_fixed_mix_r020_seed44.sh && bash /root/spectral_collapse_ews/scripts/launch_fixed_mix_r020_seed44.sh 0\"",
+      "server": "rtx6000-diagprobe",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "757587",
+      "log_path": "~/runs/spectral_collapse_ews/exp_019.log",
+      "submitted_at": "2026-05-23T04:08:21.748Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "pid": "757587",
+    "log_path": "~/runs/spectral_collapse_ews/exp_019.log"
+  },
+  "timestamp": "2026-05-23T04:08:22.756418+00:00",
+  "trigger": "update_registry"
+}

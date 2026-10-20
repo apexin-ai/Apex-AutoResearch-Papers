@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ca7cb37c11848be7b732",
+  "project": "rl-active-probe-fl",
+  "kind": "result",
+  "title": "code test gen full",
+  "task_key": "worker_code_test-gen-full_20260514T052735",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_test-gen-full_20260514T052735_result.json",
+    "occurrence": 1,
+    "bytes": 1884,
+    "sha256": "b0084e563e04666b1ca306e1c0567155e1893f5d050cb8dbac651282b8c4c8a7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据已足够。汇总报告：\n\n---\n\n## 全量结果报告\n\n### Phase 1: Pilot (20 条)\n- Solution pass rate: **16/20 = 80.0%** (≥80% 阈值，自动启动全量)\n- Both correct: 16/20 = 80.0%\n\n### Phase 2: 全量生成\n- 目标: 683 条\n- 成功生成: **627 条**\n- API 失败: **56 条**（原因: 402 Insufficient balance，API 余额耗尽）\n\n### Phase 3: 验证统计\n\n| 指标 | 数量 | 比率 |\n|------|------|------|\n| 总生成数 | 627 | 627/683 = 91.8% |\n| Solution pass | 514 | 514/627 = 82.0% |\n| Buggy fail | 496 | 496/627 = 79.1% |\n| **Both correct (有效样本)** | **496** | **496/683 = 72.6%** |\n\n**有效样本 496 < 500，低于 73% 产出率预警线。**\n\n### 失败原因分布（131 条无效）\n- Solution 测试失败: 113 条（主要是 assertion error: 期望值不正确）\n- Buggy code 意外通过: 18 条（测试未覆盖到 bug 点）\n\n### 按 category 分组\n\n| Category | 有效/总计 | 有效率 |\n|----------|----------|--------|\n| syntax error | 211/260 | 81.2% |\n| logic error | 152/196 | 77.6% |\n| reference error | 133/227 | **58.6%** |\n\n### 按 level 分组\n\n| Level | 有效/总计 | 有效率 |\n|-------|----------|--------|\n| easy | 167/205 | 81.5% |\n| medium | 223/303 | 73.6% |\n| hard | 106/175 | **60.6%** |\n\n### 问题与建议\n1. **API 余额不足**导致 56 条未生成，这是有效样本不足 500 的主要原因。如果补齐这 56 条（按 80% 有效率估算 +45 条），总有效样本约 541，可达标。\n2. **reference error 类别有效率最低** (58.6%)，主要因为这类 bug 较隐蔽，测试不易覆盖。\n3. **hard 题有效率偏低** (60.6%)，assertion error 占多数（LLM 对复杂题目的期望输出判断不准）。\n4. 建议：充值 API 后用断点续传补跑剩余 56 条，预计可突破 500 有效样本线。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-test-gen-full.md"
+}

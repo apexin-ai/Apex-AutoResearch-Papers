@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d01165b8feefa912db7f",
+  "project": "trace_distill_repair",
+  "kind": "result",
+  "title": "check openrouter model support",
+  "task_key": "worker_check_openrouter_model_support_20260515T153120",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_openrouter_model_support_20260515T153120_result.json",
+    "occurrence": 1,
+    "bytes": 1223,
+    "sha256": "b1164e04a73b9376930489ed507ac246a3ec4992ffd5e2a557f397e746036770"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n### OpenRouter 代理模型列表（共 73 个模型）\n\n**Claude 系列：**\n| 模型 ID | 可用 |\n|---------|------|\n| `anthropic/claude-sonnet-4` | ✅ 已验证（通过 Amazon Bedrock） |\n| `anthropic/claude-sonnet-4.5` | ✅ |\n| `anthropic/claude-sonnet-4.6` | ✅ |\n| `anthropic/claude-opus-4.5` | ✅ |\n| `anthropic/claude-opus-4.6` | ✅ |\n| `anthropic/claude-opus-4.7` | ✅ |\n| `anthropic/claude-opus-4.7-fast` | ✅ |\n| `anthropic/claude-haiku-4.5` | ✅ |\n| `claude-haiku-4-5`（无前缀） | ✅ |\n\n**GPT-4o 系列：**\n| 模型 ID | 可用 |\n|---------|------|\n| `openai/gpt-4o-mini` | ✅ |\n| `openai/gpt-4o`（完整版） | ❌ 不在列表中 |\n\n### 关键结论\n- **Claude Sonnet 4** 可直接调用，用现有 `OPENROUTER_API_KEY` 即可，无需新 key\n- **GPT-4o 完整版不可用**，只有 `gpt-4o-mini`。如果强模型消歧实验需要 GPT-4o 作为 judge，需要换成 `gpt-4o-mini` 或其他可用模型\n\n### v2 实验进度\n- PID 131777 仍在运行（已运行 2h03m）\n- checkpoint 结构是 dict（非 list），包含 **9/14 个 instance**：`black_1, cookiecutter_1/2/3, fastapi_2, httpie_2, luigi_5, sanic_2, scrapy_2`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-openrouter-model-support.md"
+}

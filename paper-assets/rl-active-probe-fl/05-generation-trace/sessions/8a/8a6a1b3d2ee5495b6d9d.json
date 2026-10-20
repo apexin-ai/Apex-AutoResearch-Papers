@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8a6a1b3d2ee5495b6d9d",
+  "project": "rl-active-probe-fl",
+  "kind": "result",
+  "title": "check qwen30b download status",
+  "task_key": "worker_check_qwen30b-download-status_20260514T122418",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_qwen30b-download-status_20260514T122418_result.json",
+    "occurrence": 1,
+    "bytes": 505,
+    "sha256": "40919c7bdbc3dca14d2eab6871f2fae7ddf62f57984e985260dc0d2fbd9926d1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Qwen3-30B-A3B 下载已完成。**\n\n| 项目 | 状态 |\n|------|------|\n| 模型路径 | `/root/autodl-tmp/models/Qwen/Qwen3-30B-A3B/` |\n| 总大小 | **57GB** |\n| safetensors 文件 | **16/16**（完整） |\n| 配套文件 | config.json, tokenizer.json, tokenizer_config.json, generation_config.json 等齐全 |\n| 下载进程 | 无活跃下载进程 |\n| 磁盘空间 | 250GB 总量，已用 76GB，**剩余 175GB (69%)** |\n\n另外发现同目录下还有 `Qwen3-8B` 模型。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-qwen30b-download-status.md"
+}

@@ -1,0 +1,25 @@
+paper_key: "The Effective Rank: A Measure of Effective Dimensionality"
+title: "The Effective Rank: A Measure of Effective Dimensionality"
+venue: "EUSIPCO 2007"
+full_text_available: false
+
+research:
+  baselines: ["traditional integer-valued matrix rank", "numerical rank (threshold-based)"]
+  metrics:
+    - {name: "effective rank (continuous-valued)", direction: "context_dependent"}
+    - {name: "coefficient rate of stationary random process", direction: "context_dependent"}
+  datasets:
+    - {name: "N/A (theoretical framework paper)", size: "N/A"}
+  ablation_dimensions: ["operational interpretation via coefficient rate"]
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "N/A"}
+  method_family: "spectral analysis / matrix rank estimation"
+
+positioning:
+  core_claim: "Effective rank provides a real-valued measure of effective dimensionality based on singular value distribution entropy, offering a continuous alternative to integer-valued rank for matrices with near-zero singular values."
+  key_results: "Defines effective rank with operational meaning via coefficient rate of stationary random processes; validated on practical signal processing applications."
+  limitations: ["Abstract does not mention explicit limitations"]
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d0b7403d002ec7966883",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "paper research citation verify",
+  "task_key": "worker_paper_research_citation_verify_20260517T204703",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_research_citation_verify_20260517T204703_result.json",
+    "occurrence": 1,
+    "bytes": 1615,
+    "sha256": "d3324cb19c4bee0b840e65368e1ef0bc3182556bf045893eb70bcdd10fac9cc4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 验证报告\n\n| # | arXiv ID | 标题 | 结果 | 说明 |\n|---|----------|------|------|------|\n| 1 | [2512.24145](https://arxiv.org/abs/2512.24145) | Paired Seed Evaluation: Statistical Reliability for Learning-Based Simulators | **verified: true** | 真实存在。引用于 IDEA_BRIEF.md 和 paper_framing.md（作为实验方法论参考），未收录 literature_map.yaml。内容与描述一致。 |\n| 2 | [2601.03385](https://arxiv.org/abs/2601.03385) | SIGMA: Scalable Spectral Insights for LLM Model Collapse | **verified: true** | 真实存在。标题、作者（Gu, Pang, Ye, Wang, Lin, Priebe, Aue）、内容与 literature_map 条目 `gu2026sigma` 完全匹配。 |\n| 3 | [2509.22335](https://arxiv.org/abs/2509.22335) | Spectral Collapse Drives Loss of Plasticity in Deep Continual Learning | **verified: true** | 真实存在。作者（He, Guo, Prakash 等）匹配。已确认收录于 [NeurIPS 2025](https://neurips.cc/virtual/2025/loc/san-diego/136070)，venue 信息正确。arXiv 2502.18049 是**另一篇**不同论文（\"Golden Ratio Weighting Prevents Model Collapse\", He & Xu & Cheng），两者非同一篇。 |\n| 4 | [2509.04796](https://arxiv.org/abs/2509.04796) | Knowledge Collapse in LLMs: When Fluency Survives but Facts Fail under Recursive Synthetic Training | **verified: true** | 真实存在。作者（Keisha, Wu, Wang, Koshiyama, Treleaven）与 literature_map 条目 `keisha2025knowledge` 完全匹配。 |\n\n**结论：4 篇引用全部真实存在，标题/作者/内容均与 literature_map 描述一致。无需修改 literature_map.yaml。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-research-citation-verify.md"
+}

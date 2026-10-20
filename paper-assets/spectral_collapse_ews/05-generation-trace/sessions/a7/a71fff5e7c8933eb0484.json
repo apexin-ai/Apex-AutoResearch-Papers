@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a71fff5e7c8933eb0484",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "code exp 020 prep",
+  "task_key": "worker_code_exp_020_prep_20260523T043542",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp_020_prep_20260523T043542_result.json",
+    "occurrence": 1,
+    "bytes": 1088,
+    "sha256": "a8d94ba2a25bf8af49aa0e6ecf3a4a4ff1d87c1ba04797c6203d299febbc9053"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp_020 code prep complete. Summary:\n\n**Files created on server** (`/root/spectral_collapse_ews/`):\n- `run_gpt2m_phase1.py` — GPT-2-medium runner (reuses `src.pipeline`, no existing code modified)\n- `prepare_data_gpt2m.py` — re-tokenizes Pile with GPT-2 tokenizer\n- `dry_run_gpt2m.py` — CPU dry-run test\n- `scripts/launch_gpt2medium_r0_seed42.sh` — launch script\n\n**Dry-run**: all tests passed on CPU. Model loads (354.8M params, hidden=1024, 24 layers), forward+backward works, embedding extraction + SVD spectral metrics work, text generation works.\n\n**Key findings**:\n- No pipeline code changes needed — `src/*.py` is fully model-agnostic\n- Data needs re-tokenization (different BPE vocabulary)\n- GPU memory: ~5.9 GB (vs 72-78 GB free)\n- Estimated wall time: ~2h/gen, ~20-22h total (10 gens)\n- Running experiments (exp_018/019) verified unaffected\n\n**Launch command**:\n```bash\nnohup bash /root/spectral_collapse_ews/scripts/launch_gpt2medium_r0_seed42.sh <GPU_ID> \\\n  > /root/spectral_collapse_ews/logs/exp_020_gpt2m_r0_s42.log 2>&1 &\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-020-prep.md"
+}

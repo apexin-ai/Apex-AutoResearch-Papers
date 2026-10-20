@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp_026",
+  "project": "spectral_collapse_ews",
+  "state": "QUEUED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-25T22:26:18.966Z",
+    "updated_at": "2026-05-25T23:13:33.128Z",
+    "hypothesis": "GPT-2-medium (355M) under pure-synthetic recursive training (r=0) with seed 43 reproduces the three-phase spectral trajectory observed in exp_020 (seed 42). Second seed provides cross-seed validation for the cross-architecture claim, enabling mean±sd statistics for GPT-2-medium. Combined with exp_020 and exp_027 (seed44), this gives 3-seed coverage matching Pythia-410M rigor.",
+    "parent": "exp_020"
+  },
+  "timestamp": "2026-05-25T23:13:33.233859+00:00",
+  "trigger": "update_registry"
+}

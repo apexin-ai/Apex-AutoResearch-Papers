@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6c4708c2c7373b99fa26",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "code prep r015 script",
+  "task_key": "worker_code_prep-r015-script_20260520T010702",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prep-r015-script_20260520T010702_result.json",
+    "occurrence": 1,
+    "bytes": 1114,
+    "sha256": "7aa1a847eac53fbeb18809a643a5dd8b16c89a2b0375cdaeb003a1cb94109847"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。\n\n**脚本**: `/root/spectral_collapse_ews/scripts/launch_mixed_r0.15.sh`\n\n```bash\n#!/bin/bash\n# Launch fixed_mix r=0.15 ablation\n# Usage: bash launch_mixed_r0.15.sh [GPU_ID]\n\nGPU_ID=${1:-0}\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\ncd /root/spectral_collapse_ews\n\nCUDA_VISIBLE_DEVICES=${GPU_ID} \\\nHF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 \\\npython run_phase1.py \\\n  --condition fixed_mix --seed 42 --generations 10 \\\n  --signal log_det --tau 0.002 --k 0 --signal_mode per_gen \\\n  --real_ratio 0.15 --gpu 0\n```\n\n**Dry-run 结果**:\n| 检查项 | 结果 |\n|--------|------|\n| `bash -n` 语法检查 | 通过 |\n| `--real_ratio 0.15` 参数 | `run_phase1.py:98` 接受，type=float |\n| 输出 run_tag | `fixed_mix_r015_seed42` |\n| 结果文件 | `results/phase1_fixed_mix_r015_seed42_results.json` |\n| checkpoint 目录 | `/root/autodl-tmp/.../checkpoints_phase1/fixed_mix_r015_seed42/` |\n\n两块 GPU 都在跑实验，未实际启动。等 GPU 空闲后执行 `bash launch_mixed_r0.15.sh <GPU_ID>`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prep-r015-script.md"
+}

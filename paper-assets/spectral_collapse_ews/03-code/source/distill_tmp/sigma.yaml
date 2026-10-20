@@ -1,0 +1,26 @@
+paper_key: "SIGMA: Scalable Spectral Insights for LLM Model Collapse"
+title: "SIGMA: Scalable Spectral Insights for LLM Model Collapse"
+venue: "arXiv 2026"
+full_text_available: false
+
+research:
+  baselines: ["full eigendecomposition of Gram matrix"]
+  metrics:
+    - {name: "spectral bounds (deterministic)", direction: "lower_better"}
+    - {name: "spectral bounds (stochastic)", direction: "lower_better"}
+    - {name: "representation space contraction", direction: "lower_better"}
+  datasets:
+    - {name: "synthetic recursive training data (LLM-generated)", size: "N/A"}
+  ablation_dimensions: ["deterministic vs stochastic bounds", "scalability to large models"]
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "N/A"}
+  method_family: "spectral analysis / Gram matrix methods"
+
+positioning:
+  core_claim: "Embedding Gram matrix spectral properties can quantify and predict model collapse in LLMs, with a stochastic formulation enabling scalable estimation where full eigendecomposition is impractical."
+  key_results: "Derives deterministic and stochastic bounds on Gram matrix spectrum that track representation space contraction toward degenerate states."
+  limitations: ["Abstract does not mention explicit limitations"]
+  relation_to_us: "competitor"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

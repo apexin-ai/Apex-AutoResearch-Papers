@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9fb0c22447d7202450b7",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ops check exp 013 014 status",
+  "task_key": "worker_ops_check_exp_013_014_status_20260521T012525",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_exp_013_014_status_20260521T012525_result.json",
+    "occurrence": 1,
+    "bytes": 1562,
+    "sha256": "bc8a1c3a4206a56b36890846f1e6dc216ab6749563d67ec60e85de7c11c0aab1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n### GPU\n| GPU | 利用率 | 显存占用 |\n|-----|--------|----------|\n| 0 | 67% | 25,017 / 97,887 MiB |\n| 1 | 76% | 25,017 / 97,887 MiB |\n\n---\n\n### exp_013 — `pure_collapse_seed44` (r=0.0, 10 gen)\n- **当前**: Gen 7/10, **generating** 阶段, 42,560/50,000 samples (~85%)\n- **已完成 gen 0-6 指标**:\n\n| Gen | eff_rank | PPL | D-4 | train_loss |\n|-----|----------|------|------|------------|\n| 0 | 417.55 | 9.55 | 0.7305 | — |\n| 1 | 490.77 | 11.36 | 0.6019 | 1.626 |\n| 2 | 495.83 | 13.54 | 0.4943 | 1.233 |\n| 3 | 493.45 | 16.22 | 0.4283 | 1.024 |\n| 4 | 488.35 | 19.97 | 0.3731 | 0.905 |\n| 5 | 480.04 | 24.30 | 0.3569 | 0.817 |\n| 6 | 472.30 | 30.21 | 0.3326 | 0.768 |\n\n- **结果文件**: `/root/spectral_collapse_ews/results/phase1_pure_collapse_seed44_results.json`\n- **预估剩余**: Gen 7 生成快完成，还需 gen 7 train+eval + gen 8-10 全流程\n\n---\n\n### exp_014 — `fixed_mix_r025_seed43` (r=0.25, 10 gen)\n- **当前**: Gen 2/10, **generating** 阶段, 21,120/37,500 samples (~56%)\n- **已完成 gen 0-1 指标**:\n\n| Gen | eff_rank | PPL | D-4 | train_loss |\n|-----|----------|------|------|------------|\n| 0 | 417.55 | 9.55 | 0.7415 | — |\n| 1 | 475.66 | 10.23 | 0.6584 | 1.802 |\n\n- **结果文件**: `/root/spectral_collapse_ews/results/phase1_fixed_mix_r025_seed43_results.json`\n- **预估剩余**: Gen 2 生成过半，还需 gen 2 train+eval + gen 3-10 全流程\n\n---\n\n两个实验日志均在持续写入（最后修改 09:26 +0800），均正常运行中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-exp-013-014-status.md"
+}

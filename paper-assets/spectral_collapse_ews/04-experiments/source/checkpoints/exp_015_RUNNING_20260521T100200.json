@@ -1,0 +1,40 @@
+{
+  "exp_id": "exp_015",
+  "project": "spectral_collapse_ews",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T09:29:06.944Z",
+    "updated_at": "2026-05-21T10:02:00.301Z",
+    "hypothesis": "r=0.25 with seed 44 reproduces Type II trajectory (transient dip + recovery), providing 3rd seed for r_crit boundary validation. Combined with exp_009 (seed42) and exp_014 (seed43), this completes 3-seed coverage at the critical mixing ratio.",
+    "parent": "exp_009",
+    "server": "rtx6000-diagprobe",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "rtx6000-diagprobe",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-21T09:31:05.177Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && bash scripts/launch_fixed_mix_r025_seed44.sh 0\""
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && bash scripts/launch_fixed_mix_r025_seed44.sh 0\"",
+      "server": "rtx6000-diagprobe",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "516824",
+      "log_path": "~/runs/spectral_collapse_ews/exp_015.log",
+      "submitted_at": "2026-05-21T10:01:59.723Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "pid": "516824",
+    "log_path": "~/runs/spectral_collapse_ews/exp_015.log"
+  },
+  "timestamp": "2026-05-21T10:02:00.844192+00:00",
+  "trigger": "update_registry"
+}

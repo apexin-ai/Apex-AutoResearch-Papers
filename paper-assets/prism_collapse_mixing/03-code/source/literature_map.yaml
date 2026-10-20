@@ -1,0 +1,113 @@
+papers:
+  - id: "shumailov2024nature"
+    title: "AI models collapse when trained on recursively generated data"
+    authors: "Ilia Shumailov, Zakhar Shumaylov, Yiren Zhao, Nicolas Papernot, Ross Anderson, Yarin Gal"
+    year: 2024
+    venue: "Nature"
+    url: "https://www.nature.com/articles/s41586-024-07566-y"
+    category: "background"
+    relevance: "奠基性工作，定义了迭代合成训练中 model collapse 现象。展示 tail 先消失、distribution 收缩，但未分离 loss 与 collapse 信号的关系。"
+    key_findings: "递归训练导致模型退化，分布尾部最先消失；LLM/VAE/GMM 均受影响。"
+
+  - id: "dohmatob2025strong"
+    title: "Strong Model Collapse"
+    authors: "Elvis Dohmatob, Yunzhen Feng, Pu Yang, Francois Charton, Julia Kempe"
+    year: 2025
+    venue: "ICLR 2025 (Spotlight)"
+    url: "https://arxiv.org/abs/2410.04840"
+    category: "background"
+    relevance: "证明即使极少量合成数据（1/1000）也导致 collapse，scaling law 框架下分析。为我们的 iterative generation 实验提供理论下界。"
+    key_findings: "合成数据混入比例再低也会导致 collapse；更大模型可能放大 collapse。"
+
+  - id: "he2025closer"
+    title: "A Closer Look at Model Collapse: From a Generalization-to-Memorization Perspective"
+    authors: "Shiliang He et al. (U Michigan, Georgia Tech)"
+    year: 2025
+    venue: "NeurIPS 2025 (Spotlight)"
+    url: "https://arxiv.org/abs/2509.16499"
+    category: "method-component"
+    relevance: "直接研究了 entropy 与模型泛化能力的相关性——发现二者强线性相关。这与我们 Gen 0 的 ρ=0.929 一致，但他们未研究跨代 decoupling。是我们的对照基线。"
+    key_findings: "训练数据 entropy 与泛化能力呈强线性相关；迭代中 entropy 持续下降驱动 generalization→memorization 转变；提出 entropy-based data selection 缓解策略。"
+
+  - id: "gu2026sigma"
+    title: "SIGMA: Scalable Spectral Insights for LLM Model Collapse"
+    authors: "Yi Gu et al."
+    year: 2026
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2601.03385"
+    category: "method-component"
+    relevance: "最接近的方法学前驱——用 Gram matrix eigenspectrum 追踪 collapse，提供 spectral rank 类监测指标。但未研究 spectral 信号与 loss 的相关性动态变化。"
+    key_findings: "通过 embedding Gram matrix 的谱分析量化 representation space 收缩；提供可扩展的单侧监测 bounds；可作为 collapse 早期预警。"
+
+  - id: "qiu2025spectral"
+    title: "Spectral Alignment as Predictor of Loss Explosion in Neural Network Training"
+    authors: "Haiquan Qiu, You Wu, Yingjie Tan, Yaqing Wang, Quanming Yao"
+    year: 2025
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2510.04202"
+    category: "method-component"
+    relevance: "提出 Spectral Alignment (SA) 指标，比传统 loss/gradient norm 更早检测训练崩溃。暗示 spectral 信号与 loss 之间存在时间差/脱钩。"
+    key_findings: "SA 分布从均衡坍缩到单侧可预测 loss explosion；比 gradient norm、weight norm 等标量指标更早且更清晰地发出警报。"
+
+  - id: "truong2025entropy"
+    title: "Entropy Collapse: A Universal Failure Mode of Intelligent Systems"
+    authors: "Xuan Khanh Truong, Truong Quynh Hoa"
+    year: 2025
+    venue: "arXiv"
+    url: "https://arxiv.org/abs/2512.12381"
+    category: "direct-competitor"
+    relevance: "最直接支持我们假设的理论工作——明确指出 collapsed 系统可保持局部稳定甚至短期性能提升，即 loss 看起来正常但 entropy/diversity 已坍缩。但停留在理论框架，未在 LLM 迭代训练中实证验证。"
+    key_findings: "entropy collapse 是一阶相变；collapsed 系统不一定表现出性能退化（loss 可稳定），但有效自适应维度已收缩。统一了 AI model collapse、制度僵化、遗传瓶颈等现象。"
+
+  - id: "schaeffer2025position"
+    title: "Position: Model Collapse Does Not Mean What You Think"
+    authors: "Rylan Schaeffer, Joshua Kazdan, Alvan Caleb Arulandu, Sanmi Koyejo"
+    year: 2025
+    venue: "arXiv (NeurIPS 2025 Position Track)"
+    url: "https://arxiv.org/abs/2503.03150"
+    category: "background"
+    relevance: "区分了 population risk（≈ validation loss）与 tail risk，指出 population risk 稳定时 tail risk 可能已恶化。概念上映射到我们的 loss-collapse 脱钩假设。"
+    key_findings: "model collapse 文献中存在 8 种不同定义；population risk 可掩盖 tail 退化；许多 collapse 场景在累积数据策略下可避免。"
+
+  - id: "gerstgrasser2024inevitable"
+    title: "Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data"
+    authors: "Matthias Gerstgrasser, Rylan Schaeffer, Apratim Dey, Rafael Rafailov et al."
+    year: 2024
+    venue: "COLM 2024"
+    url: "https://arxiv.org/abs/2404.01413"
+    category: "background"
+    relevance: "证明累积数据可避免 collapse，替换数据则导致 collapse。我们的实验采用替换范式，与其 collapse 条件一致。"
+    key_findings: "数据累积 vs 替换是 collapse 的关键分界线；所有模型和数据模态均验证此结论。"
+
+  - id: "yi2025escaping"
+    title: "Escaping Model Collapse via Synthetic Data Verification"
+    authors: "Bingji Yi, Qiyuan Liu, Yuwei Cheng, Haifeng Xu"
+    year: 2025
+    venue: "ICML 2025"
+    url: "https://arxiv.org/abs/2510.16657"
+    category: "background"
+    relevance: "提出 verifier-based 过滤策略避免 collapse。如果我们的 collapse 信号能作为 verifier 依据，本文提供了应用框架。"
+    key_findings: "外部验证器注入信息可避免 collapse；在特定条件下 verified 合成数据可严格改善模型。"
+
+  - id: "zhu2025diversity"
+    title: "Measuring Diversity in Synthetic Datasets"
+    authors: "Yuchang Zhu, Huizhe Zhang, Bingzhe Wu et al."
+    year: 2025
+    venue: "ICML 2025"
+    url: "https://arxiv.org/abs/2502.08512"
+    category: "evaluation"
+    relevance: "系统比较了 n-gram diversity、self-BLEU、DCScore 等多种多样性度量方法，为我们选择 diversity metric 提供方法论参考。"
+    key_findings: "提出 DCScore（分类视角的多样性评估）；与 n-gram、reference-based 方法相比与人类判断相关性更强。"
+
+# ────────────────────────────────────────
+# Novelty 定位总结
+# ────────────────────────────────────────
+novelty_summary: |
+  现有文献在三个层面触及了我们的假设但均未系统验证：
+  (1) Truong 2025 从理论上预测 collapsed 系统可保持 loss 稳定，但未在 LLM 迭代训练中实证；
+  (2) Schaeffer 2025 区分了 population risk 与 tail risk 的脱钩可能性，但未量化信号相关性；
+  (3) He 2025 实证了 entropy-泛化的强相关（与我们 Gen 0 一致），但仅限扩散模型且未追踪跨代相关性变化。
+  SIGMA 和 SA 提供了 spectral 监测方法但未研究其与 loss 的相关性动态。
+  结论：loss-collapse 信号脱钩是多篇论文隐含预测但无人系统实证的现象。
+  我们的工作填补这一空白——首次在 LLM 迭代合成训练中量化 ρ(loss, signal) 的跨代演变。
+  定位：已有零散理论暗示，但缺乏系统实证验证。novelty 成立。

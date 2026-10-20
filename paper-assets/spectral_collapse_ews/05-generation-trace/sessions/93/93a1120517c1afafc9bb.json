@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "93a1120517c1afafc9bb",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ops sync paper to remote",
+  "task_key": "worker_ops_sync-paper-to-remote_20260517T212426",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_sync-paper-to-remote_20260517T212426_result.json",
+    "occurrence": 1,
+    "bytes": 1156,
+    "sha256": "8a478c0709808b474ade22c4a0c452798ee28686a275159fd3b3d2ccb723f957"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Verification results:**\n\n- `grep \"T - t - 1\"`: **no matches** (clean)\n- `grep \"6.7\"`: matched substrings in legitimate data values (`456.76`, `76.78` in the table and text). These are correct current data, not old content.\n\n**Summary of uploaded files:**\n\n| Local file | Remote path |\n|---|---|\n| `sections/abstract.tex` | `/root/spectral_collapse_ews/paper/abstract.tex` |\n| `sections/conclusion.tex` | `/root/spectral_collapse_ews/paper/conclusion.tex` |\n| `sections/experiments.tex` | `/root/spectral_collapse_ews/paper/experiments.tex` |\n| `sections/introduction.tex` | `/root/spectral_collapse_ews/paper/introduction.tex` |\n| `sections/limitations.tex` | `/root/spectral_collapse_ews/paper/limitations.tex` |\n| `sections/method.tex` | `/root/spectral_collapse_ews/paper/method.tex` |\n| `sections/related_work.tex` | `/root/spectral_collapse_ews/paper/related_work.tex` |\n| `references.bib` | `/root/spectral_collapse_ews/paper/references.bib` |\n\n8 files synced to remote, flat `paper/*.tex` structure preserved. `\"T - t - 1\"` pattern confirmed absent; `\"6.7\"` hits are legitimate data values (456.76, 76.78)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-sync-paper-to-remote.md"
+}

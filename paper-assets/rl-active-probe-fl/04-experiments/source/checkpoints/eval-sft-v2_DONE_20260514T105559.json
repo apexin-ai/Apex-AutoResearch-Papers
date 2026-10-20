@@ -1,0 +1,56 @@
+{
+  "exp_id": "eval-sft-v2",
+  "project": "rl-active-probe-fl",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T09:44:43.245Z",
+    "updated_at": "2026-05-14T10:55:59.212Z",
+    "spec": {
+      "hypothesis": "SFT eval with fixed sandbox. Same sft-mvp-v1 checkpoint, expect probe execution + diagnostic improvement.",
+      "parent": "sft-mvp-v1",
+      "model_name": "Qwen/Qwen3-8B",
+      "checkpoint_source": "sft-mvp-v1",
+      "data_path": "data/eval.jsonl",
+      "data_count": 202,
+      "seed": 42,
+      "command": "python src/evaluate.py --mode sft --model-name /root/autodl-tmp/models/Qwen/Qwen3-8B --checkpoint-path /root/autodl-tmp/diagprobe/checkpoints/sft --data-path data/eval.jsonl --output-path results/eval_sft_v2.json --gpu 0 --bf16",
+      "server": "rtx6000-diagprobe",
+      "gpu": [
+        "cuda:1"
+      ],
+      "checkpoint_path": "/root/autodl-tmp/diagprobe/checkpoints/sft",
+      "eval_data": "data/eval.jsonl",
+      "log_path": "~/runs/rl-active-probe-fl/eval-sft-v2.log"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "debug_accuracy": 0.767,
+      "debug_accuracy_ci90": [
+        0.7129,
+        0.8218
+      ],
+      "probe_generation_rate": 0.99,
+      "probe_executed": 0.594,
+      "probe_executed_ci90": [
+        0.5297,
+        0.6584
+      ],
+      "probe_diagnostic": 0.129,
+      "probe_diagnostic_ci90": [
+        0.0842,
+        0.1733
+      ],
+      "probe_dependent": 0.149,
+      "probe_dependent_ci90": [
+        0.104,
+        0.198
+      ]
+    },
+    "completed_at": "2026-05-14T10:55:59.212Z"
+  },
+  "timestamp": "2026-05-14T10:55:59.229997+00:00",
+  "trigger": "update_registry"
+}

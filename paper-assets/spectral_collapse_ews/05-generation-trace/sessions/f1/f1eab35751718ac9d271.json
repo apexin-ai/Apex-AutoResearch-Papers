@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f1eab35751718ac9d271",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "check urgent exp009 exp010 20h",
+  "task_key": "worker_check_urgent-exp009-exp010-20h_20260519T115030",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_urgent-exp009-exp010-20h_20260519T115030_result.json",
+    "occurrence": 1,
+    "bytes": 2102,
+    "sha256": "5a41842291c63042c0f24dc10e5f0f7bd84f309829c7a5b9141a5a07b1aec01d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n### 1. 进程状态\n| 实验 | PID | 状态 |\n|------|-----|------|\n| exp_009 (r=0.25, cuda:0) | 247492 | **存活** |\n| exp_010 (pure, cuda:1) | 283142 | **存活** |\n\n### 2. GPU 状态\n| GPU | 利用率 | 显存 |\n|-----|--------|------|\n| cuda:0 | 96% | 25017 / 97887 MiB |\n| cuda:1 | 89% | 25017 / 97887 MiB |\n\n### 3. exp_009: fixed_mix r=0.25 seed42 — **8/10 代完成，正在训练 Gen 8**\n\n| Gen | raw_SLV | EMA_SLV | eff_rank | ppl | d4 |\n|-----|---------|---------|----------|-----|-----|\n| 0 | 2366.68 | 2366.68 | 417.55 | 9.554 | 0.7414 |\n| 1 | 2362.13 | 2364.41 | 476.66 | 10.239 | 0.6499 |\n| 2 | 2363.10 | 2363.76 | 482.84 | 10.653 | 0.4973 |\n| 3 | 2380.88 | 2372.32 | 489.47 | 11.019 | 0.4419 |\n| 4 | 2393.37 | 2382.84 | 491.21 | 11.343 | 0.4298 |\n| 5 | 2421.22 | 2402.03 | 495.84 | 11.669 | 0.4192 |\n| 6 | 2436.38 | 2419.20 | 498.59 | 11.974 | 0.3969 |\n| 7 | 2447.08 | 2433.14 | 500.66 | 12.295 | 0.3889 |\n\n- **EMA violations (2):** Gen 1 (-2.27), Gen 2 (-0.65) — 仅初始小幅抖动，Gen 3 起严格单调递增\n- SLV 从 2366→2447 (+3.4%)，eff_rank 从 417→500 (+19.9%)\n- 日志尾部：Step 2000-2400，loss ~1.31（Gen 8 训练中）\n\n### 4. exp_010: pure_collapse seed43 — **3/10 代完成，正在训练 Gen 3**\n\n| Gen | raw_SLV | EMA_SLV | eff_rank | ppl | d4 |\n|-----|---------|---------|----------|-----|-----|\n| 0 | 2366.68 | 2366.68 | 417.55 | 9.554 | 0.7415 |\n| 1 | 2462.62 | 2414.65 | 490.83 | 11.371 | 0.5997 |\n| 2 | 2466.63 | 2440.64 | 496.24 | 13.565 | 0.5048 |\n\n- **EMA: 严格单调递增，无 violations**\n- Pure collapse 速度明显更快：仅 2 代 SLV 就从 2366→2466 (+4.2%)，vs fixed_mix 7 代才到 2447\n- ppl 飙升也更剧烈：9.55→13.57（+42%），d4 下降到 0.50\n- 日志尾部：padding_side warning（生成阶段中，Gen 3 数据合成）\n\n### 关键观察\n\nexp_010 (pure) 进度慢（才 3/10 代）但每代 collapse 更猛烈；exp_009 (r=0.25) 已接近完成（8/10），collapse 被 25% 真实数据显著减缓。两个实验都在正常运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-urgent-exp009-exp010-20h.md"
+}

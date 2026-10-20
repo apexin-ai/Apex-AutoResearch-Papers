@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a4d78eea28bf11145a49",
+  "project": "trace_distill_repair",
+  "kind": "result",
+  "title": "ssh clean scoring pipeline continue",
+  "task_key": "worker_ssh_clean_scoring_pipeline_continue_20260514T222551",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_clean_scoring_pipeline_continue_20260514T222551_result.json",
+    "occurrence": 1,
+    "bytes": 113,
+    "sha256": "72b01d0a6ea0b69ed0142a57743d4e7978960534ec8d3d3313a63dfdfd0c12c5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Line scoring PID 74506 运行中，13/38 完成，约 40 分钟已过。4 分钟后再查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-clean-scoring-pipeline-continue.md"
+}

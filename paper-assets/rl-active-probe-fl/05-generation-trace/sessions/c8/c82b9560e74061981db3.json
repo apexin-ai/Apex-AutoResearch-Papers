@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c82b9560e74061981db3",
+  "project": "rl-active-probe-fl",
+  "kind": "result",
+  "title": "code lora load fix",
+  "task_key": "worker_code_lora-load-fix_20260514T051705",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_lora-load-fix_20260514T051705_result.json",
+    "occurrence": 1,
+    "bytes": 527,
+    "sha256": "2a428fdd83c325b11c2caf16724a0a43dfc426b34ed4681bd4de4f2a4d53065a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成。\n\n**改动摘要：**\n\n1. **第 19 行** — import 增加 `PeftModel`\n2. **第 96-121 行** — 替换原来的直接加载逻辑为 adapter 检测分支：\n   - 检查 `sft_path / \"adapter_config.json\"` 是否存在\n   - **LoRA adapter 路径**：用 `args.model_name` 加载 base model → `PeftModel.from_pretrained` 加载 adapter → `merge_and_unload()` 合并\n   - **完整模型路径**：直接 `from_pretrained(sft_path)`\n   - `pad_token` 设置移到分支之后统一处理"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-lora-load-fix.md"
+}

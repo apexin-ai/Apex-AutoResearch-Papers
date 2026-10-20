@@ -1,0 +1,26 @@
+paper_key: "Collapse or Thrive? Perils and Promises of Synthetic Data in a Self-Generating World"
+title: "Collapse or Thrive? Perils and Promises of Synthetic Data in a Self-Generating World"
+venue: "NeurIPS 2024 Workshops"
+full_text_available: false
+
+research:
+  baselines: ["data replacement strategy", "data accumulation strategy", "fixed-size subset strategy"]
+  metrics:
+    - {name: "test loss", direction: "lower_better"}
+  datasets:
+    - {name: "multivariate Gaussian estimation (synthetic)", size: "N/A"}
+    - {name: "kernel density estimation task", size: "N/A"}
+    - {name: "language model fine-tuning corpus", size: "N/A"}
+  ablation_dimensions: ["data usage strategy (replace vs accumulate vs fixed-size)", "generative task type"]
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "N/A"}
+  method_family: "synthetic data training / model collapse analysis"
+
+positioning:
+  core_claim: "Model collapse is not inevitable: accumulating synthetic data alongside real data prevents collapse even as the proportion of real data decreases, while replacing real data causes collapse and fixed-size subsets cause gradual degradation."
+  key_results: "Three data strategies tested across three tasks: (a) replacement causes collapse, (b) accumulation avoids collapse, (c) fixed-size subsets degrade gradually."
+  limitations: ["Abstract does not mention explicit limitations"]
+  relation_to_us: "foundation"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

@@ -1,0 +1,68 @@
+{
+  "exp_id": "exp_014",
+  "project": "spectral_collapse_ews",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T21:09:41.836Z",
+    "updated_at": "2026-05-21T11:47:47.249Z",
+    "hypothesis": "r=0.25 seed43 reproduces Type II trajectory and EMA violation at Gen 2, confirming r_crit bound under cross-seed mean definition. Combined with exp_009 (seed42), this provides 2-seed validation of the transitional regime classification.",
+    "parent": "exp_009",
+    "spec": {
+      "command": "bash scripts/launch_fixed_mix_r025_seed43.sh 0",
+      "server": "rtx6000-diagprobe",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "474036",
+      "log_path": "/root/spectral_collapse_ews/logs/exp_014.log",
+      "submitted_at": "2026-05-20T22:24:50.265Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "model_name": "EleutherAI/pythia-410m-deduped",
+      "seed": 43,
+      "data_path": "/root/spectral_collapse_ews/data/",
+      "data_count": "50K real pool, total_per_gen=50K (12.5K real + 37.5K synthetic per gen)",
+      "generations": 10,
+      "condition": "fixed_mix",
+      "real_ratio": 0.25,
+      "checkpoint_dir": "/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r025_seed43/",
+      "results_file": "/root/spectral_collapse_ews/results/phase1_fixed_mix_r025_seed43_results.json",
+      "checkpoint_source": "EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)",
+      "eval_data": "/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)",
+      "checkpoint_path": "/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r025_seed43/",
+      "wall_clock_seconds": 47728.2,
+      "gpu_hours": 13.26
+    },
+    "metrics": {
+      "gen0": {
+        "eff_rank": 417.55,
+        "log_det": 2366.68,
+        "ppl": 9.55,
+        "distinct4": 0.7415
+      },
+      "gen1": {
+        "eff_rank": 475.66,
+        "log_det": 2365.35,
+        "ppl": 10.23,
+        "distinct4": 0.6584,
+        "train_loss": 1.802
+      },
+      "gen2": {
+        "eff_rank": 483,
+        "log_det": 2362.54,
+        "ppl": 10.65,
+        "distinct4": 0.5574,
+        "train_loss": 1.7222
+      }
+    },
+    "conclusion": "failed",
+    "notes": "磁盘满 (/root/autodl-tmp 100%) 导致 Gen 6 崩溃。gen 0-5 数据完整保留在 checkpoint_dir。需要清理磁盘后从 gen 5 checkpoint 恢复跑 gen 6-10。",
+    "completed_at": "2026-05-21T11:40:18.496Z"
+  },
+  "timestamp": "2026-05-21T11:47:47.317874+00:00",
+  "trigger": "update_registry"
+}

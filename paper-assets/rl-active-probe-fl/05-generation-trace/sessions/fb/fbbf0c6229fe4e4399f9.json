@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fbbf0c6229fe4e4399f9",
+  "project": "rl-active-probe-fl",
+  "kind": "result",
+  "title": "diagnose eval sft v2 ckpt",
+  "task_key": "worker_diagnose_eval-sft-v2-ckpt_20260514T121743",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval-sft-v2-ckpt_20260514T121743_result.json",
+    "occurrence": 1,
+    "bytes": 1185,
+    "sha256": "024e10a2406d26e5f845d213fe8589e2917f6c33a8ff17405dc9769875988fec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验**没有失败**，是 cron 监控误报。\n\n## 诊断结论\n\n**失败原因**：无。进程正常完成后退出，cron 检测到\"进程不存在\"且没有 sentinel 文件/W&B run，误判为失败。这是监控的 false positive。\n\n**结果完整性**：`eval_sft_v2_ckpt.json` 存在（113KB，写入时间 20:02），日志显示 202/202 样本全部评估完毕并保存。结果：\n\n| Metric | Mean | 90% CI |\n|--------|------|--------|\n| debug_accuracy | 0.762 | [0.713, 0.812] |\n| probe_executed | 0.584 | [0.525, 0.644] |\n| probe_diagnostic | 0.134 | [0.094, 0.173] |\n| probe_dependent | 0.144 | [0.104, 0.183] |\n| probe_generation_rate | 0.985 | — |\n\n**Checkpoint 状态**：sft_v2 和 sft 结构一致，adapter_model.safetensors 均为 174MB，完好。\n\n**GPU 状态**：cuda:1 空闲（0MiB），无残留进程。cuda:0 有另一个 python 进程在运行。\n\n**不需要重试**，实验已成功完成。cron 误报的根因是 evaluate.py 没有写 sentinel 文件或注册 W&B run，建议后续给 eval 脚本加 sentinel 输出（如 `touch ~/runs/rl-active-probe-fl/eval-sft-v2-ckpt.done`）以避免再次误报。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-sft-v2-ckpt.md"
+}

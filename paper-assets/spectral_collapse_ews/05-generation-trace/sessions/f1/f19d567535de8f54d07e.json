@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f19d567535de8f54d07e",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ops check exp020 exp022c status",
+  "task_key": "worker_ops_check-exp020-exp022c-status_20260524T083120",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-exp020-exp022c-status_20260524T083120_result.json",
+    "occurrence": 1,
+    "bytes": 1856,
+    "sha256": "6ac61f7a406a7bb42d99ba031e723f60e27599e9d9fb7156706e2be6f92341ed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n### exp_020 — GPT2-M Pure Collapse (seed42, 10 gen)\n**PID 783957** | GPU 0 | 26.4GB VRAM | 52% util | 运行中  \n命令: `python run_gpt2m_phase1.py --condition pure_collapse --seed 42 --generations 10 --k 0 --gpu 0`\n\n**10 代数据已全部产出**（结果文件最后更新 16:25），但进程未退出，可能在做最终 summary/HellaSwag 评估。\n\n| Gen | eff_rank | SLV (log_det) | PPL | D-4 | σ₁ |\n|-----|----------|---------------|-----|-----|----|\n| 0 | 23.09 | 689.44 | 15.45 | 0.913 | 6598.1 |\n| 1 | 155.22 | 885.30 | 16.42 | 0.891 | 1463.5 |\n| 2 | 185.37 | 924.39 | 18.94 | 0.868 | 1190.7 |\n| 3 | 184.86 | 889.70 | 23.33 | 0.837 | 1172.3 |\n| 4 | 169.56 | 817.55 | 32.11 | 0.764 | 1224.0 |\n| 5 | 151.94 | 732.12 | 49.35 | 0.658 | 1317.5 |\n| 6 | 136.09 | 658.12 | 76.81 | 0.559 | 1449.3 |\n| 7 | 121.29 | 576.61 | 123.66 | 0.501 | 1548.4 |\n| 8 | 110.92 | 500.89 | 198.01 | 0.460 | 1592.7 |\n| 9 | 102.96 | 415.11 | 328.75 | 0.420 | 1570.7 |\n\n趋势清晰：eff_rank 和 SLV 从 Gen 2 起持续下降，PPL 指数级上升，D-4 单调下降，σ₁ 持续膨胀 → 典型的 spectral collapse。尚无 `_summary.json`。\n\n---\n\n### exp_022c — GPT2-M Fixed Mix r=0.3 (seed42, 3 gen)\n**PID 868285** | GPU 1 | 19.3GB VRAM | 61% util | 运行中  \n命令: `/root/miniconda3/bin/python run_gpt2m_phase1.py --condition fixed_mix --real_ratio 0.3 --generations 3 --seed 42 --gpu 0`\n\n- exp_022 失败（目录路径错误），exp_022b 失败（python 找不到），exp_022c 于 15:40 启动\n- 日志 119KB，全是 padding 警告（686条），无进度输出 → 大概率在 Gen 0 的文本生成阶段\n- 无结果文件、无 checkpoint\n- 注意：这是 `fixed_mix r=0.3 seed42` 的重跑，之前 `phase1_fixed_mix_r03_seed42` 已于 5/19 完成（但那次不是 GPT2-M）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-exp020-exp022c-status.md"
+}

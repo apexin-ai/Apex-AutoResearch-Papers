@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0f1050343e6a3b3fdc04",
+  "project": "rl-active-probe-fl",
+  "kind": "result",
+  "title": "code test gen pilot",
+  "task_key": "worker_code_test-gen-pilot_20260514T052144",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_test-gen-pilot_20260514T052144_result.json",
+    "occurrence": 1,
+    "bytes": 1820,
+    "sha256": "fe97a026ae73ede0d02e5747691479dbafd5deac8fe52fec61207039620f9746"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个失败都是 LLM 生成的测试用例中的**期望值错误**（不是代码结构问题），这是正常的 LLM 测试生成噪声。\n\n## 结果汇报\n\n### 1. API 连通性\n- `claude-sonnet-4-20250514` — **不可用**（503 model_not_found）\n- `claude-haiku-4-5` — **可用**，5/5 请求全部成功，响应约 2-3 秒/条\n- 可用的 Anthropic 模型（openai 端点）：`claude-haiku-4-5`、`anthropic/claude-opus-4.7`、`anthropic/claude-opus-4.7-fast`\n\n### 2. 生成质量\n- 5 条全部生成成功（0 失败）\n- 结构正确：每条 test_code 包含 3-7 个 `test_*` 函数，使用 `assert` 断言\n- **已发现并修复的问题**：\n  - LLM 输出包含 markdown fence（```python / ```）→ 已在 `clean_test_code()` 中添加清理\n  - LLM 输出包含 `from solution import Solution`（无效导入）→ 已添加清理\n  - 部分样本包含 Solution 类定义 → 已有的 `strip_solution_class` 逻辑处理\n\n### 3. 验证结果\n\n| 指标 | 数量 | 比例 |\n|------|------|------|\n| Solution pass | 3/5 | 60% |\n| Buggy fail | 3/3 | 100%（在 solution pass 的基础上） |\n| Both correct | 3/5 | 60% |\n\n- 2 条 solution 失败原因：LLM 生成的**期望值算错了**（不是代码格式问题）\n  - `moving-stones-until-consecutive-ii`：期望 `[1,2]`，实际 `[2,8]`\n  - `largest-number-after-mutating-substring`：期望 `\"54921\"`，实际 `\"54932\"`\n\n### 4. 建议\n\n- solution pass rate 60% 低于目标 80%。原因是 haiku 模型能力较弱，容易算错测试期望值。正式生成建议换用 `anthropic/claude-opus-4.7-fast`（API 上支持 openai 端点）\n- `validate_tests.py` 的 `clean_test_code()` 已修复，可以处理 markdown fence 和无效 import\n- 可用模型名记录为 `claude-haiku-4-5`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-test-gen-pilot.md"
+}

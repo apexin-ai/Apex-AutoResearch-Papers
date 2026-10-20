@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9cf24c3c8372e984790d",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "code d012 calibrate restart",
+  "task_key": "worker_code_d012_calibrate_restart_20260517T131032",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d012_calibrate_restart_20260517T131032_result.json",
+    "occurrence": 1,
+    "bytes": 4328,
+    "sha256": "9bb925c35d2a79b65766a0681ca7bcc3807e816ca18fc2292cba90c1cb134dcd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All verified. Here's the complete report:\n\n---\n\n## Step 1: PID 88161\nKilled (force_killed=false, graceful termination). GPU 1 confirmed free (0MiB).\n\n## Step 2: report_actual 修复\n\n**Before** (lines 174-181):\n```python\n# 实际比例（整数截断后）\nactual_ratio = num_real / total_per_gen if total_per_gen > 0 else 0.0\n\n# Bug #1 fix: 回传实际值给 controller 修正预算\nif controller is not None and gen >= 2:\n    controller.report_actual(actual_ratio)\nelif controller is not None and gen == 1:\n    controller.report_actual(actual_ratio)\n\n# ... [generation happens] ...\n\nif num_real > 0:\n    num_real = min(num_real, len(real_train_data))  # CAP happens AFTER report\n```\n\n**After** (report moved to line 201, after cap):\n```python\n# actual_ratio computed after pool cap (see below)\n\n# ... [generation happens] ...\n\nif num_real > 0:\n    num_real = min(num_real, len(real_train_data))\n    indices = torch.randperm(len(real_train_data))[:num_real].tolist()\n    real_subset = [real_train_data[i] for i in indices]\nelse:\n    real_subset = []\n\n# Actual ratio after pool cap\nactual_ratio = len(real_subset) / (len(real_subset) + len(synthetic_data)) if (len(real_subset) + len(synthetic_data)) > 0 else 0.0\nif controller is not None:\n    controller.report_actual(actual_ratio)\n```\n\n## Step 3: k/tau 参数更新\n\n| File | Field | Before | After |\n|------|-------|--------|-------|\n| `src/config.py:46` | controller_k | 1.0 | **20.0** |\n| `src/config.py:47` | controller_tau | 0.005 | **0.002** |\n| `src/controller.py` | `__init__` default k | 1.0 | **20.0** |\n| `src/controller.py` | `__init__` default tau | 0.005 | **0.002** |\n| `run_phase1.py:85` | --k default | 1.0 | **20.0** |\n| `run_phase1.py:83` | --tau default | 0.005 | **0.002** |\n\n## Step 4: sensitivity grid\n\n| | Before | After |\n|---|--------|-------|\n| K_VALUES | [0.5, 1.0, 2.0] | **[5, 10, 20, 50]** |\n| TAU_VALUES | [0.002, 0.005, 0.01] | **[0.001, 0.002, 0.005]** |\n| Grid size | 9 combos | **12 combos** |\n\n## Step 5: Dry-run 表格\n\n```\nGen  S_tilde      delta      triggered  r_req    r_actual   B_rem    real     synth\n------------------------------------------------------------------------------------------\n0    2366.684     N/A        N/A        0.5000   0.5000     4.5000   25000    25000\n1    2415.723     -0.020721  False      0.5000   0.5000     4.0000   25000    25000\n2    2442.825     -0.011452  False      0.5000   0.5000     3.5000   25000    25000\n3    2441.696     0.000477   False      0.5000   0.5000     3.0000   25000    25000\n4    2423.373     0.007742   True       0.6148   0.6148     2.3852   30742    19258\n5    2396.773     0.011239   True       0.6618   0.6618     1.7234   33090    16910\n6    2365.969     0.013016   True       0.6512   0.6511     1.0722   32557    17443\n7    2335.079     0.013052   True       0.5784   0.5784     0.4938   28922    21078\n8    2293.599     0.017527   True       0.2938   0.2938     0.2000   14688    35312\n```\n\n**确认**:\n1. ✅ Ratio 有意义变化: 0.50 → 0.66 (peak Gen 5), 范围 [0.29, 0.66]\n2. ✅ 信号从 Gen 4 开始触发 (delta=0.0077 > tau=0.002), 5/8 gens triggered\n3. ✅ 预算正确消耗: 5.0 → 0.2000 (恰好为最后一代预留 r_min)\n\n## Step 6: exp_003 重启\n\n- **PID**: 116947 (child of nohup 116942)\n- **GPU**: cuda:1 确认 (19034MiB, 422W, 36% util)\n- **参数**: `--condition adaptive --seed 42 --generations 10 --signal log_det --tau 0.002 --k 20`\n- **日志**: `logs/exp_003_v3_adaptive_k20_s42.log` — 正在 Gen 0 evaluation + Gen 1 synthetic generation\n\n## Step 7: exp_001\n\n- **PID 59365**: 活跃, GPU 0 (65900MiB, 94% util, 300W)\n- **命令**: `python run_phase0.py --resume_from_gen 4`\n- **进度**: Gen 8/9 已完成 (results + hellaswag gen0-8), 当前跑 Gen 9\n- **1b run**: 失败 (`No space left on device` on /overlay, 25GB/30GB used)\n\n**Phase 0 metrics (gen 0-8)**:\n```\nGen  eff_rank   log_det     ppl\n0    417.55     2366.684    9.55\n1    491.77     2464.762    11.38\n2    496.44     2469.928    13.58\n3    493.31     2440.566    16.25\n4    485.67     2405.050    19.80\n5    479.21     2370.173    24.59\n6    473.00     2335.165    30.91\n7    464.20     2304.190    38.89\n8    456.76     2252.119    49.29\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d012-calibrate-restart.md"
+}

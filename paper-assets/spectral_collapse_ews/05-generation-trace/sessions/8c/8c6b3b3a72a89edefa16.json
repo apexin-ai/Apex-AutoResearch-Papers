@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8c6b3b3a72a89edefa16",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "paper experiments setup",
+  "task_key": "worker_paper_experiments_setup_20260516T135600",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_experiments_setup_20260516T135600_result.json",
+    "occurrence": 1,
+    "bytes": 981,
+    "sha256": "49a2d3258dda8b9f5139cb71b148a4549f8909b2b3fd08e6aedaee230ba713ae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "写入成功。更新内容摘要：\n\n**相比原版的主要改动：**\n\n1. **Datasets**：数据来源精确为 `monology/pile-uncopyrighted`；新增 ≥256 token 过滤条件（从 prepare_data.py 提取）\n2. **Recursive Training Protocol**：补充 data mixing 公式 `⌊n_syn · r_t/(1-r_t)⌋`；补充 optimizer steps 随 ratio 变化的范围（1562–3125）\n3. **Evaluation Metrics**：新增 Log-Determinant Proxy（代码中计算但原 tex 未写）；RankMe 和 ECE 补充公式；每个指标说明为什么选它\n4. **Experimental Conditions**：新增 `tabular` 表格（Table 1）；linear-increasing 改用代码中 r_min=0.20, r_max=0.80 + budget-matched formula `(t-1)/(T-1)`；k 和 τ 标注 footnote \"Calibrated from Phase~0 pilot\"\n5. **Statistical Design**：列出 3 seeds (42, 123, 7)；新增 Phase 0 go/no-go 三条件（单调下降 + 加速比 ≥1.5× + ppl 上升>20%）；新增 compute budget（130 generation-steps）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-experiments-setup.md"
+}

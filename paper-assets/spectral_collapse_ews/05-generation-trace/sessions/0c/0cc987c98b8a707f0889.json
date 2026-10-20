@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0cc987c98b8a707f0889",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "code prep all rcrit scripts",
+  "task_key": "worker_code_prep-all-rcrit-scripts_20260518T095203",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prep-all-rcrit-scripts_20260518T095203_result.json",
+    "occurrence": 1,
+    "bytes": 1512,
+    "sha256": "e26c10cc1c754077d77bea70296fdd0e841e121db2856341cbb6127daa51dd8e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### run_phase1.py 代码状态\n- **无需改代码**。`--real_ratio`、`--seed`、`--condition` 全部已支持。\n- pure collapse 条件名：`pure_collapse`\n- 路径冲突：**无冲突**。run_tag 生成逻辑已包含 seed 和 ratio 区分：\n  - `pure_collapse_seed{43,44}` — 各自独立\n  - `fixed_mix_seed{43,44}` — r=0.5 默认值，不加 ratio 后缀但 seed 不同\n  - `fixed_mix_r02_seed{43,44}` — ratio 非 0.5 时自动加 `_r0X` 前缀\n  - r=0.05 → `fixed_mix_r005_seed42`，r=0.3 → `fixed_mix_r03_seed42` 等，全部唯一\n\n### 创建的 10 个脚本\n\n| # | 脚本 | condition | ratio | seed | gens |\n|---|------|-----------|-------|------|------|\n| 1 | `launch_fixed_mix_r03.sh` | fixed_mix | 0.3 | 42 | 10 |\n| 2 | `launch_fixed_mix_r01.sh` | fixed_mix | 0.1 | 42 | 10 |\n| 3 | `launch_fixed_mix_r005.sh` | fixed_mix | 0.05 | 42 | 10 |\n| 4 | `launch_fixed_mix_r07.sh` | fixed_mix | 0.7 | 42 | 10 |\n| 5 | `launch_pure_collapse_s43.sh` | pure_collapse | — | 43 | 10 |\n| 6 | `launch_pure_collapse_s44.sh` | pure_collapse | — | 44 | 10 |\n| 7 | `launch_fixed_mix_r05_s43.sh` | fixed_mix | 0.5 | 43 | 10 |\n| 8 | `launch_fixed_mix_r05_s44.sh` | fixed_mix | 0.5 | 44 | 10 |\n| 9 | `launch_fixed_mix_r02_s43.sh` | fixed_mix | 0.2 | 43 | 10 |\n| 10 | `launch_fixed_mix_r02_s44.sh` | fixed_mix | 0.2 | 44 | 10 |\n\n注意：现有 `launch_fixed_mix_r02.sh` 用的是 `--generations 5`（旧实验），新脚本统一用 `--generations 10`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prep-all-rcrit-scripts.md"
+}

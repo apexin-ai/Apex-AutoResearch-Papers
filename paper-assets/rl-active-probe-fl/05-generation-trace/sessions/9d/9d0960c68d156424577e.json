@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0",
+  "id": "9d0960c68d156424577e",
+  "project": "rl-active-probe-fl",
+  "kind": "worker",
+  "title": "infra model download accelerate",
+  "task_key": "worker_infra_model-download-accelerate_20260514T053142",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_model-download-accelerate_20260514T053142.log",
+    "occurrence": 1,
+    "bytes": 1329235,
+    "sha256": "c622eb1250e834c4bd4f201e7f50661c57e2af5584df893082ded1eebf44cb5b"
+  },
+  "statistics": {
+    "messages": 1066,
+    "user_turns": 1,
+    "tool_calls": 414,
+    "roles": {
+      "log": 1,
+      "system": 36,
+      "record": 1,
+      "assistant": 195,
+      "tool_call": 414,
+      "tool_result": 414,
+      "user": 1,
+      "result": 4
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 805,
+      "chunks": [
+        {
+          "path": "9d0960c68d156424577e-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "9d0960c68d156424577e-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "9d0960c68d156424577e-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "9d0960c68d156424577e-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "9d0960c68d156424577e-part-0005.json",
+          "message_count": 85
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 261,
+      "chunks": [
+        {
+          "path": "9d0960c68d156424577e-part-0005.json",
+          "message_count": 95
+        },
+        {
+          "path": "9d0960c68d156424577e-part-0006.json",
+          "message_count": 166
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/infra-model-download-accelerate.md"
+}

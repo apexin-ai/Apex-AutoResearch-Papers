@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8e53a13cbf8374a3168b",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "paper figure",
+  "task_key": "worker_paper_figure_20260517T200559",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_20260517T200559_result.json",
+    "occurrence": 1,
+    "bytes": 475,
+    "sha256": "554d5d11f8e10fbc56cdac52fa2b3d5a8a9b1e9f16e8c0b4b023d4094b00b797"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PDF 和 PNG 均已生成并注册：\n\n- **PDF**: `figures/paper/fig1_spectral_trajectory.pdf` (39K)\n- **PNG**: `figures/paper/fig1_spectral_trajectory.png` (395K, 300 DPI)\n- **Artifact ID**: `art_20260517_3b81f3`\n\n三面板内容：(a) Effective Rank + SLV 双轴图，含三阶段色块和 2.43x 加速标注；(b) Perplexity (log) + HellaSwag 双轴图，含 +704% 和 asymmetry 标注；(c) σ₁ 轨迹，含 decompression drop 和 recovery 标注。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-copy-2.md"
+}

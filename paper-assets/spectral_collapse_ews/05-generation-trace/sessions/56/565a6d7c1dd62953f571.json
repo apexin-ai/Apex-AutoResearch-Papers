@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "565a6d7c1dd62953f571",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "fix sensitivity tau range",
+  "task_key": "worker_fix_sensitivity_tau_range_20260517T064535",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_sensitivity_tau_range_20260517T064535_result.json",
+    "occurrence": 1,
+    "bytes": 217,
+    "sha256": "85091621757b2ceec7a3006bbe11f5f12a8bfd4d754c8636ff968b78e5c0b6e3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成：\n\n- `TAU_VALUES` 已改为 `[0.002, 0.005, 0.01]`\n- `signal` 默认为 `\"log_det\"`，通过 `--signal` 参数可覆盖，已接入 `config.controller_signal`\n- `--help` 验证通过"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-sensitivity-tau-range.md"
+}

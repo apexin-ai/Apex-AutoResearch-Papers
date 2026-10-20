@@ -1,0 +1,42 @@
+{
+  "status": "done",
+  "started_at": "2026-05-25T21:17:15.714052+00:00",
+  "completed_at": "2026-05-25T21:19:34.027165+00:00",
+  "findings": [
+    {
+      "severity": "info",
+      "dimension": "page 1",
+      "message": "首页无视觉锚点（纯文本），Figure 1 在 Page 2 右栏出现。不影响理解但若能将 Figure 1 提前至 Page 1 底部可增强第一印象"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 3",
+      "message": "Figure 2（pipeline 概念图）内部文字标签（\"Gen 1\"、\"Pretrained\"、\"Controller\"等）字号偏小，约为正文 60-65%，在打印场景下可能不够清晰"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 7",
+      "message": "Figure 6（3 个子图）和 Figure 7（2 个子图）的 axis tick labels 和 legend 字号偏小（估计 6-7pt），接近可读性下限。建议适当增大或减少 tick 数量"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 7",
+      "message": "Figure 6 三个子图的 y 轴范围不统一（不同 r 值下 SLV 范围不同），这是合理的数据特性但可能让快速浏览的审稿人误读幅度差异"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 5",
+      "message": "Figure 3 个别 seed 的细线（thin lines）在密集区域难以区分，但粗均值线清晰可辨，整体可接受"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 6",
+      "message": "Table 3 \"Rev.\" 列的 ✓ 标记语义（是否 reverse 方向指标）仅在 caption 中隐含解释，可在表头添加脚注增强自包含性"
+    }
+  ],
+  "counts": {
+    "critical": 0,
+    "warning": 0,
+    "info": 6
+  }
+}

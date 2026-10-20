@@ -1,0 +1,2441 @@
+# paper d010 experiments update
+
+**Spectral Early Warning Signals for Model Collapse and Their Prevention–Detectability Tradeoff** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 51
+- **Recorded user turns:** 0
+- **Tool calls:** 15
+- **Original source:** `logs/workers/worker_paper_d010_experiments_update_20260517T063539.log`
+- **Structured JSON:** [`08fe63336ed503364ae1.json`](../../sessions/08/08fe63336ed503364ae1.json)
+
+## Before a recorded user message
+
+51 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews",
+  "session_id": "f884eb5d-6cad-41f9-995b-30f5ab5aaa18",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "f92f70c7-f006-4b30-8c97-c2bfdf7c0737",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-5-projects-spectral-collapse-ews/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779004200,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "1da2d682-c0f4-42ac-90d2-5f3003135b22",
+  "session_id": "f884eb5d-6cad-41f9-995b-30f5ab5aaa18"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by reading the current experiments.tex file from the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f884eb5d-6cad-41f9-995b-30f5ab5aaa18",
+  "uuid": "d9a91061-07be-4d0c-bbbe-6688aa222ecb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018Xbv16LE43mrQQVrNMqUHg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12835,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12835
+      },
+      "output_tokens": 47,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01YHZ7yxCDzj4ZaPt8u3bktY`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f884eb5d-6cad-41f9-995b-30f5ab5aaa18",
+  "uuid": "84587ef2-7b1e-4275-8d1b-0ed02faccdee",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018Xbv16LE43mrQQVrNMqUHg",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12835,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12835
+      },
+      "output_tokens": 47,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-17T06:35:53.994Z_
+
+<details><summary>↩ Tool result · `toolu_01YHZ7yxCDzj4ZaPt8u3bktY`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f884eb5d-6cad-41f9-995b-30f5ab5aaa18",
+  "uuid": "8c2285cc-27d4-400c-8ec9-b112475a55e7",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+读取当前文件内容。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f884eb5d-6cad-41f9-995b-30f5ab5aaa18",
+  "uuid": "5c289057-0d37-419d-aab6-b944aa2f7735",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JVeNe1NpxiynsAbNKvJKpe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 376,
+      "cache_read_input_tokens": 24676,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 376
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01AtYWiqv8oULtY7NLHqoxVB`</summary>
+
+```json
+{
+  "server": "rtx6000-diagprobe",
+  "command": "cat /root/spectral_collapse_ews/paper/experiments.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f884eb5d-6cad-41f9-995b-30f5ab5aaa18",
+  "uuid": "f2cb02a0-fd05-4dfb-9804-a697a8cac676",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JVeNe1NpxiynsAbNKvJKpe",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 376,
+      "cache_read_input_tokens": 24676,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 376
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-17T06:35:59.983Z_
+
+<details><summary>↩ Tool result · `toolu_01AtYWiqv8oULtY7NLHqoxVB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\\section{Experimental Setup}\\n\\n\\\\subsection{Models and Datasets}\\n\\nWe use \\\\textbf{Pythia-410M-deduped}~\\\\cite{biderman2023pythia} (405M parameters, $D{=}1024$) as the primary model and \\\\textbf{Pythia-1B-deduped} (1042M parameters, $D{=}2048$) for scale-transfer validation.\\nBoth are decoder-only transformers pretrained on the deduplicated Pile~\\\\cite{gao2020pile}.\\n\\nFrom the Pile (uncopyrighted split, \\\\texttt{monology/pile-uncopyrighted}), we sample three disjoint subsets:\\n\\\\begin{itemize}[nosep]\\n  \\\\item \\\\textbf{Training pool}: 50{,}000 sequences of 512 tokens for fine-tuning.\\n  \\\\item \\\\textbf{Evaluation set}: 5{,}000 held-out sequences for perplexity measurement.\\n  \\\\item \\\\textbf{Spectral probe set}: 1{,}000 held-out sequences for effective rank computation.\\n\\\\end{itemize}\\nAll sequences are tokenized with the GPTNeoX tokenizer (vocabulary size 50{,}304) and truncated or padded to 512 tokens.\\nWe retain only sequences with at least 256 non-padding tokens ($\\\\geq$50\\\\% fill ratio) to ensure sufficient context for representation extraction.\\n\\n\\\\subsection{Recursive Training Protocol}\\n\\nGeneration~0 is the pretrained checkpoint with no additional fine-tuning.\\nFor each subsequent generation $t = 1, \\\\ldots, T$ with $T{=}10$:\\n\\\\begin{enumerate}[nosep]\\n  \\\\item \\\\textbf{Synthetic generation.} Sample 50{,}000 sequences from $M_{t-1}$ via ancestral sampling (temperature $= 1.0$, top-$k = 50$, no nucleus filtering, max length 512 tokens, batch size 32).\\n  \\\\item \\\\textbf{Data mixing.} Combine synthetic samples with real data at condition-specific ratio $r_t$ (see \\\\S\\\\ref{sec:conditions}).  The number of real samples mixed in is $\\\\lfloor n_{\\\\text{syn}} \\\\cdot r_t / (1 - r_t) \\\\rfloor$, drawn uniformly without replacement from the training pool.\\n  \\\\item \\\\textbf{Fine-tuning.} Train $M_{t-1}$ for 1 epoch on the mixed corpus $\\\\rightarrow M_t$.\\n  \\\\item \\\\textbf{Checkpoint and evaluate.} Save $M_t$; measure all metrics on held-out data.\\n\\\\end{enumerate}\\n\\nTraining hyperparameters are fixed across all conditions: AdamW optimizer with learning rate $5{\\\\times}10^{-5}$, weight decay $0.01$, batch size~8 with gradient accumulation~4 (effective batch size~32), linear warmup over 5\\\\% of steps followed by linear decay, and gradient clipping at $\\\\|\\\\mathbf{g}\\\\|_{\\\\max} = 1.0$.\\nThe number of optimizer steps per generation varies with the mixing ratio: ${\\\\sim}1{,}562$ steps for pure synthetic ($r_t = 0$) to ${\\\\sim}3{,}125$ steps at $r_t = 0.50$.\\n\\n\\\\subsection{Evaluation Metrics}\\n\\n\\\\paragraph{Effective Rank (RankMe).}\\nFollowing \\\\citet{rankme2023}, we forward-pass the 1{,}000 spectral probe samples through $M_t$, extract last-layer hidden states, mean-pool across sequence length to obtain $\\\\mathbf{Z} \\\\in \\\\mathbb{R}^{1000 \\\\times D}$, compute its SVD, and report\\n\\\\begin{equation}\\n  \\\\rho(\\\\mathbf{Z}) = \\\\exp\\\\!\\\\Bigl(-\\\\sum_i p_i \\\\log p_i\\\\Bigr), \\\\quad p_i = \\\\frac{\\\\sigma_i}{\\\\sum_j \\\\sigma_j},\\n\\\\end{equation}\\nwhere $\\\\sigma_i$ are the singular values of $\\\\mathbf{Z}$.\\nLower effective rank signals representation collapse.\\nWe measure spectral decline relative to Generation~1 (post-adaptation baseline) rather than Generation~0 (pretrained), as the pretrained-to-fine-tuned transition induces a shift in representation anisotropy unrelated to recursive collapse.\\nWe use RankMe rather than SIGMA's Track~I bound~\\\\cite{sigma2026} because (a)~no public implementation of SIGMA exists as of May 2026, (b)~RankMe is architecture-agnostic and hyperparameter-free, and (c)~RankMe's spectral entropy formulation provides a smooth, monotonic collapse indicator suitable for closed-loop control.\\n\\n\\\\paragraph{Log-Determinant Proxy.}\\nFrom the same SVD decomposition, we compute\\n\\\\begin{equation}\\n  \\\\mathcal{D}(\\\\mathbf{Z}) = \\\\sum_{i:\\\\,\\\\sigma_i > \\\\epsilon} \\\\log \\\\sigma_i, \\\\quad \\\\epsilon = 10^{-10},\\n\\\\end{equation}\\nwhich equals $\\\\tfrac{1}{2}\\\\log\\\\det(\\\\mathbf{Z}^\\\\top\\\\mathbf{Z})$ up to the threshold $\\\\epsilon$.\\nThis captures the overall representational volume on a logarithmic scale and is more sensitive to the tail of the singular spectr\\n\\n... [截断: 输出过长，省略 10823 字符] ...\\n\\nd on 1{,}000 probe samples; functional metrics on 5{,}000 held-out sequences. Best values in bold.}\\n\\\\label{tab:phase0_metrics}\\n\\\\small\\n\\\\begin{tabular}{@{}lcccccc@{}}\\n\\\\toprule\\n\\\\textbf{Metric} & \\\\textbf{Gen~0} & \\\\textbf{Gen~1} & \\\\textbf{Gen~2} & \\\\textbf{Gen~3} & \\\\textbf{Gen~4} & \\\\textbf{Gen~5} \\\\\\\\\\n\\\\midrule\\nEff.\\\\ Rank ($\\\\rho$) & 417.55 & 491.77 & \\\\textbf{496.44} & 493.31 & 485.67 & 479.21 \\\\\\\\\\nLog-Det ($\\\\mathcal{D}$) & 2366.68 & 2464.76 & \\\\textbf{2469.93} & 2440.57 & 2405.05 & 2370.17 \\\\\\\\\\n$\\\\sigma_1$ & 1942.8 & 804.0 & 712.0 & \\\\textbf{700.7} & 729.6 & 741.0 \\\\\\\\\\nPerplexity ($\\\\downarrow$) & \\\\textbf{9.55} & 11.38 & 13.58 & 16.25 & 19.80 & 24.59 \\\\\\\\\\nDistinct-4 ($\\\\uparrow$) & \\\\textbf{0.7414} & 0.6256 & 0.5154 & 0.4900 & 0.4679 & 0.4630 \\\\\\\\\\nHellaSwag ($\\\\uparrow$) & \\\\textbf{0.4130} & 0.3897 & 0.3764 & 0.3658 & 0.3558 & 0.3439 \\\\\\\\\\nTrain Loss & --- & 1.623 & 1.268 & 1.134 & 1.098 & 1.047 \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}\\n\\\\end{table}\\n\\nThe functional metrics exhibit monotonic degradation from the first recursive generation through Generation~5, with no sign of stabilization.  Perplexity rises from 11.38 at Generation~1 to 24.59 at Generation~5, a 116\\\\% increase that reflects the model's accelerating inability to predict real-world text distributions.  The per-generation perplexity increment grows from 1.83 (Gen~1$\\\\to$2) to 2.67 (Gen~2$\\\\to$3) to 3.55 (Gen~3$\\\\to$4) to 4.79 (Gen~4$\\\\to$5), confirming super-linear degradation.  Distinct-4 declines from 0.6256 to 0.4630 ($-26.0\\\\%$ from Gen~1), indicating that the model's output vocabulary contracts as it trains on its own increasingly homogeneous samples.\\n\\nHellaSwag accuracy provides downstream task evidence for representational collapse.  Accuracy drops continuously from 0.4130 (pretrained) through 0.3897 (Gen~1) to 0.3439 (Gen~5), a total decline of 16.7\\\\% from the pretrained checkpoint and 11.7\\\\% from the Gen~1 baseline.  This confirms that spectral collapse is not merely an embedding-space phenomenon but propagates to downstream commonsense reasoning capability.  The HellaSwag trajectory parallels the spectral indicators with no lag, declining monotonically at every generation.\\n\\nThe training loss trajectory reveals a characteristic divergence from generalization metrics.  Loss decreases monotonically from 1.623 (Gen~1) to 1.047 (Gen~5), while perplexity on held-out real data increases by 116\\\\% over the same interval.  This pattern is the hallmark of distributional narrowing: as the synthetic training distribution loses diversity across generations, the model memorizes it with less effort.  Lower training loss in this context is a symptom of overfitting to synthetic distributions rather than improved generalization.  The widening gap between training loss and evaluation perplexity at each generation provides an independent early-warning signal of collapse that requires no spectral computation.\\n\\nA critical temporal asymmetry emerges from comparing the spectral and functional indicators.  All functional metrics (perplexity, Distinct-4, HellaSwag) begin deteriorating immediately at Generation~1, exhibiting monotonic decline from the first recursive iteration.  The spectral indicators, by contrast, continue to improve through Generation~2 before reversing at Generation~3.  The spectral inflection point thus lags the functional degradation onset by one generation.  This delay does not diminish the utility of spectral early-warning signals; rather, it highlights their complementary role.  Spectral metrics offer three practical advantages over functional indicators: (1)~they require no labeled evaluation set or external benchmark, (2)~they can be computed from a single forward pass during training without additional generation, and (3)~they provide a geometric interpretation of the collapse mechanism (loss of representational volume) rather than merely measuring downstream symptoms.  These properties make spectral signals suitable for closed-loop control, where evaluation cost and latency are critical constraints.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.3}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f884eb5d-6cad-41f9-995b-30f5ab5aaa18",
+  "uuid": "acf69bb7-03d9-4d0d-be7f-c2a5a65227aa",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\\section{Experimental Setup}\\\\n\\\\n\\\\\\\\subsection{Models and Datasets}\\\\n\\\\nWe use \\\\\\\\textbf{Pythia-410M-deduped}~\\\\\\\\cite{biderman2023pythia} (405M parameters, $D{=}1024$) as the primary model and \\\\\\\\textbf{Pythia-1B-deduped} (1042M parameters, $D{=}2048$) for scale-transfer validation.\\\\nBoth are decoder-only transformers pretrained on the deduplicated Pile~\\\\\\\\cite{gao2020pile}.\\\\n\\\\nFrom the Pile (uncopyrighted split, \\\\\\\\texttt{monology/pile-uncopyrighted}), we sample three disjoint subsets:\\\\n\\\\\\\\begin{itemize}[nosep]\\\\n  \\\\\\\\item \\\\\\\\textbf{Training pool}: 50{,}000 sequences of 512 tokens for fine-tuning.\\\\n  \\\\\\\\item \\\\\\\\textbf{Evaluation set}: 5{,}000 held-out sequences for perplexity measurement.\\\\n  \\\\\\\\item \\\\\\\\textbf{Spectral probe set}: 1{,}000 held-out sequences for effective rank computation.\\\\n\\\\\\\\end{itemize}\\\\nAll sequences are tokenized with the GPTNeoX tokenizer (vocabulary size 50{,}304) and truncated or padded to 512 tokens.\\\\nWe retain only sequences with at least 256 non-padding tokens ($\\\\\\\\geq$50\\\\\\\\% fill ratio) to ensure sufficient context for representation extraction.\\\\n\\\\n\\\\\\\\subsection{Recursive Training Protocol}\\\\n\\\\nGeneration~0 is the pretrained checkpoint with no additional fine-tuning.\\\\nFor each subsequent generation $t = 1, \\\\\\\\ldots, T$ with $T{=}10$:\\\\n\\\\\\\\begin{enumerate}[nosep]\\\\n  \\\\\\\\item \\\\\\\\textbf{Synthetic generation.} Sample 50{,}000 sequences from $M_{t-1}$ via ancestral sampling (temperature $= 1.0$, top-$k = 50$, no nucleus filtering, max length 512 tokens, batch size 32).\\\\n  \\\\\\\\item \\\\\\\\textbf{Data mixing.} Combine synthetic samples with real data at condition-specific ratio $r_t$ (see \\\\\\\\S\\\\\\\\ref{sec:conditions}).  The number of real samples mixed in is $\\\\\\\\lfloor n_{\\\\\\\\text{syn}} \\\\\\\\cdot r_t / (1 - r_t) \\\\\\\\rfloor$, drawn uniformly without replacement from the training pool.\\\\n  \\\\\\\\item \\\\\\\\textbf{Fine-tuning.} Train $M_{t-1}$ for 1 epoch on the mixed corpus $\\\\\\\\rightarrow M_t$.\\\\n  \\\\\\\\item \\\\\\\\textbf{Checkpoint and evaluate.} Save $M_t$; measure all metrics on held-out data.\\\\n\\\\\\\\end{enumerate}\\\\n\\\\nTraining hyperparameters are fixed across all conditions: AdamW optimizer with learning rate $5{\\\\\\\\times}10^{-5}$, weight decay $0.01$, batch size~8 with gradient accumulation~4 (effective batch size~32), linear warmup over 5\\\\\\\\% of steps followed by linear decay, and gradient clipping at $\\\\\\\\|\\\\\\\\mathbf{g}\\\\\\\\|_{\\\\\\\\max} = 1.0$.\\\\nThe number of optimizer steps per generation varies with the mixing ratio: ${\\\\\\\\sim}1{,}562$ steps for pure synthetic ($r_t = 0$) to ${\\\\\\\\sim}3{,}125$ steps at $r_t = 0.50$.\\\\n\\\\n\\\\\\\\subsection{Evaluation Metrics}\\\\n\\\\n\\\\\\\\paragraph{Effective Rank (RankMe).}\\\\nFollowing \\\\\\\\citet{rankme2023}, we forward-pass the 1{,}000 spectral probe samples through $M_t$, extract last-layer hidden states, mean-pool across sequence length to obtain $\\\\\\\\mathbf{Z} \\\\\\\\in \\\\\\\\mathbb{R}^{1000 \\\\\\\\times D}$, compute its SVD, and report\\\\n\\\\\\\\begin{equation}\\\\n  \\\\\\\\rho(\\\\\\\\mathbf{Z}) = \\\\\\\\exp\\\\\\\\!\\\\\\\\Bigl(-\\\\\\\\sum_i p_i \\\\\\\\log p_i\\\\\\\\Bigr), \\\\\\\\quad p_i = \\\\\\\\frac{\\\\\\\\sigma_i}{\\\\\\\\sum_j \\\\\\\\sigma_j},\\\\n\\\\\\\\end{equation}\\\\nwhere $\\\\\\\\sigma_i$ are the singular values of $\\\\\\\\mathbf{Z}$.\\\\nLower effective rank signals representation collapse.\\\\nWe measure spectral decline relative to Generation~1 (post-adaptation baseline) rather than Generation~0 (pretrained), as the pretrained-to-fine-tuned transition induces a shift in representation anisotropy unrelated to recursive collapse.\\\\nWe use RankMe rather than SIGMA's Track~I bound~\\\\\\\\cite{sigma2026} because (a)~no public implementation of SIGMA exists as of May 2026, (b)~RankMe is architecture-agnostic and hyperparameter-free, and (c)~RankMe's spectral entropy formulation provides a smooth, monotonic collapse indicator suitable for closed-loop control.\\\\n\\\\n\\\\\\\\paragraph{Log-Determinant Proxy.}\\\\nFrom the same SVD decomposition, we compute\\\\n\\\\\\\\begin{equation}\\\\n  \\\\\\\\mathcal{D}(\\\\\\\\mathbf{Z}) = \\\\\\\\sum_{i:\\\\\\\\,\\\\\\\\sigma_i > \\\\\\\\epsilon} \\\\\\\\log \\\\\\\\sigma_i, \\\\\\\\quad \\\\\\\\epsilon = 10^{-10},\\\\n\\\\\\\\end{equation}\\\\nwhich equals $\\\\\\\\tfrac{1}{2}\\\\\\\\log\\\\\\\\det(\\\\\\\\mathbf{Z}^\\\\\\\\top\\\\\\\\mathbf{Z})$ up to the threshold $\\\\\\\\epsilon$.\\\\nThis captures the overall representational volume on a logarithmic scale and is more sensitive to the tail of the singular spectr\\\\n\\\\n... [截断: 输出过长，省略 10823 字符] ...\\\\n\\\\nd on 1{,}000 probe samples; functional metrics on 5{,}000 held-out sequences. Best values in bold.}\\\\n\\\\\\\\label{tab:phase0_metrics}\\\\n\\\\\\\\small\\\\n\\\\\\\\begin{tabular}{@{}lcccccc@{}}\\\\n\\\\\\\\toprule\\\\n\\\\\\\\textbf{Metric} & \\\\\\\\textbf{Gen~0} & \\\\\\\\textbf{Gen~1} & \\\\\\\\textbf{Gen~2} & \\\\\\\\textbf{Gen~3} & \\\\\\\\textbf{Gen~4} & \\\\\\\\textbf{Gen~5} \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nEff.\\\\\\\\ Rank ($\\\\\\\\rho$) & 417.55 & 491.77 & \\\\\\\\textbf{496.44} & 493.31 & 485.67 & 479.21 \\\\\\\\\\\\\\\\\\\\nLog-Det ($\\\\\\\\mathcal{D}$) & 2366.68 & 2464.76 & \\\\\\\\textbf{2469.93} & 2440.57 & 2405.05 & 2370.17 \\\\\\\\\\\\\\\\\\\\n$\\\\\\\\sigma_1$ & 1942.8 & 804.0 & 712.0 & \\\\\\\\textbf{700.7} & 729.6 & 741.0 \\\\\\\\\\\\\\\\\\\\nPerplexity ($\\\\\\\\downarrow$) & \\\\\\\\textbf{9.55} & 11.38 & 13.58 & 16.25 & 19.80 & 24.59 \\\\\\\\\\\\\\\\\\\\nDistinct-4 ($\\\\\\\\uparrow$) & \\\\\\\\textbf{0.7414} & 0.6256 & 0.5154 & 0.4900 & 0.4679 & 0.4630 \\\\\\\\\\\\\\\\\\\\nHellaSwag ($\\\\\\\\uparrow$) & \\\\\\\\textbf{0.4130} & 0.3897 & 0.3764 & 0.3658 & 0.3558 & 0.3439 \\\\\\\\\\\\\\\\\\\\nTrain Loss & --- & 1.623 & 1.268 & 1.134 & 1.098 & 1.047 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}\\\\n\\\\\\\\end{table}\\\\n\\\\nThe functional metrics exhibit monotonic degradation from the first recursive generation through Generation~5, with no sign of stabilization.  Perplexity rises from 11.38 at Generation~1 to 24.59 at Generation~5, a 116\\\\\\\\% increase that reflects the model's accelerating inability to predict real-world text distributions.  The per-generation perplexity increment grows from 1.83 (Gen~1$\\\\\\\\to$2) to 2.67 (Gen~2$\\\\\\\\to$3) to 3.55 (Gen~3$\\\\\\\\to$4) to 4.79 (Gen~4$\\\\\\\\to$5), confirming super-linear degradation.  Distinct-4 declines from 0.6256 to 0.4630 ($-26.0\\\\\\\\%$ from Gen~1), indicating that the model's output vocabulary contracts as it trains on its own increasingly homogeneous samples.\\\\n\\\\nHellaSwag accuracy provides downstream task evidence for representational collapse.  Accuracy drops continuously from 0.4130 (pretrained) through 0.3897 (Gen~1) to 0.3439 (Gen~5), a total decline of 16.7\\\\\\\\% from the pretrained checkpoint and 11.7\\\\\\\\% from the Gen~1 baseline.  This confirms that spectral collapse is not merely an embedding-space phenomenon but propagates to downstream commonsense reasoning capability.  The HellaSwag trajectory parallels the spectral indicators with no lag, declining monotonically at every generation.\\\\n\\\\nThe training loss trajectory reveals a characteristic divergence from generalization metrics.  Loss decreases monotonically from 1.623 (Gen~1) to 1.047 (Gen~5), while perplexity on held-out real data increases by 116\\\\\\\\% over the same interval.  This pattern is the hallmark of distributional narrowing: as the synthetic training distribution loses diversity across generations, the model memorizes it with less effort.  Lower training loss in this context is a symptom of overfitting to synthetic distributions rather than improved generalization.  The widening gap between training loss and evaluation perplexity at each generation provides an independent early-warning signal of collapse that requires no spectral computation.\\\\n\\\\nA critical temporal asymmetry emerges from comparing the spectral and functional indicators.  All functional metrics (perplexity, Distinct-4, HellaSwag) begin deteriorating immediately at Generation~1, exhibiting monotonic decline from the first recursive iteration.  The spectral indicators, by contrast, continue to improve through Generation~2 before reversing at Generation~3.  The spectral inflection point thus lags the functional degradation onset by one generation.  This delay does not diminish the utility of spectral early-warning signals; rather, it highlights their complementary role.  Spectral metrics offer three practical advantages over functional indicators: (1)~they require no labeled evaluation set or external benchmark, (2)~they can be computed from a single forward pass during training without additional generation, and (3)~they provide a geometric interpretation of the collapse mechanism (loss of representational volume) rather than merely measuring downstream symptoms.  These properties make spectral signals suitable for closed-loop control, where evaluation cost and latency are critical constraints.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.3}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\\section{Experimental Setup}\\n\\n\\\\subsection{Models and Datasets}\\n\\nWe use \\\\textbf{Pythia-410M-deduped}~\\\\cite{biderman2023pythia} (405M parameters, $D{=}1024$) as the primary model and \\\\textbf{Pythia-1B-deduped} (1042M parameters, $D{=}2048$) for scale-transfer validation.\\nBoth are decoder-only transformers pretrained on the deduplicated Pile~\\\\cite{gao2020pile}.\\n\\nFrom the Pile (uncopyrighted split, \\\\texttt{monology/pile-uncopyrighted}), we sample three disjoint subsets:\\n\\\\begin{itemize}[nosep]\\n  \\\\item \\\\textbf{Training pool}: 50{,}000 sequences of 512 tokens for fine-tuning.\\n  \\\\item \\\\textbf{Evaluation set}: 5{,}000 held-out sequences for perplexity measurement.\\n  \\\\item \\\\textbf{Spectral probe set}: 1{,}000 held-out sequences for effective rank computation.\\n\\\\end{itemize}\\nAll sequences are tokenized with the GPTNeoX tokenizer (vocabulary size 50{,}304) and truncated or padded to 512 tokens.\\nWe retain only sequences with at least 256 non-padding tokens ($\\\\geq$50\\\\% fill ratio) to ensure sufficient context for representation extraction.\\n\\n\\\\subsection{Recursive Training Protocol}\\n\\nGeneration~0 is the pretrained checkpoint with no additional fine-tuning.\\nFor each subsequent generation $t = 1, \\\\ldots, T$ with $T{=}10$:\\n\\\\begin{enumerate}[nosep]\\n  \\\\item \\\\textbf{Synthetic generation.} Sample 50{,}000 sequences from $M_{t-1}$ via ancestral sampling (temperature $= 1.0$, top-$k = 50$, no nucleus filtering, max length 512 tokens, batch size 32).\\n  \\\\item \\\\textbf{Data mixing.} Combine synthetic samples with real data at condition-specific ratio $r_t$ (see \\\\S\\\\ref{sec:conditions}).  The number of real samples mixed in is $\\\\lfloor n_{\\\\text{syn}} \\\\cdot r_t / (1 - r_t) \\\\rfloor$, drawn uniformly without replacement from the training pool.\\n  \\\\item \\\\textbf{Fine-tuning.} Train $M_{t-1}$ for 1 epoch on the mixed corpus $\\\\rightarrow M_t$.\\n  \\\\item \\\\textbf{Checkpoint and evaluate.} Save $M_t$; measure all metrics on held-out data.\\n\\\\end{enumerate}\\n\\nTraining hyperparameters are fixed across all conditions: AdamW optimizer with learning rate $5{\\\\times}10^{-5}$, weight decay $0.01$, batch size~8 with gradient accumulation~4 (effective batch size~32), linear warmup over 5\\\\% of steps followed by linear decay, and gradient clipping at $\\\\|\\\\mathbf{g}\\\\|_{\\\\max} = 1.0$.\\nThe number of optimizer steps per generation varies with the mixing ratio: ${\\\\sim}1{,}562$ steps for pure synthetic ($r_t = 0$) to ${\\\\sim}3{,}125$ steps at $r_t = 0.50$.\\n\\n\\\\subsection{Evaluation Metrics}\\n\\n\\\\paragraph{Effective Rank (RankMe).}\\nFollowing \\\\citet{rankme2023}, we forward-pass the 1{,}000 spectral probe samples through $M_t$, extract last-layer hidden states, mean-pool across sequence length to obtain $\\\\mathbf{Z} \\\\in \\\\mathbb{R}^{1000 \\\\times D}$, compute its SVD, and report\\n\\\\begin{equation}\\n  \\\\rho(\\\\mathbf{Z}) = \\\\exp\\\\!\\\\Bigl(-\\\\sum_i p_i \\\\log p_i\\\\Bigr), \\\\quad p_i = \\\\frac{\\\\sigma_i}{\\\\sum_j \\\\sigma_j},\\n\\\\end{equation}\\nwhere $\\\\sigma_i$ are the singular values of $\\\\mathbf{Z}$.\\nLower effective rank signals representation collapse.\\nWe measure spectral decline relative to Generation~1 (post-adaptation baseline) rather than Generation~0 (pretrained), as the pretrained-to-fine-tuned transition induces a shift in representation anisotropy unrelated to recursive collapse.\\nWe use RankMe rather than SIGMA's Track~I bound~\\\\cite{sigma2026} because (a)~no public implementation of SIGMA exists as of May 2026, (b)~RankMe is architecture-agnostic and hyperparameter-free, and (c)~RankMe's spectral entropy formulation provides a smooth, monotonic collapse indicator suitable for closed-loop control.\\n\\n\\\\paragraph{Log-Determinant Proxy.}\\nFrom the same SVD decomposition, we compute\\n\\\\begin{equation}\\n  \\\\mathcal{D}(\\\\mathbf{Z}) = \\\\sum_{i:\\\\,\\\\sigma_i > \\\\epsilon} \\\\log \\\\sigma_i, \\\\quad \\\\epsilon = 10^{-10},\\n\\\\end{equation}\\nwhich equals $\\\\tfrac{1}{2}\\\\log\\\\det(\\\\mathbf{Z}^\\\\top\\\\mathbf{Z})$ up to the threshold $\\\\epsilon$.\\nThis captures the overall representational volume on a logarithmic scale and is more sensitive to the tail of the singular spectr\\n\\n... [截断: 输出过长，省略 10823 字符] ...\\n\\nd on 1{,}000 probe samples; functional metrics on 5{,}000 held-out sequences. Best values in bold.}\\n\\\\label{tab:phase0_metrics}\\n\\\\small\\n\\\\begin{tabular}{@{}lcccccc@{}}\\n\\\\toprule\\n\\\\textbf{Metric} & \\\\textbf{Gen~0} & \\\\textbf{Gen~1} & \\\\textbf{Gen~2} & \\\\textbf{Gen~3} & \\\\textbf{Gen~4} & \\\\textbf{Gen~5} \\\\\\\\\\n\\\\midrule\\nEff.\\\\ Rank ($\\\\rho$) & 417.55 & 491.77 & \\\\textbf{496.44} & 493.31 & 485.67 & 479.21 \\\\\\\\\\nLog-Det ($\\\\mathcal{D}$) & 2366.68 & 2464.76 & \\\\textbf{2469.93} & 2440.57 & 2405.05 & 2370.17 \\\\\\\\\\n$\\\\sigma_1$ & 1942.8 & 804.0 & 712.0 & \\\\textbf{700.7} & 729.6 & 741.0 \\\\\\\\\\nPerplexity ($\\\\downarrow$) & \\\\textbf{9.55} & 11.38 & 13.58 & 16.25 & 19.80 & 24.59 \\\\\\\\\\nDistinct-4 ($\\\\uparrow$) & \\\\textbf{0.7414} & 0.6256 & 0.5154 & 0.4900 & 0.4679 & 0.4630 \\\\\\\\\\nHellaSwag ($\\\\uparrow$) & \\\\textbf{0.4130} & 0.3897 & 0.3764 & 0.3658 & 0.3558 & 0.3439 \\\\\\\\\\nTrain Loss & --- & 1.623 & 1.268 & 1.134 & 1.098 & 1.047 \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}\\n\\\\end{table}\\n\\nThe functional metrics exhibit monotonic degradation from the first recursive generation through Generation~5, with no sign of stabilization.  Perplexity rises from 11.38 at Generation~1 to 24.59 at Generation~5, a 116\\\\% increase that reflects the model's accelerating inability to predict real-world text distributions.  The per-generation perplexity increment grows from 1.83 (Gen~1$\\\\to$2) to 2.67 (Gen~2$\\\\to$3) to 3.55 (Gen~3$\\\\to$4) to 4.79 (Gen~4$\\\\to$5), confirming super-linear degradation.  Distinct-4 declines from 0.6256 to 0.4630 ($-26.0\\\\%$ from Gen~1), indicating that the model's output vocabulary contracts as it trains on its own increasingly homogeneous samples.\\n\\nHellaSwag accuracy provides downstream task evidence for representational collapse.  Accuracy drops continuously from 0.4130 (pretrained) through 0.3897 (Gen~1) to 0.3439 (Gen~5), a total decline of 16.7\\\\% from the pretrained checkpoint and 11.7\\\\% from the Gen~1 baseline.  This confirms that spectral collapse is not merely an embedding-space phenomenon but propagates to downstream commonsense reasoning capability.  The HellaSwag trajectory parallels the spectral indicators with no lag, declining monotonically at every generation.\\n\\nThe training loss trajectory reveals a characteristic divergence from generalization metrics.  Loss decreases monotonically from 1.623 (Gen~1) to 1.047 (Gen~5), while perplexity on held-out real data increases by 116\\\\% over the same interval.  This pattern is the hallmark of distributional narrowing: as the synthetic training distribution loses diversity across generations, the model memorizes it with less effort.  Lower training loss in this context is a symptom of overfitting to synthetic distributions rather than improved generalization.  The widening gap between training loss and evaluation perplexity at each generation provides an independent early-warning signal of collapse that requires no spectral computation.\\n\\nA critical temporal asymmetry emerges from comparing the spectral and functional indicators.  All functional metrics (perplexity, Distinct-4, HellaSwag) begin deteriorating immediately at Generation~1, exhibiting monotonic decline from the first recursive iteration.  The spectral indicators, by contrast, continue to improve through Generation~2 before reversing at Generation~3.  The spectral inflection point thus lags the functional degradation onset by one generation.  This delay does not diminish the utility of spectral early-warning signals; rather, it highlights their complementary role.  Spectral metrics offer three practical advantages over functional indicators: (1)~they require no labeled evaluation set or external benchmark, (2)~they can be computed from a single forward pass during training without additional generation, and (3)~they provide a geometric interpretation of the collapse mechanism (loss of representational volume) rather than merely measuring downstream symptoms.  These properties make spectral signals suitable for closed-loop control, where evaluation cost and latency are critical constraints.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.3}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10_
+
+内容被截断了，让我获取完整文件的其余部分。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f884eb5d-6cad-41f9-995b-30f5ab5aaa18",
+  "uuid": "410f475b-42d1-425e-8df4-5f92a4fe5713",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JaA8SkaTbs2nuc4DB5fegN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3138,
+      "cache_read_input_tokens": 25052,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3138
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_013tmTWRpstxyHCEPS4bXGuL`</summary>
+
+```json
+{
+  "server": "rtx6000-diagprobe",
+  "command": "wc -l /root/spectral_collapse_ews/paper/experiments.tex && sed -n '100,200p' /root/spectral_collapse_ews/paper/experiments.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f884eb5d-6cad-41f9-995b-30f5ab5aaa18",
+  "uuid": "64da8cbc-b65f-45f9-a519-6f451fd47f6f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JaA8SkaTbs2nuc4DB5fegN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3138,
+      "cache_read_input_tokens": 25052,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3138
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-17T06:36:04.864Z_
+
+<details><summary>↩ Tool result · `toolu_013tmTWRpstxyHCEPS4bXGuL`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"194 /root/spectral_collapse_ews/paper/experiments.tex\\n\\\\subsection{Statistical Design}\\n\\nEach condition is run with 3 random seeds (42, 123, 7), paired across conditions (i.e., all four conditions share the same seed set) to reduce variance from initialization and data ordering.\\nWe report mean $\\\\pm$ standard deviation across seeds.\\n\\nSignificance testing uses paired $t$-tests on per-seed final metrics.\\nWe adopt $\\\\alpha=0.10$ following our pre-registered protocol, given the pragmatic minimum of 3 seeds.\\nEffect sizes are reported as Cohen's $d$ with 95\\\\% bootstrap confidence intervals (10{,}000 resamples).\\n\\n\\\\paragraph{Phase~0 go/no-go criteria.}\\nBefore launching Phase~1, we execute a single-seed ($s{=}42$) pure-synthetic run ($r_t = 0\\\\;\\\\forall\\\\, t$, 10 generations) and require all of the following:\\n\\\\begin{enumerate}[nosep]\\n  \\\\item Monotonically decreasing effective rank across Generations~1--10 (allowing at most one non-monotone generation).\\n  \\\\item Acceleration ratio $\\\\geq 1.5{\\\\times}$: mean per-generation rank decline in Generations~6--10 divided by that in Generations~1--5.\\n  \\\\item Held-out perplexity increase $> 20\\\\%$ from Generation~1 to Generation~10.\\n\\\\end{enumerate}\\nFailure on any criterion aborts the experiment and triggers hyperparameter revision.\\nController parameters $k$ and $\\\\tau$ are calibrated from the Phase~0 spectral trajectory.\\n\\n\\\\paragraph{Pre-registered hypotheses.}\\nWe pre-register two primary comparisons at Generation~$T{=}10$:\\n\\\\begin{enumerate}[nosep]\\n  \\\\item Adaptive vs.\\\\ fixed uniform: $\\\\geq$3 perplexity point improvement.\\n  \\\\item Closed-loop (adaptive) vs.\\\\ open-loop (linear-increasing): $\\\\geq$1.5 perplexity point improvement.\\n\\\\end{enumerate}\\n\\n\\\\paragraph{Compute budget.}\\nThe full experiment comprises 1 Phase~0 pilot chain (single seed, 10 generations) and 12 Phase~1 chains (4 conditions $\\\\times$ 3 seeds $\\\\times$ 10 generations), totaling 130 generation-steps.\\nEach generation-step involves sampling 50{,}000 synthetic sequences, fine-tuning for 1 epoch (${\\\\sim}$1{,}562--3{,}125 optimizer steps depending on the mixing ratio), and evaluating all metrics including 1{,}000-sample generation for Distinct-4.\\n\\nPhase~1 results tables are pending experiment completion.\\n\\n% TODO: add Phase 1 results (4 conditions x 3 seeds x 10 generations)\\n\\n\\n\\\\section{Results: Phase 0 Pilot}\\n\\n\\\\subsection{Spectral Trajectory Characterization}\\n\\\\label{sec:spectral_trajectory}\\n\\nThe Phase~0 pure-synthetic pilot (seed 42, $r_t = 0\\\\;\\\\forall\\\\, t$) reveals a three-stage spectral trajectory across Generations~0--5: anisotropy decompression, decompression peak, and sustained collapse.  Figure~\\\\ref{fig:spectral_trajectory} visualizes this progression.\\n\\n\\\\begin{figure}[t]\\n\\\\centering\\n\\\\includegraphics[width=\\\\linewidth]{figures/spectral_trajectory.pdf}\\n\\\\caption{Spectral trajectory across recursive generations (Pythia-410M, Generations~0--5). (a) Effective rank peaks at Gen~2 then declines monotonically. (b) Log-determinant shows larger relative decline, confirming tail-spectrum sensitivity. (c) Perplexity accelerates upward. (d) Lexical diversity (Distinct-4) contracts monotonically. Dashed line: Gen~1 baseline.}\\n\\\\label{fig:spectral_trajectory}\\n\\\\end{figure}\\n\\n\\\\paragraph{Stage 1: Anisotropy Decompression (Gen~0$\\\\to$1).}\\nThe pretrained Pythia-410M checkpoint exhibits high representational anisotropy: the leading singular value $\\\\sigma_1 = 1942.8$ dominates the spectrum, yielding a compressed effective rank of $\\\\rho = 417.55$.  Fine-tuning on synthetic data redistributes variance across dimensions, reducing $\\\\sigma_1$ to 804.0 (a 58.6\\\\% decrease) and raising the effective rank to 491.77 (+17.8\\\\%).  The log-determinant proxy increases correspondingly from 2366.68 to 2464.76, confirming that the representational volume expands as anisotropy dissipates.  This transition reflects a standard fine-tuning effect: adaptation to any downstream corpus disperses the pretrained model's dominant singular directions~\\\\cite{biderman2023pythia}.  Crucially, this is not model \\n\\n... [截断: 输出过长，省略 3472 字符] ...\\n\\nd on 1{,}000 probe samples; functional metrics on 5{,}000 held-out sequences. Best values in bold.}\\n\\\\label{tab:phase0_metrics}\\n\\\\small\\n\\\\begin{tabular}{@{}lcccccc@{}}\\n\\\\toprule\\n\\\\textbf{Metric} & \\\\textbf{Gen~0} & \\\\textbf{Gen~1} & \\\\textbf{Gen~2} & \\\\textbf{Gen~3} & \\\\textbf{Gen~4} & \\\\textbf{Gen~5} \\\\\\\\\\n\\\\midrule\\nEff.\\\\ Rank ($\\\\rho$) & 417.55 & 491.77 & \\\\textbf{496.44} & 493.31 & 485.67 & 479.21 \\\\\\\\\\nLog-Det ($\\\\mathcal{D}$) & 2366.68 & 2464.76 & \\\\textbf{2469.93} & 2440.57 & 2405.05 & 2370.17 \\\\\\\\\\n$\\\\sigma_1$ & 1942.8 & 804.0 & 712.0 & \\\\textbf{700.7} & 729.6 & 741.0 \\\\\\\\\\nPerplexity ($\\\\downarrow$) & \\\\textbf{9.55} & 11.38 & 13.58 & 16.25 & 19.80 & 24.59 \\\\\\\\\\nDistinct-4 ($\\\\uparrow$) & \\\\textbf{0.7414} & 0.6256 & 0.5154 & 0.4900 & 0.4679 & 0.4630 \\\\\\\\\\nHellaSwag ($\\\\uparrow$) & \\\\textbf{0.4130} & 0.3897 & 0.3764 & 0.3658 & 0.3558 & 0.3439 \\\\\\\\\\nTrain Loss & --- & 1.623 & 1.268 & 1.134 & 1.098 & 1.047 \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}\\n\\\\end{table}\\n\\nThe functional metrics exhibit monotonic degradation from the first recursive generation through Generation~5, with no sign of stabilization.  Perplexity rises from 11.38 at Generation~1 to 24.59 at Generation~5, a 116\\\\% increase that reflects the model's accelerating inability to predict real-world text distributions.  The per-generation perplexity increment grows from 1.83 (Gen~1$\\\\to$2) to 2.67 (Gen~2$\\\\to$3) to 3.55 (Gen~3$\\\\to$4) to 4.79 (Gen~4$\\\\to$5), confirming super-linear degradation.  Distinct-4 declines from 0.6256 to 0.4630 ($-26.0\\\\%$ from Gen~1), indicating that the model's output vocabulary contracts as it trains on its own increasingly homogeneous samples.\\n\\nHellaSwag accuracy provides downstream task evidence for representational collapse.  Accuracy drops continuously from 0.4130 (pretrained) through 0.3897 (Gen~1) to 0.3439 (Gen~5), a total decline of 16.7\\\\% from the pretrained checkpoint and 11.7\\\\% from the Gen~1 baseline.  This confirms that spectral collapse is not merely an embedding-space phenomenon but propagates to downstream commonsense reasoning capability.  The HellaSwag trajectory parallels the spectral indicators with no lag, declining monotonically at every generation.\\n\\nThe training loss trajectory reveals a characteristic divergence from generalization metrics.  Loss decreases monotonically from 1.623 (Gen~1) to 1.047 (Gen~5), while perplexity on held-out real data increases by 116\\\\% over the same interval.  This pattern is the hallmark of distributional narrowing: as the synthetic training distribution loses diversity across generations, the model memorizes it with less effort.  Lower training loss in this context is a symptom of overfitting to synthetic distributions rather than improved generalization.  The widening gap between training loss and evaluation perplexity at each generation provides an independent early-warning signal of collapse that requires no spectral computation.\\n\\nA critical temporal asymmetry emerges from comparing the spectral and functional indicators.  All functional metrics (perplexity, Distinct-4, HellaSwag) begin deteriorating immediately at Generation~1, exhibiting monotonic decline from the first recursive iteration.  The spectral indicators, by contrast, continue to improve through Generation~2 before reversing at Generation~3.  The spectral inflection point thus lags the functional degradation onset by one generation.  This delay does not diminish the utility of spectral early-warning signals; rather, it highlights their complementary role.  Spectral metrics offer three practical advantages over functional indicators: (1)~they require no labeled evaluation set or external benchmark, (2)~they can be computed from a single forward pass during training without additional generation, and (3)~they provide a geometric interpretation of the collapse mechanism (loss of representational volume) rather than merely measuring downstream symptoms.  These properties make spectral signals suitable for closed-loop control, where evaluation cost and latency are critical constraints.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f884eb5d-6cad-41f9-995b-30f5ab5aaa18",
+  "uuid": "7543d3c4-53d1-4d1f-8e0e-b0bf53b8017c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"194 /root/spectral_collapse_ews/paper/experiments.tex\\\\n\\\\\\\\subsection{Statistical Design}\\\\n\\\\nEach condition is run with 3 random seeds (42, 123, 7), paired across conditions (i.e., all four conditions share the same seed set) to reduce variance from initialization and data ordering.\\\\nWe report mean $\\\\\\\\pm$ standard deviation across seeds.\\\\n\\\\nSignificance testing uses paired $t$-tests on per-seed final metrics.\\\\nWe adopt $\\\\\\\\alpha=0.10$ following our pre-registered protocol, given the pragmatic minimum of 3 seeds.\\\\nEffect sizes are reported as Cohen's $d$ with 95\\\\\\\\% bootstrap confidence intervals (10{,}000 resamples).\\\\n\\\\n\\\\\\\\paragraph{Phase~0 go/no-go criteria.}\\\\nBefore launching Phase~1, we execute a single-seed ($s{=}42$) pure-synthetic run ($r_t = 0\\\\\\\\;\\\\\\\\forall\\\\\\\\, t$, 10 generations) and require all of the following:\\\\n\\\\\\\\begin{enumerate}[nosep]\\\\n  \\\\\\\\item Monotonically decreasing effective rank across Generations~1--10 (allowing at most one non-monotone generation).\\\\n  \\\\\\\\item Acceleration ratio $\\\\\\\\geq 1.5{\\\\\\\\times}$: mean per-generation rank decline in Generations~6--10 divided by that in Generations~1--5.\\\\n  \\\\\\\\item Held-out perplexity increase $> 20\\\\\\\\%$ from Generation~1 to Generation~10.\\\\n\\\\\\\\end{enumerate}\\\\nFailure on any criterion aborts the experiment and triggers hyperparameter revision.\\\\nController parameters $k$ and $\\\\\\\\tau$ are calibrated from the Phase~0 spectral trajectory.\\\\n\\\\n\\\\\\\\paragraph{Pre-registered hypotheses.}\\\\nWe pre-register two primary comparisons at Generation~$T{=}10$:\\\\n\\\\\\\\begin{enumerate}[nosep]\\\\n  \\\\\\\\item Adaptive vs.\\\\\\\\ fixed uniform: $\\\\\\\\geq$3 perplexity point improvement.\\\\n  \\\\\\\\item Closed-loop (adaptive) vs.\\\\\\\\ open-loop (linear-increasing): $\\\\\\\\geq$1.5 perplexity point improvement.\\\\n\\\\\\\\end{enumerate}\\\\n\\\\n\\\\\\\\paragraph{Compute budget.}\\\\nThe full experiment comprises 1 Phase~0 pilot chain (single seed, 10 generations) and 12 Phase~1 chains (4 conditions $\\\\\\\\times$ 3 seeds $\\\\\\\\times$ 10 generations), totaling 130 generation-steps.\\\\nEach generation-step involves sampling 50{,}000 synthetic sequences, fine-tuning for 1 epoch (${\\\\\\\\sim}$1{,}562--3{,}125 optimizer steps depending on the mixing ratio), and evaluating all metrics including 1{,}000-sample generation for Distinct-4.\\\\n\\\\nPhase~1 results tables are pending experiment completion.\\\\n\\\\n% TODO: add Phase 1 results (4 conditions x 3 seeds x 10 generations)\\\\n\\\\n\\\\n\\\\\\\\section{Results: Phase 0 Pilot}\\\\n\\\\n\\\\\\\\subsection{Spectral Trajectory Characterization}\\\\n\\\\\\\\label{sec:spectral_trajectory}\\\\n\\\\nThe Phase~0 pure-synthetic pilot (seed 42, $r_t = 0\\\\\\\\;\\\\\\\\forall\\\\\\\\, t$) reveals a three-stage spectral trajectory across Generations~0--5: anisotropy decompression, decompression peak, and sustained collapse.  Figure~\\\\\\\\ref{fig:spectral_trajectory} visualizes this progression.\\\\n\\\\n\\\\\\\\begin{figure}[t]\\\\n\\\\\\\\centering\\\\n\\\\\\\\includegraphics[width=\\\\\\\\linewidth]{figures/spectral_trajectory.pdf}\\\\n\\\\\\\\caption{Spectral trajectory across recursive generations (Pythia-410M, Generations~0--5). (a) Effective rank peaks at Gen~2 then declines monotonically. (b) Log-determinant shows larger relative decline, confirming tail-spectrum sensitivity. (c) Perplexity accelerates upward. (d) Lexical diversity (Distinct-4) contracts monotonically. Dashed line: Gen~1 baseline.}\\\\n\\\\\\\\label{fig:spectral_trajectory}\\\\n\\\\\\\\end{figure}\\\\n\\\\n\\\\\\\\paragraph{Stage 1: Anisotropy Decompression (Gen~0$\\\\\\\\to$1).}\\\\nThe pretrained Pythia-410M checkpoint exhibits high representational anisotropy: the leading singular value $\\\\\\\\sigma_1 = 1942.8$ dominates the spectrum, yielding a compressed effective rank of $\\\\\\\\rho = 417.55$.  Fine-tuning on synthetic data redistributes variance across dimensions, reducing $\\\\\\\\sigma_1$ to 804.0 (a 58.6\\\\\\\\% decrease) and raising the effective rank to 491.77 (+17.8\\\\\\\\%).  The log-determinant proxy increases correspondingly from 2366.68 to 2464.76, confirming that the representational volume expands as anisotropy dissipates.  This transition reflects a standard fine-tuning effect: adaptation to any downstream corpus disperses the pretrained model's dominant singular directions~\\\\\\\\cite{biderman2023pythia}.  Crucially, this is not model \\\\n\\\\n... [截断: 输出过长，省略 3472 字符] ...\\\\n\\\\nd on 1{,}000 probe samples; functional metrics on 5{,}000 held-out sequences. Best values in bold.}\\\\n\\\\\\\\label{tab:phase0_metrics}\\\\n\\\\\\\\small\\\\n\\\\\\\\begin{tabular}{@{}lcccccc@{}}\\\\n\\\\\\\\toprule\\\\n\\\\\\\\textbf{Metric} & \\\\\\\\textbf{Gen~0} & \\\\\\\\textbf{Gen~1} & \\\\\\\\textbf{Gen~2} & \\\\\\\\textbf{Gen~3} & \\\\\\\\textbf{Gen~4} & \\\\\\\\textbf{Gen~5} \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nEff.\\\\\\\\ Rank ($\\\\\\\\rho$) & 417.55 & 491.77 & \\\\\\\\textbf{496.44} & 493.31 & 485.67 & 479.21 \\\\\\\\\\\\\\\\\\\\nLog-Det ($\\\\\\\\mathcal{D}$) & 2366.68 & 2464.76 & \\\\\\\\textbf{2469.93} & 2440.57 & 2405.05 & 2370.17 \\\\\\\\\\\\\\\\\\\\n$\\\\\\\\sigma_1$ & 1942.8 & 804.0 & 712.0 & \\\\\\\\textbf{700.7} & 729.6 & 741.0 \\\\\\\\\\\\\\\\\\\\nPerplexity ($\\\\\\\\downarrow$) & \\\\\\\\textbf{9.55} & 11.38 & 13.58 & 16.25 & 19.80 & 24.59 \\\\\\\\\\\\\\\\\\\\nDistinct-4 ($\\\\\\\\uparrow$) & \\\\\\\\textbf{0.7414} & 0.6256 & 0.5154 & 0.4900 & 0.4679 & 0.4630 \\\\\\\\\\\\\\\\\\\\nHellaSwag ($\\\\\\\\uparrow$) & \\\\\\\\textbf{0.4130} & 0.3897 & 0.3764 & 0.3658 & 0.3558 & 0.3439 \\\\\\\\\\\\\\\\\\\\nTrain Loss & --- & 1.623 & 1.268 & 1.134 & 1.098 & 1.047 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}\\\\n\\\\\\\\end{table}\\\\n\\\\nThe functional metrics exhibit monotonic degradation from the first recursive generation through Generation~5, with no sign of stabilization.  Perplexity rises from 11.38 at Generation~1 to 24.59 at Generation~5, a 116\\\\\\\\% increase that reflects the model's accelerating inability to predict real-world text distributions.  The per-generation perplexity increment grows from 1.83 (Gen~1$\\\\\\\\to$2) to 2.67 (Gen~2$\\\\\\\\to$3) to 3.55 (Gen~3$\\\\\\\\to$4) to 4.79 (Gen~4$\\\\\\\\to$5), confirming super-linear degradation.  Distinct-4 declines from 0.6256 to 0.4630 ($-26.0\\\\\\\\%$ from Gen~1), indicating that the model's output vocabulary contracts as it trains on its own increasingly homogeneous samples.\\\\n\\\\nHellaSwag accuracy provides downstream task evidence for representational collapse.  Accuracy drops continuously from 0.4130 (pretrained) through 0.3897 (Gen~1) to 0.3439 (Gen~5), a total decline of 16.7\\\\\\\\% from the pretrained checkpoint and 11.7\\\\\\\\% from the Gen~1 baseline.  This confirms that spectral collapse is not merely an embedding-space phenomenon but propagates to downstream commonsense reasoning capability.  The HellaSwag trajectory parallels the spectral indicators with no lag, declining monotonically at every generation.\\\\n\\\\nThe training loss trajectory reveals a characteristic divergence from generalization metrics.  Loss decreases monotonically from 1.623 (Gen~1) to 1.047 (Gen~5), while perplexity on held-out real data increases by 116\\\\\\\\% over the same interval.  This pattern is the hallmark of distributional narrowing: as the synthetic training distribution loses diversity across generations, the model memorizes it with less effort.  Lower training loss in this context is a symptom of overfitting to synthetic distributions rather than improved generalization.  The widening gap between training loss and evaluation perplexity at each generation provides an independent early-warning signal of collapse that requires no spectral computation.\\\\n\\\\nA critical temporal asymmetry emerges from comparing the spectral and functional indicators.  All functional metrics (perplexity, Distinct-4, HellaSwag) begin deteriorating immediately at Generation~1, exhibiting monotonic decline from the first recursive iteration.  The spectral indicators, by contrast, continue to improve through Generation~2 before reversing at Generation~3.  The spectral inflection point thus lags the functional degradation onset by one generation.  This delay does not diminish the utility of spectral early-warning signals; rather, it highlights their complementary role.  Spectral metrics offer three practical advantages over functional indicators: (1)~they require no labeled evaluation set or external benchmark, (2)~they can be computed from a single forward pass during training without additional generation, and (3)~they provide a geometric interpretation of the collapse mechanism (loss of representational volume) rather than merely measuring downstream symptoms.  These properties make spectral signals suitable for closed-loop control, where evaluation cost and latency are critical constraints.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"194 /root/spectral_collapse_ews/paper/experiments.tex\\n\\\\subsection{Statistical Design}\\n\\nEach condition is run with 3 random seeds (42, 123, 7), paired across conditions (i.e., all four conditions share the same seed set) to reduce variance from initialization and data ordering.\\nWe report mean $\\\\pm$ standard deviation across seeds.\\n\\nSignificance testing uses paired $t$-tests on per-seed final metrics.\\nWe adopt $\\\\alpha=0.10$ following our pre-registered protocol, given the pragmatic minimum of 3 seeds.\\nEffect sizes are reported as Cohen's $d$ with 95\\\\% bootstrap confidence intervals (10{,}000 resamples).\\n\\n\\\\paragraph{Phase~0 go/no-go criteria.}\\nBefore launching Phase~1, we execute a single-seed ($s{=}42$) pure-synthetic run ($r_t = 0\\\\;\\\\forall\\\\, t$, 10 generations) and require all of the following:\\n\\\\begin{enumerate}[nosep]\\n  \\\\item Monotonically decreasing effective rank across Generations~1--10 (allowing at most one non-monotone generation).\\n  \\\\item Acceleration ratio $\\\\geq 1.5{\\\\times}$: mean per-generation rank decline in Generations~6--10 divided by that in Generations~1--5.\\n  \\\\item Held-out perplexity increase $> 20\\\\%$ from Generation~1 to Generation~10.\\n\\\\end{enumerate}\\nFailure on any criterion aborts the experiment and triggers hyperparameter revision.\\nController parameters $k$ and $\\\\tau$ are calibrated from the Phase~0 spectral trajectory.\\n\\n\\\\paragraph{Pre-registered hypotheses.}\\nWe pre-register two primary comparisons at Generation~$T{=}10$:\\n\\\\begin{enumerate}[nosep]\\n  \\\\item Adaptive vs.\\\\ fixed uniform: $\\\\geq$3 perplexity point improvement.\\n  \\\\item Closed-loop (adaptive) vs.\\\\ open-loop (linear-increasing): $\\\\geq$1.5 perplexity point improvement.\\n\\\\end{enumerate}\\n\\n\\\\paragraph{Compute budget.}\\nThe full experiment comprises 1 Phase~0 pilot chain (single seed, 10 generations) and 12 Phase~1 chains (4 conditions $\\\\times$ 3 seeds $\\\\times$ 10 generations), totaling 130 generation-steps.\\nEach generation-step involves sampling 50{,}000 synthetic sequences, fine-tuning for 1 epoch (${\\\\sim}$1{,}562--3{,}125 optimizer steps depending on the mixing ratio), and evaluating all metrics including 1{,}000-sample generation for Distinct-4.\\n\\nPhase~1 results tables are pending experiment completion.\\n\\n% TODO: add Phase 1 results (4 conditions x 3 seeds x 10 generations)\\n\\n\\n\\\\section{Results: Phase 0 Pilot}\\n\\n\\\\subsection{Spectral Trajectory Characterization}\\n\\\\label{sec:spectral_trajectory}\\n\\nThe Phase~0 pure-synthetic pilot (seed 42, $r_t = 0\\\\;\\\\forall\\\\, t$) reveals a three-stage spectral trajectory across Generations~0--5: anisotropy decompression, decompression peak, and sustained collapse.  Figure~\\\\ref{fig:spectral_trajectory} visualizes this progression.\\n\\n\\\\begin{figure}[t]\\n\\\\centering\\n\\\\includegraphics[width=\\\\linewidth]{figures/spectral_trajectory.pdf}\\n\\\\caption{Spectral trajectory across recursive generations (Pythia-410M, Generations~0--5). (a) Effective rank peaks at Gen~2 then declines monotonically. (b) Log-determinant shows larger relative decline, confirming tail-spectrum sensitivity. (c) Perplexity accelerates upward. (d) Lexical diversity (Distinct-4) contracts monotonically. Dashed line: Gen~1 baseline.}\\n\\\\label{fig:spectral_trajectory}\\n\\\\end{figure}\\n\\n\\\\paragraph{Stage 1: Anisotropy Decompression (Gen~0$\\\\to$1).}\\nThe pretrained Pythia-410M checkpoint exhibits high representational anisotropy: the leading singular value $\\\\sigma_1 = 1942.8$ dominates the spectrum, yielding a compressed effective rank of $\\\\rho = 417.55$.  Fine-tuning on synthetic data redistributes variance across dimensions, reducing $\\\\sigma_1$ to 804.0 (a 58.6\\\\% decrease) and raising the effective rank to 491.77 (+17.8\\\\%).  The log-determinant proxy increases correspondingly from 2366.68 to 2464.76, confirming that the representational volume expands as anisotropy dissipates.  This transition reflects a standard fine-tuning effect: adaptation to any downstream corpus disperses the pretrained model's dominant singular directions~\\\\cite{biderman2023pythia}.  Crucially, this is not model \\n\\n... [截断: 输出过长，省略 3472 字符] ...\\n\\nd on 1{,}000 probe samples; functional metrics on 5{,}000 held-out sequences. Best values in bold.}\\n\\\\label{tab:phase0_metrics}\\n\\\\small\\n\\\\begin{tabular}{@{}lcccccc@{}}\\n\\\\toprule\\n\\\\textbf{Metric} & \\\\textbf{Gen~0} & \\\\textbf{Gen~1} & \\\\textbf{Gen~2} & \\\\textbf{Gen~3} & \\\\textbf{Gen~4} & \\\\textbf{Gen~5} \\\\\\\\\\n\\\\midrule\\nEff.\\\\ Rank ($\\\\rho$) & 417.55 & 491.77 & \\\\textbf{496.44} & 493.31 & 485.67 & 479.21 \\\\\\\\\\nLog-Det ($\\\\mathcal{D}$) & 2366.68 & 2464.76 & \\\\textbf{2469.93} & 2440.57 & 2405.05 & 2370.17 \\\\\\\\\\n$\\\\sigma_1$ & 1942.8 & 804.0 & 712.0 & \\\\textbf{700.7} & 729.6 & 741.0 \\\\\\\\\\nPerplexity ($\\\\downarrow$) & \\\\textbf{9.55} & 11.38 & 13.58 & 16.25 & 19.80 & 24.59 \\\\\\\\\\nDistinct-4 ($\\\\uparrow$) & \\\\textbf{0.7414} & 0.6256 & 0.5154 & 0.4900 & 0.4679 & 0.4630 \\\\\\\\\\nHellaSwag ($\\\\uparrow$) & \\\\textbf{0.4130} & 0.3897 & 0.3764 & 0.3658 & 0.3558 & 0.3439 \\\\\\\\\\nTrain Loss & --- & 1.623 & 1.268 & 1.134 & 1.098 & 1.047 \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}\\n\\\\end{table}\\n\\nThe functional metrics exhibit monotonic degradation from the first recursive generation through Generation~5, with no sign of stabilization.  Perplexity rises from 11.38 at Generation~1 to 24.59 at Generation~5, a 116\\\\% increase that reflects the model's accelerating inability to predict real-world text distributions.  The per-generation perplexity increment grows from 1.83 (Gen~1$\\\\to$2) to 2.67 (Gen~2$\\\\to$3) to 3.55 (Gen~3$\\\\to$4) to 4.79 (Gen~4$\\\\to$5), confirming super-linear degradation.  Distinct-4 declines from 0.6256 to 0.4630 ($-26.0\\\\%$ from Gen~1), indicating that the model's output vocabulary contracts as it trains on its own increasingly homogeneous samples.\\n\\nHellaSwag accuracy provides downstream task evidence for representational collapse.  Accuracy drops continuously from 0.4130 (pretrained) through 0.3897 (Gen~1) to 0.3439 (Gen~5), a total decline of 16.7\\\\% from the pretrained checkpoint and 11.7\\\\% from the Gen~1 baseline.  This confirms that spectral collapse is not merely an embedding-space phenomenon but propagates to downstream commonsense reasoning capability.  The HellaSwag trajectory parallels the spectral indicators with no lag, declining monotonically at every generation.\\n\\nThe training loss trajectory reveals a characteristic divergence from generalization metrics.  Loss decreases monotonically from 1.623 (Gen~1) to 1.047 (Gen~5), while perplexity on held-out real data increases by 116\\\\% over the same interval.  This pattern is the hallmark of distributional narrowing: as the synthetic training distribution loses diversity across generations, the model memorizes it with less effort.  Lower training loss in this context is a symptom of overfitting to synthetic distributions rather than improved generalization.  The widening gap between training loss and evaluation perplexity at each generation provides an independent early-warning signal of collapse that requires no spectral computation.\\n\\nA critical temporal asymmetry emerges from comparing the spectral and functional indicators.  All functional metrics (perplexity, Distinct-4, HellaSwag) begin deteriorating immediately at Generation~1, exhibiting monotonic decline from the first recursive iteration.  The spectral indicators, by contrast, continue to improve through Generation~2 before reversing at Generation~3.  The spectral inflection point thus lags the functional degradation onset by one generation.  This delay does not diminish the utility of spectral early-warning signals; rather, it highlights their complementary role.  Spectral metrics offer three practical advantages over functional indicators: (1)~they require no labeled evaluation set or external benchmark, (2)~they can be computed from a single forward pass during training without additional generation, and (3)~they provide a geometric interpretation of the collapse mechanism (loss of representational volume) rather than merely measuring downstream symptoms.  These properties make spectral signals suitable for closed-loop control, where evaluation cost and latency are critical constraints.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01NSoXXqLN4P4aMSivG5nFEP`</summary>
+
+```json
+{
+  "server": "rtx6000-diagprobe",
+  "command": "sed -n '1,100p' /root/spectral_collapse_ews/paper/experiments.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f884eb5d-6cad-41f9-995b-30f5ab5aaa18",
+  "uuid": "909f7d1b-ec8b-4b02-b1d9-f05b7115f3fa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VzRorHuZvULdMFQfXykiaW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2976,
+      "cache_read_input_tokens": 28190,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2976
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-17T06:36:08.902Z_
+
+<details><summary>↩ Tool result · `toolu_01NSoXXqLN4P4aMSivG5nFEP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\\section{Experimental Setup}\\n\\n\\\\subsection{Models and Datasets}\\n\\nWe use \\\\textbf{Pythia-410M-deduped}~\\\\cite{biderman2023pythia} (405M parameters, $D{=}1024$) as the primary model and \\\\textbf{Pythia-1B-deduped} (1042M parameters, $D{=}2048$) for scale-transfer validation.\\nBoth are decoder-only transformers pretrained on the deduplicated Pile~\\\\cite{gao2020pile}.\\n\\nFrom the Pile (uncopyrighted split, \\\\texttt{monology/pile-uncopyrighted}), we sample three disjoint subsets:\\n\\\\begin{itemize}[nosep]\\n  \\\\item \\\\textbf{Training pool}: 50{,}000 sequences of 512 tokens for fine-tuning.\\n  \\\\item \\\\textbf{Evaluation set}: 5{,}000 held-out sequences for perplexity measurement.\\n  \\\\item \\\\textbf{Spectral probe set}: 1{,}000 held-out sequences for effective rank computation.\\n\\\\end{itemize}\\nAll sequences are tokenized with the GPTNeoX tokenizer (vocabulary size 50{,}304) and truncated or padded to 512 tokens.\\nWe retain only sequences with at least 256 non-padding tokens ($\\\\geq$50\\\\% fill ratio) to ensure sufficient context for representation extraction.\\n\\n\\\\subsection{Recursive Training Protocol}\\n\\nGeneration~0 is the pretrained checkpoint with no additional fine-tuning.\\nFor each subsequent generation $t = 1, \\\\ldots, T$ with $T{=}10$:\\n\\\\begin{enumerate}[nosep]\\n  \\\\item \\\\textbf{Synthetic generation.} Sample 50{,}000 sequences from $M_{t-1}$ via ancestral sampling (temperature $= 1.0$, top-$k = 50$, no nucleus filtering, max length 512 tokens, batch size 32).\\n  \\\\item \\\\textbf{Data mixing.} Combine synthetic samples with real data at condition-specific ratio $r_t$ (see \\\\S\\\\ref{sec:conditions}).  The number of real samples mixed in is $\\\\lfloor n_{\\\\text{syn}} \\\\cdot r_t / (1 - r_t) \\\\rfloor$, drawn uniformly without replacement from the training pool.\\n  \\\\item \\\\textbf{Fine-tuning.} Train $M_{t-1}$ for 1 epoch on the mixed corpus $\\\\rightarrow M_t$.\\n  \\\\item \\\\textbf{Checkpoint and evaluate.} Save $M_t$; measure all metrics on held-out data.\\n\\\\end{enumerate}\\n\\nTraining hyperparameters are fixed across all conditions: AdamW optimizer with learning rate $5{\\\\times}10^{-5}$, weight decay $0.01$, batch size~8 with gradient accumulation~4 (effective batch size~32), linear warmup over 5\\\\% of steps followed by linear decay, and gradient clipping at $\\\\|\\\\mathbf{g}\\\\|_{\\\\max} = 1.0$.\\nThe number of optimizer steps per generation varies with the mixing ratio: ${\\\\sim}1{,}562$ steps for pure synthetic ($r_t = 0$) to ${\\\\sim}3{,}125$ steps at $r_t = 0.50$.\\n\\n\\\\subsection{Evaluation Metrics}\\n\\n\\\\paragraph{Effective Rank (RankMe).}\\nFollowing \\\\citet{rankme2023}, we forward-pass the 1{,}000 spectral probe samples through $M_t$, extract last-layer hidden states, mean-pool across sequence length to obtain $\\\\mathbf{Z} \\\\in \\\\mathbb{R}^{1000 \\\\times D}$, compute its SVD, and report\\n\\\\begin{equation}\\n  \\\\rho(\\\\mathbf{Z}) = \\\\exp\\\\!\\\\Bigl(-\\\\sum_i p_i \\\\log p_i\\\\Bigr), \\\\quad p_i = \\\\frac{\\\\sigma_i}{\\\\sum_j \\\\sigma_j},\\n\\\\end{equation}\\nwhere $\\\\sigma_i$ are the singular values of $\\\\mathbf{Z}$.\\nLower effective rank signals representation collapse.\\nWe measure spectral decline relative to Generation~1 (post-adaptation baseline) rather than Generation~0 (pretrained), as the pretrained-to-fine-tuned transition induces a shift in representation anisotropy unrelated to recursive collapse.\\nWe use RankMe rather than SIGMA's Track~I bound~\\\\cite{sigma2026} because (a)~no public implementation of SIGMA exists as of May 2026, (b)~RankMe is architecture-agnostic and hyperparameter-free, and (c)~RankMe's spectral entropy formulation provides a smooth, monotonic collapse indicator suitable for closed-loop control.\\n\\n\\\\paragraph{Log-Determinant Proxy.}\\nFrom the same SVD decomposition, we compute\\n\\\\begin{equation}\\n  \\\\mathcal{D}(\\\\mathbf{Z}) = \\\\sum_{i:\\\\,\\\\sigma_i > \\\\epsilon} \\\\log \\\\sigma_i, \\\\quad \\\\epsilon = 10^{-10},\\n\\\\end{equation}\\nwhich equals $\\\\tfrac{1}{2}\\\\log\\\\det(\\\\mathbf{Z}^\\\\top\\\\mathbf{Z})$ up to the threshold $\\\\epsilon$.\\nThis captures the overall representational volume on a logarithmic scale and is more sensitive to the tail of the singular spectrum than effective rank, which is dominated by the entropy of the leading components.\\n\\n\\\\paragraph{Held-out Perplexity.}\\nStandard token-level cross-entropy loss on the 5{,}000 evaluation sequences, reported as $\\\\text{PPL} = \\\\exp(\\\\mathcal{L})$.\\nPerplexity tracks language modeling quality and is the primary measure of downstream utility degradation under recursive training~\\\\cite{shumailov2024}.\\n\\n\\\\paragraph{Distinct-4.}\\nThe ratio of unique 4-grams to total 4-grams in 1{,}000 samples generated from $M_t$ (temperature~1.0, top-$k$~50, 512 tokens), measuring lexical diversity.\\nA declining Distinct-4 indicates mode collapse in the output distribution~\\\\cite{knowledge_collapse2025}.\\n\\n\\\\paragraph{HellaSwag Accuracy.}\\nZero-shot normalized accuracy (acc\\\\_norm) on HellaSwag~\\\\cite{zellers2019hellaswag} via \\\\texttt{lm-evaluation-harness}~\\\\cite{gao2024lmeval}, measuring downstream commonsense reasoning capability.\\n\\n\\\\paragraph{Expected Calibration Error (ECE).}\\nToken-level calibration on the 5{,}000 held-out evaluation sequences.\\nFor each token position, we take the model's top-1 softmax probability as the confidence score, partition all predictions into $B{=}10$ equal-width bins over $[0,1]$, and compute\\n\\\\begin{equation}\\n  \\\\text{ECE} = \\\\sum_{b=1}^{B} \\\\frac{|B_b|}{N} \\\\bigl|\\\\text{acc}(B_b) - \\\\text{conf}(B_b)\\\\bigr|.\\n\\\\end{equation}\\nPrior work shows ECE degradation precedes accuracy loss under distribution shift~\\\\cite{calibration2025}; we track it as a secondary early-warning indicator alongside effective rank.\\n\\n\\\\subsection{Experimental Conditions}\\n\\\\label{sec:conditions}\\n\\nAll non-collapse conditions share an identical total real-data budget $B = T \\\\times r_{\\\\text{base}} = 10 \\\\times 0.50 = 5.0$ (in units of dataset-equivalents), ensuring differences arise solely from temporal allocation.\\nTable~\\\\ref{tab:conditions} summarizes the four experimental conditions.\\n\\n\\\\begin{table}[t]\\n\\\\centering\\n\\\\caption{Phase~1 experimental conditions.  Conditions (b)--(d) are iso-budget ($B = 5.0$); only the temporal allocation of real data differs.}\\n\\\\label{tab:conditions}\\n\\\\small\\n\\\\begin{tabular}{@{}llp{5.0cm}@{}}\\n\\\\toprule\\n\\\\textbf{Condition} & \\\\textbf{$r_t$ schedule} & \\\\textbf{Description} \\\\\\\\\\n\\\\midrule\\n(a) Pure synthetic & $r_t = 0 \\\\;\\\\forall\\\\, t$ & Collapse reference with no real-data intervention (lower bound). \\\\\\\\[3pt]\\n(b) Fixed uniform & $r_t = 0.50 \\\\;\\\\forall\\\\, t$ & Static baseline distributing budget equally across generations. \\\\\\\\[3pt]\\n(c) Spectral-guided & Closed-loop (\\\\S3.3) & Our method: proportional controller with $k{=}1.0$\\\\textsuperscript{\\\\dag}, $\\\\tau{=}0.02$\\\\textsuperscript{\\\\dag}, $\\\\alpha_{\\\\text{ema}}{=}0.5$, $r_{\\\\min}{=}0.20$, $r_{\\\\max}{=}0.80$. \\\\\\\\[3pt]\\n(d) Linear-increasing & $r_t = r_{\\\\min} + (r_{\\\\max} - r_{\\\\min})\\\\frac{t{-}1}{T{-}1}$ & Budget-matched open-loop heuristic; front-loads synthetic, back-loads real data, no feedback. \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}\\n\\n\\\\vspace{2pt}\\n{\\\\footnotesize \\\\textsuperscript{\\\\dag}To be calibrated from Phase~0 pilot.}\\n\\\\end{table}\\n\\nConditions (b), (c), and (d) consume exactly the same total real data ($B = 5.0$); only the temporal distribution differs.\\nThis iso-budget design isolates the effect of \\\\emph{when} real data is introduced from \\\\emph{how much} is used~\\\\cite{garg2025, data_mixing_laws2024}.\\nCondition~(d) interpolates linearly from $r_1 = r_{\\\\min} = 0.20$ to $r_T = r_{\\\\max} = 0.80$; the resulting sum $\\\\sum_t r_t = 5.0$ matches the budget exactly.\\n\\n\\\\subsection{Statistical Design}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f884eb5d-6cad-41f9-995b-30f5ab5aaa18",
+  "uuid": "6128b696-a33c-4800-be65-1f9e2460c4db",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\\section{Experimental Setup}\\\\n\\\\n\\\\\\\\subsection{Models and Datasets}\\\\n\\\\nWe use \\\\\\\\textbf{Pythia-410M-deduped}~\\\\\\\\cite{biderman2023pythia} (405M parameters, $D{=}1024$) as the primary model and \\\\\\\\textbf{Pythia-1B-deduped} (1042M parameters, $D{=}2048$) for scale-transfer validation.\\\\nBoth are decoder-only transformers pretrained on the deduplicated Pile~\\\\\\\\cite{gao2020pile}.\\\\n\\\\nFrom the Pile (uncopyrighted split, \\\\\\\\texttt{monology/pile-uncopyrighted}), we sample three disjoint subsets:\\\\n\\\\\\\\begin{itemize}[nosep]\\\\n  \\\\\\\\item \\\\\\\\textbf{Training pool}: 50{,}000 sequences of 512 tokens for fine-tuning.\\\\n  \\\\\\\\item \\\\\\\\textbf{Evaluation set}: 5{,}000 held-out sequences for perplexity measurement.\\\\n  \\\\\\\\item \\\\\\\\textbf{Spectral probe set}: 1{,}000 held-out sequences for effective rank computation.\\\\n\\\\\\\\end{itemize}\\\\nAll sequences are tokenized with the GPTNeoX tokenizer (vocabulary size 50{,}304) and truncated or padded to 512 tokens.\\\\nWe retain only sequences with at least 256 non-padding tokens ($\\\\\\\\geq$50\\\\\\\\% fill ratio) to ensure sufficient context for representation extraction.\\\\n\\\\n\\\\\\\\subsection{Recursive Training Protocol}\\\\n\\\\nGeneration~0 is the pretrained checkpoint with no additional fine-tuning.\\\\nFor each subsequent generation $t = 1, \\\\\\\\ldots, T$ with $T{=}10$:\\\\n\\\\\\\\begin{enumerate}[nosep]\\\\n  \\\\\\\\item \\\\\\\\textbf{Synthetic generation.} Sample 50{,}000 sequences from $M_{t-1}$ via ancestral sampling (temperature $= 1.0$, top-$k = 50$, no nucleus filtering, max length 512 tokens, batch size 32).\\\\n  \\\\\\\\item \\\\\\\\textbf{Data mixing.} Combine synthetic samples with real data at condition-specific ratio $r_t$ (see \\\\\\\\S\\\\\\\\ref{sec:conditions}).  The number of real samples mixed in is $\\\\\\\\lfloor n_{\\\\\\\\text{syn}} \\\\\\\\cdot r_t / (1 - r_t) \\\\\\\\rfloor$, drawn uniformly without replacement from the training pool.\\\\n  \\\\\\\\item \\\\\\\\textbf{Fine-tuning.} Train $M_{t-1}$ for 1 epoch on the mixed corpus $\\\\\\\\rightarrow M_t$.\\\\n  \\\\\\\\item \\\\\\\\textbf{Checkpoint and evaluate.} Save $M_t$; measure all metrics on held-out data.\\\\n\\\\\\\\end{enumerate}\\\\n\\\\nTraining hyperparameters are fixed across all conditions: AdamW optimizer with learning rate $5{\\\\\\\\times}10^{-5}$, weight decay $0.01$, batch size~8 with gradient accumulation~4 (effective batch size~32), linear warmup over 5\\\\\\\\% of steps followed by linear decay, and gradient clipping at $\\\\\\\\|\\\\\\\\mathbf{g}\\\\\\\\|_{\\\\\\\\max} = 1.0$.\\\\nThe number of optimizer steps per generation varies with the mixing ratio: ${\\\\\\\\sim}1{,}562$ steps for pure synthetic ($r_t = 0$) to ${\\\\\\\\sim}3{,}125$ steps at $r_t = 0.50$.\\\\n\\\\n\\\\\\\\subsection{Evaluation Metrics}\\\\n\\\\n\\\\\\\\paragraph{Effective Rank (RankMe).}\\\\nFollowing \\\\\\\\citet{rankme2023}, we forward-pass the 1{,}000 spectral probe samples through $M_t$, extract last-layer hidden states, mean-pool across sequence length to obtain $\\\\\\\\mathbf{Z} \\\\\\\\in \\\\\\\\mathbb{R}^{1000 \\\\\\\\times D}$, compute its SVD, and report\\\\n\\\\\\\\begin{equation}\\\\n  \\\\\\\\rho(\\\\\\\\mathbf{Z}) = \\\\\\\\exp\\\\\\\\!\\\\\\\\Bigl(-\\\\\\\\sum_i p_i \\\\\\\\log p_i\\\\\\\\Bigr), \\\\\\\\quad p_i = \\\\\\\\frac{\\\\\\\\sigma_i}{\\\\\\\\sum_j \\\\\\\\sigma_j},\\\\n\\\\\\\\end{equation}\\\\nwhere $\\\\\\\\sigma_i$ are the singular values of $\\\\\\\\mathbf{Z}$.\\\\nLower effective rank signals representation collapse.\\\\nWe measure spectral decline relative to Generation~1 (post-adaptation baseline) rather than Generation~0 (pretrained), as the pretrained-to-fine-tuned transition induces a shift in representation anisotropy unrelated to recursive collapse.\\\\nWe use RankMe rather than SIGMA's Track~I bound~\\\\\\\\cite{sigma2026} because (a)~no public implementation of SIGMA exists as of May 2026, (b)~RankMe is architecture-agnostic and hyperparameter-free, and (c)~RankMe's spectral entropy formulation provides a smooth, monotonic collapse indicator suitable for closed-loop control.\\\\n\\\\n\\\\\\\\paragraph{Log-Determinant Proxy.}\\\\nFrom the same SVD decomposition, we compute\\\\n\\\\\\\\begin{equation}\\\\n  \\\\\\\\mathcal{D}(\\\\\\\\mathbf{Z}) = \\\\\\\\sum_{i:\\\\\\\\,\\\\\\\\sigma_i > \\\\\\\\epsilon} \\\\\\\\log \\\\\\\\sigma_i, \\\\\\\\quad \\\\\\\\epsilon = 10^{-10},\\\\n\\\\\\\\end{equation}\\\\nwhich equals $\\\\\\\\tfrac{1}{2}\\\\\\\\log\\\\\\\\det(\\\\\\\\mathbf{Z}^\\\\\\\\top\\\\\\\\mathbf{Z})$ up to the threshold $\\\\\\\\epsilon$.\\\\nThis captures the overall representational volume on a logarithmic scale and is more sensitive to the tail of the singular spectrum than effective rank, which is dominated by the entropy of the leading components.\\\\n\\\\n\\\\\\\\paragraph{Held-out Perplexity.}\\\\nStandard token-level cross-entropy loss on the 5{,}000 evaluation sequences, reported as $\\\\\\\\text{PPL} = \\\\\\\\exp(\\\\\\\\mathcal{L})$.\\\\nPerplexity tracks language modeling quality and is the primary measure of downstream utility degradation under recursive training~\\\\\\\\cite{shumailov2024}.\\\\n\\\\n\\\\\\\\paragraph{Distinct-4.}\\\\nThe ratio of unique 4-grams to total 4-grams in 1{,}000 samples generated from $M_t$ (temperature~1.0, top-$k$~50, 512 tokens), measuring lexical diversity.\\\\nA declining Distinct-4 indicates mode collapse in the output distribution~\\\\\\\\cite{knowledge_collapse2025}.\\\\n\\\\n\\\\\\\\paragraph{HellaSwag Accuracy.}\\\\nZero-shot normalized accuracy (acc\\\\\\\\_norm) on HellaSwag~\\\\\\\\cite{zellers2019hellaswag} via \\\\\\\\texttt{lm-evaluation-harness}~\\\\\\\\cite{gao2024lmeval}, measuring downstream commonsense reasoning capability.\\\\n\\\\n\\\\\\\\paragraph{Expected Calibration Error (ECE).}\\\\nToken-level calibration on the 5{,}000 held-out evaluation sequences.\\\\nFor each token position, we take the model's top-1 softmax probability as the confidence score, partition all predictions into $B{=}10$ equal-width bins over $[0,1]$, and compute\\\\n\\\\\\\\begin{equation}\\\\n  \\\\\\\\text{ECE} = \\\\\\\\sum_{b=1}^{B} \\\\\\\\frac{|B_b|}{N} \\\\\\\\bigl|\\\\\\\\text{acc}(B_b) - \\\\\\\\text{conf}(B_b)\\\\\\\\bigr|.\\\\n\\\\\\\\end{equation}\\\\nPrior work shows ECE degradation precedes accuracy loss under distribution shift~\\\\\\\\cite{calibration2025}; we track it as a secondary early-warning indicator alongside effective rank.\\\\n\\\\n\\\\\\\\subsection{Experimental Conditions}\\\\n\\\\\\\\label{sec:conditions}\\\\n\\\\nAll non-collapse conditions share an identical total real-data budget $B = T \\\\\\\\times r_{\\\\\\\\text{base}} = 10 \\\\\\\\times 0.50 = 5.0$ (in units of dataset-equivalents), ensuring differences arise solely from temporal allocation.\\\\nTable~\\\\\\\\ref{tab:conditions} summarizes the four experimental conditions.\\\\n\\\\n\\\\\\\\begin{table}[t]\\\\n\\\\\\\\centering\\\\n\\\\\\\\caption{Phase~1 experimental conditions.  Conditions (b)--(d) are iso-budget ($B = 5.0$); only the temporal allocation of real data differs.}\\\\n\\\\\\\\label{tab:conditions}\\\\n\\\\\\\\small\\\\n\\\\\\\\begin{tabular}{@{}llp{5.0cm}@{}}\\\\n\\\\\\\\toprule\\\\n\\\\\\\\textbf{Condition} & \\\\\\\\textbf{$r_t$ schedule} & \\\\\\\\textbf{Description} \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n(a) Pure synthetic & $r_t = 0 \\\\\\\\;\\\\\\\\forall\\\\\\\\, t$ & Collapse reference with no real-data intervention (lower bound). \\\\\\\\\\\\\\\\[3pt]\\\\n(b) Fixed uniform & $r_t = 0.50 \\\\\\\\;\\\\\\\\forall\\\\\\\\, t$ & Static baseline distributing budget equally across generations. \\\\\\\\\\\\\\\\[3pt]\\\\n(c) Spectral-guided & Closed-loop (\\\\\\\\S3.3) & Our method: proportional controller with $k{=}1.0$\\\\\\\\textsuperscript{\\\\\\\\dag}, $\\\\\\\\tau{=}0.02$\\\\\\\\textsuperscript{\\\\\\\\dag}, $\\\\\\\\alpha_{\\\\\\\\text{ema}}{=}0.5$, $r_{\\\\\\\\min}{=}0.20$, $r_{\\\\\\\\max}{=}0.80$. \\\\\\\\\\\\\\\\[3pt]\\\\n(d) Linear-increasing & $r_t = r_{\\\\\\\\min} + (r_{\\\\\\\\max} - r_{\\\\\\\\min})\\\\\\\\frac{t{-}1}{T{-}1}$ & Budget-matched open-loop heuristic; front-loads synthetic, back-loads real data, no feedback. \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}\\\\n\\\\n\\\\\\\\vspace{2pt}\\\\n{\\\\\\\\footnotesize \\\\\\\\textsuperscript{\\\\\\\\dag}To be calibrated from Phase~0 pilot.}\\\\n\\\\\\\\end{table}\\\\n\\\\nConditions (b), (c), and (d) consume exactly the same total real data ($B = 5.0$); only the temporal distribution differs.\\\\nThis iso-budget design isolates the effect of \\\\\\\\emph{when} real data is introduced from \\\\\\\\emph{how much} is used~\\\\\\\\cite{garg2025, data_mixing_laws2024}.\\\\nCondition~(d) interpolates linearly from $r_1 = r_{\\\\\\\\min} = 0.20$ to $r_T = r_{\\\\\\\\max} = 0.80$; the resulting sum $\\\\\\\\sum_t r_t = 5.0$ matches the budget exactly.\\\\n\\\\n\\\\\\\\subsection{Statistical Design}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\\section{Experimental Setup}\\n\\n\\\\subsection{Models and Datasets}\\n\\nWe use \\\\textbf{Pythia-410M-deduped}~\\\\cite{biderman2023pythia} (405M parameters, $D{=}1024$) as the primary model and \\\\textbf{Pythia-1B-deduped} (1042M parameters, $D{=}2048$) for scale-transfer validation.\\nBoth are decoder-only transformers pretrained on the deduplicated Pile~\\\\cite{gao2020pile}.\\n\\nFrom the Pile (uncopyrighted split, \\\\texttt{monology/pile-uncopyrighted}), we sample three disjoint subsets:\\n\\\\begin{itemize}[nosep]\\n  \\\\item \\\\textbf{Training pool}: 50{,}000 sequences of 512 tokens for fine-tuning.\\n  \\\\item \\\\textbf{Evaluation set}: 5{,}000 held-out sequences for perplexity measurement.\\n  \\\\item \\\\textbf{Spectral probe set}: 1{,}000 held-out sequences for effective rank computation.\\n\\\\end{itemize}\\nAll sequences are tokenized with the GPTNeoX tokenizer (vocabulary size 50{,}304) and truncated or padded to 512 tokens.\\nWe retain only sequences with at least 256 non-padding tokens ($\\\\geq$50\\\\% fill ratio) to ensure sufficient context for representation extraction.\\n\\n\\\\subsection{Recursive Training Protocol}\\n\\nGeneration~0 is the pretrained checkpoint with no additional fine-tuning.\\nFor each subsequent generation $t = 1, \\\\ldots, T$ with $T{=}10$:\\n\\\\begin{enumerate}[nosep]\\n  \\\\item \\\\textbf{Synthetic generation.} Sample 50{,}000 sequences from $M_{t-1}$ via ancestral sampling (temperature $= 1.0$, top-$k = 50$, no nucleus filtering, max length 512 tokens, batch size 32).\\n  \\\\item \\\\textbf{Data mixing.} Combine synthetic samples with real data at condition-specific ratio $r_t$ (see \\\\S\\\\ref{sec:conditions}).  The number of real samples mixed in is $\\\\lfloor n_{\\\\text{syn}} \\\\cdot r_t / (1 - r_t) \\\\rfloor$, drawn uniformly without replacement from the training pool.\\n  \\\\item \\\\textbf{Fine-tuning.} Train $M_{t-1}$ for 1 epoch on the mixed corpus $\\\\rightarrow M_t$.\\n  \\\\item \\\\textbf{Checkpoint and evaluate.} Save $M_t$; measure all metrics on held-out data.\\n\\\\end{enumerate}\\n\\nTraining hyperparameters are fixed across all conditions: AdamW optimizer with learning rate $5{\\\\times}10^{-5}$, weight decay $0.01$, batch size~8 with gradient accumulation~4 (effective batch size~32), linear warmup over 5\\\\% of steps followed by linear decay, and gradient clipping at $\\\\|\\\\mathbf{g}\\\\|_{\\\\max} = 1.0$.\\nThe number of optimizer steps per generation varies with the mixing ratio: ${\\\\sim}1{,}562$ steps for pure synthetic ($r_t = 0$) to ${\\\\sim}3{,}125$ steps at $r_t = 0.50$.\\n\\n\\\\subsection{Evaluation Metrics}\\n\\n\\\\paragraph{Effective Rank (RankMe).}\\nFollowing \\\\citet{rankme2023}, we forward-pass the 1{,}000 spectral probe samples through $M_t$, extract last-layer hidden states, mean-pool across sequence length to obtain $\\\\mathbf{Z} \\\\in \\\\mathbb{R}^{1000 \\\\times D}$, compute its SVD, and report\\n\\\\begin{equation}\\n  \\\\rho(\\\\mathbf{Z}) = \\\\exp\\\\!\\\\Bigl(-\\\\sum_i p_i \\\\log p_i\\\\Bigr), \\\\quad p_i = \\\\frac{\\\\sigma_i}{\\\\sum_j \\\\sigma_j},\\n\\\\end{equation}\\nwhere $\\\\sigma_i$ are the singular values of $\\\\mathbf{Z}$.\\nLower effective rank signals representation collapse.\\nWe measure spectral decline relative to Generation~1 (post-adaptation baseline) rather than Generation~0 (pretrained), as the pretrained-to-fine-tuned transition induces a shift in representation anisotropy unrelated to recursive collapse.\\nWe use RankMe rather than SIGMA's Track~I bound~\\\\cite{sigma2026} because (a)~no public implementation of SIGMA exists as of May 2026, (b)~RankMe is architecture-agnostic and hyperparameter-free, and (c)~RankMe's spectral entropy formulation provides a smooth, monotonic collapse indicator suitable for closed-loop control.\\n\\n\\\\paragraph{Log-Determinant Proxy.}\\nFrom the same SVD decomposition, we compute\\n\\\\begin{equation}\\n  \\\\mathcal{D}(\\\\mathbf{Z}) = \\\\sum_{i:\\\\,\\\\sigma_i > \\\\epsilon} \\\\log \\\\sigma_i, \\\\quad \\\\epsilon = 10^{-10},\\n\\\\end{equation}\\nwhich equals $\\\\tfrac{1}{2}\\\\log\\\\det(\\\\mathbf{Z}^\\\\top\\\\mathbf{Z})$ up to the threshold $\\\\epsilon$.\\nThis captures the overall representational volume on a logarithmic scale and is more sensitive to the tail of the singular spectrum than effective rank, which is dominated by the entropy of the leading components.\\n\\n\\\\paragraph{Held-out Perplexity.}\\nStandard token-level cross-entropy loss on the 5{,}000 evaluation sequences, reported as $\\\\text{PPL} = \\\\exp(\\\\mathcal{L})$.\\nPerplexity tracks language modeling quality and is the primary measure of downstream utility degradation under recursive training~\\\\cite{shumailov2024}.\\n\\n\\\\paragraph{Distinct-4.}\\nThe ratio of unique 4-grams to total 4-grams in 1{,}000 samples generated from $M_t$ (temperature~1.0, top-$k$~50, 512 tokens), measuring lexical diversity.\\nA declining Distinct-4 indicates mode collapse in the output distribution~\\\\cite{knowledge_collapse2025}.\\n\\n\\\\paragraph{HellaSwag Accuracy.}\\nZero-shot normalized accuracy (acc\\\\_norm) on HellaSwag~\\\\cite{zellers2019hellaswag} via \\\\texttt{lm-evaluation-harness}~\\\\cite{gao2024lmeval}, measuring downstream commonsense reasoning capability.\\n\\n\\\\paragraph{Expected Calibration Error (ECE).}\\nToken-level calibration on the 5{,}000 held-out evaluation sequences.\\nFor each token position, we take the model's top-1 softmax probability as the confidence score, partition all predictions into $B{=}10$ equal-width bins over $[0,1]$, and compute\\n\\\\begin{equation}\\n  \\\\text{ECE} = \\\\sum_{b=1}^{B} \\\\frac{|B_b|}{N} \\\\bigl|\\\\text{acc}(B_b) - \\\\text{conf}(B_b)\\\\bigr|.\\n\\\\end{equation}\\nPrior work shows ECE degradation precedes accuracy loss under distribution shift~\\\\cite{calibration2025}; we track it as a secondary early-warning indicator alongside effective rank.\\n\\n\\\\subsection{Experimental Conditions}\\n\\\\label{sec:conditions}\\n\\nAll non-collapse conditions share an identical total real-data budget $B = T \\\\times r_{\\\\text{base}} = 10 \\\\times 0.50 = 5.0$ (in units of dataset-equivalents), ensuring differences arise solely from temporal allocation.\\nTable~\\\\ref{tab:conditions} summarizes the four experimental conditions.\\n\\n\\\\begin{table}[t]\\n\\\\centering\\n\\\\caption{Phase~1 experimental conditions.  Conditions (b)--(d) are iso-budget ($B = 5.0$); only the temporal allocation of real data differs.}\\n\\\\label{tab:conditions}\\n\\\\small\\n\\\\begin{tabular}{@{}llp{5.0cm}@{}}\\n\\\\toprule\\n\\\\textbf{Condition} & \\\\textbf{$r_t$ schedule} & \\\\textbf{Description} \\\\\\\\\\n\\\\midrule\\n(a) Pure synthetic & $r_t = 0 \\\\;\\\\forall\\\\, t$ & Collapse reference with no real-data intervention (lower bound). \\\\\\\\[3pt]\\n(b) Fixed uniform & $r_t = 0.50 \\\\;\\\\forall\\\\, t$ & Static baseline distributing budget equally across generations. \\\\\\\\[3pt]\\n(c) Spectral-guided & Closed-loop (\\\\S3.3) & Our method: proportional controller with $k{=}1.0$\\\\textsuperscript{\\\\dag}, $\\\\tau{=}0.02$\\\\textsuperscript{\\\\dag}, $\\\\alpha_{\\\\text{ema}}{=}0.5$, $r_{\\\\min}{=}0.20$, $r_{\\\\max}{=}0.80$. \\\\\\\\[3pt]\\n(d) Linear-increasing & $r_t = r_{\\\\min} + (r_{\\\\max} - r_{\\\\min})\\\\frac{t{-}1}{T{-}1}$ & Budget-matched open-loop heuristic; front-loads synthetic, back-loads real data, no feedback. \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}\\n\\n\\\\vspace{2pt}\\n{\\\\footnotesize \\\\textsuperscript{\\\\dag}To be calibrated from Phase~0 pilot.}\\n\\\\end{table}\\n\\nConditions (b), (c), and (d) consume exactly the same total real data ($B = 5.0$); only the temporal distribution differs.\\nThis iso-budget design isolates the effect of \\\\emph{when} real data is introduced from \\\\emph{how much} is used~\\\\cite{garg2025, data_mixing_laws2024}.\\nCondition~(d) interpolates linearly from $r_1 = r_{\\\\min} = 0.20$ to $r_T = r_{\\\\max} = 0.80$; the resulting sum $\\\\sum_t r_t = 5.0$ matches the budget exactly.\\n\\n\\\\subsection{Statistical Design}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the full file content. Let me also check if there's a controller section that mentions τ=0.02 and effective rank as the signal. Let me look at the conditions table and surrounding text more carefully.
+
+From what I can see, the key sections to modify are:
+
+1. **修正 (a)**: The ppl increment line says "from 1.83 (Gen~1$\to$2) to 2.67 (Gen~2$\to$3) to 3.55 (Gen~3$\to$4) to 4.79 (Gen~4$\to$5)" - need to change 1.83 to 2.20.
+
+
+2. **修正 (b)**: The temporal lag paragraph needs updating to describe a two-generation detection delay instead of the current statement about spectral inflection lagging by one generation.
+3. **修正 (c)**: I should add a note about σ₁ in the table caption or near the σ₁ row.
+4. **修正 (d)**: The advantages list item (2) currently says metrics can be computed from a single forward pass without additional generation - I need to revise this to emphasize that spectral metrics require no held-out evaluation set or text generation.
+5. **修正 (4)**: Updating controller parameters from τ=0.02 to τ=0.005, changing the signal source from eff_rank to log-determinant, and adding a calibration paragraph.
+
+Now I'm retrieving the full file to ensure I have all the context before making these modifications.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f884eb5d-6cad-41f9-995b-30f5ab5aaa18",
+  "uuid": "d2346566-1ced-4c3c-9dff-845c9b1f9158",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VTUTFGXQNLQnQZ3ZSt2YSN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3088,
+      "cache_read_input_tokens": 31166,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3088
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+Now I have the full picture. Let me also check if there's any more content around the controller section.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f884eb5d-6cad-41f9-995b-30f5ab5aaa18",
+  "uuid": "1352c08e-342b-4e8f-9f18-d0850428dfd0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VTUTFGXQNLQnQZ3ZSt2YSN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3088,
+      "cache_read_input_tokens": 31166,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3088
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01EdQ4dXS8B3K5Qtik8PDjHF`</summary>
+
+```json
+{
+  "server": "rtx6000-diagprobe",
+  "command": "grep -n \"tau\\|\\\\\\\\tau\\|controller\\|signal\\|eff_rank\\|effective rank\\|log.det\" /root/spectral_collapse_ews/paper/experiments.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f884eb5d-6cad-41f9-995b-30f5ab5aaa18",
+  "uuid": "36e66a53-a32f-4130-9ca0-be86854ff079",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VTUTFGXQNLQnQZ3ZSt2YSN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3088,
+      "cache_read_input_tokens": 31166,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3088
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-17T06:36:23.532Z_
+
+<details><summary>↩ Tool result · `toolu_01EdQ4dXS8B3K5Qtik8PDjHF`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"12:  \\\\item \\\\textbf{Spectral probe set}: 1{,}000 held-out sequences for effective rank computation.\\n39:Lower effective rank signals representation collapse.\\n48:which equals $\\\\tfrac{1}{2}\\\\log\\\\det(\\\\mathbf{Z}^\\\\top\\\\mathbf{Z})$ up to the threshold $\\\\epsilon$.\\n49:This captures the overall representational volume on a logarithmic scale and is more sensitive to the tail of the singular spectrum than effective rank, which is dominated by the entropy of the leading components.\\n68:Prior work shows ECE degradation precedes accuracy loss under distribution shift~\\\\cite{calibration2025}; we track it as a secondary early-warning indicator alongside effective rank.\\n87:(c) Spectral-guided & Closed-loop (\\\\S3.3) & Our method: proportional controller with $k{=}1.0$\\\\textsuperscript{\\\\dag}, $\\\\tau{=}0.02$\\\\textsuperscript{\\\\dag}, $\\\\alpha_{\\\\text{ema}}{=}0.5$, $r_{\\\\min}{=}0.20$, $r_{\\\\max}{=}0.80$. \\\\\\\\[3pt]\\n112:  \\\\item Monotonically decreasing effective rank across Generations~1--10 (allowing at most one non-monotone generation).\\n117:Controller parameters $k$ and $\\\\tau$ are calibrated from the Phase~0 spectral trajectory.\\n150:The pretrained Pythia-410M checkpoint exhibits high representational anisotropy: the leading singular value $\\\\sigma_1 = 1942.8$ dominates the spectrum, yielding a compressed effective rank of $\\\\rho = 417.55$.  Fine-tuning on synthetic data redistributes variance across dimensions, reducing $\\\\sigma_1$ to 804.0 (a 58.6\\\\% decrease) and raising the effective rank to 491.77 (+17.8\\\\%).  The log-determinant proxy increases correspondingly from 2366.68 to 2464.76, confirming that the representational volume expands as anisotropy dissipates.  This transition reflects a standard fine-tuning effect: adaptation to any downstream corpus disperses the pretrained model's dominant singular directions~\\\\cite{biderman2023pythia}.  Crucially, this is not model collapse but rather a structural reorganization of the representation space.  For this reason, we designate Generation~1 as the baseline for all subsequent collapse measurements, excluding the pretrained-to-fine-tuned shift from the analysis.\\n153:The spectral decompression continues into Generation~2 but at a sharply reduced rate.  Effective rank reaches its maximum at 496.44 (+0.95\\\\% from Gen~1), and the log-determinant peaks at 2469.93.  The leading singular value continues to decline from 804.0 to 712.0, indicating ongoing but decelerating spectral equalization.  The near-zero growth rate signals that the decompression process is exhausting itself: the representation has reached its maximum uniformity under recursive synthetic training.\\n156:Both spectral indicators reverse direction at Generation~3 and decline monotonically through Generation~5.  The effective rank drops from its peak of 496.44 to 493.31, 485.67, and 479.21 at Generations~3, 4, and 5 respectively, a cumulative decline of $-3.5\\\\%$ from peak.  The log-determinant falls from 2469.93 to 2440.57, 2405.05, and 2370.17, a steeper cumulative decline of $-4.0\\\\%$.  The per-generation rate of effective rank decline accelerates: $-0.6\\\\%$ (Gen~2$\\\\to$3), $-1.5\\\\%$ (Gen~3$\\\\to$4), and $-1.3\\\\%$ (Gen~4$\\\\to$5).  This acceleration confirms that spectral collapse is a self-reinforcing process rather than a transient perturbation.\\n158:The asymmetry between log-determinant and effective rank declines persists throughout the collapse phase.  Log-determinant decreases at approximately 1.15$\\\\times$ the rate of effective rank because it accumulates contributions from the full tail of the singular spectrum, whereas effective rank (spectral entropy) is dominated by the top singular values.  This differential sensitivity supports the use of log-determinant as the primary early-warning signal in our closed-loop controller (\\\\S3.3).  Preliminary results from the 1B pilot suggest that the log-determinant may also lead temporally: at Generation~2, the log-determinant has already begun declining while the effective rank remains at its peak.\\n161:The leading singular value $\\\\sigma_1$ exhibits a non-monotone trajectory that illuminates the collapse mechanism.  During decompression (Gen~0$\\\\to$3), $\\\\sigma_1$ declines continuously from 1942.8 to 700.7 as variance disperses across dimensions.  At Generation~4, this trend reverses: $\\\\sigma_1$ rises to 729.6 and continues to 741.0 at Generation~5.  The reversal of $\\\\sigma_1$ coincides precisely with the acceleration of effective rank decline, confirming that collapse operates through spectral concentration.  Variance migrates from tail dimensions back into the leading principal component, producing a representation space that is increasingly dominated by a single direction.  The simultaneous decrease of effective rank and increase of $\\\\sigma_1$ after Generation~3 provides geometric evidence that recursive self-training induces a winner-take-all dynamic in the singular spectrum.\\n192:The training loss trajectory reveals a characteristic divergence from generalization metrics.  Loss decreases monotonically from 1.623 (Gen~1) to 1.047 (Gen~5), while perplexity on held-out real data increases by 116\\\\% over the same interval.  This pattern is the hallmark of distributional narrowing: as the synthetic training distribution loses diversity across generations, the model memorizes it with less effort.  Lower training loss in this context is a symptom of overfitting to synthetic distributions rather than improved generalization.  The widening gap between training loss and evaluation perplexity at each generation provides an independent early-warning signal of collapse that requires no spectral computation.\\n194:A critical temporal asymmetry emerges from comparing the spectral and functional indicators.  All functional metrics (perplexity, Distinct-4, HellaSwag) begin deteriorating immediately at Generation~1, exhibiting monotonic decline from the first recursive iteration.  The spectral indicators, by contrast, continue to improve through Generation~2 before reversing at Generation~3.  The spectral inflection point thus lags the functional degradation onset by one generation.  This delay does not diminish the utility of spectral early-warning signals; rather, it highlights their complementary role.  Spectral metrics offer three practical advantages over functional indicators: (1)~they require no labeled evaluation set or external benchmark, (2)~they can be computed from a single forward pass during training without additional generation, and (3)~they provide a geometric interpretation of the collapse mechanism (loss of representational volume) rather than merely measuring downstream symptoms.  These properties make spectral signals suitable for closed-loop control, where evaluation cost and latency are critical constraints.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f884eb5d-6cad-41f9-995b-30f5ab5aaa18",
+  "uuid": "7aae469a-767c-4df1-8e2f-9ea26558d526",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"12:  \\\\\\\\item \\\\\\\\textbf{Spectral probe set}: 1{,}000 held-out sequences for effective rank computation.\\\\n39:Lower effective rank signals representation collapse.\\\\n48:which equals $\\\\\\\\tfrac{1}{2}\\\\\\\\log\\\\\\\\det(\\\\\\\\mathbf{Z}^\\\\\\\\top\\\\\\\\mathbf{Z})$ up to the threshold $\\\\\\\\epsilon$.\\\\n49:This captures the overall representational volume on a logarithmic scale and is more sensitive to the tail of the singular spectrum than effective rank, which is dominated by the entropy of the leading components.\\\\n68:Prior work shows ECE degradation precedes accuracy loss under distribution shift~\\\\\\\\cite{calibration2025}; we track it as a secondary early-warning indicator alongside effective rank.\\\\n87:(c) Spectral-guided & Closed-loop (\\\\\\\\S3.3) & Our method: proportional controller with $k{=}1.0$\\\\\\\\textsuperscript{\\\\\\\\dag}, $\\\\\\\\tau{=}0.02$\\\\\\\\textsuperscript{\\\\\\\\dag}, $\\\\\\\\alpha_{\\\\\\\\text{ema}}{=}0.5$, $r_{\\\\\\\\min}{=}0.20$, $r_{\\\\\\\\max}{=}0.80$. \\\\\\\\\\\\\\\\[3pt]\\\\n112:  \\\\\\\\item Monotonically decreasing effective rank across Generations~1--10 (allowing at most one non-monotone generation).\\\\n117:Controller parameters $k$ and $\\\\\\\\tau$ are calibrated from the Phase~0 spectral trajectory.\\\\n150:The pretrained Pythia-410M checkpoint exhibits high representational anisotropy: the leading singular value $\\\\\\\\sigma_1 = 1942.8$ dominates the spectrum, yielding a compressed effective rank of $\\\\\\\\rho = 417.55$.  Fine-tuning on synthetic data redistributes variance across dimensions, reducing $\\\\\\\\sigma_1$ to 804.0 (a 58.6\\\\\\\\% decrease) and raising the effective rank to 491.77 (+17.8\\\\\\\\%).  The log-determinant proxy increases correspondingly from 2366.68 to 2464.76, confirming that the representational volume expands as anisotropy dissipates.  This transition reflects a standard fine-tuning effect: adaptation to any downstream corpus disperses the pretrained model's dominant singular directions~\\\\\\\\cite{biderman2023pythia}.  Crucially, this is not model collapse but rather a structural reorganization of the representation space.  For this reason, we designate Generation~1 as the baseline for all subsequent collapse measurements, excluding the pretrained-to-fine-tuned shift from the analysis.\\\\n153:The spectral decompression continues into Generation~2 but at a sharply reduced rate.  Effective rank reaches its maximum at 496.44 (+0.95\\\\\\\\% from Gen~1), and the log-determinant peaks at 2469.93.  The leading singular value continues to decline from 804.0 to 712.0, indicating ongoing but decelerating spectral equalization.  The near-zero growth rate signals that the decompression process is exhausting itself: the representation has reached its maximum uniformity under recursive synthetic training.\\\\n156:Both spectral indicators reverse direction at Generation~3 and decline monotonically through Generation~5.  The effective rank drops from its peak of 496.44 to 493.31, 485.67, and 479.21 at Generations~3, 4, and 5 respectively, a cumulative decline of $-3.5\\\\\\\\%$ from peak.  The log-determinant falls from 2469.93 to 2440.57, 2405.05, and 2370.17, a steeper cumulative decline of $-4.0\\\\\\\\%$.  The per-generation rate of effective rank decline accelerates: $-0.6\\\\\\\\%$ (Gen~2$\\\\\\\\to$3), $-1.5\\\\\\\\%$ (Gen~3$\\\\\\\\to$4), and $-1.3\\\\\\\\%$ (Gen~4$\\\\\\\\to$5).  This acceleration confirms that spectral collapse is a self-reinforcing process rather than a transient perturbation.\\\\n158:The asymmetry between log-determinant and effective rank declines persists throughout the collapse phase.  Log-determinant decreases at approximately 1.15$\\\\\\\\times$ the rate of effective rank because it accumulates contributions from the full tail of the singular spectrum, whereas effective rank (spectral entropy) is dominated by the top singular values.  This differential sensitivity supports the use of log-determinant as the primary early-warning signal in our closed-loop controller (\\\\\\\\S3.3).  Preliminary results from the 1B pilot suggest that the log-determinant may also lead temporally: at Generation~2, the log-determinant has already begun declining while the effective rank remains at its peak.\\\\n161:The leading singular value $\\\\\\\\sigma_1$ exhibits a non-monotone trajectory that illuminates the collapse mechanism.  During decompression (Gen~0$\\\\\\\\to$3), $\\\\\\\\sigma_1$ declines continuously from 1942.8 to 700.7 as variance disperses across dimensions.  At Generation~4, this trend reverses: $\\\\\\\\sigma_1$ rises to 729.6 and continues to 741.0 at Generation~5.  The reversal of $\\\\\\\\sigma_1$ coincides precisely with the acceleration of effective rank decline, confirming that collapse operates through spectral concentration.  Variance migrates from tail dimensions back into the leading principal component, producing a representation space that is increasingly dominated by a single direction.  The simultaneous decrease of effective rank and increase of $\\\\\\\\sigma_1$ after Generation~3 provides geometric evidence that recursive self-training induces a winner-take-all dynamic in the singular spectrum.\\\\n192:The training loss trajectory reveals a characteristic divergence from generalization metrics.  Loss decreases monotonically from 1.623 (Gen~1) to 1.047 (Gen~5), while perplexity on held-out real data increases by 116\\\\\\\\% over the same interval.  This pattern is the hallmark of distributional narrowing: as the synthetic training distribution loses diversity across generations, the model memorizes it with less effort.  Lower training loss in this context is a symptom of overfitting to synthetic distributions rather than improved generalization.  The widening gap between training loss and evaluation perplexity at each generation provides an independent early-warning signal of collapse that requires no spectral computation.\\\\n194:A critical temporal asymmetry emerges from comparing the spectral and functional indicators.  All functional metrics (perplexity, Distinct-4, HellaSwag) begin deteriorating immediately at Generation~1, exhibiting monotonic decline from the first recursive iteration.  The spectral indicators, by contrast, continue to improve through Generation~2 before reversing at Generation~3.  The spectral inflection point thus lags the functional degradation onset by one generation.  This delay does not diminish the utility of spectral early-warning signals; rather, it highlights their complementary role.  Spectral metrics offer three practical advantages over functional indicators: (1)~they require no labeled evaluation set or external benchmark, (2)~they can be computed from a single forward pass during training without additional generation, and (3)~they provide a geometric interpretation of the collapse mechanism (loss of representational volume) rather than merely measuring downstream symptoms.  These properties make spectral signals suitable for closed-loop control, where evaluation cost and latency are critical constraints.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"12:  \\\\item \\\\textbf{Spectral probe set}: 1{,}000 held-out sequences for effective rank computation.\\n39:Lower effective rank signals representation collapse.\\n48:which equals $\\\\tfrac{1}{2}\\\\log\\\\det(\\\\mathbf{Z}^\\\\top\\\\mathbf{Z})$ up to the threshold $\\\\epsilon$.\\n49:This captures the overall representational volume on a logarithmic scale and is more sensitive to the tail of the singular spectrum than effective rank, which is dominated by the entropy of the leading components.\\n68:Prior work shows ECE degradation precedes accuracy loss under distribution shift~\\\\cite{calibration2025}; we track it as a secondary early-warning indicator alongside effective rank.\\n87:(c) Spectral-guided & Closed-loop (\\\\S3.3) & Our method: proportional controller with $k{=}1.0$\\\\textsuperscript{\\\\dag}, $\\\\tau{=}0.02$\\\\textsuperscript{\\\\dag}, $\\\\alpha_{\\\\text{ema}}{=}0.5$, $r_{\\\\min}{=}0.20$, $r_{\\\\max}{=}0.80$. \\\\\\\\[3pt]\\n112:  \\\\item Monotonically decreasing effective rank across Generations~1--10 (allowing at most one non-monotone generation).\\n117:Controller parameters $k$ and $\\\\tau$ are calibrated from the Phase~0 spectral trajectory.\\n150:The pretrained Pythia-410M checkpoint exhibits high representational anisotropy: the leading singular value $\\\\sigma_1 = 1942.8$ dominates the spectrum, yielding a compressed effective rank of $\\\\rho = 417.55$.  Fine-tuning on synthetic data redistributes variance across dimensions, reducing $\\\\sigma_1$ to 804.0 (a 58.6\\\\% decrease) and raising the effective rank to 491.77 (+17.8\\\\%).  The log-determinant proxy increases correspondingly from 2366.68 to 2464.76, confirming that the representational volume expands as anisotropy dissipates.  This transition reflects a standard fine-tuning effect: adaptation to any downstream corpus disperses the pretrained model's dominant singular directions~\\\\cite{biderman2023pythia}.  Crucially, this is not model collapse but rather a structural reorganization of the representation space.  For this reason, we designate Generation~1 as the baseline for all subsequent collapse measurements, excluding the pretrained-to-fine-tuned shift from the analysis.\\n153:The spectral decompression continues into Generation~2 but at a sharply reduced rate.  Effective rank reaches its maximum at 496.44 (+0.95\\\\% from Gen~1), and the log-determinant peaks at 2469.93.  The leading singular value continues to decline from 804.0 to 712.0, indicating ongoing but decelerating spectral equalization.  The near-zero growth rate signals that the decompression process is exhausting itself: the representation has reached its maximum uniformity under recursive synthetic training.\\n156:Both spectral indicators reverse direction at Generation~3 and decline monotonically through Generation~5.  The effective rank drops from its peak of 496.44 to 493.31, 485.67, and 479.21 at Generations~3, 4, and 5 respectively, a cumulative decline of $-3.5\\\\%$ from peak.  The log-determinant falls from 2469.93 to 2440.57, 2405.05, and 2370.17, a steeper cumulative decline of $-4.0\\\\%$.  The per-generation rate of effective rank decline accelerates: $-0.6\\\\%$ (Gen~2$\\\\to$3), $-1.5\\\\%$ (Gen~3$\\\\to$4), and $-1.3\\\\%$ (Gen~4$\\\\to$5).  This acceleration confirms that spectral collapse is a self-reinforcing process rather than a transient perturbation.\\n158:The asymmetry between log-determinant and effective rank declines persists throughout the collapse phase.  Log-determinant decreases at approximately 1.15$\\\\times$ the rate of effective rank because it accumulates contributions from the full tail of the singular spectrum, whereas effective rank (spectral entropy) is dominated by the top singular values.  This differential sensitivity supports the use of log-determinant as the primary early-warning signal in our closed-loop controller (\\\\S3.3).  Preliminary results from the 1B pilot suggest that the log-determinant may also lead temporally: at Generation~2, the log-determinant has already begun declining while the effective rank remains at its peak.\\n161:The leading singular value $\\\\sigma_1$ exhibits a non-monotone trajectory that illuminates the collapse mechanism.  During decompression (Gen~0$\\\\to$3), $\\\\sigma_1$ declines continuously from 1942.8 to 700.7 as variance disperses across dimensions.  At Generation~4, this trend reverses: $\\\\sigma_1$ rises to 729.6 and continues to 741.0 at Generation~5.  The reversal of $\\\\sigma_1$ coincides precisely with the acceleration of effective rank decline, confirming that collapse operates through spectral concentration.  Variance migrates from tail dimensions back into the leading principal component, producing a representation space that is increasingly dominated by a single direction.  The simultaneous decrease of effective rank and increase of $\\\\sigma_1$ after Generation~3 provides geometric evidence that recursive self-training induces a winner-take-all dynamic in the singular spectrum.\\n192:The training loss trajectory reveals a characteristic divergence from generalization metrics.  Loss decreases monotonically from 1.623 (Gen~1) to 1.047 (Gen~5), while perplexity on held-out real data increases by 116\\\\% over the same interval.  This pattern is the hallmark of distributional narrowing: as the synthetic training distribution loses diversity across generations, the model memorizes it with less effort.  Lower training loss in this context is a symptom of overfitting to synthetic distributions rather than improved generalization.  The widening gap between training loss and evaluation perplexity at each generation provides an independent early-warning signal of collapse that requires no spectral computation.\\n194:A critical temporal asymmetry emerges from comparing the spectral and functional indicators.  All functional metrics (perplexity, Distinct-4, HellaSwag) begin deteriorating immediately at Generation~1, exhibiting monotonic decline from the first recursive iteration.  The spectral indicators, by contrast, continue to improve through Generation~2 before reversing at Generation~3.  The spectral inflection point thus lags the functional degradation onset by one generation.  This delay does not diminish the utility of spectral early-warning signals; rather, it highlights their complementary role.  Spectral metrics offer three practical advantages over functional indicators: (1)~they require no labeled evaluation set or external benchmark, (2)~they can be computed from a single forward pass during training without additional generation, and (3)~they provide a geometric interpretation of the collapse mechanism (loss of representational volume) rather than merely measuring downstream symptoms.  These properties make spectral signals suitable for closed-loop control, where evaluation cost and latency are critical constraints.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a clear picture. Let me identify the exact changes needed:
+
+1. **修正 (a)**: Line ~185 area - "from 1.83 (Gen~1$\to$2)" → "from 2.20 (Gen~1$\to$2)"
+   Looking at the actual data: Gen 1 PPL = 11.38, Gen 2 = 13.58, so increment = 2.20. The current text says 1.83 which is wrong.
+
+2. **修正 (b)**: Line 194 - Replace the temporal lag paragraph. 
+   The current text says "The spectral inflection point thus lags the functional degradation onset by one generation." Need to replace with text about two-generation detection delay.
+
+3. **修正 (c)**: Add σ₁ explanation in or near the table caption.
+
+4. **修正 (d)**: Line 194 - advantage (2) needs update from "they can be computed from a single forward pass during training without additional generation" to "spectral metrics require no held-out evaluation set or text generation, only a forward pass through a fixed probe set"
+
+5. **修正 (4)**: Line 87 - τ=0.02 → τ=0.005, and change signal to log-determinant. Also add calibration paragraph.
+
+Now I'm working through the specific edits. Let me verify the perplexity increment first—Generation 1 shows 11.38 and Generation 2 shows 13.58, giving a difference of 2.20, which confirms the current text of 1.83 is incorrect. I'm also reviewing the full passage about temporal asymmetry to understand what needs updating for the two-generation delay concept, and I'll need to adjust the advantage statement to focus on the probe set approach rather than the forward pass framing. I'm planning to write a script to handle these multiple replacements systematically. I see the issue now—the new advantage (2) about spectral metrics not requiring held-out evaluation sets or text generation overlaps conceptually with advantage (1), but the instruction is clear that I should replace item (2) with this specific text. I'll follow the directive exactly and update advantage (2) to reflect that spectral metrics only need a forward pass through a fixed probe set, without the additional overhead of evaluation sets or generation.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f884eb5d-6cad-41f9-995b-30f5ab5aaa18",
+  "uuid": "99b8cd25-f8e9-4b36-b122-c29fce5f6ed5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Nafq2VFy3t5wMizZn1CeRt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2411,
+      "cache_read_input_tokens": 34254,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2411
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20_
+
+I have all the context. Now I'll construct the modifications via a Python script on the server.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f884eb5d-6cad-41f9-995b-30f5ab5aaa18",
+  "uuid": "853adbb1-903e-4a69-b9fc-608c8cb3302a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Nafq2VFy3t5wMizZn1CeRt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2411,
+      "cache_read_input_tokens": 34254,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2411
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01CpmkYxTstRL6UhC31SMrkq`</summary>
+
+```json
+{
+  "server": "rtx6000-diagprobe",
+  "command": "cat > /tmp/patch_experiments.py << 'PYTHON'\nimport re\n\nwith open('/root/spectral_collapse_ews/paper/experiments.tex', 'r') as f:\n    content = f.read()\n\n# === 修正 (a): ppl increment 1.83 -> 2.20 ===\nold_a = \"from 1.83 (Gen~1$\\\\to$2) to 2.67 (Gen~2$\\\\to$3) to 3.55 (Gen~3$\\\\to$4) to 4.79 (Gen~4$\\\\to$5)\"\nnew_a = \"from 2.20 (Gen~1$\\\\rightarrow$2) to 2.67 (Gen~2$\\\\rightarrow$3) to 3.55 (Gen~3$\\\\rightarrow$4) to 4.79 (Gen~4$\\\\rightarrow$5)\"\nassert old_a in content, \"修正(a): old string not found\"\ncontent = content.replace(old_a, new_a)\n\n# === 修正 (b): Temporal lag description ===\nold_b = (\"The spectral inflection point thus lags the functional degradation onset by one generation.  \"\n         \"This delay does not diminish the utility of spectral early-warning signals; rather, it highlights their complementary role.\")\nnew_b = (\"Functional metrics (perplexity, HellaSwag) decline from Generation~1 onward, while spectral indicators \"\n         \"peak at Generation~2 and reverse at Generation~3, revealing a two-generation detection delay when using \"\n         \"spectral inflection as the warning signal.  This lag does not diminish the utility of spectral early-warning \"\n         \"signals; rather, it highlights their complementary role.\")\nassert old_b in content, \"修正(b): old string not found\"\ncontent = content.replace(old_b, new_b)\n\n# === 修正 (c): σ₁ caption explanation ===\n# Add note to table caption\nold_c = \"Best values in bold.}\"\nnew_c = \"Best values in bold. $\\\\sigma_1$ values decrease during decompression and increase during collapse, with lower values indicating more isotropic representations.}\"\nassert old_c in content, \"修正(c): old string not found\"\ncontent = content.replace(old_c, new_c)\n\n# === 修正 (d): advantage (2) ===\nold_d = \"(2)~they can be computed from a single forward pass during training without additional generation\"\nnew_d = \"(2)~spectral metrics require no held-out evaluation set or text generation, only a forward pass through a fixed probe set\"\nassert old_d in content, \"修正(d): old string not found\"\ncontent = content.replace(old_d, new_d)\n\n# === 修正 (4): Controller parameters ===\n# Change τ=0.02 to τ=0.005 in table\nold_tau = \"$\\\\tau{=}0.02$\\\\textsuperscript{\\\\dag}\"\nnew_tau = \"$\\\\tau{=}0.005$\"\nassert old_tau in content, \"修正(4) tau: old string not found\"\ncontent = content.replace(old_tau, new_tau)\n\n# Change the footnote about calibration since τ is now fixed\nold_footnote = \"{\\\\footnotesize \\\\textsuperscript{\\\\dag}To be calibrated from Phase~0 pilot.}\"\nnew_footnote = \"\"\nassert old_footnote in content, \"修正(4) footnote: old string not found\"\ncontent = content.replace(old_footnote, new_footnote)\n\n# Also remove the dag from k since we're removing the footnote - keep k=1.0 as is\nold_k_dag = \"$k{=}1.0$\\\\textsuperscript{\\\\dag}\"\nnew_k_dag = \"$k{=}1.0$\"\nassert old_k_dag in content, \"修正(4) k dag: old string not found\"\ncontent = content.replace(old_k_dag, new_k_dag)\n\n# Change signal description in condition (c) - add log-determinant mention\nold_cond_c = \"Our method: proportional controller with $k{=}1.0$, $\\\\tau{=}0.005$, $\\\\alpha_{\\\\text{ema}}{=}0.5$, $r_{\\\\min}{=}0.20$, $r_{\\\\max}{=}0.80$.\"\nnew_cond_c = \"Our method: proportional controller driven by normalized log-determinant decline, with $k{=}1.0$, $\\\\tau{=}0.005$, $\\\\alpha_{\\\\text{ema}}{=}0.5$, $r_{\\\\min}{=}0.20$, $r_{\\\\max}{=}0.80$.\"\nassert old_cond_c in content, \"修正(4) condition c: old string not found\"\ncontent = content.replace(old_cond_c, new_cond_c)\n\n# Change \"Controller parameters $k$ and $\\tau$ are calibrated from the Phase~0 spectral trajectory.\"\n# to include the calibration explanation\nold_calib = \"Controller parameters $k$ and $\\\\tau$ are calibrated from the Phase~0 spectral trajectory.\"\nnew_calib = (\"Controller parameters $k$ and $\\\\tau$ are calibrated from the Phase~0 spectral trajectory.  \"\n             \"The threshold $\\\\tau = 0.005$ is calibrated from Phase~0 characterization data (Generations~3 through~5), \"\n             \"where the mean normalized log-determinant decline rate is approximately 0.8\\\\% per generation.  \"\n             \"Setting $\\\\tau$ slightly below this value ensures controller activation at collapse onset while avoiding \"\n             \"false triggers during the initial decompression phase.\")\nassert old_calib in content, \"修正(4) calibration: old string not found\"\ncontent = content.replace(old_calib, new_calib)\n\nwith open('/root/spectral_collapse_ews/paper/experiments.tex', 'w') as f:\n    f.write(content)\n\nprint(\"All modifications applied successfully.\")\nPYTHON\npython3 /tmp/patch_experiments.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f884eb5d-6cad-41f9-995b-30f5ab5aaa18",
+  "uuid": "4c0e7a66-2876-40b9-9674-a069b38e01e3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Nafq2VFy3t5wMizZn1CeRt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2411,
+      "cache_read_input_tokens": 34254,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2411
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-17T06:37:10.080Z_
+
+<details><summary>↩ Tool result · `toolu_01CpmkYxTstRL6UhC31SMrkq`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cat > /tmp/patch_experiments.py << \\\\'PYTHON\\\\'\\\\nimport re\\\\n\\\\nwith open(\\\\'/root/spectral_collapse_ews/paper/experiments.tex\\\\', \\\\'r\\\\') as f:\\\\n    content = f.read()\\\\n\\\\n# === 修正 (a): ppl increment 1.83 -> 2.20 ===\\\\nold_a = \\\"from 1.83 (Gen~1$\\\\\\\\\\\\\\\\to$2) to 2.67 (Gen~2$\\\\\\\\\\\\\\\\to$3) to 3.55 (Gen~3$\\\\\\\\\\\\\\\\to$4) to 4.79 (Gen~4$\\\\\\\\\\\\\\\\to$5)\\\"\\\\nnew_a = \\\"from 2.20 (Gen~1$\\\\\\\\\\\\\\\\rightarrow$2) to 2.67 (Gen~2$\\\\\\\\\\\\\\\\rightarrow$3) to 3.55 (Gen~3$\\\\\\\\\\\\\\\\rightarrow$4) to 4.79 (Gen~4$\\\\\\\\\\\\\\\\rightarrow$5)\\\"\\\\nassert old_a in content, \\\"修正(a): old string not found\\\"\\\\ncontent = content.replace(old_a, new_a)\\\\n\\\\n# === 修正 (b): Temporal lag description ===\\\\nold_b = (\\\"The spectral inflection point thus lags the functional degradation onset by one generation.  \\\"\\\\n         \\\"This delay does not diminish the utility of spectral early-warning signals; rather, it highlights their complementary role.\\\")\\\\nnew_b = (\\\"Functional metrics (perplexity, HellaSwag) decline from Generation~1 onward, while spectral indicators \\\"\\\\n         \\\"peak at Generation~2 and reverse at Generation~3, revealing a two-generation detection delay when using \\\"\\\\n         \\\"spectral inflection as the warning signal.  This lag does not diminish the utility of spectral early-warning \\\"\\\\n         \\\"signals; rather, it highlights their complementary role.\\\")\\\\nassert old_b in content, \\\"修正(b): old string not found\\\"\\\\ncontent = content.replace(old_b, new_b)\\\\n\\\\n# === 修正 (c): σ₁ caption explanation ===\\\\n# Add note to table caption\\\\nold_c = \\\"Best values in bold.}\\\"\\\\nnew_c = \\\"Best values in bold. $\\\\\\\\\\\\\\\\sigma_1$ values decrease during decompression and increase during collapse, with lower values indicating more isotropic representations.}\\\"\\\\nassert old_c in content, \\\"修正(c): old string not found\\\"\\\\ncontent = content.replace(old_c, new_c)\\\\n\\\\n# === 修正 (d): advantage (2) ===\\\\nold_d = \\\"(2)~they can be computed from a single forward pass during training without additional generation\\\"\\\\nnew_d = \\\"(2)~spectral metrics require no held-out evaluation set or text generation, only a forward pass through a fixed probe set\\\"\\\\nassert old_d in content, \\\"修正(d): old string not found\\\"\\\\ncontent = content.replace(old_d, new_d)\\\\n\\\\n# === 修正 (4): Controller parameters ===\\\\n# Change τ=0.02 to τ=0.005 in table\\\\nold_tau = \\\"$\\\\\\\\\\\\\\\\tau{=}0.02$\\\\\\\\\\\\\\\\textsuperscript{\\\\\\\\\\\\\\\\dag}\\\"\\\\nnew_tau = \\\"$\\\\\\\\\\\\\\\\tau{=}0.005$\\\"\\\\nassert old_tau in content, \\\"修正(4) tau: old string not found\\\"\\\\ncontent = content.replace(old_tau, new_tau)\\\\n\\\\n# Change the footnote about calibration since τ is now fixed\\\\nold_footnote = \\\"{\\\\\\\\\\\\\\\\footnotesize \\\\\\\\\\\\\\\\textsuperscript{\\\\\\\\\\\\\\\\dag}To be calibrated from Phase~0 pilot.}\\\"\\\\nnew_footnote = \\\"\\\"\\\\nassert old_footnote in content, \\\"修正(4) footnote: old string not found\\\"\\\\ncontent = content.replace(old_footnote, new_footnote)\\\\n\\\\n# Also remove the dag from k since we\\\\'re removing the footnote - keep k=1.0 as is\\\\nold_k_dag = \\\"$k{=}1.0$\\\\\\\\\\\\\\\\textsuperscript{\\\\\\\\\\\\\\\\dag}\\\"\\\\nnew_k_dag = \\\"$k{=}1.0$\\\"\\\\nassert old_k_dag in content, \\\"修正(4) k dag: old string not found\\\"\\\\ncontent = content.replace(old_k_dag, new_k_dag)\\\\n\\\\n# Change signal description in condition (c) - add log-determinant mention\\\\nold_cond_c = \\\"Our method: proportional controller with $k{=}1.0$, $\\\\\\\\\\\\\\\\tau{=}0.005$, $\\\\\\\\\\\\\\\\alpha_{\\\\\\\\\\\\\\\\text{ema}}{=}0.5$, $r_{\\\\\\\\\\\\\\\\min}{=}0.20$, $r_{\\\\\\\\\\\\\\\\max}{=}0.80$.\\\"\\\\nnew_cond_c = \\\"Our method: proportional controller driven by normalized log-determinant decline, with $k{=}1.0$, $\\\\\\\\\\\\\\\\tau{=}0.005$, $\\\\\\\\\\\\\\\\alpha_{\\\\\\\\\\\\\\\\text{ema}}{=}0.5$, $r_{\\\\\\\\\\\\\\\\min}{=}0.20$, $r_{\\\\\\\\\\\\\\\\max}{=}0.80$.\\\"\\\\nassert old_cond_c in content, \\\"修正(4) condition c: old string not found\\\"\\\\ncontent = content.replace(old_cond_c, new_cond_c)\\\\n\\\\n# Change \\\"Controller parameters $k$ and $\\\\\\\\tau$ are calibrated from the Phase~0 spectral trajectory.\\\"\\\\n# to include the calibration explanation\\\\nold_calib = \\\"Controller parameters $k$ and $\\\\\\\\\\\\\\\\tau$ are calibrated from the Phase~0 spectral trajectory.\\\"\\\\nnew_calib = (\\\"Controller parameters $k$ and $\\\\\\\\\\\\\\\\tau$ are calibrated from the Phase~0 spectral trajectory.  \\\"\\\\n             \\\"The threshold $\\\\\\\\\\\\\\\\tau = 0.005$ is calibrated from Phase~0 characterization data (Generations~3 through~5), \\\"\\\\n             \\\"where the mean normalized log-determinant decline rate is approximately 0.8\\\\\\\\\\\\\\\\% per generation.  \\\"\\\\n             \\\"Setting $\\\\\\\\\\\\\\\\tau$ slightly below this value ensures controller activation at collapse onset while avoiding \\\"\\\\n             \\\"false triggers during the initial decompression phase.\\\")\\\\nassert old_calib in content, \\\"修正(4) calibration: old string not found\\\"\\\\ncontent = content.replace(old_calib, new_calib)\\\\n\\\\nwith open(\\\\'/root/spectral_collapse_ews/paper/experiments.tex\\\\', \\\\'w\\\\') as f:\\\\n    f.write(content)\\\\n\\\\nprint(\\\"All modifications applied successfully.\\\")\\\\nPYTHON\\\\npython3 /tmp/patch_experiments.py'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 77: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f884eb5d-6cad-41f9-995b-30f5ab5aaa18",
+  "uuid": "a8000af9-e10e-4aca-9517-fc2b8512df0f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cat > /tmp/patch_experiments.py << \\\\\\\\'PYTHON\\\\\\\\'\\\\\\\\nimport re\\\\\\\\n\\\\\\\\nwith open(\\\\\\\\'/root/spectral_collapse_ews/paper/experiments.tex\\\\\\\\', \\\\\\\\'r\\\\\\\\') as f:\\\\\\\\n    content = f.read()\\\\\\\\n\\\\\\\\n# === 修正 (a): ppl increment 1.83 -> 2.20 ===\\\\\\\\nold_a = \\\\\\\"from 1.83 (Gen~1$\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\to$2) to 2.67 (Gen~2$\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\to$3) to 3.55 (Gen~3$\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\to$4) to 4.79 (Gen~4$\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\to$5)\\\\\\\"\\\\\\\\nnew_a = \\\\\\\"from 2.20 (Gen~1$\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\rightarrow$2) to 2.67 (Gen~2$\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\rightarrow$3) to 3.55 (Gen~3$\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\rightarrow$4) to 4.79 (Gen~4$\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\rightarrow$5)\\\\\\\"\\\\\\\\nassert old_a in content, \\\\\\\"修正(a): old string not found\\\\\\\"\\\\\\\\ncontent = content.replace(old_a, new_a)\\\\\\\\n\\\\\\\\n# === 修正 (b): Temporal lag description ===\\\\\\\\nold_b = (\\\\\\\"The spectral inflection point thus lags the functional degradation onset by one generation.  \\\\\\\"\\\\\\\\n         \\\\\\\"This delay does not diminish the utility of spectral early-warning signals; rather, it highlights their complementary role.\\\\\\\")\\\\\\\\nnew_b = (\\\\\\\"Functional metrics (perplexity, HellaSwag) decline from Generation~1 onward, while spectral indicators \\\\\\\"\\\\\\\\n         \\\\\\\"peak at Generation~2 and reverse at Generation~3, revealing a two-generation detection delay when using \\\\\\\"\\\\\\\\n         \\\\\\\"spectral inflection as the warning signal.  This lag does not diminish the utility of spectral early-warning \\\\\\\"\\\\\\\\n         \\\\\\\"signals; rather, it highlights their complementary role.\\\\\\\")\\\\\\\\nassert old_b in content, \\\\\\\"修正(b): old string not found\\\\\\\"\\\\\\\\ncontent = content.replace(old_b, new_b)\\\\\\\\n\\\\\\\\n# === 修正 (c): σ₁ caption explanation ===\\\\\\\\n# Add note to table caption\\\\\\\\nold_c = \\\\\\\"Best values in bold.}\\\\\\\"\\\\\\\\nnew_c = \\\\\\\"Best values in bold. $\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\sigma_1$ values decrease during decompression and increase during collapse, with lower values indicating more isotropic representations.}\\\\\\\"\\\\\\\\nassert old_c in content, \\\\\\\"修正(c): old string not found\\\\\\\"\\\\\\\\ncontent = content.replace(old_c, new_c)\\\\\\\\n\\\\\\\\n# === 修正 (d): advantage (2) ===\\\\\\\\nold_d = \\\\\\\"(2)~they can be computed from a single forward pass during training without additional generation\\\\\\\"\\\\\\\\nnew_d = \\\\\\\"(2)~spectral metrics require no held-out evaluation set or text generation, only a forward pass through a fixed probe set\\\\\\\"\\\\\\\\nassert old_d in content, \\\\\\\"修正(d): old string not found\\\\\\\"\\\\\\\\ncontent = content.replace(old_d, new_d)\\\\\\\\n\\\\\\\\n# === 修正 (4): Controller parameters ===\\\\\\\\n# Change τ=0.02 to τ=0.005 in table\\\\\\\\nold_tau = \\\\\\\"$\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\tau{=}0.02$\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\textsuperscript{\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\dag}\\\\\\\"\\\\\\\\nnew_tau = \\\\\\\"$\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\tau{=}0.005$\\\\\\\"\\\\\\\\nassert old_tau in content, \\\\\\\"修正(4) tau: old string not found\\\\\\\"\\\\\\\\ncontent = content.replace(old_tau, new_tau)\\\\\\\\n\\\\\\\\n# Change the footnote about calibration since τ is now fixed\\\\\\\\nold_footnote = \\\\\\\"{\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\footnotesize \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\textsuperscript{\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\dag}To be calibrated from Phase~0 pilot.}\\\\\\\"\\\\\\\\nnew_footnote = \\\\\\\"\\\\\\\"\\\\\\\\nassert old_footnote in content, \\\\\\\"修正(4) footnote: old string not found\\\\\\\"\\\\\\\\ncontent = content.replace(old_footnote, new_footnote)\\\\\\\\n\\\\\\\\n# Also remove the dag from k since we\\\\\\\\'re removing the footnote - keep k=1.0 as is\\\\\\\\nold_k_dag = \\\\\\\"$k{=}1.0$\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\textsuperscript{\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\dag}\\\\\\\"\\\\\\\\nnew_k_dag = \\\\\\\"$k{=}1.0$\\\\\\\"\\\\\\\\nassert old_k_dag in content, \\\\\\\"修正(4) k dag: old string not found\\\\\\\"\\\\\\\\ncontent = content.replace(old_k_dag, new_k_dag)\\\\\\\\n\\\\\\\\n# Change signal description in condition (c) - add log-determinant mention\\\\\\\\nold_cond_c = \\\\\\\"Our method: proportional controller with $k{=}1.0$, $\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\tau{=}0.005$, $\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\alpha_{\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\text{ema}}{=}0.5$, $r_{\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\min}{=}0.20$, $r_{\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\max}{=}0.80$.\\\\\\\"\\\\\\\\nnew_cond_c = \\\\\\\"Our method: proportional controller driven by normalized log-determinant decline, with $k{=}1.0$, $\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\tau{=}0.005$, $\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\alpha_{\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\text{ema}}{=}0.5$, $r_{\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\min}{=}0.20$, $r_{\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\max}{=}0.80$.\\\\\\\"\\\\\\\\nassert old_cond_c in content, \\\\\\\"修正(4) condition c: old string not found\\\\\\\"\\\\\\\\ncontent = content.replace(old_cond_c, new_cond_c)\\\\\\\\n\\\\\\\\n# Change \\\\\\\"Controller parameters $k$ and $\\\\\\\\\\\\\\\\tau$ are calibrated from the Phase~0 spectral trajectory.\\\\\\\"\\\\\\\\n# to include the calibration explanation\\\\\\\\nold_calib = \\\\\\\"Controller parameters $k$ and $\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\tau$ are calibrated from the Phase~0 spectral trajectory.\\\\\\\"\\\\\\\\nnew_calib = (\\\\\\\"Controller parameters $k$ and $\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\tau$ are calibrated from the Phase~0 spectral trajectory.  \\\\\\\"\\\\\\\\n             \\\\\\\"The threshold $\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\tau = 0.005$ is calibrated from Phase~0 characterization data (Generations~3 through~5), \\\\\\\"\\\\\\\\n             \\\\\\\"where the mean normalized log-determinant decline rate is approximately 0.8\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\% per generation.  \\\\\\\"\\\\\\\\n             \\\\\\\"Setting $\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\tau$ slightly below this value ensures controller activation at collapse onset while avoiding \\\\\\\"\\\\\\\\n             \\\\\\\"false triggers during the initial decompression phase.\\\\\\\")\\\\\\\\nassert old_calib in content, \\\\\\\"修正(4) calibration: old string not found\\\\\\\"\\\\\\\\ncontent = content.replace(old_calib, new_calib)\\\\\\\\n\\\\\\\\nwith open(\\\\\\\\'/root/spectral_collapse_ews/paper/experiments.tex\\\\\\\\', \\\\\\\\'w\\\\\\\\') as f:\\\\\\\\n    f.write(content)\\\\\\\\n\\\\\\\\nprint(\\\\\\\"All modifications applied successfully.\\\\\\\")\\\\\\\\nPYTHON\\\\\\\\npython3 /tmp/patch_experiments.py'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 77: python3: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cat > /tmp/patch_experiments.py << \\\\'PYTHON\\\\'\\\\nimport re\\\\n\\\\nwith open(\\\\'/root/spectral_collapse_ews/paper/experiments.tex\\\\', \\\\'r\\\\') as f:\\\\n    content = f.read()\\\\n\\\\n# === 修正 (a): ppl increment 1.83 -> 2.20 ===\\\\nold_a = \\\"from 1.83 (Gen~1$\\\\\\\\\\\\\\\\to$2) to 2.67 (Gen~2$\\\\\\\\\\\\\\\\to$3) to 3.55 (Gen~3$\\\\\\\\\\\\\\\\to$4) to 4.79 (Gen~4$\\\\\\\\\\\\\\\\to$5)\\\"\\\\nnew_a = \\\"from 2.20 (Gen~1$\\\\\\\\\\\\\\\\rightarrow$2) to 2.67 (Gen~2$\\\\\\\\\\\\\\\\rightarrow$3) to 3.55 (Gen~3$\\\\\\\\\\\\\\\\rightarrow$4) to 4.79 (Gen~4$\\\\\\\\\\\\\\\\rightarrow$5)\\\"\\\\nassert old_a in content, \\\"修正(a): old string not found\\\"\\\\ncontent = content.replace(old_a, new_a)\\\\n\\\\n# === 修正 (b): Temporal lag description ===\\\\nold_b = (\\\"The spectral inflection point thus lags the functional degradation onset by one generation.  \\\"\\\\n         \\\"This delay does not diminish the utility of spectral early-warning signals; rather, it highlights their complementary role.\\\")\\\\nnew_b = (\\\"Functional metrics (perplexity, HellaSwag) decline from Generation~1 onward, while spectral indicators \\\"\\\\n         \\\"peak at Generation~2 and reverse at Generation~3, revealing a two-generation detection delay when using \\\"\\\\n         \\\"spectral inflection as the warning signal.  This lag does not diminish the utility of spectral early-warning \\\"\\\\n         \\\"signals; rather, it highlights their complementary role.\\\")\\\\nassert old_b in content, \\\"修正(b): old string not found\\\"\\\\ncontent = content.replace(old_b, new_b)\\\\n\\\\n# === 修正 (c): σ₁ caption explanation ===\\\\n# Add note to table caption\\\\nold_c = \\\"Best values in bold.}\\\"\\\\nnew_c = \\\"Best values in bold. $\\\\\\\\\\\\\\\\sigma_1$ values decrease during decompression and increase during collapse, with lower values indicating more isotropic representations.}\\\"\\\\nassert old_c in content, \\\"修正(c): old string not found\\\"\\\\ncontent = content.replace(old_c, new_c)\\\\n\\\\n# === 修正 (d): advantage (2) ===\\\\nold_d = \\\"(2)~they can be computed from a single forward pass during training without additional generation\\\"\\\\nnew_d = \\\"(2)~spectral metrics require no held-out evaluation set or text generation, only a forward pass through a fixed probe set\\\"\\\\nassert old_d in content, \\\"修正(d): old string not found\\\"\\\\ncontent = content.replace(old_d, new_d)\\\\n\\\\n# === 修正 (4): Controller parameters ===\\\\n# Change τ=0.02 to τ=0.005 in table\\\\nold_tau = \\\"$\\\\\\\\\\\\\\\\tau{=}0.02$\\\\\\\\\\\\\\\\textsuperscript{\\\\\\\\\\\\\\\\dag}\\\"\\\\nnew_tau = \\\"$\\\\\\\\\\\\\\\\tau{=}0.005$\\\"\\\\nassert old_tau in content, \\\"修正(4) tau: old string not found\\\"\\\\ncontent = content.replace(old_tau, new_tau)\\\\n\\\\n# Change the footnote about calibration since τ is now fixed\\\\nold_footnote = \\\"{\\\\\\\\\\\\\\\\footnotesize \\\\\\\\\\\\\\\\textsuperscript{\\\\\\\\\\\\\\\\dag}To be calibrated from Phase~0 pilot.}\\\"\\\\nnew_footnote = \\\"\\\"\\\\nassert old_footnote in content, \\\"修正(4) footnote: old string not found\\\"\\\\ncontent = content.replace(old_footnote, new_footnote)\\\\n\\\\n# Also remove the dag from k since we\\\\'re removing the footnote - keep k=1.0 as is\\\\nold_k_dag = \\\"$k{=}1.0$\\\\\\\\\\\\\\\\textsuperscript{\\\\\\\\\\\\\\\\dag}\\\"\\\\nnew_k_dag = \\\"$k{=}1.0$\\\"\\\\nassert old_k_dag in content, \\\"修正(4) k dag: old string not found\\\"\\\\ncontent = content.replace(old_k_dag, new_k_dag)\\\\n\\\\n# Change signal description in condition (c) - add log-determinant mention\\\\nold_cond_c = \\\"Our method: proportional controller with $k{=}1.0$, $\\\\\\\\\\\\\\\\tau{=}0.005$, $\\\\\\\\\\\\\\\\alpha_{\\\\\\\\\\\\\\\\text{ema}}{=}0.5$, $r_{\\\\\\\\\\\\\\\\min}{=}0.20$, $r_{\\\\\\\\\\\\\\\\max}{=}0.80$.\\\"\\\\nnew_cond_c = \\\"Our method: proportional controller driven by normalized log-determinant decline, with $k{=}1.0$, $\\\\\\\\\\\\\\\\tau{=}0.005$, $\\\\\\\\\\\\\\\\alpha_{\\\\\\\\\\\\\\\\text{ema}}{=}0.5$, $r_{\\\\\\\\\\\\\\\\min}{=}0.20$, $r_{\\\\\\\\\\\\\\\\max}{=}0.80$.\\\"\\\\nassert old_cond_c in content, \\\"修正(4) condition c: old string not found\\\"\\\\ncontent = content.replace(old_cond_c, new_cond_c)\\\\n\\\\n# Change \\\"Controller parameters $k$ and $\\\\\\\\tau$ are calibrated from the Phase~0 spectral trajectory.\\\"\\\\n# to include the calibration explanation\\\\nold_calib = \\\"Controller parameters $k$ and $\\\\\\\\\\\\\\\\tau$ are calibrated from the Phase~0 spectral trajectory.\\\"\\\\nnew_calib = (\\\"Controller parameters $k$ and $\\\\\\\\\\\\\\\\tau$ are calibrated from the Phase~0 spectral trajectory.  \\\"\\\\n             \\\"The threshold $\\\\\\\\\\\\\\\\tau = 0.005$ is calibrated from Phase~0 characterization data (Generations~3 through~5), \\\"\\\\n             \\\"where the mean normalized log-determinant decline rate is approximately 0.8\\\\\\\\\\\\\\\\% per generation.  \\\"\\\\n             \\\"Setting $\\\\\\\\\\\\\\\\tau$ slightly below this value ensures controller activation at collapse onset while avoiding \\\"\\\\n             \\\"false triggers during the initial decompression phase.\\\")\\\\nassert old_calib in content, \\\"修正(4) calibration: old string not found\\\"\\\\ncontent = content.replace(old_calib, new_calib)\\\\n\\\\nwith open(\\\\'/root/spectral_collapse_ews/paper/experiments.tex\\\\', \\\\'w\\\\') as f:\\\\n    f.write(content)\\\\n\\\\nprint(\\\"All modifications applied successfully.\\\")\\\\nPYTHON\\\\npython3 /tmp/patch_experiments.py'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 77: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Python3 is not found. Let me check what's available.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f884eb5d-6cad-41f9-995b-30f5ab5aaa18",
+  "uuid": "0d58ef87-a941-44c8-890d-b31a7dbf5e29",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NNC8RyxYYKp3PGzdLURpgW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5285,
+      "cache_read_input_tokens": 36665,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5285
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Bahthx3hN6R9jSB2DsYesq`</summary>
+
+```json
+{
+  "server": "rtx6000-diagprobe",
+  "command": "which python || which python3 || ls /usr/bin/python* /usr/local/bin/python* 2>/dev/null || conda run python --version 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f884eb5d-6cad-41f9-995b-30f5ab5aaa18",
+  "uuid": "56674eb8-9266-4a1e-80e3-600b97630f46",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NNC8RyxYYKp3PGzdLURpgW",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5285,
+      "cache_read_input_tokens": 36665,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5285
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-17T06:37:16.350Z_
+
+<details><summary>↩ Tool result · `toolu_01Bahthx3hN6R9jSB2DsYesq`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'which python || which python3 || ls /usr/bin/python* /usr/local/bin/python* 2>/dev/null || conda run python --version 2>/dev/null'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 1.13}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f884eb5d-6cad-41f9-995b-30f5ab5aaa18",
+  "uuid": "4276870f-c740-4a45-9b10-02a94571fbee",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'which python || which python3 || ls /usr/bin/python* /usr/local/bin/python* 2>/dev/null || conda run python --version 2>/dev/null'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.13}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'which python || which python3 || ls /usr/bin/python* /usr/local/bin/python* 2>/dev/null || conda run python --version 2>/dev/null'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 1.13}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01DGLg7MRTyTz3dwC1Ey65Pd`</summary>
+
+```json
+{
+  "server": "rtx6000-diagprobe",
+  "command": "find / -name \"python*\" -type f 2>/dev/null | head -5",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f884eb5d-6cad-41f9-995b-30f5ab5aaa18",
+  "uuid": "f9587001-ee58-4d95-82b7-149009742edb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A7nqGmVWVuAU1FkjJ8d2AT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 321,
+      "cache_read_input_tokens": 41950,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 321
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-17T06:37:21.425Z_
+
+<details><summary>↩ Tool result · `toolu_01DGLg7MRTyTz3dwC1Ey65Pd`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/opt/nvidia/nsight-compute/2025.1.1/host/target-linux-x64/python/bin/python\\n/root/miniconda3/bin/python3.12\\n/root/miniconda3/bin/python3.12-config\\n/root/miniconda3/conda-meta/python-3.12.3-h996f2a0_1.json\\n/root/miniconda3/envs/bugsinpy/conda-meta/python-3.8.20-he870216_0.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.49}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f884eb5d-6cad-41f9-995b-30f5ab5aaa18",
+  "uuid": "a1621f76-e3ee-4616-b04e-5765bd32ea74",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/opt/nvidia/nsight-compute/2025.1.1/host/target-linux-x64/python/bin/python\\\\n/root/miniconda3/bin/python3.12\\\\n/root/miniconda3/bin/python3.12-config\\\\n/root/miniconda3/conda-meta/python-3.12.3-h996f2a0_1.json\\\\n/root/miniconda3/envs/bugsinpy/conda-meta/python-3.8.20-he870216_0.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.49}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/opt/nvidia/nsight-compute/2025.1.1/host/target-linux-x64/python/bin/python\\n/root/miniconda3/bin/python3.12\\n/root/miniconda3/bin/python3.12-config\\n/root/miniconda3/conda-meta/python-3.12.3-h996f2a0_1.json\\n/root/miniconda3/envs/bugsinpy/conda-meta/python-3.8.20-he870216_0.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.49}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01YGQjV8aezETELvVPkgS4jj`</summary>
+
+```json
+{
+  "server": "rtx6000-diagprobe",
+  "command": "cat > /tmp/patch_experiments.py << 'PYTHON'\nimport re\n\nwith open('/root/spectral_collapse_ews/paper/experiments.tex', 'r') as f:\n    content = f.read()\n\n# === Fix (a): ppl increment 1.83 -> 2.20 ===\nold_a = r\"from 1.83 (Gen~1$\\to$2) to 2.67 (Gen~2$\\to$3) to 3.55 (Gen~3$\\to$4) to 4.79 (Gen~4$\\to$5)\"\nnew_a = r\"from 2.20 (Gen~1$\\rightarrow$2) to 2.67 (Gen~2$\\rightarrow$3) to 3.55 (Gen~3$\\rightarrow$4) to 4.79 (Gen~4$\\rightarrow$5)\"\nassert old_a in content, \"Fix(a): old string not found\"\ncontent = content.replace(old_a, new_a)\n\n# === Fix (b): Temporal lag description ===\nold_b = (r\"The spectral inflection point thus lags the functional degradation onset by one generation.  \"\n         r\"This delay does not diminish the utility of spectral early-warning signals; rather, it highlights their complementary role.\")\nnew_b = (r\"Functional metrics (perplexity, HellaSwag) decline from Generation~1 onward, while spectral indicators \"\n         r\"peak at Generation~2 and reverse at Generation~3, revealing a two-generation detection delay when using \"\n         r\"spectral inflection as the warning signal.  This lag does not diminish the utility of spectral early-warning \"\n         r\"signals; rather, it highlights their complementary role.\")\nassert old_b in content, \"Fix(b): old string not found\"\ncontent = content.replace(old_b, new_b)\n\n# === Fix (c): sigma_1 caption explanation ===\nold_c = \"Best values in bold.}\"\nnew_c = r\"Best values in bold. $\\sigma_1$ values decrease during decompression and increase during collapse, with lower values indicating more isotropic representations.}\"\nassert old_c in content, \"Fix(c): old string not found\"\ncontent = content.replace(old_c, new_c)\n\n# === Fix (d): advantage (2) ===\nold_d = r\"(2)~they can be computed from a single forward pass during training without additional generation\"\nnew_d = r\"(2)~spectral metrics require no held-out evaluation set or text generation, only a forward pass through a fixed probe set\"\nassert old_d in content, \"Fix(d): old string not found\"\ncontent = content.replace(old_d, new_d)\n\n# === Fix (4): Controller parameters ===\n# Change tau=0.02 to tau=0.005 in table\nold_tau = r\"$\\tau{=}0.02$\\textsuperscript{\\dag}\"\nnew_tau = r\"$\\tau{=}0.005$\"\nassert old_tau in content, \"Fix(4) tau: old string not found\"\ncontent = content.replace(old_tau, new_tau)\n\n# Remove dag from k\nold_k_dag = r\"$k{=}1.0$\\textsuperscript{\\dag}\"\nnew_k_dag = r\"$k{=}1.0$\"\nassert old_k_dag in content, \"Fix(4) k dag: old string not found\"\ncontent = content.replace(old_k_dag, new_k_dag)\n\n# Change footnote - remove it\nold_footnote = r\"{\\footnotesize \\textsuperscript{\\dag}To be calibrated from Phase~0 pilot.}\"\nnew_footnote = \"\"\nassert old_footnote in content, \"Fix(4) footnote: old string not found\"\ncontent = content.replace(old_footnote, new_footnote)\n\n# Now add log-determinant to condition (c) description\n# After previous replacements, condition c line has k=1.0 without dag and tau=0.005\nold_cond_c = r\"Our method: proportional controller with $k{=}1.0$, $\\tau{=}0.005$, $\\alpha_{\\text{ema}}{=}0.5$, $r_{\\min}{=}0.20$, $r_{\\max}{=}0.80$.\"\nnew_cond_c = r\"Our method: proportional controller driven by normalized log-determinant decline, with $k{=}1.0$, $\\tau{=}0.005$, $\\alpha_{\\text{ema}}{=}0.5$, $r_{\\min}{=}0.20$, $r_{\\max}{=}0.80$.\"\nassert old_cond_c in content, \"Fix(4) condition c: old string not found\"\ncontent = content.replace(old_cond_c, new_cond_c)\n\n# Add calibration explanation after existing sentence\nold_calib = r\"Controller parameters $k$ and $\\tau$ are calibrated from the Phase~0 spectral trajectory.\"\nnew_calib = (r\"Controller parameters $k$ and $\\tau$ are calibrated from the Phase~0 spectral trajectory.  \"\n             r\"The threshold $\\tau = 0.005$ is calibrated from Phase~0 characterization data (Generations~3 through~5), \"\n             r\"where the mean normalized log-determinant decline rate is approximately 0.8\\% per generation.  \"\n             r\"Setting $\\tau$ slightly below this value ensures controller activation at collapse onset while avoiding \"\n             r\"false triggers during the initial decompression phase.\")\nassert old_calib in content, \"Fix(4) calibration: old string not found\"\ncontent = content.replace(old_calib, new_calib)\n\nwith open('/root/spectral_collapse_ews/paper/experiments.tex', 'w') as f:\n    f.write(content)\n\nprint(\"All modifications applied successfully.\")\nPYTHON\n/root/miniconda3/bin/python3.12 /tmp/patch_experiments.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f884eb5d-6cad-41f9-995b-30f5ab5aaa18",
+  "uuid": "44baee93-ae5e-4094-b1cb-24acecd404d0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018zNrsnugZms6Zu8ftmLn72",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 331,
+      "cache_read_input_tokens": 42271,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 331
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-17T06:37:39.406Z_
+
+<details><summary>↩ Tool result · `toolu_01YGQjV8aezETELvVPkgS4jj`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"All modifications applied successfully.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f884eb5d-6cad-41f9-995b-30f5ab5aaa18",
+  "uuid": "9d9e7484-2921-4f4d-ac82-374469c858b1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"All modifications applied successfully.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"All modifications applied successfully.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30_
+
+验证修改结果。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f884eb5d-6cad-41f9-995b-30f5ab5aaa18",
+  "uuid": "597ceb7d-8010-44fa-aed5-bed308cd5e1b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Cm6yuFegxyFEYFXQE334WC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1689,
+      "cache_read_input_tokens": 42602,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1689
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01EGkcSrrxAZDMKkN2TYtEst`</summary>
+
+```json
+{
+  "server": "rtx6000-diagprobe",
+  "command": "grep -n \"2.20\\|two-generation\\|sigma_1.*values\\|no held-out evaluation\\|tau{=}0.005\\|log-determinant decline\" /root/spectral_collapse_ews/paper/experiments.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f884eb5d-6cad-41f9-995b-30f5ab5aaa18",
+  "uuid": "0d56b81c-b3f4-4bfe-aaea-cde33317e68b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Cm6yuFegxyFEYFXQE334WC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1689,
+      "cache_read_input_tokens": 42602,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1689
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-17T06:37:44.953Z_
+
+<details><summary>↩ Tool result · `toolu_01EGkcSrrxAZDMKkN2TYtEst`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"6:Both are decoder-only transformers pretrained on the deduplicated Pile~\\\\cite{gao2020pile}.\\n87:(c) Spectral-guided & Closed-loop (\\\\S3.3) & Our method: proportional controller driven by normalized log-determinant decline, with $k{=}1.0$, $\\\\tau{=}0.005$, $\\\\alpha_{\\\\text{ema}}{=}0.5$, $r_{\\\\min}{=}0.20$, $r_{\\\\max}{=}0.80$. \\\\\\\\[3pt]\\n117:Controller parameters $k$ and $\\\\tau$ are calibrated from the Phase~0 spectral trajectory.  The threshold $\\\\tau = 0.005$ is calibrated from Phase~0 characterization data (Generations~3 through~5), where the mean normalized log-determinant decline rate is approximately 0.8\\\\% per generation.  Setting $\\\\tau$ slightly below this value ensures controller activation at collapse onset while avoiding false triggers during the initial decompression phase.\\n170:\\\\caption{Phase~0 pilot metrics across Generations~0--5 (pure synthetic, seed 42). Spectral metrics are computed on 1{,}000 probe samples; functional metrics on 5{,}000 held-out sequences. Best values in bold. $\\\\sigma_1$ values decrease during decompression and increase during collapse, with lower values indicating more isotropic representations.}\\n188:The functional metrics exhibit monotonic degradation from the first recursive generation through Generation~5, with no sign of stabilization.  Perplexity rises from 11.38 at Generation~1 to 24.59 at Generation~5, a 116\\\\% increase that reflects the model's accelerating inability to predict real-world text distributions.  The per-generation perplexity increment grows from 2.20 (Gen~1$\\\\rightarrow$2) to 2.67 (Gen~2$\\\\rightarrow$3) to 3.55 (Gen~3$\\\\rightarrow$4) to 4.79 (Gen~4$\\\\rightarrow$5), confirming super-linear degradation.  Distinct-4 declines from 0.6256 to 0.4630 ($-26.0\\\\%$ from Gen~1), indicating that the model's output vocabulary contracts as it trains on its own increasingly homogeneous samples.\\n194:A critical temporal asymmetry emerges from comparing the spectral and functional indicators.  All functional metrics (perplexity, Distinct-4, HellaSwag) begin deteriorating immediately at Generation~1, exhibiting monotonic decline from the first recursive iteration.  The spectral indicators, by contrast, continue to improve through Generation~2 before reversing at Generation~3.  Functional metrics (perplexity, HellaSwag) decline from Generation~1 onward, while spectral indicators peak at Generation~2 and reverse at Generation~3, revealing a two-generation detection delay when using spectral inflection as the warning signal.  This lag does not diminish the utility of spectral early-warning signals; rather, it highlights their complementary role.  Spectral metrics offer three practical advantages over functional indicators: (1)~they require no labeled evaluation set or external benchmark, (2)~spectral metrics require no held-out evaluation set or text generation, only a forward pass through a fixed probe set, and (3)~they provide a geometric interpretation of the collapse mechanism (loss of representational volume) rather than merely measuring downstream symptoms.  These properties make spectral signals suitable for closed-loop control, where evaluation cost and latency are critical constraints.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f884eb5d-6cad-41f9-995b-30f5ab5aaa18",
+  "uuid": "a8bc949a-7e46-4f0c-a1c7-2d95a489d015",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"6:Both are decoder-only transformers pretrained on the deduplicated Pile~\\\\\\\\cite{gao2020pile}.\\\\n87:(c) Spectral-guided & Closed-loop (\\\\\\\\S3.3) & Our method: proportional controller driven by normalized log-determinant decline, with $k{=}1.0$, $\\\\\\\\tau{=}0.005$, $\\\\\\\\alpha_{\\\\\\\\text{ema}}{=}0.5$, $r_{\\\\\\\\min}{=}0.20$, $r_{\\\\\\\\max}{=}0.80$. \\\\\\\\\\\\\\\\[3pt]\\\\n117:Controller parameters $k$ and $\\\\\\\\tau$ are calibrated from the Phase~0 spectral trajectory.  The threshold $\\\\\\\\tau = 0.005$ is calibrated from Phase~0 characterization data (Generations~3 through~5), where the mean normalized log-determinant decline rate is approximately 0.8\\\\\\\\% per generation.  Setting $\\\\\\\\tau$ slightly below this value ensures controller activation at collapse onset while avoiding false triggers during the initial decompression phase.\\\\n170:\\\\\\\\caption{Phase~0 pilot metrics across Generations~0--5 (pure synthetic, seed 42). Spectral metrics are computed on 1{,}000 probe samples; functional metrics on 5{,}000 held-out sequences. Best values in bold. $\\\\\\\\sigma_1$ values decrease during decompression and increase during collapse, with lower values indicating more isotropic representations.}\\\\n188:The functional metrics exhibit monotonic degradation from the first recursive generation through Generation~5, with no sign of stabilization.  Perplexity rises from 11.38 at Generation~1 to 24.59 at Generation~5, a 116\\\\\\\\% increase that reflects the model's accelerating inability to predict real-world text distributions.  The per-generation perplexity increment grows from 2.20 (Gen~1$\\\\\\\\rightarrow$2) to 2.67 (Gen~2$\\\\\\\\rightarrow$3) to 3.55 (Gen~3$\\\\\\\\rightarrow$4) to 4.79 (Gen~4$\\\\\\\\rightarrow$5), confirming super-linear degradation.  Distinct-4 declines from 0.6256 to 0.4630 ($-26.0\\\\\\\\%$ from Gen~1), indicating that the model's output vocabulary contracts as it trains on its own increasingly homogeneous samples.\\\\n194:A critical temporal asymmetry emerges from comparing the spectral and functional indicators.  All functional metrics (perplexity, Distinct-4, HellaSwag) begin deteriorating immediately at Generation~1, exhibiting monotonic decline from the first recursive iteration.  The spectral indicators, by contrast, continue to improve through Generation~2 before reversing at Generation~3.  Functional metrics (perplexity, HellaSwag) decline from Generation~1 onward, while spectral indicators peak at Generation~2 and reverse at Generation~3, revealing a two-generation detection delay when using spectral inflection as the warning signal.  This lag does not diminish the utility of spectral early-warning signals; rather, it highlights their complementary role.  Spectral metrics offer three practical advantages over functional indicators: (1)~they require no labeled evaluation set or external benchmark, (2)~spectral metrics require no held-out evaluation set or text generation, only a forward pass through a fixed probe set, and (3)~they provide a geometric interpretation of the collapse mechanism (loss of representational volume) rather than merely measuring downstream symptoms.  These properties make spectral signals suitable for closed-loop control, where evaluation cost and latency are critical constraints.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"6:Both are decoder-only transformers pretrained on the deduplicated Pile~\\\\cite{gao2020pile}.\\n87:(c) Spectral-guided & Closed-loop (\\\\S3.3) & Our method: proportional controller driven by normalized log-determinant decline, with $k{=}1.0$, $\\\\tau{=}0.005$, $\\\\alpha_{\\\\text{ema}}{=}0.5$, $r_{\\\\min}{=}0.20$, $r_{\\\\max}{=}0.80$. \\\\\\\\[3pt]\\n117:Controller parameters $k$ and $\\\\tau$ are calibrated from the Phase~0 spectral trajectory.  The threshold $\\\\tau = 0.005$ is calibrated from Phase~0 characterization data (Generations~3 through~5), where the mean normalized log-determinant decline rate is approximately 0.8\\\\% per generation.  Setting $\\\\tau$ slightly below this value ensures controller activation at collapse onset while avoiding false triggers during the initial decompression phase.\\n170:\\\\caption{Phase~0 pilot metrics across Generations~0--5 (pure synthetic, seed 42). Spectral metrics are computed on 1{,}000 probe samples; functional metrics on 5{,}000 held-out sequences. Best values in bold. $\\\\sigma_1$ values decrease during decompression and increase during collapse, with lower values indicating more isotropic representations.}\\n188:The functional metrics exhibit monotonic degradation from the first recursive generation through Generation~5, with no sign of stabilization.  Perplexity rises from 11.38 at Generation~1 to 24.59 at Generation~5, a 116\\\\% increase that reflects the model's accelerating inability to predict real-world text distributions.  The per-generation perplexity increment grows from 2.20 (Gen~1$\\\\rightarrow$2) to 2.67 (Gen~2$\\\\rightarrow$3) to 3.55 (Gen~3$\\\\rightarrow$4) to 4.79 (Gen~4$\\\\rightarrow$5), confirming super-linear degradation.  Distinct-4 declines from 0.6256 to 0.4630 ($-26.0\\\\%$ from Gen~1), indicating that the model's output vocabulary contracts as it trains on its own increasingly homogeneous samples.\\n194:A critical temporal asymmetry emerges from comparing the spectral and functional indicators.  All functional metrics (perplexity, Distinct-4, HellaSwag) begin deteriorating immediately at Generation~1, exhibiting monotonic decline from the first recursive iteration.  The spectral indicators, by contrast, continue to improve through Generation~2 before reversing at Generation~3.  Functional metrics (perplexity, HellaSwag) decline from Generation~1 onward, while spectral indicators peak at Generation~2 and reverse at Generation~3, revealing a two-generation detection delay when using spectral inflection as the warning signal.  This lag does not diminish the utility of spectral early-warning signals; rather, it highlights their complementary role.  Spectral metrics offer three practical advantages over functional indicators: (1)~they require no labeled evaluation set or external benchmark, (2)~spectral metrics require no held-out evaluation set or text generation, only a forward pass through a fixed probe set, and (3)~they provide a geometric interpretation of the collapse mechanism (loss of representational volume) rather than merely measuring downstream symptoms.  These properties make spectral signals suitable for closed-loop control, where evaluation cost and latency are critical constraints.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+All modifications are in place. Let me check the temporal lag paragraph more carefully. Looking at line 194, the old sentences before the replaced text ("All functional metrics...") are still there, and then the new replacement is added. Let me verify the full paragraph flow makes sense.
+
+The current line 194 reads:
+"A critical temporal asymmetry emerges from comparing the spectral and functional indicators.  All functional metrics (perplexity, Distinct-4, HellaSwag) begin deteriorating immediately at Generation~1, exhibiting monotonic decline from the first recursive iteration. 
+
+I see there's redundancy in the next section—the original text and the replacement both describe the same temporal pattern of functional metrics declining from Generation~1 while spectral indicators peak at Generation~2 before reversing. I need to consolidate this into a single, clearer statement about the detection lag without repeating the same observation twice. I see the redundancy now—I'm describing the spectral behavior twice, once in the original sentence and again in my replacement. I should consolidate by removing those earlier sentences and letting the new replacement stand as the single, comprehensive description of how the spectral and functional metrics diverge across generations.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f884eb5d-6cad-41f9-995b-30f5ab5aaa18",
+  "uuid": "e7d43996-0b83-4aca-887e-af625640e19e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RrfDMzFp6pWgkFDpngfzZh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1113,
+      "cache_read_input_tokens": 44291,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1113
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34_
+
+I see redundancy in the temporal lag paragraph. The preceding sentences and the new replacement overlap. Let me fix that.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f884eb5d-6cad-41f9-995b-30f5ab5aaa18",
+  "uuid": "8f8e7376-61fc-45ec-a8fe-d049304d2516",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RrfDMzFp6pWgkFDpngfzZh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1113,
+      "cache_read_input_tokens": 44291,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1113
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01TKkuBFtEaKz1K73ijxFYXP`</summary>
+
+```json
+{
+  "server": "rtx6000-diagprobe",
+  "command": "cat > /tmp/fix_redundancy.py << 'PYTHON'\nwith open('/root/spectral_collapse_ews/paper/experiments.tex', 'r') as f:\n    content = f.read()\n\n# The paragraph now has redundancy: sentences 2-3 say the same as the new replacement\nold_redundant = (\n    r\"All functional metrics (perplexity, Distinct-4, HellaSwag) begin deteriorating immediately at Generation~1, \"\n    r\"exhibiting monotonic decline from the first recursive iteration.  \"\n    r\"The spectral indicators, by contrast, continue to improve through Generation~2 before reversing at Generation~3.  \"\n    r\"Functional metrics (perplexity, HellaSwag) decline from Generation~1 onward, while spectral indicators \"\n    r\"peak at Generation~2 and reverse at Generation~3, revealing a two-generation detection delay when using \"\n    r\"spectral inflection as the warning signal.\"\n)\n\nnew_clean = (\n    r\"Functional metrics (perplexity, HellaSwag) decline from Generation~1 onward, while spectral indicators \"\n    r\"peak at Generation~2 and reverse at Generation~3, revealing a two-generation detection delay when using \"\n    r\"spectral inflection as the warning signal.\"\n)\n\nassert old_redundant in content, \"Redundancy fix: old string not found\"\ncontent = content.replace(old_redundant, new_clean)\n\nwith open('/root/spectral_collapse_ews/paper/experiments.tex', 'w') as f:\n    f.write(content)\n\nprint(\"Redundancy fixed.\")\nPYTHON\n/root/miniconda3/bin/python3.12 /tmp/fix_redundancy.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f884eb5d-6cad-41f9-995b-30f5ab5aaa18",
+  "uuid": "c6a55fa9-3694-430b-b28c-022f41be2144",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RrfDMzFp6pWgkFDpngfzZh",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1113,
+      "cache_read_input_tokens": 44291,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1113
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-17T06:38:02.683Z_
+
+<details><summary>↩ Tool result · `toolu_01TKkuBFtEaKz1K73ijxFYXP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Redundancy fixed.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f884eb5d-6cad-41f9-995b-30f5ab5aaa18",
+  "uuid": "bc6b35e2-83ca-436e-96be-6181239e3ae7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Redundancy fixed.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Redundancy fixed.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37_
+
+Now let me also check that advantage (1) and (2) don't have problematic overlap, and verify the full final paragraph.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f884eb5d-6cad-41f9-995b-30f5ab5aaa18",
+  "uuid": "b339a5f6-de79-4186-8ddb-c6234df2b44f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NB1TTEqBU5DrMgYKgasrtT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1253,
+      "cache_read_input_tokens": 45404,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1253
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_014aSehbpXnp9TbyCp7CZzEH`</summary>
+
+```json
+{
+  "server": "rtx6000-diagprobe",
+  "command": "sed -n '194p' /root/spectral_collapse_ews/paper/experiments.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f884eb5d-6cad-41f9-995b-30f5ab5aaa18",
+  "uuid": "35dd9173-a16d-40dd-98e3-71f4d0dabeec",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NB1TTEqBU5DrMgYKgasrtT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1253,
+      "cache_read_input_tokens": 45404,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1253
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-17T06:38:07.994Z_
+
+<details><summary>↩ Tool result · `toolu_014aSehbpXnp9TbyCp7CZzEH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"A critical temporal asymmetry emerges from comparing the spectral and functional indicators.  Functional metrics (perplexity, HellaSwag) decline from Generation~1 onward, while spectral indicators peak at Generation~2 and reverse at Generation~3, revealing a two-generation detection delay when using spectral inflection as the warning signal.  This lag does not diminish the utility of spectral early-warning signals; rather, it highlights their complementary role.  Spectral metrics offer three practical advantages over functional indicators: (1)~they require no labeled evaluation set or external benchmark, (2)~spectral metrics require no held-out evaluation set or text generation, only a forward pass through a fixed probe set, and (3)~they provide a geometric interpretation of the collapse mechanism (loss of representational volume) rather than merely measuring downstream symptoms.  These properties make spectral signals suitable for closed-loop control, where evaluation cost and latency are critical constraints.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f884eb5d-6cad-41f9-995b-30f5ab5aaa18",
+  "uuid": "ba24ad0c-a1ba-489b-b710-84591c60d48e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"A critical temporal asymmetry emerges from comparing the spectral and functional indicators.  Functional metrics (perplexity, HellaSwag) decline from Generation~1 onward, while spectral indicators peak at Generation~2 and reverse at Generation~3, revealing a two-generation detection delay when using spectral inflection as the warning signal.  This lag does not diminish the utility of spectral early-warning signals; rather, it highlights their complementary role.  Spectral metrics offer three practical advantages over functional indicators: (1)~they require no labeled evaluation set or external benchmark, (2)~spectral metrics require no held-out evaluation set or text generation, only a forward pass through a fixed probe set, and (3)~they provide a geometric interpretation of the collapse mechanism (loss of representational volume) rather than merely measuring downstream symptoms.  These properties make spectral signals suitable for closed-loop control, where evaluation cost and latency are critical constraints.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"A critical temporal asymmetry emerges from comparing the spectral and functional indicators.  Functional metrics (perplexity, HellaSwag) decline from Generation~1 onward, while spectral indicators peak at Generation~2 and reverse at Generation~3, revealing a two-generation detection delay when using spectral inflection as the warning signal.  This lag does not diminish the utility of spectral early-warning signals; rather, it highlights their complementary role.  Spectral metrics offer three practical advantages over functional indicators: (1)~they require no labeled evaluation set or external benchmark, (2)~spectral metrics require no held-out evaluation set or text generation, only a forward pass through a fixed probe set, and (3)~they provide a geometric interpretation of the collapse mechanism (loss of representational volume) rather than merely measuring downstream symptoms.  These properties make spectral signals suitable for closed-loop control, where evaluation cost and latency are critical constraints.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I notice that advantages (1) and (2) overlap. (1) says "they require no labeled evaluation set or external benchmark" and (2) says "spectral metrics require no held-out evaluation set or text generation, only a forward pass through a fixed probe set". These two are saying overlapping things. 
+
+The user's instruction says to replace (2) specifically. But (1) is now somewhat redundant with (2). However, they're not exactly the same:
+- (1) "no labeled evaluation set or external benchmark" - this is about not needing labels or benchmarks like HellaSwag
+
+
+- (2) "no held-out evaluation set or text generation, only a forward pass through a fixed probe set" - this emphasizes no held-out set (contrasts with ppl) and no text generation (contrasts with Distinct-4/HellaSwag)
+
+These overlap significantly. The user's task says to fix (2) and specifically notes that ppl needs a held-out set, while Distinct-4 and HellaSwag need text generation. So the new (2) is meant to capture both distinctions. This makes (1) somewhat redundant, so I should adjust (1) to be more distinct—maybe focusing on the "no external" aspect rather than overlapping with what (2) now covers. I'm noticing the pronoun inconsistency where (2) uses "spectral metrics require" while (1) and (3) use "they," but since that's exactly what was specified, I'll keep it. Let me do a final check for any formatting issues and make sure everything looks consistent.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f884eb5d-6cad-41f9-995b-30f5ab5aaa18",
+  "uuid": "4ad18a09-0883-464f-abba-370de2da8ac6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013szwENK4EbCRSLudVA1yuB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 439,
+      "cache_read_input_tokens": 46657,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 439
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41_
+
+Let me do a final check for any dashes or writing style issues in the modified sections.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f884eb5d-6cad-41f9-995b-30f5ab5aaa18",
+  "uuid": "81c87054-ef73-432c-9014-43df46403497",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013szwENK4EbCRSLudVA1yuB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 439,
+      "cache_read_input_tokens": 46657,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 439
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01VVawEayPhuB7a4mtAuhA8u`</summary>
+
+```json
+{
+  "server": "rtx6000-diagprobe",
+  "command": "grep -n \"—\\| – \" /root/spectral_collapse_ews/paper/experiments.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f884eb5d-6cad-41f9-995b-30f5ab5aaa18",
+  "uuid": "931aa469-a82d-42e1-826c-7f98b21702b8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013szwENK4EbCRSLudVA1yuB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 439,
+      "cache_read_input_tokens": 46657,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 439
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-17T06:38:30.200Z_
+
+<details><summary>↩ Tool result · `toolu_01VVawEayPhuB7a4mtAuhA8u`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'grep -n \\\"—\\\\\\\\| – \\\" /root/spectral_collapse_ews/paper/experiments.tex'\\n\\nExit code: 1\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f884eb5d-6cad-41f9-995b-30f5ab5aaa18",
+  "uuid": "e81ad5b1-57af-43c8-9e5c-69c5a18129b3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'grep -n \\\\\\\"—\\\\\\\\\\\\\\\\| – \\\\\\\" /root/spectral_collapse_ews/paper/experiments.tex'\\\\n\\\\nExit code: 1\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'grep -n \\\"—\\\\\\\\| – \\\" /root/spectral_collapse_ews/paper/experiments.tex'\\n\\nExit code: 1\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01EXM6kUanXz7JDYqpQiXsuU`</summary>
+
+```json
+{
+  "server": "rtx6000-diagprobe",
+  "command": "sed -n '85,92p' /root/spectral_collapse_ews/paper/experiments.tex && echo \"---\" && sed -n '115,120p' /root/spectral_collapse_ews/paper/experiments.tex && echo \"---\" && sed -n '168,172p' /root/spectral_collapse_ews/paper/experiments.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f884eb5d-6cad-41f9-995b-30f5ab5aaa18",
+  "uuid": "6b21e9d9-c3f0-473b-94ae-956c579b874e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MQYjZV5EyAf2YcbxeCuLMR",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1115,
+      "cache_read_input_tokens": 47096,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1115
+      },
+      "output_tokens": 64,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-17T06:38:36.479Z_
+
+<details><summary>↩ Tool result · `toolu_01EXM6kUanXz7JDYqpQiXsuU`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"(a) Pure synthetic & $r_t = 0 \\\\;\\\\forall\\\\, t$ & Collapse reference with no real-data intervention (lower bound). \\\\\\\\[3pt]\\n(b) Fixed uniform & $r_t = 0.50 \\\\;\\\\forall\\\\, t$ & Static baseline distributing budget equally across generations. \\\\\\\\[3pt]\\n(c) Spectral-guided & Closed-loop (\\\\S3.3) & Our method: proportional controller driven by normalized log-determinant decline, with $k{=}1.0$, $\\\\tau{=}0.005$, $\\\\alpha_{\\\\text{ema}}{=}0.5$, $r_{\\\\min}{=}0.20$, $r_{\\\\max}{=}0.80$. \\\\\\\\[3pt]\\n(d) Linear-increasing & $r_t = r_{\\\\min} + (r_{\\\\max} - r_{\\\\min})\\\\frac{t{-}1}{T{-}1}$ & Budget-matched open-loop heuristic; front-loads synthetic, back-loads real data, no feedback. \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}\\n\\n\\\\vspace{2pt}\\n---\\n\\\\end{enumerate}\\nFailure on any criterion aborts the experiment and triggers hyperparameter revision.\\nController parameters $k$ and $\\\\tau$ are calibrated from the Phase~0 spectral trajectory.  The threshold $\\\\tau = 0.005$ is calibrated from Phase~0 characterization data (Generations~3 through~5), where the mean normalized log-determinant decline rate is approximately 0.8\\\\% per generation.  Setting $\\\\tau$ slightly below this value ensures controller activation at collapse onset while avoiding false triggers during the initial decompression phase.\\n\\n\\\\paragraph{Pre-registered hypotheses.}\\nWe pre-register two primary comparisons at Generation~$T{=}10$:\\n---\\n\\\\begin{table}[t]\\n\\\\centering\\n\\\\caption{Phase~0 pilot metrics across Generations~0--5 (pure synthetic, seed 42). Spectral metrics are computed on 1{,}000 probe samples; functional metrics on 5{,}000 held-out sequences. Best values in bold. $\\\\sigma_1$ values decrease during decompression and increase during collapse, with lower values indicating more isotropic representations.}\\n\\\\label{tab:phase0_metrics}\\n\\\\small\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.99}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f884eb5d-6cad-41f9-995b-30f5ab5aaa18",
+  "uuid": "23de23ef-bcd2-4ab0-b717-0acf00dfc082",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"(a) Pure synthetic & $r_t = 0 \\\\\\\\;\\\\\\\\forall\\\\\\\\, t$ & Collapse reference with no real-data intervention (lower bound). \\\\\\\\\\\\\\\\[3pt]\\\\n(b) Fixed uniform & $r_t = 0.50 \\\\\\\\;\\\\\\\\forall\\\\\\\\, t$ & Static baseline distributing budget equally across generations. \\\\\\\\\\\\\\\\[3pt]\\\\n(c) Spectral-guided & Closed-loop (\\\\\\\\S3.3) & Our method: proportional controller driven by normalized log-determinant decline, with $k{=}1.0$, $\\\\\\\\tau{=}0.005$, $\\\\\\\\alpha_{\\\\\\\\text{ema}}{=}0.5$, $r_{\\\\\\\\min}{=}0.20$, $r_{\\\\\\\\max}{=}0.80$. \\\\\\\\\\\\\\\\[3pt]\\\\n(d) Linear-increasing & $r_t = r_{\\\\\\\\min} + (r_{\\\\\\\\max} - r_{\\\\\\\\min})\\\\\\\\frac{t{-}1}{T{-}1}$ & Budget-matched open-loop heuristic; front-loads synthetic, back-loads real data, no feedback. \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}\\\\n\\\\n\\\\\\\\vspace{2pt}\\\\n---\\\\n\\\\\\\\end{enumerate}\\\\nFailure on any criterion aborts the experiment and triggers hyperparameter revision.\\\\nController parameters $k$ and $\\\\\\\\tau$ are calibrated from the Phase~0 spectral trajectory.  The threshold $\\\\\\\\tau = 0.005$ is calibrated from Phase~0 characterization data (Generations~3 through~5), where the mean normalized log-determinant decline rate is approximately 0.8\\\\\\\\% per generation.  Setting $\\\\\\\\tau$ slightly below this value ensures controller activation at collapse onset while avoiding false triggers during the initial decompression phase.\\\\n\\\\n\\\\\\\\paragraph{Pre-registered hypotheses.}\\\\nWe pre-register two primary comparisons at Generation~$T{=}10$:\\\\n---\\\\n\\\\\\\\begin{table}[t]\\\\n\\\\\\\\centering\\\\n\\\\\\\\caption{Phase~0 pilot metrics across Generations~0--5 (pure synthetic, seed 42). Spectral metrics are computed on 1{,}000 probe samples; functional metrics on 5{,}000 held-out sequences. Best values in bold. $\\\\\\\\sigma_1$ values decrease during decompression and increase during collapse, with lower values indicating more isotropic representations.}\\\\n\\\\\\\\label{tab:phase0_metrics}\\\\n\\\\\\\\small\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.99}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"(a) Pure synthetic & $r_t = 0 \\\\;\\\\forall\\\\, t$ & Collapse reference with no real-data intervention (lower bound). \\\\\\\\[3pt]\\n(b) Fixed uniform & $r_t = 0.50 \\\\;\\\\forall\\\\, t$ & Static baseline distributing budget equally across generations. \\\\\\\\[3pt]\\n(c) Spectral-guided & Closed-loop (\\\\S3.3) & Our method: proportional controller driven by normalized log-determinant decline, with $k{=}1.0$, $\\\\tau{=}0.005$, $\\\\alpha_{\\\\text{ema}}{=}0.5$, $r_{\\\\min}{=}0.20$, $r_{\\\\max}{=}0.80$. \\\\\\\\[3pt]\\n(d) Linear-increasing & $r_t = r_{\\\\min} + (r_{\\\\max} - r_{\\\\min})\\\\frac{t{-}1}{T{-}1}$ & Budget-matched open-loop heuristic; front-loads synthetic, back-loads real data, no feedback. \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}\\n\\n\\\\vspace{2pt}\\n---\\n\\\\end{enumerate}\\nFailure on any criterion aborts the experiment and triggers hyperparameter revision.\\nController parameters $k$ and $\\\\tau$ are calibrated from the Phase~0 spectral trajectory.  The threshold $\\\\tau = 0.005$ is calibrated from Phase~0 characterization data (Generations~3 through~5), where the mean normalized log-determinant decline rate is approximately 0.8\\\\% per generation.  Setting $\\\\tau$ slightly below this value ensures controller activation at collapse onset while avoiding false triggers during the initial decompression phase.\\n\\n\\\\paragraph{Pre-registered hypotheses.}\\nWe pre-register two primary comparisons at Generation~$T{=}10$:\\n---\\n\\\\begin{table}[t]\\n\\\\centering\\n\\\\caption{Phase~0 pilot metrics across Generations~0--5 (pure synthetic, seed 42). Spectral metrics are computed on 1{,}000 probe samples; functional metrics on 5{,}000 held-out sequences. Best values in bold. $\\\\sigma_1$ values decrease during decompression and increase during collapse, with lower values indicating more isotropic representations.}\\n\\\\label{tab:phase0_metrics}\\n\\\\small\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.99}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me also verify the footnote was properly removed (check the vspace area).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f884eb5d-6cad-41f9-995b-30f5ab5aaa18",
+  "uuid": "1bd6e9be-2e86-4673-b51d-656d1fa41ed7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BArBudDH6TPG5paYx567ak",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 902,
+      "cache_read_input_tokens": 48211,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 902
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01VGuJLZfQKWErU1Xj3R6MuF`</summary>
+
+```json
+{
+  "server": "rtx6000-diagprobe",
+  "command": "sed -n '90,98p' /root/spectral_collapse_ews/paper/experiments.tex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f884eb5d-6cad-41f9-995b-30f5ab5aaa18",
+  "uuid": "f89fe7d7-8a7a-40fe-9169-f822f77c7e84",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BArBudDH6TPG5paYx567ak",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 902,
+      "cache_read_input_tokens": 48211,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 902
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-17T06:38:41.316Z_
+
+<details><summary>↩ Tool result · `toolu_01VGuJLZfQKWErU1Xj3R6MuF`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\\end{tabular}\\n\\n\\\\vspace{2pt}\\n\\n\\\\end{table}\\n\\nConditions (b), (c), and (d) consume exactly the same total real data ($B = 5.0$); only the temporal distribution differs.\\nThis iso-budget design isolates the effect of \\\\emph{when} real data is introduced from \\\\emph{how much} is used~\\\\cite{garg2025, data_mixing_laws2024}.\\nCondition~(d) interpolates linearly from $r_1 = r_{\\\\min} = 0.20$ to $r_T = r_{\\\\max} = 0.80$; the resulting sum $\\\\sum_t r_t = 5.0$ matches the budget exactly.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "f884eb5d-6cad-41f9-995b-30f5ab5aaa18",
+  "uuid": "61183470-3e37-4ce1-8f46-ab0160412d95",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\\end{tabular}\\\\n\\\\n\\\\\\\\vspace{2pt}\\\\n\\\\n\\\\\\\\end{table}\\\\n\\\\nConditions (b), (c), and (d) consume exactly the same total real data ($B = 5.0$); only the temporal distribution differs.\\\\nThis iso-budget design isolates the effect of \\\\\\\\emph{when} real data is introduced from \\\\\\\\emph{how much} is used~\\\\\\\\cite{garg2025, data_mixing_laws2024}.\\\\nCondition~(d) interpolates linearly from $r_1 = r_{\\\\\\\\min} = 0.20$ to $r_T = r_{\\\\\\\\max} = 0.80$; the resulting sum $\\\\\\\\sum_t r_t = 5.0$ matches the budget exactly.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\\end{tabular}\\n\\n\\\\vspace{2pt}\\n\\n\\\\end{table}\\n\\nConditions (b), (c), and (d) consume exactly the same total real data ($B = 5.0$); only the temporal distribution differs.\\nThis iso-budget design isolates the effect of \\\\emph{when} real data is introduced from \\\\emph{how much} is used~\\\\cite{garg2025, data_mixing_laws2024}.\\nCondition~(d) interpolates linearly from $r_1 = r_{\\\\min} = 0.20$ to $r_T = r_{\\\\max} = 0.80$; the resulting sum $\\\\sum_t r_t = 5.0$ matches the budget exactly.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 49_
+
+<details><summary>Logged reasoning block</summary>
+
+````text
+The footnote was removed, leaving just `\vspace{2pt}` and an empty line. That's fine - it won't cause any visible issue in the PDF.
+
+Let me also quickly check that the `\vspace{2pt}` line between the removed footnote isn't causing a visually empty line. Actually looking at it:
+```
+\end{tabular}
+
+\vspace{2pt}
+
+\end{table}
+```
+
+This is fine. The `\vspace{2pt}` was originally there to separate the footnote from the table. With the footnote gone, it just adds a tiny bit of space before `\end{table}`, which is harmless. I could remove it but it's negligible.
+
+
+Everything looks good with these changes.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f884eb5d-6cad-41f9-995b-30f5ab5aaa18",
+  "uuid": "e09a9ec0-d12b-442e-9774-123b76e7b823",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dr4hfkocwD7NwUdSQdz9fP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 428,
+      "cache_read_input_tokens": 49113,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 428
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 50_
+
+所有修改已完成。逐项总结：
+
+**(a) ppl increment 精确数值** — line 188: `1.83` → `2.20`，`\to` → `\rightarrow`（匹配实际数据 13.58 - 11.38 = 2.20）
+
+**(b) Temporal lag 描述** — line 194: 删除了原来的"lags...by one generation"及冗余前置句，替换为指定的 two-generation detection delay 表述
+
+**(c) σ₁ caption 说明** — line 170: table caption 末尾增加 "$\sigma_1$ values decrease during decompression and increase during collapse, with lower values indicating more isotropic representations."
+
+**(d) Advantage (2)** — line 194: 从"can be computed from a single forward pass during training without additional generation"改为"spectral metrics require no held-out evaluation set or text generation, only a forward pass through a fixed probe set"
+
+**(4) Controller 参数更新** — 三处变更:
+- line 87: τ=0.02 → τ=0.005，信号改为 "normalized log-determinant decline"，移除了 `†` 标记
+- line 92: 删除了 "†To be calibrated from Phase~0 pilot." 脚注
+- line 117: 原 calibration 句后追加了阈值来源说明段落（Phase~0 Gen 3-5, 0.8%/gen decline rate）
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "f884eb5d-6cad-41f9-995b-30f5ab5aaa18",
+  "uuid": "48b8caca-ca3f-4c04-af0b-12e38c62321d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dr4hfkocwD7NwUdSQdz9fP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 428,
+      "cache_read_input_tokens": 49113,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 428
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 51_
+
+所有修改已完成。逐项总结：
+
+**(a) ppl increment 精确数值** — line 188: `1.83` → `2.20`，`\to` → `\rightarrow`（匹配实际数据 13.58 - 11.38 = 2.20）
+
+**(b) Temporal lag 描述** — line 194: 删除了原来的"lags...by one generation"及冗余前置句，替换为指定的 two-generation detection delay 表述
+
+**(c) σ₁ caption 说明** — line 170: table caption 末尾增加 "$\sigma_1$ values decrease during decompression and increase during collapse, with lower values indicating more isotropic representations."
+
+**(d) Advantage (2)** — line 194: 从"can be computed from a single forward pass during training without additional generation"改为"spectral metrics require no held-out evaluation set or text generation, only a forward pass through a fixed probe set"
+
+**(4) Controller 参数更新** — 三处变更:
+- line 87: τ=0.02 → τ=0.005，信号改为 "normalized log-determinant decline"，移除了 `†` 标记
+- line 92: 删除了 "†To be calibrated from Phase~0 pilot." 脚注
+- line 117: 原 calibration 句后追加了阈值来源说明段落（Phase~0 Gen 3-5, 0.8%/gen decline rate）
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 191887,
+  "duration_api_ms": 183705,
+  "num_turns": 16,
+  "stop_reason": "end_turn",
+  "session_id": "f884eb5d-6cad-41f9-995b-30f5ab5aaa18",
+  "total_cost_usd": 0.7690465000000001,
+  "usage": {
+    "input_tokens": 20,
+    "cache_creation_input_tokens": 37700,
+    "cache_read_input_tokens": 599439,
+    "output_tokens": 9283,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 37700,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 583,
+        "cache_read_input_tokens": 49113,
+        "cache_creation_input_tokens": 428,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 428
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1427,
+      "outputTokens": 20,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0015270000000000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 20,
+      "outputTokens": 9283,
+      "cacheReadInputTokens": 599439,
+      "cacheCreationInputTokens": 37700,
+      "webSearchRequests": 0,
+      "costUSD": 0.7675195,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "bc759faa-8719-48fa-969e-9f59720c13db"
+}
+```
+
+</details>
+
+---

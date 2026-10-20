@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f1485d881d6aba7f26f9",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "paper d010 abstract update",
+  "task_key": "worker_paper_d010_abstract_update_20260517T072922",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_d010_abstract_update_20260517T072922_result.json",
+    "occurrence": 1,
+    "bytes": 1906,
+    "sha256": "bb65bdfd98ddf84bd42837383f5999884d8085b4db9f30e1204e083d6c1614e9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "无破折号、无 -ing 短语问题。\n\n---\n\n### 修改总结\n\n**Line 4 (before):**\n> We provide, to our knowledge, the first spectral-level characterization of how effective rank evolves across recursive generations, derive an online early warning signal (EWS) from its normalized decline rate, and propose, to our knowledge, the first closed-loop adaptive controller that redistributes a fixed real-data budget temporally based on spectral health feedback.\n\n**Lines 4-5 (after):**\n> We provide, to our knowledge, the first spectral-level characterization of how effective rank evolves across recursive generations, and propose a closed-loop adaptive controller that redistributes a fixed real-data budget temporally based on spectral health feedback.\n> Concretely, we define spectral log-volume (SLV), the log-determinant of the representation covariance, as a continuous collapse indicator and derive an online early warning signal (EWS) from its normalized decline rate.\n\n**Line 5 (before):**\n> Our controller applies reactive boosts when collapse pressure exceeds a calibrated threshold, while guaranteeing that total real-data consumption equals that of a uniform baseline.\n\n**Line 6 (after):**\n> Our controller applies reactive boosts when the SLV decline rate exceeds a calibrated threshold, while total real-data consumption equals that of a uniform baseline.\n\n**关键变更：**\n- Controller 信号从隐含的 effective rank decline rate 改为明确的 SLV (spectral log-volume) decline rate\n- 新增 Line 5 显式定义 SLV 及其与 EWS 的关系\n- Effective rank 保留为 collapse 特征化指标（Line 2, 4），不再作为 controller 信号\n- 删除重复的 \"to our knowledge, the first\"（EWS 和 controller 合并为一处声明）\n- \"collapse pressure\" 改为更精确的 \"SLV decline rate\"\n- \"guaranteeing that\" 简化为 \"while\""
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-d010-abstract-update.md"
+}

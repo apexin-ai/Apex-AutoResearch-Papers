@@ -1,0 +1,116 @@
+
+\section{Alternative EWS Indicator Details}
+\label{app:ews_details}
+
+Table~\ref{tab:ews_comparison} provides full tabular data for the eight alternative EWS indicators compared in \S\ref{subsec:alt_ews}.
+
+\begin{table}[H]
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}llcccc@{}}
+\toprule
+Indicator & Source & Peak & Mono. & Rel $\Delta$ & Rev. \\
+\midrule
+SLV         & emb-SVD   & Gen 2 & \checkmark & 11.8\% & \checkmark \\
+RankMe      & emb-SVD   & Gen 2 & \checkmark &  4.7\% & \checkmark \\
+Token ent.  & logit     & ---   & \checkmark &  9.6\% & \checkmark \\
+Stable rank & attn wt.  & ---   & \checkmark & 14.0\% & \checkmark \\
+Spec.\ norm & attn wt.  & ---   & \checkmark &  8.0\% & \checkmark \\
+Isotropy    & emb       & ---   & $\times$\,(6) & 75\%   & \checkmark \\
+Raw PPL     & eval      & ---   & \checkmark & 704\%  & $\times$ \\
+PPL growth  & ppl       & ---   & $\sim$\,(1) &  ---   & \checkmark \\
+\bottomrule
+\end{tabular}
+\caption{Alternative early warning indicators under pure-synthetic training ($r{=}0$, seed 42, Pythia-410M, 10 gen). \textbf{Peak}: generation at which the indicator reverses (--- = monotonic from Gen~0). \textbf{Mono.}: post-peak monotonicity (\checkmark\ = yes; number = violations). \textbf{Rel $\Delta$}: magnitude of total relative change; for peaked indicators (SLV, RankMe), computed as $|v_{10} - v_{\text{peak}}|/|v_{\text{peak}}|$; for monotonic indicators, $|v_{10} - v_0|/|v_0|$. \textbf{Rev.}: direction reversal under $r{=}0.5$ mixing (\checkmark\ = reversed). Note: Raw PPL Rel~$\Delta$ is 704\% for seed~42; the main text reports 643\% (3-seed mean).}
+\label{tab:ews_comparison}
+\end{table}
+
+\section{Per-Generation Cross-Seed Variance}
+\label{app:pergen_variance}
+
+Table~\ref{tab:pergen_variance} reports all six metrics at every generation under pure-synthetic training ($r{=}0$), with mean and sample standard deviation across three seeds (42, 43, 44).
+Spectral metrics ($r_{\text{eff}}$, SLV, $\sigma_1$) exhibit low cross-seed variance throughout the trajectory (SLV coefficient of variation $< 1.3\%$ at all generations); spectral collapse follows a deterministic geometric trajectory.
+In contrast, D-4 variance increases sharply after Gen~5, reaching a coefficient of variation of 46\% at Gen~10, consistent with the stochastic nature of n-gram diversity under progressive mode collapse.
+
+\begin{table*}[!htb]
+\centering
+\small
+\caption{Per-generation metrics under pure-synthetic training ($r{=}0$, Pythia-410M, mean$_{\pm\text{s.d.}}$ across seeds 42, 43, 44). Gen~0 shares a single pretrained checkpoint; D-4 variance at Gen~0 reflects generation sampling. Bold marks the spectral peak.}
+\label{tab:pergen_variance}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}ccccccc@{}}
+\toprule
+Gen & $r_{\text{eff}}$ & SLV & PPL & HeSw & D-4 & $\sigma_1$ \\
+\midrule
+ 0 & 417.5$_{\pm0.0}$ & 2366.7$_{\pm0.0}$ & 9.55$_{\pm0.00}$ & .413$_{\pm.000}$ & .738$_{\pm.006}$ & 1942.8$_{\pm0.0}$ \\
+ 1 & 491.1$_{\pm0.6}$ & 2462.3$_{\pm2.7}$ & 11.37$_{\pm0.01}$ & .390$_{\pm.001}$ & .609$_{\pm.014}$ & 808.9$_{\pm5.4}$ \\
+ 2 & \textbf{496.2}$_{\pm0.3}$ & \textbf{2468.0}$_{\pm1.7}$ & 13.56$_{\pm0.02}$ & .380$_{\pm.004}$ & .505$_{\pm.011}$ & 718.7$_{\pm7.0}$ \\
+ 3 & 493.6$_{\pm0.4}$ & 2440.4$_{\pm2.0}$ & 16.23$_{\pm0.02}$ & .367$_{\pm.005}$ & .465$_{\pm.033}$ & 708.7$_{\pm7.5}$ \\
+ 4 & 487.8$_{\pm1.9}$ & 2406.0$_{\pm2.0}$ & 19.90$_{\pm0.09}$ & .354$_{\pm.003}$ & .419$_{\pm.047}$ & 722.9$_{\pm6.9}$ \\
+ 5 & 479.8$_{\pm0.5}$ & 2366.0$_{\pm3.8}$ & 24.50$_{\pm0.17}$ & .341$_{\pm.003}$ & .412$_{\pm.053}$ & 749.2$_{\pm7.1}$ \\
+ 6 & 472.4$_{\pm0.6}$ & 2326.1$_{\pm8.6}$ & 30.40$_{\pm0.45}$ & .329$_{\pm.004}$ & .402$_{\pm.067}$ & 764.6$_{\pm5.7}$ \\
+ 7 & 464.1$_{\pm0.2}$ & 2293.2$_{\pm10.2}$ & 37.82$_{\pm0.94}$ & .319$_{\pm.000}$ & .375$_{\pm.082}$ & 788.4$_{\pm4.0}$ \\
+ 8 & 455.8$_{\pm1.1}$ & 2246.1$_{\pm7.4}$ & 46.90$_{\pm2.41}$ & .311$_{\pm.005}$ & .337$_{\pm.137}$ & 806.4$_{\pm8.0}$ \\
+ 9 & 446.6$_{\pm2.1}$ & 2210.4$_{\pm23.1}$ & 58.56$_{\pm4.52}$ & .301$_{\pm.003}$ & .316$_{\pm.148}$ & 841.1$_{\pm23.6}$ \\
+10 & 438.1$_{\pm4.8}$ & 2181.4$_{\pm28.3}$ & 70.99$_{\pm5.56}$ & .296$_{\pm.006}$ & .324$_{\pm.150}$ & 874.6$_{\pm44.2}$ \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+Table~\ref{tab:pergen_variance_r02} provides the same breakdown under transitional mixing ($r{=}0.2$), where D-4 variance is the dominant source of cross-seed disagreement.
+
+\begin{table*}[!htb]
+\centering
+\small
+\caption{Per-generation metrics under transitional mixing ($r{=}0.2$, Pythia-410M, mean$_{\pm\text{s.d.}}$ across seeds 42, 43, 44). Gen~0 shares a single pretrained checkpoint; D-4 variance at Gen~0 reflects generation sampling. HellaSwag was not evaluated for mixing experiments.}
+\label{tab:pergen_variance_r02}
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{@{}cccccc@{}}
+\toprule
+Gen & $r_{\text{eff}}$ & SLV & PPL & D-4 & $\sigma_1$ \\
+\midrule
+ 0 & 417.5$_{\pm0.0}$ & 2366.7$_{\pm0.0}$ & 9.55$_{\pm0.00}$ & .738$_{\pm.006}$ & 1942.8$_{\pm0.0}$ \\
+ 1 & 476.2$_{\pm0.8}$ & 2367.4$_{\pm2.1}$ & 10.28$_{\pm0.00}$ & .671$_{\pm.015}$ & 961.8$_{\pm1.1}$ \\
+ 2 & 481.7$_{\pm1.4}$ & 2359.4$_{\pm1.5}$ & 10.74$_{\pm0.01}$ & .519$_{\pm.037}$ & 879.2$_{\pm10.3}$ \\
+ 3 & 486.7$_{\pm0.3}$ & 2364.6$_{\pm1.8}$ & 11.14$_{\pm0.01}$ & .471$_{\pm.006}$ & 811.9$_{\pm9.6}$ \\
+ 4 & 489.6$_{\pm0.6}$ & 2377.9$_{\pm1.2}$ & 11.49$_{\pm0.00}$ & .429$_{\pm.026}$ & 779.2$_{\pm9.2}$ \\
+ 5 & 492.6$_{\pm0.5}$ & 2396.8$_{\pm1.8}$ & 11.83$_{\pm0.00}$ & .420$_{\pm.037}$ & 748.8$_{\pm9.3}$ \\
+ 6 & 495.5$_{\pm1.2}$ & 2417.7$_{\pm10.5}$ & 12.17$_{\pm0.02}$ & .413$_{\pm.070}$ & 749.7$_{\pm22.5}$ \\
+ 7 & 496.7$_{\pm1.2}$ & 2429.0$_{\pm6.4}$ & 12.49$_{\pm0.05}$ & .379$_{\pm.096}$ & 750.9$_{\pm30.6}$ \\
+ 8 & 499.8$_{\pm2.3}$ & 2442.4$_{\pm10.3}$ & 12.82$_{\pm0.12}$ & .365$_{\pm.119}$ & 753.9$_{\pm23.4}$ \\
+ 9 & 503.8$_{\pm1.2}$ & 2456.0$_{\pm6.3}$ & 13.18$_{\pm0.18}$ & .349$_{\pm.143}$ & 738.1$_{\pm37.6}$ \\
+10 & 508.1$_{\pm2.8}$ & 2467.2$_{\pm12.0}$ & 13.54$_{\pm0.25}$ & .324$_{\pm.171}$ & 722.7$_{\pm26.6}$ \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\section{Controller Signal Sensitivity to EMA Smoothing Parameter}
+\label{app:alpha_robustness}
+
+\begin{table}[H]
+\centering
+\small
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{@{}cccccc@{}}
+\toprule
+$\alpha$ & $r{=}0$ & $r{=}0.2$ & $r{=}0.25$ & $r{=}0.3$ & $r{=}0.5$ \\
+\midrule
+0.3 & .0141 & .0009 & .0003 & 0 & 0 \\
+0.5 & .0171 & .0016 & .0005 & 0 & 0 \\
+0.7 & .0183 & .0023 & .0005 & 0 & 0 \\
+\bottomrule
+\end{tabular}
+\caption{Normalized maximum controller signal magnitude ($\max|\Delta\tilde{S}_t| / \tilde{S}_t$, $t \geq 2$) across mixing ratios and EMA smoothing parameters. The critical threshold $r_{\text{crit}} \in (0.25, 0.3]$ is invariant to $\alpha$: signal is exactly zero for $r \geq 0.3$ at all three smoothing values, the phase boundary is a structural property of the trajectory rather than an artifact of smoothing.}
+\label{tab:alpha_robustness}
+\end{table}
+
+\section{Training and Compute Details}
+\label{app:training_details}
+
+Fine-tuning uses AdamW (lr $5 \times 10^{-5}$, weight decay 0.01, linear warmup 5\%, effective batch size 32) for one epoch per generation, with gradient clipping at max norm 1.0.
+Synthetic text is generated with temperature 1.0, top-$k{=}50$, max length 512.
+All experiments run on NVIDIA RTX PRO 6000 GPUs (96\,GB); each 10-generation pipeline requires 15--26 single-GPU hours depending on the mixing ratio, totaling approximately 300 GPU-hours across all reported experiments.
+
+\section{Use of AI Assistance}
+We used Claude for coding, code drafting, debugging, and language polishing.

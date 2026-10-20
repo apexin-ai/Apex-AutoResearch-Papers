@@ -1,0 +1,45 @@
+{
+  "exp_id": "exp_012",
+  "project": "spectral_collapse_ews",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T03:03:46.429Z",
+    "updated_at": "2026-05-20T22:18:45.827Z",
+    "hypothesis": "r=0.3 seed43 reproduces the Type II trajectory (monotonic SLV rise, no collapse) observed in exp_008 (seed42), confirming r=0.3 is robustly above r_crit across random seeds. Combined with exp_010 (r=0 seed43), this completes cross-seed validation of the phase diagram at both extremes (collapse vs. no-collapse).",
+    "parent": "exp_008",
+    "spec": {
+      "command": "bash /root/spectral_collapse_ews/scripts/launch_mixed_r0.3_seed43.sh 0",
+      "server": "rtx6000-diagprobe",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "385711",
+      "log_path": "~/runs/spectral_collapse_ews/exp_012.log",
+      "submitted_at": "2026-05-20T03:03:54.653Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "description": "Phase 2: Fixed mix r=0.3 seed 43 (30% real + 70% synthetic), 10 generations. Cross-seed replication of exp_008.",
+      "tmux_session": "exp_012",
+      "model_name": "EleutherAI/pythia-410m-deduped",
+      "seed": 43,
+      "data_path": "/root/spectral_collapse_ews/data/",
+      "data_count": "50K real pool, total_per_gen=50K (15K real + 35K synthetic per gen)",
+      "generations": 10,
+      "condition": "fixed_mix",
+      "real_ratio": 0.3,
+      "checkpoint_dir": "/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r03_seed43/",
+      "results_file": "/root/spectral_collapse_ews/results/phase1_fixed_mix_r03_seed43_results.json",
+      "checkpoint_source": "EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)",
+      "eval_data": "/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-20T22:18:45.707Z"
+    }
+  },
+  "timestamp": "2026-05-20T22:18:45.882257+00:00",
+  "trigger": "update_registry"
+}

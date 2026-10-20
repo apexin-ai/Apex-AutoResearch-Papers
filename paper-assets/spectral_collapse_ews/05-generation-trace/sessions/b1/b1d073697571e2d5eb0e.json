@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b1d073697571e2d5eb0e",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "paper fix gonogo tolerance",
+  "task_key": "worker_paper_fix_gonogo_tolerance_20260516T140356",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fix_gonogo_tolerance_20260516T140356_result.json",
+    "occurrence": 1,
+    "bytes": 186,
+    "sha256": "975077b4d7f8178dfc73d98a9c44137253ebcf64d51942bbbab76e0f5de30375"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。第 112 行现在读作：\n\n```\n\\item Monotonically decreasing effective rank across Generations~1--10 (allowing at most one non-monotone generation).\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fix-gonogo-tolerance.md"
+}

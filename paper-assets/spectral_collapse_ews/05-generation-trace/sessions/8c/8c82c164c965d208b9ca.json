@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8c82c164c965d208b9ca",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "code resume script exp007 10gen",
+  "task_key": "worker_code_resume-script-exp007-10gen_20260518T195100",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_resume-script-exp007-10gen_20260518T195100_result.json",
+    "occurrence": 1,
+    "bytes": 689,
+    "sha256": "aee8a2b15255c77c64458b172e2e96bd9501060c178fc22b8131e6d1acb7a9ef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已创建并 chmod +x。\n\n验证结果：\n- **`--start_gen`** 参数已支持（`run_phase1.py` 原生支持，描述：\"Generation to resume from, requires checkpoint and results JSON\"）\n- **Gen 5 checkpoint** 存在：`/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r02_seed42/gen_5/`（含 model.safetensors、config.json 等完整文件）\n- **脚本参数** 与 exp_007 原始命令一致（condition=fixed_mix, seed=42, signal=log_det, tau=0.002, k=0, signal_mode=per_gen, real_ratio=0.2），`--generations` 改为 10，新增 `--start_gen 6`\n- 路径：`/root/spectral_collapse_ews/scripts/resume_fixed_mix_r02_seed42_gen5to10.sh`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-resume-script-exp007-10gen.md"
+}

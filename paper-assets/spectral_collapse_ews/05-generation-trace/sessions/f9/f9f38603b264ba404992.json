@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "f9f38603b264ba404992",
+  "project": "spectral_collapse_ews",
+  "kind": "worker",
+  "title": "ops check and submit exp026",
+  "task_key": "worker_ops_check-and-submit-exp026_20260525T231603",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-and-submit-exp026_20260525T231603.log",
+    "occurrence": 1,
+    "bytes": 1132024,
+    "sha256": "a1272b2acb68345be45222c77d276ee33363dfbae58d608972623f57566eecdf"
+  },
+  "statistics": {
+    "messages": 861,
+    "user_turns": 0,
+    "tool_calls": 405,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 47,
+      "tool_call": 405,
+      "tool_result": 405,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 861,
+      "chunks": [
+        {
+          "path": "f9f38603b264ba404992-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "f9f38603b264ba404992-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "f9f38603b264ba404992-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "f9f38603b264ba404992-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "f9f38603b264ba404992-part-0005.json",
+          "message_count": 141
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-check-and-submit-exp026.md"
+}

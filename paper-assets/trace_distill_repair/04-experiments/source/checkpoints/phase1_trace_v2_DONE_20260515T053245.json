@@ -1,0 +1,52 @@
+{
+  "exp_id": "phase1_trace_v2",
+  "project": "trace_distill_repair",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T05:14:46.540Z",
+    "updated_at": "2026-05-15T05:32:45.216Z",
+    "hypothesis": "用修复后 pipeline（正确 failing test command + Python 3.8）全量重跑 38 实例 trace 收集，预期 failing test 覆盖率从 0% 提升至 >80%",
+    "parent": "mvp_trace_collect",
+    "spec": {
+      "checkpoint_path": "/root/trace_distill_repair/pipeline_output/",
+      "log_path": "/tmp/phase1_v2.log"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "total_instances": 45,
+      "setup_success": 40,
+      "setup_failed": 5,
+      "traces_collected": 33,
+      "traces_failed": 5,
+      "dataset_issues": 2,
+      "event_distribution": {
+        "min": 5,
+        "median": 2741,
+        "max": 49974,
+        "total": 257085,
+        "mean": 7790
+      },
+      "structural_segments": {
+        "total": 566,
+        "capped_at_20": 26,
+        "under_20": 7
+      },
+      "line_segments": {
+        "total": 51430,
+        "min": 1,
+        "median": 549,
+        "max": 9995
+      },
+      "test_function_coverage": "18/38 (47%)",
+      "test_file_coverage": "38/38 (100%)",
+      "pytest_exit_code": "ALL exit code 4 (no tests collected/executed)",
+      "critical_issue": "Tests never executed — traces capture import/setup only, not test execution"
+    },
+    "completed_at": "2026-05-15T05:32:45.216Z"
+  },
+  "timestamp": "2026-05-15T05:32:45.235564+00:00",
+  "trigger": "update_registry"
+}

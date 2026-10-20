@@ -1,0 +1,18 @@
+_next_id: 3
+decisions:
+- id: D001
+  date: 2026-05-16 07:26 UTC
+  summary: MVP 方案：GPT-2 Small / IOI 上 K=4 方法 pilot，pass/fail 阈值 off-diagonal ≥10%
+  rationale: IDEA_BRIEF 中 pre-registered pilot 设计完备：4 种方法（EAP-IG, AtP*, Edge Pruning,
+    ACDC）覆盖 3 个算法族，GPT-2 Small 规模 ACDC 可行（~32K edges），2×RTX 6000 足够。off-diagonal ≥10%
+    是 Main track gate，<10% 转 Findings reframe。ARR 截止 5/25 剩 9 天，必须立即启动。
+  related_experiments: []
+  depends_on: []
+- id: D002
+  date: 2026-05-16 07:29 UTC
+  summary: MVP gate 补充绝对下限：off-diagonal ≥10% AND ≥10 条边
+  rationale: Reviewer 指出 CIRCUS-core 可能很小（CIRCUS 论文 Gemma-2-2B 上仅 ~2.5% 边达 s=1），若
+    GPT-2 Small core 仅 50 条边则 10%=5 条，小样本噪声大。补充绝对下限 ≥10 条 off-diagonal 边，与百分比阈值取 AND，防止误判。
+  related_experiments: []
+  depends_on:
+  - D001

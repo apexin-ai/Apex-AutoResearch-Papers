@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ef4bdee81d54f45f7e12",
+  "project": "trace_distill_repair",
+  "kind": "result",
+  "title": "fix test infra expand oracle",
+  "task_key": "worker_fix_test_infra_expand_oracle_20260515T140715",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_test_infra_expand_oracle_20260515T140715_result.json",
+    "occurrence": 1,
+    "bytes": 1612,
+    "sha256": "abd97ad62065b16b9f41a353035b6bd23489784d8edba26db77cd52edf144b6d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**11/14 PASS** — target of ≥9/14 exceeded.\n\nRemaining 3 FAILs are genuine dataset bugs (test method doesn't exist in the codebase):\n- **black_1**: `test_works_in_mono_process_only_environment` not in BlackTestCase\n- **fastapi_2**: `test_router_ws_depends_with_override` not found\n- **tornado_2**: `test_redirect_put_without_body` not in HTTPClientCommonTestCase\n\n## Summary of fixes applied\n\n| Instance | Fix | Result |\n|----------|-----|--------|\n| httpie_2 | (already passing) | PASS |\n| youtube-dl_1/5/20 | (already passing) | PASS |\n| cookiecutter_1 | pytest-cov + test file from fixed commit + fixture file `non_ascii.json` | PASS |\n| cookiecutter_2 | pytest-cov + test file from fixed commit (test expected list return) | PASS |\n| cookiecutter_3 | pytest-mock + test file from fixed commit (test expected `show_choices=False`) | PASS |\n| luigi_5 | `pip install -e .` + test file from fixed commit (MRO tests) | PASS |\n| sanic_2 | `pip install -e .` (sanic + deps) | PASS |\n| scrapy_2 | Twisted + deps + test file from fixed commit (`LocalCacheTest` class) | PASS |\n| scrapy_7 | Twisted + deps + test file from fixed commit (`test_spaces_in_action`) | PASS |\n| black_1 | SKIP (dataset bug) | FAIL |\n| fastapi_2 | SKIP (dataset bug) | FAIL |\n| tornado_2 | SKIP (dataset bug) | FAIL |\n\n**Root cause**: The pipeline was using test files from the buggy commits, but BugsInPy expects test files from the fixed commits (many bug fixes include new test methods that were added alongside the fix). Copying test files from the fixed commits resolved 7 additional instances."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-test-infra-expand-oracle.md"
+}

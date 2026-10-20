@@ -1,0 +1,107 @@
+{
+  "experiment": "exp_021",
+  "purpose": "real-data control for GPT-2-medium decompression hypothesis",
+  "model": "gpt2-medium",
+  "model_name": "gpt2-medium",
+  "condition": "realdata_control",
+  "real_data_ratio": 1.0,
+  "seed": 42,
+  "num_generations": 3,
+  "gpu": 0,
+  "results": [
+    {
+      "generation": 0,
+      "effective_rank": 23.086843490600586,
+      "log_det": 689.4414672851562,
+      "perplexity": 15.454337816243266,
+      "distinct_4": 0.9126750632172729,
+      "top_10_singular_values": [
+        6598.1123046875,
+        778.0775146484375,
+        400.6622009277344,
+        143.97267150878906,
+        100.41517639160156,
+        82.3326644897461,
+        58.84941482543945,
+        51.31250762939453,
+        43.13414001464844,
+        39.55282211303711
+      ]
+    },
+    {
+      "generation": 1,
+      "effective_rank": 121.17208099365234,
+      "log_det": 760.7269287109375,
+      "perplexity": 11.470822754132353,
+      "distinct_4": 0.8844041892986351,
+      "top_10_singular_values": [
+        1454.91650390625,
+        963.8589477539062,
+        561.7378540039062,
+        126.45858764648438,
+        102.24681854248047,
+        88.61882781982422,
+        61.98234939575195,
+        51.642417907714844,
+        48.48178482055664,
+        45.386749267578125
+      ],
+      "train_loss": 2.560377582759857,
+      "mix_ratio": 1.0,
+      "controller_ratio": 1.0
+    },
+    {
+      "generation": 2,
+      "effective_rank": 113.3017807006836,
+      "log_det": 772.8623046875,
+      "perplexity": 11.299290167746978,
+      "distinct_4": 0.8700905511811023,
+      "top_10_singular_values": [
+        1886.85546875,
+        754.1067504882812,
+        447.2671203613281,
+        126.6019058227539,
+        103.52178955078125,
+        91.0522232055664,
+        60.82166290283203,
+        51.12827682495117,
+        50.04850387573242,
+        46.430355072021484
+      ],
+      "train_loss": 2.4781059549713134,
+      "mix_ratio": 1.0,
+      "controller_ratio": 1.0
+    },
+    {
+      "generation": 3,
+      "effective_rank": 134.49447631835938,
+      "log_det": 812.9662475585938,
+      "perplexity": 11.212443887233903,
+      "distinct_4": 0.8600216535433071,
+      "top_10_singular_values": [
+        1688.822998046875,
+        638.9126586914062,
+        440.228759765625,
+        131.21617126464844,
+        105.8120346069336,
+        95.6111831665039,
+        62.07578659057617,
+        53.377986907958984,
+        51.51536560058594,
+        48.927032470703125
+      ],
+      "train_loss": 2.4320028315734863,
+      "mix_ratio": 1.0,
+      "controller_ratio": 1.0
+    }
+  ],
+  "config": {
+    "model": "gpt2-medium",
+    "real_data_ratio": 1.0,
+    "learning_rate": 5e-05,
+    "batch_size": 8,
+    "gradient_accumulation_steps": 4,
+    "num_synthetic_samples": 50000
+  },
+  "comparison_note": "Same hyperparams as exp_020 (pure collapse r=0.0). If r_eff stays low under real-data fine-tuning, decompression is caused by synthetic data, not fine-tuning itself."
+}

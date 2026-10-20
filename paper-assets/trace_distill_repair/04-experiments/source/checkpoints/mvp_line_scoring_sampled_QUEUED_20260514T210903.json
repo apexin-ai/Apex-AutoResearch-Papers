@@ -1,0 +1,27 @@
+{
+  "exp_id": "mvp_line_scoring_sampled",
+  "project": "trace_distill_repair",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T20:51:53.462Z",
+    "updated_at": "2026-05-14T21:09:03.021Z",
+    "spec": {
+      "command": "bash -c \"export OPENROUTER_API_KEY=[REDACTED] && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/trace_distill_repair && python run_phase2_scoring.py --mode line\"",
+      "server": "gpu-6000pro-1",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "70545",
+      "log_path": "/tmp/phase2_line_scoring_sampled.log",
+      "submitted_at": "2026-05-14T20:51:53.453Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-14T21:09:03.045249+00:00",
+  "trigger": "update_registry"
+}

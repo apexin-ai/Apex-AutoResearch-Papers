@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2e8d69ac0282523d65c7",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ops monitor ews and start training",
+  "task_key": "worker_ops_monitor-ews-and-start-training_20260525T222558",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_monitor-ews-and-start-training_20260525T222558_result.json",
+    "occurrence": 1,
+    "bytes": 48,
+    "sha256": "27909d511b89afbf2b8b422ca384b03267c5612227cd6e72b24f85ded3fa8b98"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "15 分钟后自动轮询进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-monitor-ews-and-start-training.md"
+}

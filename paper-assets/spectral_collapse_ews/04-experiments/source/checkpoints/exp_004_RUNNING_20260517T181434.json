@@ -1,0 +1,39 @@
+{
+  "exp_id": "exp_004",
+  "project": "spectral_collapse_ews",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T04:31:11.170Z",
+    "updated_at": "2026-05-17T18:14:34.157Z",
+    "hypothesis": "Fixed 50/50 real-synthetic mixing provides intermediate collapse mitigation compared to pure collapse (0% real) but underperforms spectral-guided adaptive mixing (exp_003), because uniform allocation wastes real data budget on early generations where collapse signals are weak",
+    "parent": "exp_001",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition fixed_mix --seed 42 --generations 10 --signal log_det --tau 0.002 --k 0 --signal_mode per_gen --gpu 0\"",
+      "server": "rtx6000-diagprobe",
+      "gpu": "cuda:1",
+      "pid": 135411,
+      "log_path": "~/runs/spectral_collapse_ews/exp_004.log",
+      "submitted_at": "2026-05-17T17:56:12.965Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "description": "Phase 1: Fixed 50/50 real-synthetic mixing (baseline condition), seed 42",
+      "tmux_session": "exp_004",
+      "model_name": "EleutherAI/pythia-410m-deduped",
+      "seed": 42,
+      "data_path": "/root/spectral_collapse_ews/data/",
+      "data_count": "50K real pool, total_per_gen=50K",
+      "generations": 10,
+      "condition": "fixed_mix",
+      "checkpoint_dir": "/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_seed42/",
+      "results_file": "/root/spectral_collapse_ews/results/phase1_fixed_mix_seed42_results.json",
+      "checkpoint_source": "EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)",
+      "eval_data": "/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)"
+    }
+  },
+  "timestamp": "2026-05-17T18:14:34.201920+00:00",
+  "trigger": "update_registry"
+}

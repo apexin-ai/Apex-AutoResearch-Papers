@@ -1,0 +1,14 @@
+{
+  "exp_id": "exp_020",
+  "project": "spectral_collapse_ews",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T04:34:54.378Z",
+    "updated_at": "2026-05-23T04:34:54.378Z"
+  },
+  "timestamp": "2026-05-23T04:34:54.459938+00:00",
+  "trigger": "update_registry"
+}

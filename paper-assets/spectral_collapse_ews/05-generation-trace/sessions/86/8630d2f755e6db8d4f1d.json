@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8630d2f755e6db8d4f1d",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ops data audit server",
+  "task_key": "worker_ops_data-audit-server_20260523T191707",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_data-audit-server_20260523T191707_result.json",
+    "occurrence": 1,
+    "bytes": 1372,
+    "sha256": "daa7e20240cbc492dd29e588997ce69933843dcf788c7696412c73f281e4c5a5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整数据已收集并保存到 `artifacts/raw_data_audit.md`。\n\n### 关键汇总\n\n**Table 1 — r=0, 3-seed mean (Gen 0/2/5/7/10):**\n\n| Gen | r_eff | SLV | PPL | HeSw | D-4 | sigma1 |\n|-----|-------|-----|-----|------|-----|--------|\n| 0 | 417.55 | 2366.68 | 9.55 | 0.4130 | 0.738 | 1942.82 |\n| 2 | 496.17 | 2467.98 | 13.56 | 0.3805 | 0.505 | 718.73 |\n| 5 | 479.77 | 2365.99 | 24.50 | 0.3413 | 0.412 | 749.23 |\n| 7 | 464.10 | 2293.24 | 37.82 | 0.3188 | 0.375 | 788.38 |\n| 10 | 438.05 | 2181.35 | 70.99 | 0.2955 | 0.324 | 874.56 |\n\n**Table 2 — Gen 10 all ratios:**\n\n| r | SLV | r_eff | PPL | D-4 | sigma1 | n |\n|---|-----|-------|-----|-----|--------|---|\n| 0 | 2181.35 | 438.05 | 70.99 | 0.324 | 874.56 | 3 |\n| 0.2 | 2467.74 | 508.62 | 13.61 | 0.383 | 733.57 | 2 |\n| 0.25 | 2488.11 | 513.82 | 13.41 | 0.342 | 717.59 | 3 |\n| 0.3 | 2508.23 | 521.11 | 13.34 | 0.295 | 695.47 | 3 |\n| 0.5 | 2571.64 | 553.46 | 15.11 | 0.152 | 615.24 | 2 |\n\n**Extra calculations:**\n1. HellaSwag drop (r=0, Gen 0→10): **-11.74 pp** (28.44% relative)\n2. SLV CV at Gen 10 (r=0): **1.30%**\n3. D-4 at r=0.5 Gen 10: **0.152** (2-seed mean)\n\n所有 13 个实验文件均完整包含 11 代数据 (Gen 0-10)。文件中含逐代逐 seed 原始值、multi-seed 均值数组、以及实验-文件映射索引，可直接用于论文数字交叉验证。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-data-audit-server.md"
+}

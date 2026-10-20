@@ -1,0 +1,35 @@
+paper_key: "false_promise"
+title: "The False Promise of Imitating Proprietary LLMs"
+venue: "arXiv 2023"
+full_text_available: false
+
+research:
+  baselines:
+    - ChatGPT
+    - Alpaca
+    - Self-Instruct
+    - base LMs (varying sizes)
+  metrics:
+    - {name: "NLP benchmark accuracy", direction: "higher_better"}
+    - {name: "human evaluation (crowd workers)", direction: "higher_better"}
+    - {name: "targeted factual accuracy", direction: "higher_better"}
+  datasets:
+    - {name: "imitation data (ChatGPT outputs)", size: "N/A"}
+    - {name: "NLP benchmarks (unspecified)", size: "N/A"}
+  ablation_dimensions:
+    - model size
+    - imitation data coverage
+  training_recipe: {optimizer: "N/A", lr: "N/A", hardware: "N/A"}
+  method_family: "knowledge distillation / imitation learning from proprietary LLMs"
+
+positioning:
+  core_claim: "Finetuning weaker models on proprietary LLM outputs mimics style but not factual accuracy; imitation closes little to none of the capability gap on tasks not heavily represented in training data."
+  key_results: "Imitation models match ChatGPT style (fooling crowd workers) but fail on targeted accuracy evaluations outside imitation data distribution."
+  limitations:
+    - "Imitation only transfers style, not substantive knowledge"
+    - "Performance gains limited to tasks well-represented in imitation data"
+  relation_to_us: "complementary"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

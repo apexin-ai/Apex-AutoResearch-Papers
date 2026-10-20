@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7e6e504708c0fd52add2",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "figure fig6 seed variability",
+  "task_key": "worker_figure_fig6-seed-variability_20260523T125845",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_fig6-seed-variability_20260523T125845_result.json",
+    "occurrence": 1,
+    "bytes": 260,
+    "sha256": "da7ecfcf39851940ff220eb4cac0ccd6cdd892b775f5f9dbc929c072825bc0a6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure 6 已生成，4 个文件全部到位。\n\n- Gen 10 CV = **1.30%**（mean=2181.35, std=28.29）\n- 图中可见 3 条 seed 轨迹在前几代几乎完全重叠，后期略有分散但 band 仍很窄，cross-seed reproducibility 良好。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-fig6-seed-variability.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0cbb6f1287590dae83ca",
+  "project": "prism_collapse_mixing",
+  "kind": "result",
+  "title": "ssh code mvp",
+  "task_key": "worker_ssh_code-mvp_20260515T165715",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_code-mvp_20260515T165715_result.json",
+    "occurrence": 1,
+    "bytes": 1179,
+    "sha256": "54fbf79d8e14a0ab263cdcab0e05cc7f066622a1ff326a5eb7422d9c00d754a9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有文件已写入并验证通过。\n\n### 产出\n\n| 文件 | 行数 | 功能 |\n|------|------|------|\n| `train.py` | 151 | Continued pretraining (Accelerate 2-GPU DDP, bf16) |\n| `generate_synthetic.py` | 90 | 合成文本生成 (nucleus sampling, batch=128) |\n| `compute_signals.py` | 258 | Collapse 信号计算 (val_loss, entropy, spectral rank, distinct-n) |\n| `run_pipeline.py` | 271 | Pipeline 编排 (数据准备→Gen0 baseline→Gen1-3 迭代) |\n| `analyze_correlation.py` | 130 | Spearman 相关性分析 + 脱钩检测 |\n| `accelerate_config.yaml` | 6 | Accelerate 2-GPU 配置 |\n| **总计** | **1076** | |\n\n### --help 验证\n5 个 Python 文件全部语法正确、import 正常、`--help` 输出符合预期。\n\n### 无缺包\n服务器已预装所有依赖：torch 2.10+cu128, accelerate 1.13, transformers 4.57, datasets 4.8, wandb 0.26, scipy 1.17, tqdm。\n\n### 注意事项\n- 目录下有一个 `prepare_data.py` (170行) 似乎是之前残留的，不影响当前 pipeline\n- 运行前需确保 wandb 已登录 (`wandb login`)\n- 启动命令: `python run_pipeline.py`（默认 3 代，支持 `--start_gen` 断点续跑）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-code-mvp.md"
+}

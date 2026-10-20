@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3fa12e3b26842e6ae12f",
+  "project": "trace_distill_repair",
+  "kind": "result",
+  "title": "monitor v2 progress latest",
+  "task_key": "worker_monitor_v2_progress_latest_20260515T152330",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_v2_progress_latest_20260515T152330_result.json",
+    "occurrence": 1,
+    "bytes": 520,
+    "sha256": "f02bda6fb5789a827ac803ec52127754c9009ee8c9717a424c14a752c2962c01"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**v2 实验状态汇报：**\n\n| 项目 | 状态 |\n|------|------|\n| **PID 131777** | 存活，运行 1h55m，状态 Sl |\n| **进度** | **9/14** 实例已完成 |\n| **当前处理** | `scrapy_7` — API 调用中（有重试，23:23 最后一条重试日志） |\n| **Exit file** | 已删除，无残留 |\n\n**剩余 5 个实例**：scrapy_7（进行中）、tornado_2、youtube-dl_1、youtube-dl_5、youtube-dl_20\n\n按当前节奏（每实例 ~10-17min），预计还需约 50-85 分钟完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-v2-progress-latest.md"
+}

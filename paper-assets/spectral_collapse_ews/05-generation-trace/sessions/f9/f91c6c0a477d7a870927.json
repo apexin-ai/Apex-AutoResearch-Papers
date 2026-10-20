@@ -1,0 +1,97 @@
+{
+  "schema_version": "1.0",
+  "id": "f91c6c0a477d7a870927",
+  "project": "spectral_collapse_ews",
+  "kind": "worker",
+  "title": "ops s3 backup final",
+  "task_key": "worker_ops_s3-backup-final_20260525T212222",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_s3-backup-final_20260525T212222.log",
+    "occurrence": 1,
+    "bytes": 2026121,
+    "sha256": "78c985a10cc03002ef654feae4653a1d7455fccd7f894129db2df14d3d846452"
+  },
+  "statistics": {
+    "messages": 1916,
+    "user_turns": 1,
+    "tool_calls": 868,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 172,
+      "tool_call": 868,
+      "tool_result": 868,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1123,
+      "chunks": [
+        {
+          "path": "f91c6c0a477d7a870927-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "f91c6c0a477d7a870927-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "f91c6c0a477d7a870927-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "f91c6c0a477d7a870927-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "f91c6c0a477d7a870927-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "f91c6c0a477d7a870927-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "f91c6c0a477d7a870927-part-0007.json",
+          "message_count": 43
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 793,
+      "chunks": [
+        {
+          "path": "f91c6c0a477d7a870927-part-0007.json",
+          "message_count": 137
+        },
+        {
+          "path": "f91c6c0a477d7a870927-part-0008.json",
+          "message_count": 180
+        },
+        {
+          "path": "f91c6c0a477d7a870927-part-0009.json",
+          "message_count": 180
+        },
+        {
+          "path": "f91c6c0a477d7a870927-part-0010.json",
+          "message_count": 180
+        },
+        {
+          "path": "f91c6c0a477d7a870927-part-0011.json",
+          "message_count": 116
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-s3-backup-final.md"
+}

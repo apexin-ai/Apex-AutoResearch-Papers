@@ -1,0 +1,619 @@
+- id: art_20260516_14b868
+  name: spectral_trajectory_gen0-3
+  type: chart
+  description: '4-panel spectral trajectory figure (Gen 0-3): eff_rank, log_det, ppl,
+    distinct4. Preliminary version. Remote path: /root/spectral_collapse_ews/paper/figures/spectral_trajectory.{pdf,png}'
+  path: null
+  url: file:///root/spectral_collapse_ews/paper/figures/spectral_trajectory.pdf
+  project: spectral_collapse_ews
+  exp_id: exp_001
+  skill: ''
+  created_at: '2026-05-16T22:35:24.012214+00:00'
+  tags:
+  - figure
+  - phase0
+  - spectral
+  - preliminary
+- id: art_20260517_3b81f3
+  name: fig1_spectral_trajectory
+  type: chart
+  description: 'Three-panel figure showing spectral collapse trajectory across 10
+    generations of recursive synthetic training (exp_001, Pythia-410M). Panel (a):
+    Effective Rank + SLV with phase annotations. Panel (b): Perplexity + HellaSwag
+    with asymmetry note. Panel (c): σ₁ trajectory with decompression drop and recovery.'
+  path: projects/spectral_collapse_ews/artifacts/exp_001/chart/fig1_spectral_trajectory.png
+  url: null
+  project: spectral_collapse_ews
+  exp_id: exp_001
+  skill: ''
+  created_at: '2026-05-17T20:08:38.875751+00:00'
+  tags:
+  - paper
+  - fig1
+  - spectral
+  - phase0
+- id: art_20260517_8efefa
+  name: fig1_spectral_trajectory
+  type: chart
+  description: 'Three-panel spectral trajectory figure for Phase 0 (exp_001, Pythia-410M,
+    Gen 0-10). Panel (a): eff_rank + SLV with 3-phase annotations and 2.43x acceleration.
+    Panel (b): ppl (log) + HellaSwag with +704% and asymmetry annotations. Panel (c):
+    σ₁ decompression drop and recovery. Data source: exp_001.'
+  path: projects/spectral_collapse_ews/artifacts/_project/chart/fig1_spectral_trajectory.pdf
+  url: null
+  project: spectral_collapse_ews
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-17T20:09:52.602783+00:00'
+  tags:
+  - paper
+  - experiments
+  - statistical
+  - phase0
+- id: art_20260517_0d761c
+  name: literature_map
+  type: data
+  description: 'Literature map with 21 verified papers across 5 clusters: model_collapse_core
+    (6), spectral_analysis_collapse (5), data_mixing_strategies (4), synthetic_data_quality
+    (3), early_warning_signals (3)'
+  path: projects/spectral_collapse_ews/artifacts/_project/data/literature_map.yaml
+  url: null
+  project: spectral_collapse_ews
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T20:18:07.222575+00:00'
+  tags:
+  - literature
+  - references
+  - survey
+- id: art_20260517_7c64e3
+  name: references_bib
+  type: paper
+  description: BibTeX file with 21 verified entries for the spectral collapse EWS
+    paper
+  path: projects/spectral_collapse_ews/artifacts/_project/paper/references.bib
+  url: null
+  project: spectral_collapse_ews
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T20:18:08.803908+00:00'
+  tags:
+  - bibtex
+  - references
+  - paper
+- id: art_20260517_80fb12
+  name: fig1_spectral_trajectory
+  type: chart
+  description: 'Four-panel figure showing spectral collapse dynamics over 10 generations
+    of recursive synthetic training (exp_001, Pythia-410M): (a) Effective Rank + Log-det
+    dual axis, (b) Perplexity log-scale, (c) HellaSwag accuracy, (d) σ₁ trajectory.
+    Three phases annotated with color bands.'
+  path: projects/spectral_collapse_ews/artifacts/exp_001/chart/fig1_spectral_trajectory.pdf
+  url: null
+  project: spectral_collapse_ews
+  exp_id: exp_001
+  skill: ''
+  created_at: '2026-05-17T20:25:20.020476+00:00'
+  tags:
+  - paper
+  - fig1
+  - spectral-collapse
+  - phase-dynamics
+- id: art_20260517_1024a3
+  name: fig1_spectral_trajectory
+  type: chart
+  description: 'Four-panel Phase 0 spectral trajectory (exp_001, Gen 0-10): (a) eff_rank+log_det
+    dual y-axis with 3-phase annotation and 2.43x acceleration, (b) ppl log-scale
+    exponential growth +704%, (c) HellaSwag monotonic decline with -5.6% Gen0→1 asymmetry,
+    (d) σ₁ decompression→concentration recovery pattern'
+  path: projects/spectral_collapse_ews/artifacts/_project/chart/fig1_spectral_trajectory_1024a3.pdf
+  url: null
+  project: spectral_collapse_ews
+  exp_id: null
+  skill: paper-visualization
+  created_at: '2026-05-17T20:25:57.384154+00:00'
+  tags:
+  - paper
+  - experiments
+  - statistical
+  - phase0
+- id: art_20260518_f87cc8
+  name: plan_018_alternative_ews_comparison
+  type: data
+  description: Alternative EWS metrics (isotropy, token entropy, spectral norm, stable
+    rank, gradient norm) across gen_0-10 for Pythia-410M pure collapse, compared to
+    SLV baseline
+  path: projects/spectral_collapse_ews/artifacts/plan_018/data/alternative_ews_comparison.json
+  url: null
+  project: spectral_collapse_ews
+  exp_id: plan_018
+  skill: ''
+  created_at: '2026-05-18T11:10:31.569959+00:00'
+  tags:
+  - ews
+  - metrics
+  - comparison
+  - exp_001
+- id: art_20260518_e428a0
+  name: alternative_ews_r05_comparison
+  type: data
+  description: Comprehensive comparison of 7 alternative EWS metrics across r=0 vs
+    r=0.5. All collapse-specific metrics show direction reversal at r=0.5, confirming
+    universal signal attenuation paradox.
+  path: projects/spectral_collapse_ews/artifacts/_project/data/alternative_ews_r05_comparison.json
+  url: null
+  project: spectral_collapse_ews
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T11:30:32.288432+00:00'
+  tags:
+  - alternative_ews
+  - r05
+  - signal_attenuation
+  - comparison
+- id: art_20260518_161152
+  name: alternative_ews_v2_exp001
+  type: data
+  description: 'Alternative EWS v2 for exp_001 (r=0): RankMe shows decompression-then-collapse
+    (707->745->710), matching SLV pattern'
+  path: projects/spectral_collapse_ews/artifacts/exp_001/data/alternative_ews_v2_exp001_summary.txt
+  url: null
+  project: spectral_collapse_ews
+  exp_id: exp_001
+  skill: ''
+  created_at: '2026-05-18T11:35:25.684417+00:00'
+  tags:
+  - ews
+  - rankme
+  - spectral
+  - r0
+- id: art_20260518_d46299
+  name: alternative_ews_v2_exp006
+  type: data
+  description: 'Alternative EWS v2 for exp_006 (r=0.5 adaptive): RankMe monotonically
+    rises 706->811, no collapse'
+  path: projects/spectral_collapse_ews/artifacts/exp_006/data/alternative_ews_v2_exp006_summary.txt
+  url: null
+  project: spectral_collapse_ews
+  exp_id: exp_006
+  skill: ''
+  created_at: '2026-05-18T11:35:31.333926+00:00'
+  tags:
+  - ews
+  - rankme
+  - spectral
+  - r05
+- id: art_20260518_938f4b
+  name: alternative_ews_v2_exp004
+  type: data
+  description: 'Alternative EWS v2 for exp_004 (r=0.5 fixed mix): RankMe monotonically
+    rises 712->811, no collapse'
+  path: projects/spectral_collapse_ews/artifacts/exp_004/data/alternative_ews_v2_exp004_summary.txt
+  url: null
+  project: spectral_collapse_ews
+  exp_id: exp_004
+  skill: ''
+  created_at: '2026-05-18T11:35:35.439579+00:00'
+  tags:
+  - ews
+  - rankme
+  - spectral
+  - r05
+- id: art_20260519_e1d4da
+  name: compare_seeds_script
+  type: data
+  description: 'Cross-seed comparison script + preliminary JSON output. Per-gen comparison
+    tables, phase boundary analysis, mean±std summary. Preliminary: SLV %diff < 0.13%,
+    eff_rank < 0.19% across seeds.'
+  path: projects/spectral_collapse_ews/artifacts/_project/data/compare_seeds_info.md
+  url: null
+  project: spectral_collapse_ews
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T13:05:18.623897+00:00'
+  tags:
+  - multi-seed
+  - compare
+  - script
+  - exp_010
+- id: art_20260519_1fc711
+  name: exp_009_r025_full_analysis
+  type: report
+  description: exp_009 (r=0.25 fixed mix, 10 gen) complete results analysis with cross-experiment
+    comparison
+  path: projects/spectral_collapse_ews/artifacts/exp_009/report/exp_009_r025_full_analysis.md
+  url: null
+  project: spectral_collapse_ews
+  exp_id: exp_009
+  skill: ''
+  created_at: '2026-05-19T16:17:32.675157+00:00'
+  tags:
+  - phase1
+  - r025
+  - analysis
+  - comparison
+- id: art_20260520_706d23
+  name: phase_diagram_figure
+  type: chart
+  description: Phase diagram figure (PDF+PNG) for §4.6 Figure 2, showing SLV trajectories
+    across mixing ratios r=0..0.5
+  path: projects/spectral_collapse_ews/artifacts/_project/chart/phase_diagram.pdf
+  url: null
+  project: spectral_collapse_ews
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T03:49:13.968824+00:00'
+  tags:
+  - paper
+  - figure
+  - phase-diagram
+- id: art_20260520_f5d0dd
+  name: exp_010_cross_seed_analysis
+  type: report
+  description: 'Complete cross-seed analysis of exp_010 (seed 43) vs exp_001 (seed
+    42): Gen 0-10 metrics, three-phase pattern replication, mean±std for Table 1'
+  path: projects/spectral_collapse_ews/artifacts/exp_010/report/exp_010_analysis_f5d0dd.md
+  url: null
+  project: spectral_collapse_ews
+  exp_id: exp_010
+  skill: ''
+  created_at: '2026-05-20T07:50:56.297944+00:00'
+  tags:
+  - cross-seed
+  - replication
+  - table1
+  - phase-analysis
+- id: art_20260520_27575b
+  name: seed42_vs_seed43_comparison
+  type: data
+  description: 'Cross-seed comparison (seed42 vs seed43) for pure collapse r=0: per-gen
+    deltas, phase boundaries, mean±std summary. Gen 0-10 complete.'
+  path: projects/spectral_collapse_ews/artifacts/exp_010/data/seed42_vs_seed43_comparison.txt
+  url: null
+  project: spectral_collapse_ews
+  exp_id: exp_010
+  skill: ''
+  created_at: '2026-05-20T08:16:14.313883+00:00'
+  tags:
+  - cross-seed
+  - compare_seeds
+  - exp_001
+  - exp_010
+  - phase-boundaries
+- id: art_20260520_ed2cc7
+  name: exp_012_cross_seed_analysis
+  type: report
+  description: 'Cross-seed analysis of r=0.3 (seed42 vs seed43): per-gen metrics,
+    SLV/eff_rank/ppl/d4 comparison, Type III verification, Table 3 upgrade recommendations'
+  path: projects/spectral_collapse_ews/artifacts/exp_012/report/exp_012_cross_seed_analysis_ed2cc7.md
+  url: null
+  project: spectral_collapse_ews
+  exp_id: exp_012
+  skill: ''
+  created_at: '2026-05-20T22:22:35.642316+00:00'
+  tags:
+  - cross-seed
+  - r03
+  - type-iii
+  - phase1
+- id: art_20260521_ae456a
+  name: SIGMA 指标对比分析
+  type: report
+  description: SIGMA (arXiv:2601.03385) 论文指标提取与可复现性评估：8 个指标的详细对比，含数学定义、我们已有数据覆盖情况、实现成本估计、及建议的最小可行对比方案
+  path: projects/spectral_collapse_ews/artifacts/_project/report/sigma_comparison_analysis.md
+  url: null
+  project: spectral_collapse_ews
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T09:07:15.686308+00:00'
+  tags:
+  - sigma
+  - comparison
+  - metrics
+  - reviewer-response
+- id: art_20260521_606316
+  name: rebuttal_R1W1_draft
+  type: report
+  description: 'Draft rebuttal for R1-W1 (r_crit granularity concern): practical insensitivity,
+    cross-seed robustness, alpha robustness, future work framing'
+  path: projects/spectral_collapse_ews/artifacts/_project/report/rebuttal_R1W1_draft.md
+  url: null
+  project: spectral_collapse_ews
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T14:22:40.215804+00:00'
+  tags:
+  - rebuttal
+  - R1-W1
+  - r_crit
+- id: art_20260522_c032c2
+  name: exp_015_cross_seed_analysis
+  type: report
+  description: 'Cross-seed analysis for r=0.25 (seeds 42/43/44): per-gen metrics,
+    SLV trajectory, Type II dip-recovery pattern, 3-seed mean±std summary'
+  path: projects/spectral_collapse_ews/artifacts/exp_015/report/exp_015_cross_seed_analysis_c032c2.md
+  url: null
+  project: spectral_collapse_ews
+  exp_id: exp_015
+  skill: ''
+  created_at: '2026-05-22T06:21:14.173383+00:00'
+  tags:
+  - cross-seed
+  - r025
+  - type-ii
+  - 3-seed-stats
+- id: art_20260522_a99802
+  name: exp_016 cross-seed analysis
+  type: report
+  description: r=0.3 3-seed (42/43/44) cross-seed analysis report with gen-by-gen
+    statistics and Type III verification
+  path: projects/spectral_collapse_ews/artifacts/exp_016/report/exp_016_cross_seed_analysis_a99802.md
+  url: null
+  project: spectral_collapse_ews
+  exp_id: exp_016
+  skill: ''
+  created_at: '2026-05-22T18:34:55.622707+00:00'
+  tags:
+  - cross-seed
+  - type-iii
+  - r03
+  - 3-seed
+- id: art_20260523_2b6c26
+  name: exp_017_cross_seed_analysis
+  type: report
+  description: 'exp_017 (r=0.2, seed43, 10gen) cross-seed analysis with exp_007 (seed42):
+    per-gen metrics, SLV trajectory comparison, cross-seed statistics'
+  path: projects/spectral_collapse_ews/artifacts/exp_017/report/analysis_2b6c26.md
+  url: null
+  project: spectral_collapse_ews
+  exp_id: exp_017
+  skill: ''
+  created_at: '2026-05-23T04:03:26.432628+00:00'
+  tags:
+  - cross-seed
+  - type-ii
+  - r02
+  - slv-trajectory
+- id: art_20260523_4bd6ac
+  name: rankme_trajectory_analysis
+  type: report
+  description: 'RankMe (r_eff) per-generation trajectories for all mixing ratios (r=0,0.2,0.25,0.3,0.5)
+    with cross-seed means. Compares r_eff phase diagram to SLV: r_eff shows 2-type
+    structure (collapse vs expansion) not the 3-type SLV structure.'
+  path: projects/spectral_collapse_ews/artifacts/_project/report/rankme_trajectory_analysis.md
+  url: null
+  project: spectral_collapse_ews
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T04:31:03.501363+00:00'
+  tags:
+  - rankme
+  - eff_rank
+  - phase_diagram
+  - plan_018
+- id: art_20260523_1871c4
+  name: exp_020_code_prep_report
+  type: report
+  description: 'GPT-2-medium cross-architecture validation code prep report: code
+    changes, dry-run results, GPU/time estimates, launch command'
+  path: projects/spectral_collapse_ews/artifacts/exp_020/report/exp_020_code_prep_report.md
+  url: null
+  project: spectral_collapse_ews
+  exp_id: exp_020
+  skill: ''
+  created_at: '2026-05-23T04:55:18.280074+00:00'
+  tags:
+  - gpt2-medium
+  - cross-architecture
+  - code-prep
+- id: art_20260523_125345
+  name: exp018_integration_template_v2
+  type: intermediate
+  description: Updated integration template for exp_018 (r=0.5 seed43) data into paper,
+    with corrected line numbers and additional references missed in v1
+  path: projects/spectral_collapse_ews/artifacts/exp_018/intermediate/exp018_integration_template_v2.md
+  url: null
+  project: spectral_collapse_ews
+  exp_id: exp_018
+  skill: ''
+  created_at: '2026-05-23T05:36:29.358291+00:00'
+  tags:
+  - paper
+  - integration
+  - template
+- id: art_20260523_b83931
+  name: exp_018_cross_seed_analysis
+  type: report
+  description: Cross-seed analysis of exp_018 (seed43) vs exp_004 (seed42) for r=0.5
+    fixed_mix Type III trajectory reproduction. Includes per-gen metrics comparison,
+    2-seed mean±std, trajectory classification.
+  path: projects/spectral_collapse_ews/artifacts/exp_018/report/exp_018_cross_seed_analysis_b83931.md
+  url: null
+  project: spectral_collapse_ews
+  exp_id: exp_018
+  skill: ''
+  created_at: '2026-05-23T09:40:48.591813+00:00'
+  tags:
+  - cross-seed
+  - type-III
+  - r0.5
+  - table3
+- id: art_20260524_634296
+  name: exp_019 analysis report
+  type: report
+  description: exp_019 (r=0.2 seed44) per-gen metrics, cross-seed comparison with
+    exp_007/exp_017, D-4 V-recovery outlier analysis
+  path: projects/spectral_collapse_ews/artifacts/exp_019/report/analysis_634296.md
+  url: null
+  project: spectral_collapse_ews
+  exp_id: exp_019
+  skill: ''
+  created_at: '2026-05-24T02:29:54.649042+00:00'
+  tags:
+  - cross-seed
+  - r=0.2
+  - type-II
+  - d4-analysis
+- id: art_20260524_bd1d6b
+  name: exp_023_analysis_report
+  type: report
+  description: 'GPT-2-medium r=0.25 3-gen pilot analysis: Type II trajectory confirmed,
+    supports architecture-independent r_crit'
+  path: projects/spectral_collapse_ews/artifacts/exp_023/report/analysis_report.md
+  url: null
+  project: spectral_collapse_ews
+  exp_id: exp_023
+  skill: ''
+  created_at: '2026-05-24T17:23:26.781860+00:00'
+  tags:
+  - gpt2-medium
+  - cross-architecture
+  - type-ii
+  - r-crit
+  - spectral
+- id: art_20260524_4d3687
+  name: visual_design_language_v2
+  type: intermediate
+  description: Nature/PNAS/Science-level visual design language for all paper figures.
+    5-color warm→cool palette (colorblind-safe), serif fonts, thin lines, small markers,
+    phase annotation scheme, complete plt.rcParams dict.
+  path: projects/spectral_collapse_ews/artifacts/_project/intermediate/visual_design_language_v2.py
+  url: null
+  project: spectral_collapse_ews
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T20:34:41.826624+00:00'
+  tags:
+  - paper
+  - visualization
+  - style
+- id: art_20260525_2240fe
+  name: data_audit_report
+  type: report
+  description: '全文数据真实性与可追溯性审计报告: 420+数值审计, 350+已验证, 2项问题(r=0.2种子数/r=0.25 dip度量),
+    5项需服务器验证'
+  path: projects/spectral_collapse_ews/artifacts/_project/report/data_audit_report_2240fe.md
+  url: null
+  project: spectral_collapse_ews
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T20:31:09.605983+00:00'
+  tags:
+  - audit
+  - pre-submission
+  - data-integrity
+- id: art_20260525_865f88
+  name: bootstrap_ci_analysis
+  type: data
+  description: Bootstrap 95% CI analysis for Pythia-410M SLV trajectories (r=0,0.2,0.25,0.3,0.5)
+    with permutation tests for r=0.25 vs r=0.3
+  path: projects/spectral_collapse_ews/artifacts/_project/data/bootstrap_ci_results.json
+  url: null
+  project: spectral_collapse_ews
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T21:55:30.321144+00:00'
+  tags:
+  - bootstrap
+  - CI
+  - SLV
+  - statistical-analysis
+  - pythia-410m
+- id: art_20260525_ff23e3
+  name: rcrit_sensitivity_analysis
+  type: data
+  description: 'r_crit(T) sensitivity analysis: trajectory classification stability
+    across observation windows T=3,5,7,10'
+  path: projects/spectral_collapse_ews/artifacts/_project/data/rcrit_sensitivity_analysis.py
+  url: null
+  project: spectral_collapse_ews
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T21:58:18.302352+00:00'
+  tags:
+  - sensitivity
+  - rcrit
+  - rebuttal
+- id: art_20260525_7cdb82
+  name: rcrit_sensitivity_results
+  type: data
+  description: 'JSON results of r_crit sensitivity analysis: classification matrix,
+    r_crit estimates per T, stability metrics'
+  path: projects/spectral_collapse_ews/artifacts/_project/data/rcrit_sensitivity_results.json
+  url: null
+  project: spectral_collapse_ews
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T21:58:20.062987+00:00'
+  tags:
+  - sensitivity
+  - rcrit
+  - rebuttal
+- id: art_20260525_ca6874
+  name: bootstrap_ci_results
+  type: data
+  description: 'Bootstrap 95% CI (B=10000) for SLV trajectories across all mixing
+    ratios (r=0/0.2/0.25/0.3/0.5). Key finding: r=0.25 vs r=0.3 CIs non-overlapping
+    from Gen 3 onward (gap -5.84 to -14.51). Permutation tests non-significant due
+    to N=3 power limitation.'
+  path: projects/spectral_collapse_ews/artifacts/_project/data/bootstrap_ci_results_ca6874.json
+  url: null
+  project: spectral_collapse_ews
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T22:16:05.238783+00:00'
+  tags:
+  - bootstrap
+  - statistics
+  - r_crit
+  - round4
+- id: art_20260525_4b8781
+  name: rcrit_sensitivity_results
+  type: data
+  description: 'r_crit(T) sensitivity analysis: trajectory type classification is
+    stable across T=3,5,7,10. r_crit ∈ (0.25, 0.3] invariant to observation window.
+    Only r=0 Type I needs T≥5 (collapse takes time to manifest).'
+  path: projects/spectral_collapse_ews/artifacts/_project/data/rcrit_sensitivity_results_4b8781.json
+  url: null
+  project: spectral_collapse_ews
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T22:17:53.866734+00:00'
+  tags:
+  - r_crit
+  - sensitivity
+  - statistics
+  - round4
+- id: art_20260525_f81b4c
+  name: sv_distribution_gen0_vs_gen2
+  type: data
+  description: Singular value distributions for Pythia-410M r=0 Gen 0 vs Gen 2 (decompression
+    peak). σ₁ -71.4% (6598→1887), r_eff +391% (23→113), Gini -11.6%. Files on server.
+  path: null
+  url: server:rtx6000-diagprobe:/root/spectral_collapse_ews/results/sv_distributions_gen0_gen2.json
+  project: spectral_collapse_ews
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T23:15:11.222926+00:00'
+  tags:
+  - sv_distribution
+  - decompression
+  - visualization
+  - round4
+- id: art_20260525_1f0be9
+  name: alternative_ews_r02_comparison
+  type: data
+  description: 'Alternative EWS metrics under r=0.2 mixing (Pythia-410M, seed42, 10
+    gen). Key: Isotropy drops -81.5% (strongest signal), RankMe peaks Gen 4 then declines,
+    PPL +44.8%, stable_rank near-flat. For Table 3 mixed-ratio comparison.'
+  path: null
+  url: server:rtx6000-diagprobe:/root/spectral_collapse_ews/results/alternative_ews_v2_r02.json
+  project: spectral_collapse_ews
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-25T23:46:59.355157+00:00'
+  tags:
+  - ews
+  - r02
+  - table3
+  - round4

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "16972d73afcc24a6f0f4",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ops kill sv and rerun cpu",
+  "task_key": "worker_ops_kill-sv-and-rerun-cpu_20260525T225201",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-sv-and-rerun-cpu_20260525T225201_result.json",
+    "occurrence": 1,
+    "bytes": 1274,
+    "sha256": "812fde63f78e02a5f39e31219b1e84dbfbbe1919a730bc3b73ecbe1433296f46"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个任务全部完成。\n\n## 任务 1: Kill GPU 进程\n- PID 3307 已 kill，cuda:0 显存已释放（0 MiB）\n\n## 任务 2: SV 分布提取结果\n\n**产出文件**：\n- JSON: `/root/spectral_collapse_ews/results/sv_distributions_gen0_gen2.json` (51KB)\n- PDF: `/root/spectral_collapse_ews/results/sv_distribution_comparison.pdf` (21KB)\n\n**分布形态变化分析**：\n\n| 指标 | Gen 0 (base) | Gen 2 (collapsed) | 变化 |\n|------|-------------|-------------------|------|\n| σ₁ | 6598.11 | 1886.86 | **-71.4%** |\n| r_eff | 23.09 | 113.30 | **+390.8%** |\n| σ_min | 0.018391 | 0.027984 | +52.2% |\n| Tail/Head ratio | 0.000006 | 0.000024 | ×4 |\n| Gini coefficient | 0.8575 | 0.7580 | -11.6% |\n\n**文字描述**：\n- **σ₁ 大幅压缩（-71.4%）**：主成分能量从 6598 降至 1887，说明递归训练破坏了表示空间中的主导方向\n- **尾部相对膨胀**：Tail/Head ratio 从 0.000006 到 0.000024（×4），尾部奇异值相对增大\n- **整体均匀化**：Gini 从 0.86 降至 0.76，r_eff 从 23 跃升至 113（+391%）。谱分布趋向均匀，这是 spectral collapse 的典型特征——信息维度表面上\"扩展\"了，实际上是因为主成分崩塌而非尾部真正携带了更多信息"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-sv-and-rerun-cpu.md"
+}

@@ -1,0 +1,27 @@
+{
+  "exp_id": "exp_002",
+  "project": "spectral_collapse_ews",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T12:02:30.232Z",
+    "updated_at": "2026-05-16T12:44:49.125Z",
+    "spec": {
+      "command": "bash -c \"export CUDA_VISIBLE_DEVICES=0,1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && mkdir -p results/phase0_1b && python run_phase0_1b.py 2>&1 | tee results/phase0_1b/phase0_1b_run.log\"",
+      "server": "rtx6000-diagprobe",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "22646",
+      "log_path": "~/runs/spectral_collapse_ews/exp_002.log",
+      "submitted_at": "2026-05-16T12:44:36.749Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-16T12:44:49.157552+00:00",
+  "trigger": "update_registry"
+}

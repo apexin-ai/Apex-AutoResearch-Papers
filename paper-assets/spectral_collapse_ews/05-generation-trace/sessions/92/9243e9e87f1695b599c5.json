@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "9243e9e87f1695b599c5",
+  "project": "spectral_collapse_ews",
+  "kind": "worker",
+  "title": "analysis epsilon clipping gen10 v2",
+  "task_key": "worker_analysis_epsilon-clipping-gen10-v2_20260524T122637",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_epsilon-clipping-gen10-v2_20260524T122637.log",
+    "occurrence": 1,
+    "bytes": 779954,
+    "sha256": "af4dd071d7b5ccd054eece715b8c997c485876b767a0e339948da61a89f2860c"
+  },
+  "statistics": {
+    "messages": 511,
+    "user_turns": 0,
+    "tool_calls": 220,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 67,
+      "tool_call": 220,
+      "tool_result": 220,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 511,
+      "chunks": [
+        {
+          "path": "9243e9e87f1695b599c5-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "9243e9e87f1695b599c5-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "9243e9e87f1695b599c5-part-0003.json",
+          "message_count": 151
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-epsilon-clipping-gen10-v2.md"
+}

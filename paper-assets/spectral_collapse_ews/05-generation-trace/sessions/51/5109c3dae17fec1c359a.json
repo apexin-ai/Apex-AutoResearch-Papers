@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5109c3dae17fec1c359a",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "fix cleanup cuda1",
+  "task_key": "worker_fix_cleanup_cuda1_20260516T124658",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_cleanup_cuda1_20260516T124658_result.json",
+    "occurrence": 1,
+    "bytes": 359,
+    "sha256": "8dfb614561262107f43616570b38d56edc4f108451ee49e8d0903da0f41af473"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。\n\n| GPU | 清理前 | 清理后 |\n|-----|--------|--------|\n| cuda:0 (exp_001) | PID 7406, 25008 MiB | PID 7406, 25008 MiB — **未受影响** |\n| cuda:1 | PID 22657 (`run_phase0_1b.py`), 25636 MiB | **0 MiB, 0%** — 已清空 |\n\n注：cuda:0 上的 exp_001 PID 是 7406（非任务描述中的 7396），运行正常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-cleanup-cuda1.md"
+}

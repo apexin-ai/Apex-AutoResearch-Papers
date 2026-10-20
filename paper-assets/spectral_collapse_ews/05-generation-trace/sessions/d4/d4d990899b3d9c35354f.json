@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d4d990899b3d9c35354f",
+  "project": "spectral_collapse_ews",
+  "kind": "result",
+  "title": "ssh fix exp011 resubmit",
+  "task_key": "worker_ssh_fix-exp011-resubmit_20260519T174222",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fix-exp011-resubmit_20260519T174222_result.json",
+    "occurrence": 1,
+    "bytes": 360,
+    "sha256": "7cc0de01eccbf9abd1efabd3fc98e7eb827c16d7a731881534a5ea5ea1ef66d9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp_011 正在跑，不需要重新提交。\n\n- **PID**: 319889（存活）\n- **GPU 0**: 92% 利用率，51053 MiB 显存占用\n- **进度**: 生成阶段 32640/40000 samples（~81.6%），正在推进\n\nRegistry 状态还是 PREPARING 是因为 cron reconcile 没能匹配到进程。需要我手动更新 registry 状态为 RUNNING 吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-fix-exp011-resubmit.md"
+}
