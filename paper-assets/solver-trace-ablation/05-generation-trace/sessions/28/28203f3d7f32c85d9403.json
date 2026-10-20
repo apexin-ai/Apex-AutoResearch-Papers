@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "28203f3d7f32c85d9403",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops disk cleanup 37g",
+  "task_key": "worker_ops_disk-cleanup-37g_20260515T124637",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_disk-cleanup-37g_20260515T124637_result.json",
+    "occurrence": 1,
+    "bytes": 665,
+    "sha256": "516c973ab2a1d88c217e7bc7d85d4c05c004692767ecc1b8b01715c217a0a96a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 7 项清理完成。\n\n## 清理结果\n\n| # | 目标 | 回收 |\n|---|------|------|\n| 1 | exp1_isr_b03_s42_1000/checkpoint-1000 | ~15G |\n| 2 | plan018_additive_random_b01_s42_1000/checkpoint-1000 | ~15G |\n| 3 | .hf_cache/Qwen/Qwen2.5-1.5B-Instruct | ~3G |\n| 4 | .hf_cache/Qwen/Qwen2.5-0.5B | ~1G |\n| 5 | .hf_cache/openai-community | ~1G |\n| 6 | .hf_cache/models--openai-community--gpt2 | ~0.4G |\n| 7 | gpt2-small | ~0.5G |\n\n**总回收：~36G**\n**磁盘状态：217G/250G (87%) → 181G/250G (73%)**\n\n无异常，所有目标均存在且内容符合预期，两个 checkpoint 删除前已确认父目录有完整模型权重。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-disk-cleanup-37g.md"
+}

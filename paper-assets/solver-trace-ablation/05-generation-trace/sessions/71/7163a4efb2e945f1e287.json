@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7163a4efb2e945f1e287",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "research goodhart literature",
+  "task_key": "worker_research_goodhart-literature_20260514T083046",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_goodhart-literature_20260514T083046_result.json",
+    "occurrence": 1,
+    "bytes": 1062,
+    "sha256": "4bba2576e6b1d34501bf8605db5654a660ac600951503144e0996a69f11c7390"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文献调研已完成，写入 `artifacts/literature_goodhart.md`。\n\n三个类别共覆盖 30+ 篇论文：\n- **Category 1 (Reward Overoptimization)**: 10 篇核心论文，包括 Gao et al. 2023 (ICML)、Skalse et al. 2022 (NeurIPS)、Moskovitz et al. 2024 (ICLR Spotlight)、Kwa et al. 2024 (NeurIPS) 等\n- **Category 2 (Verification as Reward)**: 12 篇，覆盖 RLSF (solver reward)、FoVer (Z3/Isabelle)、DeepSeek-Prover (GRPO+Lean)、AlphaProof、Lightman et al. (PRM) 等\n- **Category 3 (Dose-Response)**: 12 篇，包括 Rafailov et al. 2024 (NeurIPS, beta scaling in DAAs)、BiPaRS (NeurIPS 2020, adaptive shaping weights)、ARS (ICML 2025) 等\n\nPositioning Summary 部分整理了 4 个新颖点、5 个可引用支撑、5 个预期 reviewer 问题。最关键的 framing：我们是 **第一个在 neurosymbolic verification reward 上刻画 Goodhart 效应的工作**，graded metric (ISR) 比 binary verification (DeepSeek-Prover/AlphaProof 的 pass/fail) 更易被 hack 这一观察在已有文献中尚无人明确指出。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-goodhart-literature.md"
+}

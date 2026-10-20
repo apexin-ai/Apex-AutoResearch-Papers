@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8039d41d7fda2dcd8fa0",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "train d134 4b 10seed pipeline",
+  "task_key": "worker_train_d134-4b-10seed-pipeline_20260518T102646",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_d134-4b-10seed-pipeline_20260518T102646_result.json",
+    "occurrence": 1,
+    "bytes": 917,
+    "sha256": "345ddee2493575e149944d5aa54858c8e92fada8461747b31511daffd88a8e39"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已启动，运行正常。\n\n汇报：\n\n```\n磁盘状态: 58GB 可用 / 每 run ~16GB（训练完 eval+classify 后自动清理 safetensors）\nConfig 确认: model_path=/root/autodl-tmp/models/Qwen3-4B, β=0.1, 500 steps, batch=4×2=8\nGPU: cuda:0, RTX PRO 6000 Black (98GB), 占用 85.9GB, GPU-Util 87%\nPipeline PID: 206796\ntmux session: d134-pipeline\n第一个 run (ISR s47) 状态: step 2/500, ~11.6s/step\n预计单 run: ~1.6h (500 steps × 11.6s)\n预计总时长: ~16-20h (10 runs 串行 + eval/classify overhead)\n```\n\n用户计划中的几个错误已修正：\n- eval 数据路径: `proofwriter_fol_100.jsonl`（C008）\n- eval_sta.py: `--output_path`（文件）而非 `--output_dir`\n- classify_h7.py: `--eval_path` + `--json_out`\n- Python: `/root/miniconda3/bin/python3`\n- 加了 `set -o pipefail` 防止管道吞错误\n- 每 run 完成后清理 safetensors 释放磁盘"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-d134-4b-10seed-pipeline.md"
+}

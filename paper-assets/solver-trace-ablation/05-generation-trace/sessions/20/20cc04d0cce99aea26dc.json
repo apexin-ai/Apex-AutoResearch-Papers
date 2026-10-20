@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "20cc04d0cce99aea26dc",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops disk check",
+  "task_key": "worker_ops_disk-check_20260515T005122",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_disk-check_20260515T005122_result.json",
+    "occurrence": 1,
+    "bytes": 1229,
+    "sha256": "081e52ded82dbc93ba378aa27b7776fead8421a0374c99816bc0e21db9b429fe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 磁盘使用报告\n\n### 分区概况\n\n| 分区 | 总容量 | 已用 | 可用 | 使用率 |\n|------|--------|------|------|--------|\n| `/root/autodl-tmp/` (数据盘) | 250G | 82G | 169G | **33%** |\n| `/` (根分区) | 30G | 9.1G | 21G | 31% |\n\n### outputs 目录明细 (总计 ~61G)\n\n| 目录 | 大小 | 状态 | 可删? |\n|------|------|------|-------|\n| `exp1_isr_b03_s44_r2/` | **31G** | 训练完成，已有 eval 结果 | **可删** |\n| `exp1_random_b03_s44/` | **15G** | 训练完成，有 checkpoint-100 (15G) | **可删** |\n| `exp1_random_b03_s44_r2/` | **15G** | **正在运行 (PID 51297)** | **不碰** |\n| `exp1_isr_b03_s43_eval/` | 228K | eval 结果 | 保留 |\n| `exp1_isr_b03_s44_r2_eval/` | 168K | eval 结果 | 保留 |\n| `exp1_random_b03_s43_eval/` | 0 | 空目录 | 无所谓 |\n\n### 可释放空间\n\n- `exp1_isr_b03_s44_r2/` — 31G — 训练完成且 eval 已出结果，模型权重可删\n- `exp1_random_b03_s44/` — 15G — 训练完成，checkpoint 可删\n\n**共可释放约 46G**，释放后数据盘使用率从 33% 降至约 14%。\n\n当前磁盘压力不大，但如果后续还要跑多个实验，建议清理这两个目录。需要我执行删除吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-disk-check.md"
+}

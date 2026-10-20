@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "a51039f0fbc251d08966",
+  "project": "solver-trace-ablation",
+  "kind": "worker",
+  "title": "audit paper numbers consistency",
+  "task_key": "worker_audit_paper-numbers-consistency_20260515T133210",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_paper-numbers-consistency_20260515T133210.log",
+    "occurrence": 1,
+    "bytes": 728312,
+    "sha256": "9fa061affc19cf68180bd4e4bd3ff6b19d6614203c53c7ef1906e49cbdffd540"
+  },
+  "statistics": {
+    "messages": 116,
+    "user_turns": 1,
+    "tool_calls": 40,
+    "roles": {
+      "log": 1,
+      "system": 20,
+      "record": 1,
+      "assistant": 12,
+      "tool_call": 40,
+      "tool_result": 40,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 21,
+      "chunks": [
+        {
+          "path": "a51039f0fbc251d08966-part-0001.json",
+          "message_count": 21
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 95,
+      "chunks": [
+        {
+          "path": "a51039f0fbc251d08966-part-0001.json",
+          "message_count": 79
+        },
+        {
+          "path": "a51039f0fbc251d08966-part-0002.json",
+          "message_count": 16
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-paper-numbers-consistency.md"
+}

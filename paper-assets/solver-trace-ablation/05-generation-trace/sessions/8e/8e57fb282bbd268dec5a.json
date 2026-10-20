@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "8e57fb282bbd268dec5a",
+  "project": "solver-trace-ablation",
+  "kind": "worker",
+  "title": "analysis exp1 random b03 s43 r4",
+  "task_key": "worker_analysis_exp1-random-b03-s43-r4_20260515T043230",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp1-random-b03-s43-r4_20260515T043230.log",
+    "occurrence": 1,
+    "bytes": 498776,
+    "sha256": "a01bbb92211341f4e3e4be9156ae30fabe5316cc988a42643c2f3c3c6985d13c"
+  },
+  "statistics": {
+    "messages": 308,
+    "user_turns": 0,
+    "tool_calls": 124,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 56,
+      "tool_call": 124,
+      "tool_result": 124,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 308,
+      "chunks": [
+        {
+          "path": "8e57fb282bbd268dec5a-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "8e57fb282bbd268dec5a-part-0002.json",
+          "message_count": 128
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-exp1-random-b03-s43-r4.md"
+}

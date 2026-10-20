@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0da8990a02d326d80733",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "paper writing related work",
+  "task_key": "worker_paper_writing_related_work_20260514T193032",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_related_work_20260514T193032_result.json",
+    "occurrence": 1,
+    "bytes": 718,
+    "sha256": "a0784e5dce2118d67cf1b600f399aa10d675b0f7dbf2778598f35f166e054d7e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`related_work.tex` 已重写完成（~915 words）。主要变更：\n\n- **重排为 4 cluster + positioning 结构**：Neurosymbolic Reasoning → Reward Shaping → Reward Hacking → Mutation Testing → Positioning\n- **补全缺失引用**：Thought-Like-Pro, gao-effective-rl-reward, prof-process-outcome, qwen-prm-lessons, progrs-outcome-conditioned, kwa-catastrophic-goodhart, bondarenko-spec-gaming, kim-game-formalization, spurious-rewards, offutt-coupling, llmorpheus\n- **统一引用格式**：`\\citet`/`\\citep` → `\\cite`\n- **新增 positioning 段**：总结论文在四个 cluster 交叉点的定位\n- **每段结尾明确 our distinction**，用 \"differs in\" 而非贬义措辞"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-related-work.md"
+}

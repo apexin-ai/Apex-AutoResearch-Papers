@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8dfec368dbf9e28d4dea",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops submit plan004 o1 ablation",
+  "task_key": "worker_ops_submit-plan004-o1-ablation_20260515T044452",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_submit-plan004-o1-ablation_20260515T044452_result.json",
+    "occurrence": 1,
+    "bytes": 514,
+    "sha256": "87d975611b0bd55d5223ace47add257712be02707d1a7aecbde9f49ad699e46a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已提交并运行中。\n\n**总结：**\n- **exp_id**: plan004-o1-ablation-s42\n- **状态**: RUNNING, PID=155099, cuda:1 (64880MiB)\n- **配置**: `execution_fast_sta` mode, 500 steps, K=8, seed=42, Qwen3-4B\n- **数据**: train_500_seed42.jsonl (500 samples) ✓ C001\n- **GPU**: 仅占 cuda:1, cuda:0 空闲 ✓ C002\n- **磁盘保护**: save_total_limit=1, log_completions=False ✓ C003\n- **reward**: `r = 0.5 * exec + 0.5 * fast_ISR`（O(1) binary，对所有 proved 返回 ISR=1.0）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-submit-plan004-o1-ablation.md"
+}

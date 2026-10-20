@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fb2da6cab1fd5e2299b9",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code plan006 prolog data fix",
+  "task_key": "worker_code_plan006-prolog-data-fix_20260514T110325",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan006-prolog-data-fix_20260514T110325_result.json",
+    "occurrence": 1,
+    "bytes": 1374,
+    "sha256": "469c474ac66d254774c2b4b4d6e591f559d498b04597811dab875148309bad30"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 调查结论\n\n**问题不存在。** plan006-prolog-exec-s42 当前正在正常运行，已到 step ~361/500。\n\n具体发现：\n\n1. **运行中进程**（PID 506020，GPU 0，从 17:49 开始）：\n   ```\n   python3 scripts/train_grpo.py --config configs/grpo_prolog_exec_only.yaml --num_steps 500 --seed 42 --output_dir /root/autodl-tmp/outputs/plan006_prolog_exec_s42\n   ```\n\n2. **数据路径**：所有 Prolog config（`grpo_prolog_exec_only.yaml`、`grpo_prolog_exec_sta.yaml`、`grpo_prolog_exec_only_k16_warmup.yaml`）都使用 `data_path: data/train_500_seed42.jsonl`，即 FOL 数据文件（符合 C001 约束）。\n\n3. **`data/prolog/` 目录确实不存在**，但没有任何 config 或代码引用这个路径。`train_grpo.py` 第 390 行直接 `load_jsonl(args.data_path)` 不做路径改写。\n\n4. **`data/prolog/train_500_seed42.jsonl` 这个路径在服务器上无任何引用**——不在 config 中，不在代码中，不在日志中。\n\n**根因推测**：报错 `FileNotFoundError: data/prolog/train_500_seed42.jsonl` 来自之前的失败尝试，当时 config 或启动命令中 data_path 被错误设为 `data/prolog/train_500_seed42.jsonl`。之后 config 已修正为 `data/train_500_seed42.jsonl`，第三次启动成功。\n\n**无需修复。** 训练正常运行中，预计还需约 30 分钟完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan006-prolog-data-fix.md"
+}

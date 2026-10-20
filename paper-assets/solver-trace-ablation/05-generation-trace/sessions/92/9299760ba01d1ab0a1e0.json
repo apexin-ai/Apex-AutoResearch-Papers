@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9299760ba01d1ab0a1e0",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_2_1778728325.md",
+  "task_key": "loop_2_1778728325",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_2_1778728325.md",
+    "occurrence": 1,
+    "bytes": 4702,
+    "sha256": "d590591ad473da14446ca85cad36b2e4729bbc20a7327a52f0d989d54a3a3556"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: idle_timeout\nupdated: '2026-05-14T03:05:16+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**仅 westd-39279:cuda:0 和 cuda:1**，禁止使用其他 GPU\n- 提交命令必须 `bash -c \"export CUDA_VISIBLE_DEVICES=N && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && ...\"`，缺 export 会导致双卡占用事故（D009/C002）\n- 训练日志 ISR **不可用于跨实验对比**（binary approx vs full STA 混用）。所有最终 ISR 对比必须用 `eval_sta.py` 在 checkpoint 上重新评估（D013/D015）\n- TRL 训练必须 `log_completions=False` + `save_total_limit=1`，output_dir 放 `/root/autodl-tmp/outputs/`（C003，250GB 系统盘已因 completions parquet 撑满过两次）\n- 所有 plan001/plan013 实验统一用 `data/train_500_seed42.jsonl`（C001，消除数据差异 confound）\n- **旧凸组合公式已废弃**（r = α·r_exec + β·r_exec·ISR, α+β=1）。新公式是 additive bonus: r = r_exec·(1+β·ISR)\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-39279，2× RTX PRO 6000 Blackwell 94GB VRAM\n- **工作目录**: `/root/solver-trace-ablation/`\n- **Python**: `/root/miniconda3/bin/python`，conda base 环境（不是 venv）\n- **激活**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型**: `/root/solver-trace-ablation/models/Qwen3-4B`（7.6GB，ModelScope 下载）\n- **Outputs/Checkpoints**: `/root/autodl-tmp/outputs/`\n- **Solvers**: Prover9 (LADR 源码编译), SWI-Prolog 8.4.2, Z3 4.16.0.0\n- **活跃进程**:\n  - plan002-additive-b03-s42: PID 161819, cuda:0, tmux session active, cron 监控中\n  - plan001-exec-only-s43-r4: PID 136339, cuda:1, tmux session active, cron 监控中\n\n### 3. 📊 当前状态\n两个实验正在跑，两卡满载：\n- **plan002-additive-b03-s42** (cuda:0): additive bonus β=0.3 核心实验，验证新公式方向。预估 ~1h（full STA 每步较慢）\n- **plan001-exec-only-s43-r4** (cuda:1): exec-only seed=43，3-seed baseline 第 2 个种子\n\n已完成的关键结果：\n- plan001-s42-r2 ✅: exec-only 500步，PR(last100)=0.865，ISR=0.8612（binary approx，需 eval_sta.py 重评）\n- plan013-random-r4 ✅: random reward 500步，PR=0.675，ISR 待 eval_sta.py\n- plan005 ❌ negative: 凸组合是 penalty（ISR/PR=0.298），触发 framing 转向（D010/D011）\n- plan003-eval ✅: exec-only held-out ISR=0.6423（proved-only），高于 GT 0.56\n\nFraming 已转向（D010/D011）：~~\"STA detects hacking\"~~ → \"STA as diagnostic metric + additive bonus integration\"。Director 已批准 Narrative A+C。\n\n### 4. 📋 待办（条件触发式）\n- **plan001-s43-r4 + plan002 完成** → spawn Worker 对 4 个 checkpoint 做 batch eval_sta.py（plan001-s42, plan001-s43, plan002, plan013）→ 获取统一可比 ISR\n- **eval batch 出齐** → 构建完整 ISR 对比表，判断 additive bonus 是否提升 ISR over exec-only。若 β=0.3 ISR 显著高于 exec-only → 核心 claim 成立；若无差异 → 需要调 β 或 pivot\n- **GPU 空出** → 启动 plan014 downstream validation（NLI accuracy + cross-solver agreement，~4.5h，已审批）\n- **plan014 完成** → Spearman ρ(ISR, NLI_acc) ≥ 0.1 则 ISR-as-quality-proxy 成立；< 0.1 触发 kill criteria #3\n- **plan017 additive random control** → 代码就绪后提交审批（r = r_exec·(1+0.3·random)，隔离 ISR structural signal vs noise）\n- **plan001-s44** (3rd seed) → 排 GPU，3-seed 凑齐后算 mean±std\n\n### 5. 🎯 战略上下文\n**DDL 2026-05-25（11天）**，Dream 审稿 best 4/6 median 3/6，5 个结构性弱点已有应对方案。\n\n**决策链核心**:\n- D008: 50/50 凸组合 = penalty effect（非 hacking detection）\n- D010/D011: framing 转向 STA as metric + additive bonus\n- D014: GRPO 饱和 confound — random reward 也达高 PR → 论文聚焦 ISR 差异而非 PR\n- D015: 训练日志 ISR 不可信，eval_sta.py 是唯一可比标准\n\n**最容易判断错的事**:\n1. **不要把训练日志 ISR 当真实 ISR**。plan001-s42-r2 的 ISR=0.8612 是 binary approximation，plan013 的 isr_mean 在 random_reward 模式下恒为 0.0（_fast_fn, sta_weight=0）。跨实验 ISR 对比必须等 eval_sta.py 结果\n2. **plan013 的 isr_mean 字段无意义**（random_reward 模式下 sta_reward=0.0），真实随机值在 random_reward 字段\n3. **GRPO 饱和是已知 confound**：prove_rate 饱和后 exec-only reward_std=0 → loss=0 → 停止学习，而 random/additive 因额外 variance 仍有梯度。additive bonus 的 anti-saturation 是论文正面叙述点\n4. **Prolog STA 代码已就绪**（plan006），但优先级低于 eval batch 和 plan014\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-1778728325.md"
+}

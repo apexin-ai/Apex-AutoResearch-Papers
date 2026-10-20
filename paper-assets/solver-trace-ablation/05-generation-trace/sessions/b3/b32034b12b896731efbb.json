@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b32034b12b896731efbb",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "eval gated isr final eval",
+  "task_key": "worker_eval_gated-isr-final-eval_20260516T174007",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_gated-isr-final-eval_20260516T174007_result.json",
+    "occurrence": 1,
+    "bytes": 167,
+    "sha256": "1a5600c99f62ed1a3bd97f3d05d612ac53b112cc89825ea18f343596b0b6bf1e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "API Error: 500 Internal server error. This is a server-side issue, usually temporary — try again in a moment. If it persists, check status.claude.com."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-gated-isr-final-eval.md"
+}

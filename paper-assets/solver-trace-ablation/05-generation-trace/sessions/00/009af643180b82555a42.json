@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "009af643180b82555a42",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "paper figure fig3 fix genuine",
+  "task_key": "worker_paper_figure_fig3-fix-genuine_20260514T175218",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig3-fix-genuine_20260514T175218_result.json",
+    "occurrence": 1,
+    "bytes": 257,
+    "sha256": "fbbdce7ab31ce9aca5c96f446de7d21f625fb66c0658048b1c04e0052500111a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。修改内容：\n\n- `genuine[3]` (Random s42): 25.3% → 29.1%\n- 移除 H3 数组、颜色、柱子、标注（H3 折入 Genuine）\n- 图例现在只有 Genuine / H1 / H7 三类\n- PDF 和 PNG 已重新生成，artifacts 已更新"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig3-fix-genuine.md"
+}

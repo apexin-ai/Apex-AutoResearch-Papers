@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "de9a15057580a6802a18",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops d134 random s47 completion check",
+  "task_key": "worker_ops_d134-random-s47-completion-check_20260518T173042",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d134-random-s47-completion-check_20260518T173042_result.json",
+    "occurrence": 1,
+    "bytes": 819,
+    "sha256": "f2df904f623ee462cd587467dac8b54fd7f394956de2f6616d7461a46b8ac167"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果摘要\n\n| 项目 | 状态 |\n|---|---|\n| **s47 结论** | **success** — 500/500 steps 正常完成，模型已保存 |\n| **训练指标** | prove_rate=0.629, mean_isr=0.123, parse_rate=1.0, loss=0.0093 |\n| **checkpoint_path** | `/root/autodl-tmp/outputs/d134_4b_random_b01_s47` |\n| **log_path** | `/root/autodl-tmp/outputs/d134_4b_random_b01_s47/train.log` |\n| **eval 状态** | `eval_sta.py` 正在运行（PID 120444，进度 ~31/100），由 `d134-pipeline` tmux 驱动 |\n| **s48** | 尚未开始（无 output dir），等 s47 eval 完成后 pipeline 会自动启动 |\n| **d134-cleaner** | tmux session 存在，当前空闲 |\n| **磁盘** | 223G/250G (89%) |\n| **GPU** | cuda:0 占用 16.4G（eval 推理中），68% 利用率 |\n| **Registry** | DONE/success，cron 已删除 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-d134-random-s47-completion-check.md"
+}

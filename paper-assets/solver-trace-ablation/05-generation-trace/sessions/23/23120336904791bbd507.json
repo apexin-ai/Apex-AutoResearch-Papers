@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "23120336904791bbd507",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "audit figure quality",
+  "task_key": "worker_audit_figure-quality_20260514T202949",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_figure-quality_20260514T202949_result.json",
+    "occurrence": 1,
+    "bytes": 60,
+    "sha256": "539c5ee280c83496452f08c60fabeaa8aa9295cad606b6a30c73790da829b681"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 11:10pm (UTC)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-figure-quality.md"
+}

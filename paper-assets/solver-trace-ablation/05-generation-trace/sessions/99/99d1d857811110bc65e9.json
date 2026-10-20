@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "99d1d857811110bc65e9",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops disk cleanup restart",
+  "task_key": "worker_ops_disk-cleanup-restart_20260517T084947",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_disk-cleanup-restart_20260517T084947_result.json",
+    "occurrence": 1,
+    "bytes": 1329,
+    "sha256": "6957125b77e8d187f7fa1f01b320bcb2ed3471176ac9655ce98625669bbc22bf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验都已正常运行，step 1 和 step 2 通过。\n\n---\n\n## 最终汇报\n\n### 1. 备份结果\n`/root/autodl-tmp/eval_archive/` 下 7 个目录：\n\n| 目录 | 备份文件 |\n|---|---|\n| plan001_exec_only_s43_1000_r2 | eval_results.json, reward_log.jsonl |\n| plan001_exec_only_s46 | eval_results.json, reward_log.jsonl |\n| plan002_additive_b01_s45 | eval_results.json, h7_classification.json, reward_log.jsonl |\n| plan002_additive_b01_s46 | eval_results.json, h7_classification.json, reward_log.jsonl |\n| plan018_random_b01_s45 | eval_results.json, h7_classification.json, reward_log.jsonl |\n| plan018_random_b01_s46 | eval_results.json, h7_classification.json, reward_log.jsonl |\n| sweep_random_b005_s42 | eval_results.json, h7_classification.json, reward_log.jsonl |\n\n### 2. 磁盘状态\n`/dev/md0  250G  40G  211G  16%` — 释放 210G\n\n### 3. sweep-isr-b005-s43 状态\n已崩溃（磁盘满时死亡，仅完成到 step 50），已重启\n\n### 4. 训练重启状态\n\n| 实验 | GPU | PID | tmux session | 状态 |\n|---|---|---|---|---|\n| sweep-random-b005-s43 | cuda:1 (83423 MiB) | 246587 | sweep-random-b005-s43 | step 2 通过，~15s/step，预计 ~2h |\n| sweep-isr-b005-s43 | cuda:0 (83423 MiB) | 246667 | sweep-isr-b005-s43 | step 2 通过，~14.5s/step，预计 ~2h |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-disk-cleanup-restart.md"
+}

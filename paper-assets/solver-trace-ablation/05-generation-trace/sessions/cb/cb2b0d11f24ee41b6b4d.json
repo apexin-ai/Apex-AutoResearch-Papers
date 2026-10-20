@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cb2b0d11f24ee41b6b4d",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "research r17 reference verification",
+  "task_key": "worker_research_r17-reference-verification_20260520T070446",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_r17-reference-verification_20260520T070446_result.json",
+    "occurrence": 1,
+    "bytes": 2119,
+    "sha256": "9e1d0b387bf471344549df9785a83fbccefb93d90ced73d5e435be883646a8e2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完成，结果如下：\n\n```\n引用 1: arXiv:2601.22642\n- 真实: YES\n- 实际标题: Pushing the Boundaries of Natural Reasoning: Interleaved Bonus from Formal-Logic Verification\n- 实际作者: Cao et al. (Chuxue Cao, Jinluan Yang, Haoran Li, Kunhao Pan, Zijian Zhao 等)\n- 年份: 2026 (January 30)\n- 与我们工作相关: YES — 形式逻辑验证引导的 RLVR 训练框架，动态插入符号验证反馈纠正推理错误，直接涉及 verifiable reward + reasoning\n- 注意事项: R17 声称 \"Xie et al. (2025)\" 是错误的。实际第一作者是 Cao，年份是 2026。我们 bib 中 Cao et al. (2026) 的登记是正确的。R17 给出的作者和年份均为 hallucinated。\n\n引用 2: arXiv:2601.11061\n- 真实: YES\n- 实际标题: Spurious Rewards Paradox: Mechanistically Understanding How RLVR Activates Memorization Shortcuts in LLMs\n- 实际作者: Yan et al. (Lecheng Yan, Ruizhe Li, Guanhua Chen, Qing Li, Jiahui Geng 等)\n- 年份: 2026 (January 16)\n- 与我们工作相关: YES — 直接研究 RLVR 中的 spurious reward 导致模型走捷径（memorization shortcut），发现 Perplexity Paradox 和 Anchor-Adapter circuit，与我们的 reward hacking / Goodhart 效应高度相关\n\n引用 3: arXiv:2509.15557\n- 真实: YES\n- 实际标题: Reward Hacking Mitigation using Verifiable Composite Rewards\n- 实际作者: Mirza Farhan Bin Tarek, Rahmatollah Beheshti (University of Delaware)\n- 年份: 2025 (September 19)\n- 与我们工作相关: YES — 直接研究 RLVR 中的 reward hacking（跳过推理直接给答案、利用格式漏洞），提出 composite reward 缓解策略，与我们的 ISR hacking taxonomy 互补\n```\n\n**总结**: 三篇引用全部真实存在且与我们工作高度相关。唯一问题是引用1的作者和年份：R17 声称 Xie et al. (2025)，实际是 Cao et al. (2026)，我们 bib 现有登记正确，无需修改。\n\nSources:\n- [arXiv:2601.22642](https://arxiv.org/abs/2601.22642)\n- [arXiv:2601.11061](https://arxiv.org/abs/2601.11061)\n- [arXiv:2509.15557](https://arxiv.org/abs/2509.15557)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-r17-reference-verification.md"
+}

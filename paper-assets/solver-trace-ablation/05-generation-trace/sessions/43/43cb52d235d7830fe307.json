@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "43cb52d235d7830fe307",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "eval 1 7b random wait and eval",
+  "task_key": "worker_eval_1_7b-random-wait-and-eval_20260516T205357",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_1_7b-random-wait-and-eval_20260516T205357_result.json",
+    "occurrence": 1,
+    "bytes": 186,
+    "sha256": "d6d7b8f64364b1df95ecc1084e7bca4ebc73fe33e102c03a73ec4498bb61e680"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "后台流水线已启动 (PID 954193)，包含：\n1. 等待训练 PID 921646 完成\n2. 运行 eval_sta.py\n3. 运行 classify_h7.py\n\n4.5 分钟后回来检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-1-7b-random-wait-and-eval.md"
+}

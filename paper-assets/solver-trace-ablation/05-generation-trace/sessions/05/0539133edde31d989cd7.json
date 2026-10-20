@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0539133edde31d989cd7",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analysis h8 audit b03 s43",
+  "task_key": "worker_analysis_h8-audit-b03-s43_20260516T071533",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_h8-audit-b03-s43_20260516T071533_result.json",
+    "occurrence": 1,
+    "bytes": 1763,
+    "sha256": "eeb05930a5b66aca0723b9edfe7cacb55f71a44c381481160fdcdd98526f6ed5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Audit complete. Here's the report.\n\n---\n\n## H8 Conjunction Collapse Audit — exp1-isr-b03-s43-r3\n\n### Result: 1 H8 found out of 23 genuine\n\n**Corrected genuine: 22/86 = 25.6%** (was 23/86 = 26.7%)\n\n### H8 Sample\n\n**folio_558** (ISR=0.6667)\n```\nP1: ∀x (¬AdministersInternationally(x))\nP2: ∃x AdministersInternationally(x)\nC:  ∃x AdministersInternationally(x) ∧ ∀x ¬AdministersInternationally(x)\n```\nConclusion = P2 ∧ P1. Classic conjunction collapse — model just AND'd both premises as the conclusion.\n\n**Root cause of automated detection miss**: `normalize_for_match()` in classify_h7.py doesn't strip body-parens after quantifiers. So `∀x (¬A(x))` (premise) ≠ `∀x ¬A(x)` (conjunct) during matching, even though they're identical.\n\n### Additional classifier bugs found (same normalization issue)\n\n| Sample | Type | Issue |\n|--------|------|-------|\n| folio_732 | H7 miss | P1=`∃x (Hard(x))`, C=`∃x Hard(x)` — tautology missed due to parens |\n| folio_959 | H1-near | P2=`∃x ClumsyFoodie(x) ∧ GoesOut(x)`, C=`∃x (ClumsyFoodie(x) ∧ GoesOut(x))` — parens diff |\n\nPer C013, H1-near stays genuine but should be tagged. folio_732 is a true H7 miss (would reduce genuine to 21 if fixed).\n\n### Borderline case examined but NOT classified as H8\n\n**folio_212** (ISR=0.6667): C=`∃x SonOfGP(x) ∧ ¬Author(x)`. Second conjunct `¬Author(x)` is a ∀-instantiation of P1, not P1 itself. Trivial proof but doesn't meet the strict \"C = P1 ∧ P2\" criterion.\n\n### Recommended fix\n\n`normalize_for_match()` should use `parse_quantifier_chain()` to strip body-parens after quantifiers before comparison. This would fix folio_558 (H8), folio_732 (H7), and folio_959 (H1-near) detection."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-h8-audit-b03-s43.md"
+}

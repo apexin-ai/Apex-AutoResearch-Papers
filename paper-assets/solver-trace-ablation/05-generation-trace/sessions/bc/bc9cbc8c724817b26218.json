@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bc9cbc8c724817b26218",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "check d134 pipeline status",
+  "task_key": "worker_check_d134-pipeline-status_20260518T104813",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_d134-pipeline-status_20260518T104813_result.json",
+    "occurrence": 1,
+    "bytes": 1670,
+    "sha256": "f1918c3f8ec31280aadfd7fc08a7f4258abf0f8472c130196b33d068ff8c6cf1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Pipeline 状态汇报\n\n**整体状态：0/10 完成，pipeline 崩溃**\n\nPipeline 在第一个 run（ISR seed=47）的 step 21/500 处 OOM 崩溃，后续 9 个 run 均未启动。\n\n**崩溃原因：** `torch.OutOfMemoryError` — 4B 模型 + 当前 batch 配置在 95GB GPU 上放不下。\n- 错误时 GPU 已用 94.54 GiB / 94.97 GiB，尝试额外分配 1.16 GiB 失败\n- OOM 发生在 backward pass（`accelerator.backward(loss)`）\n- `set -eo pipefail` 导致整个 pipeline 脚本退出\n\n**根因分析：** 配置沿用了 1.7B 模型的 batch 参数（`per_device_batch_size=4, gradient_accumulation_steps=2, num_generations=4, max_completion_length=512`），对 4B 模型 (Qwen3-4B) 内存不够。GRPO 需要 policy + reference model（~16GB weights）+ optimizer states（~16GB）+ gradients（~8GB）+ activations，总计超过 95GB。\n\n**各 run 状态：**\n- `d134_4b_isr_b01_s47`: 训练崩溃于 step 21，仅有 `reward_log.jsonl`（21行）和 `train.log`，无 checkpoint/eval/classify\n- 其余 9 个 run: 未启动，目录不存在\n\n**s47 weights 保留状态：** 无 weights（训练未完成，无 `.safetensors` 文件）\n\n**磁盘：** 193G/250G (77%)\n\n**修复建议：** 需要降低 batch 配置重跑。选项：\n1. `per_device_batch_size` 4→2（最保守，有效 batch 减半）\n2. `num_generations` 4→2（减少 GRPO 采样数）\n3. 两者都减\n\npipeline 脚本中也需要加 `PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True`（已在脚本中 export 了但 OOM 错误提示说没生效，可能因为 env var 在子进程中未继承或是在 allocator 初始化之后才设置）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-d134-pipeline-status.md"
+}

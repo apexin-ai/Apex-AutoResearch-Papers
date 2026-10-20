@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c0639b0324ca6a29e481",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analysis plan018 additive random b01 s43 r3",
+  "task_key": "worker_analysis_plan018-additive-random-b01-s43-r3_20260515T174506",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan018-additive-random-b01-s43-r3_20260515T174506_result.json",
+    "occurrence": 1,
+    "bytes": 1110,
+    "sha256": "8acc4726cfb48650abe3d67350fce0b6f8602376c82f7145cbb12693cea885b3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果汇总：\n\n### plan018-additive-random-b01-s43-r3 分析\n\n**训练指标** (500 步正常完成, 73.7 min)\n| 指标 | 值 |\n|---|---|\n| prove_rate | 0.5825 |\n| mean_isr | 0.1266 |\n| loss | 0.00830 |\n| entropy | 0.0313 |\n\n**评估指标** (proofwriter_fol_100.jsonl)\n| 指标 | 值 |\n|---|---|\n| prove_rate | 0.94 (94/100) |\n| mean_isr | 0.1406 |\n| proved_only_isr | 0.1495 |\n| median_isr | 0.1111 |\n\n**Taxonomy**\n| 类别 | 数量 | 占 proved |\n|---|---|---|\n| H7a (tautology) | 36 | 38.3% |\n| H1 (conclusion embedding) | 56 | 59.6% |\n| H8 (conjunction collapse) | 1 | 1.1% |\n| **Genuine** | **1** | **1.1%** |\n\n**结论: negative**\n\ngenuine_rate = 1.06% (仅 1 个 genuine proof)，远低于 5% 阈值。97.9% 的证明使用了 conclusion-in-premise hacking。与 s42 (genuine_rate=15.19%) 相比，s43 seed 的 genuine reasoning 显著更差。H7a 从 s42 的 0 暴增至 36，说明该 seed 下模型严重收敛到 tautology 策略。\n\n分析报告已写入 `/root/autodl-tmp/outputs/plan018_additive_random_b01_s43_r3/analysis.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan018-additive-random-b01-s43-r3.md"
+}

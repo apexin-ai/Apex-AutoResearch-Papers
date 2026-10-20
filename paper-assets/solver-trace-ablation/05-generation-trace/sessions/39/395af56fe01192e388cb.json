@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "395af56fe01192e388cb",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "verify plan006 startup logs",
+  "task_key": "worker_verify_plan006-startup-logs_20260514T094957",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_plan006-startup-logs_20260514T094957_result.json",
+    "occurrence": 1,
+    "bytes": 579,
+    "sha256": "63c02d17891817d4fd8bb7d03bd15f399d915266f4be889a95334f87ed848872"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验均已确认：\n\n| 实验 | 数据路径 | 进程状态 | GPU | 错误 |\n|------|---------|---------|-----|------|\n| plan006-prolog-exec-s42 (PID 506015) | `data/train_500_seed42.jsonl` ✅ | 存活，运行 41 秒 | CUDA_VISIBLE_DEVICES=0 | 无 |\n| plan006-prolog-sta-s42 (PID 506117) | `data/train_500_seed42.jsonl` ✅ | 存活，运行 38 秒 | CUDA_VISIBLE_DEVICES=1 | 无 |\n\n两个实验已正常进入训练循环（step 1-2 已完成），数据路径符合 C001 约束，GPU 分配符合 C002/C005 约束。vLLM 版本警告可忽略。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-plan006-startup-logs.md"
+}

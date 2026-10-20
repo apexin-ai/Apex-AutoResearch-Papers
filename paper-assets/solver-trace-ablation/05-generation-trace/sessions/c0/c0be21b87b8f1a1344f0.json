@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c0be21b87b8f1a1344f0",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code d134 analysis isr star patch",
+  "task_key": "worker_code_d134-analysis-isr-star-patch_20260518T233104",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d134-analysis-isr-star-patch_20260518T233104_result.json",
+    "occurrence": 1,
+    "bytes": 1490,
+    "sha256": "5976880e20bce0afe8cb5b51c7e7f690e68856e757c7ab78c8020b854148399c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部通过。\n\n## 报告\n\n### 修改内容\n\n| 位置 | 改动 |\n|------|------|\n| `discover_runs` (L152-159) | 加载 `eval_results.json`，提取 `summary.proved_only_mean_isr` |\n| `compute_row` (L184) | 返回值增加 `ISR_star` 字段 |\n| `mannwhitney_isr_star` (L269-285) | 新增函数：ISR* Mann-Whitney U 检验 |\n| `condition_stats` (L370-372) | 增加 ISR* mean/std 计算 |\n| `print_per_seed_table` (L414-420) | 表格增加 ISR* 列 |\n| `print_condition_stats` (L435-436) | 输出增加 ISR* 行 |\n| `print_tests` (L439, L477-482) | 增加第 6 项 ISR* MW 输出 |\n| `generate_markdown` (L490, L560-566) | Table A1 增加 ISR* 列 + 第 5 项 ISR* MW |\n| `main` (L623, L625, L627) | 调用 `mannwhitney_isr_star` 并传递 |\n\n### ISR* 字段名\n`summary.proved_only_mean_isr`\n\n### Per-seed ISR* 值\n\n| Condition | Seed | ISR* |\n|-----------|------|------|\n| ISR | 47 | 0.5670 |\n| ISR | 48 | 0.7462 |\n| ISR | 49 | 0.5339 |\n| ISR | 50 | 0.7274 |\n| ISR | 51 | 0.7134 |\n| RANDOM | 47 | 0.0963 |\n| RANDOM | 48 | 0.0625 |\n| RANDOM | 49 | 0.1143 |\n\n### ISR* 条件统计\n- ISR mean: 0.6576 +/- 0.0992\n- RANDOM mean: 0.0910 +/- 0.0263\n\n### ISR* Mann-Whitney U 结果\n- U = 15.0, p = 0.0179, rank-biserial r = 1.000\n- 完全分离（所有 ISR seed 的 ISR* 都高于所有 Random seed）\n\n### 原有功能验证\nFisher (p=0.0179), H7 MW (U=15.0, p=0.0179), Permutation (p=0.7845), BF10 (21.00) 均正常输出，无回归。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d134-analysis-isr-star-patch.md"
+}

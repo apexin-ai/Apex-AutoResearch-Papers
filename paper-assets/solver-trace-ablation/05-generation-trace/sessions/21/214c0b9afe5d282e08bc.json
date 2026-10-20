@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "214c0b9afe5d282e08bc",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "paper d165 appendix",
+  "task_key": "worker_paper_d165-appendix_20260521T172410",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_d165-appendix_20260521T172410_result.json",
+    "occurrence": 1,
+    "bytes": 636,
+    "sha256": "48fa2297a9bb2900e60d6255a6c328a87ecf55dd789e1a94e68ddb09b9297191"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both edits look correct.\n\n**Appendix** (`appendix.tex`): Added `\\paragraph{SFT warmstart with GRPO (3-seed).}` with narrative and `Table~\\ref{tab:llama-d165}` containing all D165 per-seed data (PR, ISR*, TS%, CE%, N-H%) plus Mean±SE row. Format matches existing per-seed tables.\n\n**Limitations** (`limitations.tex`): Updated line 6 to reflect D165 — LLaMA now described as \"cannot cold-start GRPO\" but \"with SFT warmstart GRPO stagnates at SFT baseline (PR≈15%, non-hacking 86.6%, 3 seeds)\", replacing the old \"fails to produce parseable formalizations\" framing. Numbers are consistent across both files."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-d165-appendix.md"
+}

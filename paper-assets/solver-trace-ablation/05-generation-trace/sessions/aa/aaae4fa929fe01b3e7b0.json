@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aaae4fa929fe01b3e7b0",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "setup qwen3 7b pilot prep",
+  "task_key": "worker_setup_qwen3-7b-pilot-prep_20260516T085843",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_setup_qwen3-7b-pilot-prep_20260516T085843_result.json",
+    "occurrence": 1,
+    "bytes": 1513,
+    "sha256": "aafbd4e2ed99e28012c5128fde09f3b265b11862d8302153ababa8092f28ceb4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### 1. PID 768865 (sweep-exec-only-s45-r2)\n- **状态**: 存活，运行 36 分钟\n- **进度**: step 496/500（即将完成）\n- prove_rate=1.0, reward_mean=1.0\n\n### 2. 模型\n- **Qwen3-8B** 已存在于 `/root/autodl-tmp/models/Qwen3-8B`\n- 16GB，5 个 safetensors 分片，完整可用\n\n### 3. Config 文件\n| 文件 | 关键参数 |\n|------|----------|\n| `configs/grpo_exec_only_8b.yaml` | batch=2, grad_accum=4, K=4, adamw_bnb_8bit, gradient_checkpointing=true |\n| `configs/grpo_additive_bonus_b01_8b.yaml` | 同上 + beta=0.1, reward_mode=additive_bonus |\n\n### 4. Dry-run 结果\n- **K=4 可以跑，但需要 8-bit optimizer**\n- 8B + 标准 Adam 不可能在单卡 98GB 上跑（model 16GB + optimizer 64GB + gradients 16GB = 96GB 最低，不含 activations）\n- 使用 `adamw_bnb_8bit` + `gradient_checkpointing` + `batch_size=2`：峰值约 79GB，在 95GB 可用显存内\n- **当前阻塞**：eval_sta.py (PID 785241) 占用 GPU 0 共 16GB，已设后台脚本（PID 794397）等其结束后自动执行验证\n\n### 5. 磁盘\n- 69GB 可用 / 250GB 总量（73% 使用率）\n- Qwen3-8B 占 16GB，足够\n\n### 6. 脚本修改\n`train_grpo.py` 新增：\n- `--optim` 参数（传递到 GRPOConfig）\n- `gradient_checkpointing` 从 YAML config 传递到 GRPOConfig\n\n### 待确认\n后台 PID 794397 会在 eval 结束后自动跑 2-step dry-run。可稍后 `tail /tmp/8b_dryrun_final.log` 查看结果。如果成功，8B pilot 可直接启动训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/setup-qwen3-7b-pilot-prep.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dab75c64338917370b18",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ssh warmstart v2 fixed ckpt",
+  "task_key": "worker_ssh_warmstart-v2-fixed-ckpt_20260516T153415",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_warmstart-v2-fixed-ckpt_20260516T153415_result.json",
+    "occurrence": 1,
+    "bytes": 1643,
+    "sha256": "b2e32b4244b0daa63edd5ce6de7ecea2e228f53e5e7d9d05d86c725d22254193"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告：500 步 exec-only checkpoint 不存在\n\n**磁盘搜索结果：**\n\n| 路径 | 状态 | 原因不可用 |\n|------|------|-----------|\n| `plan001_exec_only_s42` | 不存在 | 已清理 |\n| `plan001_exec_only_s43_1000_r2` | 有模型文件 | 是 1000 步最终模型，无中间 checkpoint |\n| `plan001_exec_only_s44_1000_r2` | 有模型文件 | 同��� |\n| `sweep-exec-only-s45-r2` | 目录已删 | 磁盘清理时移除（registry 有记录但文件不在） |\n| `w2_1.7b_exec_only_s42/checkpoint-500` | 存在 | 架构不兼容（Qwen3-1.7B vs 项目用 Qwen3-4B） |\n\n**结论：没有任何 Qwen3-4B 的 500 步 exec-only checkpoint 存活在磁盘上。**\n\n---\n\n**可行替代方案：从 base model 重训 500 步 exec-only**\n\n- Base model: `/root/autodl-tmp/models/Qwen3-4B`\n- 参考: `sweep-exec-only-s45-r2` 历史记录显示 500 步训练耗时 ~55 min\n- 两张 GPU 完全空闲（RTX PRO 6000 Blackwell, 98GB × 2）\n\n**风险提示：** `sweep-exec-only-s45-r2` 的 500 步数据显示 entropy_final=0.045 且 H7a=93.9%。即使只训 500 步，模型可能已经高度 peaked。1000 步 collapse 更严重，但 500 步的 diversity 是否足以支撑 K=8 下产生 reward variance 需要验证。\n\n---\n\n**按任务要求，不提交训练任务。** 等待 Director 指示：\n1. 是否从 base model 重训 500 步 exec-only（~55min）然后继续本方案\n2. 是否尝试更早步数（如 200-300 步）以确保更多 diversity\n3. 是否改用 `isr_gated_curriculum/checkpoint-150`（已在 gated-ISR 训练中存活 190+ 步，prove_rate=0.5-0.75，未 collapse）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-warmstart-v2-fixed-ckpt.md"
+}

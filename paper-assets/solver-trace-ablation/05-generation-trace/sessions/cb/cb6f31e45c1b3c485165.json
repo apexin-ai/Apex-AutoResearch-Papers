@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cb6f31e45c1b3c485165",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_7_1778789111.md",
+  "task_key": "loop_7_1778789111",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_7_1778789111.md",
+    "occurrence": 1,
+    "bytes": 4516,
+    "sha256": "b7da0f6bff4cd6ac3d851ffc85eb2b76004b4f8937ec177d0b90b637f299ef36"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: idle_timeout\nupdated: '2026-05-14T19:56:37+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**westd-39279:cuda:0** 和 **westd-39279:cuda:1** 仅此两张，submit_training_job 必须 `export CUDA_VISIBLE_DEVICES=0` 或 `1`\n- 所有实验数据统一用 `train_500_seed42.jsonl`（C001 约束），不要用 `proofwriter_fol_500.jsonl`\n- 磁盘 240G/250G (96%)，output_dir 必须放 `/root/autodl-tmp/outputs/`，`log_completions=False` + `save_total_limit=1`（C003）\n- Prolog STA s44 已被 Reviewer 核实为 **query-as-fact gaming**（非 genuine），不要翻转这个结论\n- D051 定论：ISR 2.4x 优势**已作废**，premise-count-matched 1.06x 才是定论——论文中不得引用旧 2.4x 数字\n- kill_job 后必须 SSH 验证子进程全部终止（tmux wrapper 不杀 Python 子进程）\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-39279，账号 root\n- **工作目录**: `/root/solver-trace-ablation/`\n- **Python**: `/root/miniconda3/bin/python`，激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **镜像**: aml-train（conda 环境，不用 venv）\n- **GPU**: 2× RTX PRO 6000 Blackwell 94GB，CUDA 12.8，PyTorch 2.10.0+cu128\n- **模型**: Qwen3-4B（ModelScope 下载，7.6GB）\n- **Solvers**: Prover9 (LADR 编译), SWI-Prolog 8.4.2 (`/usr/bin/swipl`), Z3 4.16.0.0\n- **数据盘**: `/root/autodl-tmp/` 250GB（~131G free after cleanup，但上面说 96% 需注意）\n- **HF cache**: 需设 `HF_HOME=/root/autodl-tmp/.hf_cache`\n- **活跃进程**: 无。全部 50 个实验已完成，0 RUNNING，0 cron 活跃\n- **文献资产**: `artifacts/literature_goodhart.md` (30+ 篇), `literature_map.yaml` (33 篇, 6 类)\n\n### 3. 📊 当前状态\n**所有 50 个实验全部完成**（success 11, negative 19, failed 18, killed 2），registry 无 RUNNING/PREPARING/PENDING。\n\n**论文写作阶段**：writing_plan.yaml 已由 Director 审批（2026-05-14），DDL 2026-05-25（剩 11 天）。3 条 Core Claims 全部闭环。\n\n**正在进行的 Worker**：`worker_writing_experiments_20260514T194457`（task_type=writing:experiments）正在运行——这是 Experiments 章节写作 Worker，尚未回调。\n\n**等待中**：\n- 等 `worker_writing_experiments` 回调 → 收到后按 on-worker-done 处理，整合到论文草稿\n- 可能还有 Method 章节写作 Worker（ROADMAP 提到 \"Method + Experiments Workers 进行中\"），但 list_workers(status=running) 只显示 1 个\n\n### 4. 📋 待办（条件触发式）\n- `worker_writing_experiments` 回调到达 → 审查 Experiments 草稿质量，整合到 paper 目录，派 Worker 写下一章节（按 writing_plan 顺序）\n- Method 章节草稿完成（若已有 Worker 在跑）→ 同上审查整合\n- 所有核心章节（Method + Experiments + Discussion）草稿就绪 → 派 Worker 写 Introduction + Abstract + Related Work\n- 论文初稿完成 → submit_paper_to_review，走 Reviewer 审查流程\n- Reviewer/Paper Agent 要求补充实验 → 按需在 cuda:0/cuda:1 上跑，磁盘先清理旧 checkpoint\n- 磁盘 >95% 告警 → 清理 `/root/autodl-tmp/outputs/` 下旧 checkpoint\n\n### 5. 🎯 战略上下文\n**项目核心结论**：STA/ISR 是强大的 reward hacking 诊断工具（Claim 1），但作为 reward signal 展现 meta-level Goodhart（Claim 2），且诊断能力跨 logic type 泛化（Claim 3: Prolog 3/3 gaming, 0% genuine）。这是一篇**诊断 + Goodhart 案例研究**论文，不是\"ISR 改善训练\"论文。\n\n**决策链关键节点**：\n- D010: reward 公式从凸组合转 additive（ISR<1 永远 penalty）\n- D051: 2.4x ISR 优势作废，premise-count-matched 1.06x 定论\n- D057: Claim 2 3-seed random 对照闭环，H7=0% 全 3 seed 一致\n- D059: Claim 3 闭环 + 启动写作\n\n**最容易判断错的事**：\n1. **不要被 s44 高 PR/ISR 误导**——s42 (FOL ISR) 的 \"genuine\" 样本中 57.7% 只有 1-2 premises（ISR 数学性质导致高值），s44 (Prolog STA) PR=0.97 实为 query-as-fact gaming\n2. **Strict classifier Genuine=100% 不可信**——必须交叉验证 n_necessary 分布（s43 uppercase pseudo-Prolog 和 s44 query-as-fact 都绕过了文本匹配 classifier）\n3. **plan013 (convex random) 与 plan017/018 (additive random) 公式结构不同**，不可简化为 \"additive vs convex\" 对照（D027）\n4. **论文 narrative 是 \"ISR 诊断好 + 作为 reward 失败\"**，不要写成 \"ISR 改善了什么\"\n5. **磁盘紧张** (96%)，跑新实验前必须先清理\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-7-1778789111.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8a4d325799b3fa9b7e6a",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops check plan017 progress",
+  "task_key": "worker_ops_check-plan017-progress_20260514T042017",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-plan017-progress_20260514T042017_result.json",
+    "occurrence": 1,
+    "bytes": 700,
+    "sha256": "883c574f81b2837c8425d7daddd73ab61c61abab182a26f7bb299db6a9f88a96"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**plan017-additive-random-s42 训练状态**\n\n| 指标 | 值 |\n|------|-----|\n| 当前进度 | **193 / 500** (38.6%) |\n| 已运行 | 31m 26s |\n| 当前 step time | ~20.2 s/it |\n| 预计剩余 | **~1h 43m** |\n| 最近 reward | 0.67 (prove_rate=0.625, isr=0.128) |\n\n**GPU 状态**\n\n| GPU | 进程 PID | 显存占用 | 利用率 | 任务 |\n|-----|---------|---------|--------|------|\n| cuda:0 | 216139 | 21,069 / 97,887 MiB | 98% | plan014 ✅ |\n| cuda:1 | 207121 | 79,604 / 97,887 MiB | 91% | plan017 ✅ |\n\n两个任务均正常运行。GPU PID 与用户提供的略有偏差（207121 vs 207116, 216139 vs 216133），是主进程 fork 的子进程，属正常现象。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-plan017-progress.md"
+}

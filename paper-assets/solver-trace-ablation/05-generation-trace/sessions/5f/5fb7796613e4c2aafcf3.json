@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5fb7796613e4c2aafcf3",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "investigate isr s43 s44 data check",
+  "task_key": "worker_investigate_isr-s43-s44-data-check_20260515T141744",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_investigate_isr-s43-s44-data-check_20260515T141744_result.json",
+    "occurrence": 1,
+    "bytes": 1386,
+    "sha256": "f365e625bcfc409b44ca3b5b111ea6d49f02a0af28367f0eb2c7cffb77fa4512"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## ISR s43 (plan002-additive-b01-s43)\n- **checkpoint**: NOT_FOUND — 输出目录 `/root/autodl-tmp/outputs/plan002_additive_b01_s43` 不存在，无 safetensors\n- **eval_sta_results.json**: NOT_FOUND — outputs、backup、runs 目录均无 eval 文件\n- **其他文件**: 仅有训练日志 `/root/runs/solver-trace-ablation/plan002-additive-b01-s43.log`（训练完成，500 步，EXIT_CODE=0，final prove_rate=0.688, mean_isr=0.504）\n- **结论: 需重训**\n\n## ISR s44 (plan002-additive-b01-s44)\n- **checkpoint**: NOT_FOUND — 输出目录 `/root/autodl-tmp/outputs/plan002_additive_b01_s44` 不存在\n- **eval_sta_results.json**: NOT_FOUND（无独立 eval_sta 文件）\n- **其他 eval 文件**: `/root/runs/solver-trace-ablation/plan002-additive-b01-s44-eval.json` 存在且完整\n  - 100 samples，prove_rate=0.89，mean_isr=0.803，proved_only_mean_isr=0.9022\n  - 每个 sample 有完整的 execution_reward / sta_reward / combined_reward / details（n_components, n_necessary, isr, 逐 component 的 is_necessary）\n  - model_path 指向已删除的 `/root/autodl-tmp/outputs/plan002_additive_b01_s44`\n- **结论: 有完整 eval 数据，无需操作**\n\n---\n\n**汇总**: s43 checkpoint 和 eval 均已丢失，需重训。s44 checkpoint 已丢失但有完整 eval 结果，可直接使用。备份目录仅有 s42 的 eval，无 s43/s44。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/investigate-isr-s43-s44-data-check.md"
+}

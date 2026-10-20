@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cdf4fec7ed505cdb6013",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code 8b failure diagnosis",
+  "task_key": "worker_code_8b-failure-diagnosis_20260520T055215",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_8b-failure-diagnosis_20260520T055215_result.json",
+    "occurrence": 1,
+    "bytes": 3190,
+    "sha256": "0b1b10c8ab2901bef50a2fded9702d0373f582b59bdc99921ea103573d87ed0f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有数据收集完毕。\n\n---\n\n## 汇总报告\n\n### 1. 失败原因\n\n两个 8B pilot（exec 和 ISR）均在 **step 1 训练阶段** OOM（generation 成功，training step 中 `lm_head` forward 失败）：\n\n```\ntorch.OutOfMemoryError: Tried to allocate 1.16 GiB.\nGPU 0: 94.97 GiB total, 217.56 MiB free.\nPyTorch allocated: 93.42 GiB\n```\n\n**仅差 ~1.4 GiB。** 崩溃点在 `_get_per_token_logps_and_entropies` → `lm_head(hidden_states)` — logps 计算的 forward pass。\n\n### 2. GPU 状态\n\n| 项目 | 值 |\n|------|-----|\n| GPU | NVIDIA RTX PRO 6000 Blackwell Server Edition |\n| 显存 | 97,887 MiB (~96 GB) |\n| 数量 | 1 块 |\n| 当前占用 | 0 MiB（空闲） |\n\n### 3. Pilot 实际配置（`grpo_exec_only_8b.yaml`）\n\n已经是非常激进的配置：\n\n| 参数 | 值 |\n|------|-----|\n| K (num_generations) | **2**（最小实用值） |\n| per_device_batch_size | **1** |\n| gradient_accumulation_steps | 16 |\n| gradient_checkpointing | **true** |\n| optim | **adamw_bnb_8bit** |\n| max_completion_length | 512 |\n| 模型大小 (磁盘) | 16 GB |\n\n### 4. 显存需求估算\n\n| 组件 | 大小 |\n|------|------|\n| Policy model (bf16) | ~16.6 GB |\n| Ref model (bf16) | ~16.6 GB |\n| 8-bit optimizer (2 moments) | ~16.6 GB |\n| Gradients (bf16) | ~16.6 GB |\n| **固定开销小计** | **~66.4 GB** |\n| 可用于 activations/KV cache/buffers | ~28.6 GB |\n| **实际峰值（日志）** | **94.75 GB** |\n\nactivations + 框架开销 + lm_head logits (vocab=151936) + 碎片化 ≈ 28.6 GB，刚好打满。\n\n### 5. 推荐方案\n\n由于仅差 ~1.4 GiB，以下方案按优先级排列：\n\n**方案 A（最小改动，推荐先试）：**\n```bash\nexport PYTORCH_ALLOC_CONF=expandable_segments:True\n# + 将 max_completion_length 从 512 降到 384\n```\n- `expandable_segments` 减少碎片化，可能释放 1-2 GiB\n- 384 tokens 对 FOL formalization 够用（pilot 中 mean_length=148，max=323）\n\n**方案 B（如 A 仍 OOM）：**\n- `max_completion_length: 256`（pilot completions 最长 323，但 256 覆盖大多数）\n- 结合 `expandable_segments`\n\n**方案 C（如 B 仍 OOM）：**\n- DeepSpeed ZeRO-2 + CPU offload（单卡可用，offload optimizer states 到 CPU，释放 ~16 GB）\n- 或 LoRA (r=16) 大幅减少 trainable params + optimizer 开销\n\n**K=4 不可行** — logps 计算 batch 翻倍，激活显存翻倍，必然 OOM。\n\n### 6. 预估训练时长\n\n| 配置 | 估算 step 时间 | 500 步总时长 |\n|------|---------------|-------------|\n| K=2, batch=1, completion=384 | ~55s/step | ~7.5 小时 |\n| K=2, batch=1, completion=256 | ~45s/step | ~6.3 小时 |\n| K=2, ZeRO-2 CPU offload | ~80s/step | ~11 小时 |\n\n（参考：pilot step 1 generation=28s + training step OOM 前已耗时 38s ≈ 66s/step）\n\n### 7. 注意事项\n\n- Pilot 的 `loss: 0.0, grad_norm: 0.0` 是正常的——K=2 时两个 generation 经常获得相同 reward（都对或都错），advantage=0 → 无梯度信号。K=2 的学习效率会明显低于 K=4。\n- 建议 `gradient_accumulation_steps` 从 16 提高到 32（补偿 K=2 的低信号问题，保持有效 batch size）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-8b-failure-diagnosis.md"
+}

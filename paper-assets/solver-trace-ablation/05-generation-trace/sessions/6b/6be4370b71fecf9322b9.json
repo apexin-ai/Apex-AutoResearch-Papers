@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6be4370b71fecf9322b9",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops check cuda1 status",
+  "task_key": "worker_ops_check-cuda1-status_20260514T053749",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-cuda1-status_20260514T053749_result.json",
+    "occurrence": 1,
+    "bytes": 657,
+    "sha256": "6646f63d69c82df8309f58d2b9934b12698703f18813bda5178e89af9405433a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**cuda:1 被占用，不空闲。**\n\nGPU 进程：\n| PID | GPU | 显存 |\n|-----|-----|------|\n| 262266 | GPU 0 | 79604 MiB |\n| **261641** | **GPU 1** | **16450 MiB** |\n| **263273** | **GPU 1** | **79156 MiB** |\n\nGPU 总览：\n| GPU | 已用/总量 | 利用率 |\n|-----|-----------|--------|\n| 0 | 79613 / 97887 MiB | 91% |\n| **1** | **95620 / 97887 MiB** | **100%** |\n\ncuda:1 上有两个进程：\n- **PID 261641** — 就是之前的 plan017 eval_sta 进程，占 16450 MiB，仍未退出\n- **PID 263273** — 新进程，占 79156 MiB\n\ncuda:1 显存几乎满（95.6G / 97.9G），利用率 100%，无法提交 plan016。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-cuda1-status.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "70c8f89bf4f16d3887fc",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "paper round5 batch2 warnings",
+  "task_key": "worker_paper_round5-batch2-warnings_20260517T152110",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_round5-batch2-warnings_20260517T152110_result.json",
+    "occurrence": 1,
+    "bytes": 979,
+    "sha256": "40eaf501fcf2623f6c86b7a2281d735e6bec69b383895ce78381eb8a8a0581e0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All changes committed. Summary:\n\n- **W4**: §5 opening compressed from 3 sentences to 1, eliminating repeated numbers from §4\n- **W5**: C1 now reads \"We empirically demonstrate ISR as a diagnostic...\"\n- **W6**: Added Goodhart surprising-elements sentence (micro-dose collapse, non-monotonic dose-response, transient window)\n- **W7**: Abstract and intro hedged for cross-scale (\"single-seed 1.7B evaluation\", \"preliminarily observed\")\n- **W8**: Added SFT mechanistic sentence (NLL without exploration-exploitation dynamics)\n- **W9**: Confirmed already present from Batch 1\n- **W10**: Added \"$\\beta{=}0.1$\" trajectory qualification in intro L28 and conclusion L4\n- **W12**: Added Manheim-Garrabrant taxonomy classification (regressional + extremal) in §5\n- **W13**: Added reward landscape geometry (H7 expected reward gap of ~0.49β) in §4.3\n\n§5 Discussion and Conclusion stays on page 8; Limitations starts on page 9. No em-dash violations."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-round5-batch2-warnings.md"
+}

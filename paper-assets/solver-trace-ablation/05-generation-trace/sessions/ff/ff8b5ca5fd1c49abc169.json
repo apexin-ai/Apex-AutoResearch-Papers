@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ff8b5ca5fd1c49abc169",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code d157 s42 eval",
+  "task_key": "worker_code_d157-s42-eval_20260520T162028",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d157-s42-eval_20260520T162028_result.json",
+    "occurrence": 1,
+    "bytes": 462,
+    "sha256": "451c414e4c1eb58b209b7431d3d849c460fadc4ec98be81f391908d8280a40c7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。D157 shuffled-ISR s42-r3 eval + classify 结果：\n\n| 指标 | 值 |\n|------|-----|\n| prove_rate | **0.15** (15/100) |\n| mean_isr | 0.0851 |\n| proved_only_mean_isr | 0.5673 |\n\n**Hacking 分类** (15 proved):\n- TS: 1 (6.7%)\n- CE: 1 (6.7%)\n- PG: 0, CI: 0\n- **Genuine: 13 (86.7%)**\n\n答案类型分布严重偏斜：true 类 prove_rate=35.3%，false/unknown 均 <5%。\n\nRegistry 已更新为 DONE/success，报告已注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d157-s42-eval.md"
+}

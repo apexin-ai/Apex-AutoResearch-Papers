@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "212143fbf22934b3022f",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "fix config merge bug",
+  "task_key": "worker_fix_config-merge-bug_20260516T030423",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_config-merge-bug_20260516T030423_result.json",
+    "occurrence": 1,
+    "bytes": 4567,
+    "sha256": "8a2a8dca7b55198c968658297dcf0be2b9cfbda0f7f3c19ce726b977ace5ac83"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 1. 修改的参数（13 个）\n\n| 参数 | 旧 default | 新 default |\n|---|---|---|\n| `--num_steps` | `100` | `None` |\n| `--per_device_batch_size` | `4` | `None` |\n| `--gradient_accumulation_steps` | `2` | `None` |\n| `--num_generations` | `4` | `None` |\n| `--max_completion_length` | `512` | `None` |\n| `--learning_rate` | `1e-6` | `None` |\n| `--exec_weight` | `0.5` | `None` |\n| `--sta_weight` | `0.5` | `None` |\n| `--beta` | `0.3` | `None` |\n| `--beta_schedule` | `\"fixed\"` | `None` |\n| `--beta_schedule_midpoint` | `250` | `None` |\n| `--seed` | `42` | `None` |\n| `--warmup_ratio` | `0.0` | `None` |\n\n**未改的参数：**\n- `--model_path`, `--data_path`, `--reward_mode`, `--output_dir`, `--solver`, `--logic_type`, `--wandb_project`, `--wandb_run`, `--config` — 本来就是 `default=None`\n- `--no_wandb` — `action=\"store_true\"` bool flag，不受此 bug 影响\n\n### 2. Config merge 逻辑\n\n不需要改。原逻辑 `if current is None` 在 argparse defaults 改为 None 后已能正确让 YAML config 值覆盖。优先级链现在是：**CLI 显式传参 > YAML config > 代码 fallback defaults**。\n\n### 3. Diff（config merge fix 部分）\n\n```diff\n-    parser.add_argument(\"--num_steps\", type=int, default=100)\n-    parser.add_argument(\"--per_device_batch_size\", type=int, default=4)\n-    parser.add_argument(\"--gradient_accumulation_steps\", type=int, default=2)\n-    parser.add_argument(\"--num_generations\", type=int, default=4)\n-    parser.add_argument(\"--max_completion_length\", type=int, default=512)\n-    parser.add_argument(\"--learning_rate\", type=float, default=1e-6)\n-    parser.add_argument(\"--exec_weight\", type=float, default=0.5)\n-    parser.add_argument(\"--sta_weight\", type=float, default=0.5)\n-    parser.add_argument(\"--beta\", type=float, default=0.3,\n-    parser.add_argument(\"--beta_schedule\", type=str, default=\"fixed\",\n-    parser.add_argument(\"--beta_schedule_midpoint\", type=int, default=250,\n-    parser.add_argument(\"--seed\", type=int, default=42)\n-    parser.add_argument(\"--warmup_ratio\", type=float, default=0.0)\n+    parser.add_argument(\"--num_steps\", type=int, default=None)\n+    parser.add_argument(\"--per_device_batch_size\", type=int, default=None)\n+    parser.add_argument(\"--gradient_accumulation_steps\", type=int, default=None)\n+    parser.add_argument(\"--num_generations\", type=int, default=None)\n+    parser.add_argument(\"--max_completion_length\", type=int, default=None)\n+    parser.add_argument(\"--learning_rate\", type=float, default=None)\n+    parser.add_argument(\"--exec_weight\", type=float, default=None)\n+    parser.add_argument(\"--sta_weight\", type=float, default=None)\n+    parser.add_argument(\"--beta\", type=float, default=None,\n+    parser.add_argument(\"--beta_schedule\", type=str, default=None,\n+    parser.add_argument(\"--beta_schedule_midpoint\", type=int, default=None,\n+    parser.add_argument(\"--seed\", type=int, default=None)\n+    parser.add_argument(\"--warmup_ratio\", type=float, default=None)\n\n     # Apply defaults for optional args after config merge\n+    if args.num_steps is None:\n+        args.num_steps = 100\n+    if args.per_device_batch_size is None:\n+        args.per_device_batch_size = 4\n+    if args.gradient_accumulation_steps is None:\n+        args.gradient_accumulation_steps = 2\n+    if args.num_generations is None:\n+        args.num_generations = 4\n+    if args.max_completion_length is None:\n+        args.max_completion_length = 512\n+    if args.learning_rate is None:\n+        args.learning_rate = 1e-6\n+    if args.exec_weight is None:\n+        args.exec_weight = 0.5\n+    if args.sta_weight is None:\n+        args.sta_weight = 0.5\n+    if args.beta is None:\n+        args.beta = 0.3\n+    if args.beta_schedule is None:\n+        args.beta_schedule = \"fixed\"\n+    if args.beta_schedule_midpoint is None:\n+        args.beta_schedule_midpoint = 250\n+    if args.seed is None:\n+        args.seed = 42\n+    if args.warmup_ratio is None:\n+        args.warmup_ratio = 0.0\n     if args.solver is None:\n         args.solver = \"prover9\"\n     if args.logic_type is None:\n         args.logic_type = \"fol\"\n```\n\n### 4. 本地同步\n\n服务器上无 git 仓库，本地 repo 只有 `artifacts/train_grpo.py`（旧版本）。修改只在服务器 `/root/solver-trace-ablation/scripts/train_grpo.py` 生效。下次 `sync_code_to_remote` 推送前需确保本地也有对应文件，否则会被覆盖。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-config-merge-bug.md"
+}

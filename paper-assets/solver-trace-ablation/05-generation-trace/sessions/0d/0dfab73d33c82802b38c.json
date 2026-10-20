@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0dfab73d33c82802b38c",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "figure hacking composition v2",
+  "task_key": "worker_figure_hacking-composition-v2_20260515T212316",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_hacking-composition-v2_20260515T212316_result.json",
+    "occurrence": 1,
+    "bytes": 273,
+    "sha256": "cc8987b06bfac75c505d9a82f4121905e1c796ec8c3ecef4ab3ef7bd88e1d119"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **gen_fig3.py** 已用精确数据完全重写（6 个条件，5 分类，totals 校验通过）\n- **fig3_hacking_composition.pdf/png** 已在本地和远程生成\n- 远程旧版 gen_figs.py 已删除\n- 论文编译成功，main.pdf = 569KB"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-hacking-composition-v2.md"
+}

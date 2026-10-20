@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8474bfdb8e85ba4ef7ce",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "eval plan018 random b01 s43 r2",
+  "task_key": "worker_eval_plan018-random-b01-s43-r2_20260514T164553",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_plan018-random-b01-s43-r2_20260514T164553_result.json",
+    "occurrence": 1,
+    "bytes": 1185,
+    "sha256": "3afda59507d837fca0db374ef247b90e884effe372d9d4e2e86b5be36a99350d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 完成。结果汇总：\n\n## plan018-additive-random-b01-s43-r2 Eval 结果\n\n### 训练 metrics (step 500)\n| 指标 | 值 |\n|------|-----|\n| train_loss | 0.009 |\n| final loss | 0.004 |\n| prove_rate (train log) | 0.593 |\n| mean_isr (train log) | 0.099 |\n| epoch | 2.0 |\n| train_runtime | 4692s (~78min) |\n\n### eval_sta.py 结果 (proofwriter_fol_100, Prover9)\n| 指标 | 值 |\n|------|-----|\n| **prove_rate** | **0.88** |\n| **mean_isr** | **0.0506** |\n| isr_std | 0.0668 |\n| median_isr | 0.0 |\n| proved_only_mean_isr | 0.0575 |\n| isr_pr_ratio | 0.0575 |\n| min_isr / max_isr | 0.0 / 0.222 |\n| n_proved / n_problems | 88 / 100 |\n| elapsed_seconds | 517.0 |\n\n### By answer type\n| Type | Count | Proved | PR | Mean ISR |\n|------|-------|--------|----|----------|\n| false | 25 | 22 | 0.88 | 0.033 |\n| unknown | 41 | 37 | 0.90 | 0.045 |\n| true | 34 | 29 | 0.85 | 0.071 |\n\n### 同系列对比\n| Seed | PR | ISR |\n|------|----|-----|\n| s42 | 0.79 | 0.104 |\n| **s43** | **0.88** | **0.051** |\n| s44 | 0.89 | 0.062 |\n\ns43 的 PR 与 s44 接近（0.88 vs 0.89），ISR 最低（0.051），显示最佳的 random baseline 压制效果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-plan018-random-b01-s43-r2.md"
+}

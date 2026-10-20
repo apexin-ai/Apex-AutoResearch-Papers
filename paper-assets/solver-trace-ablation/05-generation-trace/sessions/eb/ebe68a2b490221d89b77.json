@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ebe68a2b490221d89b77",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "research w10 isr component decompose",
+  "task_key": "worker_research_w10-isr-component-decompose_20260518T084729",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_w10-isr-component-decompose_20260518T084729_result.json",
+    "occurrence": 1,
+    "bytes": 4858,
+    "sha256": "55ff494860f8faeee27af79dfba722bf9eedbbdce367464b36e165df04411a6a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "I have all the data. Here's the complete report.\n\n---\n\n```\n=== 代码实际行为 ===\ndecompose_fol 输入: (premises: list[str], conclusion: str)\ndecompose_fol 输出: list[FOLComponent]\n\n分解逻辑:\n  1. 每个 premise → FOLComponent(type=\"premise\")\n  2. Conclusion 进一步分解:\n     a. 循环剥离外层量词 → FOLComponent(type=\"conclusion_quantifier\")\n        ⚠️ 量词 regex 只匹配 ∀/forall/∃/exists，不匹配 Prover9 的 \"all\"/\"exist\"\n     b. 尝试 top-level 蕴含分割 →\n        - FOLComponent(type=\"conclusion_antecedent\")\n        - FOLComponent(type=\"conclusion_consequent\")\n     c. 若无蕴含结构 → FOLComponent(type=\"conclusion_whole\")\n\n消融逻辑 (ablation.py):\n  - premise: 移除该 premise，re-prove\n  - conclusion_quantifier: 从 conclusion 字符串删除量词文本\n  - conclusion_antecedent: str.replace(content, \"$T\", 1)\n  - conclusion_consequent: str.replace(content, \"$F\", 1)  ← 存在 bug\n  - conclusion_whole: 用 \"$T\" 替换整个 conclusion\n\n=== P→P tautology 实测 ===\n\nCase 1: all x (P(x) -> P(x)) [Prover9 原生格式]\n  n = 2\n  components:\n    [0] type=premise, content=\"all x (P(x) -> P(x))\" → necessary=False (tautology, no-premise 仍可证)\n    [1] type=conclusion_whole, content=\"all x (P(x) -> P(x))\" → necessary=False (替换为 $T 总能证)\n  ISR = 0/2 = 0.0\n\nCase 2: P(x) -> P(x) [无量词]\n  n = 3\n  components:\n    [0] type=premise, content=\"P(x) -> P(x)\" → necessary=False\n    [1] type=conclusion_antecedent, content=\"P(x)\" → necessary=True (替换为 $T→P(x)≡P(x), 无法证)\n    [2] type=conclusion_consequent, content=\"P(x)\" → necessary=False ← BUG: str.replace 替换了第一次出现(antecedent)而非 consequent\n  ISR = 1/3 = 0.333\n\nCase 3: ∀x (P(x) -> P(x)) [Unicode 量词，触发 regex]\n  n = 4\n  components:\n    [0] type=premise → necessary=False\n    [1] type=conclusion_quantifier, content=\"∀x\" → necessary=False\n    [2] type=conclusion_antecedent, content=\"P(x)\" → necessary=True\n    [3] type=conclusion_consequent, content=\"P(x)\" → necessary=False ← 同样的 str.replace bug\n  ISR = 1/4 = 0.25\n\n真实 H7 样本 (eval 数据, 100 个 H7):\n  - 93 个 ISR=0.5 (原子结论, n=2)\n  - 7 个 ISR=1.0 (非重言蕴含结论, ante≠cons, n=3)\n  - 0 个 ISR=0.75\n\n=== 论文描述 ===\n\nmethod.tex L25 当前措辞:\n  \"What constitutes a component depends on the logic: premises in FOL, clauses or ground facts in Prolog.\"\n  → 说 FOL 的 component 是 premises，但代码还分解了 conclusion\n\nISR=0.75 出现位置 (5 处):\n  - experiments.tex:48 \"tautological proofs (P→P) receive ISR=0.75\"\n  - experiments.tex:86 \"H7 tautologies receive expected reward 1+0.75β\"\n  - appendix.tex:153 \"tautological proofs (P→P) receive ISR=0.75\"\n  - appendix.tex:179 \"P→P yields ISR=0.75\"\n  - related_work.tex:22 \"P→P receives ISR=0.75 by construction\"\n\n论文内部自相矛盾:\n  - method.tex:56 说 \"H7 tautologies achieve ISR≥0.5 by construction\"\n  - 其他 4 处说 ISR=0.75\n\n与代码行为的差异:\n  1. ISR=0.75 在代码中不可复现。实测 P→P 得到 0.0 / 0.333 / 0.25（取决于格式）\n  2. 真实 H7 eval 数据中无任何 ISR=0.75 样本\n  3. 论文说 components = \"premises in FOL\"，代码实际还分解 conclusion\n\n=== 发现的两个代码 Bug ===\n\nBug 1: 量词 regex 缺失 Prover9 关键字\n  文件: src/sta/components.py _strip_outer_quantifier\n  Regex: r'^((?:∀|forall|∃|exists)\\s*[A-Za-z_]\\w*)\\s*\\(\\s*'\n  缺少 \"all\" 和 \"exist\"（Prover9 关键字）\n  影响: Prover9 格式的量化公式永远不产生 conclusion_quantifier 组件\n\nBug 2: str.replace 在 antecedent=consequent 时替换错误\n  文件: src/sta/ablation.py _ablate_conclusion_part\n  consequent 消融用 conclusion.replace(content, \"$F\", 1)\n  当 antecedent 和 consequent 文本相同时（如 P→P），替换的是第一个出现位置（即 antecedent），而非 consequent\n  影响: P→P 的 consequent 消融结果为 \"$F→P\" (恒真) 而非 \"P→$F\" (应为恒假)\n\n=== 建议修正 ===\n\n1. 论文: 将所有 \"ISR=0.75\" 改为 \"ISR≥0.5\"（与 method.tex 一致，且有 eval 数据支持）\n   或者: 如果希望保留精确值，用 \"ISR=0.5 for atomic conclusions, ISR=1.0 for non-tautological implications\"\n\n2. 论文 method.tex L25: \"premises in FOL\" → \"premises and conclusion sub-parts in FOL\"\n   （与代码行为一致）\n\n3. 代码 Bug 1: regex 添加 \"all\" 和 \"exist\":\n   r'^((?:∀|forall|all|∃|exists|exist)\\s*[A-Za-z_]\\w*)\\s*\\(\\s*'\n\n4. 代码 Bug 2: 用位置信息替换而非 str.replace\n   对 consequent 消融，应该替换最后一次出现或用 offset 定位\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-w10-isr-component-decompose.md"
+}

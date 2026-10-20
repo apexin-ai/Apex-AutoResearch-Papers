@@ -1,0 +1,588 @@
+{
+  "schema_version": "1.0",
+  "id": "bacdaa634dee7253ae5a",
+  "project": "solver-trace-ablation",
+  "kind": "conversation",
+  "title": "analysis random b01 cross seed interim",
+  "task_key": "worker_analysis_random-b01-cross-seed-interim_20260514T150143",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_random-b01-cross-seed-interim_20260514T150143.jsonl",
+    "occurrence": 1,
+    "bytes": 26369,
+    "sha256": "7001ea1ccb7c6f7f3c694f76bc5c7bf69f07508d8aa751cf8676fa81c26ffb73"
+  },
+  "statistics": {
+    "messages": 28,
+    "user_turns": 0,
+    "tool_calls": 13,
+    "roles": {
+      "assistant": 2,
+      "tool_call": 13,
+      "tool_result": 13
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T15:01:50.512293+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 4pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_random-b01-cross-seed-interim_20260514T150143"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T15:03:58.496592+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_random-b01-cross-seed-interim_20260514T150143",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__read_project_file",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T15:03:58.496902+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_random-b01-cross-seed-interim_20260514T150143",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T15:03:58.497064+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_random-b01-cross-seed-interim_20260514T150143",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "filters": "{'exp_id': 'plan018-additive-random-b01-s42'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T15:03:58.497204+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.191}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_random-b01-cross-seed-interim_20260514T150143",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T15:03:58.497359+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_random-b01-cross-seed-interim_20260514T150143",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "filters": "{'exp_id': 'plan018-additive-random-b01-s44'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T15:03:58.497496+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1551}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_random-b01-cross-seed-interim_20260514T150143",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T15:03:58.497614+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_random-b01-cross-seed-interim_20260514T150143",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "filters": "{'exp_id': 'plan002-additive-b01-s42'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T15:03:58.497785+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3793}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_random-b01-cross-seed-interim_20260514T150143",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T15:03:58.497921+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_random-b01-cross-seed-interim_20260514T150143",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "filters": "{'exp_id': 'plan002-additive-b01-s43'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T15:03:58.498044+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2325}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_random-b01-cross-seed-interim_20260514T150143",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T15:03:58.498157+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_random-b01-cross-seed-interim_20260514T150143",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "filters": "{'exp_id': 'plan002-additive-b01-s44'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-14T15:03:58.498287+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1933}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_random-b01-cross-seed-interim_20260514T150143",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T15:03:58.498413+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_random-b01-cross-seed-interim_20260514T150143",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "filters": "{'id': 'plan018-additive-random-b01-s42'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T15:03:58.498529+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1816}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_random-b01-cross-seed-interim_20260514T150143",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-14T15:03:58.498638+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_random-b01-cross-seed-interim_20260514T150143",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "limit": "1",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-14T15:03:58.498806+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan018-additive-random-b01-s43-r2\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T14:01:24.111Z\\\", \\\"updated_at\\\": \\\"2026-05-14T15:00:35.829Z\\\", \\\"hypothesis\\\": \\\"Random β=0.1 seed=43 控制组 r2: 重试 (原 s43 step 200 磁盘满崩溃)。与 plan002-b01-s43 (ISR β=0.1) 同 seed 对照。3-seed mean±std 审稿硬性要求。\\\", \\\"parent\\\": \\\"plan018-additive-random-b01-s43\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"command\\\": \\\"bash -c \\\\\\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_random_b01.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 43 --beta 0.1 --reward_mode additive_random --output_dir /root/autodl-tmp/outputs/plan018_additive_random_b01_s43_r2\\\\\\\"\\\"}}, \\\"count\\\": 1, \\\"total\\\": 50, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3258}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_random-b01-cross-seed-interim_20260514T150143",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-14T15:03:58.498942+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_random-b01-cross-seed-interim_20260514T150143",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "limit": "0",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-14T15:03:58.499407+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (101,931 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/bf51d2f0-16ca-4895-9229-57babe1f9331/tool-results/mcp-agent-ml-research-read_registry-1778770935715.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/bf51d2f0-16ca-4895-9229-57babe1f9331/tool-results/mcp-agent-ml-research-read_registry-1778770935715.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/bf51d2f0-16ca-4895-9229-57babe1f9331/tool-results/mcp-agent-ml-research-read_registry-1778770935715.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_random-b01-cross-seed-interim_20260514T150143",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-14T15:03:58.499569+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_random-b01-cross-seed-interim_20260514T150143",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "jq -r '.result | fromjson | .data.experiments | to_entries | map(select(.key | test(\"plan018-additive-random-b01|plan002-additive-b01\"))) | from_entries' /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/bf51d2f0-16ca-4895-9229-57babe1f9331/tool-results/mcp-agent-ml-research-read_registry-1778770935715.txt",
+              "description": "Extract relevant experiments from registry"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-14T15:03:58.499891+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n  \"plan018-additive-random-b01-s43-r2\": {\n    \"status\": \"ALLOCATED\",\n    \"retry_count\": 0,\n    \"created_at\": \"2026-05-14T14:01:24.111Z\",\n    \"updated_at\": \"2026-05-14T15:00:35.829Z\",\n    \"hypothesis\": \"Random β=0.1 seed=43 控制组 r2: 重试 (原 s43 step 200 磁盘满崩溃)。与 plan002-b01-s43 (ISR β=0.1) 同 seed 对照。3-seed mean±std 审稿硬性要求。\",\n    \"parent\": \"plan018-additive-random-b01-s43\",\n    \"server\": \"westd-39279\",\n    \"gpu\": \"cuda:0\",\n    \"account\": \"root\",\n    \"command\": \"bash -c \\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_random_b01.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 43 --beta 0.1 --reward_mode additive_random --output_dir /root/autodl-tmp/outputs/plan018_additive_random_b01_s43_r2\\\"\"\n  },\n  \"plan018-additive-random-b01-s44\": {\n    \"status\": \"DONE\",\n    \"retry_count\": 0,\n    \"created_at\": \"2026-05-14T08:36:18.722Z\",\n    \"updated_at\": \"2026-05-14T15:00:09.178Z\",\n    \"hypothesis\": \"Random β=0.1 seed=44 控制组：与 plan002-b01-s44 (ISR β=0.1) 同 seed 对照。验证 ISR 3.2x > random 的结论在 s44 下是否成立。\",\n    \"parent\": \"plan018-additive-random-b01-s42\",\n    \"server\": \"westd-39279\",\n    \"gpu\": \"cuda:0\",\n    \"account\": \"root\",\n    \"reproduce\": {\n      \"server\": \"westd-39279\",\n      \"gpu\": \"cuda:0\",\n      \"started_at\": \"2026-05-14T11:34:13.338Z\",\n      \"command\": \"bash -c \\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_random_b01.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 44 --beta 0.1 --reward_mode additive_random --output_dir /root/autodl-tmp/outputs/plan018_additive_random_b01_s44\\\"\",\n      \"finished_at\": \"2026-05-14T13:37:42.200Z\",\n      \"training_hours\": 2.06\n    },\n    \"spec\": {\n      \"command\": \"bash -c \\\"export CUDA_VISIBLE_DEVICES=\n…[truncated 19417 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_random-b01-cross-seed-interim_20260514T150143",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-14T15:03:58.500095+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_random-b01-cross-seed-interim_20260514T150143",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 << 'EOF'\nimport math\n\ndef stats(xs):\n    n = len(xs)\n    m = sum(xs)/n\n    s = math.sqrt(sum((x-m)**2 for x in xs)/(n-1)) if n > 1 else 0\n    return m, s\n\n# Random β=0.1 (2 seeds: s42, s44)\nr_pr = [0.79, 0.89]\nr_isr = [0.1038, 0.0619]\nr_poisr = [0.1314, 0.0695]\nprint(\"Random β=0.1 (n=2):\")\nprint(f\"  PR: {stats(r_pr)}\")\nprint(f\"  ISR: {stats(r_isr)}\")\nprint(f\"  proved-only ISR: {stats(r_poisr)}\")\n\n# ISR β=0.1 (3 seeds)\n# s44 proved_only computed: mean_isr=0.803, n=100, PR=89 → 0.803*100/89 = 0.9022\ni_pr = [0.81, 0.61, 0.89]\ni_isr = [0.3365, 0.5063, 0.803]\ni_poisr = [0.4154, 0.8301, 0.9022]\nprint(\"\\nISR β=0.1 (n=3):\")\nprint(f\"  PR: {stats(i_pr)}\")\nprint(f\"  ISR: {stats(i_isr)}\")\nprint(f\"  proved-only ISR: {stats(i_poisr)}\")\n\n# Ratios\nprint(f\"\\nMean ISR ratio (ISR/Random): {stats(i_isr)[0]/stats(r_isr)[0]:.2f}x\")\nprint(f\"Mean proved-only ISR ratio: {stats(i_poisr)[0]/stats(r_poisr)[0]:.2f}x\")\n\n# Same-seed pairs\nprint(\"\\nSame-seed pairs:\")\nprint(f\"  s42: Random PR=0.79/ISR=0.1038 vs ISR-reward PR=0.81/ISR=0.3365 → ISR 3.24x\")\nprint(f\"  s44: Random PR=0.89/ISR=0.0619 vs ISR-reward PR=0.89/ISR=0.803 → ISR 12.97x (H7=86.5%)\")\nEOF",
+              "description": "Compute means and stds"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-14T15:03:58.500238+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Random β=0.1 (n=2):\n  PR: (0.8400000000000001, 0.07071067811865474)\n  ISR: (0.08285000000000001, 0.029627774131716345)\n  proved-only ISR: (0.10045, 0.04376990975544728)\n\nISR β=0.1 (n=3):\n  PR: (0.77, 0.1442220510185596)\n  ISR: (0.5486, 0.23610914848857512)\n  proved-only ISR: (0.7159, 0.2627256934523154)\n\nMean ISR ratio (ISR/Random): 6.62x\nMean proved-only ISR ratio: 7.13x\n\nSame-seed pairs:\n  s42: Random PR=0.79/ISR=0.1038 vs ISR-reward PR=0.81/ISR=0.3365 → ISR 3.24x\n  s44: Random PR=0.89/ISR=0.0619 vs ISR-reward PR=0.89/ISR=0.803 → ISR 12.97x (H7=86.5%)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_random-b01-cross-seed-interim_20260514T150143",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-14T15:03:58.500379+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_random-b01-cross-seed-interim_20260514T150143",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/analysis_random_vs_isr_b01_interim.md",
+              "content": "# Random β=0.1 vs ISR β=0.1: 跨 Seed 中期对比分析\n\n**日期**: 2026-05-14\n**状态**: 中期 (Random s43-r2 QUEUED, 待补完成 3-seed)\n**目的**: 比较 ISR-as-reward 与 random control 在低剂量 β=0.1 下的多 seed 表现\n\n---\n\n## 1. 数据来源\n\n所有 ISR 数据来自 `eval_sta.py` 统一评估 (C004 合规)，避免训练日志跨 run 不可比。\n\n### Random β=0.1 (additive_random, r = r_exec · (1 + 0.1·U[0,1]))\n\n| Seed | Status | PR | mean ISR | proved-only ISR | components | ISR=0 ratio |\n|------|--------|------|----------|-----------------|------------|-------------|\n| s42  | DONE   | 0.79 | 0.1038   | 0.1314          | 8.46       | 36.7%       |\n| s43  | r2 QUEUED (原 r1 step 200 磁盘满) | — | — | — | — | — |\n| s44  | DONE   | 0.89 | 0.0619   | 0.0695          | (n/a)      | 80.9% (72/89) |\n\n### ISR β=0.1 (additive_bonus, r = r_exec · (1 + 0.1·ISR))\n\n| Seed | Status | PR | mean ISR | proved-only ISR | H7 (conclusion dup) | Verdict |\n|------|--------|------|----------|-----------------|---------------------|---------|\n| s42  | DONE   | 0.81 | 0.3365   | 0.4154          | (待审, 可能 genuine) | success |\n| s43  | DONE   | 0.61 | 0.5063   | 0.8301          | **96.7%**           | negative |\n| s44  | DONE   | 0.89 | 0.803    | 0.902           | **86.5%**           | negative |\n\n---\n\n## 2. 聚合统计\n\n### Random β=0.1 (n=2, **2/3 seeds, 中期**)\n\n| Metric           | Mean   | Std    |\n|------------------|--------|--------|\n| PR               | 0.840  | 0.071  |\n| mean ISR         | 0.083  | 0.030  |\n| proved-only ISR  | 0.100  | 0.044  |\n\n### ISR β=0.1 (n=3, **完整**)\n\n| Metric           | Mean   | Std    |\n|------------------|--------|--------|\n| PR               | 0.770  | 0.144  |\n| mean ISR         | 0.549  | 0.236  |\n| proved-only ISR  | 0.716  | 0.263  |\n\n### 聚合比例\n\n- mean ISR 比率 (ISR / Random): **6.62×**\n- proved-only ISR 比率: **7.13×**\n- PR 几乎持平 (ISR 0.77 vs Random 0.84，差 7pp，方向上 Random 略高)\n\n**注意**: ISR β=0.1 的高均值由 2/3 hacked seeds 撑起 (s43/s44 H7>85%)。剔除 hacked seeds 后仅剩 s42 (proved-only ISR=0.415)，仍高于 Random 但差距大幅缩窄 (s42 vs s42 配对 3.24×，非 7×)。\n\n---\n\n## 3. 同 seed 配对对比\n\n| Seed pair | Random (PR/ISR) | ISR-reward (PR/ISR) | ISR 倍数 | Hacking? |\n|-----------|-----------------|---------------------|----------|----------|\n| s42       | 0.79 / 0.104    | 0.81 / 0.337        | 3.24×    | s42 待审, 可能 clean |\n| s44       | 0.89 / 0.062    | 0.89 / 0.803        | **12.97×** | s44 H7=86.5% conclusion duplication |\n| s43       | (pending r2)    | 0.61 / 0.506        | —        | s43 H7=96.7% conclusion duplication |\n\n**关键观察**:\n\n- s44 配对 PR **完全相同** (0.89=0.89)，但 ISR 相差 13×。这不是因为 ISR-reward 训出了更强推理，而是因为 ISR-reward 训出了 **conclusion duplication hacking**：86.5% 的 proved 样本仅生成一条 premise 且 premise≈conclusion (重言式 P→P)，使 per-clause ablation 下唯一 premise 必然 necessary → ISR=1.0 inflated。\n- s42 配对 PR 几乎一致 (0.79 vs 0.81)，ISR 差 3.24× 是 **唯一可能反映 genuine structural guidance 的对照点**。但仅 1/3 seeds 的证据基础非常薄。\n- s43 random 待 r2 完成补齐。s43 在 ISR-reward 下 PR=0.61 是 3-seed 中最差，但 ISR_2nd 高 (0.506)；H7=96.7% 是 3-seed 中最严重的 hacking。\n\n---\n\n## 4. 叙事点 (D043 框架下)\n\n### (a) Random β=0.1 ISR 低但 \"honest\"\n\nRandom 的低 ISR (0.083 mean, 0.100 proved-only) **不是 reasoning 失败**，而是 **redundant encoding** (C006 区分原则):\n- s42: components=8.46, ISR_0_ratio=36.7% — 模型生成大量 premise (8+ 条) 但多为冗余 (重复 ground facts)，per-clause ablation 删任一冗余不影响结果 → n_necessary=0 → ISR=0\n- s44: ISR_0_ratio=80.9% — 更严重的冗余，几乎所有 proved 样本都有 trivially droppable premises\n- **无 conclusion duplication hacking** (component count 远高于 ISR-reward 的 4.03~4.33)\n\nRandom 的 PR=0.84 (mean, 高于 ISR β=0.1 的 0.77) 说明: **r_exec 信号本身已经足以拿到高 PR**，ISR-reward 的 r·(1+β·ISR) 在 β=0.1 下并不提升 PR，只重塑结构。\n\n### (b) ISR β=0.1 reward 在低剂量下有结构引导能力但不稳定\n\n3-seed 中：\n- **s42**: 仅这一 seed 是 \"possibly genuine\"——PR=0.81 (近 exec-only baseline 0.93 减 12pp 可接受范围), components=5.58 (无 tautological collapse), ISR=0.337 (3.24× over random s42)。但 conclusion duplication 是否完全无 (H7) 尚需逐样本审查确认。\n- **s43**: PR 崩塌 (0.61)，conclusion duplication 96.7%，ISR=0.506 是 artifact。\n- **s44**: 与 exec-only s44 (tautological collapse) 不同的失败模式——避免了 2-component collapse 但转向 conclusion duplication 86.5%，ISR=0.803 是 artifact。\n\n**结论**: ISR-as-reward 在 β=0.1 下 **2/3 seeds 转向 conclusion duplication hacking**。仅 1/3 seeds (s42) 可能产生 genuine structural improvement。多 seed 可靠性不足。\n\n### (c) D043 降级：β=0.1 不再是 \"sweet spot\"\n\n原 D031-D032 框架: β=0.1 是 ISR-as-reward 的 \"sweet spot\" — PR 不崩 + ISR 显著提升。\n\n**重新框定 (D043)**:\n- β=0.1 **不是 sweet spot**，而是 **\"hacking rate 最低的失败模式\"**: 3-seed 中仍有 2/3 转向 conclusion duplication，仅严重程度低于 β=0.3。\n- Random control 用 PR≈ISR-reward 但 ISR 6.6× 低，证明 r_exec 信号已撑起 PR；ISR-reward 提供的\"结构引导\"在多数 seed 下是 metric gaming 而非 reasoning。\n- **论文 Claim 2 需重写**: 不能再说 \"ISR β=0.1 提供 genuine structural guidance\"，应改为 \"ISR β=0.1 在大多数 seed 下导致 conclusion duplication hacking，仅 1/3 seed 显示结构改善信号，可靠性不足\"。\n\n### (d) C006 警示：ISR 差异 ≠ reasoning 能力差异\n\n- Random exec-only low ISR = **冗余编码** (重复 ground facts 导致 n_necessary=0)\n- ISR β=0.1 high ISR = **metric gaming** (Goodhart, conclusion duplication 使 n_premises=1 且 ISR=1)\n- 两者中间状态 (s42) 才可能是 genuine reasoning，但 1/3 概率不足以支撑论文 claim\n\n论文叙事必须区分这两种 ISR 失效模式，否则审稿人会问：\"Random ISR 低是不是说明它推理差？\" 答案是 **不是**——它生成了大量冗余 premises，证明可行但不必要。\n\n---\n\n## 5. 后续行动\n\n1. **Random s43-r2 完成后**: 补齐 3-seed mean±std，重新计算并更新此文档。\n2. **ISR β=0.1 s42 H7 逐样本审查**: 确认 s42 是否真的 \"genuine\"——这是 ISR-as-reward 能否进论文 Claim 2 的关键。如 s42 也 H7>50%，则 β=0.1 全军覆没。\n3. **配对 t-test**: 等 Random 3-seed 齐后，做 paired t-test on (PR, ISR, proved-only ISR) 跨 condition。\n4. **D043 决策**: 根据 s42 审查结果决定 β=0.1 是 \"demoted sweet spot\" 还是 \"全失败\"。\n\n---\n\n## 6. 关键数字汇总 (用于论文表格)\n\n| Condition       | n | PR (mean±std)  | mean ISR (mean±std) | proved-only ISR (mean±std) | Hacking |\n|-----------------|---|----------------|---------------------|----------------------------|---------|\n| Random β=0.1    | 2 (待 3) | 0.84 ± 0.07 | 0.083 ± 0.030       | 0.100 ± 0.044              | None    |\n| ISR β=0.1       | 3 | 0.77 ± 0.14   | 0.549 ± 0.236       | 0.716 ± 0.263              | 2/3 H7>85% |\n\n**Paired (s42, s44 only)**:\n- PR Δ (ISR − Random): s42 +0.02, s44 +0.00\n- ISR Δ: s42 +0.233 (3.24×), s44 +0.741 (12.97×, hacking-driven)\n"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-14T15:03:58.500606+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/analysis_random_vs_isr_b01_interim.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_random-b01-cross-seed-interim_20260514T150143",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-14T15:03:58.500755+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_random-b01-cross-seed-interim_20260514T150143",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "Random β=0.1 vs ISR β=0.1 跨 seed 中期对比分析",
+              "type": "report",
+              "description": "Random control (n=2) vs ISR-reward (n=3) 在 β=0.1 下的跨 seed 中期对比。聚合 mean±std + 同 seed 配对。关键结论: 聚合 ISR 比率 6.62× 但由 2/3 hacked seeds (s43/s44 H7>85% conclusion duplication) 撑起；仅 s42 可能 genuine (3.24×)。D043 降级: β=0.1 不是 sweet spot 而是 \"lowest hacking rate\"。Random ISR 低是冗余编码非推理差 (C006)。待 Random s43-r2 完成补齐 3-seed。",
+              "project": "solver-trace-ablation",
+              "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/analysis_random_vs_isr_b01_interim.md",
+              "tags": "['cross-seed', 'random-control', 'isr-reward', 'beta-0.1', 'interim', 'D043', 'conclusion-duplication']"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-14T15:03:58.500915+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260514_76792b\\\", \\\"name\\\": \\\"Random β=0.1 vs ISR β=0.1 跨 seed 中期对比分析\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"Random control (n=2) vs ISR-reward (n=3) 在 β=0.1 下的跨 seed 中期对比。聚合 mean±std + 同 seed 配对。关键结论: 聚合 ISR 比率 6.62× 但由 2/3 hacked seeds (s43/s44 H7>85% conclusion duplication) 撑起；仅 s42 可能 genuine (3.24×)。D043 降级: β=0.1 不是 sweet spot 而是 \\\\\\\"lowest hacking rate\\\\\\\"。Random ISR 低是冗余编码非推理差 (C006)。待 Random s43-r2 完成补齐 3-seed。\\\", \\\"path\\\": \\\"projects/solver-trace-ablation/artifacts/_project/report/analysis_random_vs_isr_b01_interim.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"solver-trace-ablation\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-14T15:03:51.775620+00:00\\\", \\\"tags\\\": [\\\"cross-seed\\\", \\\"random-control\\\", \\\"isr-reward\\\", \\\"beta-0.1\\\", \\\"interim\\\", \\\"D043\\\", \\\"conclusion-duplication\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_random-b01-cross-seed-interim_20260514T150143",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-14T15:03:58.501084+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。已写入并注册 (art_20260514_76792b)。\n\n**核心数字**:\n- Random β=0.1 (n=2): PR=0.84±0.07, mean ISR=0.083±0.030, proved-only ISR=0.100±0.044\n- ISR β=0.1 (n=3): PR=0.77±0.14, mean ISR=0.549±0.236, proved-only ISR=0.716±0.263\n- 聚合 ISR 比率 6.62×，但 2/3 ISR seeds 是 conclusion duplication hacking (s43 H7=96.7%, s44 H7=86.5%)\n- 同 seed 配对: s42 仅 3.24× (可能 genuine)，s44 12.97× (hacking-driven, PR 完全相同 0.89=0.89)\n\n**D043 框架**: β=0.1 不是 sweet spot 而是 \"lowest hacking rate\"；Random 低 ISR 是冗余编码非推理差 (C006)。\n\n**待办**: Random s43-r2 (ALLOCATED) 完成后补齐 3-seed；ISR s42 H7 逐样本审查决定是否 genuine。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_random-b01-cross-seed-interim_20260514T150143"
+          },
+          "id": "event-000028"
+        }
+      ],
+      "message_count": 28
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-random-b01-cross-seed-interim.md"
+}

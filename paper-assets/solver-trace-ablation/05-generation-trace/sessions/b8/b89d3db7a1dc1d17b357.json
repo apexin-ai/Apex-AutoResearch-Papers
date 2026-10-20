@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b89d3db7a1dc1d17b357",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "eval random b03 s43 r4",
+  "task_key": "worker_eval_random-b03-s43-r4_20260515T043415",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_random-b03-s43-r4_20260515T043415_result.json",
+    "occurrence": 1,
+    "bytes": 127,
+    "sha256": "abe628cc3e3ef6c9f12a804468849609542a7c59e4f2f98caab8d17ebf603f16"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "后台等待任务已完成，但 eval 和 registry 更新早已在前面处理完毕，无需进一步操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-random-b03-s43-r4.md"
+}

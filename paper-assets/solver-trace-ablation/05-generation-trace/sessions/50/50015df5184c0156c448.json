@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "50015df5184c0156c448",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "gpu w2 qwen3 7b setup",
+  "task_key": "worker_gpu_w2-qwen3-7b-setup_20260516T022949",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gpu_w2-qwen3-7b-setup_20260516T022949_result.json",
+    "occurrence": 1,
+    "bytes": 942,
+    "sha256": "fe130f397ccf11befa6106a6821c61c1ac72a2df9c943c88e0840a1b9ce3d3a2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 sweep 实验都在 8 小时前 (02:49 UTC) 就停止产出日志了，分别卡在 step 56 和 48（共 500 步），reward_mean=0，但进程仍占用 79GB 显存。这些实验很可能已经挂了。\n\n**当前状态汇总：**\n\n| 项目 | 状态 |\n|------|------|\n| **模型** | Qwen/Qwen3-8B (from ModelScope) |\n| **路径** | `/root/autodl-tmp/models/Qwen3-8B` |\n| **大小** | 16GB (5 safetensors), 8.2B 参数 |\n| **bf16 显存** | 15.3GB / 95GB |\n| **配置文件** | `configs/grpo_exec_only_8b.yaml` 已创建 |\n| **GPU 状态** | GPU 0 + GPU 1 均被占满（可能已挂的 sweep 实验） |\n\n**阻塞问题：** GPU 1 被 `sweep_isr_b005_s42` (PID 589836) 占用 79GB 显存，该进程最后一条日志在 8 小时前。需要杀掉这个进程才能启动 pilot。\n\n要我杀掉 GPU 1 上卡住的实验然后提交 8B pilot 吗？（按 C007 约束，kill 后需 nvidia-smi 确认释放）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-w2-qwen3-7b-setup.md"
+}

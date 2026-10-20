@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "b1217018b3f560737f80",
+  "project": "solver-trace-ablation",
+  "kind": "worker",
+  "title": "analysis h7 convergence timing",
+  "task_key": "worker_analysis_h7-convergence-timing_20260515T185111",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_h7-convergence-timing_20260515T185111.log",
+    "occurrence": 1,
+    "bytes": 796184,
+    "sha256": "db3ca223c9dc0ed8dd26acec141977447a8ff13e79b00e0ca922481f378d38a5"
+  },
+  "statistics": {
+    "messages": 232,
+    "user_turns": 1,
+    "tool_calls": 87,
+    "roles": {
+      "log": 1,
+      "system": 21,
+      "record": 1,
+      "assistant": 33,
+      "tool_call": 87,
+      "tool_result": 87,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 21,
+      "chunks": [
+        {
+          "path": "b1217018b3f560737f80-part-0001.json",
+          "message_count": 21
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 211,
+      "chunks": [
+        {
+          "path": "b1217018b3f560737f80-part-0001.json",
+          "message_count": 148
+        },
+        {
+          "path": "b1217018b3f560737f80-part-0002.json",
+          "message_count": 63
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-h7-convergence-timing.md"
+}

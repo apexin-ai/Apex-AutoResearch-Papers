@@ -1,0 +1,105 @@
+{
+  "schema_version": "1.0",
+  "id": "c85b481744f732b49c3f",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "writing experiments section",
+  "task_key": "worker_writing_experiments-section_20260514T185002",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_experiments-section_20260514T185002_result.json",
+    "occurrence": 1,
+    "bytes": 4055,
+    "sha256": "577bd89803bf1b01a3f1b4bf76a5617bff1f699ce4d1ac109c91f115d6366ff6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```json\n{\n  \"section\": \"experiments\",\n  \"word_count\": {\n    \"with_markup\": 2158,\n    \"text_only_approx\": 1734,\n    \"budget\": 2800\n  },\n  \"citations_needed\": [\n    \"deepseekmath (GRPO)\",\n    \"proofwriter (data)\",\n    \"manheim-goodhart-taxonomy (Goodhart taxonomy)\",\n    \"karwowski-goodhart-rl (Goodhart in RL)\"\n  ],\n  \"figures_needed\": [\n    {\n      \"id\": \"fig2_isr_collapse\",\n      \"type\": \"dual-axis line plot\",\n      \"data\": \"plan003 (100 steps), plan001-s42-r2 (500 steps), plan016 (1000 steps)\",\n      \"status\": \"placeholder\"\n    },\n    {\n      \"id\": \"fig3_hacking_composition\",\n      \"type\": \"stacked bar chart\",\n      \"data\": \"exec-only s42, ISR β=0.1 s42/s43/s44, random β=0.1 3-seed mean, SFT\",\n      \"status\": \"placeholder\"\n    }\n  ],\n  \"tables_needed\": [\n    {\n      \"id\": \"tab1_goodhart_landscape\",\n      \"caption\": \"Goodhart landscape across reward conditions\",\n      \"rows\": 6,\n      \"status\": \"inline\"\n    },\n    {\n      \"id\": \"tab4_beta01_3seed\",\n      \"caption\": \"ISR vs Random β=0.1 3-seed comparison\",\n      \"rows\": 6,\n      \"status\": \"inline\"\n    },\n    {\n      \"id\": \"tab5_prolog_crosslogic\",\n      \"caption\": \"Cross-logic transfer (FOL + Prolog)\",\n      \"rows\": 9,\n      \"status\": \"inline\"\n    }\n  ],\n  \"notes\": [\n    \"Tab2 (hacking taxonomy detail) folded into §4.5 enumerated list + Fig 3 — saves table float\",\n    \"7 hacking modes listed per Director correction (query-as-fact = mode 7)\",\n    \"Prolog s44 Reviewer correction applied: 0% genuine, query-as-fact gaming\",\n    \"Premise-count-matched 1.06x analysis included; 2.4x language removed\",\n    \"C006 ISR semantic distinction (redundant coding vs metric gaming) addressed in §4.4\",\n    \"Random β=0.1 s43 data missing (was RUNNING) — 3-seed mean uses all 3 seeds per Director data override\",\n    \"~640 words of budget remaining — can expand if reviewer anticipation paragraphs needed\"\n  ]\n}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "section": "experiments",
+              "word_count": {
+                "with_markup": 2158,
+                "text_only_approx": 1734,
+                "budget": 2800
+              },
+              "citations_needed": [
+                "deepseekmath (GRPO)",
+                "proofwriter (data)",
+                "manheim-goodhart-taxonomy (Goodhart taxonomy)",
+                "karwowski-goodhart-rl (Goodhart in RL)"
+              ],
+              "figures_needed": [
+                {
+                  "id": "fig2_isr_collapse",
+                  "type": "dual-axis line plot",
+                  "data": "plan003 (100 steps), plan001-s42-r2 (500 steps), plan016 (1000 steps)",
+                  "status": "placeholder"
+                },
+                {
+                  "id": "fig3_hacking_composition",
+                  "type": "stacked bar chart",
+                  "data": "exec-only s42, ISR β=0.1 s42/s43/s44, random β=0.1 3-seed mean, SFT",
+                  "status": "placeholder"
+                }
+              ],
+              "tables_needed": [
+                {
+                  "id": "tab1_goodhart_landscape",
+                  "caption": "Goodhart landscape across reward conditions",
+                  "rows": 6,
+                  "status": "inline"
+                },
+                {
+                  "id": "tab4_beta01_3seed",
+                  "caption": "ISR vs Random β=0.1 3-seed comparison",
+                  "rows": 6,
+                  "status": "inline"
+                },
+                {
+                  "id": "tab5_prolog_crosslogic",
+                  "caption": "Cross-logic transfer (FOL + Prolog)",
+                  "rows": 9,
+                  "status": "inline"
+                }
+              ],
+              "notes": [
+                "Tab2 (hacking taxonomy detail) folded into §4.5 enumerated list + Fig 3 — saves table float",
+                "7 hacking modes listed per Director correction (query-as-fact = mode 7)",
+                "Prolog s44 Reviewer correction applied: 0% genuine, query-as-fact gaming",
+                "Premise-count-matched 1.06x analysis included; 2.4x language removed",
+                "C006 ISR semantic distinction (redundant coding vs metric gaming) addressed in §4.4",
+                "Random β=0.1 s43 data missing (was RUNNING) — 3-seed mean uses all 3 seeds per Director data override",
+                "~640 words of budget remaining — can expand if reviewer anticipation paragraphs needed"
+              ]
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-experiments-section-copy-3.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "53217a8c61c171acba13",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "eval plan017 additive random s42",
+  "task_key": "worker_eval_plan017-additive-random-s42_20260514T051831",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_plan017-additive-random-s42_20260514T051831_result.json",
+    "occurrence": 1,
+    "bytes": 1612,
+    "sha256": "66864cdb0376c1d2c56fde4df4f3736caaf9ec5dea41935139f4022ee2b7afa1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## plan017-additive-random-s42 Eval 结果\n\n| 指标 | plan017 (additive random) | plan001-s42-r2 (exec-only) | plan013-r4 (random reward) | plan001-s44 (exec-only) |\n|------|--------------------------|---------------------------|---------------------------|------------------------|\n| prove_rate | **0.48** | 0.93 | 1.00 | 0.98 |\n| mean_ISR | **0.0453** | 0.1232 | 0.535 | 0.57 |\n| proved_only_ISR | 0.0943 | — | — | — |\n| mean_components | **9.56** | 6.58 | ~2 | 2.04 |\n| 2-comp ratio | **0%** | — | ~100% | ~100% |\n| tautological collapse | **否** | 否 | **是** | **是** |\n\n### 关键发现\n\n**plan017 展示了一个全新的 failure mode**：\n- **不是 tautological collapse**（0% 两组件比例，mean components = 9.56）\n- 但 **prove rate 大幅下降**（0.48 vs 0.93+），且 ISR 极低（0.0453）\n- 33% 的 proved 样本 ISR=0（n_necessary=0），即 conclusion 本身就是 tautology，不依赖任何 premise\n- 平均只有 0.85 个 premise 是 necessary（9.56 个 components 中）\n\n### 对 hypothesis 的判断\n\n原假设分三种情况：\n- ~~ISR > random > exec-only → signal + regularization 均贡献~~\n- ~~ISR > random ≈ exec-only → ISR signal 是关键~~\n- ~~ISR ≈ random → ISR 无结构价值~~\n\n**实际结果**：plan017 (additive random) 表现远差于所有 baseline，PR 和 ISR 都最低。Additive random bonus 防止了 2-component 坍缩，但模型转向生成冗长但功能无效的 formalization。**Variance regularization 不仅不能替代 ISR structural signal，反而严重损害了模型性能。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-plan017-additive-random-s42.md"
+}

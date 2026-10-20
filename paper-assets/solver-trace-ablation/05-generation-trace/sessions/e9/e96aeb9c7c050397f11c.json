@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e96aeb9c7c050397f11c",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "paper text fixes r24",
+  "task_key": "worker_paper_text-fixes-r24_20260522T030823",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_text-fixes-r24_20260522T030823_result.json",
+    "occurrence": 1,
+    "bytes": 689,
+    "sha256": "ccc36a8376e1bcee04044a91cc51d03668f1dc559ec9b7eeb7c57665995e35dd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All four modifications complete:\n\n1. **Reproducibility statement** — added release sentence at end of `limitations.tex`\n2. **Missing references** — added `deepseek-prover-v2` and `cui2025prime` to `references.bib`; cited DeepSeek-Prover-V2 in neurosymbolic paragraph and PRIME in process rewards paragraph of `related_work.tex`\n3. **Introduction 99.5% fix** — changed comma-separated list to \"across 3 seeds at 1000 steps; ISR degrades 99.5\\%\" for clarity\n4. **Table 2 caption** — added \"`1k` denotes a mode observed only at the 1000-step checkpoint\"\n\nNote: DeepSeek-Prover-V2's correct arXiv ID is **2504.21801** (not 2501.14333 as initially suggested)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-text-fixes-r24.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "849e0e034ea943c21996",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops submit random b005 s44",
+  "task_key": "worker_ops_submit-random-b005-s44_20260517T111543",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_submit-random-b005-s44_20260517T111543_result.json",
+    "occurrence": 1,
+    "bytes": 356,
+    "sha256": "5d303eac9e9fc643ae66f06c4c76e8ba922b1fc5562101cc00c91e4c654f9b03"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已成功启动并在正常推进。\n\n**汇总：**\n- **实验**: sweep-random-b005-s44 (Random β=0.05, seed=44)\n- **GPU**: cuda:0 @ westd-39279，占用 46968MiB\n- **PID**: 319527，tmux session: `sweep-random-b005-s44`\n- **进度**: step 4/500，~13s/step，预估约 1.8 小时完成\n- **Registry**: RUNNING，spec 已填充"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-submit-random-b005-s44.md"
+}

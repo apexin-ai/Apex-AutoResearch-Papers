@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4ffc084199dc21726a0b",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_8_1778802293.md",
+  "task_key": "loop_8_1778802293",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_8_1778802293.md",
+    "occurrence": 1,
+    "bytes": 4433,
+    "sha256": "305411f73316ffdb4b837244ddab9a9cdbed7629e114d3827c9d1e5c258863b3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: idle_timeout\nupdated: '2026-05-14T23:38:51+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单仅 `westd-39279:cuda:0` 和 `westd-39279:cuda:1`，禁止使用其他设备\n- 所有训练命令必须 `export CUDA_VISIBLE_DEVICES=N`（在 bash -c 内部），框架里 `--gpu 0` 始终从 0 开始\n- 数据约束 C001：所有实验统一用 `train_500_seed42.jsonl`，不可换数据文件\n- 磁盘约束 C003：`log_completions=False` + `save_total_limit=1`，output_dir 放 `/root/autodl-tmp/outputs/`\n- 磁盘 240G/250G (96%)——提交新实验前必须先清理旧 checkpoint\n- kill_job 后必须 SSH 验证子进程已清理（只杀 tmux wrapper 不杀 Python 子进程）\n- D051 定论不可翻转：ISR 结构优势完全是 premise minimization artifact，premise-count-matched 1.06x 无差异\n- s44 Prolog STA Reviewer 核实为 query-as-fact gaming（非 genuine），strict classifier 不可信，必须交叉验证 n_necessary\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-39279，2× RTX PRO 6000 Blackwell 96GB，CUDA 12.8，PyTorch 2.10.0+cu128\n- **镜像**: aml-train（conda）。激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **代码**: `/root/solver-trace-ablation/`\n- **模型**: Qwen3-4B（ModelScope 下载，7.6GB）\n- **Solvers**: Prover9 (LADR 编译), SWI-Prolog 8.4.2 (`/usr/bin/swipl`), Z3 4.16.0.0\n- **数据盘**: `/root/autodl-tmp/`（250GB，当前 96% 满，需清理）\n- **HF cache**: `/root/autodl-tmp/.hf_cache`\n- **输出**: `/root/autodl-tmp/outputs/`\n- **活跃进程**: exp1-isr-b03-s44-r2 (PID 10597, cuda:0, cron 监控中)\n- **W&B**: 项目内配置（wandb-guide skill 有详细用法）\n\n### 3. 📊 当前状态\n**项目阶段**: ✍️ Writing + 补充实验并行。DDL 2026-05-25（剩 11 天）。3 条 Claim 全部闭环。writing_plan.yaml 已获 Director 审批。\n\n**实验总量**: 58 个（success 14 / negative 19 / failed 20 / killed 3）\n\n**RUNNING**:\n- `exp1-isr-b03-s44-r2` — β=0.3 ISR seed 44 retry（原 exp1-isr-b03-s44 因孤儿进程 OOM 失败），westd-39279:cuda:0，PID 10597，cron 监控中\n\n**PREPARING**:\n- `exp1-random-b03-s44` — β=0.3 random seed 44，补 Table 1 三 seed 统计。尚未提交，等 cuda:1 空闲\n\n**活跃 Workers (4)**:\n1. `worker_fix_paper-compilation-p0p1` — 修论文编译问题\n2. `worker_fix_paper-figures-r2` — 修论文图表\n3. `worker_write_page-compression` — 页面压缩（8 页限制）\n4. `worker_diag_exp1-random-b03-s43-fail` — 诊断 exp1-random-b03-s43 EXIT_CODE=129 失败原因\n\n**等待中**: 4 个 Worker 回调 + exp1-isr-b03-s44-r2 cron 完成回调\n\n### 4. 📋 待办（条件触发式）\n- exp1-isr-b03-s44-r2 cron 完成 → spawn eval Worker 跑 eval_sta.py → 更新 registry metrics → 与 plan002-b03 (ISR β=0.3 s42) 对比\n- exp1-random-b03-s43 诊断 Worker 返回 → 根据失败原因决定 retry 或跳过，提交 exp1-random-b03-s44 到 cuda:1\n- paper compilation Worker 返回 → 检查 PDF 是否编译通过，如有问题再迭代\n- paper figures Worker 返回 → 确认图表正确渲染\n- page compression Worker 返回 → 检查是否压到 8 页内\n- 所有写作 Worker 完成 → 合并草稿 → 提交 submit_paper_to_review\n- cuda:1 空闲 → 提交 exp1-random-b03-s44（β=0.3 random s44，补 Table 1）\n\n### 5. 🎯 战略上下文\n**核心结论**: ISR 是强诊断工具（Claim 1）但作为 reward 完全失败（Claim 2, meta-Goodhart）。跨 Prolog 泛化确认（Claim 3, 3/3 gaming 0% genuine）。论文是 Goodhart's Law 案例研究。\n\n**决策链关键节点**: D051（ISR 无结构优势，premise-count artifact）→ D057（3-seed random 对照闭环 Claim 2）→ D059（Prolog 3-seed 闭环 Claim 3 + 启动写作）\n\n**易错点**:\n- exp1-isr-b03-s44-r2 和 exp1-random-b03-s44 是 Table 1 补充数据（β=0.3 三 seed），不是核心 Claim 验证——不要因为它们失败而动摇 Claim\n- 磁盘 96% 满——提交新实验前必须清理，否则训练中途磁盘满 = 浪费 GPU 时间\n- 论文 7 种 hacking taxonomy（不是 6 种），第 7 种 query-as-fact 是 Prolog STA s44 发现的\n- strict classifier 有盲区（s43 uppercase pseudo-Prolog, s44 query-as-fact 都绕过），论文必须同时报告 strict 和 functional (n_necessary) 分析\n- 当前 4 个 Worker 都在跑，回调可能密集到来，注意逐个处理不要遗漏\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-8-1778802293.md"
+}

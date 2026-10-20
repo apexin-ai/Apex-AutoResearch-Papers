@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e2be723136b77d50ab99",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code plan017 additive random",
+  "task_key": "worker_code_plan017-additive-random_20260514T024850",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan017-additive-random_20260514T024850_result.json",
+    "occurrence": 1,
+    "bytes": 687,
+    "sha256": "69c76b40fccfaeb2912e49bd625f835861c50bb6492b5af4d61ed39df7ad6b73"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。验证结果：\n\n| 检查项 | 状态 |\n|--------|------|\n| `additive_random` 在 argparse choices | ✓ |\n| `_fast_fn` 调用残留 | ✓ 无残留（L161/164 仅为变量赋值，所有实际调用已改为 `_full_fn`） |\n| 所有 config data_path = `data/train_500_seed42.jsonl` | ✓ 7/7 |\n| `grpo_additive_random.yaml` 存在且正确 | ✓ |\n\n修改内容：\n1. **`_fast_fn` → `_full_fn`**（L174，`random_reward` 分支）— 现在所有模式统一用 full STA 计算 ISR\n2. **5 个 config 文件** data_path 统一为 `data/train_500_seed42.jsonl`\n3. `additive_random` 模式和对应 config 已在之前实现，无需额外修改"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan017-additive-random-copy-3.md"
+}

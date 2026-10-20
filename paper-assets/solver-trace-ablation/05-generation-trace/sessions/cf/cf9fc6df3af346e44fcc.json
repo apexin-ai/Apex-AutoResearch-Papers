@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cf9fc6df3af346e44fcc",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "monitor check 3 preparing exps",
+  "task_key": "worker_monitor_check-3-preparing-exps_20260513T223633",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_check-3-preparing-exps_20260513T223633_result.json",
+    "occurrence": 1,
+    "bytes": 1607,
+    "sha256": "60195e4c7ecaee974ae8b2b00f63d884cceec778e4ef766fc28d88f1f37a61ff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态汇总\n\n### 训练数据\n`data/train_500_seed42.jsonl` — 存在，500 行 ✓\n\n---\n\n### 1. plan001-exec-only-s42\n- **原 PID 83029**: **DEAD** — 参数错误 `--max_steps` 不被识别（脚本用 `--num_steps`），EXIT_CODE=2\n- **已重启为 PID 84901**，修正为 `--num_steps 500`，日志 `plan001-exec-only-s42-r2.log`\n- 当前状态：**ALIVE**，运行 15 分钟，GPU 0 (91%, 80GB/98GB)\n- 进度：**0/500 steps**（仍在第一个 step 的 generation 阶段）\n- 另有 `r3` 尝试在 06:42 OOM 崩溃（`torch.OutOfMemoryError`，GPU 0 只剩 30MB free）\n\n### 2. plan005-sta-low-s42\n- **原 PID 83106**: **DEAD** — 同样 `--max_steps` 参数错误\n- **已重启为 PID 85795**，修正为 `--num_steps 500`，日志 `plan005-sta-low-s42.log`\n- 当前状态：**ALIVE**，运行 13 分钟，GPU 1 (90%, 80GB/98GB)\n- 进度：**0/500 steps**（仍在第一个 step 的 generation 阶段）\n\n### 3. plan003-eval-exec-only-r5\n- **PID 83690**: **DEAD — 正常完成** (EXIT_CODE=0)\n- 结果：**32/100 proved (32.0%)**，Mean ISR 0.2055 ± 0.3194\n- 按 answer type：true 35.98% ISR, false 17.23%, unknown 9.79%\n- 耗时 251.7s，结果保存于 `/root/autodl-tmp/outputs/plan003_eval_exec_only_r5.json`\n\n---\n\n**注意**：plan001 和 plan005 都已运行 13-15 分钟但仍在 step 0。GRPO 首个 step 需要初始化 vLLM + 全量 generation，预计还需几分钟才能看到 step 进度。`r3` 的 OOM 表明 GPU 0 同时跑两个训练会爆显存——当前 r2 和 plan005 分别独占 GPU 0 和 GPU 1，应该没问题。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-check-3-preparing-exps.md"
+}

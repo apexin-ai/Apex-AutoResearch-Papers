@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "21687062dfd9bd617a93",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "figure fig2 isr collapse",
+  "task_key": "worker_figure_fig2-isr-collapse_20260514T192355",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_fig2-isr-collapse_20260514T192355_result.json",
+    "occurrence": 1,
+    "bytes": 113,
+    "sha256": "02083e62bd4f295c375c631980b15b3b2de44e32b43026716b40e622d28b6f8d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。\n\n- PDF: `paper/figures/fig2_isr_collapse.pdf`\n- Artifact ID: `art_20260514_c1cb35`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-fig2-isr-collapse.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cdbc52429956175804c1",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "verify b005 s42 output",
+  "task_key": "worker_verify_b005-s42-output_20260516T050123",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_b005-s42-output_20260516T050123_result.json",
+    "occurrence": 1,
+    "bytes": 750,
+    "sha256": "97aec4db36bbfff274f3746914f01f6975580ef44f81cc2fc10ff74f42770a41"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**诊断结果：sweep-isr-b005-s42 完整且正确，success 标记准确。**\n\n证据：\n- **reward_log.jsonl**: 恰好 500 行，最后一条 step=500，步数完整\n- **训练日志**: 进度条 500/500，`EXIT_CODE=0`，末尾有 `Saving final model` + `Done.` 完结标记\n- **checkpoint-500**: 存在，含完整的 4 shard safetensors 模型文件（~15GB）\n- **输出目录根**: 也有一份完整模型文件（final model save）\n- **最终指标**: prove_rate=0.888, mean_isr=0.577, 训练时长 1692s（~28min）\n\ncron 报的 \"process dead 5× with no sentinel\" 是误报——可能是 cron 检测窗口内进程尚未启动或 sentinel 文件写入延迟。实际训练从头跑完 500 步，无需重跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-b005-s42-output.md"
+}

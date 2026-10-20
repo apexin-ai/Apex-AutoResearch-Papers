@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9820492f311a6049b0a0",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "check d134 s49 metrics s50",
+  "task_key": "worker_check_d134-s49-metrics-s50_20260518T140130",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_d134-s49-metrics-s50_20260518T140130_result.json",
+    "occurrence": 1,
+    "bytes": 523,
+    "sha256": "e5f3a24f721b8e08c29570c37d1bad72f685b086c32b4dcbd3b5c36f13c550ca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\ns49 metrics:\n  PR: 86/100\n  H7: 73 (rate 84.88%)\n  H1: 6 (strict)\n  H8: 6 (rate 6.98%)\n  genuine: 1 (rate 1.16%)\n  CI (conclusion_in_premise): 79 (rate 91.86%)\n  content_independent: 0\n  isr_1: 5 (rate 5.81%)\n\ns50 status: RUNNING step 97/500 (~19%), ~28min remaining\n  GPU: 90% util, 84845 MiB used\n  checkpoint-50 already saved\n\nDisk: 223G/250G (89%, 28G free)\n```\n\ns49 genuine 只有 1 个，H7 严重主导（73/86）。磁盘 28G 剩余，s50 完成后可能偏紧，留意清理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-d134-s49-metrics-s50.md"
+}

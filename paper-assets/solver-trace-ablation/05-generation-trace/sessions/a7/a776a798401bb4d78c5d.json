@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a776a798401bb4d78c5d",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code plan013 random reward",
+  "task_key": "worker_code_plan013-random-reward_20260513T232958",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan013-random-reward_20260513T232958_result.json",
+    "occurrence": 1,
+    "bytes": 892,
+    "sha256": "32ba8703bad5462277a788ca5e58ee999311be64edaa34054ddb6d4365f80cb4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n**完成。** 产出总结：\n\n### 新增/修改文件\n\n1. **`configs/grpo_random_reward.yaml`** — plan_013 配置，reward_mode=random_reward，α=0.9, β=0.1，500 steps, K=8, seed=42\n2. **`scripts/train_grpo.py`** — 新增 `random_reward` 模式：\n   - `import random as _random`（L25）\n   - `elif reward_mode == \"random_reward\"` 分支（L173-186）：proved 样本 reward = 0.9 + 0.1×rand，未 proved = 0；random seed = 样本全局计数器（可复现）\n   - argparse choices 加入 `\"random_reward\"`（L293）\n\n### 提交训练命令\n\n```bash\nbash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && CUDA_VISIBLE_DEVICES=0 nohup python3 scripts/train_grpo.py --config configs/grpo_random_reward.yaml > /root/autodl-tmp/outputs/plan013_random_reward_s42/train.log 2>&1 &'\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan013-random-reward.md"
+}

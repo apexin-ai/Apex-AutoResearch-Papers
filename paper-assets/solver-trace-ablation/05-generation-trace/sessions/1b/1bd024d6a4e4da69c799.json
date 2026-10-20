@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "1bd024d6a4e4da69c799",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code prolog sta preparation",
+  "task_key": "worker_code_prolog-sta-preparation_20260513T230710",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prolog-sta-preparation_20260513T230710_result.json",
+    "occurrence": 1,
+    "bytes": 1999,
+    "sha256": "9396df7b3bbfe064a1df8dd9fe07f07527e71c347869a2e8bfe46a11e7cdc845"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。产出总结：\n\n### 新建文件\n| 文件 | 说明 |\n|------|------|\n| `src/solvers/prolog.py` | PrologSolver — 通过 swipl CLI 执行 Prolog 查询，exit code 0=proved / 1=failed / 2=syntax error，subprocess timeout 处理 |\n| `src/sta/prolog_reward.py` | Prolog STA reward — 解析 Prolog formalization、逐条 ablation、ISR 计算、fast O(1) 近似 |\n| `scripts/sta_prolog.py` | 独立测试 CLI，5 个内置测试用例，支持 `--test` / `--file` / `--fast` |\n| `configs/grpo_prolog_exec_only.yaml` | execution-only GRPO 配置 |\n| `configs/grpo_prolog_exec_sta.yaml` | execution+STA GRPO 配置 |\n\n### 修改文件\n| 文件 | 改动 |\n|------|------|\n| `src/solvers/factory.py` | 注册 `\"prolog\"` / `\"swipl\"` → PrologSolver |\n| `scripts/train_grpo.py` | 新增 `--logic_type prolog`，Prolog system prompt/user template，`build_prolog_dataset()`，reward dispatch 根据 logic_type 切换 FOL/Prolog reward 函数 |\n\n### 测试结果\n- Full STA: **5/5 通过**（grandparent、redundant fact、missing fact、simple query、chain reasoning）\n- Fast STA: **5/5 通过**\n- train_grpo.py 语法检查 + import 检查 + config 解析：全部通过\n- FOL 路径向后兼容：不受影响\n\n### Prolog JSONL 数据格式\n```json\n{\n  \"id\": \"prolog_001\",\n  \"context\": \"Tom is Bob's parent. Bob is Ann's parent...\",\n  \"question\": \"Is Tom Ann's grandparent?\",\n  \"answer\": \"true\",\n  \"prolog_premises\": [\"parent(tom, bob).\", \"parent(bob, ann).\", \"grandparent(X,Y) :- parent(X,Z), parent(Z,Y).\"],\n  \"prolog_query\": \"grandparent(tom, ann)\"\n}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "id": "prolog_001",
+              "context": "Tom is Bob's parent. Bob is Ann's parent...",
+              "question": "Is Tom Ann's grandparent?",
+              "answer": "true",
+              "prolog_premises": [
+                "parent(tom, bob).",
+                "parent(bob, ann).",
+                "grandparent(X,Y) :- parent(X,Z), parent(Z,Y)."
+              ],
+              "prolog_query": "grandparent(tom, ann)"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prolog-sta-preparation.md"
+}

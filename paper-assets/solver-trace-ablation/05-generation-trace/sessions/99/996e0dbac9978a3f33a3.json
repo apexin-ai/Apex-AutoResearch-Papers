@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "996e0dbac9978a3f33a3",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "audit reference final",
+  "task_key": "worker_audit_reference-final_20260514T202934",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_reference-final_20260514T202934_result.json",
+    "occurrence": 1,
+    "bytes": 600,
+    "sha256": "18542b98595870ea6be59a62085816d4e89b750bc7e63b42a215c1d20ca1bf93"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计报告已写入 `artifacts/reference_final_audit.md`。\n\n核心发现：\n\n**P0 必修（4 项）：**\n1. `logic-rl` 作者错误 — \"Xian and others\" 应为 \"Tian Xie\" 等 10 人\n2. `mellgren-prolog-grpo` 缺 2 位共同作者 + 年份 2024→2025\n3. `rubric-grpo` 年份 2025→2026\n4. `demillo1978` 页码 34--43→34--41\n\n**无缺失引用、无幻觉引用。** 10 个 orphan bib 条目建议清理（其中 `kim-game-formalization` 和 `pan-reward-misspecification` 高度相关，建议加引用）。arXiv 字段编码有两种风格混用，建议统一。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-reference-final.md"
+}

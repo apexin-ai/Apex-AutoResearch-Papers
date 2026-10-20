@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "40cb2d239db49e430801",
+  "project": "solver-trace-ablation",
+  "kind": "conversation",
+  "title": "write paper experiments method r2",
+  "task_key": "worker_write_paper-experiments-method-r2_20260514T224858",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_write_paper-experiments-method-r2_20260514T224858.jsonl",
+    "occurrence": 1,
+    "bytes": 185,
+    "sha256": "8a8fe0fb0e009f4a9d6a3df48da26178de1e33d7469f5b5f2a32bba481cd7d0e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T22:49:08.218029+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 11:10pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_paper-experiments-method-r2_20260514T224858"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/write-paper-experiments-method-r2.md"
+}

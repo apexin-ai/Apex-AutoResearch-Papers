@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f383225c62813fdb1de6",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_16_1778907429.md",
+  "task_key": "loop_16_1778907429",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_16_1778907429.md",
+    "occurrence": 1,
+    "bytes": 4981,
+    "sha256": "72b040b39aba2db821b4dfefc00f91b7639c02f0279d6b690c556dabac37a0e0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 16\nreason: idle_timeout\nupdated: '2026-05-16T04:29:47+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单**仅** `westd-39279:cuda:0` 和 `westd-39279:cuda:1`，严禁用其他 GPU\n- Round 2 sweep 全部用 Qwen3-4B（`/root/autodl-tmp/models/Qwen3-4B`），不是 Round 1 的 Qwen2.5-1.5B-Instruct——混用模型会污染跨实验对比\n- Round 2 实验 wandb key 缺失，必须 `--no_wandb`。metrics 从 `reward_log.csv` / output_dir 提取，不能依赖 wandb\n- 训练命令必须 `python3 scripts/train_grpo.py --config configs/...`（注意 `scripts/` 前缀），曾因缺前缀空转 GPU\n- β=0.07/0.03 不排（D102 Director 决策），DDL 内优先多 seed 复现\n- D095 Narrative A 已批准生效，所有 paper 修改必须与 D095 一致\n- sweep-isr-b01-s45 曾被 RAM OOM kill（exit 137, step 219/500），双实验并行时需监控 RAM\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-39279，账号 root\n- **工作目录**: `/root/solver-trace-ablation`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- **模型**: `/root/autodl-tmp/models/Qwen3-4B`\n- **数据**: `data/train_500_seed42.jsonl`（500 samples，所有实验共用）\n- **输出**: `/root/autodl-tmp/outputs/` 下各实验子目录\n- **Config 文件**: `configs/grpo_additive_bonus_b02.yaml`（β=0.2）、`configs/grpo_additive_bonus_b01.yaml`（β=0.1）、`configs/grpo_additive_bonus.yaml`（β=0.3）等\n- **活跃进程**:\n  - `sweep-isr-b02-s43`: PID 633515, cuda:0, tmux 未知\n  - `sweep-isr-b02-s42`: PID 633657, cuda:1, tmux 未知\n- **Cron**: reconcile 确认两个 RUNNING 实验进程存活；本 session 无 CronCreate 注册\n- **Worker**: 1 个 running — `worker_monitor_cuda1-b005-completion-r2`（监控任务，可能已过时）\n\n### 3. 📊 当前状态\n**刚完成**: 上一个 session 完成了 D101 Round 2 排期、D100 K=4 验证修正、D098 config merge bug 修复、论文 Round 2 fixes（15 H8 samples、σ notation、SFT 92.3%、RW softening）。\n\n**RUNNING (2)**:\n- `sweep-isr-b02-s42` — β=0.2 ISR seed=42，cuda:1，PID 633657\n- `sweep-isr-b02-s43` — β=0.2 ISR seed=43，cuda:0，PID 633515\n\n**ALLOCATED (1)**:\n- `plan018-additive-random-b01-s45` — Random β=0.1 s45，已分配但未提交\n\n**PREPARING (14)**: sweep-isr-b02-s44, sweep-isr-b005-s43, sweep-isr-b005-s44, sweep-exec-only-s45/s46, sweep-random-b01-s45/s46, sweep-isr-b01-s46, plan001-exec-only-s45/s46, plan018-additive-random-b01-s46, plan002-additive-b01-s45/s46, w2-qwen3-7b-pilot\n\n**等待中**:\n- 两个 b02 sweep 完成回调（估计各 ~1h，可能已跑一段时间）\n- Worker `worker_monitor_cuda1-b005-completion-r2` 状态不明，需检查是否仍有用\n- 无活跃 CronCreate 监控——下一个 session 需要为 RUNNING 实验建立 cron 或依赖 reconcile\n\n**Registry 总计**: 105 实验（DONE 88, RUNNING 2, ALLOCATED 1, PREPARING 14）。成功 27 / 负向 28 / 失败 26。\n\n### 4. 📋 待办（条件触发式）\n- sweep-isr-b02-s42 或 s43 完成回调到达 → spawn worker 分析 reward_log.csv + 分类 hacking modes → update registry → 汇报 Director\n- 两个 b02 都完成 → 立即提交 sweep-isr-b02-s44（P1 第 3 seed，cuda 空出哪个用哪个）\n- b02 三 seed 齐备 → 与 β=0.1/0.3 对比，确认剂量梯度曲线（Claim 2 辅助证据）\n- GPU 空闲且 b02 排完 → 按 D101 排期走 P2（sweep-random-b01-s45）再 P3（5-seed 扩展）\n- plan018-additive-random-b01-s45 已 ALLOCATED → 需确认分配了哪块 GPU 再 submit_on_allocated\n- DDL 2026-05-25（剩 9 天）→ 实验窗口实际只剩 ~5-6 天（需留 review buffer）\n\n### 5. 🎯 战略上下文\n**项目核心**: STA/ISR 作为 GRPO neurosymbolic formalizer 的诊断工具 + Goodhart's Law 案例研究。三个 Claims 全部闭环（Claim 1 STA 诊断、Claim 2 Goodhart/ISR 无结构优势、Claim 3 跨逻辑泛化）。当前处于 Writing + Review 阶段，Round 2 sweep 补充剂量梯度数据。\n\n**决策链关键节点**:\n- D095: Narrative A 生效（H7a GRPO-general + H7b ISR-specific meta-Goodhart）\n- D100: K=4 confirmed（不是 K=8）\n- D101: Round 2 排期 P1=β=0.2 三 seed > P2=random 对照 > P3=5-seed 扩展 > DEFER=7B\n- D102: Goodhart 阈值在 β∈(0.05, 0.1) 之间是尖锐相变；β=0.05 mode collapse 到单一模板需诚实报告\n\n**最容易判断错的事**:\n- H7a 不是 ISR 独有（Random s43-r3 也 38.3%），极易滑向旧 framing——已来回修正 8 次（D087-D094）\n- genuine rate ISR vs Random 差异不显著（p=0.182），禁止 claim 显著差异\n- β=0.05 的 ISR=0.759 看起来 \"好\" 但其实是 mode collapse（96.3% 样本精确 ISR=0.75），不能只说 \"ISR 保留\"\n- 双实验并行有 RAM OOM 风险（b01-s45 先例），b02 双跑需关注\n- PREPARING 里有两套重叠实验（plan0xx 系列 vs sweep 系列做同样的事），提交时需去重\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-16-1778907429.md"
+}

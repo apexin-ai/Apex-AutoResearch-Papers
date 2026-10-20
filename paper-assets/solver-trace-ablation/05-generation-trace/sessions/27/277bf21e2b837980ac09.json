@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "277bf21e2b837980ac09",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "eval plan018 b01 random",
+  "task_key": "worker_eval_plan018-b01-random_20260514T081242",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_plan018-b01-random_20260514T081242_result.json",
+    "occurrence": 1,
+    "bytes": 913,
+    "sha256": "99766977ad0369925b8684238dcdbe5dd55e69330c2719c2890c851e33f029f9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完毕。\n\n## 结果总结\n\n### plan018-additive-random-b01-s42 eval 结果\n\n| 指标 | plan018 (random β=0.1) | plan002-b01 (ISR β=0.1) | 差异 |\n|------|----------------------|------------------------|------|\n| **eval PR** | 0.79 | 0.81 | ≈持平 (Δ=0.02) |\n| **eval Mean ISR** | 0.104 | 0.337 | **ISR 3.2x higher** |\n| **eval Proved-only ISR** | 0.131 | 0.415 | **ISR 3.2x higher** |\n| **eval Median ISR** | 0.036 | — | — |\n| **Component count** | 8.46 | 5.58 | random组更冗余 |\n| **ISR=0 占比 (proved)** | 36.7% | — | random组大量无结构proof |\n| **Tautological collapse** | 无 | 无 | — |\n\n### Conclusion: **negative**\n\nPR 几乎相同说明 β=0.1 random 噪声不影响证明能力。但 ISR 差 3.2 倍，**强力支持 Claim 2**：ISR reward 在低剂量下提供 genuine structural guidance，而非仅 variance regularization。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-plan018-b01-random.md"
+}

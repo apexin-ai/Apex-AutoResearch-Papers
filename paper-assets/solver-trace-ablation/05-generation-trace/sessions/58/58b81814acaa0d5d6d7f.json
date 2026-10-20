@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "58b81814acaa0d5d6d7f",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code d146 eval script verify",
+  "task_key": "worker_code_d146-eval-script-verify_20260520T003800",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d146-eval-script-verify_20260520T003800_result.json",
+    "occurrence": 1,
+    "bytes": 1414,
+    "sha256": "8615a3753039d634d0a96118897424726c26b1056fe0e759bd66ae41240c1665"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证结果：\n\n### 1. 脚本结构：7 个 eval — **完整**\n- Step 0: Base model (`/root/autodl-tmp/models/Qwen3-4B`) ✅\n- Step 1-6: 循环遍历 6 个实验 (`d146_pf_exec_s42/s43/s44`, `d146_pf_isr_s42/s43/s44`) ✅\n- 每个 eval 包含 `eval_sta.py` + `classify_h7.py` 两步 ✅\n- 最后有 batch summary 汇总 ✅\n\n### 2. model_path — **正确**\n- Base: `/root/autodl-tmp/models/Qwen3-4B` ✅\n- 实验: 指向 `$OUT/$EXP` 即 final model 目录（检查 `model.safetensors.index.json` 存在性） ✅\n- 脚本有防护：若目录不存在或无 final model 则 SKIP ✅\n\n### 3. 数据路径 — **正确**\n- `data/prooffol_eval_100.jsonl` — 存在，100 行 ✅\n- `--logic_type fol` ✅\n\n### 4. 依赖文件 — **全部存在**\n- `eval_sta.py` ✅\n- `classify_h7.py` ✅\n- Base model 目录 ✅\n\n### 5. Checkpoint 状态\n\n| 实验 | Final Model | 状态 |\n|------|-------------|------|\n| d146_pf_exec_s42 | ✅ | ready |\n| d146_pf_exec_s43 | ✅ | ready |\n| d146_pf_exec_s44 | ✅ | ready |\n| d146_pf_isr_s42 | ✅ | ready |\n| d146_pf_isr_s43 | ✅ | ready |\n| **d146_pf_isr_s44** | **❌** | **训练中，仅 checkpoint-150** |\n\n`d146_pf_isr_s44` 尚未完成训练（只有 checkpoint-150），脚本会自动 SKIP 它。其余 5 个实验 + 1 个 base = 6 个 eval 可正常执行。等 isr_s44 训练完成后重跑即可覆盖全部 7 个。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d146-eval-script-verify.md"
+}

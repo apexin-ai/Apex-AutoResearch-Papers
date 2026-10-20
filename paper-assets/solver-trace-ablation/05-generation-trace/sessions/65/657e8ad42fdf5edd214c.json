@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "657e8ad42fdf5edd214c",
+  "project": "solver-trace-ablation",
+  "kind": "worker",
+  "title": "code d142 gated isr reward",
+  "task_key": "worker_code_d142-gated-isr-reward_20260519T030919",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d142-gated-isr-reward_20260519T030919.log",
+    "occurrence": 1,
+    "bytes": 675354,
+    "sha256": "9068cf8323ef908f131df7accec9e69b739d1a3ea0a44ba5812b5f0f45a6b54f"
+  },
+  "statistics": {
+    "messages": 237,
+    "user_turns": 0,
+    "tool_calls": 92,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 49,
+      "tool_call": 92,
+      "tool_result": 92,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 237,
+      "chunks": [
+        {
+          "path": "657e8ad42fdf5edd214c-part-0001.json",
+          "message_count": 173
+        },
+        {
+          "path": "657e8ad42fdf5edd214c-part-0002.json",
+          "message_count": 64
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-d142-gated-isr-reward.md"
+}

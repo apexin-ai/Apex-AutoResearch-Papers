@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "267030e03d53154c7873",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops sync figures and check s43",
+  "task_key": "worker_ops_sync-figures-and-check-s43_20260515T040801",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_sync-figures-and-check-s43_20260515T040801_result.json",
+    "occurrence": 1,
+    "bytes": 1358,
+    "sha256": "93857c0db34fc946980e9af8631d8f31c565ca75b13fe9a19f8c5bae5de86e73"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 任务 1：图表同步 — 已是最新\n\n远程和本地文件大小完全一致，无需重新同步：\n\n| 文件 | 远程大小 | 本地大小 | 状态 |\n|------|---------|---------|------|\n| fig2_isr_collapse.pdf | 18,118 | 18,118 | 一致 |\n| fig2_isr_collapse.png | 103,274 | 103,274 | 一致 |\n| fig3_hacking_composition.pdf | 25,166 | 25,166 | 一致 |\n| fig3_hacking_composition.png | 115,990 | 115,990 | 一致 |\n| fig4 (remote: cross_logic / local: comparison) .pdf | 22,762 | 22,762 | 一致 |\n| fig4 (remote: cross_logic / local: comparison) .png | 117,128 | 117,128 | 一致 |\n\n本地 fig4 已正确命名为 `fig4_prolog_comparison`，匹配 `experiments.tex` 引用。\n\n---\n\n## 任务 2：exp1-random-b03-s43-r4 训练进度\n\n**状态：训练中，尚未完成**\n\n| 指标 | 值 |\n|------|-----|\n| 当前 step | 393 / 500 (79%) |\n| 已运行 | ~1h 26m |\n| 最新 checkpoint | checkpoint-350 |\n| 平均 step 时间 | ~8.7s/step |\n| 预计剩余 | ~15 min（107 steps × 8.7s） |\n| GPU 0 | 83,123 / 97,887 MiB, 85% util |\n| GPU 1 | 空闲 |\n\n**最近 reward 趋势（step 389-393）：**\n- prove_rate 多数 1.000，偶尔回落到 0.375\n- ISR 在 0.076 ~ 0.330 之间波动\n- reward 均值 ~1.0-1.15\n\n训练预计约 15 分钟后完成。完成后需要手动触发 eval + classify_h7。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-sync-figures-and-check-s43.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "89c78b8753fc2b76135f",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "sync d134 analysis remote",
+  "task_key": "worker_sync_d134-analysis-remote_20260518T140325",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_sync_d134-analysis-remote_20260518T140325_result.json",
+    "occurrence": 1,
+    "bytes": 289,
+    "sha256": "984e8d149cbdb0bff77d75fbebc1b5fcd690454bb1f1dcc983ba47b44013a8e7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "同步完成。\n\n- `--help` 确认 `--mode` 参数存在（choices: d134_only, all）\n- Dry run 结果：找到 3 个 ISR runs（s47/s48/s49），0 个 RANDOM runs。ISR 侧 H7 rate 均值 90.2%，genuine rate 均值 1.4%。因 RANDOM 侧无数据，统计检验跳过。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/sync-d134-analysis-remote.md"
+}

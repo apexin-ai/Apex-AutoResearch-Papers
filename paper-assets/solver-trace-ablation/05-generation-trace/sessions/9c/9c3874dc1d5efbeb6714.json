@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9c3874dc1d5efbeb6714",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code gpu0 kill and submit w4",
+  "task_key": "worker_code_gpu0-kill-and-submit-w4_20260516T024146",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_gpu0-kill-and-submit-w4_20260516T024146_result.json",
+    "occurrence": 1,
+    "bytes": 1057,
+    "sha256": "2db327c2c3815194c99a80258ed9ba568f1f1db2ff1c91ae501f016bb8852bb1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果报告\n\n1. **Kill**: PID 587723 已成功 kill（SIGTERM，无需 force kill）。但 GPU 0 上已有正式提交的 `sweep-isr-b01-s45` 任务在运行（PID 589918），无需重新提交。\n\n2. **Config 文件**: `configs/grpo_additive_bonus_b01.yaml`\n\n3. **submit_training_job**: **不需要执行**。`sweep-isr-b01-s45` tmux session 已存在（创建于 10:41:35），PID 589918 正在 GPU 0 上运行，命令参数与要求完全匹配：\n   - `--config configs/grpo_additive_bonus_b01.yaml --beta 0.1 --seed 45`\n   - `--output_dir /root/autodl-tmp/outputs/sweep_isr_b01_s45`\n   - `--wandb_run sweep-isr-b01-s45`\n\n4. **两张 GPU 当前状态**:\n\n| GPU | tmux session | PID | 显存占用 | GPU-Util | 进度 (reward_log 行数) |\n|-----|-------------|-----|---------|----------|----------------------|\n| 0 | sweep-isr-b01-s45 | 589918 | 75972 MiB / 97887 MiB | 94% | 4 steps |\n| 1 | sweep-isr-b005-s42 | 589836 | 65394 MiB / 97887 MiB | 91% | 5 steps |\n\n两个任务都刚启动不久，正常训练中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-gpu0-kill-and-submit-w4.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "089ff4f10e971b2afdb7",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ssh check warmstart and eval",
+  "task_key": "worker_ssh_check-warmstart-and-eval_20260516T164331",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check-warmstart-and-eval_20260516T164331_result.json",
+    "occurrence": 1,
+    "bytes": 2064,
+    "sha256": "978805c0a3eb18c790e4cdf346f6d30042b96f62039cee6cfd7e86ae7bd483c3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both experiments were already registered as failed by a prior process. Here's the full status report:\n\n---\n\n## Status: Both FAILED\n\n### gated-isr-warmstart-t02-s42 (cuda:0)\n- **Stopped at**: step 100/300 (killed externally, no traceback in log)\n- **Learning signal**: 4/100 steps with non-zero loss (4%) — essentially zero learning\n- **gate_pass**: 0.000 for ALL logged steps — ISR gate blocked every reward\n- **Root cause**: ISR always < 0.2 threshold → reward = 0 → grad_norm = 0 → no learning\n- **Checkpoint**: DELETED (output dir wiped)\n\n### gated-isr-warmstart-t02-s43 (cuda:1)\n- **Crashed at**: step 100/300 — `SafetensorError: No space left on device (os error 28)`\n- **Learning signal**: 32/100 steps with non-zero loss (32%) — sparse but real\n- **gate_pass**: occasionally > 0 (e.g. step 93: 0.333), peak reward=0.875 at steps 31, 37, 65\n- **Root cause**: Disk exhaustion at checkpoint save + ISR gate too strict for consistent signal\n- **Checkpoint**: DELETED (output dir wiped)\n\n### Diagnosis\n\n| Factor | s42 | s43 |\n|--------|-----|-----|\n| Steps with reward > 0 | 3/100 (3%) | 21/100 (21%) |\n| Steps with loss ≠ 0 | 4/100 | 32/100 |\n| Max ISR observed | 0.125 | 0.625 |\n| gate_pass ever > 0 | NO | YES (sparse) |\n\n**Primary failure**: ISR gate threshold τ=0.2 is too strict for the warmstart model. The model generates proofs (prove_rate often > 0.5) but with low ISR scores (mostly < 0.2), so the gate zeros out all reward. This creates total reward collapse — the GRPO objective sees `frac_reward_zero_std=1.0` (all samples get same reward), producing zero gradients.\n\n**Secondary failure**: Disk full (C003 related) — two simultaneous experiments each saving 2 checkpoints (~16GB each) exceeded available space.\n\n### Eval: NOT POSSIBLE\nCheckpoints have been deleted. No eval can be performed.\n\n### vs. Success Criteria (PR > 50% AND genuine > 30%)\nThese experiments cannot meet the criteria — they effectively produced untrained models (zero gradient for almost all steps)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-warmstart-and-eval.md"
+}

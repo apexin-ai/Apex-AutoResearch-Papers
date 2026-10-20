@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2820f18f6465da3e1ceb",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "eval b02 s43 and submit next",
+  "task_key": "worker_eval_b02-s43-and-submit-next_20260516T053102",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_b02-s43-and-submit-next_20260516T053102_result.json",
+    "occurrence": 1,
+    "bytes": 1237,
+    "sha256": "826c87452096d6640c406bfa276cb3d4c7c0c4209656314971e03c75cb8c4e15"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练正常运行（step 7，~6s/step，random_mean ≈ 0.5 符合预期）。所有任务完成。\n\n---\n\n## 结构化报告\n\n### 1. sweep-isr-b02-s43 Eval 结果\n\n| 指标 | 值 |\n|------|-----|\n| Prove Rate | 96/100 = 96.0% |\n| Mean ISR | 0.5298 ± 0.1801 |\n| Proved-only ISR | 0.5519 |\n| Median ISR | 0.5000 |\n\n**Hacking Taxonomy (C013 标准):**\n\n| 类别 | 数量 | 占比 |\n|------|------|------|\n| H7a (text-match tautology) | 93 | 96.9% |\n| H7b (obfuscated) | 0 | 0% |\n| H1 strict | 1 | 1.0% |\n| H8 (conj-collapse) | 2 | 2.1% |\n| **Genuine** | **0** | **0.0%** |\n\n与 b02-s42 (100% PR, 0.6017 ISR, 0% genuine) 高度一致：β=0.2 ISR bonus 未能改善 genuine reasoning，几乎全部通过 H7a 单前提套套证完成。\n\n### 2. 下一个实验提交确认\n\n| 字段 | 值 |\n|------|-----|\n| exp_id | plan018-random-b01-s45-r2 |\n| 配置 | Random β=0.1, seed=45, 500 steps |\n| GPU | cuda:0 (16 GB 占用确认) |\n| PID | 679720 |\n| tmux session | random-b01-s45 |\n| 预计完成 | ~50min (~6s/step × 500) |\n\n### 3. sweep-isr-b02-s44 进度\n\n- Step: **255/500** (51%)\n- ~7s/step，预计 ~29min 完成\n- 当前 prove_rate 波动在 0.5–0.875，isr_mean ~0.1–0.5"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-b02-s43-and-submit-next.md"
+}

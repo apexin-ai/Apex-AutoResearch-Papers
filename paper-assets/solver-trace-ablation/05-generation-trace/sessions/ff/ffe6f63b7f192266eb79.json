@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ffe6f63b7f192266eb79",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code d146 eval classify script",
+  "task_key": "worker_code_d146-eval-classify-script_20260519T171156",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d146-eval-classify-script_20260519T171156_result.json",
+    "occurrence": 1,
+    "bytes": 931,
+    "sha256": "24ef65006a027361f3b32cb7d63ca346ebb4d20be6eeec18e2f71440c92ac9a3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已写入并通过语法检查。\n\n**产出汇总：**\n\n1. **eval_sta.py 参数**: `--model_path`(必需) `--data_path`(必需) `--output_path`(必需) `--logic_type fol`(默认) `--solver`(自动) `--max_new_tokens 512` `--timeout 5`\n2. **classify_h7.py 参数**: `--eval_path`(单文件) `--batch`(多文件) `--json_out`(输出 JSON) `--out`(输出文本)\n3. **D146 输出目录**: `d146_pf_exec_s42`(已完成，有 final model) / `d146_pf_exec_s43`(仅 checkpoint-300，训练中) / 其余 4 个尚未创建\n4. **ISR 实验无需额外 eval 参数** — ISR 在 eval 时由 STA ablation 自动计算，与训练时的 reward_mode 无关\n\n**脚本逻辑**：遍历 6 个实验 → 跳过未完成的（无 final model）→ eval_sta.py 生成 `eval_sta_results.json` → classify_h7.py 生成 `classify.json` → 最后用 batch 模式汇总所有已完成实验到 `d146_classify_summary.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d146-eval-classify-script.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6903d84016f585ac5bae",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "train plan001 exec only s43",
+  "task_key": "worker_train_plan001-exec-only-s43_20260513T235424",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_plan001-exec-only-s43_20260513T235424_result.json",
+    "occurrence": 1,
+    "bytes": 438,
+    "sha256": "eb14a8a55296c4ac0614dd3cd0a1990279caf811213ce556214ddfd6bb5591e4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已正常启动。\n\n**汇总：**\n- **exp_id**: `plan001-exec-only-s43`，PID 121275，tmux session `plan001-exec-only-s43`\n- **GPU**: westd-39279 cuda:0\n- **配置**: exec-only, 500 步, seed 43, Qwen3-4B\n- **输出**: `/root/autodl-tmp/outputs/plan001_exec_only_s43/`\n- **状态**: 模型已加载，训练进度 0/500，正常运行中\n- **日志**: `~/runs/solver-trace-ablation/plan001-exec-only-s43.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-plan001-exec-only-s43.md"
+}

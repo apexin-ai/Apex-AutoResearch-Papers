@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1bde5ac4f135befadc42",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "eval plan006 prolog eval prep",
+  "task_key": "worker_eval_plan006-prolog-eval-prep_20260514T111715",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_plan006-prolog-eval-prep_20260514T111715_result.json",
+    "occurrence": 1,
+    "bytes": 1850,
+    "sha256": "1d844679687c07301ecc9840d203183973e619936aace92d5a165797b3f6e1c6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。总结如下：\n\n## 分析结果\n\n### eval_sta.py 不需要修改\n\neval_sta.py 从数据集只读 3 个字段：`context`、`question`、`answer`（第 210-212 行）。**完全不读 `prolog_premises`/`prolog_query`/`fol_premises`/`fol_conclusion`**。\n\n`prolog_sta_reward` 函数也不从 `problem` dict 读任何数据字段——它只解析模型生成的 `formalization` 文本来提取 clauses 和 query。\n\n所以空字段问题不存在，eval 可以直接跑。\n\n### eval 数据\n\n使用 `data/proofwriter_fol_100.jsonl`（100 条，与 plan006-prolog-sta-s42 评估用的相同）。该文件包含 `context`/`question`/`answer` 字段，完全够用。\n\n### Checkpoint 状态\n\n当前 `/root/autodl-tmp/outputs/plan006_prolog_exec_s42/` 下有 `checkpoint-400`。训练完成后会出现 `checkpoint-500`（`save_total_limit=1` 会自动删除 checkpoint-400）。\n\n### Eval 命令\n\n```bash\ncd /root/solver-trace-ablation && \\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\nexport CUDA_VISIBLE_DEVICES=<GPU_ID> && \\\npython scripts/eval_sta.py \\\n  --model_path /root/autodl-tmp/outputs/plan006_prolog_exec_s42/checkpoint-500 \\\n  --data_path data/proofwriter_fol_100.jsonl \\\n  --logic_type prolog \\\n  --output_path /root/autodl-tmp/outputs/eval_sta_plan006_prolog_exec_s42.json\n```\n\n注意：\n- `<GPU_ID>` 需要在训练结束后确认哪张卡空闲（C002/C005 约束）\n- 如果训练结束后最终模型在根目录而非 checkpoint-500，改 `--model_path` 为 `/root/autodl-tmp/outputs/plan006_prolog_exec_s42`\n- 训练完成后先 `ls /root/autodl-tmp/outputs/plan006_prolog_exec_s42/` 确认 checkpoint 路径\n\n### 预计 eval 时间\n\n参照 plan006-prolog-sta-s42：107.5s（1.1s/sample × 100 samples），约 **2 分钟**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-plan006-prolog-eval-prep.md"
+}

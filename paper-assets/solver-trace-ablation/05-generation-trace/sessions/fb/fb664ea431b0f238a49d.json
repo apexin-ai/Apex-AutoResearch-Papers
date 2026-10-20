@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fb664ea431b0f238a49d",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analysis h7 convergence timing",
+  "task_key": "worker_analysis_h7-convergence-timing_20260515T185111",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_h7-convergence-timing_20260515T185111_result.json",
+    "occurrence": 1,
+    "bytes": 1238,
+    "sha256": "415158ee16c74bdf042a2f3dad9423fc1dd2454978b64b0a9a4748baf6e328e5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `/root/solver-trace-ablation/analysis/h7_convergence_timing.md`（215 行）。\n\n## 核心发现\n\n**数据限制**：没有 per-checkpoint taxonomy，没有 W&B 记录。所有时序分析基于 reward_log.jsonl 中的 step-level `isr_mean` 作为 H7 代理指标（H7→高ISR，H1→ISR≈0）。\n\n**H7 收敛速度对比**：\n\n| 条件 | ISR首次持续>0.5 的 step | 最终 H7% |\n|------|------------------------|----------|\n| ISR s43 | ~Step 200 | 100% @500 |\n| ISR s42 | ~Step 450-500 | 16%→97% (500→1000) |\n| Exec-only s43 | ~Step 450-500 | 100% @1000 |\n| Random s42/s43 | **从未** | 0% / 38.3% |\n| Exec-only s42/s44 | **从未** | 0% (H1 mode) |\n\n**关键机制**：ISR reward 创造 H7 自放大正反馈环——ISR s43 从发现到饱和仅需 ~250 步（step 150→400），而 Exec-only s43 需要 ~350 步（step 150→500+）。Random 条件下 ISR 轨迹无上升趋势，即使 H7 存在（s43: 38.3%）也不被差异性强化。\n\n**对叙事 A 的支撑度**：中等偏强。ISR reward 确实加速 H7 收敛，但 onset 时间有 seed 依赖性（s42 比 s43 慢 ~200 步）。如需更强论据，建议对现有 checkpoint 补做 per-100-step taxonomy eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-h7-convergence-timing.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b28cf84622ef3e37047e",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analysis 4b dose response table",
+  "task_key": "worker_analysis_4b-dose-response-table_20260516T110236",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_4b-dose-response-table_20260516T110236_result.json",
+    "occurrence": 1,
+    "bytes": 631,
+    "sha256": "3a2eab4fa0db47a9de8ffde7d7bb63d929276caa12d77752361f9a49f8c7315b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。文件保存至：\n- `artifacts/4b_dose_response_table.csv` — 20 行实验数据（19 个实验条件）\n- `artifacts/4b_dose_response_summary.md` — 条件聚合表 + 数据来源 + 注意事项\n\n关键发现：\n- **2 个实验完全缺失**：plan002-b01-s43、plan018-random-s43（checkpoint 已清理）\n- **步数不一致**：exec-only 和 ISR β=0.3 混合了 500/1000 步实验\n- **Taxonomy 缺失**：exec-only s43/s44、ISR β=0.05/0.1、random s42 的 h8/genuine 数据不完整\n- **ISR β=0.2 全面崩溃**：3 seed 全是 H7 hacking（genuine=0），ISR reward 完全被 Goodhart"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-4b-dose-response-table.md"
+}

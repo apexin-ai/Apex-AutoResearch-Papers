@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fd2e67523c74b932460e",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "eval plan018 s44 and sft",
+  "task_key": "worker_eval_plan018-s44-and-sft_20260514T134405",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_plan018-s44-and-sft_20260514T134405_result.json",
+    "occurrence": 1,
+    "bytes": 209,
+    "sha256": "2a6333ea9ea7bd305814c992f7ded2c062d7f3b9c2e4b550a365efa69fc79454"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 eval 都已在运行中：\n- **plan018-s44** eval: PID 392935, GPU 0, 使用 checkpoint-500 子目录\n- **plan009-sft** eval: PID 389163, GPU 1\n\n2 分钟后自动回来检查结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-plan018-s44-and-sft.md"
+}

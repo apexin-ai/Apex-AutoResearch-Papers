@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "47f240083305bfa493e0",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code beta01 config backup",
+  "task_key": "worker_code_beta01-config-backup_20260514T031010",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_beta01-config-backup_20260514T031010_result.json",
+    "occurrence": 1,
+    "bytes": 367,
+    "sha256": "9cb4a66d101109ea473c418f736541affdccbe8567dbcd1912b12059344d7edc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个备用 config 已创建并验证：\n\n| 文件 | beta | output_dir |\n|------|------|------------|\n| `configs/grpo_additive_bonus_b01.yaml` | 0.1 | `plan002_additive_beta01_s42` |\n| `configs/grpo_additive_random_b01.yaml` | 0.1 | `plan017_additive_random_b01_s42` |\n\n其余参数与对应的 β=0.3 源文件一致。未启动任何训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-beta01-config-backup.md"
+}

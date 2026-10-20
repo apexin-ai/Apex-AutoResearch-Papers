@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3c5b7621148536133f31",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "diag exec only s43 1000step r5",
+  "task_key": "worker_diag_exec-only-s43-1000step-r5_20260516T235414",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_exec-only-s43-1000step-r5_20260516T235414_result.json",
+    "occurrence": 1,
+    "bytes": 948,
+    "sha256": "c02f85d39ecb451f8ac362a40ad5c27e72f4997be9f5bf93f00b96d8878c0786"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结论\n\n### r5 失败原因\n- **EXIT_CODE=129 (SIGHUP)**，进程被 `Killed`，仅完成 4 步\n- 日志时间 `07:50:22` 启动，r6 tmux session 创建于 `07:51:34`\n- **确认怀疑成立**：r6 提交时使用了同一 `output_dir` (`plan001_exec_only_s43_1000_r2`) 并占用同一 GPU (cuda:0)，r5 的 tmux session 被杀导致 SIGHUP\n\n### r6 状态：健康运行中\n| 项目 | 状态 |\n|------|------|\n| tmux session | `exec-only-s43-1000step-r6` 存活 |\n| PID 991155 | 运行中，CPU 111%，RSS ~2.6GB |\n| GPU 占用 | 85110 MiB on GPU-0 |\n| 训练进度 | step 14/1000，~12.6s/step，预计 ~3.5h 完成 |\n| reward 趋势 | step 14 prove_rate=0.375, parse_rate=1.0，正常 |\n\n### 注意\nr6 没有独立日志文件（未重定向到 `~/runs/`），训练输出仅在 tmux pane 内。如果 tmux 被意外关闭，输出会丢失。不过 TRL 会有 checkpoint 保存，训练结果不会丢。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-exec-only-s43-1000step-r5.md"
+}

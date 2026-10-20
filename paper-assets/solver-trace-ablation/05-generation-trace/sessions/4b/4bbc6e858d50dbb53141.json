@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4bbc6e858d50dbb53141",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "eval collect gated isr results",
+  "task_key": "worker_eval_collect-gated-isr-results_20260516T184338",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_collect-gated-isr-results_20260516T184338_result.json",
+    "occurrence": 1,
+    "bytes": 102,
+    "sha256": "83c08fafc6a923802ee2af4e1f3f3065822d7b9d679599bdc2df8a18b2928d89"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "τ=0.2 已完成并收集结果。τ=0.15 在 54/100，等待中。5 分钟后再查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-collect-gated-isr-results.md"
+}

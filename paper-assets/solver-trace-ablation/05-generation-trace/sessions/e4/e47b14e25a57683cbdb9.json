@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e47b14e25a57683cbdb9",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "reviewer / loop_12.md",
+  "task_key": "loop_12",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_12.md",
+    "occurrence": 1,
+    "bytes": 4190,
+    "sha256": "ded4f67c2a7b12cfdd65a7de6717a46b5046fe5f6126a37575644cfc38696a55"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 12\nreason: idle_timeout\nupdated: '2026-05-16T01:24:26+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 服务器 `westd-39279`，GPU 白名单需从 `execution.gpu_ids` 确认（constraints C002/C005 要求所有进程必须显式 `CUDA_VISIBLE_DEVICES`）\n- 所有 eval 必须用 `--data_path data/proofwriter_fol_100.jsonl`，禁止 `test_100.jsonl`（C008/C009）\n- 跨 seed/run ISR 对比只能用 `eval_sta.py` 统一评估输出，禁止引用训练日志 ISR（C004，不同 run 的 ISR 计算方法可能不同）\n- Taxonomy 标准：`genuine = proved − H7 − H1_exact − H8`，两侧对称（C013/D084）\n- H7a 是 GRPO 通用 seed-dependent 现象（D094），**不可** claim \"H7 is ISR-specific\"（D093）\n- Genuine rate ISR 6.06% vs Random 9.54%，p=0.182 **不显著**，不可 claim ISR genuine 更低（D095）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：`westd-39279(root)`，工作目录 `/root/solver-trace-ablation`\n- 2 × RTX PRO 6000 96GB，当前 2/2 空闲，无活跃进程\n- Python/conda 路径：未在本轮 session 直接探查（上轮未记录），新 session 应 `ssh_read_only` 确认\n- 无活跃 tmux session / PID / cron 任务（86 实验全部 DONE，0 RUNNING/PREPARING）\n- W&B：项目有配置（之前审查用过 `fetch_wandb_metrics`）\n- 论文：本地 `paper/` 目录，TeX 编译就绪（19 页 PDF，0 error）\n\n### 3. 📊 当前状态\n**项目处于 Writing 阶段末期**，DDL 2026-05-25（剩 9 天）。\n\n已完成：\n- 86 实验全部 DONE（success 26 / negative 28 / failed 26）\n- D095 Narrative A 已批准（H7a GRPO-general + H7b ISR-specific meta-Goodhart）\n- paper_framing.md D095 全文改写完成\n- TeX 全量数据同步到 D095 最终数字\n- Provenance 36/36\n- 引用审计 30/30 真实\n- 一致性检查 0 critical / 0 warning\n- PDF 全文视觉审查完成（修复 Table 4/5 重叠 + Table 8 超宽）\n- 页数缩减 ≤8 页主体完成\n- Checklist 验证完成\n- final-sync-compile 完成\n\n我本轮 session 执行过的审查：\n- 未在本轮执行新审查（本轮 session 刚启动即收到 WRITE HANDOFF 指令）\n\n待办：最终润色 + 提交准备（report.md 第 11 项）\n\n### 4. 📋 待办（条件触发式）\n- Paper Agent 启动全文写作 → 收到 `paper_agent_request_review` 时按 §5.3 模板评分\n- Director 转发章节审查请求 → 必做合规检查（Agent 写章节前是否看过 red-section skill）\n- Director 转发 Framing 调整提案 → Read `negative-framing-review.skill.md` 按四维度审\n- 任何新实验启动（不太可能，但如果 DDL 前补实验）→ 核实 GPU 白名单 + `nvidia-smi` 独立验证\n- 论文提交前最终检查 → 验证 abstract/experiments/conclusion 数字与 registry 一致（D095 数字：H7 ISR 70.6% vs Random 13.7% p<10⁻³⁹，genuine 6.06% vs 9.54% p=0.182 n.s.，SFT genuine 92.2%±1.2%）\n\n### 5. 🎯 战略上下文\n**核心结论链**：STA/ISR 是诊断工具（Claim 1），不是好的优化目标（Claim 2 Goodhart），且跨逻辑泛化（Claim 3 Prolog）。\n\n关键决策演化：\n- D057→D095：从\"ISR-specific H7\"修正为\"H7a GRPO-general（seed-dependent）+ H7b ISR-specific（meta-Goodhart）\"。这条修正链是最容易出错的地方——**如果论文任何位置仍残留 \"H7 is ISR-specific\" 的旧表述，必须标 critical**。\n- D051：ISR 2.4x 优势作废，premise-count-matched 后仅 1.06x，论文必须用 1.06x。\n- D084：genuine 定义 = proved − H7 − H1_exact − H8。H1-near 保留为 genuine。\n\n**下一个\"我\"最容易判断错的事**：\n1. D093/D094/D095 的修正链复杂——Random s43-r3 有 38.3% H7a，打破了\"Random H7=0%\"的旧假设。论文中如果出现任何暗示 H7 只在 ISR 条件下出现的表述，都是错的。\n2. Genuine rate 差异不显著（p=0.182）——这是 Narrative A 的核心：ISR-as-reward 不提供真实结构优势。如果论文用了\"ISR reduces genuine rate\"之类的因果表述，必须打回。\n3. 论文已经过多轮修改（version 12+），数字散布在 abstract/experiments/appendix/figures 中，跨章节一致性检查虽已通过一次，但后续润色可能引入新的不一致。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-12-copy-2.md"
+}

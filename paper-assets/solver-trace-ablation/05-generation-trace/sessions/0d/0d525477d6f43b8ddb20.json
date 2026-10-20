@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0d525477d6f43b8ddb20",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "research literature expansion",
+  "task_key": "worker_research_literature-expansion_20260514T014924",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_literature-expansion_20260514T014924_result.json",
+    "occurrence": 1,
+    "bytes": 896,
+    "sha256": "4d5a4368965cf682f78345c2636cb8a24eb8024dacfc0fee3408ede1debe350a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。`artifacts/literature_map.yaml` 包含 **29 篇论文**，覆盖全部 6 个类别：\n\n| 类别 | 数量 | 代表性论文 |\n|------|------|-----------|\n| Neurosymbolic RL/GRPO | 5 | DeepSeek-R1, DeepSeekMath (GRPO原始), Logic-RL, SatLM, Mellgren Prolog-GRPO |\n| Reward shaping | 4 | Let's Verify Step by Step (PRM), RLVR, Rubric-GRPO, PAR |\n| Mutation testing | 7 | DeMillo 1978 (经典), Offutt coupling effect, Jia & Harman survey, LLMorpheus, Meta mutation-guided, Just et al. 2014 |\n| Intensional analysis | 1 | DeepMutation DNN |\n| Reward hacking | 4 | InfoRM (NeurIPS'24), MO-GRPO, Energy Loss (ICML'25), Survey 2026 |\n| FOL/Prolog formalization | 8 | FOLIO, ProofWriter, Logic-LM, LINC, FoVer, LoRP, NL2FOL, LogiQA 2.0 |\n\n每篇论文包含 role（direct-competitor / method-component / evaluation / background）和与 STA 的具体关联说明。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-literature-expansion.md"
+}

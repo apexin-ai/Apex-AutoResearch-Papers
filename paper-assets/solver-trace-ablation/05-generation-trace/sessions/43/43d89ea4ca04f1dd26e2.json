@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "43d89ea4ca04f1dd26e2",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops checkpoint recon",
+  "task_key": "worker_ops_checkpoint-recon_20260515T071001",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_checkpoint-recon_20260515T071001_result.json",
+    "occurrence": 1,
+    "bytes": 1505,
+    "sha256": "58a9b4267a3e0d8b5278166568e60674b31aa6b5fa8c58e406ac38935f175832"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n### 1. plan002-b01-s42 checkpoint-500\n**不存在。** 整个 `/root/autodl-tmp/outputs/plan002_additive_b01_s42/` 目录都不存在。需要从头训练。\n\n### 2. train_grpo.py 是否支持 resume\n**不支持。** grep `resume` 无匹配，argparse 参数列表中也没有 resume 相关参数。只能从头跑。\n\n### 3. 完整提交命令\n\n**GRPO ISR β=0.1 s42（从头 1000 步）：**\n```bash\nexport CUDA_VISIBLE_DEVICES=0\ncd /root/solver-trace-ablation\npython3 scripts/train_grpo.py \\\n  --model_path /root/autodl-tmp/models/Qwen3-4B \\\n  --data_path data/train_500_seed42.jsonl \\\n  --reward_mode execution_sta \\\n  --output_dir /root/autodl-tmp/outputs/plan002_additive_b01_s42 \\\n  --num_steps 1000 \\\n  --beta 0.1 \\\n  --seed 42 \\\n  --no_wandb\n```\n\n**SFT baseline s43：**\n```bash\nexport CUDA_VISIBLE_DEVICES=1\ncd /root/solver-trace-ablation\npython3 scripts/train_sft.py \\\n  --model_path /root/autodl-tmp/models/Qwen3-4B \\\n  --data_path data/train_500_seed42.jsonl \\\n  --output_dir /root/autodl-tmp/outputs/plan009_sft_baseline_s43 \\\n  --num_steps 500 \\\n  --seed 43 \\\n  --no_wandb \\\n  --gpu 1\n```\n\n注：SFT 脚本自带 `--gpu` 参数内部设 CUDA_VISIBLE_DEVICES，但按 C002/C005 约束仍应外部 `export` 显式设置。\n\n### 4. GPU 状态\n| GPU | 显存占用 | 利用率 |\n|-----|---------|--------|\n| 0 | 0 MiB | 0% |\n| 1 | 0 MiB | 0% |\n\n**两张卡均空闲，可同时提交两个实验。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-checkpoint-recon.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "374ae96efff3580dd60c",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops d134 emergency disk cleanup",
+  "task_key": "worker_ops_d134-emergency-disk-cleanup_20260518T180001",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d134-emergency-disk-cleanup_20260518T180001_result.json",
+    "occurrence": 1,
+    "bytes": 588,
+    "sha256": "b7ea590faba0fbf99702840e6693d4447d18917d155c0c5e196709778e5b6d7f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。结果汇总：\n\n| 指标 | 清理前 | 清理后 |\n|------|--------|--------|\n| 已用 | 250G (100%) | 193G (77%) |\n| 可用 | 800K | **58G** |\n\n**释放空间：~57G**\n\n- s48 checkpoint-50 (15G) + checkpoint-100 (13G) = 28G 已删\n- s47 Random 模型权重 (~13G) 已删\n- s47 ISR 模型权重 (~16G) 已删\n\n**s49 状态**：PID 124789 存活，运行正常（已运行 229 秒）。\n\n**剩余空间充足**：58G 可用，s49-s51 每个 seed 峰值 ~15G（save_total_limit=1 只保留最新 checkpoint），足够跑完剩余 3 个 seed。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-d134-emergency-disk-cleanup.md"
+}

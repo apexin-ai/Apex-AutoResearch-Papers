@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4102ad5dea6488c9ad1d",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analysis table prep current data",
+  "task_key": "worker_analysis_table-prep-current-data_20260514T141632",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_table-prep-current-data_20260514T141632_result.json",
+    "occurrence": 1,
+    "bytes": 1152,
+    "sha256": "29e0988307e3ea8f68a48928e80cb1d59235b59b96f62f098e3ca97b08a544ac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 artifact 已注册（`art_20260514_f21549`, `art_20260514_e8d24a`）。\n\n## 产出摘要\n\n**Table 1** (`table1_draft.md`) 包含 7 个子表：\n- **1a**: 主条件汇总（8 行，含 3-seed mean±std）\n- **1b–1d**: FOL exec-only / ISR β=0.1 / Random β=0.1 逐 seed 明细\n- **1e**: Prolog 条件\n- **1f**: ISR 崩塌轨迹（0→100→500→1000 步）\n- **1g**: β 剂量-效应对照\n\n**Table 2** (`table2_draft.md`) 包含 5 个子表：\n- **2a**: ISR vs Random s42 strict 分类对比（D044 可复现）\n- **2b**: ISR β=0.1 三 seed H7 分布（66.4% 3-seed mean）\n- **2c**: plan012 聚合分类\n- **2d**: 跨 logic H7 对比（FOL vs Prolog）\n- **2e**: 6 种 hacking 模式全分类\n\n## 关键标注\n\n- ISR β=0.1 三 seed mean ISR (0.68±0.23) **不可直接报告**——2/3 seeds 被 H7 conclusion duplication 膨胀\n- 5 个 pending cells：plan018 s43/s44、plan006 exec s43/s44、plan006-sta s43/s44\n- plan001-s43 ISR 需用 eval_sta.py 重新评估（当前值来自 training log，不符合 C004）\n- s44 exec-only ISR=0.582 是机械性 fake-high（94% 两组件 tautological proof）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-table-prep-current-data.md"
+}

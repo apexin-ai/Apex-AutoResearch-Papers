@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2c6260073ed6a1abb259",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "eval plan006 prolog sta s43",
+  "task_key": "worker_eval_plan006-prolog-sta-s43_20260514T180546",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_plan006-prolog-sta-s43_20260514T180546_result.json",
+    "occurrence": 1,
+    "bytes": 1122,
+    "sha256": "b7c153da83e7c7f6aecb13fcd5005ea257d9cf40f4f328dc3f8310ad7eb6385c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All done. Summary:\n\n**plan006-prolog-sta-s43 eval results:**\n\n| Metric | Value |\n|--------|-------|\n| eval PR | 0.38 (train was 0.77) |\n| mean ISR | 0.0704 |\n| proved_only ISR | 0.1853 |\n| n_proved | 38/100 |\n| H7 strict | 0/38 (0%) |\n| H1 strict | 0/38 (0%) |\n| ISR=1.0 | 1/38 (2.6%) |\n\n**Key finding:** Starkly different from s42 (PR=0.50, H7=100%). s43 generates degenerate uppercase pseudo-Prolog (e.g. `MARY_IS_AN_AVADEOTE.`) — not valid Prolog syntax, but Prolog trivially matches the query against a verbatim fact. All 38 proved samples have `n_necessary=1` (the ISR=1/n_clauses pattern), which is functionally H7-like but the strict classifier misses it due to non-standard syntax. This represents a **different Goodhart pathway** from s42: instead of clean conclusion duplication, the model produces many vacuous uppercase tokens with the query embedded.\n\nConclusion set to **negative**. Confirms Claim 3 (Goodhart across logic types) but the hacking manifests differently across seeds.\n\n**Disk warning:** 240G/250G (96%), only 11GB free. Cleanup needed before next experiments."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-plan006-prolog-sta-s43.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1db027a765f5e744edf1",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "paper round6 batch2 warnings",
+  "task_key": "worker_paper_round6-batch2-warnings_20260517T165610",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_round6-batch2-warnings_20260517T165610_result.json",
+    "occurrence": 1,
+    "bytes": 1033,
+    "sha256": "2a9c4bc5e196d5d972dd94fc15b4241a7a20bce8bcc974b5edfd245f43a1c5be"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 10 items completed and committed:\n\n1. **SF3**: Added \"(trajectory-confirmed at $\\beta{=}0.1$)\" qualifier in abstract, introduction, conclusion; kept experiments.tex and related_work.tex as-is\n2. **SF4**: Added \"N-H is uncorrected upper bound\" to Table 1 footnote; added limitations sentence about lost checkpoints\n3. **SF5**: \"reveal\" → \"suggest\" for non-monotonic pattern\n4. **SF6**: Added β presentation order sentence in §4.3\n5. **SF7**: Table 1 caption compressed from ~75 to 29 words\n6. **SF8**: Intro ¶4 simplified: removed β list, seed bifurcation numbers, and trajectory data points\n7. **NF1**: Skipped (CMH already first in appendix)\n8. **NF2**: Added \"(LOO)\" definition at first \"leave-one-out\" in introduction\n9. **NF5**: Added single-seed observation note to Table 2 caption\n10. **NF6**: Added 3 bib entries (Amodei 2016, Geirhos 2020, DeepSeek-R1 2025) and cited in related_work.tex\n\nPDF compiles cleanly, no undefined citations, no new em-dashes, Discussion on page 8."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-round6-batch2-warnings.md"
+}

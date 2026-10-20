@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "433537d92fabeb5e479b",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "paper page fix visual review",
+  "task_key": "worker_paper_page-fix-visual-review_20260515T215911",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_page-fix-visual-review_20260515T215911_result.json",
+    "occurrence": 1,
+    "bytes": 2105687,
+    "sha256": "e5d52aa8be5b0563ae13b8a8acdb3f9524dff239acbc1ddb3714cf5f24baf290"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2105707,
+                "serialized_sha256": "7b147db92d3d06f7c9b49a17f331c1ac65a010d7d9d9120a1f21b4d0ce3b03fc",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-page-fix-visual-review.md"
+}

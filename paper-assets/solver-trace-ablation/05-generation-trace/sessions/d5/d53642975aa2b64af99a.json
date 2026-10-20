@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d53642975aa2b64af99a",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "director / loop_10.md",
+  "task_key": "loop_10",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_10.md",
+    "occurrence": 1,
+    "bytes": 2968,
+    "sha256": "ab20bb987cb5641259257e978c3f7f81082cbc52242c73519d7bc3a48dc8dd33"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: max_messages\nupdated: '2026-05-21T01:42:19+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只有 1 张 GPU：westd-39279:cuda:0（RTX PRO 6000 96GB）。之前因误以为有多卡被纠正过。\n- 所有跨 run 的 ISR/PR 比较必须使用 eval_sta.py 统一评估（Constraint C004），禁止直接比较训练 log 中的 ISR。\n- ISR 命名决策待定：当前用 \"Intensional Structural Reward\"，用户可能改为 \"Irreducible Solver Rate\"。已给用户设 5/22 24:00 默认截止。\n- 论文真源在本地 `docs/paper/`，不在远程。改论文永远改本地再 sync。\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-39279，工作目录 /root/solver-trace-ablation\n- Python：/root/miniconda3/bin/python（conda base）\n- 模型：Qwen3-4B（HF cache 在远程服务器）\n- 论文本地路径：`/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/`\n- paper/ 目录是 docs/paper/ 的同步副本（编译在 paper/ 下进行）\n- 无活跃进程/tmux/cron。GPU 完全空闲。所有实验已完成。\n\n### 3. 📊 当前状态\n论文提交就绪。刚完成：\n- ARR 格式合规检查 PASS（8 页主文、匿名化、0 undefined refs）\n- Reviewer 最终 presentation polish 审查完成（2 条 bib 格式问题已修复，其余 false positive）\n- references.bib 修复：ng1999policy 删 ordinal、uesato2022solving 加 case braces，已同步 paper/\n- D157 shuffled-ISR 3-seed 实验全部完成并写入论文（§4.3、Table 1、Limitations、Abstract、Intro、Conclusion、Appendix Table 5）\n- Figure 3 gen_fig3.py 已更新匹配 Table 1 数据\n\nRegistry：0 RUNNING / 0 PREPARING。73 个成功实验，44 个 negative。全部完成。\n\n### 4. 📋 待办\n- 用户回复 ISR 命名 → 如选 \"Irreducible Solver Rate\"：全文替换 \"Intensional Structural Reward\" → \"Irreducible Solver Rate\"，重新编译，sync paper/。如 5/22 24:00 前无回复 → 保持现名。\n- 命名确定后 → 最终编译 + `submit_paper_to_review` 提交给 Review Director 做投稿前审查。\n- Review Director 返回审稿报告 → 按 review-report-action skill 处理。\n- DDL: EMNLP 2026 ARR May 25。\n\n### 5. 🎯 战略上下文\n- 核心发现：ISR 的 observer/optimizer 不对称性——作为诊断可靠（99.5% collapse invisible to PR），作为 reward 被 Goodhart（TS gaming）。Shuffled-ISR 控制实验证实语义对应而非分布形状驱动 gaming。\n- 决策链关键：D159 决定不升级 C2 为 \"mechanistic\"（PR=15% 解释模糊），用 \"rules out distributional confound\"。\n- 易错点：Reviewer 可能读到旧版本文件报 false positive（本轮发生过两次——Figure 3 和 D157 per-seed rows）。收到 Reviewer 报告时先核实当前文件状态再行动。\n- GPU 空闲是正常状态——实验阶段已结束，所有核心 claim 有数据支撑。System keepalive 会反复催 GPU 利用，合理回应即可。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10.md"
+}

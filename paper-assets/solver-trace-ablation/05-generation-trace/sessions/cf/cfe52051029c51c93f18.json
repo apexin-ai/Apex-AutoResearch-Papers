@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cfe52051029c51c93f18",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops d129 setup and submit first",
+  "task_key": "worker_ops_d129-setup-and-submit-first_20260517T210847",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d129-setup-and-submit-first_20260517T210847_result.json",
+    "occurrence": 1,
+    "bytes": 852,
+    "sha256": "d22998d31813e35358fad594e50cfb1f749ad6975cca3a7f71c0986388fbf483"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练正常运行中。\n\n## 报告\n\n1. **环境正常**\n   - 模型: `/root/autodl-tmp/models/Qwen3-1.7B/` (3.8GB, 2 shards) ✓\n   - 训练脚本: `train_grpo.py` ✓\n   - 数据: `train_500_seed42.jsonl` (500 examples) ✓\n   - Eval 脚本: `eval_sta.py`, `classify_h7.py` ✓\n   - GPU: NVIDIA RTX PRO 6000 (98GB), cuda:0 空闲 → 现已占用 ✓\n   - Python: conda base, Python 3.12, torch 2.10.0+cu128, trl 1.1.0 ✓\n   - 磁盘: 61G 可用 ✓\n\n2. **第一个实验成功提交** ✓\n   - exp_id: `d129-1.7b-isr-b01-s43`\n   - reward_mode: additive_bonus, β=0.1, seed=43, 500 steps\n\n3. **PID: 14701**, tmux session: `d129-1.7b-isr-b01-s43`\n   - 仅占用 cuda:0 (10970 MiB)，符合 C002/C005\n\n4. **预估完成时间**: step 1-2 约 10-13s/it，500 steps ≈ 1.5-1.8 小时，预计 **~06:45 UTC** 完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-d129-setup-and-submit-first.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8462e91d7aa539bf8732",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code plan002 additive bonus reward",
+  "task_key": "worker_code_plan002-additive-bonus-reward_20260514T020631",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan002-additive-bonus-reward_20260514T020631_result.json",
+    "occurrence": 1,
+    "bytes": 795,
+    "sha256": "3151b4c4cf4f4b43b6c226c4275b526be8ae6250a97e376d6233fdf82db2caf4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部就绪。代码和配置已到位，汇总：\n\n**`scripts/train_grpo.py` 已有改动：**\n- `make_reward_fn` 签名新增 `beta: float = 0.3`\n- `additive_bonus` 分支实现 `r = r_exec * (1 + β·ISR)` (line 187-195)\n- `--beta` CLI 参数 (line 312-313)\n- `--reward_mode` choices 包含 `additive_bonus`\n- `beta` 传入 `make_reward_fn` (line 384)\n- `save_total_limit=1` (C003 合规)\n\n**`configs/grpo_additive_bonus.yaml`：**\n- `reward_mode: additive_bonus`, `beta: 0.3`\n- `data_path: data/train_500_seed42.jsonl` (C001 合规)\n- `output_dir: /root/autodl-tmp/outputs/plan002_additive_beta03_s42` (已修正)\n- `no_wandb: true`, `seed: 42`\n\n**Dry-run 验证通过：** 语法检查 OK，`--help` 确认 `--beta` 和 `additive_bonus` 模式均被识别。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan002-additive-bonus-reward.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d3414bdd67d5660d2c44",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops backup isr s44 eval",
+  "task_key": "worker_ops_backup-isr-s44-eval_20260515T142240",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_backup-isr-s44-eval_20260515T142240_result.json",
+    "occurrence": 1,
+    "bytes": 762,
+    "sha256": "2386d71bbd00c98eacece12dfe8d1256722bc390f78614f01bc4a849cac156cb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "备份完成。`/root/autodl-tmp/eval_results_backup/` 最终内容：\n\n| 文件 | 大小 | 状态 |\n|------|------|------|\n| `plan002_additive_b01_s44_eval.json` | 172KB | OK (dict, 2 keys) |\n| `isr_s44_fn_evidence.json` | 7KB | OK (dict, 11 keys) |\n| `plan018_random_s42_taxonomy_verification.json` | 8KB | OK (dict, 6 keys) |\n| `plan002_additive_b01_s42_eval_sta_results.json` | 216KB | 已有备份 |\n| `plan016_extended_1000_s42_eval_results.json` | 387KB | 已有备份 |\n| `plan018_additive_random_b01_s42_eval_results.json` | 313KB | 已有备份 |\n\n另有旧备份目录 `/root/autodl-tmp/eval_backups/` 保存了 3 个早期 eval 文件（与 eval_results_backup 中的重叠）。所有备份文件 JSON 解析验证通过。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-backup-isr-s44-eval.md"
+}

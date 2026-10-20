@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a1057b8fa7d150283592",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code d157 launch and verify",
+  "task_key": "worker_code_d157-launch-and-verify_20260520T145405",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d157-launch-and-verify_20260520T145405_result.json",
+    "occurrence": 1,
+    "bytes": 695,
+    "sha256": "ff0226c8f1a7bec798f06ec86e9487ca5eca9e9cae75a6ff834fba7d800f1dec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**D157 训练正常运行。**\n\n| 项目 | 状态 |\n|------|------|\n| **PID** | 788433 |\n| **GPU** | cuda:0, 44986MiB / 97887MiB |\n| **进度** | step 4/500, ~6.9s/it |\n| **预计耗时** | ~57 分钟 |\n| **reward_mode** | shuffled_isr ✓ |\n| **数据** | train_500_seed42.jsonl (C001 ✓) |\n| **CUDA_VISIBLE_DEVICES** | 0 (C002/C005 ✓) |\n| **save_total_limit** | 默认 1 (C003 ✓) |\n\n前几步 reward log 正常：\n- step 1: reward=0.270, prove_rate=0.250, isr=0.200, shuffle_proved=2\n- step 3: reward=0.525, prove_rate=0.500, isr=0.250, shuffle_proved=4\n\nshuffled_isr 模式正在工作（shuffle_proved 字段出现）。训练预计 ~1 小时内完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d157-launch-and-verify.md"
+}

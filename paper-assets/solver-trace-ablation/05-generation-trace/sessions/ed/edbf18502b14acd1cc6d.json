@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "edbf18502b14acd1cc6d",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ssh exec retrain final v3",
+  "task_key": "worker_ssh_exec-retrain-final-v3_20260516T160412",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exec-retrain-final-v3_20260516T160412_result.json",
+    "occurrence": 1,
+    "bytes": 1474,
+    "sha256": "346de0f4d859b8984c877e47079ad3d89323890506797f5501fd5e5fc2be7dbf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 产出汇总\n\n### 1. Kill 确认 + GPU 空闲\n无残留 train_grpo 进程，双卡 0MiB → 启动后各占 ~81GB。\n\n### 2. 配置文件 (`configs/grpo_exec_retrain_v3.yaml`)\n```yaml\nmodel_path: /root/autodl-tmp/models/Qwen3-4B\ndata_path: data/proofwriter_fol_100.jsonl\nreward_mode: execution_only\nnum_steps: 500\nper_device_batch_size: 2\ngradient_accumulation_steps: 4\nnum_generations: 8\nmax_completion_length: 512\nlearning_rate: 1.0e-6\nsave_steps: 50\nsave_total_limit: 3\ngradient_checkpointing: true\nno_wandb: true\nsolver: prover9\n```\n\n### 3. 双卡提交确认\n| 实验 | GPU | PID | tmux session |\n|------|-----|-----|--------------|\n| exec-retrain-v3-s42 | cuda:0 | **875499** | exec-retrain-v3-s42 |\n| exec-retrain-v3-s43 | cuda:1 | **875573** | exec-retrain-v3-s43 |\n\n### 4. 前 5 步日志\n\n**s42** (GPU 0):\n- Dataset: 100 examples ✓, K=8 ✓\n- step 1: prove_rate=0.125, grad_norm=9.22\n- step 3: prove_rate=0.500, isr=0.444\n- step 4: prove_rate=0.000, grad_norm=5.71\n\n**s43** (GPU 1):\n- Dataset: 100 examples ✓, K=8 ✓\n- step 1: prove_rate=1.000, isr=0.800（运气好的样本，reward 全 1 → loss=0）\n- step 2-6: prove_rate=0.000（正常，base model 多数样本未训练过）\n\n### 5. 磁盘余量\n`/root/autodl-tmp`: **125GB 可用**（51% used）。3 checkpoint × 2 实验 × ~16GB = 最大 96GB，余量充足。旧输出 `exec_retrain_s42/s43` 和 `gated_isr_warmstart_s42` 已清理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exec-retrain-final-v3.md"
+}

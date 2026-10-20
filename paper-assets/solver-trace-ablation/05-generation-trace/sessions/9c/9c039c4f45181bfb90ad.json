@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "9c039c4f45181bfb90ad",
+  "project": "solver-trace-ablation",
+  "kind": "worker",
+  "title": "train s45 s46 1000step",
+  "task_key": "worker_train_s45-s46-1000step_20260521T232505",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_s45-s46-1000step_20260521T232505.log",
+    "occurrence": 1,
+    "bytes": 645058,
+    "sha256": "fdce2e5ce73ccf752d82878d8ad08727ae3f6d7909e1c492cb91b2d0896a14e3"
+  },
+  "statistics": {
+    "messages": 173,
+    "user_turns": 0,
+    "tool_calls": 71,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "assistant": 28,
+      "tool_call": 71,
+      "tool_result": 71,
+      "record": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 173,
+      "chunks": [
+        {
+          "path": "9c039c4f45181bfb90ad-part-0001.json",
+          "message_count": 161
+        },
+        {
+          "path": "9c039c4f45181bfb90ad-part-0002.json",
+          "message_count": 12
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/train-s45-s46-1000step.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ba5bf46d8eff584b3c45",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_1_1778716131.md",
+  "task_key": "loop_1_1778716131",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_1_1778716131.md",
+    "occurrence": 1,
+    "bytes": 5595,
+    "sha256": "d2071ad1a138bd0215ed9e30d62c98b0702205f16c65e8cd6b12e1e9828a6683"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 1\nreason: idle_timeout\nupdated: '2026-05-13T23:43:00+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 **westd-39279** 的 **cuda:0** 和 **cuda:1**（gpu_ids 白名单）\n- **plan001-exec-only-s42-r2 正在 cuda:0 上运行（PID 84901）**——严禁在 cuda:0 启动新进程直到 r2 自然完成。之前 cron 误判其 DONE/failed（因 `--help|grep` 前缀命令 PID 84896 先退出），已手动恢复 RUNNING\n- **plan005-sta-low-s42 正在 cuda:1 上运行（PID 85790）**——cuda:1 同理不可新提交\n- submit_training_job 的 command 里 `CUDA_VISIBLE_DEVICES` 必须写在 `bash -c` 内部，不能依赖外部 shell 继承（r3 OOM 教训）\n- 50/50 STA 权重已确认为退化根因（D008 penalty effect），不要再跑 50/50 配比\n- Python 环境是 conda base（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`），**不存在 .venv**\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-39279，2× RTX PRO 6000 Blackwell 94GB VRAM\n- **工作目录**: `/root/solver-trace-ablation/`\n- **Python**: `/root/miniconda3/bin/python`，conda base 环境\n- **CUDA**: 12.8, PyTorch 2.10.0+cu128\n- **模型**: Qwen3-4B，路径 `/root/solver-trace-ablation/models/Qwen3-4B`（7.6GB，ModelScope 下载）\n- **数据**: `/root/solver-trace-ablation/data/proofwriter_fol_100.jsonl`（eval 100条）、`train_500_seed42.jsonl`（训练 500条），来源 `tasksource/folio`\n- **Solvers**: Prover9 (LADR 2009-11A 编译), SWI-Prolog 8.4.2, Z3 4.16.0.0\n- **Checkpoints**: `/root/autodl-tmp/outputs/` 下各子目录\n- **活跃进程**:\n  - plan001-exec-only-s42-r2: PID 84901, tmux session, cuda:0, cron 监控中\n  - plan005-sta-low-s42: PID 85790, tmux session, cuda:1, cron 监控中（reconcile 确认 still running）\n- **活跃 Workers**:\n  - `worker_code_fix-isr-monitoring_20260513T234032` — 修复 ISR 监控代码\n  - `worker_monitor_plan001-r2-plan005_20260513T234045` — 监控两个 RUNNING 实验\n- **W&B**: 未配置（metrics 从 reward_log.jsonl 读取）\n- **HF cache**: `/root/autodl-tmp/.hf_cache`\n\n### 3. 📊 当前状态\n**刚做完**: 处理 plan001-exec-only-s42 连续 3 次失败（r1 config 错误 → r2 cron 误判 → r3 重复提交 OOM），手动恢复 r2 为 RUNNING。完成 plan003 消歧分析确认 penalty effect（D007/D008）。提交 Dream 审稿获得反馈（best 4/6 BR, median 3/6 WR）。\n\n**Registry 状态**:\n| 实验 | 状态 | 摘要 |\n|------|------|------|\n| plan001-exec-only-s42-r2 | RUNNING | exec-only 500步 baseline, cuda:0, PID 84901 |\n| plan005-sta-low-s42 | RUNNING | STA weight=0.1 训练, cuda:1, PID 85790 |\n| sta-phase1-exec-only-r5 | DONE/success | exec-only 100步, prove_rate=0.151, ISR=0.148 |\n| sta-phase1-exec-sta-r5 | DONE/negative | exec+STA 100步, prove_rate=0.10, ISR=0.043 (退化) |\n| plan003-eval-exec-only-r5 | DONE/success | held-out eval, prove_rate=0.32, ISR=0.206, proved_only_ISR=0.642 |\n| sta-phase0-baseline | DONE/success | base model ISR=0.064, prove_rate=0.12 |\n| sta-gt-isr-baseline | DONE/success | GT ISR=0.559 |\n| 其余 8 个 | DONE/failed | 早期配置/OOM/重复提交等问题 |\n\n**等待中**:\n- 两个 Worker 回调（fix-isr-monitoring + monitor）\n- plan001-r2 和 plan005 的 cron 完成回调\n- Director 尚未对 Dream 审稿反馈给出下一步指令\n\n### 4. 📋 待办（条件触发式）\n- **plan001-r2 cron 回调 (DONE)** → 分析 500步 exec-only metrics → 更新 registry → 若 success 则启动 plan001 seed 43/44 两组（3-seed baseline）\n- **plan005 cron 回调 (DONE)** → 分析 STA weight=0.1 结果 → 若 prove_rate ≥ exec-only 且 ISR 有区分 → 确定最优权重 → 启动 plan002（exec+STA 500步 3seed）；若 prove_rate < exec-only → 尝试 weight=0.05 或判定 STA 只适合做 monitoring metric\n- **两个 RUNNING 都完成后** → 两张 GPU 空出 → 按 Dream 建议优先铺: (1) random reward baseline（隔离 ISR specific signal，Dream M2/W7 必修），(2) 3-seed 跑通后启动 Prolog (plan_006)\n- **Director 回复 Dream 指导** → 按指示更新 paper_framing.md story、扩充 related work、处理 ISR circularity\n- **fix-isr-monitoring Worker 回调** → 确认代码修复，后续实验自动获得更好的 ISR 过程监控\n\n### 5. 🎯 战略上下文\n**核心结论链**:\n- D001-D003: MVP 迭代（binary ISR 无效 → continuous ISR + K=8 有效）\n- D004-D005: exec+STA r5 prove_rate 退化，因果消歧启动\n- D006: \"检测 hacking\" claim 降级为观察性表述\n- D007: plan003 确认 exec-only ISR 提升是 organic 的，50/50 STA 是 penalty\n- D008: Dream 审稿暴露 5 个结构性弱点 → story 需转向 \"STA as principled structural metric + proper weight integration\"\n\n**最容易判断错的事**:\n1. **plan001-r2 的 cron 可能再次误判**——上次因 `--help|grep` 前缀命令的 PID 先退出被误判 failed。如果 cron 再报 failed，先 SSH 检查 PID 84901 是否还活着，不要盲目重提交\n2. **不要跑 STA weight=0.5**——已被 D008 确认为 penalty effect，50/50 是死路\n3. **reward_log.jsonl 多轮追加问题**——分析 metrics 时必须按 timestamp 过滤，否则混入旧 run 数据\n4. **Dream 审稿的 \"ISR circularity\" 批评很重**——downstream validation 实验（高 ISR formalization 用于下游推理）是必修项，不能跳过\n5. **DDL 2026-05-25（剩 12 天）**——500步实验 ~0.7 GPU·h/run，3-seed × 2条件 = ~4.2h，加 random baseline + Prolog + longer training ≈ 25-30 GPU·h 总预算。两张卡并行可以完成，但不能有 GPU 空窗\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-1-1778716131.md"
+}

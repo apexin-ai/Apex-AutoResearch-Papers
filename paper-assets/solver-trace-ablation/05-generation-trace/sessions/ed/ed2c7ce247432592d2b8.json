@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ed2c7ce247432592d2b8",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "urgent disk cleanup",
+  "task_key": "worker_urgent_disk-cleanup_20260514T114152",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_urgent_disk-cleanup_20260514T114152_result.json",
+    "occurrence": 1,
+    "bytes": 1124,
+    "sha256": "483a6fb6702a773d66d55b082f45cdd57ec64dcf4a1634f7c975e580a6537394"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n**1. 磁盘清理：释放 90G**（142G → 52G used, 21%）\n- 清理了 plan001_exec_only_s42, plan002_additive_b01_s42, plan016_extended_1000_s42, plan018_additive_random_b01_s42 的模型文件\n- eval JSON 已备份到 `/root/autodl-tmp/eval_backups/`\n- plan006_prolog_exec_s42 未动（需要 eval）\n\n**2. plan018-s44 存活状态**\n- PID 564900 存活，step 25/500，GPU 0 正常训练\n\n**3. plan006-prolog-exec-s42 eval 结果**\n\n| 指标 | exec-only | sta-only (对比) |\n|---|---|---|\n| prove_rate | 83% | 50% |\n| mean_isr | 0.031 | 0.5 |\n| proved_only_isr | 0.037 | 1.0 |\n| H7 rate | 0% | 100% |\n| H1 rate | 0% | 0% |\n\n核心发现：exec-only 和 STA 产生截然不同的失败模式。exec-only 生成 \"creative shortcut proofs\"（可执行但不走 gold-standard 步骤），STA 生成 \"trivial copy\"（H7 hacking）。\n\n**4. Registry 已更新** — plan006-prolog-exec-s42 状态 → DONE, conclusion → success\n\n**注意：** GPU 1 上同时有 plan009-sft-baseline-s42-r4 训练在运行（PID 572609），另一个 worker 提交的。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/urgent-disk-cleanup.md"
+}

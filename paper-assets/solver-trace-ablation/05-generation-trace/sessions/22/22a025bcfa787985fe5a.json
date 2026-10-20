@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "22a025bcfa787985fe5a",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "monitor cuda0 b01s45 completion",
+  "task_key": "worker_monitor_cuda0-b01s45-completion_20260516T035636",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_cuda0-b01s45-completion_20260516T035636_result.json",
+    "occurrence": 1,
+    "bytes": 72,
+    "sha256": "590338f58424a21343c2a76937f022be905591a41f52b8fde6e5d3949d3959cb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Training at step 207/500. Will check again in ~4 minutes."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-cuda0-b01s45-completion.md"
+}

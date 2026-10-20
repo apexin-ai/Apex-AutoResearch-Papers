@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0721e5ab77490fc11e3e",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_11_1778847699.md",
+  "task_key": "loop_11_1778847699",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_11_1778847699.md",
+    "occurrence": 1,
+    "bytes": 4077,
+    "sha256": "87a31f7939c3780dbad251eddf30bf85cf20d9c79abb302de607f599b9a2a062"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 11\nreason: idle_timeout\nupdated: '2026-05-15T12:19:38+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：`westd-39279:cuda:0` 和 `westd-39279:cuda:1`，禁止用其他卡\n- GPU 编号脚本内始终从 0 开始（框架自动注入 CUDA_VISIBLE_DEVICES）\n- plan018-additive-random-b01-s42-1000 正在 cuda:1 上跑（PID 197860），不要杀它\n- SFT 脚本用 `--no_wandb`（服务器无 W&B API key），GRPO 脚本也用 `--no_wandb`\n- 已有 checkpoint 在 `/root/autodl-tmp/outputs/` 下，禁止清理未确认的 checkpoint（D067 磁盘清理误删事故教训）\n- plan002-b01-s42-1000 结论是 negative（Goodhart 崩塌），**不要默默跑后续实验**——已向 Director 提交 Framing 提案（选项 A/B/C），等 Director 回复\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-39279，account: root\n- 工作目录：`/root/solver-trace-ablation`\n- Python：`/root/miniconda3/bin/python3`，激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型：`/root/autodl-tmp/models/Qwen3-4B`\n- 数据：`data/train_500_seed42.jsonl`（训练），`data/proofwriter_fol_100.jsonl`（eval）\n- Eval 脚本：`scripts/eval_sta.py`（STA 全量评估），`scripts/train_grpo.py`（GRPO），`scripts/train_sft.py`（SFT）\n- Config：`configs/grpo_additive_random_b01.yaml`（random 实验用）\n- Checkpoint 目录：`/root/autodl-tmp/outputs/`\n- 无 W&B API key，所有实验 `--no_wandb`\n- 活跃进程：plan018-additive-random-b01-s42-1000（PID 197860，tmux session 同名，cuda:1，cron 已注册）\n\n### 3. 📊 当前状态\n**刚做完**：\n1. plan009-sft-baseline-s44 完成分析 → DONE(success)，3-seed SFT 闭环：PR=0.153±0.015, genuine=91.5%±2.7%, H7=0%\n2. plan002-additive-b01-s42-1000 完成 → DONE(negative)：1000步 ISR β=0.1 Goodhart 崩塌，H7=92.2%, genuine=3%\n3. 向 Director 汇报了两个结果 + Framing 提案（选项 A/B/C），等待 Director 回复\n\n**RUNNING**：\n- plan018-additive-random-b01-s42-1000（cuda:1）— Random β=0.1, 1000步控制组，~08:28 启动，预计 ~2.5h 完成（~11:00 UTC）\n\n**等待中**：\n- plan018-random-1000 的 cron 完成回调\n- Director 对 Framing 提案的选择（A/B/C）+ cuda:0 分配方向\n\n**cuda:0 空闲**，已向 Director 标记。\n\n### 4. 📋 待办\n- plan018-random-1000 cron 回调 → spawn Worker 读 log + 跑 eval_sta.py → 制作 3 条件×2 时间点对比表（exec-only/ISR/random × 500步/1000步）→ 汇报 Director\n- Director 选择 Framing 选项 A → 在 §4.2 加 1000 步时间维度表格行；选 B → 重组为 2D heatmap；选 C → 引入 \"Goodhart window\" 概念\n- Director 确认 cuda:0 方向 → 执行（论文写作 or 追加实验）\n- 3-seed SFT 统计已完整 → 论文 §4.1 SFT 对照行可写\n\n### 5. 🎯 战略上下文\n- **DDL: 2026-05-25 ARR May**（剩 10 天），写作阶段\n- **3 Claims 全部 ✅ 闭环**，实验基本完备，核心瓶颈是论文写作\n- **Goodhart 是论文主线**：ISR 作为诊断工具有价值（Claim 1），但 ISR-as-reward 完全失败（Claim 2），跨逻辑泛化（Claim 3）\n- **D057 是 Claim 2 闭环决策**：3-seed ISR vs random 对照，premise-count-matched 分析证明 ISR 无结构优势（1.06x）\n- **D072 Wilson CI**：Wilson CI 分析显示 ISR β=0.1 genuine rate 在小样本下可能显著高于 random，但这与 premise-count-matched 1.06x 矛盾——论文需要谨慎措辞\n- **易错点**：\n  - plan002-b01-s42-1000 的 ISR*=0.877 看起来很高，但那是 gaming 出来的（92.2% H7），不是真实结构质量\n  - plan013 random reward (β=0.3) 产生了 degenerate 2-component proofs（ISR=0.5 artifact），不要和 plan018 random (β=0.1) 混淆——两者公式结构不同（D027）\n  - SFT eval 必须用 `proofwriter_fol_100.jsonl`（34/25/41 分布），不是 `test_100.jsonl`（50/44/6），后者已被确认为错误测试集（D063）\n  - exec-only 3 seed 各有不同 hacking 模式（s42 H1, s43 repetition collapse, s44 H7），不要说\"exec-only 统一走 H1\"\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-11-1778847699.md"
+}

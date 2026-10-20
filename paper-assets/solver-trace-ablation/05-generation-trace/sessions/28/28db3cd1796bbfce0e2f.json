@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "28db3cd1796bbfce0e2f",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops update table1 random b03",
+  "task_key": "worker_ops_update-table1-random-b03_20260515T004655",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_update-table1-random-b03_20260515T004655_result.json",
+    "occurrence": 1,
+    "bytes": 480,
+    "sha256": "59010f23993f364ab7ae560f9e25320a9bd0fa5b6004a7a6a095c7fd2153d5ab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Table 1 updated. §4.3 正文没有提及 Random β=0.3 的具体数值，无需改动。\n\n变更汇总：\n- **数据行**：PR 48 (s42-only) → 64±22 (2-seed mean)，ISR* 0.094 → 0.158±.09，H7/H1/N-H 从 `---` 填入 0/76/24（s43 数据）\n- **脚注**：从 \"seed~42 only (s44 pending rerun)\" 改为 \"2-seed mean (seeds~42,43); H7/H1/N-H from seed~43 only (s42 lacks classification; s44 pending)\"\n- **registry 注释**：添加 exp1-random-b03-s43"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-update-table1-random-b03.md"
+}

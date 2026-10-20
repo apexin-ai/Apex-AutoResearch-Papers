@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bd4fcc45d542f2f989f6",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops clean and restart s43 r7",
+  "task_key": "worker_ops_clean-and-restart-s43-r7_20260517T002108",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_clean-and-restart-s43-r7_20260517T002108_result.json",
+    "occurrence": 1,
+    "bytes": 261,
+    "sha256": "b32606968a1beba20205d55b8d5dc332817c571ee411e77e0bf871b9908bbca4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已正常启动：\n\n- **Tmux session**: `exec-only-s43-1000step-r7` 存在\n- **PID**: 996789 (主进程), 996788 (bash wrapper)\n- **GPU 0**: 78194 MiB 占用, 94% utilization\n- **GPU 1**: 空闲 (0 MiB), 未被侵占\n\n一切正常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-clean-and-restart-s43-r7.md"
+}

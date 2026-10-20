@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "574358f078a24e70bd24",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "paper fix figures",
+  "task_key": "worker_paper_fix-figures_20260514T211743",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fix-figures_20260514T211743_result.json",
+    "occurrence": 1,
+    "bytes": 2121740,
+    "sha256": "3bd5c7ec1f84e650eb294f500d4028a0c9f1fd7c02edc51ad7cd959f35fa2ba0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2121760,
+                "serialized_sha256": "39fc65ae064e756406db71174a523cd6088ec475e2feae0ef019bb1941030735",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fix-figures.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a515c974353d63df34e2",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "paper writing experiments",
+  "task_key": "worker_paper_writing_experiments_20260514T185007",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_experiments_20260514T185007_result.json",
+    "occurrence": 1,
+    "bytes": 1183,
+    "sha256": "9e8c16e23d47e4ec44402a7cc01ec4833b76d64eb6098bcf5f7266cdfe428596"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All checks pass:\n\n- **4 tables**: `tab:goodhart-landscape` (table*), `tab:beta01-3seed`, `tab:prolog-crosslogic`, `tab:hacking-taxonomy`\n- **3 figures**: `fig:isr-collapse`, `fig:prolog-comparison`, `fig:hacking-composition`\n- **5 section/subsection labels** matching introduction cross-references\n- **No 0.716** (gaming-inflated ISR removed from Table 1, replaced with $\\ddagger$)\n- **No banned phrases**\n- **Citations** use `\\citep` consistent with the introduction\n\nKey changes from the previous version:\n1. **Table 1 expanded** to 10 columns (Condition, Reward, β, n, PR%, ISR*, H7%, H1%, Genuine%, Mode) using `table*` for full width. ISR β=0.1 shows `$\\ddagger$` instead of the gaming-inflated 0.716±0.26.\n2. **Table 2 created** (hacking taxonomy) with 7 modes × 4 conditions, using `$\\bullet$` for seed/step-specific exec-only modes.\n3. **Table 3 gains mean±std rows** for both ISR and Random groups, with ISR mean explicitly marked \"---\" (omitted).\n4. **fig:prolog-comparison added** with descriptive caption.\n5. **PR formatting standardized** to integer percentages in tables.\n6. All numbers verified against the experiment registry."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-experiments.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a0285b97958229eada78",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "diagnose plan006 prolog data",
+  "task_key": "worker_diagnose_plan006-prolog-data_20260514T095035",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_plan006-prolog-data_20260514T095035_result.json",
+    "occurrence": 1,
+    "bytes": 1203,
+    "sha256": "8490efd1aabe0762672bc7e1e02481053d185784568c1a32f0401f9afcfb8bac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 成功。报告如下：\n\n---\n\n**结论：不存在 Prolog 训练数据缺失问题。`data/prolog/train_500_seed42.jsonl` 不需要创建。**\n\n**验证结果：**\n- `data/train_500_seed42.jsonl` 存在（500 条，字段：id, context, question, answer, fol_premises, fol_conclusion, depth）\n- 两个 Prolog config（`grpo_prolog_exec_only.yaml`, `grpo_prolog_exec_sta.yaml`）均指向 `data_path: data/train_500_seed42.jsonl`\n- `build_prolog_dataset()` 仅使用 `context`/`question` 字段构造 Prolog prompt，**不需要 `prolog_premises`/`prolog_query` 字段**\n- Dry-run 通过：成功从 FOL 数据构建了 500 条 Prolog dataset\n- GRPO reward function 传入 `{}` 作为 ground truth，仅评估模型生成的 Prolog 代码是否可执行 + STA ablation\n\n**架构设计：** Prolog 实验与 FOL 实验使用**同一份自然语言数据**，区别在于 prompt（要求模型生成 Prolog 而非 FOL）和 reward function（用 swipl 而非 Prover9 执行）。\n\n**eval_sta.py Prolog 支持：** 已实现（与 readiness report 旧记录不符）——`--logic_type prolog` 已可用。\n\n**实际阻塞项：** GPU 可用性，非数据问题。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-plan006-prolog-data.md"
+}

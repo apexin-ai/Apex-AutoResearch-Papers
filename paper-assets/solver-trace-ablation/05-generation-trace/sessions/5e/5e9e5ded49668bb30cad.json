@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5e9e5ded49668bb30cad",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code plan014 downstream prep",
+  "task_key": "worker_code_plan014-downstream-prep_20260514T031904",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan014-downstream-prep_20260514T031904_result.json",
+    "occurrence": 1,
+    "bytes": 2147,
+    "sha256": "07192666b9d4795d8703961440e61b4c4d3639272394389d1af9ed7ae0b5571f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Prover9 已安装。所有依赖就绪（除 CVC5）。\n\n**总结：`eval_downstream.py` 和 `eval_cross_solver.py` 已存在且功能完整。**\n\n两个脚本覆盖 plan014 的两个验证维度：\n\n### Validation A: NLI accuracy (`eval_downstream.py`, 562行)\n- 加载 checkpoint → 每个 sample 生成 K 个 FOL formalization\n- 3-way NLI 分类 (true/false/unknown)，对比 gold label\n- 全量 STA ISR 计算\n- 按 ISR 分桶 (high/mid/low) 和四分位统计 accuracy\n- Spearman ρ(ISR, correct) + Mann-Whitney U (Q4 vs Q1)\n- Best-of-N 策略对比 (Oracle / ISR-best / Random / Prove-first)\n- Bootstrap 95% CI\n\n### Validation B: Cross-solver agreement (`eval_cross_solver.py`, 156行)\n- 读取 eval_downstream.py 输出\n- Z3 重新验证每个 formalization\n- 统计 Prover9 ↔ Z3 agreement rate，按 ISR 分桶报告\n\n### 依赖状态\n| 依赖 | 状态 |\n|------|------|\n| Prover9 | ✅ /usr/local/bin/prover9 (2009-11A) |\n| Z3 | ✅ 4.16.0 |\n| scipy | ✅ 1.17.1 |\n| CVC5 | ❌ 未安装（Z3 已足够覆盖 cross-solver 需求）|\n\n### 运行方式\n```bash\n# Step 1: NLI validation (需要 GPU，约 30-60min for 100 samples × 8 generations)\npython scripts/eval_downstream.py \\\n  --checkpoint_path /root/autodl-tmp/outputs/plan001_exec_only_s42/checkpoint-xxx \\\n  --data_path data/test_held_out.jsonl \\\n  --output_path results/plan014_downstream.json \\\n  --num_generations 8 --workers 4\n\n# Step 2: Cross-solver agreement (纯 CPU，约 5-10min)\npython scripts/eval_cross_solver.py \\\n  --input_path results/plan014_downstream.json \\\n  --output_path results/plan014_cross_solver.json \\\n  --workers 4\n```\n\n### 预估运行时间\n- eval_downstream.py: GPU 推理 ~20min (100 samples × 8 gens) + CPU solver ~10min → **~30min**\n- eval_cross_solver.py: **~5min** (纯 CPU，Z3 通常比 Prover9 快)\n\n### Kill criterion\nSpearman ρ(ISR, downstream_accuracy) 在 `summary.statistical_tests.spearman.rho` 字段。ρ < 0.1 → ISR 不成立。\n\n**代码就绪，无需额外编写。** 唯一缺失的是 CVC5（可选），Z3 已覆盖 cross-solver 验证需求。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan014-downstream-prep.md"
+}

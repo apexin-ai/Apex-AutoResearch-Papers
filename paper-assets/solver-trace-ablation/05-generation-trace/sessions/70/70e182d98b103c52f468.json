@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "70e182d98b103c52f468",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "monitor exec only r2 progress",
+  "task_key": "worker_monitor_exec-only-r2-progress_20260515T155615",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_exec-only-r2-progress_20260515T155615_result.json",
+    "occurrence": 1,
+    "bytes": 1183,
+    "sha256": "b0d3865d247dcccad3593b5cb478cac90e095789563f52c317974ece22f12291"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 训练进度汇总\n\n| 指标 | s43-1000-r2 (cuda:0) | s44-1000-r2 (cuda:1) |\n|------|----------------------|----------------------|\n| **当前 step** | 947 / 1000 | 856 / 1000 |\n| **进度** | 94.7% | 85.6% |\n| **已运行** | 2h04m57s | 2h04m52s |\n| **reward** | 1.0 (稳定) | 1.0 (稳定) |\n| **loss** | 0.0 | 0.0 |\n| **entropy** | ~0.01–0.10 | ~0.04–0.10 |\n| **ISR** | 0.667–0.708 | 0.000–0.124 (多数为 0) |\n| **最新 checkpoint** | checkpoint-900 | checkpoint-850 |\n| **GPU 利用率** | 100%, 81GB/96GB | 90%, 83GB/96GB |\n\n**ETA 估算：**\n- **s43**: 947步用了~2h05m → ~7.9s/step 平均，剩 53 步 → **~7 分钟后完成**\n- **s44**: 856步用了~2h05m → ~8.7s/step 平均，剩 144 步 → **~21 分钟后完成**\n\ns44 比 s43 慢的原因：同样运行时间但 step 数少 ~90 步，可能是 s44 在早期 step_time 较长。\n\n**磁盘**：/root/autodl-tmp 47G/250G (19%)，空间充裕。\n\n**注意**：s44 的 ISR 几乎全为 0，与 s43 的 0.67–0.71 差异很大。这符合 exec-only 的预期行为（C006：低 ISR = 冗余编码，非无推理），但 seed 间差异值得后续 eval 时关注。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-exec-only-r2-progress.md"
+}

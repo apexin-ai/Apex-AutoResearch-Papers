@@ -1,0 +1,3558 @@
+{
+  "schema_version": "1.0",
+  "session_id": "d0ba6f5c25af8c73c75e",
+  "rounds": [
+    {
+      "number": 250,
+      "messages": [
+        {
+          "source_line": 6661,
+          "timestamp": "2026-05-20T10:26:43.373483+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\begin{abstract}\n2\tWe find that a neurosymbolic formalizer (Qwen3-4B trained with GRPO on 500 FOLIO examples) achieves a 93\\% prove rate---yet 87\\% of proved outputs embed the conclusion among the premises (seed~42), a degenerate shortcut invisible to execution reward.\n3\tWe introduce \\emph{Solver Trace Ablation} (STA), a diagnostic applying leave-one-out component necessity testing to solver inputs; the fraction of necessary components yields the \\emph{Intensional Structural Reward} (ISR).\n4\tAs a diagnostic, ISR exposes a collapse trajectory hidden from prove rate: over 100--1000 GRPO steps, ISR falls to near-zero (e.g., $0.642{\\to}0.003$ for seed~42) while prove rate rises dramatically; all three seeds converge to distinct hacking modes with 0\\% non-hacking by 1000 steps.\n5\tA supervised fine-tuning baseline reaches 92.3\\% non-hacking on identical data, consistent with GRPO-specific degradation.\n6\tAs a reward ($r = r_{\\text{exec}}\\cdot(1{+}\\beta\\,\\text{ISR})$), ISR induces Goodhart effects: ISR increases tautological shortcutting in all 3 seeds relative to matched random control, but the sole apparent ISR advantage reduces to $1.06\\times$ after controlling for a premise-count confound.\n7\tCross-dataset replication on ProofFOL confirms structural degeneration generalizes, while ISR as training signal produces dataset-dependent outcomes---Goodhart collapse on FOLIO versus beneficial instability on ProofFOL.\n8\tAcross 6 reward conditions, 2 logic types, 2 dataset families, and 3 seeds, we catalog 8 hacking modes---documenting ISR's asymmetry: reliable as a diagnostic, dataset-dependent as an optimization target.\\footnote{Code and data: \\url{[anonymized]}}\n9\t\\end{abstract}\n10\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 502
+          },
+          "id": "event-006661"
+        },
+        {
+          "source_line": 6662,
+          "timestamp": "2026-05-20T10:26:43.373922+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/conclusion.tex"
+            }
+          },
+          "id": "event-006662"
+        },
+        {
+          "source_line": 6663,
+          "timestamp": "2026-05-20T10:26:43.876187+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion and Conclusion}\n2\t\\label{sec:discussion}\n3\t\n4\tSTA exposes structural degeneration invisible to execution-based evaluation: ISR reveals a 99.5\\% collapse under exec-only GRPO that PR hides, while SFT results are consistent with GRPO-specific degradation (\\S\\ref{sec:diagnostic}).\n5\tRepurposed as a reward, ISR produces dataset-dependent outcomes: on FOLIO, Goodhart effects increase TS in all seeds (supplementary CMH $p{<}10^{-15}$); on ProofFOL, beneficial instability yields 76.8\\% vs.\\ 17.4\\% genuine ($p{=}0.10$).\n6\tDeconfounding reduces the sole apparent ISR reward advantage to $1.06\\times$ (\\S\\ref{sec:goodhart}).\n7\tThe central finding is ISR's observer/optimizer asymmetry: the same LOO structure that makes ISR informative as a diagnostic makes it gameable as a reward, with outcomes depending on whether the dataset's hacking geometry satisfies the metric.\n8\t\n9\tThe multi-attractor dynamics across seeds---conclusion embedding, tautological collapse, repetition collapse, each from identical data and hyperparameters---suggest structural degeneration under RL is not a single failure but a landscape with multiple basins whose selection is initialization-dependent.\n10\tMitigation directions include premise-count normalization to address mechanical ISR bias, ISR as a post-hoc filter (rejecting outputs below a threshold avoids reward-loop gaming), multi-granularity ablation, and reward ensembling; full LOO adds ${<}1\\%$ to evaluation cost (55\\,ms vs.\\ 4\\,s per sample; Appendix~\\ref{app:o1-ablation}).\n11\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 502
+          },
+          "id": "event-006663"
+        },
+        {
+          "source_line": 6664,
+          "timestamp": "2026-05-20T10:26:44.028229+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/related_work.tex"
+            }
+          },
+          "id": "event-006664"
+        },
+        {
+          "source_line": 6665,
+          "timestamp": "2026-05-20T10:26:44.430321+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Related Work}\n2\t\\label{sec:related-work}\n3\t\n4\t\\paragraph{Neurosymbolic reasoning.}\n5\tLLM-solver pipelines~\\citep{satlm, logic-lm, linc, fover-pei2025, lorp} and RL methods trained on solver feedback~\\citep{mellgren-prolog-grpo, logic-rl, deepseek-prover-v15} evaluate execution accuracy alone, with no diagnostic for structural quality.\n6\tWe use FOLIO~\\citep{folio}, the only public NLI benchmark with both FOL and Prolog annotations.\n7\t\n8\t\\paragraph{Process rewards and reward shaping.}\n9\tReward shaping theory~\\citep{ng1999policy} establishes conditions under which auxiliary rewards preserve optimal policies; early work applied verifier-based training to mathematical reasoning~\\citep{cobbe2021training}, with process-level feedback showing promise over outcome-only signals~\\citep{uesato2022solving}.\n10\tLearned PRMs~\\citep{lightman-verify-step, math-shepherd} provide step-level feedback but suffer from reward-model noise and distribution shift~\\citep{processbench}: \\citet{gao-effective-rl-reward} show that auxiliary process/outcome rewards can \\emph{hurt} RL training relative to success-only reward, a finding our ISR-as-reward results corroborate.\n11\tSymbolic feedback approaches~\\citep{rlsf} use solver certificates as token-level rewards, achieving gains on program synthesis; ISR differs in operating at the component level (LOO ablation) rather than the token level, and our results show this structural signal is gamed when optimized.\n12\tRubric-grounded GRPO~\\citep{rubric-grpo} uses structured LLM-judge rewards to improve generalization; ISR is solver-derived and deterministic rather than judge-based, but both illustrate the proxy risk inherent in reward augmentation.\n13\t\\citet{sullivan2025grpo} reinterpret GRPO as implicitly learning a process reward model, suggesting the structural gaming we document may reflect PRM-level overfitting rather than purely outcome-level shortcuts.\n14\t\n15\t\\paragraph{Reward hacking and Goodhart's Law.}\n16\tGoodhart's Law is establish\n…[truncated 1939 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 402
+          },
+          "id": "event-006665"
+        },
+        {
+          "source_line": 6666,
+          "timestamp": "2026-05-20T10:26:44.481050+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/references.bib",
+              "limit": "50"
+            }
+          },
+          "id": "event-006666"
+        },
+        {
+          "source_line": 6667,
+          "timestamp": "2026-05-20T10:26:44.632144+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% ============================================================\n2\t% LLaMA\n3\t% ============================================================\n4\t\n5\t@article{grattafiori2024llama,\n6\t  author = {Aaron Grattafiori and Abhimanyu Dubey and Abhinav Jauhri and others},\n7\t  title = {{The Llama 3 Herd of Models}},\n8\t  journal = {arXiv preprint arXiv:2407.21783},\n9\t  year = {2024},\n10\t  eprint = {2407.21783},\n11\t  archiveprefix = {arXiv},\n12\t}\n13\t\n14\t% ============================================================\n15\t% Category 1: Neurosymbolic reasoning + RL/GRPO\n16\t% ============================================================\n17\t\n18\t@article{deepseekmath,\n19\t  author       = {Zhihong Shao and Peiyi Wang and Qihao Zhu and Runxin Xu and others},\n20\t  title        = {{DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models}},\n21\t  journal      = {arXiv preprint arXiv:2402.03300},\n22\t  year         = {2024},\n23\t  eprint       = {2402.03300},\n24\t  archivePrefix = {arXiv},\n25\t  primaryClass = {cs.AI},\n26\t}\n27\t\n28\t@article{logic-rl,\n29\t  author       = {Tian Xie and Zitian Gao and Qingnan Ren and Haoming Luo and Yuqian Hong and Bryan Dai and Joey Zhou and Kai Qiu and Zhirong Wu and Chong Luo},\n30\t  title        = {{Logic-RL: Unleashing LLM Reasoning with Rule-Based Reinforcement Learning}},\n31\t  journal      = {arXiv preprint arXiv:2502.14768},\n32\t  year         = {2025},\n33\t  eprint       = {2502.14768},\n34\t  archivePrefix = {arXiv},\n35\t  primaryClass = {cs.AI},\n36\t}\n37\t\n38\t@article{mellgren-prolog-grpo,\n39\t  author       = {Niklas Mellgren and Peter Schneider-Kamp and Lukas Galke},\n40\t  title        = {{Training Language Models to Use Prolog as a Tool}},\n41\t  journal      = {arXiv preprint arXiv:2512.07407},\n42\t  year         = {2025},\n43\t  eprint       = {2512.07407},\n44\t  archivePrefix = {arXiv},\n45\t  primaryClass = {cs.AI},\n46\t}\n47\t\n48\t@inproceedings{satlm,\n49\t  author       = {Xi Ye and Qiaochu Chen and Isil Dillig and Greg Durrett},\n50\t  title        \n…[truncated 78 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 151
+          },
+          "id": "event-006667"
+        },
+        {
+          "source_line": 6668,
+          "timestamp": "2026-05-20T10:26:47.191792+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:TodoWrite",
+              "max_results": "1"
+            }
+          },
+          "id": "event-006668"
+        },
+        {
+          "source_line": 6669,
+          "timestamp": "2026-05-20T10:26:47.242393+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-006669"
+        },
+        {
+          "source_line": 6670,
+          "timestamp": "2026-05-20T10:26:56.781281+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called TodoWrite"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "TodoWrite",
+            "tool_args": {
+              "todos": "[{'content': 'A2: Add 3-seed aggregate data to Abstract', 'status': 'in_progress', 'activeForm': 'Adding 3-seed aggregate to Abstract'}, {'content': 'A8: Add ISR post-hoc filter analysis to §5 Discussion', 'status': 'pending', 'activeForm': 'Adding ISR post-hoc filter to Discussion'}, {'content': 'A12: Add setlur2025rewarding + alphaproof2025 citations to Related Work', 'status': 'pending', 'activeForm': 'Adding new citations to Related Work'}, {'content': 'B1: Figure layout optimization', 'status': 'pending', 'activeForm': 'Optimizing figure layout'}, {'content': 'B2: Blank page handling (p18, p21)', 'status': 'pending', 'activeForm': 'Handling blank pages'}, {'content': 'B3: Verify regenerated Fig 3/4/5 (≥8pt fonts)', 'status': 'pending', 'activeForm': 'Verifying regenerated figures'}, {'content': 'B4: Bib format consistency check', 'status': 'pending', 'activeForm': 'Checking bib format consistency'}, {'content': 'B5: Final format compliance (≤8pp, Limitations, ACL style)', 'status': 'pending', 'activeForm': 'Running final format compliance'}, {'content': 'Compile + verify + report to Director', 'status': 'pending', 'activeForm': 'Compiling and reporting'}]"
+            }
+          },
+          "id": "event-006670"
+        },
+        {
+          "source_line": 6671,
+          "timestamp": "2026-05-20T10:26:56.781774+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "TodoWrite",
+            "elapsed_ms": 0
+          },
+          "id": "event-006671"
+        },
+        {
+          "source_line": 6672,
+          "timestamp": "2026-05-20T10:27:06.133608+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/abstract.tex",
+              "old_string": "As a diagnostic, ISR exposes a collapse trajectory hidden from prove rate: over 100--1000 GRPO steps, ISR falls to near-zero (e.g., $0.642{\\to}0.003$ for seed~42) while prove rate rises dramatically; all three seeds converge to distinct hacking modes with 0\\% non-hacking by 1000 steps.",
+              "new_string": "As a diagnostic, ISR exposes a collapse trajectory hidden from prove rate: over 100--1000 GRPO steps, ISR falls to near-zero (e.g., $0.642{\\to}0.003$ for seed~42) while prove rate rises dramatically; each seed converges to a qualitatively different hacking mode, yet all three reach 100\\% structural hacking by 1000 steps (0/286 genuine across seeds)."
+            }
+          },
+          "id": "event-006672"
+        },
+        {
+          "source_line": 6673,
+          "timestamp": "2026-05-20T10:27:06.184946+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/abstract.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-006673"
+        },
+        {
+          "source_line": 6674,
+          "timestamp": "2026-05-20T10:27:11.205627+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/introduction.tex",
+              "offset": "19",
+              "limit": "16"
+            }
+          },
+          "id": "event-006674"
+        },
+        {
+          "source_line": 6675,
+          "timestamp": "2026-05-20T10:27:11.306534+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "19\t\n20\t\\paragraph{ISR as diagnostic.}\n21\tAs a post-hoc diagnostic on a GRPO formalizer trained with FOLIO~\\citep{folio}, ISR reveals a structural collapse trajectory invisible to PR: $\\text{ISR}^{*}{:}\\,0.642\\to 0.132\\to 0.003$ over 100--1000 steps (99.5\\% degradation) while PR rises $32\\%{\\to}96\\%$.\n22\tThree seeds diverge radically (PR $\\sigma{=}47$\\,pp), each converging to a qualitatively different mode: conclusion embedding, repetition collapse, and tautological collapse.\n23\tAn SFT baseline on identical data reaches $\\text{PR}{=}13.0\\%$ with 92.3\\% non-hacking (3-seed pooled, 1000 steps), consistent with GRPO-specific degradation rather than data or capacity limitations.\n24\t\n25\t\\paragraph{Goodhart effects.}\n26\tRepurposed as a training signal, $r = r_{\\text{exec}} \\cdot (1 + \\beta\\,\\text{ISR})$, ISR is gamed at its own definition~\\citep{manheim-goodhart-taxonomy, karwowski-goodhart-rl, gao-reward-overoptimization}.\n27\tOn FOLIO, this instantiates \\emph{regressional} Goodhart~\\citep{manheim-goodhart-taxonomy}: $P{\\to}P$ tautologies yield $\\text{ISR}{\\geq}0.5$, so ISR rewards the shortcut; at $\\beta{=}0.1$, ISR increases TS rates in all 3 seeds (70.6\\% vs.\\ 13.7\\% random pooled), but the sole apparent ISR advantage reduces to $1.06\\times$ after controlling for premise count.\n28\tAt $\\beta{\\geq}0.2$, \\emph{extremal} Goodhart dominates ($\\text{PR}{=}66{\\pm}42\\%$ ISR, $54{\\pm}35\\%$ random at $\\beta{=}0.3$).\n29\tOn ProofFOL, hacking yields $\\text{ISR}{=}0.0$, so ISR correctly penalizes shortcuts, producing beneficial instability (76.8\\% vs.\\ 17.4\\% genuine, $p{=}0.10$).\n30\tISR's asymmetry is the central finding: \\emph{reliable as observer, dataset-dependent as optimizer.}\n31\t\n32\t\\paragraph{Contributions.}\n33\tIn this case study (Qwen3-4B, 6 reward conditions, 3 seeds, 2 logic types, 2 dataset families, up to 1000 steps), we contribute: (\\textbf{C1}) STA as a diagnostic framework---ISR metric, eight-mode hacking taxonomy, and cross-domain evaluation protocol---revealing a 99\n…[truncated 565 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 100
+          },
+          "id": "event-006675"
+        },
+        {
+          "source_line": 6676,
+          "timestamp": "2026-05-20T10:27:15.874291+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/introduction.tex",
+              "old_string": "Three seeds diverge radically (PR $\\sigma{=}47$\\,pp), each converging to a qualitatively different mode: conclusion embedding, repetition collapse, and tautological collapse.",
+              "new_string": "Three seeds diverge radically (PR $\\sigma{=}47$\\,pp), each converging to a qualitatively different mode---conclusion embedding, repetition collapse, and tautological collapse---yet all reach 100\\% structural hacking by 1000 steps."
+            }
+          },
+          "id": "event-006676"
+        },
+        {
+          "source_line": 6677,
+          "timestamp": "2026-05-20T10:27:15.925123+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/introduction.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-006677"
+        },
+        {
+          "source_line": 6678,
+          "timestamp": "2026-05-20T10:27:19.891776+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "non-hacking|0%.*genuine|100%.*hacking",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/experiments.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-006678"
+        },
+        {
+          "source_line": 6679,
+          "timestamp": "2026-05-20T10:27:19.942932+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "12:We report prove rate (PR), proved-only ISR ($\\text{ISR}^*$), hacking-mode rates from a two-stage classifier (strict text matching for CE/TS plus functional analysis of the per-sample $n_{\\text{necessary}}$ distribution; \\S\\ref{sec:taxonomy-method}), and a \\emph{non-hacking} (N-H) rate---an upper bound on genuine reasoning, being the residual matching none of the eight cataloged patterns (classifier recall is unknown).\n35:Three seeds diverge radically ($\\text{PR}\\,\\sigma{=}47$\\,pp) into conclusion embedding (s42, CE$=$87\\%), repetition collapse (s43), and tautological collapse (s44, TS$=$100\\%)---all converging to $0\\%$ non-hacking by 1000 steps (Table~\\ref{tab:fol-detailed}; Appendix~\\ref{app:detailed-results}). %% registry: plan001-exec-only-s42-r2, plan001-exec-only-s43-r4, plan001-exec-only-s44; plan016-extended-1000-s42, plan001-exec-only-s43-1000-r2, plan001-exec-only-s44-1000-r2\n38:SFT on gold formalizations reaches $92.3\\%$ non-hacking ($\\text{PR}{=}13\\%$, 3-seed pooled; $\\text{OR}{=}147$ vs.\\ exec-only, $p{<}0.001$).\n50:The reward $r_{\\text{exec}}\\cdot(1{+}\\beta\\,\\text{ISR})$ couples signals; exec-only's $0\\%$ non-hacking, the qualitative TS shift ($0\\%{\\to}71\\%$), and an additive variant's PR collapse (Appendix~\\ref{app:setup}) constrain this confound.\n72:[Omitted long matching line]\n85:After reclassifying PG and TS false negatives, non-hacking rates ($6.1\\%$ ISR vs.\\ $9.5\\%$ random) are not significant ($p{=}0.182$; Appendix~\\ref{app:h8}). %% D095 FINAL Fisher test\n96:ISR $\\beta{=}0.1$ non-hacking is transient: seed~42 drops $17.3\\%{\\to}2.2\\%$ by 1000 steps as TS escalates to $96.7\\%$ (Figure~\\ref{fig:training-isr-curves}). %% registry: plan002-b01-s42-1000, plan016-extended-1000-s42\n97:At $\\beta{=}0.2$, 3/3 seeds converge to TS with $0\\%$ non-hacking. %% registry: plan002-additive-b02-s42/s43/s44\n108:\\caption{Cross-logic results. \\textbf{Left}: FOL vs.\\ Prolog exec-only $\\text{ISR}^*$ across 3 seeds (s44 Prolog $0.387$ is a small-sample artifact, $n{=}\n…[truncated 708 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 51
+          },
+          "id": "event-006679"
+        },
+        {
+          "source_line": 6680,
+          "timestamp": "2026-05-20T10:27:28.778939+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called TodoWrite"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "TodoWrite",
+            "tool_args": {
+              "todos": "[{'content': 'A2: Add 3-seed aggregate data to Abstract', 'status': 'completed', 'activeForm': 'Adding 3-seed aggregate to Abstract'}, {'content': 'A8: Add ISR post-hoc filter analysis to §5 Discussion', 'status': 'in_progress', 'activeForm': 'Adding ISR post-hoc filter to Discussion'}, {'content': 'A12: Add setlur2025rewarding + alphaproof2025 citations to Related Work', 'status': 'pending', 'activeForm': 'Adding new citations to Related Work'}, {'content': 'B1: Figure layout optimization', 'status': 'pending', 'activeForm': 'Optimizing figure layout'}, {'content': 'B2: Blank page handling (p18, p21)', 'status': 'pending', 'activeForm': 'Handling blank pages'}, {'content': 'B3: Verify regenerated Fig 3/4/5 (≥8pt fonts)', 'status': 'pending', 'activeForm': 'Verifying regenerated figures'}, {'content': 'B4: Bib format consistency check', 'status': 'pending', 'activeForm': 'Checking bib format consistency'}, {'content': 'B5: Final format compliance (≤8pp, Limitations, ACL style)', 'status': 'pending', 'activeForm': 'Running final format compliance'}, {'content': 'Compile + verify + report to Director', 'status': 'pending', 'activeForm': 'Compiling and reporting'}]"
+            }
+          },
+          "id": "event-006680"
+        },
+        {
+          "source_line": 6681,
+          "timestamp": "2026-05-20T10:27:28.879839+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "TodoWrite",
+            "elapsed_ms": 100
+          },
+          "id": "event-006681"
+        },
+        {
+          "source_line": 6682,
+          "timestamp": "2026-05-20T10:27:39.654330+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/conclusion.tex",
+              "old_string": "Mitigation directions include premise-count normalization to address mechanical ISR bias, ISR as a post-hoc filter (rejecting outputs below a threshold avoids reward-loop gaming), multi-granularity ablation, and reward ensembling; full LOO adds ${<}1\\%$ to evaluation cost (55\\,ms vs.\\ 4\\,s per sample; Appendix~\\ref{app:o1-ablation}).",
+              "new_string": "Mitigation directions include premise-count normalization to address mechanical ISR bias, multi-granularity ablation, and reward ensembling; full LOO adds ${<}1\\%$ to evaluation cost (55\\,ms vs.\\ 4\\,s per sample; Appendix~\\ref{app:o1-ablation}).\nISR as a post-hoc quality filter on exec-only outputs removes 54\\% of CE-hacked proofs at threshold $\\tau{=}0.1$, but cannot detect TS hacking (all 97 TS samples achieve $\\text{ISR}{\\geq}0.5$ by construction); the best single-threshold filter achieves 28.6\\% precision at 22\\% genuine recall, confirming that effective filtering requires mode-specific classifiers beyond ISR alone."
+            }
+          },
+          "id": "event-006682"
+        },
+        {
+          "source_line": 6683,
+          "timestamp": "2026-05-20T10:27:39.755407+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/conclusion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 101
+          },
+          "id": "event-006683"
+        },
+        {
+          "source_line": 6684,
+          "timestamp": "2026-05-20T10:27:45.529300+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called TodoWrite"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "TodoWrite",
+            "tool_args": {
+              "todos": "[{'content': 'A2: Add 3-seed aggregate data to Abstract', 'status': 'completed', 'activeForm': 'Adding 3-seed aggregate to Abstract'}, {'content': 'A8: Add ISR post-hoc filter analysis to §5 Discussion', 'status': 'completed', 'activeForm': 'Adding ISR post-hoc filter to Discussion'}, {'content': 'A12: Add setlur2025rewarding + alphaproof2025 citations to Related Work', 'status': 'in_progress', 'activeForm': 'Adding new citations to Related Work'}, {'content': 'B1: Figure layout optimization', 'status': 'pending', 'activeForm': 'Optimizing figure layout'}, {'content': 'B2: Blank page handling (p18, p21)', 'status': 'pending', 'activeForm': 'Handling blank pages'}, {'content': 'B3: Verify regenerated Fig 3/4/5 (≥8pt fonts)', 'status': 'pending', 'activeForm': 'Verifying regenerated figures'}, {'content': 'B4: Bib format consistency check', 'status': 'pending', 'activeForm': 'Checking bib format consistency'}, {'content': 'B5: Final format compliance (≤8pp, Limitations, ACL style)', 'status': 'pending', 'activeForm': 'Running final format compliance'}, {'content': 'Compile + verify + report to Director', 'status': 'pending', 'activeForm': 'Compiling and reporting'}]"
+            }
+          },
+          "id": "event-006684"
+        },
+        {
+          "source_line": 6685,
+          "timestamp": "2026-05-20T10:27:45.529782+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "TodoWrite",
+            "elapsed_ms": 0
+          },
+          "id": "event-006685"
+        },
+        {
+          "source_line": 6686,
+          "timestamp": "2026-05-20T10:27:49.244323+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "setlur2025|alphaproof",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/references.bib",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-006686"
+        },
+        {
+          "source_line": 6687,
+          "timestamp": "2026-05-20T10:27:49.445490+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "408:@inproceedings{setlur2025rewarding,\n416:@article{alphaproof2025,"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 201
+          },
+          "id": "event-006687"
+        },
+        {
+          "source_line": 6688,
+          "timestamp": "2026-05-20T10:27:58.583898+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/related_work.tex",
+              "old_string": "Learned PRMs~\\citep{lightman-verify-step, math-shepherd} provide step-level feedback but suffer from reward-model noise and distribution shift~\\citep{processbench}: \\citet{gao-effective-rl-reward} show that auxiliary process/outcome rewards can \\emph{hurt} RL training relative to success-only reward, a finding our ISR-as-reward results corroborate.",
+              "new_string": "Learned PRMs~\\citep{lightman-verify-step, math-shepherd} provide step-level feedback but suffer from reward-model noise and distribution shift~\\citep{processbench}: \\citet{gao-effective-rl-reward} show that auxiliary process/outcome rewards can \\emph{hurt} RL training relative to success-only reward, a finding our ISR-as-reward results corroborate; \\citet{setlur2025rewarding} further demonstrate that reward bonus magnitude must be carefully calibrated, echoing our $\\beta$-dependent Goodhart transitions."
+            }
+          },
+          "id": "event-006688"
+        },
+        {
+          "source_line": 6689,
+          "timestamp": "2026-05-20T10:27:58.584503+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/related_work.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-006689"
+        },
+        {
+          "source_line": 6690,
+          "timestamp": "2026-05-20T10:28:06.774913+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/related_work.tex",
+              "old_string": "LLM-solver pipelines~\\citep{satlm, logic-lm, linc, fover-pei2025, lorp} and RL methods trained on solver feedback~\\citep{mellgren-prolog-grpo, logic-rl, deepseek-prover-v15} evaluate execution accuracy alone, with no diagnostic for structural quality.",
+              "new_string": "LLM-solver pipelines~\\citep{satlm, logic-lm, linc, fover-pei2025, lorp} and RL methods trained on solver feedback~\\citep{mellgren-prolog-grpo, logic-rl, deepseek-prover-v15} evaluate execution accuracy alone, with no diagnostic for structural quality.\nAlphaProof~\\citep{alphaproof2025} applies RL-based formal verification at scale in Lean~4; STA-style diagnostics could probe whether similar structural degeneration occurs in theorem-proving settings."
+            }
+          },
+          "id": "event-006690"
+        },
+        {
+          "source_line": 6691,
+          "timestamp": "2026-05-20T10:28:06.775406+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/related_work.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-006691"
+        },
+        {
+          "source_line": 6692,
+          "timestamp": "2026-05-20T10:28:11.191849+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/limitations.tex"
+            }
+          },
+          "id": "event-006692"
+        },
+        {
+          "source_line": 6693,
+          "timestamp": "2026-05-20T10:28:11.242563+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Limitations}\n2\t\\label{sec:limitations}\n3\t\n4\tExperiments use a single base model (Qwen3-4B); Qwen3-8B exec-only training failed to converge ($\\text{PR}{\\leq}25\\%$ at 500 steps), suggesting capacity alone does not guarantee successful formalization learning.\n5\tWhile cross-dataset evidence from ProofFOL (\\S\\ref{sec:crossdomain}) supports generality, hacking-mode prevalence may vary across benchmarks.\n6\tSTA requires models with sufficient FOL generation capability: LLaMA-3.2-3B fails to produce parseable formalizations under identical training (Appendix~\\ref{app:llama-coldstart}), though this is preliminary evidence and hyperparameter sensitivity cannot be ruled out; the capability threshold limits applicability to models above a minimum formalization competence.\n7\tThe ProofFOL genuine-rate advantage ($p{=}0.10$, $N{=}3$ per group) is an observation, not a confirmed effect; ProofFOL itself is silver-standard (GPT-4o translation, ${\\sim}70\\%$ retention), and the translation may introduce systematic bias favoring regular predicate structures, though the direction of this bias on our claims is uncertain.\n8\tWhile structural degeneration generalizes across dataset families, cross-seed variance remains substantial (ProofFOL exec-only $\\sigma_{\\text{PR}} \\approx 25$\\,pp), consistent with FOLIO observations and suggesting that individual training trajectories remain seed-sensitive even as the overall phenomenon replicates.\n9\tISR quantifies syntactic component necessity, not semantic faithfulness: a downstream NLI evaluation finds ISR and task accuracy uncorrelated (Spearman $\\rho{=}{-}0.049$, $p{=}0.187$; Appendix~\\ref{app:extended-discussion}).\n10\tThree seeds demonstrate qualitative divergence but limit statistical power; all pooled statistics (CMH, Fisher) treat within-seed samples as independent observations from a single trained model, and the true independent replication count is $N{=}3$.\n11\tThe ISR reward distribution is bimodal (near $0$ or ${\\geq}0.5$) while \n…[truncated 1070 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-006693"
+        },
+        {
+          "source_line": 6694,
+          "timestamp": "2026-05-20T10:28:16.112315+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/limitations.tex",
+              "old_string": "RL-based formal verification in Lean~4~\\citep{kimina-prover} represents a parallel track where STA-style diagnostics could be applied but remain unexplored.",
+              "new_string": "RL-based formal verification in Lean~4~\\citep{kimina-prover, alphaproof2025} represents a parallel track where STA-style diagnostics could be applied but remain unexplored."
+            }
+          },
+          "id": "event-006694"
+        },
+        {
+          "source_line": 6695,
+          "timestamp": "2026-05-20T10:28:16.163069+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/limitations.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-006695"
+        },
+        {
+          "source_line": 6696,
+          "timestamp": "2026-05-20T10:28:21.435351+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called TodoWrite"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "TodoWrite",
+            "tool_args": {
+              "todos": "[{'content': 'A2: Add 3-seed aggregate data to Abstract', 'status': 'completed', 'activeForm': 'Adding 3-seed aggregate to Abstract'}, {'content': 'A8: Add ISR post-hoc filter analysis to §5 Discussion', 'status': 'completed', 'activeForm': 'Adding ISR post-hoc filter to Discussion'}, {'content': 'A12: Add setlur2025rewarding + alphaproof2025 citations to Related Work', 'status': 'completed', 'activeForm': 'Adding new citations to Related Work'}, {'content': 'B1: Figure layout optimization', 'status': 'in_progress', 'activeForm': 'Optimizing figure layout'}, {'content': 'B2: Blank page handling (p18, p21)', 'status': 'pending', 'activeForm': 'Handling blank pages'}, {'content': 'B3: Verify regenerated Fig 3/4/5 (≥8pt fonts)', 'status': 'pending', 'activeForm': 'Verifying regenerated figures'}, {'content': 'B4: Bib format consistency check', 'status': 'pending', 'activeForm': 'Checking bib format consistency'}, {'content': 'B5: Final format compliance (≤8pp, Limitations, ACL style)', 'status': 'pending', 'activeForm': 'Running final format compliance'}, {'content': 'Compile + verify + report to Director', 'status': 'pending', 'activeForm': 'Compiling and reporting'}]"
+            }
+          },
+          "id": "event-006696"
+        },
+        {
+          "source_line": 6697,
+          "timestamp": "2026-05-20T10:28:21.435985+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "TodoWrite",
+            "elapsed_ms": 0
+          },
+          "id": "event-006697"
+        },
+        {
+          "source_line": 6698,
+          "timestamp": "2026-05-20T10:28:25.838914+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__paper_compile_and_check"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "clean": "True",
+              "preview": "True"
+            }
+          },
+          "id": "event-006698"
+        },
+        {
+          "source_line": 6699,
+          "timestamp": "2026-05-20T10:28:26.090890+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/main.tex"
+            }
+          },
+          "id": "event-006699"
+        },
+        {
+          "source_line": 6700,
+          "timestamp": "2026-05-20T10:28:33.029387+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"passed\\\": true, \\\"compiled\\\": {\\\"success\\\": true, \\\"pdf_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/main.pdf\\\", \\\"paper_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper\\\", \\\"main_tex\\\": \\\"main.tex\\\", \\\"log_tail\\\": \\\"Underfull \\\\\\\\hbox (badness 10000) in paragraph at lines 636--639\\\\n []\\\\\\\\OT1/cmr/bx/n/10.95 Training-time ab-la-tion.[] \\\\\\\\OT1/cmr/m/n/10.95 As a trai\\\\nn-\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 2035) in paragraph at lines 636--639\\\\n\\\\\\\\OT1/cmr/m/n/10.95 ing re-ward ($\\\\\\\\OML/cmm/m/it/10.95 r \\\\\\\\OT1/cmr/m/n/10.95 = 0\\\\\\\\O\\\\nML/cmm/m/it/10.95 :\\\\\\\\OT1/cmr/m/n/10.95 5 \\\\\\\\OML/cmm/m/it/10.95 r[] \\\\\\\\OT1/cmr/m/n/10\\\\n.95 + 0\\\\\\\\OML/cmm/m/it/10.95 :\\\\\\\\OT1/cmr/m/n/10.95 5 []$,\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 10000) in paragraph at lines 636--639\\\\n[][]\\\\\\\\OT1/cmr/m/n/10.95 63%$ with $[][][]0\\\\\\\\OML/cmm/m/it/10.95 :\\\\\\\\OT1/cmr/m/n/10.9\\\\n5 007$---functionally\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 1412) in paragraph at lines 636--639\\\\n\\\\\\\\OT1/cmr/m/n/10.95 clu-sion is prov-able with-out premises, but\\\\n []\\\\n\\\\n[17])\\\\nUnderfull \\\\\\\\hbox (badness 1072) in paragraph at lines 653--41\\\\n\\\\\\\\OT1/cmr/m/n/10.95 old (non-zero prove rates within the first\\\\n []\\\\n\\\\n[18] [19] [20] [21\\\\n\\\\n\\\\n] (./main.aux)\\\\n ***********\\\\nLaTeX2e <2025-11-01>\\\\nL3 programming layer <2026-01-19>\\\\n ***********\\\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\\\n(rerunfilecheck)             Checksum: 293247A1EAAF1D8EA0E11879F95EAB50;5655.\\\\n ) \\\\nHere is how much of TeX's memory you used:\\\\n 15994 strings out of 469438\\\\n 253037 string characters out of 5468411\\\\n 765017 words of memory out of 5000000\\\\n 44235 multiletter control sequences out of 15000+600000\\\\n 646632 words of font info for 106 fonts, out of 8000000 for 9000\\\\n 59 hyphenation exceptions out of 8191\\\\n 84i,15n,93p,1001b,681s stack positions out o\n…[truncated 16103 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "elapsed_ms": 7190
+          },
+          "id": "event-006700"
+        },
+        {
+          "source_line": 6701,
+          "timestamp": "2026-05-20T10:28:33.029890+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\documentclass[11pt]{article}\n2\t\\usepackage[review]{acl}\n3\t\n4\t\\usepackage{amsmath,amssymb}\n5\t\\usepackage{graphicx}\n6\t\\usepackage{booktabs}\n7\t\\usepackage{algorithm}\n8\t\\usepackage{algorithmic}\n9\t\\usepackage{enumitem}\n10\t\\usepackage{xcolor}\n11\t\\usepackage{multirow}\n12\t\\usepackage[protrusion=true,expansion=false]{microtype}\n13\t\n14\t\\setlength{\\textfloatsep}{8pt plus 2pt minus 4pt}\n15\t\\setlength{\\intextsep}{6pt plus 2pt minus 2pt}\n16\t\\setlength{\\abovecaptionskip}{4pt}\n17\t\\setlength{\\belowcaptionskip}{2pt}\n18\t\n19\t\\graphicspath{{figures/}}\n20\t\n21\t\\title{Solver Trace Ablation Reveals Structural Degeneration and Goodhart Effects in GRPO-Trained Neurosymbolic Reasoning: A Case Study}\n22\t\n23\t\\author{Anonymous ACL submission}\n24\t\n25\t\\begin{document}\n26\t\\maketitle\n27\t\n28\t\\input{abstract}\n29\t\\input{introduction}\n30\t\\input{related_work}\n31\t\\input{method}\n32\t\\input{experiments}\n33\t\\input{conclusion}\n34\t\n35\t\\bibliography{references}\n36\t\n37\t\\input{limitations}\n38\t\n39\t\\appendix\n40\t\\input{appendix}\n41\t\n42\t\\end{document}\n43\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 6939
+          },
+          "id": "event-006701"
+        },
+        {
+          "source_line": 6702,
+          "timestamp": "2026-05-20T10:28:39.858326+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/_pdf_images/main_p1.png"
+            }
+          },
+          "id": "event-006702"
+        },
+        {
+          "source_line": 6703,
+          "timestamp": "2026-05-20T10:28:40.815103+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 956
+          },
+          "id": "event-006703"
+        },
+        {
+          "source_line": 6704,
+          "timestamp": "2026-05-20T10:28:40.815777+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/_pdf_images/main_p2.png"
+            }
+          },
+          "id": "event-006704"
+        },
+        {
+          "source_line": 6705,
+          "timestamp": "2026-05-20T10:28:41.419158+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 603
+          },
+          "id": "event-006705"
+        },
+        {
+          "source_line": 6706,
+          "timestamp": "2026-05-20T10:28:41.419612+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/_pdf_images/main_p7.png"
+            }
+          },
+          "id": "event-006706"
+        },
+        {
+          "source_line": 6707,
+          "timestamp": "2026-05-20T10:28:41.721679+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/_pdf_images/main_p8.png"
+            }
+          },
+          "id": "event-006707"
+        },
+        {
+          "source_line": 6708,
+          "timestamp": "2026-05-20T10:28:42.174486+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 754
+          },
+          "id": "event-006708"
+        },
+        {
+          "source_line": 6709,
+          "timestamp": "2026-05-20T10:28:42.528192+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 806
+          },
+          "id": "event-006709"
+        },
+        {
+          "source_line": 6710,
+          "timestamp": "2026-05-20T10:28:51.011925+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/_pdf_images/main_p3.png"
+            }
+          },
+          "id": "event-006710"
+        },
+        {
+          "source_line": 6711,
+          "timestamp": "2026-05-20T10:28:51.363903+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/_pdf_images/main_p4.png"
+            }
+          },
+          "id": "event-006711"
+        },
+        {
+          "source_line": 6712,
+          "timestamp": "2026-05-20T10:28:51.718900+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/_pdf_images/main_p5.png"
+            }
+          },
+          "id": "event-006712"
+        },
+        {
+          "source_line": 6713,
+          "timestamp": "2026-05-20T10:28:52.122823+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 1110
+          },
+          "id": "event-006713"
+        },
+        {
+          "source_line": 6714,
+          "timestamp": "2026-05-20T10:28:52.125422+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 761
+          },
+          "id": "event-006714"
+        },
+        {
+          "source_line": 6715,
+          "timestamp": "2026-05-20T10:28:52.177048+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/_pdf_images/main_p6.png"
+            }
+          },
+          "id": "event-006715"
+        },
+        {
+          "source_line": 6716,
+          "timestamp": "2026-05-20T10:28:52.731335+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 1012
+          },
+          "id": "event-006716"
+        },
+        {
+          "source_line": 6717,
+          "timestamp": "2026-05-20T10:28:53.033772+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 856
+          },
+          "id": "event-006717"
+        },
+        {
+          "source_line": 6718,
+          "timestamp": "2026-05-20T10:28:57.252099+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/_pdf_images/main_p18.png"
+            }
+          },
+          "id": "event-006718"
+        },
+        {
+          "source_line": 6719,
+          "timestamp": "2026-05-20T10:28:57.604051+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/_pdf_images/main_p20.png"
+            }
+          },
+          "id": "event-006719"
+        },
+        {
+          "source_line": 6720,
+          "timestamp": "2026-05-20T10:28:58.107749+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 855
+          },
+          "id": "event-006720"
+        },
+        {
+          "source_line": 6721,
+          "timestamp": "2026-05-20T10:28:58.109393+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 505
+          },
+          "id": "event-006721"
+        },
+        {
+          "source_line": 6722,
+          "timestamp": "2026-05-20T10:28:58.160023+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/_pdf_images/main_p21.png"
+            }
+          },
+          "id": "event-006722"
+        },
+        {
+          "source_line": 6723,
+          "timestamp": "2026-05-20T10:28:58.211008+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-006723"
+        },
+        {
+          "source_line": 6724,
+          "timestamp": "2026-05-20T10:29:25.134668+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\\\begin\\{figure",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-006724"
+        },
+        {
+          "source_line": 6725,
+          "timestamp": "2026-05-20T10:29:25.185916+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/experiments.tex:22:\\begin{figure}[t]\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/experiments.tex:88:\\begin{figure}[t]\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/experiments.tex:105:\\begin{figure}[t]\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/experiments.tex:133:\\begin{figure}[t]\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/method.tex:4:\\begin{figure*}[t]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 51
+          },
+          "id": "event-006725"
+        },
+        {
+          "source_line": 6726,
+          "timestamp": "2026-05-20T10:29:29.100302+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/experiments.tex",
+              "offset": "86",
+              "limit": "50"
+            }
+          },
+          "id": "event-006726"
+        },
+        {
+          "source_line": 6727,
+          "timestamp": "2026-05-20T10:29:30.017054+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "86\tThe key asymmetry is compositional: ISR converts stochastic TS into near-deterministic convergence ($2/3$ seeds ${\\geq}97\\%$), while random remains seed-dependent and CE-dominated.\n87\t\n88\t\\begin{figure}[t]\n89\t\\centering\n90\t\\includegraphics[width=0.95\\columnwidth]{figures/fig5_training_isr_curves.pdf}\n91\t\\caption{Training ISR trajectories. ISR $\\beta{=}0.1$ seeds rise toward $\\text{ISR}{\\approx}1$ via TS gaming; exec-only s44's ${\\sim}0.5$ plateau is an $n{=}2$ artifact, not genuine quality; random remains low.}\n92\t\\label{fig:training-isr-curves}\n93\t\\end{figure}\n94\t\n95\t\\textbf{Higher doses and temporal dynamics.}\n96\tISR $\\beta{=}0.1$ non-hacking is transient: seed~42 drops $17.3\\%{\\to}2.2\\%$ by 1000 steps as TS escalates to $96.7\\%$ (Figure~\\ref{fig:training-isr-curves}). %% registry: plan002-b01-s42-1000, plan016-extended-1000-s42\n97\tAt $\\beta{=}0.2$, 3/3 seeds converge to TS with $0\\%$ non-hacking. %% registry: plan002-additive-b02-s42/s43/s44\n98\tAt $\\beta{=}0.3$, both ISR ($\\text{PR}{=}66{\\pm}42\\%$) and random ($54{\\pm}35\\%$) destabilize; ISR yields multi-modal failure~\\citep{gao-reward-overoptimization}, random converges to CE ($91\\%$; Appendix~\\ref{app:beta03}). %% registry: plan002-additive-b03-s42/s43/s44\n99\t\n100\t\\subsection{Cross-Domain Generalization}\n101\t\\label{sec:crossdomain}\n102\t\\label{sec:crosslogic}\n103\t\\label{sec:crossdataset}\n104\t\n105\t\\begin{figure}[t]\n106\t\\centering\n107\t\\includegraphics[width=0.95\\columnwidth]{figures/fig4_prolog_comparison.pdf}\n108\t\\caption{Cross-logic results. \\textbf{Left}: FOL vs.\\ Prolog exec-only $\\text{ISR}^*$ across 3 seeds (s44 Prolog $0.387$ is a small-sample artifact, $n{=}21$). \\textbf{Right}: Prolog ISR-reward gaming-mode composition---all 3 seeds reach 0\\% non-hacking through distinct mechanisms.}\n109\t\\label{fig:prolog-comparison}\n110\t\\end{figure}\n111\t\n112\t\\textbf{Prolog: universal Goodhart.}\n113\tWe replicate the FOL pipeline with Prolog/SWI-Prolog (Figure~\\ref{fig:prolog-comparison}).\n114\tExec-only seeds show $\\tex\n…[truncated 2011 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 916
+          },
+          "id": "event-006727"
+        },
+        {
+          "source_line": 6728,
+          "timestamp": "2026-05-20T10:29:30.017590+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/experiments.tex",
+              "offset": "103",
+              "limit": "40"
+            }
+          },
+          "id": "event-006728"
+        },
+        {
+          "source_line": 6729,
+          "timestamp": "2026-05-20T10:29:30.068239+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "103\t\\label{sec:crossdataset}\n104\t\n105\t\\begin{figure}[t]\n106\t\\centering\n107\t\\includegraphics[width=0.95\\columnwidth]{figures/fig4_prolog_comparison.pdf}\n108\t\\caption{Cross-logic results. \\textbf{Left}: FOL vs.\\ Prolog exec-only $\\text{ISR}^*$ across 3 seeds (s44 Prolog $0.387$ is a small-sample artifact, $n{=}21$). \\textbf{Right}: Prolog ISR-reward gaming-mode composition---all 3 seeds reach 0\\% non-hacking through distinct mechanisms.}\n109\t\\label{fig:prolog-comparison}\n110\t\\end{figure}\n111\t\n112\t\\textbf{Prolog: universal Goodhart.}\n113\tWe replicate the FOL pipeline with Prolog/SWI-Prolog (Figure~\\ref{fig:prolog-comparison}).\n114\tExec-only seeds show $\\text{ISR}^*{\\approx}0$ via redundant ground-fact coding (2/3 seeds); ISR flags this mode as it flags FOL's conclusion embedding.\n115\tUnder ISR-as-reward, 3/3 seeds reach 0\\% non-hacking through distinct mechanisms---clean TS (s42), uppercase pseudo-Prolog bypassing text-match classifiers (s43, all 38 proved at $n_{\\text{necessary}}{=}1$), and query-as-fact gaming (s44, 95/97 at $n_{\\text{necessary}}{=}1$; Table~\\ref{tab:prolog-detailed}).\n116\tProlog's simpler semantics broadens the gaming basin, eliminating the non-hacking residual entirely.\n117\t\n118\t\\textbf{ProofFOL exec-only: structural degeneration generalizes, though mode distributions differ.}\n119\tTwo converged seeds ($\\text{ISR}^*{<}0.07$) show ${\\leq}1.4\\%$ genuine; s42 exhibits 100\\% TS---absent from all FOLIO exec-only seeds---showing hacking-mode repertoire is dataset-specific ($\\text{ISR}^*{<}0.12$ across all seeds, far below baseline $0.31$).\n120\t\n121\t\\textbf{ProofFOL ISR ($\\beta{=}0.1$): beneficial instability (exploratory).}\n122\tISR reduces stable convergence from 2/3 to 0/3 seeds, yet ISR seeds average 76.8\\% genuine versus 17.4\\% for exec-only ($p{=}0.10$, $N{=}3$; Table~\\ref{tab:prooffol-detailed}).\n123\tHowever, ISR-condition prove rates ($0.35$--$0.49$) remain far below exec-only (${\\sim}1.0$), so apparent beneficial instability may reflect insufficien\n…[truncated 1073 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-006729"
+        },
+        {
+          "source_line": 6730,
+          "timestamp": "2026-05-20T10:30:37.689343+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/method.tex",
+              "offset": "1",
+              "limit": "15"
+            }
+          },
+          "id": "event-006730"
+        },
+        {
+          "source_line": 6731,
+          "timestamp": "2026-05-20T10:30:37.740128+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Method}\n2\t\\label{sec:method}\n3\t\n4\t\\begin{figure*}[t]\n5\t\\centering\n6\t\\includegraphics[width=0.92\\textwidth]{figures/fig1_sta_overview.pdf}\n7\t\\caption{Solver Trace Ablation (STA). (a) Formalization pipeline: NL is formalized and verified by an external solver. (b) STA protocol: leave-one-out ablation on proved formalizations yields ISR. (c) ISR as diagnostic vs.\\ as reward: the diagnostic becomes the optimization target, exhibiting Goodhart effects at a meta level.}\n8\t\\label{fig:sta-overview}\n9\t\\end{figure*}\n10\t\n11\t\\subsection{Task and GRPO Training}\n12\t\\label{sec:task}\n13\t\n14\tGiven premises $P_1,\\ldots,P_k$ and conclusion $C$, the task is to produce a formal program $F=\\{c_1,\\ldots,c_n\\}$ verified by an external solver $S\\in\\{\\text{Prover9, SWI-Prolog}\\}$ (Figure~\\ref{fig:sta-overview}a).\n15\tWe train with Group Relative Policy Optimization (GRPO)~\\citep{deepseekmath} ($K{=}4$), where each rollout receives binary execution reward $r_{\\text{exec}}(x) = \\mathbf{1}[S(F_x){=}\\textit{proved}]$."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-006731"
+        },
+        {
+          "source_line": 6732,
+          "timestamp": "2026-05-20T10:30:41.003212+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/introduction.tex",
+              "offset": "1",
+              "limit": "8"
+            }
+          },
+          "id": "event-006732"
+        },
+        {
+          "source_line": 6733,
+          "timestamp": "2026-05-20T10:30:41.003595+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\n2\t\\label{sec:introduction}\n3\t\n4\tA GRPO-trained formalizer achieves a 93\\% prove rate on first-order logic problems---yet 87\\% of its proved outputs embed the conclusion verbatim among the premises.\n5\tThe solver succeeds not because the model has learned to reason, but because the formalization trivially entails any conclusion already appearing as a premise.\n6\tThis structural shortcut---an instance of shortcut learning~\\citep{geirhos2020shortcut} in the neurosymbolic setting---is invisible to execution-based evaluation: prove rate registers success regardless of whether the proof reflects genuine derivation or degenerate circular embedding.\n7\t\n8\t\\paragraph{The execution-only blind spot.}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-006733"
+        },
+        {
+          "source_line": 6734,
+          "timestamp": "2026-05-20T10:30:46.725225+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/method.tex",
+              "old_string": "\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=0.92\\textwidth]{figures/fig1_sta_overview.pdf}\n\\caption{Solver Trace Ablation (STA). (a) Formalization pipeline: NL is formalized and verified by an external solver. (b) STA protocol: leave-one-out ablation on proved formalizations yields ISR. (c) ISR as diagnostic vs.\\ as reward: the diagnostic becomes the optimization target, exhibiting Goodhart effects at a meta level.}\n\\label{fig:sta-overview}\n\\end{figure*}\n\n\\subsection{Task and GRPO Training}",
+              "new_string": "\\subsection{Task and GRPO Training}"
+            }
+          },
+          "id": "event-006734"
+        },
+        {
+          "source_line": 6735,
+          "timestamp": "2026-05-20T10:30:46.776036+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/method.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-006735"
+        },
+        {
+          "source_line": 6736,
+          "timestamp": "2026-05-20T10:30:52.648201+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/introduction.tex",
+              "old_string": "This structural shortcut---an instance of shortcut learning~\\citep{geirhos2020shortcut} in the neurosymbolic setting---is invisible to execution-based evaluation: prove rate registers success regardless of whether the proof reflects genuine derivation or degenerate circular embedding.\n\n\\paragraph{The execution-only blind spot.}",
+              "new_string": "This structural shortcut---an instance of shortcut learning~\\citep{geirhos2020shortcut} in the neurosymbolic setting---is invisible to execution-based evaluation: prove rate registers success regardless of whether the proof reflects genuine derivation or degenerate circular embedding.\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=0.92\\textwidth]{figures/fig1_sta_overview.pdf}\n\\caption{Solver Trace Ablation (STA). (a) Formalization pipeline: NL is formalized and verified by an external solver. (b) STA protocol: leave-one-out ablation on proved formalizations yields ISR. (c) ISR as diagnostic vs.\\ as reward: the diagnostic becomes the optimization target, exhibiting Goodhart effects at a meta level.}\n\\label{fig:sta-overview}\n\\end{figure*}\n\n\\paragraph{The execution-only blind spot.}"
+            }
+          },
+          "id": "event-006736"
+        },
+        {
+          "source_line": 6737,
+          "timestamp": "2026-05-20T10:30:52.648618+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/introduction.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-006737"
+        },
+        {
+          "source_line": 6738,
+          "timestamp": "2026-05-20T10:30:57.268818+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/experiments.tex",
+              "offset": "19",
+              "limit": "30"
+            }
+          },
+          "id": "event-006738"
+        },
+        {
+          "source_line": 6739,
+          "timestamp": "2026-05-20T10:30:57.319585+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "19\t\\subsection{ISR as Diagnostic}\n20\t\\label{sec:diagnostic}\n21\t\n22\t\\begin{figure}[t]\n23\t\\centering\n24\t\\includegraphics[width=0.95\\columnwidth]{figures/fig2_isr_collapse.pdf}\n25\t\\caption{ISR collapse under exec-only GRPO (seed~42). PR rises 32\\%$\\to$93\\%$\\to$96\\% while proved-only ISR falls $0.642{\\to}0.132{\\to}0.003$ over 100$\\to$500$\\to$1000 steps. By step 1000, 94.8\\% of proved samples have $\\text{ISR}{=}0$ and mean component count inflates 6.58$\\to$18.55 (contradiction explosion). Note: x-axis is non-uniform (0, 100, 500, 1000 steps).}\n26\t\\label{fig:isr-collapse}\n27\t\\end{figure}\n28\t\n29\t\\textbf{Collapse trajectory.}\n30\tFigure~\\ref{fig:isr-collapse} traces exec-only GRPO (seed~42) at 100, 500, 1000 steps.\n31\tPR rises $32\\%\\to93\\%\\to96\\%$, a trajectory that execution-only evaluation would interpret as successful optimization; $\\text{ISR}^*$ tells the opposite story, $0.642\\to0.132\\to0.003$ (214$\\times$ collapse). %% registry: plan003-eval-exec-only-r5, plan001-exec-only-s42-r2, plan016-extended-1000-s42\n32\tBy 500 steps, 87.1\\% of proved samples embed the conclusion (CE); by 1000 steps, component count inflates $2.8\\times$ ($6.58{\\to}18.55$) while ISR decreases $214\\times$---ruling out shorter formalizations as a mechanical explanation of the collapse.\n33\t\n34\t\\textbf{Cross-seed instability.}\n35\tThree seeds diverge radically ($\\text{PR}\\,\\sigma{=}47$\\,pp) into conclusion embedding (s42, CE$=$87\\%), repetition collapse (s43), and tautological collapse (s44, TS$=$100\\%)---all converging to $0\\%$ non-hacking by 1000 steps (Table~\\ref{tab:fol-detailed}; Appendix~\\ref{app:detailed-results}). %% registry: plan001-exec-only-s42-r2, plan001-exec-only-s43-r4, plan001-exec-only-s44; plan016-extended-1000-s42, plan001-exec-only-s43-1000-r2, plan001-exec-only-s44-1000-r2\n36\t\n37\t\\textbf{SFT baseline.}\n38\tSFT on gold formalizations reaches $92.3\\%$ non-hacking ($\\text{PR}{=}13\\%$, 3-seed pooled; $\\text{OR}{=}147$ vs.\\ exec-only, $p{<}0.001$).\n39\tSFT serves as a pre-RL quality basel\n…[truncated 1269 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-006739"
+        },
+        {
+          "source_line": 6740,
+          "timestamp": "2026-05-20T10:31:01.384231+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/experiments.tex",
+              "offset": "48",
+              "limit": "45"
+            }
+          },
+          "id": "event-006740"
+        },
+        {
+          "source_line": 6741,
+          "timestamp": "2026-05-20T10:31:01.585610+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "48\t\n49\t\\paragraph{Multiplicative coupling.}\n50\tThe reward $r_{\\text{exec}}\\cdot(1{+}\\beta\\,\\text{ISR})$ couples signals; exec-only's $0\\%$ non-hacking, the qualitative TS shift ($0\\%{\\to}71\\%$), and an additive variant's PR collapse (Appendix~\\ref{app:setup}) constrain this confound.\n51\tAdditionally, ISR scores are bimodal (near $0$ or ${\\geq}0.5$) while random is approximately uniform; this distributional difference could independently modulate optimization dynamics. A shuffled-ISR control would isolate this effect but was not implemented (\\S\\ref{sec:limitations}).\n52\t\n53\t\\begin{table}[t]\n54\t\\centering\n55\t\\small\n56\t\\resizebox{\\columnwidth}{!}{%\n57\t\\begin{tabular}{lcccccc}\n58\t\\toprule\n59\t\\textbf{Condition} & $\\boldsymbol{\\beta}$ & \\textbf{PR\\%}$\\uparrow$ & \\textbf{ISR}$^*$ & \\textbf{TS\\%} & \\textbf{CE\\%} & \\textbf{N-H\\%} \\\\\n60\t\\midrule\n61\tBase (0-shot) & --- & 12 & --- & --- & --- & --- \\\\ %% registry: sta-phase0-baseline\n62\tSFT & --- & 13 & 0.595 & 0 & 8 & \\textbf{92} \\\\ %% registry: plan009-sft-baseline-s42-1000/s43-1000/s44-1000-r3 (3-seed pooled)\n63\t\\midrule\n64\tExec-only$^\\dagger$ & --- & 93 & 0.132 & 0 & 87 & 8 \\\\ %% registry: plan001-exec-only-s42-r2 (PG corrected)\n65\tISR & 0.1 & 77{\\scriptsize$\\pm$14} & $\\ddagger$ & \\textbf{71}$^\\P$ & 18 & 6 \\\\ %% registry: plan002-additive-b01-s42/s43-r2/s44 (pooled, D095 FINAL)\n66\tRandom & 0.1 & \\textbf{87}{\\scriptsize$\\pm$8} & 0.117{\\scriptsize$\\pm$.04} & 14$^\\S$ & 71 & 10 \\\\ %% registry: plan018-additive-random-b01-s42/s43-r3/s44-r2 (D095 FINAL)\n67\t\\midrule\n68\tISR & 0.3 & 66{\\scriptsize$\\pm$42} & 0.39{\\scriptsize$\\pm$.31} & \\textbf{50} & 37 & 11 \\\\ %% registry: plan002-additive-b03-s42/s43/s44 (pooled; D106 s43 genuine 23→20)\n69\tRandom & 0.3 & 54{\\scriptsize$\\pm$35} & 0.09{\\scriptsize$\\pm$.09} & 7 & 91 & 2 \\\\ %% registry: plan017-additive-random-s42, exp1-random-b03-s43-r4, exp1-random-b03-s44-r2 (pooled; D086 TS: s42=4,s43=7,s44=0)\n70\t\\bottomrule\n71\t\\end{tabular}}\n72\t\\caption{Goodhart landscape across reward conditions. \n…[truncated 2867 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 201
+          },
+          "id": "event-006741"
+        },
+        {
+          "source_line": 6742,
+          "timestamp": "2026-05-20T10:31:21.029360+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__paper_compile_and_check"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "clean": "True",
+              "preview": "True"
+            }
+          },
+          "id": "event-006742"
+        },
+        {
+          "source_line": 6743,
+          "timestamp": "2026-05-20T10:31:27.217552+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"passed\\\": true, \\\"compiled\\\": {\\\"success\\\": true, \\\"pdf_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/main.pdf\\\", \\\"paper_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper\\\", \\\"main_tex\\\": \\\"main.tex\\\", \\\"log_tail\\\": \\\"Underfull \\\\\\\\hbox (badness 10000) in paragraph at lines 636--639\\\\n []\\\\\\\\OT1/cmr/bx/n/10.95 Training-time ab-la-tion.[] \\\\\\\\OT1/cmr/m/n/10.95 As a trai\\\\nn-\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 2035) in paragraph at lines 636--639\\\\n\\\\\\\\OT1/cmr/m/n/10.95 ing re-ward ($\\\\\\\\OML/cmm/m/it/10.95 r \\\\\\\\OT1/cmr/m/n/10.95 = 0\\\\\\\\O\\\\nML/cmm/m/it/10.95 :\\\\\\\\OT1/cmr/m/n/10.95 5 \\\\\\\\OML/cmm/m/it/10.95 r[] \\\\\\\\OT1/cmr/m/n/10\\\\n.95 + 0\\\\\\\\OML/cmm/m/it/10.95 :\\\\\\\\OT1/cmr/m/n/10.95 5 []$,\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 10000) in paragraph at lines 636--639\\\\n[][]\\\\\\\\OT1/cmr/m/n/10.95 63%$ with $[][][]0\\\\\\\\OML/cmm/m/it/10.95 :\\\\\\\\OT1/cmr/m/n/10.9\\\\n5 007$---functionally\\\\n []\\\\n\\\\n\\\\nUnderfull \\\\\\\\hbox (badness 1412) in paragraph at lines 636--639\\\\n\\\\\\\\OT1/cmr/m/n/10.95 clu-sion is prov-able with-out premises, but\\\\n []\\\\n\\\\n[17])\\\\nUnderfull \\\\\\\\hbox (badness 1072) in paragraph at lines 653--41\\\\n\\\\\\\\OT1/cmr/m/n/10.95 old (non-zero prove rates within the first\\\\n []\\\\n\\\\n[18] [19] [20] [21\\\\n\\\\n\\\\n] (./main.aux)\\\\n ***********\\\\nLaTeX2e <2025-11-01>\\\\nL3 programming layer <2026-01-19>\\\\n ***********\\\\nPackage rerunfilecheck Info: File `main.out' has not changed.\\\\n(rerunfilecheck)             Checksum: 293247A1EAAF1D8EA0E11879F95EAB50;5655.\\\\n ) \\\\nHere is how much of TeX's memory you used:\\\\n 15994 strings out of 469438\\\\n 253037 string characters out of 5468411\\\\n 765016 words of memory out of 5000000\\\\n 44235 multiletter control sequences out of 15000+600000\\\\n 646632 words of font info for 106 fonts, out of 8000000 for 9000\\\\n 59 hyphenation exceptions out of 8191\\\\n 84i,15n,93p,1001b,681s stack positions out o\n…[truncated 16269 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "mcp__agent-ml-research__paper_compile_and_check",
+            "elapsed_ms": 6188
+          },
+          "id": "event-006743"
+        },
+        {
+          "source_line": 6744,
+          "timestamp": "2026-05-20T10:31:31.508136+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/_pdf_images/main_p2.png"
+            }
+          },
+          "id": "event-006744"
+        },
+        {
+          "source_line": 6745,
+          "timestamp": "2026-05-20T10:31:32.011917+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/_pdf_images/main_p3.png"
+            }
+          },
+          "id": "event-006745"
+        },
+        {
+          "source_line": 6746,
+          "timestamp": "2026-05-20T10:31:32.514926+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 1006
+          },
+          "id": "event-006746"
+        },
+        {
+          "source_line": 6747,
+          "timestamp": "2026-05-20T10:31:32.515361+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/_pdf_images/main_p7.png"
+            }
+          },
+          "id": "event-006747"
+        },
+        {
+          "source_line": 6748,
+          "timestamp": "2026-05-20T10:31:33.019888+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 1007
+          },
+          "id": "event-006748"
+        },
+        {
+          "source_line": 6749,
+          "timestamp": "2026-05-20T10:31:33.070616+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/_pdf_images/main_p8.png"
+            }
+          },
+          "id": "event-006749"
+        },
+        {
+          "source_line": 6750,
+          "timestamp": "2026-05-20T10:31:33.172852+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 657
+          },
+          "id": "event-006750"
+        },
+        {
+          "source_line": 6751,
+          "timestamp": "2026-05-20T10:31:33.676063+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 605
+          },
+          "id": "event-006751"
+        },
+        {
+          "source_line": 6752,
+          "timestamp": "2026-05-20T10:32:13.877594+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/_pdf_images/main_p5.png"
+            }
+          },
+          "id": "event-006752"
+        },
+        {
+          "source_line": 6753,
+          "timestamp": "2026-05-20T10:32:14.430464+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/_pdf_images/main_p6.png"
+            }
+          },
+          "id": "event-006753"
+        },
+        {
+          "source_line": 6754,
+          "timestamp": "2026-05-20T10:32:14.482940+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 605
+          },
+          "id": "event-006754"
+        },
+        {
+          "source_line": 6755,
+          "timestamp": "2026-05-20T10:32:15.036272+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 605
+          },
+          "id": "event-006755"
+        },
+        {
+          "source_line": 6756,
+          "timestamp": "2026-05-20T10:32:26.643554+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called TodoWrite"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "TodoWrite",
+            "tool_args": {
+              "todos": "[{'content': 'A2: Add 3-seed aggregate data to Abstract', 'status': 'completed', 'activeForm': 'Adding 3-seed aggregate to Abstract'}, {'content': 'A8: Add ISR post-hoc filter analysis to §5 Discussion', 'status': 'completed', 'activeForm': 'Adding ISR post-hoc filter to Discussion'}, {'content': 'A12: Add setlur2025rewarding + alphaproof2025 citations to Related Work', 'status': 'completed', 'activeForm': 'Adding new citations to Related Work'}, {'content': 'B1: Figure layout optimization', 'status': 'completed', 'activeForm': 'Optimizing figure layout'}, {'content': 'B2: Blank page handling (p18, p21)', 'status': 'in_progress', 'activeForm': 'Handling blank pages'}, {'content': 'B3: Verify regenerated Fig 3/4/5 (≥8pt fonts)', 'status': 'pending', 'activeForm': 'Verifying regenerated figures'}, {'content': 'B4: Bib format consistency check', 'status': 'pending', 'activeForm': 'Checking bib format consistency'}, {'content': 'B5: Final format compliance (≤8pp, Limitations, ACL style)', 'status': 'pending', 'activeForm': 'Running final format compliance'}, {'content': 'Compile + verify + report to Director', 'status': 'pending', 'activeForm': 'Compiling and reporting'}]"
+            }
+          },
+          "id": "event-006756"
+        },
+        {
+          "source_line": 6757,
+          "timestamp": "2026-05-20T10:32:26.644181+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "TodoWrite",
+            "elapsed_ms": 0
+          },
+          "id": "event-006757"
+        },
+        {
+          "source_line": 6758,
+          "timestamp": "2026-05-20T10:32:32.093063+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/appendix.tex",
+              "limit": "50"
+            }
+          },
+          "id": "event-006758"
+        },
+        {
+          "source_line": 6759,
+          "timestamp": "2026-05-20T10:32:32.143676+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% Appendix — solver-trace-ablation\n2\t\n3\t\\section{Experimental Setup}\n4\t\\label{app:setup}\n5\t\n6\tTable~\\ref{tab:hyperparams} lists all hyperparameters shared across experiments.\n7\tAll RL conditions use the same GRPO configuration; only the reward function differs.\n8\tSeeds control model weight initialization and data shuffling; training data is held constant across all seeds and conditions (Constraint~C001).\n9\t\n10\t\\begin{table}[h]\n11\t\\centering\n12\t\\caption{Training hyperparameters for all GRPO experiments.}\n13\t\\label{tab:hyperparams}\n14\t\\footnotesize\n15\t\\resizebox{\\columnwidth}{!}{%\n16\t\\begin{tabular}{@{}ll@{}}\n17\t\\toprule\n18\t\\textbf{Parameter} & \\textbf{Value} \\\\\n19\t\\midrule\n20\t\\multicolumn{2}{@{}l}{\\textit{Model}} \\\\\n21\tBase model & Qwen3-4B \\\\\n22\tPrecision & BF16 \\\\\n23\t\\midrule\n24\t\\multicolumn{2}{@{}l}{\\textit{GRPO Training}} \\\\\n25\tRollouts per prompt ($K$) & 4 \\\\\n26\tTraining steps (default) & 500 \\\\\n27\tTraining steps (extended) & 1000 \\\\\n28\tLearning rate & $1 \\times 10^{-6}$ \\\\\n29\tPer-device batch size & 4 \\\\\n30\tGradient accumulation steps & 2 \\\\\n31\tEffective batch size & 8 \\\\\n32\tMax completion length & 512 tokens \\\\\n33\tRandom seeds & 42, 43, 44 \\\\\n34\t\\midrule\n35\t\\multicolumn{2}{@{}l}{\\textit{Data}} \\\\\n36\tTraining set & FOLIO, 500 examples \\\\\n37\tEvaluation set & FOLIO, 100 examples (held-out) \\\\\n38\tData file & \\texttt{train\\_500\\_seed42} \\\\\n39\t\\midrule\n40\t\\multicolumn{2}{@{}l}{\\textit{Solvers}} \\\\\n41\tFOL solver & Prover9 \\\\\n42\tProlog solver & SWI-Prolog 8.4.2 \\\\\n43\t\\midrule\n44\t\\multicolumn{2}{@{}l}{\\textit{Evaluation}} \\\\\n45\tDecoding & Greedy ($T{=}0$) \\\\\n46\tISR computation & \\texttt{eval\\_sta.py} \\\\\n47\tISR variant & Proved-only (ISR$^*$) \\\\\n48\t\\bottomrule\n49\t\\end{tabular}}\n50\t\\end{table}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-006759"
+        },
+        {
+          "source_line": 6760,
+          "timestamp": "2026-05-20T10:32:35.808261+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "wc -l /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/appendix.tex",
+              "description": "Count appendix lines"
+            }
+          },
+          "id": "event-006760"
+        },
+        {
+          "source_line": 6761,
+          "timestamp": "2026-05-20T10:32:36.009518+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "655 /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/appendix.tex"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 201
+          },
+          "id": "event-006761"
+        },
+        {
+          "source_line": 6762,
+          "timestamp": "2026-05-20T10:32:40.076757+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\\\section|\\\\subsection|\\\\clearpage|\\\\newpage",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/appendix.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-006762"
+        },
+        {
+          "source_line": 6763,
+          "timestamp": "2026-05-20T10:32:40.127603+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3:\\section{Experimental Setup}\n89:\\section{STA Algorithm}\n96:\\section{Extended Discussion}\n170:\\section{Hacking Mode Definitions}\n216:\\subsection{PG --- Premise-Subset Gaming}\n241:\\subsection{CE --- Conclusion Embedding}\n265:\\subsection{TSa --- Conclusion Duplication (Standard)}\n291:\\subsection{TSb --- Obfuscated Tautology}\n316:\\subsection{Tautological Collapse}\n336:\\subsection{Repetition Collapse}\n359:\\subsection{Complexity-without-Utility}\n384:\\subsection{Contradiction Explosion}\n407:\\subsection{Query-as-Fact Gaming}\n432:\\section{Per-Seed Detailed Results}\n579:\\subsection{Per-Seed Results at $\\beta{=}0.3$}\n612:\\subsection{Early-Training Hacking Analysis (100-Step Checkpoint)}\n621:\\subsection{$O(1)$ vs.\\ $O(n)$ ISR Ablation}\n645:\\subsection{Cross-Model Generalization: LLaMA-3.2-3B Cold-Start Failure}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-006763"
+        },
+        {
+          "source_line": 6764,
+          "timestamp": "2026-05-20T10:32:44.094381+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/appendix.tex",
+              "offset": "575",
+              "limit": "80"
+            }
+          },
+          "id": "event-006764"
+        },
+        {
+          "source_line": 6765,
+          "timestamp": "2026-05-20T10:32:44.145182+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "575\tseed~43 generates uppercase pseudo-Prolog that bypasses the text-match classifier while remaining functionally tautological,\n576\tand seed~44 converts NL conclusions to snake\\_case atoms used as both fact and query.\n577\tThe diversity of gaming pathways across seeds---despite identical training data and reward function---demonstrates that Goodhart's Law in neurosymbolic reasoning is not a single failure mode but a family of convergent exploits.\n578\t\n579\t\\subsection{Per-Seed Results at $\\beta{=}0.3$}\n580\t\\label{app:beta03}\n581\t\n582\tTable~\\ref{tab:beta03-detailed} reports per-seed results for both ISR and Random reward at $\\beta{=}0.3$.\n583\tThe three ISR seeds illustrate qualitatively distinct Goodhart pathways (\\S\\ref{sec:goodhart}).\n584\t\n585\t\\begin{table}[!b]\n586\t\\centering\n587\t\\caption{Per-seed results at $\\beta{=}0.3$ (FOL). PR = prove rate, ISR$^*$ = proved-only ISR, TS/CE/N-H = percentage among proved samples.}\n588\t\\label{tab:beta03-detailed}\n589\t\\small\n590\t\\resizebox{\\columnwidth}{!}{%\n591\t\\begin{tabular}{@{}llcccccl@{}}\n592\t\\toprule\n593\t\\textbf{Condition} & \\textbf{Seed} & \\textbf{PR} & \\textbf{ISR$^*$} & \\textbf{TS\\%} & \\textbf{CE\\%} & \\textbf{N-H\\%} & \\textbf{Mode} \\\\\n594\t\\midrule\n595\t\\multicolumn{8}{@{}l}{\\textit{ISR $\\beta{=}0.3$}} \\\\\n596\t  & 42 & 0.18 & 0.143 & 0 & 77.8 & 5.6 & Reward collapse ($n{=}18$); PG${=}3$ \\\\\n597\t  & 43 & 0.86 & 0.295 & 4.7 & 68.6 & 23.3 & CE shortcutting \\\\\n598\t  & 44 & 0.95 & 0.742 & \\textbf{100} & 0 & 0 & Pure TS Goodhart \\\\\n599\t\\cmidrule(l){2-8}\n600\t  & \\multicolumn{2}{l}{3-seed mean$\\pm$std} & \\makebox[0pt][l]{$0.66{\\pm}0.42$} & & \\makebox[0pt][l]{$0.39{\\pm}0.31$} & & \\\\\n601\t\\midrule\n602\t\\multicolumn{8}{@{}l}{\\textit{Random $\\beta{=}0.3$}} \\\\\n603\t  & 42 & 0.48 & 0.094 & 8 & 92 & 0 & TSa${=}4$ (D086) \\\\\n604\t  & 43 & 0.92 & 0.180 & 7.6 & 89.1 & 3.3 & TSa${=}7$; $n_{\\text{N-H}}{=}3$ \\\\\n605\t  & 44 & 0.23 & 0 & 0 & 100 & 0 & Pure CE ($n{=}23$) \\\\\n606\t\\cmidrule(l){2-8}\n607\t  & \\multicolumn{2}{l}{3-seed mean$\\pm$std} & \\makebox[0p\n…[truncated 5599 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-006765"
+        },
+        {
+          "source_line": 6766,
+          "timestamp": "2026-05-20T10:33:09.044529+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/appendix.tex",
+              "old_string": "\\begin{table}[!b]\n\\centering\n\\caption{Per-seed results at $\\beta{=}0.3$ (FOL). PR = prove rate, ISR$^*$ = proved-only ISR, TS/CE/N-H = percentage among proved samples.}\n\\label{tab:beta03-detailed}",
+              "new_string": "\\begin{table}[ht]\n\\centering\n\\caption{Per-seed results at $\\beta{=}0.3$ (FOL). PR = prove rate, ISR$^*$ = proved-only ISR, TS/CE/N-H = percentage among proved samples.}\n\\label{tab:beta03-detailed}"
+            }
+          },
+          "id": "event-006766"
+        },
+        {
+          "source_line": 6767,
+          "timestamp": "2026-05-20T10:33:09.045435+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-006767"
+        },
+        {
+          "source_line": 6768,
+          "timestamp": "2026-05-20T10:33:14.266877+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\\\begin\\{table\\}\\[!b\\]",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/appendix.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-006768"
+        },
+        {
+          "source_line": 6769,
+          "timestamp": "2026-05-20T10:33:14.317502+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-006769"
+        },
+        {
+          "source_line": 6770,
+          "timestamp": "2026-05-20T10:33:24.960650+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called TodoWrite"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "TodoWrite",
+            "tool_args": {
+              "todos": "[{'content': 'A2: Add 3-seed aggregate data to Abstract', 'status': 'completed', 'activeForm': 'Adding 3-seed aggregate to Abstract'}, {'content': 'A8: Add ISR post-hoc filter analysis to §5 Discussion', 'status': 'completed', 'activeForm': 'Adding ISR post-hoc filter to Discussion'}, {'content': 'A12: Add setlur2025rewarding + alphaproof2025 citations to Related Work', 'status': 'completed', 'activeForm': 'Adding new citations to Related Work'}, {'content': 'B1: Figure layout optimization', 'status': 'completed', 'activeForm': 'Optimizing figure layout'}, {'content': 'B2: Blank page handling (p18, p21)', 'status': 'completed', 'activeForm': 'Handling blank pages'}, {'content': 'B3: Verify regenerated Fig 3/4/5 (≥8pt fonts)', 'status': 'in_progress', 'activeForm': 'Verifying regenerated figures'}, {'content': 'B4: Bib format consistency check', 'status': 'pending', 'activeForm': 'Checking bib format consistency'}, {'content': 'B5: Final format compliance (≤8pp, Limitations, ACL style)', 'status': 'pending', 'activeForm': 'Running final format compliance'}, {'content': 'Compile + verify + report to Director', 'status': 'pending', 'activeForm': 'Compiling and reporting'}]"
+            }
+          },
+          "id": "event-006770"
+        },
+        {
+          "source_line": 6771,
+          "timestamp": "2026-05-20T10:33:24.961255+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "TodoWrite",
+            "elapsed_ms": 0
+          },
+          "id": "event-006771"
+        },
+        {
+          "source_line": 6772,
+          "timestamp": "2026-05-20T10:33:29.702014+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/figures/fig{3,4,5}*.{pdf,png} 2>/dev/null",
+              "description": "Check figure file sizes and dates"
+            }
+          },
+          "id": "event-006772"
+        },
+        {
+          "source_line": 6773,
+          "timestamp": "2026-05-20T10:33:29.759792+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "-rw-r--r-- 1 ubuntu ubuntu  25569 May 20 10:21 /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/figures/fig3_hacking_composition.pdf\n-rw-r--r-- 1 ubuntu ubuntu 135380 May 20 10:21 /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/figures/fig3_hacking_composition.png\n-rw-r--r-- 1 ubuntu ubuntu  35419 May 20 10:21 /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/figures/fig4_prolog_comparison.pdf\n-rw-r--r-- 1 ubuntu ubuntu 199618 May 20 10:21 /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/figures/fig4_prolog_comparison.png\n-rw-r--r-- 1 ubuntu ubuntu  40553 May 20 10:21 /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/figures/fig5_training_isr_curves.pdf\n-rw-r--r-- 1 ubuntu ubuntu 123480 May 20 10:21 /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/figures/fig5_training_isr_curves.png"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 57
+          },
+          "id": "event-006773"
+        },
+        {
+          "source_line": 6774,
+          "timestamp": "2026-05-20T10:33:34.787844+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/figures/fig3_hacking_composition.png"
+            }
+          },
+          "id": "event-006774"
+        },
+        {
+          "source_line": 6775,
+          "timestamp": "2026-05-20T10:33:35.091202+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 303
+          },
+          "id": "event-006775"
+        },
+        {
+          "source_line": 6776,
+          "timestamp": "2026-05-20T10:33:35.242203+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/figures/fig4_prolog_comparison.png"
+            }
+          },
+          "id": "event-006776"
+        },
+        {
+          "source_line": 6777,
+          "timestamp": "2026-05-20T10:33:35.695592+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/figures/fig5_training_isr_curves.png"
+            }
+          },
+          "id": "event-006777"
+        },
+        {
+          "source_line": 6778,
+          "timestamp": "2026-05-20T10:33:35.748499+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 52
+          },
+          "id": "event-006778"
+        },
+        {
+          "source_line": 6779,
+          "timestamp": "2026-05-20T10:33:36.001000+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 758
+          },
+          "id": "event-006779"
+        },
+        {
+          "source_line": 6780,
+          "timestamp": "2026-05-20T10:33:58.088364+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "H7a|H7b|H1.*shortcut|H8.*degenerate",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/figures",
+              "output_mode": "content",
+              "-n": "True",
+              "glob": "*.py"
+            }
+          },
+          "id": "event-006780"
+        },
+        {
+          "source_line": 6781,
+          "timestamp": "2026-05-20T10:33:58.139958+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/figures/gen_fig5.py:76:ax.annotate(\"H7a artifact\",\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/figures/gen_fig3.py:8:C_H7a = '#D55E00'\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/figures/gen_fig3.py:9:C_H7b = '#CC79A7'\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/figures/gen_fig3.py:50:ax.barh(y, h7a, left=left, color=C_H7a, label='H7a (tautological)', **kw)\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/figures/gen_fig3.py:52:ax.barh(y, h7b, left=left, color=C_H7b, label='H7b (ISR-specific)', **kw)\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/figures/gen_fig3.py:54:ax.barh(y, h1, left=left, color=C_H1, label='H1 (shortcut)', **kw)\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/figures/gen_fig3.py:56:ax.barh(y, h8, left=left, color=C_H8, label='H8 (degenerate)', **kw)\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/figures/gen_fig3.py:72:    fontsize=8.5, fontweight='bold', color=C_H7a,\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/figures/gen_fig3.py:74:    arrowprops=dict(arrowstyle='->', color=C_H7a, lw=1.5),"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 51
+          },
+          "id": "event-006781"
+        },
+        {
+          "source_line": 6782,
+          "timestamp": "2026-05-20T10:34:02.412735+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "H7|H1.*shortcut",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/figures/gen_fig4.py",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-006782"
+        },
+        {
+          "source_line": 6783,
+          "timestamp": "2026-05-20T10:34:02.463423+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "10:C_H7 = '#D55E00'\n71:b_h7 = ax2.bar(x, h7, bw2, color=C_H7, label='H7 tautological', edgecolor='white', linewidth=0.5, zorder=3)\n87:         ha='center', fontsize=8.5, fontstyle='italic', color=C_H7)\n94:mode_labels = ['H7\\ntautol.', 'Degen.\\nsyntax', 'Query-\\nas-fact']"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-006783"
+        },
+        {
+          "source_line": 6784,
+          "timestamp": "2026-05-20T10:34:06.328886+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/figures/gen_fig3.py"
+            }
+          },
+          "id": "event-006784"
+        },
+        {
+          "source_line": 6785,
+          "timestamp": "2026-05-20T10:34:06.379672+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\timport matplotlib\n2\tmatplotlib.use('Agg')\n3\timport matplotlib.pyplot as plt\n4\timport numpy as np\n5\t\n6\tplt.rcParams.update({'pdf.fonttype': 42, 'ps.fonttype': 42})\n7\t\n8\tC_H7a = '#D55E00'\n9\tC_H7b = '#CC79A7'\n10\tC_H1 = '#E69F00'\n11\tC_H8 = '#56B4E9'\n12\tC_GENUINE = '#009E73'\n13\tC_OTHER = '#999999'\n14\t\n15\tconditions = [\n16\t    'ISR $\\\\beta$=0.3',\n17\t    'ISR $\\\\beta$=0.1',\n18\t    'Random $\\\\beta$=0.3',\n19\t    'Random $\\\\beta$=0.1',\n20\t    'Exec-only',\n21\t    'SFT',\n22\t]\n23\t\n24\t# Pooled raw counts per condition (all seeds merged)\n25\t# Order: ISR b0.3, ISR b0.1, Random b0.3, Random b0.1, Exec-only, SFT\n26\traw = {\n27\t    'h1':      [14,  42, 105, 187, 166,  3],\n28\t    'h7a':     [ 0, 161,   7,  36,  90,  0],\n29\t    'h7b':     [ 0,   2,   0,   0,   0,  0],\n30\t    'h8':      [ 3,  12,   0,  21,  21,  0],\n31\t    'genuine': [ 1,  14,   3,  25,   7, 36],\n32\t}\n33\t\n34\ttotals = [sum(raw[k][i] for k in raw) for i in range(len(conditions))]\n35\t\n36\th1      = [raw['h1'][i]      / totals[i] * 100 for i in range(len(conditions))]\n37\th7a     = [raw['h7a'][i]     / totals[i] * 100 for i in range(len(conditions))]\n38\th7b     = [raw['h7b'][i]     / totals[i] * 100 for i in range(len(conditions))]\n39\th8      = [raw['h8'][i]      / totals[i] * 100 for i in range(len(conditions))]\n40\tgenuine = [raw['genuine'][i] / totals[i] * 100 for i in range(len(conditions))]\n41\t\n42\ty = np.arange(len(conditions))\n43\tbar_h = 0.55\n44\t\n45\tfig, ax = plt.subplots(figsize=(8, 4.5))\n46\t\n47\tkw = dict(height=bar_h, edgecolor='white', linewidth=0.5, zorder=3)\n48\t\n49\tleft = np.zeros(len(conditions))\n50\tax.barh(y, h7a, left=left, color=C_H7a, label='H7a (tautological)', **kw)\n51\tleft += h7a\n52\tax.barh(y, h7b, left=left, color=C_H7b, label='H7b (ISR-specific)', **kw)\n53\tleft += h7b\n54\tax.barh(y, h1, left=left, color=C_H1, label='H1 (shortcut)', **kw)\n55\tleft += h1\n56\tax.barh(y, h8, left=left, color=C_H8, label='H8 (degenerate)', **kw)\n57\tleft += h8\n58\tax.barh(y, genuine, left=left, color=C_GENUINE, label='Genuine', **kw\n…[truncated 1405 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-006785"
+        },
+        {
+          "source_line": 6786,
+          "timestamp": "2026-05-20T10:34:22.043228+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/figures/gen_fig3.py",
+              "old_string": "C_H7a = '#D55E00'\nC_H7b = '#CC79A7'\nC_H1 = '#E69F00'\nC_H8 = '#56B4E9'",
+              "new_string": "C_TSa = '#D55E00'\nC_TSb = '#CC79A7'\nC_CE = '#E69F00'\nC_PG = '#56B4E9'"
+            }
+          },
+          "id": "event-006786"
+        },
+        {
+          "source_line": 6787,
+          "timestamp": "2026-05-20T10:34:22.094738+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/figures/gen_fig3.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-006787"
+        },
+        {
+          "source_line": 6788,
+          "timestamp": "2026-05-20T10:34:27.617080+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/figures/gen_fig3.py",
+              "old_string": "    'h1':      [14,  42, 105, 187, 166,  3],\n    'h7a':     [ 0, 161,   7,  36,  90,  0],\n    'h7b':     [ 0,   2,   0,   0,   0,  0],\n    'h8':      [ 3,  12,   0,  21,  21,  0],",
+              "new_string": "    'ce':      [14,  42, 105, 187, 166,  3],\n    'tsa':     [ 0, 161,   7,  36,  90,  0],\n    'tsb':     [ 0,   2,   0,   0,   0,  0],\n    'pg':      [ 3,  12,   0,  21,  21,  0],"
+            }
+          },
+          "id": "event-006788"
+        },
+        {
+          "source_line": 6789,
+          "timestamp": "2026-05-20T10:34:27.667856+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/figures/gen_fig3.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-006789"
+        },
+        {
+          "source_line": 6790,
+          "timestamp": "2026-05-20T10:34:33.299336+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/figures/gen_fig3.py",
+              "old_string": "h1      = [raw['h1'][i]      / totals[i] * 100 for i in range(len(conditions))]\nh7a     = [raw['h7a'][i]     / totals[i] * 100 for i in range(len(conditions))]\nh7b     = [raw['h7b'][i]     / totals[i] * 100 for i in range(len(conditions))]\nh8      = [raw['h8'][i]      / totals[i] * 100 for i in range(len(conditions))]",
+              "new_string": "ce      = [raw['ce'][i]      / totals[i] * 100 for i in range(len(conditions))]\ntsa     = [raw['tsa'][i]     / totals[i] * 100 for i in range(len(conditions))]\ntsb     = [raw['tsb'][i]     / totals[i] * 100 for i in range(len(conditions))]\npg      = [raw['pg'][i]      / totals[i] * 100 for i in range(len(conditions))]"
+            }
+          },
+          "id": "event-006790"
+        },
+        {
+          "source_line": 6791,
+          "timestamp": "2026-05-20T10:34:33.350639+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/figures/gen_fig3.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-006791"
+        },
+        {
+          "source_line": 6792,
+          "timestamp": "2026-05-20T10:34:39.778937+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/figures/gen_fig3.py",
+              "old_string": "left = np.zeros(len(conditions))\nax.barh(y, h7a, left=left, color=C_H7a, label='H7a (tautological)', **kw)\nleft += h7a\nax.barh(y, h7b, left=left, color=C_H7b, label='H7b (ISR-specific)', **kw)\nleft += h7b\nax.barh(y, h1, left=left, color=C_H1, label='H1 (shortcut)', **kw)\nleft += h1\nax.barh(y, h8, left=left, color=C_H8, label='H8 (degenerate)', **kw)\nleft += h8",
+              "new_string": "left = np.zeros(len(conditions))\nax.barh(y, tsa, left=left, color=C_TSa, label='TSa (tautological)', **kw)\nleft += tsa\nax.barh(y, tsb, left=left, color=C_TSb, label='TSb (ISR-specific)', **kw)\nleft += tsb\nax.barh(y, ce, left=left, color=C_CE, label='CE (shortcut)', **kw)\nleft += ce\nax.barh(y, pg, left=left, color=C_PG, label='PG (degenerate)', **kw)\nleft += pg"
+            }
+          },
+          "id": "event-006792"
+        },
+        {
+          "source_line": 6793,
+          "timestamp": "2026-05-20T10:34:39.779356+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/figures/gen_fig3.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-006793"
+        },
+        {
+          "source_line": 6794,
+          "timestamp": "2026-05-20T10:34:46.606411+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/figures/gen_fig3.py",
+              "old_string": "# Annotation: ISR β=0.1 H7 vs Random β=0.1 H7\nisr_h7 = h7a[1] + h7b[1]\nrand_h7 = h7a[3] + h7b[3]\nax.annotate(\n    f'ISR H7: {isr_h7:.1f}%\\nvs Random: {rand_h7:.1f}%',\n    xy=(rand_h7 / 2, y[3]),\n    xytext=(60, y[2] + 0.55),\n    fontsize=8.5, fontweight='bold', color=C_H7a,\n    ha='center',\n    arrowprops=dict(arrowstyle='->', color=C_H7a, lw=1.5),\n)",
+              "new_string": "# Annotation: ISR β=0.1 TS vs Random β=0.1 TS\nisr_ts = tsa[1] + tsb[1]\nrand_ts = tsa[3] + tsb[3]\nax.annotate(\n    f'ISR TS: {isr_ts:.1f}%\\nvs Random: {rand_ts:.1f}%',\n    xy=(rand_ts / 2, y[3]),\n    xytext=(60, y[2] + 0.55),\n    fontsize=8.5, fontweight='bold', color=C_TSa,\n    ha='center',\n    arrowprops=dict(arrowstyle='->', color=C_TSa, lw=1.5),\n)"
+            }
+          },
+          "id": "event-006794"
+        },
+        {
+          "source_line": 6795,
+          "timestamp": "2026-05-20T10:34:46.607016+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/figures/gen_fig3.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-006795"
+        },
+        {
+          "source_line": 6796,
+          "timestamp": "2026-05-20T10:34:51.878729+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/figures/gen_fig3.py",
+              "old_string": "base = '/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/figures/fig3_hacking_composition'",
+              "new_string": "base = '/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/figures/fig3_hacking_composition'"
+            }
+          },
+          "id": "event-006796"
+        },
+        {
+          "source_line": 6797,
+          "timestamp": "2026-05-20T10:34:51.929483+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/figures/gen_fig3.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-006797"
+        },
+        {
+          "source_line": 6798,
+          "timestamp": "2026-05-20T10:34:55.895688+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/figures/gen_fig4.py"
+            }
+          },
+          "id": "event-006798"
+        },
+        {
+          "source_line": 6799,
+          "timestamp": "2026-05-20T10:34:55.946404+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\timport matplotlib\n2\tmatplotlib.use('Agg')\n3\timport matplotlib.pyplot as plt\n4\timport numpy as np\n5\t\n6\tplt.rcParams.update({'pdf.fonttype': 42, 'ps.fonttype': 42})\n7\t\n8\tC_FOL = '#0072B2'\n9\tC_PROLOG = '#56B4E9'\n10\tC_H7 = '#D55E00'\n11\tC_DEGEN = '#E69F00'\n12\tC_QUERY = '#CC79A7'\n13\t\n14\tseeds = ['s42', 's43', 's44']\n15\tx = np.arange(len(seeds))\n16\tbar_w = 0.32\n17\t\n18\tfol_isr = [0.132, 0.000, 0.582]\n19\tprolog_isr = [0.037, 0.015, 0.387]\n20\tfol_pr = [93, 14, 98]\n21\tprolog_pr = [83, 56, 21]\n22\t\n23\th7 = [100, 0, 0]\n24\tdegen = [0, 100, 0]\n25\tquery = [0, 0, 100]\n26\t\n27\tfig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10, 4.5), gridspec_kw={'wspace': 0.35})\n28\t\n29\t# === Left Panel ===\n30\tb1 = ax1.bar(x - bar_w/2, fol_isr, bar_w, color=C_FOL, label='FOL', edgecolor='white', linewidth=0.5, zorder=3)\n31\tb2 = ax1.bar(x + bar_w/2, prolog_isr, bar_w, color=C_PROLOG, label='Prolog', edgecolor='white', linewidth=0.5, zorder=3)\n32\t\n33\t# PR labels — handle s43 overlap by staggering vertically\n34\tpr_label_cfg = [\n35\t    # (fol_offset, prolog_offset) vertical nudge from bar top\n36\t    (0.018, 0.018),   # s42: bars well separated\n37\t    (0.055, 0.018),   # s43: FOL=0 Prolog=0.015, stagger FOL higher\n38\t    (0.018, 0.018),   # s44: bars well separated\n39\t]\n40\t\n41\tfor i, (bar, pr) in enumerate(zip(b1, fol_pr)):\n42\t    label = f'PR={pr}%'\n43\t    if i == 1:\n44\t        label += '†'\n45\t    ax1.text(bar.get_x() + bar.get_width()/2, bar.get_height() + pr_label_cfg[i][0],\n46\t             label, ha='center', va='bottom', fontsize=8.5, color=C_FOL)\n47\t\n48\tfor i, (bar, pr) in enumerate(zip(b2, prolog_pr)):\n49\t    label = f'PR={pr}%'\n50\t    if i == 2:\n51\t        label = f'PR={pr}% ($n$=21)'\n52\t    ax1.text(bar.get_x() + bar.get_width()/2, bar.get_height() + pr_label_cfg[i][1],\n53\t             label, ha='center', va='bottom', fontsize=8.5, color='#3a7abf')\n54\t\n55\tax1.set_xticks(x)\n56\tax1.set_xticklabels(seeds, fontsize=11)\n57\tax1.set_ylabel('ISR* (exec-only)', fontsize=11)\n58\tax1.set_ylim(0, 0.75)\n59\tax1.s\n…[truncated 2489 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-006799"
+        },
+        {
+          "source_line": 6800,
+          "timestamp": "2026-05-20T10:34:59.812626+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "True",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/figures/gen_fig4.py",
+              "old_string": "C_H7 = '#D55E00'",
+              "new_string": "C_TS = '#D55E00'"
+            }
+          },
+          "id": "event-006800"
+        },
+        {
+          "source_line": 6801,
+          "timestamp": "2026-05-20T10:34:59.863442+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/figures/gen_fig4.py has been updated. All occurrences were successfully replaced."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-006801"
+        },
+        {
+          "source_line": 6802,
+          "timestamp": "2026-05-20T10:35:04.285250+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/figures/gen_fig4.py",
+              "old_string": "b_h7 = ax2.bar(x, h7, bw2, color=C_TS, label='H7 tautological', edgecolor='white', linewidth=0.5, zorder=3)",
+              "new_string": "b_h7 = ax2.bar(x, h7, bw2, color=C_TS, label='TS tautological', edgecolor='white', linewidth=0.5, zorder=3)"
+            }
+          },
+          "id": "event-006802"
+        },
+        {
+          "source_line": 6803,
+          "timestamp": "2026-05-20T10:35:04.335900+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>String to replace not found in file.\nString: b_h7 = ax2.bar(x, h7, bw2, color=C_TS, label='H7 tautological', edgecolor='white', linewidth=0.5, zorder=3)</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-006803"
+        },
+        {
+          "source_line": 6804,
+          "timestamp": "2026-05-20T10:35:11.112540+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "label.*tautological",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/figures/gen_fig4.py",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-006804"
+        },
+        {
+          "source_line": 6805,
+          "timestamp": "2026-05-20T10:35:11.163322+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "71:b_h7 = ax2.bar(x, h7, bw2, color=C_H7, label='H7 tautological', edgecolor='white', linewidth=0.5, zorder=3)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-006805"
+        },
+        {
+          "source_line": 6806,
+          "timestamp": "2026-05-20T10:35:17.640076+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/figures/gen_fig4.py",
+              "offset": "69",
+              "limit": "30"
+            }
+          },
+          "id": "event-006806"
+        },
+        {
+          "source_line": 6807,
+          "timestamp": "2026-05-20T10:35:17.690718+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "69\t# === Right Panel ===\n70\tbw2 = bar_w * 1.6\n71\tb_h7 = ax2.bar(x, h7, bw2, color=C_H7, label='H7 tautological', edgecolor='white', linewidth=0.5, zorder=3)\n72\tb_degen = ax2.bar(x, degen, bw2, bottom=h7, color=C_DEGEN, label='Degenerate syntax', edgecolor='white', linewidth=0.5, zorder=3)\n73\tb_query = ax2.bar(x, query, bw2, bottom=[h+d for h,d in zip(h7, degen)], color=C_QUERY, label='Query-as-fact', edgecolor='white', linewidth=0.5, zorder=3)\n74\t\n75\tax2.set_xticks(x)\n76\tax2.set_xticklabels(seeds, fontsize=11)\n77\tax2.set_ylabel('Percentage (%)', fontsize=11)\n78\tax2.set_ylim(0, 125)\n79\tax2.set_yticks([0, 25, 50, 75, 100])\n80\tax2.spines['top'].set_visible(False)\n81\tax2.spines['right'].set_visible(False)\n82\tax2.tick_params(axis='both', labelsize=10)\n83\tax2.set_title('(b) Prolog STA Gaming Modes', fontsize=11, fontweight='bold', loc='left', pad=8)\n84\t\n85\t# Annotation below title\n86\tax2.text(1.0, 115, '3/3 seeds gaming, 0% genuine — universal Goodhart',\n87\t         ha='center', fontsize=8.5, fontstyle='italic', color=C_H7)\n88\t\n89\t# Legend: horizontal below figure\n90\tax2.legend(fontsize=8.5, loc='lower center', frameon=False, ncol=3,\n91\t           bbox_to_anchor=(0.5, -0.22))\n92\t\n93\t# Mode labels inside bars\n94\tmode_labels = ['H7\\ntautol.', 'Degen.\\nsyntax', 'Query-\\nas-fact']\n95\tcolors_text = ['white', 'black', 'white']\n96\tfor i, (lbl, ct) in enumerate(zip(mode_labels, colors_text)):\n97\t    ax2.text(x[i], 50, lbl, ha='center', va='center', fontsize=9, fontweight='bold', color=ct)\n98\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-006807"
+        },
+        {
+          "source_line": 6808,
+          "timestamp": "2026-05-20T10:35:26.121989+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/figures/gen_fig4.py",
+              "offset": "8",
+              "limit": "5"
+            }
+          },
+          "id": "event-006808"
+        },
+        {
+          "source_line": 6809,
+          "timestamp": "2026-05-20T10:35:26.223152+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "8\tC_FOL = '#0072B2'\n9\tC_PROLOG = '#56B4E9'\n10\tC_TS = '#D55E00'\n11\tC_DEGEN = '#E69F00'\n12\tC_QUERY = '#CC79A7'"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 101
+          },
+          "id": "event-006809"
+        },
+        {
+          "source_line": 6810,
+          "timestamp": "2026-05-20T10:35:33.430601+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -n 'C_H7\\|H7' /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/figures/gen_fig4.py",
+              "description": "Check remaining H7 references in gen_fig4.py"
+            }
+          },
+          "id": "event-006810"
+        },
+        {
+          "source_line": 6811,
+          "timestamp": "2026-05-20T10:35:33.481593+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "71:b_h7 = ax2.bar(x, h7, bw2, color=C_H7, label='H7 tautological', edgecolor='white', linewidth=0.5, zorder=3)\n87:         ha='center', fontsize=8.5, fontstyle='italic', color=C_H7)\n94:mode_labels = ['H7\\ntautol.', 'Degen.\\nsyntax', 'Query-\\nas-fact']"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-006811"
+        },
+        {
+          "source_line": 6812,
+          "timestamp": "2026-05-20T10:35:42.014416+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "True",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/figures/gen_fig4.py",
+              "old_string": "C_H7",
+              "new_string": "C_TS"
+            }
+          },
+          "id": "event-006812"
+        },
+        {
+          "source_line": 6813,
+          "timestamp": "2026-05-20T10:35:42.015079+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/figures/gen_fig4.py has been updated. All occurrences were successfully replaced."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-006813"
+        },
+        {
+          "source_line": 6814,
+          "timestamp": "2026-05-20T10:35:45.579785+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "True",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/figures/gen_fig4.py",
+              "old_string": "label='H7 tautological'",
+              "new_string": "label='TS tautological'"
+            }
+          },
+          "id": "event-006814"
+        },
+        {
+          "source_line": 6815,
+          "timestamp": "2026-05-20T10:35:45.630517+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/figures/gen_fig4.py has been updated. All occurrences were successfully replaced."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-006815"
+        },
+        {
+          "source_line": 6816,
+          "timestamp": "2026-05-20T10:35:49.697227+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/figures/gen_fig4.py",
+              "old_string": "mode_labels = ['H7\\ntautol.', 'Degen.\\nsyntax', 'Query-\\nas-fact']",
+              "new_string": "mode_labels = ['TS\\ntautol.', 'Degen.\\nsyntax', 'Query-\\nas-fact']"
+            }
+          },
+          "id": "event-006816"
+        },
+        {
+          "source_line": 6817,
+          "timestamp": "2026-05-20T10:35:49.798267+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/figures/gen_fig4.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 101
+          },
+          "id": "event-006817"
+        },
+        {
+          "source_line": 6818,
+          "timestamp": "2026-05-20T10:35:54.920292+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/figures/gen_fig4.py",
+              "old_string": "out_pdf = '/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/figures/fig4_prolog_comparison.pdf'",
+              "new_string": "out_pdf = '/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/figures/fig4_prolog_comparison.pdf'"
+            }
+          },
+          "id": "event-006818"
+        },
+        {
+          "source_line": 6819,
+          "timestamp": "2026-05-20T10:35:54.971057+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/figures/gen_fig4.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-006819"
+        },
+        {
+          "source_line": 6820,
+          "timestamp": "2026-05-20T10:35:58.686418+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/figures/gen_fig5.py"
+            }
+          },
+          "id": "event-006820"
+        },
+        {
+          "source_line": 6821,
+          "timestamp": "2026-05-20T10:35:58.687035+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t#!/usr/bin/env python3\n2\t\"\"\"Generate Fig 5: Training ISR curves across reward conditions — meta-Goodhart gaming.\"\"\"\n3\t\n4\timport json\n5\timport os\n6\timport numpy as np\n7\timport matplotlib\n8\tmatplotlib.use(\"Agg\")\n9\timport matplotlib.pyplot as plt\n10\t\n11\tOI_BLUE = \"#0072B2\"\n12\tOI_RED  = \"#D55E00\"\n13\tOI_SKY  = \"#56B4E9\"\n14\tOI_GREY = \"#999999\"\n15\t\n16\tplt.rcParams.update({\n17\t    \"font.family\": \"DejaVu Sans\", \"font.size\": 8,\n18\t    \"axes.titlesize\": 9, \"axes.labelsize\": 9,\n19\t    \"xtick.labelsize\": 8, \"ytick.labelsize\": 8,\n20\t    \"legend.fontsize\": 8, \"figure.dpi\": 300,\n21\t    \"savefig.dpi\": 300, \"savefig.bbox\": \"tight\",\n22\t    \"savefig.pad_inches\": 0.03,\n23\t    \"axes.spines.top\": False, \"axes.spines.right\": False,\n24\t    \"lines.linewidth\": 1.4, \"pdf.fonttype\": 42, \"ps.fonttype\": 42,\n25\t})\n26\t\n27\t\n28\tdef rolling_mean(arr, w=20):\n29\t    kernel = np.ones(w) / w\n30\t    padded = np.concatenate([np.full(w - 1, arr[0]), arr])\n31\t    return np.convolve(padded, kernel, mode=\"valid\")\n32\t\n33\t\n34\tdata_path = os.path.join(os.path.dirname(__file__), \"fig2_data.json\")\n35\twith open(data_path) as f:\n36\t    data = json.load(f)\n37\t\n38\tW = 20\n39\t\n40\texec_s44_steps = np.array(data[\"exec_s44\"][\"steps\"])\n41\texec_s44_smooth = rolling_mean(np.array(data[\"exec_s44\"][\"isr\"]), W)\n42\t\n43\tisr_s44_steps = np.array(data[\"isr_s44\"][\"steps\"])\n44\tisr_s44_smooth = rolling_mean(np.array(data[\"isr_s44\"][\"isr\"]), W)\n45\t\n46\tisr_1k_steps = np.array(data[\"isr_s42_1000\"][\"steps\"])\n47\tisr_1k_smooth = rolling_mean(np.array(data[\"isr_s42_1000\"][\"isr\"]), W)\n48\t\n49\trand_s44_steps = np.array(data[\"random_s44\"][\"steps\"])\n50\trand_s44_smooth = rolling_mean(np.array(data[\"random_s44\"][\"isr\"]), W)\n51\t\n52\tfig, ax = plt.subplots(figsize=(3.25, 2.4))\n53\t\n54\tax.plot(isr_s44_steps, isr_s44_smooth, color=OI_RED, linewidth=1.6,\n55\t        label=r\"ISR $\\beta\\!=\\!0.1$ (s44)\", zorder=5)\n56\tax.plot(isr_1k_steps, isr_1k_smooth, color=OI_RED, linewidth=1.0,\n57\t        alpha=0.5, linestyle=\"--\",\n58\t        label=r\"ISR $\\beta\\!=\\!0.1$ (s\n…[truncated 1624 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-006821"
+        },
+        {
+          "source_line": 6822,
+          "timestamp": "2026-05-20T10:36:04.084208+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/figures/gen_fig5.py",
+              "old_string": "ax.annotate(\"H7a artifact\",\n            xy=(350, exec_s44_smooth[349]),\n            xytext=(430, 0.65),\n            fontsize=8, color=OI_BLUE, fontstyle=\"italic\",\n            arrowprops=dict(arrowstyle=\"->\", color=OI_BLUE, lw=0.7,\n                            connectionstyle=\"arc3,rad=0.2\"),\n            ha=\"center\", va=\"center\")",
+              "new_string": "ax.annotate(\"TS artifact\",\n            xy=(350, exec_s44_smooth[349]),\n            xytext=(430, 0.65),\n            fontsize=8, color=OI_BLUE, fontstyle=\"italic\",\n            arrowprops=dict(arrowstyle=\"->\", color=OI_BLUE, lw=0.7,\n                            connectionstyle=\"arc3,rad=0.2\"),\n            ha=\"center\", va=\"center\")"
+            }
+          },
+          "id": "event-006822"
+        },
+        {
+          "source_line": 6823,
+          "timestamp": "2026-05-20T10:36:04.185254+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/figures/gen_fig5.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Edit",
+            "elapsed_ms": 101
+          },
+          "id": "event-006823"
+        },
+        {
+          "source_line": 6824,
+          "timestamp": "2026-05-20T10:36:08.404010+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/figures && python3 gen_fig3.py 2>&1",
+              "description": "Regenerate Fig 3 with new naming"
+            }
+          },
+          "id": "event-006824"
+        },
+        {
+          "source_line": 6825,
+          "timestamp": "2026-05-20T10:36:09.307423+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/figures && python3 gen_fig5.py 2>&1",
+              "description": "Regenerate Fig 5 with new naming"
+            }
+          },
+          "id": "event-006825"
+        },
+        {
+          "source_line": 6826,
+          "timestamp": "2026-05-20T10:36:09.809529+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/figures && python3 gen_fig4.py 2>&1",
+              "description": "Regenerate Fig 4 with new naming"
+            }
+          },
+          "id": "event-006826"
+        },
+        {
+          "source_line": 6827,
+          "timestamp": "2026-05-20T10:36:09.960615+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Saved: /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/figures/fig3_hacking_composition.pdf\nSaved: /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/figures/fig3_hacking_composition.png\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/paper_agent_67125125"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 1556
+          },
+          "id": "event-006827"
+        },
+        {
+          "source_line": 6828,
+          "timestamp": "2026-05-20T10:36:11.416326+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Saved: /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/figures/fig5_training_isr_curves.pdf\nSaved: /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/figures/fig5_training_isr_curves.png\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/paper_agent_67125125"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 2108
+          },
+          "id": "event-006828"
+        },
+        {
+          "source_line": 6829,
+          "timestamp": "2026-05-20T10:36:13.073647+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Saved: /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/figures/fig4_prolog_comparison.pdf\nSaved: /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/figures/fig4_prolog_comparison.png\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/paper_agent_67125125"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Bash",
+            "elapsed_ms": 3264
+          },
+          "id": "event-006829"
+        },
+        {
+          "source_line": 6830,
+          "timestamp": "2026-05-20T10:36:16.790907+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/figures/fig3_hacking_composition.png"
+            }
+          },
+          "id": "event-006830"
+        },
+        {
+          "source_line": 6831,
+          "timestamp": "2026-05-20T10:36:17.697619+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 906
+          },
+          "id": "event-006831"
+        },
+        {
+          "source_line": 6832,
+          "timestamp": "2026-05-20T10:36:17.748342+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/figures/fig4_prolog_comparison.png"
+            }
+          },
+          "id": "event-006832"
+        },
+        {
+          "source_line": 6833,
+          "timestamp": "2026-05-20T10:36:17.949632+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/figures/fig5_training_isr_curves.png"
+            }
+          },
+          "id": "event-006833"
+        },
+        {
+          "source_line": 6834,
+          "timestamp": "2026-05-20T10:36:17.954738+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 5
+          },
+          "id": "event-006834"
+        },
+        {
+          "source_line": 6835,
+          "timestamp": "2026-05-20T10:36:18.508146+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 759
+          },
+          "id": "event-006835"
+        },
+        {
+          "source_line": 6836,
+          "timestamp": "2026-05-20T10:36:19.279752+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "An image in the conversation exceeds the dimension limit for many-image requests (2000px). Start a new session with fewer images."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent"
+          },
+          "id": "event-006836"
+        }
+      ]
+    },
+    {
+      "number": 251,
+      "messages": [
+        {
+          "source_line": 6837,
+          "timestamp": "2026-05-20T10:36:19.837742+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] [数据修正] A2 补充说明\n\n1000-step s43 的 Worker 数据源有误（用了 r2 而非论文引用的 r7）。修正：\n- s43 1000-step PR: 0.90 → **0.96**\n- s43 1000-step hacking mode: TS → **CE** (h7_count=0 in r7)\n- 3-seed 1000-step mean PR: 0.95±0.05 → **0.97±0.02**（与论文 experiments.tex 一致）\n\n**不影响核心 claim**：\"100% hacking at 1000 steps\" 对所有 3 seeds 均成立，无论 data source。\n\nAbstract 建议使用 Reviewer 推荐的 robust claims（不依赖特定 run 版本）：\n- \"all three seeds converge to 0% genuine non-hacking by 1000 steps\"\n- \"hacking modes differ across seeds but structural collapse is universal\"\n\n避免在 Abstract 放 1000-step 的具体 per-seed 数字。500-step 数据（之前发的）不受影响。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "source": "director"
+          },
+          "id": "event-006837"
+        },
+        {
+          "source_line": 6838,
+          "timestamp": "2026-05-20T10:36:36.884491+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/abstract.tex"
+            }
+          },
+          "id": "event-006838"
+        },
+        {
+          "source_line": 6839,
+          "timestamp": "2026-05-20T10:36:36.935459+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\begin{abstract}\n2\tWe find that a neurosymbolic formalizer (Qwen3-4B trained with GRPO on 500 FOLIO examples) achieves a 93\\% prove rate---yet 87\\% of proved outputs embed the conclusion among the premises (seed~42), a degenerate shortcut invisible to execution reward.\n3\tWe introduce \\emph{Solver Trace Ablation} (STA), a diagnostic applying leave-one-out component necessity testing to solver inputs; the fraction of necessary components yields the \\emph{Intensional Structural Reward} (ISR).\n4\tAs a diagnostic, ISR exposes a collapse trajectory hidden from prove rate: over 100--1000 GRPO steps, ISR falls to near-zero (e.g., $0.642{\\to}0.003$ for seed~42) while prove rate rises dramatically; each seed converges to a qualitatively different hacking mode, yet all three reach 100\\% structural hacking by 1000 steps (0/286 genuine across seeds).\n5\tA supervised fine-tuning baseline reaches 92.3\\% non-hacking on identical data, consistent with GRPO-specific degradation.\n6\tAs a reward ($r = r_{\\text{exec}}\\cdot(1{+}\\beta\\,\\text{ISR})$), ISR induces Goodhart effects: ISR increases tautological shortcutting in all 3 seeds relative to matched random control, but the sole apparent ISR advantage reduces to $1.06\\times$ after controlling for a premise-count confound.\n7\tCross-dataset replication on ProofFOL confirms structural degeneration generalizes, while ISR as training signal produces dataset-dependent outcomes---Goodhart collapse on FOLIO versus beneficial instability on ProofFOL.\n8\tAcross 6 reward conditions, 2 logic types, 2 dataset families, and 3 seeds, we catalog 8 hacking modes---documenting ISR's asymmetry: reliable as a diagnostic, dataset-dependent as an optimization target.\\footnote{Code and data: \\url{[anonymized]}}\n9\t\\end{abstract}\n10\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-006839"
+        },
+        {
+          "source_line": 6840,
+          "timestamp": "2026-05-20T10:36:42.106862+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:paper_agent",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/abstract.tex",
+              "old_string": "each seed converges to a qualitatively different hacking mode, yet all three reach 100\\% structural hacking by 1000 steps (0/286 genuine across seeds).",
+              "new_string": "each seed converges to a qualitatively different hacking mode, yet all three reach 0\\% genuine non-hacking by 1000 steps."
+            }
+          },
+          "id": "event-006840"
+        }
+      ]
+    }
+  ]
+}

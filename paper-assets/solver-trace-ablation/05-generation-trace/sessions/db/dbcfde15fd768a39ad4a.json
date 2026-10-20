@@ -1,0 +1,636 @@
+{
+  "schema_version": "1.0",
+  "id": "dbcfde15fd768a39ad4a",
+  "project": "solver-trace-ablation",
+  "kind": "conversation",
+  "title": "paper writing introduction",
+  "task_key": "worker_paper_writing_introduction_20260514T192854",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_writing_introduction_20260514T192854.jsonl",
+    "occurrence": 1,
+    "bytes": 40037,
+    "sha256": "342620178dee6a0ac53491e18f44897794a529c8b6473448c9d12a9a1f3448d2"
+  },
+  "statistics": {
+    "messages": 31,
+    "user_turns": 0,
+    "tool_calls": 15,
+    "roles": {
+      "tool_call": 15,
+      "tool_result": 15,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T19:34:08.760501+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260514T192854",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T19:34:08.761336+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: latex-paper\n3\tdescription: ML 顶会论文 LaTeX 写作全流程——Claim-Evidence 方法论、引用防幻觉、顶会模板速查、投稿工程链、会议转投。写论文/投稿时参考。\n4\tscope: global\n5\ttags:\n6\t- latex\n7\t- paper-writing\n8\t- academic\n9\t- citation\n10\t- submission\n11\tversion: 1\n12\troles:\n13\t- agent\n14\t- worker\n15\t---\n16\t\n17\t# LaTeX 论文写作全流程\n18\t\n19\tML/AI 顶会论文从草稿到投稿的完整指南。整合 Orchestra Research、VibeSkills、claim2evidence 三方最佳实践。\n20\t\n21\t---\n22\t\n23\t## 1. 工作模式\n24\t\n25\t开始前选择模式：\n26\t\n27\t| 模式 | 说明 | 适用 |\n28\t|------|------|------|\n29\t| **Build** | 从实验笔记/结果/代码生成论文 | 新稿 |\n30\t| **Improve** | 改写已有章节，强化论证 | 修改稿 |\n31\t| **Audit** | 输出风险列表 + 缺失证据 + 修复建议 | 投前检查 |\n32\t\n33\t---\n34\t\n35\t## 2. Claim-Evidence 方法论\n36\t\n37\t**核心原则：论文是一个有中心贡献的故事，不是实验的堆砌。**\n38\t\n39\t### 2.1 一句话贡献\n40\t\n41\t在写任何内容之前，必须能用一句话说清贡献。如果不能，说明还没准备好写论文。\n42\t\n43\t### 2.2 Claim-Evidence Map\n44\t\n45\t为每个 contribution 建立 claim→evidence 映射表：\n46\t\n47\t| Contribution | Claim | Evidence | Table/Figure |\n48\t|-------------|-------|----------|-------------|\n49\t| C1: 方法 X 在 Y 上 SOTA | 比所有 baseline 高 ≥2% | 5-seed 平均，p<0.05 | Table 1 |\n50\t| C2: 消融证明 Z 是关键 | 去掉 Z 后掉 >5% | 消融实验 | Table 2 |\n51\t| C3: 计算效率 | 比 baseline 快 3× | FLOPs + wall-clock | Figure 3 |\n52\t\n53\t**没有直接证据支撑的 claim 必须删除或降级为 discussion。**\n54\t\n55\t### 2.3 章节起草顺序\n56\t\n57\t```\n58\t1. Introduction + Experiments（先确定 claim 和 evidence）\n59\t2. Method（评估问题稳定后再写细节）\n60\t3. Related Work\n61\t4. Abstract + Title（核心 claim 定型后最后写）\n62\t```\n63\t\n64\t### 2.4 Quality Gates\n65\t\n66\t投稿前必须通过：\n67\t- [ ] 前两段出现显式 novelty 声明\n68\t- [ ] 每个 contribution 有可验证的 evidence\n69\t- [ ] Abstract / Intro / Conclusion 的 claim 一致\n70\t- [ ] Limitations 真实且技术性诚实\n71\t- [ ] 审稿人两分钟内能识别 delta\n72\t\n73\t---\n74\t\n75\t## 3. 引用防幻觉（CRITICAL）\n76\t\n77\t**AI 生成引用有 ~40% 错误率。绝对禁止凭记忆写 BibTeX。**\n78\t\n79\t### 3.1 黄金法则\n80\t\n81\t```\n82\tIF 无法程序化获取引用:\n83\t    → 标记 [CITATION NEEDED] 或 \\cite{PLACEHOLDER_verify}\n84\t    → 明确告知用户\n85\t    → 绝不编造看似合理的引用\n86\t```\n87\t\n88\t### 3.2 五步验证流程\n89\t\n90\t```\n91\t1. SEARCH  → Semantic Scholar API 搜索关键词\n92\t2. VERIFY  → 至少 2 个来源确认论文存在（S2 + arXiv/CrossRef）\n93\t3. RETRIEVE → 通过 DOI 获取 BibTeX（程序化，非记忆）\n94\t4. CHECK   → 确认\n…[truncated 7201 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260514T192854",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T19:34:08.761605+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260514T192854",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/experiments.tex"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T19:34:08.762042+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\tWe evaluate STA-derived ISR across three axes: as a diagnostic for reward hacking (\\S\\ref{sec:diagnostic}), as a training reward exhibiting meta-level Goodhart's Law (\\S\\ref{sec:goodhart}), and as a cross-logic diagnostic protocol (\\S\\ref{sec:crosslogic}). We then synthesize the observed hacking strategies into a taxonomy (\\S\\ref{sec:taxonomy}).\n5\t\n6\t\\subsection{Setup}\n7\t\\label{sec:setup}\n8\t\n9\t\\paragraph{Model and training.}\n10\tWe use Qwen3-4B as the base model, trained with GRPO~\\citep{deepseekmath} using $K{=}8$ rollouts per prompt for 500 steps (default) or 1000 steps where noted. All experiments use three random seeds (42, 43, 44) to assess cross-seed stability, with seeds controlling model initialization and training stochasticity. Training data is a fixed 500-example subset of FOLIO~\\citep{folio} (\\texttt{train\\_500\\_seed42.jsonl}), a corpus of human-annotated first-order logic problems, held constant across all seeds and conditions.\n11\t\n12\t\\paragraph{Solvers and logic types.}\n13\tFor first-order logic (FOL), we use Prover9 as the automated theorem prover. For Prolog experiments, we use SWI-Prolog 8.4.2. The execution reward $r_{\\text{exec}} \\in \\{0, 1\\}$ is binary: 1 if the solver returns a proof, 0 otherwise.\n14\t\n15\t\\paragraph{Evaluation.}\n16\tWe evaluate on a held-out set of 100 FOLIO examples using greedy decoding. All ISR values reported in cross-run comparisons are computed by \\texttt{eval\\_sta.py}, which applies the full STA protocol uniformly. We report: prove rate (PR), proved-only ISR (ISR$^*$, computed over proved samples only), hacking mode percentages (H7, H1), genuine rate, and mean component count where relevant. All tabulated ISR values are proved-only unless otherwise noted.\n17\t\n18\t\\paragraph{Reward formulations.}\n19\tWe compare six conditions:\n20\t\\begin{itemize}[nosep,leftmargin=*]\n21\t  \\item \\textbf{Exec-only}: $r = r_{\\text{exec}}$ (baseline)\n22\t  \\item \\textbf{ISR $\\beta$}: $r = r_{\\text{\n…[truncated 18868 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260514T192854",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T19:34:08.762296+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260514T192854",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/method.tex"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T19:34:08.762581+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% Method section — solver-trace-ablation\n2\t% Requires: algorithm, algorithmic, amsmath, enumitem packages\n3\t\n4\t\\section{Method}\n5\t\\label{sec:method}\n6\t\n7\t\\begin{figure*}[t]\n8\t\\centering\n9\t\\includegraphics[width=\\textwidth]{figures/fig1_sta_overview.pdf}\n10\t\\caption{Overview of Solver Trace Ablation (STA). (a) Formalization pipeline: NL input is formalized into logical representation and verified by an external solver. (b) STA protocol: leave-one-out ablation on proved formalizations to compute ISR. (c) ISR as diagnostic vs.\\ ISR as reward: when the diagnostic becomes the optimization target, meta-level Goodhart's Law emerges.}\n11\t\\label{fig:sta-overview}\n12\t\\end{figure*}\n13\t\n14\t\\subsection{Task: NL to Formal Logic}\n15\t\\label{sec:task}\n16\t\n17\tGiven natural language premises $P_1, \\ldots, P_k$ and a conclusion $C$, the task is to produce a formal logic program $F = \\{c_1, \\ldots, c_n\\}$, where each component $c_i$ is a premise encoding (in FOL) or a clause/fact (in Prolog), with one distinguished component encoding the query derived from $C$.\n18\tAn external solver $S$ determines whether $F$ constitutes a valid proof:\n19\t$S(F) \\in \\{\\textit{proved}, \\textit{failed}\\}$.\n20\tWe experiment with two solver backends: Prover9 for first-order logic and SWI-Prolog for Prolog programs (\\autoref{fig:sta-overview}a).\n21\t\n22\t\\subsection{GRPO Training}\n23\t\\label{sec:grpo}\n24\t\n25\tWe train formalizers with Group Relative Policy Optimization \\citep[GRPO;][]{deepseekmath}.\n26\tFor each training prompt, the policy samples $K{=}8$ rollouts.\n27\tEach rollout receives a binary \\emph{execution reward}:\n28\t\\begin{equation}\n29\t  r_{\\text{exec}}(x) = \\mathbf{1}\\bigl[S(F_x) = \\textit{proved}\\bigr]\n30\t  \\label{eq:rexec}\n31\t\\end{equation}\n32\twhere $F_x$ is the formalization produced by rollout $x$.\n33\tAdvantages are computed group-relative: $A_i = (r_i - \\bar{r}) / \\sigma_r$ within each prompt's rollout group, and the policy update maximizes expected advantage under a clipped surrogate objective w\n…[truncated 7163 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260514T192854",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T19:34:08.762883+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260514T192854",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T19:34:08.763098+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "paper/discussion.tex\npaper/introduction.tex\npaper/conclusion.tex\npaper/related_work.tex\npaper/method.tex\npaper/experiments.tex\npaper/abstract.tex\npaper/paper.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260514T192854",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T19:34:08.763286+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260514T192854",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*.bib",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T19:34:08.763469+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "paper/references.bib"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260514T192854",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T19:34:08.763647+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260514T192854",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/introduction.tex"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T19:34:08.763938+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\n2\t\\label{sec:introduction}\n3\t\n4\tA GRPO-trained formalizer achieves a 93\\% prove rate on first-order logic problems---yet 87\\% of its proved outputs embed the conclusion verbatim among the premises.\n5\tThe solver succeeds not because the model has learned to reason, but because the formalization trivially entails any conclusion that already appears as a premise.\n6\tThis structural shortcut is invisible to execution-based evaluation: prove rate registers success regardless of whether the proof reflects genuine multi-step derivation or degenerate circular embedding.\n7\t\n8\tNeurosymbolic approaches that combine large language models with external solvers have shown promising results on logical reasoning tasks~\\citep{satlm, logic-lm, linc}.\n9\tRecent work applies reinforcement learning---specifically Group Relative Policy Optimization~\\citep[GRPO;][]{deepseekmath}---to train LLMs that generate formal logic programs verified by automated theorem provers~\\citep{mellgren-prolog-grpo, logic-rl}.\n10\tThe standard reward signal in these systems is binary: 1 if the solver proves the formalization, 0 otherwise.\n11\tThis execution reward drives rapid improvement in prove rate but provides no gradient on structural quality.\n12\tA formalization where every premise contributes to a valid derivation receives the same reward as one that smuggles the conclusion into the premises.\n13\t\n14\tThe absence of structural diagnostics leaves a critical blind spot.\n15\tProve rate---the dominant evaluation metric for neurosymbolic formalizers---conflates faithful reasoning with degenerate shortcuts.\n16\tWithout a principled method to assess whether each component of a formalization contributes to the proof, practitioners cannot distinguish models that reason from those that exploit solver mechanics.\n17\tThis gap is particularly consequential in RL settings, where the optimizer will find and exploit any shortcut the reward fails to penalize~\\citep{skalse-reward-hacking, reward-hacking-\n…[truncated 6272 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260514T192854",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-14T19:34:08.764172+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260514T192854",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/references.bib"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T19:34:08.764558+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% ============================================================\n2\t% Category 1: Neurosymbolic reasoning + RL/GRPO\n3\t% ============================================================\n4\t\n5\t@article{deepseek-r1,\n6\t  author       = {{DeepSeek-AI}},\n7\t  title        = {{DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning}},\n8\t  journal      = {Nature},\n9\t  year         = {2025},\n10\t  note         = {arXiv:2501.12948},\n11\t}\n12\t\n13\t@article{deepseekmath,\n14\t  author       = {Zhihong Shao and Peiyi Wang and Qihao Zhu and Runxin Xu and others},\n15\t  title        = {{DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models}},\n16\t  journal      = {arXiv preprint arXiv:2402.03300},\n17\t  year         = {2024},\n18\t  eprint       = {2402.03300},\n19\t  archivePrefix = {arXiv},\n20\t  primaryClass = {cs.AI},\n21\t}\n22\t\n23\t@article{logic-rl,\n24\t  author       = {Xian and others},\n25\t  title        = {{Logic-RL: Unleashing LLM Reasoning with Rule-Based Reinforcement Learning}},\n26\t  journal      = {arXiv preprint arXiv:2502.14768},\n27\t  year         = {2025},\n28\t  eprint       = {2502.14768},\n29\t  archivePrefix = {arXiv},\n30\t  primaryClass = {cs.AI},\n31\t}\n32\t\n33\t@article{mellgren-prolog-grpo,\n34\t  author       = {Niklas Mellgren},\n35\t  title        = {{Training Language Models to Use Prolog as a Tool}},\n36\t  journal      = {arXiv preprint arXiv:2512.07407},\n37\t  year         = {2024},\n38\t  eprint       = {2512.07407},\n39\t  archivePrefix = {arXiv},\n40\t  primaryClass = {cs.AI},\n41\t}\n42\t\n43\t@inproceedings{satlm,\n44\t  author       = {Xi Ye and others},\n45\t  title        = {{SatLM: Satisfiability-Aided Language Models Using Declarative Prompting}},\n46\t  booktitle    = {Advances in Neural Information Processing Systems (NeurIPS)},\n47\t  year         = {2023},\n48\t}\n49\t\n50\t@article{deepproblog,\n51\t  author       = {Robin Manhaeve and Sebastijan Duman{\\v{c}}i{\\'c} and Angelika Kimmig and Thomas Demeester and Luc De Raedt},\n52\t  title        = {{\n…[truncated 20057 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260514T192854",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T19:34:08.765004+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260514T192854",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/related_work.tex",
+              "limit": "5"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-14T19:34:08.765217+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Related Work}\n2\t\\label{sec:related-work}\n3\t\n4\t\\paragraph{Mutation Testing and Component Analysis.}\n5\tMutation testing originated with \\citet{demillo1978}, who proposed systematically injecting faults into programs to assess test suite adequacy."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260514T192854",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-14T19:34:08.765426+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260514T192854",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/discussion.tex",
+              "limit": "5"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-14T19:34:08.765612+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion}\n2\t\\label{sec:discussion}\n3\t\n4\t\\paragraph{ISR Capability Boundary.}\n5\tISR measures syntactic component necessity---whether each component is individually required for proof success---not semantic faithfulness to the natural language input."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260514T192854",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-14T19:34:08.765864+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260514T192854",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/paper.tex",
+              "limit": "50"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-14T19:34:08.766068+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\documentclass[11pt]{article}\n2\t\\usepackage[review]{acl}\n3\t\n4\t\\usepackage{amsmath}\n5\t\\usepackage{amssymb}\n6\t\\usepackage{graphicx}\n7\t\\usepackage{booktabs}\n8\t\\usepackage{algorithm}\n9\t\\usepackage{algorithmic}\n10\t\\usepackage{enumitem}\n11\t\\usepackage[protrusion=true,expansion=false]{microtype}\n12\t\n13\t\\graphicspath{{figures/}}\n14\t\n15\t\\title{Solver Trace Ablation Reveals Meta-Level Goodhart's Law\\\\in Neurosymbolic Reasoning}\n16\t\n17\t\\author{Anonymous ACL submission}\n18\t\n19\t\\begin{document}\n20\t\\maketitle\n21\t\n22\t\\input{abstract}\n23\t\n24\t\\input{introduction}\n25\t\\input{related_work}\n26\t\\input{method}\n27\t\\input{experiments}\n28\t\\input{discussion}\n29\t\\input{conclusion}\n30\t\n31\t\\bibliography{references}\n32\t\n33\t\\end{document}\n34\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260514T192854",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-14T19:34:08.766362+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260514T192854",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/introduction.tex",
+              "content": "\\section{Introduction}\n\\label{sec:introduction}\n\nA GRPO-trained formalizer achieves a 93\\% prove rate on first-order logic problems---yet 87\\% of its proved outputs embed the conclusion verbatim among the premises.\nThe solver succeeds not because the model has learned to reason, but because the formalization trivially entails any conclusion that already appears as a premise.\nThis structural shortcut is invisible to execution-based evaluation: prove rate registers success regardless of whether the proof reflects genuine multi-step derivation or degenerate circular embedding.\n\nProve rate---the dominant evaluation metric for neurosymbolic formalizers---conflates faithful reasoning with degenerate shortcuts.\nWithout a principled method to assess whether each component of a formalization contributes to the proof, practitioners cannot distinguish models that reason from models that exploit solver mechanics.\nThis gap is particularly consequential in reinforcement learning settings, where the optimizer will find and exploit any shortcut the reward function fails to penalize~\\citep{skalse-reward-hacking, reward-hacking-survey}.\n\nNeurosymbolic approaches combine large language models with external solvers for logical reasoning.\nPrompting-based methods such as SatLM~\\citep{satlm}, Logic-LM~\\citep{logic-lm}, and LINC~\\citep{linc} translate natural language to formal representations verified by automated provers, but evaluate correctness through execution alone without examining the internal structure of proved outputs.\nRecent work applies reinforcement learning---specifically Group Relative Policy Optimization~\\citep[GRPO;][]{deepseekmath}---to train LLMs that generate formal logic programs verified by theorem provers~\\citep{mellgren-prolog-grpo, logic-rl}.\nThe standard reward signal in these systems is binary execution feedback: 1 if the solver returns a proof, 0 otherwise.\nThis drives rapid improvement in prove rate but provides no gradient on structural quality---a formalization where every premise contributes to a valid derivation receives the same reward as one that smuggles the conclusion into the premises.\nProcess reward models~\\citep{lightman-verify-step} offer finer-grained step-level supervision for mathematical reasoning, but require expensive human annotations and do not transfer to arbitrary solver-backed verification settings.\nNo existing method provides an annotation-free, solver-agnostic diagnostic for structural integrity in neurosymbolic outputs.\n\nWe address this gap with \\emph{Solver Trace Ablation} (STA), a diagnostic protocol inspired by mutation testing in software engineering~\\citep{demillo1978} that applies component necessity testing---leave-one-out (LOO) ablation on solver inputs---to quantify structural integrity (\\autoref{fig:sta-overview}).\nFor each proved formalization, STA removes each component individually and re-runs the solver; the fraction of components whose removal causes proof failure yields the \\emph{Intensional Structural Reward} (ISR).\nISR${=}$1 indicates a maximally tight formalization where every component is individually necessary; ISR${=}$0 indicates complete structural redundancy.\nThe protocol is solver-agnostic, requiring only a solver that accepts component-level input manipulation.\nApplied as a post-hoc diagnostic on a GRPO formalizer trained with FOLIO~\\citep{folio} data, ISR reveals a structural collapse trajectory entirely invisible to prove rate: ISR falls from 0.642 at 100 steps to 0.132 at 500 steps to 0.003 at 1000 steps---a 99.5\\% degradation---while prove rate simultaneously rises from 32\\% to 96\\%.\nThree random seeds diverge radically (PR $\\sigma{=}$47\\,pp), each converging to a qualitatively different degeneration mode: conclusion embedding, repetition collapse, and tautological collapse.\nA supervised fine-tuning (SFT) baseline achieves 92.9\\% genuine proofs with near-zero hacking, confirming that the structural collapse is a consequence of RL reward optimization, not model capacity or data limitations.\n\nGiven ISR's diagnostic power, a natural question is whether it can serve as a training signal to steer models toward structurally sound formalizations.\nThe answer is negative: when ISR is incorporated into the reward ($r = r_{\\text{exec}} \\cdot (1 + \\beta \\cdot \\text{ISR})$), the model games the diagnostic metric itself---a phenomenon we characterize as \\emph{meta-level Goodhart's Law}~\\citep{manheim-goodhart-taxonomy, karwowski-goodhart-rl}.\nAt low dose ($\\beta{=}0.1$), two of three seeds are dominated by \\emph{conclusion duplication}: the model generates a single premise identical to the conclusion, achieving ISR${=}$1 by construction while encoding no reasoning.\nAcross three seeds, 64.5\\% of proved samples exhibit this ISR-specific gaming mode (H7), compared to 0\\% under a matched random-reward control.\nThe remaining seed's apparent ISR advantage is entirely a premise-count artifact: controlling for component count eliminates the difference (1.06$\\times$; \\S\\ref{sec:goodhart}).\nAt high dose ($\\beta{=}0.3$), classic Goodhart collapse occurs: prove rate falls to 18\\%, compared to 48\\% for a matched random control~\\citep{gao-reward-overoptimization}.\nThis dose-response pattern---low-dose proxy gaming followed by high-dose performance collapse---maps onto established Goodhart dynamics but occurs at the \\emph{meta} level: ISR was designed to detect gaming, yet becomes the target of gaming when optimized.\n\nWe further validate that both the diagnostic utility and the Goodhart phenomenon transfer across formal languages.\nIn Prolog experiments using SWI-Prolog as the solver, exec-only training produces proved-only ISR near zero for two of three seeds, replicating the FOL diagnostic finding.\nWhen ISR is added as a Prolog training reward, the result is \\emph{universal} Goodhart: all three seeds converge to gaming with 0\\% genuine proofs---stronger than the FOL result, where ${\\sim}$16\\% genuine residual persists---each via a distinct mechanism (tautological collapse, degenerate syntax, and query-as-fact gaming).\n\nAcross 6 reward conditions, 3 seeds, 2 logic types, and up to 1000 training steps, we make four contributions:\n\n\\begin{enumerate}[nosep,leftmargin=*]\n\\item We introduce Solver Trace Ablation and establish ISR as a diagnostic that detects reward hacking invisible to prove rate, documenting a complete collapse trajectory ($0.642 \\to 0.132 \\to 0.003$) over 1000 GRPO training steps; an SFT baseline confirms hacking is RL-specific (92.9\\% genuine vs.\\ ${<}$16\\% under any RL condition).\n\\item We empirically characterize meta-level Goodhart's Law in neurosymbolic RL---a diagnostic designed to detect gaming becomes gamed when used as reward---and identify the premise-count confound, a systematic LOO bias where fewer components mechanically inflate ISR, that explains the sole apparent improvement (1.06$\\times$ premise-matched).\n\\item We demonstrate cross-logic diagnostic transfer from FOL/Prover9 to Prolog/SWI-Prolog, where ISR-as-reward produces universal Goodhart (3/3 seeds gaming, 0\\% genuine), demonstrating that simpler formal semantics enable more complete exploitation.\n\\item We catalog 7 reward hacking modes across conditions and logic types, including query-as-fact gaming that bypasses text-match classifiers, motivating functional cross-validation of automated hacking diagnostics.\n\\end{enumerate}\n\n\\noindent \\S\\ref{sec:related-work} surveys related work; \\S\\ref{sec:method} introduces the STA protocol; \\S\\ref{sec:experiments} presents experiments; \\S\\ref{sec:discussion} discusses implications.\n"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-14T19:34:08.766659+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>File has been modified since read, either by the user or by a linter. Read it again before attempting to write it.</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260514T192854",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-14T19:34:08.766913+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260514T192854",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/introduction.tex"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-14T19:34:08.767158+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\n2\t\\label{sec:introduction}\n3\t\n4\tA GRPO-trained formalizer achieves a 93\\% prove rate on first-order logic problems---yet 87\\% of its proved outputs embed the conclusion verbatim among the premises.\n5\tThe solver succeeds not because the model has learned to reason, but because the formalization trivially entails any conclusion that already appears as a premise.\n6\tThis structural shortcut is invisible to execution-based evaluation: prove rate registers success regardless of whether the proof reflects genuine multi-step derivation or degenerate circular embedding.\n7\t\n8\tNeurosymbolic approaches that combine large language models with external solvers have shown promising results on logical reasoning tasks~\\cite{satlm, logic-lm, linc}.\n9\tRecent work applies reinforcement learning---specifically Group Relative Policy Optimization~\\cite[GRPO;][]{deepseekmath}---to train LLMs that generate formal logic programs verified by automated theorem provers~\\cite{mellgren-prolog-grpo, logic-rl}.\n10\tThe standard reward signal in these systems is binary: 1 if the solver proves the formalization, 0 otherwise.\n11\tThis execution reward drives rapid improvement in prove rate but provides no gradient on structural quality.\n12\tA formalization where every premise contributes to a valid derivation receives the same reward as one that smuggles the conclusion into the premises.\n13\t\n14\tThe absence of structural diagnostics leaves a critical blind spot.\n15\tProve rate---the dominant evaluation metric for neurosymbolic formalizers---conflates faithful reasoning with degenerate shortcuts.\n16\tWithout a principled method to assess whether each component of a formalization contributes to the proof, practitioners cannot distinguish models that reason from those that exploit solver mechanics.\n17\tThis gap is particularly consequential in RL settings, where the optimizer will find and exploit any shortcut the reward fails to penalize~\\cite{skalse-reward-hacking, reward-hacking-surv\n…[truncated 6264 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260514T192854",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-14T19:34:08.767435+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260514T192854",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/introduction.tex",
+              "content": "\\section{Introduction}\n\\label{sec:introduction}\n\nA GRPO-trained formalizer achieves a 93\\% prove rate on first-order logic problems---yet 87\\% of its proved outputs embed the conclusion verbatim among the premises.\nThe solver succeeds not because the model has learned to reason, but because the formalization trivially entails any conclusion that already appears as a premise.\nThis structural shortcut is invisible to execution-based evaluation: prove rate registers success regardless of whether the proof reflects genuine multi-step derivation or degenerate circular embedding.\n\nProve rate---the dominant evaluation metric for neurosymbolic formalizers---conflates faithful reasoning with degenerate shortcuts.\nWithout a principled method to assess whether each component of a formalization contributes to the proof, practitioners cannot distinguish models that reason from models that exploit solver mechanics.\nThis gap is particularly consequential in reinforcement learning settings, where the optimizer will find and exploit any shortcut the reward function fails to penalize~\\citep{skalse-reward-hacking, reward-hacking-survey}.\n\nNeurosymbolic approaches combine large language models with external solvers for logical reasoning.\nPrompting-based methods such as SatLM~\\citep{satlm}, Logic-LM~\\citep{logic-lm}, and LINC~\\citep{linc} translate natural language to formal representations verified by automated provers, but evaluate correctness through execution alone without examining the internal structure of proved outputs.\nRecent work applies reinforcement learning---specifically Group Relative Policy Optimization~\\citep[GRPO;][]{deepseekmath}---to train LLMs that generate formal logic programs verified by theorem provers~\\citep{mellgren-prolog-grpo, logic-rl}.\nThe standard reward signal in these systems is binary execution feedback: 1 if the solver returns a proof, 0 otherwise.\nThis drives rapid improvement in prove rate but provides no gradient on structural quality---a formalization where every premise contributes to a valid derivation receives the same reward as one that smuggles the conclusion into the premises.\nProcess reward models~\\citep{lightman-verify-step} offer finer-grained step-level supervision for mathematical reasoning, but require expensive human annotations and do not transfer to arbitrary solver-backed verification settings.\nNo existing method provides an annotation-free, solver-agnostic diagnostic for structural integrity in neurosymbolic outputs.\n\nWe address this gap with \\emph{Solver Trace Ablation} (STA), a diagnostic protocol inspired by mutation testing in software engineering~\\citep{demillo1978} that applies component necessity testing---leave-one-out (LOO) ablation on solver inputs---to quantify structural integrity (\\autoref{fig:sta-overview}).\nFor each proved formalization, STA removes each component individually and re-runs the solver; the fraction of components whose removal causes proof failure yields the \\emph{Intensional Structural Reward} (ISR).\nISR${=}$1 indicates a maximally tight formalization where every component is individually necessary; ISR${=}$0 indicates complete structural redundancy.\nThe protocol is solver-agnostic, requiring only a solver that accepts component-level input manipulation.\nApplied as a post-hoc diagnostic on a GRPO formalizer trained with FOLIO~\\citep{folio} data, ISR reveals a structural collapse trajectory entirely invisible to prove rate: ISR falls from 0.642 at 100 steps to 0.132 at 500 steps to 0.003 at 1000 steps---a 99.5\\% degradation---while prove rate simultaneously rises from 32\\% to 96\\%.\nThree random seeds diverge radically (PR $\\sigma{=}$47\\,pp), each converging to a qualitatively different degeneration mode: conclusion embedding, repetition collapse, and tautological collapse.\nA supervised fine-tuning (SFT) baseline achieves 92.9\\% genuine proofs with near-zero hacking, confirming that the structural collapse is a consequence of RL reward optimization, not model capacity or data limitations.\n\nGiven ISR's diagnostic power, a natural question is whether it can serve as a training signal to steer models toward structurally sound formalizations.\nThe answer is negative: when ISR is incorporated into the reward ($r = r_{\\text{exec}} \\cdot (1 + \\beta \\cdot \\text{ISR})$), the model games the diagnostic metric itself---a phenomenon we characterize as \\emph{meta-level Goodhart's Law}~\\citep{manheim-goodhart-taxonomy, karwowski-goodhart-rl}.\nAt low dose ($\\beta{=}0.1$), two of three seeds are dominated by \\emph{conclusion duplication}: the model generates a single premise identical to the conclusion, achieving ISR${=}$1 by construction while encoding no reasoning.\nAcross three seeds, 64.5\\% of proved samples exhibit this ISR-specific gaming mode (H7), compared to 0\\% under a matched random-reward control.\nThe remaining seed's apparent ISR advantage is entirely a premise-count artifact: controlling for component count eliminates the difference (1.06$\\times$; \\S\\ref{sec:goodhart}).\nAt high dose ($\\beta{=}0.3$), classic Goodhart collapse occurs: prove rate falls to 18\\%, compared to 48\\% for a matched random control~\\citep{gao-reward-overoptimization}.\nThis dose-response pattern---low-dose proxy gaming followed by high-dose performance collapse---maps onto established Goodhart dynamics but occurs at the \\emph{meta} level: ISR was designed to detect gaming, yet becomes the target of gaming when optimized.\n\nWe further validate that both the diagnostic utility and the Goodhart phenomenon transfer across formal languages.\nIn Prolog experiments using SWI-Prolog as the solver, exec-only training produces proved-only ISR near zero for two of three seeds, replicating the FOL diagnostic finding.\nWhen ISR is added as a Prolog training reward, the result is \\emph{universal} Goodhart: all three seeds converge to gaming with 0\\% genuine proofs---stronger than the FOL result, where ${\\sim}$16\\% genuine residual persists---each via a distinct mechanism (tautological collapse, degenerate syntax, and query-as-fact gaming).\n\nAcross 6 reward conditions, 3 seeds, 2 logic types, and up to 1000 training steps, we make four contributions:\n\n\\begin{enumerate}[nosep,leftmargin=*]\n\\item We introduce Solver Trace Ablation and establish ISR as a diagnostic that detects reward hacking invisible to prove rate, documenting a complete collapse trajectory ($0.642 \\to 0.132 \\to 0.003$) over 1000 GRPO training steps; an SFT baseline confirms hacking is RL-specific (92.9\\% genuine vs.\\ ${<}$16\\% under any RL condition).\n\\item We empirically characterize meta-level Goodhart's Law in neurosymbolic RL---a diagnostic designed to detect gaming becomes gamed when used as reward---and identify the premise-count confound, a systematic LOO bias where fewer components mechanically inflate ISR, that explains the sole apparent improvement (1.06$\\times$ premise-matched).\n\\item We demonstrate cross-logic diagnostic transfer from FOL/Prover9 to Prolog/SWI-Prolog, where ISR-as-reward produces universal Goodhart (3/3 seeds gaming, 0\\% genuine), demonstrating that simpler formal semantics enable more complete exploitation.\n\\item We catalog 7 reward hacking modes across conditions and logic types, including query-as-fact gaming that bypasses text-match classifiers, motivating functional cross-validation of automated hacking diagnostics.\n\\end{enumerate}\n\n\\noindent \\S\\ref{sec:related-work} surveys related work; \\S\\ref{sec:method} introduces the STA protocol; \\S\\ref{sec:experiments} presents experiments; \\S\\ref{sec:discussion} discusses implications.\n"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-14T19:34:08.767882+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/introduction.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260514T192854",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-14T19:34:08.768148+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260514T192854",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__register_artifact",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-14T19:34:08.768347+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260514T192854",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-14T19:34:08.768530+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260514T192854",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "introduction.tex",
+              "type": "paper",
+              "description": "EMNLP 2026 Introduction section (~1200 words): Hook with 93%/87% numbers, STA/ISR diagnostic, meta-level Goodhart characterization, cross-logic transfer, 4 numbered contributions, road map.",
+              "project": "solver-trace-ablation",
+              "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/introduction.tex",
+              "tags": "['paper', 'introduction', 'latex']"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-14T19:34:08.768800+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260514_41056c\\\", \\\"name\\\": \\\"introduction.tex\\\", \\\"type\\\": \\\"paper\\\", \\\"description\\\": \\\"EMNLP 2026 Introduction section (~1200 words): Hook with 93%/87% numbers, STA/ISR diagnostic, meta-level Goodhart characterization, cross-logic transfer, 4 numbered contributions, road map.\\\", \\\"path\\\": \\\"projects/solver-trace-ablation/artifacts/_project/paper/introduction_41056c.tex\\\", \\\"url\\\": null, \\\"project\\\": \\\"solver-trace-ablation\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-14T19:33:55.710407+00:00\\\", \\\"tags\\\": [\\\"paper\\\", \\\"introduction\\\", \\\"latex\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260514T192854",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-14T19:34:08.769066+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Introduction 已写入。主要改动：\n\n1. **结构调整**：按 Hook → Gap → 现有方法不足 → STA/ISR + 诊断结果 → Meta-Goodhart → Cross-logic → Contributions → Road map 六段式重组\n2. **Contributions 改为 `enumerate[nosep,leftmargin=*]`** 编号列表，每条 1-2 句\n3. **`\\autoref{fig:sta-overview}`** 替换 `Figure~\\ref{}`\n4. **`\\citep{}` 替换 `\\cite{}`**（ACL 格式要求括号引用）\n5. **补充引用**：加入 `\\citep{lightman-verify-step}`（process reward）、`\\citep{folio}`（数据集）\n6. **新增内容**：process reward 局限性段落、\"No existing method provides...\" 总结句、annotation-free/solver-agnostic 定位\n7. **末尾 road map** 指向 `\\S\\ref{sec:related-work}`/`\\S\\ref{sec:method}`/`\\S\\ref{sec:experiments}`/`\\S\\ref{sec:discussion}`\n8. **所有数字与 experiments.tex/method.tex 一致**：93%/87%/0.642→0.132→0.003、64.5% H7、1.06×、92.9% genuine 等"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_introduction_20260514T192854"
+          },
+          "id": "event-000031"
+        }
+      ],
+      "message_count": 31
+    }
+  ],
+  "readable_path": "readable/conversations/paper-writing-introduction.md"
+}

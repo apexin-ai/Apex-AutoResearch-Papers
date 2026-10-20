@@ -1,0 +1,55 @@
+{
+  "schema_version": "1.0",
+  "id": "f5e962ee5baae830873d",
+  "project": "solver-trace-ablation",
+  "kind": "worker",
+  "title": "eval plan006 prolog exec s44 20260514T153405 retry2",
+  "task_key": "worker_eval_plan006-prolog-exec-s44_20260514T153405_retry2",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_plan006-prolog-exec-s44_20260514T153405_retry2.log",
+    "occurrence": 1,
+    "bytes": 866536,
+    "sha256": "abf32c8d2819beaba15c79cb0d175697c7e46a3c1fe7c1e9367f4f90e4a8f364"
+  },
+  "statistics": {
+    "messages": 658,
+    "user_turns": 0,
+    "tool_calls": 287,
+    "roles": {
+      "system": 1,
+      "record": 3,
+      "assistant": 80,
+      "tool_call": 287,
+      "tool_result": 287
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 658,
+      "chunks": [
+        {
+          "path": "f5e962ee5baae830873d-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "f5e962ee5baae830873d-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "f5e962ee5baae830873d-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "f5e962ee5baae830873d-part-0004.json",
+          "message_count": 118
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-plan006-prolog-exec-s44-20260514t153405-retry2.md"
+}

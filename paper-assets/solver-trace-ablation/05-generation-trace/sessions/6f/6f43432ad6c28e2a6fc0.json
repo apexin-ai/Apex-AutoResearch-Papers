@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6f43432ad6c28e2a6fc0",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "write bib verification",
+  "task_key": "worker_write_bib-verification_20260514T220538",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_write_bib-verification_20260514T220538_result.json",
+    "occurrence": 1,
+    "bytes": 1585,
+    "sha256": "0f0f532c4ed27013a67c0c27028faf6d30e197cd407b03c1e4e3343b51083b2b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All three entries verify against the sources. No edits needed.\n\n### Verification Results\n\n**1. `rlsf` — VERIFIED OK**\n- Authors confirmed: Piyush Jha, Prithwish Jana, Pranavkrishna Suresh, Arnav Arora, Vijay Ganesh ✓\n- Title \"RLSF: Fine-tuning LLMs via Symbolic Feedback\" matches arXiv 2405.16661v1 ✓\n- (Note: v2 was retitled to \"RLSF: Reinforcement Learning via Symbolic Feedback\" — current bib uses v1 title, which is consistent with the arXiv ID listed.)\n\n**2. `spurious-rewards` — VERIFIED OK**\n- All 14 authors confirmed in correct order: Rulin Shao, Shuyue Stella Li, Rui Xin, Scott Geng, Yiping Wang, Sewoong Oh, Simon Shaolei Du, Nathan Lambert, Sewon Min, Ranjay Krishna, Yulia Tsvetkov, Hannaneh Hajishirzi, Pang Wei Koh, Luke Zettlemoyer ✓\n- Title, arXiv ID, year all match ✓\n\n**3. `kwa-catastrophic-goodhart` — VERIFIED OK**\n- Authors confirmed: Thomas Kwa, Drake Thomas, Adrià Garriga-Alonso ✓\n- Title matches (NeurIPS proceedings uses lowercase \"regularizing\" in the URL, but the paper title content matches) ✓\n- Venue NeurIPS 2024 confirmed ✓\n\nNo edits made to `references.bib`.\n\nSources:\n- [arXiv: RLSF Fine-tuning LLMs via Symbolic Feedback](https://arxiv.org/abs/2405.16661)\n- [arXiv: Spurious Rewards: Rethinking Training Signals in RLVR](https://arxiv.org/abs/2506.10947)\n- [NeurIPS 2024: Catastrophic Goodhart](https://proceedings.neurips.cc//paper_files/paper/2024/hash/1a8189929f3d7bd6183718f42c3f4309-Abstract-Conference.html)\n- [arXiv: Catastrophic Goodhart](https://arxiv.org/abs/2407.14503)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/write-bib-verification.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "999c42426cd6f5af039a",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops disk cleanup exec now",
+  "task_key": "worker_ops_disk-cleanup-exec-now_20260515T092952",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_disk-cleanup-exec-now_20260515T092952_result.json",
+    "occurrence": 1,
+    "bytes": 1472,
+    "sha256": "2741d337b79fd63001a1895f0605679ccf1667ecf1ea8cb54bdf509e21f12585"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两张 GPU 都空闲，无残留进程。\n\n## 汇报\n\n1. **清理前后 df -h**：\n   - 清理前：250G/250G used, 2.1M avail (100%)\n   - 清理后：112G/250G used, 139G avail (45%)\n\n2. **plan018 checkpoint-350**：完整（4 个 safetensors），可 resume\n\n3. **--save_total_limit**：不是 CLI 参数，已硬编码在脚本中 `save_total_limit=1`，命令中不需要加\n\n4. **两个实验最终提交命令**：\n\n**exp1-isr-b03-s42-1000 (GPU 0, 从头)**：\n```\nbash -c \"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --model_path /root/autodl-tmp/models/Qwen3-4B --data_path data/train_500_seed42.jsonl --reward_mode additive_bonus --output_dir /root/autodl-tmp/outputs/exp1_isr_b03_s42_1000 --num_steps 1000 --beta 0.3 --seed 42 --no_wandb\"\n```\n\n**plan018-additive-random-b01-s42-1000 (GPU 1, resume from checkpoint-350)**：\n```\nbash -c \"export CUDA_VISIBLE_DEVICES=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --model_path /root/autodl-tmp/outputs/plan018_additive_random_b01_s42_1000/checkpoint-350 --data_path data/train_500_seed42.jsonl --reward_mode additive_random --output_dir /root/autodl-tmp/outputs/plan018_additive_random_b01_s42_1000 --num_steps 1000 --beta 0.1 --seed 42 --no_wandb\"\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-disk-cleanup-exec-now.md"
+}

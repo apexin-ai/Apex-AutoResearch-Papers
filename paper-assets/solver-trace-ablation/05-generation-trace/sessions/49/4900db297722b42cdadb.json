@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4900db297722b42cdadb",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code create random b005 config",
+  "task_key": "worker_code_create-random-b005-config_20260517T044923",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_create-random-b005-config_20260517T044923_result.json",
+    "occurrence": 1,
+    "bytes": 754,
+    "sha256": "871b16c0b14fb269ec1f519010bcff3cd74b4d88b062182159ad41a0c2fd3255"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。最终状态：\n\n**`configs/grpo_additive_random_b005.yaml`** — 已创建：\n```yaml\nmodel_path: /root/autodl-tmp/models/Qwen3-4B\ndata_path: data/train_500_seed42.jsonl\nreward_mode: additive_random\noutput_dir: /root/autodl-tmp/outputs/plan017_additive_random_b01_s42\nbeta: 0.05\nseed: 42\n# 其余参数与 b01 模板一致\n```\n\n**`configs/grpo_additive_bonus_b005.yaml`** — 已存在（ISR β=0.05）：\n```yaml\nreward_mode: additive_bonus\noutput_dir: /root/autodl-tmp/outputs/sweep_isr_b005_s42\nbeta: 0.05\n```\n\n注意：新建的 random b005 配置的 `output_dir` 和 `wandb_run` 仍继承自 b01 模板（`plan017_additive_random_b01_s42`）。实际训练时需要更新这两个字段以区分实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-create-random-b005-config.md"
+}

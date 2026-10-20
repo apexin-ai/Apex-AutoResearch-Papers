@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "80ed17d989f0950236a5",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analysis sweep isr b005 s42",
+  "task_key": "worker_analysis_sweep-isr-b005-s42_20260516T025842",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_sweep-isr-b005-s42_20260516T025842_result.json",
+    "occurrence": 1,
+    "bytes": 1020,
+    "sha256": "35a29a2e46ab43fc948ede1499f55c68487bf542903aadcec8ae9358a1c36a80"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。总结：\n\n**sweep-isr-b005-s42 无法完成分析 — 正在重训中。**\n\n原因链：\n1. 原始训练只跑了 **100 步**（`train_grpo.py` 默认值 100，命令行没传 `--num_steps`，config 的 500 没被正确合并）\n2. 另一个 worker 发现问题后删除了 checkpoint 并以 **500 步** 重新启动训练\n3. 我启动的 eval 在 **97/100 样本处被中断**（模型文件被删除）\n4. 新的 500 步训练正在运行（当前 ~step 36/500，预计 ~50 分钟完成）\n\n**已完成操作：**\n- Registry 已更新为 RUNNING（retry_count=1）\n- 临时分析报告已写入 `artifacts/sweep-isr-b005-s42/analysis_report.md`\n- 记录了原始 100 步训练的 partial eval 数据（3/96 proved, prove_rate=3.1%）\n\n**待完成（500步训练完成后）：**\n- 用 `eval_sta.py --data_path data/proofwriter_fol_100.jsonl` 重新评估\n- 用 `classify_h7.py` 做 hacking taxonomy 分析\n- 与 β=0.1/0.3 baselines 对比，判断 dose-response 假设"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-sweep-isr-b005-s42.md"
+}

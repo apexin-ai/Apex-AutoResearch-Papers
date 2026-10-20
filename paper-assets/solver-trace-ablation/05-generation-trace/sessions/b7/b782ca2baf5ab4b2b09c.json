@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b782ca2baf5ab4b2b09c",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analysis paper evidence table",
+  "task_key": "worker_analysis_paper-evidence-table_20260514T070810",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_paper-evidence-table_20260514T070810_result.json",
+    "occurrence": 1,
+    "bytes": 730,
+    "sha256": "a2abb914e11f5f14e3bb0b6df407e0c018fd2ca52daf14987ecfee4fd224fc42"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "产出已写入并注册。\n\n核心内容：\n- **8 个有效实验**按 reward mode 分组（exec-only 3 seeds / additive ISR 2 β / convex random / additive random / convex ISR）\n- **Claim 1 证据**：exec-only 3-seed 中 2/3 退化（s43 PR=14% degenerate, s44 PR=98% tautological collapse）\n- **Claim 2 证据**：ISR + component count 联合诊断 — comp≈2 标记 tautological（s44, plan013），comp>5 + moderate ISR 标记 genuine（s42, plan002-b01）\n- **Claim 3 证据**：β=0.3 → PR collapse（Goodhart），β=0.1 → sweet spot（PR=0.81, ISR 2.73x baseline）\n- 底部标注了 D029（s43 eval 方法差异）和 D030（plan005 无 eval）\n- 附带论文直接可用的 compact table"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-paper-evidence-table.md"
+}

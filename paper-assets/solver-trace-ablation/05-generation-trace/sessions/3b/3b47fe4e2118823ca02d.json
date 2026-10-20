@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3b47fe4e2118823ca02d",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "train d129 1 7b random b01 s43 r2",
+  "task_key": "worker_train_d129-1_7b-random-b01-s43-r2_20260517T235136",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_d129-1_7b-random-b01-s43-r2_20260517T235136_result.json",
+    "occurrence": 1,
+    "bytes": 503,
+    "sha256": "c8e47671ff4652e6ccbf745baefefdadd4aec2bbeeca756790bc0984661a6659"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已成功重启并注册监控。\n\n**总结：**\n- tmux session: `d129-random-b01-s43-r2`\n- PID: `66669`\n- GPU: cuda:0，占用 39294 MiB\n- reward_mode: `additive_random` ✓（日志中出现 `random=0.441` 确认）\n- 预估训练时间: ~12s/step × 500 steps ≈ **1.7 小时**\n\n注：第一次失败原因是任务描述中的项目路径 `/root/autodl-tmp/solver-trace-ablation/` 不存在，实际路径为 `/root/solver-trace-ablation`。已用正确路径重启。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-d129-1-7b-random-b01-s43-r2.md"
+}

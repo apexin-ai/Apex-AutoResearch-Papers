@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dfcdbe3016faaaf33f6b",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analysis sweep isr b005 s42 taxonomy",
+  "task_key": "worker_analysis_sweep-isr-b005-s42-taxonomy_20260516T060304",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_sweep-isr-b005-s42-taxonomy_20260516T060304_result.json",
+    "occurrence": 1,
+    "bytes": 1328,
+    "sha256": "dd312cd63783fcf91d539f3da17943e6e09dc316fa1501027cfc3bfd06cd5a28"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval process already exited cleanly, only the two training processes remain. \n\n## 结果\n\n### sweep-isr-b005-s42 完整 Hacking Taxonomy\n\n| Category | Count | Rate (of proved) |\n|----------|------:|------------------:|\n| **Proved** | 55 | — |\n| H7a (text-match tautology) | 55 | 100.0% |\n| H7b (obfuscated tautology) | 0 | 0.0% |\n| H1 (conclusion embedding) | 0 | 0.0% |\n| H8 (conjunction collapse) | 0 | 0.0% |\n| **Genuine** | **0** | **0.0%** |\n\nAdditional stats:\n- Single-premise proofs: 55/55 (100%)\n- Content-independent predicates: 55/55 (100%)\n- ISR=1.0 samples: 2/55 (3.6%)\n- ISR=0.75 samples: 53/55 (96.4%)\n\n### 结论\n\n**β=0.05 不能保留 genuine structural learning。** 完全坍缩为 H7a 同义反复（P therefore P），genuine=0%。初步分析中的 ISR=0.75 模式被误读——不是\"4 premise / 3 necessary 的多步推理\"，而是单前提同义反复在 STA 4-component 结构下的产物。\n\nDose-response curve 的关键发现：即使 β 低至 0.05，ISR additive bonus 仍然完全诱导 Goodhart 效应。这与 β=0.1（H7a=100%）和 β=0.2（H7a=96.9%）一致，说明 tautological collapse 对 β 不敏感——存在 bonus 就足以触发。\n\nRegistry 已更新：conclusion 从 `success` 改为 `negative`，metrics 包含完整 taxonomy。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-sweep-isr-b005-s42-taxonomy.md"
+}

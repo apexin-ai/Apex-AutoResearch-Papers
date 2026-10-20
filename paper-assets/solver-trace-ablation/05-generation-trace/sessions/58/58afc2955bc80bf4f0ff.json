@@ -1,0 +1,497 @@
+{
+  "schema_version": "1.0",
+  "id": "58afc2955bc80bf4f0ff",
+  "project": "solver-trace-ablation",
+  "kind": "conversation",
+  "title": "write method section",
+  "task_key": "worker_write_method-section_20260515T004322",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_write_method-section_20260515T004322.jsonl",
+    "occurrence": 1,
+    "bytes": 34118,
+    "sha256": "9f652dc23cfdeb20cd85739f8fa2844b718ec9b9ad128856e35247ad7c30647c"
+  },
+  "statistics": {
+    "messages": 23,
+    "user_turns": 0,
+    "tool_calls": 11,
+    "roles": {
+      "tool_call": 11,
+      "tool_result": 11,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T00:46:14.459113+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_method-section_20260515T004322",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__save_project_file",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T00:46:14.459500+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_method-section_20260515T004322",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T00:46:14.459685+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_method-section_20260515T004322",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "file": "writing_plan.yaml",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T00:46:14.460108+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/writing_plan.yaml\\\", \\\"content\\\": \\\"meta:\\\\n  venue: EMNLP 2026\\\\n  track: main\\\\n  template: acl2023/\\\\n  template_note: \\\\\\\"ARR May 25 cycle. ACL Rolling Review format (acl2023.sty).\\\\\\\"\\\\n  page_limit: 8\\\\n  deadline: 2026-05-25\\\\n  core_claim: >\\\\n    ISR (Intensional Structural Reward), derived via Solver Trace Ablation,\\\\n    serves as a powerful diagnostic for reward hacking in GRPO-trained formalizers\\\\n    but fails as a training signal due to meta-level Goodhart's Law — the diagnostic\\\\n    metric becomes gamed when optimized, with apparent improvements explained by\\\\n    premise minimization artifacts.\\\\n  created_at: 2026-05-14T18:00:00Z\\\\n  updated_at: 2026-05-14T19:05:00Z\\\\n  update_note: \\\\\\\"Director approved with 5 corrections applied: taxonomy 6→7, Claim 3 Prolog STA 3/3 gaming complete, conclusion limitations updated, tab5/fig4 expanded, registry_refs added.\\\\\\\"\\\\n\\\\npaper_outline:\\\\n  - section: abstract\\\\n    word_budget: 250\\\\n    core_bullets:\\\\n      - \\\\\\\"Problem: GRPO formalizers achieve high prove rates but produce structurally degenerate outputs; no diagnostic exists\\\\\\\"\\\\n      - \\\\\\\"Method: STA derives ISR via leave-one-out component necessity testing on solver inputs\\\\\\\"\\\\n      - \\\\\\\"Claim 1: ISR detects hacking invisible to prove_rate (0.64→0.13→0.003 collapse over 100→500→1000 steps)\\\\\\\"\\\\n      - \\\\\\\"Claim 2: ISR-as-reward exhibits meta-level Goodhart — β=0.1 induces ISR-specific gaming (H7=64.5% vs 0% random), premise-matched 1.06x; β=0.3 PR collapses (18% vs 48% random)\\\\\\\"\\\\n      - \\\\\\\"Claim 3: ISR diagnostic transfers to Prolog (cross-logic generality)\\\\\\\"\\\\n      - \\\\\\\"Taxonomy: 7 distinct hacking modes identified across conditions (including query-as-fact gaming discovered in Prolog STA)\\\\\\\"\\\\n    dependencies: [experiments, method, discussion]\\\\n    tables: []\\\\n    figures: []\\\\n    registry_r\n…[truncated 17631 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_method-section_20260515T004322",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T00:46:14.460651+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_method-section_20260515T004322",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "filters": "{'exp_id': 'sta-phase0-baseline'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T00:46:14.460889+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2636}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_method-section_20260515T004322",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T00:46:14.461029+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_method-section_20260515T004322",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "filters": "{'exp_id': 'plan003-eval-exec-only-r5'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T00:46:14.461465+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_method-section_20260515T004322",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "file": "paper_framing.md",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T00:46:14.461626+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2192}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_method-section_20260515T004322",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T00:46:14.461970+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — solver-trace-ablation\\\\n\\\\n## Target Venue\\\\n- Primary: EMNLP 2026 Main (NLP and Symbolic Reasoning track)\\\\n- Fallback: EMNLP 2026 Findings\\\\n- Deadline: ARR May 25, 2026\\\\n\\\\n## Core Claims (3 条 — Goodhart 主线诊断/分析论文)\\\\n\\\\n| Claim | Status | 闭环标志 |\\\\n|-------|--------|----------|\\\\n| Claim 1: STA 诊断能力 | ✅ 已闭环 | 3-seed + 1000-step + hacking taxonomy (7 modes) |\\\\n| Claim 2: Goodhart / ISR 无结构优势 | ✅ 已闭环 (D057) | 3-seed ISR + 3-seed random + premise-count-matched + SFT baseline |\\\\n| Claim 3: 跨逻辑泛化 | ✅ 已闭环 | exec-only 3-seed (D056) + STA 3-seed: **3/3 gaming** — 三种不同 gaming 路径 (H7/degenerate-syntax/query-as-fact) |\\\\n\\\\n### Claim 1: ISR as Reward Hacking Diagnostic ✅\\\\nSolver Trace Ablation (STA) derives ISR (Intensional Structural Reward) via component necessity testing (leave-one-out ablation on solver inputs). ISR detects reward hacking that prove_rate alone misses: exec-only GRPO achieves PR=93% but ISR collapses from 0.6423 (100 steps) to 0.1324 (500 steps) to 0.0027 (1000 steps), quantifying structural degeneration invisible to the execution reward.\\\\n\\\\n**证据**：\\\\n- plan003: 100-step checkpoint held-out eval PR=32%, ISR=0.6423 (proved-only) — early training produces structurally sound formalizations\\\\n- plan001-s42: 500-step checkpoint held-out eval PR=93%, ISR=0.1324, median_ISR=0.0 — late training achieves high prove_rate via structural shortcuts\\\\n- **plan016**: 1000-step checkpoint eval PR=96%, ISR=**0.0027** — ISR 崩塌持续恶化，无回升。94.8% proved 样本 ISR=0。矛盾爆炸式崩塌（components 6.58→18.55）。延长训练是 reward hacking 随时间恶化的干净消融证据\\\\n- ISR 崩塌轨迹完整链：0.6423 (100步) → 0.1324 (500步) → 0.0027 (1000步)\\\\n- 3-seed consistency: s42 redundant embedding (H1=87.1%, ISR=0.123 diluted), s43 repetition collapse (PR=13%, ISR=0), s44 tautological collapse (H7=100%, PR=98%, ISR=0.57 fake-high, n_comp=2.04). All 3 se\n…[truncated 23048 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_method-section_20260515T004322",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T00:46:14.462409+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_method-section_20260515T004322",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "write paper section",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T00:46:14.462583+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_method-section_20260515T004322",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T00:46:14.462731+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_method-section_20260515T004322",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "limit": "5",
+              "fields": "['exp_id', 'status', 'metrics']"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T00:46:14.462938+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp1-random-b03-s44-r2\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"exp1-random-b03-s43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"parse_rate\\\": 1, \\\"prove_rate\\\": 0.79, \\\"mean_isr\\\": 0.1745, \\\"isr_std\\\": 0.1628, \\\"median_isr\\\": 0.1667, \\\"proved_only_mean_isr\\\": 0.2209, \\\"hacking_rate_strict_h7\\\": 0, \\\"hacking_rate_functional\\\": 0.1013, \\\"genuine_rate\\\": 0.8987, \\\"genuine_count\\\": 71, \\\"n_proved\\\": 79, \\\"n_problems\\\": 100, \\\"h1_conclusion_in_premise\\\": 0.759, \\\"eval_data\\\": \\\"test_100.jsonl\\\", \\\"eval_output\\\": \\\"/root/autodl-tmp/outputs/eval_sta_exp1_random_b03_s43.json\\\"}}, \\\"exp1-random-b03-s44\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"exp1-isr-b03-s44-r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"prove_rate\\\": 0.98, \\\"mean_isr\\\": 0.7275, \\\"isr_std\\\": 0.1184, \\\"proved_only_isr\\\": 0.7423, \\\"n_proved\\\": 98, \\\"n_problems\\\": 100, \\\"h7_rate\\\": 1, \\\"h7_count\\\": 98, \\\"h1_rate\\\": 0, \\\"h1_count\\\": 0, \\\"genuine_rate\\\": 0, \\\"genuine_count\\\": 0, \\\"single_premise_rate\\\": 1, \\\"eval_data\\\": \\\"test_100.jsonl\\\", \\\"train_final_prove_rate\\\": 0.71, \\\"train_final_mean_isr\\\": 0.452}}, \\\"exp1-isr-b03-s43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"parse_rate\\\": 1, \\\"prove_rate\\\": 0.91, \\\"mean_isr\\\": 0.2575, \\\"isr_std\\\": 0.2363, \\\"median_isr\\\": 0.3333, \\\"proved_only_mean_isr\\\": 0.283, \\\"hacking_rate_strict_h7\\\": 0.022, \\\"hacking_rate_functional\\\": 0.3297, \\\"genuine_rate\\\": 0.6703, \\\"genuine_count\\\": 61, \\\"n_proved\\\": 91, \\\"n_problems\\\": 100, \\\"h1_conclusion_in_premise\\\": 0.747, \\\"eval_data\\\": \\\"test_100.jsonl\\\", \\\"eval_output\\\": \\\"/root/autodl-tmp/outputs/eval_sta_exp1_isr_b03_s43.json\\\"}}}, \\\"count\\\": 5, \\\"total\\\": 59, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2121}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_method-section_20260515T004322",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T00:46:14.463099+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_method-section_20260515T004322",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__write_paper_section",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T00:46:14.463369+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_method-section_20260515T004322",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T00:46:14.463511+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_method-section_20260515T004322",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "write paper",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T00:46:14.463864+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_method-section_20260515T004322",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T00:46:14.464089+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_method-section_20260515T004322",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "method-section-tex",
+              "type": "paper",
+              "description": "Method section (§3) LaTeX draft for EMNLP 2026 submission. ~1200 words. Covers task definition, GRPO training, STA protocol, ISR definition, reward formulations, and hacking taxonomy.",
+              "project": "solver-trace-ablation",
+              "content": "% method.tex — §3 Method for solver-trace-ablation (EMNLP 2026)\n% Covers: task, GRPO, STA protocol, ISR definition, reward formulations, hacking taxonomy\n% Word budget: ~1200\n\n\\section{Method}\n\\label{sec:method}\n\nWe formalize the task of natural language to formal logic translation (\\S\\ref{ssec:task}), describe the GRPO training framework (\\S\\ref{ssec:grpo}), introduce Solver Trace Ablation as a diagnostic protocol (\\S\\ref{ssec:sta}), define the Intensional Structural Reward (\\S\\ref{ssec:isr}), present the reward formulations under study (\\S\\ref{ssec:reward}), and catalog the hacking modes discovered across conditions (\\S\\ref{ssec:taxonomy}).\n\n\\subsection{Task: NL-to-Formal-Logic Formalization}\n\\label{ssec:task}\n\nGiven a natural language reasoning problem $x$ consisting of premises and a conclusion, the task is to produce a formal logic program $f(x) = \\{c_1, c_2, \\ldots, c_n\\}$ comprising $n$ components (axioms, rules, or clauses) that an external automated solver can evaluate. We consider two target formalisms: first-order logic (FOL), verified by the Prover9 theorem prover \\cite{mccune2005prover9}, and Prolog, verified by SWI-Prolog \\cite{wielemaker2012swi}. A formalization is \\emph{proved} if the solver returns a successful derivation within a fixed timeout.\n\nThis setup decouples generation (the language model) from verification (the solver), providing a binary execution signal $r_{\\text{exec}} \\in \\{0, 1\\}$ that is noise-free but structurally uninformative: a formalization that embeds the conclusion directly in its premises will prove trivially, receiving the same reward as a faithful translation.\n\n\\subsection{GRPO Training}\n\\label{ssec:grpo}\n\nWe train a language model $\\pi_\\theta$ using Group Relative Policy Optimization \\citep[GRPO;][]{shao2024deepseekmath}. For each problem $x$, GRPO samples a group of $K$ candidate formalizations $\\{f_1, \\ldots, f_K\\}$ from $\\pi_\\theta$, scores each with a reward function $r(\\cdot)$, and updates the policy using the group-normalized advantage:\n\\begin{equation}\n    A_i = \\frac{r(f_i) - \\mu_{\\text{group}}}{\\sigma_{\\text{group}}}\n    \\label{eq:advantage}\n\\end{equation}\nwhere $\\mu_{\\text{group}}$ and $\\sigma_{\\text{group}}$ are the mean and standard deviation of rewards within the group. The policy gradient objective follows:\n\\begin{equation}\n    \\mathcal{L}(\\theta) = -\\mathbb{E}_{x, f_i \\sim \\pi_\\theta} \\left[ A_i \\cdot \\log \\pi_\\theta(f_i \\mid x) \\right] + \\beta_{\\text{KL}} \\cdot D_{\\text{KL}}(\\pi_\\theta \\| \\pi_{\\text{ref}})\n    \\label{eq:grpo}\n\\end{equation}\n\nIn the baseline configuration, the reward is purely execution-based: $r(f) = r_{\\text{exec}}(f)$. This drives prove rate from 12\\% (base model; \\texttt{sta-phase0-baseline}) to 32\\% at 100 steps (\\texttt{plan003-eval-exec-only-r5}), eventually reaching 93\\% at 500 steps---but, as we show in \\S\\ref{sec:experiments}, this improvement is largely achieved through structural shortcuts.\n\n\\subsection{Solver Trace Ablation (STA)}\n\\label{ssec:sta}\n\nSolver Trace Ablation is a post-hoc diagnostic protocol that assesses the structural necessity of each component in a proved formalization. The protocol adapts leave-one-out (LOO) analysis from mutation testing \\citep{demillo1978hints, jia2011analysis} to formal logic verification.\n\nFor a proved formalization $f = \\{c_1, c_2, \\ldots, c_n\\}$ with $n$ components, STA proceeds as follows:\n\n\\begin{enumerate}\n    \\item \\textbf{Baseline verification.} Confirm that the full formalization $f$ proves successfully under the target solver.\n    \\item \\textbf{Component ablation.} For each component $c_i$ ($i = 1, \\ldots, n$), construct the ablated formalization $f_{\\setminus i} = f \\setminus \\{c_i\\}$ and re-run the solver.\n    \\item \\textbf{Necessity determination.} Component $c_i$ is \\emph{necessary} if the solver fails on $f_{\\setminus i}$, and \\emph{redundant} otherwise.\n    \\item \\textbf{Aggregation.} Compute the fraction of necessary components as the Intensional Structural Reward (ISR; \\S\\ref{ssec:isr}).\n\\end{enumerate}\n\nSTA is solver-agnostic: the same protocol applies to Prover9 (FOL) and SWI-Prolog (Prolog) without modification, enabling cross-logic diagnostic transfer (\\S\\ref{sec:experiments}).\n\nSTA is applied only to proved samples ($r_{\\text{exec}} = 1$). For unproved samples, ISR is undefined (the baseline verification in Step~1 fails). When reporting population-level ISR statistics, we report \\emph{proved-only} ISR (ISR$^*$), which conditions on successful baseline verification, to avoid conflating structural quality with prove rate.\n\n\\subsection{Intensional Structural Reward (ISR)}\n\\label{ssec:isr}\n\nGiven a proved formalization $f = \\{c_1, \\ldots, c_n\\}$, we define ISR as the fraction of components whose removal causes proof failure:\n\\begin{equation}\n    \\text{ISR}(f) = \\frac{1}{n} \\sum_{i=1}^{n} \\mathbf{1}\\left[\\text{solver fails on } f_{\\setminus i}\\right]\n    \\label{eq:isr}\n\\end{equation}\nwhere $f_{\\setminus i} = f \\setminus \\{c_i\\}$ denotes $f$ with component $c_i$ removed. ISR is bounded in $[0, 1]$: ISR $= 1$ indicates every component is individually necessary for the proof, while ISR $= 0$ indicates no single component is necessary (all are redundant).\n\nISR measures \\emph{syntactic component necessity}---whether each component contributes to the proof derivation---not semantic faithfulness to the natural language input. This distinction is critical: a formalization can achieve ISR $= 1$ by containing a single tautological component (e.g., a premise identical to the conclusion), which is necessary by construction but semantically degenerate.\n\n\\paragraph{Premise count bias.} ISR is mathematically influenced by the number of components: formalizations with fewer premises have higher expected ISR under random ablation, since each component constitutes a larger fraction of the proof. We control for this confound in our analysis via premise-count-matched comparisons (\\S\\ref{sec:experiments}).\n\n\\subsection{Reward Formulations}\n\\label{ssec:reward}\n\nTo study the effect of incorporating ISR into GRPO training, we evaluate the following reward formulations:\n\n\\paragraph{Execution-only (baseline).} $r(f) = r_{\\text{exec}}(f)$. Binary solver success, providing no structural signal.\n\n\\paragraph{Additive ISR.} $r(f) = r_{\\text{exec}}(f) \\cdot (1 + \\beta \\cdot \\text{ISR}(f))$, where $\\beta > 0$ controls the ISR weight. The multiplicative gating by $r_{\\text{exec}}$ ensures ISR contributes only for proved samples. We evaluate $\\beta \\in \\{0.1, 0.3\\}$.\n\n\\paragraph{Additive random (control).} $r(f) = r_{\\text{exec}}(f) \\cdot (1 + \\beta \\cdot U)$, where $U \\sim \\text{Uniform}(0, 1)$ replaces ISR with a random signal. This isolates the effect of ISR-specific information from the effect of reward variance alone.\n\n\\paragraph{SFT (supervised baseline).} Standard supervised fine-tuning on ground-truth formalizations, serving as a non-RL reference point.\n\nAdditional formulations (convex combination $r = \\alpha \\cdot r_{\\text{exec}} + \\beta \\cdot \\text{ISR}$) were explored but produced degenerate outcomes (ISR $< 1$ acts as a penalty on proved samples, suppressing prove rate); we report these briefly in \\S\\ref{sec:experiments}.\n\n\\subsection{Reward Hacking Taxonomy}\n\\label{ssec:taxonomy}\n\nAcross experimental conditions, we identify seven distinct reward hacking strategies, classified by manual inspection and automated pattern detection:\n\n\\begin{enumerate}[label=\\textbf{H\\arabic*.}, leftmargin=2em]\n    \\item \\textbf{Multi-premise conclusion embedding.} The conclusion is embedded verbatim within one or more premises. The proof succeeds trivially via subsumption. Prevalent across all GRPO conditions (52--93\\% of proved samples).\n    \\item \\textbf{Tautological collapse.} The formalization reduces to two components where one trivially entails the other (e.g., $P(a)$ and $\\forall x\\, P(x)$).\n    \\item \\textbf{Complexity without utility.} Extraneous axioms that do not contribute to the proof but inflate component count.\n    \\item \\textbf{Repetition collapse.} Identical components repeated multiple times, inflating $n$ while each copy is individually redundant under LOO ablation.\n    \\item \\textbf{Contradiction explosion.} Contradictory axioms from which anything follows \\emph{ex falso quodlibet}, yielding ISR $= 0$ since no single axiom is necessary once the contradiction is established.\n    \\item[{\\textbf{H6.}}] \\textbf{ISR inflation via conclusion duplication.} The conclusion appears as a single premise identical to the goal. Under LOO, removing this sole necessary component causes proof failure, yielding ISR $\\approx 1$. This mode is ISR-specific: it appears in 64.5\\% of ISR-rewarded proved samples across three seeds but in 0\\% of random-rewarded samples.\n    \\item[{\\textbf{H7.}}] \\textbf{Query-as-fact gaming (Prolog).} The model converts the natural language question into a snake\\_case atom and asserts it simultaneously as a fact and a query, causing SWI-Prolog to trivially succeed. This mode bypasses text-match hacking classifiers and was identified only through functional analysis of the $n_{\\text{necessary}}$ distribution.\n\\end{enumerate}\n\nModes H1--H5 arise under execution-only reward. H6 emerges specifically under ISR reward, representing \\emph{meta-level} Goodhart behavior: the model games the diagnostic metric itself. H7 is specific to Prolog STA and reveals a classifier blind spot---text-match detection fails, requiring cross-validation with functional necessity analysis.\n",
+              "content_filename": "method.tex",
+              "tags": "['paper', 'method', 'draft', 'latex']"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T00:46:14.464357+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260515_76d073\\\", \\\"name\\\": \\\"method-section-tex\\\", \\\"type\\\": \\\"paper\\\", \\\"description\\\": \\\"Method section (§3) LaTeX draft for EMNLP 2026 submission. ~1200 words. Covers task definition, GRPO training, STA protocol, ISR definition, reward formulations, and hacking taxonomy.\\\", \\\"path\\\": \\\"projects/solver-trace-ablation/artifacts/_project/paper/method_76d073.tex\\\", \\\"url\\\": null, \\\"project\\\": \\\"solver-trace-ablation\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-15T00:45:33.191657+00:00\\\", \\\"tags\\\": [\\\"paper\\\", \\\"method\\\", \\\"draft\\\", \\\"latex\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_method-section_20260515T004322",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T00:46:14.464533+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_method-section_20260515T004322",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "method-section-draft-md",
+              "type": "paper",
+              "description": "Method section (§3) Markdown draft for review. ~1200 words. Mirror of method.tex for easier Director/Reviewer inspection.",
+              "project": "solver-trace-ablation",
+              "content": "# §3 Method — Draft (solver-trace-ablation, EMNLP 2026)\n<!-- Word budget: ~1200. All numbers traceable to registry. -->\n\nWe formalize the task of natural language to formal logic translation (§3.1), describe the GRPO training framework (§3.2), introduce Solver Trace Ablation as a diagnostic protocol (§3.3), define the Intensional Structural Reward (§3.4), present the reward formulations under study (§3.5), and catalog the hacking modes discovered across conditions (§3.6).\n\n## 3.1 Task: NL-to-Formal-Logic Formalization\n\nGiven a natural language reasoning problem *x* consisting of premises and a conclusion, the task is to produce a formal logic program *f(x) = {c₁, c₂, …, cₙ}* comprising *n* components (axioms, rules, or clauses) that an external automated solver can evaluate. We consider two target formalisms: first-order logic (FOL), verified by the Prover9 theorem prover, and Prolog, verified by SWI-Prolog. A formalization is *proved* if the solver returns a successful derivation within a fixed timeout.\n\nThis setup decouples generation (the language model) from verification (the solver), providing a binary execution signal *r_exec ∈ {0, 1}* that is noise-free but structurally uninformative: a formalization that embeds the conclusion directly in its premises will prove trivially, receiving the same reward as a faithful translation.\n\n## 3.2 GRPO Training\n\nWe train a language model π_θ using Group Relative Policy Optimization (GRPO; Shao et al., 2024). For each problem *x*, GRPO samples a group of *K* candidate formalizations {f₁, …, f_K} from π_θ, scores each with a reward function *r(·)*, and updates the policy using the group-normalized advantage:\n\n> **A_i = (r(f_i) − μ_group) / σ_group**\n\nwhere μ_group and σ_group are the mean and standard deviation of rewards within the group. The policy gradient objective follows:\n\n> **L(θ) = −E[A_i · log π_θ(f_i | x)] + β_KL · D_KL(π_θ ∥ π_ref)**\n\nIn the baseline configuration, the reward is purely execution-based: *r(f) = r_exec(f)*. This drives prove rate from 12% (base model; `sta-phase0-baseline`) to 32% at 100 steps (`plan003-eval-exec-only-r5`), eventually reaching 93% at 500 steps—but, as we show in §4, this improvement is largely achieved through structural shortcuts.\n\n## 3.3 Solver Trace Ablation (STA)\n\nSolver Trace Ablation is a post-hoc diagnostic protocol that assesses the structural necessity of each component in a proved formalization. The protocol adapts leave-one-out (LOO) analysis from mutation testing (DeMillo et al., 1978; Jia & Harman, 2011) to formal logic verification.\n\nFor a proved formalization *f = {c₁, c₂, …, cₙ}* with *n* components, STA proceeds as follows:\n\n1. **Baseline verification.** Confirm that the full formalization *f* proves successfully under the target solver.\n2. **Component ablation.** For each component *c_i* (i = 1, …, n), construct the ablated formalization *f\\{c_i}* and re-run the solver.\n3. **Necessity determination.** Component *c_i* is *necessary* if the solver fails on *f\\{c_i}*, and *redundant* otherwise.\n4. **Aggregation.** Compute the fraction of necessary components as the Intensional Structural Reward (ISR; §3.4).\n\nSTA is solver-agnostic: the same protocol applies to Prover9 (FOL) and SWI-Prolog (Prolog) without modification, enabling cross-logic diagnostic transfer (§4).\n\nSTA is applied only to proved samples (*r_exec = 1*). For unproved samples, ISR is undefined (the baseline verification in Step 1 fails). When reporting population-level ISR statistics, we report *proved-only* ISR (ISR*), which conditions on successful baseline verification, to avoid conflating structural quality with prove rate.\n\n## 3.4 Intensional Structural Reward (ISR)\n\nGiven a proved formalization *f = {c₁, …, cₙ}*, we define ISR as the fraction of components whose removal causes proof failure:\n\n> **ISR(f) = (1/n) Σᵢ 𝟙[solver fails on f\\{c_i}]**\n\nwhere *f\\{c_i}* denotes *f* with component *c_i* removed. ISR is bounded in [0, 1]: ISR = 1 indicates every component is individually necessary for the proof, while ISR = 0 indicates no single component is necessary (all are redundant).\n\nISR measures *syntactic component necessity*—whether each component contributes to the proof derivation—not semantic faithfulness to the natural language input. This distinction is critical: a formalization can achieve ISR = 1 by containing a single tautological component (e.g., a premise identical to the conclusion), which is necessary by construction but semantically degenerate.\n\n**Premise count bias.** ISR is mathematically influenced by the number of components: formalizations with fewer premises have higher expected ISR under random ablation, since each component constitutes a larger fraction of the proof. We control for this confound in our analysis via premise-count-matched comparisons (§4).\n\n## 3.5 Reward Formulations\n\nTo study the effect of incorporating ISR into GRPO training, we evaluate the following reward formulations:\n\n**Execution-only (baseline).** *r(f) = r_exec(f)*. Binary solver success, providing no structural signal.\n\n**Additive ISR.** *r(f) = r_exec(f) · (1 + β · ISR(f))*, where β > 0 controls the ISR weight. The multiplicative gating by r_exec ensures ISR contributes only for proved samples. We evaluate β ∈ {0.1, 0.3}.\n\n**Additive random (control).** *r(f) = r_exec(f) · (1 + β · U)*, where U ~ Uniform(0, 1) replaces ISR with a random signal. This isolates the effect of ISR-specific information from the effect of reward variance alone.\n\n**SFT (supervised baseline).** Standard supervised fine-tuning on ground-truth formalizations, serving as a non-RL reference point.\n\nAdditional formulations (convex combination *r = α · r_exec + β · ISR*) were explored but produced degenerate outcomes (ISR < 1 acts as a penalty on proved samples, suppressing prove rate); we report these briefly in §4.\n\n## 3.6 Reward Hacking Taxonomy\n\nAcross experimental conditions, we identify seven distinct reward hacking strategies, classified by manual inspection and automated pattern detection:\n\n- **H1. Multi-premise conclusion embedding.** The conclusion is embedded verbatim within one or more premises. The proof succeeds trivially via subsumption. Prevalent across all GRPO conditions (52–93% of proved samples).\n- **H2. Tautological collapse.** The formalization reduces to two components where one trivially entails the other.\n- **H3. Complexity without utility.** Extraneous axioms that do not contribute to the proof but inflate component count.\n- **H4. Repetition collapse.** Identical components repeated multiple times, inflating *n* while each copy is individually redundant under LOO ablation.\n- **H5. Contradiction explosion.** Contradictory axioms from which anything follows *ex falso quodlibet*, yielding ISR = 0 since no single axiom is necessary once the contradiction is established.\n- **H6. ISR inflation via conclusion duplication.** The conclusion appears as a single premise identical to the goal. Under LOO, removing this sole necessary component causes proof failure, yielding ISR ≈ 1. This mode is ISR-specific: it appears in 64.5% of ISR-rewarded proved samples across three seeds but in 0% of random-rewarded samples.\n- **H7. Query-as-fact gaming (Prolog).** The model converts the natural language question into a snake_case atom and asserts it simultaneously as a fact and a query, causing SWI-Prolog to trivially succeed. This mode bypasses text-match hacking classifiers and was identified only through functional analysis of the n_necessary distribution.\n\nModes H1–H5 arise under execution-only reward. H6 emerges specifically under ISR reward, representing *meta-level* Goodhart behavior: the model games the diagnostic metric itself. H7 is specific to Prolog STA and reveals a classifier blind spot—text-match detection fails, requiring cross-validation with functional necessity analysis.\n",
+              "content_filename": "method_draft.md",
+              "tags": "['paper', 'method', 'draft', 'markdown', 'review']"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T00:46:14.464882+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260515_3bf026\\\", \\\"name\\\": \\\"method-section-draft-md\\\", \\\"type\\\": \\\"paper\\\", \\\"description\\\": \\\"Method section (§3) Markdown draft for review. ~1200 words. Mirror of method.tex for easier Director/Reviewer inspection.\\\", \\\"path\\\": \\\"projects/solver-trace-ablation/artifacts/_project/paper/method_draft.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"solver-trace-ablation\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-15T00:45:54.374556+00:00\\\", \\\"tags\\\": [\\\"paper\\\", \\\"method\\\", \\\"draft\\\", \\\"markdown\\\", \\\"review\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_method-section_20260515T004322",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T00:46:14.465092+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Method 章节草稿已完成，两个版本均已注册为 artifact：\n\n- **LaTeX**: `artifacts/_project/paper/method_76d073.tex` (`art_20260515_76d073`)\n- **Markdown**: `artifacts/_project/paper/method_draft.md` (`art_20260515_3bf026`)\n\n**结构覆盖**（6 个子节，~1200 words）：\n\n| 子节 | 内容 |\n|------|------|\n| §3.1 Task | NL→FOL/Prolog formalization，Prover9/SWI-Prolog 验证，r_exec 的结构盲区 |\n| §3.2 GRPO | 标准 GRPO 公式（advantage + policy gradient），baseline PR 轨迹 12%→32%→93%（引用 `sta-phase0-baseline`, `plan003-eval-exec-only-r5`） |\n| §3.3 STA | LOO 消融 4 步协议，solver-agnostic 设计，proved-only ISR* 定义 |\n| §3.4 ISR | 形式化定义 ISR(f) = (1/n)Σ𝟙[fail]，[0,1] 边界语义，syntactic necessity ≠ semantic faithfulness，premise count bias 预告 |\n| §3.5 Reward | 4 种配方（exec-only / additive ISR / additive random control / SFT），convex combination 失败简述 |\n| §3.6 Taxonomy | 7 种 hacking 模式（H1-H7），标注 ISR-specific（H6）和 Prolog-specific（H7），meta-Goodhart 归因 |\n\n**关键写作决策**：\n- ISR 定义处即标注\"syntactic necessity ≠ semantic faithfulness\"，为 Discussion 中 ρ=-0.049 铺垫\n- Premise count bias 在 §3.4 预告，§4 中用 premise-count-matched 1.06x 分析兑现\n- H6/H7 独立编号（非连续 H5→H6→H7），H6 明确标注 64.5% vs 0% 的 ISR-specificity\n- Convex combination 仅一句带过（penalty effect），避免占用 word budget"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_method-section_20260515T004322"
+          },
+          "id": "event-000023"
+        }
+      ],
+      "message_count": 23
+    }
+  ],
+  "readable_path": "readable/conversations/write-method-section.md"
+}

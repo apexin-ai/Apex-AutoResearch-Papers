@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2213728388582132f814",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_16_1778905732.md",
+  "task_key": "loop_16_1778905732",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_16_1778905732.md",
+    "occurrence": 1,
+    "bytes": 4783,
+    "sha256": "21fe7119568a5df5abdfc617733c49c7a1a3a6e79c87bc3eb2f4aaa91f8c695b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 16\nreason: idle_timeout\nupdated: '2026-05-16T04:27:53+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**仅 westd-39279:cuda:0 和 cuda:1**，不可用其他设备\n- Round 2 全部使用 **Qwen3-4B**（路径 `/root/autodl-tmp/models/Qwen3-4B`），与 Round 1 的 Qwen2.5-1.5B-Instruct 不同——不要混淆\n- 服务器 wandb key 缺失，Round 2 实验必须加 **`--no_wandb`**。metrics 从 `reward_log.csv` / output_dir 提取，不能依赖 wandb\n- 训练脚本路径 `scripts/train_grpo.py`，config 在 `configs/`——首次提交因漏 `scripts/` 前缀导致 GPU 空转过\n- β=0.05 genuine≥75% 但 96.3% 样本 ISR=0.75 精确相同（mode collapse）——论文必须诚实报告，不能只说\"ISR 保留\"\n- D095 Narrative A 已批准生效，所有 paper 内容必须与之一致；genuine rate p=0.182 不显著，禁止 claim 显著差异\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-39279 | **账号**: root | **2×RTX PRO 6000 96GB**\n- **工作目录**: `/root/solver-trace-ablation` | **输出**: `/root/autodl-tmp/outputs/`\n- **Python**: `/root/miniconda3/bin/python`，环境激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型**: `/root/autodl-tmp/models/Qwen3-4B`（Round 2）；Round 1 模型 `/root/autodl-tmp/models/Qwen2.5-1.5B-Instruct`\n- **活跃进程**:\n  - sweep-isr-b02-s43: PID 633515, cuda:0, output `/root/autodl-tmp/outputs/sweep_isr_b02_s43`\n  - sweep-isr-b02-s42: PID 633657, cuda:1, output `/root/autodl-tmp/outputs/sweep_isr_b02_s42_v2`\n- **Cron**: 2 个活跃 cron 分别监控 sweep-isr-b02-s42 和 sweep-isr-b02-s43\n- **Worker**: `worker_monitor_cuda1-b005-completion-r2` 仍在运行（监控 b005 完成后续）\n\n### 3. 📊 当前状态\n上一轮完成了 D098 config merge bug 修复、sweep-isr-b005-s42 分析（D102: Goodhart 阈值锁定 β∈(0.05,0.1)）、D100 K=4 全量验证+论文修正、D101 Round 2 排期。论文已通过 Reviewer 一致性审查 (PASS)。\n\n**RUNNING (2)**:\n- `sweep-isr-b02-s42` — β=0.2 ISR seed=42, cuda:1, ~step 35/500 at last check, 预计~59min 完成\n- `sweep-isr-b02-s43` — β=0.2 ISR seed=43, cuda:0, 同期启动\n\n**ALLOCATED but dead (1)**:\n- `plan018-additive-random-b01-s45` — Random β=0.1 s45, 被 b02 提交时 GPU 冲突挤掉 (PID 628171 消亡)，需等 GPU 空出后重排\n\n**PREPARING (14)**: 大部分已标记 killed（去重取消），有效待排队: sweep-isr-b02-s44, sweep-isr-b005-s43, sweep-isr-b005-s44, plan001-exec-only-s45/s46, plan018-random-b01-s45/s46, plan002-additive-b01-s45/s46, w2-qwen3-7b-pilot (DEFER)\n\n**等待中**:\n- 2 个 cron 回调（b02-s42 和 b02-s43 完成时触发）\n- 1 个 worker 仍在运行（b005 后续监控）\n\n### 4. 📋 待办（条件触发式）\n- **sweep-isr-b02-s42 + s43 cron 回调到达** → spawn worker 分析 β=0.2 结果（从 output_dir 提取 reward_log.csv + 跑 classify_h7.py）→ 更新 registry metrics → 如果 2-seed 结果稳定，立即提交 sweep-isr-b02-s44（3rd seed, P1）\n- **β=0.2 3-seed 完成** → 补充 dose-response 曲线: β={0.05, 0.1, 0.2, 0.3} 四点，更新论文 Fig 2\n- **GPU 空出** → 按 D101 优先级排队: P1 b02-s44 > P2 random-b01-s45 (重排) > P3 5-seed 扩展\n- **worker_monitor_cuda1-b005-completion-r2 完成** → 读取产出，确认 b005 分析是否完整\n- **β=0.2 结果出现 negative** → 走 red-section framing 提案流程，禁止默默跑下一个\n- **所有 Round 2 sweep 完成** → 汇总 dose-response 全景，更新论文 experiments.tex + appendix.tex，送 Review Director 最终审\n\n### 5. 🎯 战略上下文\n**项目核心结论**: STA/ISR 是 GRPO neurosymbolic formalizer 的诊断工具 + Goodhart's Law 案例研究。3 个 claim 全部闭环。论文处于 Writing+Review 阶段，DDL 2026-05-25（剩 9 天）。\n\n**决策链关键节点**:\n- D095: Narrative A 生效（H7a GRPO-general + H7b ISR-specific）\n- D099/D100: K=4（非 K=8），所有条件统一\n- D101: Round 2 排期，P1=β=0.2 三seed，7B pilot DEFER\n- D102: Goodhart 阈值 β∈(0.05,0.1) 尖锐相变，1 seed 不升级 claim\n\n**易错点**:\n- β=0.2 结果需与 Round 1 的 β=0.1/0.3 对比，但 Round 2 用 Qwen3-4B 而 Round 1 用 Qwen2.5-1.5B——**不可跨模型直接对比**，β=0.2 仅与同 Round 2 的 β=0.05 对比有效，或需在论文中明确标注模型差异\n- plan018-additive-random-b01-s45 状态是 ALLOCATED 但实际已 dead，需更新状态后重排\n- sweep-isr-b01-s45 之前被 RAM OOM kill（双实验并行），当前 b02-s42+s43 也是双跑——如果再次 OOM 需改为串行\n- 不要把 H7a (GRPO-general, seed-dependent) 和 H7b (ISR-specific, obfuscated tautology) 混为一谈，这个错误已来回修正 8 次 (D087-D094)\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-16-1778905732.md"
+}

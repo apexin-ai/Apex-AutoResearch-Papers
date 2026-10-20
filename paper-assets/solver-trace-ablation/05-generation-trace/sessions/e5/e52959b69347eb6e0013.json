@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e52959b69347eb6e0013",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ssh diag running exps",
+  "task_key": "worker_ssh_diag-running-exps_20260516T164207",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_diag-running-exps_20260516T164207_result.json",
+    "occurrence": 1,
+    "bytes": 2371,
+    "sha256": "9efb42c3e1002adf9fc71d4978d1a0131a1c9e8d5a12a3e186c2d506c0f89579"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n### 1. exec-retrain-for-warmstart-s42 — ✅ 已完成\n\n- **进程**: 无（已结束）\n- **步数**: 203/200（已跑过 target，checkpoint-200 已保存）\n- **最终 metrics**: reward_mean ~0.62-1.0，prove_rate 高，训练健康\n- **checkpoint**: `/root/autodl-tmp/outputs/exec_retrain_v3_s42/checkpoint-200` ✓\n- **注**: s43 也已完成（223 steps logged，checkpoint-200 存在）\n\n### 2. gated-isr-warmstart-t02-s42 — ⚠️ 运行中但已崩溃（reward collapse）\n\n- **进程**: PID 890110，cuda:0（94% util, 81GB VRAM）\n- **步数**: 78/300\n- **问题**: **reward=0.0, loss=0.0, grad_norm=0.0, gate_pass=0.000** 贯穿几乎所有 step\n  - ISR gate (threshold=0.2) 完全阻断了 reward signal\n  - 模型产出 ISR < 0.2，无法通过 gate，无梯度更新\n  - 这是 dead run，继续跑毫无意义\n- **额外风险**: 磁盘 **250G/250G 满**，下次 save (step 100) 必定 OOM\n\n### 3. gated-isr-warmstart-t02-s43 — ❌ 已崩溃\n\n- **进程**: 无\n- **步数**: 死在 100/300\n- **Traceback**:\n  ```\n  safetensors_rust.SafetensorError: Error while serializing: \n  I/O error: No space left on device (os error 28)\n  ```\n  在 step 100 保存 checkpoint 时磁盘满崩溃\n- **同样的 reward collapse**: gate_pass=0.000 贯穿全程，仅极少数 step 有 reward（step 79: 0.125, step 87: 0.375）\n\n---\n\n## 根因\n\n1. **磁盘满**: exec_retrain 配置 `save_total_limit: 10`（违反 C003），两个 exec_retrain 目录各保留 3 checkpoint = 45GB × 2 = 90GB 不必要占用\n2. **ISR gate 过严**: warmstart 模型虽然 prove_rate 不错，但 ISR 几乎全在 0.2 以下 → gate_pass=0 → 无 reward → 无梯度 → 死循环\n\n---\n\n## 需要的操作\n\n| 实验 | 操作 |\n|------|------|\n| exec-retrain s42/s43 | Registry → `conclusion: success`。清理旧 checkpoint（仅保留 checkpoint-200） |\n| gated-isr-warmstart-t02-s42 | **Kill**（reward collapsed + 即将磁盘满崩溃），registry → `conclusion: failed_reward_collapse` |\n| gated-isr-warmstart-t02-s43 | Registry → `conclusion: failed_disk_full` |\n| **磁盘清理** | 删 `exec_retrain_v3_s{42,43}/checkpoint-{100,150}` → 释放 ~60GB |\n| **重新提交前** | 需修复 ISR gate 策略（threshold 0.2 对 warmstart 模型太高，或改为 progressive gating） |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-diag-running-exps.md"
+}

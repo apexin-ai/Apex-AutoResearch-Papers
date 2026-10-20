@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3bc661d271f617ee6694",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analysis h7 subtype random s43r3",
+  "task_key": "worker_analysis_h7-subtype-random-s43r3_20260515T185050",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_h7-subtype-random-s43r3_20260515T185050_result.json",
+    "occurrence": 1,
+    "bytes": 1417,
+    "sha256": "26e79d67d5ddf295d21dc122b71848ba31c118d155db316e1391f14170509f5e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果汇总：\n\n### 任务 A：Random s43-r3 H7 子类别\n| 指标 | 值 |\n|------|-----|\n| H7a (text-match tautology) | **36** (100% of H7) |\n| H7b (obfuscated tautology) | **0** |\n| H7 total | 36/94 = 38.3% |\n| H1 (conclusion embedding) | 56/94 = 59.6% |\n| H8 (conjunction collapse) | 1/94 = 1.1% |\n| Genuine | 1/94 = 1.1% |\n\n所有 36 个 H7 全是 H7a，零 H7b。且 single_premise_count=0——Random 的 H7a 是多前提证明中嵌入一个与结论完全匹配的前提，而非单前提 tautology。\n\n### 任务 B：Exec-only s43 核实\n- **确认 exec-only**：reward_log 中 random_mean=null, beta_t=null；training_args beta=0.0, reward_weights=None；reward 恰好等于 prove_rate\n- **D089 \"100% H7\" 确认**：90/90 proved 全是 H7a，零 H7b，全部 single-premise\n- **D088 需修正**：\"H7 由 additive reward 驱动\" 对 H7a 不成立——exec-only（无 additive bonus）产出 100% H7a\n\n### Framing 影响\n- **H7b (vacuous quantifier obfuscated tautology) 确认为 ISR-specific**——Random 和 exec-only 都是 0\n- **H7a 是通用 reward hacking**——出现在所有训练模式中，不能作为 ISR-specific 证据\n- **结构差异**：exec-only 的 H7a 全是单前提最小 tautology；Random 的 H7a 是多前提中嵌入 tautology\n\n文件已保存到 `/root/solver-trace-ablation/analysis/d093_h7_subtype_analysis.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-h7-subtype-random-s43r3.md"
+}

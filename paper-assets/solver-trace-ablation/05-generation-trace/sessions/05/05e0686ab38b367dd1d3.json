@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "05e0686ab38b367dd1d3",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analysis table1 compilation",
+  "task_key": "worker_analysis_table1-compilation_20260514T073448",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_table1-compilation_20260514T073448_result.json",
+    "occurrence": 1,
+    "bytes": 607,
+    "sha256": "568a828885a755c4342dbcbc983155248d15c02e822086959362b6eaa6bde992"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个文件已生成并注册：\n\n**`table1_data.json`** — 10 个实验的结构化数据，包含 eval PR/ISR/components/collapse/degradation mode 等全部字段。\n\n**`table1_comparison.md`** — 论文级 Markdown 对比表 + 6 条 key findings + 注释说明。\n\n数据要点：\n- 所有数值来自 registry，未编造\n- plan001-s43-r4 标注为 sampling eval (T=0.7)，非 eval_sta.py\n- plan013 ISR=0.535 和 plan001-s44 ISR=0.57 均标注为 tautological artifact (†)\n- plan005-sta-low-s42 标注为 training log only (‡)，checkpoint 已删除无 eval_sta.py 结果"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-table1-compilation.md"
+}

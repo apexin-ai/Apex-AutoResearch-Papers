@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "eaf4b3e76cdc1b1c7bd4",
+  "project": "solver-trace-ablation",
+  "kind": "worker",
+  "title": "paper language polish and submission",
+  "task_key": "worker_paper_language-polish-and-submission_20260516T012707",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_language-polish-and-submission_20260516T012707.log",
+    "occurrence": 1,
+    "bytes": 942157,
+    "sha256": "58f1f148efebcf1f3c8fa513f1c4e0108c36568a73d6bf756102e59680a0056e"
+  },
+  "statistics": {
+    "messages": 153,
+    "user_turns": 0,
+    "tool_calls": 60,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 29,
+      "tool_call": 60,
+      "tool_result": 60,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 153,
+      "chunks": [
+        {
+          "path": "eaf4b3e76cdc1b1c7bd4-part-0001.json",
+          "message_count": 80
+        },
+        {
+          "path": "eaf4b3e76cdc1b1c7bd4-part-0002.json",
+          "message_count": 73
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-language-polish-and-submission.md"
+}

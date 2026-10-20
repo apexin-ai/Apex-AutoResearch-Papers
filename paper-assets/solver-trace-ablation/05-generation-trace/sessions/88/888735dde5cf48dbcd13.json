@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "888735dde5cf48dbcd13",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code d146 s44 progress",
+  "task_key": "worker_code_d146-s44-progress_20260519T192746",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d146-s44-progress_20260519T192746_result.json",
+    "occurrence": 1,
+    "bytes": 769,
+    "sha256": "2e9ae89d46a3d4057cd8b547f76a2b59ae199015af32e74cbb7a734c157bb53c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## D146 exec-s44 进度报告\n\n| 指标 | 值 |\n|------|-----|\n| **当前 step** | 367 / 1000（36.7%） |\n| **GPU 显存** | 84,759 MiB，利用率 100% |\n| **parse_rate** | 1.0（稳定） |\n\n### 最近 20 步趋势（step 348–367）\n\n| 指标 | 范围 | 备注 |\n|------|------|------|\n| **prove_rate** | 0.5–1.0 | 多数步 1.0，偶尔掉到 0.5（step 355/358/360/361/365） |\n| **ISR** | 0.0–0.127 | 极低，均值约 0.04；step 367 出现一个 0.127 的跳跃 |\n| **loss** | 基本 0.0 | 仅 step 350 (0.0075) 和 352 (-0.0485) 有非零值 |\n\n训练正常推进，~15s/step，预计还需约 2.6 小时完成。prove_rate 已饱和接近 1.0，ISR 极低符合 exec-only 预期（C006：冗余编码而非无推理）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d146-s44-progress.md"
+}

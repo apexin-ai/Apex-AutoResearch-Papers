@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "58e8f0f60c931b67947c",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_21.md",
+  "task_key": "loop_21",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_21.md",
+    "occurrence": 1,
+    "bytes": 3879,
+    "sha256": "0f1df8a9c3f487473ae8395c16dc4f54a084953359094216bc0640b214695cec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 21\nreason: max_wall_time\nupdated: '2026-05-17T21:28:10+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 服务器 westd-39279 只有 **1 张 GPU (cuda:0)**，不存在 cuda:1。ROADMAP 和 resource config 声称 2 张是错误的。\n- D129 实验必须**顺序执行**在 cuda:0 上，不能并行。\n- submit_training_job 命令必须用 `bash -c \"...\"` 包裹（tmux 用 sh 不是 bash）。\n- 训练数据固定为 `data/train_500_seed42.jsonl`（500 条），seed 参数控制模型初始化不是数据。\n- sweep-isr-b005-s42 的 registry 状态曾卡在 PREPARING，已手动链式修复到 DONE/negative，不要再动。\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-39279，1× RTX PRO 6000 96GB\n- **工作目录**: `/root/solver-trace-ablation/`\n- **Python**: conda base, Python 3.12, torch 2.10.0+cu128, trl 1.1.0（直接用 `python`，不需要 source activate）\n- **模型**: Qwen3-4B 在 `/root/autodl-tmp/models/Qwen3-4B/`；Qwen3-1.7B 在 `/root/autodl-tmp/models/Qwen3-1.7B/` (3.8GB, 2 shards)\n- **数据**: 训练 `data/train_500_seed42.jsonl`；评估 `data/proofwriter_fol_100.jsonl`\n- **脚本**: `scripts/train_grpo.py`, `scripts/eval_sta.py`, `scripts/classify_h7.py`\n- **活跃进程**: d129-1.7b-isr-b01-s43 (PID 14701, tmux=d129-1.7b-isr-b01-s43, cuda:0)，预计 UTC ~22:45 完成\n- **磁盘**: 61GB 可用\n- **论文本地路径**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/`\n\n### 3. 📊 当前状态\n**刚做完**: Round 6-9 论文审稿修复（16+ commits），Figure 3 更新为 5-seed，provenance v13。§5 在 page 8 内。\n\n**D129 实验队列** (6 runs, 顺序执行 cuda:0):\n1. `d129-1.7b-isr-b01-s43` — **RUNNING**, PID 14701, ~1.5-1.8h\n2. `d129-1.7b-isr-b01-s44` — PREPARING\n3. `d129-1.7b-random-b01-s43` — PREPARING\n4. `d129-1.7b-random-b01-s44` — PREPARING\n5. `d129-1.7b-isr-b03-s43` — PREPARING\n6. `d129-1.7b-isr-b03-s44` — PREPARING\n\n**等待**: d129-1.7b-isr-b01-s43 的 cron 完成回调。无 Worker 在跑。\n\n### 4. 📋 待办\n- d129-1.7b-isr-b01-s43 cron 回调 → spawn worker: eval (greedy, proofwriter_fol_100.jsonl) + classify (H1/H7/H8/H9/N-H) → update registry metrics → **检查 genuine >10% 则暂停汇报** → 提交 d129-1.7b-isr-b01-s44\n- 每个后续 run 完成 → 同样 eval+classify+registry → 提交下一个\n- 6 个全部完成 → 汇报 Director 全部结果表格 + 与 s42 对比 + paper §4.5 更新建议\n- 如出现与 s42 完全不同的 hacking mode → 正常完成但汇报中标注\n- 论文侧无待办（Round 9 已完成，等 Director 下一轮 review 或 D129 数据整合指令）\n\n### 5. 🎯 战略上下文\n- **DDL**: EMNLP 2026-05-25（剩 8 天）\n- **核心结论**: ISR 作为诊断工具可靠（99.5% collapse 检测），作为训练 reward 不可靠（所有 dose 下 Goodhart collapse）。Genuine window transient、statistically underpowered (n=5)。\n- **D129 目标**: 消除连续 9 轮 reviewer concern \"1.7B 仅 1 seed\"。s42 基线：ISR β=0.1 = 100% H1 fixed-template; Random β=0.1 = 100% H9 ex falso (PR=93%); ISR β=0.3 = reward collapse (PR=17%)。\n- **易错点**:\n  - 1.7B ISR β=0.1 s42 的 hacking mode 是 **H1**（不是 H7），与 4B 模式不同——这是论文 §4.5 的核心 claim（\"different capacities converge to different Goodhart basins\"）。新 seed 如果出现 H7 而非 H1，需要修改 claim。\n  - 1.7B Random s42 出现 **H9** (contradiction injection, ex falso)，这是 4B 从未出现的 mode。新 seed 需要确认 H9 是否 deterministic。\n  - eval 命令需要 `--greedy` 参数确保 greedy decoding。\n  - CMH 已在正文中降级为 appendix-only（Round 9），不要在新分析中重新引入正文 CMH 数字。\n  - 论文中 ISR 全称现在是 \"Irreducible Solver Rate\"（Round 6 统一），不是 \"Intensional Structural Reward\"。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-21.md"
+}

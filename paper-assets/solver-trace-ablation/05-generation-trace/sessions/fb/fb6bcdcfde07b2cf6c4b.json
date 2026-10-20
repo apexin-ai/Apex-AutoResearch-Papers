@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "fb6bcdcfde07b2cf6c4b",
+  "project": "solver-trace-ablation",
+  "kind": "worker",
+  "title": "code d154 8b hang diagnosis",
+  "task_key": "worker_code_d154-8b-hang-diagnosis_20260520T064314",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d154-8b-hang-diagnosis_20260520T064314.log",
+    "occurrence": 1,
+    "bytes": 737207,
+    "sha256": "33414c997fb1c0d263eea38baf6ebbf14bc3ddbc6376a4dbb5f52c06c1fbb5e6"
+  },
+  "statistics": {
+    "messages": 334,
+    "user_turns": 0,
+    "tool_calls": 118,
+    "roles": {
+      "log": 1,
+      "system": 11,
+      "record": 1,
+      "assistant": 83,
+      "tool_call": 118,
+      "tool_result": 118,
+      "result": 2
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 334,
+      "chunks": [
+        {
+          "path": "fb6bcdcfde07b2cf6c4b-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "fb6bcdcfde07b2cf6c4b-part-0002.json",
+          "message_count": 154
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-d154-8b-hang-diagnosis.md"
+}

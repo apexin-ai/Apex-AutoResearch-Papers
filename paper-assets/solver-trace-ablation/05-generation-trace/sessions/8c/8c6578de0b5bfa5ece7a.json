@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8c6578de0b5bfa5ece7a",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops check plan017 progress 2",
+  "task_key": "worker_ops_check-plan017-progress-2_20260514T050935",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-plan017-progress-2_20260514T050935_result.json",
+    "occurrence": 1,
+    "bytes": 479,
+    "sha256": "53b456485996cb5fe4c21ced38e41ecb497b1617dbba1af719c7fb664de1897f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**plan017-additive-random-s42 训练状态**\n\n| 项目 | 值 |\n|------|-----|\n| 当前进度 | **458/500** (91.6%) |\n| 已运行时间 | 1h 20m 57s |\n| 预计剩余 | ~7 分钟 (进度条显示 06:44) |\n| GPU | cuda:1, PID 207121, 79604 MiB — 正常运行 |\n\n最近几步 metrics (step 455-458):\n- reward: 0.84 ~ 1.16\n- prove_rate: 0.75 ~ 1.0\n- isr: 0.14 ~ 0.25\n- parse_rate: 1.0\n- step_time: ~9-12s\n\n训练正常推进，约 7 分钟后完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-plan017-progress-2.md"
+}

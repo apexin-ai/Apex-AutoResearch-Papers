@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "31d33a2025fc1f5c759f",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "diagnose w2 qwen3 1 7b isr done",
+  "task_key": "worker_diagnose_w2-qwen3-1_7b-isr-done_20260516T114633",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_w2-qwen3-1_7b-isr-done_20260516T114633_result.json",
+    "occurrence": 1,
+    "bytes": 1115,
+    "sha256": "f08d2f51cf75130c469ce38c1632e3b5b6174ad585175f92cfde45b12434d784"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 已不存在（可能之前已删）。任务完成。\n\n---\n\n## 汇报\n\n**训练状态**：500/500 步正常完成，耗时 35 分 53 秒。\n\n**⚠️ 诊断：训练后期 mode collapse**\n- 从 ~step 463 开始：loss=0, grad_norm=0, entropy→0, reward_std=0, completions length 稳定在 66 token\n- 模型输出坍缩为几乎完全相同的固定证明模板\n- 这是 GRPO 在小模型上低 K（K=4）+ 低 batch 的典型坍缩模式\n\n**Eval 结果（proofwriter_fol_100.jsonl）**：\n\n| Metric | Value |\n|--------|-------|\n| Prove Rate | **93%** |\n| Mean ISR | 0.2625 ± 0.0752 |\n| Median ISR | 0.2857 |\n| H7 | 0 |\n| H1 | 0 |\n| H8 | 0 |\n| Genuine | **93/93 (100%)** |\n| Content-independent | 93/93 (100%) |\n\n**解读**：高 prove rate + 几乎恒定 ISR=0.286 + 100% content-independent = 模型学会了一个**通用证明模板**（大概率是将所有前提作为 7 个 clause、去掉 2 个的固定 pattern → 2/7≈0.286）。没有 H7/H8 hacking，但这不是 genuine reasoning——是 mode collapse 后的退化表现。ISR 信号被模板化了。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-w2-qwen3-1-7b-isr-done.md"
+}

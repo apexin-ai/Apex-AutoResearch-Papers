@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7a705fe6374d2b264271",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "diag d134 4b random b01 s48",
+  "task_key": "worker_diag_d134-4b-random-b01-s48_20260518T200431",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_d134-4b-random-b01-s48_20260518T200431_result.json",
+    "occurrence": 1,
+    "bytes": 1228,
+    "sha256": "5962eb993a54cc26e3bd6eb8e92e23328d8a917225f7734671d32a1baabd6709"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断报告\n\n### 结论：实验成功完成，cron 误判为失败\n\n**失败原因：假阳性。** 训练使用了 `--no_wandb`，cron 检测逻辑依赖 W&B metrics 或 sentinel 文件判断进程存活。进程正常退出后，cron 看到 \"process dead + no W&B\" → 自动标记为 failed。\n\n### 实际运行情况\n\n| 阶段 | 状态 | 详情 |\n|------|------|------|\n| 训练 | 500/500 步完成 | 耗时 1h30m，final reward: prove_rate=0.5855, mean_isr=0.0994 |\n| Eval | 完成 | 93/100 proved (93%), ISR=0.0625 |\n| Classify | 完成 | genuine_rate=4.3%, h1_strict=80.6%, h8=15.1% |\n\n### 环境状态\n\n- **磁盘**：41G/250G 已用 (17%)，充裕\n- **safetensors 文件**：不在输出目录中（可能被 pipeline 清理或保存在别处）\n- **残留进程**：无法通过 read-only 检查，但训练日志显示正常退出（\"Done.\"）\n\n### 建议\n\n1. 在 registry 中将 d134-4b-random-b01-s48 的状态从 failed 修正为 success\n2. eval 和 classify 结果已生成，数据可直接使用\n3. 如果需要 checkpoint 用于后续分析，确认 safetensors 是否被 pipeline 删除——如果是，需要记录这个行为；如果需要权重则需重训"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-d134-4b-random-b01-s48.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "91a9024ff95e7eb340ab",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "fix verify model consistency",
+  "task_key": "worker_fix_verify-model-consistency_20260516T040356",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_verify-model-consistency_20260516T040356_result.json",
+    "occurrence": 1,
+    "bytes": 1043,
+    "sha256": "9c2e05ad8f70b6c8f2982d9584d78c03edf75d430978b715b69fd584e6115450"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 10 experiments: `Qwen3ForCausalLM`, 36 layers — identical to the base Qwen3-4B model on disk. No Qwen2.5-1.5B-Instruct exists on this server at all.\n\n## 模型一致性检查\n- 之前实验模型: **Qwen3-4B** (`Qwen3ForCausalLM`, 36 layers) — 全部 10 个已完成实验一致\n- sweep-isr-b02-s42 模型: **Qwen3-4B** (config yaml 指向 `/root/autodl-tmp/models/Qwen3-4B`, PID 626802 仍在 GPU:1 运行)\n- sweep-isr-b02-s43 模型: **Qwen3-4B** (同 config)，但 PID 629684 已死（GPU:0 空闲，0MiB）\n- config yaml 中模型: **Qwen3-4B** — 所有 19 个 yaml 均指向 `/root/autodl-tmp/models/Qwen3-4B`\n- train_grpo.py 默认模型: 无硬编码默认（`default=None`），由 config yaml 传入\n- 服务器上模型目录: 仅 Qwen3-4B、Qwen3-8B，**不存在 Qwen2.5-1.5B-Instruct**\n- 一致性结论: **MATCH** — 全部实验统一使用 Qwen3-4B\n- 执行动作: **无需 kill b02-s42**。但 b02-s43 (PID 629684) 已自行退出，GPU:0 空闲，需要排查原因并可能重新提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-verify-model-consistency.md"
+}

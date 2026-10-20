@@ -1,0 +1,1776 @@
+{
+  "schema_version": "1.0",
+  "id": "3ea875d42a8a392f341b",
+  "project": "solver-trace-ablation",
+  "kind": "worker",
+  "title": "paper fix rlsf bib",
+  "task_key": "worker_paper_fix-rlsf-bib_20260521T065002",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fix-rlsf-bib_20260521T065002.log",
+    "occurrence": 1,
+    "bytes": 112620,
+    "sha256": "28a7cae00d5de646aa0cbb313353d7180be9b4043ea2deade641fb53376f5f33"
+  },
+  "statistics": {
+    "messages": 40,
+    "user_turns": 0,
+    "tool_calls": 12,
+    "roles": {
+      "system": 3,
+      "record": 1,
+      "assistant": 11,
+      "tool_call": 12,
+      "tool_result": 12,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+                "session_id": "af72b763-b989-40b7-bef7-a4e030022aa5",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__save_project_file"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "5273a2d2-2c11-4cc2-b9fc-81160b595a43",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779348000,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "c37f51ba-704b-4843-ad57-3c37d19c8cc4",
+                "session_id": "af72b763-b989-40b7-bef7-a4e030022aa5"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The user wants me to fix the `rlsf` entry in references.bib. Let me:\n1. Search for the correct authors of arXiv:2405.16661\n2. Read the current bib entry\n3. Fix it\n4. Compile and verify\n\nLet me start by searching for the paper and reading the bib file in parallel.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "af72b763-b989-40b7-bef7-a4e030022aa5",
+            "uuid": "7a37a370-922f-4928-bbe7-9d21cb0bafc0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XiLJcASrR4XwyrBNb63gUM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 14748,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14748
+                },
+                "output_tokens": 35,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01YRZ4d3cnLfdRmejpwAg2xM",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebSearch",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "af72b763-b989-40b7-bef7-a4e030022aa5",
+            "uuid": "e1d0bea4-4049-4460-b2c3-a46c9e53e5f9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XiLJcASrR4XwyrBNb63gUM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 14748,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14748
+                },
+                "output_tokens": 35,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-21T07:09:37.410Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01YRZ4d3cnLfdRmejpwAg2xM",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebSearch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "af72b763-b989-40b7-bef7-a4e030022aa5",
+            "uuid": "1bdd93ba-0ee0-4c03-9fbb-0d9678043c19",
+            "tool_use_result": {
+              "matches": [
+                "WebSearch"
+              ],
+              "query": "select:WebSearch",
+              "total_deferred_tools": 22
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AtK873MdF66HRyM6qaQ7MV",
+              "name": "WebSearch",
+              "input": {
+                "query": "arXiv 2405.16661",
+                "allowed_domains": [
+                  "arxiv.org"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "af72b763-b989-40b7-bef7-a4e030022aa5",
+            "uuid": "3a96be72-55a0-4bf0-acc2-eee4ae339eea",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KETdQCPeJ9K7rbcpmQqnMy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 698,
+                "cache_read_input_tokens": 26589,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 698
+                },
+                "output_tokens": 58,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01E9jcPPbT8JwysYnafYyCyt",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/references.bib"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "af72b763-b989-40b7-bef7-a4e030022aa5",
+            "uuid": "5d0ea013-36e1-4ef8-a6b6-a30decafbbca",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KETdQCPeJ9K7rbcpmQqnMy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 698,
+                "cache_read_input_tokens": 26589,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 698
+                },
+                "output_tokens": 58,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-21T07:09:40.628Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01E9jcPPbT8JwysYnafYyCyt",
+              "type": "tool_result",
+              "content": "1\t% ============================================================\n2\t% LLaMA\n3\t% ============================================================\n4\t\n5\t@article{grattafiori2024llama,\n6\t  author = {Aaron Grattafiori and Abhimanyu Dubey and Abhinav Jauhri and others},\n7\t  title = {{The Llama 3 Herd of Models}},\n8\t  journal = {arXiv preprint arXiv:2407.21783},\n9\t  year = {2024},\n10\t  eprint = {2407.21783},\n11\t  archiveprefix = {arXiv},\n12\t}\n13\t\n14\t% ============================================================\n15\t% Category 1: Neurosymbolic reasoning + RL/GRPO\n16\t% ============================================================\n17\t\n18\t@article{deepseekmath,\n19\t  author       = {Zhihong Shao and Peiyi Wang and Qihao Zhu and Runxin Xu and others},\n20\t  title        = {{DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models}},\n21\t  journal      = {arXiv preprint arXiv:2402.03300},\n22\t  year         = {2024},\n23\t  eprint       = {2402.03300},\n24\t  archivePrefix = {arXiv},\n25\t  primaryClass = {cs.AI},\n26\t}\n27\t\n28\t@article{logic-rl,\n29\t  author       = {Tian Xie and Zitian Gao and Qingnan Ren and Haoming Luo and Yuqian Hong and Bryan Dai and Joey Zhou and Kai Qiu and Zhirong Wu and Chong Luo},\n30\t  title        = {{Logic-RL: Unleashing LLM Reasoning with Rule-Based Reinforcement Learning}},\n31\t  journal      = {arXiv preprint arXiv:2502.14768},\n32\t  year         = {2025},\n33\t  eprint       = {2502.14768},\n34\t  archivePrefix = {arXiv},\n35\t  primaryClass = {cs.AI},\n36\t}\n37\t\n38\t@article{mellgren-prolog-grpo,\n39\t  author       = {Niklas Mellgren and Peter Schneider-Kamp and Lukas Galke},\n40\t  title        = {{Training Language Models to Use Prolog as a Tool}},\n41\t  journal      = {arXiv preprint arXiv:2512.07407},\n42\t  year         = {2025},\n43\t  eprint       = {2512.07407},\n44\t  archivePrefix = {arXiv},\n45\t  primaryClass = {cs.AI},\n46\t}\n47\t\n48\t@inproceedings{satlm,\n49\t  author       = {Xi Ye and Qiaochu Chen and Isil Dillig and Greg Durrett},\n50\t  title        = {{SatLM: Satisfiability-Aided Language Models Using Declarative Prompting}},\n51\t  booktitle    = {Advances in Neural Information Processing Systems (NeurIPS)},\n52\t  year         = {2023},\n53\t}\n54\t\n55\t% ============================================================\n56\t% Category 2: Reward shaping for code/formal verification\n57\t% ============================================================\n58\t\n59\t@inproceedings{lightman-verify-step,\n60\t  author       = {Hunter Lightman and Vineet Kosaraju and Yura Burda and others},\n61\t  title        = {{Let's Verify Step by Step}},\n62\t  booktitle    = {Proceedings of the International Conference on Learning Representations (ICLR)},\n63\t  year         = {2024},\n64\t  note         = {arXiv:2305.20050},\n65\t}\n66\t\n67\t@inproceedings{skalse-reward-hacking,\n68\t  author       = {Joar Skalse and Nikolaus H. R. Howe and Dmitrii Krasheninnikov and David Krueger},\n69\t  title        = {{Defining and Characterizing Reward Hacking}},\n70\t  booktitle    = {Advances in Neural Information Processing Systems (NeurIPS)},\n71\t  year         = {2022},\n72\t  note         = {arXiv:2209.13085},\n73\t}\n74\t\n75\t% ============================================================\n76\t% Category 3: Mutation testing in software engineering\n77\t% ============================================================\n78\t\n79\t@article{demillo1978,\n80\t  author       = {Richard A. DeMillo and Richard J. Lipton and Frederick G. Sayward},\n81\t  title        = {{Hints on Test Data Selection: Help for the Practicing Programmer}},\n82\t  journal      = {Computer},\n83\t  volume       = {11},\n84\t  number       = {4},\n85\t  pages        = {34--41},\n86\t  year         = {1978},\n87\t}\n88\t\n89\t@article{jia-harman-survey,\n90\t  author       = {Yue Jia and Mark Harman},\n91\t  title        = {{An Analysis and Survey of the Development of Mutation Testing}},\n92\t  journal      = {IEEE Transactions on Software Engineering},\n93\t  volume       = {37},\n94\t  number       = {5},\n95\t  pages        = {649--678},\n96\t  year         = {2011},\n97\t}\n98\t\n99\t@article{spurious-rewards,\n100\t  author       = {Rulin Shao and Shuyue Stella Li and Rui Xin and Scott Geng and Yiping Wang and Sewoong Oh and Simon Shaolei Du and Nathan Lambert and Sewon Min and Ranjay Krishna and Yulia Tsvetkov and Hannaneh Hajishirzi and Pang Wei Koh and Luke Zettlemoyer},\n101\t  title        = {{Spurious Rewards: Rethinking Training Signals in RLVR}},\n102\t  journal      = {arXiv preprint arXiv:2506.10947},\n103\t  year         = {2025},\n104\t  eprint       = {2506.10947},\n105\t  archivePrefix = {arXiv},\n106\t  primaryClass = {cs.AI},\n107\t}\n108\t\n109\t@article{bondarenko-spec-gaming,\n110\t  author       = {Alexander Bondarenko and Denis Volk and Dmitrii Volkov and Jeffrey Ladish},\n111\t  title        = {{Demonstrating Specification Gaming in Reasoning Models}},\n112\t  journal      = {arXiv preprint arXiv:2502.13295},\n113\t  year         = {2025},\n114\t  eprint       = {2502.13295},\n115\t  archivePrefix = {arXiv},\n116\t  primaryClass = {cs.AI},\n117\t}\n118\t\n119\t@inproceedings{kim-game-formalization,\n120\t  author       = {Kyuhee Kim and Auguste Poiroux and Antoine Bosselut},\n121\t  title        = {{Do LLMs Game Formalization? Evaluating Faithfulness in Logical Reasoning}},\n122\t  booktitle    = {VerifAI-2 Workshop at the International Conference on Learning Representations (ICLR)},\n123\t  year         = {2026},\n124\t  note         = {arXiv:2604.19459},\n125\t}\n126\t\n127\t@inproceedings{gao-reward-overoptimization,\n128\t  author       = {Leo Gao and John Schulman and Jacob Hilton},\n129\t  title        = {{Scaling Laws for Reward Model Overoptimization}},\n130\t  booktitle    = {Proceedings of the International Conference on Machine Learning (ICML)},\n131\t  year         = {2023},\n132\t  note         = {arXiv:2210.10760},\n133\t}\n134\t\n135\t@inproceedings{karwowski-goodhart-rl,\n136\t  author       = {Jacek Karwowski and Oliver Hayman and Xingjian Bai and Klaus Kiendlhofer and Charlie Griffin and Joar Skalse},\n137\t  title        = {{Goodhart's Law in Reinforcement Learning}},\n138\t  booktitle    = {Proceedings of the International Conference on Learning Representations (ICLR)},\n139\t  year         = {2024},\n140\t  note         = {arXiv:2310.09144},\n141\t}\n142\t\n143\t% ============================================================\n144\t% Category 6: FOL/Prolog formalization with LLMs\n145\t% ============================================================\n146\t\n147\t@inproceedings{folio,\n148\t  author       = {Simeng Han and Hailey Schoelkopf and Yilun Zhao and Zhenting Qi and Martin Riddell and Luke Benson and Lucy Sun and Ekaterina Zubova and Yujie Qiao and Matthew Burtell and David Peng and Jonathan Fan and Yixin Liu and Brian Wong and Malcolm Sailor and Ansong Ni and Linyong Nan and Jungo Kasai and Tao Yu and Rui Zhang and Shafiq Joty and Alexander R. Fabbri and Wojciech Kryscinski and Xi Victoria Lin and Caiming Xiong and Dragomir Radev},\n149\t  title        = {{FOLIO: Natural Language Reasoning with First-Order Logic}},\n150\t  booktitle    = {Proceedings of the Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n151\t  year         = {2024},\n152\t  note         = {arXiv:2209.00840},\n153\t}\n154\t\n155\t@inproceedings{logic-lm,\n156\t  author       = {Liangming Pan and Alon Albalak and Xinyi Wang and William Yang Wang},\n157\t  title        = {{Logic-LM: Empowering Large Language Models with Symbolic Solvers for Faithful Logical Reasoning}},\n158\t  booktitle    = {Findings of the Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n159\t  year         = {2023},\n160\t}\n161\t\n162\t@inproceedings{linc,\n163\t  author       = {Theo X. Olausson and Alex Gu and Ben Lipkin and Cedegao E. Zhang and Armando Solar-Lezama and Joshua B. Tenenbaum and Roger Levy},\n164\t  title        = {{LINC: A Neurosymbolic Approach for Logical Reasoning by Combining Language Models with First-Order Logic Provers}},\n165\t  booktitle    = {Proceedings of the Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n166\t  year         = {2023},\n167\t}\n168\t\n169\t@article{fover-pei2025,\n170\t  author       = {Yu Pei and Yongping Du and Xingnan Jin},\n171\t  title        = {{FoVer: First-Order Logic Verification for Natural Language Reasoning}},\n172\t  journal      = {Transactions of the Association for Computational Linguistics},\n173\t  volume       = {13},\n174\t  pages        = {1340--1359},\n175\t  year         = {2025},\n176\t}\n177\t\n178\t@article{lorp,\n179\t  author       = {Zhengkun Di and Chaoli Zhang and Hongtao Lv and Lizhen Cui and Lei Liu},\n180\t  title        = {{LoRP: LLM-based Logical Reasoning via Prolog}},\n181\t  journal      = {Knowledge-Based Systems},\n182\t  year         = {2025},\n183\t}\n184\t\n185\t@article{manheim-goodhart-taxonomy,\n186\t  author       = {David Manheim and Scott Garrabrant},\n187\t  title        = {{Categorizing Variants of Goodhart's Law}},\n188\t  journal      = {arXiv preprint arXiv:1803.04585},\n189\t  year         = {2019},\n190\t  eprint       = {1803.04585},\n191\t  archivePrefix = {arXiv},\n192\t  primaryClass = {cs.AI},\n193\t}\n194\t\n195\t@inproceedings{math-shepherd,\n196\t  author       = {Peiyi Wang and Lei Li and Zhihong Shao and Runxin Xu and others},\n197\t  title        = {{Math-Shepherd: Verify and Reinforce LLMs Step-by-step without Human Annotations}},\n198\t  booktitle    = {Proceedings of the Association for Computational Linguistics (ACL)},\n199\t  year         = {2024},\n200\t  note         = {arXiv:2312.08935},\n201\t}\n202\t\n203\t% ============================================================\n204\t% Reward shaping and process supervision\n205\t% ============================================================\n206\t\n207\t@article{rlsf,\n208\t  author       = {Piyush Jha and Prithwish Jana and Pranavkrishna Suresh and Arnav Arora and Vijay Ganesh},\n209\t  title        = {{RLSF: Reinforcement Learning via Symbolic Feedback}},\n210\t  journal      = {arXiv preprint arXiv:2405.16661},\n211\t  year         = {2024},\n212\t  eprint       = {2405.16661},\n213\t  archivePrefix = {arXiv},\n214\t  primaryClass = {cs.AI},\n215\t}\n216\t\n217\t@article{gao-effective-rl-reward,\n218\t  author       = {Jiaxuan Gao and Shusheng Xu and Wenjie Ye and Weilin Liu and Chuyi He and Wei Fu and Zhiyu Mei and Guangju Wang and Yi Wu},\n219\t  title        = {{On Designing Effective RL Reward at Training Time for LLM Reasoning}},\n220\t  journal      = {arXiv preprint arXiv:2410.15115},\n221\t  year         = {2024},\n222\t  eprint       = {2410.15115},\n223\t  archivePrefix = {arXiv},\n224\t  primaryClass = {cs.AI},\n225\t}\n226\t\n227\t@inproceedings{kwa-catastrophic-goodhart,\n228\t  author       = {Tat-Thang Kwa and Rachel Thomas and Adri\\`{a} Garriga-Alonso},\n229\t  title        = {{Catastrophic Goodhart: Regularizing RLHF with KL Divergence Does Not Mitigate Heavy-Tailed Reward Misspecification}},\n230\t  booktitle    = {Advances in Neural Information Processing Systems (NeurIPS)},\n231\t  year         = {2024},\n232\t  note         = {arXiv:2404.18926},\n233\t}\n234\t\n235\t@article{deepseek-prover-v15,\n236\t  author       = {{DeepSeek AI}},\n237\t  title        = {{DeepSeek-Prover-V1.5: Harnessing Proof Assistant Feedback for Reinforcement Learning and Monte-Carlo Tree Search}},\n238\t  journal      = {arXiv preprint arXiv:2408.08152},\n239\t  year         = {2024},\n240\t  eprint       = {2408.08152},\n241\t  archivePrefix = {arXiv},\n242\t}\n243\t\n244\t@article{deepseek-r1,\n245\t  author       = {{DeepSeek-AI}},\n246\t  title        = {{DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning}},\n247\t  journal      = {arXiv preprint arXiv:2501.12948},\n248\t  year         = {2025},\n249\t  eprint       = {2501.12948},\n250\t  archivePrefix = {arXiv},\n251\t}\n252\t\n253\t@inproceedings{nlproofs,\n254\t  author       = {Kaiyu Yang and Jia Deng and Danqi Chen},\n255\t  title        = {{Generating Natural Language Proofs with Verifier-Guided Search}},\n256\t  booktitle    = {Proceedings of the 2022 Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n257\t  year         = {2022},\n258\t  eprint       = {2205.12443},\n259\t  archivePrefix = {arXiv},\n260\t}\n261\t\n262\t@article{vstar,\n263\t  author       = {Arian Hosseini and Xingdi Yuan and Nikolay Malkin and Aaron Courville and Alessandro Sordoni and Rishabh Agarwal},\n264\t  title        = {{V-STaR: Training Verifiers for Self-Taught Reasoners}},\n265\t  journal      = {arXiv preprint arXiv:2402.06457},\n266\t  year         = {2024},\n267\t  eprint       = {2402.06457},\n268\t  archivePrefix = {arXiv},\n269\t}\n270\t\n271\t@inproceedings{easy-to-hard,\n272\t  author       = {Zhiqing Sun and Longhui Yu and Yikang Shen and Weiyang Liu and Yiming Yang and Sean Welleck and Chuang Gan},\n273\t  title        = {{Easy-to-Hard Generalization: Scalable Alignment Beyond Human Supervision}},\n274\t  booktitle    = {Advances in Neural Information Processing Systems (NeurIPS)},\n275\t  year         = {2024},\n276\t  eprint       = {2403.09472},\n277\t  archivePrefix = {arXiv},\n278\t}\n279\t\n280\t% ============================================================\n281\t% Additional reward-shaping papers\n282\t% ============================================================\n283\t\n284\t@article{reward-hacking-survey,\n285\t  author       = {Xiaohua Wang and Muzhao Tian and Yuqi Zeng and Zisu Huang and others},\n286\t  title        = {{Reward Hacking in the Era of Large Models: Mechanisms, Emergent Misalignment, Challenges}},\n287\t  journal      = {arXiv preprint arXiv:2604.13602},\n288\t  year         = {2026},\n289\t  eprint       = {2604.13602},\n290\t  archivePrefix = {arXiv},\n291\t}\n292\t\n293\t@misc{metr-reward-hacking,\n294\t  author       = {Sydney {Von Arx} and Lawrence Chan and Beth Barnes},\n295\t  title        = {{Recent Frontier Models Are Reward Hacking}},\n296\t  year         = {2025},\n297\t  howpublished = {METR Technical Blog},\n298\t  note         = {\\url{https://metr.org/blog/2025-06-05-recent-reward-hacking/}},\n299\t}\n300\t\n301\t@inproceedings{proofwriter,\n302\t  author       = {Oyvind Tafjord and Bhavana Dalvi and Peter Clark},\n303\t  title        = {{ProofWriter: Generating Implications, Proofs, and Abductive Statements over Natural Language}},\n304\t  booktitle    = {Findings of the Association for Computational Linguistics (ACL)},\n305\t  year         = {2021},\n306\t  note         = {arXiv:2012.13048},\n307\t}\n308\t\n309\t@article{prooffol-thatikonda2024,\n310\t  author       = {Ramya Keerthy Thatikonda and Jiuzhou Han and Wray Buntine and Ehsan Shareghi},\n311\t  title        = {{Strategies for Improving NL-to-FOL Translation with LLMs: Data Generation, Incremental Fine-Tuning, and Verification}},\n312\t  journal      = {arXiv preprint arXiv:2409.16461},\n313\t  year         = {2024},\n314\t  eprint       = {2409.16461},\n315\t  archivePrefix = {arXiv},\n316\t}\n317\t\n318\t@article{qwen3,\n319\t  author       = {{Qwen Team}},\n320\t  title        = {{Qwen3 Technical Report}},\n321\t  journal      = {arXiv preprint arXiv:2505.09388},\n322\t  year         = {2025},\n323\t  eprint       = {2505.09388},\n324\t  archivePrefix = {arXiv},\n325\t  primaryClass = {cs.CL},\n326\t}\n327\t\n328\t@article{helff2026gaming,\n329\t  author       = {Lukas Helff and Quentin Delfosse and David Steinmann and Ruben H{\\\"a}rle and Hikaru Shindo and Patrick Schramowski and Wolfgang Stammer and Kristian Kersting and Felix Friedrich},\n330\t  title        = {{LLMs Gaming Verifiers: RLVR can Lead to Reward Hacking}},\n331\t  journal      = {arXiv preprint arXiv:2604.15149},\n332\t  year         = {2026},\n333\t  eprint       = {2604.15149},\n334\t  archivePrefix = {arXiv},\n335\t}\n336\t\n337\t@article{khalifa2026countdown,\n338\t  author       = {Muhammad Khalifa and Zohaib Khan and Omer Tafveez and Hao Peng and Lu Wang},\n339\t  title        = {{Countdown-Code: A Testbed for Studying The Emergence and Generalization of Reward Hacking in RLVR}},\n340\t  journal      = {arXiv preprint arXiv:2603.07084},\n341\t  year         = {2026},\n342\t  eprint       = {2603.07084},\n343\t  archivePrefix = {arXiv},\n344\t}\n345\t\n346\t@inproceedings{uesato2022solving,\n347\t  title={{Solving Math Word Problems with Process- and Outcome-Based Feedback}},\n348\t  author={Uesato, Jonathan and Kushman, Nate and Kumar, Ramana and Song, Francis and Siegel, Noah and Wang, Lisa and Creswell, Antonia and Irving, Geoffrey and Higgins, Irina},\n349\t  booktitle={NeurIPS 2022 Workshop on MATH-AI},\n350\t  year={2022}\n351\t}\n352\t\n353\t@article{cobbe2021training,\n354\t  author       = {Karl Cobbe and Vineet Kosaraju and Mohammad Bavarian and Mark Chen and Heewoo Jun and Lukasz Kaiser and Matthias Plappert and Jerry Tworek and Jacob Hilton and Reiichiro Nakano and Christopher Hesse and John Schulman},\n355\t  title        = {{Training Verifiers to Solve Math Word Problems}},\n356\t  journal      = {arXiv preprint arXiv:2110.14168},\n357\t  year         = {2021},\n358\t}\n359\t\n360\t@inproceedings{processbench,\n361\t  author       = {Chujie Zheng and Zhenru Zhang and Beichen Zhang and Runji Lin and Keming Lu and Bowen Yu and Dayiheng Liu and Jingren Zhou and Junyang Lin},\n362\t  title        = {{ProcessBench: Identifying Process Errors in Mathematical Reasoning}},\n363\t  booktitle    = {Proceedings of the Association for Computational Linguistics (ACL)},\n364\t  year         = {2025},\n365\t  note         = {arXiv:2412.06559},\n366\t}\n367\t\n368\t@article{pronesti2026beyond,\n369\t  author       = {Massimiliano Pronesti and Anya Belz and Yufang Hou},\n370\t  title        = {{Beyond Outcome Verification: Verifiable Process Reward Models for Structured Reasoning}},\n371\t  journal      = {arXiv preprint arXiv:2601.17223},\n372\t  year         = {2026},\n373\t  eprint       = {2601.17223},\n374\t  archivePrefix = {arXiv},\n375\t}\n376\t\n377\t@inproceedings{ng1999policy,\n378\t  author    = {Andrew Y. Ng and Daishi Harada and Stuart Russell},\n379\t  title     = {Policy Invariance Under Reward Transformations: Theory and Application to Reward Shaping},\n380\t  booktitle = {Proceedings of the International Conference on Machine Learning (ICML)},\n381\t  year      = {1999},\n382\t  pages     = {278--287},\n383\t}\n384\t\n385\t@article{geirhos2020shortcut,\n386\t  author  = {Robert Geirhos and J{\\\"o}rn-Henrik Jacobsen and Claudio Michaelis and Richard Zemel and Wieland Brendel and Matthias Bethge and Felix A. Wichmann},\n387\t  title   = {Shortcut Learning in Deep Neural Networks},\n388\t  journal = {Nature Machine Intelligence},\n389\t  volume  = {2},\n390\t  pages   = {665--673},\n391\t  year    = {2020},\n392\t}\n393\t\n394\t@article{kimina-prover,\n395\t  author  = {Haiming Wang and Huajian Xin and Zhengying Liu and Wenda Li and Yejin Kim and Jianhao Shen and Zhicheng Yang and Jing Tang and Xiaodan Liang},\n396\t  title   = {{Kimina-Prover Preview: Towards Large Formal Reasoning Models with Reinforcement Learning}},\n397\t  journal = {arXiv preprint arXiv:2504.11354},\n398\t  year    = {2025},\n399\t  eprint  = {2504.11354},\n400\t  archivePrefix = {arXiv},\n401\t}\n402\t\n403\t@article{yan2026spurious,\n404\t  author       = {Lecheng Yan and Ruizhe Li and Guanhua Chen and Qing Li and Jiahui Geng and Wenxi Li and Vincent Wang and Chris Lee},\n405\t  title        = {{Spurious Rewards Paradox: Mechanistically Understanding How RLVR Activates Memorization Shortcuts in LLMs}},\n406\t  journal      = {arXiv preprint arXiv:2601.11061},\n407\t  year         = {2026},\n408\t  eprint       = {2601.11061},\n409\t  archivePrefix = {arXiv},\n410\t}\n411\t\n412\t@article{tarek2025reward,\n413\t  author       = {Mirza Farhan Bin Tarek and Rahmatollah Beheshti},\n414\t  title        = {{Reward Hacking Mitigation using Verifiable Composite Rewards}},\n415\t  journal      = {arXiv preprint arXiv:2509.15557},\n416\t  year         = {2025},\n417\t  eprint       = {2509.15557},\n418\t  archivePrefix = {arXiv},\n419\t}\n420\t\n421\t% ============================================================\n422\t% R19 reviewer-requested references\n423\t% ============================================================\n424\t\n425\t@inproceedings{setlur2025rewarding,\n426\t  author       = {Amrith Setlur and Chirag Nagpal and Adam Fisch and Xinyang Geng and Jacob Eisenstein and Rishabh Agarwal and Alekh Agarwal and Jonathan Berant and Aviral Kumar},\n427\t  title        = {{Rewarding Progress: Scaling Automated Process Verifiers for LLM Reasoning}},\n428\t  booktitle    = {Proceedings of the International Conference on Learning Representations (ICLR)},\n429\t  year         = {2025},\n430\t  note         = {arXiv:2410.08146},\n431\t}\n432\t\n433\t@article{alphaproof2025,\n434\t  author       = {Thomas Hubert and Rishi Mehta and Laurent Sartran and others},\n435\t  title        = {{Olympiad-Level Formal Mathematical Reasoning with Reinforcement Learning}},\n436\t  journal      = {Nature},\n437\t  year         = {2025},\n438\t  doi          = {10.1038/s41586-025-09833-y},\n439\t}\n440\t\n441\t% ============================================================\n442\t% Solvers (Prover9, SWI-Prolog)\n443\t% ============================================================\n444\t\n445\t@misc{mccune-prover9,\n446\t  author       = {William McCune},\n447\t  title        = {{Prover9 and Mace4}},\n448\t  year         = {2005--2010},\n449\t  howpublished = {\\url{https://www.cs.unm.edu/~mccune/prover9/}},\n450\t  note         = {Version 2009-11A},\n451\t}\n452\t\n453\t@article{wielemaker2012swi,\n454\t  author       = {Jan Wielemaker and Tom Schrijvers and Markus Triska and Torbj{\\\"o}rn Lager},\n455\t  title        = {{SWI-Prolog}},\n456\t  journal      = {Theory and Practice of Logic Programming},\n457\t  volume       = {12},\n458\t  number       = {1--2},\n459\t  pages        = {67--96},\n460\t  year         = {2012},\n461\t  doi          = {10.1017/S1471068411000494},\n462\t}\n463\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "af72b763-b989-40b7-bef7-a4e030022aa5",
+            "uuid": "8c98cfef-5bc3-4b5c-8b9e-db36d19b4896",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/references.bib",
+                "content": "% ============================================================\n% LLaMA\n% ============================================================\n\n@article{grattafiori2024llama,\n  author = {Aaron Grattafiori and Abhimanyu Dubey and Abhinav Jauhri and others},\n  title = {{The Llama 3 Herd of Models}},\n  journal = {arXiv preprint arXiv:2407.21783},\n  year = {2024},\n  eprint = {2407.21783},\n  archiveprefix = {arXiv},\n}\n\n% ============================================================\n% Category 1: Neurosymbolic reasoning + RL/GRPO\n% ============================================================\n\n@article{deepseekmath,\n  author       = {Zhihong Shao and Peiyi Wang and Qihao Zhu and Runxin Xu and others},\n  title        = {{DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models}},\n  journal      = {arXiv preprint arXiv:2402.03300},\n  year         = {2024},\n  eprint       = {2402.03300},\n  archivePrefix = {arXiv},\n  primaryClass = {cs.AI},\n}\n\n@article{logic-rl,\n  author       = {Tian Xie and Zitian Gao and Qingnan Ren and Haoming Luo and Yuqian Hong and Bryan Dai and Joey Zhou and Kai Qiu and Zhirong Wu and Chong Luo},\n  title        = {{Logic-RL: Unleashing LLM Reasoning with Rule-Based Reinforcement Learning}},\n  journal      = {arXiv preprint arXiv:2502.14768},\n  year         = {2025},\n  eprint       = {2502.14768},\n  archivePrefix = {arXiv},\n  primaryClass = {cs.AI},\n}\n\n@article{mellgren-prolog-grpo,\n  author       = {Niklas Mellgren and Peter Schneider-Kamp and Lukas Galke},\n  title        = {{Training Language Models to Use Prolog as a Tool}},\n  journal      = {arXiv preprint arXiv:2512.07407},\n  year         = {2025},\n  eprint       = {2512.07407},\n  archivePrefix = {arXiv},\n  primaryClass = {cs.AI},\n}\n\n@inproceedings{satlm,\n  author       = {Xi Ye and Qiaochu Chen and Isil Dillig and Greg Durrett},\n  title        = {{SatLM: Satisfiability-Aided Language Models Using Declarative Prompting}},\n  booktitle    = {Advances in Neural Information Processing Systems (NeurIPS)},\n  year         = {2023},\n}\n\n% ============================================================\n% Category 2: Reward shaping for code/formal verification\n% ============================================================\n\n@inproceedings{lightman-verify-step,\n  author       = {Hunter Lightman and Vineet Kosaraju and Yura Burda and others},\n  title        = {{Let's Verify Step by Step}},\n  booktitle    = {Proceedings of the International Conference on Learning Representations (ICLR)},\n  year         = {2024},\n  note         = {arXiv:2305.20050},\n}\n\n@inproceedings{skalse-reward-hacking,\n  author       = {Joar Skalse and Nikolaus H. R. Howe and Dmitrii Krasheninnikov and David Krueger},\n  title        = {{Defining and Characterizing Reward Hacking}},\n  booktitle    = {Advances in Neural Information Processing Systems (NeurIPS)},\n  year         = {2022},\n  note         = {arXiv:2209.13085},\n}\n\n% ============================================================\n% Category 3: Mutation testing in software engineering\n% ============================================================\n\n@article{demillo1978,\n  author       = {Richard A. DeMillo and Richard J. Lipton and Frederick G. Sayward},\n  title        = {{Hints on Test Data Selection: Help for the Practicing Programmer}},\n  journal      = {Computer},\n  volume       = {11},\n  number       = {4},\n  pages        = {34--41},\n  year         = {1978},\n}\n\n@article{jia-harman-survey,\n  author       = {Yue Jia and Mark Harman},\n  title        = {{An Analysis and Survey of the Development of Mutation Testing}},\n  journal      = {IEEE Transactions on Software Engineering},\n  volume       = {37},\n  number       = {5},\n  pages        = {649--678},\n  year         = {2011},\n}\n\n@article{spurious-rewards,\n  author       = {Rulin Shao and Shuyue Stella Li and Rui Xin and Scott Geng and Yiping Wang and Sewoong Oh and Simon Shaolei Du and Nathan Lambert and Sewon Min and Ranjay Krishna and Yulia Tsvetkov and Hannaneh Hajishirzi and Pang Wei Koh and Luke Zettlemoyer},\n  title        = {{Spurious Rewards: Rethinking Training Signals in RLVR}},\n  journal      = {arXiv preprint arXiv:2506.10947},\n  year         = {2025},\n  eprint       = {2506.10947},\n  archivePrefix = {arXiv},\n  primaryClass = {cs.AI},\n}\n\n@article{bondarenko-spec-gaming,\n  author       = {Alexander Bondarenko and Denis Volk and Dmitrii Volkov and Jeffrey Ladish},\n  title        = {{Demonstrating Specification Gaming in Reasoning Models}},\n  journal      = {arXiv preprint arXiv:2502.13295},\n  year         = {2025},\n  eprint       = {2502.13295},\n  archivePrefix = {arXiv},\n  primaryClass = {cs.AI},\n}\n\n@inproceedings{kim-game-formalization,\n  author       = {Kyuhee Kim and Auguste Poiroux and Antoine Bosselut},\n  title        = {{Do LLMs Game Formalization? Evaluating Faithfulness in Logical Reasoning}},\n  booktitle    = {VerifAI-2 Workshop at the International Conference on Learning Representations (ICLR)},\n  year         = {2026},\n  note         = {arXiv:2604.19459},\n}\n\n@inproceedings{gao-reward-overoptimization,\n  author       = {Leo Gao and John Schulman and Jacob Hilton},\n  title        = {{Scaling Laws for Reward Model Overoptimization}},\n  booktitle    = {Proceedings of the International Conference on Machine Learning (ICML)},\n  year         = {2023},\n  note         = {arXiv:2210.10760},\n}\n\n@inproceedings{karwowski-goodhart-rl,\n  author       = {Jacek Karwowski and Oliver Hayman and Xingjian Bai and Klaus Kiendlhofer and Charlie Griffin and Joar Skalse},\n  title        = {{Goodhart's Law in Reinforcement Learning}},\n  booktitle    = {Proceedings of the International Conference on Learning Representations (ICLR)},\n  year         = {2024},\n  note         = {arXiv:2310.09144},\n}\n\n% ============================================================\n% Category 6: FOL/Prolog formalization with LLMs\n% ============================================================\n\n@inproceedings{folio,\n  author       = {Simeng Han and Hailey Schoelkopf and Yilun Zhao and Zhenting Qi and Martin Riddell and Luke Benson and Lucy Sun and Ekaterina Zubova and Yujie Qiao and Matthew Burtell and David Peng and Jonathan Fan and Yixin Liu and Brian Wong and Malcolm Sailor and Ansong Ni and Linyong Nan and Jungo Kasai and Tao Yu and Rui Zhang and Shafiq Joty and Alexander R. Fabbri and Wojciech Kryscinski and Xi Victoria Lin and Caiming Xiong and Dragomir Radev},\n  title        = {{FOLIO: Natural Language Reasoning with First-Order Logic}},\n  booktitle    = {Proceedings of the Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n  year         = {2024},\n  note         = {arXiv:2209.00840},\n}\n\n@inproceedings{logic-lm,\n  author       = {Liangming Pan and Alon Albalak and Xinyi Wang and William Yang Wang},\n  title        = {{Logic-LM: Empowering Large Language Models with Symbolic Solvers for Faithful Logical Reasoning}},\n  booktitle    = {Findings of the Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n  year         = {2023},\n}\n\n@inproceedings{linc,\n  author       = {Theo X. Olausson and Alex Gu and Ben Lipkin and Cedegao E. Zhang and Armando Solar-Lezama and Joshua B. Tenenbaum and Roger Levy},\n  title        = {{LINC: A Neurosymbolic Approach for Logical Reasoning by Combining Language Models with First-Order Logic Provers}},\n  booktitle    = {Proceedings of the Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n  year         = {2023},\n}\n\n@article{fover-pei2025,\n  author       = {Yu Pei and Yongping Du and Xingnan Jin},\n  title        = {{FoVer: First-Order Logic Verification for Natural Language Reasoning}},\n  journal      = {Transactions of the Association for Computational Linguistics},\n  volume       = {13},\n  pages        = {1340--1359},\n  year         = {2025},\n}\n\n@article{lorp,\n  author       = {Zhengkun Di and Chaoli Zhang and Hongtao Lv and Lizhen Cui and Lei Liu},\n  title        = {{LoRP: LLM-based Logical Reasoning via Prolog}},\n  journal      = {Knowledge-Based Systems},\n  year         = {2025},\n}\n\n@article{manheim-goodhart-taxonomy,\n  author       = {David Manheim and Scott Garrabrant},\n  title        = {{Categorizing Variants of Goodhart's Law}},\n  journal      = {arXiv preprint arXiv:1803.04585},\n  year         = {2019},\n  eprint       = {1803.04585},\n  archivePrefix = {arXiv},\n  primaryClass = {cs.AI},\n}\n\n@inproceedings{math-shepherd,\n  author       = {Peiyi Wang and Lei Li and Zhihong Shao and Runxin Xu and others},\n  title        = {{Math-Shepherd: Verify and Reinforce LLMs Step-by-step without Human Annotations}},\n  booktitle    = {Proceedings of the Association for Computational Linguistics (ACL)},\n  year         = {2024},\n  note         = {arXiv:2312.08935},\n}\n\n% ============================================================\n% Reward shaping and process supervision\n% ============================================================\n\n@article{rlsf,\n  author       = {Piyush Jha and Prithwish Jana and Pranavkrishna Suresh and Arnav Arora and Vijay Ganesh},\n  title        = {{RLSF: Reinforcement Learning via Symbolic Feedback}},\n  journal      = {arXiv preprint arXiv:2405.16661},\n  year         = {2024},\n  eprint       = {2405.16661},\n  archivePrefix = {arXiv},\n  primaryClass = {cs.AI},\n}\n\n@article{gao-effective-rl-reward,\n  author       = {Jiaxuan Gao and Shusheng Xu and Wenjie Ye and Weilin Liu and Chuyi He and Wei Fu and Zhiyu Mei and Guangju Wang and Yi Wu},\n  title        = {{On Designing Effective RL Reward at Training Time for LLM Reasoning}},\n  journal      = {arXiv preprint arXiv:2410.15115},\n  year         = {2024},\n  eprint       = {2410.15115},\n  archivePrefix = {arXiv},\n  primaryClass = {cs.AI},\n}\n\n@inproceedings{kwa-catastrophic-goodhart,\n  author       = {Tat-Thang Kwa and Rachel Thomas and Adri\\`{a} Garriga-Alonso},\n  title        = {{Catastrophic Goodhart: Regularizing RLHF with KL Divergence Does Not Mitigate Heavy-Tailed Reward Misspecification}},\n  booktitle    = {Advances in Neural Information Processing Systems (NeurIPS)},\n  year         = {2024},\n  note         = {arXiv:2404.18926},\n}\n\n@article{deepseek-prover-v15,\n  author       = {{DeepSeek AI}},\n  title        = {{DeepSeek-Prover-V1.5: Harnessing Proof Assistant Feedback for Reinforcement Learning and Monte-Carlo Tree Search}},\n  journal      = {arXiv preprint arXiv:2408.08152},\n  year         = {2024},\n  eprint       = {2408.08152},\n  archivePrefix = {arXiv},\n}\n\n@article{deepseek-r1,\n  author       = {{DeepSeek-AI}},\n  title        = {{DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning}},\n  journal      = {arXiv preprint arXiv:2501.12948},\n  year         = {2025},\n  eprint       = {2501.12948},\n  archivePrefix = {arXiv},\n}\n\n@inproceedings{nlproofs,\n  author       = {Kaiyu Yang and Jia Deng and Danqi Chen},\n  title        = {{Generating Natural Language Proofs with Verifier-Guided Search}},\n  booktitle    = {Proceedings of the 2022 Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n  year         = {2022},\n  eprint       = {2205.12443},\n  archivePrefix = {arXiv},\n}\n\n@article{vstar,\n  author       = {Arian Hosseini and Xingdi Yuan and Nikolay Malkin and Aaron Courville and Alessandro Sordoni and Rishabh Agarwal},\n  title        = {{V-STaR: Training Verifiers for Self-Taught Reasoners}},\n  journal      = {arXiv preprint arXiv:2402.06457},\n  year         = {2024},\n  eprint       = {2402.06457},\n  archivePrefix = {arXiv},\n}\n\n@inproceedings{easy-to-hard,\n  author       = {Zhiqing Sun and Longhui Yu and Yikang Shen and Weiyang Liu and Yiming Yang and Sean Welleck and Chuang Gan},\n  title        = {{Easy-to-Hard Generalization: Scalable Alignment Beyond Human Supervision}},\n  booktitle    = {Advances in Neural Information Processing Systems (NeurIPS)},\n  year         = {2024},\n  eprint       = {2403.09472},\n  archivePrefix = {arXiv},\n}\n\n% ============================================================\n% Additional reward-shaping papers\n% ============================================================\n\n@article{reward-hacking-survey,\n  author       = {Xiaohua Wang and Muzhao Tian and Yuqi Zeng and Zisu Huang and others},\n  title        = {{Reward Hacking in the Era of Large Models: Mechanisms, Emergent Misalignment, Challenges}},\n  journal      = {arXiv preprint arXiv:2604.13602},\n  year         = {2026},\n  eprint       = {2604.13602},\n  archivePrefix = {arXiv},\n}\n\n@misc{metr-reward-hacking,\n  author       = {Sydney {Von Arx} and Lawrence Chan and Beth Barnes},\n  title        = {{Recent Frontier Models Are Reward Hacking}},\n  year         = {2025},\n  howpublished = {METR Technical Blog},\n  note         = {\\url{https://metr.org/blog/2025-06-05-recent-reward-hacking/}},\n}\n\n@inproceedings{proofwriter,\n  author       = {Oyvind Tafjord and Bhavana Dalvi and Peter Clark},\n  title        = {{ProofWriter: Generating Implications, Proofs, and Abductive Statements over Natural Language}},\n  booktitle    = {Findings of the Association for Computational Linguistics (ACL)},\n  year         = {2021},\n  note         = {arXiv:2012.13048},\n}\n\n@article{prooffol-thatikonda2024,\n  author       = {Ramya Keerthy Thatikonda and Jiuzhou Han and Wray Buntine and Ehsan Shareghi},\n  title        = {{Strategies for Improving NL-to-FOL Translation with LLMs: Data Generation, Incremental Fine-Tuning, and Verification}},\n  journal      = {arXiv preprint arXiv:2409.16461},\n  year         = {2024},\n  eprint       = {2409.16461},\n  archivePrefix = {arXiv},\n}\n\n@article{qwen3,\n  author       = {{Qwen Team}},\n  title        = {{Qwen3 Technical Report}},\n  journal      = {arXiv preprint arXiv:2505.09388},\n  year         = {2025},\n  eprint       = {2505.09388},\n  archivePrefix = {arXiv},\n  primaryClass = {cs.CL},\n}\n\n@article{helff2026gaming,\n  author       = {Lukas Helff and Quentin Delfosse and David Steinmann and Ruben H{\\\"a}rle and Hikaru Shindo and Patrick Schramowski and Wolfgang Stammer and Kristian Kersting and Felix Friedrich},\n  title        = {{LLMs Gaming Verifiers: RLVR can Lead to Reward Hacking}},\n  journal      = {arXiv preprint arXiv:2604.15149},\n  year         = {2026},\n  eprint       = {2604.15149},\n  archivePrefix = {arXiv},\n}\n\n@article{khalifa2026countdown,\n  author       = {Muhammad Khalifa and Zohaib Khan and Omer Tafveez and Hao Peng and Lu Wang},\n  title        = {{Countdown-Code: A Testbed for Studying The Emergence and Generalization of Reward Hacking in RLVR}},\n  journal      = {arXiv preprint arXiv:2603.07084},\n  year         = {2026},\n  eprint       = {2603.07084},\n  archivePrefix = {arXiv},\n}\n\n@inproceedings{uesato2022solving,\n  title={{Solving Math Word Problems with Process- and Outcome-Based Feedback}},\n  author={Uesato, Jonathan and Kushman, Nate and Kumar, Ramana and Song, Francis and Siegel, Noah and Wang, Lisa and Creswell, Antonia and Irving, Geoffrey and Higgins, Irina},\n  booktitle={NeurIPS 2022 Workshop on MATH-AI},\n  year={2022}\n}\n\n@article{cobbe2021training,\n  author       = {Karl Cobbe and Vineet Kosaraju and Mohammad Bavarian and Mark Chen and Heewoo Jun and Lukasz Kaiser and Matthias Plappert and Jerry Tworek and Jacob Hilton and Reiichiro Nakano and Christopher Hesse and John Schulman},\n  title        = {{Training Verifiers to Solve Math Word Problems}},\n  journal      = {arXiv preprint arXiv:2110.14168},\n  year         = {2021},\n}\n\n@inproceedings{processbench,\n  author       = {Chujie Zheng and Zhenru Zhang and Beichen Zhang and Runji Lin and Keming Lu and Bowen Yu and Dayiheng Liu and Jingren Zhou and Junyang Lin},\n  title        = {{ProcessBench: Identifying Process Errors in Mathematical Reasoning}},\n  booktitle    = {Proceedings of the Association for Computational Linguistics (ACL)},\n  year         = {2025},\n  note         = {arXiv:2412.06559},\n}\n\n@article{pronesti2026beyond,\n  author       = {Massimiliano Pronesti and Anya Belz and Yufang Hou},\n  title        = {{Beyond Outcome Verification: Verifiable Process Reward Models for Structured Reasoning}},\n  journal      = {arXiv preprint arXiv:2601.17223},\n  year         = {2026},\n  eprint       = {2601.17223},\n  archivePrefix = {arXiv},\n}\n\n@inproceedings{ng1999policy,\n  author    = {Andrew Y. Ng and Daishi Harada and Stuart Russell},\n  title     = {Policy Invariance Under Reward Transformations: Theory and Application to Reward Shaping},\n  booktitle = {Proceedings of the International Conference on Machine Learning (ICML)},\n  year      = {1999},\n  pages     = {278--287},\n}\n\n@article{geirhos2020shortcut,\n  author  = {Robert Geirhos and J{\\\"o}rn-Henrik Jacobsen and Claudio Michaelis and Richard Zemel and Wieland Brendel and Matthias Bethge and Felix A. Wichmann},\n  title   = {Shortcut Learning in Deep Neural Networks},\n  journal = {Nature Machine Intelligence},\n  volume  = {2},\n  pages   = {665--673},\n  year    = {2020},\n}\n\n@article{kimina-prover,\n  author  = {Haiming Wang and Huajian Xin and Zhengying Liu and Wenda Li and Yejin Kim and Jianhao Shen and Zhicheng Yang and Jing Tang and Xiaodan Liang},\n  title   = {{Kimina-Prover Preview: Towards Large Formal Reasoning Models with Reinforcement Learning}},\n  journal = {arXiv preprint arXiv:2504.11354},\n  year    = {2025},\n  eprint  = {2504.11354},\n  archivePrefix = {arXiv},\n}\n\n@article{yan2026spurious,\n  author       = {Lecheng Yan and Ruizhe Li and Guanhua Chen and Qing Li and Jiahui Geng and Wenxi Li and Vincent Wang and Chris Lee},\n  title        = {{Spurious Rewards Paradox: Mechanistically Understanding How RLVR Activates Memorization Shortcuts in LLMs}},\n  journal      = {arXiv preprint arXiv:2601.11061},\n  year         = {2026},\n  eprint       = {2601.11061},\n  archivePrefix = {arXiv},\n}\n\n@article{tarek2025reward,\n  author       = {Mirza Farhan Bin Tarek and Rahmatollah Beheshti},\n  title        = {{Reward Hacking Mitigation using Verifiable Composite Rewards}},\n  journal      = {arXiv preprint arXiv:2509.15557},\n  year         = {2025},\n  eprint       = {2509.15557},\n  archivePrefix = {arXiv},\n}\n\n% ============================================================\n% R19 reviewer-requested references\n% ============================================================\n\n@inproceedings{setlur2025rewarding,\n  author       = {Amrith Setlur and Chirag Nagpal and Adam Fisch and Xinyang Geng and Jacob Eisenstein and Rishabh Agarwal and Alekh Agarwal and Jonathan Berant and Aviral Kumar},\n  title        = {{Rewarding Progress: Scaling Automated Process Verifiers for LLM Reasoning}},\n  booktitle    = {Proceedings of the International Conference on Learning Representations (ICLR)},\n  year         = {2025},\n  note         = {arXiv:2410.08146},\n}\n\n@article{alphaproof2025,\n  author       = {Thomas Hubert and Rishi Mehta and Laurent Sartran and others},\n  title        = {{Olympiad-Level Formal Mathematical Reasoning with Reinforcement Learning}},\n  journal      = {Nature},\n  year         = {2025},\n  doi          = {10.1038/s41586-025-09833-y},\n}\n\n% ============================================================\n% Solvers (Prover9, SWI-Prolog)\n% ============================================================\n\n@misc{mccune-prover9,\n  author       = {William McCune},\n  title        = {{Prover9 and Mace4}},\n  year         = {2005--2010},\n  howpublished = {\\url{https://www.cs.unm.edu/~mccune/prover9/}},\n  note         = {Version 2009-11A},\n}\n\n@article{wielemaker2012swi,\n  author       = {Jan Wielemaker and Tom Schrijvers and Markus Triska and Torbj{\\\"o}rn Lager},\n  title        = {{SWI-Prolog}},\n  journal      = {Theory and Practice of Logic Programming},\n  volume       = {12},\n  number       = {1--2},\n  pages        = {67--96},\n  year         = {2012},\n  doi          = {10.1017/S1471068411000494},\n}\n",
+                "numLines": 463,
+                "startLine": 1,
+                "totalLines": 463
+              }
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-21T07:09:46.477Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AtK873MdF66HRyM6qaQ7MV",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arXiv 2405.16661\"\n\nLinks: [{\"title\":\"Zero-shot ecological annotation of microbial genomes with myLLannotator accelerates scientific discovery\",\"url\":\"https://www.biorxiv.org/content/10.64898/2026.01.18.700140.full.pdf\"},{\"title\":\"LLM-AIx: An open source pipeline for Information Extraction from unstructured medical text based on privacy preserving Large Language Models\",\"url\":\"https://www.medrxiv.org/content/10.1101/2024.09.02.24312917.full.pdf\"},{\"title\":\"[2405.16661] RLSF: Fine-tuning LLMs via Symbolic Feedback\",\"url\":\"https://arxiv.org/abs/2405.16661\"},{\"title\":\"Reasoning Models for Text Mining in Oncology – a Comparison Between o1 Preview and GPT-4o\",\"url\":\"https://www.medrxiv.org/content/10.1101/2024.12.06.24318592.full.pdf\"},{\"title\":\"Medical Hallucination in Foundation Models and Their Impact on Healthcare\",\"url\":\"https://www.medrxiv.org/content/10.1101/2025.02.28.25323115.full.pdf\"},{\"title\":\"Development of meta-prompts for Large Language Models to screen titles and abstracts for diagnostic test accuracy reviews\",\"url\":\"https://www.medrxiv.org/content/10.1101/2023.10.31.23297818.full.pdf\"},{\"title\":\"Assessing large multimodal models for one-shot learning and interpretability in biomedical image classification\",\"url\":\"https://www.biorxiv.org/content/10.1101/2023.12.31.573796.full.pdf\"},{\"title\":\"Large Language Models for Detecting CONSORT Guideline Compliance in Published Randomized Clinical Trials: A Cross-Sectional Evaluation Study\",\"url\":\"https://www.medrxiv.org/content/10.1101/2025.10.03.25337291.full.pdf\"}]\n\nBased on the search results, I found the paper you're looking for:\n\n**RLSF: Fine-tuning LLMs via Symbolic Feedback** (arXiv 2405.16661) introduces Reinforcement Learning via Symbolic Feedback (RLSF), a novel fine-tuning paradigm where symbolic reasoning tools (e.g., solvers, provers, and algebra systems) provide fine-grained feedback to LLMs.\n\nRLSF uses poly-sized certificates (e.g., proofs) generated by symbolic tools to identify and correct errors in model outputs, offering token-level guidance without requiring differentiable reasoning systems. This paradigm bridges the gap between symbolic reasoning and LLM fine-tuning, enabling precise alignment with domain-specific constraints while addressing key limitations of traditional reward signals.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "af72b763-b989-40b7-bef7-a4e030022aa5",
+            "uuid": "9800f5dc-8db4-4e06-bcf0-c3618ad19244",
+            "tool_use_result": {
+              "query": "arXiv 2405.16661",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_01EuHsKx9iiPcwAPQS5cayU6",
+                  "content": [
+                    {
+                      "title": "Zero-shot ecological annotation of microbial genomes with myLLannotator accelerates scientific discovery",
+                      "url": "https://www.biorxiv.org/content/10.64898/2026.01.18.700140.full.pdf"
+                    },
+                    {
+                      "title": "LLM-AIx: An open source pipeline for Information Extraction from unstructured medical text based on privacy preserving Large Language Models",
+                      "url": "https://www.medrxiv.org/content/10.1101/2024.09.02.24312917.full.pdf"
+                    },
+                    {
+                      "title": "[2405.16661] RLSF: Fine-tuning LLMs via Symbolic Feedback",
+                      "url": "https://arxiv.org/abs/2405.16661"
+                    },
+                    {
+                      "title": "Reasoning Models for Text Mining in Oncology – a Comparison Between o1 Preview and GPT-4o",
+                      "url": "https://www.medrxiv.org/content/10.1101/2024.12.06.24318592.full.pdf"
+                    },
+                    {
+                      "title": "Medical Hallucination in Foundation Models and Their Impact on Healthcare",
+                      "url": "https://www.medrxiv.org/content/10.1101/2025.02.28.25323115.full.pdf"
+                    },
+                    {
+                      "title": "Development of meta-prompts for Large Language Models to screen titles and abstracts for diagnostic test accuracy reviews",
+                      "url": "https://www.medrxiv.org/content/10.1101/2023.10.31.23297818.full.pdf"
+                    },
+                    {
+                      "title": "Assessing large multimodal models for one-shot learning and interpretability in biomedical image classification",
+                      "url": "https://www.biorxiv.org/content/10.1101/2023.12.31.573796.full.pdf"
+                    },
+                    {
+                      "title": "Large Language Models for Detecting CONSORT Guideline Compliance in Published Randomized Clinical Trials: A Cross-Sectional Evaluation Study",
+                      "url": "https://www.medrxiv.org/content/10.1101/2025.10.03.25337291.full.pdf"
+                    }
+                  ]
+                },
+                "Based on the search results, I found the paper you're looking for:\n\n**RLSF: Fine-tuning LLMs via Symbolic Feedback** (arXiv 2405.16661) introduces Reinforcement Learning via Symbolic Feedback (RLSF), a novel fine-tuning paradigm where symbolic reasoning tools (e.g., solvers, provers, and algebra systems) provide fine-grained feedback to LLMs.\n\nRLSF uses poly-sized certificates (e.g., proofs) generated by symbolic tools to identify and correct errors in model outputs, offering token-level guidance without requiring differentiable reasoning systems. This paradigm bridges the gap between symbolic reasoning and LLM fine-tuning, enabling precise alignment with domain-specific constraints while addressing key limitations of traditional reward signals."
+              ],
+              "durationSeconds": 6.281494423000142
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "I found the `rlsf` entry at lines 207-215. The current authors are:\n\n```\nPiyush Jha and Prithwish Jana and Pranavkrishna Suresh and Arnav Arora and Vijay Ganesh\n```\n\nThe user said the current authors are \"Abhinav Jha, Shikhar Murty, J. Zico Kolter\" which doesn't match what I see. Let me check what's actually in the file - it shows \"Piyush Jha and Prithwish Jana and Pranavkrishna Suresh and Arnav Arora and Vijay Ganesh\".\n\n\nThe web search confirmed the paper is \"RLSF: Fine-tuning LLMs via Symbolic Feedback\" but didn't provide the full author list. I notice the current bib entry has the title as \"RLSF: Reinforcement Learning via Symbolic Feedback\" which differs from what the search returned, so both the title and authors might need updating. I notice the title in the bib entry is also incorrect—it says \"Reinforcement Learning\" when it should be \"Fine-tuning LLMs via Symbolic Feedback\" based on the web search. I need to do another search to confirm the exact author list.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "af72b763-b989-40b7-bef7-a4e030022aa5",
+            "uuid": "c221c54e-104d-409b-bdf3-d0a53dbbd329",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CEnnuzoi6BoGEYS4VCyxYm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7651,
+                "cache_creation_input_tokens": 897,
+                "cache_read_input_tokens": 27287,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 897
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "找到了 `rlsf` 条目（第207-215行）。当前作者是 \"Piyush Jha, Prithwish Jana, Pranavkrishna Suresh, Arnav Arora, Vijay Ganesh\"，标题是 \"RLSF: Reinforcement Learning via Symbolic Feedback\"。Web 搜索显示正确标题应该是 \"RLSF: Fine-tuning LLMs via Symbolic Feedback\"。让我获取完整的正确作者列表。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "af72b763-b989-40b7-bef7-a4e030022aa5",
+            "uuid": "4ea24f0d-fcaf-462e-bd6c-bd0665bd8956",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CEnnuzoi6BoGEYS4VCyxYm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7651,
+                "cache_creation_input_tokens": 897,
+                "cache_read_input_tokens": 27287,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 897
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01F2aAAfxmvTZfK1jQ5K1dXo",
+              "name": "WebSearch",
+              "input": {
+                "query": "arXiv 2405.16661 RLSF authors Piyush Jha",
+                "allowed_domains": [
+                  "arxiv.org",
+                  "semanticscholar.org"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "af72b763-b989-40b7-bef7-a4e030022aa5",
+            "uuid": "ffd21fa3-7d02-490f-9f6a-11864bc2b35f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CEnnuzoi6BoGEYS4VCyxYm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7651,
+                "cache_creation_input_tokens": 897,
+                "cache_read_input_tokens": 27287,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 897
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-21T07:10:09.685Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01F2aAAfxmvTZfK1jQ5K1dXo",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arXiv 2405.16661 RLSF authors Piyush Jha\"\n\nLinks: [{\"title\":\"[2405.16661v2] RLSF: Reinforcement Learning via Symbolic Feedback\",\"url\":\"https://arxiv.org/abs/2405.16661v2\"},{\"title\":\"[2405.16661] RLSF: Fine-tuning LLMs via Symbolic Feedback\",\"url\":\"https://arxiv.org/abs/2405.16661\"},{\"title\":\"arXiv:2405.16661v3 [cs.CL] 27 Jun 2025\",\"url\":\"https://arxiv.org/pdf/2405.16661\"},{\"title\":\"RLSF: Fine-tuning LLMs via Symbolic Feedback\",\"url\":\"https://arxiv.org/html/2405.16661\"},{\"title\":\"Computer Science May 2024\",\"url\":\"https://arxiv.org/list/cs/2024-05?skip=7420&show=2000\"},{\"title\":\"RLSF: Reinforcement Learning via Symbolic Feedback\",\"url\":\"https://arxiv.org/html/2405.16661v1\"},{\"title\":\"[PDF] RLSF: Fine-tuning LLMs via Symbolic Feedback | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/RLSF:-Fine-tuning-LLMs-via-Symbolic-Feedback-Jha-Jana/be992d914389d9e4462df1911e6ede7645b66f86\"}]\n\nBased on the search results, here's information about arXiv paper 2405.16661:\n\n**Paper Title:** RLSF: Fine-tuning LLMs via Symbolic Feedback\n\n**Authors:** Piyush Jha, Prithwish Jana, Pranavkrishna Suresh, Arnav Arora, and Vijay Ganesh from Georgia Institute of Technology\n\n**Overview:** The paper introduces Reinforcement Learning via Symbolic Feedback (RLSF), a novel fine-tuning paradigm where symbolic reasoning tools (e.g., solvers, provers, and algebra systems) provide fine-grained feedback to LLMs.\n\n**Key Innovation:** RLSF uses poly-sized certificates (e.g., proofs) generated by symbolic tools to identify and correct errors in model outputs, offering token-level guidance without requiring differentiable reasoning systems.\n\n**Results:** Extensive evaluations show that RLSF-based fine-tuning of LLMs outperforms traditional approaches on five different applications: program synthesis from natural language pseudo-code to programming language, three chemistry tasks, and solving the Game of 24. Additionally, fine-tuning via RLSF enables relatively smaller LLMs to significantly outperform closed-source models that are orders of magnitude larger (e.g., GPT-4).\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "af72b763-b989-40b7-bef7-a4e030022aa5",
+            "uuid": "5476d15c-5e4a-4095-bc0a-79b71600f62a",
+            "tool_use_result": {
+              "query": "arXiv 2405.16661 RLSF authors Piyush Jha",
+              "results": [
+                {
+                  "tool_use_id": "srvtoolu_015VaG15UGygce4mqFQUQJxX",
+                  "content": [
+                    {
+                      "title": "[2405.16661v2] RLSF: Reinforcement Learning via Symbolic Feedback",
+                      "url": "https://arxiv.org/abs/2405.16661v2"
+                    },
+                    {
+                      "title": "[2405.16661] RLSF: Fine-tuning LLMs via Symbolic Feedback",
+                      "url": "https://arxiv.org/abs/2405.16661"
+                    },
+                    {
+                      "title": "arXiv:2405.16661v3 [cs.CL] 27 Jun 2025",
+                      "url": "https://arxiv.org/pdf/2405.16661"
+                    },
+                    {
+                      "title": "RLSF: Fine-tuning LLMs via Symbolic Feedback",
+                      "url": "https://arxiv.org/html/2405.16661"
+                    },
+                    {
+                      "title": "Computer Science May 2024",
+                      "url": "https://arxiv.org/list/cs/2024-05?skip=7420&show=2000"
+                    },
+                    {
+                      "title": "RLSF: Reinforcement Learning via Symbolic Feedback",
+                      "url": "https://arxiv.org/html/2405.16661v1"
+                    },
+                    {
+                      "title": "[PDF] RLSF: Fine-tuning LLMs via Symbolic Feedback | Semantic Scholar",
+                      "url": "https://www.semanticscholar.org/paper/RLSF:-Fine-tuning-LLMs-via-Symbolic-Feedback-Jha-Jana/be992d914389d9e4462df1911e6ede7645b66f86"
+                    }
+                  ]
+                },
+                "Based on the search results, here's information about arXiv paper 2405.16661:\n\n**Paper Title:** RLSF: Fine-tuning LLMs via Symbolic Feedback\n\n**Authors:** Piyush Jha, Prithwish Jana, Pranavkrishna Suresh, Arnav Arora, and Vijay Ganesh from Georgia Institute of Technology\n\n**Overview:** The paper introduces Reinforcement Learning via Symbolic Feedback (RLSF), a novel fine-tuning paradigm where symbolic reasoning tools (e.g., solvers, provers, and algebra systems) provide fine-grained feedback to LLMs.\n\n**Key Innovation:** RLSF uses poly-sized certificates (e.g., proofs) generated by symbolic tools to identify and correct errors in model outputs, offering token-level guidance without requiring differentiable reasoning systems.\n\n**Results:** Extensive evaluations show that RLSF-based fine-tuning of LLMs outperforms traditional approaches on five different applications: program synthesis from natural language pseudo-code to programming language, three chemistry tasks, and solving the Game of 24. Additionally, fine-tuning via RLSF enables relatively smaller LLMs to significantly outperform closed-source models that are orders of magnitude larger (e.g., GPT-4)."
+              ],
+              "durationSeconds": 6.572122588000028
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "So the correct authors are: Piyush Jha, Prithwish Jana, Pranavkrishna Suresh, Arnav Arora, and Vijay Ganesh. This actually matches what's already in the bib file!\n\nBut the title is different between versions:\n- v1: \"RLSF: Reinforcement Learning via Symbolic Feedback\" \n- Latest (v2/v3): \"RLSF: Fine-tuning LLMs via Symbolic Feedback\"\n\nThe bib entry currently has the v1 title \"Reinforcement Learning via Symbolic Feedback\" but the latest version title is \"Fine-tuning LLMs via Symbolic Feedback\".\n \nWait, I need to reconsider what the user actually reported. They said the authors in the file are \"Abhinav Jha, Shikhar Murty, J. Zico Kolter\" which is wrong, but when I look at the actual bib file, it shows \"Piyush Jha and Prithwish Jana and Pranavkrishna Suresh and Arnav Arora and Vijay Ganesh\". Either the user is looking at a different version of the file, or there's been some confusion about which entry we're discussing.\n\nLet me check the paper directory's references.bib to see if there's a discrepancy there, and clarify with the user whether the authors are actually already correct or if the title needs updating instead.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "af72b763-b989-40b7-bef7-a4e030022aa5",
+            "uuid": "f7812fb7-9e8e-43f3-bc1c-4028d177456d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Hh1JU2gvfBzbFgfcQXQYct",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 9208,
+                "cache_read_input_tokens": 28184,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 9208
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "让我也检查 `paper/references.bib` 中的版本。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "af72b763-b989-40b7-bef7-a4e030022aa5",
+            "uuid": "cbcd1086-209c-443d-a40e-f0aa2d92dc1a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Hh1JU2gvfBzbFgfcQXQYct",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 9208,
+                "cache_read_input_tokens": 28184,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 9208
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KU8gnMV1Xk3qVr8mnrdF3k",
+              "name": "Grep",
+              "input": {
+                "pattern": "rlsf",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/references.bib",
+                "output_mode": "content",
+                "-A": 8
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "af72b763-b989-40b7-bef7-a4e030022aa5",
+            "uuid": "7c097912-84cd-4a3d-993a-1698bd2fe6b1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Hh1JU2gvfBzbFgfcQXQYct",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 9208,
+                "cache_read_input_tokens": 28184,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 9208
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-21T07:10:29.271Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KU8gnMV1Xk3qVr8mnrdF3k",
+              "type": "tool_result",
+              "content": "207:@article{rlsf,\n208-  author       = {Abhinav Jha and Shikhar Murty and J. Zico Kolter and others},\n209-  title        = {{Reinforcement Learning via Symbolic Feedback}},\n210-  journal      = {arXiv preprint arXiv:2405.16661},\n211-  year         = {2024},\n212-  eprint       = {2405.16661},\n213-  archivePrefix = {arXiv},\n214-  primaryClass = {cs.AI},\n215-}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "af72b763-b989-40b7-bef7-a4e030022aa5",
+            "uuid": "618cf5c4-3181-48a6-89db-e8629b2f2f67",
+            "tool_use_result": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "207:@article{rlsf,\n208-  author       = {Abhinav Jha and Shikhar Murty and J. Zico Kolter and others},\n209-  title        = {{Reinforcement Learning via Symbolic Feedback}},\n210-  journal      = {arXiv preprint arXiv:2405.16661},\n211-  year         = {2024},\n212-  eprint       = {2405.16661},\n213-  archivePrefix = {arXiv},\n214-  primaryClass = {cs.AI},\n215-}",
+              "numLines": 9
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "There it is. The `paper/references.bib` file has the wrong authors: \"Abhinav Jha and Shikhar Murty and J. Zico Kolter and others\". But `docs/paper/references.bib` already has the correct authors: \"Piyush Jha and Prithwish Jana and Pranavkrishna Suresh and Arnav Arora and Vijay Ganesh\".\n\nSo `docs/paper/references.bib` is already correct for the authors. The title in docs is \"RLSF: Reinforcement Learning via Symbolic Feedback\" while the latest version of the paper is \"RLSF: Fine-tuning LLMs via Symbolic Feedback\". \n\n\nLet me verify the exact title in the docs version—checking the entry around lines 207-215 confirms it's \"RLSF: Reinforcement Learning via Symbolic Feedback\", so the title there is outdated compared to the current paper version.\n\nNow looking at the paper version, I see the authors are completely wrong—it lists \"Abhinav Jha and Shikhar Murty and J. Zico Kolter and others\" when it should match the docs version with Piyush Jha as the first author. The title is also missing the \"RLSF:\" prefix and hasn't been updated to the latest version. So I need to fix the paper version to have the correct authors and update the title to \"RLSF: Fine-tuning LLMs via Symbolic Feedback\". So the docs version has the correct authors but an outdated title, while the paper version has both wrong authors and the wrong title. I'll update the title in docs/paper/references.bib to \"RLSF: Fine-tuning LLMs via Symbolic Feedback\", then copy it over to paper/references.bib which will fix both issues there, and report what changed.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "af72b763-b989-40b7-bef7-a4e030022aa5",
+            "uuid": "fd489cc6-3afd-48d2-b37e-09b3da3332e9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Xd1wzayHKK2wU5P9KUufep",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 905,
+                "cache_read_input_tokens": 37392,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 905
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "发现问题所在：`docs/paper/references.bib` 的作者已经正确（Piyush Jha 等），但 `paper/references.bib` 仍有错误作者（Abhinav Jha, Shikhar Murty, J. Zico Kolter）。两个文件的标题都是旧版 v1 标题，最新版标题是 \"RLSF: Fine-tuning LLMs via Symbolic Feedback\"。\n\n更新 docs 版本的标题，然后编译并同步到 paper/。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "af72b763-b989-40b7-bef7-a4e030022aa5",
+            "uuid": "22906346-a77b-4bfc-8e7f-fb61ee879a29",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Xd1wzayHKK2wU5P9KUufep",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 905,
+                "cache_read_input_tokens": 37392,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 905
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Vp3wQB7XDRWSTuLdQcZLGA",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/references.bib",
+                "old_string": "  title        = {{RLSF: Reinforcement Learning via Symbolic Feedback}},",
+                "new_string": "  title        = {{RLSF: Fine-tuning LLMs via Symbolic Feedback}},"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "af72b763-b989-40b7-bef7-a4e030022aa5",
+            "uuid": "cc9c0cb9-a952-413e-b094-bb9f218412c8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Xd1wzayHKK2wU5P9KUufep",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 905,
+                "cache_read_input_tokens": 37392,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 905
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-21T07:10:51.103Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Vp3wQB7XDRWSTuLdQcZLGA",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/references.bib has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "af72b763-b989-40b7-bef7-a4e030022aa5",
+            "uuid": "6c2b8e14-208f-4449-954e-1c5b5d97cff4",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/references.bib",
+              "oldString": "  title        = {{RLSF: Reinforcement Learning via Symbolic Feedback}},",
+              "newString": "  title        = {{RLSF: Fine-tuning LLMs via Symbolic Feedback}},",
+              "originalFile": "% ============================================================\n% LLaMA\n% ============================================================\n\n@article{grattafiori2024llama,\n  author = {Aaron Grattafiori and Abhimanyu Dubey and Abhinav Jauhri and others},\n  title = {{The Llama 3 Herd of Models}},\n  journal = {arXiv preprint arXiv:2407.21783},\n  year = {2024},\n  eprint = {2407.21783},\n  archiveprefix = {arXiv},\n}\n\n% ============================================================\n% Category 1: Neurosymbolic reasoning + RL/GRPO\n% ============================================================\n\n@article{deepseekmath,\n  author       = {Zhihong Shao and Peiyi Wang and Qihao Zhu and Runxin Xu and others},\n  title        = {{DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models}},\n  journal      = {arXiv preprint arXiv:2402.03300},\n  year         = {2024},\n  eprint       = {2402.03300},\n  archivePrefix = {arXiv},\n  primaryClass = {cs.AI},\n}\n\n@article{logic-rl,\n  author       = {Tian Xie and Zitian Gao and Qingnan Ren and Haoming Luo and Yuqian Hong and Bryan Dai and Joey Zhou and Kai Qiu and Zhirong Wu and Chong Luo},\n  title        = {{Logic-RL: Unleashing LLM Reasoning with Rule-Based Reinforcement Learning}},\n  journal      = {arXiv preprint arXiv:2502.14768},\n  year         = {2025},\n  eprint       = {2502.14768},\n  archivePrefix = {arXiv},\n  primaryClass = {cs.AI},\n}\n\n@article{mellgren-prolog-grpo,\n  author       = {Niklas Mellgren and Peter Schneider-Kamp and Lukas Galke},\n  title        = {{Training Language Models to Use Prolog as a Tool}},\n  journal      = {arXiv preprint arXiv:2512.07407},\n  year         = {2025},\n  eprint       = {2512.07407},\n  archivePrefix = {arXiv},\n  primaryClass = {cs.AI},\n}\n\n@inproceedings{satlm,\n  author       = {Xi Ye and Qiaochu Chen and Isil Dillig and Greg Durrett},\n  title        = {{SatLM: Satisfiability-Aided Language Models Using Declarative Prompting}},\n  booktitle    = {Advances in Neural Information Processing Systems (NeurIPS)},\n  year         = {2023},\n}\n\n% ============================================================\n% Category 2: Reward shaping for code/formal verification\n% ============================================================\n\n@inproceedings{lightman-verify-step,\n  author       = {Hunter Lightman and Vineet Kosaraju and Yura Burda and others},\n  title        = {{Let's Verify Step by Step}},\n  booktitle    = {Proceedings of the International Conference on Learning Representations (ICLR)},\n  year         = {2024},\n  note         = {arXiv:2305.20050},\n}\n\n@inproceedings{skalse-reward-hacking,\n  author       = {Joar Skalse and Nikolaus H. R. Howe and Dmitrii Krasheninnikov and David Krueger},\n  title        = {{Defining and Characterizing Reward Hacking}},\n  booktitle    = {Advances in Neural Information Processing Systems (NeurIPS)},\n  year         = {2022},\n  note         = {arXiv:2209.13085},\n}\n\n% ============================================================\n% Category 3: Mutation testing in software engineering\n% ============================================================\n\n@article{demillo1978,\n  author       = {Richard A. DeMillo and Richard J. Lipton and Frederick G. Sayward},\n  title        = {{Hints on Test Data Selection: Help for the Practicing Programmer}},\n  journal      = {Computer},\n  volume       = {11},\n  number       = {4},\n  pages        = {34--41},\n  year         = {1978},\n}\n\n@article{jia-harman-survey,\n  author       = {Yue Jia and Mark Harman},\n  title        = {{An Analysis and Survey of the Development of Mutation Testing}},\n  journal      = {IEEE Transactions on Software Engineering},\n  volume       = {37},\n  number       = {5},\n  pages        = {649--678},\n  year         = {2011},\n}\n\n@article{spurious-rewards,\n  author       = {Rulin Shao and Shuyue Stella Li and Rui Xin and Scott Geng and Yiping Wang and Sewoong Oh and Simon Shaolei Du and Nathan Lambert and Sewon Min and Ranjay Krishna and Yulia Tsvetkov and Hannaneh Hajishirzi and Pang Wei Koh and Luke Zettlemoyer},\n  title        = {{Spurious Rewards: Rethinking Training Signals in RLVR}},\n  journal      = {arXiv preprint arXiv:2506.10947},\n  year         = {2025},\n  eprint       = {2506.10947},\n  archivePrefix = {arXiv},\n  primaryClass = {cs.AI},\n}\n\n@article{bondarenko-spec-gaming,\n  author       = {Alexander Bondarenko and Denis Volk and Dmitrii Volkov and Jeffrey Ladish},\n  title        = {{Demonstrating Specification Gaming in Reasoning Models}},\n  journal      = {arXiv preprint arXiv:2502.13295},\n  year         = {2025},\n  eprint       = {2502.13295},\n  archivePrefix = {arXiv},\n  primaryClass = {cs.AI},\n}\n\n@inproceedings{kim-game-formalization,\n  author       = {Kyuhee Kim and Auguste Poiroux and Antoine Bosselut},\n  title        = {{Do LLMs Game Formalization? Evaluating Faithfulness in Logical Reasoning}},\n  booktitle    = {VerifAI-2 Workshop at the International Conference on Learning Representations (ICLR)},\n  year         = {2026},\n  note         = {arXiv:2604.19459},\n}\n\n@inproceedings{gao-reward-overoptimization,\n  author       = {Leo Gao and John Schulman and Jacob Hilton},\n  title        = {{Scaling Laws for Reward Model Overoptimization}},\n  booktitle    = {Proceedings of the International Conference on Machine Learning (ICML)},\n  year         = {2023},\n  note         = {arXiv:2210.10760},\n}\n\n@inproceedings{karwowski-goodhart-rl,\n  author       = {Jacek Karwowski and Oliver Hayman and Xingjian Bai and Klaus Kiendlhofer and Charlie Griffin and Joar Skalse},\n  title        = {{Goodhart's Law in Reinforcement Learning}},\n  booktitle    = {Proceedings of the International Conference on Learning Representations (ICLR)},\n  year         = {2024},\n  note         = {arXiv:2310.09144},\n}\n\n% ============================================================\n% Category 6: FOL/Prolog formalization with LLMs\n% ============================================================\n\n@inproceedings{folio,\n  author       = {Simeng Han and Hailey Schoelkopf and Yilun Zhao and Zhenting Qi and Martin Riddell and Luke Benson and Lucy Sun and Ekaterina Zubova and Yujie Qiao and Matthew Burtell and David Peng and Jonathan Fan and Yixin Liu and Brian Wong and Malcolm Sailor and Ansong Ni and Linyong Nan and Jungo Kasai and Tao Yu and Rui Zhang and Shafiq Joty and Alexander R. Fabbri and Wojciech Kryscinski and Xi Victoria Lin and Caiming Xiong and Dragomir Radev},\n  title        = {{FOLIO: Natural Language Reasoning with First-Order Logic}},\n  booktitle    = {Proceedings of the Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n  year         = {2024},\n  note         = {arXiv:2209.00840},\n}\n\n@inproceedings{logic-lm,\n  author       = {Liangming Pan and Alon Albalak and Xinyi Wang and William Yang Wang},\n  title        = {{Logic-LM: Empowering Large Language Models with Symbolic Solvers for Faithful Logical Reasoning}},\n  booktitle    = {Findings of the Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n  year         = {2023},\n}\n\n@inproceedings{linc,\n  author       = {Theo X. Olausson and Alex Gu and Ben Lipkin and Cedegao E. Zhang and Armando Solar-Lezama and Joshua B. Tenenbaum and Roger Levy},\n  title        = {{LINC: A Neurosymbolic Approach for Logical Reasoning by Combining Language Models with First-Order Logic Provers}},\n  booktitle    = {Proceedings of the Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n  year         = {2023},\n}\n\n@article{fover-pei2025,\n  author       = {Yu Pei and Yongping Du and Xingnan Jin},\n  title        = {{FoVer: First-Order Logic Verification for Natural Language Reasoning}},\n  journal      = {Transactions of the Association for Computational Linguistics},\n  volume       = {13},\n  pages        = {1340--1359},\n  year         = {2025},\n}\n\n@article{lorp,\n  author       = {Zhengkun Di and Chaoli Zhang and Hongtao Lv and Lizhen Cui and Lei Liu},\n  title        = {{LoRP: LLM-based Logical Reasoning via Prolog}},\n  journal      = {Knowledge-Based Systems},\n  year         = {2025},\n}\n\n@article{manheim-goodhart-taxonomy,\n  author       = {David Manheim and Scott Garrabrant},\n  title        = {{Categorizing Variants of Goodhart's Law}},\n  journal      = {arXiv preprint arXiv:1803.04585},\n  year         = {2019},\n  eprint       = {1803.04585},\n  archivePrefix = {arXiv},\n  primaryClass = {cs.AI},\n}\n\n@inproceedings{math-shepherd,\n  author       = {Peiyi Wang and Lei Li and Zhihong Shao and Runxin Xu and others},\n  title        = {{Math-Shepherd: Verify and Reinforce LLMs Step-by-step without Human Annotations}},\n  booktitle    = {Proceedings of the Association for Computational Linguistics (ACL)},\n  year         = {2024},\n  note         = {arXiv:2312.08935},\n}\n\n% ============================================================\n% Reward shaping and process supervision\n% ============================================================\n\n@article{rlsf,\n  author       = {Piyush Jha and Prithwish Jana and Pranavkrishna Suresh and Arnav Arora and Vijay Ganesh},\n  title        = {{RLSF: Reinforcement Learning via Symbolic Feedback}},\n  journal      = {arXiv preprint arXiv:2405.16661},\n  year         = {2024},\n  eprint       = {2405.16661},\n  archivePrefix = {arXiv},\n  primaryClass = {cs.AI},\n}\n\n@article{gao-effective-rl-reward,\n  author       = {Jiaxuan Gao and Shusheng Xu and Wenjie Ye and Weilin Liu and Chuyi He and Wei Fu and Zhiyu Mei and Guangju Wang and Yi Wu},\n  title        = {{On Designing Effective RL Reward at Training Time for LLM Reasoning}},\n  journal      = {arXiv preprint arXiv:2410.15115},\n  year         = {2024},\n  eprint       = {2410.15115},\n  archivePrefix = {arXiv},\n  primaryClass = {cs.AI},\n}\n\n@inproceedings{kwa-catastrophic-goodhart,\n  author       = {Tat-Thang Kwa and Rachel Thomas and Adri\\`{a} Garriga-Alonso},\n  title        = {{Catastrophic Goodhart: Regularizing RLHF with KL Divergence Does Not Mitigate Heavy-Tailed Reward Misspecification}},\n  booktitle    = {Advances in Neural Information Processing Systems (NeurIPS)},\n  year         = {2024},\n  note         = {arXiv:2404.18926},\n}\n\n@article{deepseek-prover-v15,\n  author       = {{DeepSeek AI}},\n  title        = {{DeepSeek-Prover-V1.5: Harnessing Proof Assistant Feedback for Reinforcement Learning and Monte-Carlo Tree Search}},\n  journal      = {arXiv preprint arXiv:2408.08152},\n  year         = {2024},\n  eprint       = {2408.08152},\n  archivePrefix = {arXiv},\n}\n\n@article{deepseek-r1,\n  author       = {{DeepSeek-AI}},\n  title        = {{DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning}},\n  journal      = {arXiv preprint arXiv:2501.12948},\n  year         = {2025},\n  eprint       = {2501.12948},\n  archivePrefix = {arXiv},\n}\n\n@inproceedings{nlproofs,\n  author       = {Kaiyu Yang and Jia Deng and Danqi Chen},\n  title        = {{Generating Natural Language Proofs with Verifier-Guided Search}},\n  booktitle    = {Proceedings of the 2022 Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n  year         = {2022},\n  eprint       = {2205.12443},\n  archivePrefix = {arXiv},\n}\n\n@article{vstar,\n  author       = {Arian Hosseini and Xingdi Yuan and Nikolay Malkin and Aaron Courville and Alessandro Sordoni and Rishabh Agarwal},\n  title        = {{V-STaR: Training Verifiers for Self-Taught Reasoners}},\n  journal      = {arXiv preprint arXiv:2402.06457},\n  year         = {2024},\n  eprint       = {2402.06457},\n  archivePrefix = {arXiv},\n}\n\n@inproceedings{easy-to-hard,\n  author       = {Zhiqing Sun and Longhui Yu and Yikang Shen and Weiyang Liu and Yiming Yang and Sean Welleck and Chuang Gan},\n  title        = {{Easy-to-Hard Generalization: Scalable Alignment Beyond Human Supervision}},\n  booktitle    = {Advances in Neural Information Processing Systems (NeurIPS)},\n  year         = {2024},\n  eprint       = {2403.09472},\n  archivePrefix = {arXiv},\n}\n\n% ============================================================\n% Additional reward-shaping papers\n% ============================================================\n\n@article{reward-hacking-survey,\n  author       = {Xiaohua Wang and Muzhao Tian and Yuqi Zeng and Zisu Huang and others},\n  title        = {{Reward Hacking in the Era of Large Models: Mechanisms, Emergent Misalignment, Challenges}},\n  journal      = {arXiv preprint arXiv:2604.13602},\n  year         = {2026},\n  eprint       = {2604.13602},\n  archivePrefix = {arXiv},\n}\n\n@misc{metr-reward-hacking,\n  author       = {Sydney {Von Arx} and Lawrence Chan and Beth Barnes},\n  title        = {{Recent Frontier Models Are Reward Hacking}},\n  year         = {2025},\n  howpublished = {METR Technical Blog},\n  note         = {\\url{https://metr.org/blog/2025-06-05-recent-reward-hacking/}},\n}\n\n@inproceedings{proofwriter,\n  author       = {Oyvind Tafjord and Bhavana Dalvi and Peter Clark},\n  title        = {{ProofWriter: Generating Implications, Proofs, and Abductive Statements over Natural Language}},\n  booktitle    = {Findings of the Association for Computational Linguistics (ACL)},\n  year         = {2021},\n  note         = {arXiv:2012.13048},\n}\n\n@article{prooffol-thatikonda2024,\n  author       = {Ramya Keerthy Thatikonda and Jiuzhou Han and Wray Buntine and Ehsan Shareghi},\n  title        = {{Strategies for Improving NL-to-FOL Translation with LLMs: Data Generation, Incremental Fine-Tuning, and Verification}},\n  journal      = {arXiv preprint arXiv:2409.16461},\n  year         = {2024},\n  eprint       = {2409.16461},\n  archivePrefix = {arXiv},\n}\n\n@article{qwen3,\n  author       = {{Qwen Team}},\n  title        = {{Qwen3 Technical Report}},\n  journal      = {arXiv preprint arXiv:2505.09388},\n  year         = {2025},\n  eprint       = {2505.09388},\n  archivePrefix = {arXiv},\n  primaryClass = {cs.CL},\n}\n\n@article{helff2026gaming,\n  author       = {Lukas Helff and Quentin Delfosse and David Steinmann and Ruben H{\\\"a}rle and Hikaru Shindo and Patrick Schramowski and Wolfgang Stammer and Kristian Kersting and Felix Friedrich},\n  title        = {{LLMs Gaming Verifiers: RLVR can Lead to Reward Hacking}},\n  journal      = {arXiv preprint arXiv:2604.15149},\n  year         = {2026},\n  eprint       = {2604.15149},\n  archivePrefix = {arXiv},\n}\n\n@article{khalifa2026countdown,\n  author       = {Muhammad Khalifa and Zohaib Khan and Omer Tafveez and Hao Peng and Lu Wang},\n  title        = {{Countdown-Code: A Testbed for Studying The Emergence and Generalization of Reward Hacking in RLVR}},\n  journal      = {arXiv preprint arXiv:2603.07084},\n  year         = {2026},\n  eprint       = {2603.07084},\n  archivePrefix = {arXiv},\n}\n\n@inproceedings{uesato2022solving,\n  title={{Solving Math Word Problems with Process- and Outcome-Based Feedback}},\n  author={Uesato, Jonathan and Kushman, Nate and Kumar, Ramana and Song, Francis and Siegel, Noah and Wang, Lisa and Creswell, Antonia and Irving, Geoffrey and Higgins, Irina},\n  booktitle={NeurIPS 2022 Workshop on MATH-AI},\n  year={2022}\n}\n\n@article{cobbe2021training,\n  author       = {Karl Cobbe and Vineet Kosaraju and Mohammad Bavarian and Mark Chen and Heewoo Jun and Lukasz Kaiser and Matthias Plappert and Jerry Tworek and Jacob Hilton and Reiichiro Nakano and Christopher Hesse and John Schulman},\n  title        = {{Training Verifiers to Solve Math Word Problems}},\n  journal      = {arXiv preprint arXiv:2110.14168},\n  year         = {2021},\n}\n\n@inproceedings{processbench,\n  author       = {Chujie Zheng and Zhenru Zhang and Beichen Zhang and Runji Lin and Keming Lu and Bowen Yu and Dayiheng Liu and Jingren Zhou and Junyang Lin},\n  title        = {{ProcessBench: Identifying Process Errors in Mathematical Reasoning}},\n  booktitle    = {Proceedings of the Association for Computational Linguistics (ACL)},\n  year         = {2025},\n  note         = {arXiv:2412.06559},\n}\n\n@article{pronesti2026beyond,\n  author       = {Massimiliano Pronesti and Anya Belz and Yufang Hou},\n  title        = {{Beyond Outcome Verification: Verifiable Process Reward Models for Structured Reasoning}},\n  journal      = {arXiv preprint arXiv:2601.17223},\n  year         = {2026},\n  eprint       = {2601.17223},\n  archivePrefix = {arXiv},\n}\n\n@inproceedings{ng1999policy,\n  author    = {Andrew Y. Ng and Daishi Harada and Stuart Russell},\n  title     = {Policy Invariance Under Reward Transformations: Theory and Application to Reward Shaping},\n  booktitle = {Proceedings of the International Conference on Machine Learning (ICML)},\n  year      = {1999},\n  pages     = {278--287},\n}\n\n@article{geirhos2020shortcut,\n  author  = {Robert Geirhos and J{\\\"o}rn-Henrik Jacobsen and Claudio Michaelis and Richard Zemel and Wieland Brendel and Matthias Bethge and Felix A. Wichmann},\n  title   = {Shortcut Learning in Deep Neural Networks},\n  journal = {Nature Machine Intelligence},\n  volume  = {2},\n  pages   = {665--673},\n  year    = {2020},\n}\n\n@article{kimina-prover,\n  author  = {Haiming Wang and Huajian Xin and Zhengying Liu and Wenda Li and Yejin Kim and Jianhao Shen and Zhicheng Yang and Jing Tang and Xiaodan Liang},\n  title   = {{Kimina-Prover Preview: Towards Large Formal Reasoning Models with Reinforcement Learning}},\n  journal = {arXiv preprint arXiv:2504.11354},\n  year    = {2025},\n  eprint  = {2504.11354},\n  archivePrefix = {arXiv},\n}\n\n@article{yan2026spurious,\n  author       = {Lecheng Yan and Ruizhe Li and Guanhua Chen and Qing Li and Jiahui Geng and Wenxi Li and Vincent Wang and Chris Lee},\n  title        = {{Spurious Rewards Paradox: Mechanistically Understanding How RLVR Activates Memorization Shortcuts in LLMs}},\n  journal      = {arXiv preprint arXiv:2601.11061},\n  year         = {2026},\n  eprint       = {2601.11061},\n  archivePrefix = {arXiv},\n}\n\n@article{tarek2025reward,\n  author       = {Mirza Farhan Bin Tarek and Rahmatollah Beheshti},\n  title        = {{Reward Hacking Mitigation using Verifiable Composite Rewards}},\n  journal      = {arXiv preprint arXiv:2509.15557},\n  year         = {2025},\n  eprint       = {2509.15557},\n  archivePrefix = {arXiv},\n}\n\n% ============================================================\n% R19 reviewer-requested references\n% ============================================================\n\n@inproceedings{setlur2025rewarding,\n  author       = {Amrith Setlur and Chirag Nagpal and Adam Fisch and Xinyang Geng and Jacob Eisenstein and Rishabh Agarwal and Alekh Agarwal and Jonathan Berant and Aviral Kumar},\n  title        = {{Rewarding Progress: Scaling Automated Process Verifiers for LLM Reasoning}},\n  booktitle    = {Proceedings of the International Conference on Learning Representations (ICLR)},\n  year         = {2025},\n  note         = {arXiv:2410.08146},\n}\n\n@article{alphaproof2025,\n  author       = {Thomas Hubert and Rishi Mehta and Laurent Sartran and others},\n  title        = {{Olympiad-Level Formal Mathematical Reasoning with Reinforcement Learning}},\n  journal      = {Nature},\n  year         = {2025},\n  doi          = {10.1038/s41586-025-09833-y},\n}\n\n% ============================================================\n% Solvers (Prover9, SWI-Prolog)\n% ============================================================\n\n@misc{mccune-prover9,\n  author       = {William McCune},\n  title        = {{Prover9 and Mace4}},\n  year         = {2005--2010},\n  howpublished = {\\url{https://www.cs.unm.edu/~mccune/prover9/}},\n  note         = {Version 2009-11A},\n}\n\n@article{wielemaker2012swi,\n  author       = {Jan Wielemaker and Tom Schrijvers and Markus Triska and Torbj{\\\"o}rn Lager},\n  title        = {{SWI-Prolog}},\n  journal      = {Theory and Practice of Logic Programming},\n  volume       = {12},\n  number       = {1--2},\n  pages        = {67--96},\n  year         = {2012},\n  doi          = {10.1017/S1471068411000494},\n}\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 206,
+                  "oldLines": 7,
+                  "newStart": 206,
+                  "newLines": 7,
+                  "lines": [
+                    " ",
+                    " @article{rlsf,",
+                    "   author       = {Piyush Jha and Prithwish Jana and Pranavkrishna Suresh and Arnav Arora and Vijay Ganesh},",
+                    "-  title        = {{RLSF: Reinforcement Learning via Symbolic Feedback}},",
+                    "+  title        = {{RLSF: Fine-tuning LLMs via Symbolic Feedback}},",
+                    "   journal      = {arXiv preprint arXiv:2405.16661},",
+                    "   year         = {2024},",
+                    "   eprint       = {2405.16661},"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Qykh11y1rD4KXqYPH1fitj",
+              "name": "Bash",
+              "input": {
+                "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper && latexmk -pdf -interaction=nonstopmode main.tex 2>&1 | tail -5",
+                "description": "Compile LaTeX paper",
+                "timeout": 120000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "af72b763-b989-40b7-bef7-a4e030022aa5",
+            "uuid": "8909f2bf-df7c-4975-b795-69fe7a6e00e0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013zTrfLV4UUT9VWGmfcs7jH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1389,
+                "cache_read_input_tokens": 38297,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1389
+                },
+                "output_tokens": 59,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-21T07:10:56.686Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Qykh11y1rD4KXqYPH1fitj",
+              "type": "tool_result",
+              "content": "  ===Source file 'main.bbl' for 'pdflatex'\nLatexmk: Found bibliography file(s):\n  ./references.bib\nLatexmk: All targets (main.pdf) are up-to-date",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "af72b763-b989-40b7-bef7-a4e030022aa5",
+            "uuid": "fb64f429-dd5d-4fec-b8cb-516b25995543",
+            "tool_use_result": {
+              "stdout": "  ===Source file 'main.bbl' for 'pdflatex'\nLatexmk: Found bibliography file(s):\n  ./references.bib\nLatexmk: All targets (main.pdf) are up-to-date",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "It says \"All targets are up-to-date\" which means it didn't re-compile because it thinks nothing changed. I need to force a recompile since the bib changed. Let me clean and rebuild.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "af72b763-b989-40b7-bef7-a4e030022aa5",
+            "uuid": "dc90842e-63dc-455b-b6d8-14f657b01de0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Q1xyQSETYN3PQxFT6hzcoq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 322,
+                "cache_read_input_tokens": 39686,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 322
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XpPzhea7SJZh4qLWAe6TA7",
+              "name": "Bash",
+              "input": {
+                "command": "latexmk -C main.tex 2>&1 && latexmk -pdf -interaction=nonstopmode main.tex 2>&1 | tail -20",
+                "description": "Clean and recompile LaTeX paper",
+                "timeout": 120000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "af72b763-b989-40b7-bef7-a4e030022aa5",
+            "uuid": "3f62abe7-c326-461c-a702-bafcd98fe000",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Q1xyQSETYN3PQxFT6hzcoq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 322,
+                "cache_read_input_tokens": 39686,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 322
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_started",
+                "task_id": "b5oe8w73b",
+                "tool_use_id": "toolu_01XpPzhea7SJZh4qLWAe6TA7",
+                "description": "Clean and recompile LaTeX paper",
+                "task_type": "local_bash",
+                "uuid": "b4ae4413-ac08-4ee8-a50a-75831e2551f9",
+                "session_id": "af72b763-b989-40b7-bef7-a4e030022aa5"
+              }
+            }
+          ],
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_notification",
+                "task_id": "b5oe8w73b",
+                "tool_use_id": "toolu_01XpPzhea7SJZh4qLWAe6TA7",
+                "status": "completed",
+                "output_file": "",
+                "summary": "Clean and recompile LaTeX paper",
+                "uuid": "aa308b0d-02f3-4c26-b941-9cbb3879c831",
+                "session_id": "af72b763-b989-40b7-bef7-a4e030022aa5"
+              }
+            }
+          ],
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-21T07:11:08.240Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XpPzhea7SJZh4qLWAe6TA7",
+              "type": "tool_result",
+              "content": "Rc files read:\n  /etc/LatexMk\nLatexmk: This is Latexmk, John Collins, 15 June 2025. Version 4.87.\nLatexmk: Doing full clean up for 'main.tex'\n\nb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr\n/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share\n/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/share/texliv\ne/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texm\nf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/share/texlive/texmf-dist/\nfonts/type1/urw/helvetic/uhvb8a.pfb>\nOutput written on main.pdf (22 pages, 594051 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Using bibtex to make bibliography file(s).\n  ===Source file 'main.bbl' for 'pdflatex'\nLatexmk: Found bibliography file(s):\n  ./references.bib\nLatexmk: All targets (main.pdf) are up-to-date",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "af72b763-b989-40b7-bef7-a4e030022aa5",
+            "uuid": "aec71235-b1d7-4b02-804c-d780841adaac",
+            "tool_use_result": {
+              "stdout": "Rc files read:\n  /etc/LatexMk\nLatexmk: This is Latexmk, John Collins, 15 June 2025. Version 4.87.\nLatexmk: Doing full clean up for 'main.tex'\n\nb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr\n/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share\n/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/share/texliv\ne/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texm\nf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/share/texlive/texmf-dist/\nfonts/type1/urw/helvetic/uhvb8a.pfb>\nOutput written on main.pdf (22 pages, 594051 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Using bibtex to make bibliography file(s).\n  ===Source file 'main.bbl' for 'pdflatex'\nLatexmk: Found bibliography file(s):\n  ./references.bib\nLatexmk: All targets (main.pdf) are up-to-date",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011rtBWZeL7Xin8viSUWS9t4",
+              "name": "Bash",
+              "input": {
+                "command": "grep -i \"Warning\" main.log | grep -v \"Font\" | head -20",
+                "description": "Check for LaTeX warnings excluding font warnings"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "af72b763-b989-40b7-bef7-a4e030022aa5",
+            "uuid": "ab88ad8e-7efa-465a-ba07-83775f7e6824",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Lk9BBZkvXymdgTmDhcCtx7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 699,
+                "cache_read_input_tokens": 40008,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 699
+                },
+                "output_tokens": 64,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-21T07:11:11.974Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011rtBWZeL7Xin8viSUWS9t4",
+              "type": "tool_result",
+              "content": "Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "af72b763-b989-40b7-bef7-a4e030022aa5",
+            "uuid": "d6786fb9-dea7-42ac-8a05-520f1ac23fff",
+            "tool_use_result": {
+              "stdout": "Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PS33D58k27PzLjAvz99uA6",
+              "name": "Bash",
+              "input": {
+                "command": "grep -i \"warning\" main.log | grep -v \"Font\" | grep -v \"hyperref\" | grep -v \"infwarerr\" | head -20",
+                "description": "Check for non-trivial LaTeX warnings"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "af72b763-b989-40b7-bef7-a4e030022aa5",
+            "uuid": "61663f07-4c4a-4f94-9ef6-1f6f59149a0e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SG6D1eP8C5Yq1VLoodtGoA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 298,
+                "cache_read_input_tokens": 40707,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 298
+                },
+                "output_tokens": 55,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-21T07:11:17.539Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PS33D58k27PzLjAvz99uA6",
+              "type": "tool_result",
+              "content": "(Bash completed with no output)",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "af72b763-b989-40b7-bef7-a4e030022aa5",
+            "uuid": "b017cc27-c336-4427-b1d6-53b06422b5e2",
+            "tool_use_result": {
+              "stdout": "",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "无新 warning。同步到 paper/ 目录。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "af72b763-b989-40b7-bef7-a4e030022aa5",
+            "uuid": "69dabc04-d930-480b-9bc1-fac6570ad163",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01S5NznTp86sHMbtXn6Lrhkz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 132,
+                "cache_read_input_tokens": 41005,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 132
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LKn5pbKrgmTdFXQBsJD9FX",
+              "name": "Bash",
+              "input": {
+                "command": "cp /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/references.bib /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/references.bib",
+                "description": "Sync references.bib to paper/ directory"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "af72b763-b989-40b7-bef7-a4e030022aa5",
+            "uuid": "04d94818-4593-412f-8501-6cb67d2055cf",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01S5NznTp86sHMbtXn6Lrhkz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 132,
+                "cache_read_input_tokens": 41005,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 132
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-21T07:11:24.188Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LKn5pbKrgmTdFXQBsJD9FX",
+              "type": "tool_result",
+              "content": "(Bash completed with no output)",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "af72b763-b989-40b7-bef7-a4e030022aa5",
+            "uuid": "61a60aed-0f17-4a23-b64a-26b7f0516d46",
+            "tool_use_result": {
+              "stdout": "",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": true
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证 paper/ 版本的 rlsf 条目。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "af72b763-b989-40b7-bef7-a4e030022aa5",
+            "uuid": "8cbafe6d-829c-4dc1-a53b-875f436fa93b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01A25T8LpZcpy9p7f55KMJeR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 184,
+                "cache_read_input_tokens": 41137,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 184
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016ft2ZyhTuxEkFLnepACEor",
+              "name": "Grep",
+              "input": {
+                "pattern": "rlsf",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/references.bib",
+                "output_mode": "content",
+                "-A": 8
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "af72b763-b989-40b7-bef7-a4e030022aa5",
+            "uuid": "a87df8c9-dacc-47af-a073-37fdb4bd557d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01A25T8LpZcpy9p7f55KMJeR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 184,
+                "cache_read_input_tokens": 41137,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 184
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-21T07:11:28.318Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016ft2ZyhTuxEkFLnepACEor",
+              "type": "tool_result",
+              "content": "207:@article{rlsf,\n208-  author       = {Piyush Jha and Prithwish Jana and Pranavkrishna Suresh and Arnav Arora and Vijay Ganesh},\n209-  title        = {{RLSF: Fine-tuning LLMs via Symbolic Feedback}},\n210-  journal      = {arXiv preprint arXiv:2405.16661},\n211-  year         = {2024},\n212-  eprint       = {2405.16661},\n213-  archivePrefix = {arXiv},\n214-  primaryClass = {cs.AI},\n215-}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "af72b763-b989-40b7-bef7-a4e030022aa5",
+            "uuid": "529f2edc-c63a-46c9-8f1d-8565353c80fd",
+            "tool_use_result": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "207:@article{rlsf,\n208-  author       = {Piyush Jha and Prithwish Jana and Pranavkrishna Suresh and Arnav Arora and Vijay Ganesh},\n209-  title        = {{RLSF: Fine-tuning LLMs via Symbolic Feedback}},\n210-  journal      = {arXiv preprint arXiv:2405.16661},\n211-  year         = {2024},\n212-  eprint       = {2405.16661},\n213-  archivePrefix = {arXiv},\n214-  primaryClass = {cs.AI},\n215-}",
+              "numLines": 9
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成。Diff 如下：\n\n**`docs/paper/references.bib`**（标题修正，作者原本已正确）：\n```diff\n-  title        = {{RLSF: Reinforcement Learning via Symbolic Feedback}},\n+  title        = {{RLSF: Fine-tuning LLMs via Symbolic Feedback}},\n```\n\n**`paper/references.bib`**（同步后，作者和标题均已修正）：\n```diff\n-  author       = {Abhinav Jha and Shikhar Murty and J. Zico Kolter and others},\n-  title        = {{Reinforcement Learning via Symbolic Feedback}},\n+  author       = {Piyush Jha and Prithwish Jana and Pranavkrishna Suresh and Arnav Arora and Vijay Ganesh},\n+  title        = {{RLSF: Fine-tuning LLMs via Symbolic Feedback}},\n```\n\n编译通过，无新 warning（仅有既存的 hyperref Unicode token 警告）。\n\nSources:\n- [arXiv:2405.16661 - RLSF: Fine-tuning LLMs via Symbolic Feedback](https://arxiv.org/abs/2405.16661)\n- [Semantic Scholar - RLSF](https://www.semanticscholar.org/paper/RLSF:-Fine-tuning-LLMs-via-Symbolic-Feedback-Jha-Jana/be992d914389d9e4462df1911e6ede7645b66f86)"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "af72b763-b989-40b7-bef7-a4e030022aa5",
+            "uuid": "d5413ea2-fdc2-4b9d-b99d-fdaa105a1bdd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UYkxjaQjM4X6bvrmLMxcFp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 336,
+                "cache_read_input_tokens": 41321,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 336
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成。Diff 如下：\n\n**`docs/paper/references.bib`**（标题修正，作者原本已正确）：\n```diff\n-  title        = {{RLSF: Reinforcement Learning via Symbolic Feedback}},\n+  title        = {{RLSF: Fine-tuning LLMs via Symbolic Feedback}},\n```\n\n**`paper/references.bib`**（同步后，作者和标题均已修正）：\n```diff\n-  author       = {Abhinav Jha and Shikhar Murty and J. Zico Kolter and others},\n-  title        = {{Reinforcement Learning via Symbolic Feedback}},\n+  author       = {Piyush Jha and Prithwish Jana and Pranavkrishna Suresh and Arnav Arora and Vijay Ganesh},\n+  title        = {{RLSF: Fine-tuning LLMs via Symbolic Feedback}},\n```\n\n编译通过，无新 warning（仅有既存的 hyperref Unicode token 警告）。\n\nSources:\n- [arXiv:2405.16661 - RLSF: Fine-tuning LLMs via Symbolic Feedback](https://arxiv.org/abs/2405.16661)\n- [Semantic Scholar - RLSF](https://www.semanticscholar.org/paper/RLSF:-Fine-tuning-LLMs-via-Symbolic-Feedback-Jha-Jana/be992d914389d9e4462df1911e6ede7645b66f86)"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 124168,
+            "duration_api_ms": 120017,
+            "num_turns": 13,
+            "stop_reason": "end_turn",
+            "session_id": "af72b763-b989-40b7-bef7-a4e030022aa5",
+            "total_cost_usd": 0.5925739999999999,
+            "usage": {
+              "input_tokens": 7665,
+              "cache_creation_input_tokens": 29816,
+              "cache_read_input_tokens": 413454,
+              "output_tokens": 4597,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 29816,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 412,
+                  "cache_read_input_tokens": 41321,
+                  "cache_creation_input_tokens": 336,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 336
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 22557,
+                "outputTokens": 738,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 2,
+                "costUSD": 0.046246999999999996,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 7665,
+                "outputTokens": 4597,
+                "cacheReadInputTokens": 413454,
+                "cacheCreationInputTokens": 29816,
+                "webSearchRequests": 0,
+                "costUSD": 0.546327,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "ececd5d6-09f7-45de-9e03-2ef81a466bbb"
+          },
+          "id": "event-000040"
+        }
+      ],
+      "message_count": 40
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-fix-rlsf-bib.md"
+}

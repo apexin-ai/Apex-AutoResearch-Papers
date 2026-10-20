@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "42cc49868763e1c1215a",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analysis r15 bonferroni",
+  "task_key": "worker_analysis_r15-bonferroni_20260520T044634",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_r15-bonferroni_20260520T044634_result.json",
+    "occurrence": 1,
+    "bytes": 1381,
+    "sha256": "f8b1e039ec5ace14ec4d4b431b40daeee910ecfc9e6f9e0a0d6f616d413868ff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "JSON 已保存。汇总：\n\n## Bonferroni 校正结果\n\n**N = 14 个统计检验**\n\n| | α=0.05 | α=0.10 |\n|---|---|---|\n| 校正前显著 | 9/14 | 9/14 |\n| 校正后显著 | 6/14 | 9/14 |\n\n### 校正后不再显著的检验（α=0.05）\n\n3 个 matched-cohort (n=5 per group) 检验从 p=0.004 升至 p_bonf=0.056，刚好超过 0.05 阈值，但仍在 α=0.10 下显著：\n\n| 检验 | p_orig | p_bonf |\n|---|---|---|\n| Fisher exact: TS domination (matched 5+5) | 0.004 | 0.056 |\n| Mann-Whitney U: ISR* (matched 5+5) | 0.004 | 0.056 |\n| Mann-Whitney U: TS rate (matched 5+5) | 0.004 | 0.056 |\n\n这三个检验实质上是对同一 matched-cohort 数据的不同切面（TS domination / ISR* / TS rate），本身高度相关。论文核心结论（TS 为 ISR 特异性吸引子）同时有 pooled Fisher (p_bonf ≈ 10⁻¹¹) 和 3-seed sensitivity (p_bonf ≈ 10⁻³⁸) 支撑，这两个校正后仍然极度显著。\n\n### 影响评估\n\n- 论文主要统计结论（TS rate 差异、SFT vs RL 差异）校正后仍然稳健\n- matched-cohort 的 p=0.004 系列检验边际化，但考虑到 N=5 的 discrete permutation 限制（最小可达 p=0.008），BF₁₀=77 的贝叶斯证据仍然很强\n- 5 个原本不显著的检验（permutation N-H、3-seed Fisher N-H、seed-level permutations、Spearman）校正后当然仍不显著"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-r15-bonferroni.md"
+}

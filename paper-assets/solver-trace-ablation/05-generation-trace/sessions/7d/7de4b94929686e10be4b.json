@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7de4b94929686e10be4b",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "paper dose response paragraph",
+  "task_key": "worker_paper_dose-response-paragraph_20260517T135012",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_dose-response-paragraph_20260517T135012_result.json",
+    "occurrence": 1,
+    "bytes": 556,
+    "sha256": "6bae448fa9252971adf9d4b71ca312b5ebb81bb5451efefe731b2c463b50f7ed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Provenance shows 36/36 claims covered at tier2. The new paragraph references data already present in the registry (sweep-isr-b005, sweep-isr-b02, plan002-b01, plan002-b03 entries), so no new provenance gaps were introduced.\n\nAdded a 3-sentence \"Non-monotonic dose-response\" paragraph at the end of §4.3 (lines 119-122), summarizing: deterministic collapse at β=0.05 and β=0.2, multi-modal instability at β=0.3, and β=0.1 as the sole dose with a genuine window, framed as a threshold interaction between β and rollout stochasticity."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-dose-response-paragraph.md"
+}

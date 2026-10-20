@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3e361599048e890654d6",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "research prm citation verify",
+  "task_key": "worker_research_prm-citation-verify_20260516T225956",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_prm-citation-verify_20260516T225956_result.json",
+    "occurrence": 1,
+    "bytes": 1182,
+    "sha256": "e10a6b78d9d939c5e895536dfdfb8e261a4c349276c5763d65bc990940a9e7f7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## ThinkPRM\n状态: **存在**\n\narXiv:2504.16828, April 2025. GitHub 用户名为 `mukhal`（Muhammad Khalifa）。\n\n```bibtex\n@article{khalifa2025thinkprm,\n  title={Process Reward Models That Think},\n  author={Khalifa, Muhammad and Agarwal, Rishabh and Logeswaran, Lajanugen and Kim, Jaekyeom and Peng, Hao and Lee, Moontae and Lee, Honglak and Wang, Lu},\n  journal={arXiv preprint arXiv:2504.16828},\n  year={2025},\n  url={https://arxiv.org/abs/2504.16828}\n}\n```\n\n## VersaPRM\n状态: **存在**\n\narXiv:2502.06737, February 2025. ICML 2025 录用（oral）。\n\n```bibtex\n@inproceedings{zeng2025versaprm,\n  title={VersaPRM: Multi-Domain Process Reward Model via Synthetic Reasoning Data},\n  author={Zeng, Thomas and Zhang, Shuibai and Wu, Shutong and Classen, Christian and Chae, Daewon and Ewer, Ethan and Lee, Minjae and Kim, Heeju and Kang, Wonjun and Kunde, Jackson and Fan, Ying and Kim, Jungtaek and Koo, Hyung Il and Ramchandran, Kannan and Papailiopoulos, Dimitris and Lee, Kangwook},\n  booktitle={Proceedings of the International Conference on Machine Learning (ICML)},\n  year={2025},\n  url={https://arxiv.org/abs/2502.06737}\n}\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-prm-citation-verify.md"
+}

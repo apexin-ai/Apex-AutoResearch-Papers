@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "200848b7aacd9feac977",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analysis plan001 r2 done",
+  "task_key": "worker_analysis_plan001-r2-done_20260513T234636",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan001-r2-done_20260513T234636_result.json",
+    "occurrence": 1,
+    "bytes": 2707,
+    "sha256": "b5568ca5299410dddb4f04cec2edfe5747cfb142b463a3903d31118c5e9e6cf3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。以下是完整分析：\n\n---\n\n## plan001-exec-only-s42-r2 训练结果\n\n### Metrics 总表\n\n| 指标 | 值 |\n|------|-----|\n| 总步数 | 500 |\n| 训练时长 | 62.2 min |\n| overall prove_rate | **0.6743** |\n| overall ISR | **0.6677** |\n| last-50 prove_rate | **0.8525** |\n| last-50 ISR | **0.8525** |\n| last-100 prove_rate | **0.8650** |\n| last-100 ISR | **0.8612** |\n| first-20 prove_rate | 0.1625 |\n| parse_rate | 1.0 (全程) |\n| 首次 prove_rate=1.0 | step 109 |\n| 持续 ≥0.8（rolling-10）| step 133 起 |\n| 步数达到 1.0 的比例 | 166/500 (33.2%) |\n| mean loss | 0.0067 |\n\n### 训练曲线（分窗口 prove_rate）\n\n| 窗口 | prove_rate | 趋势 |\n|------|-----------|------|\n| 1–50 | 0.185 | 冷启动 |\n| 51–100 | 0.238 | 缓慢爬升 |\n| 101–200 | **0.663** | 急剧跃升 |\n| 201–300 | 0.784 | 持续上升 |\n| 301–400 | 0.849 | 接近平台 |\n| 401–500 | **0.865** | 平台期 |\n\n**曲线形态**：经典 sigmoid。step 50-200 快速爬升，step 200+ 逐渐收敛到 ~0.86 平台。未完全饱和到 1.0。\n\n### Baseline 对比\n\n| 实验 | prove_rate | ISR | 备注 |\n|------|-----------|-----|------|\n| base model (phase0) | 0.120 | 0.064 | 未训练 |\n| 100-step exec-only (r5) | 0.151 | 0.148 | 训练集 |\n| 100-step held-out eval (plan003) | 0.320 | 0.206 | held-out |\n| **500-step exec-only (本次, last-100)** | **0.865** | **0.861** | 训练集 |\n\n相对提升（last-100 vs base model）：\n- prove_rate: **+621%** (0.12 → 0.865)\n- ISR: **+1245%** (0.064 → 0.861)\n\n### 关键检查\n\n1. **prove_rate 饱和？** 未完全饱和。平台期在 ~0.86，非 1.0。33.2% 的单步达到 1.0，但平均未饱和。\n\n2. **ISR ≡ prove_rate？** 近似但不严格相等。500 步中有 13 步 (2.6%) ISR < prove_rate（差异 0.125–0.5），说明 exec-only 模式下仍有少量 \"proved but low-ISR\" 情况（可能是部分 proof 质量差异）。\n\n3. **Reward hacking？** 无。最大 rolling-10 跳跃仅 0.1042，是渐进式学习而非突变。\n\n4. **Loss 趋势：** 极低（mean=0.0067, last-50=0.0089），接近零但未完全归零，与 prove_rate 未完全饱和一致。\n\n### 结论\n\n训练成功。500 步 exec-only GRPO 在训练集上把 prove_rate 从 0.12 提升到 0.865（last-100），曲线在 step ~200 后收敛。\n\n**关键注意**：以上所有指标都是训练集表现。真正的结论需要 held-out eval。考虑到 100-step 时 held-out prove_rate 是 0.32（训练集 0.151），500-step 的 held-out 表现可能明显低于训练集的 0.865。建议尽快跑 held-out eval 验证泛化能力。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan001-r2-done.md"
+}

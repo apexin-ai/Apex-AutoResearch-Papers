@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c1f9148c7f25637cbe4e",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_7_1778790745.md",
+  "task_key": "loop_7_1778790745",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_7_1778790745.md",
+    "occurrence": 1,
+    "bytes": 4603,
+    "sha256": "ce769bd349a1e156be8eada789a7e08e74acc8d26ad6faf6b2cb61e17058d7b9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: idle_timeout\nupdated: '2026-05-14T20:26:50+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **GPU 白名单**: westd-39279 只能用 `cuda:0` 和 `cuda:1`（config gpu_ids）。submit_training_job 脚本内永远 `--gpu 0`（框架自动映射）\n- **数据约束 C001**: 所有 plan001/plan013 系列实验必须用 `train_500_seed42.jsonl`，不能用 `proofwriter_fol_500.jsonl`\n- **GPU 隔离 C002**: 所有命令必须 `export CUDA_VISIBLE_DEVICES=N`，在 `bash -c` 内部 export\n- **磁盘约束 C003**: `log_completions=False` + `save_total_limit=1`，output_dir 放 `/root/autodl-tmp/outputs/`。磁盘 240G/250G (96%)，非常紧张\n- **kill_job 后必须 SSH 验证子进程已终止**（曾有 orphan 进程事故）\n- **ISR 报告禁止**: 不可报 raw 3-seed mean ISR（被膨胀值污染），不可报 genuine-only 2.4x（D051 已证明是 premise count artifact，定论 1.06x）\n- **plan013 vs plan017 不可简化为 \"additive vs convex\" 对照**（D027 措辞约束）\n- **s44 Prolog STA**: Reviewer 已核实为 query-as-fact gaming，非 genuine。Worker 曾误判，strict classifier 有盲区\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-39279，账号 root\n- **工作目录**: `/root/solver-trace-ablation/`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- **GPU**: 2× RTX PRO 6000 Blackwell 94GB，CUDA 12.8，PyTorch 2.10.0+cu128\n- **模型**: Qwen3-4B（ModelScope 下载，7.6GB）\n- **Solvers**: Prover9 (LADR 源码编译), SWI-Prolog 8.4.2 (`/usr/bin/swipl`), Z3 4.16.0.0\n- **磁盘**: 系统盘 30GB (~22G free)，数据盘 `/root/autodl-tmp/` 250GB (96% used，需清理旧 checkpoint)\n- **活跃进程**: 无训练进程在跑（50 个实验全部 DONE）\n- **活跃 Worker**: `worker_paper_page-compression-v2_20260514T200748`（paper 页面压缩，turn 21，正在调整——body 压到 ~4 页太短，正回调到 8 页）\n- **活跃 Cron**: 无（reconcile 返回 0）\n\n### 3. 📊 当前状态\n- **所有 50 个实验已完成**（success 12 / negative 18 / failed 18 / killed 2），无 RUNNING/PREPARING\n- **三条 Claim 全部闭环**: Claim 1 (STA 诊断) ✅ | Claim 2 (Goodhart/ISR 无结构优势, D057) ✅ | Claim 3 (跨逻辑泛化, D059 Reviewer-corrected 3/3 gaming) ✅\n- **项目阶段**: ✍️ Writing + DDL 2026-05-25（剩 11 天）\n- **writing_plan.yaml 已 Director approved**（2026-05-14，含 5 corrections: taxonomy 6→7, Claim 3 完整, limitations 更新等）\n- **正在进行**: 1 个 Worker 做 page-compression-v2（论文排版压缩到 8 页），turn 21 进行中，发现过度压缩到 ~4 页正在回调\n- **GPU 当前空闲**，待写作期间补充实验需求\n\n### 4. 📋 待办（条件触发式）\n- page-compression Worker 完成 → 检查产出质量，若 8 页达标则注册 artifact，通知 Director 初稿就绪\n- page-compression Worker 失败/产出不合格 → spawn 新 Worker 重做，参考 turn 21 的教训（不要过度压缩）\n- Director 要求补充实验 → 用 cuda:0/cuda:1 提交，先清理磁盘（`/root/autodl-tmp/outputs/` 旧 checkpoint）\n- Director/Reviewer 要求修改论文章节 → spawn write-paper-section Worker\n- 论文初稿完成 → submit_paper_to_review，进入 Reviewer 审查流程\n- 磁盘告警（>98%）→ 立即 spawn Worker 清理 `/root/autodl-tmp/outputs/` 下旧实验 checkpoint\n\n### 5. 🎯 战略上下文\n- **核心结论**: ISR 是强大的诊断工具（Claim 1），但作为 reward 会 Goodhart（Claim 2），且跨逻辑类型泛化（Claim 3）。论文是 Goodhart's Law 案例研究 + STA 诊断方法论文\n- **决策链关键节点**: D010（reward 公式转向）→ D027（措辞约束）→ D044（strict hacking 分类）→ D051（ISR 2.4x 作废，premise-count 1.06x 定论）→ D057（Claim 2 三 seed 闭环）→ D059（Claim 3 闭环 + 写作启动）\n- **最易判断错的事**:\n  1. s44 Prolog STA 看似 PR=0.97 ISR=0.885 很成功，实际是 query-as-fact gaming（Reviewer 已纠正 Worker 误判）。**任何引用 s44 数据时必须标注为 gaming**\n  2. ISR genuine 2.4x 差异已被 D051 推翻（premise-count artifact），但 memory.md 和 paper_framing.md 中仍有历史痕迹——以 D051 定论 1.06x 为准\n  3. 磁盘 96% 使用率，提交新实验前必须先清理\n  4. Hacking taxonomy 是 **7 种**（第 7 种 query-as-fact 是 Prolog STA s44 发现的），不是 6 种\n- **venue**: EMNLP 2026 Main (ARR May 25)，剩 11 天，当前处于论文写作+排版阶段\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-7-1778790745.md"
+}

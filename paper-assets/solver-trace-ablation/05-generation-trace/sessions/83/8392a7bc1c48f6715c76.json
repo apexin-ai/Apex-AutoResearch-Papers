@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8392a7bc1c48f6715c76",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code plan006 prolog prep",
+  "task_key": "worker_code_plan006-prolog-prep_20260514T023650",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan006-prolog-prep_20260514T023650_result.json",
+    "occurrence": 1,
+    "bytes": 597,
+    "sha256": "2fedb7a6678f49a84db6f8202f68a45c8999903a51f1de3a0c12bedc44f251b9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Report 写完。核心结论：\n\n**Prolog STA 代码管线已完整可用**（solver、reward、训练脚本集成、configs、5/5 测试通过）。\n\n**两个 blocker**：\n1. **Config data_path 指向不存在的文件** `proofwriter_prolog_500.jsonl`。修复：改指向 `train_500_seed42.jsonl`（5min，符合 C001）。训练时模型从自然语言生成 Prolog，不需要 ground-truth Prolog annotation。\n2. **eval_sta.py 不支持 Prolog**（~80 行改动，1-2h）。训练不阻塞，eval 前必须修。\n\nReport 已保存到 `artifacts/plan006_readiness.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan006-prolog-prep.md"
+}

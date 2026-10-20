@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9a503b9318bf7acb9c9a",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analysis genuine isr fix v3",
+  "task_key": "worker_analysis_genuine-isr-fix-v3_20260514T153807",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_genuine-isr-fix-v3_20260514T153807_result.json",
+    "occurrence": 1,
+    "bytes": 680,
+    "sha256": "abe8a9a5f1a80219497431353dae4cc0816ed05f61adbcd03214ec5e2cc34b15"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "r4 更新完成。关键变更：\n\n**r3 → r4 差异:**\n- 全面切换到 **strict normalization**（与 h7_corrected_results.txt 一致）\n- Random s42: H1=56/79 (70.9%), Genuine=23 (29.1%), Genuine ISR=**0.243** (std=0.169)\n- Random s44: H1 从 74 修正为 **71**/89 (79.8%), Genuine 从 15 修正为 **18** (20.2%), Genuine ISR=**0.166** (std=0.335)\n- Apple-to-apple ratio: ISR s42 genuine (0.601) / Random s42 genuine (0.243) = **2.5×**（r3 报 2.4×，因 loose normalization 得 21 genuine ISR=0.252）\n- 删除了 author re-classification 脚注，strict 为权威分类\n- 2 borderline samples 已识别（folio_499、folio_394 结论带括号）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-genuine-isr-fix-v3.md"
+}

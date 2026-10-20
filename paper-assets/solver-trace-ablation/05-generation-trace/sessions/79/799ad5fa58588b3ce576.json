@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "799ad5fa58588b3ce576",
+  "project": "solver-trace-ablation",
+  "kind": "conversation",
+  "title": "writing paper trim v2",
+  "task_key": "worker_writing_paper-trim-v2_20260515T033710",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_writing_paper-trim-v2_20260515T033710.jsonl",
+    "occurrence": 1,
+    "bytes": 172,
+    "sha256": "43d3c08d9320c42ecc87f916c401234abc56173a7ce900bda9faa0009752dd01"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T03:37:17.422850+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 4:10am (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-trim-v2_20260515T033710"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/writing-paper-trim-v2.md"
+}

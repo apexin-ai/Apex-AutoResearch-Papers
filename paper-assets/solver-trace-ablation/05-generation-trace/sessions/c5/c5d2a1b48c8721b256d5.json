@@ -1,0 +1,124 @@
+{
+  "schema_version": "1.0",
+  "id": "c5d2a1b48c8721b256d5",
+  "project": "solver-trace-ablation",
+  "kind": "worker",
+  "title": "research d145 fol datasets",
+  "task_key": "worker_research_d145-fol-datasets_20260519T131524",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_d145-fol-datasets_20260519T131524.log",
+    "occurrence": 1,
+    "bytes": 743882,
+    "sha256": "f5ae5cd8b9b240227b95b91d8ede4f5c8dc890f5878318d8ff9aa5dc430d2047"
+  },
+  "statistics": {
+    "messages": 546,
+    "user_turns": 6,
+    "tool_calls": 167,
+    "roles": {
+      "log": 1,
+      "system": 200,
+      "record": 1,
+      "assistant": 3,
+      "tool_call": 167,
+      "user": 6,
+      "tool_result": 167,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "c5d2a1b48c8721b256d5-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "c5d2a1b48c8721b256d5-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 10,
+      "chunks": [
+        {
+          "path": "c5d2a1b48c8721b256d5-part-0001.json",
+          "message_count": 10
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 9,
+      "chunks": [
+        {
+          "path": "c5d2a1b48c8721b256d5-part-0001.json",
+          "message_count": 9
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 11,
+      "chunks": [
+        {
+          "path": "c5d2a1b48c8721b256d5-part-0001.json",
+          "message_count": 11
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 33,
+      "chunks": [
+        {
+          "path": "c5d2a1b48c8721b256d5-part-0001.json",
+          "message_count": 33
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "boundary": "recorded_user_message",
+      "message_count": 471,
+      "chunks": [
+        {
+          "path": "c5d2a1b48c8721b256d5-part-0001.json",
+          "message_count": 105
+        },
+        {
+          "path": "c5d2a1b48c8721b256d5-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "c5d2a1b48c8721b256d5-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "c5d2a1b48c8721b256d5-part-0004.json",
+          "message_count": 6
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-d145-fol-datasets.md"
+}

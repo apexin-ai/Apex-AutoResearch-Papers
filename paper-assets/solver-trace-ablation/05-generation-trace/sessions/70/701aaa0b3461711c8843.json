@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "701aaa0b3461711c8843",
+  "project": "solver-trace-ablation",
+  "kind": "worker",
+  "title": "analysis plan006 prolog sta s43",
+  "task_key": "worker_analysis_plan006-prolog-sta-s43_20260514T180524",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan006-prolog-sta-s43_20260514T180524.log",
+    "occurrence": 1,
+    "bytes": 535725,
+    "sha256": "782a7ba2523ac50598c5e0825620ebdc242a3d42791908aa0c50831bf9dfcb8e"
+  },
+  "statistics": {
+    "messages": 361,
+    "user_turns": 0,
+    "tool_calls": 153,
+    "roles": {
+      "log": 1,
+      "system": 3,
+      "record": 3,
+      "assistant": 47,
+      "tool_call": 153,
+      "tool_result": 153,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 361,
+      "chunks": [
+        {
+          "path": "701aaa0b3461711c8843-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "701aaa0b3461711c8843-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "701aaa0b3461711c8843-part-0003.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-plan006-prolog-sta-s43.md"
+}

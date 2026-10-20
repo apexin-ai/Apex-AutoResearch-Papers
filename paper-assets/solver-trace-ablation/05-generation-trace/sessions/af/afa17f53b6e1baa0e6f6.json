@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "afa17f53b6e1baa0e6f6",
+  "project": "solver-trace-ablation",
+  "kind": "worker",
+  "title": "ops check and eval both",
+  "task_key": "worker_ops_check-and-eval-both_20260517T134959",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-and-eval-both_20260517T134959.log",
+    "occurrence": 1,
+    "bytes": 503278,
+    "sha256": "ff7f4e0121345b44118e172a924fe3fd52fd048544a38e8caae32bb97e32f95c"
+  },
+  "statistics": {
+    "messages": 332,
+    "user_turns": 0,
+    "tool_calls": 139,
+    "roles": {
+      "log": 1,
+      "system": 9,
+      "record": 1,
+      "assistant": 42,
+      "tool_call": 139,
+      "tool_result": 139,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 332,
+      "chunks": [
+        {
+          "path": "afa17f53b6e1baa0e6f6-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "afa17f53b6e1baa0e6f6-part-0002.json",
+          "message_count": 152
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-check-and-eval-both.md"
+}

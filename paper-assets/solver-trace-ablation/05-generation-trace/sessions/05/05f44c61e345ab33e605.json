@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "05f44c61e345ab33e605",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops d143 pipeline launch",
+  "task_key": "worker_ops_d143-pipeline-launch_20260519T121904",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d143-pipeline-launch_20260519T121904_result.json",
+    "occurrence": 1,
+    "bytes": 1286,
+    "sha256": "116669b6d044fb63838e64b678aed56a8a96ecc871bee8ecb4f285f8f1cb47ac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Pipeline 已成功启动并正在训练。汇报：\n\n### D143 状态\n\n| 项目 | 状态 |\n|------|------|\n| **LLaMA 重复进程** | 只有 1 个下载进程 (PID 387234)，无需 kill |\n| **训练数据** | `train_500_seed42.jsonl` (484KB, 500 行) — 遵循 C001，未用 `proofwriter_fol_500.jsonl` |\n| **评估数据** | `proofwriter_fol_100.jsonl` (97KB, 100 行) — 遵循 C008 |\n| **磁盘** | `/root/autodl-tmp` 209G 可用 (17%) |\n| **Pipeline 脚本** | `/root/autodl-tmp/d143_proofwriter_pipeline.sh` |\n| **tmux session** | `d143` (创建于 20:22:16) |\n| **训练 PID** | 387836，GPU:0 占用 82GB/98GB，85% util |\n| **首个实验** | `pw_exec_s42` 已开始训练，step 1/500 完成，~7.6s/it，reward=0.25，预计 ~63 min |\n\n### 6 个实验串行顺序\n1. `d143_pw_exec_s42` — execution_only, seed=42 ← **正在运行**\n2. `d143_pw_exec_s43` — execution_only, seed=43\n3. `d143_pw_exec_s44` — execution_only, seed=44\n4. `d143_pw_sta_s42` — additive_bonus β=0.3, seed=42\n5. `d143_pw_sta_s43` — additive_bonus β=0.3, seed=43\n6. `d143_pw_sta_s44` — additive_bonus β=0.3, seed=44\n\n每个实验完成 eval+classify 后自动清理 weights（M008）。每个实验 train ~63min + eval ~15min，预计总时长 ~8h。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-d143-pipeline-launch.md"
+}

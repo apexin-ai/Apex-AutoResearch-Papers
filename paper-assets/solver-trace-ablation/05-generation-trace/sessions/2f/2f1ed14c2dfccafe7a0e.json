@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2f1ed14c2dfccafe7a0e",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops disk cleanup approved",
+  "task_key": "worker_ops_disk-cleanup-approved_20260515T124641",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_disk-cleanup-approved_20260515T124641_result.json",
+    "occurrence": 1,
+    "bytes": 1150,
+    "sha256": "d6eb18352334d639ee0e80cfd52da8413b923f87aecaf75c2a1bfcfaaab89fe0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 清理完成\n\n**磁盘使用量对比：**\n| | Used | Avail | Use% |\n|---|---|---|---|\n| 清理前 | 217G | 34G | 87% |\n| 清理后 | 174G | 77G | 70% |\n| **释放** | **43G** | | |\n\n**删除清单：**\n\n| 文件/目录 | 大小 | 原因 |\n|---|---|---|\n| `plan009_sft_baseline_s42_1000/checkpoint-1000/optimizer.pt` | 15G | eval 不需要 optimizer |\n| `plan009_sft_baseline_s42_1000/checkpoint-1000/scheduler.pt` | 1.5K | eval 不需要 |\n| `plan009_sft_baseline_s42_1000/checkpoint-1000/rng_state.pth` | 15K | eval 不需要 |\n| `plan018_additive_random_b01_s42_1000_r3/checkpoint-1000/` (整目录) | ~16G | 顶层已有完全相同的模型权重 |\n| 4 个空目录 (exp1_isr_b03_s43_r4, exp1_random_b03_s43_eval, exp1_random_b03_s43_r3, plan015_linear_s42) | 0 | 空 |\n\n**保留完好：** 所有 model.safetensors、eval 结果、plan002 checkpoint（re-eval）、plan009 checkpoint 模型权重（eval）、基础模型 Qwen3-4B。\n\n**注意：** 发现两个新目录 `plan009_sft_baseline_s43_1000` (23G) 和 `plan009_sft_baseline_s44_1000` (0)，清理前不存在，可能是其他进程创建的。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-disk-cleanup-approved.md"
+}

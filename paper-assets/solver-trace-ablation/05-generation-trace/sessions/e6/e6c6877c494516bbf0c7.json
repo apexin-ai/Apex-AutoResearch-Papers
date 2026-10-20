@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "e6c6877c494516bbf0c7",
+  "project": "solver-trace-ablation",
+  "kind": "conversation",
+  "title": "eval d062 reeval s43",
+  "task_key": "worker_eval_d062-reeval-s43_20260515T010342",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_eval_d062-reeval-s43_20260515T010342.jsonl",
+    "occurrence": 1,
+    "bytes": 171,
+    "sha256": "8117437f967b8f9e59b91383bfcaeec35bd08c4bb31f240107f974f9caa1d694"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T01:04:00.532385+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 4:10am (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_d062-reeval-s43_20260515T010342"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/eval-d062-reeval-s43.md"
+}

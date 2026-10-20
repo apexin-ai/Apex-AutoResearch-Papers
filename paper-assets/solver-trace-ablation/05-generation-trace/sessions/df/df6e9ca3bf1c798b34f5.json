@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "df6e9ca3bf1c798b34f5",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "paper final exp polish",
+  "task_key": "worker_paper_final-exp-polish_20260522T184716",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_final-exp-polish_20260522T184716_result.json",
+    "occurrence": 1,
+    "bytes": 3932,
+    "sha256": "e038b974e954299d8b3b85063aed5349b42f61192a6b2e71c99d4be71e5c063b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Files are identical. Here's a summary of all modifications:\n\n---\n\n### Edit 1: Table 1 caption (line 70)\n\n**Changes:**\n- Added **`\\textbf{Columns:}`** and **`\\textbf{Markers:}`** headers to organize the dense caption into two logical sections\n- Added **\"(upper bound on genuine reasoning)\"** after N-H definition — critical for readers who jump to the table without reading §4.1's definition\n- `\"3-seed rows:\"` → `\"Multi-seed rows report\"` (covers both 3- and 5-seed rows)\n- `$^\\dagger$Seed~42.` → `$^\\dagger$Seed~42 only.` (clearer)\n- `\"5-seed raw ISR* in parentheses, same TS confound applies (no matched control for 5-seed)\"` → `\"5-seed raw ISR$^*$ in parentheses (same confound, no matched control)\"` (tighter)\n- `\"Random TS driven by seed~43\"` → `\"Random TS driven entirely by seed~43\"` (emphasizes it's a single-seed artifact)\n- `\"seeds~42 and~44: 0%\"` → `\"seeds~42/44: 0%\"` (compact)\n- `\"not an independent reward condition\"` → `\"not an independent condition\"` (trim)\n- Fixed inconsistent `ISR*` → `ISR$^*$` in two places (was missing math formatting)\n\n### Edit 2: §4.3 intro paragraph (line 44)\n\n| Before | After |\n|---|---|\n| `...Table~\\ref{tab:goodhart-landscape}); the apparent $214\\times$ raw ISR advantage collapses to $1.06\\times$ after controlling for premise count.` | `...Table~\\ref{tab:goodhart-landscape}). The scalar ISR$^*$ advantage ($214\\times$ raw) collapses to $1.06\\times$ after controlling for premise count; the compositional mode shift provides the primary evidence.` |\n\n**Rationale:** Explicitly previews the scalar/compositional two-level structure that becomes the argument through §4.3. The old text had \"the apparent... advantage collapses\" as a standalone fact; the new text frames it as one side of a two-level contrast, making the §4.3 narrative arc legible from the first paragraph.\n\n### Edit 3: Premise-count confound paragraph split (lines 79–85)\n\n**Before** (one dense paragraph, 6 claims):\n```\n...indicating that the scalar ISR advantage is not statistically significant.\nThe TS mode shift, however, is robust in the modal premise-count range...\n...\nThe compositional mode shift---not the scalar ISR difference---constitutes the primary evidence for the Goodhart effect.\n```\n\n**After** (two paragraphs with transition):\n```\n...indicating that the scalar ISR advantage is not statistically significant.\n\nThe compositional evidence, however, survives this control.\nIn the modal premise-count range (4--6 premises, where most proved samples fall), TS reaches 19.7% under ISR versus 0% under random reward...\n...\nThis complexity dependence is a mechanistic insight, not a confound: the compositional mode shift---not the scalar ISR difference---constitutes the primary evidence for the Goodhart effect.\n```\n\n**Changes:** (a) Paragraph break after the scalar confound conclusion; (b) Transition sentence \"The compositional evidence, however, survives this control.\" starts the second paragraph; (c) Last two sentences merged with colon (\"`insight, not a confound: the compositional mode shift...`\") to offset the added transition without net line increase.\n\n---\n\n### Observations (not modified)\n\n1. **β column in Table 1** — not defined in the caption. Self-evident from context (line 42 defines the reward formula with β), but a pedantic reviewer might note it. Optional fix: add `$\\beta$ = reward weight` after the Columns header.\n2. **\"regressional Goodhart\" (line 43)** — jargon from Manheim & Garrabrant, but immediately defined with an inline gloss. Acceptable for ACL/EMNLP audience. No change needed.\n3. **Line 47 (\"Multiplicative coupling\" paragraph)** — also dense (two-sentence paragraph with 5 controls enumerated), but the §4.3 constraints don't allow much expansion within 8 pages. Could consider moving to appendix if page pressure arises."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-final-exp-polish.md"
+}

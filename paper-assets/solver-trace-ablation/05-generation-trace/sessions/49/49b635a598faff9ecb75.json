@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "49b635a598faff9ecb75",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "train d129 1 7b random b01 s44",
+  "task_key": "worker_train_d129-1_7b-random-b01-s44_20260518T005650",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_d129-1_7b-random-b01-s44_20260518T005650_result.json",
+    "occurrence": 1,
+    "bytes": 270,
+    "sha256": "b63d235e6b47c37c3e32a31171dfc56ecab65049e0d94af5685edc961056fb2e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已启动并注册。\n\n**汇总：**\n- tmux session: `d129-random-b01-s44`\n- PID: 103521（GPU 0，41850MiB）\n- reward_mode: `additive_random` ✓\n- ~17s/step × 500 steps ≈ **2.4 小时**\n- Registry: `d129-1_7b-random-b01-s44` → RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-d129-1-7b-random-b01-s44.md"
+}

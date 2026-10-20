@@ -1,0 +1,856 @@
+{
+  "schema_version": "1.0",
+  "id": "44297fabe1dad530553b",
+  "project": "solver-trace-ablation",
+  "kind": "conversation",
+  "title": "research plan017 literature linkage",
+  "task_key": "worker_research_plan017-literature-linkage_20260514T053739",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_research_plan017-literature-linkage_20260514T053739.jsonl",
+    "occurrence": 1,
+    "bytes": 54800,
+    "sha256": "1ad01905ecb9b2b8523a312bb7969fb50d69aa6d7e5e4ccd2ed80e736836b3e9"
+  },
+  "statistics": {
+    "messages": 43,
+    "user_turns": 0,
+    "tool_calls": 21,
+    "roles": {
+      "tool_call": 21,
+      "tool_result": 21,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T05:40:37.203608+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_plan017-literature-linkage_20260514T053739",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:WebSearch",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T05:40:37.204095+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_plan017-literature-linkage_20260514T053739",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T05:40:37.204307+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_plan017-literature-linkage_20260514T053739",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "reward shaping harmful reinforcement learning language model GRPO PPO 2023 2024 2025"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T05:40:37.204443+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_plan017-literature-linkage_20260514T053739",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "process reward model worse than outcome reward LLM reasoning 2024 2025"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T05:40:37.204567+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_plan017-literature-linkage_20260514T053739",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Goodhart's law reward hacking overoptimization large language model reinforcement learning 2023 2024 2025"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T05:40:37.204689+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_plan017-literature-linkage_20260514T053739",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "diagnostic metric vs training signal misalignment NLP machine learning 2024 2025"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T05:40:37.204913+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"process reward model worse than outcome reward LLM reasoning 2024 2025\"\n\nLinks: [{\"title\":\"Linking Process to Outcome: Conditional Reward Modeling for LLM Reasoning\",\"url\":\"https://arxiv.org/html/2509.26578\"},{\"title\":\"Reward Modeling for Reinforcement Learning-Based LLM Reasoning: Design, Challenges, and Evaluation\",\"url\":\"https://arxiv.org/html/2602.09305v1\"},{\"title\":\"Linking Process to Outcome: Conditional Reward Modeling for LLM Reasoning | OpenReview\",\"url\":\"https://openreview.net/forum?id=4DJoBOQNd0\"},{\"title\":\"R-PRM: Reasoning-Driven Process Reward Modeling\",\"url\":\"https://aclanthology.org/2025.emnlp-main.679.pdf\"},{\"title\":\"Beyond Correctness: Harmonizing Process and Outcome Rewards through RL Training\",\"url\":\"https://arxiv.org/html/2509.03403v1\"},{\"title\":\"Rewarding Progress: Scaling Automated Process Verifiers for LLM Reasoning | OpenReview\",\"url\":\"https://openreview.net/forum?id=A6Y7AqlzLW\"},{\"title\":\"[2510.08049] A Survey of Process Reward Models: From Outcome Signals to Process Supervisions for Large Language Models\",\"url\":\"https://arxiv.org/abs/2510.08049\"},{\"title\":\"SCALING AUTOMATED PROCESS VERIFIERS FOR LLM ...\",\"url\":\"https://proceedings.iclr.cc/paper_files/paper/2025/file/98711dea460bdefe0e651ca23ec98ba2-Paper-Conference.pdf\"},{\"title\":\"Reward Models - by Cameron R. Wolfe, Ph.D.\",\"url\":\"https://cameronrwolfe.substack.com/p/reward-models\"},{\"title\":\"A Survey of Process Reward Models: From Outcome Signals to Process Supervisions for Large Language Models\",\"url\":\"https://arxiv.org/html/2510.08049v3\"}]\n\nBased on the search results, here's what recent research reveals about process reward models (PRMs) versus outcome reward models (ORMs) for LLM reasoning:\n\n## Key Findings\n\n**Limitations of Process Reward Models:**\n\nExisting PRMs either treat each reasoning step in isolation, failing to capture inter-step dependencies, or struggle to align process rewards with the final outcome. The reward signal fails to respect tempora\n…[truncated 1231 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_plan017-literature-linkage_20260514T053739",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T05:40:37.205110+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"diagnostic metric vs training signal misalignment NLP machine learning 2024 2025\"\n\nLinks: [{\"title\":\"NLP Model Evaluation - Metrics, Benchmarks, and Beyond | Deconvolute Labs\",\"url\":\"https://deconvoluteai.com/blog/evaluating-nlp-models\"},{\"title\":\"The Most Common Evaluation Metrics In NLP | Towards Data Science\",\"url\":\"https://towardsdatascience.com/the-most-common-evaluation-metrics-in-nlp-ced6a763ac8b/\"},{\"title\":\"Machine Learning Sep 2024\",\"url\":\"https://arxiv.org/list/cs.LG/2024-09?skip=115&show=2000\"},{\"title\":\"Machine Learning Evaluation Metrics: What Really Matters? | Label Studio\",\"url\":\"https://labelstud.io/learningcenter/machine-learning-evaluation-metrics-what-really-matters/\"},{\"title\":\"The best NLP papers of 2024 - The best NLP papers\",\"url\":\"https://thebestnlppapers.com/nlp/papers/2024/\"},{\"title\":\"Large Language Model Evaluation in 2025: Smarter Metrics That ...\",\"url\":\"https://www.techrxiv.org/users/927947/articles/1304989/master/file/data/Large%20Language%20Model%20Evaluation%20in%202025-Smarter%20Metrics%20That%20Separate%20Hype%20from%20Trust/Large%20Language%20Model%20Evaluation%20in%202025-Smarter%20Metrics%20That%20Separate%20Hype%20from%20Trust.pdf\"},{\"title\":\"Article Not peer-reviewed version Evaluation Metrics in Learning Systems:\",\"url\":\"https://www.preprints.org/manuscript/202508.1594/v1/download\"},{\"title\":\"NLP Model Metrics. Evaluating the performance of Natural… | by Sujatha Mudadla | Medium\",\"url\":\"https://medium.com/@sujathamudadla1213/nlp-model-metrics-b3fa32373269\"},{\"title\":\"Evaluation metrics and statistical tests for machine learning | Scientific Reports\",\"url\":\"https://www.nature.com/articles/s41598-024-56706-x\"},{\"title\":\"The best NLP papers of 2025 - The best NLP papers\",\"url\":\"https://thebestnlppapers.com/\"}]\n\nBased on the search results, I found some relevant information about evaluation metrics and training approaches in NLP and machine learning for 2024-2025, though the exact topic of \"diagno\n…[truncated 1749 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_plan017-literature-linkage_20260514T053739",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T05:40:37.205371+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Goodhart's law reward hacking overoptimization large language model reinforcement learning 2023 2024 2025\"\n\nLinks: [{\"title\":\"Reward Hacking in Reinforcement Learning | Lil'Log\",\"url\":\"https://lilianweng.github.io/posts/2024-11-28-reward-hacking/\"},{\"title\":\"Scaling Laws for Reward Model Overoptimization\",\"url\":\"https://proceedings.mlr.press/v202/gao23h/gao23h.pdf\"},{\"title\":\"Inference-Time Reward Hacking in Large Language Models\",\"url\":\"https://openreview.net/pdf?id=vRfDOhiJAR\"},{\"title\":\"Goodhart’s Law in Reinforcement Learning\",\"url\":\"https://arxiv.org/html/2310.09144v1\"},{\"title\":\"NeurIPS Poster Scaling Laws for Reward Model Overoptimization in Direct Alignment Algorithms\",\"url\":\"https://neurips.cc/virtual/2024/poster/93540\"},{\"title\":\"GOODHART'S LAW IN REINFORCEMENT LEARNING\",\"url\":\"https://proceedings.iclr.cc/paper_files/paper/2024/file/6ad68a54eaa8f9bf6ac698b02ec05048-Paper-Conference.pdf\"},{\"title\":\"Reward Shaping to Mitigate Reward Hacking in RLHF\",\"url\":\"https://arxiv.org/html/2502.18770v3\"},{\"title\":\"NeurIPS Poster Inference-Time Reward Hacking in Large Language Models\",\"url\":\"https://neurips.cc/virtual/2025/poster/116653\"},{\"title\":\"[2502.02671] On Teacher Hacking in Language Model Distillation\",\"url\":\"https://arxiv.org/abs/2502.02671\"},{\"title\":\"Over-Optimization | RLHF Book by Nathan Lambert\",\"url\":\"https://rlhfbook.com/c/14-over-optimization\"}]\n\nI've performed the web search for your query. Here's a summary of the findings:\n\n## Key Results on Goodhart's Law, Reward Hacking, and LLM Reinforcement Learning (2023-2025)\n\n**Overview of Reward Hacking:**\nReward hacking occurs when a reinforcement learning agent exploits flaws or ambiguities in the reward function to achieve high rewards without genuinely learning or completing the intended task, and it exists because RL environments are often imperfect and it is fundamentally challenging to accurately specify a reward function.\n\n**Goodhart's Law Definition:**\nGoodhart's Law st\n…[truncated 1222 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_plan017-literature-linkage_20260514T053739",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T05:40:37.205648+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"reward shaping harmful reinforcement learning language model GRPO PPO 2023 2024 2025\"\n\nLinks: [{\"title\":\"Reinforcement Learning for Large Language Models via ...\",\"url\":\"https://aclanthology.org/2025.emnlp-main.1085.pdf\"},{\"title\":\"GTPO and GRPO-S: Token and Sequence-Level Reward Shaping with Policy Entropy\",\"url\":\"https://arxiv.org/html/2508.04349\"},{\"title\":\"Reinforcement Learning from Human Feedback (RLHF) Explained | IntuitionLabs\",\"url\":\"https://intuitionlabs.ai/articles/reinforcement-learning-human-feedback\"},{\"title\":\"Group Relative Policy Optimization (GRPO)\",\"url\":\"https://cameronrwolfe.substack.com/p/grpo\"},{\"title\":\"GRPO is Secretly a Process Reward Model\",\"url\":\"https://arxiv.org/html/2509.21154v2\"},{\"title\":\"GRPO IS SECRETLY A PROCESS REWARD MODEL\",\"url\":\"https://openreview.net/pdf/1f109913a199dad205fa51f554aaa5e2a5a782d5.pdf\"},{\"title\":\"Reinforcement Learning with Verifiable Rewards: GRPO’s Effective Loss, Dynamics, and Success Amplification\",\"url\":\"https://arxiv.org/html/2503.06639v1\"},{\"title\":\"GTPO and GRPO-S: Token and Sequence-Level Reward Shaping with...\",\"url\":\"https://arxiv.org/abs/2508.04349\"},{\"title\":\"DAPO: An Open-Source LLM Reinforcement Learning System at Scale 1ByteDance Seed\",\"url\":\"https://arxiv.org/pdf/2503.14476\"},{\"title\":\"GRPO IS SECRETLY A PROCESS REWARD MODEL Michael Sullivan\",\"url\":\"https://arxiv.org/pdf/2509.21154\"}]\n\nI've found comprehensive research on this topic. Here's a summary of key findings related to reward shaping, harmful effects in RL for language models, and algorithms like GRPO and PPO from 2023-2025:\n\n## Evolution of RL Algorithms\n\nMost early work on RL for LLMs used Proximal Policy Optimization (PPO) as the default RL optimizer, but recent reasoning research relies upon Group Relative Policy Optimization (GRPO). By 2025, newer algorithms have emerged as alternatives to PPO's complexity. Group Relative Policy Optimization (GRPO), proposed by DeepSeek, avoids the critic model require\n…[truncated 1877 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_plan017-literature-linkage_20260514T053739",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T05:40:37.205899+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_plan017-literature-linkage_20260514T053739",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "arxiv \"reward hacking\" \"reward shaping\" harmful degraded performance code generation formal reasoning RLHF 2024 2025"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T05:40:37.206039+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_plan017-literature-linkage_20260514T053739",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Gao et al \"scaling laws reward model overoptimization\" proxy reward true performance divergence 2023"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-14T05:40:37.206165+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_plan017-literature-linkage_20260514T053739",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "\"process reward\" \"outcome reward\" comparison worse failure mode math reasoning 2024 2025 arxiv"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T05:40:37.206288+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_plan017-literature-linkage_20260514T053739",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Pan Bhatia Steinhardt \"reward hacking\" reinforcement learning survey taxonomy 2022 2023"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T05:40:37.206433+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Gao et al \"scaling laws reward model overoptimization\" proxy reward true performance divergence 2023\"\n\nLinks: [{\"title\":\"[2210.10760] Scaling Laws for Reward Model Overoptimization\",\"url\":\"https://arxiv.org/abs/2210.10760\"},{\"title\":\"Scaling Laws for Reward Model Overoptimization\",\"url\":\"https://proceedings.mlr.press/v202/gao23h/gao23h.pdf\"},{\"title\":\"Scaling Laws for Reward Model Overoptimization in Direct Alignment Algorithms\",\"url\":\"https://proceedings.neurips.cc/paper_files/paper/2024/file/e45caa3d5273d105b8d045e748636957-Paper-Conference.pdf\"},{\"title\":\"Scaling Laws for Reward Model Overoptimization Leo Gao OpenAI John Schulman\",\"url\":\"https://arxiv.org/pdf/2210.10760\"},{\"title\":\"[PDF] Scaling Laws for Reward Model Overoptimization | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Scaling-Laws-for-Reward-Model-Overoptimization-Gao-Schulman/fb3dc5e20e0a71134ca916f0d6d8d41f01225b4b\"},{\"title\":\"Scaling laws for reward model overoptimization | Proceedings of the 40th International Conference on Machine Learning\",\"url\":\"https://dl.acm.org/doi/10.5555/3618408.3618845\"},{\"title\":\"Scaling Laws for Reward Model Overoptimization\",\"url\":\"https://www.researchgate.net/publication/364436070_Scaling_Laws_for_Reward_Model_Overoptimization\"},{\"title\":\"[2310.02743] Reward Model Ensembles Help Mitigate Overoptimization\",\"url\":\"https://arxiv.org/abs/2310.02743\"},{\"title\":\"Scaling Laws for Reward Model Overoptimization in Direct Alignment Algorithms\",\"url\":\"https://arxiv.org/html/2406.02900v2\"},{\"title\":\"CONFRONTING REWARD MODEL OVEROPTIMIZATION\",\"url\":\"https://openreview.net/pdf?id=gkfUvn0fLU\"}]\n\nI found the paper you're looking for. \"Scaling Laws for Reward Model Overoptimization\" is by Leo Gao and 2 other authors (John Schulman and Jacob Hilton).\n\nThe key findings of this research are:\n\n**Main Problem:** The reward model is an imperfect proxy, so optimizing its value too much can hinder ground truth performance, in accordance with Go\n…[truncated 980 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_plan017-literature-linkage_20260514T053739",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-14T05:40:37.206618+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Pan Bhatia Steinhardt \"reward hacking\" reinforcement learning survey taxonomy 2022 2023\"\n\nLinks: [{\"title\":\"Detecting and Mitigating Reward Hacking in Reinforcement Learning Systems: A Comprehensive Empirical Study\",\"url\":\"https://arxiv.org/html/2507.05619v1\"},{\"title\":\"Reward Hacking in Reinforcement Learning | Lil'Log\",\"url\":\"https://lilianweng.github.io/posts/2024-11-28-reward-hacking/\"},{\"title\":\"Defining and Characterizing Reward Hacking Joar Skalse∗ University of Oxford\",\"url\":\"https://arxiv.org/pdf/2209.13085\"},{\"title\":\"Detecting and Mitigating Reward Hacking in Reinforcement\",\"url\":\"https://arxiv.org/pdf/2507.05619\"},{\"title\":\"A Comprehensive Survey of Reward Models: Taxonomy, Applications, Challenges, and Future\",\"url\":\"https://arxiv.org/html/2504.12328v1\"},{\"title\":\"Reward Hacking in RLVR\",\"url\":\"https://www.emergentmind.com/topics/reward-hacking-in-rlvr\"},{\"title\":\"Benchmarking Reward Hack Detection in Code Environments via Contrastive Analysis\",\"url\":\"https://arxiv.org/html/2601.20103\"},{\"title\":\"[2201.03544] The Effects of Reward Misspecification: Mapping and Mitigating Misaligned Models\",\"url\":\"https://arxiv.org/abs/2201.03544\"},{\"title\":\"[PDF] The Effects of Reward Misspecification: Mapping and Mitigating Misaligned Models | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/The-Effects-of-Reward-Misspecification:-Mapping-and-Pan-Bhatia/10b9ca173c665e3f2c322c2d5ce9b9d433fe4629\"},{\"title\":\"Scaling Laws for Reward Model Overoptimization\",\"url\":\"https://proceedings.mlr.press/v202/gao23h/gao23h.pdf\"}]\n\nBased on the web search results, I found the paper you were looking for:\n\nPan, A., Bhatia, K., and Steinhardt, J. (2022) published \"The Effects of Reward Misspecification: Mapping and Mitigating Misaligned Models\" on arXiv preprint arXiv:2201.03544.\n\n## Key Details About the Paper:\n\nThe paper addresses reward hacking -- where RL agents exploit gaps in misspecified reward functions -- which has been widely observed\n…[truncated 1044 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_plan017-literature-linkage_20260514T053739",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-14T05:40:37.206840+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"arxiv \"reward hacking\" \"reward shaping\" harmful degraded performance code generation formal reasoning RLHF 2024 2025\"\n\nLinks: [{\"title\":\"Reward Hacking in the Era of Large Models: Mechanisms, Emergent Misalignment, Challenges\",\"url\":\"https://arxiv.org/html/2604.13602v1\"},{\"title\":\"Reward Shaping to Mitigate Reward Hacking in RLHF\",\"url\":\"https://arxiv.org/html/2502.18770v3\"},{\"title\":\"[2502.18770] Reward Shaping to Mitigate Reward Hacking in RLHF\",\"url\":\"https://arxiv.org/abs/2502.18770\"},{\"title\":\"[2502.18770] Reward Shaping to Mitigate Reward Hacking in RLHF\",\"url\":\"https://ar5iv.labs.arxiv.org/html/2502.18770\"},{\"title\":\"Reward Shaping to Mitigate Reward Hacking in RLHF - ADS\",\"url\":\"https://ui.adsabs.harvard.edu/abs/2025arXiv250218770F/abstract\"},{\"title\":\"The Energy Loss Phenomenon in RLHF: A New Perspective on Mitigating Reward Hacking\",\"url\":\"https://arxiv.org/html/2501.19358\"},{\"title\":\"[2406.02900] Scaling Laws for Reward Model Overoptimization in Direct Alignment Algorithms\",\"url\":\"https://arxiv.org/abs/2406.02900\"},{\"title\":\"Reward Shaping to Mitigate Reward Hacking in RLHF\",\"url\":\"https://openreview.net/pdf?id=62A4d5Mokc\"},{\"title\":\"Mitigating Reward Hacking via Information-Theoretic Reward Modeling\",\"url\":\"https://arxiv.org/html/2402.09345v3\"},{\"title\":\"[2602.10623v1] Mitigating Reward Hacking in RLHF via Bayesian Non-negative Reward Modeling\",\"url\":\"https://arxiv.org/abs/2602.10623v1\"}]\n\nI've found several relevant arXiv papers addressing reward hacking and reward shaping in RLHF from 2024-2025. Here are the key findings:\n\n## Recent arXiv Papers on Reward Hacking and Reward Shaping in RLHF\n\n### 1. **\"Reward Hacking in the Era of Large Models: Mechanisms, Emergent Misalignment, Challenges\"** (2024)\nDPO and related methods exhibit similar degradation patterns at higher KL budgets despite not training separate proxy reward models, with overoptimization occurring even before a single epoch of data is completed. The paper iden\n…[truncated 2114 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_plan017-literature-linkage_20260514T053739",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-14T05:40:37.207017+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"\"process reward\" \"outcome reward\" comparison worse failure mode math reasoning 2024 2025 arxiv\"\n\nLinks: [{\"title\":\"[2501.07301] The Lessons of Developing Process Reward Models in Mathematical Reasoning\",\"url\":\"https://arxiv.org/abs/2501.07301\"},{\"title\":\"The Lessons of Developing Process Reward Models in ...\",\"url\":\"https://arxiv.org/pdf/2501.07301\"},{\"title\":\"Process Reward Models That Think\",\"url\":\"https://arxiv.org/pdf/2504.16828\"},{\"title\":\"A Survey of Process Reward Models: From Outcome Signals to Process\",\"url\":\"https://arxiv.org/pdf/2510.08049\"},{\"title\":\"2026-02-05 Outcome Accuracy is Not Enough: Aligning the Reasoning Process of\",\"url\":\"https://www.arxiv.org/pdf/2602.04649\"},{\"title\":\"LLM Reasoning with Process Rewards for Outcome-Guided Steps\",\"url\":\"https://arxiv.org/html/2604.02341v1\"},{\"title\":\"Paper page - The Lessons of Developing Process Reward Models in Mathematical Reasoning\",\"url\":\"https://huggingface.co/papers/2501.07301\"},{\"title\":\"R-PRM: Reasoning-Driven Process Reward Modeling\",\"url\":\"https://arxiv.org/html/2503.21295v1\"},{\"title\":\"Beyond Correctness: Harmonizing Process and Outcome Rewards through RL Training\",\"url\":\"https://arxiv.org/html/2509.03403v1\"},{\"title\":\"From Mathematical Reasoning to Code: Generalization of Process Reward Models in Test-Time Scaling\",\"url\":\"https://arxiv.org/html/2506.00027v1\"}]\n\nI found several highly relevant papers on this topic. Here's what the search results reveal about process reward models (PRMs) versus outcome reward models (ORMs) in mathematical reasoning:\n\n## Key Finding: PRMs Shifting Toward Outcome-Based Assessment\n\nExisting PRMs have a significant proportion of minimum scores concentrated on the final answer steps, revealing the shift from process to outcome-based assessment in BoN Optimized PRMs. This is a notable failure mode identified in recent research.\n\n## Process Supervision Superiority\n\nProcess supervision outperforms outcome supervision, solving 78% of problems \n…[truncated 1287 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_plan017-literature-linkage_20260514T053739",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-14T05:40:37.207197+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_plan017-literature-linkage_20260514T053739",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "\"lessons of developing process reward models\" arxiv 2501.07301 PRM failure inferior performance"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-14T05:40:37.207327+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_plan017-literature-linkage_20260514T053739",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Skalse \"defining characterizing reward hacking\" Goodhart taxonomy regressional causal extremal 2022"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-14T05:40:37.207447+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_plan017-literature-linkage_20260514T053739",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "\"additive reward\" \"auxiliary reward\" harmful degraded \"reinforcement learning\" code math reasoning 2024 2025"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-14T05:40:37.207589+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"\"lessons of developing process reward models\" arxiv 2501.07301 PRM failure inferior performance\"\n\nLinks: [{\"title\":\"[2501.07301] The Lessons of Developing Process Reward Models in Mathematical Reasoning\",\"url\":\"https://arxiv.org/abs/2501.07301\"},{\"title\":\"[2501.07301v1] The Lessons of Developing Process Reward Models in Mathematical Reasoning\",\"url\":\"http://arxiv.org/abs/2501.07301v1\"},{\"title\":\"The Lessons of Developing Process Reward Models in ...\",\"url\":\"https://arxiv.org/pdf/2501.07301\"},{\"title\":\"The Lessons of Developing Process Reward Models in Mathematical Reasoning\",\"url\":\"https://www.researchgate.net/publication/387975662_The_Lessons_of_Developing_Process_Reward_Models_in_Mathematical_Reasoning\"},{\"title\":\"The Lessons of Developing Process Reward Models in Mathematical Reasoning - ACL Anthology\",\"url\":\"https://aclanthology.org/2025.findings-acl.547/\"},{\"title\":\"The Lessons of Developing Process Reward Models in Mathematical Reasoning | alphaXiv\",\"url\":\"https://www.alphaxiv.org/overview/2501.07301v1\"},{\"title\":\"The Lessons of Developing Process Reward Models in Mathematical Reasoning - ADS\",\"url\":\"https://ui.adsabs.harvard.edu/abs/arXiv:2501.07301\"},{\"title\":\"The Lessons of Developing Process Reward Models in Mathematical Reasoning | OpenReview\",\"url\":\"https://openreview.net/forum?id=J4UOIrxcWy\"},{\"title\":\"Process Reward Models in Mathematical Reasoning\",\"url\":\"https://www.emergentmind.com/papers/2501.07301\"},{\"title\":\"Paper page - The Lessons of Developing Process Reward Models in Mathematical Reasoning\",\"url\":\"https://huggingface.co/papers/2501.07301\"}]\n\nI found the paper! Here's information about arxiv 2501.07301:\n\n## Paper Summary\n\n**Title:** \"The Lessons of Developing Process Reward Models in Mathematical Reasoning\"\n\n**Authors:** Zhenru Zhang, Chujie Zheng, Yangzhen Wu, Beichen Zhang, Runji Lin, Bowen Yu, Dayiheng Liu, Jingren Zhou, Junyang Lin (Qwen Team, Alibaba Group)\n\n**Published:** Findings of the Association for Com\n…[truncated 1314 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_plan017-literature-linkage_20260514T053739",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-14T05:40:37.207786+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Skalse \"defining characterizing reward hacking\" Goodhart taxonomy regressional causal extremal 2022\"\n\nLinks: [{\"title\":\"Defining and Characterizing Reward Hacking Joar Skalse∗ University of Oxford\",\"url\":\"https://arxiv.org/pdf/2209.13085\"},{\"title\":\"[PDF] Defining and Characterizing Reward Hacking | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Defining-and-Characterizing-Reward-Hacking-Skalse-Howe/004357dd9bbf3012c8fe0ccada4da401bf85dfff\"},{\"title\":\"[2209.13085] Defining and Characterizing Reward Hacking\",\"url\":\"https://arxiv.org/abs/2209.13085\"},{\"title\":\"Scaling Laws for Reward Model Overoptimization\",\"url\":\"https://proceedings.mlr.press/v202/gao23h/gao23h.pdf\"},{\"title\":\"Defining and Characterizing Reward Hacking | Request PDF\",\"url\":\"https://www.researchgate.net/publication/401445436_Defining_and_Characterizing_Reward_Hacking\"},{\"title\":\"Defining and characterizing reward hacking | Proceedings of the 36th International Conference on Neural Information Processing Systems\",\"url\":\"https://dl.acm.org/doi/10.5555/3600270.3600957\"},{\"title\":\"Reward Hacking in Reinforcement Learning | Lil'Log\",\"url\":\"https://lilianweng.github.io/posts/2024-11-28-reward-hacking/\"},{\"title\":\"Detecting and Mitigating Reward Hacking in Reinforcement Learning Systems: A Comprehensive Empirical Study\",\"url\":\"https://arxiv.org/html/2507.05619v1\"},{\"title\":\"Causal Reward Adjustment: Mitigating Reward Hacking in External Reasoning via Backdoor Correction\",\"url\":\"https://arxiv.org/html/2508.04216v1\"},{\"title\":\"(PDF) Defining and Characterizing Reward Hacking\",\"url\":\"https://www.researchgate.net/publication/363888695_Defining_and_Characterizing_Reward_Hacking\"}]\n\nBased on the search results, I found the paper you were looking for. Here's what I found:\n\n## \"Defining and Characterizing Reward Hacking\" by Skalse et al. (2022)\n\nThe paper provides the first formal definition of reward hacking, a phenomenon where optimizing an imperfect proxy reward func\n…[truncated 1270 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_plan017-literature-linkage_20260514T053739",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-14T05:40:37.207971+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"\"additive reward\" \"auxiliary reward\" harmful degraded \"reinforcement learning\" code math reasoning 2024 2025\"\n\nLinks: [{\"title\":\"Reward Modeling for Reinforcement Learning-Based LLM Reasoning: Design, Challenges, and Evaluation\",\"url\":\"https://arxiv.org/html/2602.09305v1\"},{\"title\":\"Reward shaping — Mastering Reinforcement Learning\",\"url\":\"https://gibberblot.github.io/rl-notes/single-agent/reward-shaping.html\"},{\"title\":\"Guide to Reward Functions in Reinforcement Fine-Tuning | Rubrik\",\"url\":\"https://www.rubrik.com/blog/ai/25/reward-functions-reinforcement-fine-tuning\"},{\"title\":\"Comprehensive Overview of Reward Engineering and Shaping in Advancing Reinforcement Learning Applications\",\"url\":\"https://arxiv.org/html/2408.10215v1\"},{\"title\":\"Overcoming reward signal challenges: Verifiable rewards-based reinforcement learning with GRPO on SageMaker AI | Artificial Intelligence\",\"url\":\"https://aws.amazon.com/blogs/machine-learning/overcoming-reward-signal-challenges-verifiable-rewards-based-reinforcement-learning-with-grpo-on-sagemaker-ai/\"},{\"title\":\"Average reward adjusted discounted reinforcement learning | Neural Computing and Applications | Springer Nature Link\",\"url\":\"https://link.springer.com/article/10.1007/s00521-024-10620-5\"},{\"title\":\"Reinforcement Learning for Reasoning in Large\",\"url\":\"https://arxiv.org/pdf/2504.20571\"},{\"title\":\"Reinforcement Learning with Verifiable Rewards Makes Models Faster, Not Smarter | Promptfoo\",\"url\":\"https://www.promptfoo.dev/blog/rlvr-explained/\"},{\"title\":\"Reward Function in Reinforcement Learning | by Amit Yadav | Biased-Algorithms | Medium\",\"url\":\"https://medium.com/biased-algorithms/reward-function-in-reinforcement-learning-c9ee04cabe7d\"},{\"title\":\"Explicable Reward Design for Reinforcement Learning Agents | OpenReview\",\"url\":\"https://openreview.net/forum?id=yw5KKWraUk7\"}]\n\nI found several relevant research articles on reward design and reinforcement learning for reasoning tasks. Here's what the \n…[truncated 1476 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_plan017-literature-linkage_20260514T053739",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-14T05:40:37.208149+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_plan017-literature-linkage_20260514T053739",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "\"Goodhart's law in reinforcement learning\" ICLR 2024 Karwowski measure target optimization proxy"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-14T05:40:37.208274+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_plan017-literature-linkage_20260514T053739",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "\"reward shaping to mitigate reward hacking\" Fu 2025 arxiv 2502.18770 threshold PPO bounded reward"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-14T05:40:37.208392+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_plan017-literature-linkage_20260514T053739",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "structural reward verification formal proof code RL GRPO training signal failure noise arxiv 2024 2025 2026"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-14T05:40:37.208543+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"\"Goodhart's law in reinforcement learning\" ICLR 2024 Karwowski measure target optimization proxy\"\n\nLinks: [{\"title\":\"GOODHART'S LAW IN REINFORCEMENT LEARNING\",\"url\":\"https://proceedings.iclr.cc/paper_files/paper/2024/file/6ad68a54eaa8f9bf6ac698b02ec05048-Paper-Conference.pdf\"},{\"title\":\"Goodhart's Law in Reinforcement Learning | OpenReview\",\"url\":\"https://openreview.net/forum?id=5o9G4XF1LI\"},{\"title\":\"[2310.09144] Goodhart's Law in Reinforcement Learning\",\"url\":\"https://arxiv.org/abs/2310.09144\"},{\"title\":\"ICLR Poster Goodhart's Law in Reinforcement Learning\",\"url\":\"https://iclr.cc/virtual/2024/poster/19413\"},{\"title\":\"Goodhart's Law in Reinforcement Learning\",\"url\":\"https://www.lesswrong.com/posts/Eu6CvP7c7ivcGM3PJ/goodhart-s-law-in-reinforcement-learning\"},{\"title\":\"Goodhart’s Law in Reinforcement Learning\",\"url\":\"https://arxiv.org/html/2310.09144v1\"},{\"title\":\"Published as a conference paper at ICLR 2025\",\"url\":\"https://arxiv.org/pdf/2410.05584\"},{\"title\":\"Published as a conference paper at ICLR 2024\",\"url\":\"https://openreview.net/pdf?id=5o9G4XF1LI\"},{\"title\":\"Goodhart's Law in Reinforcement Learning\",\"url\":\"https://www.semanticscholar.org/paper/Goodhart's-Law-in-Reinforcement-Learning-Karwowski-Hayman/a4bd4da02241eacee990c89ddd748ce37a248fc0\"},{\"title\":\"‪Goodhart's Law in Reinforcement Learning‬\",\"url\":\"https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GuzLUmQAAAAJ&sortby=pubdate&citation_for_view=GuzLUmQAAAAJ:roLk4NBRz8UC\"}]\n\nI found the paper! Here's what I discovered about \"Goodhart's Law in Reinforcement Learning\" presented at ICLR 2024:\n\n## Paper Overview\n\nThe paper was authored by Jacek Karwowski, Oliver Hayman, Xingjian Bai, Klaus Kiendlhofer, Charlie Griffin, and Joar Skalse from the University of Oxford and other institutions, and was published at ICLR 2024.\n\n## Main Contribution\n\nThe paper studies Goodhart's law, which predicts that increasing optimisation of an imperfect proxy beyond some critical poi\n…[truncated 968 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_plan017-literature-linkage_20260514T053739",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-14T05:40:37.208730+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"\"reward shaping to mitigate reward hacking\" Fu 2025 arxiv 2502.18770 threshold PPO bounded reward\"\n\nLinks: [{\"title\":\"[2502.18770] Reward Shaping to Mitigate Reward Hacking in RLHF\",\"url\":\"https://arxiv.org/abs/2502.18770\"},{\"title\":\"Reward Shaping to Mitigate Reward Hacking in RLHF\",\"url\":\"https://arxiv.org/pdf/2502.18770\"},{\"title\":\"Reward Shaping to Mitigate Reward Hacking in RLHF - ADS\",\"url\":\"https://ui.adsabs.harvard.edu/abs/2025arXiv250218770F/abstract\"},{\"title\":\"[2502.18770v2] Reward Shaping to Mitigate Reward Hacking in RLHF\",\"url\":\"https://arxiv.org/abs/2502.18770v2\"},{\"title\":\"[2502.18770v1] Reward Shaping to Mitigate Reward Hacking in RLHF\",\"url\":\"https://arxiv.org/abs/2502.18770v1\"},{\"title\":\"(PDF) Reward Shaping to Mitigate Reward Hacking in RLHF\",\"url\":\"https://www.researchgate.net/publication/389392526_Reward_Shaping_to_Mitigate_Reward_Hacking_in_RLHF\"},{\"title\":\"[2502.18770] Reward Shaping to Mitigate Reward Hacking in RLHF\",\"url\":\"https://ar5iv.labs.arxiv.org/html/2502.18770\"},{\"title\":\"Repairing Reward Functions with Feedback to Mitigate Reward Hacking\",\"url\":\"https://arxiv.org/html/2510.13036v2\"},{\"title\":\"Paper page - Reward Shaping to Mitigate Reward Hacking in RLHF\",\"url\":\"https://huggingface.co/papers/2502.18770\"},{\"title\":\"Probabilistic Uncertain Reward Model\",\"url\":\"https://arxiv.org/html/2503.22480v5\"}]\n\nI found the paper! Here's what I discovered about the research in arxiv 2502.18770:\n\n## Paper Overview\n\nThe paper focuses on Reinforcement Learning from Human Feedback (RLHF) and addresses reward hacking, where agents exploit flaws in the reward function rather than learning intended behavior, degrading alignment.\n\n## Key Findings\n\nThe analysis suggests two key design principles: (1) the RL reward should be bounded, and (2) the RL reward benefits from rapid initial growth followed by gradual convergence.\n\n### Reward Threshold Discovery\n\nDuring PPO training with a specific reward model, a distinct reward thre\n…[truncated 1009 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_plan017-literature-linkage_20260514T053739",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-14T05:40:37.208922+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"structural reward verification formal proof code RL GRPO training signal failure noise arxiv 2024 2025 2026\"\n\nLinks: [{\"title\":\"Reinforcement Learning with Verifiable Rewards: GRPO’s Effective Loss, Dynamics, and Success Amplification\",\"url\":\"https://arxiv.org/html/2503.06639v4\"},{\"title\":\"Reinforcement Learning with Verifiable yet Noisy Rewards ...\",\"url\":\"https://www.arxiv.org/pdf/2510.00915\"},{\"title\":\"arXiv:2506.02355v2 [cs.LG] 20 Jun 2025 Rewarding the Unlikely: Lifting GRPO\",\"url\":\"https://arxiv.org/pdf/2506.02355\"},{\"title\":\"Rate or Fate? RLVεR: Reinforcement Learning with Verifiable Noisy Rewards\",\"url\":\"https://arxiv.org/html/2601.04411\"},{\"title\":\"Reinforcement Learning with Verifiable Rewards Implicitly Incentivizes Correct Reasoning in Base LLMs\",\"url\":\"https://arxiv.org/html/2506.14245v1\"},{\"title\":\"Reinforcement Learning with Verifiable yet Noisy Rewards under Imperfect Verifiers\",\"url\":\"https://arxiv.org/html/2510.00915v1\"},{\"title\":\"[2510.00915] Reinforcement Learning with Verifiable yet Noisy Rewards under Imperfect Verifiers\",\"url\":\"https://arxiv.org/abs/2510.00915\"},{\"title\":\"[2506.10947] Spurious Rewards: Rethinking Training Signals in RLVR\",\"url\":\"https://arxiv.org/abs/2506.10947\"},{\"title\":\"GitHub - opendilab/awesome-RLVR: A curated list of reinforcement learning with verifiable rewards (continually updated) · GitHub\",\"url\":\"https://github.com/opendilab/awesome-RLVR\"},{\"title\":\"From Verifiable Dot to Reward Chain: Harnessing Verifiable Reference-based Rewards for Reinforcement Learning of Open-ended Generation\",\"url\":\"https://arxiv.org/html/2601.18533v1\"}]\n\nBased on the search results, I found several highly relevant arXiv papers from 2024-2026 addressing structural reward verification, formal proof, code RL, GRPO training, and signal failure/noise issues:\n\n## Key Papers Found:\n\n1. **\"Reinforcement Learning with Verifiable Rewards: GRPO's Effective Loss, Dynamics, and Success Amplification\"** (arXiv 2503.06639, Oc\n…[truncated 1874 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_plan017-literature-linkage_20260514T053739",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-14T05:40:37.209102+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_plan017-literature-linkage_20260514T053739",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "\"spurious rewards rethinking training signals RLVR\" arxiv 2506.10947 random reward GRPO Qwen performance 2025"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-14T05:40:37.209231+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_plan017-literature-linkage_20260514T053739",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "\"noisy reward\" \"verifiable reward\" imperfect verifier false negative GRPO training degradation arxiv 2510.00915 2025"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-14T05:40:37.209418+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"\"spurious rewards rethinking training signals RLVR\" arxiv 2506.10947 random reward GRPO Qwen performance 2025\"\n\nLinks: [{\"title\":\"[2506.10947] Spurious Rewards: Rethinking Training Signals in RLVR\",\"url\":\"https://arxiv.org/abs/2506.10947\"},{\"title\":\"Spurious Rewards: Rethinking Training Signals in RLVR | OpenReview\",\"url\":\"https://openreview.net/forum?id=4NeiwxQ2Bp\"},{\"title\":\"(PDF) Spurious Rewards: Rethinking Training Signals in RLVR\",\"url\":\"https://www.researchgate.net/publication/392629816_Spurious_Rewards_Rethinking_Training_Signals_in_RLVR\"},{\"title\":\"GitHub - ruixin31/Spurious_Rewards\",\"url\":\"https://github.com/ruixin31/Spurious_Rewards\"},{\"title\":\"Spurious Rewards: Rethinking Training Signals in RLVR | Cool Papers - Immersive Paper Discovery\",\"url\":\"https://papers.cool/arxiv/2506.10947\"},{\"title\":\"Reasoning or Memorization? Unreliable Results of Reinforcement Learning Due to Data Contamination\",\"url\":\"https://arxiv.org/html/2507.10532v1\"},{\"title\":\"Spurious Rewards: Rethinking Training Signals in RLVR | alphaXiv\",\"url\":\"https://www.alphaxiv.org/abs/2506.10947\"},{\"title\":\"Spurious Rewards Paradox: Mechanistically Understanding How RLVR Activates Memorization Shortcuts in LLMs\",\"url\":\"https://arxiv.org/html/2601.11061v1\"},{\"title\":\"Spurious Rewards: Rethinking Training Signals in RLVR\",\"url\":\"https://rethink-rlvr.notion.site/Spurious-Rewards-Rethinking-Training-Signals-in-RLVR-1f4df34dac1880948858f95aeb88872f\"},{\"title\":\"Spurious Rewards: Rethinking Training Signals in RLVR\",\"url\":\"https://github.com/ruixin31/Rethink_RLVR\"}]\n\nBased on the search results, here's what I found about this research:\n\n## Overview\n\nThe paper shows that reinforcement learning with verifiable rewards (RLVR) can elicit strong mathematical reasoning in certain language models even with spurious rewards that have little, no, or even negative correlation with the correct answer.\n\n## Key Findings\n\nRLVR training with GRPO improves MATH-500 performance for Qwen2\n…[truncated 1076 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_plan017-literature-linkage_20260514T053739",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-14T05:40:37.209602+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"\"noisy reward\" \"verifiable reward\" imperfect verifier false negative GRPO training degradation arxiv 2510.00915 2025\"\n\nLinks: [{\"title\":\"Reinforcement Learning with Verifiable yet Noisy Rewards ...\",\"url\":\"https://www.arxiv.org/pdf/2510.00915\"},{\"title\":\"Reinforcement Learning with Verifiable yet Noisy Rewards under Imperfect Verifiers\",\"url\":\"https://arxiv.org/html/2510.00915\"},{\"title\":\"[2510.00915] Reinforcement Learning with Verifiable yet Noisy Rewards under Imperfect Verifiers\",\"url\":\"https://arxiv.org/abs/2510.00915\"},{\"title\":\"[2510.18924v2] Noise-corrected GRPO: From Noisy Rewards to Unbiased Gradients\",\"url\":\"https://arxiv.org/abs/2510.18924v2\"},{\"title\":\"[2510.18924] Noise-corrected GRPO: From Noisy Rewards to Unbiased Gradients\",\"url\":\"https://arxiv.org/abs/2510.18924\"},{\"title\":\"1 Introduction\",\"url\":\"https://arxiv.org/html/2510.18924v2\"},{\"title\":\"AlphaGRPO: Unlocking Self-Reflective Multimodal Generation in Unified Multimodal Models via Decompositional Verifiable Reward\",\"url\":\"https://arxiv.org/html/2605.12495.pdf\"},{\"title\":\"Reinforcement Learning with Verifiable yet Noisy Rewards under Imperfect Verifiers | Request PDF\",\"url\":\"https://www.researchgate.net/publication/396094543_Reinforcement_Learning_with_Verifiable_yet_Noisy_Rewards_under_Imperfect_Verifiers\"},{\"title\":\"Noise-corrected GRPO: From Noisy Rewards to Unbiased Gradients Omar El Mansouri\",\"url\":\"https://www.arxiv.org/pdf/2510.18924\"},{\"title\":\"Rubric-Grounded Reinforcement Learning: Structured Judge Rewards for Generalizable Reasoning in Language Models\",\"url\":\"https://arxiv.org/html/2605.08061v1\"}]\n\nI found the paper you were looking for. Here are the key findings from arxiv 2510.00915:\n\n## Paper Overview\n\nThe paper addresses Reinforcement Learning with Verifiable Rewards (RLVR), which replaces costly human labeling with automated verifiers. However, imperfect verifiers inevitably introduce false negatives (rejecting correct answers) and false positives (a\n…[truncated 1521 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_plan017-literature-linkage_20260514T053739",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-14T05:40:37.209804+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Agent"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_plan017-literature-linkage_20260514T053739",
+            "tool": "Agent",
+            "tool_args": {
+              "subagent_type": "Explore",
+              "description": "Find literature_map.yaml",
+              "prompt": "Find any file named literature_map.yaml or similar in /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/ and show its structure (first ~100 lines). Quick search."
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-14T05:40:37.209960+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_plan017-literature-linkage_20260514T053739",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "*literature*.yaml",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation"
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-14T05:40:37.210243+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/literature_map.yaml\nliterature_map.yaml"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_plan017-literature-linkage_20260514T053739",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-14T05:40:37.210402+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_plan017-literature-linkage_20260514T053739",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation -name \"*literature*\" -type f 2>/dev/null"
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-14T05:40:37.210529+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/logs/workers/worker_research_plan017-literature-linkage_20260514T053739.log\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/logs/workers/worker_research_literature-expansion_20260514T014924_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/logs/workers/worker_research_plan005-negative-literature_20260514T020402_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/logs/workers/worker_research_literature-expansion_20260514T014924.log\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/logs/workers/worker_research_plan005-negative-literature_20260514T020402.log\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/logs/chats/worker_research_plan005-negative-literature_20260514T020402.lock\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/logs/chats/worker_research_plan005-negative-literature_20260514T020402.jsonl\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/literature_map.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/literature_map.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/plan005_negative_literature.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_plan017-literature-linkage_20260514T053739",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-14T05:40:37.210672+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_plan017-literature-linkage_20260514T053739",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/literature_map.yaml",
+              "limit": "100"
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-14T05:40:37.210877+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Literature Map for Solver Trace Ablation (STA)\n2\t# Categories:\n3\t#   1. neurosymbolic-rl: Neurosymbolic reasoning + RL/GRPO\n4\t#   2. reward-shaping: Reward shaping for code/formal verification\n5\t#   3. mutation-testing: Mutation testing in software engineering\n6\t#   4. intensional-analysis: Intensional program analysis\n7\t#   5. reward-hacking: Reward hacking / overoptimization\n8\t#   6. fol-formalization: FOL/Prolog formalization with LLMs\n9\t\n10\tpapers:\n11\t\n12\t  # ============================================================\n13\t  # Category 1: Neurosymbolic reasoning + RL/GRPO\n14\t  # ============================================================\n15\t\n16\t  - id: deepseek-r1\n17\t    title: \"DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning\"\n18\t    authors: \"DeepSeek-AI\"\n19\t    year: 2025\n20\t    venue: \"arXiv 2501.12948 / Nature 2025\"\n21\t    category: neurosymbolic-rl\n22\t    role: method-component\n23\t    relevance: >\n24\t      Demonstrates that pure RL (GRPO) can incentivize reasoning in LLMs without SFT.\n25\t      STA builds on the same GRPO framework but replaces binary outcome reward with\n26\t      intensional structural reward for neurosymbolic formalization.\n27\t    key_finding: >\n28\t      DeepSeek-R1-Zero trained via GRPO alone achieves 71% on AIME 2024,\n29\t      showing emergent chain-of-thought reasoning from RL alone.\n30\t\n31\t  - id: deepseekmath\n32\t    title: \"DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models\"\n33\t    authors: \"Zhihong Shao, Peiyi Wang, Qihao Zhu, Runxin Xu, et al.\"\n34\t    year: 2024\n35\t    venue: \"arXiv 2402.03300\"\n36\t    category: neurosymbolic-rl\n37\t    role: method-component\n38\t    relevance: >\n39\t      Introduces GRPO (Group Relative Policy Optimization), the RL algorithm\n40\t      used in STA training. GRPO eliminates the critic model by estimating\n41\t      baselines from group scores.\n42\t    key_finding: >\n43\t      GRPO matches PPO performance while significantly reducing trainin\n…[truncated 2527 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_plan017-literature-linkage_20260514T053739",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-14T05:40:37.211050+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Here's the structure of the literature_map.yaml file:\n\n**File location:** `/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/literature_map.yaml`\n\n**Structure (first ~100 lines):**\n\nThe file is organized as a YAML literature map with the following structure:\n\n1. **Header** (lines 1-8): Comments defining 6 paper categories:\n   - neurosymbolic-rl: Neurosymbolic reasoning + RL/GRPO\n   - reward-shaping: Reward shaping for code/formal verification\n   - mutation-testing: Mutation testing in software engineering\n   - intensional-analysis: Intensional program analysis\n   - reward-hacking: Reward hacking / overoptimization\n   - fol-formalization: FOL/Prolog formalization with LLMs\n\n2. **Papers list** (lines 10+): Each paper entry contains:\n   - `id`: Identifier (e.g., \"deepseek-r1\", \"deepseekmath\")\n   - `title`: Full paper title\n   - `authors`: Author names\n   - `year`: Publication year\n   - `venue`: Publication venue/arXiv identifier\n   - `category`: One of the 6 categories above\n   - `role`: Role type (method-component, direct-competitor, background)\n   - `relevance`: Multi-line description of relevance to the project\n   - `key_finding`: Key findings or results from the paper\n\nThe visible papers include DeepSeek-R1, DeepSeekMath, Logic-RL, Prolog training work, and SatLM, organized under the neurosymbolic-RL category. There's also a second category section starting at line 92 for \"Reward shaping for code/formal verification.\""
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_plan017-literature-linkage_20260514T053739",
+            "tool": "Agent",
+            "elapsed_ms": 1
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-14T05:40:37.211248+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have everything I need. Here are the results.\n\n---\n\n## 文献搜索结果\n\n### 高相关（直接支持你的发现）\n\n**1. Spurious Rewards: Rethinking Training Signals in RLVR**\n- 作者: Ruixin Yang et al.\n- 年份: 2025, arXiv:2506.10947\n- Venue: NeurIPS 2025 submission\n- **关联**: 最直接相关。发现 GRPO+随机 reward 在 Qwen2.5-Math 上提升 21.4%，几乎追平 ground-truth reward 的 29.1%。这与你的 additive random (PR=48%) > additive ISR (PR=18%) 完全一致——说明看似信息量丰富的结构指标可能比随机噪声更有害，因为它引入了系统性偏差而非单纯噪声。但该文也发现这种效应在 Llama3 上不成立，说明与预训练数据有关。\n- **加入 literature_map**: 是。role: `direct-evidence`, category: `reward-hacking`\n\n**2. Scaling Laws for Reward Model Overoptimization**\n- 作者: Leo Gao, John Schulman, Jacob Hilton (OpenAI)\n- 年份: 2023, ICML 2023 (arXiv:2210.10760)\n- Venue: ICML 2023\n- **关联**: 奠基性工作。用 gold/proxy reward 实验范式量化了 Goodhart 效应——proxy reward 持续上升但 gold reward 先升后降。你的 ISR 就是一个 proxy reward，其\"持续上升\"但 true performance (PR) 下降，完美符合此框架。\n- **加入 literature_map**: 是。role: `theoretical-foundation`, category: `reward-hacking`\n\n**3. Goodhart's Law in Reinforcement Learning**\n- 作者: Jacek Karwowski, Oliver Hayman, Xingjian Bai, Klaus Kiendlhofer, Charlie Griffin, Joar Skalse\n- 年份: 2024, ICLR 2024 (arXiv:2310.09144)\n- Venue: ICLR 2024\n- **关联**: 提供了 Goodhart's Law 在 MDP 中的几何解释——优化不完美 proxy 超过临界点后 true objective 下降。你的 ISR additive 实验可以用这个框架解释：ISR 作为 proxy 与 execution correctness 只有部分相关，超过临界优化点后策略转向高 ISR 但低 correctness 的方向。\n- **加入 literature_map**: 是。role: `theoretical-foundation`, category: `reward-hacking`\n\n**4. The Lessons of Developing Process Reward Models in Mathematical Reasoning**\n- 作者: Zhenru Zhang et al. (Qwen Team, Alibaba)\n- 年份: 2025, ACL 2025 Findings (arXiv:2501.07301)\n- Venue: ACL 2025 Findings\n- **关联**: 发现 MC estimation 合成的 PRM 数据质量差，导致 PRM 性能劣于 ORM。关键发现：policy model 生成\"答案正确但推理过程有缺陷\"的 response，导致 process reward 与 outcome 的 misalignment。这与你的 ISR 问题相似——结构正确但语义错误的 proof trace 获得高 ISR 但低 execution reward。\n- **加入 literature_map**: 是。role: `supporting-evidence`, category: `reward-shaping`\n\n### 中等相关（理论框架支持）\n\n**5. Reward Shaping to Mitigate Reward Hacking in RLHF**\n- 作者: Fu et al.\n- 年份: 2025, arXiv:2502.18770\n- Venue: arXiv preprint\n- **关联**: 发现 PPO 训练中存在 reward threshold——超过阈值后 reward hacking 启动，win rate 下降。提出 reward 应 bounded 且 rapid initial growth + gradual convergence。你的 additive ISR 可能违反了这两个原则——ISR 信号过强且无上界约束。\n- **加入 literature_map**: 可选。role: `background`, category: `reward-hacking`\n\n**6. RL with Verifiable yet Noisy Rewards under Imperfect Verifiers**\n- 作者: arXiv:2510.00915\n- 年份: 2025\n- **关联**: 形式化了 verifier 噪声（false positive/negative）对 GRPO 训练的影响。你的 ISR 可以视为一个 systematically biased verifier——不是随机噪声，而是系统性地对 \"structurally correct but semantically wrong\" 的 traces 给出 false positive。该文表明随机噪声可以校正，但系统性偏差更难处理。\n- **加入 literature_map**: 可选。role: `background`, category: `reward-shaping`\n\n### 文献空白分析\n\n搜索未找到以下内容的直接文献：\n- **结构/质量指标\"仅适合诊断不适合训练\"的明确讨论**：现有文献将 Goodhart's Law 和 reward hacking 作为一般性现象讨论，但没有论文明确提出\"某些指标天然适合 post-hoc 诊断但不适合作为训练信号\"这一范式区分。这是你们论文的独特贡献点。\n- **formal verification/Prolog 领域的结构 reward 实验**：reward hacking 文献集中在 math reasoning 和 general RLHF，formal proof generation 领域是空白。\n\n**结论：你的 \"diagnostic-only metric\" 发现是一个真正的文献空白**。Gao et al. 和 Karwowski et al. 提供理论框架（Goodhart's Law），Spurious Rewards 提供经验佐证（random > structured reward 的现象），但没有论文将这些整合为\"某些指标仅适合诊断\"的规范性主张。这对 novelty 是好事。\n\nSources:\n- [Spurious Rewards: Rethinking Training Signals in RLVR](https://arxiv.org/abs/2506.10947)\n- [Scaling Laws for Reward Model Overoptimization](https://arxiv.org/abs/2210.10760)\n- [Goodhart's Law in Reinforcement Learning](https://arxiv.org/abs/2310.09144)\n- [The Lessons of Developing Process Reward Models in Mathematical Reasoning](https://arxiv.org/abs/2501.07301)\n- [Reward Shaping to Mitigate Reward Hacking in RLHF](https://arxiv.org/abs/2502.18770)\n- [RL with Verifiable yet Noisy Rewards under Imperfect Verifiers](https://arxiv.org/abs/2510.00915)\n- [Defining and Characterizing Reward Hacking (Skalse et al., NeurIPS 2022)](https://arxiv.org/abs/2209.13085)\n- [The Effects of Reward Misspecification (Pan et al., 2022)](https://arxiv.org/abs/2201.03544)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_plan017-literature-linkage_20260514T053739"
+          },
+          "id": "event-000043"
+        }
+      ],
+      "message_count": 43
+    }
+  ],
+  "readable_path": "readable/conversations/research-plan017-literature-linkage.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fadedb6b517de2bd70f5",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analysis fix evidence table provenance",
+  "task_key": "worker_analysis_fix-evidence-table-provenance_20260514T071442",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_fix-evidence-table-provenance_20260514T071442_result.json",
+    "occurrence": 1,
+    "bytes": 438,
+    "sha256": "ff675396b355986b7bbfa576412ea35ecea25c5529b6cb73a1502cbc28781957"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成。实际变更：\n\n1. **plan002-b03 component_count=10.67**：文件中不存在 10.67，Comp. Mean 列已经是 `—`，无需修改。\n2. **plan013-r4 `††` 脚注**：已更新，明确标注 `~2` 为 eval_note 估算值，非 eval_sta.py 精确计算。\n3. **plan002-b01**：文件中无\"待完成\"或\"RUNNING\"标记，已显示完成数据（PR=0.81, ISR=0.3365, Comp.=5.58），无需修改。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-fix-evidence-table-provenance.md"
+}

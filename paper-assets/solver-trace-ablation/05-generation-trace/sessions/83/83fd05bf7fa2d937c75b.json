@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "83fd05bf7fa2d937c75b",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_9_1778807001.md",
+  "task_key": "loop_9_1778807001",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_9_1778807001.md",
+    "occurrence": 1,
+    "bytes": 4583,
+    "sha256": "432bff4bc3f563e60b718afca11b1da2b596c92ed2b3c1e63aea78aaa8b03972"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 9\nreason: idle_timeout\nupdated: '2026-05-15T01:02:54+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**westd-39279:cuda:0** 和 **westd-39279:cuda:1**，禁止用其他设备\n- submit_training_job 命令必须包含 `bash -c \"export CUDA_VISIBLE_DEVICES=N && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && ...\"`，缺任何一段都会导致进程立即死亡（exp1-random-b03-s44 教训）\n- kill_job 只杀 tmux wrapper PID，**必须 SSH 验证子进程已终止**\n- 磁盘 240G/250G (96%)，**所有 output_dir 放 `/root/autodl-tmp/outputs/`**，eval 后立即清理 checkpoint，`log_completions=False` + `save_total_limit=1`\n- **D062 数据完整性警告**：exp1 系列 (β=0.3 ISR s43/s44) eval 用了错误测试集 test_100.jsonl（与 plan 系列的 proofwriter_fol_100.jsonl 零重叠）。论文目前只能用 s42 单 seed 数据，s43/s44 必须用 proofwriter_fol_100.jsonl 重新 eval 后才能写入论文\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-39279，2× RTX PRO 6000 Blackwell 96GB\n- **工作目录**: `/root/solver-trace-ablation/`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- **CUDA**: 12.8, PyTorch 2.10.0+cu128\n- **模型**: Qwen3-4B via ModelScope，路径在工作目录下\n- **Solvers**: Prover9 (源码编译), SWI-Prolog 8.4.2 (`/usr/bin/swipl`), Z3 4.16.0.0\n- **数据盘**: `/root/autodl-tmp/` 250GB (仅 ~10GB 剩余，极度紧张)\n- **活跃进程**: exp1-random-b03-s44-r2, PID 51297, cuda:1, tmux session\n- **活跃 Cron**: 1 个，监控 exp1-random-b03-s44-r2（reconcile 确认 still running）\n- **W&B**: 项目配置中已有，用 fetch_wandb_metrics 查询\n\n### 3. 📊 当前状态\n**阶段**: 论文写作 + 补充实验。DDL: 2026-05-25 EMNLP ARR（剩 10 天）。三条 Claim 全部闭环。\n\n**RUNNING**:\n- `exp1-random-b03-s44-r2`: random β=0.3 seed 44 重试，cuda:1，为 Table 1 三 seed 统计补数据。Cron 监控中，等回调。\n\n**Running Workers**:\n- `worker_code_plan015-curriculum`: 已调研完成，发现 train_grpo.py 已支持 schedule 参数（fixed/linear/sigmoid + midpoint），无需改代码。预计即将返回报告。\n- `worker_fix_paper-compilation-v2`: **撞 rate limit**（\"resets 4:10am UTC\"），已停滞。下一轮需要重新派 Worker 修论文编译问题。\n\n**cuda:0 当前空闲** — exp1-random-b03-s44-r2 只占 cuda:1。\n\n### 4. 📋 待办（条件触发式）\n- `exp1-random-b03-s44-r2` cron 回调到达 → spawn Worker 跑 eval（**必须用 proofwriter_fol_100.jsonl**）→ 更新 registry → 汇报 Director\n- Worker plan015-curriculum 返回 → 确认代码就绪，若 Director 审批可直接提交 plan015 实验（linear vs sigmoid ablation）\n- Worker paper-compilation-v2 返回（rate limited，可能失败）→ 重新 spawn Worker 修论文 LaTeX 编译\n- **D062 修复（高优先级）**：β=0.3 ISR s43/s44 需要用 proofwriter_fol_100.jsonl 重新 eval → 才能解锁 §4.3 multimodal Goodhart 叙事（D060）。可在 cuda:0 上并行跑\n- 磁盘 96% → 任何新实验前先 spawn Worker 清理旧 checkpoint/output\n\n### 5. 🎯 战略上下文\n**项目核心结论**: ISR 是好的诊断工具（Claim 1），但作为 reward 信号展现 meta-level Goodhart 效应（Claim 2），且跨逻辑泛化时 STA 本身也被 game（Claim 3, 3/3 seeds gaming）。这是一篇诊断+分析论文，不是\"我们做了个好 reward\"的论文。\n\n**关键决策链**:\n- D057: Claim 2 闭环——3-seed random H7=0% 确认 H7 是 ISR 特异性 gaming\n- D051: 2.4x ISR 优势作废，premise-count-matched 后仅 1.06x，定论 ISR 无真实结构优势\n- D059: Claim 3 闭环——Prolog STA 3/3 seeds gaming（三种不同 gaming 路径）\n- D060/D061: β=0.3 叙事从 \"dose-response\" 重写为 \"cross-seed multimodal Goodhart instability\"\n- D062/D063: **暂停 D060 叙事变更**——发现 exp1 系列 eval 用错测试集，待修复\n\n**最容易判断错的事**:\n1. **不要假设 exp1 系列 s43/s44 的 eval 数据可用** — 它们用了错误测试集，论文现在只能用 s42 单 seed 写 β=0.3 section\n2. plan013 (random β=0.3) 和 plan017 (additive random β=0.3) 公式结构不同（D027），不可简化为 \"additive vs convex\" 对照\n3. Hacking taxonomy 是 **7 种**（含第 7 种 query-as-fact，Reviewer 核实 s44 Prolog）\n4. ISR β=0.1 hacking rate 69.1% (strict)，论文标 \"lowest hacking rate\" 而非 \"no hacking\"\n5. 磁盘极度紧张（96%），大实验前必须先清理\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-9-1778807001.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "15331c4c4c5bb766938c",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "knowledge table data json",
+  "task_key": "worker_knowledge_table-data-json_20260514T172336",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_knowledge_table-data-json_20260514T172336_result.json",
+    "occurrence": 1,
+    "bytes": 830,
+    "sha256": "462d49e7ef9be1d18f596a66fa7514c56304c120ee8513d0be85933265f5119c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已生成 `artifacts/table_data.json` 并注册 (`art_20260514_0d350a`)。\n\n内容覆盖：\n- **table1_goodhart_landscape**: 9 个条件（base_model, sft, exec-only 500/1000, ISR/Random β=0.1/0.3, convex），含 exp_id、per-seed 精确指标、3-seed mean±std（重新计算）\n- **table2_hacking_taxonomy**: 5 个条件的 H7/H1/Genuine 分布 + key findings\n- **claim2_isr_vs_random**: premise-count-matched ISR (1.06×)，3-seed 汇总\n- **prolog_exec_only_3seed**: 3 seed + mean±std\n- **prolog_sta**: s42 done (H7=100%), s43/s44 RUNNING\n- **isr_collapse_trajectory**: 100→500→1000 步 ISR 下降轨迹\n\n数据来源注记：random_b01_s43 的 ISR 值来自 eval_sta.py（registry 仅有 hacking taxonomy），ISR_b03 eval 指标来自 evidence_tables_d051（registry 仅有训练指标）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/knowledge-table-data-json.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1a14c6bd80be277c7ff1",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code d146 urgent status",
+  "task_key": "worker_code_d146-urgent-status_20260519T205857",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d146-urgent-status_20260519T205857_result.json",
+    "occurrence": 1,
+    "bytes": 609,
+    "sha256": "9aca2351e500f93b91936eece61e501b07ed35ec5dbb41abdfae8d4eec571f62"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## D146 Pipeline 状态\n\n### 1. exec-s44: **已完成**\n- 500/500 steps，checkpoint-500 已保存\n- 最终指标：**prove_rate=1.0, ISR=0.043, parse_rate=1.0, reward=1.0**\n- 完成时间：2026-05-19 20:00 UTC\n\n### 2. ISR 阶段: **d146_pf_isr_s42 正在训练中**\n- 当前进度：**244/500 steps**（约 49%）\n- 最新 step 244：prove_rate=0.375, ISR=0.049, reward=0.380\n- checkpoint-200 已保存\n- d146_pf_isr_s43 和 d146_pf_isr_s44 **尚未创建**，等 s42 完成后启动\n\n### 3. GPU 利用率\n- 显存：84,499 MiB 占用，利用率 92% — ISR s42 正在满载跑"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d146-urgent-status.md"
+}

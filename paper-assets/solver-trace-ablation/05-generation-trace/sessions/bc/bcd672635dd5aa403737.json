@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bcd672635dd5aa403737",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_5_1778770526.md",
+  "task_key": "loop_5_1778770526",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_5_1778770526.md",
+    "occurrence": 1,
+    "bytes": 4495,
+    "sha256": "49861fc16df35c5e0d6967a8e05f77850fba233fe5f693ebbf66ffd12189f285"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: idle_timeout\nupdated: '2026-05-14T14:51:17+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-39279 cuda:0 和 cuda:1，不可用其他卡\n- 训练命令必须显式 `export CUDA_VISIBLE_DEVICES=N`，否则 device_map='auto' 会跨卡侵入导致 OOM（plan009-sft-baseline-s42-r2 已因此失败）\n- 脚本内 `--gpu 0` = 分配到的第一块卡（框架自动映射）\n- Prolog 实验数据路径是 `data/train_500_seed42.jsonl`（FOL 源数据 + Prolog solver），不是 `data/prolog/`（不存在，前两次 plan006 因此失败）\n- 数据中 prolog_premises/prolog_query 字段为空值，eval 脚本不应依赖这些字段\n- ISR β=0.1 hacking rate 69.1%（strict 定义 D044），论文不可标 \"no hacking\"，应标 \"lowest hacking rate\"\n- plan013 vs plan017 公式结构不同，不可简化为 \"additive vs convex\" 对照（D027）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-39279，account: root\n- 工作目录：/root/solver-trace-ablation\n- Python：/root/miniconda3/bin/python（conda base 环境，激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- 模型：Qwen3-4B（HF cache 路径未确认，训练脚本自动加载）\n- 数据：/root/solver-trace-ablation/data/train_500_seed42.jsonl (500 samples), test_100.jsonl (100 samples)\n- Checkpoints：/root/autodl-tmp/outputs/（各实验子目录）\n- W&B project: solver-trace-ablation\n- 活跃进程：\n  - plan018-additive-random-b01-s43: PID 540910, tmux=plan018-additive-random-b01-s43, cuda:1\n  - plan018-additive-random-b01-s44: PID 564900, tmux=plan018-additive-random-b01-s44, cuda:0\n  - 两个 cron 监控已注册\n\n### 3. 📊 当前状态\n刚处理 plan006-prolog-exec-s42 完成回调：已派 Worker 分析（worker_analysis_plan006-prolog-exec-s42_20260514T113229），同时将 plan018-additive-random-b01-s44 提交到 cuda:0 填充空闲 GPU。\n\n**RUNNING (2)**:\n- plan018-additive-random-b01-s43 (cuda:1) — Random β=0.1 s43 控制组，与 plan002-b01-s43 同 seed 对照\n- plan018-additive-random-b01-s44 (cuda:0) — Random β=0.1 s44 控制组，刚提交\n\n**ANALYZING (1)**:\n- plan006-prolog-exec-s42 — Prolog exec-only s42，训练完成，Worker 正在分析\n\n**PENDING (1)**: plan009-sft-baseline-s42 — SFT baseline，等人工审批\n\n**PREPARING (4)**: plan006-prolog-sta-s44, plan006-prolog-sta-s43, plan006-prolog-exec-s44, plan006-prolog-exec-s43 — Prolog 后续 seeds\n\n**等待回调**:\n- Worker: analysis:plan006-prolog-exec-s42（分析 Prolog exec-only 结果）\n- Worker: code:plan009-sft-oom-fix（修复 SFT OOM 问题）\n- Cron: plan018-s43 和 plan018-s44 训练完成回调\n\n### 4. 📋 待办\n- analysis Worker 回调 → 读 conclusion，按 on-experiment-done 分叉处理（success: 更新 report + 向 Director 汇报 Prolog 跨 logic type 结论；negative: 产 Framing 调整提案）\n- plan018-s43 cron 回调 → spawn Worker 分析，与 plan002-b01-s43 对比 ISR vs random\n- plan018-s44 cron 回调 → spawn Worker 分析，与 plan002-b01-s44 对比\n- plan018 s42/s43/s44 三 seed 全出齐 → 汇总 3-seed mean±std，更新 Claim 2 统计支撑\n- plan009-sft-oom-fix Worker 回调 → 重新提交 SFT baseline（需 Director 审批）\n- plan006 prolog-exec-s42 分析完成 + cuda 空闲 → 推进 plan006-prolog-exec-s43（PREPARING→PENDING→提交）\n\n### 5. 🎯 战略上下文\n**核心 framing（D035）**: Goodhart 主线——ISR 展示经典 Goodhart 效应（β=0.1 sweet spot → β=0.3 collapse），STA 作为跨 logic type 诊断工具。\n\n**关键决策链**:\n- D044: Hacking taxonomy 全面采用 strict 定义（exact normalized match）\n- D043: ISR β=0.1 \"sweet spot\" 叙事降级——2/3 seeds ISR 膨胀为 artificial\n- D042: ISR 度量存在结构性盲点（premise≈conclusion 时 conclusion sub-string 假阳性）\n- D041: Claim 2 framing pivot: ISR β=0.1 \"sweet spot\" → \"attenuates but doesn't eliminate\"\n- D038: Hacking taxonomy 对比足够，跳过 LLM-as-judge\n\n**易错点**:\n- plan006 prolog-sta-s42 是 negative（100% H7），但这不意味着 exec-only 也一定 negative——exec-only 没有 ISR reward，可能展示不同的 hacking pattern\n- 成功率：9 success / 13 negative / 15 failed，负向和失败比例高，对每个 negative 都要认真做 Framing 调整提案而非默默跑下一个\n- DDL 2026-05-25（剩 11 天），GPU 时间充裕（528 GPU·h 可用，剩余需求 ~12h），瓶颈在分析和写作\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5-1778770526.md"
+}

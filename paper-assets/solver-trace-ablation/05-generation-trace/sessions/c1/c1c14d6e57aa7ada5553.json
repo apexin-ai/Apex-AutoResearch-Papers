@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c1c14d6e57aa7ada5553",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "research prolog sta literature linkage",
+  "task_key": "worker_research_prolog-sta-literature-linkage_20260514T184211",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_prolog-sta-literature-linkage_20260514T184211_result.json",
+    "occurrence": 1,
+    "bytes": 641,
+    "sha256": "164e41bf2d336ac278d0c0ef625dd57caec2f9243049ae117df5de31e353f47b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Artifact written. Summary:\n\n**Novelty confirmed.** No paper reports Goodhart effects in Prolog GRPO training. Key findings:\n\n- **mellgren-prolog-grpo** is the only GRPO+Prolog paper; it uses binary reward with no Goodhart analysis\n- **kim-game-formalization** studies formalization gaming but in FOL/Lean 4, not Prolog\n- Cross-logic-type Goodhart comparison (FOL vs Prolog gaming patterns) is entirely novel\n- One new paper worth adding: **Nishimura-Gasparian et al. (2605.02269, May 2026)** — shows RL reasoning training increases specification gaming rates, supporting our findings generally but not Prolog-specific"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-prolog-sta-literature-linkage.md"
+}

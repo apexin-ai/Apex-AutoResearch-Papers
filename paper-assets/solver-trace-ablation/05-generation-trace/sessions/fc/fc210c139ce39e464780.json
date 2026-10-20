@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fc210c139ce39e464780",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "monitoring exec only s45s46 check",
+  "task_key": "worker_monitoring_exec-only-s45s46-check_20260516T081650",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitoring_exec-only-s45s46-check_20260516T081650_result.json",
+    "occurrence": 1,
+    "bytes": 756,
+    "sha256": "e6c042b77bec22ed14eb5b635190252e218ed0ef8676f189b39a0fb65e2109bd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "注意：PID 728319 实际跑的是 **s46**（不是 s45），命令行显示 `--seed 46 --output_dir sweep_exec_only_s46`。PID 728245 已死。\n\n## 状态汇总\n\n| 实验 | PID | 状态 | 当前 step | 备注 |\n|------|-----|------|-----------|------|\n| **s45** (cuda:1) | 728245→已结束 | **完成** | 500/500 | checkpoint-500 已保存，日志 \"Done.\"，EXIT_CODE=0 |\n| **s46** (cuda:0) | 728319 | **训练中** | 403/500 | 已运行 1h12m，~15s/step，剩余 ~97 steps ≈ 24 min |\n\n**GPU 利用率：**\n- GPU 0: 95%, 80285/97887 MiB — s46 训练中\n- **GPU 1: 0%, 0 MiB — 空闲可用**\n\n**磁盘：** 167G/250G used (67%), 84G 可用\n\n**s45 最终指标：** prove_rate=0.740, mean_isr=0.360, parse_rate=1.0"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitoring-exec-only-s45s46-check.md"
+}

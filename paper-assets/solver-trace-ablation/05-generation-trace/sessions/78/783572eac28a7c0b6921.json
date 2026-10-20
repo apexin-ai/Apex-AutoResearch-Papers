@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "783572eac28a7c0b6921",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code d097 config fix",
+  "task_key": "worker_code_d097-config-fix_20260516T031042",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d097-config-fix_20260516T031042_result.json",
+    "occurrence": 1,
+    "bytes": 6076,
+    "sha256": "5ed09ea2acbd89833f7d4e7eb696175f482ece92e03c1e63118ca961942dd5e1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Config merge 正常工作：`num_steps=500`（来自 config），`num_generations=8`（来自 config，fallback 是 4）。\n\n## 结论\n\n**代码已经修复了。** 当前 `parse_args()` 的状态：\n\n1. **所有 `add_argument` 的 default 已经是 `None`**（除 `--no_wandb` 的 `store_true` 和 `--config`）\n2. **Config merge 逻辑正确**：先加载 YAML，对每个 key，仅当 `current is None` 时才从 config 覆盖\n3. **Fallback 字典位置正确**：在 config merge 之后，仅填充仍为 None 的参数\n4. **`reward_mode` choices 已包含所有 6 种模式**：`execution_only`, `execution_sta`, `random_reward`, `additive_bonus`, `additive_random`, `execution_fast_sta`\n\n验证结果：用 `grpo_additive_bonus.yaml`（`num_steps: 500`）测试，`parse_args()` 返回 `num_steps=500`，而非 fallback 的 100。config 中的 `num_generations: 8` 也正确覆盖了 fallback 的 4。\n\n**不需要做任何修改。**\n\n### 附：完整 parse_args() 代码（当前版本，line 354+）\n\n```python\ndef parse_args():\n    parser = argparse.ArgumentParser(description=\"Phase 1 GRPO Training\")\n    parser.add_argument(\"--model_path\", type=str, default=None)\n    parser.add_argument(\"--data_path\", type=str, default=None)\n    parser.add_argument(\"--reward_mode\", type=str, default=None,\n                        choices=[\"execution_only\", \"execution_sta\", \"random_reward\", \"additive_bonus\", \"additive_random\", \"execution_fast_sta\"])\n    parser.add_argument(\"--output_dir\", type=str, default=None)\n    parser.add_argument(\"--num_steps\", type=int, default=None)\n    parser.add_argument(\"--per_device_batch_size\", type=int, default=None)\n    parser.add_argument(\"--gradient_accumulation_steps\", type=int, default=None)\n    parser.add_argument(\"--num_generations\", type=int, default=None)\n    parser.add_argument(\"--max_completion_length\", type=int, default=None)\n    parser.add_argument(\"--learning_rate\", type=float, default=None)\n    parser.add_argument(\"--exec_weight\", type=float, default=None)\n    parser.add_argument(\"--sta_weight\", type=float, default=None)\n    parser.add_argument(\"--beta\", type=float, default=None, ...)\n    parser.add_argument(\"--beta_schedule\", type=str, default=None, choices=[\"fixed\", \"linear\", \"sigmoid\"], ...)\n    parser.add_argument(\"--beta_schedule_midpoint\", type=int, default=None, ...)\n    parser.add_argument(\"--seed\", type=int, default=None)\n    parser.add_argument(\"--solver\", type=str, default=None)\n    parser.add_argument(\"--logic_type\", type=str, default=None, choices=[\"fol\", \"prolog\"])\n    parser.add_argument(\"--wandb_project\", type=str, default=None)\n    parser.add_argument(\"--wandb_run\", type=str, default=None)\n    parser.add_argument(\"--no_wandb\", action=\"store_true\")\n    parser.add_argument(\"--warmup_ratio\", type=float, default=None)\n    parser.add_argument(\"--config\", type=str, default=None, ...)\n    args = parser.parse_args()\n\n    # Config merge: YAML values fill in None args\n    if args.config:\n        cfg = load_yaml_config(args.config)\n        for k, v in cfg.items():\n            if hasattr(args, k):\n                current = getattr(args, k)\n                if current is None or (isinstance(v, bool) and v and not current):\n                    setattr(args, k, v)\n            else:\n                setattr(args, k, v)\n\n    # Fallbacks: only apply when still None after config merge\n    if args.num_steps is None:          args.num_steps = 100\n    if args.per_device_batch_size is None: args.per_device_batch_size = 4\n    if args.gradient_accumulation_steps is None: args.gradient_accumulation_steps = 2\n    if args.num_generations is None:    args.num_generations = 4\n    if args.max_completion_length is None: args.max_completion_length = 512\n    if args.learning_rate is None:      args.learning_rate = 1e-6\n    if args.exec_weight is None:        args.exec_weight = 0.5\n    if args.sta_weight is None:         args.sta_weight = 0.5\n    if args.beta is None:               args.beta = 0.3\n    if args.beta_schedule is None:      args.beta_schedule = \"fixed\"\n    if args.beta_schedule_midpoint is None: args.beta_schedule_midpoint = 250\n    if args.seed is None:               args.seed = 42\n    if args.warmup_ratio is None:       args.warmup_ratio = 0.0\n    if args.solver is None:             args.solver = \"prover9\"\n    if args.logic_type is None:         args.logic_type = \"fol\"\n\n    missing = [f for f in (\"model_path\", \"data_path\", \"reward_mode\", \"output_dir\")\n               if getattr(args, f, None) is None]\n    if missing:\n        parser.error(f\"the following arguments are required: {', '.join('--' + f for f in missing)}\")\n\n    return args\n```\n\n### 附：所有 config 文件内容\n\n| Config | num_steps | beta | reward_mode |\n|--------|-----------|------|-------------|\n| grpo_additive_bonus.yaml | 500 | 0.3 | additive_bonus |\n| grpo_additive_bonus_b01.yaml | 500 | 0.1 | additive_bonus |\n| grpo_additive_random.yaml | 500 | 0.3 | additive_random |\n| grpo_additive_random_b01.yaml | 500 | 0.1 | additive_random |\n| grpo_exec_only.yaml | 100 | - | execution_only |\n| grpo_exec_only_8b.yaml | 50 | - | execution_only |\n| grpo_exec_sta.yaml | 100 | - | execution_sta |\n| grpo_fast_isr_ablation.yaml | 500 | - | execution_fast_sta |\n| grpo_prolog_exec_only.yaml | 500 | - | execution_only |\n| grpo_prolog_exec_only_k16_warmup.yaml | 500 | - | execution_only |\n| grpo_prolog_exec_sta.yaml | 500 | - | execution_sta |\n| grpo_random_reward.yaml | 500 | - | random_reward |\n| plan018_random_b01_s43.yaml | 500 | 0.1 | additive_random |\n| plan018_random_b01_s44.yaml | 500 | 0.1 | additive_random |\n\nsweep-isr-b005-s42 和 sweep-isr-b01-s45 对应的 config 不在 configs/ 目录中。如果这两个实验没有用 `--config` 启动（或用的 config 里没有 `num_steps`），就会 fallback 到 100 步——这是行为正确但调用方的问题，不是 parse_args 的 bug。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d097-config-fix.md"
+}

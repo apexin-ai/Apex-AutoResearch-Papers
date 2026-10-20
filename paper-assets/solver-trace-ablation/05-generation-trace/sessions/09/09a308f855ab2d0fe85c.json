@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "09a308f855ab2d0fe85c",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "eval plan017 status check",
+  "task_key": "worker_eval_plan017-status-check_20260514T052725",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_plan017-status-check_20260514T052725_result.json",
+    "occurrence": 1,
+    "bytes": 1376,
+    "sha256": "f3b670f288041e03ca7be4965ab8beb44d11b00ae7a189fbb88884de2b6c7bda"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated. Here's the final analysis:\n\n## plan017-additive-random-s42 评估结果\n\n| 指标 | plan017 (additive random) | plan001-s42-r2 (exec-only) | plan013-r4 (pure random) | plan001-s44 (exec-only) |\n|------|:---:|:---:|:---:|:---:|\n| **Prove Rate** | 0.48 | 0.93 | 1.00 | 0.98 |\n| **Mean ISR** | 0.0453 | 0.1232 | 0.535 | 0.57 |\n| **Proved-only ISR** | 0.0943 | 0.1324 | 0.535 | 0.5816 |\n| **Mean Components** | 9.56 | 6.58 | ≈2 | 2.04 |\n| **2-comp %** | 0% | — | ~100% | 94% |\n| **Collapse?** | **No** | **No** | **Yes** | **Yes** |\n\n**核心发现：**\n\n1. **No tautological collapse** — 0% 2-component, mean 9.56 components. Additive random noise prevents the collapse seen in plan013/plan001-s44.\n\n2. **但 PR 和 ISR 都严重下降** — PR=0.48（远低于 exec-only 的 0.93），ISR=0.045（低于 exec-only 的 0.123）。Random noise 破坏了 exec reward signal。\n\n3. **不同的 failure mode** — 模型生成复杂 formalization（9-18 components），但 33% proved 样本 n_necessary=0（conclusion 不依赖任何 premise），说明生成了大量无用 premises。\n\n4. **对假设的回答** — random << exec-only，排除了\"variance regularization alone is beneficial\"假设。ISR（如果有效）的价值来自结构信号，不是 noise/variance。\n\nRegistry 已更新为 DONE/negative。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-plan017-status-check.md"
+}

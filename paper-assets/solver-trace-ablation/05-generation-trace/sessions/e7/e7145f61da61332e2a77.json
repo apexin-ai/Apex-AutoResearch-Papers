@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e7145f61da61332e2a77",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_6_1778772622.md",
+  "task_key": "loop_6_1778772622",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_6_1778772622.md",
+    "occurrence": 1,
+    "bytes": 5501,
+    "sha256": "13354250b063976bf0c46575688c1a20d302703b371086b19c8e8bde178bd897"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 6\nreason: idle_timeout\nupdated: '2026-05-14T15:22:35+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **GPU 白名单**: westd-39279 仅 cuda:0 和 cuda:1，绝不用其他卡\n- **submit_training_job 命令格式**: 必须 `bash -c \"export CUDA_VISIBLE_DEVICES=N && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && ...\"`，不能用 `source .venv/bin/activate`（服务器是 conda 环境）\n- **kill_job 后必须 SSH 验证子进程全部终止**——之前 s43 被 kill 后残留进程占 80GB VRAM 导致 r2 OOM\n- **磁盘约束 C003**: `log_completions=False` + `save_total_limit=1`，output_dir 放 `/root/autodl-tmp/outputs/`，实验完成 eval 后立即清理 checkpoint\n- **数据约束 C001**: 所有 FOL 实验统一用 `train_500_seed42.jsonl`\n- **β=0.1 三 seed ISR 不可直接平均**——s43/s44 是 H7 conclusion duplication artifact（ISR 被膨胀），必须按 hacking mode 分层报告\n- **DDL: 2026-05-25 ARR**，剩 11 天\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-39279，2× RTX PRO 6000 Blackwell 96GB\n- **工作目录**: `/root/solver-trace-ablation/`\n- **Python**: `/root/miniconda3/bin/python`，激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **CUDA**: 12.8, PyTorch 2.10.0+cu128\n- **模型**: Qwen3-4B (7.6GB, ModelScope 下载)\n- **Solvers**: Prover9 (LADR 编译), SWI-Prolog 8.4.2 (`/usr/bin/swipl`), Z3 4.16.0.0\n- **磁盘**: 系统盘 30GB (~22G free)，数据盘 `/root/autodl-tmp/` 250GB (~199G free)\n- **活跃进程**:\n  - plan006-prolog-exec-s43-r3: PID 483820, cuda:1, RUNNING（cron 监控中）\n  - plan006-prolog-exec-s44: PID 479357, cuda:0, ANALYZING（训练已完成，cron 已清理，等 eval）\n- **活跃 Worker**: `worker_analysis_genuine-isr-crosscheck_20260514T151533` (running) — 正在做 genuine ISR crosscheck 分析\n\n### 3. 📊 当前状态\n\n**刚完成**: plan002-additive-b01-s42 (success), plan018-additive-random-b01-s44 (success), plan009-sft-baseline-s42-r4 (success)。这三个实验补齐了 Claim 1 (SFT baseline 零 hacking 确认 GRPO 特异性) 和 Claim 2 (β=0.1 random 多 seed 对照) 的证据。\n\n**Registry 活跃实验**:\n| exp_id | 状态 | GPU | 说明 |\n|--------|------|-----|------|\n| plan006-prolog-exec-s43-r3 | RUNNING | cuda:1 | Prolog exec-only seed=43 r3 (warmup=0.0 对齐 s42) |\n| plan006-prolog-exec-s44 | ANALYZING | — | 训练完成，需 spawn eval worker |\n| plan018-additive-random-b01-s43-r2 | ALLOCATED | cuda:0 | Random β=0.1 s43 控制组，已分配但**未提交** ← cuda:0 空闲! |\n| plan006-prolog-sta-s44 | PREPARING | — | 等 GPU |\n| plan006-prolog-sta-s43 | PREPARING | — | 等 GPU |\n\n**⚠️ cuda:0 空闲**: plan006-prolog-exec-s44 训练已完成进入 ANALYZING，但 plan018-random-b01-s43-r2 已 ALLOCATED 到 cuda:0 却未提交——这是失职（GPU 分配了没跑）。\n\n**等待中**:\n- Worker `genuine-isr-crosscheck` 回调\n- plan006-prolog-exec-s43-r3 的 cron 完成回调\n- plan006-prolog-exec-s44 需要 spawn eval worker\n\n### 4. 📋 待办（条件触发式）\n\n- **立即**: plan018-random-b01-s43-r2 已 ALLOCATED cuda:0 → 用 `submit_on_allocated` 提交，消除 GPU 空闲\n- **立即**: plan006-prolog-exec-s44 ANALYZING → spawn eval worker 跑 eval_sta.py（Prolog 模式），eval 完成后 metrics 入 registry\n- **plan006-prolog-exec-s44 eval 完成** → 与 s42 (PR=83%, ISR=0.031) 对比，记录 Prolog exec-only 多 seed 统计\n- **plan006-prolog-exec-s43-r3 cron 回调** → spawn eval worker → 3-seed Prolog exec-only 全部出齐 → 更新 Claim 3 证据\n- **plan018-random-b01-s43-r2 完成** → eval → 与 plan002-b01-s43 (ISR β=0.1 s43) 对照，补齐 random 3-seed 统计\n- **Prolog exec-only 3-seed 全出** → 可启动 plan006-prolog-sta-s43/s44（等 GPU 释放）\n- **plan018-random-b01-s44 eval** → 已经在 ANALYZING（可能 worker 正在跑），完成后 metrics 入 registry\n- **所有 3-seed 数据出齐** → Table 1 + Table 2 定稿 → paper_framing.md 更新 → 写论文\n- **genuine-isr-crosscheck worker 完成** → 读结果，更新 report.md\n\n### 5. 🎯 战略上下文\n\n**项目核心结论**: 这是一篇 Goodhart's Law 案例研究 + 诊断工具论文（EMNLP 2026 ARR May 25）。三个 claim:\n1. ISR 作为 reward hacking 诊断工具（ISR 崩塌轨迹 0.64→0.13→0.003）\n2. ISR 作为 reward 的 meta-Goodhart（低剂量 2/3 seeds gaming ISR 本身，高剂量 PR 崩塌）\n3. 跨 logic type 泛化（FOL + Prolog）\n\n**决策链关键节点**:\n- D043: β=0.1 \"sweet spot\" 叙事降级——2/3 seeds ISR 膨胀是 artifact (conclusion duplication)\n- D044: Hacking taxonomy 全面采用 strict exact normalized match 定义\n- D046→D047→D048: Claim 2 经历三次 framing 调整，最终定位为\"meta-level Goodhart + conclusion embedding 是 GRPO 通用策略\"\n\n**易错点**:\n- 不要把 β=0.1 三 seed raw mean ISR 当正面结果——s43/s44 的高 ISR 是 H7 gaming artifact\n- plan013 (convex) vs plan017 (additive) 公式结构不同，不可简化对比 (D027)\n- Prolog exec+STA 用 0.5/0.5 权重 vs FOL ISR β=0.1 additive——跨 logic 对比需注明 reward 公式差异\n- 成功 11 / 负向 14 / 失败 18——这个项目的成功率低，很多实验是 negative，但 negative 本身是论文的核心贡献（Goodhart 分析）\n- SFT baseline (plan009-r4) 是 GRPO-specific hacking 的关键对照证据，别忘了在论文中突出\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-6-1778772622.md"
+}

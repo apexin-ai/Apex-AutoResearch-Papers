@@ -1,0 +1,67 @@
+{
+  "schema_version": "1.0",
+  "id": "fe5aeb1fcee3f309b695",
+  "project": "solver-trace-ablation",
+  "kind": "worker",
+  "title": "ops compile verify and registry fix",
+  "task_key": "worker_ops_compile-verify-and-registry-fix_20260515T062854",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_compile-verify-and-registry-fix_20260515T062854.log",
+    "occurrence": 1,
+    "bytes": 925313,
+    "sha256": "fb2ab7593b5b1c364504f79670d7d3f73b1581ab5749d67774ef48f4fd285536"
+  },
+  "statistics": {
+    "messages": 279,
+    "user_turns": 2,
+    "tool_calls": 102,
+    "roles": {
+      "log": 1,
+      "system": 19,
+      "record": 2,
+      "assistant": 53,
+      "tool_call": 102,
+      "tool_result": 100,
+      "user": 2
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 172,
+      "chunks": [
+        {
+          "path": "fe5aeb1fcee3f309b695-part-0001.json",
+          "message_count": 172
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 65,
+      "chunks": [
+        {
+          "path": "fe5aeb1fcee3f309b695-part-0002.json",
+          "message_count": 65
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 42,
+      "chunks": [
+        {
+          "path": "fe5aeb1fcee3f309b695-part-0002.json",
+          "message_count": 42
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-compile-verify-and-registry-fix.md"
+}

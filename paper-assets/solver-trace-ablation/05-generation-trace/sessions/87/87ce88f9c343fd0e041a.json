@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "87ce88f9c343fd0e041a",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ssh h7h8 classify sft s44",
+  "task_key": "worker_ssh_h7h8-classify-sft-s44_20260515T133841",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_h7h8-classify-sft-s44_20260515T133841_result.json",
+    "occurrence": 1,
+    "bytes": 766,
+    "sha256": "6366b9d45f8d35e609c2fa5057d6b0d94b49ad083e8aa70c8abb47c07d273629"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "自动分类已完成，我逐一验证了结果。\n\n## SFT s44-1000 Hacking Taxonomy 分类结果\n\n| 类别 | 数量 | 比例 |\n|------|------|------|\n| H7 (tautology P→P) | 0 | 0% |\n| H1 (conclusion in premise) | 1 | 6.7% |\n| H8 (conjunction collapse) | 0 | 0% |\n| **Genuine** | **14** | **93.3%** |\n\n**H1 样本**: folio_167 — conclusion `Leader(elizabeth)` 与 P6 完全相同。\n\n## 三 seed 对比\n\n| Seed | Proved | H7 | H1 | H8 | Genuine | Genuine% |\n|------|--------|----|----|----|---------|----------|\n| s42 | 13 | 0 | 1 | 0 | 12 | 92.3% |\n| s43 | 11 | 0 | 1 | 0 | 10 | 90.9% |\n| s44 | 15 | 0 | 1 | 0 | 14 | 93.3% |\n\n三个 seed 模式一致：均只有 1 个 H1，无 H7/H8，genuine rate 在 90.9%-93.3% 之间。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-h7h8-classify-sft-s44.md"
+}

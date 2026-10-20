@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "8ce785de5b019e64b37c",
+  "project": "solver-trace-ablation",
+  "kind": "worker",
+  "title": "eval s43 do sample reeval",
+  "task_key": "worker_eval_s43-do-sample-reeval_20260514T035320",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_s43-do-sample-reeval_20260514T035320.log",
+    "occurrence": 1,
+    "bytes": 761316,
+    "sha256": "40ca1fb10687268dd041ebe0179cbf1a88bd547465d31343564798c098f4ab6f"
+  },
+  "statistics": {
+    "messages": 617,
+    "user_turns": 0,
+    "tool_calls": 253,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 106,
+      "tool_call": 253,
+      "tool_result": 253,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 617,
+      "chunks": [
+        {
+          "path": "8ce785de5b019e64b37c-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "8ce785de5b019e64b37c-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "8ce785de5b019e64b37c-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "8ce785de5b019e64b37c-part-0004.json",
+          "message_count": 77
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-s43-do-sample-reeval.md"
+}

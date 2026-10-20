@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6df7f425d553a17b866b",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_1_1778723906.md",
+  "task_key": "loop_1_1778723906",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_1_1778723906.md",
+    "occurrence": 1,
+    "bytes": 4052,
+    "sha256": "0ffff3c19b3c37f85040f6138011a7291116daf3f46127e0b685480d4edc2f82"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 1\nreason: idle_timeout\nupdated: '2026-05-13T23:50:02+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 westd-39279 的 cuda:0 和 cuda:1（gpu_ids 白名单）\n- submit_training_job 的 command 必须用 `bash -c \"CUDA_VISIBLE_DEVICES={gpu} source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && ...\"` 格式——之前 r1/r2 因 shell 语法问题（EXIT_CODE=2）失败过\n- GPU 编号脚本内始终从 0 开始（框架注入 CUDA_VISIBLE_DEVICES 映射物理卡）\n- r3 轮次两个实验都 OOM（EXIT_CODE=137），r4 修复后才跑通——如需重跑注意显存配置\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-39279，2× RTX PRO 6000 96GB\n- 工作目录：/root/solver-trace-ablation/\n- Python：/root/miniconda3/bin/python3（conda base 环境，不是 venv）\n- 模型：/root/solver-trace-ablation/models/Qwen3-4B\n- 数据：/root/solver-trace-ablation/data/proofwriter_fol_100.jsonl（100条 baseline），来源 FOLIO\n- Solver：Prover9 + SWI-Prolog + Z3 已安装\n- 训练日志：~/runs/solver-trace-ablation/sta-phase1-*.log\n- 输出：/root/solver-trace-ablation/outputs/\n- 配置文件：configs/grpo_exec_only.yaml（exec-only 条件）、configs/grpo_exec_sta.yaml（exec+STA 条件）\n- 活跃进程：无（两个实验刚跑完）\n\n### 3. 📊 当前状态\n**刚发生的事**：sta-phase1-exec-only-r4 和 sta-phase1-exec-sta-r4 两个实验都正常退出（ANALYZING 状态），cron 回调已到。这是经历 6 次失败后首次成功完成的 Phase 1 GRPO pilot。\n\n**已派未回的 Worker**：`worker_analysis_phase1-r4-results_20260513T204708` 正在分析两个实验的日志和 W&B 数据。这个 Worker 会：\n- SSH 读取两个实验的训练日志\n- 提取 W&B 指标\n- 对比 Phase 0 baseline（mean_isr=0.0641, prove_rate=0.12）\n- 判定 MVP Pass/Fail\n- 更新 registry 的 metrics 和 conclusion\n\n**Registry 状态**：\n- sta-phase1-exec-only-r4: ANALYZING（cuda:0，~0.29h）\n- sta-phase1-exec-sta-r4: ANALYZING（cuda:1，~0.29h）\n- 其他 8 个实验全 DONE（2 success: phase0-baseline + gt-isr-baseline；6 failed: r1/r2/r3 各种错误）\n\n**两张 GPU 都空闲**，等分析完再决定下一步。\n\n### 4. 📋 待办\n- Worker `worker_analysis_phase1-r4-results` 回调到 → 读分析结果，更新 registry 到 DONE，刷新 report.md，向 Director 汇报（带 [资源] 行）\n- 如果 conclusion=success 且 MVP Pass → 向 Director 汇报成功，建议进入 Phase 2（扩大训练规模/更多逻辑类型），按 on-experiment-done skill 做文献联动\n- 如果 conclusion=negative → 按 red-section skill 产出 Framing 调整提案，不要默默跑下一个实验\n- 如果 conclusion=failed（日志有错误）→ 按 on-experiment-failed skill 诊断，修复后重跑 r5\n- 分析完后两张 GPU 空闲 → 立即规划下一批实验占满 GPU\n\n### 5. 🎯 战略上下文\n- **项目核心**：STA（Solver Trace Ablation）用 mutation testing RIP 框架从 solver 执行语义推导 intensional verification reward，验证它能减少 GRPO 训练中的 reward hacking。目标 EMNLP 2026 ARR（DDL 2026-05-25，还剩 12 天）\n- **D001**：MVP 方案——FOL+Prover9 单逻辑 50→100-step GRPO pilot\n- **D002**：MVP 调整——趋势判断 + Phase 0 ISR baseline\n- **Phase 0 已完成**：base Qwen3-4B ISR baseline 锚定（mean_isr=0.0641 很低，prove_rate=0.12）；GT FOL baseline 也完成（gt_mean_isr=0.5588）\n- **易错点 1**：Phase 0 baseline 的 mean_isr=0.0641 非常低，说明 base model formalization 质量差。如果 Phase 1 训练后 ISR 仍然很低，不一定是方法问题——可能是 100 步训练不够\n- **易错点 2**：之前 6 次失败的根因链——r1 shell 语法（CUDA_VISIBLE_DEVICES 写法）→ r2 代码 bug → r3 OOM → r4 修复。如果需要重跑确保沿用 r4 的命令格式和配置\n- **易错点 3**：experiment_plan.yaml 是空的（没有 plan entries），实验都是直接在 registry 里创建的\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-1-1778723906.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f5cc9ea2392ef50c1dc3",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "eval isr b01 s45 s46",
+  "task_key": "worker_eval_isr-b01-s45-s46_20260517T052431",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_isr-b01-s45-s46_20260517T052431_result.json",
+    "occurrence": 1,
+    "bytes": 822,
+    "sha256": "a4dfeeb198a0e3c753ce7ee25e0a0007789efca9cbb0a1d4bbf53b7a2b5bd8ff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。两个实验均已评估并更新 registry (status=DONE, conclusion=success)。\n\n## 结果汇总\n\n| Metric | s45 | s46 |\n|--------|-----|-----|\n| eval_prove_rate | 42% | 77% |\n| eval_mean_isr | 0.254 | 0.316 |\n| proved_only_isr | 0.605 | 0.411 |\n| H7 (tautology) | 16 (38.1%) | 11 (14.3%) |\n| H1 (exact copy) | 2 (4.8%) | 20 (26.0%) |\n| H8 (degenerate) | 1 (2.4%) | 4 (5.2%) |\n| **Genuine** | **23 (54.8%)** | **42 (54.5%)** |\n| genuine_pct_total | 23% | 42% |\n\n两个 seed 的 genuine rate (占 proved) 高度一致 (~55%)，远超 s43/s44 的 H7 collapse。s45 prove_rate 较低但 ISR 更高，s46 prove_rate 较高但 H1 占比更大。总体确认 ISR β=0.1 在多数 seed 下能保留相当比例的 genuine proof（s42=17.3%, s45=54.8%, s46=54.5%），仅 s43/s44 collapse。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-isr-b01-s45-s46.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9cbd904adb6b298e422a",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code prep b02 config",
+  "task_key": "worker_code_prep-b02-config_20260516T034849",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prep-b02-config_20260516T034849_result.json",
+    "occurrence": 1,
+    "bytes": 1093,
+    "sha256": "9ad06f17cb75b876fff1280df569097197e7f887fb93f415f3c68ac3885281f1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### β=0.2 Config 内容 (`configs/grpo_additive_bonus_b02.yaml`)\n\n```yaml\nmodel_path: /root/autodl-tmp/models/Qwen3-4B\ndata_path: data/train_500_seed42.jsonl\nreward_mode: additive_bonus\noutput_dir: /root/autodl-tmp/outputs/plan002_additive_beta02_s42\nnum_steps: 500\nper_device_batch_size: 4\ngradient_accumulation_steps: 2\nnum_generations: 4\nmax_completion_length: 512\nlearning_rate: 1.0e-6\nbeta: 0.2\nseed: 42\nsolver: prover9\nwandb_project: solver-trace-ablation\nwandb_run: additive_bonus_b02\n```\n\n与 β=0.1 config 的差异：`beta: 0.1 → 0.2`，`output_dir` 和 `wandb_run` 相应更名。\n\n### Dry-run\n\nYAML 解析成功，所有字段类型正确（`beta` 为 float 0.2，`num_steps` 为 int 500 等）。\n\n### Tmux sessions\n\n| Session | 状态 |\n|---------|------|\n| `sweep-isr-b005-s42` | **活跃** — GPU 0 占用 ~80GB |\n| `sweep-isr-b01-s45` | **活跃** — GPU 1 占用 ~80GB |\n\n两个 session 都有运行中的训练进程，**未清理**。两张 GPU 均被占满，启动 β=0.2 训练需等当前任务完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prep-b02-config.md"
+}

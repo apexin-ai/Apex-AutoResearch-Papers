@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "da9876d466555f8f8e22",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "diagnose plan009 r2 and plan018 s43",
+  "task_key": "worker_diagnose_plan009-r2-and-plan018-s43_20260514T114013",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_plan009-r2-and-plan018-s43_20260514T114013_result.json",
+    "occurrence": 1,
+    "bytes": 1753,
+    "sha256": "f7b76bcaa7fd5287fa8585050e595e525ef40913566b273f24e21291c5264378"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n### 实验 1: plan009-sft-baseline-s42-r2\n\n**失败原因**: CUDA OOM at step 0 (backward pass)。GPU 冲突——plan018-additive-random-b01-s43 (PID 540910) 正在 cuda:1 上运行，占用 81.69 GiB，SFT 进程只剩 ~13 GiB，不够 backward pass。\n\n**可重试**: Yes，需要确保目标 GPU 空闲。\n\n**重试命令**:\n```bash\nexport CUDA_VISIBLE_DEVICES=1  # 确认 GPU 空闲\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\ncd /root/solver-trace-ablation\npython3 scripts/train_sft.py \\\n  --model_path /root/autodl-tmp/models/Qwen3-4B \\\n  --data_path data/train_500_seed42.jsonl \\\n  --output_dir /root/autodl-tmp/outputs/plan009_sft_baseline_s42 \\\n  --num_steps 200 --seed 42 --gpu 1 --no_wandb\n```\n\n---\n\n### 实验 2: plan018-additive-random-b01-s43\n\n**失败原因**: 磁盘满 (`No space left on device`, os error 28)。训练跑了 200/500 步后在 checkpoint save 时 safetensors 序列化失败。无 checkpoint 保存。\n\n**可重试**: Yes，磁盘当前 142G/250G (57%)，有 109G 可用，直接重跑即可。\n\n**重试命令**:\n```bash\nexport CUDA_VISIBLE_DEVICES=1\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\ncd /root/solver-trace-ablation\npython3 scripts/train_grpo.py \\\n  --config configs/grpo_additive_random_b01.yaml \\\n  --data_path data/train_500_seed42.jsonl \\\n  --num_steps 500 --seed 43 --beta 0.1 \\\n  --reward_mode additive_random \\\n  --output_dir /root/autodl-tmp/outputs/plan018_additive_random_b01_s43\n```\n\n---\n\n**关联发现**: plan018-s43 (PID 540910) 就是导致 plan009-sft-r2 OOM 的那个进程——两个实验被分配到同一张 GPU (cuda:1)。Registry notes 已更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-plan009-r2-and-plan018-s43.md"
+}

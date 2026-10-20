@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ec7f76fff913ae0b6938",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops start isr b005 s44",
+  "task_key": "worker_ops_start-isr-b005-s44_20260517T095651",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_start-isr-b005-s44_20260517T095651_result.json",
+    "occurrence": 1,
+    "bytes": 175,
+    "sha256": "610c91a3b168d013b51de925f241b320550bac78dc54e5f54d0c883455d9ea77"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已启动，确认正常运行：\n\n```\n磁盘: 85G/250G used (166G avail, 34%)\nPID: 281848\nGPU 0 显存占用: 80548MiB / 97887MiB, Util 93% ✓\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-start-isr-b005-s44.md"
+}

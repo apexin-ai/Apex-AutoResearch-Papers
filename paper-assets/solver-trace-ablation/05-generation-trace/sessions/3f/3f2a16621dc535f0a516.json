@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3f2a16621dc535f0a516",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "write related work expansion",
+  "task_key": "worker_write_related-work-expansion_20260514T230849",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_write_related-work-expansion_20260514T230849_result.json",
+    "occurrence": 1,
+    "bytes": 690,
+    "sha256": "f00fe51f501b7f19e468394c56634b4fe778d0837f021ba9dfb1eac6694bb6a3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All four requested additions are already present in both files:\n\n1. **Kim et al. contrast** — line 21 of related_work.tex already has the Lean 4 / FOLIO contrast and complementarity statement.\n2. **PRM recent progress** — line 15 already cites `\\cite{thinkprm}`, `\\cite{versaprm}`, and `\\cite{rprm}`, with bib entries at lines 309–335.\n3. **FOLIO justification** — line 10 already contains the FOLIO justification sentence plus ProofWriter/ProntoQA contrast, with bib entries at lines 337–351.\n4. **METR 2025** — line 19 already cites `\\cite{metr-reward-hacking}`, with bib entry at lines 353–359.\n\nNo changes needed — the task is already complete."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/write-related-work-expansion.md"
+}

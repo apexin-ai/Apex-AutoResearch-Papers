@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "a94c1a1958eb4a16b43b",
+  "project": "solver-trace-ablation",
+  "kind": "worker",
+  "title": "review paper consistency v2 20260515T010522 retry1",
+  "task_key": "worker_review_paper-consistency-v2_20260515T010522_retry1",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_review_paper-consistency-v2_20260515T010522_retry1.log",
+    "occurrence": 1,
+    "bytes": 865967,
+    "sha256": "e603fab2f76b1bdbebced6d8d9e1401f1ad07f7f128f6b20e48ddeddd8776006"
+  },
+  "statistics": {
+    "messages": 170,
+    "user_turns": 0,
+    "tool_calls": 74,
+    "roles": {
+      "log": 1,
+      "record": 2,
+      "system": 1,
+      "assistant": 17,
+      "tool_call": 74,
+      "tool_result": 74,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 170,
+      "chunks": [
+        {
+          "path": "a94c1a1958eb4a16b43b-part-0001.json",
+          "message_count": 132
+        },
+        {
+          "path": "a94c1a1958eb4a16b43b-part-0002.json",
+          "message_count": 38
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/review-paper-consistency-v2-20260515t010522-retry1.md"
+}

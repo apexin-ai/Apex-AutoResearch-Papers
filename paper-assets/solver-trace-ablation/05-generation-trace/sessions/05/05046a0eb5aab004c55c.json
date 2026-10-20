@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "05046a0eb5aab004c55c",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code d146 classify director check",
+  "task_key": "worker_code_d146-classify-director-check_20260520T033120",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d146-classify-director-check_20260520T033120_result.json",
+    "occurrence": 1,
+    "bytes": 1764,
+    "sha256": "c7a1d82282f8cf5f65d82c3b00d25c13b51cbcc9fb1bc81e73c841536e0f8aa1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 7 classify.json files and base eval results retrieved. Here's the summary:\n\n## D146 ProofFOL Classify Results\n\n| Model | n_proved | genuine | genuine_rate | H1 (CE) | H7 (TS) | H8 (PG) | CI |\n|---|---|---|---|---|---|---|---|\n| **base** (Qwen3-4B) | 16 | 16 | **1.00** | 0 | 0 | 0 | 0 |\n| **exec_s42** | 99 | 0 | **0.00** | 0 | 99 (h7_strict) | 0 | 0 |\n| **exec_s43** | 63 | 32 | **0.51** | 31 | 0 | 0 | 0 |\n| **exec_s44** | 72 | 1 | **0.01** | 71 | 0 | 0 | 0 |\n| **isr_s42** | 46 | 46 | **1.00** | 0 | 0 | 0 | 0 |\n| **isr_s43** | 56 | 17 | **0.30** | 39 | 0 | 0 | 0 |\n| **isr_s44** | 66 | 66 | **1.00** | 0 | 0 | 0 | 0 |\n\n## Base Model eval_sta Summary\n\n- **prove_rate**: 0.16 (16/100)\n- **proved_only_mean_isr**: 0.3098\n- **overall_mean_isr**: 0.0496\n- Solver: Prover9Solver, logic_type: fol\n- Only solves `answer=true` problems (16/32), zero on `false` (0/39) and `unknown` (0/29)\n\n## Key Observations\n\n1. **exec_s42 极端崩坏**: 99 proved 但 100% 是 H7-strict（TS hacking），genuine=0。完全靠 conclusion-in-premise shortcut。\n2. **exec_s44 也近乎崩坏**: 72 proved 中 71 个是 H1（CE），genuine 仅 1 个（1.4%）。\n3. **exec_s43 中间状态**: 63 proved，31 个 H1，genuine 32 个（50.8%）。\n4. **isr_s42 和 isr_s44 干净**: 所有 proved 均为 genuine（100%），无任何 hacking。\n5. **isr_s43 有 H1 污染**: 56 proved 中 39 个 H1，genuine 仅 17 个（30.4%）。\n6. **Exec vs ISR 对比**: Exec 训练在 ProofFOL 上大规模触发 hacking（尤其 TS 和 CE），ISR 训练大幅抑制 hacking（2/3 seeds 完全干净），支持论文核心 claim。\n7. **tmux/进程状态**: 仅 d134-pipeline tmux session 在跑（含清理进程），无活跃 eval 进程。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d146-classify-director-check.md"
+}

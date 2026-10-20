@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0f5fe616ab526bc43523",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "eval check eval progress",
+  "task_key": "worker_eval_check-eval-progress_20260516T173845",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_check-eval-progress_20260516T173845_result.json",
+    "occurrence": 1,
+    "bytes": 1224,
+    "sha256": "00054bb6f8fd1336d1515b3251a2b52e6a3f9620ceb086cda80653e52b0f009e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n两个 eval 进程**均在运行中**（日志持续更新至 01:39，即当前时刻）。\n\n### τ=0.2 (`gated_warmstart_v3_s43_r2`) — GPU 1\n\n| 指标 | 值 |\n|------|-----|\n| 进度 | **24/100**（23 完成 + 1 进行中） |\n| 已证明 | 1/23 (4.3%) |\n| 失败 | 22/23 |\n| 平均 gen 时间 | ~34s/sample |\n| 已运行 | ~13 min（01:26 开始） |\n| **预估剩余** | **~44 min** |\n\n### τ=0.15 (`gated_warmstart_v3_t015_s43`) — GPU 0\n\n| 指标 | 值 |\n|------|-----|\n| 进度 | **16/100**（15 完成 + 1 进行中） |\n| 已证明 | 4/15 (26.7%) |\n| 失败 | 11/15 |\n| 平均 gen 时间 | ~88s/sample |\n| 已运行 | ~22 min（01:17 开始） |\n| **预估剩余** | **~125 min (~2h)** |\n\n### GPU 使用\n\n| GPU | 利用率 | 显存 |\n|-----|--------|------|\n| 0 | 4% | 15.3 / 97.9 GB |\n| 1 | 24% | 16.5 / 97.9 GB |\n\n### 备注\n\n- τ=0.15 生成明显更慢（88s vs 34s），可能因为更严格的 gating 使模型产生更长的 trace\n- τ=0.2 当前 prove rate 很低 (4.3%)，远低于 τ=0.15 (26.7%)——但仅 23 个 sample，后续可能上升\n- 两个 eval 都没有 classify_h7 进程运行，classify_h7 可能是 eval 完成后才执行"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-check-eval-progress.md"
+}

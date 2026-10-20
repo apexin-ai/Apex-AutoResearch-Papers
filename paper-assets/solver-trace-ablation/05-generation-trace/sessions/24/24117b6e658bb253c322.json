@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "24117b6e658bb253c322",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code plan 013",
+  "task_key": "worker_code_plan_013_20260513T235303",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_013_20260513T235303_result.json",
+    "occurrence": 1,
+    "bytes": 911,
+    "sha256": "8670f338406401d7b62b215687825f741953ffb9a9aae5c3a2edaccb7b5b21d9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n**已完成的步骤：**\n\n1. **读代码**：`train_grpo.py` 已有 `random_reward` 模式实现（`make_reward_fn` 中），proved 样本用 `_random.Random(stats[\"total\"]).random()` 生成随机值替代 ISR，公式为 `exec_weight * 1.0 + sta_weight * rand_val`；unproved 样本 reward=0。`parse_args` 已包含 `\"random_reward\"` choice。无需修改代码。\n\n2. **创建配置**：`configs/grpo_random_reward.yaml`，`reward_mode: random_reward`，`exec_weight: 0.9`，`sta_weight: 0.1`，输出到 `/root/autodl-tmp/outputs/plan013_random_reward_s42`。\n\n3. **Dry-run 验证**：2 步完成，reward 值合理（step 1: reward=0.2296, prove_rate=25%, parse_rate=100%）。\n\n4. **提交训练**：PID=122796，GPU cuda:0，500 步，预计 ~2h13m。\n\n5. **Registry 更新**：`plan013-random-reward-s42` → RUNNING，含完整 spec 和 hypothesis。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-013.md"
+}

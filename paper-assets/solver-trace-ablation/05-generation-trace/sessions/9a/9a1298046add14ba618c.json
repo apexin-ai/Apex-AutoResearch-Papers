@@ -1,0 +1,83 @@
+{
+  "schema_version": "1.0",
+  "id": "9a1298046add14ba618c",
+  "project": "solver-trace-ablation",
+  "kind": "worker",
+  "title": "research goodhart literature",
+  "task_key": "worker_research_goodhart-literature_20260514T083046",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_goodhart-literature_20260514T083046.log",
+    "occurrence": 1,
+    "bytes": 577347,
+    "sha256": "7379024e1b41d8e5e480a7e3b183aaf9ec16c0df7044cbbc18b4fa0566885582"
+  },
+  "statistics": {
+    "messages": 293,
+    "user_turns": 3,
+    "tool_calls": 93,
+    "roles": {
+      "log": 1,
+      "system": 94,
+      "record": 2,
+      "assistant": 6,
+      "tool_call": 93,
+      "user": 3,
+      "tool_result": 93,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "9a1298046add14ba618c-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "9a1298046add14ba618c-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 20,
+      "chunks": [
+        {
+          "path": "9a1298046add14ba618c-part-0001.json",
+          "message_count": 20
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 261,
+      "chunks": [
+        {
+          "path": "9a1298046add14ba618c-part-0001.json",
+          "message_count": 148
+        },
+        {
+          "path": "9a1298046add14ba618c-part-0002.json",
+          "message_count": 113
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-goodhart-literature.md"
+}

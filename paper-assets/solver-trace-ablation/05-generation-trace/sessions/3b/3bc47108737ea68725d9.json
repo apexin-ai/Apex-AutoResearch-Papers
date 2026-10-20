@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3bc47108737ea68725d9",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "eval plan002 b01 s42 h8 reeval",
+  "task_key": "worker_eval_plan002-b01-s42-h8-reeval_20260515T124625",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_plan002-b01-s42-h8-reeval_20260515T124625_result.json",
+    "occurrence": 1,
+    "bytes": 1739,
+    "sha256": "5e193227f58a63cfaef324ec58d9f21e9d6dfa7440c9504140801aed168832ec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调查完毕。汇总如下：\n\n---\n\n## H8 Re-eval 结果报告\n\n### plan002-additive-b01-s42（500步，β=0.1，seed=42）\n- **Checkpoint**: `/root/autodl-tmp/outputs/plan002_additive_b01_s42/` **已删除**\n- **Eval 结果文件**: 已删除\n- **Registry 现状**: genuine_count=26, h7_count=13, **无 h8 字段**\n- **H8 retroactive audit 记录**: \"checkpoint and eval file deleted; cannot re-classify\"\n- **结论: 无法 re-eval，需要重训**\n\n### plan002-additive-b01-s43（500步，β=0.1，seed=43）\n- **Checkpoint**: `/root/autodl-tmp/outputs/plan002_additive_b01_s43/checkpoint-500/` **已删除**\n- **Eval 结果文件**: 从未通过 eval_sta.py 标准流程生成（原始分类是 inline 手动分析）\n- **Registry 现状**: genuine_count=2, h7_count=59, **无 h8 字段**\n- **结论: 无法 re-eval，需要重训**\n\n### plan002-additive-b01-s44（500步，β=0.1，seed=44）\n- **Checkpoint**: `/root/autodl-tmp/outputs/plan002_additive_b01_s44/` **已删除**\n- **Eval 结果文件**: 同 s43，从未通过标准流程生成\n- **Registry 现状**: genuine_count=12, h7_count=77, **无 h8 字段**\n- **结论: 无法 re-eval，需要重训**\n\n---\n\n### 已有 H8 审计的 plan002 实验（无需操作）\n| exp_id | h8_count | genuine (旧→新) | 备注 |\n|--------|----------|-----------------|------|\n| plan002-additive-b01-s42-1000 | 1 | 3→2 | 已审计 |\n| plan002-additive-b03-s42 | 3 | 4→1 | 已审计 |\n\n### 总结\n三个 500 步 plan002-b01 实验（s42/s43/s44）的 checkpoint 和 eval 文件均已被清理，H8 re-eval 无法执行。需要重训才能完成 H8 审计。GPU 当前两块都空闲（0 MiB 使用），如需重训可立即启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-plan002-b01-s42-h8-reeval.md"
+}

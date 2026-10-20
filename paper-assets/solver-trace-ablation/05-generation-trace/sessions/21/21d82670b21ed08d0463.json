@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "21d82670b21ed08d0463",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "fix gpu collision cleanup",
+  "task_key": "worker_fix_gpu-collision-cleanup_20260516T040107",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_gpu-collision-cleanup_20260516T040107_result.json",
+    "occurrence": 1,
+    "bytes": 861,
+    "sha256": "4e03148c50e440560ae85287e60ed1f581b762d365eab7d6f1f29d6a085defb3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 冲突清理\n- PID 628171 (plan018-additive-random-b01-s45): **not_found**（已自行消亡）\n- tmux session plan018-additive-random-b01-s45: **not_found**\n\n## sweep-isr-b02-s42 (cuda:1)\n- PID: 626802, 状态: **alive**, 运行 7min, CPU 105%\n- 当前 step: **50/500**\n- GPU 占用: **80077 MiB**, 利用率 100%\n\n## sweep-isr-b01-s45 (cuda:0)\n- PID: 604569, 状态: **dead**\n- 最后记录 step: **219/500**（停在 03:59:49 UTC）\n- tmux session: 不存在\n- 有 checkpoint-200，无 train.log\n- GPU 占用: **0 MiB**\n\n## GPU 总览\n- cuda:0: 0 MiB, 0%\n- cuda:1: 80077 MiB, 100%\n\n---\n\n**问题**: sweep-isr-b01-s45 在 step 219 意外死亡，cuda:0 完全空闲。可能是 plan018 误提交时的 GPU 冲突波及，或 OOM。需要决定是否在 cuda:0 上重启（从 checkpoint-200 resume 或从头重训）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-gpu-collision-cleanup.md"
+}

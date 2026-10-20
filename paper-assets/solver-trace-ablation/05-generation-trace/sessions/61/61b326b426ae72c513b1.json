@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "61b326b426ae72c513b1",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "paper sensitivity analysis",
+  "task_key": "worker_paper_sensitivity-analysis_20260521T181245",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_sensitivity-analysis_20260521T181245_result.json",
+    "occurrence": 1,
+    "bytes": 1118,
+    "sha256": "441951dbe4dd0434c1f6c16c0d6206dc5fa62d0d9c145a474851a963a976ca31"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both edits are in place.\n\n**Summary of changes:**\n\n1. **appendix.tex** — Added new subsection \"Sensitivity to Seed 43 Exclusion\" (`\\label{app:sensitivity-s43}`) with:\n   - Paragraph explaining why s43 is problematic across all 3 conditions\n   - Table `tab:sensitivity-no-s43` with 2-seed (s42+s44) pooled stats for Exec-only, ISR β=0.1, and Random β=0.1\n   - Note on 3-seed exec-only being dominated by s43's greedy collapse variance\n\n2. **experiments.tex** — Updated the footnote reference from `Appendix~\\ref{app:detailed-results}` to `Appendix~\\ref{app:sensitivity-s43}, Table~\\ref{tab:sensitivity-no-s43}`\n\nKey numbers in the sensitivity table:\n- **ISR TS amplification preserved**: 60.0% (ISR) vs 0% (Random) — consistent with 3-seed 71% vs 14%\n- **N-H rates low everywhere**: 3.7% (Exec) / 8.2% (ISR) / 14.3% (Random)\n- **CE→TS shift under ISR**: ISR TS=60%/CE=25% vs Random TS=0%/CE=78%\n- **3-seed exec-only pooled**: not separately tabled since s43 T=0.7 makes it unreliable; noted in text that 2-seed mean (PR=95.5%) better characterizes the non-degenerate regime"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-sensitivity-analysis.md"
+}

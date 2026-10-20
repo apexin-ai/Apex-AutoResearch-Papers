@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "61f5dd1d50b339b6921f",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_12_1778862631.md",
+  "task_key": "loop_12_1778862631",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_12_1778862631.md",
+    "occurrence": 1,
+    "bytes": 3714,
+    "sha256": "15ec5b17ff73317e3f21cb5367ee2c5870e17d19761368ec31e7ca8e4a5a68ee"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 12\nreason: idle_timeout\nupdated: '2026-05-15T16:19:04+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-39279 的 cuda:0 和 cuda:1，**只有这两张**。即使 Director 指定其他卡也必须 push back\n- Eval 数据集只能用 `proofwriter_fol_100.jsonl`，**禁止用 test_100.jsonl**（D062/D063 教训：旧 test set 导致 s43 genuine 从 67%→26.7% 虚高）\n- 训练命令中 GPU 编号从 0 开始（框架自动映射物理 GPU）\n- plan013 vs plan017 公式结构不同，论文中不可简化为 \"additive vs convex\" 对照（D027）\n- ISR β=0.1 hacking rate 69.1% (strict)，论文不标 \"no hacking\"，标 \"lowest hacking rate\"\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-39279，工作目录 `/root/solver-trace-ablation`\n- Python：`/root/miniconda3/bin/python`，激活方式 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`（**不是 venv**）\n- 模型：`/root/autodl-tmp/models/Qwen3-4B`\n- 数据：`/root/solver-trace-ablation/data/train_500_seed42.jsonl`（训练）、`data/proofwriter_fol_100.jsonl`（eval）\n- 输出：`/root/autodl-tmp/outputs/` 下按实验 ID 命名\n- W&B：部分实验用 `--no_wandb`，不可假设 W&B 数据总是有\n- 活跃进程：**无**。两张 GPU 当前全空闲，无 tmux session，无 cron\n\n### 3. 📊 当前状态\n刚完成 `plan018-additive-random-b01-s42-1000-r3` 的分析并更新 registry：**NEGATIVE**，genuine=0%, tautological collapse, 与 r2 一致。分析 Worker 卡死后被取消，Main Agent 从 artifact JSON 手动完成了 registry 更新。\n\nRegistry 状态：\n- **PENDING**: `plan009-sft-baseline-s42-1000`（SFT 1000步，审批卡已发，等 Director 批准）\n- **PREPARING**: 无\n- **RUNNING**: 无\n- 其余 75 个实验全部 DONE（success 21, negative 23, failed 23, killed 6）\n\n等待中：\n- Director 对 plan009-sft-baseline-s42-1000 的审批决策\n- Director 对第二张 GPU 用途的指示（已在汇报中建议 SFT 多 seed 或中间 checkpoint eval）\n\n### 4. 📋 待办\n- plan009 审批通过 → 立即 spawn Worker 提交到 cuda:0 或 cuda:1（`submit_on_allocated`），SFT 训练 ~50-90min\n- plan009 完成回调 → 1000步全景表 5/5 完成，**这是关键分叉点**：\n  - SFT genuine ≥ 80% → Goodhart collapse 是 GRPO/RL 特有，现有 framing 完全成立，直接写入论文 §4.3\n  - SFT genuine < 50% → 需要 Framing 调整提案（从 \"GRPO 特有\" 改为 \"一般 finetuning 退化\"），**先报 Director 再动 paper**\n- Director 指定第二张 GPU 用途 → 按指示准备实验\n- 无实验可铺 + GPU 持续空闲 → 汇报 Director 请求方向\n\n### 5. 🎯 战略上下文\n- **DDL: 2026-05-25（ARR May，剩 10 天）**，处于写作阶段 + 补实验收尾\n- 核心叙事：STA/ISR 是 GRPO neurosymbolic formalizer 的**诊断工具** + Goodhart's Law 案例研究。3 个 Claims 已闭环（D057 封板）\n- 1000步全景（seed=42）4/5 已完成：exec-only/ISR/random/ISR-β0.3 全部 collapse 到 ~0% genuine。**SFT 是最后一块拼图**\n- 500步 SFT 3-seed 均 ~91.5% genuine（0% hacking），如果 1000步也维持 → 论文最强证据之一\n- **易错点**：\n  - ISR 在 eval 中数值高（如 r3 的 0.689）不代表推理质量好——可能是 tautological 结构的数学性质，必须看 genuine rate\n  - Premise-count-matched 后 ISR vs Random 无差异（1.06x），论文中 ISR 的 \"结构优势\" claim 已作废（D051 定论）\n  - H8 (conjunction collapse) 是第 8 种 hacking 模式，仅在 ISR β=0.3 1000步出现，taxonomy 已从 7→8\n  - Worker 分析任务可能在 register_artifact 后卡死（本次教训），registry 更新应由 Main Agent 兜底\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-12-1778862631.md"
+}

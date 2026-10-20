@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "90607b5478cacfd682d3",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code plan002 additive bonus",
+  "task_key": "worker_code_plan002-additive-bonus_20260514T020603",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan002-additive-bonus_20260514T020603_result.json",
+    "occurrence": 1,
+    "bytes": 944,
+    "sha256": "8e8307ec177767aa3ad52580e953bca5a4bd35e363079bed414ed387948a23d8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部修改已验证通过。总结：\n\n**`scripts/train_grpo.py` 修改：**\n- **L148**: `make_reward_fn` 签名增加 `beta: float = 0.3` 参数\n- **L187-195**: 新增 `additive_bonus` 模式 — `r = r_exec * (1 + beta * ISR)`，调用 `_full_fn` 时 `sta_weight=1.0` 确保 ISR 被计算\n- **L302**: `--reward_mode` choices 增加 `\"additive_bonus\"`\n- **L312-313**: 新增 `--beta` CLI 参数（默认 0.3）\n- **L384**: `main()` 中传递 `beta` 到 `make_reward_fn`\n- `save_total_limit` 从 2 改为 1（C003）\n\n**新建 `configs/grpo_additive_bonus.yaml`：**\n- `reward_mode: additive_bonus`, `beta: 0.3`\n- `data_path: data/train_500_seed42.jsonl`（C001）\n- `output_dir: /root/autodl-tmp/outputs/grpo_additive_bonus_b03`\n- 其他参数与 plan005 一致（500 steps, K=8, lr=1e-6）\n- `no_wandb: true`\n\nDry-run `--help` 通过，argparse 正确识别所有新参数。GPU 空出后可直接提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan002-additive-bonus.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "05475ea3395ff187342f",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code d146 s44 step check",
+  "task_key": "worker_code_d146-s44-step-check_20260519T192953",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d146-s44-step-check_20260519T192953_result.json",
+    "occurrence": 1,
+    "bytes": 921,
+    "sha256": "61eccb0f583ed9eba29c7f684bde4fcb5b3e6fbb896a05063ae0ed2521e21827"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n| # | 问题 | 答案 |\n|---|------|------|\n| 1 | exec-s44 的 num_steps | **500**（pipeline 六个 run 全部是 `--num_steps 500`） |\n| 2 | checkpoint 保存间隔 | **save_steps=50**，`save_total_limit=1`（只保留最新一个） |\n| 3 | step 500 是否自动保存 | **是**。500 能被 50 整除会触发 checkpoint 保存，训练结束后还有 `trainer.save_model()` 写最终模型到 output_dir 根目录 |\n| 4 | s44 当前 checkpoint | **checkpoint-350**（当前 step 375，~15GB 完整权重） |\n| 5 | s42/s43 参考 | 均已完成：**checkpoint-500** + output_dir 根目录的最终模型文件 |\n\n**结论：无需干预。** s44 按 500 步训练，save_steps=50 + save_total_limit=1 符合 C003 约束。到 step 500 时会自动保存 checkpoint-500 和最终模型，与 s42/s43 行为一致。按当前速率（~14s/step），约 29 分钟后完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d146-s44-step-check.md"
+}

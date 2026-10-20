@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fbf94baba5830ce864f9",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "eval exp1 isr b03 s43",
+  "task_key": "worker_eval_exp1-isr-b03-s43_20260515T003456",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp1-isr-b03-s43_20260515T003456_result.json",
+    "occurrence": 1,
+    "bytes": 958,
+    "sha256": "2c02f534b11f77e49fbec89862d75fa338241dea858f9e07afdd738e40f2dbe7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "eval_sta.py 和 H7 分类都已经完成，结果已写入 registry。无需重新运行。\n\n## exp1-isr-b03-s43 评估结果（已在 registry 中）\n\n| 指标 | 值 |\n|------|-----|\n| n_problems | 100 |\n| n_proved | 91 |\n| **prove_rate** | **0.91** |\n| **mean_isr** | **0.2575** |\n| proved_only_mean_isr | 0.283 |\n| median_isr | 0.3333 |\n| isr_std | 0.2363 |\n| max_isr | 0.75 |\n\n### H7 分类\n\n| 指标 | 值 |\n|------|-----|\n| **genuine_rate** | **0.6703** |\n| genuine_count | 61 |\n| hacking_rate_functional | 0.3297 |\n| hacking_rate_strict_h7 | 0.022 |\n| h1_conclusion_in_premise | 0.747 |\n\n### 按 answer_type 分解\n\n| type | count | proved | prove_rate | mean_isr |\n|------|-------|--------|------------|----------|\n| false | 29 | 27 | 0.931 | 0.434 |\n| unknown | 31 | 31 | 1.000 | 0.172 |\n| true | 40 | 33 | 0.825 | 0.196 |\n\neval 输出文件：`/root/autodl-tmp/outputs/eval_sta_exp1_isr_b03_s43.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp1-isr-b03-s43.md"
+}

@@ -1,0 +1,101 @@
+{
+  "schema_version": "1.0",
+  "id": "fc29c420098b26c3db13",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "writing paper experiments",
+  "task_key": "worker_writing_paper-experiments_20260514T185009",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_paper-experiments_20260514T185009_result.json",
+    "occurrence": 1,
+    "bytes": 5531,
+    "sha256": "594194c3ad61fb7248d6b6fbb4de17c6094f1ff1e4a5fa5e68355a79c8d1b978"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Written to `artifacts/_project/paper/experiments.tex`. JSON report:\n\n```json\n{\n  \"section\": \"Experiments (Section 4)\",\n  \"venue\": \"EMNLP 2026 Main\",\n  \"word_count_estimate\": 2850,\n  \"artifact_id\": \"art_20260514_b77022\",\n  \"path\": \"artifacts/_project/paper/experiments.tex\",\n\n  \"structure\": {\n    \"4.1_Setup\": \"~220 words. Qwen3-4B, GRPO K=8, 500/1000 steps, FOLIO 500/100 split, 5 reward conditions, 3 seeds.\",\n    \"4.2_ISR_as_Diagnostic\": \"~700 words. ISR collapse 0.642→0.132→0.003 (Fig2), 3-seed divergence (Fig3), SFT baseline 92.9% genuine.\",\n    \"4.3_Meta_Level_Goodhart\": \"~900 words. Tab4 (3-seed β=0.1), H7 ISR-specific 64.5% vs 0%, premise-count-matched 1.06×, GRPO-universal H1, β=0.3 collapse, Tab1 landscape.\",\n    \"4.4_Cross_Logic_Transfer\": \"~550 words. Prolog exec-only ISR<0.1 (Tab5), 3/3 seeds gaming 0% genuine (Fig4), classifier blind spot.\",\n    \"4.5_Hacking_Taxonomy\": \"~480 words. 7 modes (Tab2), H1 universal, mode determined by reward, condition-specific associations.\"\n  },\n\n  \"tables\": {\n    \"Tab1_landscape\": \"table* — Goodhart landscape: 8 conditions, PR/ISR/H7/H1/Genuine/Phase\",\n    \"Tab2_taxonomy\": \"table* — 7 hacking modes × 5 condition groups with prevalence %\",\n    \"Tab4_beta01\": \"table — 6 rows (ISR×3 + Random×3), per-seed PR/ISR/H7/H1/Genuine\",\n    \"Tab5_prolog\": \"table — 6 rows (exec×3 + STA×3), PR/ISR/functional H7/Genuine\",\n    \"inline_premise_matched\": \"inline 2×2 table showing 1.06× ratio\"\n  },\n\n  \"figures\": {\n    \"Fig2\": \"ISR collapse trajectory placeholder (dual y-axis, steps vs PR/ISR)\",\n    \"Fig3\": \"Hacking composition stacked bar placeholder (§4.2)\",\n    \"Fig4\": \"FOL vs Prolog grouped bar placeholder (§4.4)\"\n  },\n\n  \"hard_constraints_verified\": {\n    \"no_2.4x_claim\": true,\n    \"prolog_s44_gaming_not_genuine\": true,\n    \"exec_only_s42_not_healthy\": \"reported as 87.1% H1, 12.9% genuine\",\n    \"taxonomy_7_modes\": true,\n    \"premise_count_matched_1.06x\": true,\n    \"ISR_s44_genuine_FN_noted\": \"footnote in Tab4\"\n  },\n\n  \"data_sources\": {\n    \"registry_experiments\": [\"plan003\", \"plan001-s42/s43/s44\", \"plan016\", \"plan002-b01-s42/s43/s44\", \"plan018-s42/s43/s44\", \"plan002-b03\", \"plan017\", \"plan009-sft\", \"plan006-prolog-exec/sta\", \"plan013\"],\n    \"project_files\": [\"memory.md\", \"paper_framing.md\"],\n    \"method_section\": \"method.tex (notation/citation consistency)\"\n  }\n}\n```\n\n**Key changes from the existing draft:**\n- \"ProofWriter\" → \"FOLIO\" throughout\n- ISR s42 genuine: 30.9% → 32.1% (residual = 81−13−42, per task spec convention)\n- Fig3 moved from §4.5 to §4.2\n- Added Fig4 (FOL vs Prolog) placeholder in §4.4\n- Added Tab2 (hacking taxonomy matrix) as table* in §4.5\n- Prolog table uses proved-only ISR for ISR-reward rows (1.000/0.185/0.912)\n- All Goodhart framing updated to D051 conclusions (no \"sweet spot\", no \"2.4x\")\n- Convex random included in Tab1 for completeness"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "section": "Experiments (Section 4)",
+              "venue": "EMNLP 2026 Main",
+              "word_count_estimate": 2850,
+              "artifact_id": "art_20260514_b77022",
+              "path": "artifacts/_project/paper/experiments.tex",
+              "structure": {
+                "4.1_Setup": "~220 words. Qwen3-4B, GRPO K=8, 500/1000 steps, FOLIO 500/100 split, 5 reward conditions, 3 seeds.",
+                "4.2_ISR_as_Diagnostic": "~700 words. ISR collapse 0.642→0.132→0.003 (Fig2), 3-seed divergence (Fig3), SFT baseline 92.9% genuine.",
+                "4.3_Meta_Level_Goodhart": "~900 words. Tab4 (3-seed β=0.1), H7 ISR-specific 64.5% vs 0%, premise-count-matched 1.06×, GRPO-universal H1, β=0.3 collapse, Tab1 landscape.",
+                "4.4_Cross_Logic_Transfer": "~550 words. Prolog exec-only ISR<0.1 (Tab5), 3/3 seeds gaming 0% genuine (Fig4), classifier blind spot.",
+                "4.5_Hacking_Taxonomy": "~480 words. 7 modes (Tab2), H1 universal, mode determined by reward, condition-specific associations."
+              },
+              "tables": {
+                "Tab1_landscape": "table* — Goodhart landscape: 8 conditions, PR/ISR/H7/H1/Genuine/Phase",
+                "Tab2_taxonomy": "table* — 7 hacking modes × 5 condition groups with prevalence %",
+                "Tab4_beta01": "table — 6 rows (ISR×3 + Random×3), per-seed PR/ISR/H7/H1/Genuine",
+                "Tab5_prolog": "table — 6 rows (exec×3 + STA×3), PR/ISR/functional H7/Genuine",
+                "inline_premise_matched": "inline 2×2 table showing 1.06× ratio"
+              },
+              "figures": {
+                "Fig2": "ISR collapse trajectory placeholder (dual y-axis, steps vs PR/ISR)",
+                "Fig3": "Hacking composition stacked bar placeholder (§4.2)",
+                "Fig4": "FOL vs Prolog grouped bar placeholder (§4.4)"
+              },
+              "hard_constraints_verified": {
+                "no_2.4x_claim": true,
+                "prolog_s44_gaming_not_genuine": true,
+                "exec_only_s42_not_healthy": "reported as 87.1% H1, 12.9% genuine",
+                "taxonomy_7_modes": true,
+                "premise_count_matched_1.06x": true,
+                "ISR_s44_genuine_FN_noted": "footnote in Tab4"
+              },
+              "data_sources": {
+                "registry_experiments": [
+                  "plan003",
+                  "plan001-s42/s43/s44",
+                  "plan016",
+                  "plan002-b01-s42/s43/s44",
+                  "plan018-s42/s43/s44",
+                  "plan002-b03",
+                  "plan017",
+                  "plan009-sft",
+                  "plan006-prolog-exec/sta",
+                  "plan013"
+                ],
+                "project_files": [
+                  "memory.md",
+                  "paper_framing.md"
+                ],
+                "method_section": "method.tex (notation/citation consistency)"
+              }
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-paper-experiments.md"
+}

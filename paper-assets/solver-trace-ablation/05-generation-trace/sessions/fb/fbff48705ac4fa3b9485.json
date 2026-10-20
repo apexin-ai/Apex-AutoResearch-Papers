@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fbff48705ac4fa3b9485",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "check plan006 data integrity",
+  "task_key": "worker_check_plan006-data-integrity_20260514T111210",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_plan006-data-integrity_20260514T111210_result.json",
+    "occurrence": 1,
+    "bytes": 1937,
+    "sha256": "303cbe551cffa750750c5360a954abda21dd8a7a033d94ecc0de4ef920005923"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果清晰，报告如下：\n\n---\n\n## 数据完整性检查报告\n\n### 1. `data/train_500_seed42.jsonl` 格式\n\n**确定是 FOL 数据，不是 Prolog。**\n\n每条数据包含 `fol_premises`（如 `∀x (... → ...)`）和 `fol_conclusion` 字段，使用一阶逻辑符号（`∀`, `∃`, `∧`, `→`, `¬`）。没有任何 Prolog 语法（`:-`, `?-` 等）。示例 id 前缀为 `folio_`。\n\n### 2. `configs/grpo_prolog_exec_only.yaml` 配置\n\n| 字段 | 值 |\n|------|-----|\n| `logic_type` | `prolog` |\n| `solver` | `prolog` |\n| `data_path` | `data/train_500_seed42.jsonl` |\n| `reward_mode` | `execution_only` |\n\n配置声称用 Prolog solver，但数据指向的是 FOL 数据文件。\n\n### 3. 与 plan001 FOL config (`grpo_exec_only.yaml`) 对比\n\n| 字段 | plan001 FOL | plan006 \"Prolog\" |\n|------|-------------|------------------|\n| `data_path` | `data/train_500_seed42.jsonl` | `data/train_500_seed42.jsonl` |\n| `solver` | `prover9` | `prolog` |\n| 其余参数 | 相同 | 相同（除 num_steps 500 vs 100） |\n\n**两个实验用的是完全相同的训练数据。**\n\n### 4. `data/` 目录\n\n**没有 `prolog/` 子目录，没有任何 Prolog 格式的数据文件。** 目录下全部是 FOL 数据（`folio_` 前缀、FOL 符号格式）。\n\n---\n\n## 结论\n\n**plan006-prolog-exec-s42 本质上是用 FOL 数据 + Prolog solver 配置在跑。** 它不是真正的 Prolog 实验——因为根本不存在 Prolog 格式的训练数据。它和 plan001 唯一的区别是 `solver: prolog`（vs `prover9`）和 `num_steps: 500`（vs 100）。\n\n这意味着：\n- 模型看到的 prompt 中是 FOL 符号，生成的大概率也是 FOL 风格的推理\n- Prolog solver 接收 FOL 格式的输入，要么全部执行失败（reward=0），要么有某种格式转换层\n- **这不是一个有效的 Prolog 实验**，更像是\"用错误的 solver 跑 FOL 数据\""
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-plan006-data-integrity.md"
+}

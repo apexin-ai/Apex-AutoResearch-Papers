@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0210bed2b1ab816160c3",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code d146 oom verify",
+  "task_key": "worker_code_d146-oom-verify_20260519T145726",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d146-oom-verify_20260519T145726_result.json",
+    "occurrence": 1,
+    "bytes": 1156,
+    "sha256": "bc201734e6e7432998bf923b8fe5425ebf9a66f9d2acd7d0ac86da0301a77e45"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n**训练未启动，不是 OOM 问题，而是启动命令本身失败。**\n\n### 详情\n\n| 项目 | 状态 |\n|------|------|\n| Config batch_size | **未修改** — 仍是 `per_device_batch_size: 4`（预期改为 2） |\n| Config accumulation | `gradient_accumulation_steps: 4`（正确） |\n| GPU 显存 | 0 MiB / 97887 MiB — 空闲，无进程 |\n| 训练进度 | **从未开始** — step 0/500 |\n| 错误 | `bash: line 1: --config: command not found`，EXIT_CODE=127 |\n\n### 根因分析\n\n`d146_pipeline.sh` 脚本本身正确（`$PYTHON $SCRIPT_PY --config ...`），python3 和 train_grpo.py 也都存在。但日志显示 `$PYTHON` 和 `$SCRIPT_PY` 变量未展开，导致命令变成了裸 `--config ...`。\n\n推测：tmux session 不是通过 `bash d146_pipeline.sh` 启动的，而是逐行发送命令，变量定义行未被执行或在不同 shell 上下文中丢失。\n\n### 需要修复两件事\n\n1. **Config 未改**：`per_device_batch_size` 仍为 4，需改为 2\n2. **启动方式**：用 `bash /root/solver-trace-ablation/scripts/d146_pipeline.sh` 整体执行脚本，而非拆行发送"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d146-oom-verify.md"
+}

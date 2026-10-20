@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "af6207019f6bee0148ae",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analysis s42 taxonomy rerun current classify",
+  "task_key": "worker_analysis_s42-taxonomy-rerun-current-classify_20260515T170612",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_s42-taxonomy-rerun-current-classify_20260515T170612_result.json",
+    "occurrence": 1,
+    "bytes": 1114,
+    "sha256": "9d0d945e4d8c5ac839ab7456e8fda91f7e012fde40da8c3444564d5ce74ea6fc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新成功。plan016-extended-1000-s42 条目已存在（我初始搜索的过滤方式有误），metrics 已更新。\n\n## 结果汇总\n\n### s42 1000 步 taxonomy（当前版本 classify_h7.py）\n\n| 类别 | 数量 | 比例 |\n|------|------|------|\n| Proved | 96 | 96% |\n| H7a (text-match tautology) | 0 | 0% |\n| H7b (obfuscated tautology) | 0 | 0% |\n| H1 (conclusion in premises) | **96** | **100%** |\n| H8 (conjunction collapse) | 0 | 0% |\n| **Genuine** | **0** | **0%** |\n\n旧版 classify_h7 给出 genuine=7 是因为 H1 检测不够全面（不是因为缺少 H8 —— H8 在 s42 1000 步中本来就是 0）。当前版本识别出全部 96 个 proved proof 都是 H1（结论嵌入在前提中），genuine 归零。\n\n### 三 seed pooled genuine（1000 步 exec-only）\n\n| Seed | n_proved | H7 | H1 | H8 | Genuine | Rate |\n|------|----------|-----|-----|-----|---------|------|\n| s42 | 96 | 0 | 96 | 0 | 0 | 0% |\n| s43 | 90 | 90 | 0 | 0 | 0 | 0% |\n| s44 | 100 | 0 | 85 | 15 | 3 | 3% |\n\n**Pooled: 1.0% ± 1.7%** — 与 D090 完全一致，不再矛盾。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-s42-taxonomy-rerun-current-classify.md"
+}

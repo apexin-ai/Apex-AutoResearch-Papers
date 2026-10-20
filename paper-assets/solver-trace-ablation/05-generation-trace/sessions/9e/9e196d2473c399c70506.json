@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9e196d2473c399c70506",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code d157 s44 eval",
+  "task_key": "worker_code_d157-s44-eval_20260520T185230",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d157-s44-eval_20260520T185230_result.json",
+    "occurrence": 1,
+    "bytes": 116,
+    "sha256": "a43f99076d82df02784323c9cf42ec334d63e457cbea12c9ee014f8ed7a98bd2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Monitor timed out (eval had already finished long before). No action needed — all work is complete."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d157-s44-eval.md"
+}

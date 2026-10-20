@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bbb6bc1474f77a2c71b1",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops status check loop10",
+  "task_key": "worker_ops_status-check-loop10_20260515T005500",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_status-check-loop10_20260515T005500_result.json",
+    "occurrence": 1,
+    "bytes": 1328,
+    "sha256": "fee155df68eede30437ab1779c2a78e94e85bbe0f9f33a3f27c3b30d92a104cb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 训练进程\n- **状态**: 存活，PID 51297，CPU 101%，GPU 1 占用 80.3GB/97.9GB，利用率 92%\n- **进度**: step 87/500，最新日志时间 `00:55:24 UTC`（刚刚）\n- **近期指标** (step 80-87): prove_rate 波动大 (0~1.0)，reward_mean 间歇为 0，parse_rate 稳定 1.0\n- **速率**: 近 20 步约 6 秒/步，按此速率剩余 413 步 ≈ **41 分钟**\n\n### GPU 使用\n| GPU | 进程 | 显存 | 利用率 |\n|-----|------|------|--------|\n| 0 | PID 54436 (python3) | 16.3GB/97.9GB | 69% |\n| 1 | PID 51297 (exp1-random-b03-s44-r2) | 80.3GB/97.9GB | 92% |\n\n注意：GPU 0 有未知进程 PID 54436。\n\n### 磁盘\n- **数据盘**: 82G/250G (33%) — 比上次 96% 大幅改善\n\n### outputs 目录明细\n\n| 目录 | 大小 | 状态 | 可清理 |\n|------|------|------|--------|\n| exp1_isr_b03_s44_r2 | 31G | 已完成 | **是** |\n| exp1_random_b03_s44 | 15G | 已完成 | **是** |\n| exp1_random_b03_s44_r2 | 15G | **训练中** | 否 |\n| exp1_isr_b03_s43_eval | 228K | eval 结果 | 可选 |\n| exp1_isr_b03_s44_r2_eval | 168K | eval 结果 | 可选 |\n| exp1_random_b03_s43_eval | 0 | 空 | 可选 |\n\n**可清理 checkpoint 合计 ~46G**（exp1_isr_b03_s44_r2 + exp1_random_b03_s44），前提是这两个实验的 eval 已完成且不再需要权重。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-status-check-loop10.md"
+}

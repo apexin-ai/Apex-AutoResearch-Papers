@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "02843df4791e091e5980",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "research check random reward isr field",
+  "task_key": "worker_research_check-random-reward-isr-field_20260514T002625",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_check-random-reward-isr-field_20260514T002625_result.json",
+    "occurrence": 1,
+    "bytes": 1580,
+    "sha256": "50548419700ec3310eaae189d3f1b6acfa26550e9135a9064fa2d0d69f28b22d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结论：**`isr_mean` 在 `random_reward` 模式下 = 真实 ISR（实际上恒为 0.0）**。\n\n关键逻辑链：\n\n**1. `random_reward` 分支（行 173-186）：**\n```python\nelif reward_mode == \"random_reward\":\n    result = _fast_fn({}, cleaned, solver,\n                      execution_weight=1.0, sta_weight=0.0, timeout=5)\n    proved = result[\"execution_reward\"] > 0\n    if proved:\n        rand_val = rng.random()\n        reward_val = exec_weight * 1.0 + sta_weight * rand_val\n        result[\"random_reward\"] = rand_val\n    else:\n        reward_val = 0.0\n        result[\"random_reward\"] = 0.0\n```\n\n注意：调用 `_fast_fn` 时传入 `sta_weight=0.0`，所以 `result[\"sta_reward\"]` 恒为 0.0。\n\n**2. isr 取值（行 ~193）：**\n```python\nisr = result.get(\"sta_reward\", 0.0)\n```\n\n**3. isr_mean 写入 log（行 ~229）：**\n```python\nstep_buf[\"isr_sum\"] += isr\n# ...\n\"mean_isr\": step_buf[\"isr_sum\"] / n,\n# ...\n\"isr_mean\": step_stats.get(\"mean_isr\", 0.0),\n```\n\n**结论：**\n- `isr_mean` 取的是 `result[\"sta_reward\"]`，即 STA reward 函数返回的真实 ISR 值\n- 但由于 `random_reward` 分支调用时传 `sta_weight=0.0`，`fast_sta_reward` 不会计算 STA 分数，返回的 `sta_reward` = 0.0\n- 所以 **`isr_mean` 在 random_reward 模式下应恒为 0.0**\n\n如果你观察到 step 9 的 `isr_mean=0.5`，这不太正常——可能需要检查 `fast_sta_reward` 在 `sta_weight=0.0` 时是否仍然计算了 ISR，或者该 log 条目是否来自其他 reward_mode 的运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-check-random-reward-isr-field.md"
+}

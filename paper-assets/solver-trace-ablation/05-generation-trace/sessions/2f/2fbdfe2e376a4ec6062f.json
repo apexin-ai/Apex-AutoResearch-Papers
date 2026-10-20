@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2fbdfe2e376a4ec6062f",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analysis wilson ci complete",
+  "task_key": "worker_analysis_wilson-ci-complete_20260515T081720",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_wilson-ci-complete_20260515T081720_result.json",
+    "occurrence": 1,
+    "bytes": 1384,
+    "sha256": "0237d60643e764862929bc88bed4706a1eeccff31bd1a182ec38cdc4f067e9da"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n## 补全的分类数据\n| Experiment | n | H7 | H1 | Genuine | 方法 |\n|---|---|---|---|---|---|\n| ISR b01 s43 | 61 | 59 | 0 | 2 | 从 registry 推导 |\n| ISR b01 s44 | 89 | 77 | 0 | 12 | classify_h7.py |\n| Random b01 s42 | 79 | 0 | 56 | 23 | classify_h7.py |\n| Random b01 s44 | — | — | — | — | **数据丢失**（eval JSON + checkpoint 均被磁盘清理删除）|\n\n## Registry 修正\n- `plan002-additive-b01-s42`: genuine_count 25→26（原值不满足 h7+h1+gen=n）\n- `plan001-exec-only-s44`: h7_count 97→98\n- `exp1-random-b03-s43-r4`: h7=7→0, h1=90→89, genuine=2→3（原值和=99≠92）\n\n## 关键统计发现\n\n**Pooled genuine rate (Wilson 95% CI)**:\n- ISR β=0.1: 17.3% [0.130, 0.227] — 3 seeds\n- Random β=0.1: 17.4% [0.124, 0.238] — 2 seeds only\n- Exec-only: 5.9% [0.034, 0.100]\n- SFT: 93.1% [0.780, 0.981]\n\n**Fisher exact**: ISR b01 vs Random b01 genuine rate 无显著差异 (p=1.0, OR=0.997)。ISR b01 vs SFT / Exec-only 均显著 (p<0.001)。ISR b03 vs Random b03 genuine 差异显著 (p=0.001)。\n\n**异质性警告**: ISR β=0.1 和 Exec-only 的 H7 rate seed 间 range=0.81~1.0, variance 极高 — s44 总是 collapse 成 H7 tautology 而 s42 不会，pooled 数据掩盖了 seed 间质变。\n\n输出文件：`artifacts/wilson_ci_complete.csv` + `artifacts/wilson_ci_complete.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-wilson-ci-complete.md"
+}

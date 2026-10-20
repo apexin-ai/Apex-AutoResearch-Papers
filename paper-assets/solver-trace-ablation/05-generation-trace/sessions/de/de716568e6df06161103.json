@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "de716568e6df06161103",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code intro tex fix and compile",
+  "task_key": "worker_code_intro-tex-fix-and-compile_20260515T160708",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_intro-tex-fix-and-compile_20260515T160708_result.json",
+    "occurrence": 1,
+    "bytes": 797,
+    "sha256": "75c1d555cea297db388dd158c3d4a7e9fd2dbaf20ef55215af5ca64ffbea07e4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**Diff（本地 introduction.tex）：**\n```diff\n- with a random control isolating ISR-specific gaming (69.7\\% vs.\\ 0\\%) and a premise-count-matched\n+ with a random control isolating ISR-specific gaming at 500 steps (69.7\\% vs.\\ 0\\%; random converges to near-100\\% H7 by 1000 steps) and a premise-count-matched\n```\n\n**远程（同步修改，数字保持远程原有的 64.5%）：**\n```diff\n- isolating ISR-specific gaming (64.5\\% vs.\\ 0\\%)\n+ isolating ISR-specific gaming at 500 steps (64.5\\% vs.\\ 0\\%; random converges to near-100\\% H7 by 1000 steps)\n```\n\n**PDF 编译结果：** 成功，14 页，517KB。0 个 Error，9 个 Warning（均为已有的 float specifier `h→ht` 和 hyperref Unicode token 警告，与本次修改无关）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-intro-tex-fix-and-compile.md"
+}

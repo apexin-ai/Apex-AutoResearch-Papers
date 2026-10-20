@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "902073ca7eb413ef406b",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_10_1778817563.md",
+  "task_key": "loop_10_1778817563",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_10_1778817563.md",
+    "occurrence": 1,
+    "bytes": 5229,
+    "sha256": "56fda4469a316706418db703083e19822fd3c00f5c4b5752d2b78c2c2c8e60b3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: idle_timeout\nupdated: '2026-05-15T03:39:19+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**westd-39279 cuda:0 和 cuda:1**，绝不可用其他 GPU\n- 所有 `submit_training_job` 命令必须包含完整三件套：`bash -c \"export CUDA_VISIBLE_DEVICES=N && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && ...\"`——缺任何一步进程会静默死亡（exp1-random-b03-s44 教训）\n- `kill_job` 后必须 SSH 验证子进程已清理——框架只杀 tmux wrapper PID，Python 训练子进程不会自动终止\n- 磁盘 `/root/autodl-tmp/` 当前 **240G/250G (96%)**，output_dir 必须放 `/root/autodl-tmp/outputs/`，且必须 `save_total_limit=1` + `log_completions=False`。新实验前先让 Worker 清理旧 checkpoint\n- D066 决策：**D060 \"Goodhart instability\" 叙事变更已暂停**，等 proofwriter 测试集验证完成前不可推进该叙事\n- Prolog STA s44：Reviewer 已核实为 query-as-fact gaming（非 genuine），H7 分类器盲区需要在 Discussion 中讨论，不可标为 success\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-39279，account=root\n- **工作目录**: `/root/solver-trace-ablation/`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- **激活**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型**: Qwen3-4B（ModelScope 下载，7.6GB）\n- **数据**: `data/train_500_seed42.jsonl`（500 条训练）, `data/test_100.jsonl` + `data/proofwriter_test_100.jsonl`（注意区分两个测试集——D062/D063 错误测试集事故）\n- **Solvers**: Prover9 (LADR 编译), SWI-Prolog 8.4.2 (`/usr/bin/swipl`), Z3 4.16.0.0\n- **GPU**: 2× RTX PRO 6000 96GB\n- **W&B**: 项目 solver-trace-ablation\n- **磁盘**: 系统盘 30GB, 数据盘 `/root/autodl-tmp/` 250GB (96% 使用)\n- **活跃进程**: exp1-random-b03-s43-r4, PID=117566, tmux session, cuda:0, cron 监控中\n- **活跃 Worker**: `worker_writing_paper-trim-v2_20260515T033710`（论文精简 v2，running）\n\n### 3. 📊 当前状态\n**阶段**: 论文写作 + 最后补训实验。DDL 2026-05-25（剩 10 天）。\n\n**Registry**: 65 个实验，64 DONE + 1 RUNNING。成功 18 / 负向 19 / 失败 21 / killed 2。三个 Core Claims 全部闭环。\n\n**RUNNING**:\n- `exp1-random-b03-s43-r4`：Random β=0.3 seed43 第四次重试（前次 r2 被 kill, r3 OOM），cuda:0, PID 117566。这是 D068 checkpoint 误删事故后的重训——s43 ISR checkpoint 被误删，ISR s43 已成功重训完成（exp1-isr-b03-s43-r3, conclusion=success），这个 random s43 是配对实验。\n\n**等待中**:\n- exp1-random-b03-s43-r4 cron 回调（训练完成后自动触发）\n- `worker_writing_paper-trim-v2` 完成回调（论文精简 Worker）\n- cuda:1 当前空闲——random s43 完成后两块 GPU 都释放，进入纯写作阶段\n\n**最新完成**:\n- `exp1-random-b03-s44-r2` (success, 2026-05-15 03:07)\n- `exp1-isr-b03-s43-r3` (success, 2026-05-15 02:39) — s43 ISR 重训成功\n\n### 4. 📋 待办（条件触发式）\n- `exp1-random-b03-s43-r4` cron 回调到达 → spawn Worker 做 eval_sta.py（用 `proofwriter_test_100.jsonl` 不是 `test_100.jsonl`！D062/D063 教训）→ 更新 registry metrics → 刷新 report.md → 汇报 Director\n- `worker_writing_paper-trim-v2` 完成 → 读取产出，整合到论文文件，检查是否符合 8 页限制\n- 所有补训完成 + 论文 Worker 产出就绪 → 组装完整初稿 → `submit_paper_to_review`\n- Director 要求补充实验 → 用 cuda:0/cuda:1 跑，但注意磁盘 96%，必须先清理\n- 如果 random s43 结果与预期不符（PR 偏离 ISR s43 对照组太远）→ 按 on-experiment-done 分叉处理，可能需要更新 Claim 2 叙事\n\n### 5. 🎯 战略上下文\n**项目核心结论**: STA/ISR 是 GRPO neurosymbolic formalizer 的诊断工具，能检测 reward hacking。但 ISR 作为 reward 信号会被 Goodhart——模型 game 诊断指标本身。论文是诊断+Goodhart 案例研究，不是\"ISR 让训练更好\"的 story。\n\n**关键决策链**:\n- D051: ISR 结构优势完全是 premise minimization artifact（1.06x，非 2.4x）\n- D057: Claim 2 闭环——ISR 无结构优势，Random PR > ISR PR\n- D059: Claim 3 闭环——Prolog STA 3/3 gaming\n- D060→D066: β=0.3 叙事从\"PR collapse\"改为\"multi-modal Goodhart instability\"，但**已暂停**等 proofwriter 测试集验证\n- D067/D068: checkpoint 误删事故，s43 ISR+random 重训中（ISR 已完成，random 正在跑）\n- D069: s44 seed instability 确认——在正确测试集上仍 100% H7 gaming\n\n**易错点**:\n1. **测试集混淆**: exp1 系列有过用错测试集的事故（D062/D063），eval 必须用 `proofwriter_test_100.jsonl`\n2. **不要把 D060 叙事当作已定论**——D066 明确暂停了，等验证\n3. **premise-count-matched 1.06x 是定论**（D051），之前的 2.4x 已作废，论文中不可引用\n4. **writing_plan.yaml 已由 Director 审批**（2026-05-14），按照该计划推进论文写作\n5. **Hacking taxonomy 是 7 种**（含 query-as-fact 第 7 种），不是 6 种\n6. **磁盘极度紧张**（96%），任何新实验前必须先清理\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10-1778817563.md"
+}

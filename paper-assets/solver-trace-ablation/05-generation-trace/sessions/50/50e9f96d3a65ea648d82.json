@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "50e9f96d3a65ea648d82",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analysis random isr 3seed table prep",
+  "task_key": "worker_analysis_random-isr-3seed-table-prep_20260515T180802",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_random-isr-3seed-table-prep_20260515T180802_result.json",
+    "occurrence": 1,
+    "bytes": 675,
+    "sha256": "21c4b09e384806e719fbaccdfd7a4a9b58cba6e5af5666775764f344bc545982"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "产出已写入并注册。\n\n**发现一个数据问题**：plan018-additive-random-b01-s42 在 2026-05-15 被重新分类，registry 当前值 (H1=58, H8=4, genuine=18) 与你提供的旧值 (H1=56, H8=3, genuine_strict=12) 不一致。且新值存在内部矛盾：H7+H1+H8+genuine = 80 ≠ n_proved=79，有一个 sample 被重复计数。需要排查。\n\n**核心结论**：\n- ISR pooled genuine 6.06% (14/231), dominant failure = H7 tautology (70.6%)\n- Random pooled genuine 10.98% (19/173, 2-seed provisional), dominant failure = H1 embedding (65.9%)\n- 两种方法的 genuine rate 都远低于 SFT baseline (~93%)，且 inter-seed variance 极大"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-random-isr-3seed-table-prep.md"
+}

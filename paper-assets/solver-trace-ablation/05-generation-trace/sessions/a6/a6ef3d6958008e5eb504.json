@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a6ef3d6958008e5eb504",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "figure hacking composition",
+  "task_key": "worker_figure_hacking-composition_20260515T202738",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_hacking-composition_20260515T202738_result.json",
+    "occurrence": 1,
+    "bytes": 356,
+    "sha256": "621fa2d2002377bb02fd24a39459bb4d17c16a8cd8c389722ae827763625e3d0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图表已更新完成。\n\n**变更摘要：**\n- 6 个条件（新增 Random β=0.3）\n- H7 拆分为 H7a (tautological, 深橙红) / H7b (ISR-specific, 粉紫)\n- 使用 pooled 数据，百分比归一化\n- H7b 仅在 ISR β=0.1 可见（0.87%，来自 plan002-s43-r2 的 2 例），其余条件 H7b=0\n- 输出 PDF (25KB) + PNG (135KB)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-hacking-composition.md"
+}

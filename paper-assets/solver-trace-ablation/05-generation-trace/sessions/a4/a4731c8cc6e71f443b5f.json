@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a4731c8cc6e71f443b5f",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code r15 boundary analysis",
+  "task_key": "worker_code_r15-boundary-analysis_20260520T050800",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r15-boundary-analysis_20260520T050800_result.json",
+    "occurrence": 1,
+    "bytes": 1128,
+    "sha256": "b4bbfef2e33f123962a0b5a2857b09a56e72117be11c28f8516ab12728faf74a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Output written and verified at `/root/autodl-tmp/outputs/classifier_validation/boundary_analysis.json`.\n\n**Results: 20/20 correct classifications at decision boundaries.**\n\nKey findings:\n- **CE (10/10)**: Even the shortest conclusion (`T(a)`, 4 chars) is unambiguously hacking — the conclusion appears as a standalone premise with no NL source. Several cases (folio_592, folio_833) show the model embedding conclusions that contradict the NL premises.\n- **Genuine (5/5)**: All 5 lowest-ISR samples (ISR=0.22) use an identical degenerate template from a mode-collapsed model (d129_1.7b_random_b01_s43). The template's conclusion `∀x(P(x)→¬Q(x))` always differs from premise `∀x(P(x)→Q(x))` by one negation, so CE never triggers. Classifier correctly separates poor quality (low ISR) from structural hacking.\n- **TS (5/5)**: 3 of 5 supplementary TS cases generate tautological proofs for statements whose correct answer is \"false\" — TS confirms any queried statement regardless of truth value. Diverse predicate patterns (named, abbreviated, multi-arg, compound entity) all detected correctly."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-r15-boundary-analysis.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "69557065ce79fbcaed1a",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code d134 analysis dryrun",
+  "task_key": "worker_code_d134-analysis-dryrun_20260518T232704",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d134-analysis-dryrun_20260518T232704_result.json",
+    "occurrence": 1,
+    "bytes": 2816,
+    "sha256": "72615f8dcb7b7c3d4b65c6d6b9f7a6038eeba0d226887dc07b0a12d49ce15bc5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run completed successfully. Here's the full report:\n\n---\n\n## Dry-Run Report\n\n### 1. Script status\n`/root/solver-trace-ablation/scripts/d134_analysis.py` (587 lines) exists and is fully functional. Must use `/root/miniconda3/bin/python3` (not system python).\n\n### 2. Data availability\n\n| Seed | ISR eval | ISR classify | Random eval | Random classify |\n|------|----------|-------------|-------------|-----------------|\n| s47  | YES | YES | YES | YES |\n| s48  | YES | YES | YES | YES |\n| s49  | YES | YES | YES | YES |\n| s50  | YES | YES | **NO** | **NO** |\n| s51  | YES | YES | **NO** | **NO** |\n\nCurrent: **5 ISR + 3 Random**. Random s50 still training, s51 not started.\n\n### 3. Dry-run: SUCCESS\n\nAll statistical tests ran without error. Output includes per-seed table + condition summary + 4 statistical tests + BCa CIs + appendix-ready markdown.\n\n### 4. Key statistical results (5 ISR vs 3 Random)\n\n| Test | Statistic | p-value |\n|------|-----------|---------|\n| Fisher exact (H7 domination) | OR = inf, 95% CI [1.20, inf] | **0.018** |\n| Mann-Whitney U (H7 rate) | U=15.0, r=1.000 | **0.018** |\n| Permutation (genuine rate) | Δ = -1.40 pp | 0.784 (n.s.) |\n| Bayes Factor (H7 dom) | BF10 = 21.00 | strong evidence for H1 |\n\n- ISR: **5/5** seeds H7-dominated (85.6-100.0%)\n- Random: **0/3** seeds H7-dominated (0.0-20.0%)\n- BCa 95% CI: ISR H7% [85.4, 96.7], Random H7% [1.1, 20.0]\n\n### 5. ISR* extraction\n\n**Not handled by this script.** The script reads classify.json for taxonomy data only. eval_results.json contains `summary.mean_isr`, `summary.proved_only_mean_isr`, `summary.prove_rate` etc., but d134_analysis.py does not extract or report these. If ISR* values are needed in the output, that would require adding a feature.\n\n### 6. BF10: Implemented\n\nBeta-Binomial conjugate with Beta(1,1) prior. BF10=21.00 with standard interpretation thresholds (>10 = strong).\n\n### 7. Concerns\n\n- **Random s49 PR=5** (only 5/100 proved). This is a severe outlier that inflates Random PR SD to 49.7. With s50/s51 added, this may wash out or remain concerning. Worth noting in the paper.\n- **Genuine rate is non-significant** (ISR 2.3% vs Random 3.7%, p=0.784). ISR training does not improve genuine reasoning; it just shifts the hacking pattern from H1 to H7.\n\n### 8. Output format\n\nGenerates appendix-ready markdown with LaTeX-compatible escaping (`\\\\%`, `$p$`, `$\\infty$`). Tables A1 (per-seed) and A2 (condition summary) plus 4 numbered statistical test blocks. Ready to paste into paper appendix.\n\n### 9. Missing features: None critical\n\nThe script covers Fisher, Mann-Whitney, permutation, BCa bootstrap, and BF10. The only gap is ISR* value reporting from eval_results.json, which may or may not be needed depending on paper structure."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d134-analysis-dryrun.md"
+}

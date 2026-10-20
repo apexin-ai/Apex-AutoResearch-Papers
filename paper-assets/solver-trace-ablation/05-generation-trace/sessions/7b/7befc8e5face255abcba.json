@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7befc8e5face255abcba",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code d146 status check",
+  "task_key": "worker_code_d146-status-check_20260519T150903",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d146-status-check_20260519T150903_result.json",
+    "occurrence": 1,
+    "bytes": 1177,
+    "sha256": "2b1cff5c642f238e410f2d822ff1c487e8f465befe6433b98f6f8c8ceb2bfc49"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## D146 Pipeline 状态报告\n\n| 项目 | 状态 |\n|------|------|\n| **tmux session** | `d146-pipeline` 存活（PID 441009 活跃） |\n| **GPU 0** | 84.5 / 97.9 GB 显存，87% utilization |\n| **当前实验** | `d146_pf_exec_s42`（第 1/6 个） |\n| **当前进度** | **step 23 / 500**（4.6%） |\n| **最新 step 时间** | 2026-05-19 15:09:31 UTC |\n\n### 各实验状态\n\n| 实验 | 状态 |\n|------|------|\n| d146_pf_exec_s42 | **训练中** step 23/500 |\n| d146_pf_exec_s43 | 未开始 |\n| d146_pf_exec_s44 | 未开始 |\n| d146_pf_isr_s42 | 未开始 |\n| d146_pf_isr_s43 | 未开始 |\n| d146_pf_isr_s44 | 未开始 |\n\n### 当前实验指标（exec_s42 前 23 步）\n\nreward 大部分为 0，偶有 spike（step 11: 0.375, step 19: 0.375, step 10: 0.125）。prove_rate 同步，parse_rate 稳定 1.0。尚处于训练极早期，模型还未起飞。\n\n### 预估剩余时间\n\n- 平均 step time ≈ 15 s/step\n- exec_s42 剩余：(500−23) × 15s ≈ **1h 59min**\n- 6 个实验总计：每个约 2h 5min，还剩 5.95 个实验 ≈ **~12.4 h**\n- 预计全部完成：约 **明天凌晨 3:30 UTC**（北京时间 5/20 11:30）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d146-status-check.md"
+}

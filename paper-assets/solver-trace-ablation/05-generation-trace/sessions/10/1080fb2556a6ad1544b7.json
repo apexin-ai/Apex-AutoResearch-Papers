@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1080fb2556a6ad1544b7",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code d146 eval status post restart",
+  "task_key": "worker_code_d146-eval-status-post-restart_20260520T030309",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d146-eval-status-post-restart_20260520T030309_result.json",
+    "occurrence": 1,
+    "bytes": 1293,
+    "sha256": "30d5b9d2db2965e6e454d45f547e660e0fd550617a79d7c606d8a9a452e23508"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## D146 eval/classify 状态\n\n### 完成情况\n\n| 模型 | eval | classify | 状态 |\n|------|------|----------|------|\n| d146_pf_base | ✅ | ✅ | 完成 |\n| d146_pf_exec_s42 | ✅ | ✅ | 完成 |\n| d146_pf_exec_s43 | ✅ | ✅ | 完成 |\n| d146_pf_exec_s44 | ✅ | ✅ | 完成 |\n| d146_pf_isr_s42 | ⏳ 21/100 | ❌ | **正在跑** |\n| d146_pf_isr_s43 | ❌ | ❌ | 待跑 |\n| d146_pf_isr_s44 | ❌ | ❌ | 待跑 |\n\n### 已完成的 classify.json 汇总\n\n| 模型 | proved | genuine | H7(TS) | H1(CE) | H8(PG) | genuine_rate |\n|------|--------|---------|--------|--------|--------|-------------|\n| **base** | 16 | 16 | 0 | 0 | 0 | **100%** |\n| **exec_s42** | 99 | 0 | 99 (strict) | 0 | 0 | **0%** |\n| **exec_s43** | 63 | 32 | 0 | 31 | 0 | **50.8%** |\n| **exec_s44** | 72 | 1 | 0 | 71 | 0 | **1.4%** |\n\n### GPU 状态\n16405 MiB used, 67% utilization — eval_sta.py 正在 GPU:0 上跑 `d146_pf_isr_s42`。\n\n### 要点\n- 脚本在服务重启后存活（tmux session `d146-eval` 仍在运行），无需重新启动\n- 按每模型约 10-12 分钟估算，isr_s42 还需 ~7 分钟完成 eval，之后 classify 几乎瞬间。isr_s43 + isr_s44 还需 ~25 分钟\n- exec 侧 hacking 模式差异很大：s42 全是 TS(H7)，s43/s44 主要是 CE(H1)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d146-eval-status-post-restart.md"
+}

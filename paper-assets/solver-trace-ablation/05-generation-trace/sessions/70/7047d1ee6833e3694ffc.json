@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7047d1ee6833e3694ffc",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "paper figure generation",
+  "task_key": "worker_paper_figure-generation_20260515T041910",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure-generation_20260515T041910_result.json",
+    "occurrence": 1,
+    "bytes": 325,
+    "sha256": "6cbdf3a6cf784b3fefeea4899a8c4305d2db003e078698dff698f47734fa04b1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个 PDF 全部生成，均 >10KB：\n\n| 文件 | 大小 |\n|------|------|\n| `fig1_sta_overview.pdf` | 41KB |\n| `fig2_isr_collapse.pdf` | 24KB |\n| `fig3_hacking_composition.pdf` | 19KB |\n| `fig4_prolog_comparison.pdf` | 31KB |\n\n所有文件位于 `paper/figures/`，同时生成了对应 PNG 预览。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-generation.md"
+}

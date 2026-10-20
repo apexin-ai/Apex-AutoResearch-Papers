@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e629680b061c67e49ada",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code tex d091 corrections",
+  "task_key": "worker_code_tex-d091-corrections_20260515T170707",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_tex-d091-corrections_20260515T170707_result.json",
+    "occurrence": 1,
+    "bytes": 710,
+    "sha256": "7446a859e16110ce334fed3af41c95b0bfe969507de61617298a9d9ea293a16a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 项修改全部正确应用，编译无错误。\n\n**结果：**\n- **experiments.tex L32**: `≤3% non-hacking` → `0% non-hacking (3 samples escape text-match classifiers but are functionally degenerate; see Appendix)`\n- **introduction.tex L27**: 添加 \"at 500 steps\" 限定（`69.7% of proved samples at 500 steps ... versus 0% under matched random at 500 steps`）\n- **appendix.tex 表格**:\n  - s44-1000 行 N-H: `3` → `0‡`\n  - 3-seed mean N-H: `1.0±1.7` → `0.0±0.0`\n  - 表格标题新增 `‡` 脚注，说明 3 个样本的退化性质（disjunctive conclusions bypass H8, commuted premises bypass H1, ISR=0）\n- PDF 编译成功：17 页，536KB，无新增 warning"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-tex-d091-corrections.md"
+}

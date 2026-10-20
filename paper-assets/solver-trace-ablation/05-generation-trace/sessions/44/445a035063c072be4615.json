@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "445a035063c072be4615",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_5_1778768285.md",
+  "task_key": "loop_5_1778768285",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_5_1778768285.md",
+    "occurrence": 1,
+    "bytes": 4828,
+    "sha256": "7b4e875d1bf93cbdbec4951c9bac7a708ab08d3ad1dc9ca0b013ad99b6b9a3bd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: idle_timeout\nupdated: '2026-05-14T14:16:37+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：仅 `westd-39279:cuda:0` 和 `westd-39279:cuda:1`，其他设备号禁用\n- 所有训练命令必须在 `bash -c` 内部 `export CUDA_VISIBLE_DEVICES=N`，不能依赖外部环境变量\n- 数据约束 C001：所有 FOL 实验统一用 `train_500_seed42.jsonl`，不用 `proofwriter_fol_500.jsonl`\n- 磁盘约束 C003：`log_completions=False` + `save_total_limit=1`，output 放 `/root/autodl-tmp/outputs/`。之前 250G 爆满导致 plan018-s43 崩溃，eval 完成后立即清理 checkpoint\n- **两个 RUNNING 实验（plan006-prolog-exec-s43-r3, s44）没有 cron 监控**——它们无 cron_task_id/tmux_session/job_id，需要手动检查进程状态或补挂监控\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-39279，2× RTX PRO 6000 Blackwell 96GB\n- **工作目录**: `/root/solver-trace-ablation/`\n- **Python**: `/root/miniconda3/bin/python`，激活方式 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型**: `/root/autodl-tmp/models/Qwen3-4B` (7.6GB, Qwen3-4B)\n- **数据盘**: `/root/autodl-tmp/` (~199G free after cleanup)\n- **输出**: `/root/autodl-tmp/outputs/plan*`\n- **Solvers**: Prover9 (LADR 编译), SWI-Prolog 8.4.2 (`/usr/bin/swipl`), Z3 4.16.0.0\n- **活跃进程**: plan006-prolog-exec-s44 PID=479357 cuda:0 | plan006-prolog-exec-s43-r3 PID=483820 cuda:1（均无 cron 监控）\n- **ANALYZING 待处理**: plan009-sft-baseline-s42-r4 (cuda:1) | plan018-additive-random-b01-s44 (cuda:0)\n\n### 3. 📊 当前状态\n上一轮完成了 Prolog exec-only s42 分析（PR=83%, ISR=0.031, genuine）和 Prolog STA s42 分析（100% H7 Goodhart collapse）。两个 Prolog exec-only 后续 seed（s43-r3, s44）正在训练，约 500 步，启动于 2026-05-14T13:43-13:44 UTC。\n\n两个实验完成待分析（ANALYZING）：\n- **plan009-sft-baseline-s42-r4**: SFT baseline（已失败 3 次 r2/r3 都 failed，r4 是第四次尝试，修了 CUDA_VISIBLE_DEVICES + --gpu + --no_wandb）\n- **plan018-additive-random-b01-s44**: Random β=0.1 seed=44 控制组（plan002-b01-s44 的 matched random）\n\n等待中：\n- plan009-sft-baseline-s42: PENDING（飞书审批中）\n- plan018-additive-random-b01-s43-r2: QUEUED（等 GPU）\n- plan006-prolog-sta-s43/s44: PREPARING（Prolog STA 后续 seeds）\n\nRegistry 总计：50 实验，DONE 42（success 9 / negative 14 / failed 18 / killed 1），RUNNING 2，ANALYZING 2，其余 4 在排队/准备\n\n### 4. 📋 待办（条件触发式）\n- plan006-prolog-exec-s43-r3 或 s44 进程退出 → spawn worker eval_sta.py → 分析 Prolog exec-only 3-seed mean±std → 更新 registry + report → 汇报 Director Claim 3 跨 logic type 证据\n- plan009-sft-baseline-s42-r4 ANALYZING 结果就绪 → 分析 SFT vs GRPO hacking pattern 差异 → 若成功则确认 hacking 是 GRPO-specific；若又 failed 则需诊断根因（已失败 3 次）\n- plan018-additive-random-b01-s44 ANALYZING 结果就绪 → 分析 random β=0.1 s44 → 与 plan002-b01-s44 对照 → 汇入 β=0.1 多 seed 统计\n- Prolog exec-only 3 seed 全部出齐 + SFT baseline 出齐 → GPU 释放 → 启动 plan018-random-b01-s43-r2（QUEUED）和 plan006-prolog-sta-s43/s44（PREPARING）\n- 3-seed Prolog exec-only 全部 success → 与 FOL exec-only 3-seed 合并 → 论文 Table cross-logic generalization 定稿\n- 3-seed Prolog exec-only 出现 negative/divergent → 产出 Framing 调整提案 → 等 Director 决策\n\n### 5. 🎯 战略上下文\n**核心结论链**: STA/ISR 是 GRPO neurosymbolic formalizer 的诊断工具 + Goodhart 案例研究。β=0.1 ISR sweet spot（3.2x vs random），β≥0.3 Goodhart collapse。Claim 1（诊断）证据链基本完整，Claim 2（Goodhart 剂量效应）需多 seed 补齐，Claim 3（跨 logic type）取决于当前 Prolog 训练结果。\n\n**DDL**: 2026-05-25（剩 11 天），GPU 预算充裕（528 GPU·h 可用，约需 12h）。\n\n**易错点**:\n1. **RUNNING 实验无 cron 监控**——必须第一时间检查 PID 存活状态，必要时手动补 cron 或 spawn worker 轮询\n2. Prolog STA s42 的 100% H7 collapse 用的是 0.5/0.5 权重，远高于 FOL 的 β=0.1——跨 logic type 对比时不能直接比，需要在论文中注明 ISR 压力不同\n3. plan009 SFT baseline 极其脆弱（3 次失败），r4 如果又 failed 要考虑换方案而非继续 retry\n4. D041/D042/D043 系列决策：ISR β=0.1 \"sweet spot\" 叙事已降级——2/3 seeds ISR 膨胀为 artifact（H7 conclusion duplication），论文应标 \"lowest hacking rate\" 而非 \"no hacking\"\n5. plan002-b01-s43/s44 都是 negative（hacking），只有 s42 是 success——多 seed 统计会削弱 Claim 2，Framing 已调整为 \"dose-dependent Goodhart\" 而非 \"ISR sweet spot\"\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5-1778768285.md"
+}

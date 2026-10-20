@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6d425bcb9c8712ee8b6d",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "paper r29 fixes final",
+  "task_key": "worker_paper_r29-fixes-final_20260522T144723",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_r29-fixes-final_20260522T144723_result.json",
+    "occurrence": 1,
+    "bytes": 746,
+    "sha256": "76bad0795ed693ea208f3c9b79fbb7954421955e25e313e4a477792e1797de5b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**修改摘要：**\n\n| # | 文件 | 修改 |\n|---|------|------|\n| 1 | `appendix.tex:571` | 在 `tab:fol-detailed` 表后插入 `\\paragraph{$N{=}2$ sensitivity analysis}` + `\\label{app:n2-sensitivity}`（6行） |\n| 2 | `appendix.tex:258` | 在 `tab:classifier-precision` 表后插入 TS recall lower bound 两句话 |\n| 3 | `experiments.tex:48` | 删除重复 parenthetical \"(preserving ISR's distribution but breaking the sample-level semantic link)\"，句首改为 \"The shuffled-ISR control produces...\" |\n\n**验证结果：**\n- 同步：docs/paper/ → paper/ 零差异\n- 编译：成功\n- Undefined refs：**0**\n- Missing citations：**0**\n- Multiply defined：**0**\n- 总页数：**23**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-r29-fixes-final.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0622964ff850f771d83d",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analysis plan006 prolog sta s43",
+  "task_key": "worker_analysis_plan006-prolog-sta-s43_20260514T180524",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan006-prolog-sta-s43_20260514T180524_result.json",
+    "occurrence": 1,
+    "bytes": 1634,
+    "sha256": "fdb9876605aeb9f5dd2ed9d3ba839e7ffb129f53017c5bdb490b838262be99da"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。\n\n---\n\n## plan006-prolog-sta-s43 结果\n\n### 1. 训练日志摘要\n| 指标 | 值 |\n|------|-----|\n| prove_rate (final) | 0.769 |\n| mean_isr (final) | 0.129 |\n| loss | 0.0155 |\n| entropy | 0.09 |\n| reward | 0.573 |\n| completion_length | ~143 tokens |\n| 训练时长 | 1h25m (500 steps) |\n\n### 2. Eval 指标\n| 指标 | s43 | s42 |\n|------|-----|-----|\n| prove_rate | **0.38** | 0.50 |\n| mean_isr | 0.0704 | — |\n| proved_only ISR | **0.1853** | **1.0** |\n| n_proved | 38/100 | 50/100 |\n\n### 3. H7 分类（自定义 Prolog 分析）\n| 类别 | s43 | s42 |\n|------|-----|-----|\n| H7 strict | 0/38 (0%) | 100% |\n| H1 (query embedded in clauses) | 37/38 (97.4%) | 0% |\n| Pseudo-genuine (parsing artifact) | 1/38 (2.6%) | 0% |\n| **实际 tautological rate** | **38/38 (100%)** | **100%** |\n\n### 4. 与 s42 对比\n\n两个 seed 都展示了 100% tautological collapse，但**走了不同的 Goodhart 路径**：\n\n- **s42 → H7 collapse**：最小化策略，单个 clause = query，ISR=1.0\n- **s43 → H1 collapse**：填充策略，query 嵌入多个无关 clause 中，ISR≈0.18\n\n模型生成的是大写伪 Prolog（如 `MARY_IS_AN_AVADEOTE.`），不是合法 Prolog 语法。所有证明都靠 query 原子作为 fact 直接匹配。\n\n### 5. Conclusion: **negative**\n\nProlog exec+STA 配置在两个 seed 下均产生 tautological collapse。Seed 影响 collapse 的表现形式（H7 vs H1），但不影响本质——模型学到了将 query 直接声明为 fact 而非构建推理链。跨 seed 稳定性检查确认该负面结果是系统性的。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan006-prolog-sta-s43.md"
+}

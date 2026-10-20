@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d42a0d3cc49e3402d7f5",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops check s42 checkpoint",
+  "task_key": "worker_ops_check-s42-checkpoint_20260515T010759",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-s42-checkpoint_20260515T010759_result.json",
+    "occurrence": 1,
+    "bytes": 756,
+    "sha256": "399d09f6263e3ea0878a652d1ff75c2d8b5a67a4ed33eea2f70171b51faa36fd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n**Checkpoint 存在状态：**\n\n| 实验 | 路径 | 状态 |\n|------|------|------|\n| ISR β=0.3 s42 (plan002) | `/root/autodl-tmp/outputs/plan002_additive_beta03_s42/` | **MISSING** |\n| Random β=0.3 s42 (plan017) | `/root/autodl-tmp/outputs/plan017_additive_random_s42/` | **MISSING** |\n\n服务器上当前存在的 checkpoints：\n- `exp1_isr_b03_s44_r2/checkpoint-500`\n- `exp1_random_b03_s44/checkpoint-100`\n- `exp1_random_b03_s44_r2/checkpoint-150`\n\n**exp1-random-b03-s44-r2 训练进度：**\n- 当前 step: **156**（checkpoint 在 150）\n- prove_rate: 0.875\n- isr_mean: 0.184\n- parse_rate: 1.0\n\nplan002 和 plan017 的 s42 checkpoints 不在该服务器上（可能已被清理或从未在此训练）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-s42-checkpoint.md"
+}

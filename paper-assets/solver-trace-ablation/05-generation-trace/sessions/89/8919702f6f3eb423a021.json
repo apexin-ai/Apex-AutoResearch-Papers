@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8919702f6f3eb423a021",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "paper language polish and submission",
+  "task_key": "worker_paper_language-polish-and-submission_20260516T012707",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_language-polish-and-submission_20260516T012707_result.json",
+    "occurrence": 1,
+    "bytes": 1988,
+    "sha256": "d38f69e6f103a0da55e8efb836fb45750ad6e2d741cf969274a8c0f15a979832"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both tasks complete. Summary:\n\n---\n\n## Task 1: Language Polishing — Changes per file\n\n**abstract.tex**: No changes needed (clean).\n\n**introduction.tex** (3 edits):\n- Added missing article: \"a non-trivial residual\"\n- Added comma before \"respectively\"\n- (Already had \"A separate line of work\" fix from prior edit)\n\n**method.tex** (1 edit):\n- \"while semantically unrelated\" → \"while remaining semantically unrelated\" (dangling participle fix)\n- (Comma after \"In interpreting ISR results\" already present)\n\n**experiments.tex** (7 edits):\n- Added comma: \"by 1000 steps, the embedding rate\"\n- Added complementizer: \"shows that aggregate metrics obscure\"\n- Unified terminology: \"genuine rate\" → \"non-hacking rate\" (2 occurrences in temporal collapse paragraph)\n- \"genuine proofs\" → \"non-hacking proofs\"\n- Removed redundant \"as both fact and query\" in Prolog seed~44 parenthetical\n- \"reported 100% genuine\" → \"reported 100% non-hacking\"\n- \"the genuine residual\" → \"the non-hacking residual\"\n\n**related_work.tex**: No changes needed.\n\n**conclusion.tex** (1 edit):\n- \"the strict classifier labeled genuine\" → \"labeled non-hacking\"\n\n**limitations.tex**: No changes needed.\n\n**appendix.tex** (8 edits):\n- Added article: \"rather than an absence of reasoning\"\n- Unified \"genuine rate\" → \"non-hacking rate\" in table caption, table cell heading, paragraph heading, and running text (6 occurrences)\n- \"classified as genuine\" → \"classified as non-hacking\"\n- \"$n_{\\text{genuine}}$\" → \"$n_{\\text{N-H}}$\" (2 table cells)\n\n## Task 2: Submission Package\n\n- **Compilation**: 0 errors, 19 pages\n- **Anonymization**: `\\author{Anonymous ACL submission}`, no identifying info in .tex files\n- **submission.zip**: 733 KB, 20 files (9 .tex, 5 figure PDFs, main.pdf, main.bbl, references.bib, acl.sty, acl_natbib.bst)\n- **Location**: `artifacts/submission.zip`\n\n## No anomalies found."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-language-polish-and-submission.md"
+}

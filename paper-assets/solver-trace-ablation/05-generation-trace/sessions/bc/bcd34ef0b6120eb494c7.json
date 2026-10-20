@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bcd34ef0b6120eb494c7",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops plan018 r3 progress check",
+  "task_key": "worker_ops_plan018-r3-progress-check_20260515T113434",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_plan018-r3-progress-check_20260515T113434_result.json",
+    "occurrence": 1,
+    "bytes": 463,
+    "sha256": "d9759fb267d4eaa7c83bb302187946e2c05c6a73162be83991dff4a5a1b19ee5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**训练状态汇报：**\n\n| 项目 | 状态 |\n|------|------|\n| 进程 | 存活，已运行 1h07m45s |\n| 当前步数 | **636 / 1000** (63.6%) |\n| 平均 step 时间 | ~3.4s/it |\n| 预估剩余时间 | ~20 分钟 (364 steps × 3.4s ≈ 1237s) |\n| 磁盘 | 172G/250G (69%)，剩余 79G，安全 |\n\n训练指标正常：prove_rate 稳定在 1.0，ISR 约 0.75，reward ~1.05。偶有 prove_rate 下探（step 635: 0.75）但立即恢复。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-plan018-r3-progress-check.md"
+}

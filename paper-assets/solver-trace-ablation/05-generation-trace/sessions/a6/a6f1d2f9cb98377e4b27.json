@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a6f1d2f9cb98377e4b27",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "diagnose plan009 sft r3",
+  "task_key": "worker_diagnose_plan009-sft-r3_20260514T114053",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_plan009-sft-r3_20260514T114053_result.json",
+    "occurrence": 1,
+    "bytes": 1567,
+    "sha256": "e62dc382cde435d7031c6614b148e518b16d9116f144f4e24c816c9d751b1899"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n### 根因分析\n\n崩溃原因是 **W&B API key 未配置**。模型加载、数据加载均成功，在 `trainer.train()` 启动时 W&B callback 尝试初始化登录，抛出异常：\n\n```\nwandb.errors.errors.UsageError: No API key configured. Use `wandb login` to log in.\n```\n\n与 OOM/GPU 无关，纯粹是 W&B 认证问题。\n\n### 额外观察\n\n日志中有一行值得注意：\n> `The model is already on multiple devices. Skipping the move to device specified in args.`\n\n说明 `device_map='auto'` 仍然生效，模型被分散到多个 GPU。虽然这次崩溃原因是 W&B，但 **即使修好 W&B，r2 的 OOM 问题仍会复现**。当前 GPU 状态：GPU0 占用 96664/97887 MiB，GPU1 占用 48090/97887 MiB。\n\n### 修复建议\n\n需要修两个问题：\n\n1. **W&B 认证**：训练命令前加 `export WANDB_API_KEY=[REDACTED] W&B logging，加 `--report_to none` 参数（或 `export WANDB_MODE=disabled`）\n\n2. **device_map 跨 GPU 问题未真正修复**：`train_sft.py` 第 195 行附近加载模型时 `device_map='auto'` 会把模型分到多卡。需要改为 `device_map={'': f'cuda:{gpu_id}'}` 或 `device_map=None` 后手动 `.to(device)`，确保模型只在 `CUDA_VISIBLE_DEVICES` 指定的单卡上。\n\n### 是否需要改代码\n\n需要改 `scripts/train_sft.py`：\n- 检查模型加载处的 `device_map` 参数，改为单卡绑定\n- 可选：加 `report_to` 参数支持，或在脚本内设 `WANDB_MODE`\n\n要我读取 `train_sft.py` 源码定位具体修改位置吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-plan009-sft-r3-copy-2.md"
+}

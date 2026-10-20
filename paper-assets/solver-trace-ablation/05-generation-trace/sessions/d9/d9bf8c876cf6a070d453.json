@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "d9bf8c876cf6a070d453",
+  "project": "solver-trace-ablation",
+  "kind": "worker",
+  "title": "ops wave1 eval and wave2 submit",
+  "task_key": "worker_ops_wave1-eval-and-wave2-submit_20260517T082202",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_wave1-eval-and-wave2-submit_20260517T082202.log",
+    "occurrence": 1,
+    "bytes": 601733,
+    "sha256": "9adc53a6267407b41f82a18b2436862655f58f6778873d81d510c71d40c961fa"
+  },
+  "statistics": {
+    "messages": 436,
+    "user_turns": 0,
+    "tool_calls": 185,
+    "roles": {
+      "log": 1,
+      "system": 5,
+      "record": 1,
+      "assistant": 58,
+      "tool_call": 185,
+      "tool_result": 185,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 436,
+      "chunks": [
+        {
+          "path": "d9bf8c876cf6a070d453-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "d9bf8c876cf6a070d453-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "d9bf8c876cf6a070d453-part-0003.json",
+          "message_count": 76
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-wave1-eval-and-wave2-submit.md"
+}

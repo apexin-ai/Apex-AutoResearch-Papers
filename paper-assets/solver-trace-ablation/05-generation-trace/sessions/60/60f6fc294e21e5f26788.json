@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "60f6fc294e21e5f26788",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "eval d129 isr b03 s43 and start s44",
+  "task_key": "worker_eval_d129-isr-b03-s43-and-start-s44_20260518T075137",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_d129-isr-b03-s43-and-start-s44_20260518T075137_result.json",
+    "occurrence": 1,
+    "bytes": 1025,
+    "sha256": "83ef08d1664343b2be90fbfb71f056d06bc24db84e7c6ffb3a0f4cbd3a3fa0c7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已启动，step 1/500 运行中。\n\n结果汇总：\n\n```\n=== isr-b03-s43 eval 结果 ===\nPR: 52%\nISR*: 0.2308\nH1_pct: 26.9%\nH7_pct: 0.0%\nH8_pct: 0.0%\nnon_hacking_pct: 73.1% (38/52, genuine = proved - H7 - H1 - H8)\ncontent_independent_pct: 100.0% (52/52 全部使用抽象单字母谓词)\nstrict_genuine_pct: 0.0% (所有 genuine 都是 content-independent)\ntotal_samples: 100\n\n=== isr-b03-s44 训练启动 ===\nPID: 172095\ntmux: d129-isr-b03-s44\nGPU: cuda:0\n初始 step 进度: 1/500\n```\n\n**关键发现**: content_independent = 100%。所有 52 个 proved 样本都使用抽象谓词 (P, Q, R)，没有一个使用 premise-derived 谓词。这意味着 strict_genuine = 0%——即使 73.1% 的 proved 样本不命中 H1/H7/H8 hacking 模式，它们全部是 content-independent 的。\n\n与 4B β=0.3 s42 (PR=17% reward collapse) 模式完全不同：1.7B 维持了高 PR=52%，但走向了另一种退化——全面使用抽象谓词而非从 premise 提取的具体谓词。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-d129-isr-b03-s43-and-start-s44.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a83cb18aa782214e489a",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analysis sft 1000 s43 s44",
+  "task_key": "worker_analysis_sft-1000-s43-s44_20260515T132650",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_sft-1000-s43-s44_20260515T132650_result.json",
+    "occurrence": 1,
+    "bytes": 1188,
+    "sha256": "3f6c020a6c134299d443ce6979ee0e6409f5f95ba7f04cdd5f913aad96813528"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 和 artifact 均已更新。汇总如下：\n\n## SFT 1000步 3-seed 完整结果\n\n| Metric | s42 | s43 | s44 | Mean ± Std |\n|--------|-----|-----|-----|------------|\n| prove_rate | 0.13 | 0.11 | 0.15 | **0.130 ± 0.016** |\n| n_proved | 13 | 11 | 15 | 13.0 ± 1.63 |\n| mean_isr | 0.0738 | 0.0699 | 0.0884 | **0.077 ± 0.008** |\n| proved_only_mean_isr | 0.568 | 0.635 | 0.589 | 0.597 ± 0.028 |\n| genuine_count | 12 | 10 | 14 | **12.0 ± 1.63** |\n| genuine_rate | 0.923 | 0.909 | 0.933 | **0.922 ± 0.010** |\n| h7_strict | 0 | 0 | 0 | 0 |\n| h1_strict | 1 | 1 | 1 | 1 (同一样本 folio_167) |\n| h8_conj_collapse | 0 | 0 | 0 | 0 |\n| content_independent | 0 | 0 | 0 | 0 |\n| isr_1_count | 0 | 1 | 0 | 0.33 |\n| train_final_loss | 0.0168 | 0.0167 | 0.0171 | 0.0169 ± 0.0002 |\n\n**结论**: SFT 1000步 3-seed 均 genuine_rate > 90%，zero h7/h8 hacking，仅 1 个 h1 样本（同一道题 folio_167）。SFT 无 Goodhart collapse，可作为 GRPO 对照基线。\n\n**Checkpoint 路径**:\n- s43: `/root/autodl-tmp/outputs/plan009_sft_baseline_s43_1000/checkpoint-1000`\n- s44: `/root/autodl-tmp/outputs/plan009_sft_baseline_s44_1000/checkpoint-1000`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-sft-1000-s43-s44.md"
+}

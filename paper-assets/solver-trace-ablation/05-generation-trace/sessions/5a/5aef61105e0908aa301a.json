@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5aef61105e0908aa301a",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "paper text fixes batch2",
+  "task_key": "worker_paper_text-fixes-batch2_20260522T130648",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_text-fixes-batch2_20260522T130648_result.json",
+    "occurrence": 1,
+    "bytes": 1008,
+    "sha256": "327333dffb2a76b393f57a40c354ba0ba583b0a8aa43a35805f06088c5e40f8c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. Summary of all 8 items:\n\n| Item | Status | Detail |\n|------|--------|--------|\n| 2a | No edit | Both `p=0.10` already tagged \"exploratory\" (lines 18, 112) |\n| 2b | No edit | §4.2 language around `p=0.182` is descriptive (\"indistinguishable\", \"compositional\") |\n| 2c | No edit | \"all\" on line 30 scoped to three seeds; \"universal\" refers to cross-dataset; appendix E.5 covers seed-dependent convergence |\n| 2d | No edit | Regressional Goodhart usage accurate — ISR proxy-goal correlation breaks under optimization via TS |\n| 2e | **Edited** | Added sentence to `method.tex:53` — ISR detects CE readily (ISR≈0) but is less discriminative for TS (high ISR by construction; needs component-count thresholds) |\n| 2f | No edit | \"Two additional seeds\" matches appendix data (s45, s52 non-converging out of 6); appendix E.5 thoroughly documents |\n| 2g | No edit | FOLIO bib year=2024 correct for EMNLP venue |\n| 2h | No edit | URL already present in `note` field |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-text-fixes-batch2.md"
+}

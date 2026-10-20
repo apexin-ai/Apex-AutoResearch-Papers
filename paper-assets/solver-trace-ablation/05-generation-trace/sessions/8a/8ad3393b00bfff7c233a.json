@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8ad3393b00bfff7c233a",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code classify h7 bugfix clean run",
+  "task_key": "worker_code_classify-h7-bugfix-clean-run_20260515T145050",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_classify-h7-bugfix-clean-run_20260515T145050_result.json",
+    "occurrence": 1,
+    "bytes": 4128,
+    "sha256": "c1f229c19e0b30319c5ded263f6ce35a3cce0fb8096c3c75f7cd861d924a351e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have everything. Here's the complete D086 deliverable:\n\n---\n\n## D086 完成报告\n\n### 1. 验证结果\n\n| 验证项 | 期望 | 实际 | 状态 |\n|--------|------|------|------|\n| ISR s42-1000 H7a | 87 | 87 | ✅ |\n| ISR s42-1000 H7 total | 87 | 87 | ✅ |\n| ISR s44 H7a | 77 | 77 | ✅ |\n| ISR s44 H7b | 11 | 11 | ✅ |\n| Random s42 H8 | 3 (D084) | 4 | ⚠️ +1，新增 folio_1051 是合法 conjunction collapse，D084 漏检 |\n| ISR s42-1000 H8 | 2 (D084) | 1 | ⚠️ -1，folio_1255/folio_990 有不匹配 conjunct，期望值有误 |\n\nH8 微小差异均已人工核实，属于检测能力提升而非回归。\n\n### 2. 差异对比（clean vs 旧 batch）\n\n**新增实验（5个，来自 `--scan` 发现新路径）：**\n- `plan002_additive_b01_s42_results`, `plan002_additive_b01_s44`, `plan016_extended_1000_s42` — 来自 `/root/runs/` 或 backup 目录\n- `eval_results`, `results` — backup 目录中的文件，标签需注意辨识\n\n**旧 batch 中有但 clean 未扫到的实验（12个）：**\n- `plan001_exec_only_s42`, `plan001_exec_only_s43_r4`, `plan001_s43_r4_do_sample`, `plan002_additive_b03`, `plan009_sft_baseline_s42_1000`, `plan009_sft_baseline_s43_1000`, `plan009_sft_baseline_s44_1000`, `plan013_random_reward_s42_r4`, `plan018_additive_random_b01_s42_1000_r3`, `exp1_isr_b03_s42_1000`, `exp1_isr_b03_s43_eval`, `exp1_isr_b03_s44_r2_eval`\n- 这些文件在旧 batch 是手动指定路径，`--scan` 模式下未被扫到（可能已移除或路径变更）\n\n**共有实验中数值变化（D086 修复导致）：**\n\n| 实验 | 字段 | 旧值 | 新值 | 原因 |\n|------|------|------|------|------|\n| **plan002_additive_b01_s42_1000** | h7a | 83 | **87** | P1: 递归括号剥离 + 重复前提匹配 |\n| | h1_strict | 4 | **0** | P1: 4 个样本从 H1 正确归入 H7a（H1 与 H7 互斥） |\n| **plan018_additive_random_b01_s42** | h1_strict | 56 | **58** | P0-a: H8 修复后 2 个从 genuine 归入 H1 |\n| | h8 | 0 | **4** | P0-a: 外层括号修复，4 个 conjunction collapse 被正确检出 |\n| | genuine | 23 | **18** | 上述重分类的结果 |\n| **exp1_random_b03_s43** | h7a | 0 | **1** | P1: 递归括号剥离发现 1 个 tautology |\n| | h1_strict | 60 | **59** | 对应从 H1 → H7a |\n| **exp1_random_b03_s43_r4** | h7a | 0 | **7** | P1: 同上，7 个 |\n| | h1_strict | 89 | **82** | 对应从 H1 → H7a |\n| **plan001_r2** | h7a | 0 | **1** | P1: 1 个 |\n| | h1_strict | 81 | **80** | 对应 |\n| **plan017_additive_random_s42** | h7a | 0 | **4** | P1: 4 个 |\n| | h1_strict | 48 | **44** | 对应 |\n\n### 3. 代码修改清单\n\n| 修改 | 函数/区域 | 原因 |\n|------|-----------|------|\n| **P0-a** | `is_h8_conjunction_collapse()` | 结论外层括号使 `∧` 在 depth=1，`split_top_level_conjunction` 无法分割。修复：分割前调用 `strip_outer_parens_recursive()` |\n| **P0-b** | 新增 `discover_eval_files()` + `DEFAULT_SCAN_DIRS` | 旧版只扫 `/root/autodl-tmp/outputs`，遗漏 `/root/runs/` 和 backup 目录。新增 `--scan` / `--scan_dirs` 参数，MD5 去重 |\n| **P0-b** | `import os`, `import hashlib` 提升到顶层 | 原有 inline import 不一致 |\n| **P0-b** | 标签生成逻辑 | backup/runs 目录文件标签冲突，改用清洗后文件名 |\n| **P1** | 新增 `strip_outer_parens_recursive()` | 递归剥离所有层匹配外层括号，对齐 D084 re-audit 的归一化深度 |\n| **P1** | `normalize_for_match()` | 从单层 → 递归括号剥离 |\n| **P1** | `is_h7_strict()` | `len(premises) != 1` → `all(premises match conclusion)`，捕获重复前提 tautology |\n| **P1** | `has_conclusion_in_premises()` | 统一使用 `normalize_for_match` |\n| **P1** | `classify_file()` H1 判定 | `_is_h1 = False if (_is_h7a or _is_h7b)` — H1 与 H7 互斥，避免双重计数 |\n\n### 4. 输出文件\n\n- **JSON**: `/root/autodl-tmp/outputs/h7_classification/batch_h7ab_clean.json`\n- **TXT**: `/root/autodl-tmp/outputs/h7_classification/batch_h7ab_clean.txt`\n- **备份**: `/root/solver-trace-ablation/scripts/classify_h7.py.bak`（修改前原文件）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-classify-h7-bugfix-clean-run.md"
+}

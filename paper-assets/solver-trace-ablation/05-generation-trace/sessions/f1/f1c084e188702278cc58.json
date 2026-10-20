@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f1c084e188702278cc58",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "sync d134 analysis v3",
+  "task_key": "worker_sync_d134-analysis-v3_20260518T145822",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_sync_d134-analysis-v3_20260518T145822_result.json",
+    "occurrence": 1,
+    "bytes": 1210,
+    "sha256": "18c7b6b8bea78df25e353d624f7cbe06119c250ea32994b94d255c088e9defad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个模式都成功执行，无 scipy 版本问题。汇总：\n\n### `--mode d134_only`\n- 找到 **4 ISR** seeds (s47/s48/s49/s50)，**0 RANDOM**\n- ISR 侧：PR 86.8±14.9, H7 rate 89.0±7.3%, Genuine rate 2.6±2.7%\n- RANDOM 0 个 seed，统计检验跳过（符合预期）\n\n### `--mode all`\n- 找到 **5 ISR** (s42/s47/s48/s49/s50) + **2 RANDOM** (s42/s44) = 7 runs\n- ISR: PR 87.4±13.0, H7 rate 90.6±7.2%, Genuine 2.3±2.4%\n- RANDOM: PR 84.0±7.1, H7 rate 0.0±0.0%, Genuine 11.0±6.0%\n- 统计检验全部跑通：\n  - **Fisher exact**: OR=∞, 95% CI [0.65, ∞], p=0.048\n  - **Permutation** (genuine rate): Δ=−8.67 pp, p=1.000（ISR genuine < RANDOM，方向相反所以 p=1）\n  - **Mann-Whitney U** (H7 rate): U=10.0, p=0.039, r=−1.000\n  - **Bayes Factor**: BF₁₀=9.33 (moderate evidence for H1)\n  - **BCa CI**: ISR H7% [85.3, 96.4], RANDOM H7% N/A（n=2 且 constant=0 导致 degenerate warning）；ISR Genuine% [0.9, 5.1], RANDOM Genuine% [6.7, 15.2]\n\n两个注意点：\n1. RANDOM 侧 H7 rate 全为 0，BCa 无法计算（DegenerateDataWarning），输出 N/A\n2. d134_only 模式缺少 RANDOM seeds（d134_4b_random 系列尚未产出 taxonomy 数据）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/sync-d134-analysis-v3.md"
+}

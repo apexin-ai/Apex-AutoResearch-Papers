@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4dc99fefa50dcc6472d4",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_3_1778740890.md",
+  "task_key": "loop_3_1778740890",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3_1778740890.md",
+    "occurrence": 1,
+    "bytes": 5396,
+    "sha256": "08513d3b22addf75ef37efdaf111787770c26ebbe49ab53da688555e4899c10b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: idle_timeout\nupdated: '2026-05-14T06:10:14+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **GPU 白名单**: 只能用 westd-39279 的 cuda:0 和 cuda:1，任何其他 GPU 必须 push back Director\n- **CUDA_VISIBLE_DEVICES 必须 export**: 格式 `bash -c \"export CUDA_VISIBLE_DEVICES=N && ...\"`，inline 赋值子进程看不到（plan013 事故：未 export → 两卡 OOM + 75GB zombie）\n- **数据约束 C001**: 所有 plan001/plan002/plan013/plan016/plan017 系列统一使用 `train_500_seed42.jsonl`，不用 `proofwriter_fol_500.jsonl`\n- **磁盘约束 C003**: `log_completions=False` + `save_total_limit=1`，output_dir 必须放 `/root/autodl-tmp/outputs/`。上次检查 /root/autodl-tmp 仅剩 ~6.4G，**提交新实验前必须先清理旧 checkpoint**（plan001_s43_r4 46G, plan001_s44 31G 是大户）\n- **plan013 vs plan017 措辞约束 (D027)**: 两者公式结构不同（convex vs multiplicative），论文不可简化为 \"additive vs convex\" 对照。plan017 vs plan002 的 ISR vs random 对比才是纯净的\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-39279，2× RTX PRO 6000 Blackwell 94GB VRAM\n- **工作目录**: `/root/solver-trace-ablation/`\n- **Python**: `/root/miniconda3/bin/python`，激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型**: Qwen3-4B 在 `/root/autodl-tmp/models/Qwen3-4B`（通过 ModelScope 下载）\n- **Solvers**: Prover9 (LADR 2009-11A), SWI-Prolog 8.4.2, Z3 4.16.0.0 — 均已安装\n- **数据**: 训练 `data/train_500_seed42.jsonl` (500条), eval `data/proofwriter_fol_100.jsonl` (100条), 源 FOLIO\n- **活跃进程**:\n  - plan002-additive-b01-s42: PID 262261, tmux session, cuda:0, cron 监控中\n  - plan016-extended-1000-s42: PID 263268, tmux session, cuda:1, cron 监控中\n- **W&B**: 未配置（训练指标从 reward_log.jsonl 读取，eval 指标从 eval_sta.py 输出读取）\n\n### 3. 📊 当前状态\n**刚完成**: plan017 additive random 分析（negative, D026/D027）、plan001-s44 tautological collapse 分析（negative）、plan014 NLI downstream 分析（negative, D021/D022）。paper_framing.md 已全面重写为 3 条诊断/分析 claims（D028）。ROADMAP 已更新。\n\n**RUNNING**:\n| exp_id | GPU | 假设 | 预计完成 |\n|--------|-----|------|----------|\n| plan002-additive-b01-s42 | cuda:0 | additive ISR β=0.1，彻底关闭 additive 路线的最后数据点 | ~1-2h from 05:32 UTC |\n| plan016-extended-1000-s42 | cuda:1 | exec-only 1000步，genuine proof 长期 horizon 行为 | ~2-3h from 05:38 UTC |\n\n**等待中**: 2 个 cron 回调（plan002-b01 和 plan016 完成时）。无 pending Worker。无 pending Director 决策。\n\n**Worker 池 = 0**（违反 L1 #4，但当前两卡满载，非 GPU 任务如 plan006 readiness check 应立即派 Worker）。\n\n### 4. 📋 待办（条件触发式）\n- **plan002-b01 cron 回调到达** → spawn Worker 跑 `eval_sta.py` on checkpoint → 更新 registry metrics → 如果 PR 仍低（预期 <30%）确认 additive ISR 路线全面失败（β=0.3 PR=18%, β=0.1 更弱则 dead end）→ 汇报 Director\n- **plan016 cron 回调到达** → spawn Worker 跑 `eval_sta.py` on 1000步 checkpoint → 对比 500步 (PR=93%, ISR=0.123)：若 PR 持平/ISR 继续下降 → 支持 Claim 1 \"hacking 随训练加深\"；若 PR 下降 → 可能 overfitting → 新发现需讨论 → 汇报 Director\n- **两卡空出后** → 清理磁盘（删 plan001_s43_r4 46G + plan001_s44 31G 等旧 checkpoint）→ 启动 plan006 Prolog exec-only seed=42（已批准 D024，代码/数据 ready）\n- **plan006 完成后** → plan006 seed=43, seed=44 → 3-seed 验证跨 logic type 泛化 → Claim 3 证据\n- **plan006 3-seed 全部完成** → 论文六组对比表（Table 1）定稿 → 论文写作启动\n- **立即应做**: spawn Worker 做 plan006 Prolog readiness check（非 GPU，不占卡）——确认 Prolog 数据/config/dry-run 就绪\n\n### 5. 🎯 战略上下文\n**核心结论**: ISR 是 GRPO neurosymbolic formalizer 的**诊断工具**，不是 reward。所有 ISR-as-reward 路线全面失败（D020/D026）。论文定位为诊断/分析贡献，3 条 claims: (1) ISR 检测 reward hacking, (2) GRPO saturation mechanism, (3) 跨 logic type 泛化（待 plan006 验证）。\n\n**决策链**: D019(ISR=syntactic necessity) → D020(additive ISR failed) → D021/D022(NLI validation failed → limitation) → D024(plan006 Prolog approved) → D025/D026(ISR worse than random) → D027(plan017 taxonomy + 措辞约束) → D028(paper_framing 3 claims rewrite)\n\n**易错点**:\n1. **不要把 plan013 (0.9·r_exec+0.1·random) 和 plan017 (r_exec·(1+0.3·random)) 直接对照**——公式结构和 random 影响方式两个变量不同\n2. **plan001-s44 ISR=0.57 ≈ GT ISR=0.56 是 coincidence**——GT 的 0.56 来自 genuine multi-component proofs，s44 的 0.57 来自 2-component tautology\n3. **磁盘空间 critically low**——提交任何新实验前必须清理，否则重复 r3 的 \"No space left on device\" 事故\n4. **eval 脚本需 --base_model 参数**: 当 checkpoint 缺 tokenizer_config.json 时（save_total_limit=1 场景），eval_downstream.py 需传 `--base_model /root/autodl-tmp/models/Qwen3-4B`\n5. **Claim 3 是 conditional**——如果 plan006 Prolog 无法复现 hacking + ISR 诊断，降级为 future work。不要预先 claim 跨 logic type 泛化\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-1778740890.md"
+}

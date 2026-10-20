@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "24287ae66924fef9b440",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analysis evidence chain status",
+  "task_key": "worker_analysis_evidence-chain-status_20260514T150201",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_evidence-chain-status_20260514T150201_result.json",
+    "occurrence": 1,
+    "bytes": 746,
+    "sha256": "b601de1b1ca855fa3a54f43d324f101a829de1a738973d595bae4a8a97f4e6d3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个产出已写入并注册。\n\n**证据链状态摘要**\n- **Claim 1** (exec-only ISR 崩塌): ✅ 完整 — FOL 3-seed (s42 partial-genuine, s43 degraded, s44 tautological) + 1000-step 单调恶化确认\n- **Claim 2** (ISR β=0.1 + Goodhart): 近完整 — ISR 3/3 ✓, Random 2/3（s43 ALLOCATED 待跑），β=0.3 剂量响应 ✓, hacking taxonomy ✓, SFT 对照 ✓\n- **Claim 3** (跨逻辑泛化): 进行中 — Prolog s42 双 condition 完成，s43/s44 共 4 个 cell 运行/排队中\n\n**阻塞项**: 1 个 ALLOCATED (random-b01-s43-r2) + 2 个 RUNNING (prolog-exec s43/s44) + 2 个 PREPARING (prolog-sta s43/s44)\n\n**Artifact IDs**: `art_20260514_8cc22c` (evidence chain), `art_20260514_552b2e` (table drafts)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-evidence-chain-status.md"
+}

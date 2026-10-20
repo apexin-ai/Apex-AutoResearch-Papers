@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bcb57dec38c5e4e33818",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_3_1778736856.md",
+  "task_key": "loop_3_1778736856",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3_1778736856.md",
+    "occurrence": 1,
+    "bytes": 4684,
+    "sha256": "1762b35a07852a0a1894412d6b7fa2f73a6e69eb44d7a6c024fc7505014a9b69"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: idle_timeout\nupdated: '2026-05-14T05:28:46+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-39279 cuda:0 和 cuda:1，严禁用其他 GPU\n- 所有训练命令必须 `export CUDA_VISIBLE_DEVICES=N &&`（不能 inline 赋值，2026-05-14 事故教训：inline 导致两张 GPU 都被占用）\n- 所有 plan001/plan013 实验统一用 `data/train_500_seed42.jsonl`（C001 约束，不用 proofwriter_fol_500.jsonl）\n- 训练必须 `log_completions=False` + `save_total_limit=1`，output 放 `/root/autodl-tmp/outputs/`（C003，之前磁盘满崩溃）\n- submit_training_job 命令必须 `bash -c \"...\"` 包装（tmux 用 sh 不认 source）\n- random_reward 模式下 `isr_mean` 字段恒为 0.0（`sta_reward` 被置零），随机值在 `random_reward` 字段。分析时注意\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-39279，2× RTX PRO 6000 Blackwell 96GB\n- 工作目录：`/root/solver-trace-ablation/`\n- Python：`/root/miniconda3/bin/python`，激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型：Qwen3-4B（通过 ModelScope 下载，在默认 HF cache 路径）\n- 训练数据：`/root/solver-trace-ablation/data/train_500_seed42.jsonl`（500 条 FOLIO FOL）\n- Eval 数据：`/root/solver-trace-ablation/data/proofwriter_fol_100.jsonl`（100 条）\n- Solvers：Prover9 (LADR 源码编译)、SWI-Prolog 8.4.2、Z3 4.16.0.0\n- 活跃进程：plan001-exec-only-s43-r4 (PID 136339, cuda:1, ~01:40 提交, 500 steps exec-only seed 43)\n- plan013-random-reward-s42-r4 刚完成（ANALYZING），日志在 `/root/autodl-tmp/outputs/plan013_random_reward_s42_r4/reward_log.jsonl`\n\n### 3. 📊 当前状态\n刚收到 plan013-random-reward-s42-r4 的 cron 完成回调（进程正常退出，ANALYZING）。我做了：\n- session-start 初始化（read_registry + reconcile_crons + report + ROADMAP）\n- 派 Worker `analysis:plan013-random-reward-s42-r4` 去 SSH 分析日志、计算 metrics、更新 registry\n- 派 Worker `code:plan002-additive-bonus` 去准备 additive bonus 公式代码（`r = r_exec · (1 + β·ISR)`），创建配置文件，dry-run 验证\n\n**等待中的回调**：\n- Worker `worker_analysis_plan013-random-reward-s42-r4_20260514T022117` — 分析 plan013 结果\n- Worker `worker_code_plan002-additive-bonus_20260514T022240` — plan002 代码准备 + dry-run\n- plan001-exec-only-s43-r4 cron 监控 — cuda:1 仍在跑（~500 steps exec-only seed 43）\n\n**Registry RUNNING**: plan001-exec-only-s43-r4 (cuda:1)\n**Registry ANALYZING**: plan013-random-reward-s42-r4 (Worker 处理中)\n**cuda:0 空闲**\n\n### 4. 📋 待办\n- Worker analysis:plan013 回调 → 读 metrics，判断 conclusion（random reward 行为 ≈ real STA → negative/ISR non-specific；行为 ≠ real STA → success/ISR specific），update_registry 到 DONE，汇报 Director（on-experiment-done 全流程：report.md + literature 联动 + 反思实验计划）\n- Worker code:plan002 回调 → 确认代码就绪，若 dry-run 通过 → 向 Director 请求审批提交 plan002-additive-b03-s42 到 cuda:0\n- plan001-exec-only-s43-r4 cron 回调 → 分析 seed 43 结果，与 seed 42 (plan001-exec-only-s42-r2, PR=0.865) 对比可重复性\n- plan013 如果 conclusion=success（ISR specific）→ 强化 paper_framing Claim 1 headline，plan002 additive bonus 实验更有意义\n- plan013 如果 conclusion=negative（ISR non-specific）→ 触发 red-section Framing 调整提案，禁止默默跑下一个实验\n\n### 5. 🎯 战略上下文\n**核心决策链**：\n- D008: plan003 消歧确认 penalty effect（ISR<1 在凸组合下永远惩罚 prove rate）\n- D010: 废弃凸组合，改 additive bonus `r = r_exec · (1 + β·ISR)`\n- D011: 批准 Narrative A+C（STA as diagnostic metric 主线）\n\n**论文 story 当前状态**：STA 是 principled structural metric，凸组合是 penalty（plan005 confirmed），正确集成是 additive bonus。plan013 random reward baseline 是 Dream M2/W7 必修——证明 ISR signal specific（不只是任意 regularization）。plan002 additive bonus 是验证新公式的关键实验。\n\n**DDL**: ARR May 25, 2026（剩 11 天）\n\n**易错点**：\n- plan013 分析时 `isr_mean` 恒为 0，不要误解为模型没学到结构——random_reward 模式下 STA 不计算。对比指标只看 prove_rate + windowed 趋势\n- plan002 代码：additive bonus 下 `exec_weight` 应为 1.0（不是 0.9），`sta_weight` 是 β（0.3）。不要套旧的 α+β=1 约束\n- 3-seed baseline 还差 seed 43（plan001-exec-only-s43-r4 正在跑）和 seed 44（未开始）。plan001 的 seed 42 结果是 plan001-exec-only-s42-r2（PR=0.865, success）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-1778736856.md"
+}

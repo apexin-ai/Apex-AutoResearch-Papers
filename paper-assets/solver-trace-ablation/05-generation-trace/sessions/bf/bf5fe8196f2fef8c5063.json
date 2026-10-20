@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bf5fe8196f2fef8c5063",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops check exp status s44",
+  "task_key": "worker_ops_check-exp-status-s44_20260515T003334",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-exp-status-s44_20260515T003334_result.json",
+    "occurrence": 1,
+    "bytes": 1573,
+    "sha256": "bd7713948eb3cf753519e9b4fba9de36d08849b32b5cbbfa4b69745ebbfc6a77"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 任务 1: exp1-random-b03-s44 — 训练失败\n\n- **PID 33167 已死亡**，GPU 1 完全空闲 (0MiB)\n- **没有找到训练日志文件**（`/root/runs/solver-trace-ablation/` 下无 `*random*s44*` 匹配）\n- Output 目录只有 `checkpoint-100` 和 `reward_log.jsonl`\n- **reward_log.jsonl 最后一条是 step 102**（时间戳 2026-05-15T00:13:57），之后进程消失\n- 训练在 **102/500 steps 时死亡**，没有完成\n\n最后几步指标（step 96-102 区间）：\n| step | prove_rate | isr_mean |\n|------|-----------|----------|\n| 96 | 1.000 | 0.500 |\n| 100 | 0.875 | 0.096 |\n| 102 | 0.875 | 0.301 |\n\n**死因未知** — 没有 log 文件记录 stderr/traceback。可能是 OOM 或磁盘问题，但无法从现有信息确认。需要找到当初启动时的 nohup 输出文件来定位错误。\n\n---\n\n### 任务 2: exp1-isr-b03-s44-r2 eval — 进行中，接近完成\n\n- **PID 50043 运行中**，GPU 0 占用 16320MiB，65% 利用率\n- **进度: 90/100**（从 eval log 看）\n- 输出文件尚未生成（写完所有 100 条后才会写 JSON）\n- 预计几分钟内完成\n\n观察到的 pattern：proved 样本 ISR 一致为 0.750，有少量 FAILED（如 folio_384, folio_831 ISR=0.000）。\n\n---\n\n**下一步建议**：\n- 任务 1 需要重跑。建议先查明崩溃原因（`dmesg | grep -i oom` 或磁盘空间），然后在 GPU 1 上重新提交。\n- 任务 2 再等 2-3 分钟应该就完成了，届时读取 `/root/autodl-tmp/outputs/exp1_isr_b03_s44_r2_eval/eval_results.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-exp-status-s44.md"
+}

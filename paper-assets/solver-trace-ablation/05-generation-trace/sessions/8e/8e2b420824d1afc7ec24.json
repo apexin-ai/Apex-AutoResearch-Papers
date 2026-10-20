@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8e2b420824d1afc7ec24",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "paper round7 merged",
+  "task_key": "worker_paper_round7-merged_20260517T173708",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_round7-merged_20260517T173708_result.json",
+    "occurrence": 1,
+    "bytes": 436,
+    "sha256": "e726a8dcdcafa9042b0766637aeb07f1c9a789bf0242567464e884d39a4eb934"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. Two commits created:\n\n1. `37317d3` — `[paper] Round 7 Batch 1: CMH non-independence caveat across 5 files, transient window reframed as descriptive`\n2. `4e7052f` — `[paper] Round 7 Batch 2: Abstract/Intro simplify, Preliminary cross-scale, Goodhart 1975 ref, foreseeability, remove AI markers`\n\nAll checks passed: no em-dashes, no undefined citations, intro citations preserved (9→9), §5 ends on page 8."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-round7-merged.md"
+}

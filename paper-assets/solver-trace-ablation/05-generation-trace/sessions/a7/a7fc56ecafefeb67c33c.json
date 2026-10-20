@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "a7fc56ecafefeb67c33c",
+  "project": "solver-trace-ablation",
+  "kind": "worker",
+  "title": "analysis sft 1000 s43 s44",
+  "task_key": "worker_analysis_sft-1000-s43-s44_20260515T132650",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_sft-1000-s43-s44_20260515T132650.log",
+    "occurrence": 1,
+    "bytes": 585538,
+    "sha256": "e95f295ca0519fff201722d8e37d8bde4b91baa7ba7f887e1aefafd280e4de73"
+  },
+  "statistics": {
+    "messages": 319,
+    "user_turns": 0,
+    "tool_calls": 131,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 53,
+      "tool_call": 131,
+      "tool_result": 131,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 319,
+      "chunks": [
+        {
+          "path": "a7fc56ecafefeb67c33c-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "a7fc56ecafefeb67c33c-part-0002.json",
+          "message_count": 139
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-sft-1000-s43-s44.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "db7fb6da26f566017cff",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "figure isr collapse",
+  "task_key": "worker_figure_isr-collapse_20260515T202713",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_isr-collapse_20260515T202713_result.json",
+    "occurrence": 1,
+    "bytes": 562,
+    "sha256": "0deadf36cead3d03041d0019a8871e275cee9f97a5b2086e73624b01f9bcf649"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure looks clean and publication-ready. The key narrative is clear:\n\n- **ISR β=0.1** (orange): ISR rises sharply to ~0.9+ (Goodhart collapse), reproducible across seeds\n- **Exec-only** (blue): moderate ISR increase to ~0.5 (natural growth from better formalizations)  \n- **Random β=0.1** (sky blue): ISR stays flat at ~0.05-0.1 (no ISR gaming)\n\nOutput:\n- PDF: `paper/figures/fig2_isr_collapse.pdf`\n- PNG: `paper/figures/fig2_isr_collapse.png`\n- Script: `paper/figures/gen_fig2.py` (loads from `fig2_data.json`, self-contained locally)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-isr-collapse.md"
+}

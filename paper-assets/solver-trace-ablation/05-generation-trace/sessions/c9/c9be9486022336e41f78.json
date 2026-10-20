@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c9be9486022336e41f78",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code d134 analysis script",
+  "task_key": "worker_code_d134-analysis-script_20260518T133818",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d134-analysis-script_20260518T133818_result.json",
+    "occurrence": 1,
+    "bytes": 609,
+    "sha256": "645720f71f19ad403c04e70038daf540bbfc35c14a521cff49e8305f2c71d317"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已创建并验证可启动：`scripts/d134_analysis.py`\n\n功能：\n- 自动发现 `d134_4b_{isr,random}_b01_s{seed}/classify.json`，缺失的跳过并警告\n- 输出 per-seed 表（PR, H7, H1, H8, genuine, CI, S-NH）\n- 输出 condition-level mean ± std\n- 三个统计检验：Fisher exact (H7 domination)、permutation test (genuine rate)、Mann-Whitney U (H7 rate)\n- `--output` 写 markdown 文件\n\n默认 `--data_dir /root/autodl-tmp/outputs`，在远程服务器上直接运行即可。本地依赖 pandas/scipy/numpy 已安装；远程服务器大概率已有这些包。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d134-analysis-script.md"
+}

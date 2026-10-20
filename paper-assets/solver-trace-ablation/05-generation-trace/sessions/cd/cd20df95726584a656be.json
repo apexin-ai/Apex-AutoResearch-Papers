@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cd20df95726584a656be",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analysis b03 random 3seed reclassify",
+  "task_key": "worker_analysis_b03-random-3seed-reclassify_20260515T182051",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_b03-random-3seed-reclassify_20260515T182051_result.json",
+    "occurrence": 1,
+    "bytes": 1176,
+    "sha256": "b0ec20cc68311b991207b0ac64d70909ccce70ea373f70b33139f77f7772f63f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个 registry 全部更新完成。\n\n## 结果汇总\n\n### β=0.3 Random 三 seed 标准 classify_h7 taxonomy\n\n| Seed | Proved | H7 | H1 | H8 | Genuine | Gen% |\n|------|--------|-----|-----|-----|---------|------|\n| s42 (plan017) | 48 | 4 | 44 | 0 | 0 | 0.0% |\n| s43 (exp1-r4) | 92 | 7 | 82 | 0 | 3 | 3.3% |\n| s44 (exp1-r2) | 23 | 0 | 23 | 0 | 0 | 0.0% |\n\n### 新旧对比\n\n| Experiment | Field | Old | New | Change |\n|---|---|---|---|---|\n| plan017-s42 | H7 | 0 | **4** | +4 (H7a 从 H1 拆出) |\n| plan017-s42 | H1 | 48 | **44** | -4 |\n| plan017-s42 | genuine | 0 | 0 | — |\n| exp1-s43-r4 | H7 | 7 | 7 | — |\n| exp1-s43-r4 | H1 | 82 | 82 | — |\n| exp1-s43-r4 | genuine | 3 | 3 | — |\n| exp1-s44-r2 | H7 | 0 | 0 | — |\n| exp1-s44-r2 | H1 | 23 | 23 | — |\n| exp1-s44-r2 | genuine | 0 | 0 | — |\n\n唯一变化：plan017-s42 有 4 个样本从 H1 重分类为 H7a（多前提中有单前提文本匹配结论的情况，之前旧版本未检测到）。s43 和 s44 的结果与之前完全一致。三个实验均 H8=0。JSON 审计文件已保存至 `/root/autodl-tmp/outputs/h7_classification/random_b03_3seed_classify.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-b03-random-3seed-reclassify.md"
+}

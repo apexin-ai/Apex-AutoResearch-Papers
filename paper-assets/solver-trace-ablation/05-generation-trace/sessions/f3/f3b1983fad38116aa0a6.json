@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f3b1983fad38116aa0a6",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code prep additive random b01",
+  "task_key": "worker_code_prep-additive-random-b01_20260514T065015",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prep-additive-random-b01_20260514T065015_result.json",
+    "occurrence": 1,
+    "bytes": 1286,
+    "sha256": "660cb13402a3424075e717d5955ea8b903d91f8846df86245c40b7a10a7b14cf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Dry-run 报告\n\n**状态：PASS**\n\n- 2 步训练完成，无错误\n- reward_log.jsonl 包含 2 步数据，`random_mean` 字段确认 random 成分活跃\n- Step 1: reward=0.128, prove_rate=12.5%, random=0.441\n- Step 2: reward=0.0, prove_rate=0%（无证明→reward=0，符合 `r = r_exec · (1 + 0.1 · random)` 语义）\n- 模型保存因 /tmp 空间不足失败（不影响训练验证，正式训练用 autodl-tmp）\n\n**正式训练命令（plan018）：**\n\n```bash\nbash -c \"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_random.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 42 --beta 0.1 --reward_mode additive_random --output_dir /root/autodl-tmp/outputs/plan018_additive_random_b01_s42 --wandb_project solver-trace-ablation --wandb_run plan018_additive_random_b01\"\n```\n\n**参数说明：**\n- Config: `configs/grpo_additive_random.yaml`（复用 plan017 config，CLI `--beta 0.1` 覆盖 config 中的 0.3）\n- 无需创建新 config 文件\n- output_dir 在 `/root/autodl-tmp/` 避免磁盘问题\n- save_total_limit=1 已在 train_grpo.py 中硬编码（line 420）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prep-additive-random-b01.md"
+}

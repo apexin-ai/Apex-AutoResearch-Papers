@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fee3cf7aa7a845d88d96",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ssh warmstart phase2 dual",
+  "task_key": "worker_ssh_warmstart-phase2-dual_20260516T161118",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_warmstart-phase2-dual_20260516T161118_result.json",
+    "occurrence": 1,
+    "bytes": 353,
+    "sha256": "0be44bccde77ee2f07e8613a59b6163a0f358f1c293dd9eb5ac5df803b2a3dc5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练进行中：\n- s42: step 68/500, s43: step 55/500\n- 速率 ~5.5s/step\n- ETA checkpoint-200: ~16:25 UTC\n- Config `grpo_isr_warmstart_v3.yaml` 已创建（isr_threshold=0.2, min_components=2, warmup=0, 300 steps）\n- H7 gate 已在代码中（line 150: `_is_h7`, line 267 集成）\n\n等待中，下次检查约 4.5 分钟后。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-warmstart-phase2-dual.md"
+}

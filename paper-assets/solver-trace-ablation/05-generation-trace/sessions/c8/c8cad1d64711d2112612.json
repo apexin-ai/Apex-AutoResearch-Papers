@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c8cad1d64711d2112612",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code xor fix eval s43",
+  "task_key": "worker_code_xor-fix-eval-s43_20260521T105436",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_xor-fix-eval-s43_20260521T105436_result.json",
+    "occurrence": 1,
+    "bytes": 1341,
+    "sha256": "6f7a6e785b3ff7818c2c89cbe65eba6f93bdf5debc908b4bf8b7e45b5f5ef675"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练正在初始化（vLLM 警告是正常的）。三件事完成，汇总如下：\n\n---\n\n## 产出\n\n### 1. d165-s42 eval 结果\n\n| 指标 | 值 |\n|------|-----|\n| **PR** | 0.14 (14/100) |\n| **ISR*** (proved-only mean) | 0.5467 |\n| **TS% (H7)** | 0.0% (0/14) |\n| **CE% (H1)** | 14.3% (2/14) |\n| **PG% (H8)** | 0.0% (0/14) |\n| **CI% (H9)** | 14.3% (2/14) |\n| **Genuine%** | 85.7% (12/14) |\n\n**by_answer_type:**\n| type | count | proved | PR |\n|------|-------|--------|----|\n| true | 34 | 14 | 41.2% |\n| false | 25 | 0 | 0.0% |\n| unknown | 41 | 0 | 0.0% |\n\n注：只有 answer=true 的问题被 proved，false/unknown 全部 PR=0。\n\n### 2. XOR bug 修复\n\n**文件**: `/root/solver-trace-ablation/src/solvers/prover9.py`\n- **Line 42**: `raise ValueError(\"No left operand for ⊕\")` → `return formula`\n- **Line 77**: `raise ValueError(\"No right operand for ⊕\")` → `return formula`\n\n效果：malformed XOR 公式不再抛异常，而是保留原始字符串传给 Prover9，Prover9 因语法错误返回 `proved=False` → reward=0。正常 XOR 展开不受影响（已验证 `A ⊕ B` → `((A ∨ B) ∧ ¬(A ∧ B))`）。\n\n### 3. s43 训练已提交\n\n- **PID**: 871391\n- **tmux session**: `d165-llama-exec-s43`\n- **GPU**: cuda:0\n- **log**: `/tmp/d165_llama_exec_s43_r2.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-xor-fix-eval-s43.md"
+}

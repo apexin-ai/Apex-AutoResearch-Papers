@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d79cd2538f0c5d69276f",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "healthcheck d154 8b exec s42 k8",
+  "task_key": "worker_healthcheck_d154-8b-exec-s42-k8_20260522T055920",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_healthcheck_d154-8b-exec-s42-k8_20260522T055920_result.json",
+    "occurrence": 1,
+    "bytes": 1324,
+    "sha256": "431252ef8323190418d792bdc77170ea95ca8f06cad67d292d0193039ad59fc3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Part 1: 健康度报告\n\n| 指标 | 值 |\n|------|-----|\n| GPU | RTX PRO 6000 Black, 54055/97887 MiB |\n| GPU Util | 0%（快照时处于 generation 阶段，正常） |\n| 进程 | PID 969681 存活 |\n| 当前步数 | **363/500**（72%） |\n| Step 速度 | ~9-15s/it |\n| 预估剩余 | ~25-30 min |\n| Reward 趋势 | 波动较大（349→0.44, 350-353→0.0, 358→0.44, 360→0.88），GRPO 正常 pattern |\n\n**结论：训练健康，正常推进。** GPU util 0% 是 K=8 autoregressive generation 阶段的正常现象——generation 是 sequential decoding，nvidia-smi 快照恰好抓到这个阶段。\n\n## Part 2: 配置文件已创建\n\n**`grpo_exec_only_8b_k8_s43.yaml`** — 与 s42 完全相同，仅改：\n- `seed: 43`\n- `output_dir: .../8b_exec_only_s43_k8/`\n- `wandb_run: 8b_exec_only_s43_k8`\n\n**`grpo_isr_8b_k8_s42.yaml`** — 基于 s42 exec 配置，改动：\n- `reward_mode: additive_bonus`（r = r_exec + β × ISR）\n- `beta: 0.1`\n- 移除 `exec_weight/sta_weight`（additive_bonus 模式由 beta 控制）\n- `output_dir: .../8b_isr_b01_s42_k8/`\n- 其余参数（K=8, 500 steps, lr, batch size）与 exec s42 一致\n\n注意：参考了已有的 `grpo_isr_b01_8b.yaml`（K=4 版本），新配置升级到 K=8 并加了 `save_total_limit: 1`（遵守 C003）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/healthcheck-d154-8b-exec-s42-k8.md"
+}

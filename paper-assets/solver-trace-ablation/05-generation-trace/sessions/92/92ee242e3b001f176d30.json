@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "92ee242e3b001f176d30",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analysis plan018 s43 r3 eval taxonomy",
+  "task_key": "worker_analysis_plan018-s43-r3-eval-taxonomy_20260515T175131",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan018-s43-r3-eval-taxonomy_20260515T175131_result.json",
+    "occurrence": 1,
+    "bytes": 631,
+    "sha256": "adfa4fca94210309f32761cc14368b4361d3a1cba972e7ff453892c2fbc7b6d5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated. GPU 0 is now free.\n\n**plan018-additive-random-b01-s43-r3 完成：**\n\n| Metric | Value |\n|--------|-------|\n| Prove Rate | 94/100 (94%) |\n| Mean ISR | 0.1406 (std 0.1358) |\n| Proved-only ISR | 0.1495 |\n| H7 (tautology) | 36 (38.3%) |\n| H1 (concl-in-premise) | 56 (59.6%) |\n| H8 (conj-collapse) | 1 (1.1%) |\n| **Genuine** | **1 (1.1%)** |\n\n对比 s42 random（genuine=25/75=33.3%），s43 genuine 大幅下降至 1/94=1.1%。s43 的 hacking 模式以 H1 为主（59.6%），而非 s42 的 H7 主导，但两者 genuine 产出都极低。Conclusion 已设为 success（genuine > 0）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan018-s43-r3-eval-taxonomy.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a240a078ff0966429fbb",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "writing paper fixes comprehensive",
+  "task_key": "worker_writing_paper-fixes-comprehensive_20260515T035141",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_paper-fixes-comprehensive_20260515T035141_result.json",
+    "occurrence": 1,
+    "bytes": 1531,
+    "sha256": "8d4314a7434cdf29798862546a7d70d2b8e876b140dce7bb4463d52f3b2e6a3c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 修复清单\n\n**CRITICAL**\n- C1 ✅ `experiments.tex:36` ISR* 比较方向修正为 \"31.2% hacking (vs. SFT's 7.1%)\"\n- C2 ✅ `appendix.tex` 新增 `\\subsection{Per-Seed Results at β=0.3}` (label `app:beta03`)；`experiments.tex` β=0.3 段落末尾加 `(Appendix~\\ref{app:beta03})`\n\n**WARNING**\n- W1 ⏭ `introduction.tex` 引用已正确（`sec:diagnostic` / `sec:crosslogic` / `sec:taxonomy`），无需修改\n- W2 ⏭ `app:per-seed` 在任何 .tex 中均不存在，无需修改\n- W3 ✅ `tab:beta01-3seed` → `tab:fol-beta01-detailed`，`tab:prolog-crosslogic` → `tab:prolog-detailed`；同步更新了 4 处 `\\ref{}`（experiments.tex×1，appendix.tex×3）\n- W4 ⏭ `0.885` 不存在于任何 .tex 中（仅出现在 experiments.md），无需修改\n- W5 ✅ `abstract.tex` β=0.3 改为 \"extreme cross-seed instability (PR 66±42%), with individual seeds collapsing to as low as 18%\"\n- W6 ✅ `experiments.tex:153` `32% non-hacking` → `31% non-hacking`\n- W7 ✅ `limitations.tex` \"the 1,204 FOL-annotated examples available in FOLIO\" → \"FOLIO\"\n\n## 编译结果\n\n- 4 趟编译（pdflatex → bibtex → pdflatex × 2）全部 `EXIT=0`\n- `main.pdf` 14 页，正常生成\n- `main.log` 无 undefined reference、无 multiply defined label\n- 仅有的 warning：`'h' float specifier changed to 'ht'`（两个表格的 float placement，仍为原有非阻塞 warning）和 hyperref 的 PDF string token warning（与改动无关）\n\n无新的 reference/label warning。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-paper-fixes-comprehensive.md"
+}

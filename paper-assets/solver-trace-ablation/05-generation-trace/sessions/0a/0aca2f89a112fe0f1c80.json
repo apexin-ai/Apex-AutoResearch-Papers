@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0aca2f89a112fe0f1c80",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "fix d134 analysis rankbiserial",
+  "task_key": "worker_fix_d134-analysis-rankbiserial_20260518T150748",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_d134-analysis-rankbiserial_20260518T150748_result.json",
+    "occurrence": 1,
+    "bytes": 377,
+    "sha256": "7df22d677e9f86e5f01e43ba4c5a8fb4559e542b822607096ae5442da3527b47"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复验证通过。Mann-Whitney U 部分关键输出：\n\n```\n  3. H7 Rate Mann-Whitney U Test\n     ISR median:    85.7%\n     RANDOM median: 0.0%\n     U = 10.0, p = 0.0393\n     Rank-biserial r = 1.0000\n```\n\n**r = +1.0000**，符合预期（ISR H7% 完全高于 Random H7%）。之前错误公式输出 r = -1.0，现在已修正为 `2U/(n1*n2) - 1`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-d134-analysis-rankbiserial.md"
+}

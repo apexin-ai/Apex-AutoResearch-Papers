@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f26fbc4c52c590452df4",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_16_1778908707.md",
+  "task_key": "loop_16_1778908707",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_16_1778908707.md",
+    "occurrence": 1,
+    "bytes": 3775,
+    "sha256": "fcfaa5c164936f75a9f3c35d2cc21e1cefa900f96617efae7a859229b87ea8b5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 16\nreason: idle_timeout\nupdated: '2026-05-16T05:18:13+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**仅 westd-39279:cuda:0 和 cuda:1**，禁止使用其他 GPU\n- 训练脚本路径必须带前缀：`python3 scripts/train_grpo.py --config configs/...`（不是 `train_grpo.py`）\n- Round 2 实验使用 **Qwen3-4B**（非 Round 1 的 Qwen2.5-1.5B），模型路径 `/root/autodl-tmp/models/Qwen3-4B`\n- Round 2 全部 `--no_wandb` 模式，metrics 从 `reward_log.csv` / output_dir 提取\n- D095 Narrative A 生效：H7a=GRPO-general seed-dependent，H7b=ISR-specific；genuine ISR 6.06% vs Random 9.54% p=0.182 **不显著**，禁止 claim\n- DDL: **2026-05-25 EMNLP ARR**（剩 9 天）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：**westd-39279**，工作目录 `/root/solver-trace-ablation`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- 模型：`/root/autodl-tmp/models/Qwen3-4B`\n- 输出目录：`/root/autodl-tmp/outputs/sweep_isr_b02_s43/`、`/root/autodl-tmp/outputs/sweep_isr_b02_s44/`\n- 活跃进程：\n  - sweep-isr-b02-s43: PID 633515, cuda:0\n  - sweep-isr-b02-s44: PID 659716, cuda:1\n- Cron：sweep-isr-b02-s43 有活跃 cron 监控（reconcile 确认 still running）\n- W&B：禁用（`--no_wandb`），依赖本地 reward_log.csv\n\n### 3. 📊 当前状态\n**刚做完**：sweep-isr-b02-s42 完成（success，ISR=0.6017，h7=100%，与 β=0.3 同类 Goodhart 表现）；sweep-isr-b005-s42 完成（success，proved_only_isr=0.759，genuine≥75%，确认 Goodhart 阈值在 β∈(0.05,0.1)）；sweep-isr-b01-s45 被 RAM OOM kill（exit 137, step 219/500，双实验并行 RAM 不足）。\n\n**正在跑**：\n- sweep-isr-b02-s43 (cuda:0, PID 633515) — β=0.2 ISR 第 2 seed\n- sweep-isr-b02-s44 (cuda:1, PID 659716) — β=0.2 ISR 第 3 seed\n\n**PREPARING 队列（13 项）**：P2 sweep-random-b01-s45、P3 5-seed 扩展（exec-only/random/ISR s45+s46）、β=0.05 s43/s44 复现、7B pilot（DEFER）\n\n**等待**：两个 b02 实验 cron 回调（预计各 ~1h 完成）；无 pending Director 决策。\n\n### 4. 📋 待办（条件触发式）\n- sweep-isr-b02-s43 + s44 cron 完成回调 → spawn Worker 分析（从 output_dir 提取 metrics + hacking taxonomy）→ 3-seed β=0.2 聚合分析 → 更新 registry + report → 汇报 Director\n- β=0.2 三 seed 全部 DONE → GPU 释放 → 按 D101 排期提交 P2: sweep-random-b01-s45 (cuda:0) + 从 PREPARING 选一个填 cuda:1\n- sweep-isr-b01-s45 已 OOM killed → 不要再双跑重试，单 GPU 跑或等 GPU 空余时单独排\n- β=0.2 聚合结果出来 → 判断是否与 β=0.1/0.3 形成连续剂量曲线 → 更新论文 dose-response 图数据\n- 所有 Round 2 sweep 完成 → 汇总 dose-response 全景（β=0.05/0.1/0.2/0.3）→ 更新 paper figures → 送 Review Director 最终审\n\n### 5. 🎯 战略上下文\n- **核心结论**：ISR 从诊断到优化的 Goodhart 转折是主线。β=0.05 保留 ISR（0.759），β≥0.1 全部崩塌。阈值是尖锐相变。β=0.2 实验填 0.1↔0.3 剂量间隙，确认非 outlier。\n- **决策链**：D095（Narrative A 生效）→ D096（Round 2 设计）→ D098/D100（config bug 修复 + K=4 确认）→ D101（排期）→ D102（β=0.05 Goodhart 阈值定位）\n- **易错点**：\n  1. β=0.05 的 ISR=0.75 均匀性（96.3% 样本精确 0.75）是 mode collapse 到 4-premise/3-necessary 模板——不能只说\"ISR 保留\"而忽略多样性丧失\n  2. sweep-isr-b01-s45 死于 RAM OOM（双实验并行），不是 GPU OOM——当前 b02-s43 + s44 双跑要关注是否复现\n  3. Round 2 用 4B 模型，Round 1 用 1.5B，论文对比时必须注明模型规模差异\n  4. 不要排 β=0.07/0.03（D102 明确：DDL 前多 seed 复现 > 更多剂量点）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-16-1778908707.md"
+}

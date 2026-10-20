@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "251dac930f775fb2c2c5",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_7_1778783750.md",
+  "task_key": "loop_7_1778783750",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_7_1778783750.md",
+    "occurrence": 1,
+    "bytes": 5133,
+    "sha256": "a9f1af7d6751b362f47ea96a4383b7ff47b562e6eeab1abf4a9ef847a0a5f2ae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: idle_timeout\nupdated: '2026-05-14T18:32:12+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：仅 `westd-39279:cuda:0` 和 `westd-39279:cuda:1`，无论谁说都不能用其他 GPU\n- 数据约束 C001：所有 plan001/plan013 实验必须用 `train_500_seed42.jsonl`\n- GPU 隔离 C002：所有命令必须 `export CUDA_VISIBLE_DEVICES=N`，在 `bash -c` 内部 export\n- 磁盘约束 C003：`log_completions=False` + `save_total_limit=1`，output_dir 放 `/root/autodl-tmp/outputs/`\n- ISR 语义区分 C006：Prolog exec-only 低 ISR = 冗余编码，exec+STA 高 ISR = Goodhart gaming，论文不可混淆\n- plan013 vs plan017 公式结构不同，不可简化为 \"additive vs convex\" 对照 (D027)\n- ISR β=0.1 strict 禁止报 raw 3-seed mean ISR 或 \"2.4x genuine improvement\"，已被 D051 premise-count-matched 1.06x 推翻\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-39279，账户 root\n- **工作目录**: `/root/solver-trace-ablation/`\n- **Python**: `/root/miniconda3/bin/python`，激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **GPU**: 2× RTX PRO 6000 Blackwell 94GB，CUDA 12.8，PyTorch 2.10.0+cu128\n- **模型**: Qwen3-4B（通过 ModelScope 下载，7.6GB）\n- **Solvers**: Prover9 (LADR 源码编译), SWI-Prolog 8.4.2 (`/usr/bin/swipl`), Z3 4.16.0.0\n- **磁盘**: 系统盘 30GB (~22G free)，数据盘 `/root/autodl-tmp/` 250GB (~131G free)\n- **活跃进程**: 无。全部 50 个实验 DONE，0 个 cron 活跃，两张 GPU 空闲\n- **文献资产**: `artifacts/literature_goodhart.md` (30+ 篇), `literature_map.yaml` (33 篇, 6 类)\n\n### 3. 📊 当前状态\n**全部 50 个实验已完成（DONE）**，无 RUNNING/PREPARING/QUEUED。两张 GPU 空闲。0 个 cron 活跃。\n\n**Claim 3 最后一批数据刚出齐但尚未更新到 paper_framing/ROADMAP**：\n- plan006-prolog-sta-s44: **success** — PR=97%, genuine=100%, H7=0%, ISR=0.885（干净的 genuine proofs）\n- plan006-prolog-sta-s43: **negative** — PR=38%, H1=97.4%, genuine=0%（全部 tautological，1 个 pseudo-genuine）\n- plan006-prolog-sta-s42: **negative** — PR=50%, H7=100%（100 步即饱和，全 H7）\n\nProlog STA 3-seed 汇总：2/3 negative (s42 H7=100%, s43 H1=97.4%), 1/3 success (s44 genuine=100%)。模式与 FOL ISR β=0.1 类似（2/3 gaming, 1/3 看似干净），但 s44 的 genuine=100% 需要确认是否存在 premise-count artifact（FOL 经验教训）。\n\n**paper_framing.md 和 ROADMAP.md 均已过时**——仍标记 s43/s44 为 RUNNING，Claim 3 为 ⏳。需要立即更新。\n\n**report.md 已反映 s43/s44 完成**，但 ROADMAP 和 paper_framing 未同步。\n\n**等待中**: 无 Worker/Cron/Director 决策。\n\n### 4. 📋 待办（条件触发式）\n- **立即（无条件）**→ 更新 ROADMAP + paper_framing：Claim 3 标记闭环，清空 RUNNING 表，更新 Prolog STA 3-seed 统计\n- **立即（无条件）**→ 派 Worker 对 plan006-prolog-sta-s44 做 premise-count-matched 分析：s44 genuine=100% 太好了，必须排除 FOL D051 同类 artifact（n_prem=1 导致 ISR 天然高）\n- **s44 premise-count 分析完成 → Claim 3 最终定论**：如果 artifact → 3/3 negative（Prolog STA Goodhart 比 FOL 更彻底）；如果干净 → 1/3 genuine（与 FOL 模式一致，跨 seed instability 复现）\n- **Claim 3 闭环 → 向 Director 汇报全部 3 Claims 闭环**，附 Prolog STA 统计 + 论文下一步建议\n- **Director 确认 → 启动 Paper Agent 写作**：DDL 2026-05-25（剩 11 天），证据链完整，应立即开始\n- **如果 Director 要求补充实验**→ 两张 GPU 空闲可立即投入，~528 GPU·h 余量充裕\n\n### 5. 🎯 战略上下文\n**核心结论链**：\n- D010: 旧 reward 公式废弃，转 additive bonus `r = r_exec · (1 + β·ISR)`\n- D051: ISR-as-reward 完全失败，2.4x genuine improvement 被 premise-count-matched 1.06x 推翻\n- D057: Claim 2 闭环，3-seed random 控制组 H7=0% 全 seed 一致\n- D056: Prolog exec-only 3-seed 闭环，ISR 崩塌跨逻辑复现\n- D058: 1000 步 hacking 100% H1，崩塌持续恶化\n\n**论文定位**: EMNLP 2026 Main/Findings，ARR May 25 DDL。诊断/分析论文 + Goodhart 案例研究。三条 Claim：(1) ISR 诊断能力 ✅ (2) Goodhart/ISR 无结构优势 ✅ (3) 跨逻辑泛化 ⏳→即将闭环\n\n**最容易判断错的事**：\n1. plan006-prolog-sta-s44 genuine=100% 看起来像 success，但 **必须** 做 premise-count-matched 分析。FOL 里 D051 就是因为没控制 premise count 被 artifact 骗了。如果 s44 的 97 个 proved 样本多数 n_prem≤2，ISR=0.885 可能是数学性质而非真实结构改善\n2. 不要把 Prolog STA s44 (genuine=100%) 和 FOL ISR β=0.1 s42 (genuine=32.1%) 直接对比——logic type、reward 公式、solver 语义全不同\n3. 更新 paper_framing 时不要标 Claim 3 为 ✅ 直到 s44 premise-count 分析完成\n4. 论文写作 11 天看起来充裕但实际很紧——paper agent 应尽早启动，不要等所有分析 100% 完美才动笔\n5. kill_job 后必须 SSH 验证子进程已清理（历史教训），但当前无活跃进程所以不影响\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-7-1778783750.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6820b562a19d90abdff4",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "research config diff",
+  "task_key": "worker_research_config-diff_20260521T052747",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_config-diff_20260521T052747_result.json",
+    "occurrence": 1,
+    "bytes": 1799,
+    "sha256": "ca24b3e8d18b0bc1ec2785e3cc4c035cbe886ed9b1e0e991251a7a94176ddd5c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个文件都存在，有 **3 处实质性差异**（均与 beta 值相关）：\n\n| 参数 | `grpo_additive_bonus.yaml` | `grpo_additive_bonus_b01.yaml` |\n|------|---------------------------|-------------------------------|\n| `output_dir` | `plan002_additive_beta03_s42` | `plan002_additive_beta01_s42` |\n| `beta` | **0.3** | **0.1** |\n| `wandb_run` | `additive_bonus_b03` | `additive_bonus_b01` |\n\n其余参数完全一致：`model_path`, `data_path`, `reward_mode`, `num_steps`, `per_device_batch_size`, `gradient_accumulation_steps`, `num_generations`, `max_completion_length`, `learning_rate`, `seed`, `solver`, `wandb_project`。\n\n---\n\n**完整文件内容：**\n\n**`grpo_additive_bonus.yaml`**\n```yaml\nmodel_path: /root/autodl-tmp/models/Qwen3-4B\ndata_path: data/train_500_seed42.jsonl\nreward_mode: additive_bonus\noutput_dir: /root/autodl-tmp/outputs/plan002_additive_beta03_s42\nnum_steps: 500\nper_device_batch_size: 4\ngradient_accumulation_steps: 2\nnum_generations: 4\nmax_completion_length: 512\nlearning_rate: 1.0e-6\nbeta: 0.3\nseed: 42\nsolver: prover9\nwandb_project: solver-trace-ablation\nwandb_run: additive_bonus_b03\n```\n\n**`grpo_additive_bonus_b01.yaml`**\n```yaml\nmodel_path: /root/autodl-tmp/models/Qwen3-4B\ndata_path: data/train_500_seed42.jsonl\nreward_mode: additive_bonus\noutput_dir: /root/autodl-tmp/outputs/plan002_additive_beta01_s42\nnum_steps: 500\nper_device_batch_size: 4\ngradient_accumulation_steps: 2\nnum_generations: 4\nmax_completion_length: 512\nlearning_rate: 1.0e-6\nbeta: 0.1\nseed: 42\nsolver: prover9\nwandb_project: solver-trace-ablation\nwandb_run: additive_bonus_b01\n```\n\n结论：两个配置唯一的训练超参差异是 **beta: 0.3 vs 0.1**，其余为对应的 output_dir 和 wandb_run 命名差异。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-config-diff.md"
+}

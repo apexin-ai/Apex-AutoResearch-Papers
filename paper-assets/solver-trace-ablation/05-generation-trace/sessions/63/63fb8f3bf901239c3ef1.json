@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "63fb8f3bf901239c3ef1",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analysis plan002 b01 s42 h7 audit",
+  "task_key": "worker_analysis_plan002-b01-s42-h7-audit_20260514T150601",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan002-b01-s42-h7-audit_20260514T150601_result.json",
+    "occurrence": 1,
+    "bytes": 2103,
+    "sha256": "f6c1d299f24e8642b9a696b9f3d9863db42c73dd4df8ce396bdf74a5981cc22f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。完整报告如下：\n\n---\n\n## plan002-b01-s42 H7 逐样本审查结果\n\n**81 proved / 100 total**\n\n### 分类统计\n\n| 类别 | Count | Rate | Mean ISR | Median ISR |\n|------|-------|------|----------|------------|\n| **H7** (单 premise = conclusion) | 13 | 16.0% | 0.6603 | 0.7500 |\n| **H1** (多 premise 含 conclusion) | 42 | 51.9% | 0.2245 | 0.1667 |\n| **Genuine** (无 conclusion 重复) | 26 | 32.1% | 0.6014 | 0.5500 |\n\n**Combined conclusion duplication: 55/81 = 67.9%**\n\n### 典型 H7 样本（单 premise = conclusion, ISR 膨胀）\n\n1. **folio_556** (ISR=0.75): Premise `∀x (AssessesSAT(x) → MathSkills(x))` = Conclusion — 直接自证\n2. **folio_160** (ISR=0.75): Premise `∀x (IsBatteryTower(x) → ∀y (...))` = Conclusion\n3. **folio_304** (ISR=0.33): Premise `∀x (¬Braz(x) ∨ ¬PlaysForNautico(x))` = Conclusion\n\n### 典型 H1 样本（多 premise 含 conclusion, ISR 被压低）\n\n1. **folio_66** (ISR=0.14): 6 premises 中 `W(c) ∧ H(c)` 直接等于 conclusion，其余 5 个 unnecessary\n2. **folio_1378** (ISR=0.10): 9 premises 中 `IsPRCNational(Mei)` = conclusion，ISR 极低\n3. **folio_1119** (ISR=0.60): 2 premises 中包含 conclusion 的量化公式\n\n### 典型 Genuine 样本（真正推理）\n\n1. **folio_765** (ISR=0.33): 5 premises → `¬(Lawyer(Mary) ∨ TippedEmployee(Mary)) ∧ Advocate(Mary)` — conclusion 是新合取式，非任一 premise 的复制\n2. **folio_592** (ISR=0.60): 2 premises → 合取式 conclusion\n3. **folio_71** (ISR=0.50): 5 premises → `¬(Easy(2Sum) ∨ Hard(2Sum))` — 需要实质推理得出矛盾\n\n### 对论文的影响\n\n**Critical for Claim 2.** plan002-b01-s42 是 ISR β=0.1 \"genuine structural guidance\" 的核心证据，但：\n- 67.9% proved 样本有 conclusion duplication（H7+H1）\n- H7 膨胀 ISR（mean 0.66），H1 压低 ISR（mean 0.22），两种 artifact 方向相反\n- Genuine 子集仅 26 样本，其 mean ISR = 0.60 反而高于整体 0.42\n- 论文 reported ISR 是三类样本的混合平均，信号被 artifact 主导"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan002-b01-s42-h7-audit.md"
+}

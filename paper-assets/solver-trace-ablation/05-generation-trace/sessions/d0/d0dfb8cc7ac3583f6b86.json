@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d0dfb8cc7ac3583f6b86",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "cleanup disk free v1",
+  "task_key": "worker_cleanup_disk-free-v1_20260516T050532",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_cleanup_disk-free-v1_20260516T050532_result.json",
+    "occurrence": 1,
+    "bytes": 246,
+    "sha256": "36acb6187b6cf2a002d1b1404bf2ed77baca5b1070e52117cd13f96d49a0bbca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **删除**: `/root/autodl-tmp/outputs/sweep_isr_b02_s42/`（废弃的 v1，仅含 checkpoint-50）\n- **释放**: 15GB\n- **当前磁盘**: 197G/250G (79%)，剩余 54GB，足够两个训练各存一个 checkpoint。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/cleanup-disk-free-v1.md"
+}

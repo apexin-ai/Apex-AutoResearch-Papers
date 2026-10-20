@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5f239be859af1eded390",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_8_1778799903.md",
+  "task_key": "loop_8_1778799903",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_8_1778799903.md",
+    "occurrence": 1,
+    "bytes": 4457,
+    "sha256": "160e21e9ca533b1883c4a25f06d9f72ee1f3af77fa791d1385b4618a5fe58be2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: idle_timeout\nupdated: '2026-05-14T21:55:46+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 只能用 `westd-39279:cuda:0` 和 `westd-39279:cuda:1`（config gpu_ids 白名单）\n- 数据盘 240G/250G (96%)，**提交新实验前必须清理旧 checkpoint**（`/root/autodl-tmp/outputs/`），否则磁盘爆满\n- 所有训练实验统一使用 `train_500_seed42.jsonl`（C001 约束），不要用 `proofwriter_fol_500.jsonl`\n- 命令必须 `export CUDA_VISIBLE_DEVICES=N`（C002），且在 `bash -c` 内部\n- `log_completions=False` + `save_total_limit=1`，output_dir 放 `/root/autodl-tmp/outputs/`（C003）\n- kill_job 后必须 SSH 验证子进程已清理（已知 bug：只杀 tmux wrapper 不杀 Python 子进程）\n- Prolog STA s44 是 **query-as-fact gaming**（Reviewer 已核实），论文中不可标为 genuine\n- strict H7 classifier 有盲区（s43 uppercase / s44 query-as-fact 绕过），论文必须同时报 strict 和 functional (n_necessary) 分析\n- D051 定论：ISR 2.4x 优势已作废，premise-count-matched 1.06x 无差异——论文不可引用旧 2.4x/3.2x 数据\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-39279，工作目录 `/root/solver-trace-ablation/`\n- **Python**: `/root/miniconda3/bin/python`，激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **GPU**: 2× RTX PRO 6000 Blackwell 94GB，CUDA 12.8，PyTorch 2.10.0+cu128\n- **模型**: Qwen3-4B（ModelScope 下载，7.6GB）\n- **Solvers**: Prover9 (LADR 源码编译), SWI-Prolog 8.4.2 (`/usr/bin/swipl`), Z3 4.16.0.0\n- **磁盘**: 系统盘 22G free，数据盘 `/root/autodl-tmp/` 250GB (仅 ~10G free，需清理)\n- **活跃进程**: 无 RUNNING 实验，无活跃 cron\n- **活跃 Worker**: 3 个论文写作 Worker 正在运行（见下）\n\n### 3. 📊 当前状态\n**刚完成**: 全部 50 个实验已 DONE（success 12 / negative 18 / failed 18 / killed 2）。三条 Claim 全部闭环。writing_plan.yaml 已获 Director 审批，进入论文写作阶段。DDL = ARR May 25（剩 11 天）。\n\n**PREPARING 实验（未提交）**:\n- `exp1-random-b03-s43`: β=0.3 random seed 43，补充 Table 1 三 seed 统计（5 steps?? spec 可能不完整）\n- `exp1-isr-b03-s43`: β=0.3 ISR seed 43，补充 Table 1 三 seed 统计\n\n**运行中的 Worker（等待回调）**:\n- `worker_write_paper-experiments-method_20260514T215311` — 写 Method + Experiments 章节\n- `worker_write_paper-main-intro-limits_20260514T215337` — 写 Introduction + Limitations 章节\n- `worker_paper_bib-fix-and-format_20260514T215427` — BibTeX 修复和格式化\n\n### 4. 📋 待办（条件触发式）\n- 3 个写作 Worker 回调 → 审阅草稿质量，检查 red-section 合规（数字追溯 registry、强度词有统计检验），整合到论文\n- exp1-random-b03-s43 / exp1-isr-b03-s43 需要 Director 审批 + GPU 分配 → 检查 spec 完整性（num_steps=5 疑似错误，应为 500），提交审批\n- 磁盘 96% → 派 Worker 清理 `/root/autodl-tmp/outputs/` 旧 checkpoint 再提交新实验\n- 论文初稿完成 → 跑 `check_paper_consistency` + `verify_references` + 视觉审查\n- Reviewer 要求补充实验 → 按 experiment_plan 中 planned 实验（plan004/007/008/010/011/015）评估优先级\n\n### 5. 🎯 战略上下文\n**项目定位**: STA/ISR 作为 GRPO neurosymbolic formalizer 的**诊断工具** + **Goodhart's Law 案例研究**。EMNLP 2026 ARR May 25。\n\n**核心证据链**:\n- Claim 1（STA 诊断能力）: ISR 崩塌轨迹 0.6423→0.1324→0.0027，7-mode taxonomy，3-seed 多模式退化\n- Claim 2（Goodhart / ISR 无结构优势）: D057 闭环，premise-count-matched 1.06x，H7 是 ISR-specific，conclusion embedding 是 GRPO 通用\n- Claim 3（跨逻辑泛化）: Prolog 3/3 seeds gaming，0% genuine，三种不同 gaming pathway\n\n**易错点**:\n1. `exp1-*-b03-s43` 的 num_steps=5 看起来像 placeholder 或错误——提交前务必确认应为 500\n2. 不要把 plan013（convex combination formula）和 plan017（additive formula）直接对比——公式结构不同（D027）\n3. ISR β=0.1 hacking rate 用 strict 值 69.1%（D044），不是旧的宽松值\n4. SFT baseline (plan009) 多次 failed，最终 r4 成功但 registry_id 指向 r2（failed）——引用 SFT 数据时用 memory.md 中记录的 r4 结果（PR=0.14, proved-only ISR=0.571）\n5. 磁盘极度紧张（96%），任何新实验或大文件操作前必须先清理\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-8-1778799903.md"
+}

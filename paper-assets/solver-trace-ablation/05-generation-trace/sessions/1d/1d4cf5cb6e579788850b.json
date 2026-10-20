@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1d4cf5cb6e579788850b",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops submit random b01 s46 r2",
+  "task_key": "worker_ops_submit-random-b01-s46-r2_20260517T023302",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_submit-random-b01-s46-r2_20260517T023302_result.json",
+    "occurrence": 1,
+    "bytes": 355,
+    "sha256": "bf54e1b8f6cd5e2779ccd718dcc68b7d029ae526b20227e1e61ea27afa2622ba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验状态：\n\n| 实验 | GPU | Session | PID | 显存 | GPU-Util | 状态 |\n|---|---|---|---|---|---|---|\n| exec-only-s43-1000step-r7 | cuda:0 | `exec-only-s43-1000step-r7` | 996789 | 85260 MiB | 90% | 运行中 |\n| plan018-random-b01-s46 | cuda:1 | `plan018-random-b01-s46` | 70021 | 24770 MiB | 91% | 刚启动，运行中 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-submit-random-b01-s46-r2.md"
+}

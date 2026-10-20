@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "38d0e8fd81f23cc8b462",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "diag d142 ext status",
+  "task_key": "worker_diag_d142-ext-status_20260519T120936",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_d142-ext-status_20260519T120936_result.json",
+    "occurrence": 1,
+    "bytes": 1257,
+    "sha256": "50423d7ad64eca5e74337d4afd13fb6b7fe2d8baa5d1f51b905347d90758ca3f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个实验全部更新完成。汇总报告：\n\n## D142 Gated ISR 实验诊断结果\n\n### 环境状态\n- **GPU**: 空闲（0MiB / 97887MiB），无运行进程\n- **磁盘**: 45G / 250G（18%），充裕\n\n### 实验结果\n\n| | s55 | s56 | s57 |\n|---|---|---|---|\n| **状态** | SUCCESS | SUCCESS | SUCCESS |\n| **Proved** | 100/100 (100%) | 36/100 (36%) | 88/100 (88%) |\n| **Mean ISR** | 0.525 | 0.293 | 0.450 |\n| **Proved-only ISR** | 0.525 | 0.813 | 0.511 |\n| **H7 (TS)** | **82/100 (82%)** | 0 | 1/88 (1.1%) |\n| **H1 (CE)** | 0 | 0 | 18/88 (20.5%) |\n| **H8 (PG)** | 15/100 (15%) | **30/36 (83.3%)** | 13/88 (14.8%) |\n| **Genuine** | **3/100 (3%)** | **6/36 (16.7%)** | **56/88 (63.6%)** |\n| **ContentIndep** | 0 | **27/36 (75%)** | 0 |\n| **Checkpoint** | `/root/autodl-tmp/d142_gated_isr_s55` | `...s56` | `...s57` |\n\n### 模式分析\n\n三个 seed 展示了三种完全不同的 collapse 模式：\n- **s55**: 极端 TS collapse（82% H7），gate 完全未能阻止 tautology shortcut\n- **s56**: PG collapse + content-independent（83% H8, 75% CntIndep），prove rate 暴跌到 36%\n- **s57**: 最健康的结果，63.6% genuine，但仍有 CE 和 PG 各约 15-20%\n\nRegistry 已全部更新为 DONE/success。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-d142-ext-status.md"
+}

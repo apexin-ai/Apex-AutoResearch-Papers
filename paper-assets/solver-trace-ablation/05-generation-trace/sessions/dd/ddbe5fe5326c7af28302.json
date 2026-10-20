@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ddbe5fe5326c7af28302",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "research server script check",
+  "task_key": "worker_research_server-script-check_20260516T184924",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_server-script-check_20260516T184924_result.json",
+    "occurrence": 1,
+    "bytes": 4320,
+    "sha256": "cf496d82237d3a29a2080f82a32863c375394e4d9970c0202b5d0c6552cd009e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "收集完毕。以下是结构化结果：\n\n---\n\n## 1. 训练脚本完整参数列表\n\n```\nusage: train_grpo.py [-h] [--model_path MODEL_PATH] [--data_path DATA_PATH]\n                     [--reward_mode {execution_only,execution_sta,random_reward,additive_bonus,additive_random,execution_fast_sta,isr_gated}]\n                     [--output_dir OUTPUT_DIR] [--num_steps NUM_STEPS]\n                     [--per_device_batch_size PER_DEVICE_BATCH_SIZE]\n                     [--gradient_accumulation_steps GRADIENT_ACCUMULATION_STEPS]\n                     [--num_generations NUM_GENERATIONS]\n                     [--max_completion_length MAX_COMPLETION_LENGTH]\n                     [--learning_rate LEARNING_RATE]\n                     [--exec_weight EXEC_WEIGHT] [--sta_weight STA_WEIGHT]\n                     [--beta BETA]\n                     [--beta_schedule {fixed,linear,sigmoid}]\n                     [--beta_schedule_midpoint BETA_SCHEDULE_MIDPOINT]\n                     [--isr_threshold ISR_THRESHOLD]\n                     [--min_components MIN_COMPONENTS] [--seed SEED]\n                     [--solver SOLVER] [--logic_type {fol,prolog}]\n                     [--wandb_project WANDB_PROJECT] [--wandb_run WANDB_RUN]\n                     [--no_wandb]\n                     [--warmup_ratio WARMUP_RATIO] [--optim OPTIM]\n                     [--warmup_steps WARMUP_STEPS]\n                     [--config CONFIG]\n```\n\n关键参数说明：\n- `--beta` — additive bonus/random 系数\n- `--beta_schedule` — fixed/linear/sigmoid\n- `--isr_threshold` — isr_gated 模式阈值 (default 0.3)\n- `--warmup_steps` — exec-only warmup 步数 before ISR-gated (default 0)\n- `--config` — YAML 配置文件（覆盖 CLI 参数）\n- `--save_total_limit` — 在 YAML 中可设（非 CLI 显式列出但 YAML 支持）\n\n## 2. 已有 1.7B 配置文件\n\n**`grpo_exec_only_1.7b.yaml`**:\n```yaml\nmodel_path: /root/autodl-tmp/models/Qwen3-1.7B\ndata_path: data/train_500_seed42.jsonl\nreward_mode: execution_only\noutput_dir: /root/autodl-tmp/outputs/grpo_exec_only_1.7b\nnum_steps: 500\nper_device_batch_size: 2\ngradient_accumulation_steps: 4\nnum_generations: 4\nmax_completion_length: 512\nlearning_rate: 1.0e-6\nexec_weight: 1.0\nsta_weight: 0.0\nseed: 42\nsolver: prover9\nwandb_project: solver-trace-ablation\nwandb_run: exec_only_1.7b\nno_wandb: true\nsave_total_limit: 1\noptim: adamw_torch\n```\n\n**`grpo_additive_bonus_b01_1.7b.yaml`**:\n```yaml\nmodel_path: /root/autodl-tmp/models/Qwen3-1.7B\ndata_path: data/train_500_seed42.jsonl\nreward_mode: additive_bonus\noutput_dir: /root/autodl-tmp/outputs/grpo_additive_bonus_b01_1.7b\nnum_steps: 500\nper_device_batch_size: 2\ngradient_accumulation_steps: 4\nnum_generations: 4\nmax_completion_length: 512\nlearning_rate: 1.0e-6\nbeta: 0.1\nexec_weight: 1.0\nsta_weight: 0.0\nseed: 42\nsolver: prover9\nwandb_project: solver-trace-ablation\nwandb_run: additive_bonus_b01_1.7b\nno_wandb: true\nsave_total_limit: 1\noptim: adamw_torch\n```\n\n## 3. 4B Random sweep 配置参考\n\n**`sweep_random_b01_s45.yaml`** (4B model):\n```yaml\nmodel_path: /root/autodl-tmp/models/Qwen3-4B\ndata_path: data/train_500_seed42.jsonl\nreward_mode: additive_random\noutput_dir: /root/autodl-tmp/outputs/sweep_random_b01_s45\nnum_steps: 500\nper_device_batch_size: 4\ngradient_accumulation_steps: 2\nnum_generations: 4\nmax_completion_length: 512\nlearning_rate: 1.0e-6\nbeta: 0.1\nseed: 45\nsolver: prover9\nwandb_project: solver-trace-ablation\nwandb_run: sweep_random_b01_s45\n```\n\n## 4. 环境验证\n\n- **Python**: `/root/miniconda3/bin/python`, Python 3.12.3\n- **激活命令**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型路径**: `/root/autodl-tmp/models/Qwen3-1.7B/` — 存在，含 2 个 safetensors shard\n\n## 5. 1.7B ISR pilot 训练状态\n\n`w2_1.7b_isr_b01_s42` 已完成 500 步，最终 reward ≈ 1.029，epoch=2.0，completion length 收敛到 ~66 tokens。\n\n## 6. 关键差异：1.7B vs 4B 配置\n\n| 参数 | 1.7B | 4B |\n|------|------|-----|\n| `per_device_batch_size` | 2 | 4 |\n| `gradient_accumulation_steps` | 4 | 2 |\n| `save_total_limit` | 1 | 未设（默认） |\n| `optim` | adamw_torch | 未设（默认） |\n\n有效 batch size 相同：`2×4 = 4×2 = 8`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-server-script-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1b6094df488bc97f7ca6",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops paper sync compile",
+  "task_key": "worker_ops_paper-sync-compile_20260515T201753",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_paper-sync-compile_20260515T201753_result.json",
+    "occurrence": 1,
+    "bytes": 216,
+    "sha256": "f6c849e2ecaab72e0fef565fefa0c3763b4750f82741d16a027e227eb3696a5d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译完成。\n\n- 19 页，541,109 bytes（~529KB），大小合理\n- 无 fatal error\n- bibtex + pdflatex ×2 全部成功\n\nPDF 已生成在远程 `/root/solver-trace-ablation/paper/main.pdf`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-paper-sync-compile.md"
+}

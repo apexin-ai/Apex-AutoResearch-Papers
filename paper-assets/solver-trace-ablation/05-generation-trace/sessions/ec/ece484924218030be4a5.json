@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ece484924218030be4a5",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "cleanup plan009 sft checkpoint",
+  "task_key": "worker_cleanup_plan009-sft-checkpoint_20260514T142538",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_cleanup_plan009-sft-checkpoint_20260514T142538_result.json",
+    "occurrence": 1,
+    "bytes": 290,
+    "sha256": "34332f247b28f478028ff248c9a7edf15cd3dd48c2271fbefd816d35ef5b02f9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。\n\n- **删除**: `checkpoint-500/` 整个目录（~23GB，含 15GB optimizer.pt + 模型副本）\n- **保留**: eval_results.json、模型文件、tokenizer、config 等全部在上级目录\n- **磁盘**: `/root/autodl-tmp/` 从 48% 使用率，可用 131GB"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/cleanup-plan009-sft-checkpoint.md"
+}

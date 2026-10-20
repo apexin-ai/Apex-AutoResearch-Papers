@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "469e38ee0bbfc4283905",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops plan004 status gpu check",
+  "task_key": "worker_ops_plan004-status-gpu-check_20260515T060134",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_plan004-status-gpu-check_20260515T060134_result.json",
+    "occurrence": 1,
+    "bytes": 1400,
+    "sha256": "c78e259e76740f1e543f3adacb11a92ed710e527df0038460b28960c44c9d828"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### plan004-o1-ablation-s42 状态：**已完成**\n\n训练正常跑完 500 步（52 分钟），checkpoint-500 已保存。模型权重 ~15GB。\n\n训练日志最终统计：\n- prove_rate: 0.658, mean_isr: 0.653, parse_rate: 1.0\n\n### Eval 指标（eval_sta.py, proofwriter_fol_100.jsonl）\n\n| 指标 | 值 |\n|------|-----|\n| Prove Rate (PR) | **63.0%** (63/100) |\n| Mean ISR | **0.0072** (std=0.029) |\n| Median ISR | 0.000 |\n| Proved-only ISR | 0.0115 |\n| Max ISR | 0.190 |\n\n按 answer_type 分：\n- true: 24/34 proved (70.6%), ISR=0.007\n- unknown: 25/41 proved (61.0%), ISR=0.010\n- false: 14/25 proved (56.0%), ISR=0.004\n\n**关键观察**：ISR 极低（~0.01），100 个样本中绝大多数 ISR=0.000，仅有少数几个非零（max=0.190）。模型生成大量重复 ground facts（如 folio_765 输出了 62+ 重复前提），每个 clause 被重复多次，per-clause ablation 删任一重复不影响结果，所以 ISR 趋近于 0。这符合 C006 描述的 \"exec-only 的 low ISR = 冗余编码\" 模式。\n\n### GPU 健康\n\n| GPU | 型号 | 显存占用 | 利用率 |\n|-----|------|---------|--------|\n| cuda:0 | RTX PRO 6000 Blackwell | **0 MiB / 97887 MiB** | 0% |\n| cuda:1 | RTX PRO 6000 Blackwell | **0 MiB / 97887 MiB** | 0% |\n\n**两张 GPU 完全空闲**，eval 进程已结束。cuda:0 和 cuda:1 均可用于新实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-plan004-status-gpu-check.md"
+}

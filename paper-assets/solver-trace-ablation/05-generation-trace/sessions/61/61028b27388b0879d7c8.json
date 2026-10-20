@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "61028b27388b0879d7c8",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "knowledge hacking taxonomy update",
+  "task_key": "worker_knowledge_hacking-taxonomy-update_20260514T100244",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_knowledge_hacking-taxonomy-update_20260514T100244_result.json",
+    "occurrence": 1,
+    "bytes": 514,
+    "sha256": "8efaf2a980b9271bc4109a1898176cf136ea8c21a9472711360df538db9ff270"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Taxonomy 已更新为 6 种操作性模式（memory.md + hacking_taxonomy_comparison.md）和 7 种文献分类（hacking_taxonomy.md 新增 H7）。三个文件均已写入：\n\n- **memory.md**: \"操作性分类（6 种模式）\" 小节，含 Mode 6 详情\n- **artifacts/hacking_taxonomy_comparison.md**: 新增 Mode 6 行（†标注跨 seed 来源）+ 独立详情段落含 Mode 3 vs Mode 6 对比表\n- **artifacts/hacking_taxonomy.md**: 新增 H7 类别定义 + ISR calibration 表新增行"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/knowledge-hacking-taxonomy-update.md"
+}

@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "4e6b4102c37b5027cc43",
+  "project": "solver-trace-ablation",
+  "kind": "worker",
+  "title": "code classify h7 bugfix clean run",
+  "task_key": "worker_code_classify-h7-bugfix-clean-run_20260515T145050",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_classify-h7-bugfix-clean-run_20260515T145050.log",
+    "occurrence": 1,
+    "bytes": 695304,
+    "sha256": "eaba318c8d815b2326b4ebdcb32e51a63ad7027cba70b16a54e6cd3a7fd7a1f5"
+  },
+  "statistics": {
+    "messages": 141,
+    "user_turns": 1,
+    "tool_calls": 47,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 39,
+      "tool_call": 47,
+      "tool_result": 47,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 120,
+      "chunks": [
+        {
+          "path": "4e6b4102c37b5027cc43-part-0001.json",
+          "message_count": 120
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 21,
+      "chunks": [
+        {
+          "path": "4e6b4102c37b5027cc43-part-0001.json",
+          "message_count": 6
+        },
+        {
+          "path": "4e6b4102c37b5027cc43-part-0002.json",
+          "message_count": 15
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-classify-h7-bugfix-clean-run.md"
+}

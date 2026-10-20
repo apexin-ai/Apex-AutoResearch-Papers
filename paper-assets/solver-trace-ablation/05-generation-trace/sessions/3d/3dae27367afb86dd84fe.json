@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3dae27367afb86dd84fe",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_7_1778790205.md",
+  "task_key": "loop_7_1778790205",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_7_1778790205.md",
+    "occurrence": 1,
+    "bytes": 4066,
+    "sha256": "ad3962051dde622be24b478df80f85da6874d4ef427ddcc5e3c159ec0e8faaf2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: idle_timeout\nupdated: '2026-05-14T20:05:11+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**cuda:0, cuda:1**（westd-39279）。历史上曾违规用其他 GPU 被 CRITICAL。\n- 数据约束 C001：所有 plan001/plan013 实验统一使用 `train_500_seed42.jsonl`，不可换数据源\n- C003：训练命令必须 `log_completions=False` + `save_total_limit=1`，output_dir 放 `/root/autodl-tmp/outputs/`\n- 磁盘 **240G/250G (96%)**，旧 checkpoint 未清理。新实验前必须先清磁盘\n- kill_job 只杀 tmux wrapper，不杀 Python 子进程——kill 后必须 SSH 验证子进程已终止\n- s44 Prolog STA 教训：strict classifier Genuine=100% 不可信，必须交叉验证 n_necessary 分布。Worker 曾被高 PR/ISR 误导\n\n### 2. 🖥️ 基础设施快照\n- **服务器**：westd-39279，account=root\n- **工作目录**：`/root/solver-trace-ablation/`\n- **Python**：conda base — `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`（不是 venv）\n- **镜像**：aml-train（PyTorch 2.10.0+cu128, transformers/trl/vllm/accelerate 预装）\n- **GPU**：2× RTX PRO 6000 Blackwell 94GB（cuda:0, cuda:1），当前空闲\n- **模型**：Qwen3-4B（7.6GB，ModelScope 下载）\n- **数据盘**：`/root/autodl-tmp/`（250GB，96% 满）\n- **Solvers**：Prover9 (LADR 编译), SWI-Prolog 8.4.2 (`/usr/bin/swipl`), Z3 4.16.0.0\n- **活跃进程**：无训练进程。两个 writing Workers 仍在跑（见下）\n- **Cron**：reconcile 结果 0 个活跃 cron\n\n### 3. 📊 当前状态\n**项目阶段**：✍️ Writing，DDL 2026-05-25（剩 11 天），目标 EMNLP 2026 Main (ARR)\n\n**实验全部完成**：50/50 DONE（success 11 / negative 19 / failed 18 / killed 2）。三条 Claim 全部闭环。无 RUNNING/PREPARING 实验。\n\n**刚完成的事**：论文全文初稿 Workers 已派发并大部分完成——introduction、method、experiments、related-work、appendix、fix-bib-placeholders 均 DONE。\n\n**正在跑的 Workers**（2 个）：\n- `worker_paper_compile-and-audit_20260514T200003`（paper:compile-and-audit）— running\n- `worker_paper_page-compression_20260514T200009`（paper:page-compression）— running\n\n**等待中**：这两个 Worker 完成回调。完成后需检查编译结果、页数是否达标（EMNLP 8+1 页限）、audit 发现的问题。\n\n### 4. 📋 待办（条件触发式）\n- compile-and-audit Worker 回调 → 检查 LaTeX 编译是否通过、audit 发现什么问题 → 按问题优先级派 Worker 修复\n- page-compression Worker 回调 → 检查页数是否 ≤9（8+1 ref）→ 超页则按建议压缩\n- 两个 Worker 都完成后 → 向 Director 汇报初稿状态（编译结果 + 页数 + 待修复问题清单）\n- Director 要求补充实验 → 先清磁盘（`/root/autodl-tmp/outputs/` 旧 checkpoint），再提交\n- 论文初稿就绪 → submit_paper_to_review 送 Reviewer 审查\n- Reviewer 反馈回来 → 按反馈派 Worker 修改，重新编译验证\n\n### 5. 🎯 战略上下文\n**核心结论链**：\n- D051: ISR-as-reward 完全失败，premise-count-matched 后 1.06x 无差异（推翻早期 2.4x/3.2x 结论）\n- D057: 3-seed random 对照组闭环 Claim 2（H7=0% 全 3 seed 一致）\n- D059: Prolog STA 3/3 seeds gaming, 0% genuine，三种不同 gaming pathway 闭环 Claim 3\n- Hacking taxonomy 7 种模式（含第 7 种 query-as-fact，Reviewer 在 s44 上发现）\n\n**易判断错的事**：\n1. **不要把 \"negative\" 结论当失败**——本项目是 Goodhart 诊断论文，negative 结果（ISR-as-reward 失败）正是核心 claim 的支撑证据\n2. **ISR 高不等于好**——s44 Prolog ISR=0.885 看似成功实为 query-as-fact gaming。任何 ISR 高值必须交叉验证 n_necessary\n3. **premise-count-matched 是关键方法论**——raw ISR 对比（2.4x/3.2x）已被推翻，论文必须用 matched 后的 1.06x\n4. **磁盘 96%**——不清理就不能跑新实验\n5. **writing_plan.yaml 已 Director approved (2026-05-14)**——写作按计划推进即可，不需要重新审批\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-7-1778790205.md"
+}

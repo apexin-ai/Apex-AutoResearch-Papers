@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "ef8dc9424c670082a238",
+  "project": "solver-trace-ablation",
+  "kind": "worker",
+  "title": "paper round6 batch1 criticals",
+  "task_key": "worker_paper_round6-batch1-criticals_20260517T164657",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_round6-batch1-criticals_20260517T164657.log",
+    "occurrence": 1,
+    "bytes": 722447,
+    "sha256": "78335ffa296c8f3781411ff959d857829565acfe902e2b023bc5956915ad288b"
+  },
+  "statistics": {
+    "messages": 199,
+    "user_turns": 0,
+    "tool_calls": 75,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 45,
+      "tool_call": 75,
+      "tool_result": 75,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 199,
+      "chunks": [
+        {
+          "path": "ef8dc9424c670082a238-part-0001.json",
+          "message_count": 141
+        },
+        {
+          "path": "ef8dc9424c670082a238-part-0002.json",
+          "message_count": 58
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-round6-batch1-criticals.md"
+}

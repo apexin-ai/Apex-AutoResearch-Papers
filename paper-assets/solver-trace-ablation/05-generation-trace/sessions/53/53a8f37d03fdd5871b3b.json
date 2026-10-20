@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "53a8f37d03fdd5871b3b",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops cleanup cuda0 for r4",
+  "task_key": "worker_ops_cleanup-cuda0-for-r4_20260516T232831",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cleanup-cuda0-for-r4_20260516T232831_result.json",
+    "occurrence": 1,
+    "bytes": 252,
+    "sha256": "cba12a52f835a8fe78c04251d78b198f8c7cc3e76582375eb9578558648d0a08"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 0 已经是 clean 状态：\n\n- **Memory**: 0 MiB / 97887 MiB\n- **进程**: 无残留 python 进程\n- **tmux**: 无任何 session（包括 `exec-only-s43-1000step-r3` 不存在）\n- **GPU Util**: 0%\n\nGPU 0 可用于新实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cleanup-cuda0-for-r4.md"
+}

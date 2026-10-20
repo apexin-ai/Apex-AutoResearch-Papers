@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b0941e5724e5a10f0658",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code plan009 sft script qwen3",
+  "task_key": "worker_code_plan009-sft-script-qwen3_20260514T110405",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan009-sft-script-qwen3_20260514T110405_result.json",
+    "occurrence": 1,
+    "bytes": 1385,
+    "sha256": "75b11805fb5af4e68ee185381af26cc24ac6a5e984b55879f40d4586e393ff13"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 产出报告\n\n### 脚本\n- **路径**: `/root/solver-trace-ablation/scripts/train_sft.py`\n- **变更**: 基于已有脚本更新 — 添加 `--gpu` 参数（C002/C005 合规），`--num_steps` 默认 500，模型/数据/输出路径设默认值，修复 TRL 1.1.0 API 兼容（`max_length` / `dtype`）\n\n### 模型路径\n- `/root/autodl-tmp/models/Qwen3-4B`（已写入脚本默认值）\n\n### 训练数据\n- `data/train_500_seed42.jsonl` — **500 条**，0 跳过\n\n### Prompt 格式\n与 GRPO 脚本完全一致：相同 SYSTEM_PROMPT + USER_TEMPLATE。SFT 目标是生成 `Premises:\\n1. <FOL>\\n...\\nConclusion: <FOL>` 格式的 assistant 回答。\n\n### Dry-run 结果\n- `--help` ✅ 参数解析正常\n- 数据加载 ✅ 500 条全部成功\n- **GPU 训练测试未执行** — 两张 GPU 均被占用：\n  - GPU 0: plan006 (prolog_exec_only, seed=42)\n  - GPU 1: plan018 (additive_random, seed=43)\n\n### 正式训练命令\n```bash\ncd /root/solver-trace-ablation\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\nexport CUDA_VISIBLE_DEVICES=1\npython3 scripts/train_sft.py \\\n  --gpu 1 \\\n  --num_steps 500 \\\n  --seed 42 \\\n  --output_dir /root/autodl-tmp/outputs/plan009_sft_s42 \\\n  --wandb_project solver-trace-ablation \\\n  --wandb_run plan009_sft_s42\n```\n\n需等 GPU 1 上 plan018 完成后才能启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan009-sft-script-qwen3.md"
+}

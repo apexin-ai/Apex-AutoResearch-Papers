@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ed135a486a79aeae8e47",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "monitor plan001 005 verify",
+  "task_key": "worker_monitor_plan001-005-verify_20260513T222106",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_plan001-005-verify_20260513T222106_result.json",
+    "occurrence": 1,
+    "bytes": 473,
+    "sha256": "093dc31ea4cde2ae7983b272860ecd74a23fec40ac43e25a614e8e01d8fdbb12"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**两个训练都因 argparse 错误立即崩溃，未曾开始训练。**\n\n错误完全相同：\n\n```\ntrain_grpo.py: error: unrecognized arguments: --max_steps 500\n```\n\n**原因**：启动命令用了 `--max_steps 500`，但 `train_grpo.py` 的 argparse 定义的是 `--num_steps`，没有 `--max_steps` 这个参数。\n\n**修复**：将启动命令中的 `--max_steps 500` 改为 `--num_steps 500`，然后重新启动两个训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-plan001-005-verify.md"
+}

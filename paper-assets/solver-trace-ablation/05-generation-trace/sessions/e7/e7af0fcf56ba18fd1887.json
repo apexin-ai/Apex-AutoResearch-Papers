@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e7af0fcf56ba18fd1887",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_25_1779711999.md",
+  "task_key": "loop_25_1779711999",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_25_1779711999.md",
+    "occurrence": 1,
+    "bytes": 3682,
+    "sha256": "ee6877e25201f815cdc85d052698e59c996811b98c2232aeb36dbbb937698725"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 25\nreason: idle_timeout\nupdated: '2026-05-22T23:04:17+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 westd-39279:cuda:0（gpu_ids=[0]），禁止用其他 GPU\n- 8B 实验每 seed 需要 12-13h（Reviewer 验证），不是 3-4h——时间预算必须按此估算\n- s46 是独立从头训练（batch=4/accum=2），**不是** plan001-s46 的 resume——Reviewer 已标注 M018，分析时不要混淆\n- 非收敛 seeds（s45/s46/s52）的结论是\"收敛随机性证据\"，不是\"方法失败\"——framing 已在 §4.1 + Appendix 处理\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-39279，项目路径待确认（可能 /root/autodl-tmp/solver-trace-ablation 或 /root/solver-trace-ablation）\n- Python：/root/miniconda3/bin/python，conda base 环境（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- 训练日志：/tmp/exec_only_s46_1000_k4.log\n- 训练配置：configs/exec_only_s46_1000_k4.yaml\n- W&B：数据可用（CRON 确认），run ID 待从日志中提取\n- 活跃进程：无（训练已完成退出），Worker `worker_analysis_exec-only-s46-1000step_20260522T043751` 已派出但可能因 session reset 丢失回调\n\n### 3. 📊 当前状态\n**刚做完**：收到 exec-only-s46-1000step 训练完成回调（ANALYZING），已派 Worker 做分析（SSH 查日志 + eval + classify）。Worker 可能尚未完成或回调丢失。\n\n**Registry 关键实验**：\n- `exec-only-s46-1000step` — ANALYZING，等分析结果（prove_rate / genuine_rate / hacking mode 分布）\n- `exec-only-s45-1000step-k8` — QUEUED，等 GPU 空闲\n- `d154-8b-exec-s42-k8` 等 8B 系列 — PREPARING，等 s46 分析完 + GPU 释放后启动\n- 其余 32 个 PREPARING 实验大部分是历史残留或 8B 系列\n\n**等待中**：\n- Worker 分析回调（可能丢失，需要新 session 重新检查或重派）\n- s46 分析完成后 → 启动 8B dry-run → 8B s42 K=8 训练\n\n### 4. 📋 待办\n- Worker 回调到达（或新 session 检查 Worker 状态）→ 读取 s46 指标 → 更新 registry（conclusion + metrics + checkpoint_path + log_path）→ 汇报 Director\n- s46 prove_rate < 30% → conclusion=negative（非收敛，与 s45 一致，收敛随机性证据）→ 更新 report.md → 释放 GPU → 立即启动 8B dry-run\n- s46 prove_rate > 50% + genuine_rate < 30% → conclusion=success（Goodhart collapse）→ 这会是一个意外发现，同 seed 不同 batch config 收敛了\n- GPU 释放后 → 8B K=8 dry-run（2 步验证 VRAM ~65GB bnb_8bit）→ 通过则提交 d154-8b-exec-s42-k8（12-13h）\n- 8B s42 完成 → eval + classify → 决策点：收敛则续 s43，stagnation 则停\n- 训练期间并行：§4.1 non-convergence 一句话 + K-confound framing\n\n### 5. 🎯 战略上下文\n- **DDL 2026-05-25（~65h）**，论文 v10+ 已 Reviewer PASS，核心 claims C1/C2/C3 已有 5-seed/5-seed/3-seed 数据支撑\n- **8B cross-scale 是最后一个关键数据点**：证明 Goodhart collapse 不局限于 4B。K=4 已证明 cold-start stagnation（d154-8b-exec-s42-k4v2），改用 K=8\n- **非收敛 seeds（3/6）**是 feature 不是 bug：论文已 framing 为\"convergence stochasticity\"，§4.1 + Appendix 已处理\n- **易错点**：\n  - 不要把 s46-1000step 当成 plan001-s46 的延续——它是独立训练，不同 batch config\n  - 8B 时间不是 3-4h 而是 12-13h/seed——Reviewer D161 已修正\n  - K=8 的 batch size 与 K=4 不同，论文中需要注明这个差异（K-confound framing: \"minimum K for viable gradient\"）\n  - Worker 可能因 session reset 丢了回调——新 session 第一件事检查 Worker 状态或重新 SSH 查 s46 分析结果\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-25-1779711999.md"
+}

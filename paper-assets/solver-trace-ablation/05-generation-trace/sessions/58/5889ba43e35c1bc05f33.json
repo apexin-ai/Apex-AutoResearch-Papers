@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5889ba43e35c1bc05f33",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code p2 eval scripts",
+  "task_key": "worker_code_p2-eval-scripts_20260513T222126",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_p2-eval-scripts_20260513T222126_result.json",
+    "occurrence": 1,
+    "bytes": 544,
+    "sha256": "be65707987a8c58e1176da07436dc5db5824808b992df2b8dae062b682c870b6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个脚本全部通过语法检查：\n\n| 脚本 | 状态 | 说明 |\n|------|------|------|\n| `scripts/eval_sta.py` | 已存在 | plan_003 全 STA 评估，含 prove_rate / mean_isr / isr_std / median_isr / isr_pr_ratio |\n| `scripts/eval_o1_vs_on.py` | **新建** | plan_004 O(1)二值 vs O(N)连续 ISR 对比，输出 correlation / agreement / case breakdown |\n| `scripts/train_sft.py` | **新建** | plan_009 SFT baseline，trl.SFTTrainer + chat-format NL→FOL 训练对，支持 wandb / bf16 / gradient_checkpointing |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-p2-eval-scripts.md"
+}

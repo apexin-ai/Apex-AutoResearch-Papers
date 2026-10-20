@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7601e38c8e51f13e24bd",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ssh warmstart isr gated",
+  "task_key": "worker_ssh_warmstart-isr-gated_20260516T151431",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_warmstart-isr-gated_20260516T151431_result.json",
+    "occurrence": 1,
+    "bytes": 1741,
+    "sha256": "01c379b11ce2420efe38d25613ee175d2c67637cf8f2c252b7827fde74c3a674"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告：Warmstart Dry-Run 结果\n\n### 1. 可用 Checkpoint\n| 路径 | 说明 |\n|------|------|\n| `/root/autodl-tmp/outputs/plan001_exec_only_s43_1000_r2/` | exec-only s43, 1000步, 合并模型 |\n| `/root/autodl-tmp/outputs/plan001_exec_only_s44_1000_r2/` | exec-only s44, 1000步, 合并模型 |\n\n### 2. 配置文件\n已创建 `configs/grpo_isr_gated_warmstart.yaml`（含 gradient_checkpointing=true，使用 train_500_seed42.jsonl 遵循 C001）。\n\n### 3. Dry-Run 结果 — **阻塞：无法继续提交**\n\n| 指标 | Step 1 | Step 2 |\n|------|--------|--------|\n| prove_rate | 1.000 | 0.000 |\n| isr | 0.750 | 0.000 |\n| gate_pass | 1.000 | — |\n| reward | 1.000 | 0.000 |\n| **grad_norm** | **0.0** | — |\n| **reward_std** | **0.0** | — |\n| entropy | 0.00014 | — |\n| completion length | 31/31/31 (min/mean/max) | — |\n\n**根因**：exec-only 训练 1000 步后模型 entropy 已 collapse（0.00014）。K=8 生成完全相同（31 token），reward 无方差 → GRPO 零梯度。这与 curriculum 失败是同一个问题的镜像——一边是 reward 全 0（模型不会 prove），另一边是 reward 全 1（模型太会 prove）。\n\n### 4. 未提交双卡训练\n\n按当前配置提交无意义（梯度恒为零）。\n\n### 可能的解法\n1. **加 temperature 参数**（如 1.5-2.0）打破 deterministic generation，需改 `train_grpo.py` 向 GRPOConfig 传 `temperature`\n2. **用 additive_bonus + ISR**（连续 reward 替代 binary gate），使即使相同 prove 结果也有不同分值\n3. **用更早期 checkpoint**（如 step 200-300 时 entropy 还没 collapse）— 但已被清理\n4. **KL penalty 对 base model** 防止进一步 collapse\n\n如何处理？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-warmstart-isr-gated.md"
+}

@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "53416cc22eb3c17632fe",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "writing paper literature bib",
+  "task_key": "worker_writing_paper-literature-bib_20260514T185103",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_paper-literature-bib_20260514T185103_result.json",
+    "occurrence": 1,
+    "bytes": 1848,
+    "sha256": "5ef92291a26416a59a67f78f26f950d502f9aadcc4e47e1a0c6b7baaa4cde033"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "BibTeX file written to `artifacts/_project/paper/references.bib`.\n\n```json\n{\n  \"total_entries\": 32,\n  \"must_cite_found\": 21,\n  \"must_cite_missing\": [],\n  \"should_cite_found\": 7,\n  \"should_cite_missing\": [],\n  \"additional_entries\": 4,\n  \"notes\": \"All 21 must-cite and 7 should-cite papers included. 4 additional papers from literature_map (offutt1992coupling, just2014mutants, bondarenko2025specgaming, kim2026formalization) added for mutation testing and reward hacking coverage. Mellgren et al. year corrected to 2025 (Dec 2024 submission). Logic-RL first author is Xie not Xian. Spurious Rewards first author is Rulin Shao not Ruixin Yang. Kwa et al. authors corrected to Thomas Kwa, Drake Thomas, Adrià Garriga-Alonso (not Rachel Thomas as in some sources).\"\n}\n```\n\n**Key naming:** `\\cite{shao2024deepseekmath}`, `\\cite{deepseek2025r1}`, `\\cite{pan2023logiclm}`, `\\cite{olausson2023linc}`, `\\cite{gao2023overoptimization}`, `\\cite{karwowski2024goodhart}`, `\\cite{manheim2019goodhart}`, `\\cite{kwa2024goodhart}`, `\\cite{demillo1978mutation}`, `\\cite{jia2011mutation}`, etc."
+            }
+          ],
+          "metadata": {
+            "data": {
+              "total_entries": 32,
+              "must_cite_found": 21,
+              "must_cite_missing": [],
+              "should_cite_found": 7,
+              "should_cite_missing": [],
+              "additional_entries": 4,
+              "notes": "All 21 must-cite and 7 should-cite papers included. 4 additional papers from literature_map (offutt1992coupling, just2014mutants, bondarenko2025specgaming, kim2026formalization) added for mutation testing and reward hacking coverage. Mellgren et al. year corrected to 2025 (Dec 2024 submission). Logic-RL first author is Xie not Xian. Spurious Rewards first author is Rulin Shao not Ruixin Yang. Kwa et al. authors corrected to Thomas Kwa, Drake Thomas, Adrià Garriga-Alonso (not Rachel Thomas as in some sources)."
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-paper-literature-bib.md"
+}

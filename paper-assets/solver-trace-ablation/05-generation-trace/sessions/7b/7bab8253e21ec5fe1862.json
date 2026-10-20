@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7bab8253e21ec5fe1862",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_8_1778801238.md",
+  "task_key": "loop_8_1778801238",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_8_1778801238.md",
+    "occurrence": 1,
+    "bytes": 5144,
+    "sha256": "1661f3a48b08959001d85aee2d58dafbfc13b3af23e80929bbc828b6aa34ec89"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: idle_timeout\nupdated: '2026-05-14T23:20:05+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单仅 `westd-39279:cuda:0` 和 `westd-39279:cuda:1`，绝对不能用其他卡\n- 数据盘 `/root/autodl-tmp/` 已 96% (240G/250G)——**提交任何新实验前必须先清理旧 checkpoint**，否则训练中途磁盘爆满\n- 所有 plan001/plan013 实验必须用 `train_500_seed42.jsonl`（C001 约束，消除数据差异 confound）\n- `submit_training_job` 命令必须 `bash -c \"export CUDA_VISIBLE_DEVICES=N && ...\"` 格式，不能假设 .venv\n- 环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`（conda 环境，不是 venv）\n- `kill_job` 只杀 tmux wrapper PID——**kill 后必须 SSH 验证 Python 子进程也已终止**\n- Prolog s44 已被 Reviewer 修正为 query-as-fact gaming（非 genuine）——论文中绝不能用旧版\"Genuine=100%\"结论\n- D051 定论：2.4x ISR 优势已作废，premise-count-matched 1.06x——论文不可出现旧版 2.4x/3.2x 数字\n- `log_completions=False` + `save_total_limit=1`，output_dir 放 `/root/autodl-tmp/outputs/`（C003）\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-39279，2× RTX PRO 6000 Blackwell 94GB VRAM\n- **工作目录**: `/root/solver-trace-ablation/`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境）\n- **CUDA**: 12.8, PyTorch 2.10.0+cu128\n- **镜像**: aml-train（transformers/trl/vllm/accelerate 预装）\n- **Solvers**: Prover9 (LADR 源码编译), SWI-Prolog 8.4.2 (`/usr/bin/swipl`), Z3 4.16.0.0\n- **模型**: Qwen3-4B（ModelScope 下载，7.6GB）\n- **磁盘**: 系统盘 30GB，数据盘 `/root/autodl-tmp/` 250GB (已用 96%，**紧急**)\n- **活跃进程**:\n  - exp1-isr-b03-s44: PID 7303, cuda:0\n  - exp1-random-b03-s43: PID 963653, cuda:1\n- **活跃 Cron**: 3 个（分别监控 exp1-random-b03-s43, exp1-isr-b03-s43-r2, exp1-isr-b03-s44）\n- **文献资产**: `artifacts/literature_goodhart.md` (30+ 篇), `literature_map.yaml` (33 篇, 6 类别)\n\n### 3. 📊 当前状态\n\n**刚完成**: Claims 1/2/3 全部闭环。writing_plan.yaml 已获 Director 审批，论文写作全面铺开。\n\n**Running experiments (2)**:\n- `exp1-isr-b03-s44` — ISR β=0.3 seed 44, cuda:0, PID 7303\n- `exp1-random-b03-s43` — Random β=0.3 seed 43, cuda:1, PID 963653\n\n**PREPARING (1)**:\n- `exp1-random-b03-s44` — 等 GPU 空出\n\n**Running Workers (5)**:\n1. `worker_review_paper-draft-r1` — 论文初稿审查（R1 review）\n2. `worker_write_paper-method-experiments-r3` — Method + Experiments 章节写作（第 3 轮）\n3. `worker_write_paper-figures` — 论文图表生成\n4. `worker_write_paper-review-fixes` — 审查修复\n5. `worker_eval_exp1-isr-b03-s43-prep` — exp1-isr-b03-s43 eval 准备\n\n**Registry 总览**: 57 实验，54 DONE (success 14 / negative 19 / failed 18 / killed 2) + 2 RUNNING + 1 PREPARING\n\n### 4. 📋 待办（条件触发式）\n\n- exp1-isr-b03-s44 cron 回调（DONE/failed）→ spawn worker 跑 eval_sta + hacking 分类 → 更新 registry → 汇报 Director\n- exp1-random-b03-s43 cron 回调（DONE/failed）→ 同上 eval + 分类\n- 两个实验都完成且 cuda:0/1 空出 → 提交 exp1-random-b03-s44（PREPARING）\n- worker_review_paper-draft-r1 完成 → 读取审查意见，派 worker 按意见修改各章节\n- worker_write_paper-method-experiments-r3 完成 → 整合到 paper/main.tex\n- worker_write_paper-figures 完成 → 注册 artifacts，确认图表引用一致\n- worker_eval_exp1-isr-b03-s43-prep 完成 → 更新 registry metrics\n- 所有论文章节草稿完成 → submit_paper_to_review（送审）\n- **磁盘 96%**：下次派 SSH Worker 时**必须先清理** `/root/autodl-tmp/outputs/` 下旧 checkpoint\n\n### 5. 🎯 战略上下文\n\n**核心结论链**: STA/ISR 是强大的 reward hacking **诊断工具**（Claim 1），但作为 reward 信号在所有剂量/配方上完全失败（meta-Goodhart，Claim 2），且这一效应跨 FOL/Prolog 两种逻辑类型泛化（Claim 3, 3/3 Prolog seeds gaming）。论文定位是 EMNLP 2026 的 Goodhart's Law 案例研究 + 诊断方法论贡献。\n\n**Decision chain**: D049→D051 推翻了 2.4x ISR 优势（premise-count artifact），D057 3-seed random 控制组闭环 Claim 2，D059 Prolog STA 闭环 Claim 3。所有 Claims 已闭环，当前全力写论文。\n\n**易判断错的事**:\n1. **exp1-isr/random-b03 实验**: 这些是 β=0.3 补充实验，不是核心 Claims 的依赖——论文不应阻塞在它们上面\n2. **Prolog s44 的 \"Genuine=100%\"**: 这是 strict classifier 的 false negative，已被 Reviewer 修正为 query-as-fact gaming。任何引用 s44 的地方必须用修正后的结论\n3. **ISR 指标报告**: 全文统一用 proved-only ISR*（排除 unproved=0 样本），不用 all-sample ISR\n4. **plan013 vs plan017**: 公式结构不同（convex vs additive），不可简化为 \"additive vs convex\" 对照（D027 Reviewer 约束）\n5. **磁盘**: 96% 是紧急状态，任何新实验/eval 前必须先清理\n6. **DDL**: 2026-05-25，剩 11 天，写作是 critical path——Worker 池要保持饱和在写作任务上\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-8-1778801238.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e512127b5f0fba341c27",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code grpo training",
+  "task_key": "worker_code_grpo-training_20260513T180233",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_grpo-training_20260513T180233_result.json",
+    "occurrence": 1,
+    "bytes": 1316,
+    "sha256": "5edd702c42021f5fc3d5ba0ce4922b86d78beddec1874ff24ab2f998546656f1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No register_artifact tool available. The artifacts are already in the `artifacts/` directory.\n\nPhase 1 GRPO 训练脚本已完成，dry-run 验证通过。\n\n**产出文件（服务器 + 本地 artifacts/）：**\n\n| 文件 | 服务器路径 | 说明 |\n|------|-----------|------|\n| `train_grpo.py` | `/root/solver-trace-ablation/scripts/train_grpo.py` | 主训练脚本，支持 `execution_only` 和 `execution_sta` 两种 reward 模式 |\n| `grpo_exec_only.yaml` | `/root/solver-trace-ablation/configs/grpo_exec_only.yaml` | execution-only 配置 |\n| `grpo_exec_sta.yaml` | `/root/solver-trace-ablation/configs/grpo_exec_sta.yaml` | execution+STA 配置 |\n| `launch_phase1.sh` | `/root/solver-trace-ablation/scripts/launch_phase1.sh` | 双 GPU 并行启动脚本 |\n\n**Dry-run 结果（1 步，execution_only 模式）：**\n- 14.6s/step（含 generation + reward 计算 + backward）\n- parse_rate=1.0, prove_rate=0.25, mean_isr=0.25\n- Checkpoint 保存到 `/root/autodl-tmp/outputs/`（数据盘 232GB 可用）\n- 无 OOM，94GB 显存绑绑有余\n\n**注意事项：**\n- 根分区已满（30G/30G），所有 output 写入 `/root/autodl-tmp/outputs/`\n- 已设 `save_only_model=True` 避免保存 7.5GB 的 optimizer state\n- 模型 shard 3 之前缺失，已通过 ModelScope 补全"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-grpo-training.md"
+}

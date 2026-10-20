@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e00c8a2f6e691399050b",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "eval w2 qwen3 1 7b exec finalize r2",
+  "task_key": "worker_eval_w2-qwen3-1_7b-exec-finalize-r2_20260516T121336",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_w2-qwen3-1_7b-exec-finalize-r2_20260516T121336_result.json",
+    "occurrence": 1,
+    "bytes": 73,
+    "sha256": "923eeb73f4553b5671841f5c309b084c483c955f6d31fcf7e39d90d8b2a9acad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已设置 60 秒后自动回来检查 eval 进程状态。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-w2-qwen3-1-7b-exec-finalize-r2.md"
+}

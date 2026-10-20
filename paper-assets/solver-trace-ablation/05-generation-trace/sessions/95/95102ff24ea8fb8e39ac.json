@@ -1,0 +1,808 @@
+{
+  "schema_version": "1.0",
+  "id": "95102ff24ea8fb8e39ac",
+  "project": "solver-trace-ablation",
+  "kind": "worker",
+  "title": "research check random reward isr field",
+  "task_key": "worker_research_check-random-reward-isr-field_20260514T002625",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_check-random-reward-isr-field_20260514T002625.log",
+    "occurrence": 1,
+    "bytes": 76966,
+    "sha256": "5a6f58a9c8e3dc4abf037abadc77bf84e2f1fa9894e2f098fd2a20fb422292a5"
+  },
+  "statistics": {
+    "messages": 18,
+    "user_turns": 0,
+    "tool_calls": 6,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 2,
+      "tool_call": 6,
+      "tool_result": 6,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+                "session_id": "27d5ad87-e199-4d59-afad-fc5875cba6ab",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "cb80fd97-ec94-4a9d-a844-2b98e429b080",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778726400,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "1f61c569-7fc7-4886-b16d-7b2b224da7dd",
+                "session_id": "27d5ad87-e199-4d59-afad-fc5875cba6ab"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me read the training script to understand how reward_log is written in random_reward mode.",
+              "signature": "EpkCClkIDRgCKkAAM/7lUViqCcFnsuLwv1JlyRr2aX3mGjcNY/WoEME6zIBZMsUjzJlNzxF2s2U0F1MiWaRQHKNuKkTpfJbCd8fnMg9jbGF1ZGUtb3B1cy00LTY4ABIMXn7ZfGqu+fjyc6q1GgxrXuaaencKjEhTWukiMAx2OmU/PzgjbWiNQsUi8soUQDLEbj/+oGvrAXws/OjA8SpPBGpogib9+wV/QX8N9ipumqdblT+5PubGB13JxY0VVGF1+e+SM4FY5XRe3yKGZrSMvDeas/+ABT8J2c+JMgiSAqtPtFf5cWtzG07cB8uaooIlcbBW+248WkhvjyFp69CACanXuVIaCd1f4lvZV3aaqp+iIwuwxIuIvQpELvsYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "27d5ad87-e199-4d59-afad-fc5875cba6ab",
+            "uuid": "81ab52a2-154f-48dc-b156-bc1ac1fca8d6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HVPUH5pbuvLhc7oa1fKRbw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11580,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11580
+                },
+                "output_tokens": 32,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01YE9NsbM8PyLdw3dCYuFqHF",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "27d5ad87-e199-4d59-afad-fc5875cba6ab",
+            "uuid": "80ff6166-798e-4445-aca4-f090855636b8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HVPUH5pbuvLhc7oa1fKRbw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11580,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11580
+                },
+                "output_tokens": 32,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T00:26:38.773Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01YE9NsbM8PyLdw3dCYuFqHF",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "27d5ad87-e199-4d59-afad-fc5875cba6ab",
+            "uuid": "0519af73-9760-4d4b-92a7-0e721c597b9e",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Sv14TMMusa6ki8uknVW5nG",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-39279",
+                "command": "grep -n \"random_reward\\|isr_mean\\|reward_log\" /root/solver-trace-ablation/scripts/train_grpo.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "27d5ad87-e199-4d59-afad-fc5875cba6ab",
+            "uuid": "e8a6a4d2-f24b-4afe-820d-7f572f3399ec",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KuoYacEZtwyHrbTzK3wuAr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 461,
+                "cache_read_input_tokens": 23421,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 461
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T00:26:43.340Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Sv14TMMusa6ki8uknVW5nG",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "27d5ad87-e199-4d59-afad-fc5875cba6ab",
+            "uuid": "d07332cc-023a-466f-93d2-7006fd1e2f14",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017HkdqkrAeexdqgVs85TM9a",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-39279",
+                "command": "grep -n \"random_reward\" /root/solver-trace-ablation/scripts/train_grpo.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "27d5ad87-e199-4d59-afad-fc5875cba6ab",
+            "uuid": "253d50f0-713a-4829-82a5-ed38c9e7f528",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011ZGKjhBu5jYSoWQZYB6ME4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 234,
+                "cache_read_input_tokens": 23882,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 234
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T00:26:47.787Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017HkdqkrAeexdqgVs85TM9a",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"173:            elif reward_mode == \\\\\\\"random_reward\\\\\\\":\\\\n183:                    result[\\\\\\\"random_reward\\\\\\\"] = rand_val\\\\n186:                    result[\\\\\\\"random_reward\\\\\\\"] = 0.0\\\\n293:                        choices=[\\\\\\\"execution_only\\\\\\\", \\\\\\\"execution_sta\\\\\\\", \\\\\\\"random_reward\\\\\\\"])\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "27d5ad87-e199-4d59-afad-fc5875cba6ab",
+            "uuid": "34146c2e-7171-4503-b8cd-b2315a20a999",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"173:            elif reward_mode == \\\\\\\"random_reward\\\\\\\":\\\\n183:                    result[\\\\\\\"random_reward\\\\\\\"] = rand_val\\\\n186:                    result[\\\\\\\"random_reward\\\\\\\"] = 0.0\\\\n293:                        choices=[\\\\\\\"execution_only\\\\\\\", \\\\\\\"execution_sta\\\\\\\", \\\\\\\"random_reward\\\\\\\"])\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.45}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"173:            elif reward_mode == \\\"random_reward\\\":\\n183:                    result[\\\"random_reward\\\"] = rand_val\\n186:                    result[\\\"random_reward\\\"] = 0.0\\n293:                        choices=[\\\"execution_only\\\", \\\"execution_sta\\\", \\\"random_reward\\\"])\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.45}}"
+              }
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FydfAz65v43CSQPnc31Pdg",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-39279",
+                "command": "sed -n '165,200p' /root/solver-trace-ablation/scripts/train_grpo.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "27d5ad87-e199-4d59-afad-fc5875cba6ab",
+            "uuid": "dfe7ffd3-48cb-4cfb-87b9-35d6d07ad5a6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NgwganC7KvMQKwigkyL1oc",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 293,
+                "cache_read_input_tokens": 24116,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 293
+                },
+                "output_tokens": 63,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T00:26:50.786Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FydfAz65v43CSQPnc31Pdg",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "27d5ad87-e199-4d59-afad-fc5875cba6ab",
+            "uuid": "539b1de4-8f29-4db0-ac8b-7d48658c180c",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015EtX6Zmve1L4SzJDmGPyyi",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-39279",
+                "command": "head -n 200 /root/solver-trace-ablation/scripts/train_grpo.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "27d5ad87-e199-4d59-afad-fc5875cba6ab",
+            "uuid": "3f94dcad-ef82-470e-9362-d399f2fd3f24",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TSoePeRwigNZ8z9RaHsHPU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 220,
+                "cache_read_input_tokens": 24409,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 220
+                },
+                "output_tokens": 67,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T00:26:54.473Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015EtX6Zmve1L4SzJDmGPyyi",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Phase 1 GRPO training: execution-only vs execution+STA reward.\\\\n\\\\nUsage:\\\\n  # execution-only (GPU 0)\\\\n  CUDA_VISIBLE_DEVICES=0 python scripts/train_grpo.py \\\\\\\\\\\\n    --model_path /root/autodl-tmp/models/Qwen3-4B \\\\\\\\\\\\n    --data_path data/proofwriter_fol_500.jsonl \\\\\\\\\\\\n    --reward_mode execution_only --output_dir outputs/grpo_exec_only \\\\\\\\\\\\n    --num_steps 100 --wandb_project solver-trace-ablation\\\\n\\\\n  # execution+STA (GPU 1)\\\\n  CUDA_VISIBLE_DEVICES=1 python scripts/train_grpo.py \\\\\\\\\\\\n    --model_path /root/autodl-tmp/models/Qwen3-4B \\\\\\\\\\\\n    --data_path data/proofwriter_fol_500.jsonl \\\\\\\\\\\\n    --reward_mode execution_sta --output_dir outputs/grpo_exec_sta \\\\\\\\\\\\n    --num_steps 100 --wandb_project solver-trace-ablation\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nfrom __future__ import annotations\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport random as _random\\\\nimport re\\\\nimport sys\\\\nimport time\\\\nfrom datetime import datetime, timezone\\\\nfrom pathlib import Path\\\\n\\\\nimport torch\\\\nfrom datasets import Dataset\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, TrainerCallback\\\\nfrom trl import GRPOConfig, GRPOTrainer\\\\n\\\\nsys.path.insert(0, str(Path(__file__).resolve().parent.parent))\\\\n\\\\nfrom src.solvers.factory import get_solver\\\\nfrom src.sta.reward import _parse_formalization, fast_sta_reward, sta_reward\\\\nfrom src.sta.prolog_reward import (\\\\n    fast_prolog_sta_reward, parse_prolog_formalization, prolog_sta_reward,\\\\n)\\\\n\\\\nlogging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s %(levelname)s %(message)s\\\\\\\")\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\n\\\\nSYSTEM_PROMPT = (\\\\n    \\\\\\\"You are a first-order logic (FOL) expert. \\\\\\\"\\\\n    \\\\\\\"Given natural language premises and a conclusion, formalize them into FOL.\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Output format:\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Premises:\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"1. <FOL formula>\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"2. <FOL formula>\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"...\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Conclusion: <FOL formula>\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Use standard FOL notation with predicate-argument syntax: \\\\\\\"\\\\n    \\\\\\\"all x (P(x) -> Q(x)), exists x P(x), P(a) & Q(a), -P(a), P(a) | Q(a), P(a) -> Q(a).\\\\\\\"\\\\n)\\\\n\\\\nUSER_TEMPLATE = (\\\\n    \\\\\\\"Formalize the following in first-order logic.\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Context:\\\\\\\\n{context}\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Statement to formalize:\\\\\\\\n{question}\\\\\\\"\\\\n)\\\\n\\\\n\\\\nPROLOG_SYSTEM_PROMPT = (\\\\n    \\\\\\\"You are a Prolog logic programming expert. \\\\\\\"\\\\n    \\\\\\\"Given natural language premises and a conclusion, formalize them into Prolog.\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Output format:\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Facts/Rules:\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"<fact_or_rule>.\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"...\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Query: <goal>\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Use standard Prolog syntax: facts (predicate(args).), rules (head :- body.), \\\\\\\"\\\\n    \\\\\\\"variables start with uppercase, atoms/predicates start with lowercase.\\\\\\\"\\\\n)\\\\n\\\\nPROLOG_USER_TEMPLATE = (\\\\n    \\\\\\\"Formalize the following in Prolog.\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Context:\\\\\\\\n{context}\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Statement to formalize:\\\\\\\\n{question}\\\\\\\"\\\\n)\\\\n\\\\n\\\\n\\\\ndef load_jsonl(path: str) -> list[dict]:\\\\n    data = []\\\\n    with open(path) as f:\\\\n        for line in f:\\\\n            line = line.strip()\\\\n            if line:\\\\n                data.append(json.loads(line))\\\\n    return data\\\\n\\\\n\\\\ndef build_dataset(data: list[dict]) -> Dataset:\\\\n    records = []\\\\n    for item in data:\\\\n        prompt = [\\\\n            {\\\\\\\"role\\\\\\\": \\\\\\\"system\\\\\\\", \\\\\\\"content\\\\\\\": SYSTEM_PROMPT},\\\\n            {\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": USER_TEMPLATE.format(\\\\n                context=item[\\\\\\\"context\\\\\\\"], question=item[\\\\\\\"question\\\\\\\"]\\\\n            )},\\\\n        ]\\\\n        records.append({\\\\n            \\\\\\\"prompt\\\\\\\": prompt,\\\\n            \\\\\\\"id\\\\\\\": item.get(\\\\\\\"id\\\\\\\", \\\\\\\"\\\\\\\"),\\\\n            \\\\\\\"answer\\\\\\\": item.get(\\\\\\\"answer\\\\\\\", \\\\\\\"\\\\\\\"),\\\\n            \\\\\\\"fol_premises\\\\\\\": json.dumps(item.get(\\\\\\\"fol_premises\\\\\\\", [])),\\\\n            \\\\\\\"fol_conclusion\\\\\\\": item.get(\\\\\\\"fol_conclusion\\\\\\\", \\\\\\\"\\\\\\\"),\\\\n        })\\\\n    return Dataset.from_list(records)\\\\n\\\\ndef build_prolog_dataset(data: list[dict]) -> Dataset:\\\\n    records = []\\\\n    for item in data:\\\\n        prompt = [\\\\n            {\\\\\\\"role\\\\\\\": \\\\\\\"system\\\\\\\", \\\\\\\"content\\\\\\\": PROLOG_SYSTEM_PROMPT},\\\\n            {\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": PROLOG_USER_TEMPLATE.format(\\\\n                context=item[\\\\\\\"context\\\\\\\"], question=item[\\\\\\\"question\\\\\\\"]\\\\n            )},\\\\n        ]\\\\n        records.append({\\\\n            \\\\\\\"prompt\\\\\\\": prompt,\\\\n            \\\\\\\"id\\\\\\\": item.get(\\\\\\\"id\\\\\\\", \\\\\\\"\\\\\\\"),\\\\n            \\\\\\\"answer\\\\\\\": item.get(\\\\\\\"answer\\\\\\\", \\\\\\\"\\\\\\\"),\\\\n            \\\\\\\"prolog_premises\\\\\\\": json.dumps(item.get(\\\\\\\"prolog_premises\\\\\\\", [])),\\\\n            \\\\\\\"prolog_query\\\\\\\": item.get(\\\\\\\"prolog_query\\\\\\\", \\\\\\\"\\\\\\\"),\\\\n        })\\\\n    return Dataset.from_list(records)\\\\n\\\\n\\\\n\\\\ndef strip_thinking(text: str) -> str:\\\\n    return re.sub(r\\\\\\\"<think>.*?</think>\\\\\\\\s*\\\\\\\", \\\\\\\"\\\\\\\", text, flags=re.DOTALL).strip()\\\\n\\\\n\\\\ndef extract_completion_text(completion) -> str:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Extract text from a completion (handles both string and conversational formats).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if isinstance(completion, list):\\\\n        return completion[-1][\\\\\\\"content\\\\\\\"] if completion else \\\\\\\"\\\\\\\"\\\\n    return completion\\\\n\\\\n\\\\ndef make_reward_fn(reward_mode: str, solver, exec_weight: float = 0.5, sta_weight: float = 0.5, logic_type: str = \\\\\\\"fol\\\\\\\"):\\\\n    stats = {\\\\\\\"total\\\\\\\": 0, \\\\\\\"parsed\\\\\\\": 0, \\\\\\\"proved\\\\\\\": 0, \\\\\\\"isr_sum\\\\\\\": 0.0}\\\\n    step_buf = {\\\\\\\"total\\\\\\\": 0, \\\\\\\"parsed\\\\\\\": 0, \\\\\\\"proved\\\\\\\": 0, \\\\\\\"isr_sum\\\\\\\": 0.0, \\\\\\\"reward_sum\\\\\\\": 0.0}\\\\n\\\\n    def reward_fn(prompts, completions, **kwargs):\\\\n        rewards = []\\\\n        for completion in completions:\\\\n            text = extract_completion_text(completion)\\\\n            cleaned = strip_thinking(text)\\\\n            stats[\\\\\\\"total\\\\\\\"] += 1\\\\n            step_buf[\\\\\\\"total\\\\\\\"] += 1\\\\n\\\\n            if logic_type == \\\\\\\"prolog\\\\\\\":\\\\n                _fast_fn = fast_prolog_sta_reward\\\\n                _full_fn = prolog_sta_reward\\\\n            else:\\\\n                _fast_fn = fast_sta_reward\\\\n                _full_fn = sta_reward\\\\n\\\\n            if reward_mode == \\\\\\\"execution_only\\\\\\\":\\\\n                result = _full_fn(\\\\n                    {}, cleaned, solver,\\\\n                    execution_weight=1.0, sta_weight=0.0, timeout=5,\\\\n                )\\\\n                reward_val = result[\\\\\\\"execution_reward\\\\\\\"]\\\\n            elif reward_mode == \\\\\\\"random_reward\\\\\\\":\\\\n                result = _fast_fn(\\\\n                    {}, cleaned, solver,\\\\n                    execution_weight=1.0, sta_weight=0.0, timeout=5,\\\\n                )\\\\n                proved = result[\\\\\\\"execution_reward\\\\\\\"] > 0\\\\n                if proved:\\\\n                    rng = _random.Random(stats[\\\\\\\"total\\\\\\\"])\\\\n                    rand_val = rng.random()\\\\n                    reward_val = exec_weight * 1.0 + sta_weight * rand_val\\\\n                    result[\\\\\\\"random_reward\\\\\\\"] = rand_val\\\\n                else:\\\\n                    reward_val = 0.0\\\\n                    result[\\\\\\\"random_reward\\\\\\\"] = 0.0\\\\n            else:\\\\n                result = _full_fn(\\\\n                    {}, cleaned, solver,\\\\n                    execution_weight=exec_weight, sta_weight=sta_weight, timeout=5,\\\\n                )\\\\n                reward_val = result[\\\\\\\"combined_reward\\\\\\\"]\\\\n\\\\n            parsed = \\\\\\\"error\\\\\\\" not in result.get(\\\\\\\"details\\\\\\\", {})\\\\n            proved = result[\\\\\\\"execution_reward\\\\\\\"] > 0\\\\n            isr = result.get(\\\\\\\"sta_reward\\\\\\\", 0.0)\\\\n\\\\n            if parsed:\\\\n                stats[\\\\\\\"parsed\\\\\\\"] += 1\\\\n                step_buf[\\\\\\\"parsed\\\\\\\"] += 1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "27d5ad87-e199-4d59-afad-fc5875cba6ab",
+            "uuid": "0aad584f-f84f-427a-a855-2fc4809f49ab",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Phase 1 GRPO training: execution-only vs execution+STA reward.\\\\n\\\\nUsage:\\\\n  # execution-only (GPU 0)\\\\n  CUDA_VISIBLE_DEVICES=0 python scripts/train_grpo.py \\\\\\\\\\\\n    --model_path /root/autodl-tmp/models/Qwen3-4B \\\\\\\\\\\\n    --data_path data/proofwriter_fol_500.jsonl \\\\\\\\\\\\n    --reward_mode execution_only --output_dir outputs/grpo_exec_only \\\\\\\\\\\\n    --num_steps 100 --wandb_project solver-trace-ablation\\\\n\\\\n  # execution+STA (GPU 1)\\\\n  CUDA_VISIBLE_DEVICES=1 python scripts/train_grpo.py \\\\\\\\\\\\n    --model_path /root/autodl-tmp/models/Qwen3-4B \\\\\\\\\\\\n    --data_path data/proofwriter_fol_500.jsonl \\\\\\\\\\\\n    --reward_mode execution_sta --output_dir outputs/grpo_exec_sta \\\\\\\\\\\\n    --num_steps 100 --wandb_project solver-trace-ablation\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nfrom __future__ import annotations\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport random as _random\\\\nimport re\\\\nimport sys\\\\nimport time\\\\nfrom datetime import datetime, timezone\\\\nfrom pathlib import Path\\\\n\\\\nimport torch\\\\nfrom datasets import Dataset\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, TrainerCallback\\\\nfrom trl import GRPOConfig, GRPOTrainer\\\\n\\\\nsys.path.insert(0, str(Path(__file__).resolve().parent.parent))\\\\n\\\\nfrom src.solvers.factory import get_solver\\\\nfrom src.sta.reward import _parse_formalization, fast_sta_reward, sta_reward\\\\nfrom src.sta.prolog_reward import (\\\\n    fast_prolog_sta_reward, parse_prolog_formalization, prolog_sta_reward,\\\\n)\\\\n\\\\nlogging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s %(levelname)s %(message)s\\\\\\\")\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\n\\\\nSYSTEM_PROMPT = (\\\\n    \\\\\\\"You are a first-order logic (FOL) expert. \\\\\\\"\\\\n    \\\\\\\"Given natural language premises and a conclusion, formalize them into FOL.\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Output format:\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Premises:\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"1. <FOL formula>\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"2. <FOL formula>\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"...\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Conclusion: <FOL formula>\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Use standard FOL notation with predicate-argument syntax: \\\\\\\"\\\\n    \\\\\\\"all x (P(x) -> Q(x)), exists x P(x), P(a) & Q(a), -P(a), P(a) | Q(a), P(a) -> Q(a).\\\\\\\"\\\\n)\\\\n\\\\nUSER_TEMPLATE = (\\\\n    \\\\\\\"Formalize the following in first-order logic.\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Context:\\\\\\\\n{context}\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Statement to formalize:\\\\\\\\n{question}\\\\\\\"\\\\n)\\\\n\\\\n\\\\nPROLOG_SYSTEM_PROMPT = (\\\\n    \\\\\\\"You are a Prolog logic programming expert. \\\\\\\"\\\\n    \\\\\\\"Given natural language premises and a conclusion, formalize them into Prolog.\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Output format:\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Facts/Rules:\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"<fact_or_rule>.\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"...\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Query: <goal>\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Use standard Prolog syntax: facts (predicate(args).), rules (head :- body.), \\\\\\\"\\\\n    \\\\\\\"variables start with uppercase, atoms/predicates start with lowercase.\\\\\\\"\\\\n)\\\\n\\\\nPROLOG_USER_TEMPLATE = (\\\\n    \\\\\\\"Formalize the following in Prolog.\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Context:\\\\\\\\n{context}\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Statement to formalize:\\\\\\\\n{question}\\\\\\\"\\\\n)\\\\n\\\\n\\\\n\\\\ndef load_jsonl(path: str) -> list[dict]:\\\\n    data = []\\\\n    with open(path) as f:\\\\n        for line in f:\\\\n            line = line.strip()\\\\n            if line:\\\\n                data.append(json.loads(line))\\\\n    return data\\\\n\\\\n\\\\ndef build_dataset(data: list[dict]) -> Dataset:\\\\n    records = []\\\\n    for item in data:\\\\n        prompt = [\\\\n            {\\\\\\\"role\\\\\\\": \\\\\\\"system\\\\\\\", \\\\\\\"content\\\\\\\": SYSTEM_PROMPT},\\\\n            {\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": USER_TEMPLATE.format(\\\\n                context=item[\\\\\\\"context\\\\\\\"], question=item[\\\\\\\"question\\\\\\\"]\\\\n            )},\\\\n        ]\\\\n        records.append({\\\\n            \\\\\\\"prompt\\\\\\\": prompt,\\\\n            \\\\\\\"id\\\\\\\": item.get(\\\\\\\"id\\\\\\\", \\\\\\\"\\\\\\\"),\\\\n            \\\\\\\"answer\\\\\\\": item.get(\\\\\\\"answer\\\\\\\", \\\\\\\"\\\\\\\"),\\\\n            \\\\\\\"fol_premises\\\\\\\": json.dumps(item.get(\\\\\\\"fol_premises\\\\\\\", [])),\\\\n            \\\\\\\"fol_conclusion\\\\\\\": item.get(\\\\\\\"fol_conclusion\\\\\\\", \\\\\\\"\\\\\\\"),\\\\n        })\\\\n    return Dataset.from_list(records)\\\\n\\\\ndef build_prolog_dataset(data: list[dict]) -> Dataset:\\\\n    records = []\\\\n    for item in data:\\\\n        prompt = [\\\\n            {\\\\\\\"role\\\\\\\": \\\\\\\"system\\\\\\\", \\\\\\\"content\\\\\\\": PROLOG_SYSTEM_PROMPT},\\\\n            {\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": PROLOG_USER_TEMPLATE.format(\\\\n                context=item[\\\\\\\"context\\\\\\\"], question=item[\\\\\\\"question\\\\\\\"]\\\\n            )},\\\\n        ]\\\\n        records.append({\\\\n            \\\\\\\"prompt\\\\\\\": prompt,\\\\n            \\\\\\\"id\\\\\\\": item.get(\\\\\\\"id\\\\\\\", \\\\\\\"\\\\\\\"),\\\\n            \\\\\\\"answer\\\\\\\": item.get(\\\\\\\"answer\\\\\\\", \\\\\\\"\\\\\\\"),\\\\n            \\\\\\\"prolog_premises\\\\\\\": json.dumps(item.get(\\\\\\\"prolog_premises\\\\\\\", [])),\\\\n            \\\\\\\"prolog_query\\\\\\\": item.get(\\\\\\\"prolog_query\\\\\\\", \\\\\\\"\\\\\\\"),\\\\n        })\\\\n    return Dataset.from_list(records)\\\\n\\\\n\\\\n\\\\ndef strip_thinking(text: str) -> str:\\\\n    return re.sub(r\\\\\\\"<think>.*?</think>\\\\\\\\s*\\\\\\\", \\\\\\\"\\\\\\\", text, flags=re.DOTALL).strip()\\\\n\\\\n\\\\ndef extract_completion_text(completion) -> str:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Extract text from a completion (handles both string and conversational formats).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if isinstance(completion, list):\\\\n        return completion[-1][\\\\\\\"content\\\\\\\"] if completion else \\\\\\\"\\\\\\\"\\\\n    return completion\\\\n\\\\n\\\\ndef make_reward_fn(reward_mode: str, solver, exec_weight: float = 0.5, sta_weight: float = 0.5, logic_type: str = \\\\\\\"fol\\\\\\\"):\\\\n    stats = {\\\\\\\"total\\\\\\\": 0, \\\\\\\"parsed\\\\\\\": 0, \\\\\\\"proved\\\\\\\": 0, \\\\\\\"isr_sum\\\\\\\": 0.0}\\\\n    step_buf = {\\\\\\\"total\\\\\\\": 0, \\\\\\\"parsed\\\\\\\": 0, \\\\\\\"proved\\\\\\\": 0, \\\\\\\"isr_sum\\\\\\\": 0.0, \\\\\\\"reward_sum\\\\\\\": 0.0}\\\\n\\\\n    def reward_fn(prompts, completions, **kwargs):\\\\n        rewards = []\\\\n        for completion in completions:\\\\n            text = extract_completion_text(completion)\\\\n            cleaned = strip_thinking(text)\\\\n            stats[\\\\\\\"total\\\\\\\"] += 1\\\\n            step_buf[\\\\\\\"total\\\\\\\"] += 1\\\\n\\\\n            if logic_type == \\\\\\\"prolog\\\\\\\":\\\\n                _fast_fn = fast_prolog_sta_reward\\\\n                _full_fn = prolog_sta_reward\\\\n            else:\\\\n                _fast_fn = fast_sta_reward\\\\n                _full_fn = sta_reward\\\\n\\\\n            if reward_mode == \\\\\\\"execution_only\\\\\\\":\\\\n                result = _full_fn(\\\\n                    {}, cleaned, solver,\\\\n                    execution_weight=1.0, sta_weight=0.0, timeout=5,\\\\n                )\\\\n                reward_val = result[\\\\\\\"execution_reward\\\\\\\"]\\\\n            elif reward_mode == \\\\\\\"random_reward\\\\\\\":\\\\n                result = _fast_fn(\\\\n                    {}, cleaned, solver,\\\\n                    execution_weight=1.0, sta_weight=0.0, timeout=5,\\\\n                )\\\\n                proved = result[\\\\\\\"execution_reward\\\\\\\"] > 0\\\\n                if proved:\\\\n                    rng = _random.Random(stats[\\\\\\\"total\\\\\\\"])\\\\n                    rand_val = rng.random()\\\\n                    reward_val = exec_weight * 1.0 + sta_weight * rand_val\\\\n                    result[\\\\\\\"random_reward\\\\\\\"] = rand_val\\\\n                else:\\\\n                    reward_val = 0.0\\\\n                    result[\\\\\\\"random_reward\\\\\\\"] = 0.0\\\\n            else:\\\\n                result = _full_fn(\\\\n                    {}, cleaned, solver,\\\\n                    execution_weight=exec_weight, sta_weight=sta_weight, timeout=5,\\\\n                )\\\\n                reward_val = result[\\\\\\\"combined_reward\\\\\\\"]\\\\n\\\\n            parsed = \\\\\\\"error\\\\\\\" not in result.get(\\\\\\\"details\\\\\\\", {})\\\\n            proved = result[\\\\\\\"execution_reward\\\\\\\"] > 0\\\\n            isr = result.get(\\\\\\\"sta_reward\\\\\\\", 0.0)\\\\n\\\\n            if parsed:\\\\n                stats[\\\\\\\"parsed\\\\\\\"] += 1\\\\n                step_buf[\\\\\\\"parsed\\\\\\\"] += 1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Phase 1 GRPO training: execution-only vs execution+STA reward.\\n\\nUsage:\\n  # execution-only (GPU 0)\\n  CUDA_VISIBLE_DEVICES=0 python scripts/train_grpo.py \\\\\\n    --model_path /root/autodl-tmp/models/Qwen3-4B \\\\\\n    --data_path data/proofwriter_fol_500.jsonl \\\\\\n    --reward_mode execution_only --output_dir outputs/grpo_exec_only \\\\\\n    --num_steps 100 --wandb_project solver-trace-ablation\\n\\n  # execution+STA (GPU 1)\\n  CUDA_VISIBLE_DEVICES=1 python scripts/train_grpo.py \\\\\\n    --model_path /root/autodl-tmp/models/Qwen3-4B \\\\\\n    --data_path data/proofwriter_fol_500.jsonl \\\\\\n    --reward_mode execution_sta --output_dir outputs/grpo_exec_sta \\\\\\n    --num_steps 100 --wandb_project solver-trace-ablation\\n\\\"\\\"\\\"\\n\\nfrom __future__ import annotations\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport random as _random\\nimport re\\nimport sys\\nimport time\\nfrom datetime import datetime, timezone\\nfrom pathlib import Path\\n\\nimport torch\\nfrom datasets import Dataset\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, TrainerCallback\\nfrom trl import GRPOConfig, GRPOTrainer\\n\\nsys.path.insert(0, str(Path(__file__).resolve().parent.parent))\\n\\nfrom src.solvers.factory import get_solver\\nfrom src.sta.reward import _parse_formalization, fast_sta_reward, sta_reward\\nfrom src.sta.prolog_reward import (\\n    fast_prolog_sta_reward, parse_prolog_formalization, prolog_sta_reward,\\n)\\n\\nlogging.basicConfig(level=logging.INFO, format=\\\"%(asctime)s %(levelname)s %(message)s\\\")\\nlogger = logging.getLogger(__name__)\\n\\n\\nSYSTEM_PROMPT = (\\n    \\\"You are a first-order logic (FOL) expert. \\\"\\n    \\\"Given natural language premises and a conclusion, formalize them into FOL.\\\\n\\\\n\\\"\\n    \\\"Output format:\\\\n\\\"\\n    \\\"Premises:\\\\n\\\"\\n    \\\"1. <FOL formula>\\\\n\\\"\\n    \\\"2. <FOL formula>\\\\n\\\"\\n    \\\"...\\\\n\\\"\\n    \\\"Conclusion: <FOL formula>\\\\n\\\\n\\\"\\n    \\\"Use standard FOL notation with predicate-argument syntax: \\\"\\n    \\\"all x (P(x) -> Q(x)), exists x P(x), P(a) & Q(a), -P(a), P(a) | Q(a), P(a) -> Q(a).\\\"\\n)\\n\\nUSER_TEMPLATE = (\\n    \\\"Formalize the following in first-order logic.\\\\n\\\\n\\\"\\n    \\\"Context:\\\\n{context}\\\\n\\\\n\\\"\\n    \\\"Statement to formalize:\\\\n{question}\\\"\\n)\\n\\n\\nPROLOG_SYSTEM_PROMPT = (\\n    \\\"You are a Prolog logic programming expert. \\\"\\n    \\\"Given natural language premises and a conclusion, formalize them into Prolog.\\\\n\\\\n\\\"\\n    \\\"Output format:\\\\n\\\"\\n    \\\"Facts/Rules:\\\\n\\\"\\n    \\\"<fact_or_rule>.\\\\n\\\"\\n    \\\"...\\\\n\\\\n\\\"\\n    \\\"Query: <goal>\\\\n\\\\n\\\"\\n    \\\"Use standard Prolog syntax: facts (predicate(args).), rules (head :- body.), \\\"\\n    \\\"variables start with uppercase, atoms/predicates start with lowercase.\\\"\\n)\\n\\nPROLOG_USER_TEMPLATE = (\\n    \\\"Formalize the following in Prolog.\\\\n\\\\n\\\"\\n    \\\"Context:\\\\n{context}\\\\n\\\\n\\\"\\n    \\\"Statement to formalize:\\\\n{question}\\\"\\n)\\n\\n\\n\\ndef load_jsonl(path: str) -> list[dict]:\\n    data = []\\n    with open(path) as f:\\n        for line in f:\\n            line = line.strip()\\n            if line:\\n                data.append(json.loads(line))\\n    return data\\n\\n\\ndef build_dataset(data: list[dict]) -> Dataset:\\n    records = []\\n    for item in data:\\n        prompt = [\\n            {\\\"role\\\": \\\"system\\\", \\\"content\\\": SYSTEM_PROMPT},\\n            {\\\"role\\\": \\\"user\\\", \\\"content\\\": USER_TEMPLATE.format(\\n                context=item[\\\"context\\\"], question=item[\\\"question\\\"]\\n            )},\\n        ]\\n        records.append({\\n            \\\"prompt\\\": prompt,\\n            \\\"id\\\": item.get(\\\"id\\\", \\\"\\\"),\\n            \\\"answer\\\": item.get(\\\"answer\\\", \\\"\\\"),\\n            \\\"fol_premises\\\": json.dumps(item.get(\\\"fol_premises\\\", [])),\\n            \\\"fol_conclusion\\\": item.get(\\\"fol_conclusion\\\", \\\"\\\"),\\n        })\\n    return Dataset.from_list(records)\\n\\ndef build_prolog_dataset(data: list[dict]) -> Dataset:\\n    records = []\\n    for item in data:\\n        prompt = [\\n            {\\\"role\\\": \\\"system\\\", \\\"content\\\": PROLOG_SYSTEM_PROMPT},\\n            {\\\"role\\\": \\\"user\\\", \\\"content\\\": PROLOG_USER_TEMPLATE.format(\\n                context=item[\\\"context\\\"], question=item[\\\"question\\\"]\\n            )},\\n        ]\\n        records.append({\\n            \\\"prompt\\\": prompt,\\n            \\\"id\\\": item.get(\\\"id\\\", \\\"\\\"),\\n            \\\"answer\\\": item.get(\\\"answer\\\", \\\"\\\"),\\n            \\\"prolog_premises\\\": json.dumps(item.get(\\\"prolog_premises\\\", [])),\\n            \\\"prolog_query\\\": item.get(\\\"prolog_query\\\", \\\"\\\"),\\n        })\\n    return Dataset.from_list(records)\\n\\n\\n\\ndef strip_thinking(text: str) -> str:\\n    return re.sub(r\\\"<think>.*?</think>\\\\s*\\\", \\\"\\\", text, flags=re.DOTALL).strip()\\n\\n\\ndef extract_completion_text(completion) -> str:\\n    \\\"\\\"\\\"Extract text from a completion (handles both string and conversational formats).\\\"\\\"\\\"\\n    if isinstance(completion, list):\\n        return completion[-1][\\\"content\\\"] if completion else \\\"\\\"\\n    return completion\\n\\n\\ndef make_reward_fn(reward_mode: str, solver, exec_weight: float = 0.5, sta_weight: float = 0.5, logic_type: str = \\\"fol\\\"):\\n    stats = {\\\"total\\\": 0, \\\"parsed\\\": 0, \\\"proved\\\": 0, \\\"isr_sum\\\": 0.0}\\n    step_buf = {\\\"total\\\": 0, \\\"parsed\\\": 0, \\\"proved\\\": 0, \\\"isr_sum\\\": 0.0, \\\"reward_sum\\\": 0.0}\\n\\n    def reward_fn(prompts, completions, **kwargs):\\n        rewards = []\\n        for completion in completions:\\n            text = extract_completion_text(completion)\\n            cleaned = strip_thinking(text)\\n            stats[\\\"total\\\"] += 1\\n            step_buf[\\\"total\\\"] += 1\\n\\n            if logic_type == \\\"prolog\\\":\\n                _fast_fn = fast_prolog_sta_reward\\n                _full_fn = prolog_sta_reward\\n            else:\\n                _fast_fn = fast_sta_reward\\n                _full_fn = sta_reward\\n\\n            if reward_mode == \\\"execution_only\\\":\\n                result = _full_fn(\\n                    {}, cleaned, solver,\\n                    execution_weight=1.0, sta_weight=0.0, timeout=5,\\n                )\\n                reward_val = result[\\\"execution_reward\\\"]\\n            elif reward_mode == \\\"random_reward\\\":\\n                result = _fast_fn(\\n                    {}, cleaned, solver,\\n                    execution_weight=1.0, sta_weight=0.0, timeout=5,\\n                )\\n                proved = result[\\\"execution_reward\\\"] > 0\\n                if proved:\\n                    rng = _random.Random(stats[\\\"total\\\"])\\n                    rand_val = rng.random()\\n                    reward_val = exec_weight * 1.0 + sta_weight * rand_val\\n                    result[\\\"random_reward\\\"] = rand_val\\n                else:\\n                    reward_val = 0.0\\n                    result[\\\"random_reward\\\"] = 0.0\\n            else:\\n                result = _full_fn(\\n                    {}, cleaned, solver,\\n                    execution_weight=exec_weight, sta_weight=sta_weight, timeout=5,\\n                )\\n                reward_val = result[\\\"combined_reward\\\"]\\n\\n            parsed = \\\"error\\\" not in result.get(\\\"details\\\", {})\\n            proved = result[\\\"execution_reward\\\"] > 0\\n            isr = result.get(\\\"sta_reward\\\", 0.0)\\n\\n            if parsed:\\n                stats[\\\"parsed\\\"] += 1\\n                step_buf[\\\"parsed\\\"] += 1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+              }
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01P58HKrKJoqAfQ14wJmxRsq",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-39279",
+                "command": "tail -n +200 /root/solver-trace-ablation/scripts/train_grpo.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "27d5ad87-e199-4d59-afad-fc5875cba6ab",
+            "uuid": "31b02a92-3620-4603-9afc-668d417d66d6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FrtjczMxDEG8aARdWkvSGS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2977,
+                "cache_read_input_tokens": 24629,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2977
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-14T00:26:58.229Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01P58HKrKJoqAfQ14wJmxRsq",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"                step_buf[\\\\\\\"parsed\\\\\\\"] += 1\\\\n            if proved:\\\\n                stats[\\\\\\\"proved\\\\\\\"] += 1\\\\n                step_buf[\\\\\\\"proved\\\\\\\"] += 1\\\\n            stats[\\\\\\\"isr_sum\\\\\\\"] += isr\\\\n            step_buf[\\\\\\\"isr_sum\\\\\\\"] += isr\\\\n            step_buf[\\\\\\\"reward_sum\\\\\\\"] += reward_val\\\\n\\\\n            rewards.append(reward_val)\\\\n        return rewards\\\\n\\\\n    def get_stats():\\\\n        n = stats[\\\\\\\"total\\\\\\\"]\\\\n        if n == 0:\\\\n            return {}\\\\n        return {\\\\n            \\\\\\\"parse_rate\\\\\\\": stats[\\\\\\\"parsed\\\\\\\"] / n,\\\\n            \\\\\\\"prove_rate\\\\\\\": stats[\\\\\\\"proved\\\\\\\"] / n,\\\\n            \\\\\\\"mean_isr\\\\\\\": stats[\\\\\\\"isr_sum\\\\\\\"] / n,\\\\n        }\\\\n\\\\n    def get_step_stats():\\\\n        n = step_buf[\\\\\\\"total\\\\\\\"]\\\\n        if n == 0:\\\\n            return {}\\\\n        result = {\\\\n            \\\\\\\"parse_rate\\\\\\\": step_buf[\\\\\\\"parsed\\\\\\\"] / n,\\\\n            \\\\\\\"prove_rate\\\\\\\": step_buf[\\\\\\\"proved\\\\\\\"] / n,\\\\n            \\\\\\\"mean_isr\\\\\\\": step_buf[\\\\\\\"isr_sum\\\\\\\"] / n,\\\\n            \\\\\\\"reward_mean\\\\\\\": step_buf[\\\\\\\"reward_sum\\\\\\\"] / n,\\\\n            \\\\\\\"reward_std\\\\\\\": 0.0,\\\\n        }\\\\n        step_buf[\\\\\\\"total\\\\\\\"] = 0\\\\n        step_buf[\\\\\\\"parsed\\\\\\\"] = 0\\\\n        step_buf[\\\\\\\"proved\\\\\\\"] = 0\\\\n        step_buf[\\\\\\\"isr_sum\\\\\\\"] = 0.0\\\\n        step_buf[\\\\\\\"reward_sum\\\\\\\"] = 0.0\\\\n        return result\\\\n\\\\n    def reset_stats():\\\\n        stats[\\\\\\\"total\\\\\\\"] = 0\\\\n        stats[\\\\\\\"parsed\\\\\\\"] = 0\\\\n        stats[\\\\\\\"proved\\\\\\\"] = 0\\\\n        stats[\\\\\\\"isr_sum\\\\\\\"] = 0.0\\\\n\\\\n    reward_fn.get_stats = get_stats\\\\n    reward_fn.get_step_stats = get_step_stats\\\\n    reward_fn.reset_stats = reset_stats\\\\n    return reward_fn\\\\n\\\\n\\\\nclass LocalLogCallback(TrainerCallback):\\\\n    def __init__(self, output_dir, reward_fn):\\\\n        self.output_dir = Path(output_dir)\\\\n        self.output_dir.mkdir(parents=True, exist_ok=True)\\\\n        self.log_path = self.output_dir / \\\\\\\"reward_log.jsonl\\\\\\\"\\\\n        self.reward_fn = reward_fn\\\\n        self.last_step = 0\\\\n\\\\n    def on_log(self, args, state, control, logs=None, **kwargs):\\\\n        if logs is None or state.global_step == 0:\\\\n            return\\\\n        if state.global_step == self.last_step:\\\\n            return\\\\n        self.last_step = state.global_step\\\\n        step_stats = self.reward_fn.get_step_stats()\\\\n        entry = {\\\\n            \\\\\\\"step\\\\\\\": state.global_step,\\\\n            \\\\\\\"reward_mean\\\\\\\": logs.get(\\\\\\\"reward\\\\\\\", step_stats.get(\\\\\\\"reward_mean\\\\\\\", 0.0)),\\\\n            \\\\\\\"reward_std\\\\\\\": logs.get(\\\\\\\"reward_std\\\\\\\", step_stats.get(\\\\\\\"reward_std\\\\\\\", 0.0)),\\\\n            \\\\\\\"prove_rate\\\\\\\": step_stats.get(\\\\\\\"prove_rate\\\\\\\", 0.0),\\\\n            \\\\\\\"isr_mean\\\\\\\": step_stats.get(\\\\\\\"mean_isr\\\\\\\", 0.0),\\\\n            \\\\\\\"parse_rate\\\\\\\": step_stats.get(\\\\\\\"parse_rate\\\\\\\", 0.0),\\\\n            \\\\\\\"loss\\\\\\\": logs.get(\\\\\\\"loss\\\\\\\", 0.0),\\\\n            \\\\\\\"lr\\\\\\\": logs.get(\\\\\\\"learning_rate\\\\\\\", 0.0),\\\\n            \\\\\\\"timestamp\\\\\\\": datetime.now(timezone.utc).isoformat(),\\\\n        }\\\\n        with open(self.log_path, \\\\\\\"a\\\\\\\") as f:\\\\n            f.write(json.dumps(entry) + \\\\\\\"\\\\\\\\n\\\\\\\")\\\\n            f.flush()\\\\n        print(\\\\n            f\\\\\\\"[REWARD_LOG] step={entry['step']} reward={entry['reward_mean']:.4f} \\\\\\\"\\\\n            f\\\\\\\"prove_rate={entry['prove_rate']:.3f} isr={entry['isr_mean']:.3f} \\\\\\\"\\\\n            f\\\\\\\"parse_rate={entry['parse_rate']:.3f}\\\\\\\",\\\\n            flush=True,\\\\n        )\\\\n\\\\n\\\\ndef parse_args():\\\\n    parser = argparse.ArgumentParser(description=\\\\\\\"Phase 1 GRPO Training\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--model_path\\\\\\\", type=str, default=None)\\\\n    parser.add_argument(\\\\\\\"--data_path\\\\\\\", type=str, default=None)\\\\n    parser.add_argument(\\\\\\\"--reward_mode\\\\\\\", type=str, default=None,\\\\n                        choices=[\\\\\\\"execution_only\\\\\\\", \\\\\\\"execution_sta\\\\\\\", \\\\\\\"random_reward\\\\\\\"])\\\\n    parser.add_argument(\\\\\\\"--output_dir\\\\\\\", type=str, default=None)\\\\n    parser.add_argument(\\\\\\\"--num_steps\\\\\\\", type=int, default=100)\\\\n    parser.add_argument(\\\\\\\"--per_device_batch_size\\\\\\\", type=int, default=4)\\\\n    parser.add_argument(\\\\\\\"--gradient_accumulation_steps\\\\\\\", type=int, default=2)\\\\n    parser.add_argument(\\\\\\\"--num_generations\\\\\\\", type=int, default=4)\\\\n    parser.add_argument(\\\\\\\"--max_completion_length\\\\\\\", type=int, default=512)\\\\n    parser.add_argument(\\\\\\\"--learning_rate\\\\\\\", type=float, default=1e-6)\\\\n    parser.add_argument(\\\\\\\"--exec_weight\\\\\\\", type=float, default=0.5)\\\\n    parser.add_argument(\\\\\\\"--sta_weight\\\\\\\", type=float, default=0.5)\\\\n    parser.add_argument(\\\\\\\"--seed\\\\\\\", \\\\n\\\\n... [截断: 输出过长，省略 1 字符] ...\\\\n\\\\nype=int, default=42)\\\\n    parser.add_argument(\\\\\\\"--solver\\\\\\\", type=str, default=None)\\\\n    parser.add_argument(\\\\\\\"--logic_type\\\\\\\", type=str, default=None,\\\\n                        choices=[\\\\\\\"fol\\\\\\\", \\\\\\\"prolog\\\\\\\"])\\\\n    parser.add_argument(\\\\\\\"--wandb_project\\\\\\\", type=str, default=None)\\\\n    parser.add_argument(\\\\\\\"--wandb_run\\\\\\\", type=str, default=None)\\\\n    parser.add_argument(\\\\\\\"--no_wandb\\\\\\\", action=\\\\\\\"store_true\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--config\\\\\\\", type=str, default=None,\\\\n                        help=\\\\\\\"YAML config file (overrides CLI args)\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    if args.config:\\\\n        cfg = load_yaml_config(args.config)\\\\n        for k, v in cfg.items():\\\\n            if hasattr(args, k):\\\\n                current = getattr(args, k)\\\\n                if current is None or (isinstance(v, bool) and v and not current):\\\\n                    setattr(args, k, v)\\\\n            else:\\\\n                setattr(args, k, v)\\\\n\\\\n    # Apply defaults for optional args after config merge\\\\n    if args.solver is None:\\\\n        args.solver = \\\\\\\"prover9\\\\\\\"\\\\n    if args.logic_type is None:\\\\n        args.logic_type = \\\\\\\"fol\\\\\\\"\\\\n\\\\n    missing = [f for f in (\\\\\\\"model_path\\\\\\\", \\\\\\\"data_path\\\\\\\", \\\\\\\"reward_mode\\\\\\\", \\\\\\\"output_dir\\\\\\\")\\\\n               if getattr(args, f, None) is None]\\\\n    if missing:\\\\n        parser.error(f\\\\\\\"the following arguments are required: {', '.join('--' + f for f in missing)}\\\\\\\")\\\\n\\\\n    return args\\\\n\\\\n\\\\ndef load_yaml_config(path: str) -> dict:\\\\n    import yaml\\\\n    with open(path) as f:\\\\n        return yaml.safe_load(f)\\\\n\\\\n\\\\ndef main():\\\\n    args = parse_args()\\\\n\\\\n    if args.no_wandb:\\\\n        os.environ[\\\\\\\"WANDB_MODE\\\\\\\"] = \\\\\\\"disabled\\\\\\\"\\\\n\\\\n    report_to = \\\\\\\"none\\\\\\\" if args.no_wandb else \\\\\\\"wandb\\\\\\\"\\\\n    if args.wandb_project and not args.no_wandb:\\\\n        import wandb\\\\n        run_name = args.wandb_run or f\\\\\\\"grpo_{args.reward_mode}\\\\\\\"\\\\n        wandb.init(project=args.wandb_project, name=run_name, config=vars(args))\\\\n\\\\n    logger.info(f\\\\\\\"Loading data from {args.data_path}\\\\\\\")\\\\n    raw_data = load_jsonl(args.data_path)\\\\n    logic_type = getattr(args, \\\\\\\"logic_type\\\\\\\", \\\\\\\"fol\\\\\\\")\\\\n    if logic_type == \\\\\\\"prolog\\\\\\\":\\\\n        dataset = build_prolog_dataset(raw_data)\\\\n    else:\\\\n        dataset = build_dataset(raw_data)\\\\n    logger.info(f\\\\\\\"Dataset: {len(dataset)} examples\\\\\\\")\\\\n\\\\n    logger.info(f\\\\\\\"Initializing solver: {args.solver}\\\\\\\")\\\\n    solver = get_solver(args.solver)\\\\n    logger.info(f\\\\\\\"Solver ready: {type(solver).__name__}\\\\\\\")\\\\n\\\\n    reward_fn = make_reward_fn(\\\\n        args.reward_mode, solver,\\\\n        exec_weight=args.exec_weight, sta_weight=args.sta_weight,\\\\n        logic_type=logic_type,\\\\n    )\\\\n\\\\n    grpo_config = GRPOConfig(\\\\n        output_dir=args.output_dir,\\\\n        max_steps=args.num_steps,\\\\n        per_device_train_batch_size=args.per_device_batch_size,\\\\n        gradient_accumulation_steps=args.gradient_accumulation_steps,\\\\n        learning_rate=args.learning_rate,\\\\n        num_generations=args.num_generations,\\\\n        max_completion_length=args.max_completion_length,\\\\n        logging_steps=1,\\\\n        save_steps=50,\\\\n        save_total_limit=2,\\\\n        save_only_model=True,\\\\n        report_to=report_to,\\\\n        bf16=True,\\\\n        seed=args.seed,\\\\n        log_completions=True,\\\\n        num_completions_to_print=2,\\\\n        chat_template_kwargs={\\\\\\\"enable_thinking\\\\\\\": False},\\\\n    )\\\\n\\\\n    logger.info(f\\\\\\\"Loading model from {args.model_path}\\\\\\\")\\\\n    trainer = GRPOTrainer(\\\\n        model=args.model_path,\\\\n        reward_funcs=reward_fn,\\\\n        args=grpo_config,\\\\n        train_dataset=dataset,\\\\n        callbacks=[LocalLogCallback(args.output_dir, reward_fn)],\\\\n    )\\\\n\\\\n    logger.info(f\\\\\\\"Starting GRPO training: mode={args.reward_mode}, logic={logic_type}, steps={args.num_steps}\\\\\\\")\\\\n    trainer.train()\\\\n\\\\n    logger.info(\\\\\\\"Saving final model\\\\\\\")\\\\n    trainer.save_model(args.output_dir)\\\\n\\\\n    final_stats = reward_fn.get_stats()\\\\n    logger.info(f\\\\\\\"Final reward stats: {final_stats}\\\\\\\")\\\\n\\\\n    if not args.no_wandb and args.wandb_project:\\\\n        import wandb\\\\n        wandb.log({\\\\\\\"final/\\\\\\\" + k: v for k, v in final_stats.items()})\\\\n        wandb.finish()\\\\n\\\\n    logger.info(\\\\\\\"Done.\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "27d5ad87-e199-4d59-afad-fc5875cba6ab",
+            "uuid": "d61110ee-e246-4e75-b1eb-13bc80337da1",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"                step_buf[\\\\\\\"parsed\\\\\\\"] += 1\\\\n            if proved:\\\\n                stats[\\\\\\\"proved\\\\\\\"] += 1\\\\n                step_buf[\\\\\\\"proved\\\\\\\"] += 1\\\\n            stats[\\\\\\\"isr_sum\\\\\\\"] += isr\\\\n            step_buf[\\\\\\\"isr_sum\\\\\\\"] += isr\\\\n            step_buf[\\\\\\\"reward_sum\\\\\\\"] += reward_val\\\\n\\\\n            rewards.append(reward_val)\\\\n        return rewards\\\\n\\\\n    def get_stats():\\\\n        n = stats[\\\\\\\"total\\\\\\\"]\\\\n        if n == 0:\\\\n            return {}\\\\n        return {\\\\n            \\\\\\\"parse_rate\\\\\\\": stats[\\\\\\\"parsed\\\\\\\"] / n,\\\\n            \\\\\\\"prove_rate\\\\\\\": stats[\\\\\\\"proved\\\\\\\"] / n,\\\\n            \\\\\\\"mean_isr\\\\\\\": stats[\\\\\\\"isr_sum\\\\\\\"] / n,\\\\n        }\\\\n\\\\n    def get_step_stats():\\\\n        n = step_buf[\\\\\\\"total\\\\\\\"]\\\\n        if n == 0:\\\\n            return {}\\\\n        result = {\\\\n            \\\\\\\"parse_rate\\\\\\\": step_buf[\\\\\\\"parsed\\\\\\\"] / n,\\\\n            \\\\\\\"prove_rate\\\\\\\": step_buf[\\\\\\\"proved\\\\\\\"] / n,\\\\n            \\\\\\\"mean_isr\\\\\\\": step_buf[\\\\\\\"isr_sum\\\\\\\"] / n,\\\\n            \\\\\\\"reward_mean\\\\\\\": step_buf[\\\\\\\"reward_sum\\\\\\\"] / n,\\\\n            \\\\\\\"reward_std\\\\\\\": 0.0,\\\\n        }\\\\n        step_buf[\\\\\\\"total\\\\\\\"] = 0\\\\n        step_buf[\\\\\\\"parsed\\\\\\\"] = 0\\\\n        step_buf[\\\\\\\"proved\\\\\\\"] = 0\\\\n        step_buf[\\\\\\\"isr_sum\\\\\\\"] = 0.0\\\\n        step_buf[\\\\\\\"reward_sum\\\\\\\"] = 0.0\\\\n        return result\\\\n\\\\n    def reset_stats():\\\\n        stats[\\\\\\\"total\\\\\\\"] = 0\\\\n        stats[\\\\\\\"parsed\\\\\\\"] = 0\\\\n        stats[\\\\\\\"proved\\\\\\\"] = 0\\\\n        stats[\\\\\\\"isr_sum\\\\\\\"] = 0.0\\\\n\\\\n    reward_fn.get_stats = get_stats\\\\n    reward_fn.get_step_stats = get_step_stats\\\\n    reward_fn.reset_stats = reset_stats\\\\n    return reward_fn\\\\n\\\\n\\\\nclass LocalLogCallback(TrainerCallback):\\\\n    def __init__(self, output_dir, reward_fn):\\\\n        self.output_dir = Path(output_dir)\\\\n        self.output_dir.mkdir(parents=True, exist_ok=True)\\\\n        self.log_path = self.output_dir / \\\\\\\"reward_log.jsonl\\\\\\\"\\\\n        self.reward_fn = reward_fn\\\\n        self.last_step = 0\\\\n\\\\n    def on_log(self, args, state, control, logs=None, **kwargs):\\\\n        if logs is None or state.global_step == 0:\\\\n            return\\\\n        if state.global_step == self.last_step:\\\\n            return\\\\n        self.last_step = state.global_step\\\\n        step_stats = self.reward_fn.get_step_stats()\\\\n        entry = {\\\\n            \\\\\\\"step\\\\\\\": state.global_step,\\\\n            \\\\\\\"reward_mean\\\\\\\": logs.get(\\\\\\\"reward\\\\\\\", step_stats.get(\\\\\\\"reward_mean\\\\\\\", 0.0)),\\\\n            \\\\\\\"reward_std\\\\\\\": logs.get(\\\\\\\"reward_std\\\\\\\", step_stats.get(\\\\\\\"reward_std\\\\\\\", 0.0)),\\\\n            \\\\\\\"prove_rate\\\\\\\": step_stats.get(\\\\\\\"prove_rate\\\\\\\", 0.0),\\\\n            \\\\\\\"isr_mean\\\\\\\": step_stats.get(\\\\\\\"mean_isr\\\\\\\", 0.0),\\\\n            \\\\\\\"parse_rate\\\\\\\": step_stats.get(\\\\\\\"parse_rate\\\\\\\", 0.0),\\\\n            \\\\\\\"loss\\\\\\\": logs.get(\\\\\\\"loss\\\\\\\", 0.0),\\\\n            \\\\\\\"lr\\\\\\\": logs.get(\\\\\\\"learning_rate\\\\\\\", 0.0),\\\\n            \\\\\\\"timestamp\\\\\\\": datetime.now(timezone.utc).isoformat(),\\\\n        }\\\\n        with open(self.log_path, \\\\\\\"a\\\\\\\") as f:\\\\n            f.write(json.dumps(entry) + \\\\\\\"\\\\\\\\n\\\\\\\")\\\\n            f.flush()\\\\n        print(\\\\n            f\\\\\\\"[REWARD_LOG] step={entry['step']} reward={entry['reward_mean']:.4f} \\\\\\\"\\\\n            f\\\\\\\"prove_rate={entry['prove_rate']:.3f} isr={entry['isr_mean']:.3f} \\\\\\\"\\\\n            f\\\\\\\"parse_rate={entry['parse_rate']:.3f}\\\\\\\",\\\\n            flush=True,\\\\n        )\\\\n\\\\n\\\\ndef parse_args():\\\\n    parser = argparse.ArgumentParser(description=\\\\\\\"Phase 1 GRPO Training\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--model_path\\\\\\\", type=str, default=None)\\\\n    parser.add_argument(\\\\\\\"--data_path\\\\\\\", type=str, default=None)\\\\n    parser.add_argument(\\\\\\\"--reward_mode\\\\\\\", type=str, default=None,\\\\n                        choices=[\\\\\\\"execution_only\\\\\\\", \\\\\\\"execution_sta\\\\\\\", \\\\\\\"random_reward\\\\\\\"])\\\\n    parser.add_argument(\\\\\\\"--output_dir\\\\\\\", type=str, default=None)\\\\n    parser.add_argument(\\\\\\\"--num_steps\\\\\\\", type=int, default=100)\\\\n    parser.add_argument(\\\\\\\"--per_device_batch_size\\\\\\\", type=int, default=4)\\\\n    parser.add_argument(\\\\\\\"--gradient_accumulation_steps\\\\\\\", type=int, default=2)\\\\n    parser.add_argument(\\\\\\\"--num_generations\\\\\\\", type=int, default=4)\\\\n    parser.add_argument(\\\\\\\"--max_completion_length\\\\\\\", type=int, default=512)\\\\n    parser.add_argument(\\\\\\\"--learning_rate\\\\\\\", type=float, default=1e-6)\\\\n    parser.add_argument(\\\\\\\"--exec_weight\\\\\\\", type=float, default=0.5)\\\\n    parser.add_argument(\\\\\\\"--sta_weight\\\\\\\", type=float, default=0.5)\\\\n    parser.add_argument(\\\\\\\"--seed\\\\\\\", \\\\n\\\\n... [截断: 输出过长，省略 1 字符] ...\\\\n\\\\nype=int, default=42)\\\\n    parser.add_argument(\\\\\\\"--solver\\\\\\\", type=str, default=None)\\\\n    parser.add_argument(\\\\\\\"--logic_type\\\\\\\", type=str, default=None,\\\\n                        choices=[\\\\\\\"fol\\\\\\\", \\\\\\\"prolog\\\\\\\"])\\\\n    parser.add_argument(\\\\\\\"--wandb_project\\\\\\\", type=str, default=None)\\\\n    parser.add_argument(\\\\\\\"--wandb_run\\\\\\\", type=str, default=None)\\\\n    parser.add_argument(\\\\\\\"--no_wandb\\\\\\\", action=\\\\\\\"store_true\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--config\\\\\\\", type=str, default=None,\\\\n                        help=\\\\\\\"YAML config file (overrides CLI args)\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    if args.config:\\\\n        cfg = load_yaml_config(args.config)\\\\n        for k, v in cfg.items():\\\\n            if hasattr(args, k):\\\\n                current = getattr(args, k)\\\\n                if current is None or (isinstance(v, bool) and v and not current):\\\\n                    setattr(args, k, v)\\\\n            else:\\\\n                setattr(args, k, v)\\\\n\\\\n    # Apply defaults for optional args after config merge\\\\n    if args.solver is None:\\\\n        args.solver = \\\\\\\"prover9\\\\\\\"\\\\n    if args.logic_type is None:\\\\n        args.logic_type = \\\\\\\"fol\\\\\\\"\\\\n\\\\n    missing = [f for f in (\\\\\\\"model_path\\\\\\\", \\\\\\\"data_path\\\\\\\", \\\\\\\"reward_mode\\\\\\\", \\\\\\\"output_dir\\\\\\\")\\\\n               if getattr(args, f, None) is None]\\\\n    if missing:\\\\n        parser.error(f\\\\\\\"the following arguments are required: {', '.join('--' + f for f in missing)}\\\\\\\")\\\\n\\\\n    return args\\\\n\\\\n\\\\ndef load_yaml_config(path: str) -> dict:\\\\n    import yaml\\\\n    with open(path) as f:\\\\n        return yaml.safe_load(f)\\\\n\\\\n\\\\ndef main():\\\\n    args = parse_args()\\\\n\\\\n    if args.no_wandb:\\\\n        os.environ[\\\\\\\"WANDB_MODE\\\\\\\"] = \\\\\\\"disabled\\\\\\\"\\\\n\\\\n    report_to = \\\\\\\"none\\\\\\\" if args.no_wandb else \\\\\\\"wandb\\\\\\\"\\\\n    if args.wandb_project and not args.no_wandb:\\\\n        import wandb\\\\n        run_name = args.wandb_run or f\\\\\\\"grpo_{args.reward_mode}\\\\\\\"\\\\n        wandb.init(project=args.wandb_project, name=run_name, config=vars(args))\\\\n\\\\n    logger.info(f\\\\\\\"Loading data from {args.data_path}\\\\\\\")\\\\n    raw_data = load_jsonl(args.data_path)\\\\n    logic_type = getattr(args, \\\\\\\"logic_type\\\\\\\", \\\\\\\"fol\\\\\\\")\\\\n    if logic_type == \\\\\\\"prolog\\\\\\\":\\\\n        dataset = build_prolog_dataset(raw_data)\\\\n    else:\\\\n        dataset = build_dataset(raw_data)\\\\n    logger.info(f\\\\\\\"Dataset: {len(dataset)} examples\\\\\\\")\\\\n\\\\n    logger.info(f\\\\\\\"Initializing solver: {args.solver}\\\\\\\")\\\\n    solver = get_solver(args.solver)\\\\n    logger.info(f\\\\\\\"Solver ready: {type(solver).__name__}\\\\\\\")\\\\n\\\\n    reward_fn = make_reward_fn(\\\\n        args.reward_mode, solver,\\\\n        exec_weight=args.exec_weight, sta_weight=args.sta_weight,\\\\n        logic_type=logic_type,\\\\n    )\\\\n\\\\n    grpo_config = GRPOConfig(\\\\n        output_dir=args.output_dir,\\\\n        max_steps=args.num_steps,\\\\n        per_device_train_batch_size=args.per_device_batch_size,\\\\n        gradient_accumulation_steps=args.gradient_accumulation_steps,\\\\n        learning_rate=args.learning_rate,\\\\n        num_generations=args.num_generations,\\\\n        max_completion_length=args.max_completion_length,\\\\n        logging_steps=1,\\\\n        save_steps=50,\\\\n        save_total_limit=2,\\\\n        save_only_model=True,\\\\n        report_to=report_to,\\\\n        bf16=True,\\\\n        seed=args.seed,\\\\n        log_completions=True,\\\\n        num_completions_to_print=2,\\\\n        chat_template_kwargs={\\\\\\\"enable_thinking\\\\\\\": False},\\\\n    )\\\\n\\\\n    logger.info(f\\\\\\\"Loading model from {args.model_path}\\\\\\\")\\\\n    trainer = GRPOTrainer(\\\\n        model=args.model_path,\\\\n        reward_funcs=reward_fn,\\\\n        args=grpo_config,\\\\n        train_dataset=dataset,\\\\n        callbacks=[LocalLogCallback(args.output_dir, reward_fn)],\\\\n    )\\\\n\\\\n    logger.info(f\\\\\\\"Starting GRPO training: mode={args.reward_mode}, logic={logic_type}, steps={args.num_steps}\\\\\\\")\\\\n    trainer.train()\\\\n\\\\n    logger.info(\\\\\\\"Saving final model\\\\\\\")\\\\n    trainer.save_model(args.output_dir)\\\\n\\\\n    final_stats = reward_fn.get_stats()\\\\n    logger.info(f\\\\\\\"Final reward stats: {final_stats}\\\\\\\")\\\\n\\\\n    if not args.no_wandb and args.wandb_project:\\\\n        import wandb\\\\n        wandb.log({\\\\\\\"final/\\\\\\\" + k: v for k, v in final_stats.items()})\\\\n        wandb.finish()\\\\n\\\\n    logger.info(\\\\\\\"Done.\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"                step_buf[\\\"parsed\\\"] += 1\\n            if proved:\\n                stats[\\\"proved\\\"] += 1\\n                step_buf[\\\"proved\\\"] += 1\\n            stats[\\\"isr_sum\\\"] += isr\\n            step_buf[\\\"isr_sum\\\"] += isr\\n            step_buf[\\\"reward_sum\\\"] += reward_val\\n\\n            rewards.append(reward_val)\\n        return rewards\\n\\n    def get_stats():\\n        n = stats[\\\"total\\\"]\\n        if n == 0:\\n            return {}\\n        return {\\n            \\\"parse_rate\\\": stats[\\\"parsed\\\"] / n,\\n            \\\"prove_rate\\\": stats[\\\"proved\\\"] / n,\\n            \\\"mean_isr\\\": stats[\\\"isr_sum\\\"] / n,\\n        }\\n\\n    def get_step_stats():\\n        n = step_buf[\\\"total\\\"]\\n        if n == 0:\\n            return {}\\n        result = {\\n            \\\"parse_rate\\\": step_buf[\\\"parsed\\\"] / n,\\n            \\\"prove_rate\\\": step_buf[\\\"proved\\\"] / n,\\n            \\\"mean_isr\\\": step_buf[\\\"isr_sum\\\"] / n,\\n            \\\"reward_mean\\\": step_buf[\\\"reward_sum\\\"] / n,\\n            \\\"reward_std\\\": 0.0,\\n        }\\n        step_buf[\\\"total\\\"] = 0\\n        step_buf[\\\"parsed\\\"] = 0\\n        step_buf[\\\"proved\\\"] = 0\\n        step_buf[\\\"isr_sum\\\"] = 0.0\\n        step_buf[\\\"reward_sum\\\"] = 0.0\\n        return result\\n\\n    def reset_stats():\\n        stats[\\\"total\\\"] = 0\\n        stats[\\\"parsed\\\"] = 0\\n        stats[\\\"proved\\\"] = 0\\n        stats[\\\"isr_sum\\\"] = 0.0\\n\\n    reward_fn.get_stats = get_stats\\n    reward_fn.get_step_stats = get_step_stats\\n    reward_fn.reset_stats = reset_stats\\n    return reward_fn\\n\\n\\nclass LocalLogCallback(TrainerCallback):\\n    def __init__(self, output_dir, reward_fn):\\n        self.output_dir = Path(output_dir)\\n        self.output_dir.mkdir(parents=True, exist_ok=True)\\n        self.log_path = self.output_dir / \\\"reward_log.jsonl\\\"\\n        self.reward_fn = reward_fn\\n        self.last_step = 0\\n\\n    def on_log(self, args, state, control, logs=None, **kwargs):\\n        if logs is None or state.global_step == 0:\\n            return\\n        if state.global_step == self.last_step:\\n            return\\n        self.last_step = state.global_step\\n        step_stats = self.reward_fn.get_step_stats()\\n        entry = {\\n            \\\"step\\\": state.global_step,\\n            \\\"reward_mean\\\": logs.get(\\\"reward\\\", step_stats.get(\\\"reward_mean\\\", 0.0)),\\n            \\\"reward_std\\\": logs.get(\\\"reward_std\\\", step_stats.get(\\\"reward_std\\\", 0.0)),\\n            \\\"prove_rate\\\": step_stats.get(\\\"prove_rate\\\", 0.0),\\n            \\\"isr_mean\\\": step_stats.get(\\\"mean_isr\\\", 0.0),\\n            \\\"parse_rate\\\": step_stats.get(\\\"parse_rate\\\", 0.0),\\n            \\\"loss\\\": logs.get(\\\"loss\\\", 0.0),\\n            \\\"lr\\\": logs.get(\\\"learning_rate\\\", 0.0),\\n            \\\"timestamp\\\": datetime.now(timezone.utc).isoformat(),\\n        }\\n        with open(self.log_path, \\\"a\\\") as f:\\n            f.write(json.dumps(entry) + \\\"\\\\n\\\")\\n            f.flush()\\n        print(\\n            f\\\"[REWARD_LOG] step={entry['step']} reward={entry['reward_mean']:.4f} \\\"\\n            f\\\"prove_rate={entry['prove_rate']:.3f} isr={entry['isr_mean']:.3f} \\\"\\n            f\\\"parse_rate={entry['parse_rate']:.3f}\\\",\\n            flush=True,\\n        )\\n\\n\\ndef parse_args():\\n    parser = argparse.ArgumentParser(description=\\\"Phase 1 GRPO Training\\\")\\n    parser.add_argument(\\\"--model_path\\\", type=str, default=None)\\n    parser.add_argument(\\\"--data_path\\\", type=str, default=None)\\n    parser.add_argument(\\\"--reward_mode\\\", type=str, default=None,\\n                        choices=[\\\"execution_only\\\", \\\"execution_sta\\\", \\\"random_reward\\\"])\\n    parser.add_argument(\\\"--output_dir\\\", type=str, default=None)\\n    parser.add_argument(\\\"--num_steps\\\", type=int, default=100)\\n    parser.add_argument(\\\"--per_device_batch_size\\\", type=int, default=4)\\n    parser.add_argument(\\\"--gradient_accumulation_steps\\\", type=int, default=2)\\n    parser.add_argument(\\\"--num_generations\\\", type=int, default=4)\\n    parser.add_argument(\\\"--max_completion_length\\\", type=int, default=512)\\n    parser.add_argument(\\\"--learning_rate\\\", type=float, default=1e-6)\\n    parser.add_argument(\\\"--exec_weight\\\", type=float, default=0.5)\\n    parser.add_argument(\\\"--sta_weight\\\", type=float, default=0.5)\\n    parser.add_argument(\\\"--seed\\\", \\n\\n... [截断: 输出过长，省略 1 字符] ...\\n\\nype=int, default=42)\\n    parser.add_argument(\\\"--solver\\\", type=str, default=None)\\n    parser.add_argument(\\\"--logic_type\\\", type=str, default=None,\\n                        choices=[\\\"fol\\\", \\\"prolog\\\"])\\n    parser.add_argument(\\\"--wandb_project\\\", type=str, default=None)\\n    parser.add_argument(\\\"--wandb_run\\\", type=str, default=None)\\n    parser.add_argument(\\\"--no_wandb\\\", action=\\\"store_true\\\")\\n    parser.add_argument(\\\"--config\\\", type=str, default=None,\\n                        help=\\\"YAML config file (overrides CLI args)\\\")\\n    args = parser.parse_args()\\n\\n    if args.config:\\n        cfg = load_yaml_config(args.config)\\n        for k, v in cfg.items():\\n            if hasattr(args, k):\\n                current = getattr(args, k)\\n                if current is None or (isinstance(v, bool) and v and not current):\\n                    setattr(args, k, v)\\n            else:\\n                setattr(args, k, v)\\n\\n    # Apply defaults for optional args after config merge\\n    if args.solver is None:\\n        args.solver = \\\"prover9\\\"\\n    if args.logic_type is None:\\n        args.logic_type = \\\"fol\\\"\\n\\n    missing = [f for f in (\\\"model_path\\\", \\\"data_path\\\", \\\"reward_mode\\\", \\\"output_dir\\\")\\n               if getattr(args, f, None) is None]\\n    if missing:\\n        parser.error(f\\\"the following arguments are required: {', '.join('--' + f for f in missing)}\\\")\\n\\n    return args\\n\\n\\ndef load_yaml_config(path: str) -> dict:\\n    import yaml\\n    with open(path) as f:\\n        return yaml.safe_load(f)\\n\\n\\ndef main():\\n    args = parse_args()\\n\\n    if args.no_wandb:\\n        os.environ[\\\"WANDB_MODE\\\"] = \\\"disabled\\\"\\n\\n    report_to = \\\"none\\\" if args.no_wandb else \\\"wandb\\\"\\n    if args.wandb_project and not args.no_wandb:\\n        import wandb\\n        run_name = args.wandb_run or f\\\"grpo_{args.reward_mode}\\\"\\n        wandb.init(project=args.wandb_project, name=run_name, config=vars(args))\\n\\n    logger.info(f\\\"Loading data from {args.data_path}\\\")\\n    raw_data = load_jsonl(args.data_path)\\n    logic_type = getattr(args, \\\"logic_type\\\", \\\"fol\\\")\\n    if logic_type == \\\"prolog\\\":\\n        dataset = build_prolog_dataset(raw_data)\\n    else:\\n        dataset = build_dataset(raw_data)\\n    logger.info(f\\\"Dataset: {len(dataset)} examples\\\")\\n\\n    logger.info(f\\\"Initializing solver: {args.solver}\\\")\\n    solver = get_solver(args.solver)\\n    logger.info(f\\\"Solver ready: {type(solver).__name__}\\\")\\n\\n    reward_fn = make_reward_fn(\\n        args.reward_mode, solver,\\n        exec_weight=args.exec_weight, sta_weight=args.sta_weight,\\n        logic_type=logic_type,\\n    )\\n\\n    grpo_config = GRPOConfig(\\n        output_dir=args.output_dir,\\n        max_steps=args.num_steps,\\n        per_device_train_batch_size=args.per_device_batch_size,\\n        gradient_accumulation_steps=args.gradient_accumulation_steps,\\n        learning_rate=args.learning_rate,\\n        num_generations=args.num_generations,\\n        max_completion_length=args.max_completion_length,\\n        logging_steps=1,\\n        save_steps=50,\\n        save_total_limit=2,\\n        save_only_model=True,\\n        report_to=report_to,\\n        bf16=True,\\n        seed=args.seed,\\n        log_completions=True,\\n        num_completions_to_print=2,\\n        chat_template_kwargs={\\\"enable_thinking\\\": False},\\n    )\\n\\n    logger.info(f\\\"Loading model from {args.model_path}\\\")\\n    trainer = GRPOTrainer(\\n        model=args.model_path,\\n        reward_funcs=reward_fn,\\n        args=grpo_config,\\n        train_dataset=dataset,\\n        callbacks=[LocalLogCallback(args.output_dir, reward_fn)],\\n    )\\n\\n    logger.info(f\\\"Starting GRPO training: mode={args.reward_mode}, logic={logic_type}, steps={args.num_steps}\\\")\\n    trainer.train()\\n\\n    logger.info(\\\"Saving final model\\\")\\n    trainer.save_model(args.output_dir)\\n\\n    final_stats = reward_fn.get_stats()\\n    logger.info(f\\\"Final reward stats: {final_stats}\\\")\\n\\n    if not args.no_wandb and args.wandb_project:\\n        import wandb\\n        wandb.log({\\\"final/\\\" + k: v for k, v in final_stats.items()})\\n        wandb.finish()\\n\\n    logger.info(\\\"Done.\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+              }
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "结论：**`isr_mean` 在 `random_reward` 模式下 = 真实 ISR（实际上恒为 0.0）**。\n\n关键逻辑链：\n\n**1. `random_reward` 分支（行 173-186）：**\n```python\nelif reward_mode == \"random_reward\":\n    result = _fast_fn({}, cleaned, solver,\n                      execution_weight=1.0, sta_weight=0.0, timeout=5)\n    proved = result[\"execution_reward\"] > 0\n    if proved:\n        rand_val = rng.random()\n        reward_val = exec_weight * 1.0 + sta_weight * rand_val\n        result[\"random_reward\"] = rand_val\n    else:\n        reward_val = 0.0\n        result[\"random_reward\"] = 0.0\n```\n\n注意：调用 `_fast_fn` 时传入 `sta_weight=0.0`，所以 `result[\"sta_reward\"]` 恒为 0.0。\n\n**2. isr 取值（行 ~193）：**\n```python\nisr = result.get(\"sta_reward\", 0.0)\n```\n\n**3. isr_mean 写入 log（行 ~229）：**\n```python\nstep_buf[\"isr_sum\"] += isr\n# ...\n\"mean_isr\": step_buf[\"isr_sum\"] / n,\n# ...\n\"isr_mean\": step_stats.get(\"mean_isr\", 0.0),\n```\n\n**结论：**\n- `isr_mean` 取的是 `result[\"sta_reward\"]`，即 STA reward 函数返回的真实 ISR 值\n- 但由于 `random_reward` 分支调用时传 `sta_weight=0.0`，`fast_sta_reward` 不会计算 STA 分数，返回的 `sta_reward` = 0.0\n- 所以 **`isr_mean` 在 random_reward 模式下应恒为 0.0**\n\n如果你观察到 step 9 的 `isr_mean=0.5`，这不太正常——可能需要检查 `fast_sta_reward` 在 `sta_weight=0.0` 时是否仍然计算了 ISR，或者该 log 条目是否来自其他 reward_mode 的运行。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "27d5ad87-e199-4d59-afad-fc5875cba6ab",
+            "uuid": "2dd07be1-53a6-4cdf-bcff-92135ce9da75",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01E1pv9x5q4qx7cpcH5d4rcX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3472,
+                "cache_read_input_tokens": 27606,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3472
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结论：**`isr_mean` 在 `random_reward` 模式下 = 真实 ISR（实际上恒为 0.0）**。\n\n关键逻辑链：\n\n**1. `random_reward` 分支（行 173-186）：**\n```python\nelif reward_mode == \"random_reward\":\n    result = _fast_fn({}, cleaned, solver,\n                      execution_weight=1.0, sta_weight=0.0, timeout=5)\n    proved = result[\"execution_reward\"] > 0\n    if proved:\n        rand_val = rng.random()\n        reward_val = exec_weight * 1.0 + sta_weight * rand_val\n        result[\"random_reward\"] = rand_val\n    else:\n        reward_val = 0.0\n        result[\"random_reward\"] = 0.0\n```\n\n注意：调用 `_fast_fn` 时传入 `sta_weight=0.0`，所以 `result[\"sta_reward\"]` 恒为 0.0。\n\n**2. isr 取值（行 ~193）：**\n```python\nisr = result.get(\"sta_reward\", 0.0)\n```\n\n**3. isr_mean 写入 log（行 ~229）：**\n```python\nstep_buf[\"isr_sum\"] += isr\n# ...\n\"mean_isr\": step_buf[\"isr_sum\"] / n,\n# ...\n\"isr_mean\": step_stats.get(\"mean_isr\", 0.0),\n```\n\n**结论：**\n- `isr_mean` 取的是 `result[\"sta_reward\"]`，即 STA reward 函数返回的真实 ISR 值\n- 但由于 `random_reward` 分支调用时传 `sta_weight=0.0`，`fast_sta_reward` 不会计算 STA 分数，返回的 `sta_reward` = 0.0\n- 所以 **`isr_mean` 在 random_reward 模式下应恒为 0.0**\n\n如果你观察到 step 9 的 `isr_mean=0.5`，这不太正常——可能需要检查 `fast_sta_reward` 在 `sta_weight=0.0` 时是否仍然计算了 ISR，或者该 log 条目是否来自其他 reward_mode 的运行。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 36474,
+            "duration_api_ms": 35219,
+            "num_turns": 7,
+            "stop_reason": "end_turn",
+            "session_id": "27d5ad87-e199-4d59-afad-fc5875cba6ab",
+            "total_cost_usd": 0.23666925000000003,
+            "usage": {
+              "input_tokens": 11,
+              "cache_creation_input_tokens": 19237,
+              "cache_read_input_tokens": 159904,
+              "output_tokens": 1396,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 19237,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 630,
+                  "cache_read_input_tokens": 27606,
+                  "cache_creation_input_tokens": 3472,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 3472
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1436,
+                "outputTokens": 19,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001531,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 11,
+                "outputTokens": 1396,
+                "cacheReadInputTokens": 159904,
+                "cacheCreationInputTokens": 19237,
+                "webSearchRequests": 0,
+                "costUSD": 0.23513825000000002,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "3ca7f80d-b10b-4267-be35-a1f322566b40"
+          },
+          "id": "event-000018"
+        }
+      ],
+      "message_count": 18
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-check-random-reward-isr-field.md"
+}

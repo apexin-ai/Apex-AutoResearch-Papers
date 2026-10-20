@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "31a63f4ee14fbfac255c",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "recon check exec training",
+  "task_key": "worker_recon_check-exec-training_20260521T231938",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_recon_check-exec-training_20260521T231938_result.json",
+    "occurrence": 1,
+    "bytes": 879,
+    "sha256": "4d52c0b16f2fce95907da69ac038b2ece287197b95bed9f95cd85d7184960c3f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n**exec-only seed 扩展实验进度：**\n\n| Seed | 训练 | Eval | 状态 |\n|------|------|------|------|\n| s52 | ✅ checkpoint-500 完成 (05:53) | ✅ eval_sta.json 已生成 (06:23) | **完成** |\n| s53 | ❌ 目录不存在 | — | 未开始 |\n| s54 | ❌ 目录不存在 | — | 未开始 |\n| s55 | ❌ 目录不存在 | — | 未开始 |\n| s56 | ❌ 目录不存在 | — | 未开始 |\n\n**GPU 状态：** GPU 0 空闲（0MiB / 97887MiB），无运行进程。\n\n**磁盘：** `/root/autodl-tmp/` 已用 238G/250G (96%)，仅剩 13G。**磁盘紧张** — 当前 s52 的模型权重占约 8G，继续训练 s53 前需要清理空间（每个实验约需 8-10G）。\n\n**结论：** 只完成了 s52 的训练+eval，s53-s56 尚未开始。GPU 空闲无活跃任务。磁盘剩余 13G，最多再跑 1 个 seed，之后需要清理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/recon-check-exec-training.md"
+}

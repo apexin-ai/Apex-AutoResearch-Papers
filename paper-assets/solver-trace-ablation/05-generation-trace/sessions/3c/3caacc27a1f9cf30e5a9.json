@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3caacc27a1f9cf30e5a9",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "eval b02 s42 eval sta",
+  "task_key": "worker_eval_b02-s42-eval-sta_20260516T045629",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_b02-s42-eval-sta_20260516T045629_result.json",
+    "occurrence": 1,
+    "bytes": 367,
+    "sha256": "0425e102eba4df49307202934df375e437c9a82c7357037181a46e417d123a30"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。**sweep-isr-b02-s42 eval_sta 结果**：\n\n- **prove_rate**: 100% (100/100)\n- **mean_isr**: 0.6017 (σ=0.1973)\n- **median_isr**: 0.500\n\nRegistry 已更新。注意 eval ISR (0.60) 高于训练日志末期的 ~0.52，说明 greedy decoding 下模型倾向更短的 formalization（多数样本 ISR=0.5，即仅 1 premise + conclusion）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-b02-s42-eval-sta.md"
+}

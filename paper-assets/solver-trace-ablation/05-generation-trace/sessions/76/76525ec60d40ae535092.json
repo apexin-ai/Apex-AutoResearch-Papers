@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "76525ec60d40ae535092",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analysis plan018 additive random b01 s42 1000 r2",
+  "task_key": "worker_analysis_plan018-additive-random-b01-s42-1000-r2_20260515T112956",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan018-additive-random-b01-s42-1000-r2_20260515T112956_result.json",
+    "occurrence": 1,
+    "bytes": 801,
+    "sha256": "4f7b737359d5eed1deba90179a46894c080fb4d4569d2d252fecec1a6ee4c2ae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。结论：**negative**。\n\n**结果摘要：**\n\n| 指标 | 值 |\n|---|---|\n| eval_prove_rate | 1.0 (100/100) |\n| eval_mean_isr | 0.3333 (std=0) |\n| genuine_rate | 0% |\n| tautological_collapse | **是** |\n\n所有 100 个问题生成完全相同的 tautology `∀x (Person(x, \"Google\", x))`，premise=conclusion，ISR 固定在 1/3。与 500 步版本 (PR=0.79) 相比，1000 步时模型已完全崩塌。\n\n**关键发现**：additive random reward β=0.1 只延迟了 tautological collapse，未能阻止。500→1000 步过程中，模型从部分崩塌 (PR=0.79) 恶化为完全崩塌 (PR=1.0, 纯 tautology)。这比 exec-only 1000 步 (PR=0.96, ISR=0.003) 的 Goodhart 效应更极端——random 噪声反而加速了向 tautology 的收敛。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan018-additive-random-b01-s42-1000-r2.md"
+}

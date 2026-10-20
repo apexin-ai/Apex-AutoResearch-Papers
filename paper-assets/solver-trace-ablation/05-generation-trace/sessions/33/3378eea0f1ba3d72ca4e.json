@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3378eea0f1ba3d72ca4e",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "diagnose 1 7b isr b01 exit and collect",
+  "task_key": "worker_diagnose_1_7b-isr-b01-exit-and-collect_20260516T221339",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_1_7b-isr-b01-exit-and-collect_20260516T221339_result.json",
+    "occurrence": 1,
+    "bytes": 1028,
+    "sha256": "49271488346697d9b65a841f58a227bb58f905a1b324c62c107456bad2f1794d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### Part 1: ISR β=0.1 训练 — 已完成\n\n| 指标 | 值 |\n|------|-----|\n| global_step | **500/500** |\n| 训练时间 | 60 min 20s |\n| **Final prove_rate** | **0.5205** |\n| **Final mean_isr** | **0.2457** |\n| 模型已保存 | checkpoint-500 + final (~6.4GB) |\n\n### Part 2: ISR β=0.3 Eval 结果\n\n| 指标 | 值 |\n|------|-----|\n| prove_rate | **17/100 = 17.0%** |\n| mean_isr | **0.0309** |\n| proved_only_mean_isr | 0.1815 |\n| elapsed | 727s (~12 min) |\n\n**classify_h7 分类：**\n\n| 类别 | 数量 | 占比 |\n|------|------|------|\n| H7 (tautology) | 0 | 0.0% |\n| H1 (conclusion in premises) | 12 | 70.6% |\n| H8 (conj-collapse) | 0 | 0.0% |\n| Content-independent | 1 | 5.9% |\n| **Genuine** | **5** | **29.4%** |\n\nβ=0.3 的 prove_rate 17% 远低于 β=0.1 的 52%，且 70.6% 的 proved 样本属于 H1 hacking（conclusion in premises）。Genuine 只有 5 个。ISR 均值极低 (0.031)，说明β=0.3 模型学到了高度冗余/低 ISR 的证明策略。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-1-7b-isr-b01-exit-and-collect.md"
+}

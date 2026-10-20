@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a95cb0e8fee54a73b68f",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "fix s46 classify h7",
+  "task_key": "worker_fix_s46-classify-h7_20260517T034829",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_s46-classify-h7_20260517T034829_result.json",
+    "occurrence": 1,
+    "bytes": 125,
+    "sha256": "1d1ad78d5100e2ad2525a53e57a2b7feb360bf9246d72ad99e55d6b2935b5a45"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证通过，数字一致：H7=86, H1=2, H8=4, genuine=2，与 registry 数据完全吻合，无需更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-s46-classify-h7.md"
+}

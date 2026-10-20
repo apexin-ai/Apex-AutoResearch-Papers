@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a711603e51493430c018",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "fix sweep b01 s45 cron check",
+  "task_key": "worker_fix_sweep-b01-s45-cron-check_20260516T032410",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_sweep-b01-s45-cron-check_20260516T032410_result.json",
+    "occurrence": 1,
+    "bytes": 855,
+    "sha256": "3557f7156d897ec81e94ec818dc361490c4a557817f4e7c9b45f0d875d5c55a9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 排查结论：进程正常运行，Cron 误报\n\n**进程状态**：\n- PID 604564 (bash) → 604568 (timeout) → 604569 (python3, `Rl` running)\n- 训练已运行 ~4 分钟，当前 step 22/500\n\n**训练健康度**：\n- Step 1-18：reward=0, loss=0, grad_norm=0（冷启动，base model 无法生成正确证明）\n- **Step 20 起突破**：reward=0.52, prove_rate=0.5, isr=0.27, loss 开始有梯度\n- 训练正在正常学习，无需干预\n\n**GPU 状态**：\n- GPU 0: 79547 MiB, 100% 利用率（本实验）\n- GPU 1: 80355 MiB, 90% 利用率（其他实验）\n\n**其他**：\n- 无 checkpoint（正常，500 步实验未到保存点）\n- 无 error/traceback\n- 日志持续写入\n\nCron 误报原因可能是检测逻辑匹配了子进程的短暂状态变化（如 timeout 包装层）。实验无需任何操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-sweep-b01-s45-cron-check.md"
+}

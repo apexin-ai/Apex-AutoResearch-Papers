@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e7bab27ceb802a6c2cb6",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops cleanup and submit r6",
+  "task_key": "worker_ops_cleanup-and-submit-r6_20260516T235058",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cleanup-and-submit-r6_20260516T235058_result.json",
+    "occurrence": 1,
+    "bytes": 238,
+    "sha256": "021044287537d014f5ca99afd1ea12ecee69f0d891bbcc44ca312672da443a98"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练正常启动。\n\n**报告：**\n- tmux session `exec-only-s43-1000step-r6` 存活\n- PID: **991155**\n- GPU 0 占用: **24330 MiB**，GPU-Util 88%，功耗 268W\n- GPU 1: 空闲（0MiB）\n- 状态: **正常运行**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cleanup-and-submit-r6.md"
+}

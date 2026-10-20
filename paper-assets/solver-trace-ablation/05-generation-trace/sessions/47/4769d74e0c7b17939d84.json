@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4769d74e0c7b17939d84",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops tex remote to local sync",
+  "task_key": "worker_ops_tex-remote-to-local-sync_20260515T172135",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_tex-remote-to-local-sync_20260515T172135_result.json",
+    "occurrence": 1,
+    "bytes": 875,
+    "sha256": "b50e8ed70ef62834fae20eb3d4ac2e8670a1535e672c4dfb215188bd831adac5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证清单结果：\n\n- [x] **experiments.tex** (line 32): `$0\\%$ non-hacking (3 samples escape text-match classifiers but are functionally degenerate; see Appendix~\\ref{app:h8} and Table~\\ref{tab:fol-detailed})`\n- [x] **introduction.tex** (line 27): `at 500 steps` 限定\n- [x] **appendix.tex** (line 422): s44-1000 `0$^\\ddagger$` — 脚注在 line 394 caption 中定义（三个 s44-1000 样本逃逸文本匹配但功能退化）\n- [x] **appendix.tex** (line 420): s43-1000 `ISR=0.465$^\\S$` — 脚注在 line 394 说明 corrected ISR 去除了 decompose_fol 膨胀\n- [x] **appendix.tex** (line 425): 3-seed mean `$0.16{\\pm}0.27$`\n- [x] **abstract.tex** (line 7): `69.7\\%` conclusion duplication; (line 9): `catalog 8 hacking modes`; (line 6): `92.2\\% non-hacking`\n\n全部 10 个文件已同步到本地，6 项验证清单全部通过。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-tex-remote-to-local-sync.md"
+}

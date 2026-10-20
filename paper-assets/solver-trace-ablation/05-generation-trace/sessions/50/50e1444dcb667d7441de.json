@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "50e1444dcb667d7441de",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code pre verify preparing exps",
+  "task_key": "worker_code_pre-verify-preparing-exps_20260515T154921",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_pre-verify-preparing-exps_20260515T154921_result.json",
+    "occurrence": 1,
+    "bytes": 1154,
+    "sha256": "d19b5a9a31e32d7af3bf730799a227717f5d355694877deba3ea78addc05edec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 验证结果\n\n| 实验 | 就绪 | 问题 |\n|------|------|------|\n| plan002-additive-b01-s43-r2 | **NO** | 配置文件名错误 |\n| plan018-additive-random-b01-s44-r2 | YES | — |\n| plan018-additive-random-b01-s43-r3 | YES | — |\n\n### 阻塞问题：plan002 配置文件不存在\n\n`configs/grpo_additive_b01.yaml` 不存在。实际文件是 **`configs/grpo_additive_bonus_b01.yaml`**，其 `reward_mode: additive_bonus`。\n\n修正后的提交命令：\n```bash\npython3 scripts/train_grpo.py \\\n  --config configs/grpo_additive_bonus_b01.yaml \\\n  --data_path data/train_500_seed42.jsonl \\\n  --num_steps 500 --seed 43 --beta 0.1 \\\n  --reward_mode additive_bonus \\\n  --output_dir /root/autodl-tmp/outputs/plan002_additive_b01_s43_r2\n```\n\n### 通过项\n\n- **磁盘**：root 21GB / data 204GB，充足\n- **Python 环境**：torch=2.10.0+cu128, transformers=4.57.6, trl=1.1.0\n- **基座模型**：Qwen3-4B 存在\n- **数据文件**：train_500_seed42.jsonl 500 行\n- **输出目录**：3 个均不存在，无冲突\n- **当前训练**：PID 363692 (GPU0) 和 363840 (GPU1) 均在运行，已跑约 2 小时"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-pre-verify-preparing-exps.md"
+}

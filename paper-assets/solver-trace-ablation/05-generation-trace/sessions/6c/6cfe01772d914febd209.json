@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6cfe01772d914febd209",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "write abstract conclusion",
+  "task_key": "worker_write_abstract-conclusion_20260514T232934",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_write_abstract-conclusion_20260514T232934_result.json",
+    "occurrence": 1,
+    "bytes": 828,
+    "sha256": "2d7baf80761fccccae3456b6acb024f71dd09870f39ff831c260f6a025e72aeb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个文件已写入并注册：\n\n- `abstract.tex` — ~250 words，覆盖 STA/ISR 方法、ISR 崩塌轨迹 (0.64→0.003)、meta-Goodhart (H7=64.5% vs 0%, premise-matched 1.06x, β=0.3 PR 18% vs 48%)、Prolog universal Goodhart (3/3 gaming, 0% genuine, 3 distinct pathways)、7-mode taxonomy、SFT baseline 对照。\n- `conclusion.tex` — Section 6，三段分别对应三个 claim，Limitations 段覆盖 single model / 2 logics / syntactic ISR + premise-count bias / 3 seeds / classifier blind spots，Future directions 段覆盖 semantic verification / adaptive reward / broader logic types / recursive Goodhart 一般化。\n\n风格与 introduction/experiments/discussion 保持一致：ACL/EMNLP 学术英语，所有定量 claim 附具体数字，正负结果并报，强度词与 evidence 匹配。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/write-abstract-conclusion.md"
+}

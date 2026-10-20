@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c17d2a857a50b7168d14",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analysis plan013 results",
+  "task_key": "worker_analysis_plan013-results_20260514T022618",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan013-results_20260514T022618_result.json",
+    "occurrence": 1,
+    "bytes": 1177,
+    "sha256": "488b9a98fba8378f30a031267a65e891b448f32dae82102981fda9ee13514930"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/plan013_analysis.md` 并注册。核心发现：\n\n**三方对比结果出乎意料：**\n\n| | exec-only | random reward | convex STA |\n|---|:---:|:---:|:---:|\n| last100 PR | 0.865 | **0.966** | 0.773 |\n| ISR/PR ratio | ~1.0 | 1.0 | 0.298 |\n\n1. **Random reward (0.966) > exec-only (0.865) > STA (0.773)**。随机噪声替代 ISR 后，不仅没有损害，反而因正则化效应超越了 exec-only baseline。\n\n2. **ISR 作为 reward component 是 harmful 的**——plan005 的 convex STA 表现最差。ISR 梯度方向与 exec 冲突。\n\n3. **ISR 是 prove_rate 的自然副产物**（r=0.994，495/500 步完全一致），说明它有诊断价值但不应直接进 reward。\n\n4. **Paper claim \"ISR provides structural feedback that improves formalization\" 需要重新表述**。建议方向：ISR 作为 diagnostic metric 有价值；ISR 直接进 convex reward 有害是重要 negative finding；random noise 的正则化效应值得进一步 ablation。\n\n5. **Data integrity warning**: plan013 config 的 data_path 是 `proofwriter_fol_500.jsonl`，需确认与 plan001/plan005 一致性（约束 C001）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan013-results.md"
+}

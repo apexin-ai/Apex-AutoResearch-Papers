@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "2fab9a1974dfc4408375",
+  "project": "solver-trace-ablation",
+  "kind": "conversation",
+  "title": "paper figure regen",
+  "task_key": "worker_paper_figure-regen_20260514T212529",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_figure-regen_20260514T212529.jsonl",
+    "occurrence": 1,
+    "bytes": 170,
+    "sha256": "afd118e3e28fa9bd39e2798dd94b3bcfef8f8f76ddf5e8093fdd36b6ba5cbf2e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T21:25:38.253903+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 11:10pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_figure-regen_20260514T212529"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/paper-figure-regen.md"
+}

@@ -1,61 +1,51 @@
-# solver-trace-ablation (PGPF) — Research Dashboard
+# solver-trace-ablation — Research Dashboard
 
-> 最后更新: 2026-05-13 10:21 UTC | 更新原因: 采纳 Reviewer warnings：多 seed 策略、LC 风险预案、PGPF-S 定位调整
+> 最后更新: 2026-05-23 02:13 UTC | 更新原因: R33 完成，三轮均 3.0，更新终态评估
 
 ## 核心方向
-将 Kovac et al. (EMNLP 2025) 的 model collapse 预测属性（LC, SN, Quality）转为逐样本过滤准则（PGPF），验证 property-specific 过滤优于 confidence-based 过滤。详见 paper_framing.md。
+STA (Solver Trace Ablation) 作为 LOO 诊断工具揭示 GRPO 训练的 FOL reasoner 中的结构退化和 seed-dependent Goodhart 效应。详见 paper_framing.md。
 
-## 当前阶段
-**MVP 验证 — Phase 1 准备中**
+## 当前进展
+- **阶段**: 论文修复完成，三轮审稿均 3.0 (Findings)，DDL 2026-05-25
+- **论文状态**: R31/R32/R33 三轮均 3.0。所有可修改项已完成。结构性限制（单模型 Qwen3-4B / N=3-5 seeds / LOO novelty / taxonomy recall）标记 wont_fix 并附 rebuttal 论点。
+- **Review issues**: 21 项中 17 resolved / 4 wont_fix / 0 open
+- **Reviewer 评估**: 纯 framing 修改天花板 3.0-3.25；3.5 需新模型实验，DDL 前不可行
+- **结论**: 论文已达当前数据下的最优状态，进一步审稿迭代边际收益递减
 
-### Phase 0 完成 ✅ (CONDITIONAL PASS)
-- LC 和 SN 与所有属性正交（|r|, |ρ| < 0.35）
-- Quality vs Confidence Spearman ρ = -0.998（rank 冗余），有效属性空间 3 维
-- D002: Phase 1 用 LC + SN + Confidence；D003: 正交性检查同时用 Pearson + Spearman
-- 遗留：LC 动态范围窄 [0, 0.021]；退化生成需修 attention_mask
-
-### Phase 1 设计（3 代过滤对比）
-- Qwen2.5-1.5B + OpenHermes (8K/1K/1K), 3 generations, mix_ratio=0.5
-- 5 条件：No Filter / Random / Confidence-only / PGPF-S (LC+SN+Conf) / Lexical-only
-- 主指标：held-out PPL degradation
-- Pass 条件：(1) deg(NoFilter) ≥ 5% (2) PGPF-S vs Conf ≥ 5% relative (3) PGPF-S < Random
-
-### 多 seed 策略（两阶段）
-- **阶段 A**：seed=42 单次跑，做 gate check（~15-20 GPU-hours）
-- **阶段 B**：gate check 通过后补 seed=123, 7（~30-40 GPU-hours），用于论文 variance 报告
-- 单 seed 结果仅为 pilot，论文最终需 ≥3 seeds
-
-## 目标投稿
-AAAI 2027（abstract ~Jul 25, paper ~Aug 1）— 约 11 周
+## R33 修复摘要（commit e7509b6）
+- C2 改为 "seed-dependent Goodhart effect"
+- "model-agnostic" → "applicable to any solver-verified reasoning system"
+- Bimodal 讨论 front-loaded 到 §4.3
+- "converts" → "systematically selects for"
+- §3.3 加 taxonomy 互斥性规则 + N-H upper bound caveat
 
 ## 近期任务
-- [ ] Agent 修复 Phase 1 代码：attention_mask + sanity filter + PGPF-S 改 3 属性
-- [ ] Agent 调查 LC 动态范围问题
-- [ ] Agent 100 样本 sanity check 验证生成质量修复
-- [ ] Agent 填写 experiment_plan.yaml
-- [ ] Agent 提交 Phase 1 实验审批
-- [ ] Phase 1 gate check 通过 → 补 seeds → complete_mvp → post-MVP-kickoff
+- [ ] 决定是否提交 R34 或视为最终版
+- [ ] GPU 释放 westd-39279:cuda:0（已请用户手动处理）
+
+## 已完成
+- [x] R31 Must-Fix/Should-Fix/Minor 全部修复
+- [x] R32 Action Matrix 6 项完成
+- [x] R33 Action Matrix 5 项完成
+- [x] C3 conclusion 回响补充
+- [x] 全文破折号一致性修复
+- [x] Review issues 终态确认（21 项：17 resolved + 4 wont_fix）
 
 ## GPU 预算
-- 分配：autodl-pgpf cuda:0 + cuda:1（2×RTX PRO 6000 96GB）
-- Phase 0 消耗：~3 GPU-hours
-- Phase 1 阶段 A：~15-20 GPU-hours
-- Phase 1 阶段 B：~30-40 GPU-hours
-- 全项目（MVP 通过后）：~200-300 GPU-hours
-
-## 关键风险 + 预案
-1. **LC 区分度不足** → Lexical-only 条件验证；若失败考虑用 reward model / diversity metric 替代 LC
-2. **Novelty 天花板** → 靠阈值轨迹 + property 交互产出 surprising insight
-3. **28% 基线接受率** → 需显著改进实验设计
-4. **PGPF-S 定位调整** → 从"替代 confidence"转为"增强 confidence"（paper_framing.md 已更新）
+westd-39279: cuda:0（空闲，已请用户手动释放）
 
 ## 关键决策日志
 
 | ID | 日期 | 摘要 | 关联实验 |
 |----|------|------|----------|
-| D003 | 2026-05-13 | 修正正交性 pass criteria：同时检查 Pearson 和 Spearman，取 max( | phase0_score_v3 |
-| D002 | 2026-05-13 | Phase 0 PASS：属性正交性验证通过，有效属性空间 3 维（LC, SN, Quality/ | phase0_score_v3, phase0_ortho_v2 |
-| D001 | 2026-05-13 | 放弃 EMNLP 2026 ARR May 25，重定向至 AAAI 2027（abstract J | — |
-
-
+| D164 | 2026-05-23 | 跳过 R34 审稿，当前版本视为最终定稿 | — |
+| D163 | 2026-05-22 | D169: 停止 8B 系列——K=8 s42 未收敛 (PR=15.9%)，不继续 s43/ISR | d154-8b-exec-s42-k8, d154-8b-exec-s42-k4v2 |
+| D162 | 2026-05-22 | D168: 8B 实验序列确定——exec s42→s43→ISR s42（串行+决策门），跳过 K | d154-8b-exec-s42-k8, d154-8b-exec-s43-k8, d154-8b-isr-s42-k8 |
+| D161 | 2026-05-22 | D167: 采纳 Reviewer 8B 时间修正 (12-13h/seed) + non-conv | d154-8b-exec-s42-k4v2, d154-8b-exec-s42-k8 |
+| D160 | 2026-05-22 | D166: 8B GRPO 改用 K=8 — K=4 已证明 cold-start stagnati | d154-8b-exec-s42-k4v2 |
+| D159 | 2026-05-20 | D159: D157 framing 决策——C2 不升级 "mechanistic"，§4.3 加 | d157-shuffled-isr-s42-r3 |
+| D158 | 2026-05-20 | D158 终止：LLaMA SFT PR=0%，gate 未通过，不修复。GPU 全给 D157。 | d158-llama-sft-s42, d158-llama-grpo-s42 |
+| D157 | 2026-05-20 | D157: R19 Action Matrix — 统计叙事重构 + ISR post-hoc fi | — |
+| D156 | 2026-05-20 | R18 Action Matrix: ISR概念修复+component count论证+措辞收紧为 | — |
+| D155 | 2026-05-20 | R17 策略：写作修改优先，8B 降为 background。目标 3.5 via W1 scope | — |
 

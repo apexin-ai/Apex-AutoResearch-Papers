@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7d1ea0728951d18a82a7",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "viz fig isr collapse",
+  "task_key": "worker_viz_fig-isr-collapse_20260515T202603",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_viz_fig-isr-collapse_20260515T202603_result.json",
+    "occurrence": 1,
+    "bytes": 714,
+    "sha256": "dfa9c1e531c81fa6b60ec3ade7e51e981e963c9ad984f9904c50af6c03ea7aef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图表已生成，验证通过。\n\n**输出文件：**\n- PDF: `/root/solver-trace-ablation/paper/figures/isr_collapse.pdf` (22KB)\n- PNG: `/root/solver-trace-ablation/paper/figures/isr_collapse.png` (104KB, 1352×974px)\n\n**数据汇总：**\n\n| 条件 | Steps | ISR (proved-only) |\n|------|-------|-------------------|\n| Exec-only (s42) | 100 | 0.642 |\n| Exec-only (s42) | 500 | 0.132 |\n| Exec-only (s42) | 1000 | 0.003 |\n| ISR β=0.1 (3-seed mean±std) | 500 | 0.716 ± 0.263 |\n| Random β=0.1 (3-seed mean±std) | 500 | 0.117 ± 0.042 |\n\nISR/Random 缺少 100-step 数据，因此 exec-only 画完整 trajectory 折线，ISR 和 Random 作为 500-step 对比点（带 error bar）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/viz-fig-isr-collapse.md"
+}

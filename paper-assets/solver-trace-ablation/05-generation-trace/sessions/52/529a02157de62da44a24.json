@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "529a02157de62da44a24",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "check plan009 sft 1000 status",
+  "task_key": "worker_check_plan009-sft-1000-status_20260515T122359",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_plan009-sft-1000-status_20260515T122359_result.json",
+    "occurrence": 1,
+    "bytes": 687,
+    "sha256": "99bbbe74b9d045686b5ab9dd853a952b817938e1b57320ad533a31ff22080055"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n| 项目 | 状态 |\n|------|------|\n| **实际状态** | **COMPLETED** — 训练已完成 1000/1000 步 |\n| **PID 344799** | 已死（训练正常结束退出） |\n| **checkpoint** | `checkpoint-1000` 存在，模型文件完整 (~7.5GB safetensors) |\n| **输出路径** | `/root/autodl-tmp/outputs/plan009_sft_baseline_s42_1000/` |\n| **最终 loss** | 0.0168, token accuracy 99.6% |\n| **GPU cuda:0** | 空闲（nvidia-smi 无进程） |\n| **Registry** | 已更新为 DONE, conclusion=success |\n\n**后续操作**：需要用 `eval_sta.py` 对该 checkpoint 进行评估（遵循 C004/C008，使用 `--data_path data/proofwriter_fol_100.jsonl`）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-plan009-sft-1000-status.md"
+}

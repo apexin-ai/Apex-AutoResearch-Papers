@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "3cd9bc1e5fbe67f575a2",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops disk cleanup and sft fix",
+  "task_key": "worker_ops_disk-cleanup-and-sft-fix_20260514T113942",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_disk-cleanup-and-sft-fix_20260514T113942_result.json",
+    "occurrence": 1,
+    "bytes": 1111,
+    "sha256": "3d59680205423c3c612cf9a7bb7534b618a067aef8b14caa7aa6ffa5e1ce06e6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 总结\n\n### Part 1: 磁盘清理\n- 删除 4 个目录共 ~112G\n- **可用空间**: 250G → 109G available (57%)\n- plan018-s44 (PID 564900) 正常运行，不受影响\n\n### Part 2: train_sft.py\n- **无需修改**。脚本已有正确配置：\n  - `device_map={\"\": 0}` (单卡加载)\n  - `save_total_limit=1`\n  - GPU 隔离逻辑 (C002/C005 合规)\n- **Dry-run 通过**: 1 step, 1.82s/it, train_loss=2.44, 最终模型 ~8GB 保存成功\n\n### Part 3: plan009 提交命令建议\n\n```bash\nexport CUDA_VISIBLE_DEVICES=1 && \\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\ncd /root/solver-trace-ablation && \\\npython3 scripts/train_sft.py \\\n  --model_path /root/autodl-tmp/models/Qwen3-4B \\\n  --data_path data/train_500_seed42.jsonl \\\n  --output_dir /root/autodl-tmp/outputs/plan009_sft_s42 \\\n  --num_steps 500 \\\n  --seed 42 \\\n  --gpu 1 \\\n  --wandb_project solver-trace-ablation \\\n  --wandb_run plan009-sft-s42\n```\n\n注意：必须用 `CUDA_VISIBLE_DEVICES=1`，cuda:0 被 plan018-s44 占用。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "": 0
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-disk-cleanup-and-sft-fix.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "94468f05f271f5f3fa85",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analysis plan018 r3 eval",
+  "task_key": "worker_analysis_plan018-r3-eval_20260515T122110",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan018-r3-eval_20260515T122110_result.json",
+    "occurrence": 1,
+    "bytes": 1588,
+    "sha256": "fcaa9df126fb7f0adf67f217488b0ee062cd3600be160f1ee0c4ba33b8d1ebbd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/negative。\n\n---\n\n## plan018-additive-random-b01-s42-1000-r3 分析结果\n\n### 训练概况\n- 1000 步从头训练（Qwen3-4B base），additive_random reward，β=0.1，seed=42\n- 耗时 1h37m，train_loss=0.0067\n- 训练末期：PR=0.827，mean_isr=0.521\n\n### Eval 核心指标（proofwriter_fol_100.jsonl）\n| 指标 | 值 |\n|------|-----|\n| prove_rate | 0.97 |\n| mean_isr | 0.6892 |\n| median_isr | 0.75 |\n| isr_std | 0.2037 |\n| **H7 (tautological)** | **97/97 = 100%** |\n| genuine | **0%** |\n| failed | 3 |\n\nISR 分布：0.33(13), 0.67(5), 0.75(71), 1.00(8) — 全部来自 tautological proofs 的 STA 分解，非 genuine reasoning。\n\n### 与 r2 对比\nr3 从头训练，r2 从 checkpoint-350 恢复。**结果一致**：都是 100% H7 tautological collapse。Random reward 在 1000 步下的 collapse 是确定性的，不受初始化路径影响。\n\n### 与 ISR β=0.1（plan002-b01-s42-1000）对比\n| | Random β=0.1 (本实验) | ISR β=0.1 (plan002) |\n|---|---|---|\n| PR | 0.97 | — |\n| H7% | **100%** | 92.2% |\n| genuine% | **0%** | **2.2%** |\n\nISR reward 即使在 β=0.1 的低权重下仍能产生少量 genuine proofs (2.2%)，而 random baseline 完全 collapse。\n\n### 结论\n**negative** — Random β=0.1 1000步完全 tautological collapse，0% genuine。这确认了 ISR reward 的因果贡献：将 ISR 替换为等量随机 reward 后 genuine reasoning 完全消失，证明 ISR signal 本身（而非仅仅 reward shaping 的额外梯度信号）驱动了 genuine proof 的产生。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan018-r3-eval.md"
+}

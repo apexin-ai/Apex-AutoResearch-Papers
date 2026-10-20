@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d7d686f8cc22bd060632",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "eval w2 qwen3 1 7b exec finalize",
+  "task_key": "worker_eval_w2-qwen3-1_7b-exec-finalize_20260516T121214",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_w2-qwen3-1_7b-exec-finalize_20260516T121214_result.json",
+    "occurrence": 1,
+    "bytes": 117,
+    "sha256": "de44627c62aea1994614b454c348b95c6dab1db818cd6be1eca82a84fb586b4c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "eval PID 852037 仍在运行，输出文件尚未生成。已设置 60s 后自动唤醒继续检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-w2-qwen3-1-7b-exec-finalize.md"
+}

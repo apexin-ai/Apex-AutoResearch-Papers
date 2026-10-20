@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5f02678263ab94366311",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops restart wave2 both",
+  "task_key": "worker_ops_restart-wave2-both_20260517T085306",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_restart-wave2-both_20260517T085306_result.json",
+    "occurrence": 1,
+    "bytes": 280,
+    "sha256": "9b60260fd66a735f2f2bd3d697ac45793c3d75ee9463c6792d11b4053f8c6dba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "服务器 `autodl-1` 不在可用列表中。当前可用服务器为：\n- `cqa1-21977`\n- `home-1x5090`\n- `westd-39279`\n\n项目配置绑定的是 `westd-39279`。你要在哪台服务器上执行？还是说 `autodl-1` 需要先添加到 resources 配置中？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-restart-wave2-both.md"
+}

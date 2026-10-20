@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f2e24a624fcf446b70cf",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code grpo argparse fix",
+  "task_key": "worker_code_grpo-argparse-fix_20260513T193518",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_grpo-argparse-fix_20260513T193518_result.json",
+    "occurrence": 1,
+    "bytes": 813,
+    "sha256": "021e20c8699b667721b6c352bb10e0039b596f8be66bb570c2803057b471adc7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "argparse 修复成功——脚本顺利通过了参数解析、加载数据、初始化 solver、构建 trainer 并开始训练。报的是 CUDA OOM（GPU 显存被其他进程占用了 63.97 GiB），这不是 argparse 问题。\n\n修复完成：\n\n1. **`train_grpo.py`**：`--model_path`, `--data_path`, `--reward_mode`, `--output_dir` 改为 `default=None`；YAML 加载时只填充 CLI 未提供的参数（CLI 优先）；加载后检查 4 个必要参数是否齐全\n2. **`grpo_exec_only.yaml` / `grpo_exec_sta.yaml`**：补充了 `model_path` 和 `data_path`\n3. **已清理**旧的失败输出目录\n4. **Dry-run 验证**：argparse 不再报错，脚本成功进入训练循环。当前报 CUDA OOM 是因为 GPU 0 被另一个进程占用了 ~64GB 显存，需要释放后重新运行"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-grpo-argparse-fix.md"
+}

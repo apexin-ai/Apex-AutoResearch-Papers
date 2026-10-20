@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1bf662edf805e1feecd6",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "paper compile and audit",
+  "task_key": "worker_paper_compile-and-audit_20260514T200003",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_compile-and-audit_20260514T200003_result.json",
+    "occurrence": 1,
+    "bytes": 921,
+    "sha256": "0e5f944784a59cc311180e63357229eccd299e0c24d7cb234d807a9a9d4ad0a0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审查报告已写入 `artifacts/paper_compile_audit.md`。\n\n**核心结论**：\n- **编译**：4 遍 pdflatex+bibtex 成功，18 页 PDF\n- **CRITICAL**：正文（intro→conclusion）占 1–13 页，超 ACL 8 页限制约 5 页，必须压缩\n- **WARNING**：\n  - 正文表格 6 处 overfull hbox（experiments.tex 的 Table 1/2/4）\n  - appendix 8 处 overfull（hyperparam 表 + verbatim 代码块）\n  - 14 个 `\\label` 定义但未引用（含 4 个公式标签、3 个 appendix 标签）\n  - `[h]` float 被 ACL 改为 `[ht]`（appendix.tex L13）\n- **INFO（全部干净）**：\n  - 0 undefined refs / 0 undefined citations\n  - 33 bib 条目 ↔ 33 引用 完美 1:1\n  - 4 张图全部存在且被引用\n  - 无 PLACEHOLDER / TODO\n  - 后续 pass 稳定，无 Rerun 警告\n\n下一步优先级：先砍 5 页正文（C1），再处理表格 overfull (W1) 与 unused labels (W3)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-compile-and-audit.md"
+}

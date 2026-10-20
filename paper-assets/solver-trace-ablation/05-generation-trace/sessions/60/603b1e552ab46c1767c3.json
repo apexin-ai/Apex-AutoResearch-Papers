@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "603b1e552ab46c1767c3",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analysis plan001 exec only s44",
+  "task_key": "worker_analysis_plan001-exec-only-s44_20260514T050751",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan001-exec-only-s44_20260514T050751_result.json",
+    "occurrence": 1,
+    "bytes": 1882,
+    "sha256": "9a7322516ec5a82d866d17f63aaa627fe239179e73c6cdc1187ce22ae117cd86"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## plan001-exec-only-s44 结果报告\n\n### 1. 训练状态\n正常完成 500/500 步，EXIT_CODE=0，训练耗时 36m50s。\n\n### 2. 训练指标轨迹\n\n| Window | PR | ISR | n |\n|--------|------|------|---|\n| Steps 1-50 | 0.095 | 0.048 | 50 |\n| Steps 51-100 | 0.320 | 0.112 | 50 |\n| Steps 101-200 | 0.778 | 0.329 | 100 |\n| Steps 201-300 | 0.975 | 0.562 | 100 |\n| Steps 301-400 | 0.983 | 0.567 | 100 |\n| Steps 401-500 | 0.999 | 0.561 | 100 |\n\n- **Last100**: PR=0.9988, ISR=0.5611, loss=0.000419\n- Steps PR≥0.85: 352/500（first at step 80）\n\n### 3. eval_sta.py 结果（统一评估）\n\n| 指标 | 值 |\n|------|-----|\n| prove_rate | **97%** (97/100) |\n| mean_isr | **0.550** ± 0.195 |\n| median_isr | 0.500 |\n| proved_only_isr | 0.567 |\n| by type: false | 25/25, ISR=0.620 |\n| by type: unknown | 40/41, ISR=0.524 |\n| by type: true | 32/34, ISR=0.529 |\n\n### 4. 跨 seed 对比\n\n| Seed | eval PR | eval mean_ISR | proved_only_ISR | 判定 |\n|------|---------|---------------|-----------------|------|\n| s42 | 93% | 0.1232 | — | 成功（高PR低ISR） |\n| s43-r4 | 14% | 0 | — | 失败（退化） |\n| **s44** | **97%** | **0.550** | **0.567** | **成功（最好）** |\n\n**s44 明显属于成功 seed**，更像 s42 而非 s43。PR 甚至超过 s42（97% vs 93%）。ISR 显著高于 s42（0.55 vs 0.12），但需注意 exec-only 模型的形式化普遍退化为 trivial pattern（Premises: P, Conclusion: P），ISR≈0.5 是这种 trivial 形式化的预期值（2 components 中 1 个 necessary）。\n\n### 5. 路径确认\n- checkpoint: `/root/autodl-tmp/outputs/plan001_exec_only_s44`\n- train log: `~/runs/solver-trace-ablation/plan001-exec-only-s44.log`\n- eval result: `/root/autodl-tmp/outputs/eval_sta_plan001_exec_only_s44.json`\n- reward log: `/root/autodl-tmp/outputs/plan001_exec_only_s44/reward_log.jsonl`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan001-exec-only-s44.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "74545236f9494cc6a102",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analysis plan004 classify h7",
+  "task_key": "worker_analysis_plan004-classify-h7_20260515T073245",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan004-classify-h7_20260515T073245_result.json",
+    "occurrence": 1,
+    "bytes": 507,
+    "sha256": "f3865df8734e69d178491a8cc0504f51fc41bb1fbb3cc8b55731f48bac36287c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。\n\n**plan004-o1-ablation-s42 分类结果：**\n\n| 指标 | 计数 | 比率 |\n|------|------|------|\n| H7 (single premise == conclusion) | 0/63 | 0% |\n| H1 (multi-prem, conclusion in premises) | 63/63 | 100% |\n| Genuine (无 hacking) | 0/63 | 0% |\n\n所有 63 个 proved 样本均为 H1（结论嵌入前提），零 genuine。这与该实验的 negative 结论一致：O(1) binary ISR 退化后模型完全依赖 conclusion-embedding hacking 策略获取 prove。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan004-classify-h7.md"
+}

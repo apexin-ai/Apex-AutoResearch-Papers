@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eb90d8519225c08ce5e8",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "eval plan009 sft r4 redo",
+  "task_key": "worker_eval_plan009-sft-r4-redo_20260514T122554",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_plan009-sft-r4-redo_20260514T122554_result.json",
+    "occurrence": 1,
+    "bytes": 1231,
+    "sha256": "41c2fc015fc9fe859819269a6d82cd77f1c50abbe509b519e5c56d1c13d5037a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**plan009-sft-baseline-s42-r4 训练已完成**，但 eval 无法执行——两卡均满载（~80GB/97GB）。\n\n### 已完成\n- Checkpoint 确认存在：`/root/autodl-tmp/outputs/plan009_sft_baseline_s42`（7.5GB model + 15GB optimizer in checkpoint-500/）\n- 训练 500 steps 正常结束（TRL SFT, Qwen3-4B, seed=42）\n- Registry 已更新：checkpoint_path, log_path, notes\n\n### 待 GPU 释放后执行\n```bash\n# 1. eval_sta.py\nexport CUDA_VISIBLE_DEVICES=N && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/eval_sta.py --model_path /root/autodl-tmp/outputs/plan009_sft_baseline_s42 --data_path data/train_500_seed42.jsonl --output_path /root/autodl-tmp/outputs/plan009_sft_s42_r4_eval.json\n\n# 2. classify_h7.py\nexport CUDA_VISIBLE_DEVICES=N && python3 scripts/classify_h7.py --eval_path /root/autodl-tmp/outputs/plan009_sft_s42_r4_eval.json\n\n# 3. 清理 checkpoint-500/ (15GB optimizer.pt)\n```\n\n### GPU 占用\n- cuda:0: PID 564905, 80214 MiB（可能是 plan018-additive-random-b01-s44）\n- cuda:1: PID 587160, 79962 MiB（plan006-prolog-exec-s43）\n\n需要等其中一张卡释放后再跑 eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-plan009-sft-r4-redo.md"
+}

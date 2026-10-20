@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3ab812ad64a4f0f34ce3",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "diagnose exp1 isr b03 s42 1000",
+  "task_key": "worker_diagnose_exp1-isr-b03-s42-1000_20260515T092630",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp1-isr-b03-s42-1000_20260515T092630_result.json",
+    "occurrence": 1,
+    "bytes": 2110,
+    "sha256": "9ea2026453ae50f21a9435c407c24c78e4891f46d4d0b821abc9c7159474a518"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n### Root Cause（两个实验相同）\n\n**磁盘满：`/root/autodl-tmp/` 250G/250G (100%)，保存 checkpoint 时写入 safetensors 文件失败。**\n\n错误：`safetensors_rust.SafetensorError: I/O error: No space left on device (os error 28)`\n\n两个实验在 `_save_checkpoint` 时 crash：\n- `exp1-isr-b03-s42-1000`：step 50 保存时崩溃（仅训练了 ~7 分钟）\n- `plan018-additive-random-b01-s42-1000`：step 400 保存时崩溃（训练了 ~54 分钟）\n\n### Checkpoint 状态\n\n| 实验 | Checkpoint | 完整性 |\n|------|-----------|--------|\n| exp1-isr-b03-s42-1000 | checkpoint-50 (4.7G) | **不完整** — 只有 2/4 safetensors shard（缺 shard 3、4），不可用 |\n| plan018-additive-random-b01-s42-1000 | checkpoint-350 (16G) | **可能完整**（需验证） |\n| plan018-additive-random-b01-s42-1000 | checkpoint-400 (14G) | **不完整** — 只有 3/4 shard，不可用 |\n\n注意：plan018 有 2 个 checkpoint，说明 `save_total_limit` 可能未设为 1，违反 **C003**。\n\n### 磁盘空间分析\n\n当前 `/root/autodl-tmp/outputs/` 下大户：\n- `exp1_random_b03_s43_r4`: 31G\n- `exp1_random_b03_s44_r2`: 31G\n- `plan002_additive_b01_s42_1000`: 31G\n- `plan004_fast_isr_s42`: 31G\n- `plan009_sft_baseline_s43`: 30G\n- `plan009_sft_baseline_s44`: 30G\n- `plan018_additive_random_b01_s42_1000`: 29G\n- `exp1_random_b03_s43_r2`: 15G\n\n共 ~228G 被 outputs 占用。\n\n### 修复建议\n\n1. **清理磁盘**：需要先清理不再需要的旧 checkpoint。按 C010/C011，删前必须检查 registry 状态，不能删 `conclusion=success` 且 `needs-re-eval` 的 checkpoint。\n2. **删除不完整的 checkpoint**：\n   - `exp1_isr_b03_s42_1000/checkpoint-50`（不完整，4.7G）\n   - `plan018_additive_random_b01_s42_1000/checkpoint-400`（不完整，14G）\n3. **确认 save_total_limit=1**：plan018 保存了 checkpoint-350 和 checkpoint-400，说明配置有问题。\n4. 清出足够空间后才能重试。\n\n**不能直接重试**，必须先清磁盘。需要你确认哪些旧实验可以清理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp1-isr-b03-s42-1000.md"
+}

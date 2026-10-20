@@ -1,0 +1,75 @@
+{
+  "schema_version": "1.0",
+  "id": "41e2684cf253fb572deb",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "writing introduction",
+  "task_key": "worker_writing_introduction_20260514T185710",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_introduction_20260514T185710_result.json",
+    "occurrence": 1,
+    "bytes": 2011,
+    "sha256": "2a1ffea6a252332c6cd5a1378c8c8ed53675d959415ddb193c64d9fa7eb98446"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```json\n{\n  \"section\": \"introduction\",\n  \"word_count\": 1017,\n  \"citations_used\": [\n    \"satlm\",\n    \"logic-lm\",\n    \"linc\",\n    \"deepseekmath\",\n    \"mellgren-prolog-grpo\",\n    \"logic-rl\",\n    \"skalse-reward-hacking\",\n    \"reward-hacking-survey\",\n    \"manheim-goodhart-taxonomy\",\n    \"karwowski-goodhart-rl\",\n    \"gao-reward-overoptimization\"\n  ],\n  \"figures_referenced\": [\"fig:sta-overview\"],\n  \"notes\": [\n    \"All hard constraints satisfied: 7-mode taxonomy, no 2.4x, s44 Prolog = query-as-fact, s42 exec-only = 87.1% H1 (not healthy), β=0.1 does not claim 'no hacking', Prolog STA 3/3 gaming 0% genuine\",\n    \"Forward-references: §sec:diagnostic, §sec:goodhart, §sec:crosslogic, §sec:taxonomy (all match experiments.tex labels)\",\n    \"SFT baseline mentioned in body (para 5) and C1 contribution\",\n    \"Premise-count confound (1.06x) mentioned in body (para 6) and C2 contribution\",\n    \"~1017 words detex, under 1200 budget\"\n  ]\n}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "section": "introduction",
+              "word_count": 1017,
+              "citations_used": [
+                "satlm",
+                "logic-lm",
+                "linc",
+                "deepseekmath",
+                "mellgren-prolog-grpo",
+                "logic-rl",
+                "skalse-reward-hacking",
+                "reward-hacking-survey",
+                "manheim-goodhart-taxonomy",
+                "karwowski-goodhart-rl",
+                "gao-reward-overoptimization"
+              ],
+              "figures_referenced": [
+                "fig:sta-overview"
+              ],
+              "notes": [
+                "All hard constraints satisfied: 7-mode taxonomy, no 2.4x, s44 Prolog = query-as-fact, s42 exec-only = 87.1% H1 (not healthy), β=0.1 does not claim 'no hacking', Prolog STA 3/3 gaming 0% genuine",
+                "Forward-references: §sec:diagnostic, §sec:goodhart, §sec:crosslogic, §sec:taxonomy (all match experiments.tex labels)",
+                "SFT baseline mentioned in body (para 5) and C1 contribution",
+                "Premise-count confound (1.06x) mentioned in body (para 6) and C2 contribution",
+                "~1017 words detex, under 1200 budget"
+              ]
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-introduction-copy-2.md"
+}

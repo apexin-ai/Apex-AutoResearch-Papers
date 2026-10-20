@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e36fe0c8bba6dfcf0285",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code d157 s43 eval",
+  "task_key": "worker_code_d157-s43-eval_20260520T173652",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d157-s43-eval_20260520T173652_result.json",
+    "occurrence": 1,
+    "bytes": 420,
+    "sha256": "1f1ead898c8bc0622167407bfaf7b32473f36b34ea20c05be010f0ef0aff53bd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**D157-s43 eval + classify 结果：**\n\n| | s42 | s43 |\n|---|---|---|\n| PR | 15% | 16% |\n| mean_isr | 0.0851 | 0.0908 |\n| proved_only_isr | 0.5673 | 0.5675 |\n| genuine | 13/15 (86.7%) | 14/16 (87.5%) |\n| TS/CE/PG/CI | 1/1/0/0 | 1/1/0/0 |\n\n两个 seed 高度一致，shuffled-ISR 跨 seed 稳定。Registry 已更新（conclusion=success + metrics），报告已注册为 artifact。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d157-s43-eval.md"
+}

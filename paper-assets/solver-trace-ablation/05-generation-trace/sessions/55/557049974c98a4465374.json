@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "557049974c98a4465374",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "audit paper numbers",
+  "task_key": "worker_audit_paper-numbers_20260514T192349",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_paper-numbers_20260514T192349_result.json",
+    "occurrence": 1,
+    "bytes": 971,
+    "sha256": "2ebd21060f5abe0cc61e38535c63aeec0361abe89168605078f489e024c7d1b8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。结果：\n\n**127 个数字，119 个匹配 ✅，1 个不匹配 ⚠️，7 个无法追溯 ❓**\n\n关键发现：\n\n**⚠️ 需修正** — introduction.tex line 50: `\"<16% under any RL condition\"` 不准确。Random β=0.1 三 seed 均值 genuine=18.7%，ISR s42 genuine=30.9%。建议改为 `\"≤20%\"` 或定性表述。\n\n**❓ 无法从 registry 验证（7 项）**：\n- plan002-b03 的 eval PR=18% 和 ISR*=0.143（registry 仅有训练指标）\n- 100 步 component count 6.58（plan003 无此字段）\n- 94.8% ISR=0（需 raw 数据）\n- s43 exec-only \"87% max token\"（registry 无）\n\n**引用**：22 个 cite key 全部在 bib 中，关键论文均已引用。Bib 有 32 个未被引用条目，提交前应清理。\n\n**paper_framing 笔误**：s42 genuine 主表写 32.1%(26)，D038 段和 registry 均为 30.9%(25)。论文采用了正确的 30.9%。\n\n报告已注册到 `artifacts/paper_number_audit.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-paper-numbers.md"
+}

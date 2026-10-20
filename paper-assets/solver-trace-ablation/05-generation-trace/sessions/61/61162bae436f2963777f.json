@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "61162bae436f2963777f",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_5_1778768016.md",
+  "task_key": "loop_5_1778768016",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_5_1778768016.md",
+    "occurrence": 1,
+    "bytes": 4268,
+    "sha256": "7d1983dbc1405d02fd64526f0bd2a90456ec6f8261a9441403e36c1775b4414c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: idle_timeout\nupdated: '2026-05-14T13:41:42+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-39279 上只能用 cuda:0 和 cuda:1，绝不用其他设备号\n- Prolog 数据路径：不要传 `--data_path` CLI 参数覆盖 config 里的路径——之前两次 FileNotFoundError 都是因为 CLI `--data_path data/prolog/train_500_seed42.jsonl` 覆盖了 config 里正确的相对路径。让 config yaml 自行指定 data_path\n- plan002-b01-s44 已被 Director 重分类为 negative（D039/D040: semantic drift hacking），不要当 success 引用\n- ISR β=0.1 hacking rate 仍达 74%——论文不可标 \"no hacking\"，只能标 \"lowest hacking rate\"（D038）\n- plan013 vs plan017 公式结构不同，不可简化为 \"additive vs convex\" 对照（D027）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-39279，account: root，工作目录 /root/solver-trace-ablation\n- Python：/root/miniconda3/bin/python（conda base，激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- 模型：Qwen3-4B（具体路径在 config yaml 中）\n- 数据：FOL 在 data/train_500_seed42.jsonl 等；Prolog 在 config yaml 指定（不要假设 data/prolog/ 路径）\n- 输出目录：/root/autodl-tmp/outputs/（checkpoint 都在这）\n- W&B：从项目 config 自动获取 entity/project\n- 预置镜像：aml-train（conda 环境，非 venv）\n\n### 3. 📊 当前状态\n**刚做完**：收到 plan006-prolog-sta-s42 失败 cron → 派诊断 Worker 修复数据路径 → 重提交成功 → 训练完成（~0.81h）→ 收到 ANALYZING cron → 派分析 Worker\n\n**等待回调**：\n- `worker_analysis_plan006-prolog-sta-s42_20260514T103907`：正在 SSH 读日志 + 查 W&B metrics + 判断 conclusion + 更新 registry → DONE。**这是最关键的待处理项**\n- `worker_diag_plan006-prolog-sta-s42_20260514T094801`：诊断 Worker，应该已完成（它修复了问题并重提交了）\n\n**Registry 状态**：\n- plan006-prolog-exec-s42: RUNNING cuda:0（也曾因同一 data_path 问题失败一次，retry_count=1，当前 PID 506015）\n- plan006-prolog-sta-s42: ANALYZING cuda:1（等分析 Worker 回调推进到 DONE）\n- plan002-additive-b01-s43: ANALYZING（训练已完成，等分析回调）\n- plan018-random-b01-s43/s44: PENDING（等审批）\n- plan006-prolog-sta/exec-s43/s44: PREPARING（共 4 个）\n\n### 4. 📋 待办（条件触发式）\n- analysis Worker 回调 → 读 conclusion/metrics → 更新 report.md → 按 on-experiment-done skill 分叉处理 → 汇报 Director（带 [资源] 行）\n- plan006-prolog-exec-s42 cron 回调（正常完成）→ 派 Worker 分析 → 与 sta-s42 对比 → 这是 Claim 3 跨 logic type 的第一对数据点\n- exec-s42 和 sta-s42 都 DONE 后 → 对比 Prolog exec-only vs exec+ISR → 判断 Goodhart 效应是否在 Prolog 上复现\n- plan002-b01-s43 分析完成 → 3-seed FOL ISR β=0.1 mean±std 可以算了（s42/s43/s44）\n- GPU 空闲时 → 优先提交 plan006-prolog-exec-s43（下一个 Prolog seed），保持两卡满载\n- plan018-random PENDING → 等 Director 审批后立即提交\n\n### 5. 🎯 战略上下文\n**核心 framing（D033-D035）**：Goodhart 主线——ISR 在低剂量(β=0.1)有效、高剂量(β=0.3)崩塌，经典 Goodhart 效应。ISR 诊断保留为 Claim 1，Goodhart 为主线叙事。\n\n**证据链进度**：\n- Claim 1（ISR 诊断）：✅ 已有 ISR 崩塌轨迹 + 3-seed exec-only 多样性\n- Claim 2（Goodhart β 剂量）：⏳ β=0.1 s42 done，s43 ANALYZING，s44 negative（semantic drift）；需要 3-seed mean±std\n- Claim 3（跨 logic type）：⏳ Prolog 实验刚起步，sta-s42 刚完成待分析，exec-s42 还在跑\n\n**易错点**：\n- plan006 所有实验都曾因 `--data_path` CLI 覆盖失败过，重提交时**不要加 --data_path 参数**\n- plan006-prolog-exec-s42 的 retry 也去掉了 `--data_path`（看 reproduce.command），但它仍在 RUNNING——如果它也失败了，原因不会是 data_path\n- DDL 2026-05-25（剩 11 天），GPU 预算充裕（528 GPU·h），不要有时间焦虑但也不要浪费卡\n- 成功 9 / 负向 11 / 失败 15——negative 比率高，论文 framing 已经调整为 Goodhart 主线来容纳 negative 结果\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5-1778768016.md"
+}

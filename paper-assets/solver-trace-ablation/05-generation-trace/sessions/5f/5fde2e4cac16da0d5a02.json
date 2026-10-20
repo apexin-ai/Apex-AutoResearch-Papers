@@ -1,0 +1,75 @@
+{
+  "schema_version": "1.0",
+  "id": "5fde2e4cac16da0d5a02",
+  "project": "solver-trace-ablation",
+  "kind": "worker",
+  "title": "data d143 proofwriter prep",
+  "task_key": "worker_data_d143-proofwriter-prep_20260519T114123",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_d143-proofwriter-prep_20260519T114123.log",
+    "occurrence": 1,
+    "bytes": 1071730,
+    "sha256": "3434e26caa568a76d0e0040ff03d28004e7469fcdec5dc0f92c7d683527f458d"
+  },
+  "statistics": {
+    "messages": 391,
+    "user_turns": 2,
+    "tool_calls": 133,
+    "roles": {
+      "log": 1,
+      "system": 13,
+      "record": 1,
+      "assistant": 108,
+      "tool_call": 133,
+      "tool_result": 133,
+      "user": 2
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 309,
+      "chunks": [
+        {
+          "path": "5fde2e4cac16da0d5a02-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "5fde2e4cac16da0d5a02-part-0002.json",
+          "message_count": 129
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 75,
+      "chunks": [
+        {
+          "path": "5fde2e4cac16da0d5a02-part-0002.json",
+          "message_count": 51
+        },
+        {
+          "path": "5fde2e4cac16da0d5a02-part-0003.json",
+          "message_count": 24
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "5fde2e4cac16da0d5a02-part-0003.json",
+          "message_count": 7
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/data-d143-proofwriter-prep.md"
+}

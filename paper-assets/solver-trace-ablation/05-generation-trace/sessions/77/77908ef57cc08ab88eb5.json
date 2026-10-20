@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "77908ef57cc08ab88eb5",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "check s44 1000 r2 gpu verify",
+  "task_key": "worker_check_s44-1000-r2-gpu-verify_20260515T125433",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_s44-1000-r2-gpu-verify_20260515T125433_result.json",
+    "occurrence": 1,
+    "bytes": 668,
+    "sha256": "4d6ae5292ac80c8e93d2531960f82c29cbaaacabda2538265aceeb4b75ed7f52"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**r2 (PID 353256) 已崩溃，第三次 OOM on GPU 0。**\n\n日志确认：脚本内部 `Set CUDA_VISIBLE_DEVICES=0`（`--gpu 0` 覆盖了 shell 的 `export CUDA_VISIBLE_DEVICES=1`），撞上 s43 (PID 352142) 导致 OOM，step 1 即死。\n\n当前状态：\n- **GPU 0**: s43 (PID 352142) 正常运行，94% 利用率\n- **GPU 1**: PID 352975 — `train_sft.py ... s44 ... --gpu 1`，已在正确的 GPU 上运行，53GB 显存占用正常\n\nPID 352975 看起来是 r2 崩溃后自动或手动重新提交的版本（`--gpu 1` 已修正）。**GPU 1 上的训练正常，无需干预。** 但 r2 的日志名可能需要更新为 r3，以免混淆。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-s44-1000-r2-gpu-verify.md"
+}

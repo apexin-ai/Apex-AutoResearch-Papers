@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "676467ac291bed7657a4",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code disk cleanup and 8b config",
+  "task_key": "worker_code_disk-cleanup-and-8b-config_20260516T025407",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_disk-cleanup-and-8b-config_20260516T025407_result.json",
+    "occurrence": 1,
+    "bytes": 1395,
+    "sha256": "782d74c6ffc50cce07b2878319cfedc3a4fe8b06120632b5de386b3182ae78f7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个任务完成。\n\n## 汇总\n\n### 任务 1：磁盘清理\n\n| 指标 | 清理前 | 清理后 |\n|------|--------|--------|\n| 已用 | 227G | 137G |\n| 可用 | 24G | 114G |\n| **释放** | — | **90GB** |\n\n删除的 checkpoint 目录（共 6 个）：\n\n| 目录 | checkpoint | 大小 |\n|------|-----------|------|\n| plan001_exec_only_s43_1000_r2 | checkpoint-1000 | 16G |\n| plan001_exec_only_s44_1000_r2 | checkpoint-1000 | 16G |\n| plan002_additive_b01_s43_r2 | checkpoint-500 | 16G |\n| plan002_additive_b01_s45 | checkpoint-50 | 15G |\n| plan018_additive_random_b01_s43_r3 | checkpoint-500 | 16G |\n| plan018_additive_random_b01_s44_r2 | checkpoint-500 | 16G |\n\nsweep_isr_b01_s45 和 sweep_isr_b005_s42 未动。无 parquet 文件需清理。\n\n### 任务 2：8B pilot 配置\n\n最终 `configs/grpo_exec_only_8b.yaml`：\n\n```yaml\nmodel_path: /root/autodl-tmp/models/Qwen3-8B\ndata_path: data/train_500_seed42.jsonl\nreward_mode: execution_only\noutput_dir: /root/autodl-tmp/outputs/w2_qwen3_8b_pilot\nnum_steps: 50\nper_device_batch_size: 4\ngradient_accumulation_steps: 4\nnum_generations: 8\nmax_completion_length: 512\nlearning_rate: 1.0e-6\nexec_weight: 1.0\nsta_weight: 0.0\nseed: 42\nsolver: prover9\nno_wandb: true\nsave_strategy: \"no\"\n```\n\n变更：`per_device_batch_size` 2→4，`save_total_limit: 1` 替换为 `save_strategy: \"no\"`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-disk-cleanup-and-8b-config.md"
+}

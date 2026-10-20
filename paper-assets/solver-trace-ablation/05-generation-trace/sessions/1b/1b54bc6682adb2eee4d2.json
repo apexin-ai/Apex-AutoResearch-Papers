@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1b54bc6682adb2eee4d2",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code plan006 prolog readiness",
+  "task_key": "worker_code_plan006-prolog-readiness_20260514T072132",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan006-prolog-readiness_20260514T072132_result.json",
+    "occurrence": 1,
+    "bytes": 1471,
+    "sha256": "3798767c1dd7876e18da8d31d898e2a685fc0f4054183598533300215c45889f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## plan006 Prolog GRPO 就绪检查报告\n\n### 1. warmup_ratio 代码 — **PASS**\n\n`warmup_ratio` 直接传入 `GRPOConfig`（L342 定义, L424 传入），无自定义计算。HuggingFace Trainer 内部处理 `warmup_steps = ceil(warmup_ratio * max_steps)`，短步数下（如 3 步 × 0.1 = ceil(0.3) = 1 步 warmup）行为正确。无 bug。\n\n### 2. Prolog 配置文件 — **PASS**\n\n两个配置均已存在：\n\n| 文件 | K | warmup_ratio | 关键参数 |\n|------|---|---|---|\n| `grpo_prolog_exec_only.yaml` | 8 | 0.0 | logic_type=prolog, solver=prolog, data_path=data/train_500_seed42.jsonl (C001✓) |\n| `grpo_prolog_exec_only_k16_warmup.yaml` | 16 | 0.1 | 同上 + K=16 |\n\n### 3. Prolog 数据 — **PASS**\n\n`data/train_500_seed42.jsonl` 存在，500 条。NL premises/conclusion 作为输入，`logic_type=prolog` 切换 prompt 模板让模型生成 Prolog formalization（非 FOL）。数据格式兼容。\n\n### 4/5. Dry-run & K=16 smoke test — **BLOCKED（GPU 满载）**\n\n两张卡均被占用（各 80346 MiB）。\n\n### CRITICAL BLOCKER: swipl 未安装\n\n**`swipl`（SWI-Prolog）在服务器上不存在。** `find / -name \"swipl\"` 返回空。PrologSolver 依赖 swipl 二进制执行 reward 计算，缺少它训练会在第一步 reward 计算时失败。\n\n**需要操作**：在 dry-run 前安装 SWI-Prolog：\n```bash\napt-get update && apt-get install -y swi-prolog\n```\n\n是否现在安装 swipl？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan006-prolog-readiness-copy-3.md"
+}

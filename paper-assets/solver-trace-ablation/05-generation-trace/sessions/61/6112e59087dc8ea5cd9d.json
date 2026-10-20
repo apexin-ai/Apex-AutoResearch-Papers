@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6112e59087dc8ea5cd9d",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "eval 1 7b random immediate",
+  "task_key": "worker_eval_1_7b-random-immediate_20260516T205224",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_1_7b-random-immediate_20260516T205224_result.json",
+    "occurrence": 1,
+    "bytes": 76,
+    "sha256": "2d6f7da7036749fea28616ce0781e671085f2bbad2fb838fd510f446317b3cc6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Training at step 460/500 (~9.5s/step). Polling again in ~70s."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-1-7b-random-immediate.md"
+}

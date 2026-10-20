@@ -1,0 +1,1444 @@
+{
+  "schema_version": "1.0",
+  "session_id": "8fa0bc5574e662c34df9",
+  "rounds": [
+    {
+      "number": 69,
+      "messages": [
+        {
+          "source_line": 1441,
+          "timestamp": "2026-05-15T23:16:19.280928+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/paper/conclusion.tex",
+              "offset": "0",
+              "limit": "40"
+            }
+          },
+          "id": "event-001441"
+        },
+        {
+          "source_line": 1442,
+          "timestamp": "2026-05-15T23:16:19.331688+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/agent_79f408c6."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-001442"
+        },
+        {
+          "source_line": 1443,
+          "timestamp": "2026-05-15T23:16:22.749205+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Agent"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473",
+            "tool": "Agent",
+            "tool_args": {
+              "description": "Find paper tex files",
+              "subagent_type": "Explore",
+              "prompt": "Find the location of appendix.tex, experiments.tex, and conclusion.tex files in the repository. Search broadly under /home/ubuntu/. Report the exact full paths."
+            }
+          },
+          "id": "event-001443"
+        },
+        {
+          "source_line": 1444,
+          "timestamp": "2026-05-15T23:16:24.406503+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/appendix.tex",
+              "path": "/home/ubuntu"
+            }
+          },
+          "id": "event-001444"
+        },
+        {
+          "source_line": 1445,
+          "timestamp": "2026-05-15T23:16:24.659253+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/experiments.tex",
+              "path": "/home/ubuntu"
+            }
+          },
+          "id": "event-001445"
+        },
+        {
+          "source_line": 1446,
+          "timestamp": "2026-05-15T23:16:24.710229+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/conclusion.tex",
+              "path": "/home/ubuntu"
+            }
+          },
+          "id": "event-001446"
+        },
+        {
+          "source_line": 1447,
+          "timestamp": "2026-05-15T23:16:24.763116+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/appendix.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/appendix.tex"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473",
+            "tool": "Glob",
+            "elapsed_ms": 356
+          },
+          "id": "event-001447"
+        },
+        {
+          "source_line": 1448,
+          "timestamp": "2026-05-15T23:16:25.117374+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/_project/paper/experiments.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/experiments.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/experiments.tex"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473",
+            "tool": "Glob",
+            "elapsed_ms": 458
+          },
+          "id": "event-001448"
+        },
+        {
+          "source_line": 1449,
+          "timestamp": "2026-05-15T23:16:25.168200+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/_project/paper/conclusion.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/conclusion.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/conclusion.tex"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473",
+            "tool": "Glob",
+            "elapsed_ms": 457
+          },
+          "id": "event-001449"
+        },
+        {
+          "source_line": 1450,
+          "timestamp": "2026-05-15T23:16:27.638275+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Based on the search results, here are the exact full paths for the requested LaTeX files:\n\n**appendix.tex:**\n- `/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/appendix.tex`\n- `/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/appendix.tex`\n\n**experiments.tex:**\n- `/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/_project/paper/experiments.tex`\n- `/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/experiments.tex`\n- `/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/experiments.tex`\n\n**conclusion.tex:**\n- `/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/_project/paper/conclusion.tex`\n- `/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/conclusion.tex`\n- `/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/conclusion.tex`\n\nThe primary locations appear to be in the `/paper/` directory, with copies also in the `/docs/paper/` and `/artifacts/_project/paper/` directories."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473",
+            "tool": "Agent",
+            "elapsed_ms": 4889
+          },
+          "id": "event-001450"
+        },
+        {
+          "source_line": 1451,
+          "timestamp": "2026-05-15T23:16:31.609987+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/appendix.tex",
+              "offset": "250",
+              "limit": "40"
+            }
+          },
+          "id": "event-001451"
+        },
+        {
+          "source_line": 1452,
+          "timestamp": "2026-05-15T23:16:32.063953+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "250\t\\paragraph{Example (FOL, vacuous quantifier wrapping).}\n251\t{\\small\\begin{verbatim}\n252\tPremises:\n253\t  all x all y ((A(x)&B(y))->(C(x)|D(y))).\n254\tConclusion:\n255\t  all x ((A(x)&B(x))->(C(x)|D(x))).\n256\t\\end{verbatim}}\n257\tThe premise introduces a vacuous second quantifier variable $y$ that is immediately unified with $x$, making the formulas logically equivalent while differing textually.\n258\t\n259\t\\paragraph{ISR interaction.}\n260\t$\\text{ISR}{\\geq}0.83$ ($10/12$ samples).\n261\tH7b simultaneously games three objectives: execution reward ($r_{\\text{exec}}{=}1$ via tautological proof), ISR metric (single necessary premise yields high ISR), and the text-match H7 classifier (surface-form difference evades detection).\n262\tThis triple gaming makes H7b the most complete meta-Goodhart case we observe.\n263\t\n264\t\\paragraph{Prevalence.}\n265\tFound primarily in ISR $\\beta{=}0.1$ seed~44 ($12/89$ proved samples, all originally classified as genuine); seed~43 contributes $2$ additional cases.\n266\tFunctional cross-validation via $n_{\\text{necessary}}{=}1$ exposed the misclassification.\n267\t\n268\t\n269\t\\subsection{Tautological Collapse}\n270\t\n271\t\\paragraph{Definition.}\n272\tTwo-component formalizations where the premise and conclusion are identical atomic or simple formulas, yielding a $P \\to P$ tautology with minimal token cost.\n273\t\n274\t\\paragraph{Example (FOL).}\n275\t\\begin{verbatim}\n276\tPremises: p(a).\n277\tConclusion: p(a).\n278\t\\end{verbatim}\n279\t\n280\t\\paragraph{ISR interaction.}\n281\tISR~$=1.0$ (the sole premise is necessary).\n282\tDistinguished from H7 by having low component count ($n_{\\text{comp}}\\approx 2$) and atomic formulas rather than complex sub-structured conclusions.\n283\t\n284\t\\paragraph{Prevalence.}\n285\tDominant in FOL exec-only seed~44 (PR~$=0.98$, mean $n_{\\text{comp}}=2.04$, 100\\% H7 by strict classifier).\n286\tAlso observed in Prolog exec+STA seed~42 (100\\% H7, PR~$=0.50$).\n287\t\n288\t\n289\t\\subsection{Repetition Collapse}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473",
+            "tool": "Read",
+            "elapsed_ms": 453
+          },
+          "id": "event-001452"
+        },
+        {
+          "source_line": 1453,
+          "timestamp": "2026-05-15T23:16:32.064354+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/experiments.tex",
+              "offset": "55",
+              "limit": "40"
+            }
+          },
+          "id": "event-001453"
+        },
+        {
+          "source_line": 1454,
+          "timestamp": "2026-05-15T23:16:32.718383+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "55\t\\midrule\n56\tExec-only$^\\dagger$ & --- & 93 & 0.132 & 0 & 87 & 8 \\\\ %% registry: plan001-exec-only-s42-r2 (H8 corrected)\n57\tISR & 0.1 & 77{\\scriptsize$\\pm$14} & $\\ddagger$ & \\textbf{71}$^\\P$ & 18 & 6 \\\\ %% registry: plan002-additive-b01-s42/s43-r2/s44 (pooled, D095 FINAL)\n58\tRandom & 0.1 & \\textbf{87}{\\scriptsize$\\pm$8} & 0.117{\\scriptsize$\\pm$.04} & 14$^\\S$ & 71 & 10 \\\\ %% registry: plan018-additive-random-b01-s42/s43-r3/s44-r2 (D095 FINAL)\n59\t\\midrule\n60\tISR & 0.3 & 66{\\scriptsize$\\pm$42} & 0.39{\\scriptsize$\\pm$.31} & \\textbf{50} & 37 & 12 \\\\ %% registry: plan002-additive-b03-s42/s43/s44 (pooled)\n61\tRandom & 0.3 & 54{\\scriptsize$\\pm$35} & 0.09{\\scriptsize$\\pm$.09} & 7 & 91 & 2 \\\\ %% registry: plan017-additive-random-s42, exp1-random-b03-s43-r4, exp1-random-b03-s44-r2 (pooled; D086 H7: s42=4,s43=7,s44=0)\n62\t\\bottomrule\n63\t\\end{tabular}}\n64\t\\caption{Goodhart landscape across reward conditions. 3-seed rows: H7/H1/N-H pooled across seeds; PR/ISR$^*$: mean$\\pm$std of per-seed values. $^\\dagger$Seed~42. $\\ddagger$$\\text{ISR}^*$ omitted for ISR $\\beta{=}0.1$ because the raw mean is inflated by H7 gaming; premise-count-matched value is $1.06\\times$ random (\\S\\ref{sec:goodhart}, Appendix~\\ref{app:detailed-results}). $^\\P$Includes H7 classifier false-negative correction (s44) and H8 premise-subset gaming (s42; 5.2\\% of proved; Appendix~\\ref{app:h8}). $^\\S$Random H7 driven by seed~43 (38.3\\%); seeds~42 and~44: 0\\%. Per-seed breakdown in Appendix Table~\\ref{tab:fol-detailed}.}\n65\t\\label{tab:goodhart-landscape}\n66\t\\end{table}\n67\t\n68\t\\textbf{Low-dose ISR ($\\beta{=}0.1$): ISR-amplified gaming.}\n69\tH7 tautological collapse occurs under both ISR and random conditions, but ISR amplifies it ${\\sim}5\\times$: $70.6\\%$ ($163/231$) under ISR vs.\\ $13.7\\%$ ($36/262$) under random (Fisher $p{=}1.3{\\times}10^{-39}$, $\\text{OR}{=}15.05$). %% registry: plan002 vs plan018 all seeds; D095 FINAL\n70\tRandom H7 is highly seed-dependent: $38.3\\%$ in seed~43 vs.\\ $0\\%$ in seeds~42 and~44; ISR make\n…[truncated 3564 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473",
+            "tool": "Read",
+            "elapsed_ms": 654
+          },
+          "id": "event-001454"
+        },
+        {
+          "source_line": 1455,
+          "timestamp": "2026-05-15T23:16:32.819414+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/conclusion.tex",
+              "offset": "0",
+              "limit": "40"
+            }
+          },
+          "id": "event-001455"
+        },
+        {
+          "source_line": 1456,
+          "timestamp": "2026-05-15T23:16:32.970750+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "0\t\\section{Discussion and Conclusion}\n1\t\\label{sec:discussion}\n2\t\n3\tSTA exposes structural degeneration invisible to execution-based evaluation: ISR reveals a 99.5\\% collapse under exec-only GRPO that PR hides, while SFT localizes the failure to RL optimization (\\S\\ref{sec:diagnostic}).\n4\tRepurposed as a training signal, ISR induces meta-level Goodhart's Law: at $\\beta{=}0.1$, it amplifies H7 tautological gaming ${\\sim}5\\times$ ($70.6\\%$ vs.\\ $13.7\\%$ random, $p{<}10^{-38}$), and the sole apparent ISR gain vanishes ($1.06\\times$) after controlling for premise count; at $\\beta{=}0.3$, each seed converges to a distinct failure mode ($\\text{PR}{=}66{\\pm}42\\%$).\n5\tThe pattern transfers to Prolog (3/3 seeds, 0\\% non-hacking) via distinct mechanisms including query-as-fact gaming that bypasses text-match classifiers (\\S\\ref{sec:taxonomy}).\n6\tISR semantics are objective-dependent: exec-only \\emph{low} ISR signals redundancy; ISR-rewarded \\emph{high} ISR signals metric gaming.\n7\t\n8\t\\paragraph{Classifier blind spots.}\n9\tH7b (obfuscated tautology) and Prolog query-as-fact gaming demonstrate that text-match classifiers have systematic blind spots exploitable by optimization.\n10\tIn both cases, functional LOO analysis exposed gaming invisible to surface-level detection---H7b via vacuous quantifier wrapping ($10/12$ at $\\text{ISR}{\\geq}0.83$, triple gaming of execution, ISR, and classifier), query-as-fact via $95/97$ tautological samples the strict classifier labeled genuine (\\S\\ref{sec:crosslogic}).\n11\tBoth cases argue for mandatory functional cross-validation of text-based hacking classifiers.\n12\t\n13\t\\paragraph{Hacking mode switching.}\n14\tUnder identical reward configurations, different seeds converge to qualitatively different modes (Table~\\ref{tab:fol-detailed}): random $\\beta{=}0.1$ ranges from H8-enriched (s44) to H7-dominant (s43) to highest non-hacking (s42); ISR $\\beta{=}0.1$ similarly switches between H1-heavy (s42) and near-pure H7 (s43/s44, ${\\geq}97\\%$).\n15\tSingle-se\n…[truncated 405 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473",
+            "tool": "Read",
+            "elapsed_ms": 151
+          },
+          "id": "event-001456"
+        },
+        {
+          "source_line": 1457,
+          "timestamp": "2026-05-15T23:17:07.117680+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "exclusively",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/appendix.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-001457"
+        },
+        {
+          "source_line": 1458,
+          "timestamp": "2026-05-15T23:17:07.620244+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "121:The practical implication is that ISR---and structurally similar diagnostics---should be used exclusively as post-hoc evaluation tools, never as training rewards."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473",
+            "tool": "Grep",
+            "elapsed_ms": 502
+          },
+          "id": "event-001458"
+        },
+        {
+          "source_line": 1459,
+          "timestamp": "2026-05-15T23:17:08.072654+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "H8-dominant",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-001459"
+        },
+        {
+          "source_line": 1460,
+          "timestamp": "2026-05-15T23:17:08.574826+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473",
+            "tool": "Grep",
+            "elapsed_ms": 502
+          },
+          "id": "event-001460"
+        },
+        {
+          "source_line": 1461,
+          "timestamp": "2026-05-15T23:17:09.531119+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "GRPO|\\\\bFOL\\\\b|\\\\bSFT\\\\b|\\\\bNLL\\\\b",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper",
+              "output_mode": "content",
+              "-n": "True",
+              "glob": "*.tex",
+              "head_limit": "60"
+            }
+          },
+          "id": "event-001461"
+        },
+        {
+          "source_line": 1462,
+          "timestamp": "2026-05-15T23:17:09.581915+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/related_work.tex:11:Rubric-grounded GRPO~\\citep{rubric-grpo} uses structured LLM-judge rewards to improve generalization; ISR is solver-derived and deterministic rather than judge-based, but both represent structured alternatives to scalar execution reward.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/related_work.tex:16:\\citet{kwa-catastrophic-goodhart} show that heavy-tailed reward misspecification causes \\emph{catastrophic} Goodhart where KL regularization provably fails, offering a theoretical lens for why GRPO's KL penalty does not prevent the ISR collapse we observe.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/experiments.tex:9:We train Qwen3-4B~\\citep{qwen3} with GRPO~\\citep{deepseekmath} ($K{=}8$, lr $10^{-6}$, 500 steps default, 1000 where noted) over seeds $\\{42,43,44\\}$ on a fixed 500-example FOLIO~\\citep{folio} subset held constant across all conditions; the SFT baseline is trained with NLL on gold formalizations.\\footnote{All experiments use \\texttt{data/train\\_500\\_seed42.jsonl}; seeds control initialization and rollout sampling only.}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/experiments.tex:19:\\caption{ISR collapse under exec-only GRPO (seed~42). PR rises 32\\%$\\to$93\\%$\\to$96\\% while proved-only ISR falls $0.642{\\to}0.132{\\to}0.003$ over 100$\\to$500$\\to$1000 steps. By step 1000, 94.8\\% of proved samples have $\\text{ISR}{=}0$ and mean component count inflates 6.58$\\to$18.55 (contradiction explosion).}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/experiments.tex:24:Figure~\\ref{fig:isr-collapse} traces exec-only GRPO (seed~42) at 100, 500, 1000 steps.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/experiments.tex:72:Total conclusion embedding ($\\text{H1}+\\text{H7}$) is GR\n…[truncated 5835 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-001462"
+        },
+        {
+          "source_line": 1463,
+          "timestamp": "2026-05-15T23:17:39.313447+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/experiments.tex",
+              "offset": "40",
+              "limit": "30"
+            }
+          },
+          "id": "event-001463"
+        },
+        {
+          "source_line": 1464,
+          "timestamp": "2026-05-15T23:17:39.715287+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "40\t\\label{sec:goodhart}\n41\t\n42\tWe now reverse roles: instead of treating ISR as an observer, we use it as a reward augmentation, $r = r_{\\text{exec}}\\cdot(1 + \\beta\\,\\text{ISR})$, with a matched random control, $r = r_{\\text{exec}}\\cdot(1 + \\beta\\,u)$, $u\\sim\\mathcal{U}(0,1)$, to isolate ISR-specific signal from generic reward-variance effects.\n43\tThe headline finding: ISR-as-reward produces \\emph{meta-level} Goodhart~\\citep{manheim-goodhart-taxonomy}---the diagnostic itself becomes the target of gaming.\n44\t\n45\t\\begin{table}[t]\n46\t\\centering\n47\t\\small\n48\t\\resizebox{\\columnwidth}{!}{%\n49\t\\begin{tabular}{lcccccc}\n50\t\\toprule\n51\t\\textbf{Condition} & $\\boldsymbol{\\beta}$ & \\textbf{PR\\%}$\\uparrow$ & \\textbf{ISR}$^*$ & \\textbf{H7\\%} & \\textbf{H1\\%} & \\textbf{N-H\\%} \\\\\n52\t\\midrule\n53\tBase (0-shot) & --- & 12 & --- & --- & --- & --- \\\\ %% registry: sta-phase0-baseline\n54\tSFT & --- & 13 & 0.595 & 0 & 8 & \\textbf{92} \\\\ %% registry: plan009-sft-baseline-s42-1000/s43-1000/s44-1000-r3 (3-seed pooled)\n55\t\\midrule\n56\tExec-only$^\\dagger$ & --- & 93 & 0.132 & 0 & 87 & 8 \\\\ %% registry: plan001-exec-only-s42-r2 (H8 corrected)\n57\tISR & 0.1 & 77{\\scriptsize$\\pm$14} & $\\ddagger$ & \\textbf{71}$^\\P$ & 18 & 6 \\\\ %% registry: plan002-additive-b01-s42/s43-r2/s44 (pooled, D095 FINAL)\n58\tRandom & 0.1 & \\textbf{87}{\\scriptsize$\\pm$8} & 0.117{\\scriptsize$\\pm$.04} & 14$^\\S$ & 71 & 10 \\\\ %% registry: plan018-additive-random-b01-s42/s43-r3/s44-r2 (D095 FINAL)\n59\t\\midrule\n60\tISR & 0.3 & 66{\\scriptsize$\\pm$42} & 0.39{\\scriptsize$\\pm$.31} & \\textbf{50} & 37 & 12 \\\\ %% registry: plan002-additive-b03-s42/s43/s44 (pooled)\n61\tRandom & 0.3 & 54{\\scriptsize$\\pm$35} & 0.09{\\scriptsize$\\pm$.09} & 7 & 91 & 2 \\\\ %% registry: plan017-additive-random-s42, exp1-random-b03-s43-r4, exp1-random-b03-s44-r2 (pooled; D086 H7: s42=4,s43=7,s44=0)\n62\t\\bottomrule\n63\t\\end{tabular}}\n64\t\\caption{Goodhart landscape across reward conditions. 3-seed rows: H7/H1/N-H pooled across seeds; PR/ISR$^*$: mean$\\pm$std of per-seed values\n…[truncated 905 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473",
+            "tool": "Read",
+            "elapsed_ms": 401
+          },
+          "id": "event-001464"
+        },
+        {
+          "source_line": 1465,
+          "timestamp": "2026-05-15T23:17:40.219606+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/introduction.tex",
+              "offset": "0",
+              "limit": "40"
+            }
+          },
+          "id": "event-001465"
+        },
+        {
+          "source_line": 1466,
+          "timestamp": "2026-05-15T23:17:40.622227+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "0\t\\section{Introduction}\n1\t\\label{sec:introduction}\n2\t\n3\tA GRPO-trained formalizer achieves a 93\\% prove rate on first-order logic problems---yet 87\\% of its proved outputs embed the conclusion verbatim among the premises.\n4\tThe solver succeeds not because the model has learned to reason, but because the formalization trivially entails any conclusion already appearing as a premise.\n5\tThis structural shortcut is invisible to execution-based evaluation: prove rate registers success regardless of whether the proof reflects genuine derivation or degenerate circular embedding.\n6\t\n7\t\\paragraph{The execution-only blind spot.}\n8\tProve rate---the dominant evaluation metric for neurosymbolic formalizers~\\citep{logic-lm, linc, satlm}---conflates faithful reasoning with degenerate shortcuts, a gap especially consequential under RL, where the optimizer exploits any shortcut the reward fails to penalize~\\citep{skalse-reward-hacking, reward-hacking-survey}.\n9\tRecent work applies GRPO~\\citep{deepseekmath} to train LLMs that generate solver-verified formal programs~\\citep{mellgren-prolog-grpo, logic-rl} using binary execution feedback; this drives rapid PR gains but gives no gradient on structural quality.\n10\tProcess reward models~\\citep{lightman-verify-step, math-shepherd} require expensive annotations and do not transfer to arbitrary solver-backed settings.\n11\tA separate line documents that LLMs already game logical formalization at inference time~\\citep{kim-game-formalization, bondarenko-spec-gaming}; what is missing is an annotation-free \\emph{diagnostic} for structural integrity in neurosymbolic outputs.\n12\t\n13\t\\paragraph{Component necessity testing.}\n14\tWe address this gap with \\emph{Solver Trace Ablation} (STA), a diagnostic applying \\emph{component necessity testing}---leave-one-out (LOO) ablation on solver inputs---to quantify structural integrity (Figure~\\ref{fig:sta-overview}).\n15\tFor each proved formalization, STA removes each component individually and re-runs the solve\n…[truncated 3430 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473",
+            "tool": "Read",
+            "elapsed_ms": 402
+          },
+          "id": "event-001466"
+        },
+        {
+          "source_line": 1467,
+          "timestamp": "2026-05-15T23:17:40.723084+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/method.tex",
+              "offset": "0",
+              "limit": "40"
+            }
+          },
+          "id": "event-001467"
+        },
+        {
+          "source_line": 1468,
+          "timestamp": "2026-05-15T23:17:40.773927+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "0\t\\section{Method}\n1\t\\label{sec:method}\n2\t\n3\t\\begin{figure*}[t]\n4\t\\centering\n5\t\\includegraphics[width=0.92\\textwidth]{figures/fig1_sta_overview.pdf}\n6\t\\caption{Solver Trace Ablation (STA). (a) Formalization pipeline: NL is formalized and verified by an external solver. (b) STA protocol: leave-one-out ablation on proved formalizations yields ISR. (c) ISR as diagnostic vs.\\ as reward: when the diagnostic becomes the target, meta-level Goodhart's Law emerges.}\n7\t\\label{fig:sta-overview}\n8\t\\end{figure*}\n9\t\n10\t\\subsection{Task and GRPO Training}\n11\t\\label{sec:task}\n12\t\n13\tGiven premises $P_1,\\ldots,P_k$ and conclusion $C$, the task is to produce a formal program $F=\\{c_1,\\ldots,c_n\\}$ verified by an external solver $S\\in\\{\\text{Prover9, SWI-Prolog}\\}$ (Figure~\\ref{fig:sta-overview}a).\n14\tWe train with Group Relative Policy Optimization (GRPO)~\\citep{deepseekmath} ($K{=}8$), where each rollout receives binary execution reward $r_{\\text{exec}}(x) = \\mathbf{1}[S(F_x){=}\\textit{proved}]$.\n15\tThis optimizes prove rate but provides no signal about \\emph{structural quality}: a formalization embedding the conclusion among its premises receives the same reward as a faithful derivation.\n16\tAll experiments draw from FOLIO~\\citep{folio}; the held-out evaluation file retains a legacy \\texttt{proofwriter\\_fol\\_*.jsonl} filename (from ProofWriter~\\citep{proofwriter}) but contains only FOLIO-derived examples.\n17\t\n18\t\\subsection{Solver Trace Ablation (STA)}\n19\t\\label{sec:sta}\n20\t\n21\tSTA tests whether each component of a proved formalization is individually necessary for proof success (Figure~\\ref{fig:sta-overview}b).\n22\tGiven a proved $x$ with $n$ components, STA constructs $n$ ablated variants $x\\setminus\\{c_i\\}$ and re-runs the solver (Algorithm~\\ref{alg:sta}).\n23\tA component is \\emph{necessary} if its removal causes proof failure.\n24\tWhat constitutes a component depends on the logic: premises in FOL, clauses or ground facts in Prolog.\n25\tLOO ablation itself is standard in mutation tes\n…[truncated 680 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-001468"
+        },
+        {
+          "source_line": 1469,
+          "timestamp": "2026-05-15T23:17:58.668760+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\bFOL\\b",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper",
+              "output_mode": "content",
+              "-n": "True",
+              "glob": "*.tex",
+              "head_limit": "20"
+            }
+          },
+          "id": "event-001469"
+        },
+        {
+          "source_line": 1470,
+          "timestamp": "2026-05-15T23:17:59.121532+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/related_work.tex:6:We use FOLIO~\\citep{folio}, the only public NLI benchmark with both first-order logic (FOL) and Prolog annotations.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/experiments.tex:110:\\caption{Cross-logic results. \\textbf{Left}: FOL vs.\\ Prolog exec-only $\\text{ISR}^*$ across 3 seeds (s44 Prolog $0.387$ is a small-sample artifact, $n{=}21$). \\textbf{Right}: Prolog ISR-reward gaming-mode composition---all 3 seeds reach 0\\% non-hacking through distinct mechanisms.}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/experiments.tex:114:We replicate the FOL pipeline with Prolog/SWI-Prolog: (i) does ISR retain diagnostic value on a structurally different logic; (ii) does ISR-as-reward reproduce meta-level Goodhart?\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/experiments.tex:120:This is a different failure semantics from FOL exec-only (conclusion embedding), but $\\text{ISR}^{*}$ flags both.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/experiments.tex:124:The Prolog result is stronger than FOL: 3/3 seeds reach $0\\%$ non-hacking via three distinct mechanisms (Figure~\\ref{fig:prolog-comparison}).\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/method.tex:25:What constitutes a component depends on the logic: premises in FOL, clauses or ground facts in Prolog.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/appendix.tex:41:FOL solver & Prover9 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/appendix.tex:53:FOL exec-only seed~43 (\\texttt{plan001-exec-only-s43-r4}) was evaluated with sampling (temperature~$=0.7$) rather than greedy decoding.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablat\n…[truncated 1939 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473",
+            "tool": "Grep",
+            "elapsed_ms": 452
+          },
+          "id": "event-001470"
+        },
+        {
+          "source_line": 1471,
+          "timestamp": "2026-05-15T23:17:59.624546+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\bSFT\\b",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper",
+              "output_mode": "content",
+              "-n": "True",
+              "glob": "*.tex",
+              "head_limit": "20"
+            }
+          },
+          "id": "event-001471"
+        },
+        {
+          "source_line": 1472,
+          "timestamp": "2026-05-15T23:18:00.077635+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/experiments.tex:9:We train Qwen3-4B~\\citep{qwen3} with GRPO~\\citep{deepseekmath} ($K{=}8$, lr $10^{-6}$, 500 steps default, 1000 where noted) over seeds $\\{42,43,44\\}$ on a fixed 500-example FOLIO~\\citep{folio} subset held constant across all conditions; the SFT baseline is trained with NLL on gold formalizations.\\footnote{All experiments use \\texttt{data/train\\_500\\_seed42.jsonl}; seeds control initialization and rollout sampling only.}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/experiments.tex:34:\\textbf{SFT baseline.}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/experiments.tex:35:SFT on gold formalizations reaches $\\text{PR}{=}13.0\\%$ (3-seed pooled, 1000 steps) with $\\text{H7}{=}0$, $\\text{H1}{=}7.7\\%$, $92.3\\%$ non-hacking ($n{=}39$; per-seed range 91--93\\%). %% registry: plan009-sft-baseline-s42-1000/s43-1000/s44-1000-r3\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/experiments.tex:37:A 100-step RL checkpoint (Appendix~\\ref{app:100step}) at $\\text{PR}{=}32\\%$ already shows 31.2\\% hacking (vs.\\ SFT's 7.7\\%), indicating reward hacking emerges early in RL training, not merely at high PR.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/experiments.tex:54:SFT & --- & 13 & 0.595 & 0 & 8 & \\textbf{92} \\\\ %% registry: plan009-sft-baseline-s42-1000/s43-1000/s44-1000-r3 (3-seed pooled)\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/experiments.tex:137:\\caption{Hacking composition across reward conditions (proved samples; exec-only: seed~42; all other bars: pooled across 3 seeds, per-seed breakdown in Appendix Table~\\ref{tab:fol-detailed}). ISR converts H1 into more extreme H7 without reducing total hacking; SFT shows near-zero hacking.}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/\n…[truncated 3871 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473",
+            "tool": "Grep",
+            "elapsed_ms": 453
+          },
+          "id": "event-001472"
+        },
+        {
+          "source_line": 1473,
+          "timestamp": "2026-05-15T23:18:01.033954+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\bNLL\\b",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper",
+              "output_mode": "content",
+              "-n": "True",
+              "glob": "*.tex",
+              "head_limit": "20"
+            }
+          },
+          "id": "event-001473"
+        },
+        {
+          "source_line": 1474,
+          "timestamp": "2026-05-15T23:18:01.184834+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/experiments.tex:9:We train Qwen3-4B~\\citep{qwen3} with GRPO~\\citep{deepseekmath} ($K{=}8$, lr $10^{-6}$, 500 steps default, 1000 where noted) over seeds $\\{42,43,44\\}$ on a fixed 500-example FOLIO~\\citep{folio} subset held constant across all conditions; the SFT baseline is trained with NLL on gold formalizations.\\footnote{All experiments use \\texttt{data/train\\_500\\_seed42.jsonl}; seeds control initialization and rollout sampling only.}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473",
+            "tool": "Grep",
+            "elapsed_ms": 150
+          },
+          "id": "event-001474"
+        },
+        {
+          "source_line": 1475,
+          "timestamp": "2026-05-15T23:18:01.185346+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/abstract.tex"
+            }
+          },
+          "id": "event-001475"
+        },
+        {
+          "source_line": 1476,
+          "timestamp": "2026-05-15T23:18:01.235767+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\begin{abstract}\n2\tGRPO-trained neurosymbolic formalizers achieve high prove rates---93\\% on FOLIO---yet 87\\% of proved outputs embed the conclusion verbatim among the premises, a degenerate shortcut invisible to execution reward.\n3\tWe introduce \\emph{Solver Trace Ablation} (STA), a diagnostic that applies leave-one-out component necessity testing to solver inputs.\n4\tThe fraction of components whose removal causes proof failure yields the \\emph{Intensional Structural Reward} (ISR): ISR$=$1 indicates full necessity; ISR$=$0 complete redundancy.\n5\tISR is uncorrelated with downstream NLI accuracy ($\\rho{=}{-}0.049$), confirming it measures structural---not semantic---integrity.\n6\tAs a diagnostic, ISR exposes a collapse trajectory hidden from PR: over 100--1000 GRPO steps (Qwen3-4B), ISR falls $0.642{\\to}0.003$ while PR rises $32\\%{\\to}96\\%$; an SFT baseline reaches 92.3\\% non-hacking on identical data (3-seed pooled), localizing the failure to RL.\n7\tAs a reward, $r = r_{\\text{exec}}\\cdot(1{+}\\beta\\,\\text{ISR})$ at $\\beta{=}0.1$ induces \\emph{meta-level Goodhart's Law}: 70.6\\% conclusion duplication (H7) versus 13.7\\% under matched random (Fisher $p{=}1.3{\\times}10^{-39}$; random H7 is seed-dependent, driven by one of three seeds); ISR amplifies H7 frequency ${\\sim}5{\\times}$ rather than exclusively causing it; the sole apparent ISR improvement reduces to $1.06\\times$ after controlling for a premise-count confound; $\\beta{=}0.3$ destabilizes training regardless of signal source (ISR: PR $66{\\pm}42\\%$; random: $54{\\pm}35\\%$), with individual seeds collapsing to as low as $18\\%$.\n8\tCross-logic transfer to Prolog yields universal Goodhart: 3/3 seeds gaming via distinct mechanisms, 0\\% non-hacking.\n9\tAcross 6 reward conditions, 2 logic types, 3 seeds, we catalog 8 hacking modes---including query-as-fact gaming that bypasses text-match classifiers---documenting ISR's fundamental asymmetry: reliable as a diagnostic, unreliable as an optimization target.\\footnote{Code and da\n…[truncated 45 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-001476"
+        },
+        {
+          "source_line": 1477,
+          "timestamp": "2026-05-15T23:18:10.283011+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/related_work.tex"
+            }
+          },
+          "id": "event-001477"
+        },
+        {
+          "source_line": 1478,
+          "timestamp": "2026-05-15T23:18:10.785651+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Related Work}\n2\t\\label{sec:related-work}\n3\t\n4\t\\paragraph{Neurosymbolic reasoning.}\n5\tLLM-solver pipelines~\\citep{satlm, logic-lm, linc, fover-pei2025, lorp} and RL methods trained on solver feedback~\\citep{mellgren-prolog-grpo, logic-rl, deepseek-prover-v15} evaluate execution accuracy alone, with no diagnostic for structural quality.\n6\tWe use FOLIO~\\citep{folio}, the only public NLI benchmark with both first-order logic (FOL) and Prolog annotations.\n7\t\n8\t\\paragraph{Process rewards and reward shaping.}\n9\tLearned PRMs~\\citep{lightman-verify-step, math-shepherd} provide step-level feedback but suffer from reward-model noise and distribution shift~\\citep{processbench}: \\citet{gao-effective-rl-reward} show that auxiliary process/outcome rewards can \\emph{hurt} RL training relative to success-only reward, a finding our ISR-as-reward results corroborate.\n10\tSymbolic feedback approaches~\\citep{rlsf} use solver certificates as token-level rewards, achieving gains on program synthesis; ISR differs in operating at the component level (LOO ablation) rather than the token level, and our results show this structural signal is gamed when optimized.\n11\tRubric-grounded GRPO~\\citep{rubric-grpo} uses structured LLM-judge rewards to improve generalization; ISR is solver-derived and deterministic rather than judge-based, but both represent structured alternatives to scalar execution reward.\n12\tThe shared lesson across these approaches is that reward augmentation introduces proxy risk---our contribution is demonstrating the \\emph{meta}-level variant where the diagnostic itself becomes the target.\n13\t\n14\t\\paragraph{Reward hacking and Goodhart's Law.}\n15\tGoodhart's Law is established theoretically~\\citep{manheim-goodhart-taxonomy, skalse-reward-hacking, karwowski-goodhart-rl} and empirically in RLHF and frontier models~\\citep{gao-reward-overoptimization, bondarenko-spec-gaming, kim-game-formalization}.\n16\t\\citet{kwa-catastrophic-goodhart} show that heavy-tailed reward misspecif\n…[truncated 898 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473",
+            "tool": "Read",
+            "elapsed_ms": 502
+          },
+          "id": "event-001478"
+        },
+        {
+          "source_line": 1479,
+          "timestamp": "2026-05-15T23:18:11.338961+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\bFOL\\b",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-001479"
+        },
+        {
+          "source_line": 1480,
+          "timestamp": "2026-05-15T23:18:11.816040+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/related_work.tex:6:We use FOLIO~\\citep{folio}, the only public NLI benchmark with both first-order logic (FOL) and Prolog annotations.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/experiments.tex:110:\\caption{Cross-logic results. \\textbf{Left}: FOL vs.\\ Prolog exec-only $\\text{ISR}^*$ across 3 seeds (s44 Prolog $0.387$ is a small-sample artifact, $n{=}21$). \\textbf{Right}: Prolog ISR-reward gaming-mode composition---all 3 seeds reach 0\\% non-hacking through distinct mechanisms.}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/experiments.tex:114:We replicate the FOL pipeline with Prolog/SWI-Prolog: (i) does ISR retain diagnostic value on a structurally different logic; (ii) does ISR-as-reward reproduce meta-level Goodhart?\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/experiments.tex:120:This is a different failure semantics from FOL exec-only (conclusion embedding), but $\\text{ISR}^{*}$ flags both.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/experiments.tex:124:The Prolog result is stronger than FOL: 3/3 seeds reach $0\\%$ non-hacking via three distinct mechanisms (Figure~\\ref{fig:prolog-comparison}).\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/main.log:828:\\OT1/cmr/m/n/10.95 We repli-cate the FOL pipeline with\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/main.log:1018: []\\OT1/cmr/bx/n/10.95 Evaluation ex-cep-tion.[] \\OT1/cmr/m/n/10.95 FOL exec-on\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/main.log:1142: []\\OT1/cmr/bx/n/10.95 Prevalence.[] \\OT1/cmr/m/n/10.95 Ob-served in FOL exec-o\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/method.tex:25:What constitutes a component \n…[truncated 8797 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473",
+            "tool": "Grep",
+            "elapsed_ms": 477
+          },
+          "id": "event-001480"
+        },
+        {
+          "source_line": 1481,
+          "timestamp": "2026-05-15T23:18:12.017150+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\bNLL\\b",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-001481"
+        },
+        {
+          "source_line": 1482,
+          "timestamp": "2026-05-15T23:18:12.067878+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/experiments.tex:9:We train Qwen3-4B~\\citep{qwen3} with GRPO~\\citep{deepseekmath} ($K{=}8$, lr $10^{-6}$, 500 steps default, 1000 where noted) over seeds $\\{42,43,44\\}$ on a fixed 500-example FOLIO~\\citep{folio} subset held constant across all conditions; the SFT baseline is trained with NLL on gold formalizations.\\footnote{All experiments use \\texttt{data/train\\_500\\_seed42.jsonl}; seeds control initialization and rollout sampling only.}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-001482"
+        },
+        {
+          "source_line": 1483,
+          "timestamp": "2026-05-15T23:18:52.348387+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/abstract.tex",
+              "old_string": "GRPO-trained neurosymbolic formalizers achieve high prove rates---93\\% on FOLIO---yet 87\\% of proved outputs embed the conclusion verbatim among the premises, a degenerate shortcut invisible to execution reward.",
+              "new_string": "Neurosymbolic formalizers trained with Group Relative Policy Optimization (GRPO) achieve high prove rates---93\\% on FOLIO---yet 87\\% of proved outputs embed the conclusion verbatim among the premises, a degenerate shortcut invisible to execution reward."
+            }
+          },
+          "id": "event-001483"
+        },
+        {
+          "source_line": 1484,
+          "timestamp": "2026-05-15T23:18:52.801067+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/abstract.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473",
+            "tool": "Edit",
+            "elapsed_ms": 452
+          },
+          "id": "event-001484"
+        },
+        {
+          "source_line": 1485,
+          "timestamp": "2026-05-15T23:18:53.655734+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/abstract.tex",
+              "old_string": "an SFT baseline reaches 92.3\\% non-hacking on identical data",
+              "new_string": "a supervised fine-tuning (SFT) baseline reaches 92.3\\% non-hacking on identical data"
+            }
+          },
+          "id": "event-001485"
+        },
+        {
+          "source_line": 1486,
+          "timestamp": "2026-05-15T23:18:54.107658+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/abstract.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473",
+            "tool": "Edit",
+            "elapsed_ms": 451
+          },
+          "id": "event-001486"
+        },
+        {
+          "source_line": 1487,
+          "timestamp": "2026-05-15T23:18:54.711049+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/experiments.tex",
+              "old_string": "the SFT baseline is trained with NLL on gold formalizations.",
+              "new_string": "the SFT baseline is trained with negative log-likelihood (NLL) on gold formalizations."
+            }
+          },
+          "id": "event-001487"
+        },
+        {
+          "source_line": 1488,
+          "timestamp": "2026-05-15T23:18:55.063234+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473",
+            "tool": "Edit",
+            "elapsed_ms": 352
+          },
+          "id": "event-001488"
+        },
+        {
+          "source_line": 1489,
+          "timestamp": "2026-05-15T23:18:57.227186+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/experiments.tex",
+              "old_string": "Total conclusion embedding ($\\text{H1}+\\text{H7}$) is GRPO-universal at $68$--$100\\%$ across both conditions.\nH1 alone is higher under random (pooled $71\\%$ vs.\\ $18\\%$ under ISR)---ISR converts H1 into H7 rather than reducing total embedding (Figure~\\ref{fig:hacking-composition}).",
+              "new_string": "Total conclusion embedding ($\\text{H1}+\\text{H7}$) is GRPO-universal at $68$--$100\\%$ across both conditions (pooled: ISR $89\\%$, random $85\\%$).\nThe composition differs: H1 alone accounts for $71\\%$ under random vs.\\ $18\\%$ under ISR---ISR converts H1 into H7 rather than reducing total embedding (Figure~\\ref{fig:hacking-composition})."
+            }
+          },
+          "id": "event-001489"
+        },
+        {
+          "source_line": 1490,
+          "timestamp": "2026-05-15T23:18:57.278241+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/experiments.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473",
+            "tool": "Edit",
+            "elapsed_ms": 51
+          },
+          "id": "event-001490"
+        },
+        {
+          "source_line": 1491,
+          "timestamp": "2026-05-15T23:19:00.796877+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -30",
+              "description": "Compile LaTeX to check for errors",
+              "timeout": "60000"
+            }
+          },
+          "id": "event-001491"
+        },
+        {
+          "source_line": 1492,
+          "timestamp": "2026-05-15T23:19:01.250961+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/main.tex"
+            }
+          },
+          "id": "event-001492"
+        },
+        {
+          "source_line": 1493,
+          "timestamp": "2026-05-15T23:19:01.301645+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\documentclass[11pt]{article}\n2\t\\usepackage[review]{acl}\n3\t\n4\t\\usepackage{amsmath,amssymb}\n5\t\\usepackage{graphicx}\n6\t\\usepackage{booktabs}\n7\t\\usepackage{algorithm}\n8\t\\usepackage{algorithmic}\n9\t\\usepackage{enumitem}\n10\t\\usepackage{xcolor}\n11\t\\usepackage{multirow}\n12\t\\usepackage[protrusion=true,expansion=false]{microtype}\n13\t\n14\t\\setlength{\\textfloatsep}{8pt plus 2pt minus 4pt}\n15\t\\setlength{\\intextsep}{6pt plus 2pt minus 2pt}\n16\t\\setlength{\\abovecaptionskip}{4pt}\n17\t\\setlength{\\belowcaptionskip}{2pt}\n18\t\n19\t\\graphicspath{{figures/}}\n20\t\n21\t\\title{Solver Trace Ablation Reveals Reward Hacking and Meta-Level Goodhart's Law in a GRPO-Trained Neurosymbolic Formalizer}\n22\t\n23\t\\author{Anonymous ACL submission}\n24\t\n25\t\\begin{document}\n26\t\\maketitle\n27\t\n28\t\\input{abstract}\n29\t\\input{introduction}\n30\t\\input{related_work}\n31\t\\input{method}\n32\t\\input{experiments}\n33\t\\input{conclusion}\n34\t\n35\t\\bibliography{references}\n36\t\n37\t\\input{limitations}\n38\t\n39\t\\appendix\n40\t\\input{appendix}\n41\t\n42\t\\end{document}\n43\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-001493"
+        },
+        {
+          "source_line": 1494,
+          "timestamp": "2026-05-15T23:19:01.856931+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": " )\n(see the transcript file for additional information) </home/ubuntu/.texlive2025\n/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1000.600pk> </home/ubuntu/.texlive20\n25/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1095.600pk></usr/share/texlive/tex\nmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dis\nt/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/font\ns/type1/public/amsfonts/cm/cmbx6.pfb></usr/share/texlive/texmf-dist/fonts/type1\n/public/amsfonts/cm/cmbx9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public\n/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo\nnts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm\n/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.\npfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></u\nsr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/shar\ne/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib9.pfb></usr/share\n/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texliv\ne/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-\ndist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fon\nts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1\n/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/\namsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon\nts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c\nmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pf\nb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr\n/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share\n/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/share/texliv\ne/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texlive/te\n…[truncated 338 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473",
+            "tool": "Bash",
+            "elapsed_ms": 1060
+          },
+          "id": "event-001494"
+        },
+        {
+          "source_line": 1495,
+          "timestamp": "2026-05-15T23:19:06.078893+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper && grep -c \"^!\" main.log",
+              "description": "Count LaTeX errors in log"
+            }
+          },
+          "id": "event-001495"
+        },
+        {
+          "source_line": 1496,
+          "timestamp": "2026-05-15T23:19:06.531802+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "0"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473",
+            "tool": "Bash",
+            "elapsed_ms": 452
+          },
+          "id": "event-001496"
+        },
+        {
+          "source_line": 1497,
+          "timestamp": "2026-05-15T23:19:06.583858+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper && grep \"^!\" main.log || echo \"0 errors\"",
+              "description": "Show LaTeX errors"
+            }
+          },
+          "id": "event-001497"
+        },
+        {
+          "source_line": 1498,
+          "timestamp": "2026-05-15T23:19:06.685992+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "0 errors\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/agent_79f408c6"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473",
+            "tool": "Bash",
+            "elapsed_ms": 102
+          },
+          "id": "event-001498"
+        },
+        {
+          "source_line": 1499,
+          "timestamp": "2026-05-15T23:19:16.724857+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper && grep -E \"\\\\\\\\contentsline.*section.*Discussion|\\\\\\\\contentsline.*section.*References|\\\\\\\\contentsline.*section.*Limitations\" main.aux | head -5",
+              "description": "Check page numbers of key sections in aux file"
+            }
+          },
+          "id": "event-001499"
+        },
+        {
+          "source_line": 1500,
+          "timestamp": "2026-05-15T23:19:16.826978+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "\\@writefile{toc}{\\contentsline {section}{\\numberline {5}Discussion and Conclusion}{8}{section.5}\\protected@file@percent }\n\\@writefile{toc}{\\contentsline {section}{\\numberline {6}Limitations}{10}{section.6}\\protected@file@percent }\n\\@writefile{toc}{\\contentsline {section}{\\numberline {C}Extended Discussion}{11}{appendix.C}\\protected@file@percent }\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/agent_79f408c6"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473",
+            "tool": "Bash",
+            "elapsed_ms": 102
+          },
+          "id": "event-001500"
+        },
+        {
+          "source_line": 1501,
+          "timestamp": "2026-05-15T23:19:21.144245+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/abstract.tex"
+            }
+          },
+          "id": "event-001501"
+        },
+        {
+          "source_line": 1502,
+          "timestamp": "2026-05-15T23:19:21.646029+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\begin{abstract}\n2\tNeurosymbolic formalizers trained with Group Relative Policy Optimization (GRPO) achieve high prove rates---93\\% on FOLIO---yet 87\\% of proved outputs embed the conclusion verbatim among the premises, a degenerate shortcut invisible to execution reward.\n3\tWe introduce \\emph{Solver Trace Ablation} (STA), a diagnostic that applies leave-one-out component necessity testing to solver inputs.\n4\tThe fraction of components whose removal causes proof failure yields the \\emph{Intensional Structural Reward} (ISR): ISR$=$1 indicates full necessity; ISR$=$0 complete redundancy.\n5\tISR is uncorrelated with downstream NLI accuracy ($\\rho{=}{-}0.049$), confirming it measures structural---not semantic---integrity.\n6\tAs a diagnostic, ISR exposes a collapse trajectory hidden from PR: over 100--1000 GRPO steps (Qwen3-4B), ISR falls $0.642{\\to}0.003$ while PR rises $32\\%{\\to}96\\%$; a supervised fine-tuning (SFT) baseline reaches 92.3\\% non-hacking on identical data (3-seed pooled), localizing the failure to RL.\n7\tAs a reward, $r = r_{\\text{exec}}\\cdot(1{+}\\beta\\,\\text{ISR})$ at $\\beta{=}0.1$ induces \\emph{meta-level Goodhart's Law}: 70.6\\% conclusion duplication (H7) versus 13.7\\% under matched random (Fisher $p{=}1.3{\\times}10^{-39}$; random H7 is seed-dependent, driven by one of three seeds); ISR amplifies H7 frequency ${\\sim}5{\\times}$ rather than exclusively causing it; the sole apparent ISR improvement reduces to $1.06\\times$ after controlling for a premise-count confound; $\\beta{=}0.3$ destabilizes training regardless of signal source (ISR: PR $66{\\pm}42\\%$; random: $54{\\pm}35\\%$), with individual seeds collapsing to as low as $18\\%$.\n8\tCross-logic transfer to Prolog yields universal Goodhart: 3/3 seeds gaming via distinct mechanisms, 0\\% non-hacking.\n9\tAcross 6 reward conditions, 2 logic types, 3 seeds, we catalog 8 hacking modes---including query-as-fact gaming that bypasses text-match classifiers---documenting ISR's fundamental asymmetry: reliable as a diag\n…[truncated 111 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473",
+            "tool": "Read",
+            "elapsed_ms": 501
+          },
+          "id": "event-001502"
+        },
+        {
+          "source_line": 1503,
+          "timestamp": "2026-05-15T23:19:21.646511+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/experiments.tex",
+              "offset": "7",
+              "limit": "5"
+            }
+          },
+          "id": "event-001503"
+        },
+        {
+          "source_line": 1504,
+          "timestamp": "2026-05-15T23:19:22.099873+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "7\t\\subsection{Setup}\\label{sec:setup}\n8\t\n9\tWe train Qwen3-4B~\\citep{qwen3} with GRPO~\\citep{deepseekmath} ($K{=}8$, lr $10^{-6}$, 500 steps default, 1000 where noted) over seeds $\\{42,43,44\\}$ on a fixed 500-example FOLIO~\\citep{folio} subset held constant across all conditions; the SFT baseline is trained with negative log-likelihood (NLL) on gold formalizations.\\footnote{All experiments use \\texttt{data/train\\_500\\_seed42.jsonl}; seeds control initialization and rollout sampling only.}\n10\tHeld-out evaluation uses 100 FOLIO examples (\\texttt{proofwriter\\_fol\\_100.jsonl}---legacy filename, no ProofWriter data) with greedy decoding; all cross-run ISR values are recomputed uniformly by a single evaluator (\\texttt{eval\\_sta.py}) so training-log ISR is never compared across runs.\n11\tWe report prove rate (PR), proved-only ISR ($\\text{ISR}^*$), hacking-mode rates from a two-stage classifier (strict text matching for H1/H7 plus functional analysis of the per-sample $n_{\\text{necessary}}$ distribution; \\S\\ref{sec:taxonomy-method}), and a \\emph{non-hacking} (N-H) rate---the residual of proved samples matching none of the eight cataloged patterns, a necessary but not sufficient condition for semantic correctness."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473",
+            "tool": "Read",
+            "elapsed_ms": 453
+          },
+          "id": "event-001504"
+        },
+        {
+          "source_line": 1505,
+          "timestamp": "2026-05-15T23:19:22.451832+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/experiments.tex",
+              "offset": "70",
+              "limit": "6"
+            }
+          },
+          "id": "event-001505"
+        },
+        {
+          "source_line": 1506,
+          "timestamp": "2026-05-15T23:19:22.502378+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "70\tRandom H7 is highly seed-dependent: $38.3\\%$ in seed~43 vs.\\ $0\\%$ in seeds~42 and~44; ISR makes H7 near-deterministic ($2/3$ seeds at $97$--$100\\%$, Table~\\ref{tab:fol-detailed}).\n71\tH7---a single premise identical to the conclusion, giving $\\text{ISR}\\geq 0.5$ by construction (\\S\\ref{sec:taxonomy-method})---is the canonical meta-level Goodhart move: the model satisfies the LOO definition directly rather than producing a derivation that happens to satisfy it.\n72\tTotal conclusion embedding ($\\text{H1}+\\text{H7}$) is GRPO-universal at $68$--$100\\%$ across both conditions (pooled: ISR $89\\%$, random $85\\%$).\n73\tThe composition differs: H1 alone accounts for $71\\%$ under random vs.\\ $18\\%$ under ISR---ISR converts H1 into H7 rather than reducing total embedding (Figure~\\ref{fig:hacking-composition}).\n74\tRandom also yields higher and more stable PR ($87{\\pm}8\\%$ vs.\\ $77{\\pm}14\\%$).\n75\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-001506"
+        },
+        {
+          "source_line": 1507,
+          "timestamp": "2026-05-15T23:19:38.544269+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 分配 2 / 实际跑 0（无剩余实验） | Worker 池 0 (全部完成)\n\n**tex-proofread-final 4 处修复完成：**\n\n| # | 位置 | 状态 | 说明 |\n|---|------|------|------|\n| 1 | appendix.tex L265 \"exclusively\"→\"primarily\" | ✅ 已是正确状态 | 当前已写 \"primarily\"，且提及 s43 的 2 例 |\n| 2 | experiments.tex L72 H1+H7 歧义 | ✅ 已修 | 拆句：第一句给 H1+H7 pooled 数字 (ISR 89%, random 85%)，第二句明确 \"H1 alone accounts for 71% vs 18%\" |\n| 3 | conclusion.tex L15 \"H8-dominant\"→\"H8-enriched\" | ✅ 已是正确状态 | 当前已写 \"H8-enriched\" |\n| 4 | 缩略语展开 | ✅ 已修 | GRPO: abstract L2 展开; SFT: abstract L6 展开; NLL: experiments L9 展开; FOL: 已在 related_work L6 展开，无需改 |\n\n**编译验证：** 0 error，19 页，主体 ≤8 页（Discussion+Conclusion 在 p8，Limitations 从 p10 起）。",
+              "project": "solver-trace-ablation"
+            }
+          },
+          "id": "event-001507"
+        },
+        {
+          "source_line": 1508,
+          "timestamp": "2026-05-15T23:19:42.244955+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_a771c2a33d631dd40256ecd5c3a6648e:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 3700
+          },
+          "id": "event-001508"
+        },
+        {
+          "source_line": 1509,
+          "timestamp": "2026-05-15T23:19:48.004407+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me check the document structure to understand section order."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473"
+          },
+          "id": "event-001509"
+        },
+        {
+          "source_line": 1510,
+          "timestamp": "2026-05-15T23:19:48.021856+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成。\n\n**实际改动 2 处：**\n- **experiments.tex L72**: H1+H7 歧义拆句——新增 pooled 数字 (ISR 89%, random 85%)，H1-only 数字 (71% vs 18%) 单独成句\n- **缩略语展开**: abstract 中 GRPO/SFT 首次使用展开全称，experiments 中 NLL 首次使用展开\n\nFix 1 (appendix \"exclusively\") 和 Fix 3 (conclusion \"H8-dominant\") 在当前版本中已是正确状态，无需改动。\n\n编译 0 error，主体 ≤8 页不变。已向 Director 汇报。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473"
+          },
+          "id": "event-001510"
+        }
+      ]
+    },
+    {
+      "number": 70,
+      "messages": [
+        {
+          "source_line": 1511,
+          "timestamp": "2026-05-16T00:41:22.605233+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-001511"
+        },
+        {
+          "source_line": 1512,
+          "timestamp": "2026-05-16T00:42:05.687073+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目 GPU 白名单：westd-39279 的 2 × RTX PRO 6000 96GB，但当前无剩余实验，GPU 全部空闲\n- 论文 tex 文件有两份：`paper/` 是主编译目录，`docs/paper/` 是旧副本——只改 `paper/` 下的文件\n- D095 Narrative A 已定稿：H7a 是 GRPO-general seed-dependent，H7b 是 ISR-specific meta-Goodhart。不可回退到旧 framing（\"H7 is ISR-specific\"已作废）\n- Random H7 ≠ 0%（s43-r3 有 38.3% H7a）——D093 修正，不可在任何地方写 \"Random H7=0%\"\n- genuine 6.06% vs 9.54% p=0.182 n.s.——不可 claim ISR genuine rate 显著低于 random\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-39279，2 × RTX PRO 6000 96GB，当前 2/2 空闲\n- 本地项目路径：`/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/`\n- 论文编译目录：`/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/`（pdflatex main.tex）\n- 活跃进程：无。0 个 cron，0 个 Worker，0 个训练任务\n\n### 3. 📊 当前状态\n刚完成 Reviewer 验证的 tex-proofread-final 4 处修复并向 Director 汇报：\n- Fix 1（appendix \"exclusively\"→\"primarily\"）和 Fix 3（conclusion \"H8-dominant\"→\"H8-enriched\"）：确认已是正确状态，无需改动\n- Fix 2（experiments L72 H1+H7 vs H1-only 歧义）：已拆句，加 pooled 数字 (ISR 89%, random 85%)\n- Fix 4（缩略语展开）：GRPO/SFT 在 abstract 展开，NLL 在 experiments 展开，FOL 已在 related_work 展开\n\n编译验证：0 error，19 页，主体 ≤8 页。已 `main_agent_post_to_director` 汇报完成。\n\nRegistry：86 实验全部 DONE（success 26 / negative 28 / failed 26）。无 RUNNING/PREPARING。\n\n等待中：Director 对修复结果的确认 + 下一步指令（PDF 视觉审查 / 最终润色 / 提交准备）。\n\n### 4. 📋 待办\n- Director 确认修复 OK → 推进 report.md 第 10 项 \"PDF 全文视觉审查\"（spawn worker 用 pdf_to_images 渲染检查排版/图表/公式）\n- Director 说\"提交\" → 最终编译 + S3 备份 + 匿名化检查\n- Director 要求新实验 → 当前 0 实验在跑，2 GPU 空闲，可立即铺\n\n### 5. 🎯 战略上下文\n- 项目处于写作收尾阶段，DDL 2026-05-25（剩 9 天）\n- 核心 story：STA/ISR 作为 GRPO neurosymbolic formalizer 的诊断工具 + Goodhart's Law 案例研究\n- 决策链：D095 Narrative A 定稿 → tex 全量数据同步完成 → Provenance 36/36 → 引用审计 30/30 → 一致性检查 0 critical → 页数缩减完成 → checklist 验证完成 → tex-proofread-final 修复完成（本轮）\n- 易踩坑：Fix 1 和 Fix 3 在当前文件中已是正确的——如果 Director 再提这两处，说明可能看的是旧版本 PDF，需重新编译后发送新 PDF\n- report.md 待更新：第 10 项 \"PDF 全文视觉审查\" 和第 11 项 \"最终润色+提交准备\" 尚未完成\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473"
+          },
+          "id": "event-001512"
+        }
+      ]
+    }
+  ]
+}

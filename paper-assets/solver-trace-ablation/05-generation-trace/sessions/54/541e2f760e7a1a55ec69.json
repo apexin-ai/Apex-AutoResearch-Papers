@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "541e2f760e7a1a55ec69",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "knowledge table compilation",
+  "task_key": "worker_knowledge_table-compilation_20260514T172319",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_knowledge_table-compilation_20260514T172319_result.json",
+    "occurrence": 1,
+    "bytes": 814,
+    "sha256": "67b8793c537e9d061aad28caaba00e9bbf75896fab07e08bdc2a085dadcb1b1f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译完成。artifact 已注册 (`art_20260514_94a4d3`)。\n\n文件包含 6 个 panel：\n- **Panel A**: FOL 主结果（SFT / exec-only / exec+ISR / exec+random，含 β=0.1 和 β=0.3）\n- **Panel B**: FOL β=0.3 ISR vs Random 对照\n- **Panel C**: Hacking 模式分类（H7/H1/H3/Genuine，s42 D044 strict）\n- **Panel D**: 跨逻辑对比（Prolog vs FOL exec-only 3-seed）\n- **Panel E**: ISR 崩塌轨迹（0→100→500→1000 步）\n- **Panel F**: Premise-count-matched 分析（D051 定论，1.06×）\n\n主要数据缺口：\n1. plan006-prolog-sta s43/s44 仍在 RUNNING — Claim 3 待闭环\n2. plan001-exec-only-s43 使用 sampling eval（非 eval_sta.py），H7/H1 缺失\n3. plan002-b03 和 plan017（β=0.3 条件）无 H7/H1 分类\n4. plan016（1000 步）无 H7/H1 分类"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/knowledge-table-compilation.md"
+}

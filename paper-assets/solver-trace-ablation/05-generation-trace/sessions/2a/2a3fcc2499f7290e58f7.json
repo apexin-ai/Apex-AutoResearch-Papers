@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2a3fcc2499f7290e58f7",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code fix classify h7",
+  "task_key": "worker_code_fix-classify-h7_20260514T102843",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-classify-h7_20260514T102843_result.json",
+    "occurrence": 1,
+    "bytes": 861,
+    "sha256": "7fce63b2573d685a46dc5c97bba085758696ad81f353ac45062f6f98030d58ad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成，结果已保存。汇总：\n\n| Run | H7 (single prem=concl) | H1 (multi-prem, concl in prem) | H7+H1 | Proved |\n|-----|------------------------|-------------------------------|-------|--------|\n| **s42** | 13/81 = 16.1% | 42/81 = 51.8% | 55/81 = 67.9% | 81 |\n| **s43** | 59/61 = 96.7% | 0/61 = 0.0% | 59/61 = 96.7% | 61 |\n| **s44** | 77/89 = 86.5% | 0/89 = 0.0% | 77/89 = 86.5% | 89 |\n| **random** | 0/79 = 0.0% | 56/79 = 70.9% | 56/79 = 70.9% | 79 |\n\n**s42 验证**：H7(13) + H1(42) = 55/81 = 67.9% conclusion-in-premise 总量，与之前 `any(premise==conclusion)` 检测的 55 一致。\n\n注意 s42 的 H7 是 13/81=16.1%（略低于预期的 ~15/81=18.5%），差异来自有 2 个 single-premise 样本的 premise 与 conclusion 不完全相等（single_premise=15 但 H7=13）。s43/s44/random 均符合预期。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-classify-h7.md"
+}

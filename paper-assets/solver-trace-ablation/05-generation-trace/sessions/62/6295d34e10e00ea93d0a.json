@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6295d34e10e00ea93d0a",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops archive project",
+  "task_key": "worker_ops_archive-project_20260525T204046",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_archive-project_20260525T204046_result.json",
+    "occurrence": 1,
+    "bytes": 1032,
+    "sha256": "6e7ebbcaa0f32ae2f12e546dc237245e16f0e9250d4524c2b6018478e7690b35"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "归档完成。验证结果：\n\n```\n=== 各子目录大小 ===\n24M     /root/solver-trace-ablation_archive/code/\n0       /root/solver-trace-ablation_archive/checkpoints/\n2.8M    /root/solver-trace-ablation_archive/results/\n3.5M    /root/solver-trace-ablation_archive/data/\n17M     /root/solver-trace-ablation_archive/paper/\n\n=== 总大小 ===\n47M     /root/solver-trace-ablation_archive/\n\n=== .git 验证 ===\nGIT_MISSING（原项目本身无 .git 目录）\n```\n\n**说明**：\n- `checkpoints/` 为空——服务器上无 .pt/.pth/.bin/.safetensors 文件（checkpoint 可能已被之前的磁盘清理删除）\n- `.git` 不存在——原始项目 `/root/solver-trace-ablation/` 本身没有 .git 目录，不是 git 仓库\n- `code/` 包含完整代码（src/、scripts/、configs/、analysis/ 等）\n- `results/` 包含 outputs/ 和 analysis/ 下的 eval JSON 文件\n- `data/` 包含全部 12 个 .jsonl 数据集文件\n- `paper/` 包含论文 .tex 源码、figures（PDF/PNG）、编译产物"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-archive-project.md"
+}

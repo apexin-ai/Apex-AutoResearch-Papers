@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eb0e2b779a4b35556923",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "fix bib references",
+  "task_key": "worker_fix_bib-references_20260515T214226",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_bib-references_20260515T214226_result.json",
+    "occurrence": 1,
+    "bytes": 558,
+    "sha256": "2f327ba445c103b03f6a6f26e37f7d2e38583e207c1291d44b834bae66780beb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "5 个条目全部验证完毕：\n\n| 条目 | 修改 | 状态 |\n|------|------|------|\n| `rlsf` | 作者 → Piyush Jha 等 5 人；标题加 \"RLSF:\" 前缀 | done |\n| `rubric-grpo` | 作者 → Bhattarai 等 5 人；年份 2025→2026 | done |\n| `kwa-catastrophic-goodhart` | 作者 Tat-Thang→Thomas, Rachel→Drake；eprint 2404.18926→2407.14503 | done |\n| `mellgren-prolog-grpo` | \"Lukas Galke\" 确认是发表用名，无需改 | 不改 |\n| `skalse-reward-hacking` | 标题确认是 \"Reward Hacking\"，无需改 | 不改 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-bib-references.md"
+}

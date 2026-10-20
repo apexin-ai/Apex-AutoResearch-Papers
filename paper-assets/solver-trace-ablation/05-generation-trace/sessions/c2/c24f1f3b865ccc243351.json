@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c24f1f3b865ccc243351",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "prep plan004 sta o1 vs on",
+  "task_key": "worker_prep_plan004-sta-o1-vs-on_20260514T114424",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_plan004-sta-o1-vs-on_20260514T114424_result.json",
+    "occurrence": 1,
+    "bytes": 2360,
+    "sha256": "351afae1169391a536b23b760d095cabc4f802dac5477279f82904b0d0d18f30"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All verification complete. Here's the summary:\n\n---\n\n## plan004 代码就绪状态: **READY**\n\n### 验证结果\n\n| 检查项 | 状态 |\n|--------|------|\n| 配置文件 `configs/grpo_fast_isr_ablation.yaml` | 存在，参数正确 |\n| `reward_mode: execution_fast_sta` 代码路径 | train_grpo.py:211 → `fast_sta_reward()` |\n| `fast_sta_reward` (src/sta/reward.py:157) | 调用 `fast_isr_fol` (O(1) binary ISR) |\n| `fast_isr_fol` (src/sta/isr.py:100) | 存在 |\n| 数据文件 `data/train_500_seed42.jsonl` | 存在 (C001 ✓) |\n| `save_total_limit=1`, `log_completions=False` | 已设置 (C003 ✓) |\n| 输出目录冲突 | 无，目录不存在 |\n| 磁盘空间 | 199G 可用，充足 |\n\n### GPU 状态\n\n两张 RTX PRO 6000 (96GB) 都在使用中：\n- GPU 0: 96.6G/97.9G used (98% util) — 满载\n- GPU 1: 49.3G/97.9G used (100% util) — 正在训练\n\n**当前无可用 GPU，需等释放。**\n\n### 提交命令\n\n```bash\ncd /root/solver-trace-ablation && \\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\nexport CUDA_VISIBLE_DEVICES=<GPU_ID> && \\\nnohup python scripts/train_grpo.py \\\n  --config configs/grpo_fast_isr_ablation.yaml \\\n  > /root/autodl-tmp/outputs/plan004_fast_isr_s42.log 2>&1 &\n```\n\n配置 YAML 已包含所有参数：\n- `reward_mode: execution_fast_sta` (O(1) binary ISR)\n- `num_steps: 500`, `seed: 42`, `num_generations: 8` (K=8)\n- `exec_weight: 0.5`, `sta_weight: 0.5`\n- `output_dir: /root/autodl-tmp/outputs/plan004_fast_isr_ablation_s42`\n- `wandb_run: plan004_fast_isr_s42`\n\n### 预计 GPU 时间\n\n500 步，K=8，参照同配置实验（plan001/plan005 等 500 步约 3-5 小时），预计 **3-5 小时**。O(1) ISR 比 O(N) 快，可能偏下限。\n\n### 对比实验说明\n\n| 实验 | reward_mode | ISR 类型 | 步数 | 作用 |\n|------|------------|---------|------|------|\n| **plan004** (本次) | `execution_fast_sta` | O(1) binary | 500 | 验证 O(1) ISR 在长训练下无效 |\n| plan001-exec-only-s42 | `execution_only` | 无 | 500 | baseline，无 STA 信号 |\n| plan005-sta-low-s42 | `execution_sta` | O(N) continuous | 500 | full STA，预期优于 plan004 |\n\nplan004 的预期结果：性能接近 exec-only（plan001），显著弱于 full STA（plan005），证明 O(1) binary ISR 信号不足以驱动学习。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-plan004-sta-o1-vs-on.md"
+}

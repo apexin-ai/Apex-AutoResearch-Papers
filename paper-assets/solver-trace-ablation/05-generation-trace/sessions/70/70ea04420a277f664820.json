@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "70ea04420a277f664820",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "monitoring running experiments check",
+  "task_key": "worker_monitoring_running-experiments-check_20260516T060244",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitoring_running-experiments-check_20260516T060244_result.json",
+    "occurrence": 1,
+    "bytes": 898,
+    "sha256": "9bdbdd26d4982d635829c711602396182150a593ca7f223823846ff57e10c234"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验均正常运行。汇总：\n\n## plan018-additive-random-b01-s45-r3\n- **状态**: 运行中，PID 688887，GPU 0 (79538 MiB)\n- **进度**: step 30 / 500 (6%)\n- **最新指标** (step 30): prove_rate=0.5, isr_mean=0.29, random_mean=0.56\n- **启动时间**: 13:57，当前 step 间隔 ~12s\n- **预估剩余**: ~94 min（470 steps × ~12s/step）\n\n## sweep-isr-b02-s44\n- **状态**: 运行中，PID 688219，GPU 1 (80318 MiB)\n- **进度**: step 34 / 500 (6.8%)\n- **最新指标** (step 34): prove_rate=0.0 (波动中), isr_mean=0.0, β=0.2\n- **启动时间**: 13:54，当前 step 间隔 ~12s\n- **预估剩余**: ~93 min（466 steps × ~12s/step）\n\n## 磁盘\n- `/root/autodl-tmp`: 197G/250G used (54G free) — 上次因磁盘满崩溃，当前余量可支撑完成（checkpoint ~16GB × 2 = 32GB < 54GB）\n\n两个实验都在早期阶段，运行正常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitoring-running-experiments-check.md"
+}

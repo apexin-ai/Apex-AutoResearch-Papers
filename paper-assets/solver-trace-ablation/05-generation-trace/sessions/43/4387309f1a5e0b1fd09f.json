@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4387309f1a5e0b1fd09f",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "check exp1 training status",
+  "task_key": "worker_check_exp1-training-status_20260514T230823",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_exp1-training-status_20260514T230823_result.json",
+    "occurrence": 1,
+    "bytes": 976,
+    "sha256": "02f92ea8b6ef9ecb45bf4b04a620696d88d82cb6d141013156f34686f8ce1bc3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "### 状态报告\n\n**进程**\n- `exp1_isr_b03_s43` (PID 963576): **DEAD** — 训练完成（reward_log 到 step 500，full model weights 已保存）\n- `exp1_random_b03_s43` (PID 963653): **ALIVE** — etime 01:16:37, reward_log 到 step 339/500（约 68%）\n\n**GPU**\n- GPU 0: 0%, 0 MiB — 空闲（ISR 已完成释放）\n- GPU 1: 94%, 83123/97887 MiB — Random 训练中\n\n**Checkpoints/Output**\n- ISR: 完整 model-{1..4}-of-4.safetensors + checkpoint-500/trainer_state.json + reward_log.jsonl（step 500 完整）\n- Random: 仅 checkpoint-300/trainer_state.json + reward_log.jsonl（运行中，下一个保存点 checkpoint-400）\n- 无独立 eval_*.json 文件\n\n**磁盘**\n- /root/autodl-tmp: 150G/250G, **60%** — 健康\n\n**tmux**: 工具限制（read-only 模式禁止 tmux 命令），无法直接列出 session\n\n**ETA**: Random 当前 step 339，按 ISR 完成节奏（500 步约 1h17min），剩余 161 步约 ~33 分钟完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp1-training-status.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "37c3c15aa833d3ab53af",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analysis evidence table d051 final",
+  "task_key": "worker_analysis_evidence-table-d051-final_20260514T161117",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_evidence-table-d051-final_20260514T161117_result.json",
+    "occurrence": 1,
+    "bytes": 464,
+    "sha256": "9187daa02d23377e1df03e0f4811534a192c0f8df45a96bcb3c877beb98d4e69"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。三张表保存在 `artifacts/evidence_tables_d051.md`，已注册为 `art_20260514_341e49`。\n\n数据缺口：\n- **plan001-s43** eval 用了 sampling T=0.7 而非 eval_sta.py，ISR=0 不可比\n- **plan018-s43** 仍在训练，Random β=0.1 只有 2-seed interim\n- **plan006-prolog s43/s44** 训练完成待 eval\n- plan001-s42、plan016、plan002-b03、plan017 缺 hacking taxonomy 细分数据（H7/H1/Genuine），表 2 中留空"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-evidence-table-d051-final.md"
+}

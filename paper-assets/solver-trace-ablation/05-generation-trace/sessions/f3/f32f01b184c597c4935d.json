@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f32f01b184c597c4935d",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_15_1778894718.md",
+  "task_key": "loop_15_1778894718",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_15_1778894718.md",
+    "occurrence": 1,
+    "bytes": 4349,
+    "sha256": "31f4dbca8c3b8e454de8e0d75192be6ccebe82d0fb3a6b5432d949d49121db7d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 15\nreason: idle_timeout\nupdated: '2026-05-16T01:25:13+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：仅 `westd-39279:cuda:0` 和 `westd-39279:cuda:1`，禁止使用其他 GPU\n- D095 Narrative A 已批准生效——所有 paper 内容必须与 D095 一致，不可回退旧 framing\n- genuine rate ISR 6.06% vs Random 9.54%，p=0.182 **不显著**——禁止 claim genuine rate 有显著差异\n- H7a 是 GRPO 通用 seed-dependent 现象，**不是 ISR 独有**——写论文极易滑向旧 framing \"H7 is ISR-specific\"（已来回修正 8 次 D087-D094）\n- Random H7 pooled 13.7% 由 s43-r3 单 seed 贡献（38.3%），s42/s44-r2 为 0%——论文必须同时报 per-seed 和 pooled\n- D051 premise-count-matched ISR 优势仅 1.06x，2.4x 已作废\n- EMNLP 主体 ≤8 页硬限制\n- DDL: 2026-05-25 ARR 提交（剩 9 天）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：`westd-39279`，2 × RTX PRO 6000 96GB，2/2 空闲\n- 工作目录：`/root/solver-trace-ablation`\n- Python/conda：服务器使用 miniconda（`/root/miniconda3/bin/python`），激活方式 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型/数据：均在服务器本地（具体路径需 SSH 确认，之前实验均在 westd-39279 完成）\n- W&B：项目内实验有 wandb 记录\n- 活跃进程：无。0 个 cron，0 个 Worker，0 个 RUNNING 实验\n- 论文 TeX 源码：`projects/solver-trace-ablation/paper/` 目录（main.tex + 各章节 .tex），已编译 19 页 PDF（8 页正文 + 附录），0 error\n\n### 3. 📊 当前状态\n**所有 86 个实验已完成**（success 26 / negative 28 / failed 26），无 RUNNING/PREPARING。\n\n已完成的审查清单：\n- ✅ 引用审计 30/30 真实\n- ✅ 一致性检查 0 critical / 0 warning\n- ✅ 编译 0 error\n- ✅ 主体 ≤8 页\n- ✅ 页数缩减完成\n- ✅ Checklist 验证完成\n- ✅ citation-fix 完成\n- ✅ PDF 全文视觉审查完成（修复 Table 4/5 重叠 + Table 8 超宽）\n- ✅ Provenance 36/36\n- ✅ D095 Narrative A paper_framing.md 全文改写完成\n- ✅ TeX 全量数据同步\n\n**等待中**：无 Worker 回调、无 Cron、无 Director 决策待处理。\n\n**剩余工作**：report.md 标注 \"最终润色 + 提交准备\" 为唯一未完成项。ROADMAP 也标注 \"Paper Agent 启动全文写作\" 和 \"TeX 全量数据同步\" 为待办（但 report.md 显示 TeX 同步已完成，ROADMAP 可能未及时更新）。\n\n### 4. 📋 待办（条件触发式）\n- Director 说\"提交\" → 执行最终 compile + 生成 submission zip（附录、supplementary materials）\n- Director 说\"润色\" → spawn Writer Worker 做 language polish pass（逐章节）\n- Director 要求新实验 → 注意所有 86 实验已完成，GPU 2/2 空闲，可立即启动\n- 收到 ARR 投稿系统要求（author response form / checklist 格式等）→ spawn Worker 按模板填写\n- ROADMAP \"Paper Agent 启动全文写作\" 条目实际状态需确认——TeX 数据同步已完成，但全文写作流程可能指的是最终润色 pass\n\n### 5. 🎯 战略上下文\n**项目核心结论**：STA/ISR 是 GRPO neurosymbolic formalizer 的诊断工具 + Goodhart's Law 案例研究。三条 Claim 全部闭环：\n- Claim 1: ISR 崩塌轨迹 0.6423→0.1324→0.0027 量化 reward hacking\n- Claim 2: ISR 作为 reward 展现 meta-level Goodhart（D095 Narrative A：H7a GRPO-general + H7b ISR-specific，genuine p=0.182 n.s.）\n- Claim 3: Prolog 跨逻辑泛化 3/3 gaming\n\n**决策链**：D087→D088→D089→D090→D091→D092→D093→D094→D095 是一条密集修正链（H7 归属从 ISR-specific → GRPO 通用 → seed-dependent → 最终 Narrative A 两层结构）。这段历史是最容易出错的地方——新 session 切勿凭印象写 H7 相关内容，必须对照 D095 和 paper_framing.md。\n\n**最易判断错的事**：\n1. H7 的归属——反复修正 8 次，最终定论是 H7a=GRPO-general（seed-dependent），H7b=ISR-specific。不要简化。\n2. genuine rate 差异——数值上 ISR 略低（6.06% vs 9.54%）但 p=0.182 不显著，**不可 claim**。\n3. Random H7 pooled 数字（13.7%）掩盖了极端 seed 方差（0%, 38.3%, 0%）——汇报时必须拆开。\n\n**项目现在处于提交前最后冲刺阶段**，实验全部完成，审查全部通过，等 Director 决定润色/提交节奏。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-15-1778894718.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "38d279177be00954cdb6",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "fix 8b k2 dual submit",
+  "task_key": "worker_fix_8b-k2-dual-submit_20260516T102920",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_8b-k2-dual-submit_20260516T102920_result.json",
+    "occurrence": 1,
+    "bytes": 406,
+    "sha256": "28742defd10f7d88dfc49dbcac7f0cca2d3c4879d8d2919a94e96ac7d41aa05c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "双卡训练成功启动，汇报如下：\n\n| GPU | 任务 | 显存占用 | 利用率 | 状态 |\n|-----|------|----------|--------|------|\n| cuda:0 | exec-only | 86,295 / 97,887 MiB (88%) | 94% | step 1/500 完成，~28.6s/it |\n| cuda:1 | ISR β=0.1 | 83,707 / 97,887 MiB (85%) | 93% | step 1/500 完成，~28.5s/it |\n\nK=2 未 OOM，训练正常进行。预计总时长约 4 小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-8b-k2-dual-submit.md"
+}

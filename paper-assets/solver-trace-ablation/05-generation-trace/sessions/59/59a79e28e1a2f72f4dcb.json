@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "59a79e28e1a2f72f4dcb",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "review reference audit",
+  "task_key": "worker_review_reference-audit_20260514T214406",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_review_reference-audit_20260514T214406_result.json",
+    "occurrence": 1,
+    "bytes": 975,
+    "sha256": "ce35e8e9d13614b562c23ec865bf4b888d1cb15fbcbd560a23df5517b5817380"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成，报告写入 `artifacts/reference_audit_report.md`。\n\n**核心结论**：\n- **0 条虚假引用**——所有 33 条都指向真实可查的文献，9 条 2025-2026 高风险 arXiv ID 全部验证为真。\n- **4 条需要修正元信息**（按严重程度）：\n  1. `rlsf` (arXiv:2405.16661)：标题和作者**全错**。应为 \"RLSF: Fine-tuning LLMs via Symbolic Feedback\"，作者是 Piyush Jha 等（不是 Abhinav Jha / Shikhar Murty / Zico Kolter）。\n  2. `kwa-catastrophic-goodhart`：前两位作者名字错。应为 **Thomas Kwa**（不是 Tat-Thang Kwa）和 **Drake Thomas**（不是 Rachel Thomas）。\n  3. `spurious-rewards` (arXiv:2506.10947)：第一作者错。应为 **Rulin Shao**（不是 Ruixin Yang）。\n  4. `rubric-grpo`：标题轻微差异（\"Reinforcement Learning\" vs \"RL\"），非阻塞。\n- **引用图干净**：33 条 cite key 与 33 条 bib 条目完全匹配，无缺失也无未使用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/review-reference-audit-copy-2.md"
+}

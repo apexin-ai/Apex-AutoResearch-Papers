@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c73d7fd71e1ea67d3c2b",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code llama crossmodel prep",
+  "task_key": "worker_code_llama-crossmodel-prep_20260521T073708",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_llama-crossmodel-prep_20260521T073708_result.json",
+    "occurrence": 1,
+    "bytes": 2905,
+    "sha256": "8a41b7d5c8e551c36e427abddb3e64c39fcd71325311d8544c090e9f601d57a3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All work complete. Here's the full report:\n\n---\n\n## D165 诊断报告\n\n### 1. 训练数据状态\n训练数据 `train_500_seed42.jsonl` 含 Unicode FOL（∀∃→∧∨¬⊕）。但这**不是**失败原因——`Prover9Solver._normalize_fol()` 已有完整的 Unicode→ASCII 映射。\n\n### 2. D158 失败根因\n**LLaMA `<|eot_id|>` (128009) 未被加入 eos_token_id 列表。**\n\nLLaMA 3 chat template 用 `<|eot_id|>` 标记 turn 结束，但 `generation_config.json` 只有 `eos_token_id: [128001]`（`<|end_of_text|>`）。`model.generate()` 不会在 128009 处停止 → 生成无限循环 → 输出变成 `\"Conclusion: Advocate(mary)assistant\\n\\nUse standard FOL notation...\"` 这样的 garbage → parser 提取到污染的公式 → Prover9 全部失败。\n\n### 3. 修复清单\n\n| 文件 | 修改 |\n|------|------|\n| `scripts/eval_sta.py` | 新增 `_get_eos_token_ids()`: 自动检测 `<|eot_id|>` 加入 eos 列表; 新增 `_clean_generation()`: 截断 role marker 残留; `generate_formalization()` 传递正确 eos_token_id |\n| `scripts/train_grpo.py` | GRPOTrainer 创建后 patch `generation_config.eos_token_id` |\n| `scripts/train_sft.py` | 保存模型时更新 `generation_config.json` 加入 `<|eot_id|>` |\n\n所有修改对 Qwen 无影响（Qwen 没有 `<|eot_id|>` token，检测跳过）。\n\n### 4. SFT Gate 结果：**通过**\n\n| 指标 | D158 旧 eval | D165 修复后 |\n|------|-------------|------------|\n| Prove Rate | 0/100 (0%) | **16/100 (16%)** |\n| Mean ISR | 0.0 | 0.0879 |\n| Proved-only ISR | — | 0.5492 |\n\n- `true` 类: 15/34 proved (44%)\n- `false` 类: 0/25\n- `unknown` 类: 1/41\n- D158 SFT checkpoint 可直接用作 GRPO warmstart，无需重训\n\n### 5. GRPO 训练命令（3 seeds, ready to submit）\n\n**前提：需先清理磁盘**（当前仅 9.3G 空闲）\n```bash\n# 释放 18G：删除 D158 SFT 的 checkpoint 副本（最终模型在父目录已保存）\nrm -rf /root/autodl-tmp/outputs/d158_llama_sft_s42/checkpoint-189/\n```\n\n**Seed 42:**\n```bash\nexport CUDA_VISIBLE_DEVICES=0\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\ncd /root/solver-trace-ablation\npython scripts/train_grpo.py --config configs/d165_llama_exec_s42.yaml\n```\n\n**Seed 43:**\n```bash\nexport CUDA_VISIBLE_DEVICES=0\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\ncd /root/solver-trace-ablation\npython scripts/train_grpo.py --config configs/d165_llama_exec_s43.yaml\n```\n\n**Seed 44:**\n```bash\nexport CUDA_VISIBLE_DEVICES=0\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\ncd /root/solver-trace-ablation\npython scripts/train_grpo.py --config configs/d165_llama_exec_s44.yaml\n```\n\n每个 run 约需 12-15G 磁盘（save_total_limit=1），需串行执行（一张 GPU）。三个配置已写入 `configs/d165_llama_exec_s{42,43,44}.yaml`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-llama-crossmodel-prep.md"
+}

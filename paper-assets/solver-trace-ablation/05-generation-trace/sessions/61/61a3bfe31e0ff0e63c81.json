@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "61a3bfe31e0ff0e63c81",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "pipeline s46 8b k8 full v2",
+  "task_key": "worker_pipeline_s46-8b-k8-full-v2_20260522T034053",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_pipeline_s46-8b-k8-full-v2_20260522T034053_result.json",
+    "occurrence": 1,
+    "bytes": 761,
+    "sha256": "3a0076b2b7d9890d624e0dfd6f211274fdc8a665d312e3d5435f78764dd9b813"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**全流水线完成。** 8B K=8 s42 训练已确认运行中。\n\n---\n\n## 汇报\n\n### 1. s46 结果\n| 指标 | 值 |\n|------|-----|\n| Prove Rate | 15% (15/100) |\n| Mean ISR | 0.084 |\n| Proved-only ISR | 0.560 |\n| TS (H7) | 1 (6.7%) |\n| CE (H1) | 1 (6.7%) |\n| PG (H8) | 0 |\n| Genuine | 13/15 (86.7%) |\n| Conclusion | **negative** — seed-dependent non-convergence confirmed |\n\n### 2. 8B K=8 dry-run\n- **成功**，2 步无 OOM\n- K=8 保留\n- VRAM 峰值：~54 GB / 98 GB（充裕）\n- Step time：~15s/step\n\n### 3. 8B s42 训练启动确认\n- PID: 969681（python 进程）\n- tmux session: `d154-8b-exec-s42-k8`\n- GPU: cuda:0, 54046 MiB 占用\n- 已在 step 4/500，ETA ~2h\n- Registry: `d154-8b-exec-s42-k8` (RUNNING)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/pipeline-s46-8b-k8-full-v2.md"
+}

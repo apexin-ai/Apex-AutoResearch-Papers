@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d0c5b5df8b957c654e5b",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "figure fig3 hacking composition",
+  "task_key": "worker_figure_fig3-hacking-composition_20260514T192407",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_fig3-hacking-composition_20260514T192407_result.json",
+    "occurrence": 1,
+    "bytes": 52,
+    "sha256": "5e5ffac3366fdbfff03bc7c1dbfbcd6b1f5c04cffc516d14732c350f718e1c08"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已注册为 `art_20260514_908e7b`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-fig3-hacking-composition.md"
+}

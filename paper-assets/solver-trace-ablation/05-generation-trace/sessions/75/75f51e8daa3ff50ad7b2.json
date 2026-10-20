@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "75f51e8daa3ff50ad7b2",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analysis plan009 sft baseline s43 1000",
+  "task_key": "worker_analysis_plan009-sft-baseline-s43-1000_20260515T131712",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan009-sft-baseline-s43-1000_20260515T131712_result.json",
+    "occurrence": 1,
+    "bytes": 562,
+    "sha256": "62019ef05520293394d85dde6b023406ad6b673a366e5c859fd20ef52cc92a17"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已全部更新，status=DONE, conclusion=success。\n\n**总结：plan009-sft-baseline-s43-1000 完成**\n\n| 指标 | s43 | s42 |\n|------|-----|-----|\n| prove_rate | 11% | 13% |\n| mean_isr | 0.0699 | 0.0738 |\n| final_loss | 0.0167 | 0.0168 |\n| runtime | 1585s | 1415s |\n| proved_only_isr | 0.6352 | — |\n\ns43 与 s42 高度一致，SFT baseline 跨 seed 稳定。只有 answer_type=true 的题能 prove（11/34=32.4%），false 和 unknown 全部 0/66，符合 SFT 预期。GPU 0 已空闲（s44 训练仍在 GPU 1 运行）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan009-sft-baseline-s43-1000.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2b5ae27e9416e9e53f34",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops plan006 prolog training dryrun",
+  "task_key": "worker_ops_plan006-prolog-training-dryrun_20260514T065808",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_plan006-prolog-training-dryrun_20260514T065808_result.json",
+    "occurrence": 1,
+    "bytes": 4705,
+    "sha256": "26326ef152c8697c7874b35c3cce5e1d0f9000a441331e38179ab3826fe26c0c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有数据收集完毕。以下是完整分析报告。\n\n---\n\n## Phase 1: GPU 状态与实验进度\n\n| GPU | 实验 | PID | 显存 | 进度 | 预估剩余 |\n|-----|------|-----|------|------|----------|\n| cuda:0 | plan018 (additive_random) | 377683 | 80355/97887 MiB | step 12/500 (2.4%) | ~81 min (~10s/step) |\n| cuda:1 | plan016 (extended-1000) | 263273 | 80355/97887 MiB | step 532/1000 (53.2%) | ~47 min (~6s/step) |\n\n**结论**：cuda:1 (plan016) 约 47 分钟后释放，优先用 cuda:1 跑 dry-run。\n\n---\n\n## Phase 2: Prolog 配置参数摘要\n\n```yaml\n# configs/grpo_prolog_exec_only.yaml\nmodel_path: Qwen3-4B\ndata_path: data/train_500_seed42.jsonl   # C001 ✓\nlogic_type: prolog\nreward_mode: execution_only\nsolver: prolog                           # swipl at /usr/bin/swipl ✓\nK (num_generations): 8\nper_device_batch_size: 4\ngradient_accumulation_steps: 2           # effective batch = 8 prompts\nmax_completion_length: 512\nlearning_rate: 1.0e-6\nexec_weight: 1.0 / sta_weight: 0.0\nnum_steps: 100\nwarmup: 未配置（TRL 默认 = 0）\n```\n\n---\n\n## Phase 3: 冷启动风险评估\n\n### Reward 路径分析\n\n`execution_only` + `logic_type=prolog` 的 reward 路径：\n1. `prolog_sta_reward()` 被调用，`execution_weight=1.0, sta_weight=0.0`\n2. `parse_prolog_formalization(text)` 提取 clauses + query\n3. `solver.prove(clauses, query)` → swipl 执行\n4. **reward = 1.0 (proved) 或 0.0 (failed)**，纯二值信号，无部分奖励\n\n当 prove 全部失败时：K=8 个 completion 全部 reward=0 → std=0 → GRPO advantage 全零 → **gradient=0, loss=0**（日志中表现为 `frac_reward_zero_std=1.0`）。\n\n### FOL vs Prolog 初始 PR 对比\n\n参考 plan018（FOL, additive_random）前 10 步的 prove_rate：\n- 非零: steps 3,5,7,8,9,11,12 → **7/10 steps 有信号**\n- 平均 PR ≈ 20%（per-sample）\n\nProlog 预期更低，原因：\n- Prolog 语法更严格（小写 atoms, 大写 Variables, `.` 结尾）\n- 解析器要求特定格式（`Facts/Rules:` section 或 `?-` query prefix）\n- ProofWriter 数据集的 Prolog 形式化在预训练数据中罕见\n\n**保守估计 Prolog 初始 PR ≈ 2-5%（per-sample）**\n\n### 定量：K=8 时零梯度 batch 比例\n\nP(batch 至少 1 个 proved) = 1 - (1-p)^K\n\n| Per-sample PR | P(≥1 in K=8) | 零梯度 batch 比例 | 有效学习速率系数 |\n|:---:|:---:|:---:|:---:|\n| 2% | 15% | **85%** | ×0.15 |\n| 5% | 34% | **66%** | ×0.34 |\n| 10% | 57% | 43% | ×0.57 |\n| 20% | 83% | 17% | ×0.83 |\n\n**若初始 PR=2%**：每 step 4 个 prompt，期望仅 0.6 个有 ≥1 success → 极度稀疏梯度。100 步中有效步数仅 ~15 步。\n\n**若初始 PR=5%**：期望 1.36 个 prompt 有信号 → 仍然很稀疏，但不至于完全停滞。100 步中有效步数 ~34 步。\n\n### 死区风险\n\n- 低 PR → 多数 batch 零梯度 → 无改进 → PR 不涨 → **正反馈死循环**\n- 纯 binary reward（0/1）无部分奖励，格式正确但逻辑错误得不到任何信号\n- 无 warmup，第一步就是全 LR=1e-6，偶发的非零梯度可能造成参数跳跃\n\n**风险等级：中高**\n\n---\n\n## Phase 4: 对策方案（按优先级）\n\n| 优先级 | 方案 | 效果 | 代价 |\n|:---:|------|------|------|\n| **P0** | 先用 base model 跑 inference-only eval（5-10 题 × K=8），测实际初始 PR 和 parse rate | 定量确认风险，避免盲跑 | CPU 可做，~2min |\n| **P1** | K=16 | PR=5% 时有效 batch 从 34%→56%；PR=2% 时从 15%→28% | 每步耗时 ×2，显存可能增加 |\n| **P2** | 添加 `warmup_ratio=0.1`（10 步） | 防止早期稀疏梯度造成参数跳跃 | 几乎无代价 |\n| **P3** | 降 LR 至 5e-7 | 稀疏信号下减少单步更新幅度 | 可能需要更多 steps |\n| **P4** | 格式奖励（parseable Prolog +0.1） | 提供部分信号，缓解全零问题 | 改变实验设计 |\n| **P5** | 两阶段：SFT format → GRPO | 根本解决格式问题 | 大工程，需要标注数据 |\n\n---\n\n## Dry-run 命令（GPU 释放后执行）\n\n```bash\n# ===== plan006: Prolog 3-step dry-run =====\n# 前置：确认 cuda:1 已释放 (plan016 完成)\nexport CUDA_VISIBLE_DEVICES=1\ncd /root/solver-trace-ablation\npython scripts/train_grpo.py \\\n  --config configs/grpo_prolog_exec_only.yaml \\\n  --num_steps 3 \\\n  --output_dir /tmp/plan006_dryrun \\\n  --no_wandb\n```\n\n验证 checklist：\n- [ ] 训练 loop 无报错（parse/solver/GRPO 全通）\n- [ ] swipl 调用正常（无 \"swipl not found\"）\n- [ ] 3 步 REWARD_LOG 正常输出\n- [ ] 观察初始 prove_rate 和 parse_rate → 定量校准冷启动风险\n- [ ] nvidia-smi 确认只占 cuda:1"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-plan006-prolog-training-dryrun.md"
+}

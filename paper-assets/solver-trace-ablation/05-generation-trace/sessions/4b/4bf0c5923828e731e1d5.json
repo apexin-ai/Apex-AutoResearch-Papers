@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4bf0c5923828e731e1d5",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "fix paper figures r2",
+  "task_key": "worker_fix_paper-figures-r2_20260514T232946",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_paper-figures-r2_20260514T232946_result.json",
+    "occurrence": 1,
+    "bytes": 622,
+    "sha256": "4db98e954ce7956daea874d8526854584f34537ff4d10d44f4ceeadf30302b3f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**修复结果：**\n\n| 图表 | 修改 | 验证 |\n|------|------|------|\n| **fig1** | panel (b) 标题改为 `Formalization\\nLeave-One-Out Ablation`（fontsize 9→8, pad 6→8） | 39744 bytes |\n| **fig2** | 新增底部堆叠柱状图：Non-hacking/H1/H7 三色（Step 100: H7=28%, NH=69%；Step 500: H1=87%；Step 1000: H1=100%） | 16776→25052 bytes（增加了底部 panel） |\n| **fig3/fig4** | 图例已确认全部为 \"Non-hacking\"（无 \"Genuine\"），重新生成 | 大小不变 |\n\nfig2 的 `tight_layout` warning 是因为 twinx 双轴，不影响输出质量。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-paper-figures-r2.md"
+}

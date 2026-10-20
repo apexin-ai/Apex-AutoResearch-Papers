@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "3135e031d11e6229b71a",
+  "project": "solver-trace-ablation",
+  "kind": "worker",
+  "title": "analysis premise count confound",
+  "task_key": "worker_analysis_premise-count-confound_20260522T154537",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_premise-count-confound_20260522T154537.log",
+    "occurrence": 1,
+    "bytes": 658129,
+    "sha256": "6f898d627698c1bae0d93debbf845e76fd7e1e4e6d0c78923a949c5e819f1e4c"
+  },
+  "statistics": {
+    "messages": 280,
+    "user_turns": 1,
+    "tool_calls": 98,
+    "roles": {
+      "log": 1,
+      "system": 39,
+      "record": 1,
+      "assistant": 41,
+      "tool_call": 98,
+      "tool_result": 98,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 86,
+      "chunks": [
+        {
+          "path": "3135e031d11e6229b71a-part-0001.json",
+          "message_count": 86
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 194,
+      "chunks": [
+        {
+          "path": "3135e031d11e6229b71a-part-0001.json",
+          "message_count": 94
+        },
+        {
+          "path": "3135e031d11e6229b71a-part-0002.json",
+          "message_count": 100
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-premise-count-confound.md"
+}

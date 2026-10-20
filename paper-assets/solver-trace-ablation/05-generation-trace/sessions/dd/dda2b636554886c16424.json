@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dda2b636554886c16424",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analyze sweep b005 s43 retry",
+  "task_key": "worker_analyze_sweep-b005-s43-retry_20260517T094735",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_sweep-b005-s43-retry_20260517T094735_result.json",
+    "occurrence": 1,
+    "bytes": 1170,
+    "sha256": "74e7c06f76cb3217091f58ca73df2ef0ece44cc51d005b1679683e10b622c0a2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results are in. Here's the summary:\n\n---\n\n## sweep-isr-b005-s43: **Training completed, eval done**\n\n| Metric | Value |\n|--------|-------|\n| **Prove Rate** | 99.0% (99/100) |\n| **Mean ISR** | 0.5517 ± 0.1597 |\n| **Median ISR** | 0.5000 |\n| **Proved-only ISR** | 0.5572 |\n| **Checkpoint** | `/root/autodl-tmp/outputs/sweep_isr_b005_s43/` (final model + checkpoint-500) |\n| **Eval JSON** | `/root/autodl-tmp/outputs/sweep_isr_b005_s43/eval_results.json` |\n\nTraining log final stats: prove_rate=0.752, mean_isr=0.364 (training set). Eval on test set shows very high prove rate (99%) with moderate ISR collapse (median 0.5).\n\n## sweep-random-b005-s43: **Still training**\n\n- Currently at step **223/500** (~45%)\n- ETA: ~68 minutes (~19:10 server time)\n- Running on GPU 1\n- Has checkpoint-200 saved\n\n## Disk status\n\n`/root/autodl-tmp`: **85G/250G used (34%)** — healthy, no risk of disk-full failure this time.\n\n---\n\nThe ISR b005 s43 result is notable: 99% prove rate but ISR stays around 0.5 (not collapsing to near-zero like stronger ISR betas). The random experiment needs ~1 more hour. Want me to check back when it finishes?"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-sweep-b005-s43-retry.md"
+}

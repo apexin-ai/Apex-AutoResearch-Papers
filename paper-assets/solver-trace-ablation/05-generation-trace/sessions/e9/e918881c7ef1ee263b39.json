@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e918881c7ef1ee263b39",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analysis isr s44 fn evidence",
+  "task_key": "worker_analysis_isr-s44-fn-evidence_20260515T141051",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_isr-s44-fn-evidence_20260515T141051_result.json",
+    "occurrence": 1,
+    "bytes": 1193,
+    "sha256": "b31b0aab71967ef15375a1628019e46c91686cf9dd7513837aaf09e8e75d044b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已保存。结果总结：\n\n**`/root/autodl-tmp/outputs/isr_s44_fn_evidence.json`**\n\n- **数据源**: `/root/runs/solver-trace-ablation/plan002-additive-b01-s44-eval.json`（eval 原始数据仍存在于 runs 目录）\n- **89/89 proved 样本全部 n_prem=1**（所有 proved 都是 tautological）\n- **77 exact match**（premise == conclusion，原始 H7 检测命中）\n- **12 FN**（premise ≠ conclusion，H7 检测遗漏）\n\n12 个 FN 的 mismatch 类型：\n| 类型 | 数量 | 说明 |\n|------|------|------|\n| `vacuous_quantifier_wrapping` | 11 | 模型生成 `∃x(P(x))` 作为 premise，但 conclusion 变成 `∃x(∃y(P(y)))` — 添加冗余量词 + 变量重命名。逻辑等价但文本不同 |\n| `structural_simplification` | 1 | folio_304: conclusion 是 premise 的简化子结构 |\n\n这不是简单的 whitespace/case 差异，而是**逻辑等价的结构变体** — 模型在生成 premise 和 conclusion 时使用了略微不同的量词结构，H7 文本匹配器无法识别这种等价性。ISR 也不全是 1.0（多数为 0.8），因为 conclusion 拆分出的 sub-components 中有些因量词差异被标记为 necessary。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-isr-s44-fn-evidence.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "921b516c935150d0f735",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_4_1778751961.md",
+  "task_key": "loop_4_1778751961",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1778751961.md",
+    "occurrence": 1,
+    "bytes": 4109,
+    "sha256": "1fb2ac660af38221bec1790890f661eb0efd8c4d669c581a335767050795a6fd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-14T09:42:36+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单只有 westd-39279:cuda:0 和 cuda:1，GPU 编号脚本内始终从 0 开始（框架注入 CUDA_VISIBLE_DEVICES）\n- 所有命令必须 `bash -c \"export CUDA_VISIBLE_DEVICES=N && ...\"`，inline 赋值子进程看不到（plan013 事故教训）\n- submit_training_job 必须 `bash -c` 包装（tmux 用 sh 不认 source）\n- 训练日志 ISR 是 binary approximation (_fast_fn)，**禁止用于论文或跨实验对比**，只有 eval_sta.py 的 ISR 是 full STA\n- ISR-as-reward 所有路线已全面失败，论文定位为**诊断工具**，不要再跑 ISR reward 实验\n- 磁盘紧张：/root/autodl-tmp 之前仅剩 ~6.4G，提交新实验前必须确认空间（disk-check Worker 正在跑）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-39279，工作目录 /root/solver-trace-ablation\n- Python：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`（conda 环境，非 venv）\n- 模型：/root/autodl-tmp/models/Qwen3-4B（7.6GB，ModelScope 下载）\n- 数据：训练 /root/solver-trace-ablation/data/train_500_seed42.jsonl (500条)；eval /root/solver-trace-ablation/data/proofwriter_fol_100.jsonl (100条)\n- Checkpoints/outputs 目录：/root/autodl-tmp/outputs/\n- Solvers：Prover9 (LADR 编译), SWI-Prolog 8.4.2, Z3 4.16.0.0\n- GPU：2× RTX PRO 6000 Blackwell 94GB，CUDA 12.8，PyTorch 2.10.0+cu128\n- 活跃进程：plan016-extended-1000-s42 (PID 263268, cuda:1, tmux, 1000步 exec-only)\n\n### 3. 📊 当前状态\n**刚做完**：收到 plan002-additive-b01-s42 (additive ISR β=0.1) CRON 完成回调，已派 2 个 Worker：\n1. `analysis:plan002-additive-b01-s42` — SSH 读日志 + 运行 eval_sta.py，等回调\n2. `maintenance:disk-check-plan006-prep` — 磁盘空间检查 + plan006 Prolog 就绪确认，等回调\n\n**Registry 状态**：\n- ANALYZING: plan002-additive-b01-s42（等 Worker 分析完 → 更新 conclusion + metrics → 推 DONE）\n- RUNNING: plan016-extended-1000-s42（1000步 exec-only，cuda:1，预计还需 1-2h）\n- 其余 29 个全 DONE（success 6, negative 9, failed 14）\n\n**等待中**：\n- 2 个 Worker 回调（分析 + 磁盘检查）\n- plan016 cron 回调（训练完成时自动触发）\n- Director 无待决决策\n\n### 4. 📋 待办\n- Worker analysis 回调 → 解析 eval metrics → update_registry(conclusion=negative/success) + 更新 report.md → 向 Director 完整汇报（含对比表 + 反思）\n- Worker disk-check 回调 → 如磁盘不足，建议 Director 批准清理旧 checkpoint（plan001_s43_r4 46G, plan001_s44 31G 优先）\n- plan002-b01 分析完 + 磁盘就绪 → cuda:0 启动 plan006 Prolog exec-only seed=42（D024 已批准，代码 dry-run 通过）\n- plan016 完成 → 同 on-experiment-done 流程：eval_sta.py + 分析 + registry + 汇报\n- plan006 需跑 3 seeds（s42/s43/s44），验证 hacking taxonomy 跨 logic type 泛化，这是 Main vs Findings 的关键数据\n\n### 5. 🎯 战略上下文\n- **核心结论链**：ISR-as-reward 全面失败（convex D010/additive D026/random D014）→ 论文转向 ISR 作为诊断工具（D023/D028 paper_framing 重写）\n- **核心 novelty**：\"diagnostic-only metric\" 范式——某些指标天然适合 post-hoc 诊断但不适合训练信号，文献空白（memory.md 有详细分析）\n- **关键证据**：ISR + component count 联合诊断能区分 genuine proof vs tautological hack，仅 prove_rate 无法区分\n- **plan002-b01 预期 negative**：β=0.3 已经 PR=0.18，β=0.1 信号更弱，大概率更差或相当。这是关闭 additive 路线的最后确认\n- **易错点**：plan013-r4 eval ISR=0.535 看似接近 GT (0.559)，但这是 2-component tautology artifact，不是 genuine quality——下一个\"你\"写论文时千万别搞混\n- **DDL**：2026-05-25（剩 11 天），时间充裕但 plan006 3-seed 是论文关键，尽快启动\n- **写作约束 D027**：plan013 vs plan017 不是纯 additive vs convex 对照（公式结构+random影响方式两个变量），论文措辞需精确\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1778751961.md"
+}

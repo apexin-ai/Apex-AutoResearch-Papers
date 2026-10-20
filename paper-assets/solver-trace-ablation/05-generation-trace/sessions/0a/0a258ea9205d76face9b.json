@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0a258ea9205d76face9b",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code plan009 sft fix",
+  "task_key": "worker_code_plan009-sft-fix_20260514T111706",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan009-sft-fix_20260514T111706_result.json",
+    "occurrence": 1,
+    "bytes": 1551,
+    "sha256": "750ebfbc9ea13455856a5d84d6c70c05a883844294959ee657fc2a642b7b9c6f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两处修复均已正确应用。\n\n## 修改 diff\n\n**Fix 1 — device_map (line 160)**\n```diff\n-        device_map=\"auto\",\n+        device_map={\"\": 0},\n```\n`device_map={\"\": 0}` 将整个模型加载到 `CUDA_VISIBLE_DEVICES` 映射后的 `cuda:0`，不会跨卡。\n\n**Fix 2 — GPU 隔离 guard (lines 131-134)**\n```diff\n         logger.info(f\"Set CUDA_VISIBLE_DEVICES={args.gpu}\")\n+    elif \"CUDA_VISIBLE_DEVICES\" not in os.environ:\n+        logger.error(\"CUDA_VISIBLE_DEVICES not set and --gpu not specified. \"\n+                     \"Refusing to run without explicit GPU isolation (C002/C005).\")\n+        sys.exit(1)\n```\n如果既没传 `--gpu` 也没设环境变量，脚本直接拒绝启动。\n\n## Dry-run 跳过\n\n两张卡分别被 plan006 (81GB/97GB) 和 plan018-s43 (86GB/97GB) 占满，加载 Qwen3-4B (~8GB bf16) 会 OOM。不做 dry-run。\n\n## 重新提交命令模板\n\n```bash\nexport CUDA_VISIBLE_DEVICES=1 && \\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\ncd /root/solver-trace-ablation && \\\nnohup python3 scripts/train_sft.py \\\n  --model_path /root/autodl-tmp/models/Qwen3-4B \\\n  --data_path data/train_500_seed42.jsonl \\\n  --output_dir /root/autodl-tmp/outputs/plan009_sft_s42_r2 \\\n  --num_steps 500 \\\n  --seed 42 \\\n  --bf16 \\\n  --wandb_project solver-trace-ablation \\\n  --wandb_run plan009-sft-s42-r2 \\\n  > /root/autodl-tmp/outputs/plan009_sft_s42_r2/train.log 2>&1 &\n```\n\n等 cuda:1 上 plan018-s43 跑完后再提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan009-sft-fix.md"
+}

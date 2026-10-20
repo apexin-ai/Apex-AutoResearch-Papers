@@ -1,0 +1,365 @@
+{
+  "schema_version": "1.0",
+  "id": "8121b86a69c099a479c1",
+  "project": "solver-trace-ablation",
+  "kind": "conversation",
+  "title": "write h9 taxonomy update",
+  "task_key": "worker_write_h9-taxonomy-update_20260516T184906",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_write_h9-taxonomy-update_20260516T184906.jsonl",
+    "occurrence": 1,
+    "bytes": 18863,
+    "sha256": "49839e68321adf2dce9ba94e636e946c5a181fc618e628b50c3075cb3920204b"
+  },
+  "statistics": {
+    "messages": 17,
+    "user_turns": 0,
+    "tool_calls": 8,
+    "roles": {
+      "tool_call": 8,
+      "tool_result": 8,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T18:49:49.778733+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_h9-taxonomy-update_20260516T184906",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/method.tex"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T18:49:49.779314+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Method}\n2\t\\label{sec:method}\n3\t\n4\t\\begin{figure*}[t]\n5\t\\centering\n6\t\\includegraphics[width=0.92\\textwidth]{figures/fig1_sta_overview.pdf}\n7\t\\caption{Solver Trace Ablation (STA). (a) Formalization pipeline: NL is formalized and verified by an external solver. (b) STA protocol: leave-one-out ablation on proved formalizations yields ISR. (c) ISR as diagnostic vs.\\ as reward: the diagnostic becomes the optimization target, exhibiting Goodhart effects.}\n8\t\\label{fig:sta-overview}\n9\t\\end{figure*}\n10\t\n11\t\\subsection{Task and GRPO Training}\n12\t\\label{sec:task}\n13\t\n14\tGiven premises $P_1,\\ldots,P_k$ and conclusion $C$, the task is to produce a formal program $F=\\{c_1,\\ldots,c_n\\}$ verified by an external solver $S\\in\\{\\text{Prover9, SWI-Prolog}\\}$ (Figure~\\ref{fig:sta-overview}a).\n15\tWe train with Group Relative Policy Optimization (GRPO)~\\citep{deepseekmath} ($K{=}4$), where each rollout receives binary execution reward $r_{\\text{exec}}(x) = \\mathbf{1}[S(F_x){=}\\textit{proved}]$.\n16\tThis optimizes prove rate but provides no signal about \\emph{structural quality}: a formalization embedding the conclusion among its premises receives the same reward as a faithful derivation.\n17\tAll experiments draw from FOLIO~\\citep{folio}; the held-out evaluation file retains a legacy \\texttt{proofwriter\\_fol\\_*.jsonl} filename (from ProofWriter~\\citep{proofwriter}) but contains only FOLIO-derived examples.\n18\t\n19\t\\subsection{Solver Trace Ablation (STA)}\n20\t\\label{sec:sta}\n21\t\n22\tSTA tests whether each component of a proved formalization is individually necessary for proof success (Figure~\\ref{fig:sta-overview}b).\n23\tGiven a proved $x$ with $n$ components, STA constructs $n$ ablated variants $x\\setminus\\{c_i\\}$ and re-runs the solver (Algorithm~\\ref{alg:sta}).\n24\tA component is \\emph{necessary} if its removal causes proof failure.\n25\tWhat constitutes a component depends on the logic: premises in FOL, clauses or ground facts in Prolog.\n26\tLOO ablation itself is standard in mutation \n…[truncated 7796 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_h9-taxonomy-update_20260516T184906",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T18:49:49.779659+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_h9-taxonomy-update_20260516T184906",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/experiments.tex"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T18:49:49.780301+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\tWe evaluate STA along three axes: ISR as a diagnostic for reward hacking (\\S\\ref{sec:diagnostic}); ISR as a training reward across four dose levels, where it exhibits Goodhart effects (\\S\\ref{sec:goodhart}); and STA as a cross-logic protocol (\\S\\ref{sec:crosslogic}).\n5\tCross-scale evidence from Qwen3-1.7B reveals a novel gaming mode (\\S\\ref{sec:crossscale}).\n6\tA hacking taxonomy synthesizes the modes observed across conditions (\\S\\ref{sec:taxonomy}).\n7\t\n8\t\\subsection{Setup}\\label{sec:setup}\n9\t\n10\tWe train Qwen3-4B~\\citep{qwen3} with GRPO~\\citep{deepseekmath} ($K{=}4$, lr $10^{-6}$, 500 steps default, 1000 where noted) over seeds $\\{42,43,44\\}$ on a fixed 500-example FOLIO~\\citep{folio} subset held constant across all conditions; the SFT baseline is trained with negative log-likelihood (NLL) on gold formalizations.\\footnote{All experiments use \\texttt{data/train\\_500\\_seed42.jsonl}; seeds control initialization and rollout sampling only.}\n11\tHeld-out evaluation uses 100 FOLIO examples (\\texttt{proofwriter\\_fol\\_100.jsonl}---legacy filename, no ProofWriter data) with greedy decoding; all cross-run ISR values are recomputed uniformly by a single evaluator (\\texttt{eval\\_sta.py}) so training-log ISR is never compared across runs.\n12\tWe report prove rate (PR), proved-only ISR ($\\text{ISR}^*$), hacking-mode rates from a two-stage classifier (strict text matching for H1/H7 plus functional analysis of the per-sample $n_{\\text{necessary}}$ distribution; \\S\\ref{sec:taxonomy-method}), and a \\emph{non-hacking} (N-H) rate---the residual of proved samples matching none of the nine cataloged patterns, a necessary but not sufficient condition for semantic correctness.\n13\t\n14\t\\subsection{ISR as Diagnostic}\n15\t\\label{sec:diagnostic}\n16\t\n17\t\\begin{figure}[t]\n18\t\\centering\n19\t\\includegraphics[width=0.95\\columnwidth]{figures/fig2_isr_collapse.pdf}\n20\t\\caption{ISR collapse under exec-only GRPO (seed~42). PR rises 32\\%$\\to$93\\%$\\to$96\n…[truncated 19979 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_h9-taxonomy-update_20260516T184906",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T18:49:49.780591+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_h9-taxonomy-update_20260516T184906",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/appendix.tex"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T18:49:49.781337+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% Appendix — solver-trace-ablation\n2\t\n3\t\\section{Experimental Setup}\n4\t\\label{app:setup}\n5\t\n6\tTable~\\ref{tab:hyperparams} lists all hyperparameters shared across experiments.\n7\tAll RL conditions use the same GRPO configuration; only the reward function differs.\n8\tSeeds control model weight initialization and data shuffling; training data is held constant across all seeds and conditions (Constraint~C001).\n9\t\n10\t\\begin{table}[h]\n11\t\\centering\n12\t\\caption{Training hyperparameters for all GRPO experiments.}\n13\t\\label{tab:hyperparams}\n14\t\\footnotesize\n15\t\\resizebox{\\columnwidth}{!}{%\n16\t\\begin{tabular}{@{}ll@{}}\n17\t\\toprule\n18\t\\textbf{Parameter} & \\textbf{Value} \\\\\n19\t\\midrule\n20\t\\multicolumn{2}{@{}l}{\\textit{Model}} \\\\\n21\tBase model & Qwen3-4B \\\\\n22\tPrecision & BF16 \\\\\n23\t\\midrule\n24\t\\multicolumn{2}{@{}l}{\\textit{GRPO Training}} \\\\\n25\tRollouts per prompt ($K$) & 4 \\\\\n26\tTraining steps (default) & 500 \\\\\n27\tTraining steps (extended) & 1000 \\\\\n28\tLearning rate & $1 \\times 10^{-6}$ \\\\\n29\tPer-device batch size & 4 \\\\\n30\tGradient accumulation steps & 2 \\\\\n31\tEffective batch size & 8 \\\\\n32\tMax completion length & 512 tokens \\\\\n33\tRandom seeds & 42, 43, 44 \\\\\n34\t\\midrule\n35\t\\multicolumn{2}{@{}l}{\\textit{Data}} \\\\\n36\tTraining set & FOLIO, 500 examples \\\\\n37\tEvaluation set & FOLIO, 100 examples (held-out) \\\\\n38\tData file & \\texttt{train\\_500\\_seed42} \\\\\n39\t\\midrule\n40\t\\multicolumn{2}{@{}l}{\\textit{Solvers}} \\\\\n41\tFOL solver & Prover9 \\\\\n42\tProlog solver & SWI-Prolog 8.4.2 \\\\\n43\t\\midrule\n44\t\\multicolumn{2}{@{}l}{\\textit{Evaluation}} \\\\\n45\tDecoding & Greedy ($T{=}0$) \\\\\n46\tISR computation & \\texttt{eval\\_sta.py} \\\\\n47\tISR variant & Proved-only (ISR$^*$) \\\\\n48\t\\bottomrule\n49\t\\end{tabular}}\n50\t\\end{table}\n51\t\n52\t\\paragraph{Evaluation exception.}\n53\tFOL exec-only seed~43 (\\texttt{plan001-exec-only-s43-r4}) was evaluated with sampling (temperature~$=0.7$) rather than greedy decoding.\n54\tIts PR and ISR values are included for completeness but are not strictly comparable with other se\n…[truncated 35249 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_h9-taxonomy-update_20260516T184906",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T18:49:49.781716+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_h9-taxonomy-update_20260516T184906",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "eight|8 modes|H1.H8|H1--H8",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper",
+              "output_mode": "content",
+              "-i": "True",
+              "glob": "*.tex"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T18:49:49.781967+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "paper/experiments.tex:33:By 1000 steps, all three converge to high PR ($0.95{\\pm}0.05$) but $0\\%$ non-hacking (15 samples escape text-match classifiers but are functionally degenerate; see Appendix~\\ref{app:h8} and Table~\\ref{tab:fol-detailed}), each through a different dominant mode (s42: H1 saturation; s43: H7 tautology; s44: H1+H8). %% registry: plan016-extended-1000-s42, plan001-exec-only-s43-1000-r2, plan001-exec-only-s44-1000-r2\npaper/experiments.tex:111:[Omitted long matching line]\npaper/ethics.tex:7:All experiments use publicly available datasets (FOLIO) and open-weight models (Qwen3-4B); no human subjects are involved.\npaper/appendix.tex:8:Seeds control model weight initialization and data shuffling; training data is held constant across all seeds and conditions (Constraint~C001).\npaper/appendix.tex:423:[Omitted long matching line]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_h9-taxonomy-update_20260516T184906",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T18:49:49.782183+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_h9-taxonomy-update_20260516T184906",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "nine|9 modes|H1.H9|H1--H9",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper",
+              "output_mode": "content",
+              "-i": "True",
+              "glob": "*.tex"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T18:49:49.782399+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "paper/experiments.tex:12:We report prove rate (PR), proved-only ISR ($\\text{ISR}^*$), hacking-mode rates from a two-stage classifier (strict text matching for H1/H7 plus functional analysis of the per-sample $n_{\\text{necessary}}$ distribution; \\S\\ref{sec:taxonomy-method}), and a \\emph{non-hacking} (N-H) rate---the residual of proved samples matching none of the nine cataloged patterns, a necessary but not sufficient condition for semantic correctness.\npaper/experiments.tex:184:\\caption{Nine hacking modes across conditions (\\% of proved samples; exec-only/SFT: seed~42; ISR/Random: pooled across 3 seeds; 1.7B: Qwen3-1.7B ISR $\\beta{=}0.1$ seed~42). H7 includes subtypes H7a (text-match, $n{=}149$) and H7b (obfuscated tautology, $n{=}14$; primarily s44). Cells with seed identifiers indicate the mode dominates that seed. $^\\sharp$Prolog row pools strict+functional (\\S\\ref{sec:crosslogic}).}\npaper/experiments.tex:188:The nine modes (Table~\\ref{tab:hacking-taxonomy}; definitions in Appendix~\\ref{app:hacking-modes}) span 2 logic types, 2 model scales, and 6 reward conditions.\npaper/method.tex:79:Across conditions, seeds, and logic types we identify nine structural-degeneration modes (full definitions in Appendix~\\ref{app:hacking-modes}).\npaper/appendix.tex:134:We identify nine distinct reward hacking modes across all experiments.\npaper/introduction.tex:32:[Omitted long matching line]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_h9-taxonomy-update_20260516T184906",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T18:49:49.782651+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_h9-taxonomy-update_20260516T184906",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/introduction.tex"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T18:49:49.782942+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\n2\t\\label{sec:introduction}\n3\t\n4\tGRPO-trained formalizers converge to high prove rates on first-order logic problems---$95{\\pm}5\\%$ across three seeds (1000 steps)---yet at convergence, \\emph{none} produce structurally sound outputs.\n5\tEach seed develops a distinct degenerate shortcut: conclusion embedding, repetition collapse, or tautological collapse---all invisible to execution-based evaluation, which registers success regardless of whether the proof reflects genuine derivation.\n6\t\n7\t\\paragraph{The execution-only blind spot.}\n8\tProve rate---the dominant evaluation metric for neurosymbolic formalizers~\\citep{logic-lm, linc, satlm}---conflates faithful reasoning with degenerate shortcuts, a gap especially consequential under RL, where the optimizer exploits any shortcut the reward fails to penalize~\\citep{skalse-reward-hacking, reward-hacking-survey}.\n9\tRecent work applies GRPO~\\citep{deepseekmath} to train LLMs that generate solver-verified formal programs~\\citep{mellgren-prolog-grpo, logic-rl} using binary execution feedback; this drives rapid PR gains but provides no signal on structural quality.\n10\tProcess reward models~\\citep{lightman-verify-step, math-shepherd} require expensive annotations and do not transfer to arbitrary solver-backed settings.\n11\tA separate line of work documents that LLMs already game logical formalization at inference time~\\citep{kim-game-formalization, bondarenko-spec-gaming}; what is missing is an annotation-free \\emph{diagnostic} for structural integrity in neurosymbolic outputs.\n12\t\n13\t\\paragraph{Component necessity testing.}\n14\tWe address this gap with \\emph{Solver Trace Ablation} (STA), which applies \\emph{component necessity testing}---leave-one-out (LOO) ablation on solver inputs---to quantify structural integrity (Figure~\\ref{fig:sta-overview}).\n15\tFor each proved formalization, STA removes each component individually and re-runs the solver; the fraction of components whose removal causes proof failure yi\n…[truncated 3683 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_h9-taxonomy-update_20260516T184906",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T18:49:49.783185+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_h9-taxonomy-update_20260516T184906",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/abstract.tex"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T18:49:49.783394+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\begin{abstract}\n2\tGRPO-trained formalizers converge to high prove rates on FOLIO ($95{\\pm}5\\%$, 3 seeds) yet produce zero structurally sound outputs---a failure invisible to execution-based evaluation.\n3\tWe propose \\emph{Solver Trace Ablation} (STA), applying leave-one-out necessity testing to solver inputs.\n4\tThe resulting metric (ISR) exposes a 99.5\\% structural collapse hidden behind rising prove rates; a supervised baseline achieves 92\\% non-hacking on identical data, localizing the failure to RL.\n5\tRepurposed as a reward signal, ISR provides an empirical instance of Goodhart's Law~\\citep{manheim-goodhart-taxonomy}: it amplifies tautological gaming ${\\sim}5{\\times}$ versus a matched random control ($p{<}10^{-39}$), and the sole apparent benefit vanishes ($1.06{\\times}$) after controlling for a premise-count confound.\n6\tGaming dominates across all four dose levels tested; the effect transfers to Prolog (3/3 seeds, 0\\% non-hacking) and across model scale (Qwen3-1.7B discovers a qualitatively novel gaming mode absent in 4B).\n7\tAcross 6 conditions, 2 logic types, 2 model scales, and 3 seeds, we catalog 9 hacking modes and document ISR's fundamental asymmetry: reliable as a diagnostic, unreliable as an optimization target.\\footnote{Code and data: \\url{[anonymized]}}\n8\t\\end{abstract}\n9\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_h9-taxonomy-update_20260516T184906",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-16T18:49:49.783634+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_h9-taxonomy-update_20260516T184906",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/conclusion.tex"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T18:49:49.783912+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion and Conclusion}\n2\t\\label{sec:discussion}\n3\t\n4\tSTA exposes structural degeneration invisible to execution-based evaluation: ISR reveals a 99.5\\% collapse under exec-only GRPO that PR hides, while SFT localizes the failure to RL optimization (\\S\\ref{sec:diagnostic}).\n5\tRepurposed as a training signal, ISR exhibits Goodhart effects~\\citep{manheim-goodhart-taxonomy}: across four dose levels ($\\beta\\in\\{0.05, 0.1, 0.2, 0.3\\}$), gaming dominates at every $\\beta$---amplifying H7 tautological collapse ${\\sim}5\\times$ at $\\beta{=}0.1$ ($70.6\\%$ vs.\\ $13.7\\%$ random, $p{<}10^{-39}$), with the sole apparent ISR gain vanishing ($1.06\\times$) after controlling for premise count.\n6\tThe effect is consistent across logic types: Prolog yields 0\\% non-hacking in 3/3 seeds via distinct mechanisms including query-as-fact gaming that bypasses text-match classifiers (\\S\\ref{sec:taxonomy}).\n7\tISR semantics are objective-dependent: exec-only \\emph{low} ISR signals redundancy; ISR-rewarded \\emph{high} ISR signals metric gaming.\n8\t\n9\t\\paragraph{Dose-response pattern.}\n10\tThe relationship between $\\beta$ and failure mode is structured across four dose levels: $\\beta{=}0.05$ already produces 100\\% H7 gaming (single seed), $\\beta{=}0.1$ shows ${\\sim}5\\times$ amplification with partial non-hacking residual, $\\beta{=}0.2$ represents the maximum exploitation point (all seeds H7, $0\\%$ genuine), and $\\beta{=}0.3$ exceeds the training stability boundary with diverse failure modes.\n11\tH7 tautological collapse is an absorbing state: once discovered as the global ISR-maximizing exploit, genuine output drops to zero regardless of $\\beta$.\n12\t\n13\t\\paragraph{Classifier blind spots.}\n14\tH7b (obfuscated tautology) and Prolog query-as-fact gaming demonstrate that text-match classifiers have systematic blind spots exploitable by optimization.\n15\tIn both cases, functional LOO analysis exposed gaming invisible to surface-level detection---H7b via vacuous quantifier wrapping ($10/12$ at $\\t\n…[truncated 1447 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_h9-taxonomy-update_20260516T184906",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-16T18:49:49.784205+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "H9 is already fully integrated across all paper files:\n\n- **abstract.tex**: \"9 hacking modes\" (line 7), \"qualitatively novel gaming mode\" (line 6)\n- **introduction.tex**: \"nine-mode hacking taxonomy including...scale-specific *ex falso* mode\" (line 32)\n- **method.tex**: \"nine structural-degeneration modes\" (line 79), H9 definition (line 90)\n- **experiments.tex**: Full cross-scale section with H9 (lines 141-151), H9 row in Table 2 (line 174), \"nine modes\" (line 188)\n- **appendix.tex**: \"nine distinct reward hacking modes\" (line 134), full H9 subsection with definition/example/ISR interaction/prevalence (lines 387-411)\n- **conclusion.tex**: H9 classifier discussion (line 16)\n\nNo residual references to \"8 modes\" or \"H1-H8\" remain. The H9 content is already present and consistent throughout the paper."
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_h9-taxonomy-update_20260516T184906"
+          },
+          "id": "event-000017"
+        }
+      ],
+      "message_count": 17
+    }
+  ],
+  "readable_path": "readable/conversations/write-h9-taxonomy-update.md"
+}

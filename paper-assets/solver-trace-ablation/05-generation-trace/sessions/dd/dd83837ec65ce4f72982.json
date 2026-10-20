@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dd83837ec65ce4f72982",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "check d129 isr b03 s43 quick",
+  "task_key": "worker_check_d129-isr-b03-s43-quick_20260518T074635",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_d129-isr-b03-s43-quick_20260518T074635_result.json",
+    "occurrence": 1,
+    "bytes": 234,
+    "sha256": "0ff897339271bd3e4a5052252a0a004cbedb61e2ee7f3d2e0f4534a2aa579457"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "- **UTC 时间**: 2026-05-18 07:47:01\n- **PID 148580**: 存活，运行 1h22m\n- **进度**: step 483/500 (97%)，预计 ~1.5 min 后完成\n- **GPU**: 利用率 62%，显存 41757 MiB\n\n训练正常，即将完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-d129-isr-b03-s43-quick.md"
+}

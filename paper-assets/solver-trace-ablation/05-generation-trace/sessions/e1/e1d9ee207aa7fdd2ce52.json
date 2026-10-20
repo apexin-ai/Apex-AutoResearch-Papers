@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e1d9ee207aa7fdd2ce52",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "writing abstract",
+  "task_key": "worker_writing_abstract_20260514T191850",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_abstract_20260514T191850_result.json",
+    "occurrence": 1,
+    "bytes": 459,
+    "sha256": "789c38771d661eb79f317e59003ad8298b76ef369ce09c8db9198496e257a614"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Abstract 已写入 `paper/abstract.tex`，约 230 词。结构：Problem（degenerate shortcuts invisible to prove rate）→ Method（STA/ISR）→ Claim 1（collapse trajectory 0.642→0.003, SFT confirms RL-specific）→ Claim 2（meta-level Goodhart, H7=64.5%, premise-count confound）→ Claim 3（Prolog universal Goodhart, 0% genuine）→ scope（7 modes, 2 logic types, 6 conditions, 3 seeds）。8 个 provenance claims 已注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-abstract.md"
+}

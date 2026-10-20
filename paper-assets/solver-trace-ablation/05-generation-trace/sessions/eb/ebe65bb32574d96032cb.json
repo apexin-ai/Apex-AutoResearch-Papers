@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ebe65bb32574d96032cb",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "paper round5 batch1 criticals",
+  "task_key": "worker_paper_round5-batch1-criticals_20260517T151619",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_round5-batch1-criticals_20260517T151619_result.json",
+    "occurrence": 1,
+    "bytes": 805,
+    "sha256": "9c28d433fea0d553eb326b72472c41b0239673411147812b79a4ec5496c84888"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. Summary of changes:\n\n- **W1**: Rewrote transient genuine window paragraph with CMH as primary test ($\\text{OR}_{\\text{CMH}}=3.37$, $p<10^{-9}$), demoted pooled Fisher to sensitivity analysis, added substantive 5-seed vs 3-seed discussion, added uncorrected annotation. Abstract trimmed to ~170 words with narrative framing (no raw statistics).\n- **W2**: Added `tab:fol-beta01-perseed` in appendix with full 5-seed ISR and Random classification breakdown (H7/H1/H8/N-H per seed + pooled). Referenced from experiments.tex transient window section and Table 1 caption.\n- **W3**: Updated Table 1 `†` footnote to reference 3-seed 1000-step exec-only data. Added `tab:exec-only-1000` in appendix with s42/s43/s44 convergence results.\n\nCompilation clean, zero undefined references."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-round5-batch1-criticals.md"
+}

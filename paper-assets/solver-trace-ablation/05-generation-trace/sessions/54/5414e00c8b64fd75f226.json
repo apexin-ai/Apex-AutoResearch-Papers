@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5414e00c8b64fd75f226",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "train plan001 exec only s44",
+  "task_key": "worker_train_plan001-exec-only-s44_20260514T022911",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_plan001-exec-only-s44_20260514T022911_result.json",
+    "occurrence": 1,
+    "bytes": 577,
+    "sha256": "be5d30bb7c0d9a8758c3ba0a3babc1c5a3e9a4f721a55ec25dd9b7fa9b8047d9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "cuda:0 上有一个**活跃训练任务**（不是僵尸进程）：\n\n- **PID 161819**: `plan002_additive_beta03_s42`，运行 3 分 37 秒，使用 `configs/grpo_additive_bonus.yaml`\n- 占用 ~80GB 显存，GPU 利用率 91%\n\n这是一个正在运行的 plan002 实验，不是僵尸进程。杀掉它会丢失训练进度。\n\n**cuda:0 当前不可用。** 需要你决定：\n1. **等 plan002 跑完**再提交 s44（plan002 500 steps 大概需要几小时）\n2. **杀掉 plan002** 优先跑 plan001-s44（会丢失 plan002 进度）\n\n怎么处理？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-plan001-exec-only-s44.md"
+}

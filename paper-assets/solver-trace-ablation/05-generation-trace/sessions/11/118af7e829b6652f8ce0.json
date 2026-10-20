@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "118af7e829b6652f8ce0",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code tex isr correction c",
+  "task_key": "worker_code_tex-isr-correction-c_20260515T171800",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_tex-isr-correction-c_20260515T171800_result.json",
+    "occurrence": 1,
+    "bytes": 540,
+    "sha256": "38977a9d472990f35ce26401f5a4b4e1acb26f7ca444e511053a68f309573e36"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译通过，18 页，无错误。\n\n修改汇总：\n\n| 位置 | 原值 | 新值 |\n|------|------|------|\n| appendix.tex:420 — s43-1000 ISR | `0.531` | `0.465$^\\S$` |\n| appendix.tex:425 — 1000-step 3-seed mean±std ISR | `$0.18{\\pm}0.31$` | `$0.16{\\pm}0.27$` |\n| appendix.tex:394 — 表格 caption | — | 新增 `$^\\S$` 脚注说明 decompose_fol() +12% inflation artifact |\n\nexperiments.tex 和 main.tex 中无 `0.531` 引用，无需改动。Prolog 表中的 `0.53` 是 Prolog PR mean，与此无关。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-tex-isr-correction-c.md"
+}

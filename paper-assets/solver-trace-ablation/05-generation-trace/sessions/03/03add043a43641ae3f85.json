@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "03add043a43641ae3f85",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "fix sweep isr b02 s44 disk cleanup",
+  "task_key": "worker_fix_sweep-isr-b02-s44-disk-cleanup_20260516T055254",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_sweep-isr-b02-s44-disk-cleanup_20260516T055254_result.json",
+    "occurrence": 1,
+    "bytes": 354,
+    "sha256": "dac174a775717ab4adaa8f67f66f79ea0e99483f114238babce2f3d771f3b868"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练正常启动，模型加载中。\n\n**结果：**\n- 清理了 ~54GB：`sweep_isr_b02_s44/` (24G)、`plan018_random_b01_s45/checkpoint-50/` (15G)、`sweep_isr_b01_s45/checkpoint-200/` (15G)\n- 磁盘：250G → 197G used, 54G free (79%)\n- 重提交成功：PID 688214, tmux session `sweep-isr-b02-s44`, cuda:1\n- Registry 已更新"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-sweep-isr-b02-s44-disk-cleanup.md"
+}

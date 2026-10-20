@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "03d914c2efe4d85a3d74",
+  "project": "solver-trace-ablation",
+  "kind": "conversation",
+  "title": "ops disk cleanup urgent",
+  "task_key": "worker_ops_disk-cleanup-urgent_20260515T003002",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_ops_disk-cleanup-urgent_20260515T003002.jsonl",
+    "occurrence": 1,
+    "bytes": 282,
+    "sha256": "6aa4c29ddeb75ecf18afae5f5b9f381c205cd261f7ae50bfd394151401461ed2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T00:30:17.752426+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "API Error: 500 Internal server error. This is a server-side issue, usually temporary — try again in a moment. If it persists, check status.claude.com."
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_disk-cleanup-urgent_20260515T003002"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/ops-disk-cleanup-urgent.md"
+}

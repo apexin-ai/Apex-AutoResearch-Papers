@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e1caab25c62d0efc8f96",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analysis plan002 additive b01 s43 r2",
+  "task_key": "worker_analysis_plan002-additive-b01-s43-r2_20260515T173259",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan002-additive-b01-s43-r2_20260515T173259_result.json",
+    "occurrence": 1,
+    "bytes": 860,
+    "sha256": "8934069d5d8d36fab6d25218199f4fa5a7de9bc909477722720be82b433d573d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。\n\n## plan002-additive-b01-s43-r2 结果\n\n| 指标 | 值 |\n|------|-----|\n| eval_prove_rate | 61/100 (61%) |\n| eval_mean_isr | 0.5063 |\n| proved_only_isr | 0.8301 |\n| H7 (tautology) | 61/61 (100%) |\n| H1 | 0 |\n| H8 | 0 |\n| **genuine** | **0/61 (0.0%)** |\n| single_premise | 61/61 (100%) |\n\n**Conclusion: negative** — 重训确认了原始 s43 的负面结果，且更差（genuine 从 2→0）。\n\n### ISR β=0.1 三 seed 汇总\n\n| seed | proved | H7 | genuine | genuine_rate | conclusion |\n|------|--------|-----|---------|-------------|------------|\n| s42 | 61 | 29 | 14 | 23% | success |\n| s43-r2 | 61 | 61 | 0 | 0% | negative |\n| s44 | 53 | 51 | 2 | 3.8% | negative |\n\ns42 是唯一成功的 seed，s43 和 s44 均完全坍缩为 tautology hacking。种子间 genuine_rate 方差极大（0%~23%）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan002-additive-b01-s43-r2.md"
+}

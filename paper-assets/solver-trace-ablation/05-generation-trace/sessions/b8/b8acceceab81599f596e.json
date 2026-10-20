@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b8acceceab81599f596e",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "audit provenance gap",
+  "task_key": "worker_audit_provenance-gap_20260515T140834",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_provenance-gap_20260515T140834_result.json",
+    "occurrence": 1,
+    "bytes": 444,
+    "sha256": "bbdc547ad9388d5c68f0fa92a7b4f6efb86671743e52dbe9f3ba7c185e40c5a5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。24 个 success 实验的 provenance 已全部补全（原 18/24 → 24/24）：\n\n- **5 个 SFT 实验** (`plan009-sft-baseline-s43/s44/s43-1000/s44-1000/s44-1000-r3`)：从 `reproduce.command` 提取 `data_path`, `data_count`, `model_name`, `seed` 补入 spec\n- **1 个 GRPO 实验** (`exp1-isr-b03-s43`)：从同系列实验推断 `log_path` 路径模式补入\n\n报告已注册为 artifact `art_20260515_f3c732`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-provenance-gap.md"
+}

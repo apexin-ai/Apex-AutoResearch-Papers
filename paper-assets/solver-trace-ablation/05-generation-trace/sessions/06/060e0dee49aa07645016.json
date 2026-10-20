@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "060e0dee49aa07645016",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "research plan014 downstream design",
+  "task_key": "worker_research_plan014-downstream-design_20260514T020422",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_plan014-downstream-design_20260514T020422_result.json",
+    "occurrence": 1,
+    "bytes": 960,
+    "sha256": "8967f66960d26fd91d2da50c9d33abbff15c133e39d6935eab6567fc0eb7a570"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "设计文档已写入 `artifacts/plan014_design.md`。\n\n核心设计：\n\n**主方案 — Label-Prediction Accuracy**：用 checkpoint 生成 K=8 个 FOL formalization，对每个做 3-way entailment 分类（prove 原结论 → true，prove 否定结论 → false，均失败 → unknown），与 ground-truth label 比较。ISR 与 label accuracy 的 Spearman 相关性 + Best-of-N selection 实验直接回答 \"高 ISR 是否意味着更好的 formalization\"。\n\n关键优势：\n- **与 ISR 完全正交**：ISR 度量 component necessity，label accuracy 度量 semantic correctness\n- **工程量极低**：只需在现有 Prover9 pipeline 上加 negation-prove\n- **GPU 仅需 ~20 min**（inference），其余全是 CPU-bound 的 Prover9 调用，可与训练并行\n- **Best-of-N framing** 同时证明了 ISR 的实用价值（作为 selection criterion）\n\n预期 7-9h 实现，1.5h 运行，留有充足 buffer 应对 DDL。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-plan014-downstream-design-copy-2.md"
+}

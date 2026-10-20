@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5d1c491e448c59ef2f37",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ssh warmstart transition",
+  "task_key": "worker_ssh_warmstart-transition_20260516T161554",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_warmstart-transition_20260516T161554_result.json",
+    "occurrence": 1,
+    "bytes": 93,
+    "sha256": "7295d1bcad57612de0540e41036439b3fc618ddfed3621c61e081761fbd0444c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "等待中。checkpoint-200 预计 ~16:25 UTC 就绪，下次检查在 16:21。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-warmstart-transition.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "66eb1fcab787c6ee32c9",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analysis d154 8b exec s42 k4v2",
+  "task_key": "worker_analysis_d154-8b-exec-s42-k4v2_20260520T092557",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_d154-8b-exec-s42-k4v2_20260520T092557_result.json",
+    "occurrence": 1,
+    "bytes": 906,
+    "sha256": "cf9c9f664f67ce1d55eee1ffc0c35b080d6d5b7848d19922cd949d161c268cb6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。报告已写入 `artifacts/d154-8b-exec-s42-k4v2-analysis.md` 并注册。\n\n**核心结论：NEGATIVE**\n\n8B 和 4B 表现出完全不同的失败模式：\n\n| | 4B (d146-pf-exec) | 8B (D154, this) |\n|---|---|---|\n| 最终 prove_rate | **1.0** | **0.155** |\n| 是否收敛 | 是（reward→1.0） | 否（flat，极度 noisy） |\n| 失败模式 | Goodhart collapse（reward↑ via hacking） | 训练停滞（reward 无提升） |\n\n**根因**：K=4 对 8B 模型太小。大部分 step 中 4 个 sample 输出几乎相同（frac_reward_zero_std=1.0），GRPO 无对比梯度信号。模型 entropy 从 ~0.07 降到 ~0.04（mode collapse），但 collapse 到的分布不能解题。\n\nHypothesis \"8B 也出现 Goodhart collapse\" **未被验证**。这更可能是 config 问题（K 太低）而非 model-size 效应。建议 K=8/16 或更高 LR 重跑以区分。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-d154-8b-exec-s42-k4v2.md"
+}

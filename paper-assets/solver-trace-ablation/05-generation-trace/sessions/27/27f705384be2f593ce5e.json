@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "27f705384be2f593ce5e",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "review reference audit",
+  "task_key": "worker_review_reference-audit_20260515T042703",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_review_reference-audit_20260515T042703_result.json",
+    "occurrence": 1,
+    "bytes": 699,
+    "sha256": "2b610b3fd8390a83ada17041e4ded88c2ed480f880ee01cb9eb6d7a19b89e4d2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。报告已保存到 `artifacts/reference_audit_report.md`。\n\n核心发现：\n\n- **0 fake citations** — 28 条 bib 全部验真\n- **2 条缺失引用需补**：ProofWriter（论文提到 legacy 文件名但未引）、Qwen3 Technical Report（基础模型未引）\n- **9 条孤立 bib 条目**未被任何 .tex 引用，其中 `spurious-rewards`、`metr-reward-hacking`、`gao-effective-rl-reward` 三条与论文高度相关，建议补引\n- **2 条 author 小错**：Math-Shepherd 的 \"R.X. Xu\" → \"Runxin Xu\"，Logic-LM 的 \"William Wang\" → \"William Yang Wang\"\n- v1 发现的 `rlsf`、`kwa-catastrophic-goodhart` 等严重问题已在昨天修复"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/review-reference-audit.md"
+}

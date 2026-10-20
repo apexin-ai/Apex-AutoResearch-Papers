@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "01b427b05318af7dcf02",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_4_1778747311.md",
+  "task_key": "loop_4_1778747311",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1778747311.md",
+    "occurrence": 1,
+    "bytes": 4884,
+    "sha256": "c8c5d23df600df4dee3501b294b40b80c2f5cfe0f62186e3b224220236dc2c14"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-14T08:27:59+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**只能用 westd-39279 的 cuda:0 和 cuda:1**（`load_project_config` execution.gpu_ids）。即使 Director 指令用其他 GPU 也必须 push back\n- submit_training_job 命令必须 `bash -c \"export CUDA_VISIBLE_DEVICES=N && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && ...\"`，不能省略任何部分\n- 所有训练数据统一 `data/train_500_seed42.jsonl`（C001 约束，D009），不要用 `proofwriter_fol_500.jsonl`\n- 磁盘：output_dir 必须放 `/root/autodl-tmp/outputs/`，设 `log_completions=False` + `save_total_limit=1`（C003）\n- plan018 在 registry 中 conclusion=\"negative\"，但**实际是正面控制结果**——它确认 ISR β=0.1 的结构优势是真实信号（ISR 0.415 vs random 0.131, 3.2x）。不要把它当失败处理\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-39279, root@westd-39279\n- **GPU**: 2× RTX PRO 6000 Blackwell, 94GB VRAM, CUDA 12.8\n- **工作目录**: `/root/solver-trace-ablation/`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- **激活**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型**: Qwen3-4B via ModelScope，路径见 HF cache `/root/autodl-tmp/.hf_cache`\n- **Solvers**: Prover9 (LADR 编译), SWI-Prolog 8.4.2, Z3 4.16.0.0\n- **磁盘**: 系统盘 ~22G free, 数据盘 `/root/autodl-tmp/` ~187G free\n- **活跃进程**: 无训练进程运行（plan002-b01 和 plan016 均已完成）\n- **活跃 Worker**: `worker_code_plan006-dryrun_20260514T081656`（running，做 Prolog dry-run 检查）\n- **活跃 Cron**: 无（reconcile 返回 0）\n\n### 3. 📊 当前状态\n**刚完成的关键事件**:\n- plan002-b01 (β=0.1 ISR): **SUCCESS** — eval PR=0.81, ISR=0.415, 最佳结构质量（D031）\n- plan018 (β=0.1 random control): eval PR=0.79, ISR=0.131 — 确认 ISR 信号真实（3.2x > random），D033 据此升级 framing\n- plan016 (1000步 exec-only): eval PR=0.96, **ISR=0.003** — 极端时间维度 Goodhart 崩塌\n- **D033/D034/D035**: Framing 升级为 **Goodhart 主线叙事**（ISR 低剂量有效、高剂量崩塌 = 经典 Goodhart effect）\n\n**Registry 状态**: 32 实验总计 — 0 RUNNING, 3 PREPARING (plan006 Prolog ×3 seeds)\n- plan006-prolog-exec-s42/s43/s44: PREPARING，等 dry-run Worker 回调\n\n**等待中**:\n- Worker `worker_code_plan006-dryrun` 回调 → 确认 Prolog 代码/数据就绪 → 提交 plan006-s42 到 cuda:0（或两卡并行跑 s42+s43）\n- 两张 GPU 当前**空闲**——Worker 回调后必须立即提交实验\n\n### 4. 📋 待办（条件触发式）\n- plan006 dry-run Worker 回调成功 → 立即提交 plan006-prolog-exec-s42 (cuda:0) + s43 (cuda:1) 并行，s44 排队\n- plan006 dry-run Worker 回调失败 → 修复问题后重新 dry-run，不要直接提交\n- plan006-s42 完成 → eval_sta.py 分析 Prolog hacking 模式，与 FOL plan001-s42 对比\n- plan006 3-seed 全部完成 → 验证 Claim 3 (cross-logic generality)：hacking 模式是否跨 logic type 复现？若否 → Claim 3 降级为 future work\n- plan006 结果出齐 → 启动论文写作（paper_framing.md 已就绪，D035 Goodhart 叙事）\n- **GPU 空闲超过 30 分钟 = 失职** — 如果 Worker 回调延迟，催促或重新 spawn\n\n### 5. 🎯 战略上下文\n**核心叙事（D035 定稿）**: ISR 作为 proxy metric 遵循 Goodhart's Law — 低剂量(β=0.1)有效提升结构质量，高剂量(β=0.3)触发经典 Goodhart 崩塌。统一了全部 32 个实验结果。\n\n**关键证据全景（7 组对比表，memory.md 有完整版）**:\n| 条件 | PR | ISR | 模式 |\n|------|-----|------|------|\n| exec-only s42 | 93% | 0.123 | ✅ Genuine |\n| exec-only s43 | 14% | 0.000 | ❌ Length explosion |\n| exec-only s44 | 98% | 0.570 | ❌ Tautological |\n| **ISR β=0.1** | **81%** | **0.415** | **✅ Genuine + improved** |\n| ISR β=0.3 | 18% | 0.026 | ❌ Goodhart collapse |\n| random β=0.1 | 79% | 0.131 | matched control |\n| random β=0.3 | 48% | 0.045 | ❌ Complex-but-useless |\n\n**决策链**: D020(ISR-as-reward 全面失败) → D028(framing 转诊断) → D031(β=0.1 异常好) → D033/D035(Goodhart 升级)\n\n**易错点**:\n- plan013 (0.9·r_exec+0.1·random) vs plan017 (r_exec·(1+0.3·random)) 公式结构不同，**不可简化为 \"additive vs convex\" 对照**（D027 Reviewer warning）\n- plan016 1000步 ISR=0.003 ≠ 失败，是 temporal Goodhart 的关键证据（训练越长 ISR 越崩）\n- Prolog eval 用 `eval_sta.py`（已支持 FOL+Prolog 双模式），不需要新脚本\n- **DDL 2026-05-25，剩 11 天**。plan006 ×3 seeds 约 6 GPU·h，时间充裕但论文写作是瓶颈\n- 文献: literature_map.yaml 33 篇，Goodhart 相关文献已加入（Gao et al. ICML 2023, Karwowski et al. ICLR 2024）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1778747311.md"
+}

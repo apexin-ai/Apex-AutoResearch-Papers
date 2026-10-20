@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "5a56ec75dd5c2759bf0d",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "qa visual review full",
+  "task_key": "worker_qa_visual-review-full_20260515T225645",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_qa_visual-review-full_20260515T225645_result.json",
+    "occurrence": 1,
+    "bytes": 2098172,
+    "sha256": "37acaf7eb4eecd1846176c51a61ec921f2d942fc54b7b72941430fe45a64622c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2098192,
+                "serialized_sha256": "31e7aa85144b098d5afccc0896305bb452a2c13b7231e6d36ce22cc85116d634",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/qa-visual-review-full.md"
+}

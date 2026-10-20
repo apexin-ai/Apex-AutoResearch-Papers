@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7425af2cd605ff9a776e",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_16_1778908767.md",
+  "task_key": "loop_16_1778908767",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_16_1778908767.md",
+    "occurrence": 1,
+    "bytes": 4216,
+    "sha256": "c589299573e5b7d694e93a18fec4203a15ac816295232c23a98efcae6088e3a1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 16\nreason: idle_timeout\nupdated: '2026-05-16T05:18:27+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单仅 `westd-39279:cuda:0` 和 `westd-39279:cuda:1`，禁止用其他 GPU\n- Round 2 实验模型是 **Qwen3-4B**（`/root/autodl-tmp/models/Qwen3-4B`），不是 Round 1 的 Qwen2.5-1.5B-Instruct。不可混淆\n- 服务器无 wandb key，所有训练命令必须带 `--no_wandb`。metrics 从 `reward_log.csv` / output_dir 提取\n- 脚本路径 `scripts/train_grpo.py`（不是 `train_grpo.py`），config 在 `configs/`。首次提交曾因缺前缀导致 GPU 空转\n- 双实验并行时曾触发 RAM OOM kill（sweep-isr-b01-s45 exit 137 at step 219）。监控 b02-s43+s44 是否复现\n- DDL **2026-05-25**（EMNLP ARR），剩 9 天。β=0.07/0.03 不排（D102），多 seed 复现优先于更多剂量点\n- D095 Narrative A 已批准生效，所有 paper 内容必须与之一致。Random H7 pooled 13.7% 由 s43-r3 单 seed 贡献，论文必须同时报 per-seed 和 pooled\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-39279，account=root\n- **工作目录**: `/root/solver-trace-ablation`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- **模型**: `/root/autodl-tmp/models/Qwen3-4B`\n- **数据**: `data/train_500_seed42.jsonl`（500 条）\n- **输出**: `/root/autodl-tmp/outputs/sweep_isr_b02_s43/` 和 `sweep_isr_b02_s44/`\n- **活跃进程**:\n  - sweep-isr-b02-s43: PID 633515, cuda:0, cron 在跑（reconcile 确认 still running）\n  - sweep-isr-b02-s44: PID 659716, cuda:1\n- **Worker 池**: 0 个运行中\n\n### 3. 📊 当前状态\n- **刚做完**: Round 2 D101 排期，β=0.2 ISR 3-seed 提交（s42 已完成 success，s43+s44 正在跑）\n- **RUNNING**: sweep-isr-b02-s43（cuda:0）和 sweep-isr-b02-s44（cuda:1），均为 β=0.2 ISR 500 步训练，预估总时长 ~1h 每个\n- **PREPARING（13 个）**: plan001-exec-only-s45/s46, plan018-additive-random-b01-s46, plan002-additive-b01-s45/s46, sweep-exec-only-s45/s46, sweep-random-b01-s45/s46, sweep-isr-b01-s46, sweep-isr-b005-s43/s44, w2-qwen3-7b-pilot\n- **等待**: s43/s44 cron 完成回调 → 分析 → 汇报 Director → 排下一批（P2 sweep-random-b01-s45, 然后 P3 5-seed 扩展）\n- **Registry 总计**: 105 实验，DONE 90（success 28 / negative 28 / failed 26），RUNNING 2，PREPARING 13\n- **Provenance**: 36/36 已完成\n\n### 4. 📋 待办（条件触发式）\n- sweep-isr-b02-s43 cron 回调到达 → spawn Worker 分析（reward_log.csv + classify_h7.py），更新 registry，与 s42 对比 hacking mode 分布\n- sweep-isr-b02-s44 完成 → 同上分析，3-seed β=0.2 凑齐后向 Director 汇报完整 dose-response 表（β=0.05, 0.1, 0.2, 0.3 各 3-seed）\n- β=0.2 3-seed 全部完成 → 更新论文 Table 1 dose-response 数据，推进 P2（sweep-random-b01-s45）和 P3（5-seed 扩展）\n- Director 反馈 Review 结果 → 按反馈调整，预留 GPU buffer\n- w2-qwen3-7b-pilot 为 DEFER 状态，投稿后/rebuttal 阶段再考虑\n\n### 5. 🎯 战略上下文\n- **核心结论**: ISR 从诊断指标到优化目标发生 Goodhart 转折。3 条 Claims 全部闭环：Claim 1（STA 诊断 ISR 崩塌），Claim 2（ISR-as-reward 无结构优势，D057→D095），Claim 3（跨逻辑泛化）\n- **当前阶段**: Writing + Review，Round 2 sweep 补充 dose-response 证据（β=0.2 填 0.1↔0.3 间隙）\n- **关键发现链**: Goodhart 阈值在 β∈(0.05, 0.1) 之间呈尖锐相变（D102）。β=0.05 保留 ISR 但 mode collapse 到单一模板（96.3% 样本 ISR=0.75）——论文必须诚实报告多样性丧失\n- **易错点**:\n  - H7a 是 GRPO 通用现象（exec-only s43 也 100% H7a），不是 ISR 独有。H7b 才是 ISR-specific。已来回修正 8 次（D087-D094），极易倒退\n  - genuine rate ISR 6.06% vs Random 9.54%，p=0.182 不显著，禁止 claim 有显著差异\n  - premise-count-matched ISR 优势仅 1.06x，2.4x 已作废（D051）\n  - K=4（per_device_batch_size=2, K=4, B×K=8），不是 K=8（D099/D100 已修正）\n  - Hacking mode 是 seed-dependent——不同 seed 收敛到不同策略，这是核心发现之一\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-16-1778908767.md"
+}

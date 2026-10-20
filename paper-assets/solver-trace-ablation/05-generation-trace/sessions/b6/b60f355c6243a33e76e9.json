@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b60f355c6243a33e76e9",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analysis isr s42 h8 recheck",
+  "task_key": "worker_analysis_isr-s42-h8-recheck_20260515T142455",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_isr-s42-h8-recheck_20260515T142455_result.json",
+    "occurrence": 1,
+    "bytes": 1150,
+    "sha256": "7819e80f10a43b12ce5456a709092d62270ca83a150b2adcdbad1419e69c982b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "D084 taxonomy 审计完成。`plan002-additive-b01-s42-1000` registry 已更新。\n\n**ISR s42 (1000步) D084 统一 taxonomy：**\n\n| 类别 | 数量 | 占 proved % |\n|------|------|------------|\n| proved | 90 | - |\n| H7 | 87 | 96.7% |\n| H1_exact | 0 | 0% |\n| H1_near | 1 | 1.1%（保留为 genuine） |\n| H8 | 2 | 2.2% |\n| **genuine** | **1** | **1.1%** |\n\n**vs 旧值变动：**\n- H8: 1 → **2**（+1，folio_1255 shared-antecedent conjunction 之前遗漏）\n- H7: 83 → 87（+4，外层括号规范化修正）\n- H1_exact: 4 → 0（全部重分类为 H7）\n- genuine: 2 → **1**\n\n**H8 样本：**\n1. **folio_1179** — `(P1) ∧ (P2)` 直接 conjunction of 2 premises\n2. **folio_1255** — `A → P ∧ Q` where `A→P` and `A→Q` are premises (shared-antecedent pattern，**新发现**）\n\n**唯一 genuine (H1_near tagged)：** folio_990 — 包含 2-step chain + conjunction introduction，有实质推理。\n\n文件保存在：\n- `/root/autodl-tmp/outputs/plan002_additive_b01_s42_1000_taxonomy_unified.json`\n- `/root/autodl-tmp/outputs/plan002_additive_b01_s42_taxonomy_unified.json`（副本）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-isr-s42-h8-recheck.md"
+}

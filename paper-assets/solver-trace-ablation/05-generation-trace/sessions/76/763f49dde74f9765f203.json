@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "763f49dde74f9765f203",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "infra plan006 next batch readiness",
+  "task_key": "worker_infra_plan006-next-batch-readiness_20260514T112906",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_plan006-next-batch-readiness_20260514T112906_result.json",
+    "occurrence": 1,
+    "bytes": 1631,
+    "sha256": "ee925a527ae4579daba0b66452376ebcf5321627226b4bc535749a81a47073fe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## plan006 s43/s44 就绪状态简报\n\n### 配置文件\n\n| 配置 | data_path | seed | output_dir |\n|------|-----------|------|------------|\n| `grpo_prolog_exec_only.yaml` | `data/train_500_seed42.jsonl` ✓ | 42（需 CLI 覆盖） | `/root/autodl-tmp/outputs/grpo_prolog_exec_only`（需 CLI 覆盖） |\n| `grpo_prolog_exec_sta.yaml` | `data/train_500_seed42.jsonl` ✓ | 42（需 CLI 覆盖） | `/root/autodl-tmp/outputs/grpo_prolog_exec_sta`（需 CLI 覆盖） |\n\n两个配置的 data_path 均正确。`train_grpo.py` 支持 `--seed`、`--output_dir`、`--config` 参数，可通过命令行覆盖。\n\n### 数据文件\n- `train_500_seed42.jsonl`: 500 行 ✓，格式正确（FOL 推理题）\n- `eval_sta.py`: 存在 ✓\n\n### plan006-exec-s42 训练进度\n**已完成** (EXIT_CODE=0)，500/500 steps，耗时 98 分钟。最终 reward=1.0，mean_isr=0.0954。\n\n### 🚨 阻塞项：磁盘空间严重不足\n\n**数据盘 250G 已用 247G，仅剩 3.5G (99%)**。每个 plan006 run 产出约 31G，完全无法启动新实验。\n\n当前大文件占用：\n\n| 目录 | 大小 |\n|------|------|\n| plan002_additive_b01_s42 | 16G |\n| plan002_additive_b01_s43 | 31G |\n| plan002_additive_b01_s44 | 31G |\n| plan006_prolog_exec_s42 | 31G |\n| plan006_prolog_sta_s42 | 31G |\n| plan016_extended_1000_s42 | 31G |\n| plan018_additive_random_b01_s42 | 31G |\n| plan018_additive_random_b01_s43 | 15G |\n| plan001_exec_only_s42 | 15G |\n\n**需要清理至少 62G（2 个 run 的空间）才能启动 s43 的 exec + sta 实验。** 建议确认哪些已完成评估的旧 checkpoint 可以删除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-plan006-next-batch-readiness.md"
+}

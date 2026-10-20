@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e74b477800b29cf1e48c",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "diagnose plan009 sft r3 crash",
+  "task_key": "worker_diagnose_plan009-sft-r3-crash_20260514T114634",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_plan009-sft-r3-crash_20260514T114634_result.json",
+    "occurrence": 1,
+    "bytes": 1004,
+    "sha256": "3fdd0dedaad6e3eeee5bce55b4c38d0b8c07c1829d618ac26a7468cabc4ef308"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n**根因**：`wandb.init()` 失败 — 服务器上没有配置 W&B API key（无 `.netrc`、无 `WANDB_API_KEY` 环境变量）。r3 命令传了 `--wandb_project` 和 `--wandb_run`，触发了 `report_to=\"wandb\"`，导致启动即崩。\n\n**修复**：加 `--no_wandb` 标志，去掉 `--wandb_project` 和 `--wandb_run`。\n\n**正确的 r4 提交命令**（已经 dry-run 验证参数解析通过）：\n```bash\nexport CUDA_VISIBLE_DEVICES=N\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_sft.py \\\n  --model_path /root/autodl-tmp/models/Qwen3-4B \\\n  --data_path data/train_500_seed42.jsonl \\\n  --output_dir /root/autodl-tmp/outputs/plan009_sft_s42_r4 \\\n  --num_steps 500 --seed 42 --no_wandb\n```\n\n**当前阻塞**：两张 GPU 都近满载（GPU 0: 589 MiB free, GPU 1: 6.8 GiB free），无法立即启动 r4，需等现有任务释放 GPU。\n\nRegistry 已更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-plan009-sft-r3-crash.md"
+}

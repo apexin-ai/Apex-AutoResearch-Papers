@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6321e992b444db12e20f",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code d147 retry",
+  "task_key": "worker_code_d147-retry_20260519T143154",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d147-retry_20260519T143154_result.json",
+    "occurrence": 1,
+    "bytes": 1035,
+    "sha256": "5f53838f85bf39ebf4b8cc48fa1b642317d397f532092874a8bd9bcf362cd9bf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "D146 pipeline 正在运行，step 1 已完成。\n\n---\n\n## 报告\n\n| 项目 | 结果 |\n|------|------|\n| **1. LLaMA completion 样本** | 无。d144 训练在 5 步后因 `wandb.errors.UsageError: No API key configured` 崩溃，reward_log 5 步全零（reward=0, prove_rate=0, parse_rate=1.0），无 completion 文本字段 |\n| **2. Kill + 清理** | d144 tmux 已 kill，checkpoint 已删，额外清理了一个 7.2GB 僵尸 LLaMA CPU 推理进程（PID 400818）和重复 dry-run 进程 |\n| **3. ProofFOL configs** | `configs/grpo_prooffol_exec_only.yaml` + `configs/grpo_prooffol_isr_b01.yaml` 已创建（data_path → `data/prooffol_train_500.jsonl`） |\n| **4. Dry-run parse_rate** | **1.000** (step 1, 15.54s/step) |\n| **5. Pipeline** | tmux session `d146-pf-pipeline`，6 runs 串行（exec s42/s43/s44 → isr s42/s43/s44），GPU:0 占用 91GB，util 88%，step 1 已完成（16.33s/it → 预估 exec-s42 约 2.3h，全 pipeline 约 14h） |\n| **6. 磁盘** | 199G 可用 / 250G（21% used） |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d147-retry.md"
+}

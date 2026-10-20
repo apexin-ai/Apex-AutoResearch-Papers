@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "643d74899136e953e4b5",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "monitor plan001r3 005 verify",
+  "task_key": "worker_monitor_plan001r3-005-verify_20260513T224257",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_plan001r3-005-verify_20260513T224257_result.json",
+    "occurrence": 1,
+    "bytes": 851,
+    "sha256": "fa6167c9bad6fe94a00279a9565f1dd850df8675c1eba20f889f6d72a05a1abe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 验证结果\n\n### plan_005-sta-low-s42 (PID 85790) — ✅ 正常运行\n- GPU 1, 87% 利用率, 65403 MiB\n- 已到 step 3，~12 秒/step\n- 最新 reward_log: step 3, prove_rate=0.375, parse_rate=1.0, loss=0.0676\n\n### plan_001-exec-only-s42-r3 (PID 85710) — ❌ OOM 崩溃\n- EXIT_CODE=1，在 step 0 就挂了\n- 原因：GPU 0 被进程 84901 占用了 78.43 GiB，plan_001-r3 分配不到剩余内存\n- 日志关键行：`torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 32.00 MiB. GPU 0 has a total capacity of 94.97 GiB of which 30.19 MiB is free. Process 84901 has 78.43 GiB memory in use.`\n- reward_log.jsonl 的 13 行是之前 run 留下的（非本次 r3）\n\n**结论**：plan_005 正常训练中；plan_001-r3 需要等 GPU 0 上的进程 84901 结束后重启，或者杀掉 84901 腾出显存。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-plan001r3-005-verify.md"
+}

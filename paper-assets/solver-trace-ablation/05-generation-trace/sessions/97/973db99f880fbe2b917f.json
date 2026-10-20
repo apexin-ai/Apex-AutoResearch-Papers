@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "973db99f880fbe2b917f",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analysis s43 1000 ncomponents3 investigation",
+  "task_key": "worker_analysis_s43-1000-ncomponents3-investigation_20260515T165157",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_s43-1000-ncomponents3-investigation_20260515T165157_result.json",
+    "occurrence": 1,
+    "bytes": 1714,
+    "sha256": "3dbc816fb370fd96998fa5c15f09f02060d27bf203a1601dec82fdcb33ed5bbc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Report written and registered. Here's the summary:\n\n---\n\n## 调查结论\n\n**n_components=3 不是 parsing artifact。**\n\n### 核心发现\n\n1. **Explanation 文本完全未影响 parsing**：0/90 proved 样本有 Explanation 文本泄漏到 premises 中。`_parse_formalization()` 正确忽略了 `Conclusion:` 之后的所有内容。\n\n2. **n_components=3 的来源**：89/90 proved 样本的结构完全一致——单一 premise（等于 conclusion 的拷贝）+ conclusion 的 ∃x 量词分解：\n   ```\n   (premise, conclusion_quantifier, conclusion_whole)\n   ```\n   全部是 H7 hack（premise == conclusion）。\n\n3. **ISR 分布**（90 proved 样本中 89 个 nc=3）：\n   - ISR=0.333（n_necessary=1）：26 个\n   - ISR=0.667（n_necessary=2）：58 个\n   - ISR=1.000（n_necessary=3）：5 个\n\n4. **量词分解实际上是在拉低 ISR**：如果合并 conclusion 为一个 component，corrected ISR = 0.856（比原始 0.590 更高）。高 ISR 的根因是**单 premise H7 hack**——唯一的 premise 必然是 necessary 的。\n\n5. **跨 seed 对比**：\n\n   | Seed | H7 率 | nc 中位数 | ISR |\n   |------|-------|----------|-----|\n   | s42 (350-step) | 0/93 | 7 | 0.132 |\n   | s43-1000-r2 | 90/90 | 3 | 0.531 |\n   | s44-1000-r2 | 0/100 | 13 | 0.002 |\n\n   s44 使用 7-24 个冗余 premise（删任一个不影响结果→ISR≈0），s43 使用 1 个 premise（删了必挂→ISR≥0.33）。\n\n6. **对论文的影响**：ISR=0.531 计算本身没有 bug。异常值来自 hacking 策略差异（单 premise vs 多 premise 冗余），符合 C006 约束的语义。\n\n报告已保存至 `artifacts/s43_1000_n_components_investigation.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-s43-1000-ncomponents3-investigation-copy-2.md"
+}

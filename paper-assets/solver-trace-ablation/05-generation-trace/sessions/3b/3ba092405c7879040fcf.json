@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3ba092405c7879040fcf",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops cleanup and eval random s44 r2",
+  "task_key": "worker_ops_cleanup-and-eval-random-s44-r2_20260515T024819",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cleanup-and-eval-random-s44-r2_20260515T024819_result.json",
+    "occurrence": 1,
+    "bytes": 57,
+    "sha256": "53e8ae6ab06cee6f04587f705d1e04d75e8498887c0f5b121ba16e73ecea37ce"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "End turn. Wakeup scheduled for ~4 minutes."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cleanup-and-eval-random-s44-r2.md"
+}

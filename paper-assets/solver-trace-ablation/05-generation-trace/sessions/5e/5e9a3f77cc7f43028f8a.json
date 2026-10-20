@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.0",
+  "id": "5e9a3f77cc7f43028f8a",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "writing related work",
+  "task_key": "worker_writing_related-work_20260514T194629",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_related-work_20260514T194629_result.json",
+    "occurrence": 1,
+    "bytes": 2385,
+    "sha256": "72e292781e5cfd9801b9d225ad56c7ae2bfd59b36819e94ba718c790aa255d61"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```json\n{\n  \"section\": \"Related Work (Section 2)\",\n  \"word_count\": 900,\n  \"citations_needed\": 32,\n  \"figures_needed\": 0,\n  \"tables_needed\": 0,\n  \"notes\": [\n    \"4 clusters: Neurosymbolic Reasoning, Reward Shaping & Process Supervision, Reward Hacking & Goodhart, Mutation Testing & Component Analysis\",\n    \"All must-cites covered: deepseekmath, mellgren-prolog-grpo, logic-lm, linc, satlm, lightman-verify-step, gao-effective-rl-reward, rlsf, gao-reward-overoptimization, skalse-reward-hacking, reward-hacking-survey, spurious-rewards, manheim-goodhart-taxonomy, karwowski-goodhart-rl, kwa-catastrophic-goodhart, pan-reward-misspecification, demillo1978, jia-harman-survey\",\n    \"Two gaps established: (1) no structural diagnostic in neurosymbolic work, (2) Goodhart empirics missing in formal reasoning with solver-grounded rewards\",\n    \"Explicitly acknowledges ISR = LOO ablation from mutation testing, not novel technique\",\n    \"Meta-Goodhart framing positioned against existing Goodhart taxonomy (Manheim & Garrabrant)\",\n    \"Updated from prior version: added deepseekmath, reward-hacking-survey; removed redundant Positioning paragraph\"\n  ]\n}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "section": "Related Work (Section 2)",
+              "word_count": 900,
+              "citations_needed": 32,
+              "figures_needed": 0,
+              "tables_needed": 0,
+              "notes": [
+                "4 clusters: Neurosymbolic Reasoning, Reward Shaping & Process Supervision, Reward Hacking & Goodhart, Mutation Testing & Component Analysis",
+                "All must-cites covered: deepseekmath, mellgren-prolog-grpo, logic-lm, linc, satlm, lightman-verify-step, gao-effective-rl-reward, rlsf, gao-reward-overoptimization, skalse-reward-hacking, reward-hacking-survey, spurious-rewards, manheim-goodhart-taxonomy, karwowski-goodhart-rl, kwa-catastrophic-goodhart, pan-reward-misspecification, demillo1978, jia-harman-survey",
+                "Two gaps established: (1) no structural diagnostic in neurosymbolic work, (2) Goodhart empirics missing in formal reasoning with solver-grounded rewards",
+                "Explicitly acknowledges ISR = LOO ablation from mutation testing, not novel technique",
+                "Meta-Goodhart framing positioned against existing Goodhart taxonomy (Manheim & Garrabrant)",
+                "Updated from prior version: added deepseekmath, reward-hacking-survey; removed redundant Positioning paragraph"
+              ]
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-related-work.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "41c378988e0b6be6cd48",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code d146 gpu emergency",
+  "task_key": "worker_code_d146-gpu-emergency_20260519T234845",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d146-gpu-emergency_20260519T234845_result.json",
+    "occurrence": 1,
+    "bytes": 763,
+    "sha256": "19c20becf1d04d1868c6e615a4937a67cebd68fd299c52eb6483279f4823081e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**诊断结果：Pipeline 正常运行，无需恢复。**\n\n| 实验 | 状态 | 进度 |\n|------|------|------|\n| d146_pf_exec_s42 | ✅ 完成 | 500/500 |\n| d146_pf_exec_s43 | ✅ 完成 | 500/500 |\n| d146_pf_exec_s44 | ✅ 完成 | 500/500 |\n| d146_pf_isr_s42 | ✅ 完成 | 500/500 |\n| d146_pf_isr_s43 | 🔄 训练中 | 472/500 (94%) |\n| d146_pf_isr_s44 | ⏳ 未开始 | 目录不存在 |\n\n当前状态：\n- **PID 599223** 正在 GPU 0 上训练 `isr_s43`，GPU 利用率 91%，显存 85GB/98GB\n- `isr_s43` 已跑到 step 472/500，预计很快完成\n- 之后还剩 `isr_s44` 一个实验\n\n你看到的 0% 利用率可能是瞬时采样（checkpoint 写盘或 batch 间隙），现在已恢复到 91%。不需要任何干预。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d146-gpu-emergency.md"
+}

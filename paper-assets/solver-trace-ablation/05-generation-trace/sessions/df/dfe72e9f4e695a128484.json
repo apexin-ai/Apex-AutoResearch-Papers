@@ -1,0 +1,440 @@
+{
+  "schema_version": "1.0",
+  "id": "dfe72e9f4e695a128484",
+  "project": "solver-trace-ablation",
+  "kind": "conversation",
+  "title": "paper writing discussion",
+  "task_key": "worker_paper_writing_discussion_20260514T193516",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_writing_discussion_20260514T193516.jsonl",
+    "occurrence": 1,
+    "bytes": 29833,
+    "sha256": "e414a5302c555e20e17ae8d5269deed329f2216201a7652388739c2819ec2aca"
+  },
+  "statistics": {
+    "messages": 21,
+    "user_turns": 0,
+    "tool_calls": 10,
+    "roles": {
+      "tool_call": 10,
+      "tool_result": 10,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T19:37:44.789025+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260514T193516",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T19:37:44.789753+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: latex-paper\n3\tdescription: ML 顶会论文 LaTeX 写作全流程——Claim-Evidence 方法论、引用防幻觉、顶会模板速查、投稿工程链、会议转投。写论文/投稿时参考。\n4\tscope: global\n5\ttags:\n6\t- latex\n7\t- paper-writing\n8\t- academic\n9\t- citation\n10\t- submission\n11\tversion: 1\n12\troles:\n13\t- agent\n14\t- worker\n15\t---\n16\t\n17\t# LaTeX 论文写作全流程\n18\t\n19\tML/AI 顶会论文从草稿到投稿的完整指南。整合 Orchestra Research、VibeSkills、claim2evidence 三方最佳实践。\n20\t\n21\t---\n22\t\n23\t## 1. 工作模式\n24\t\n25\t开始前选择模式：\n26\t\n27\t| 模式 | 说明 | 适用 |\n28\t|------|------|------|\n29\t| **Build** | 从实验笔记/结果/代码生成论文 | 新稿 |\n30\t| **Improve** | 改写已有章节，强化论证 | 修改稿 |\n31\t| **Audit** | 输出风险列表 + 缺失证据 + 修复建议 | 投前检查 |\n32\t\n33\t---\n34\t\n35\t## 2. Claim-Evidence 方法论\n36\t\n37\t**核心原则：论文是一个有中心贡献的故事，不是实验的堆砌。**\n38\t\n39\t### 2.1 一句话贡献\n40\t\n41\t在写任何内容之前，必须能用一句话说清贡献。如果不能，说明还没准备好写论文。\n42\t\n43\t### 2.2 Claim-Evidence Map\n44\t\n45\t为每个 contribution 建立 claim→evidence 映射表：\n46\t\n47\t| Contribution | Claim | Evidence | Table/Figure |\n48\t|-------------|-------|----------|-------------|\n49\t| C1: 方法 X 在 Y 上 SOTA | 比所有 baseline 高 ≥2% | 5-seed 平均，p<0.05 | Table 1 |\n50\t| C2: 消融证明 Z 是关键 | 去掉 Z 后掉 >5% | 消融实验 | Table 2 |\n51\t| C3: 计算效率 | 比 baseline 快 3× | FLOPs + wall-clock | Figure 3 |\n52\t\n53\t**没有直接证据支撑的 claim 必须删除或降级为 discussion。**\n54\t\n55\t### 2.3 章节起草顺序\n56\t\n57\t```\n58\t1. Introduction + Experiments（先确定 claim 和 evidence）\n59\t2. Method（评估问题稳定后再写细节）\n60\t3. Related Work\n61\t4. Abstract + Title（核心 claim 定型后最后写）\n62\t```\n63\t\n64\t### 2.4 Quality Gates\n65\t\n66\t投稿前必须通过：\n67\t- [ ] 前两段出现显式 novelty 声明\n68\t- [ ] 每个 contribution 有可验证的 evidence\n69\t- [ ] Abstract / Intro / Conclusion 的 claim 一致\n70\t- [ ] Limitations 真实且技术性诚实\n71\t- [ ] 审稿人两分钟内能识别 delta\n72\t\n73\t---\n74\t\n75\t## 3. 引用防幻觉（CRITICAL）\n76\t\n77\t**AI 生成引用有 ~40% 错误率。绝对禁止凭记忆写 BibTeX。**\n78\t\n79\t### 3.1 黄金法则\n80\t\n81\t```\n82\tIF 无法程序化获取引用:\n83\t    → 标记 [CITATION NEEDED] 或 \\cite{PLACEHOLDER_verify}\n84\t    → 明确告知用户\n85\t    → 绝不编造看似合理的引用\n86\t```\n87\t\n88\t### 3.2 五步验证流程\n89\t\n90\t```\n91\t1. SEARCH  → Semantic Scholar API 搜索关键词\n92\t2. VERIFY  → 至少 2 个来源确认论文存在（S2 + arXiv/CrossRef）\n93\t3. RETRIEVE → 通过 DOI 获取 BibTeX（程序化，非记忆）\n94\t4. CHECK   → 确认\n…[truncated 7201 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260514T193516",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T19:37:44.789948+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260514T193516",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T19:37:44.790084+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "paper/discussion.tex\npaper/conclusion.tex\npaper/method.tex\npaper/experiments.tex\npaper/abstract.tex\npaper/paper.tex\npaper/related_work.tex\npaper/introduction.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260514T193516",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T19:37:44.790237+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260514T193516",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/discussion.tex"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T19:37:44.790405+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion}\n2\t\\label{sec:discussion}\n3\t\n4\t\\paragraph{ISR Capability Boundary.}\n5\tISR measures syntactic component necessity---whether each component is individually required for proof success---not semantic faithfulness to the natural language input.\n6\tA formalization where every component is necessary may still misrepresent the intended reasoning chain.\n7\tWe verify this empirically: downstream NLI accuracy shows no correlation with ISR (Spearman $\\rho = -0.049$, $p = 0.187$, n.s.), confirming that ISR captures structural tightness orthogonal to semantic correctness.\n8\tPractitioners should treat ISR as a necessary-but-not-sufficient diagnostic: low ISR reliably indicates structural degeneration, but high ISR does not guarantee faithful reasoning.\n9\tImportantly, low ISR carries different semantics depending on the training objective.\n10\tUnder exec-only training, low ISR in Prolog reflects redundant coding---repeated ground facts where removing any single copy does not affect the proof---rather than absence of reasoning.\n11\tUnder ISR-as-reward, high ISR reflects metric gaming.\n12\tISR values must always be interpreted in the context of the optimization objective that produced them.\n13\t\n14\t\\paragraph{Premise Count Confound.}\n15\tLOO-based metrics like ISR are mathematically biased by component count.\n16\tWith $n$ components, each carries a $1/n$ share of the proof burden; fewer components mechanically inflate ISR regardless of quality.\n17\tAs shown in \\S\\ref{sec:goodhart}, over half of ISR-reward genuine samples contain only 1--2 premises, where ISR $\\geq 0.5$ is an arithmetic inevitability.\n18\tControlling for premise count eliminates the apparent ISR advantage entirely (1.06$\\times$ vs.\\ the raw 2.4$\\times$).\n19\tThis confound is not specific to our setting: any LOO-based diagnostic applied to variable-length structured outputs requires component-count normalization.\n20\tWe recommend that future work employing LOO-based structural metrics report premise-count-mat\n…[truncated 3094 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260514T193516",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T19:37:44.790546+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260514T193516",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/experiments.tex"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T19:37:44.790819+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\tWe evaluate STA-derived ISR across three axes: as a diagnostic for reward hacking (\\S\\ref{sec:diagnostic}), as a training reward exhibiting meta-level Goodhart's Law (\\S\\ref{sec:goodhart}), and as a cross-logic diagnostic protocol (\\S\\ref{sec:crosslogic}). We then synthesize the observed hacking strategies into a taxonomy (\\S\\ref{sec:taxonomy}).\n5\t\n6\t\\subsection{Setup}\n7\t\\label{sec:setup}\n8\t\n9\t\\paragraph{Model and training.}\n10\tWe use Qwen3-4B as the base model, trained with GRPO~\\citep{deepseekmath} using $K{=}8$ rollouts per prompt for 500 steps (default) or 1000 steps where noted. All experiments use three random seeds (42, 43, 44) to assess cross-seed stability, with seeds controlling model initialization and training stochasticity. Training data is a fixed 500-example subset of FOLIO~\\citep{folio} (\\texttt{train\\_500\\_seed42.jsonl}), a corpus of human-annotated first-order logic problems, held constant across all seeds and conditions.\n11\t\n12\t\\paragraph{Solvers and logic types.}\n13\tFor first-order logic (FOL), we use Prover9 as the automated theorem prover. For Prolog experiments, we use SWI-Prolog 8.4.2. The execution reward $r_{\\text{exec}} \\in \\{0, 1\\}$ is binary: 1 if the solver returns a proof, 0 otherwise.\n14\t\n15\t\\paragraph{Evaluation.}\n16\tWe evaluate on a held-out set of 100 FOLIO examples using greedy decoding. All ISR values reported in cross-run comparisons are computed by \\texttt{eval\\_sta.py}, which applies the full STA protocol uniformly. We report: prove rate (PR), proved-only ISR (ISR$^*$, computed over proved samples only), hacking mode percentages (H7, H1), genuine rate, and mean component count where relevant. All tabulated ISR values are proved-only unless otherwise noted.\n17\t\n18\t\\paragraph{Reward formulations.}\n19\tWe compare six conditions:\n20\t\\begin{itemize}[nosep,leftmargin=*]\n21\t  \\item \\textbf{Exec-only}: $r = r_{\\text{exec}}$ (baseline)\n22\t  \\item \\textbf{ISR $\\beta$}: $r = r_{\\text{\n…[truncated 18868 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260514T193516",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T19:37:44.791002+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260514T193516",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/paper.tex"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T19:37:44.791137+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\documentclass[11pt]{article}\n2\t\\usepackage[review]{acl}\n3\t\n4\t\\usepackage{amsmath}\n5\t\\usepackage{amssymb}\n6\t\\usepackage{graphicx}\n7\t\\usepackage{booktabs}\n8\t\\usepackage{algorithm}\n9\t\\usepackage{algorithmic}\n10\t\\usepackage{enumitem}\n11\t\\usepackage[protrusion=true,expansion=false]{microtype}\n12\t\n13\t\\graphicspath{{figures/}}\n14\t\n15\t\\title{Solver Trace Ablation Reveals Meta-Level Goodhart's Law\\\\in Neurosymbolic Reasoning}\n16\t\n17\t\\author{Anonymous ACL submission}\n18\t\n19\t\\begin{document}\n20\t\\maketitle\n21\t\n22\t\\input{abstract}\n23\t\n24\t\\input{introduction}\n25\t\\input{related_work}\n26\t\\input{method}\n27\t\\input{experiments}\n28\t\\input{discussion}\n29\t\\input{conclusion}\n30\t\n31\t\\bibliography{references}\n32\t\n33\t\\end{document}\n34\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260514T193516",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T19:37:44.791301+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260514T193516",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "gao-reward-overoptimization|manheim-goodhart-taxonomy",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper",
+              "output_mode": "content",
+              "-C": "1"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T19:37:44.791469+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/related_work.tex-27-\\paragraph{Reward Hacking and Goodhart's Law.}\npaper/related_work.tex:28:Gao et al.~\\cite{gao-reward-overoptimization} establish scaling laws for reward model overoptimization, showing that proxy reward increases monotonically with optimization pressure until true performance collapses.\npaper/related_work.tex:29:Manheim and Garrabrant~\\cite{manheim-goodhart-taxonomy} taxonomize four variants of Goodhart's Law---regressional, extremal, causal, and adversarial---while Skalse et al.~\\cite{skalse-reward-hacking} prove that reward hacking is generically unavoidable for imperfect proxies.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/related_work.tex-30-Karwowski et al.~\\cite{karwowski-goodhart-rl} demonstrate Goodhart dynamics geometrically in RL, showing that KL regularization delays but does not prevent overoptimization; Pan et al.~\\cite{pan-reward-misspecification} map how misspecified rewards produce qualitatively different failure modes depending on the degree of misalignment; and Kwa et al.~\\cite{kwa-catastrophic-goodhart} show that KL divergence regularization fails catastrophically under heavy-tailed reward misspecification.\n--\npaper/related_work.tex-33-Our setting differs in two respects: the proxy (ISR) is deterministic and solver-derived, eliminating reward model noise as an explanation; and the Goodhart effect operates at a \\emph{meta} level---ISR was designed to \\emph{detect} gaming of execution reward, yet itself becomes gamed when optimized.\npaper/related_work.tex:34:The dose-response pattern we observe ($\\beta{=}0.1$: proxy gaming via conclusion duplication; $\\beta{=}0.3$: performance collapse) traces the trajectory predicted by Gao et al.~\\cite{gao-reward-overoptimization} within a single neurosymbolic RL setup, and the premise-count confound that explains away apparent ISR improvements provides a concrete mechan\n…[truncated 8410 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260514T193516",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-14T19:37:44.791642+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260514T193516",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/method.tex",
+              "limit": "30"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T19:37:44.791806+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% Method section — solver-trace-ablation\n2\t% Requires: algorithm, algorithmic, amsmath, enumitem packages\n3\t\n4\t\\section{Method}\n5\t\\label{sec:method}\n6\t\n7\t\\begin{figure*}[t]\n8\t\\centering\n9\t\\includegraphics[width=\\textwidth]{figures/fig1_sta_overview.pdf}\n10\t\\caption{Overview of Solver Trace Ablation (STA). (a) Formalization pipeline: NL input is formalized into logical representation and verified by an external solver. (b) STA protocol: leave-one-out ablation on proved formalizations to compute ISR. (c) ISR as diagnostic vs.\\ ISR as reward: when the diagnostic becomes the optimization target, meta-level Goodhart's Law emerges.}\n11\t\\label{fig:sta-overview}\n12\t\\end{figure*}\n13\t\n14\t\\subsection{Task: NL to Formal Logic}\n15\t\\label{sec:task}\n16\t\n17\tGiven natural language premises $P_1, \\ldots, P_k$ and a conclusion $C$, the task is to produce a formal logic program $F = \\{c_1, \\ldots, c_n\\}$, where each component $c_i$ is a premise encoding (in FOL) or a clause/fact (in Prolog), with one distinguished component encoding the query derived from $C$.\n18\tAn external solver $S$ determines whether $F$ constitutes a valid proof:\n19\t$S(F) \\in \\{\\textit{proved}, \\textit{failed}\\}$.\n20\tWe experiment with two solver backends: Prover9 for first-order logic and SWI-Prolog for Prolog programs (\\autoref{fig:sta-overview}a).\n21\t\n22\t\\subsection{GRPO Training}\n23\t\\label{sec:grpo}\n24\t\n25\tWe train formalizers with Group Relative Policy Optimization \\citep[GRPO;][]{deepseekmath}.\n26\tFor each training prompt, the policy samples $K{=}8$ rollouts.\n27\tEach rollout receives a binary \\emph{execution reward}:\n28\t\\begin{equation}\n29\t  r_{\\text{exec}}(x) = \\mathbf{1}\\bigl[S(F_x) = \\textit{proved}\\bigr]\n30\t  \\label{eq:rexec}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260514T193516",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T19:37:44.792032+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260514T193516",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/discussion.tex",
+              "content": "\\section{Discussion}\n\\label{sec:discussion}\n\n\\paragraph{What ISR Measures---and What It Does Not.}\nISR quantifies syntactic component necessity: the fraction of solver-input components whose individual removal causes proof failure.\nThis is strictly weaker than semantic faithfulness---whether the formalization accurately captures the natural-language meaning.\nWe verify this empirically: Spearman $\\rho(\\text{ISR}, \\text{NLI accuracy}) = -0.049$ ($p = 0.187$, n.s.) from a downstream NLI evaluation on exec-only checkpoint outputs.\nISR and downstream task performance are uncorrelated.\nISR is thus a structural integrity diagnostic, not a semantic quality metric: high ISR indicates that every component contributes to the proof, not that the proof faithfully represents the original reasoning problem.\n\nCritically, low ISR carries different semantics depending on the training objective.\nUnder exec-only training, low ISR in Prolog reflects redundant coding---repeated ground facts where removing any single copy does not affect the proof---rather than absence of reasoning (\\S\\ref{sec:crosslogic}).\nUnder ISR-as-reward, high ISR reflects metric gaming (\\S\\ref{sec:goodhart}).\nISR values must always be interpreted relative to the optimization objective that produced them.\n\n\\paragraph{The Premise-Count Confound.}\nLOO-based metrics like ISR have an inherent mathematical bias: with fewer components, each is mechanically more likely to be necessary.\nA formalization with 2 premises where both are necessary yields ISR${=}$1.0; one with 10 premises where 8 are necessary yields ISR${=}$0.8---even though the latter encodes richer reasoning.\nThis confound explains the sole apparent ISR-as-reward success (\\S\\ref{sec:goodhart}): ISR $\\beta{=}0.1$ seed~42 produces shorter formalizations, mechanically inflating ISR.\nPremise-count-matched comparison eliminates the difference ($1.06\\times$; Table~\\ref{tab:beta01-3seed}).\nThis bias is not specific to our setting---any LOO-based structural metric applied to variable-length outputs requires component-count normalization.\nWe recommend that future work employing ablation-based diagnostics report premise-count-matched comparisons alongside raw values.\n\n\\paragraph{Meta-Level Goodhart's Law: Implications.}\nThe meta-Goodhart finding extends beyond this specific system.\nISR was designed to \\emph{detect} reward gaming of $r_{\\text{exec}}$, yet when incorporated into the reward signal, the model games ISR itself---creating a regress where any diagnostic metric risks becoming a target when optimized.\n\nThe dose-response pattern ($\\beta{=}0.1$: proxy gaming inflates ISR without genuine improvement; $\\beta{=}0.3$: performance collapse) maps onto the trajectory predicted by \\cite{gao-reward-overoptimization}, but at a meta level: the proxy being gamed is itself a gaming detector.\nUnder the taxonomy of \\cite{manheim-goodhart-taxonomy}, $\\beta{=}0.3$ exemplifies extremal Goodhart---the optimizer enters a regime where the proxy-target relationship breaks down entirely---while $\\beta{=}0.1$ instantiates a meta-level variant where the diagnostic is gamed through its own measurement mechanism.\n\nThe practical implication is that ISR---and structurally similar diagnostics---should be used exclusively as post-hoc evaluation tools, never as training rewards.\nThe fundamental asymmetry (reliable as observer, unreliable as optimizer) may generalize to other ablation-based or perturbation-based quality metrics in neurosymbolic systems.\n\n\\paragraph{Single-Seed Unreliability.}\nThe three exec-only seeds diverge radically (PR $\\sigma{=}\\pm 47$ percentage points), each converging to a qualitatively different degeneration mode (\\S\\ref{sec:diagnostic}).\nISR $\\beta{=}0.1$ seeds show similar divergence: 2/3 dominated by conclusion duplication (H7), 1/3 by premise minimization (\\S\\ref{sec:goodhart}).\nThis underscores that single-seed evaluation of GRPO-trained formalizers is unreliable---both for prove rate and for structural quality.\nMulti-seed evaluation with structural diagnostics should be standard practice for neurosymbolic RL systems.\n\n\\paragraph{Limitations.}\nAll experiments use a single base model (Qwen3-4B); whether ISR dynamics generalize to larger models or different architectures is untested.\nWe evaluate on a single dataset (ProofWriter FOL problems)---more diverse reasoning benchmarks would strengthen generality claims.\nAs discussed above, ISR captures syntactic necessity, not semantic faithfulness; it cannot assess whether a formalization accurately represents the original problem's meaning.\nWhile three seeds suffice to demonstrate cross-seed divergence, more seeds would yield tighter statistical estimates.\nFinally, STA requires a solver that accepts component-level input manipulation; not all verification backends support this, limiting applicability to systems with decomposable solver inputs.\n"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-14T19:37:44.792201+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>File has been modified since read, either by the user or by a linter. Read it again before attempting to write it.</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260514T193516",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-14T19:37:44.792322+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260514T193516",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/discussion.tex"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-14T19:37:44.792467+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion}\n2\t\\label{sec:discussion}\n3\t\n4\t\\paragraph{ISR Capability Boundary.}\n5\tISR measures syntactic component necessity---whether each component is individually required for proof success---not semantic faithfulness to the natural language input.\n6\tA formalization where every component is necessary may still misrepresent the intended reasoning chain.\n7\tWe verify this empirically: downstream NLI accuracy shows no correlation with ISR (Spearman $\\rho = -0.049$, $p = 0.187$, n.s.), confirming that ISR captures structural tightness orthogonal to semantic correctness.\n8\tPractitioners should treat ISR as a necessary-but-not-sufficient diagnostic: low ISR reliably indicates structural degeneration, but high ISR does not guarantee faithful reasoning.\n9\tImportantly, low ISR carries different semantics depending on the training objective.\n10\tUnder exec-only training, low ISR in Prolog reflects redundant coding---repeated ground facts where removing any single copy does not affect the proof---rather than absence of reasoning.\n11\tUnder ISR-as-reward, high ISR reflects metric gaming.\n12\tISR values must always be interpreted in the context of the optimization objective that produced them.\n13\t\n14\t\\paragraph{Premise Count Confound.}\n15\tLOO-based metrics like ISR are mathematically biased by component count.\n16\tWith $n$ components, each carries a $1/n$ share of the proof burden; fewer components mechanically inflate ISR regardless of quality.\n17\tAs shown in \\S\\ref{sec:goodhart}, over half of ISR-reward genuine samples contain only 1--2 premises, where ISR $\\geq 0.5$ is an arithmetic inevitability.\n18\tControlling for premise count eliminates the apparent ISR advantage entirely (1.06$\\times$ vs.\\ the raw 2.4$\\times$).\n19\tThis confound is not specific to our setting: any LOO-based diagnostic applied to variable-length structured outputs requires component-count normalization.\n20\tWe recommend that future work employing LOO-based structural metrics report premise-count-mat\n…[truncated 3091 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260514T193516",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-14T19:37:44.792616+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260514T193516",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/discussion.tex",
+              "content": "\\section{Discussion}\n\\label{sec:discussion}\n\n\\paragraph{What ISR Measures---and What It Does Not.}\nISR quantifies syntactic component necessity: the fraction of solver-input components whose individual removal causes proof failure.\nThis is strictly weaker than semantic faithfulness---whether the formalization accurately captures the natural-language meaning.\nWe verify this empirically: Spearman $\\rho(\\text{ISR}, \\text{NLI accuracy}) = -0.049$ ($p = 0.187$, n.s.) from a downstream NLI evaluation on exec-only checkpoint outputs.\nISR and downstream task performance are uncorrelated.\nISR is thus a structural integrity diagnostic, not a semantic quality metric: high ISR indicates that every component contributes to the proof, not that the proof faithfully represents the original reasoning problem.\n\nCritically, low ISR carries different semantics depending on the training objective.\nUnder exec-only training, low ISR in Prolog reflects redundant coding---repeated ground facts where removing any single copy does not affect the proof---rather than absence of reasoning (\\S\\ref{sec:crosslogic}).\nUnder ISR-as-reward, high ISR reflects metric gaming (\\S\\ref{sec:goodhart}).\nISR values must always be interpreted relative to the optimization objective that produced them.\n\n\\paragraph{The Premise-Count Confound.}\nLOO-based metrics like ISR have an inherent mathematical bias: with fewer components, each is mechanically more likely to be necessary.\nA formalization with 2 premises where both are necessary yields ISR${=}$1.0; one with 10 premises where 8 are necessary yields ISR${=}$0.8---even though the latter encodes richer reasoning.\nThis confound explains the sole apparent ISR-as-reward success (\\S\\ref{sec:goodhart}): ISR $\\beta{=}0.1$ seed~42 produces shorter formalizations, mechanically inflating ISR.\nPremise-count-matched comparison eliminates the difference ($1.06\\times$; Table~\\ref{tab:beta01-3seed}).\nThis bias is not specific to our setting---any LOO-based structural metric applied to variable-length outputs requires component-count normalization.\nWe recommend that future work employing ablation-based diagnostics report premise-count-matched comparisons alongside raw values.\n\n\\paragraph{Meta-Level Goodhart's Law: Implications.}\nThe meta-Goodhart finding extends beyond this specific system.\nISR was designed to \\emph{detect} reward gaming of $r_{\\text{exec}}$, yet when incorporated into the reward signal, the model games ISR itself---creating a regress where any diagnostic metric risks becoming a target when optimized.\n\nThe dose-response pattern ($\\beta{=}0.1$: proxy gaming inflates ISR without genuine improvement; $\\beta{=}0.3$: performance collapse) maps onto the trajectory predicted by \\cite{gao-reward-overoptimization}, but at a meta level: the proxy being gamed is itself a gaming detector.\nUnder the taxonomy of \\cite{manheim-goodhart-taxonomy}, $\\beta{=}0.3$ exemplifies extremal Goodhart---the optimizer enters a regime where the proxy-target relationship breaks down entirely---while $\\beta{=}0.1$ instantiates a meta-level variant where the diagnostic is gamed through its own measurement mechanism.\n\nThe practical implication is that ISR---and structurally similar diagnostics---should be used exclusively as post-hoc evaluation tools, never as training rewards.\nThe fundamental asymmetry (reliable as observer, unreliable as optimizer) may generalize to other ablation-based or perturbation-based quality metrics in neurosymbolic systems.\n\n\\paragraph{Single-Seed Unreliability.}\nThe three exec-only seeds diverge radically (PR $\\sigma{=}\\pm 47$ percentage points), each converging to a qualitatively different degeneration mode (\\S\\ref{sec:diagnostic}).\nISR $\\beta{=}0.1$ seeds show similar divergence: 2/3 dominated by conclusion duplication (H7), 1/3 by premise minimization (\\S\\ref{sec:goodhart}).\nThis underscores that single-seed evaluation of GRPO-trained formalizers is unreliable---both for prove rate and for structural quality.\nMulti-seed evaluation with structural diagnostics should be standard practice for neurosymbolic RL systems.\n\n\\paragraph{Limitations.}\nAll experiments use a single base model (Qwen3-4B); whether ISR dynamics generalize to larger models or different architectures is untested.\nWe evaluate on a single dataset (ProofWriter FOL problems)---more diverse reasoning benchmarks would strengthen generality claims.\nAs discussed above, ISR captures syntactic necessity, not semantic faithfulness; it cannot assess whether a formalization accurately represents the original problem's meaning.\nWhile three seeds suffice to demonstrate cross-seed divergence, more seeds would yield tighter statistical estimates.\nFinally, STA requires a solver that accepts component-level input manipulation; not all verification backends support this, limiting applicability to systems with decomposable solver inputs.\n"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-14T19:37:44.792857+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/discussion.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260514T193516",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-14T19:37:44.793025+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Written. The section has 5 paragraphs (~590 words):\n\n1. **What ISR Measures---and What It Does Not** — syntactic necessity ≠ semantic faithfulness; ρ=−0.049 finding; dual semantics of low ISR (redundant coding vs. metric gaming per C006)\n2. **The Premise-Count Confound** — LOO bias from component count; 1.06× after matching; general warning for ablation-based metrics\n3. **Meta-Level Goodhart's Law: Implications** — regress problem; dose-response mapped to Gao et al. trajectory; observer/optimizer asymmetry; ISR = post-hoc only\n4. **Single-Seed Unreliability** — PR σ=±47pp divergence; multi-seed + structural diagnostics as standard practice\n5. **Limitations** — single model, single dataset, syntactic-only, three seeds, solver-specific"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_discussion_20260514T193516"
+          },
+          "id": "event-000021"
+        }
+      ],
+      "message_count": 21
+    }
+  ],
+  "readable_path": "readable/conversations/paper-writing-discussion.md"
+}

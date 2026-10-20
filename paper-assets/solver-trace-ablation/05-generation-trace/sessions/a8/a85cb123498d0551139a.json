@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a85cb123498d0551139a",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_4_1778759450.md",
+  "task_key": "loop_4_1778759450",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1778759450.md",
+    "occurrence": 1,
+    "bytes": 4362,
+    "sha256": "3050dbd04581fc11f08901736794abc9e53988d275d86711ddd76321b3c5333d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-14T11:32:16+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单仅 `westd-39279:cuda:0` 和 `westd-39279:cuda:1`，不得用其他设备\n- submit_training_job 命令必须 `bash -c \"export CUDA_VISIBLE_DEVICES=N && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && ...\"`（tmux 在 sh 下执行，source 需 bash -c 包装）\n- 所有实验统一用 `train_500_seed42.jsonl` 训练数据（C001 约束），output_dir 放 `/root/autodl-tmp/outputs/`，`log_completions=False` + `save_total_limit=1`（C003 磁盘约束）\n- plan013 vs plan017 公式结构不同，论文不可简化为\"additive vs convex\"对照（D027）\n- β=0.1 三 seed ISR 被 H7 conclusion duplication 膨胀，禁止报 raw 3-seed mean ISR，必须按 hacking mode 分层（D043）\n- ISR β=0.1 总 hacking rate 69.1%，论文不可标\"no hacking\"，只可标\"lowest hacking rate\"（D044）\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-39279，代码路径 `/root/solver-trace-ablation/`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，非 venv）\n- **GPU**: 2× RTX PRO 6000 Blackwell 94GB VRAM，CUDA 12.8，PyTorch 2.10.0+cu128\n- **模型**: Qwen3-4B via ModelScope（已下载）\n- **Solvers**: Prover9 (LADR 2009-11A 源码编译), SWI-Prolog 8.4.2 (`/usr/bin/swipl`), Z3 4.16.0.0\n- **磁盘**: 系统盘 30GB (22G free)，数据盘 `/root/autodl-tmp/` 250GB (142G free)\n- **活跃进程**: 无（reconcile_crons 刚清理完 plan018-s43 的 cron）\n- **活跃 Worker**: `worker_code_plan009-sft-oom-fix_20260514T111244`（running，修 plan009 OOM）\n\n### 3. 📊 当前状态\n**刚发生的事**：reconcile_crons 发现 `plan018-additive-random-b01-s43` 失败（EXIT_CODE=1），cron 已清理。两张 GPU 当前均空闲——这是紧急状态，需要立即填满。\n\n**Registry 非 DONE 实验**：\n| exp_id | status | 说明 |\n|--------|--------|------|\n| plan006-prolog-exec-s42 | ANALYZING | Prolog exec-only s42，需 eval 分析 |\n| plan018-additive-random-b01-s43 | ~~RUNNING~~ DONE(failed) | 刚失败，EXIT_CODE=1，需诊断 |\n| plan009-sft-baseline-s42 | PENDING | SFT baseline，Worker 正在修 OOM |\n| plan018-additive-random-b01-s44 | QUEUED | Random β=0.1 s44 控制组 |\n| plan006-prolog-{sta,exec}-s43 | PREPARING | 需 Prolog 训练数据 |\n| plan006-prolog-{sta,exec}-s44 | PREPARING | 需 Prolog 训练数据 |\n\n**总计**: 45 实验 — success 9, negative 13, failed 16\n\n### 4. 📋 待办（条件触发式）\n- **立即**: 两张 GPU 空闲 → 派 Worker 诊断 plan018-s43 失败原因（查 log tail）+ 派 Worker 对 plan006-prolog-exec-s42 跑 eval_sta.py 分析\n- Worker `plan009-sft-oom-fix` 完成 → 审批 plan009-sft-baseline-s42，用 cuda:1 提交\n- plan006-prolog-exec-s42 eval 完成 → 与 plan006-prolog-sta-s42 (100% H7 negative) 对照，确认 Prolog exec-only baseline hacking 模式\n- plan018-s43 诊断后 → 修复重提交（cuda:0），或 skip 转 plan018-s44\n- Prolog s43/s44 数据准备完成 → 排入 GPU 队列（plan006 系列 6 个实验）\n- 所有 plan006 + plan018 完成 → Table 1/Table 2 定稿 → 论文写作启动评估\n- 向 Director 汇报：plan018-s43 失败 + 两卡空闲 + plan006-exec-s42 进入 ANALYZING\n\n### 5. 🎯 战略上下文\n- **DDL**: EMNLP ARR May 25（剩 11 天），GPU 时间充裕（528 GPU·h 可用，仅需 ~12h）\n- **核心叙事**: Goodhart 主线（D035）——ISR 从诊断指标到优化目标的 meta-level Goodhart 效应\n- **3 Claims**: (1) ISR 作为 hacking 诊断工具 ✅已有充分证据, (2) Meta-level Goodhart ✅β=0.1 三 seed + β=0.3 对照完成, (3) Cross-logic 泛化 ⏳ Prolog exec-only s42 待 eval，sta-s42 已 negative (100% H7)\n- **最容易判断错的事**: plan006-prolog-sta-s42 的 negative 不是\"Prolog 实验失败\"——它**强化**了 Goodhart 叙事（Prolog 语义更简单 → hacking 更快更彻底）。下一个\"你\"不要把这当坏消息，它是 Claim 3 的正面证据\n- **易踩的坑**: (1) plan009 SFT baseline Worker 还在修 OOM，不要重复 spawn 修复 Worker; (2) plan006 PREPARING 的 4 个实验阻塞于 Prolog 训练数据生成，不是阻塞于 GPU; (3) plan018-additive-random-b01-s43 是 reconcile 刚标记的 failed，registry 可能还显示 RUNNING，以 reconcile 结果为准\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1778759450.md"
+}

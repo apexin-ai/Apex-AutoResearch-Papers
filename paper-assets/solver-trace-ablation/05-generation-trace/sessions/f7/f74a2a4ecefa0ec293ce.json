@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "f74a2a4ecefa0ec293ce",
+  "project": "solver-trace-ablation",
+  "kind": "worker",
+  "title": "code d157 launch and verify",
+  "task_key": "worker_code_d157-launch-and-verify_20260520T145405",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d157-launch-and-verify_20260520T145405.log",
+    "occurrence": 1,
+    "bytes": 495470,
+    "sha256": "ad0cec2a60c6d58359aed69d5a46b4808e36c07f729af89fd7da4b5fa645c0e5"
+  },
+  "statistics": {
+    "messages": 454,
+    "user_turns": 0,
+    "tool_calls": 182,
+    "roles": {
+      "log": 1,
+      "system": 13,
+      "record": 2,
+      "assistant": 73,
+      "tool_call": 182,
+      "tool_result": 182,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 454,
+      "chunks": [
+        {
+          "path": "f74a2a4ecefa0ec293ce-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "f74a2a4ecefa0ec293ce-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "f74a2a4ecefa0ec293ce-part-0003.json",
+          "message_count": 94
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-d157-launch-and-verify.md"
+}

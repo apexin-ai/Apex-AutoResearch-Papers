@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3f65369d1fbc53a8738b",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "paper writing method",
+  "task_key": "worker_paper_writing_method_20260514T191123",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_method_20260514T191123_result.json",
+    "occurrence": 1,
+    "bytes": 935,
+    "sha256": "19ee1277c4571364939396a2900b72309cddb7391e24d12117c0cc7fc2dcca12"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Method section written to `paper/method.tex`. Changes from the previous draft:\n\n- **Added Figure 1** (`fig:sta-overview`) — the 3-panel STA overview figure, placed at the top of the section\n- **Added `\\autoref` references** to Figure 1 panels (a), (b), (c) in the Task, STA, and Reward Signal subsections\n- **Dropped convex formulations** — experiments.tex only uses 6 conditions (exec-only, ISR×2β, random×2β, SFT); convex was not part of the main experimental matrix\n- **Trimmed taxonomy section** — removed quantitative results (percentages, seed-specific data) that belong in §4; kept definitional descriptions only, with a forward reference to `\\S\\ref{sec:taxonomy}`\n- **Added explicit equation labels** for the random control reward (`eq:additive-random`)\n- **Fixed label collision** — taxonomy label changed to `sec:taxonomy-method` to avoid colliding with `sec:taxonomy` in experiments.tex"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-method.md"
+}

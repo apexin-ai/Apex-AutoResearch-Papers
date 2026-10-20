@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "37d10bded7c57c6a47e2",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "read eval results check",
+  "task_key": "worker_read_eval-results-check_20260514T142221",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_read_eval-results-check_20260514T142221_result.json",
+    "occurrence": 1,
+    "bytes": 919,
+    "sha256": "75a13d88abb57096ca87b513edc498e661c25ea4e7edee3aa2bd26358accb575"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n**1. plan018-s44 eval 结果：** `NO_EVAL_RESULTS`（文件不存在）\n\n**2. plan009-sft eval 结果：** 存在，关键指标：\n| 指标 | 值 |\n|------|-----|\n| n_problems | 100 |\n| n_proved | 14 |\n| prove_rate | 0.14 |\n| mean_isr | 0.08 |\n| proved_only_mean_isr | 0.5713 |\n| by_type: true | 13/34 proved (38.2%), mean_isr=0.225 |\n| by_type: unknown | 1/41 proved (2.4%), mean_isr=0.008 |\n| by_type: false | 0/25 proved (0%), mean_isr=0.0 |\n\n**3. plan006 训练进度：**\n\n| 实验 | 当前步数 | 最新 reward_mean | prove_rate | isr_mean | 最新时间 |\n|------|---------|-----------------|------------|----------|----------|\n| plan006_prolog_exec_s44 | 151 | 0.50 | 0.50 | 0.094 | 14:22:39 UTC |\n| plan006_prolog_exec_s43_r3 | 122 | 0.625 | 0.625 | 0.058 | 14:22:29 UTC |\n\n两个 plan006 实验都在活跃训练中（时间戳均为几分钟前）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/read-eval-results-check.md"
+}

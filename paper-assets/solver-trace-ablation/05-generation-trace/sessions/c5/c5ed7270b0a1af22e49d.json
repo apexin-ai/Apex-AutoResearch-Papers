@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c5ed7270b0a1af22e49d",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analysis exp1 isr b03 s42 1000 r2 eval",
+  "task_key": "worker_analysis_exp1-isr-b03-s42-1000-r2-eval_20260515T113427",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp1-isr-b03-s42-1000-r2-eval_20260515T113427_result.json",
+    "occurrence": 1,
+    "bytes": 1145,
+    "sha256": "8f5de95844ca7a340b49a4898155f1d90357675da51bd7e66d1c026e50b62a1b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "评估完成。结果汇总：\n\n## exp1-isr-b03-s42-1000-r2 (ISR β=0.3, 1000步, seed42)\n\n| 指标 | 值 |\n|------|-----|\n| **prove_rate** | 0.95 (95/100) |\n| **mean_isr** | 0.734 |\n| **H7** | 0 (0%) |\n| **H1** | 54 (56.8%) |\n| **genuine** | 41 (43.2%) |\n| **ISR=1.0** | 41 (43.2%) |\n| **tautological_collapse** | false |\n| **by_answer_type** | 34 true / 25 false / 41 unknown ✓ |\n\n### 与 500 步 ISR β=0.3 (exp1-isr-b03-s43-r3) 对比\n\n| 指标 | 500步 s43 | 1000步 s42 | 变化 |\n|------|-----------|------------|------|\n| PR | 0.86 | 0.95 | +9pp |\n| mean_isr | 0.254 | 0.734 | +0.48 |\n| H7 | 4 (4.7%) | 0 (0%) | ↓ |\n| H1 | 59 (68.6%) | 54 (56.8%) | ↓ |\n| genuine | 23 (26.7%) | 41 (43.2%) | +16.5pp |\n\n**注意**：seed 不同（s42 vs s43），对比有 confound。\n\n**结论改为 success**：原 registry 中 h7=41/genuine=0 是错误数据（可能把 ISR=1.0 count 误标为 H7）。实际 H7=0，genuine=41（43.2%），是所有 ISR β=0.3 实验中最高的 genuine rate。mean_isr=0.734 偏高（潜在 Goodhart），但 genuine 绝对数量和比例均有提升，H1 也略降。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp1-isr-b03-s42-1000-r2-eval.md"
+}

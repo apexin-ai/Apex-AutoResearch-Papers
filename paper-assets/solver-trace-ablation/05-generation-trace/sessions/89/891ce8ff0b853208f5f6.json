@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "891ce8ff0b853208f5f6",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code verify K main experiments",
+  "task_key": "worker_code_verify-K-main-experiments_20260516T031829",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_verify-K-main-experiments_20260516T031829_result.json",
+    "occurrence": 1,
+    "bytes": 1442,
+    "sha256": "1783a5128bd16ae2edde795752b901621f75a49637abc0f9c00c3b07e0b7950d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Here's the summary:\n\n## K 值验证结果\n\n**所有 config 文件统一配置 `num_generations: 8`**（代码默认值是 4，但 config 覆盖为 8）。\n\n**prove_rate 粒度验证**（所有有 reward_log 的实验）：\n\n| 实验 | prove_rate 粒度 | batch×K |\n|------|----------------|---------|\n| plan001_exec_only_s43_1000_r2 | 1/8 | 8 |\n| plan001_exec_only_s44_1000_r2 | 1/8 | 8 |\n| plan002_additive_b01_s42_1000 | 1/8 | 8 |\n| plan002_additive_b01_s43_r2 | 1/8 | 8 |\n| plan018_additive_random_b01_s42_1000 | 1/8 | 8 |\n| plan018_additive_random_b01_s42_1000_r3 | 1/8 | 8 |\n| plan018_additive_random_b01_s43_r3 | 1/8 | 8 |\n| plan018_additive_random_b01_s44_r2 | 1/8 | 8 |\n| exp1_isr_b03_s42_1000 | 1/8 | 8 |\n| exp1_isr_b03_s44_r2 | 1/8 | 8 |\n| exp1_random_b03_s43_r4 | 1/8 | 8 |\n| exp1_random_b03_s44_r2 | 1/8 | 8 |\n\n**没有 reward_log 的实验**：plan001_s42_r2、plan002_b01_s42、plan018_s42、所有 plan009 SFT（SFT 不用 GRPO，无 reward_log 正常）、exp1_isr_b03_s43、exp1_random_b03_s42/s43。\n\n**粒度解释**：prove_rate = proved / step_buf[\"total\"]，`step_buf[\"total\"]` 在 TRL 1.1.0 中 = `per_device_train_batch_size(4) × gradient_accumulation_steps(2) = 8` 个样本/step = 1 个 prompt × K=8 生成。所有 prove_rate 值严格是 1/8 整数倍，零异常。\n\n**结论：所有主实验 K=8，完全一致。** 论文报告 K=8 无误。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-verify-k-main-experiments.md"
+}

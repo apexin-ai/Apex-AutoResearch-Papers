@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8f55cb881ee7f0df8d2d",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "monitor gpu and orphan check",
+  "task_key": "worker_monitor_gpu-and-orphan-check_20260516T035005",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_gpu-and-orphan-check_20260516T035005_result.json",
+    "occurrence": 1,
+    "bytes": 1711,
+    "sha256": "227024d5a1bb8003b6a1c958537653c2505ea7a12a70999aed449d76d160234c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "重要更正：这些**不是孤儿进程**。它们是今天 11:21 启动的**新 tmux session（r3 重试）**，带 W&B 日志（`--wandb_run sweep-isr-b005-s42-r3` / `sweep-isr-b01-s45-r3`）。\n\n服务器时区 UTC+8，reward_log 时间戳是 UTC，所以 03:49 UTC = 11:49 本地时间，完全对得上。\n\n---\n\n## 报告\n\n| 项目 | GPU 0 (cuda:0) | GPU 1 (cuda:1) |\n|------|----------------|----------------|\n| 实验 | sweep-isr-b01-s45 (β=0.1, s45) | sweep-isr-b005-s42 (β=0.05, s42) |\n| 显存 | 79,547 / 97,887 MiB | 80,355 / 97,887 MiB |\n| GPU 利用率 | **98%** (活跃训练) | **4%** (刚完成) |\n| 状态 | **运行中** 177/500 步 | **已完成** 500/500 步 |\n\n### b005-s42 (β=0.05, seed 42) — ✅ 完成\n- **总步数**: 500/500\n- **完成时间**: 11:49 本地 (运行约 28 min)\n- **checkpoint-500**: 已保存 (~15GB, 11:49-11:50)\n- **DONE sentinel**: 无\n- **Last 50 步 avg**:\n  - **prove_rate ≈ 0.995** (49/50 步 PR=1.0, 仅 step 461 PR=0.75)\n  - **isr_mean ≈ 0.74** (大部分 0.75, 少量偏低)\n  - **loss = 0.0** (训练已饱和)\n- **特征**: 完全饱和，PR 锁定 1.0，ISR 稳定 ~0.75，loss=0\n\n### b01-s45 (β=0.1, seed 45) — 🔄 运行中\n- **当前步数**: 177/500\n- **每步耗时**: ~9.8s (比 b005 慢，β=0.1 生成更长)\n- **预计完成**: ~53 min 后 (~12:43 本地)\n- **训练状态**: 非常不稳定\n  - prove_rate 在 0.0-0.875 剧烈波动\n  - 大量步骤 PR=0.0, ISR=0.0\n  - 偶尔爆发到 PR=0.75-0.875\n- **趋势**: 无清晰收敛迹象，可能是 struggling run\n\n### 其他进程\n- 无其他 train_grpo.py 进程\n- 两个 GPU 均被上述 r3 run 占用，无残留/泄漏进程"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-gpu-and-orphan-check.md"
+}

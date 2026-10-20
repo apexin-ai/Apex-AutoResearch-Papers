@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5b57aca0c772d166c535",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops d134 emergency disk cleanup and restart",
+  "task_key": "worker_ops_d134-emergency-disk-cleanup-and-restart_20260518T182011",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d134-emergency-disk-cleanup-and-restart_20260518T182011_result.json",
+    "occurrence": 1,
+    "bytes": 1051,
+    "sha256": "34f6d66ed2757ad3147e98126d03624b1b8b7a2a5d5cea18d666bf70fa6a97c9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n清理前磁盘: 208G/250G (42G free)\n清理后磁盘:  41G/250G (210G free, freed 167G)\n\n各项清理详情:\n  ISR s47-s51:        已是 16-17M，无需清理（之前已清过）\n  Random s47:         已是 17M，无需清理（之前已清过）\n  Random s48:         已删除整个目录（崩溃残留）\n  Random s49:         -16G（删除整个目录）\n  sweep_isr_b005 s43: -16G → 16M\n  sweep_isr_b005 s44: -16G → 16M\n  sweep_random_b005 s43: -16G → 16M\n  sweep_random_b005 s44: -16G → 16M\n  plan002_additive_b01_s45_1000: -16G → 16M\n  d129_1.7b_isr_b01 s43/s44: -26G → 32M\n  d129_1.7b_isr_b03 s43/s44: -26G → 33M\n  d129_1.7b_random_b01 s43/s44: -26G → 32M\n\ns48 重启状态: running, PID 131128, step 2/500, GPU0 81410 MiB\nPipeline 自动清理: 已加入（每个 seed classify 完成后自动清理 checkpoint + safetensors + optimizer + rng_state + scheduler）\nPipeline 脚本: /root/autodl-tmp/d134_random_pipeline_v2.sh\nPipeline 队列: Random s48 → s49 → s50 → s51\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-d134-emergency-disk-cleanup-and-restart.md"
+}

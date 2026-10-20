@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "138a5897cdc006e6c6b3",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "eval plan017 eval sta",
+  "task_key": "worker_eval_plan017-eval-sta_20260514T051825",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_plan017-eval-sta_20260514T051825_result.json",
+    "occurrence": 1,
+    "bytes": 2699,
+    "sha256": "f3c3cf8a1178e78740a704ce64b7931a610a7d1715d52851aa7566a5c8a5102d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有数据完整。以下是最终结果。\n\n---\n\n## 1. plan017 完整 eval 指标\n\n| 指标 | 值 |\n|------|-----|\n| n_problems | 100 |\n| n_proved | 48 |\n| **prove_rate** | **0.48** |\n| **mean_isr** | **0.0453** |\n| isr_std | 0.0759 |\n| median_isr | 0.0 |\n| max_isr | 0.2857 |\n| proved_only_mean_isr | 0.0943 |\n| isr_pr_ratio | 0.0943 |\n| component_count_mean (proved) | **~9.6** |\n| 2-component ratio | **0%** |\n| elapsed | 542.3s (5.4s/sample) |\n| by_type: false | n=25, proved=8 (32%), ISR=0.0254 |\n| by_type: unknown | n=41, proved=21 (51%), ISR=0.0518 |\n| by_type: true | n=34, proved=19 (56%), ISR=0.0520 |\n\n## 2. Tautological Collapse 判断\n\n**plan017 没有 tautological collapse。** n_components 范围 4-18，均值 9.6，零个 2-component proof。与 plan013（96% 2-component）完全不同。exec 信号作为主奖励有效阻止了坍缩。\n\n## 3. 对比表\n\n| 指标 | plan001-s42 (exec-only) | plan017 (add random β=0.3) | plan002 (add ISR β=0.3) | plan013 (pure random) |\n|------|:-:|:-:|:-:|:-:|\n| **reward** | r_exec | r_exec·(1+0.3·rand) | r_exec·(1+0.3·ISR) | random |\n| **prove_rate** | **0.93** | 0.48 | 0.18 | 1.00 |\n| **mean_isr** | **0.1232** | 0.0453 | 0.0257 | 0.535* |\n| isr_std | 0.1887 | 0.0759 | 0.0742 | 0.1282* |\n| median_isr | 0.0 | 0.0 | 0.0 | 0.5* |\n| proved_only_ISR | 0.1324 | 0.0943 | 0.1427 | 0.535* |\n| component_mean | ~7.1 | ~9.6 | ~10.7 | ~2.0* |\n| 2-comp ratio | 0% | 0% | 0% | ~96%* |\n| **collapsed?** | **No** | **No** | **No** | **YES** |\n\n\\* plan013 指标因 tautological collapse 无意义（ISR 高是假象）\n\n## 4. Hypothesis 结论\n\n**exec-only >> additive random > additive ISR >> pure random (collapsed)**\n\n核心发现：\n- **additive random (plan017) 没有坍缩**，但 prove_rate 从 0.93 降至 0.48（-48%）——随机噪声作为 reward perturbation 显著伤害了证明能力\n- **additive ISR (plan002) 比 additive random 更差**：prove_rate 0.18 vs 0.48。ISR 信号不仅没有提供有用的结构指导，反而比纯随机噪声更具破坏性\n- **proved_only ISR 对比**：plan002 (0.1427) > plan001 (0.1324) > plan017 (0.0943)——plan002 在少数成功证明中 ISR 稍高，但代价是丧失了 80%+ 的证明能力\n- **ISR ≈ random 的假设不成立**：ISR 信号明确比 random 更差（0.18 vs 0.48 prove_rate），这意味着 ISR additive reward 是 actively misleading，不仅仅是 noisy\n\n**结论：ISR 作为 additive reward 信号是反生产力的。exec-only baseline 仍然是最优策略。任何 additive perturbation（无论是 ISR 还是 random）都伤害 prove_rate，且 ISR 的伤害大于 random。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-plan017-eval-sta.md"
+}

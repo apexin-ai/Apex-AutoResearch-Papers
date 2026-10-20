@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "819289f47ec26c32ad00",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code d146 monitor and eval",
+  "task_key": "worker_code_d146-monitor-and-eval_20260520T003821",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d146-monitor-and-eval_20260520T003821_result.json",
+    "occurrence": 1,
+    "bytes": 181,
+    "sha256": "fb726a9db8b47d656513460f82faf90d0fd04c43cb677dc71c18e1266c7e49e4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Polling scheduled. Current state: **step 186/500** (37%). Will check again in ~4 minutes and continue polling until completion, then immediately launch eval/classify."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d146-monitor-and-eval.md"
+}

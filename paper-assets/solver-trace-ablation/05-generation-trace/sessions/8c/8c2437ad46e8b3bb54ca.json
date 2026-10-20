@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8c2437ad46e8b3bb54ca",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "eval random b03 s44 r2 v2",
+  "task_key": "worker_eval_random-b03-s44-r2-v2_20260515T024530",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_random-b03-s44-r2-v2_20260515T024530_result.json",
+    "occurrence": 1,
+    "bytes": 15,
+    "sha256": "ce4a1647d45fe2a4c49a27ff15d18a962283163096043939113e1780f0c8cb91"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-random-b03-s44-r2-v2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "61c855694ef67ff4244c",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code disk cleanup urgent",
+  "task_key": "worker_code_disk-cleanup-urgent_20260519T170744",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_disk-cleanup-urgent_20260519T170744_result.json",
+    "occurrence": 1,
+    "bytes": 558,
+    "sha256": "261ef40936f5704b13bbaee3e18a2c18b64912c95498d1ee4c80390119f2b80d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。\n\n**清理报告：**\n\n| 指标 | 清理前 | 清理后 |\n|------|--------|--------|\n| 已用 | 30G (100%) | 9.1G (31%) |\n| 可用 | 680K | **21G** |\n\n**删除内容：**\n- `/tmp/d146_dryrun` — 20G（dry run 模型权重 + checkpoint-1，已完成的测试产物）\n- `/root/.cache/huggingface/datasets` — ~1.1G（HF 数据集缓存）\n- `/tmp` 旧日志/脚本/临时文件 — ~3M\n\n**未删除：** `/root/solver-trace-ablation/`、`/root/autodl-tmp/` 下所有内容完整保留。D146 训练不受影响。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-disk-cleanup-urgent.md"
+}

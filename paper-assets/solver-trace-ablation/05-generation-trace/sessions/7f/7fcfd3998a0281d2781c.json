@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7fcfd3998a0281d2781c",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code sync paper remote",
+  "task_key": "worker_code_sync-paper-remote_20260519T170406",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_sync-paper-remote_20260519T170406_result.json",
+    "occurrence": 1,
+    "bytes": 932,
+    "sha256": "90d0bd063718f8ed0025824232b655159bf97ca68d16f84b75763e951559f48d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### 1. 同步结果\n- **远程没有 git 仓库**，改用 rsync 同步 .tex/.bib 文件\n- rsync 显示 tex/bib 文件已是最新（无差异传输）\n- **注意**：远程磁盘 30G/30G 已满（100%），PDF/图片等大文件未同步（空间不足）\n\n### 2. K / num_generations 所有提及\n\n| 文件 | 行号 | 内容 |\n|------|------|------|\n| `experiments.tex` | 10 | `$K{=}4$, lr $10^{-6}$, 500 steps default` |\n| `method.tex` | 8 | `GRPO~\\citep{deepseekmath} ($K{=}4$)` |\n| `checklist.tex` | 41 | `GRPO $K{=}4$, 500/1000 steps` |\n| `appendix.tex` | 846 | `$K{=}4$ rollouts, FOLIO training set` (LLaMA 实验) |\n\n另外 `experiments.tex:63` 和 `appendix.tex:185` 提到 \"GRPO rollouts\" 但未指定 K 值（上下文已由前文定义）。\n\n### 3. K=8 错误声明检查\n**未发现任何 K=8 的声明。** 所有 4 处 K 值声明均为 `K=4`，与实际配置一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-sync-paper-remote.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2ea3e7178dd5a50c9b2b",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code paper tex h7 specificity fix",
+  "task_key": "worker_code_paper-tex-h7-specificity-fix_20260515T155808",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_paper-tex-h7-specificity-fix_20260515T155808_result.json",
+    "occurrence": 1,
+    "bytes": 1637,
+    "sha256": "e9a7e215ab62dbef3a1a6d4851d92dcf396e1628e29b094e9e83e94daee2c71d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 处修改完成。精确 diff：\n\n**1. abstract.tex L7**\n```\n- 69.7\\% conclusion duplication (H7) versus 0\\% under matched random; the sole apparent ISR improvement\n+ 69.7\\% conclusion duplication (H7) versus 0\\% under matched random at 500 steps (by 1000 steps, random converges to the same H7 mode, indicating ISR accelerates rather than exclusively causes tautological collapse); the sole apparent ISR improvement\n```\n\n**2. experiments.tex L68**\n```\n- The most striking number is H7: 69.7\\% of proved samples under ISR ($n{=}161/231$) vs.\\ \\emph{zero} under random ($0/256$).\n+ The most striking number at 500 steps is H7: 69.7\\% of proved samples under ISR ($n{=}161/231$) vs.\\ \\emph{zero} under random ($0/256$); however, extended training to 1000 steps reveals random $\\beta{=}0.1$ converges to $100\\%$ H7, indicating ISR accelerates H7 onset rather than being its sole cause.\n```\n\n**3. conclusion.tex L5**\n```\n- At $\\beta{=}0.1$, conclusion duplication exploits the LOO definition (69.7\\% vs.\\ 0\\% under matched random),\n+ At $\\beta{=}0.1$, conclusion duplication exploits the LOO definition (69.7\\% vs.\\ 0\\% under matched random at 500 steps; by 1000 steps random converges to the same H7 mode, so ISR accelerates rather than exclusively causes the collapse),\n```\n\n注意：experiments.tex L157 taxonomy 段落仍写 \"H7 (conclusion duplication) is ISR-specific\"，conclusion.tex L16 dose-response 段落仍写 \"random $\\beta{=}0.1$ produces $0\\%$ H7 ($0/256$)\"——这两处也含绝对声明，但任务限定只改 3 处，未动。如需一并修正可告知。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-paper-tex-h7-specificity-fix.md"
+}

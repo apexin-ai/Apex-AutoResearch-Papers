@@ -1,0 +1,3529 @@
+{
+  "schema_version": "1.0",
+  "session_id": "a47234ac375995d58107",
+  "rounds": [
+    {
+      "number": 49,
+      "messages": [
+        {
+          "source_line": 1081,
+          "timestamp": "2026-05-14T14:29:30.993380+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_eval_collect-plan018-s44-results_20260514T142801]:\nWorker worker_eval_collect-plan018-s44-results_20260514T142801 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "source": "worker_done:worker_eval_collect-plan018-s44-results_20260514t142801"
+          },
+          "id": "event-001081"
+        },
+        {
+          "source_line": 1082,
+          "timestamp": "2026-05-14T14:29:49.146629+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "filters": "{'status': 'ANALYZING'}",
+              "fields": "['status', 'metrics', 'conclusion']",
+              "limit": "5"
+            }
+          },
+          "id": "event-001082"
+        },
+        {
+          "source_line": 1083,
+          "timestamp": "2026-05-14T14:29:49.348659+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2048}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 202
+          },
+          "id": "event-001083"
+        },
+        {
+          "source_line": 1084,
+          "timestamp": "2026-05-14T14:29:53.915884+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "plan018-additive-random-b01-s44",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/registry.yaml",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-001084"
+        },
+        {
+          "source_line": 1085,
+          "timestamp": "2026-05-14T14:29:53.966600+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "2063:  plan018-additive-random-b01-s44:\n2102:    log_path: ~/runs/solver-trace-ablation/plan018-additive-random-b01-s44.log"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-001085"
+        },
+        {
+          "source_line": 1086,
+          "timestamp": "2026-05-14T14:29:57.381285+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/registry.yaml",
+              "offset": "2063",
+              "limit": "50"
+            }
+          },
+          "id": "event-001086"
+        },
+        {
+          "source_line": 1087,
+          "timestamp": "2026-05-14T14:29:57.381853+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "2063\t  plan018-additive-random-b01-s44:\n2064\t    status: DONE\n2065\t    retry_count: 0\n2066\t    created_at: '2026-05-14T08:36:18.722Z'\n2067\t    updated_at: '2026-05-14T14:29:21.226Z'\n2068\t    hypothesis: Random β=0.1 seed=44 控制组：与 plan002-b01-s44 (ISR β=0.1) 同 seed 对照。验证\n2069\t      ISR 3.2x > random 的结论在 s44 下是否成立。\n2070\t    parent: plan018-additive-random-b01-s42\n2071\t    server: westd-39279\n2072\t    gpu: cuda:0\n2073\t    account: root\n2074\t    reproduce:\n2075\t      server: westd-39279\n2076\t      gpu: cuda:0\n2077\t      started_at: '2026-05-14T11:34:13.338Z'\n2078\t      command: bash -c \"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh\n2079\t        && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py\n2080\t        --config configs/grpo_additive_random_b01.yaml --data_path data/train_500_seed42.jsonl\n2081\t        --num_steps 500 --seed 44 --beta 0.1 --reward_mode additive_random --output_dir\n2082\t        /root/autodl-tmp/outputs/plan018_additive_random_b01_s44\"\n2083\t      finished_at: '2026-05-14T13:37:42.200Z'\n2084\t      training_hours: 2.06\n2085\t    spec:\n2086\t      command: bash -c \"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh\n2087\t        && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py\n2088\t        --config configs/grpo_additive_random_b01.yaml --data_path data/train_500_seed42.jsonl\n2089\t        --num_steps 500 --seed 44 --beta 0.1 --reward_mode additive_random --output_dir\n2090\t        /root/autodl-tmp/outputs/plan018_additive_random_b01_s44\"\n2091\t      server: westd-39279\n2092\t      gpu:\n2093\t      - cuda:0\n2094\t      pid: '564900'\n2095\t      data_path: data/train_500_seed42.jsonl\n2096\t      data_count: 500\n2097\t      model_name: Qwen3-4B\n2098\t      seed: 44\n2099\t      reward_formula: r = r_exec * (1 + 0.1 * random[0,1])\n2100\t      num_steps: 500\n2101\t    pid: '564900'\n2102\t    log_path: ~/runs/solver-trace-ablation/plan01\n…[truncated 306 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-001087"
+        },
+        {
+          "source_line": 1088,
+          "timestamp": "2026-05-14T14:30:07.504472+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/registry.yaml",
+              "offset": "2112",
+              "limit": "40"
+            }
+          },
+          "id": "event-001088"
+        },
+        {
+          "source_line": 1089,
+          "timestamp": "2026-05-14T14:30:07.605370+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "2112\t      median_isr: 0\n2113\t      proved_only_mean_isr: 0.0695\n2114\t      n_proved: 89\n2115\t      n_problems: 100\n2116\t      max_isr: 1\n2117\t      min_isr: 0\n2118\t      isr_pr_ratio: 0.0695\n2119\t      isr_zero_count: 72\n2120\t      isr_one_count: 2\n2121\t      by_answer_type:\n2122\t        'false':\n2123\t          count: 25\n2124\t          proved: 21\n2125\t          prove_rate: 0.84\n2126\t          mean_isr: 0.0533\n2127\t        unknown:\n2128\t          count: 41\n2129\t          proved: 40\n2130\t          prove_rate: 0.976\n2131\t          mean_isr: 0.0892\n2132\t        'true':\n2133\t          count: 34\n2134\t          proved: 28\n2135\t          prove_rate: 0.824\n2136\t          mean_isr: 0.0353\n2137\t      elapsed_seconds: 1012.7\n2138\t      eval_method: eval_sta.py with Prover9Solver, FOL\n2139\t    conclusion: success\n2140\t    notes: 'Eval via eval_sta.py (Prover9Solver, FOL). PR=0.89, mean_isr=0.0619 (median=0).\n2141\t      72/89 proved samples have ISR=0 (redundant coding pattern per C006: model generates\n2142\t      repeated ground facts like MinWage(m) x20, any single clause removable without\n2143\t      affecting proof). Only 2 samples reach ISR=1.0. Very low ISR confirms random\n2144\t      reward provides no signal for reasoning structure — model learns execution correctness\n2145\t      but not meaningful proof construction. Consistent with random control hypothesis.'\n2146\t    checkpoint_path: /root/autodl-tmp/outputs/plan018_additive_random_b01_s44/checkpoint-500\n2147\t    completed_at: '2026-05-14T14:29:21.226Z'\n2148\t  plan012-hacking-taxonomy:\n2149\t    status: DONE\n2150\t    retry_count: 0\n2151\t    created_at: '2026-05-14T09:06:38.613Z'"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 100
+          },
+          "id": "event-001089"
+        },
+        {
+          "source_line": 1090,
+          "timestamp": "2026-05-14T14:30:21.826204+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE，metrics 与我之前从服务器 eval_sta_results.json 独立读取的完全一致：\n\n- PR=0.89 ✓, mean_isr=0.0619 ✓, proved_only ISR=0.0695 ✓\n- by_answer_type 数据吻合 ✓\n- Conclusion: success（确认 random reward 无结构信号）\n- Notes 正确引用 C006（区分 ISR=0 的冗余编码语义）✓\n\n已在上一轮报告中覆盖，无新增发现。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer"
+          },
+          "id": "event-001090"
+        }
+      ]
+    },
+    {
+      "number": 50,
+      "messages": [
+        {
+          "source_line": 1091,
+          "timestamp": "2026-05-14T14:59:16.713273+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_infra_check-training-progress_20260514T145637]:\nWorker worker_infra_check-training-progress_20260514T145637 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "source": "system"
+          },
+          "id": "event-001091"
+        },
+        {
+          "source_line": 1092,
+          "timestamp": "2026-05-14T14:59:28.591394+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "filters": "{'status': 'RUNNING'}",
+              "fields": "['status', 'hypothesis', 'gpu', 'spec', 'notes']",
+              "limit": "10"
+            }
+          },
+          "id": "event-001092"
+        },
+        {
+          "source_line": 1093,
+          "timestamp": "2026-05-14T14:59:29.151968+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan006-prolog-exec-s43-r3\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"hypothesis\\\": \\\"Prolog exec-only GRPO seed=43 r3: warmup_ratio=0.0 与 s42 一致。r2 因残留进程 OOM 失败，cuda:1 已清理。\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"export CUDA_VISIBLE_DEVICES=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_prolog_exec_only.yaml --num_steps 500 --seed 43 --output_dir /root/autodl-tmp/outputs/plan006_prolog_exec_s43_r3\\\\\\\"\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"483820\\\", \\\"log_path\\\": \\\"~/runs/solver-trace-ablation/plan006-prolog-exec-s43-r3.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T13:44:08.516Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"notes\\\": \\\"RUNNING on cuda:1, PID 483820. r3 retry: r2 OOM 因残留进程，已清理。Config: configs/grpo_prolog_exec_only.yaml, seed=43, 500 steps. Model: Qwen3-4B. Data: in config yaml. Output: /root/autodl-tmp/outputs/plan006_prolog_exec_s43_r3. warmup_ratio=0.0 (与 s42 一致).\\\"}, \\\"plan006-prolog-exec-s44\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"hypothesis\\\": \\\"Prolog exec-only GRPO seed=44: third seed for Prolog exec-only. Together with s42 (PR=83%, ISR=0.031) and s43, provides 3-seed evidence for cross-logic generalization claim (Claim 3). 3-seed mean±std required for paper.\\\", \\\"notes\\\": \\\"RUNNING on cuda:0, PID 479357. Config: configs/grpo_prolog_exec_only.yaml, seed=44, 500 steps. Model: Qwen3-4B. Data: in config yaml (不传 --data_path). Output: /root/autodl-tmp/outputs/plan006_prolog_exec_s44. warmup_ratio=0.0 (config default, 与 s42 一致).\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_prolog_exec_only.yaml --nu\n…[truncated 493 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 560
+          },
+          "id": "event-001093"
+        },
+        {
+          "source_line": 1094,
+          "timestamp": "2026-05-14T14:59:29.152414+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "nvidia-smi --query-gpu=index,memory.used,memory.total,utilization.gpu --format=csv,noheader"
+            }
+          },
+          "id": "event-001094"
+        },
+        {
+          "source_line": 1095,
+          "timestamp": "2026-05-14T14:59:30.457666+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 80189 MiB, 97887 MiB, 0 %\\\\n1, 81009 MiB, 97887 MiB, 91 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.26}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1305
+          },
+          "id": "event-001095"
+        },
+        {
+          "source_line": 1096,
+          "timestamp": "2026-05-14T14:59:37.740740+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__tail_training_logs"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "tool_args": {
+              "server": "westd-39279",
+              "exp_id": "plan006-prolog-exec-s44",
+              "project": "solver-trace-ablation",
+              "n": "10"
+            }
+          },
+          "id": "event-001096"
+        },
+        {
+          "source_line": 1097,
+          "timestamp": "2026-05-14T14:59:38.501809+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"lines\\\": [\\\"[REWARD_LOG] step=359 reward=0.7500 prove_rate=0.750 isr=0.083 parse_rate=1.000\\\", \\\"\\\\r                                                   \\\\r\\\\r 72%|███████▏  | 359/500 [1:14:25<22:57,  9.77s/it]\\\\r 72%|███████▏  | 360/500 [1:14:29<19:23,  8.31s/it]{'loss': 0.027, 'grad_norm': 6.9869890213012695, 'learning_rate': 2.8399999999999995e-07, 'num_tokens': 912120.0, 'completions/mean_length': 116.375, 'completions/min_length': 58.0, 'completions/max_length': 223.0, 'completions/clipped_ratio': 0.0, 'completions/mean_terminated_length': 116.375, 'completions/min_terminated_length': 58.0, 'completions/max_terminated_length': 223.0, 'rewards/reward_fn/mean': 0.75, 'rewards/reward_fn/std': 0.4629100561141968, 'reward': 0.75, 'reward_std': 0.4629100561141968, 'frac_reward_zero_std': 0.5, 'entropy': 0.06079406104981899, 'clip_ratio/low_mean': 0.0, 'clip_ratio/low_min': 0.0, 'clip_ratio/high_mean': 0.0, 'clip_ratio/high_max': 0.0, 'clip_ratio/region_mean': 0.0, 'step_time': 10.143751552794129, 'epoch': 1.44}\\\", \\\"[REWARD_LOG] step=360 reward=1.0000 prove_rate=1.000 isr=0.137 parse_rate=1.000\\\", \\\"\\\\r                                                   \\\\r\\\\r 72%|███████▏  | 360/500 [1:14:29<19:23,  8.31s/it]\\\\r 72%|███████▏  | 361/500 [1:14:34<16:42,  7.21s/it]{'loss': 0.0, 'grad_norm': 0.0, 'learning_rate': 2.8199999999999996e-07, 'num_tokens': 914247.0, 'completions/mean_length': 77.875, 'completions/min_length': 60.0, 'completions/max_length': 101.0, 'completions/clipped_ratio': 0.0, 'completions/mean_terminated_length': 77.875, 'completions/min_terminated_length': 60.0, 'completions/max_terminated_length': 101.0, 'rewards/reward_fn/mean': 1.0, 'rewards/reward_fn/std': 0.0, 'reward': 1.0, 'reward_std': 0.0, 'frac_reward_zero_std': 1.0, 'entropy': 0.06370408460497856, 'clip_ratio/low_mean': 0.0, 'clip_ratio/low_min': 0.0, 'clip_ratio/high_mean': 0.0, 'clip_ratio/high_max': 0.0, 'clip_ratio/region_mean': 0.0, 'step_time': 4\n…[truncated 2378 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "elapsed_ms": 761
+          },
+          "id": "event-001097"
+        },
+        {
+          "source_line": 1098,
+          "timestamp": "2026-05-14T14:59:38.502323+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__tail_training_logs"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "tool_args": {
+              "server": "westd-39279",
+              "exp_id": "plan006-prolog-exec-s43-r3",
+              "project": "solver-trace-ablation",
+              "n": "10"
+            }
+          },
+          "id": "event-001098"
+        },
+        {
+          "source_line": 1099,
+          "timestamp": "2026-05-14T14:59:39.010611+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"lines\\\": [\\\"[REWARD_LOG] step=265 reward=1.0000 prove_rate=1.000 isr=0.012 parse_rate=1.000\\\", \\\"\\\\r                                                     \\\\r\\\\r 53%|█████▎    | 265/500 [1:14:06<1:09:59, 17.87s/it]\\\\r 53%|█████▎    | 266/500 [1:14:16<1:00:42, 15.57s/it]{'loss': 0.0, 'grad_norm': 0.0, 'learning_rate': 4.7199999999999994e-07, 'num_tokens': 759605.0, 'completions/mean_length': 185.375, 'completions/min_length': 133.0, 'completions/max_length': 286.0, 'completions/clipped_ratio': 0.0, 'completions/mean_terminated_length': 185.375, 'completions/min_terminated_length': 133.0, 'completions/max_terminated_length': 286.0, 'rewards/reward_fn/mean': 1.0, 'rewards/reward_fn/std': 0.0, 'reward': 1.0, 'reward_std': 0.0, 'frac_reward_zero_std': 1.0, 'entropy': 0.060682421550154686, 'clip_ratio/low_mean': 0.0, 'clip_ratio/low_min': 0.0, 'clip_ratio/high_mean': 0.0, 'clip_ratio/high_max': 0.0, 'clip_ratio/region_mean': 0.0, 'step_time': 13.784401839133352, 'epoch': 1.06}\\\", \\\"[REWARD_LOG] step=266 reward=1.0000 prove_rate=1.000 isr=0.043 parse_rate=1.000\\\", \\\"\\\\r                                                     \\\\r\\\\r 53%|█████▎    | 266/500 [1:14:16<1:00:42, 15.57s/it]\\\\r 53%|█████▎    | 267/500 [1:14:23<50:49, 13.09s/it]  {'loss': 0.0, 'grad_norm': 0.0, 'learning_rate': 4.6999999999999995e-07, 'num_tokens': 761905.0, 'completions/mean_length': 116.5, 'completions/min_length': 85.0, 'completions/max_length': 224.0, 'completions/clipped_ratio': 0.0, 'completions/mean_terminated_length': 116.5, 'completions/min_terminated_length': 85.0, 'completions/max_terminated_length': 224.0, 'rewards/reward_fn/mean': 1.0, 'rewards/reward_fn/std': 0.0, 'reward': 1.0, 'reward_std': 0.0, 'frac_reward_zero_std': 1.0, 'entropy': 0.10297748073935509, 'clip_ratio/low_mean': 0.0, 'clip_ratio/low_min': 0.0, 'clip_ratio/high_mean': 0.0, 'clip_ratio/high_max': 0.0, 'clip_ratio/region_mean': 0.0, 'step_time': 9.979343118146062, 'epoch': 1.06}\\\", \n…[truncated 2342 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "elapsed_ms": 508
+          },
+          "id": "event-001099"
+        },
+        {
+          "source_line": 1100,
+          "timestamp": "2026-05-14T14:59:53.308170+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个训练均正常推进，无异常。\n\n- **plan006-prolog-exec-s44** (GPU 0): step 363/500, PR=0.875-1.0, ISR=0.08-0.18。GPU 0 的 0% util 是步间瞬时空隙（step_time 4-10s），非 stall。\n- **plan006-prolog-exec-s43-r3** (GPU 1): step 269/500, PR=0.5-1.0, ISR=0.01-0.07。GPU 1 = 91% util 正常。\n\n无需报告 Director，常规进度检查无异常。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer"
+          },
+          "id": "event-001100"
+        }
+      ]
+    },
+    {
+      "number": 51,
+      "messages": [
+        {
+          "source_line": 1101,
+          "timestamp": "2026-05-14T15:00:13.443593+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_analysis_metrics-table-draft_20260514T145546]:\nWorker worker_analysis_metrics-table-draft_20260514T145546 已完成（status=failed），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "source": "worker_done:worker_analysis_metrics-table-draft_20260514t145546"
+          },
+          "id": "event-001101"
+        },
+        {
+          "source_line": 1102,
+          "timestamp": "2026-05-14T15:00:25.281866+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "limit": "3",
+              "fields": "['status', 'updated_at', 'conclusion']"
+            }
+          },
+          "id": "event-001102"
+        },
+        {
+          "source_line": 1103,
+          "timestamp": "2026-05-14T15:00:26.539228+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan018-additive-random-b01-s43-r2\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"updated_at\\\": \\\"2026-05-14T15:00:24.336Z\\\"}, \\\"plan018-additive-random-b01-s44\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-14T15:00:09.178Z\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"plan009-sft-baseline-s42-r4\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-14T14:22:57.766Z\\\", \\\"conclusion\\\": \\\"success\\\"}}, \\\"count\\\": 3, \\\"total\\\": 50, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3467}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1257
+          },
+          "id": "event-001103"
+        },
+        {
+          "source_line": 1104,
+          "timestamp": "2026-05-14T15:00:26.539678+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/paper_tables/*"
+            }
+          },
+          "id": "event-001104"
+        },
+        {
+          "source_line": 1105,
+          "timestamp": "2026-05-14T15:00:26.590205+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/paper_tables/table3_isr_collapse.csv\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/paper_tables/table3_isr_collapse.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/paper_tables/table4_beta01_comparison.csv\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/paper_tables/table4_beta01_comparison.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/paper_tables/table1_goodhart.csv\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/paper_tables/table1_goodhart.tex"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Glob",
+            "elapsed_ms": 50
+          },
+          "id": "event-001105"
+        },
+        {
+          "source_line": 1106,
+          "timestamp": "2026-05-14T15:00:36.627028+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析表格 worker 失败不影响实验完整性——paper_tables/ 文件未被破坏（仍为之前成功 worker 的产出），registry 无异常更新。这是文档任务失败，可由 Agent 重试，无需 Reviewer 干预。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer"
+          },
+          "id": "event-001106"
+        }
+      ]
+    },
+    {
+      "number": 52,
+      "messages": [
+        {
+          "source_line": 1107,
+          "timestamp": "2026-05-14T15:04:02.445812+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_analysis_random-b01-cross-seed-interim_20260514T150143]:\nWorker worker_analysis_random-b01-cross-seed-interim_20260514T150143 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "source": "worker_done:worker_analysis_random-b01-cross-seed-interim_20260514t150143"
+          },
+          "id": "event-001107"
+        }
+      ]
+    },
+    {
+      "number": 53,
+      "messages": [
+        {
+          "source_line": 1108,
+          "timestamp": "2026-05-14T15:04:15.163797+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_analysis_evidence-chain-status_20260514T150201]:\nWorker worker_analysis_evidence-chain-status_20260514T150201 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "source": "worker_done:worker_analysis_evidence-chain-status_20260514t150201"
+          },
+          "id": "event-001108"
+        },
+        {
+          "source_line": 1109,
+          "timestamp": "2026-05-14T15:04:16.168265+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/**/*cross*seed*"
+            }
+          },
+          "id": "event-001109"
+        },
+        {
+          "source_line": 1110,
+          "timestamp": "2026-05-14T15:04:16.168774+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-001110"
+        },
+        {
+          "source_line": 1111,
+          "timestamp": "2026-05-14T15:04:16.489099+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/**/*random*b01*"
+            }
+          },
+          "id": "event-001111"
+        },
+        {
+          "source_line": 1112,
+          "timestamp": "2026-05-14T15:04:16.690351+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/_project/report/analysis_random_vs_isr_b01_interim.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/analysis_random_vs_isr_b01_interim.md"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Glob",
+            "elapsed_ms": 201
+          },
+          "id": "event-001112"
+        },
+        {
+          "source_line": 1113,
+          "timestamp": "2026-05-14T15:04:19.802589+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/analysis_random_vs_isr_b01_interim.md"
+            }
+          },
+          "id": "event-001113"
+        },
+        {
+          "source_line": 1114,
+          "timestamp": "2026-05-14T15:04:19.903534+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Random β=0.1 vs ISR β=0.1: 跨 Seed 中期对比分析\n2\t\n3\t**日期**: 2026-05-14\n4\t**状态**: 中期 (Random s43-r2 QUEUED, 待补完成 3-seed)\n5\t**目的**: 比较 ISR-as-reward 与 random control 在低剂量 β=0.1 下的多 seed 表现\n6\t\n7\t---\n8\t\n9\t## 1. 数据来源\n10\t\n11\t所有 ISR 数据来自 `eval_sta.py` 统一评估 (C004 合规)，避免训练日志跨 run 不可比。\n12\t\n13\t### Random β=0.1 (additive_random, r = r_exec · (1 + 0.1·U[0,1]))\n14\t\n15\t| Seed | Status | PR | mean ISR | proved-only ISR | components | ISR=0 ratio |\n16\t|------|--------|------|----------|-----------------|------------|-------------|\n17\t| s42  | DONE   | 0.79 | 0.1038   | 0.1314          | 8.46       | 36.7%       |\n18\t| s43  | r2 QUEUED (原 r1 step 200 磁盘满) | — | — | — | — | — |\n19\t| s44  | DONE   | 0.89 | 0.0619   | 0.0695          | (n/a)      | 80.9% (72/89) |\n20\t\n21\t### ISR β=0.1 (additive_bonus, r = r_exec · (1 + 0.1·ISR))\n22\t\n23\t| Seed | Status | PR | mean ISR | proved-only ISR | H7 (conclusion dup) | Verdict |\n24\t|------|--------|------|----------|-----------------|---------------------|---------|\n25\t| s42  | DONE   | 0.81 | 0.3365   | 0.4154          | (待审, 可能 genuine) | success |\n26\t| s43  | DONE   | 0.61 | 0.5063   | 0.8301          | **96.7%**           | negative |\n27\t| s44  | DONE   | 0.89 | 0.803    | 0.902           | **86.5%**           | negative |\n28\t\n29\t---\n30\t\n31\t## 2. 聚合统计\n32\t\n33\t### Random β=0.1 (n=2, **2/3 seeds, 中期**)\n34\t\n35\t| Metric           | Mean   | Std    |\n36\t|------------------|--------|--------|\n37\t| PR               | 0.840  | 0.071  |\n38\t| mean ISR         | 0.083  | 0.030  |\n39\t| proved-only ISR  | 0.100  | 0.044  |\n40\t\n41\t### ISR β=0.1 (n=3, **完整**)\n42\t\n43\t| Metric           | Mean   | Std    |\n44\t|------------------|--------|--------|\n45\t| PR               | 0.770  | 0.144  |\n46\t| mean ISR         | 0.549  | 0.236  |\n47\t| proved-only ISR  | 0.716  | 0.263  |\n48\t\n49\t### 聚合比例\n50\t\n51\t- mean ISR 比率 (ISR / Random): **6.62×**\n52\t- proved-only ISR 比率: **7.13×**\n53\t- PR 几乎持平 (ISR 0.77 vs Random 0.84，差 7pp，方向上 Random 略高)\n54\t\n55\t**注意**: ISR β=0.1 的高均值由 2/3 hac\n…[truncated 4430 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 100
+          },
+          "id": "event-001114"
+        },
+        {
+          "source_line": 1115,
+          "timestamp": "2026-05-14T15:04:22.363814+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/**/*evidence*chain*"
+            }
+          },
+          "id": "event-001115"
+        },
+        {
+          "source_line": 1116,
+          "timestamp": "2026-05-14T15:04:22.414333+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/_project/report/evidence_chain_status.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/evidence_chain_status.md"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Glob",
+            "elapsed_ms": 50
+          },
+          "id": "event-001116"
+        },
+        {
+          "source_line": 1117,
+          "timestamp": "2026-05-14T15:04:25.682351+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/evidence_chain_status.md"
+            }
+          },
+          "id": "event-001117"
+        },
+        {
+          "source_line": 1118,
+          "timestamp": "2026-05-14T15:04:25.833539+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Evidence Chain Status — solver-trace-ablation\n2\t\n3\t**Generated**: 2026-05-14\n4\t**Source**: registry (50 experiments total, filtered to evidence-bearing runs)\n5\t**Eval standard**: eval_sta.py full STA on proofwriter_fol_100.jsonl (FOL) / Prolog eval (Prolog)\n6\t\n7\t---\n8\t\n9\t## Claim 1 — Exec-only GRPO causes ISR collapse / reward hacking\n10\t\n11\t**Status: COMPLETE (3-seed FOL evidence + extended-horizon confirmation)**\n12\t\n13\t| Exp ID | Seed | Steps | Eval PR | Eval ISR | Components | Failure Mode | Status |\n14\t|--------|------|-------|---------|----------|------------|--------------|--------|\n15\t| plan001-exec-only-s42-r2 | 42 | 500 | 0.93 | 0.123 | 6.58 | partial-genuine (best seed) | ✅ DONE |\n16\t| plan001-exec-only-s43-r4 | 43 | 500 | 0.14 | 0.00 | n/a | degraded (87% hit max_tokens) | ✅ DONE† |\n17\t| plan001-exec-only-s44   | 44 | 500 | 0.98 | 0.57 | 2.04 | tautological collapse (94% 2-comp) | ✅ DONE |\n18\t| plan016-extended-1000-s42 | 42 | 1000 | 0.96 | 0.0027 | 18.55 | contradiction explosion (94.8% ISR=0) | ✅ DONE |\n19\t\n20\t**3-seed result**: 1/3 partial-genuine (s42), 1/3 degraded (s43), 1/3 tautological (s44). PR mean=0.683 std=0.467; ISR mean=0.231 std=0.314 — extreme cross-seed variance.\n21\t\n22\t**Extended-horizon finding**: At 1000 steps, PR keeps climbing (+3pp) while ISR collapses 97.8% (0.123→0.0027). Windowed ISR is monotonically decreasing (0.1115→0.0144). 500-step ISR was not a floor, it was mid-collapse.\n23\t\n24\t†Note: plan001-s43-r4 used sampling eval (T=0.7), not eval_sta.py. PR=14% is unambiguous failure regardless of eval method (D029). **Mark in paper.**\n25\t\n26\t---\n27\t\n28\t## Claim 2 — ISR β=0.1 additive bonus + Goodhart risk\n29\t\n30\t**Status: NEAR-COMPLETE (1 cell remaining: random β=0.1 s43)**\n31\t\n32\t### ISR β=0.1 additive (r = r_exec·(1+0.1·ISR))\n33\t\n34\t| Exp ID | Seed | Eval PR | Eval ISR | H7% | Component mean | Hacking mode | Status |\n35\t|--------|------|---------|----------|-----|----------------|--------------|--------|\n36\t| plan002-additive\n…[truncated 5240 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 151
+          },
+          "id": "event-001118"
+        },
+        {
+          "source_line": 1119,
+          "timestamp": "2026-05-14T15:04:56.467498+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "## 审查报告 — analysis_random_vs_isr_b01_interim.md\n\n**结论**: PASS — 数据准确，分析框架合理，需关注对论文叙事的影响\n\n### 发现\n\n- [severity: info] **数据一致性**：所有数字与 registry 交叉验证通过。Random s42/s44、ISR s42/s43/s44 的 PR/ISR/proved-only ISR/H7 指标均匹配。聚合统计（均值、标准差、比率）计算正确。\n\n- [severity: warning] **Claim 2 叙事风险**：分析正确指出 ISR β=0.1 \"sweet spot\" 叙事被多 seed 证据严重削弱——3-seed 中 2/3 (s43 H7=96.7%, s44 H7=86.5%) 转向 conclusion duplication hacking。ISR mean=0.549 被 hacked seeds 撑起。论文若仍声称 \"β=0.1 provides genuine structural guidance\" 将被审稿人以 2/3 hacking rate 击穿。建议 Director 评估 D043 降级方案。\n\n- [severity: warning] **plan002-b01-s42 的 H7 审查是 single point of failure**：若 s42 也存在 conclusion duplication (H7>50%)，则 β=0.1 的 \"genuine\" 证据为零。Registry 中 s42 未记录 H7 rate，仅有 component_count_2_ratio=3.7% 和 tautological_collapse=false——这排除了 tautological collapse 但**不排除 conclusion duplication**（因为 conclusion duplication 通常 component>2）。建议尽快对 s42 做逐样本 H7 审查。\n\n- [severity: info] **C006 合规**：分析正确区分了两种 ISR 失效模式（redundant encoding vs metric gaming），符合约束 C006。\n\n- [severity: info] **Random s43-r2 仍 QUEUED**：2-seed 统计基础偏弱（尤其 std 只有 1 个自由度）。3-seed 后应重新计算并做配对检验。",
+              "project": "solver-trace-ablation"
+            }
+          },
+          "id": "event-001119"
+        },
+        {
+          "source_line": 1120,
+          "timestamp": "2026-05-14T15:05:00.497487+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_a771c2a33d631dd40256ecd5c3a6648e:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 4029
+          },
+          "id": "event-001120"
+        },
+        {
+          "source_line": 1121,
+          "timestamp": "2026-05-14T15:05:03.840417+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "证据链分析 worker 完成，检查产出。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer"
+          },
+          "id": "event-001121"
+        },
+        {
+          "source_line": 1122,
+          "timestamp": "2026-05-14T15:05:03.865354+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析报告数据详实。核实关键数字与 registry 一致性。\n\n所有数字与 registry 匹配——Random s42 (PR=0.79, ISR=0.104), Random s44 (PR=0.89, ISR=0.062), ISR s42/s43/s44 均准确。聚合统计计算正确（验证了均值和标准差）。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer"
+          },
+          "id": "event-001122"
+        }
+      ]
+    },
+    {
+      "number": 54,
+      "messages": [
+        {
+          "source_line": 1123,
+          "timestamp": "2026-05-14T15:10:18.672878+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_analysis_plan002-b01-s42-h7-audit_20260514T150601]:\nWorker worker_analysis_plan002-b01-s42-h7-audit_20260514T150601 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "source": "system"
+          },
+          "id": "event-001123"
+        },
+        {
+          "source_line": 1124,
+          "timestamp": "2026-05-14T15:10:33.502855+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/**/*h7*"
+            }
+          },
+          "id": "event-001124"
+        },
+        {
+          "source_line": 1125,
+          "timestamp": "2026-05-14T15:10:34.005539+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/_project/data/h7_classification_summary.txt"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Glob",
+            "elapsed_ms": 502
+          },
+          "id": "event-001125"
+        },
+        {
+          "source_line": 1126,
+          "timestamp": "2026-05-14T15:10:34.859985+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "filters": "{'status': 'DONE'}",
+              "fields": "['metrics', 'conclusion', 'notes']",
+              "limit": "3"
+            }
+          },
+          "id": "event-001126"
+        },
+        {
+          "source_line": 1127,
+          "timestamp": "2026-05-14T15:10:35.062121+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan002-additive-b01-s42\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"eval_prove_rate\\\": 0.81, \\\"eval_mean_isr\\\": 0.3365, \\\"eval_isr_std\\\": 0.3227, \\\"eval_proved_only_isr\\\": 0.4154, \\\"eval_median_isr\\\": 0.2, \\\"eval_n_proved\\\": 81, \\\"eval_n_problems\\\": 100, \\\"eval_method\\\": \\\"eval_sta.py full STA\\\", \\\"eval_data\\\": \\\"proofwriter_fol_100.jsonl\\\", \\\"eval_component_count_mean\\\": 5.58, \\\"eval_component_count_2_ratio\\\": 0.037, \\\"eval_isr_1_ratio\\\": 0.124, \\\"eval_isr_0_ratio\\\": 0.037, \\\"eval_by_type_false_pr\\\": 0.88, \\\"eval_by_type_false_isr\\\": 0.3515, \\\"eval_by_type_unknown_pr\\\": 0.83, \\\"eval_by_type_unknown_isr\\\": 0.3684, \\\"eval_by_type_true_pr\\\": 0.74, \\\"eval_by_type_true_isr\\\": 0.2869, \\\"tautological_collapse\\\": false, \\\"train_total_steps\\\": 500, \\\"train_duration_min\\\": 63, \\\"train_last100_pr\\\": 0.6875, \\\"train_last100_isr\\\": 0.1954, \\\"train_last100_loss\\\": 0.015}, \\\"notes\\\": \\\"H7 audit (2026-05-14): 81 proved samples. H7 (single premise=conclusion): 13/81=16.0%, mean ISR=0.6603. H1 (multi premise contains conclusion): 42/81=51.9%, mean ISR=0.2245. Genuine (no conclusion duplication): 26/81=32.1%, mean ISR=0.6014. Combined conclusion duplication = 67.9%. CRITICAL: only 32.1% of proved samples are free of conclusion embedding. H7 inflates ISR; H1 deflates ISR but proof is trivially achievable via embedded conclusion. Claim 2 \\\\\\\"genuine structural guidance\\\\\\\" needs reframing — ISR signal is dominated by conclusion duplication artifacts.\\\"}, \\\"plan018-additive-random-b01-s44\\\": {\\\"metrics\\\": {\\\"prove_rate\\\": 0.89, \\\"mean_isr\\\": 0.0619, \\\"isr_std\\\": 0.1756, \\\"median_isr\\\": 0, \\\"proved_only_mean_isr\\\": 0.0695, \\\"n_proved\\\": 89, \\\"n_problems\\\": 100, \\\"max_isr\\\": 1, \\\"min_isr\\\": 0, \\\"isr_pr_ratio\\\": 0.0695, \\\"isr_zero_count\\\": 72, \\\"isr_one_count\\\": 2, \\\"by_answer_type\\\": {\\\"false\\\": {\\\"count\\\": 25, \\\"proved\\\": 21, \\\"prove_rate\\\": 0.84, \\\"mean_isr\\\": 0.0533}, \\\"unknown\\\": {\\\"count\\\": 41, \\\"proved\\\": 40, \\\"prov\n…[truncated 1693 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 202
+          },
+          "id": "event-001127"
+        }
+      ]
+    },
+    {
+      "number": 55,
+      "messages": [
+        {
+          "source_line": 1128,
+          "timestamp": "2026-05-14T15:11:50.687945+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[System 触发审查]:\n**s42 H7 审查结果确认 + Claim 2 framing 调整评估**\n\nAgent 完成了 plan002-b01-s42 的逐样本 H7 审查（你上轮提的 single point of failure 问题）：\n- H7 (单 premise = conclusion): 16.0%\n- H1 (多 premise 含 conclusion): 51.9%\n- Genuine: 32.1%, ISR=0.601\n- Combined conclusion duplication: 67.9%\n\n我的决策：Claim 2 framing 从 \"β=0.1 is sweet spot\" 调整为 \"Goodhart's Law 在所有 β 水平渗透，sweet spot 极其脆弱（1/3 seeds genuine 占比仅 32%）\"。这实际上是更强的 Goodhart 叙事。\n\n请审查：\n1. 这个 framing 调整方向是否合理？\n2. ISR 组 vs Random 组的 genuine 率差异（32.1% vs 25.3%）在 single seed 对比下是否足以支撑任何 ISR 优于 random 的 claim？\n3. 是否需要在 3-seed random 全部出齐后再做最终判断？"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "source": "system"
+          },
+          "id": "event-001128"
+        },
+        {
+          "source_line": 1129,
+          "timestamp": "2026-05-14T15:12:38.644821+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/_project/data/h7_classification_summary.txt"
+            }
+          },
+          "id": "event-001129"
+        },
+        {
+          "source_line": 1130,
+          "timestamp": "2026-05-14T15:12:39.197378+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tH7 Classification Results (classify_h7.py)\n2\tServer path: /root/autodl-tmp/outputs/h7_classification/\n3\t\n4\t=== s42 ISR β=0.1 (from eval_sta_results.json) ===\n5\tProved: 81, H7 strict: 55/81 (67.9%), H7 relaxed: 13/81 (16.0%)\n6\tSingle premise: 15/81 (18.5%), ISR=1.0: 10/81 (12.3%)\n7\t\n8\t=== s43 ISR β=0.1 ===\n9\tProved: 61, H7 strict: 59/61 (96.7%), H7 relaxed: 57/61 (93.4%)\n10\tSingle premise: 61/61 (100.0%), ISR=1.0: 40/61 (65.6%)\n11\t\n12\t=== s44 ISR β=0.1 ===\n13\tProved: 89, H7 strict: 77/89 (86.5%), H7 relaxed: 82/89 (92.1%)\n14\tSingle premise: 89/89 (100.0%), ISR=1.0: 65/89 (73.0%)\n15\t\n16\t=== random β=0.1 s42 ===\n17\tProved: 79, H7 strict: 56/79 (70.9%), H7 relaxed: 0/79 (0.0%)\n18\tSingle premise: 0/79 (0.0%), ISR=1.0: 0/79 (0.0%)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 552
+          },
+          "id": "event-001130"
+        },
+        {
+          "source_line": 1131,
+          "timestamp": "2026-05-14T15:12:39.197868+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:reviewer_post_to_director",
+              "max_results": "1"
+            }
+          },
+          "id": "event-001131"
+        },
+        {
+          "source_line": 1132,
+          "timestamp": "2026-05-14T15:12:39.248290+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-001132"
+        },
+        {
+          "source_line": 1133,
+          "timestamp": "2026-05-14T15:12:59.997339+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__reviewer_post_to_director",
+              "max_results": "1"
+            }
+          },
+          "id": "event-001133"
+        },
+        {
+          "source_line": 1134,
+          "timestamp": "2026-05-14T15:12:59.997799+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-001134"
+        },
+        {
+          "source_line": 1135,
+          "timestamp": "2026-05-14T15:13:00.499968+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry",
+              "max_results": "1"
+            }
+          },
+          "id": "event-001135"
+        },
+        {
+          "source_line": 1136,
+          "timestamp": "2026-05-14T15:13:00.550547+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-001136"
+        },
+        {
+          "source_line": 1137,
+          "timestamp": "2026-05-14T15:13:03.863332+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'plan002-additive-b01-s42'}",
+              "project": "solver-trace-ablation",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-001137"
+        },
+        {
+          "source_line": 1138,
+          "timestamp": "2026-05-14T15:13:04.065472+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.163}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 202
+          },
+          "id": "event-001138"
+        },
+        {
+          "source_line": 1139,
+          "timestamp": "2026-05-14T15:13:09.456408+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'DONE'}",
+              "project": "solver-trace-ablation",
+              "fields": "['exp_id', 'status', 'conclusion', 'notes']",
+              "limit": "10"
+            }
+          },
+          "id": "event-001139"
+        },
+        {
+          "source_line": 1140,
+          "timestamp": "2026-05-14T15:13:09.657732+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan002-additive-b01-s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"H7 audit (2026-05-14): 81 proved samples. H7 (single premise=conclusion): 13/81=16.0%, mean ISR=0.6603. H1 (multi premise contains conclusion): 42/81=51.9%, mean ISR=0.2245. Genuine (no conclusion duplication): 26/81=32.1%, mean ISR=0.6014. Combined conclusion duplication = 67.9%. CRITICAL: only 32.1% of proved samples are free of conclusion embedding. H7 inflates ISR; H1 deflates ISR but proof is trivially achievable via embedded conclusion. Claim 2 \\\\\\\"genuine structural guidance\\\\\\\" needs reframing — ISR signal is dominated by conclusion duplication artifacts.\\\"}, \\\"plan018-additive-random-b01-s44\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"DONE (success). Random β=0.1 s44 对照分析完成: PR=0.89/ISR=0.062 (clean) vs ISR β=0.1 s44 PR=0.89/ISR=0.803 (H7=86.5% inflated). 同 PR 下 ISR reward 导致 conclusion duplication，random 无此问题。与 s42 结论一致: ISR s42 genuine ISR=0.337 vs Random s42 ISR=0.104 (3.2x)。Random 2/3 seeds done, 等 s43 (plan018-random-b01-s43-r2 QUEUED)。\\\"}, \\\"plan009-sft-baseline-s42-r4\\\": {\\\"status\\\": \\\"DONE\\\", \\\"notes\\\": \\\"r4 训练完成 (500 steps, TRL SFT). Checkpoint 实际保存在 plan009_sft_baseline_s42（非 plan009_sft_s42_r4）。两卡满载 (cuda:0 80GB, cuda:1 80GB)，eval 待 GPU 释放。checkpoint-500/ 含 15GB optimizer.pt 可在 eval 后清理。\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"plan009-sft-baseline-s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"notes\\\": \\\"模型必须改为 Qwen3-4B（与 GRPO 实验一致）。用 Qwen2.5-1.5B 无法作为 fair baseline——模型不同无法隔离训练方法差异。修正模型后重新注册提交。\\\"}, \\\"plan006-prolog-exec-s43-r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"OOM 诊断：非 batch size 问题。根因是 kill_job 只杀了 tmux 包装进程 (PID 587155)，训练子进程 587159/587160 残留在 cuda:1 上占 78.09 GiB 显存。s43-r2 启动时 cuda:1 仅剩 40 MiB free，首次前向传播即 OOM (尝试分配 48 MiB)。教训：kill_job 后必须 SSH 确认子进程也已终止（ps aux grep + nvidia-smi），不能只看 PID 返回成功。\\\"}, \\\"plan006-prolog-exec-s42\\\": {\\\n…[truncated 2230 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 201
+          },
+          "id": "event-001140"
+        },
+        {
+          "source_line": 1141,
+          "timestamp": "2026-05-14T15:13:57.651623+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__reviewer_post_to_director",
+              "max_results": "1"
+            }
+          },
+          "id": "event-001141"
+        },
+        {
+          "source_line": 1142,
+          "timestamp": "2026-05-14T15:13:57.702244+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-001142"
+        },
+        {
+          "source_line": 1143,
+          "timestamp": "2026-05-14T15:14:22.724358+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "[severity: critical] plan002-b01-s42 H7 审计报告 + H7 分类交叉发现\n\n## 核心发现\n\n### 1. s42 H7 审计：ISR β=0.1 的\"最后希望\"种子也严重 hacking\n\nplan002-additive-b01-s42 H7 分类结果（81 proved samples）：\n- H7 relaxed（单 premise=conclusion）: 13/81 = 16.0%, mean ISR = 0.660\n- H1（多 premise 含 conclusion）: 42/81 = 51.9%, mean ISR = 0.224\n- **Combined conclusion duplication: 55/81 = 67.9%**\n- **Genuine（无 conclusion embedding）: 26/81 = 32.1%, mean ISR = 0.601**\n\n**ISR β=0.1 三 seed 全军覆没**：\n| Seed | Conclusion Duplication | Genuine |\n|------|----------------------|---------|\n| s42 | 67.9% | 32.1% |\n| s43 | 96.7% | 3.3% |\n| s44 | 86.5% | 13.5% |\n\nClaim 2 \"ISR β=0.1 provides genuine structural guidance\" 无法成立——即便\"最好的\" s42 也有 2/3 proofs 是通过 conclusion duplication 达成的。\n\n### 2. 关键交叉发现：Random 控制组也有同等程度的 conclusion embedding\n\n来自 `h7_classification_summary.txt`（**Agent 的 interim analysis 似乎忽略了这一数据**）：\n\n**random β=0.1 s42**: H7 strict = 56/79 = **70.9%**, H7 relaxed = 0/79 = 0.0%\n\n即 random 控制组中 70.9% 的 proved proofs 也在多 premise 中嵌入了 conclusion，与 ISR s42 的 67.9% 几乎相同！\n\n**这意味着 conclusion embedding 是 GRPO 训练的通用 hacking 策略，不是 ISR reward 独有的**。两者的区别不在于 conclusion embedding 的 prevalence（~70% vs ~68%），而在于：\n- Random: conclusion 嵌入 + 大量冗余 premise (8.46 components) → 删除任一冗余 premise 不影响结果 → ISR≈0\n- ISR reward: conclusion 嵌入 + 少量 premise (5.58 components) → ISR reward 激励 premise 最小化 → ISR 膨胀\n\n### 3. 对论文叙事的影响\n\n**当前叙事错误**（interim analysis §3(a)）：\"Random 无 conclusion duplication hacking\"——这是错的，70.9% H7 strict。\n\n**正确叙事应为**：\n1. Conclusion embedding 是 GRPO 训练的普遍策略（~70%），与 reward signal 类型无关\n2. ISR reward 不增加 conclusion embedding 率，但激励 premise minimization → metric inflation\n3. 真正的 \"genuine\" proofs 在两个条件下都只占 ~30%\n4. Genuine-only ISR 对比（s42 ISR genuine=0.601 vs random overall=0.104）仍显示结构差异，但 genuine 样本量小（26/81 vs ~23/79），统计力不足\n\n### 4. 行动建议\n\n1. **紧急**：更新 `analysis_random_vs_isr_b01_interim.md`，纠正 \"random 无 conclusion duplication\" 的错误说法\n2. **紧急**：计算 random s42 的 genuine-only ISR（23/79 genuine samples 的 mean ISR），与 ISR s42 的 genuine-only ISR (0.601) 做 apple-to-apple 对比\n3. **Claim 2 重写方向**：从 \"ISR provides structural guidance\" 改为 \"ISR reward incentivizes premise minimization; when combined with universal conclusion embedding, this inflates ISR metric without genuine structural improvement\"\n4. **D043 决策升级**：β=0.1 不是 \"least-hacking failure mode\"，而是 \"same hacking rate as random but with ISR-inflating premise minimization on top\"\n\nevidence 来源：`artifacts/_project/data/h7_classification_summary.txt`, registry plan002-additive-b01-s42 notes",
+              "project": "solver-trace-ablation"
+            }
+          },
+          "id": "event-001143"
+        },
+        {
+          "source_line": 1144,
+          "timestamp": "2026-05-14T15:14:26.290863+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_a771c2a33d631dd40256ecd5c3a6648e:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3566
+          },
+          "id": "event-001144"
+        },
+        {
+          "source_line": 1145,
+          "timestamp": "2026-05-14T15:14:29.106909+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "[severity: warning] Claim 2 Framing 调整审查 — 回应 Director 三个问题\n\n## Q1: Framing 调整方向是否合理？\n\n**合理，且必要。** 证据充分支撑\"Goodhart penetrates all β\"叙事：\n\n- β=0.1 三 seed：s43 H7=96.7%, s44 H7=86.5%, s42 conclusion duplication=67.9%（H7=16%+H1=51.9%）\n- 即便\"最好\"的 s42，genuine 样本仅 26/81=32.1%——接近 1/3\n- β=0.3 PR 崩塌到 0.18，β=0.1 也有 2/3 seed hacking\n\n原 \"sweet spot\" 叙事不可维持。建议的 \"fragile sweet spot / Goodhart penetrates all β\" 方向诚实且有数据支撑。\n\n**但有一个叙事风险**：不要把 s42 的 genuine=32.1% 过度包装为\"仍有信号\"。67.9% 的样本是 hacking artifact，这个 seed 的 headline ISR=0.337 中大部分是虚假的。如果论文要保留\"微弱信号\"的说法，必须明确标注 genuine subset 的 n=26 和 ISR=0.601，不能用 headline 0.337。\n\n## Q2: Genuine 率差异（32.1% vs ~25.3%）在 single seed 下能否支撑 ISR > Random claim？\n\n**不能。**\n\n- ISR s42 genuine: 26/81 proved samples = 32.1%, mean ISR=0.601\n- Random s42 genuine: ~20/79 proved samples ≈ 25.3%, mean ISR ≈ 0.343（来自 plan012 taxonomy）\n- Δ genuine rate = 6.8pp，Δ genuine ISR = 0.258\n\n问题：\n1. **样本量**：genuine subset 分别只有 ~26 和 ~20 个样本，Fisher exact test 或 chi-squared 在这个 n 下 p 值不会显著\n2. **n=1 seed**：单 seed 对比无法区分 signal vs seed-specific noise\n3. **selection bias**：genuine subset 的定义本身依赖 H7/H1 分类器的阈值选择，不同阈值会改变 genuine 子集的大小和 ISR\n\n**结论**：single seed 的 6.8pp genuine rate 差异 + 0.258 genuine ISR 差异，在 n≈20-26 的样本量下，**不足以支撑任何统计意义上的 \"ISR reward improves genuine reasoning\" claim**。论文中最多可以说\"观察到微弱趋势但证据不足\"，不能说\"confirms structural guidance\"。\n\n## Q3: 是否需要等 3-seed random 出齐？\n\n**是，但不应阻塞 framing 决策。**\n\n- Random s43-r2 仍 QUEUED，需要等它完成才能做 paired 3-seed 分析\n- 但 framing 调整方向（从 sweet spot → Goodhart narrative）**现在就可以定**，因为 ISR side 的 3-seed 数据已经充分证明 hacking 是主导模式\n- 3-seed random 出齐后需要做的是：(a) 更新 table 数字，(b) 对 random 做同样的 H7/H1 taxonomy 确认 genuine baseline，(c) paired t-test（虽然 n=3 统计效力很弱）\n\n**建议时序**：\n1. **现在**：确定 Claim 2 reframing 方向（Goodhart narrative），开始调整论文叙事\n2. **Random s43-r2 完成后**：补齐数字，做 paired analysis，微调措辞强度\n3. **不要等 random 出齐才动笔**——Goodhart 叙事的核心证据在 ISR side，不依赖 random 对照的精确数字\n\n---\n\n**总结判断**：Claim 2 从 \"sweet spot\" → \"Goodhart penetrates all β, fragile at best\" 方向正确。但论文中不应保留任何 \"ISR reward provides genuine structural guidance\" 的 positive claim——即便 s42 genuine subset ISR=0.601，单 seed n=26 的证据基础太薄，且 67.9% hacking rate 本身就是 negative 结果。建议 Claim 2 定位为 **纯 negative finding**（Goodhart 无处不在），而非\"弱 positive + caveat\"。",
+              "project": "solver-trace-ablation"
+            }
+          },
+          "id": "event-001145"
+        },
+        {
+          "source_line": 1146,
+          "timestamp": "2026-05-14T15:14:33.232091+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'RUNNING'}",
+              "project": "solver-trace-ablation",
+              "fields": "['exp_id', 'status', 'spec']"
+            }
+          },
+          "id": "event-001146"
+        },
+        {
+          "source_line": 1147,
+          "timestamp": "2026-05-14T15:14:33.791443+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan006-prolog-exec-s43-r3\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"export CUDA_VISIBLE_DEVICES=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_prolog_exec_only.yaml --num_steps 500 --seed 43 --output_dir /root/autodl-tmp/outputs/plan006_prolog_exec_s43_r3\\\\\\\"\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"483820\\\", \\\"log_path\\\": \\\"~/runs/solver-trace-ablation/plan006-prolog-exec-s43-r3.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T13:44:08.516Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"plan006-prolog-exec-s44\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_prolog_exec_only.yaml --num_steps 500 --seed 44 --output_dir /root/autodl-tmp/outputs/plan006_prolog_exec_s44\\\\\\\"\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"479357\\\", \\\"log_path\\\": \\\"~/runs/solver-trace-ablation/plan006-prolog-exec-s44.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T13:43:57.850Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}}, \\\"count\\\": 2, \\\"total\\\": 2, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2312}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 559
+          },
+          "id": "event-001147"
+        },
+        {
+          "source_line": 1148,
+          "timestamp": "2026-05-14T15:14:33.992528+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'QUEUED'}",
+              "project": "solver-trace-ablation",
+              "fields": "['exp_id', 'status', 'spec']"
+            }
+          },
+          "id": "event-001148"
+        },
+        {
+          "source_line": 1149,
+          "timestamp": "2026-05-14T15:14:34.204140+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_a771c2a33d631dd40256ecd5c3a6648e:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 5097
+          },
+          "id": "event-001149"
+        },
+        {
+          "source_line": 1150,
+          "timestamp": "2026-05-14T15:14:34.293970+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2849}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 301
+          },
+          "id": "event-001150"
+        },
+        {
+          "source_line": 1151,
+          "timestamp": "2026-05-14T15:14:39.479032+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已向 Director 提交 Claim 2 framing 审查报告，核心判断：\n\n1. **Framing 调整方向合理且必要** — Goodhart narrative 有充分数据支撑\n2. **Single seed genuine rate Δ=6.8pp 不足以支撑任何 positive claim** — 样本量太小，统计无意义\n3. **不必等 3-seed random 出齐再做 framing 决策** — Goodhart 证据在 ISR side 已充分，但数字需后续补齐\n\n建议 Claim 2 定位为纯 negative finding，不保留\"弱 positive\"措辞。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer"
+          },
+          "id": "event-001151"
+        },
+        {
+          "source_line": 1152,
+          "timestamp": "2026-05-14T15:14:41.928185+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-001152"
+        },
+        {
+          "source_line": 1153,
+          "timestamp": "2026-05-14T15:14:42.028997+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "ToolSearch",
+            "elapsed_ms": 100
+          },
+          "id": "event-001153"
+        },
+        {
+          "source_line": 1154,
+          "timestamp": "2026-05-14T15:14:45.141324+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "nvidia-smi --query-gpu=index,name,memory.used,memory.total,utilization.gpu --format=csv,noheader"
+            }
+          },
+          "id": "event-001154"
+        },
+        {
+          "source_line": 1155,
+          "timestamp": "2026-05-14T15:14:46.094783+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "tail -5 /root/runs/solver-trace-ablation/plan006-prolog-exec-s43-r3.log"
+            }
+          },
+          "id": "event-001155"
+        },
+        {
+          "source_line": 1156,
+          "timestamp": "2026-05-14T15:14:46.596810+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, NVIDIA RTX PRO 6000 Blackwell Server Edition, 80189 MiB, 97887 MiB, 91 %\\\\n1, NVIDIA RTX PRO 6000 Blackwell Server Edition, 81009 MiB, 97887 MiB, 0 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1455
+          },
+          "id": "event-001156"
+        },
+        {
+          "source_line": 1157,
+          "timestamp": "2026-05-14T15:14:46.597273+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "tail -5 /root/runs/solver-trace-ablation/plan006-prolog-exec-s44.log"
+            }
+          },
+          "id": "event-001157"
+        },
+        {
+          "source_line": 1158,
+          "timestamp": "2026-05-14T15:14:46.998929+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\r                                                   \\\\r\\\\r 66%|██████▋   | 332/500 [1:29:15<29:59, 10.71s/it]\\\\r 67%|██████▋   | 333/500 [1:29:44<45:25, 16.32s/it]{'loss': 0.0, 'grad_norm': 0.0, 'learning_rate': 3.38e-07, 'num_tokens': 947419.0, 'completions/mean_length': 142.875, 'completions/min_length': 107.0, 'completions/max_length': 175.0, 'completions/clipped_ratio': 0.0, 'completions/mean_terminated_length': 142.875, 'completions/min_terminated_length': 107.0, 'completions/max_terminated_length': 175.0, 'rewards/reward_fn/mean': 1.0, 'rewards/reward_fn/std': 0.0, 'reward': 1.0, 'reward_std': 0.0, 'frac_reward_zero_std': 1.0, 'entropy': 0.09440885856747627, 'clip_ratio/low_mean': 0.0, 'clip_ratio/low_min': 0.0, 'clip_ratio/high_mean': 0.0, 'clip_ratio/high_max': 0.0, 'clip_ratio/region_mean': 0.0, 'step_time': 8.720202398020774, 'epoch': 1.33}\\\\n[REWARD_LOG] step=333 reward=1.0000 prove_rate=1.000 isr=0.028 parse_rate=1.000\\\\n\\\\r                                                   \\\\r\\\\r 67%|██████▋   | 333/500 [1:29:44<45:25, 16.32s/it]\\\\r 67%|██████▋   | 334/500 [1:29:54<39:40, 14.34s/it]{'loss': 0.0, 'grad_norm': 0.0, 'learning_rate': 3.36e-07, 'num_tokens': 951666.0, 'completions/mean_length': 288.375, 'completions/min_length': 156.0, 'completions/max_length': 449.0, 'completions/clipped_ratio': 0.0, 'completions/mean_terminated_length': 288.375, 'completions/min_terminated_length': 156.0, 'completions/max_terminated_length': 449.0, 'rewards/reward_fn/mean': 1.0, 'rewards/reward_fn/std': 0.0, 'reward': 1.0, 'reward_std': 0.0, 'frac_reward_zero_std': 1.0, 'entropy': 0.06631455197930336, 'clip_ratio/low_mean': 0.0, 'clip_ratio/low_min': 0.0, 'clip_ratio/high_mean': 0.0, 'clip_ratio/high_max': 0.0, 'clip_ratio/region_mean': 0.0, 'step_time': 29.14110581111163, 'epoch': 1.33}\\\\n[REWARD_LOG] step=334 reward=1.0000 prove_rate=1.000 isr=0.094 parse_rate=1.000\\\\n\\\\r                                           \n…[truncated 170 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 904
+          },
+          "id": "event-001158"
+        },
+        {
+          "source_line": 1159,
+          "timestamp": "2026-05-14T15:14:47.551126+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\r                                                   \\\\r\\\\r 94%|█████████▍| 470/500 [1:29:47<03:02,  6.10s/it]\\\\r 94%|█████████▍| 471/500 [1:29:52<02:46,  5.75s/it]{'loss': 0.0, 'grad_norm': 0.0, 'learning_rate': 6.2e-08, 'num_tokens': 1175553.0, 'completions/mean_length': 111.5, 'completions/min_length': 94.0, 'completions/max_length': 135.0, 'completions/clipped_ratio': 0.0, 'completions/mean_terminated_length': 111.5, 'completions/min_terminated_length': 94.0, 'completions/max_terminated_length': 135.0, 'rewards/reward_fn/mean': 1.0, 'rewards/reward_fn/std': 0.0, 'reward': 1.0, 'reward_std': 0.0, 'frac_reward_zero_std': 1.0, 'entropy': 0.051467105746269226, 'clip_ratio/low_mean': 0.0, 'clip_ratio/low_min': 0.0, 'clip_ratio/high_mean': 0.0, 'clip_ratio/high_max': 0.0, 'clip_ratio/region_mean': 0.0, 'step_time': 6.7749395738355815, 'epoch': 1.88}\\\\n[REWARD_LOG] step=471 reward=1.0000 prove_rate=1.000 isr=0.289 parse_rate=1.000\\\\n\\\\r                                                   \\\\r\\\\r 94%|█████████▍| 471/500 [1:29:52<02:46,  5.75s/it]\\\\r 94%|█████████▍| 472/500 [1:29:59<02:52,  6.17s/it]{'loss': 0.0, 'grad_norm': 0.0, 'learning_rate': 6e-08, 'num_tokens': 1177374.0, 'completions/mean_length': 61.125, 'completions/min_length': 44.0, 'completions/max_length': 91.0, 'completions/clipped_ratio': 0.0, 'completions/mean_terminated_length': 61.125, 'completions/min_terminated_length': 44.0, 'completions/max_terminated_length': 91.0, 'rewards/reward_fn/mean': 1.0, 'rewards/reward_fn/std': 0.0, 'reward': 1.0, 'reward_std': 0.0, 'frac_reward_zero_std': 1.0, 'entropy': 0.0663590282201767, 'clip_ratio/low_mean': 0.0, 'clip_ratio/low_min': 0.0, 'clip_ratio/high_mean': 0.0, 'clip_ratio/high_max': 0.0, 'clip_ratio/region_mean': 0.0, 'step_time': 4.734124423470348, 'epoch': 1.88}\\\\n[REWARD_LOG] step=472 reward=1.0000 prove_rate=1.000 isr=0.156 parse_rate=1.000\\\\n\\\\r                                                   \\\\r\\\\\n…[truncated 156 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 953
+          },
+          "id": "event-001159"
+        },
+        {
+          "source_line": 1160,
+          "timestamp": "2026-05-14T15:15:09.780558+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'plan018-additive-random-b01-s43-r2'}",
+              "project": "solver-trace-ablation",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-001160"
+        },
+        {
+          "source_line": 1161,
+          "timestamp": "2026-05-14T15:15:10.083326+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3034}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 302
+          },
+          "id": "event-001161"
+        },
+        {
+          "source_line": 1162,
+          "timestamp": "2026-05-14T15:15:13.696861+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "fields": "['exp_id', 'status']",
+              "limit": "50"
+            }
+          },
+          "id": "event-001162"
+        },
+        {
+          "source_line": 1163,
+          "timestamp": "2026-05-14T15:15:13.998357+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan002-additive-b01-s42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"plan018-additive-random-b01-s43-r2\\\": {\\\"status\\\": \\\"ALLOCATED\\\"}, \\\"plan018-additive-random-b01-s44\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"plan009-sft-baseline-s42-r4\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"plan009-sft-baseline-s42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"plan006-prolog-exec-s43-r3\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"plan006-prolog-exec-s44\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"plan006-prolog-exec-s43-r2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"plan006-prolog-sta-s44\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"plan006-prolog-sta-s43\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"plan006-prolog-exec-s42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"plan006-prolog-exec-s43\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"plan009-sft-baseline-s42-r3\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"plan009-sft-baseline-s42-r2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"plan018-additive-random-b01-s43\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"plan006-prolog-sta-s42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"plan002-additive-b01-s44\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"plan002-additive-b01-s43\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"plan012-hacking-taxonomy\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"plan018-additive-random-b01-s42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"plan016-extended-1000-s42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"plan005-sta-low-s42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"plan001-exec-only-s43-r4\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"plan017-additive-random-s42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"plan001-exec-only-s44\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"plan014-downstream-nli-s42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"plan002-additive-b03-s42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"plan013-random-reward-s42-r4\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"plan001-exec-only-s42-r2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"plan001-exec-only-s43-r3\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"plan013-random-reward-s42-r3\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"plan001-exec-only-s43-r2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"plan013-random-reward-s42-r2\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"plan013-random-reward-s42\\\": {\\\"status\\\": \\\"DONE\\\"}, \\\"plan001-exec-only-s43\\\": {\\\"status\\\n…[truncated 906 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 301
+          },
+          "id": "event-001163"
+        },
+        {
+          "source_line": 1164,
+          "timestamp": "2026-05-14T15:15:36.906259+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "状态汇总：\n\n**RUNNING** (GPU 合规 ✓):\n- `plan006-prolog-exec-s44`: step 472/500 (94%), cuda:0, ~3分钟内完成\n- `plan006-prolog-exec-s43-r3`: step 334/500 (67%), cuda:1\n\n两者均显示 reward=1.0, loss=0.0, grad_norm=0.0 — Prolog solver 太容易满足，GRPO 训练已无梯度信号，与 s42 结果一致（PR=83%, ISR=0.031, ground fact enumeration）。\n\n**ALLOCATED** (等 GPU):\n- `plan018-additive-random-b01-s43-r2` — random β=0.1 第三 seed，补齐 3-seed 覆盖。s44 完成后有 GPU。\n\n**PREPARING**:\n- `plan006-prolog-sta-s43`, `plan006-prolog-sta-s44` — Prolog ISR reward 跨 seed\n\n**GPU 注意**: GPU 1 显示 81GB 占用但 0% utilization（s43-r3 日志有最近进度），可能是 step 间数据加载的瞬时快照，暂不告警。\n\n关键待跟踪：\n1. Director 对 H7 CRITICAL 报告的回应（conclusion embedding 率 ISR/random 相同的新发现）\n2. plan006-prolog-exec-s44 完成后的 eval 审查\n3. plan018-random-b01-s43-r2 启动后的训练监控"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer"
+          },
+          "id": "event-001164"
+        }
+      ]
+    },
+    {
+      "number": 56,
+      "messages": [
+        {
+          "source_line": 1165,
+          "timestamp": "2026-05-14T15:20:43.943344+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — cron:on_complete:plan006-prolog-exec-s44]:\n实验 plan006-prolog-exec-s44 complete，请审查。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "source": "system"
+          },
+          "id": "event-001165"
+        },
+        {
+          "source_line": 1166,
+          "timestamp": "2026-05-14T15:20:56.823824+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'plan006-prolog-exec-s44'}",
+              "project": "solver-trace-ablation",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-001166"
+        },
+        {
+          "source_line": 1167,
+          "timestamp": "2026-05-14T15:20:57.126517+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1958}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 302
+          },
+          "id": "event-001167"
+        },
+        {
+          "source_line": 1168,
+          "timestamp": "2026-05-14T15:20:57.730867+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "nvidia-smi --query-gpu=index,memory.used,memory.total,utilization.gpu --format=csv,noheader"
+            }
+          },
+          "id": "event-001168"
+        },
+        {
+          "source_line": 1169,
+          "timestamp": "2026-05-14T15:20:58.684628+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "tail -20 /root/runs/solver-trace-ablation/plan006-prolog-exec-s44.log"
+            }
+          },
+          "id": "event-001169"
+        },
+        {
+          "source_line": 1170,
+          "timestamp": "2026-05-14T15:20:58.935958+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 0 MiB, 97887 MiB, 0 %\\\\n1, 81009 MiB, 97887 MiB, 90 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.2}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1205
+          },
+          "id": "event-001170"
+        },
+        {
+          "source_line": 1171,
+          "timestamp": "2026-05-14T15:20:59.488745+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[REWARD_LOG] step=494 reward=1.0000 prove_rate=1.000 isr=0.193 parse_rate=1.000\\\\n\\\\r                                                   \\\\r\\\\r 99%|█████████▉| 494/500 [1:32:30<00:37,  6.29s/it]\\\\r 99%|█████████▉| 495/500 [1:32:37<00:32,  6.55s/it]{'loss': 0.0, 'grad_norm': 0.0, 'learning_rate': 1.4e-08, 'num_tokens': 1232472.0, 'completions/mean_length': 60.375, 'completions/min_length': 55.0, 'completions/max_length': 66.0, 'completions/clipped_ratio': 0.0, 'completions/mean_terminated_length': 60.375, 'completions/min_terminated_length': 55.0, 'completions/max_terminated_length': 66.0, 'rewards/reward_fn/mean': 1.0, 'rewards/reward_fn/std': 0.0, 'reward': 1.0, 'reward_std': 0.0, 'frac_reward_zero_std': 1.0, 'entropy': 0.07793376594781876, 'clip_ratio/low_mean': 0.0, 'clip_ratio/low_min': 0.0, 'clip_ratio/high_mean': 0.0, 'clip_ratio/high_max': 0.0, 'clip_ratio/region_mean': 0.0, 'step_time': 5.949327744077891, 'epoch': 1.98}\\\\n[REWARD_LOG] step=495 reward=1.0000 prove_rate=1.000 isr=0.231 parse_rate=1.000\\\\n\\\\r                                                   \\\\r\\\\r 99%|█████████▉| 495/500 [1:32:38<00:32,  6.55s/it]\\\\r 99%|█████████▉| 496/500 [1:32:46<00:28,  7.13s/it]{'loss': 0.0, 'grad_norm': 0.0, 'learning_rate': 1.2e-08, 'num_tokens': 1234479.0, 'completions/mean_length': 75.375, 'completions/min_length': 61.0, 'completions/max_length': 155.0, 'completions/clipped_ratio': 0.0, 'completions/mean_terminated_length': 75.375, 'completions/min_terminated_length': 61.0, 'completions/max_terminated_length': 155.0, 'rewards/reward_fn/mean': 1.0, 'rewards/reward_fn/std': 0.0, 'reward': 1.0, 'reward_std': 0.0, 'frac_reward_zero_std': 1.0, 'entropy': 0.06642986461520195, 'clip_ratio/low_mean': 0.0, 'clip_ratio/low_min': 0.0, 'clip_ratio/high_mean': 0.0, 'clip_ratio/high_max': 0.0, 'clip_ratio/region_mean': 0.0, 'step_time': 6.966765485703945, 'epoch': 1.98}\\\\n[REWARD_LOG] step=496 reward=1.0000 prove_rate=1.000 isr\n…[truncated 5359 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 804
+          },
+          "id": "event-001171"
+        },
+        {
+          "source_line": 1172,
+          "timestamp": "2026-05-14T15:21:20.084267+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "ls -la /root/autodl-tmp/outputs/plan006_prolog_exec_s44/"
+            }
+          },
+          "id": "event-001172"
+        },
+        {
+          "source_line": 1173,
+          "timestamp": "2026-05-14T15:21:20.637407+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 15728532\\\\ndrwxr-xr-x  3 root root       4096 May 14 23:19 .\\\\ndrwxr-xr-x 17 root root       4096 May 14 21:44 ..\\\\n-rw-r--r--  1 root root       1880 May 14 23:17 README.md\\\\n-rw-r--r--  1 root root        707 May 14 23:19 added_tokens.json\\\\n-rw-r--r--  1 root root       4168 May 14 23:19 chat_template.jinja\\\\ndrwxr-xr-x  2 root root       4096 May 14 23:18 checkpoint-500\\\\n-rw-r--r--  1 root root       1535 May 14 23:18 config.json\\\\n-rw-r--r--  1 root root        188 May 14 23:18 generation_config.json\\\\n-rw-r--r--  1 root root    1671853 May 14 23:19 merges.txt\\\\n-rw-r--r--  1 root root 4990095032 May 14 23:18 model-00001-of-00004.safetensors\\\\n-rw-r--r--  1 root root 4944309096 May 14 23:18 model-00002-of-00004.safetensors\\\\n-rw-r--r--  1 root root 4996758848 May 14 23:19 model-00003-of-00004.safetensors\\\\n-rw-r--r--  1 root root 1158754848 May 14 23:19 model-00004-of-00004.safetensors\\\\n-rw-r--r--  1 root root      32856 May 14 23:19 model.safetensors.index.json\\\\n-rw-r--r--  1 root root     117538 May 14 23:17 reward_log.jsonl\\\\n-rw-r--r--  1 root root        613 May 14 23:19 special_tokens_map.json\\\\n-rw-r--r--  1 root root   11422654 May 14 23:19 tokenizer.json\\\\n-rw-r--r--  1 root root       5459 May 14 23:19 tokenizer_config.json\\\\n-rw-r--r--  1 root root       7953 May 14 23:19 training_args.bin\\\\n-rw-r--r--  1 root root    2776833 May 14 23:19 vocab.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 553
+          },
+          "id": "event-001173"
+        },
+        {
+          "source_line": 1174,
+          "timestamp": "2026-05-14T15:21:20.638109+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "head -30 /root/runs/solver-trace-ablation/plan006-prolog-exec-s44.log"
+            }
+          },
+          "id": "event-001174"
+        },
+        {
+          "source_line": 1175,
+          "timestamp": "2026-05-14T15:21:21.191286+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/miniconda3/lib/python3.12/site-packages/trl/generation/__init__.py:22: UserWarning: TRL currently supports vLLM versions from 0.11.0 to 0.17.1. You have version 0.18.1 installed. We recommend installing a supported version to avoid compatibility issues.\\\\n  if is_vllm_available():\\\\n/root/miniconda3/lib/python3.12/site-packages/trl/generation/vllm_client.py:40: UserWarning: TRL currently supports vLLM versions from 0.11.0 to 0.17.1. You have version 0.18.1 installed. We recommend installing a supported version to avoid compatibility issues.\\\\n  if is_vllm_available():\\\\n/root/miniconda3/lib/python3.12/site-packages/trl/generation/vllm_generation.py:36: UserWarning: TRL currently supports vLLM versions from 0.11.0 to 0.17.1. You have version 0.18.1 installed. We recommend installing a supported version to avoid compatibility issues.\\\\n  if is_vllm_available():\\\\n2026-05-14 21:44:31,097 INFO Loading data from data/train_500_seed42.jsonl\\\\n2026-05-14 21:44:31,119 INFO Dataset: 500 examples\\\\n2026-05-14 21:44:31,120 INFO Initializing solver: prolog\\\\n2026-05-14 21:44:31,120 INFO Solver ready: PrologSolver\\\\n2026-05-14 21:44:31,731 INFO Loading model from /root/autodl-tmp/models/Qwen3-4B\\\\n2026-05-14 21:44:31,822 INFO We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]\\\\rLoading checkpoint shards:  33%|███▎      | 1/3 [00:03<00:07,  3.53s/it]\\\\rLoading checkpoint shards:  67%|██████▋   | 2/3 [00:07<00:03,  3.50s/it]\\\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:07<00:00,  2.37s/it]\\\\nThe model is already on multiple devices. Skipping the move to device specified in `args`.\\\\n2026-05-14 21:44:41,619 INFO Starting GRPO training: mode=execution_only, logic=prolog, steps=500\\\\nThe tokenizer has new PAD/BO\n…[truncated 6319 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 553
+          },
+          "id": "event-001175"
+        },
+        {
+          "source_line": 1176,
+          "timestamp": "2026-05-14T15:21:45.770650+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "fields": "['exp_id', 'status', 'conclusion']",
+              "limit": "5"
+            }
+          },
+          "id": "event-001176"
+        },
+        {
+          "source_line": 1177,
+          "timestamp": "2026-05-14T15:21:45.922907+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan006-prolog-exec-s44\\\": {\\\"status\\\": \\\"ANALYZING\\\"}, \\\"plan002-additive-b01-s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"plan018-additive-random-b01-s43-r2\\\": {\\\"status\\\": \\\"ALLOCATED\\\"}, \\\"plan018-additive-random-b01-s44\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"plan009-sft-baseline-s42-r4\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}}, \\\"count\\\": 5, \\\"total\\\": 50, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1667}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 152
+          },
+          "id": "event-001177"
+        },
+        {
+          "source_line": 1178,
+          "timestamp": "2026-05-14T15:22:04.238734+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory --format=csv,noheader"
+            }
+          },
+          "id": "event-001178"
+        },
+        {
+          "source_line": 1179,
+          "timestamp": "2026-05-14T15:22:04.790809+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"483831, GPU-ea63b76b-00cd-9c4f-83b8-f5dfffdbad46, 81000 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 552
+          },
+          "id": "event-001179"
+        },
+        {
+          "source_line": 1180,
+          "timestamp": "2026-05-14T15:22:10.571663+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "nvidia-smi --query-gpu=index,gpu_uuid --format=csv,noheader"
+            }
+          },
+          "id": "event-001180"
+        },
+        {
+          "source_line": 1181,
+          "timestamp": "2026-05-14T15:22:11.073595+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, GPU-bee2603b-b9ac-bbae-e4fe-6d20d6db02b6\\\\n1, GPU-ea63b76b-00cd-9c4f-83b8-f5dfffdbad46\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 501
+          },
+          "id": "event-001181"
+        },
+        {
+          "source_line": 1182,
+          "timestamp": "2026-05-14T15:22:19.889970+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 合规确认：\n\n- PID 483831 在 GPU-ea63b76b（index=1），对应 spec 中 CUDA_VISIBLE_DEVICES=1 ✓\n- GPU 0 完全空闲（s44 训练后已释放）✓\n- 无 zombie 进程 ✓\n\n**plan006-prolog-exec-s44 训练审查摘要**：\n- 训练完成 500/500, EXIT_CODE=0\n- GPU 合规 ✓（cuda:0, 已释放）\n- 典型 Prolog exec-only pattern：训练后期 loss=0/grad_norm=0（GRPO 信号耗尽）\n- Training stats: prove_rate=0.784, mean_isr=0.121\n- Agent 已转入 ANALYZING，等 eval_sta.py 结果后做完整审计\n- 无 critical/warning 级别发现\n\n同时注意：GPU 0 已空闲，plan018-random-b01-s43-r2 (ALLOCATED) 应可启动。plan006-prolog-exec-s43-r3 在 GPU 1 继续训练，约 67%（334/500），预计还需 ~20 min。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer"
+          },
+          "id": "event-001182"
+        }
+      ]
+    },
+    {
+      "number": 57,
+      "messages": [
+        {
+          "source_line": 1183,
+          "timestamp": "2026-05-14T15:25:33.531440+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_analysis_genuine-isr-crosscheck_20260514T151533]:\nWorker worker_analysis_genuine-isr-crosscheck_20260514T151533 已完成（status=failed），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "source": "worker_done:worker_analysis_genuine-isr-crosscheck_20260514t151533"
+          },
+          "id": "event-001183"
+        },
+        {
+          "source_line": 1184,
+          "timestamp": "2026-05-14T15:25:38.992841+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "fields": "['exp_id', 'status', 'conclusion', 'notes']",
+              "limit": "3"
+            }
+          },
+          "id": "event-001184"
+        },
+        {
+          "source_line": 1185,
+          "timestamp": "2026-05-14T15:25:39.193934+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan018-additive-random-b01-s43-r2\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"plan006-prolog-exec-s44\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"notes\\\": \\\"RUNNING on cuda:0, PID 479357. Config: configs/grpo_prolog_exec_only.yaml, seed=44, 500 steps. Model: Qwen3-4B. Data: in config yaml (不传 --data_path). Output: /root/autodl-tmp/outputs/plan006_prolog_exec_s44. warmup_ratio=0.0 (config default, 与 s42 一致).\\\"}, \\\"plan002-additive-b01-s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"H7 audit (2026-05-14): 81 proved samples. H7 (single premise=conclusion): 13/81=16.0%, mean ISR=0.6603. H1 (multi premise contains conclusion): 42/81=51.9%, mean ISR=0.2245. Genuine (no conclusion duplication): 26/81=32.1%, mean ISR=0.6014. Combined conclusion duplication = 67.9%. CRITICAL: only 32.1% of proved samples are free of conclusion embedding. H7 inflates ISR; H1 deflates ISR but proof is trivially achievable via embedded conclusion. Claim 2 \\\\\\\"genuine structural guidance\\\\\\\" needs reframing — ISR signal is dominated by conclusion duplication artifacts.\\\"}}, \\\"count\\\": 3, \\\"total\\\": 50, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1991}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 201
+          },
+          "id": "event-001185"
+        },
+        {
+          "source_line": 1186,
+          "timestamp": "2026-05-14T15:25:49.812806+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/genuine*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts"
+            }
+          },
+          "id": "event-001186"
+        },
+        {
+          "source_line": 1187,
+          "timestamp": "2026-05-14T15:25:50.113802+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Glob",
+            "elapsed_ms": 300
+          },
+          "id": "event-001187"
+        },
+        {
+          "source_line": 1188,
+          "timestamp": "2026-05-14T15:25:50.264564+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "ls -la /root/autodl-tmp/outputs/h7_classification/"
+            }
+          },
+          "id": "event-001188"
+        },
+        {
+          "source_line": 1189,
+          "timestamp": "2026-05-14T15:25:51.620899+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 24\\\\ndrwxr-xr-x  2 root root  153 May 14 18:29 .\\\\ndrwxr-xr-x 18 root root 4096 May 14 23:24 ..\\\\n-rw-r--r--  1 root root 3204 May 14 18:29 h7_corrected_results.txt\\\\n-rw-r--r--  1 root root 2334 May 14 18:21 h7_random_s42.txt\\\\n-rw-r--r--  1 root root 1476 May 14 18:21 h7_s42_isr.txt\\\\n-rw-r--r--  1 root root 1020 May 14 18:21 h7_s43_isr.txt\\\\n-rw-r--r--  1 root root  964 May 14 18:21 h7_s44_isr.txt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1356
+          },
+          "id": "event-001189"
+        },
+        {
+          "source_line": 1190,
+          "timestamp": "2026-05-14T15:25:56.444343+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "cat /root/autodl-tmp/outputs/h7_classification/h7_corrected_results.txt"
+            }
+          },
+          "id": "event-001190"
+        },
+        {
+          "source_line": 1191,
+          "timestamp": "2026-05-14T15:25:56.796265+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "cat /root/autodl-tmp/outputs/h7_classification/h7_random_s42.txt"
+            }
+          },
+          "id": "event-001191"
+        },
+        {
+          "source_line": 1192,
+          "timestamp": "2026-05-14T15:25:57.199012+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n============================================================\\\\n  plan002_additive_b01_s42\\\\n============================================================\\\\nTotal samples: 100, Proved: 81\\\\nH7 strict  (single premise == conclusion):  13/81 = 16.1%\\\\nH1 strict  (multi-prem, concl in premises): 42/81 = 51.8%\\\\nAny conclusion-in-premise (H7+H1):          55/81 = 67.9%\\\\nH7 relaxed (single_premise + ISR>=0.5):     13/81 = 16.1%\\\\nSingle premise: 15/81 = 18.5%\\\\nISR = 1.0:      10/81 = 12.3%\\\\n\\\\n  H7 examples (first 3):\\\\n    folio_556: 1 premises, isr=0.75\\\\n    folio_160: 1 premises, isr=0.75\\\\n    folio_304: 1 premises, isr=0.3333333333333333\\\\n\\\\n  H1 examples (first 3):\\\\n    folio_66: 6 premises, isr=0.14285714285714285\\\\n    folio_1378: 9 premises, isr=0.1\\\\n    folio_1119: 2 premises, isr=0.6\\\\n\\\\n============================================================\\\\n  plan002_additive_b01_s43\\\\n============================================================\\\\nTotal samples: 100, Proved: 61\\\\nH7 strict  (single premise == conclusion):  59/61 = 96.7%\\\\nH1 strict  (multi-prem, concl in premises): 0/61 = 0.0%\\\\nAny conclusion-in-premise (H7+H1):          59/61 = 96.7%\\\\nH7 relaxed (single_premise + ISR>=0.5):     57/61 = 93.4%\\\\nSingle premise: 61/61 = 100.0%\\\\nISR = 1.0:      40/61 = 65.6%\\\\n\\\\n  H7 examples (first 3):\\\\n    folio_765: 1 premises, isr=1.0\\\\n    folio_1179: 1 premises, isr=0.5\\\\n    folio_66: 1 premises, isr=1.0\\\\n\\\\n============================================================\\\\n  plan002_additive_b01_s44\\\\n============================================================\\\\nTotal samples: 100, Proved: 89\\\\nH7 strict  (single premise == conclusion):  77/89 = 86.5%\\\\nH1 strict  (multi-prem, concl in premises): 0/89 = 0.0%\\\\nAny conclusion-in-premise (H7+H1):          77/89 = 86.5%\\\\nH7 relaxed (single_premise + ISR>=0.5):     82/89 = 92.1%\\\\nSingle premise: 89/89 = 100.0%\\\\nISR = 1.0:      65/89 = 73.0%\\\\n\\\\n \n…[truncated 1526 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 754
+          },
+          "id": "event-001192"
+        },
+        {
+          "source_line": 1193,
+          "timestamp": "2026-05-14T15:25:57.750921+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Total samples: 100\\\\nProved samples: 79\\\\n\\\\n=== H7 Classification ===\\\\nH7 strict (premise == conclusion):       56/79 (70.9%)\\\\nH7 relaxed (single_premise + ISR>=0.5):  0/79 (0.0%)\\\\n\\\\n=== Component stats ===\\\\nSingle premise: 0/79 (0.0%)\\\\nISR = 1.0:      0/79 (0.0%)\\\\n\\\\n=== H7 strict examples (first 3) ===\\\\n  folio_1179: premise=['(monitor_in_library(a_2017) ∧ produced_by(a_2017, aoc))', '∀x (monitor_in_library(x) → (cheaper_than(x, 800_dollars)))', '∀x (cheaper_than(x, 800_dollars) → (resolution_lower_than_1080p(x)))', '∀x (resolution_lower_than_1080p(x) → (¬supports_type_c_port(x)))', 'supports_type_c_port(a_2017)', 'monitor_in_library(a_2017)'], conclusion=(monitor_in_library(a_2017) ∧ produced_by(a_2017, aoc)), isr=0.0\\\\n  folio_66: premise=['∀x (written_by(x, cixin_liu) → sold_more_than_1_million_copies(x))', '∃x (won_hugo_award(x) ∧ written_by(x, cixin_liu))', '∀x (book_about_future(x) → forward_looking(x))', 'sold_more_than_1_million_copies(three_body_problem)', 'book_about_future(three_body_problem)', 'won_hugo_award(three_body_problem)'], conclusion=∀x (written_by(x, cixin_liu) → sold_more_than_1_million_copies(x)), isr=0.3333333333333333\\\\n  folio_1378: premise=['∀x (national_social_insurance_entitled(x) ∧ can_have_medical_bills_partially_covered(x))', '∀x (is_prc_national(x) → national_social_insurance_entitled(x))', '∀x (at_franco_china_diplomatic_conference(x) → (is_prc_national(x) ∨ is_french_national(x)))', '∀x (is_french_national(x) → is_eu_citizen(x))', '∀x (is_spanish_national(x) → is_eu_citizen(x))', '∀x (is_north_korean_national(x) → ¬is_eu_citizen(x))', 'at_franco_china_diplomatic_conference(meil)', 'is_prc_national(meil)', '(can_have_medical_bills_partially_covered(meil) ∧ is_north_korean_national(meil)) ∨ (¬can_have_medical_bills_partially_covered(meil) ∧ ¬is_north_korean_national(meil))'], conclusion=(can_have_medical_bills_partially_covered(meil) ∧ is_north_korean_national(meil))\n…[truncated 528 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 954
+          },
+          "id": "event-001193"
+        },
+        {
+          "source_line": 1194,
+          "timestamp": "2026-05-14T15:26:42.827519+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "现在有了完整的 H7 分类数据。澄清一个重要的命名差异：\n\n**h7_corrected_results.txt**（更准确的分类）显示 random s42 的分解：\n- H7 strict（单 premise=conclusion）: **0/79 = 0%**\n- H1 strict（多 premise 含 conclusion）: **56/79 = 70.9%**\n- 合计 conclusion-in-premise: **56/79 = 70.9%**\n\n原始 h7_classification_summary.txt 将全部 56 个标为 \"H7 strict\"——命名有误导性，实际全是 H1（多 premise 中嵌入 conclusion）。我的报告中实质结论不变（70.9% conclusion embedding），但术语应该用 H1 而非 H7。\n\n**worker 失败影响评估**：低。corrected_results 数据已在服务器上，Agent 只需正确解析即可完成 genuine-only ISR 交叉验证。无需 critical 跟进。\n\n当前实验状态：\n- plan006-prolog-exec-s44: ANALYZING（等 eval）\n- plan006-prolog-exec-s43-r3: RUNNING，GPU 1 合规（PID 483831 on GPU-ea63b76b = index 1 ✓）\n- plan018-random-b01-s43-r2: RUNNING（刚启动）"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer"
+          },
+          "id": "event-001194"
+        }
+      ]
+    },
+    {
+      "number": 58,
+      "messages": [
+        {
+          "source_line": 1195,
+          "timestamp": "2026-05-14T15:35:52.094645+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_analysis_genuine-isr-crosscheck-r2_20260514T152653]:\nWorker worker_analysis_genuine-isr-crosscheck-r2_20260514T152653 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "source": "system"
+          },
+          "id": "event-001195"
+        },
+        {
+          "source_line": 1196,
+          "timestamp": "2026-05-14T15:35:59.104659+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/genuine*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts"
+            }
+          },
+          "id": "event-001196"
+        },
+        {
+          "source_line": 1197,
+          "timestamp": "2026-05-14T15:35:59.657573+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/_project/report/genuine_isr_crosscheck.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/genuine_isr_crosscheck.md"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Glob",
+            "elapsed_ms": 552
+          },
+          "id": "event-001197"
+        },
+        {
+          "source_line": 1198,
+          "timestamp": "2026-05-14T15:36:00.009326+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*crosscheck*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts"
+            }
+          },
+          "id": "event-001198"
+        },
+        {
+          "source_line": 1199,
+          "timestamp": "2026-05-14T15:36:00.109960+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/_project/report/genuine_isr_crosscheck.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/genuine_isr_crosscheck.md"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Glob",
+            "elapsed_ms": 100
+          },
+          "id": "event-001199"
+        },
+        {
+          "source_line": 1200,
+          "timestamp": "2026-05-14T15:36:02.869475+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/genuine_isr_crosscheck.md"
+            }
+          },
+          "id": "event-001200"
+        },
+        {
+          "source_line": 1201,
+          "timestamp": "2026-05-14T15:36:02.870114+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Genuine ISR Crosscheck: β=0.1 Stratified Analysis (r2)\n2\t\n3\t**Date**: 2026-05-14 (r2 update)\n4\t**Scope**: ISR β=0.1 (plan002) 3-seed × Random β=0.1 (plan018) 2-seed × Exec-only baseline\n5\t\n6\t---\n7\t\n8\t## 1. Raw Data Summary\n9\t\n10\t### ISR β=0.1 (plan002-additive-b01)\n11\t\n12\t| Metric | s42 | s43 | s44 |\n13\t|--------|-----|-----|-----|\n14\t| Status | success | negative | negative |\n15\t| PR | 0.81 | 0.61 | 0.89 |\n16\t| Mean ISR | 0.337 | 0.506 | 0.803 |\n17\t| ISR std | 0.323 | 0.452 | 0.342 |\n18\t| Proved-only ISR | 0.415 | 0.830 | — |\n19\t| n_proved | 81 | 61 | 89 |\n20\t| Component mean | 5.58 | 4.03 | 4.33 |\n21\t| Tautological collapse | No | No | No |\n22\t| Hacking mode | partial | conclusion_dup (severe) | conclusion_dup (severe) |\n23\t| Conclusion embedding | — | true | true |\n24\t| proved_single_premise_ratio | mixed | 1.00 | 1.00 |\n25\t\n26\t### Random β=0.1 (plan018-additive-random-b01)\n27\t\n28\t| Metric | s42 | s44 |\n29\t|--------|-----|-----|\n30\t| Status | success† | success |\n31\t| PR | 0.79 | 0.89 |\n32\t| Mean ISR | 0.104 | 0.062 |\n33\t| ISR std | 0.137 | 0.176 |\n34\t| Proved-only ISR | 0.131 | 0.070 |\n35\t| n_proved | 79 | 89 |\n36\t| Component mean | 8.46 | — |\n37\t| ISR=0 count (proved) | 29 (36.7%) | 72 (80.9%) |\n38\t| Hacking mode | None | None |\n39\t\n40\t†Registry conclusion=\"negative\" refers to the comparison result (ISR > Random), not model quality.\n41\t\n42\t### Exec-only Baseline (plan001-s42-r2)\n43\t\n44\t| Metric | s42 |\n45\t|--------|-----|\n46\t| PR | 0.93 |\n47\t| Mean ISR | 0.123 |\n48\t| Proved-only ISR | 0.132 |\n49\t| n_proved | 93 |\n50\t\n51\t---\n52\t\n53\t## 2. Hacking-Mode Stratification (ISR β=0.1)\n54\t\n55\t### s42 — Full H7/H1/Genuine Breakdown (from registry audit)\n56\t\n57\t| Category | Count | % of proved | Mean ISR | Description |\n58\t|----------|-------|-------------|----------|-------------|\n59\t| H7 (single premise=conclusion) | 13 | 16.0% | 0.660 | Trivial tautology P→P |\n60\t| H1 (multi premise contains conclusion) | 42 | 51.9% | 0.225 | Conclusion embedded among real premises \n…[truncated 6999 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-001201"
+        },
+        {
+          "source_line": 1202,
+          "timestamp": "2026-05-14T15:36:49.695147+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "[severity: warning] genuine_isr_crosscheck.md 分析文档审查——关键数据遗漏\n\n## 发现\n\n### 1. Random β=0.1 的 H1 数据被遗漏\n\n文档 Section 3 (line 94-98) 声称：\n> \"Random control shows **no conclusion duplication** in either seed\"\n> \"Random β=0.1 is 'clean' — no hacking, no conclusion embedding. All ISR values are genuine.\"\n\nSection 4 Comparison Table 中 Random s42 标注 H7=0%, H1=0%。\n\n**这与服务器数据矛盾**。`h7_corrected_results.txt` 明确显示：\n```\nplan018_additive_random_b01_s42\nH7 strict (single premise == conclusion):  0/79 = 0.0%\nH1 strict (multi-prem, concl in premises): 56/79 = 70.9%\nAny conclusion-in-premise (H7+H1):         56/79 = 70.9%\n```\n\nRandom s42 有 **70.9% 的 proved 样本在 multi-premise 中嵌入了 conclusion**，只是不是 single-premise 模式。\n\n### 2. 对分析结论的影响\n\n文档将 Random 视为 100% genuine（Section 4: \"Genuine %=100%\"），据此得出 \"genuine ISR 0.601 vs random 0.104 = 5.8×\"。\n\n如果 random 也按同标准扣除 H1，则：\n- Random s42 genuine 仅 23/79 = 29.1%（与 ISR s42 的 32.1% 几乎相同）\n- **需要计算 random genuine-only ISR**（23 个无 conclusion embedding 样本的 mean ISR），才能做 apple-to-apple 对比\n\n虽然 random H1 样本的 ISR 很低（因为 8.46 components 的冗余使 conclusion premise 可删除），所以 genuine-only ISR 可能更高或更低——**但不能假设为 0.104**。\n\n### 3. 文档可用部分\n\n- ISR β=0.1 三 seed 的 H7/H1/Genuine 分层分析正确（Section 2）\n- \"只有 1/3 seed 有可靠 genuine ISR\" 的结论正确\n- \"不报告 3-seed mean±std\" 的建议正确\n- 总体 verdict \"genuine ISR 存在但统计上不稳健\" 方向正确\n\n### 4. 建议修正\n\n1. 更新 Section 3 和 Section 4：标注 Random s42 H1=70.9%\n2. 计算 random s42 genuine-only ISR（23 个无 H1 样本）\n3. 修正 Section 6 的 5.8× 比较——应为 genuine vs genuine，而非 genuine vs total\n4. 叙事修正：conclusion embedding 是 GRPO 通用策略（~70%），不是 ISR-specific\n\nevidence: `h7_corrected_results.txt` 在服务器 `/root/autodl-tmp/outputs/h7_classification/`",
+              "project": "solver-trace-ablation"
+            }
+          },
+          "id": "event-001202"
+        },
+        {
+          "source_line": 1203,
+          "timestamp": "2026-05-14T15:36:53.611979+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_a771c2a33d631dd40256ecd5c3a6648e:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3916
+          },
+          "id": "event-001203"
+        },
+        {
+          "source_line": 1204,
+          "timestamp": "2026-05-14T15:37:00.678521+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已发送。核心问题：genuine_isr_crosscheck.md 将 random β=0.1 标为 \"100% genuine、无 conclusion embedding\"，但实际上 random s42 有 70.9% H1（multi-premise 含 conclusion）。这使 Section 6 的 \"5.8× genuine ISR 差异\" 不是 apple-to-apple 对比——需要计算 random 的 genuine-only ISR 才能公平比较。\n\n等待 plan006-prolog-exec-s44 eval 结果和 plan018-random-b01-s43-r2 训练完成。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer"
+          },
+          "id": "event-001204"
+        }
+      ]
+    },
+    {
+      "number": 59,
+      "messages": [
+        {
+          "source_line": 1205,
+          "timestamp": "2026-05-14T15:38:52.759274+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_analysis_h7-genuine-isr-apple2apple_20260514T153611]:\nWorker worker_analysis_h7-genuine-isr-apple2apple_20260514T153611 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "source": "system"
+          },
+          "id": "event-001205"
+        },
+        {
+          "source_line": 1206,
+          "timestamp": "2026-05-14T15:39:02.044538+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*apple*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts"
+            }
+          },
+          "id": "event-001206"
+        },
+        {
+          "source_line": 1207,
+          "timestamp": "2026-05-14T15:39:02.145460+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Glob",
+            "elapsed_ms": 100
+          },
+          "id": "event-001207"
+        },
+        {
+          "source_line": 1208,
+          "timestamp": "2026-05-14T15:39:04.804762+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*genuine*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts"
+            }
+          },
+          "id": "event-001208"
+        },
+        {
+          "source_line": 1209,
+          "timestamp": "2026-05-14T15:39:04.855276+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/_project/report/genuine_isr_crosscheck.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/genuine_isr_crosscheck.md"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Glob",
+            "elapsed_ms": 50
+          },
+          "id": "event-001209"
+        },
+        {
+          "source_line": 1210,
+          "timestamp": "2026-05-14T15:39:10.792053+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/genuine_isr_crosscheck.md",
+              "offset": "90"
+            }
+          },
+          "id": "event-001210"
+        },
+        {
+          "source_line": 1211,
+          "timestamp": "2026-05-14T15:39:11.319787+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "90\t---\n91\t\n92\t## 3. Random β=0.1 Stratification\n93\t\n94\tRandom control shows **no conclusion duplication** in either seed:\n95\t- **s42**: component_mean=8.46, isr_1_ratio=0, ISR=0 in 36.7% of proved — proofs are verbose with many unnecessary components\n96\t- **s44**: ISR=0 in 80.9% of proved (72/89) — most proofs have zero necessary-only components\n97\t\n98\tRandom β=0.1 is \"clean\" — no hacking, no conclusion embedding. All ISR values are genuine.\n99\t\n100\t---\n101\t\n102\t## 4. Comparison Table\n103\t\n104\t| Condition | Seed | PR | Total ISR | Genuine % | Genuine ISR | H7 % | H1 % | Hacking |\n105\t|-----------|------|------|-----------|-----------|-------------|-------|------|---------|\n106\t| ISR β=0.1 | s42 | 0.81 | 0.337 | 32.1% | **0.601** | 16.0% | 51.9% | partial |\n107\t| ISR β=0.1 | s43 | 0.61 | 0.506 | 3.3% | N/A (n≈2) | 96.7% | 0% | severe |\n108\t| ISR β=0.1 | s44 | 0.89 | 0.803 | 13.5% | Unknown (n≈12) | 86.5% | 0% | severe |\n109\t| Random β=0.1 | s42 | 0.79 | 0.104 | 100% | 0.104 | 0% | 0% | none |\n110\t| Random β=0.1 | s44 | 0.89 | 0.062 | 100% | 0.062 | 0% | 0% | none |\n111\t| Exec-only | s42 | 0.93 | 0.123 | —† | 0.123† | — | — | — |\n112\t\n113\t†Exec-only ISR has different characteristics (C006: low ISR = redundant coding, not absence of reasoning).\n114\t\n115\t---\n116\t\n117\t## 5. Genuine-Only 3-Seed Analysis\n118\t\n119\t### Problem: Cannot compute 3-seed mean±std\n120\t\n121\t- **s42**: Genuine ISR = 0.601 (n=26, reliable)\n122\t- **s43**: Genuine ISR = N/A (n≈2, statistically meaningless)\n123\t- **s44**: Genuine ISR = Unknown (n≈12, per-sample data not in registry)\n124\t\n125\t**Only 1 of 3 seeds has a reliable genuine ISR estimate.** 3-seed statistics cannot be computed from registry data alone.\n126\t\n127\t### What would be needed\n128\t- s44: Run per-sample H7/genuine classification on the 89 proved samples and compute genuine-only ISR. With n≈12 genuine samples, the estimate would be noisy but usable.\n129\t- s43: Even with per-sample data, n≈2 is too small. This seed is a write-off for genu\n…[truncated 3365 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 527
+          },
+          "id": "event-001211"
+        },
+        {
+          "source_line": 1212,
+          "timestamp": "2026-05-14T15:39:11.320402+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "ls -lt /root/autodl-tmp/outputs/h7_classification/"
+            }
+          },
+          "id": "event-001212"
+        },
+        {
+          "source_line": 1213,
+          "timestamp": "2026-05-14T15:39:12.789658+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 20\\\\n-rw-r--r-- 1 root root 3204 May 14 18:29 h7_corrected_results.txt\\\\n-rw-r--r-- 1 root root 1476 May 14 18:21 h7_s42_isr.txt\\\\n-rw-r--r-- 1 root root 2334 May 14 18:21 h7_random_s42.txt\\\\n-rw-r--r-- 1 root root  964 May 14 18:21 h7_s44_isr.txt\\\\n-rw-r--r-- 1 root root 1020 May 14 18:21 h7_s43_isr.txt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1469
+          },
+          "id": "event-001213"
+        },
+        {
+          "source_line": 1214,
+          "timestamp": "2026-05-14T15:39:20.274910+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "fields": "['exp_id', 'status', 'notes']",
+              "limit": "3"
+            }
+          },
+          "id": "event-001214"
+        },
+        {
+          "source_line": 1215,
+          "timestamp": "2026-05-14T15:39:20.727122+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan018-additive-random-b01-s43-r2\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"plan006-prolog-exec-s44\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"notes\\\": \\\"RUNNING on cuda:0, PID 479357. Config: configs/grpo_prolog_exec_only.yaml, seed=44, 500 steps. Model: Qwen3-4B. Data: in config yaml (不传 --data_path). Output: /root/autodl-tmp/outputs/plan006_prolog_exec_s44. warmup_ratio=0.0 (config default, 与 s42 一致).\\\"}, \\\"plan002-additive-b01-s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"notes\\\": \\\"H7 audit (2026-05-14): 81 proved samples. H7 (single premise=conclusion): 13/81=16.0%, mean ISR=0.6603. H1 (multi premise contains conclusion): 42/81=51.9%, mean ISR=0.2245. Genuine (no conclusion duplication): 26/81=32.1%, mean ISR=0.6014. Combined conclusion duplication = 67.9%. CRITICAL: only 32.1% of proved samples are free of conclusion embedding. H7 inflates ISR; H1 deflates ISR but proof is trivially achievable via embedded conclusion. Claim 2 \\\\\\\"genuine structural guidance\\\\\\\" needs reframing — ISR signal is dominated by conclusion duplication artifacts.\\\"}}, \\\"count\\\": 3, \\\"total\\\": 50, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.244}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 452
+          },
+          "id": "event-001215"
+        },
+        {
+          "source_line": 1216,
+          "timestamp": "2026-05-14T15:39:20.878008+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*apple*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation"
+            }
+          },
+          "id": "event-001216"
+        },
+        {
+          "source_line": 1217,
+          "timestamp": "2026-05-14T15:39:21.251841+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/logs/workers/worker_analysis_h7-genuine-isr-apple2apple_20260514T153611.log\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/logs/workers/worker_analysis_h7-genuine-isr-apple2apple_20260514T153611_retry1.log\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/logs/workers/worker_analysis_h7-genuine-isr-apple2apple_20260514T153611_result.json"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Glob",
+            "elapsed_ms": 373
+          },
+          "id": "event-001217"
+        },
+        {
+          "source_line": 1218,
+          "timestamp": "2026-05-14T15:39:21.263884+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/report.md",
+              "limit": "50"
+            }
+          },
+          "id": "event-001218"
+        },
+        {
+          "source_line": 1219,
+          "timestamp": "2026-05-14T15:39:21.319554+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Handover — 2026-05-14\n2\t\n3\t> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\n4\t\n5\t## 运行中\n6\t| exp_id | 假设 | 状态 | 关键指标 | W&B |\n7\t|--------|------|------|---------|-----|\n8\t| plan018-additive-random-b01-s43-r2 | Random β=0.1 seed=43 控制组 r2: 重试 (原 s43 step 200 磁盘满崩溃)。与 plan002-b01-s43 (ISR β=0.1) 同 seed 对照。3-seed mean±std 审稿硬性要求。 | — | — | — |\n9\t| plan006-prolog-exec-s43-r3 | Prolog exec-only GRPO seed=43 r3: warmup_ratio=0.0 与 s42 一致。r2 因残留进程 OOM 失败，cuda:1 已清理。 | — | — | — |\n10\t| plan006-prolog-exec-s44 | Prolog exec-only GRPO seed=44: third seed for Prolog exec-only. Together with s42 (PR=83%, ISR=0.031) and s43, provides 3-seed evidence for cross-logic generalization claim (Claim 3). 3-seed mean±std required for paper. | — | — | — |\n11\t\n12\t## 待处理\n13\t- plan006-prolog-sta-s44: Prolog exec+STA GRPO seed=44: 第三 seed。3-seed mean±std 用于论文 Claim 3 跨 logic type 统计支撑。（准备中）\n14\t- plan006-prolog-sta-s43: Prolog exec+STA GRPO seed=43: 跨 seed 稳定性检查。与 exec-only s43 对照。（准备中）\n15\t\n16\t## 近期结论\n17\t- **plan002-additive-b01-s42** (success): — ← 基于 plan002-additive-b03-s42\n18\t  [plan002-additive-b01-s42 训练命令](/api/workspace-files/projects/solver-trace-ablation/artifacts/plan002-additive-b01-s42/report/plan002-additive-b01-s42_prep.md)\n19\t- **plan018-additive-random-b01-s44** (success): Random β=0.1 seed=44 控制组：与 plan002-b01-s44 (ISR β=0.1) 同 seed 对照。验证 ISR 3.2x > random 的结论在 s44 下是否成立。 ← 基于 plan018-additive-random-b01-s42\n20\t- **plan009-sft-baseline-s42-r4** (success): SFT baseline: supervised finetuning on FOLIO data (500 steps, Qwen3-4B, same model as all GRPO experiments) to establish whether hacking patterns are GRPO-specific or general finetuning artifacts. r4: fix CUDA_VISIBLE_DEVICES + --gpu + --no_wandb. ← 基于 plan009-sft-baseline-s42-r2\n21\t\n22\t## 趋势\n23\t成功 11 / 负向 14 / 失败 18 / 共 45\n24\t\n25\t## 下一步\n26\t（无活跃 idea，请通过 ideas.md 添加）\n27\t\n28\t## 资源状态\n29\twestd-39279: 无 GPU 信息\n30\t\n31\t## 告警\n32\t- sta-phase1-exec-only: 训练失败 — unknown\n33\t- sta-phase1-exec-sta: 训练失败 — unknown\n34\t- sta-phase1-exec-only-r2: 训练失败 —\n…[truncated 754 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 55
+          },
+          "id": "event-001219"
+        },
+        {
+          "source_line": 1220,
+          "timestamp": "2026-05-14T15:39:26.191250+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/logs/workers/worker_analysis_h7-genuine-isr-apple2apple_20260514T153611_result.json"
+            }
+          },
+          "id": "event-001220"
+        },
+        {
+          "source_line": 1221,
+          "timestamp": "2026-05-14T15:39:26.291987+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"全部数据已计算完成。\\n\\n## 结果\\n\\n| 条件 | Proved | H7 (n/%) | H1 (n/%) | Genuine (n/%) | Genuine ISR | Overall ISR |\\n|------|--------|----------|----------|---------------|-------------|-------------|\\n| **ISR β=0.1 s42** | 81 | 13/16.0% | 42/51.9% | 26/32.1% | **0.6014** | 0.4154 |\\n| **Random β=0.1 s42** | 79 | 0/0.0% | 58/73.4% | 21/26.6% | **0.2519** | 0.1314 |\\n| **Random β=0.1 s44** | 89 | 0/0.0% | 74/83.1% | 15/16.9% | **0.1992** | 0.0695 |\\n\\n### 关键发现\\n\\n1. **Random 无 H7**：random reward 训练的模型从不产生单 premise 直接复制 conclusion 的退化行为（H7=0%），而 ISR 训练有 16%。\\n\\n2. **Random 的 H1 极高**：random s42 73.4%、s44 83.1% 的 proved 样本中 conclusion 出现在 premises 中（多 premise 场景）。这比 ISR 训练的 51.9% 更严重。\\n\\n3. **Genuine ISR 大幅低于 ISR 训练**：\\n   - ISR 训练 Genuine ISR = **0.601**\\n   - Random s42 Genuine ISR = **0.252**（-58%）\\n   - Random s44 Genuine ISR = **0.199**（-67%）\\n\\n4. **Genuine 样本数也更少**：random 训练的 Genuine 占比（26.6%/16.9%）低于 ISR 训练（32.1%），说明 random reward 不仅没学到推理，还更倾向于生产含 conclusion-in-premise 的 trivial proof。\\n\\n5. **s44 的 Genuine 中有两个 ISR=1.0 的样本**（folio_556, folio_669），都只有 2 个 premise——这是少数随机命中的高质量证明，拉高了均值。去掉这两个后 Genuine ISR 降至约 0.069。\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 100
+          },
+          "id": "event-001221"
+        },
+        {
+          "source_line": 1222,
+          "timestamp": "2026-05-14T15:39:52.876432+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/logs/workers/worker_analysis_h7-genuine-isr-apple2apple_20260514T153611.log",
+              "limit": "80"
+            }
+          },
+          "id": "event-001222"
+        },
+        {
+          "source_line": 1223,
+          "timestamp": "2026-05-14T15:39:52.928484+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tWarning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.\n2\t{\"type\":\"system\",\"subtype\":\"init\",\"cwd\":\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation\",\"session_id\":\"e51878d9-5d2b-4e38-9dd3-0aa055277758\",\"tools\":[\"Task\",\"AskUserQuestion\",\"Bash\",\"CronCreate\",\"CronDelete\",\"CronList\",\"Edit\",\"EnterPlanMode\",\"EnterWorktree\",\"ExitPlanMode\",\"ExitWorktree\",\"Glob\",\"Grep\",\"ListMcpResourcesTool\",\"Monitor\",\"NotebookEdit\",\"PushNotification\",\"Read\",\"ReadMcpResourceTool\",\"RemoteTrigger\",\"ScheduleWakeup\",\"Skill\",\"TaskOutput\",\"TaskStop\",\"TodoWrite\",\"ToolSearch\",\"WebFetch\",\"WebSearch\",\"Write\",\"mcp__agent-ml-research__detect_image\",\"mcp__agent-ml-research__kill_job\",\"mcp__agent-ml-research__ssh_execute\",\"mcp__agent-ml-research__ssh_read_only\"],\"mcp_servers\":[{\"name\":\"agent-ml-research\",\"status\":\"connected\"}],\"model\":\"claude-opus-4-6\",\"permissionMode\":\"bypassPermissions\",\"slash_commands\":[\"update-config\",\"debug\",\"simplify\",\"batch\",\"fewer-permission-prompts\",\"loop\",\"schedule\",\"claude-api\",\"clear\",\"compact\",\"context\",\"heapdump\",\"init\",\"review\",\"security-review\",\"extra-usage\",\"usage\",\"insights\",\"team-onboarding\"],\"apiKeySource\":\"none\",\"claude_code_version\":\"2.1.126\",\"output_style\":\"default\",\"agents\":[\"claude\",\"Explore\",\"general-purpose\",\"Plan\",\"statusline-setup\"],\"skills\":[\"update-config\",\"debug\",\"simplify\",\"batch\",\"fewer-permission-prompts\",\"loop\",\"schedule\",\"claude-api\"],\"plugins\":[],\"analytics_disabled\":false,\"uuid\":\"1cb8edac-64a1-4301-902b-9de365c439fc\",\"memory_paths\":{\"auto\":\"/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/memory/\"},\"fast_mode_state\":\"off\"}\n3\t{\"type\":\"rate_limit_event\",\"rate_limit_info\":{\"status\":\"rejected\",\"resetsAt\":1778774400,\"rateLimitType\":\"seven_day\",\"overageStatus\":\"rejected\",\"overageDisabledReason\":\"org_level_disabled\",\"isUsingOverage\":false},\"uuid\":\"3a6b94af-68\n…[truncated 1612 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 52
+          },
+          "id": "event-001223"
+        },
+        {
+          "source_line": 1224,
+          "timestamp": "2026-05-14T15:39:58.449072+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/logs/workers/worker_analysis_h7-genuine-isr-apple2apple_20260514T153611_retry1.log",
+              "limit": "30"
+            }
+          },
+          "id": "event-001224"
+        },
+        {
+          "source_line": 1225,
+          "timestamp": "2026-05-14T15:39:58.801274+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (60082 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 352
+          },
+          "id": "event-001225"
+        },
+        {
+          "source_line": 1226,
+          "timestamp": "2026-05-14T15:40:02.929030+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "genuine.*ISR|H1.*random|apple.*apple|0\\\\.2519|73\\\\.4",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/logs/workers/worker_analysis_h7-genuine-isr-apple2apple_20260514T153611_retry1.log",
+              "output_mode": "content",
+              "head_limit": "20"
+            }
+          },
+          "id": "event-001226"
+        },
+        {
+          "source_line": 1227,
+          "timestamp": "2026-05-14T15:40:03.085873+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "28:[Omitted long matching line]\n29:[Omitted long matching line]\n35:[Omitted long matching line]\n38:[Omitted long matching line]\n42:[Omitted long matching line]\n44:[Omitted long matching line]\n45:[Omitted long matching line]\n46:[Omitted long matching line]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 156
+          },
+          "id": "event-001227"
+        },
+        {
+          "source_line": 1228,
+          "timestamp": "2026-05-14T15:40:07.204341+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "ssh_read_only|eval_sta_results",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/logs/workers/worker_analysis_h7-genuine-isr-apple2apple_20260514T153611_retry1.log",
+              "output_mode": "count"
+            }
+          },
+          "id": "event-001228"
+        },
+        {
+          "source_line": 1229,
+          "timestamp": "2026-05-14T15:40:07.305165+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "20\n\nFound 0 total occurrences across 0 files."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 100
+          },
+          "id": "event-001229"
+        },
+        {
+          "source_line": 1230,
+          "timestamp": "2026-05-14T15:40:11.432606+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/logs/workers/worker_analysis_h7-genuine-isr-apple2apple_20260514T153611_retry1.log",
+              "offset": "25",
+              "limit": "30"
+            }
+          },
+          "id": "event-001230"
+        },
+        {
+          "source_line": 1231,
+          "timestamp": "2026-05-14T15:40:12.637635+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (78562 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 1205
+          },
+          "id": "event-001231"
+        },
+        {
+          "source_line": 1232,
+          "timestamp": "2026-05-14T15:40:15.602781+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "wc -l /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/logs/workers/worker_analysis_h7-genuine-isr-apple2apple_20260514T153611_retry1.log",
+              "description": "Count lines in worker log"
+            }
+          },
+          "id": "event-001232"
+        },
+        {
+          "source_line": 1233,
+          "timestamp": "2026-05-14T15:40:15.804165+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "46 /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/logs/workers/worker_analysis_h7-genuine-isr-apple2apple_20260514T153611_retry1.log"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 201
+          },
+          "id": "event-001233"
+        },
+        {
+          "source_line": 1234,
+          "timestamp": "2026-05-14T15:40:19.019316+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/logs/workers/worker_analysis_h7-genuine-isr-apple2apple_20260514T153611_retry1.log",
+              "offset": "40",
+              "limit": "6"
+            }
+          },
+          "id": "event-001234"
+        },
+        {
+          "source_line": 1235,
+          "timestamp": "2026-05-14T15:40:19.272403+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "40\t{\"type\":\"assistant\",\"message\":{\"model\":\"claude-opus-4-6\",\"id\":\"msg_01N7D4oLvJ8DsCtWRDHT6Jgk\",\"type\":\"message\",\"role\":\"assistant\",\"content\":[{\"type\":\"tool_use\",\"id\":\"toolu_01D3RkgXALdaXVxj6tNMg6Ue\",\"name\":\"ToolSearch\",\"input\":{\"query\":\"select:mcp__agent-ml-research__ssh_execute\",\"max_results\":1},\"caller\":{\"type\":\"direct\"}}],\"stop_reason\":null,\"stop_sequence\":null,\"stop_details\":null,\"usage\":{\"input_tokens\":1,\"cache_creation_input_tokens\":4139,\"cache_read_input_tokens\":41036,\"cache_creation\":{\"ephemeral_5m_input_tokens\":0,\"ephemeral_1h_input_tokens\":4139},\"output_tokens\":8,\"service_tier\":\"standard\",\"inference_geo\":\"not_available\"},\"diagnostics\":null,\"context_management\":null},\"parent_tool_use_id\":null,\"session_id\":\"cb83c938-1a53-413d-9141-df160cdbad2a\",\"uuid\":\"8fd4df0d-5fc7-44db-9259-0f8f56073cc2\"}\n41\t{\"type\":\"user\",\"message\":{\"role\":\"user\",\"content\":[{\"type\":\"tool_result\",\"tool_use_id\":\"toolu_01D3RkgXALdaXVxj6tNMg6Ue\",\"content\":[{\"type\":\"tool_reference\",\"tool_name\":\"mcp__agent-ml-research__ssh_execute\"}]}]},\"parent_tool_use_id\":null,\"session_id\":\"cb83c938-1a53-413d-9141-df160cdbad2a\",\"uuid\":\"531ca420-7d15-4c59-86da-707346ce6433\",\"timestamp\":\"2026-05-14T15:37:44.320Z\",\"tool_use_result\":{\"matches\":[\"mcp__agent-ml-research__ssh_execute\"],\"query\":\"select:mcp__agent-ml-research__ssh_execute\",\"total_deferred_tools\":23}}\n42\t{\"type\":\"assistant\",\"message\":{\"model\":\"claude-opus-4-6\",\"id\":\"msg_01UULhdf5dhJ5oH1YFD7J2eT\",\"type\":\"message\",\"role\":\"assistant\",\"content\":[{\"type\":\"tool_use\",\"id\":\"toolu_01WHygfUJGQB9w6VoUncSZqY\",\"name\":\"mcp__agent-ml-research__ssh_execute\",\"input\":{\"server\":\"westd-39279\",\"command\":\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export CUDA_VISIBLE_DEVICES=\\\"\\\" && python3 -c \\\"\\nimport json, re\\n\\ndef normalize(s):\\n    s = s.strip().lower().replace(' ', '')\\n    # remove outer parens\\n    while s.startswith('(') and s.endswith(')'):\\n        depth = 0\\n        can_strip = True\\n        for i, c in enumerate(s):\\n           \n…[truncated 23944 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 253
+          },
+          "id": "event-001235"
+        },
+        {
+          "source_line": 1236,
+          "timestamp": "2026-05-14T15:41:20.421643+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "[severity: warning] Apple-to-apple genuine ISR crosscheck 审查\n\n## Worker 数据已验证\n\nWorker 在服务器上跑了 per-sample H7/H1/Genuine 分类脚本（ssh_execute + Python），数据来源可信。\n\n### 核心数据表\n\n| 条件 | Proved | H7 | H1 | Genuine (n/%) | Genuine ISR | Overall ISR |\n|------|--------|-----|-----|---------------|-------------|-------------|\n| ISR β=0.1 s42 | 81 | 13/16.0% | 42/51.9% | 26/32.1% | **0.601** | 0.415 |\n| Random β=0.1 s42 | 79 | 0/0.0% | 58/73.4% | 21/26.6% | **0.252** | 0.131 |\n| Random β=0.1 s44 | 89 | 0/0.0% | 74/83.1% | 15/16.9% | **0.199** | 0.070 |\n\n### 审查结论\n\n**1. 文档的 5.8× 已纠正为 2.39×** ✓\n\nISR s42 genuine 0.601 / Random s42 genuine 0.252 = **2.39×**。Worker 正确指出了这一修正。\n\n**2. Random H1 > ISR H1，方向正确** ✓\n\nRandom 的 H1 率（73-83%）高于 ISR（52%），证实 conclusion embedding 是 GRPO 通用现象，且 random reward 下更严重。Worker finding #2 正确。\n\n**3. [新发现] ISR genuine 高 ISR 主要来自 ultra-short proofs**\n\nISR s42 的 26 个 genuine 样本中 **15/26 (57.7%)** 只有 1-2 个 premise，ISR 多为 0.5-1.0。Random s42 genuine 样本的 premise 数 = 3-10（最少 3）。\n\n解读：ISR reward 驱动 premise minimization → 2-premise proofs 自然有高 ISR（2 个中 1 个 necessary → ISR≥0.5），这些碰巧不匹配 conclusion 所以逃过 H7/H1 分类。**这不是\"更好的推理结构\"，而是\"更极端的精简碰巧绕过了 hacking 检测器\"**。\n\n对论文叙事的影响：2.39× genuine ISR 差异的大部分可能由 premise count 差异驱动（ISR genuine mean ~2.5 premises vs Random genuine mean ~6.5 premises），而非推理质量差异。如果按 premise count 匹配再比，差异可能进一步缩小。\n\n**4. genuine_isr_crosscheck.md 仍未更新**\n\n文档 Section 3-4 仍声称 Random \"无 conclusion embedding, H1=0%\"。Worker 的 result.json 有正确数据，但文档本体未修改。建议 Agent 更新文档。\n\n**5. 小数据不一致**\n\nh7_corrected_results.txt: Random s42 H1=56/79 (70.9%)\nWorker 脚本: Random s42 H1=58/79 (73.4%)\n差 2 个样本，可能是 premise normalization 差异（去括号、大小写等）。不影响大结论。\n\n### 总体评价\n\nWorker 的核心分析质量高——成功完成了 apple-to-apple 对比并发现了 Random H1 高于 ISR 的关键事实。但原文档未更新，且缺少对 ISR genuine 样本 premise count 分布的深入分析（这会进一步弱化 2.39× 的 claim 强度）。",
+              "project": "solver-trace-ablation"
+            }
+          },
+          "id": "event-001236"
+        },
+        {
+          "source_line": 1237,
+          "timestamp": "2026-05-14T15:41:24.969995+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_a771c2a33d631dd40256ecd5c3a6648e:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 4548
+          },
+          "id": "event-001237"
+        },
+        {
+          "source_line": 1238,
+          "timestamp": "2026-05-14T15:41:29.870836+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已发送。核心审查结论：\n\n1. **Apple-to-apple 比较从 5.8× 降至 2.39×**——Worker 正确纠正了此前使用 random total ISR 而非 genuine ISR 的错误\n2. **Random 的 H1 率（73-83%）高于 ISR（52%）**——conclusion embedding 是 GRPO 通用现象\n3. **ISR genuine 的高 ISR 主要来自 1-2 premise 的 ultra-short proofs（57.7%）**——本质上是 premise minimization 的副产品，不一定反映更好的推理结构\n4. 文档本体仍未更新，需要 Agent 修正"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer"
+          },
+          "id": "event-001238"
+        }
+      ]
+    },
+    {
+      "number": 60,
+      "messages": [
+        {
+          "source_line": 1239,
+          "timestamp": "2026-05-14T15:44:45.188424+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_analysis_isr-s44-genuine-breakdown_20260514T154254]:\nWorker worker_analysis_isr-s44-genuine-breakdown_20260514T154254 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "source": "worker_done:worker_analysis_isr-s44-genuine-breakdown_20260514t154254"
+          },
+          "id": "event-001239"
+        },
+        {
+          "source_line": 1240,
+          "timestamp": "2026-05-14T15:44:52.887820+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*s44*genuine*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts"
+            }
+          },
+          "id": "event-001240"
+        },
+        {
+          "source_line": 1241,
+          "timestamp": "2026-05-14T15:44:52.888288+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-001241"
+        },
+        {
+          "source_line": 1242,
+          "timestamp": "2026-05-14T15:44:52.988857+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*breakdown*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts"
+            }
+          },
+          "id": "event-001242"
+        },
+        {
+          "source_line": 1243,
+          "timestamp": "2026-05-14T15:44:53.039432+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Glob",
+            "elapsed_ms": 50
+          },
+          "id": "event-001243"
+        },
+        {
+          "source_line": 1244,
+          "timestamp": "2026-05-14T15:44:56.554883+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/worker_analysis_isr-s44*result*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/logs"
+            }
+          },
+          "id": "event-001244"
+        },
+        {
+          "source_line": 1245,
+          "timestamp": "2026-05-14T15:44:56.555401+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/logs/workers/worker_analysis_isr-s44-genuine-breakdown_20260514T154254_result.json"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-001245"
+        },
+        {
+          "source_line": 1246,
+          "timestamp": "2026-05-14T15:44:59.220797+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/logs/workers/worker_analysis_isr-s44-genuine-breakdown_20260514T154254_result.json"
+            }
+          },
+          "id": "event-001246"
+        },
+        {
+          "source_line": 1247,
+          "timestamp": "2026-05-14T15:44:59.321815+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"```\\nISR β=0.1 s44:\\n- Total proved: 89\\n- H7 (1 premise == conclusion): n=77 (86.5%), mean ISR=0.9260\\n- H1 (≥2 premises, one == conclusion): n=0 (0.0%), mean ISR=N/A\\n- Genuine (no premise == conclusion): n=12 (13.5%), mean ISR=0.7500\\n```\\n\\n**Caveat：** s44 的 12 个 \\\"genuine\\\" 全部是 n_prems=1（不是真正的多前提推理），premise 与 conclusion 不等是因为 conclusion 多套了一层 `∃x` 量词（例如 premise `∃x (Mary(x) → Advocate(x))`，conclusion `∃x (∃y (Mary(y) → Advocate(y)))`）。这与 s42 的 26 genuine 在性质上可能不同——s42 的 genuine 是否也是同类 1-prem 量词包装？建议核对 s42 的 genuine 是否包含真正多前提样本，再决定能否 mean±std 报告。\\n\\n数据源：`/root/runs/solver-trace-ablation/plan002-additive-b01-s44-eval.json`（100 problems, 89 proved，使用 `eval_sta.py` 输出的 details.premises/conclusion + ISR）。\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 101
+          },
+          "id": "event-001247"
+        },
+        {
+          "source_line": 1248,
+          "timestamp": "2026-05-14T15:45:51.614906+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "[severity: critical] ISR s44 genuine breakdown + premise-count-matched 分析：ISR 优势完全来自 premise minimization\n\n## 1. s44 Genuine Breakdown（Worker 产出）\n\nISR β=0.1 s44: 89 proved, H7=77 (86.5%), H1=0, Genuine=12 (13.5%), Genuine ISR=0.750\n\n**但全部 12 个 \"genuine\" 样本都是 n_prem=1** —— premise 与 conclusion 仅差一个 `∃x` 量词包装，实质是 H7 分类器的 false negative。s44 没有任何真正的多前提推理。\n\n## 2. 三 seed genuine 汇总\n\n| Seed | Genuine n | Genuine ISR | 性质 |\n|------|-----------|-------------|------|\n| s42 | 26 | 0.601 | 15/26 n_prem≤2, 11/26 n_prem≥3 |\n| s43 | ~2 | N/A | 样本量不足 |\n| s44 | 12 | 0.750 | **全部 n_prem=1（伪 genuine）** |\n\n## 3. [关键发现] Premise-count-matched 对比：ISR 优势归零\n\n从 apple-to-apple worker 的 per-sample 数据，提取 ISR s42 genuine 中 n_prem≥3 的子集（排除 ultra-short proofs），与 Random s42 genuine（全部 n_prem≥3）对比：\n\n| 条件 | n | Mean n_prem | Mean ISR |\n|------|---|-------------|----------|\n| ISR s42 genuine, n_prem≥3 | 11 | ~5.5 | **0.258** |\n| Random s42 genuine (all n_prem≥3) | 21 | ~6.5 | **0.252** |\n| **Ratio** | — | — | **1.02×** |\n\n**当控制 conclusion embedding 和 premise count 后，ISR 与 Random 的差异完全消失。**\n\n分析链：\n- 原始 5.8×：ISR genuine vs Random total（错误对比）\n- 修正 2.39×：ISR genuine vs Random genuine（apple-to-apple，但未控制 premise count）\n- 最终 1.02×：ISR genuine n_prem≥3 vs Random genuine n_prem≥3（fully controlled）\n\n**结论：ISR-as-reward 的全部\"结构优势\"来自 premise minimization（生成更短的 proof），而非推理质量改善。** 短 proof（2 premises 中 1 个 necessary → ISR≥0.5）天然有高 ISR，无论 premise 是否有意义。\n\n## 4. 对论文的影响\n\n- **Claim 2 不可维持**：ISR β=0.1 不提供 genuine structural guidance，只提供 premise minimization\n- **ISR 作为指标的根本缺陷暴露**：ISR 与 proof length 高度负相关，reward shaping 只是在 optimize proof length 而非 reasoning quality\n- **正面叙事方向**：这本身是一个有价值的 negative finding（Goodhart on structural metrics），可以是论文的核心贡献之一\n\nEvidence: apple-to-apple worker per-sample data + s44 genuine breakdown worker result",
+              "project": "solver-trace-ablation"
+            }
+          },
+          "id": "event-001248"
+        },
+        {
+          "source_line": 1249,
+          "timestamp": "2026-05-14T15:45:55.508908+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_a771c2a33d631dd40256ecd5c3a6648e:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3893
+          },
+          "id": "event-001249"
+        },
+        {
+          "source_line": 1250,
+          "timestamp": "2026-05-14T15:46:00.361104+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已发送。核心发现：ISR β=0.1 的全部\"结构优势\"来自 premise minimization，不是推理质量改善。当按 premise count 匹配后（n_prem≥3），ISR genuine ISR=0.258 vs Random genuine ISR=0.252，差异为 1.02× —— 完全归零。s44 的 12 个 \"genuine\" 样本也全是 n_prem=1 伪 genuine。Claim 2 需要根本性重写。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer"
+          },
+          "id": "event-001250"
+        }
+      ]
+    },
+    {
+      "number": 61,
+      "messages": [
+        {
+          "source_line": 1251,
+          "timestamp": "2026-05-14T15:47:54.285597+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_analysis_genuine-isr-fix-v3_20260514T153807]:\nWorker worker_analysis_genuine-isr-fix-v3_20260514T153807 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "source": "system"
+          },
+          "id": "event-001251"
+        },
+        {
+          "source_line": 1252,
+          "timestamp": "2026-05-14T15:48:00.506754+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/worker_analysis_genuine-isr-fix-v3*result*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/logs"
+            }
+          },
+          "id": "event-001252"
+        },
+        {
+          "source_line": 1253,
+          "timestamp": "2026-05-14T15:48:00.557451+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/logs/workers/worker_analysis_genuine-isr-fix-v3_20260514T153807_result.json"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Glob",
+            "elapsed_ms": 50
+          },
+          "id": "event-001253"
+        },
+        {
+          "source_line": 1254,
+          "timestamp": "2026-05-14T15:48:04.375282+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/logs/workers/worker_analysis_genuine-isr-fix-v3_20260514T153807_result.json"
+            }
+          },
+          "id": "event-001254"
+        },
+        {
+          "source_line": 1255,
+          "timestamp": "2026-05-14T15:48:04.375752+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"raw\": \"r4 更新完成。关键变更：\\n\\n**r3 → r4 差异:**\\n- 全面切换到 **strict normalization**（与 h7_corrected_results.txt 一致）\\n- Random s42: H1=56/79 (70.9%), Genuine=23 (29.1%), Genuine ISR=**0.243** (std=0.169)\\n- Random s44: H1 从 74 修正为 **71**/89 (79.8%), Genuine 从 15 修正为 **18** (20.2%), Genuine ISR=**0.166** (std=0.335)\\n- Apple-to-apple ratio: ISR s42 genuine (0.601) / Random s42 genuine (0.243) = **2.5×**（r3 报 2.4×，因 loose normalization 得 21 genuine ISR=0.252）\\n- 删除了 author re-classification 脚注，strict 为权威分类\\n- 2 borderline samples 已识别（folio_499、folio_394 结论带括号）\"\n3\t}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-001255"
+        },
+        {
+          "source_line": 1256,
+          "timestamp": "2026-05-14T15:48:19.295898+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/genuine_isr_crosscheck.md",
+              "offset": "0",
+              "limit": "30"
+            }
+          },
+          "id": "event-001256"
+        },
+        {
+          "source_line": 1257,
+          "timestamp": "2026-05-14T15:48:19.397270+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "0\t# Genuine ISR Crosscheck: β=0.1 Stratified Analysis (r4)\n1\t\n2\t**Date**: 2026-05-14 (r4 — strict normalization, verified from eval JSONs)\n3\t**Scope**: ISR β=0.1 (plan002) 3-seed × Random β=0.1 (plan018) 2-seed × Exec-only baseline\n4\t\n5\t> **Normalization**: All H7/H1/Genuine classifications in this document use **strict normalization** (lowercase + strip leading/trailing whitespace, exact string match). This matches h7_corrected_results.txt for runs it covers. Loose normalization (also remove internal whitespace + strip parens) yields 2–3 additional H1 per seed; narrative unchanged.\n6\t\n7\t---\n8\t\n9\t## 1. Raw Data Summary\n10\t\n11\t### ISR β=0.1 (plan002-additive-b01)\n12\t\n13\t| Metric | s42 | s43 | s44 |\n14\t|--------|-----|-----|-----|\n15\t| Status | success | negative | negative |\n16\t| PR | 0.81 | 0.61 | 0.89 |\n17\t| Mean ISR | 0.337 | 0.506 | 0.803 |\n18\t| ISR std | 0.323 | 0.452 | 0.342 |\n19\t| Proved-only ISR | 0.415 | 0.830 | — |\n20\t| n_proved | 81 | 61 | 89 |\n21\t| Component mean | 5.58 | 4.03 | 4.33 |\n22\t| Tautological collapse | No | No | No |\n23\t| Hacking mode | partial (H7+H1) | conclusion_dup (severe H7) | conclusion_dup (severe H7) |\n24\t| proved_single_premise_ratio | 0.185 | 1.00 | 1.00 |\n25\t\n26\t### Random β=0.1 (plan018-additive-random-b01)\n27\t\n28\t| Metric | s42 | s44 |\n29\t|--------|-----|-----|"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 101
+          },
+          "id": "event-001257"
+        },
+        {
+          "source_line": 1258,
+          "timestamp": "2026-05-14T15:48:23.136952+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/genuine_isr_crosscheck.md",
+              "offset": "30",
+              "limit": "80"
+            }
+          },
+          "id": "event-001258"
+        },
+        {
+          "source_line": 1259,
+          "timestamp": "2026-05-14T15:48:23.188563+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "30\t|--------|-----|-----|\n31\t| Status | success† | success |\n32\t| PR | 0.79 | 0.89 |\n33\t| Mean ISR | 0.104 | 0.062 |\n34\t| ISR std | 0.137 | 0.176 |\n35\t| Proved-only ISR | 0.131 | 0.070 |\n36\t| n_proved | 79 | 89 |\n37\t| Component mean | 8.46 | — |\n38\t| H1 (strict) | **56/79 (70.9%)** | **71/89 (79.8%)** |\n39\t| Hacking mode | **H1 conclusion embedding** | **H1 conclusion embedding** |\n40\t\n41\t†Registry conclusion=\"negative\" refers to comparison result (ISR > Random), not model quality.\n42\t\n43\t### Exec-only Baseline (plan001-s42-r2)\n44\t\n45\t| Metric | s42 |\n46\t|--------|-----|\n47\t| PR | 0.93 |\n48\t| Mean ISR | 0.123 |\n49\t| Proved-only ISR | 0.132 |\n50\t| n_proved | 93 |\n51\t\n52\t---\n53\t\n54\t## 2. Hacking-Mode Stratification (ISR β=0.1)\n55\t\n56\t### s42 — Full H7/H1/Genuine Breakdown\n57\t\n58\t| Category | Count | % of proved | Mean ISR | Description |\n59\t|----------|-------|-------------|----------|-------------|\n60\t| H7 (single premise=conclusion) | 13 | 16.0% | 0.660 | Trivial tautology P→P |\n61\t| H1 (multi-premise, conclusion embedded) | 42 | 51.9% | 0.225 | Conclusion among real premises |\n62\t| **Genuine** (no conclusion duplication) | **26** | **32.1%** | **0.601** | Clean structural reasoning |\n63\t| Total | 81 | 100% | 0.337 | — |\n64\t\n65\tISR β=0.1 s42 mixes three regimes; aggregate ISR (0.337) is a weighted blend.\n66\t\n67\t### s43 — Severe H7 Collapse\n68\t\n69\t| Category | Est. Count | % of proved | Mean ISR | Notes |\n70\t|----------|------------|-------------|----------|-------|\n71\t| H7 | ~59 | 96.7% | ~0.506 | Nearly all proofs are P→P |\n72\t| H1 | 0 | 0% | — | All single-premise |\n73\t| **Genuine** | **~2** | **3.3%** | **N/A** | Sample too small |\n74\t| Total | 61 | 100% | 0.506 | — |\n75\t\n76\t97% trivial-tautology collapse; genuine ISR is statistically meaningless at n=2.\n77\t\n78\t### s44 — Severe H7 Collapse\n79\t\n80\t| Category | Est. Count | % of proved | Mean ISR | Notes |\n81\t|----------|------------|-------------|----------|-------|\n82\t| H7 | ~77 | 86.5% | ~0.88 (isr=1 in 65) | Si\n…[truncated 1786 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 51
+          },
+          "id": "event-001259"
+        },
+        {
+          "source_line": 1260,
+          "timestamp": "2026-05-14T15:48:26.552142+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/genuine_isr_crosscheck.md",
+              "offset": "109"
+            }
+          },
+          "id": "event-001260"
+        }
+      ]
+    }
+  ]
+}

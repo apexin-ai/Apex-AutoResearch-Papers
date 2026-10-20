@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7f999c27b4018c686857",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "writing appendix",
+  "task_key": "worker_writing_appendix_20260514T194249",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_appendix_20260514T194249_result.json",
+    "occurrence": 1,
+    "bytes": 717,
+    "sha256": "f06a34367ecd3c96670576870eac367a6a596d16cedc14008f6c574cf682816a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "写好了。`appendix.tex` 包含三个章节：\n\n- **Appendix A (Experimental Setup)**: Table A1 列出所有超参数（Qwen3-4B, GRPO K=8, lr=1e-6, batch=4×2=8, 500/1000 steps, BF16, 3 seeds, FOLIO 500/100, 6 reward conditions）。注明了 s43 sampling eval 的例外。\n- **Appendix B (Hacking Mode Definitions)**: 7 种 hacking mode 各有定义、FOL/Prolog 伪代码示例、ISR 交互说明、prevalence 数据。\n- **Appendix C (Per-Seed Detailed Results)**: 两张 `table*`（FOL Table A2 + Prolog Table A3），涵盖所有 exp\\_id 的 PR/ISR\\*/H7/H1/Genuine，含 3-seed mean±std 和脚注说明 Prolog classifier 误导性问题。\n\n`paper.tex` 已添加 `\\input{appendix}`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-appendix.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b3f64dc933a796c8ef5b",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code d144 pipeline prep",
+  "task_key": "worker_code_d144-pipeline-prep_20260519T141914",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d144-pipeline-prep_20260519T141914_result.json",
+    "occurrence": 1,
+    "bytes": 1277,
+    "sha256": "673b68645147f5ec2cf17f0762b4df57a7e3aa04c203579cf99d39d40759fac0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。报告：\n\n### D144 Pipeline 准备结果\n\n**1. s42 训练状态**\n- 运行中：tmux session `d144-llama-exec-s42`，PID 398743，GPU 占用 69772 MiB\n- 进度：已到 checkpoint-50/500\n\n**2. Config 文件**\n- `configs/grpo_llama_exec_only.yaml` ✓ — reward_mode=execution_only, data=train_500_seed42.jsonl, save_total_limit=1\n- `configs/grpo_llama_additive_bonus_b01.yaml` ✓ — reward_mode=additive_bonus, beta=0.1, 同上\n\n**3. Pipeline 脚本**\n- 路径：`/root/solver-trace-ablation/scripts/d144_pipeline.sh`\n- 内容：5 个实验串行执行，`CUDA_VISIBLE_DEVICES=0`，exec-only s43→s44→ISR s42→s43→s44\n- 语法验证通过\n\n**4. Registry 注册**\n全部 5 个实验已创建为 PREPARING，parent=d144-llama-exec-s42：\n| exp_id | hypothesis |\n|---|---|\n| d144-llama-exec-s43 | exec-only seed=43, replication |\n| d144-llama-exec-s44 | exec-only seed=44, replication |\n| d144-llama-isr-s42 | ISR β=0.1 seed=42, Goodhart collapse test |\n| d144-llama-isr-s43 | ISR β=0.1 seed=43, replication |\n| d144-llama-isr-s44 | ISR β=0.1 seed=44, replication |\n\n**5. 启动说明**\nPipeline 脚本就绪，等 s42 完成后由 Agent 通过 `submit_training_job` 在 tmux 中启动，不会自行启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d144-pipeline-prep.md"
+}

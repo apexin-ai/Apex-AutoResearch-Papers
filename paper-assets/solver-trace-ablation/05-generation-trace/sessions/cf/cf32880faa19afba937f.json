@@ -1,0 +1,1392 @@
+{
+  "schema_version": "1.0",
+  "id": "cf32880faa19afba937f",
+  "project": "solver-trace-ablation",
+  "kind": "worker",
+  "title": "paper 1000step panorama table",
+  "task_key": "worker_paper_1000step-panorama-table_20260515T124454",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_1000step-panorama-table_20260515T124454.log",
+    "occurrence": 1,
+    "bytes": 43755,
+    "sha256": "db264bfafeb06855bbd0ad65ec7b60228e596c4fb373a69f35e80d68d604947a"
+  },
+  "statistics": {
+    "messages": 32,
+    "user_turns": 0,
+    "tool_calls": 11,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 6,
+      "tool_call": 11,
+      "tool_result": 11,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+                "session_id": "396d4a0d-0447-47b5-bafe-8e9ac37e8ee4",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__save_project_file"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "fc02ca82-d548-4556-a7aa-cc7a87e41d24",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778854200,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "052b4a5a-2ba1-46d9-a224-ad88525f2112",
+                "session_id": "396d4a0d-0447-47b5-bafe-8e9ac37e8ee4"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me break this into two parallel tasks:\n1. Create the LaTeX table\n2. Create the matplotlib figure\n\nLet me first check the artifacts directory exists, then create both outputs.",
+              "signature": "Eu4CClkIDRgCKkAQpWxKlWVcRbBjF6y70mWp8GI9Mrgag9ouusHCv+7jVjYA6Y3b0xzyUopqz/M9jdKB0QMJgGSR+pnoh4krys3KMg9jbGF1ZGUtb3B1cy00LTY4ABIMtG049AFYAxtoic90GgxByKJ9sYYiImLwGWAiMDHtMvC035rrsPGSTbcaubPLHKlqGcSIs1J7l/Qwk3HevAsxzzGCZDY71GGfiqIHoSrCAfuY4/TGFk2PJPgzH8nRhbRudiKv5BqJYUBgOosfgQMAmArH3aHsVsE7BURPzeSHbkaEWPH+OGco3U0oJ3KrYwhmL/NZb3thZh5SHXmsXRO94d0n2jbTETjQhQSpM6HIoU4uB4R+Y7zXwjtBTnUy2vHSXhXS0HmiPBU3mUo9OUylVLne51Ly5Rt9JE/dne4oRRCfTda1YLcGIclH4kQiKdwLKiZjraQjElb8PormqbIMb4hPDXMKacN76nHRNjntdwQjGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "396d4a0d-0447-47b5-bafe-8e9ac37e8ee4",
+            "uuid": "b511a4a2-83f7-4c5e-ac67-281dad8d6862",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Y4wV4AQzGhkc3cQyre1acn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13694,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13694
+                },
+                "output_tokens": 21,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me check the artifacts directory and create both outputs."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "396d4a0d-0447-47b5-bafe-8e9ac37e8ee4",
+            "uuid": "ffabf2cc-cca3-43d8-b7e0-a6f771e38742",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Y4wV4AQzGhkc3cQyre1acn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13694,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13694
+                },
+                "output_tokens": 21,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012TUL687CEhgjLjvhrSQ5uj",
+              "name": "Bash",
+              "input": {
+                "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/ 2>/dev/null && echo \"EXISTS\" || echo \"NO_DIR\"",
+                "description": "Check artifacts directory"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "396d4a0d-0447-47b5-bafe-8e9ac37e8ee4",
+            "uuid": "3fa742db-11a3-42db-9927-ae5d6b6a6444",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Y4wV4AQzGhkc3cQyre1acn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13694,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13694
+                },
+                "output_tokens": 21,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T12:45:05.685Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012TUL687CEhgjLjvhrSQ5uj",
+              "type": "tool_result",
+              "content": "_deprecated\n_project\nanalysis_random_vs_isr_b01_interim.md\nbootstrap_ci_results.json\nclaim_coverage_audit.md\ncomponent_count_analysis.md\ndata_consistency_report.md\ndiagnose_phase1_r3.md\ndream_reports\nevidence_chain_status.md\nevidence_tables_d051.md\nfigure_quality_report.md\ngenuine_isr_crosscheck.md\ngrpo_exec_only.yaml\ngrpo_exec_sta.yaml\nhacking_characterization_report.md\nhacking_taxonomy.md\nhacking_taxonomy_comparison.md\nlaunch_phase1.sh\nliterature_goodhart.md\nliterature_map.yaml\nmanifest.yaml\npaper_compile_audit.md\npaper_consistency_audit.md\npaper_number_audit.md\npaper_review_r1.md\npaper_table1_evidence.md\npaper_tables\npaper_tables_draft.md\nphase1_r2_diagnosis.md\nplan001-exec-only-s43-r4\nplan001-exec-only-s44\nplan002-additive-b01-s42\nplan002-additive-b01-s42-1000\nplan002-additive-b01-s43\nplan005_negative_literature.md\nplan006\nplan006_eval_compatibility.md\nplan006_readiness.md\nplan006_readiness_report.md\nplan012\nplan013-random-reward-s42-r4\nplan013_analysis.md\nplan014_design.md\nplan016-extended-1000-s42\nplan017-additive-random-s42\nplan018\nplan018-additive-random-b01-s42-1000-r3\nplan018-additive-random-b01-s42-1000-r3_analysis.json\npreflight_prolog_sta_eval.md\nprolog_sta_literature_linkage.md\nprolog_sta_premise_count_analysis.md\nreference_audit_report.md\nreference_final_audit.md\nregistry_extract.json\nreview_issues.yaml\nreview_reports\nsection_4_3_1000step_draft.md\nseed44_readiness.md\nsft_3seed_pooled_ci.json\nsta-phase0-baseline\ntable1_comparison.md\ntable1_data.json\ntable1_draft.md\ntable2_draft.md\ntable2_hacking_taxonomy.csv\ntable2_hacking_taxonomy.tex\ntable_data.json\ntable_data_compilation.md\ntable_drafts_v2.md\ntables_draft_v1.md\ntrain_grpo.py\ntraining_progress_check.md\nwilson_ci.py\nwilson_ci_complete.csv\nwilson_ci_complete.json\nwilson_ci_complete.py\nwilson_ci_results.csv\nwilson_ci_results.json\nEXISTS",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "396d4a0d-0447-47b5-bafe-8e9ac37e8ee4",
+            "uuid": "1686d140-fdc2-4d8d-a268-661e870c9525",
+            "tool_use_result": {
+              "stdout": "_deprecated\n_project\nanalysis_random_vs_isr_b01_interim.md\nbootstrap_ci_results.json\nclaim_coverage_audit.md\ncomponent_count_analysis.md\ndata_consistency_report.md\ndiagnose_phase1_r3.md\ndream_reports\nevidence_chain_status.md\nevidence_tables_d051.md\nfigure_quality_report.md\ngenuine_isr_crosscheck.md\ngrpo_exec_only.yaml\ngrpo_exec_sta.yaml\nhacking_characterization_report.md\nhacking_taxonomy.md\nhacking_taxonomy_comparison.md\nlaunch_phase1.sh\nliterature_goodhart.md\nliterature_map.yaml\nmanifest.yaml\npaper_compile_audit.md\npaper_consistency_audit.md\npaper_number_audit.md\npaper_review_r1.md\npaper_table1_evidence.md\npaper_tables\npaper_tables_draft.md\nphase1_r2_diagnosis.md\nplan001-exec-only-s43-r4\nplan001-exec-only-s44\nplan002-additive-b01-s42\nplan002-additive-b01-s42-1000\nplan002-additive-b01-s43\nplan005_negative_literature.md\nplan006\nplan006_eval_compatibility.md\nplan006_readiness.md\nplan006_readiness_report.md\nplan012\nplan013-random-reward-s42-r4\nplan013_analysis.md\nplan014_design.md\nplan016-extended-1000-s42\nplan017-additive-random-s42\nplan018\nplan018-additive-random-b01-s42-1000-r3\nplan018-additive-random-b01-s42-1000-r3_analysis.json\npreflight_prolog_sta_eval.md\nprolog_sta_literature_linkage.md\nprolog_sta_premise_count_analysis.md\nreference_audit_report.md\nreference_final_audit.md\nregistry_extract.json\nreview_issues.yaml\nreview_reports\nsection_4_3_1000step_draft.md\nseed44_readiness.md\nsft_3seed_pooled_ci.json\nsta-phase0-baseline\ntable1_comparison.md\ntable1_data.json\ntable1_draft.md\ntable2_draft.md\ntable2_hacking_taxonomy.csv\ntable2_hacking_taxonomy.tex\ntable_data.json\ntable_data_compilation.md\ntable_drafts_v2.md\ntables_draft_v1.md\ntrain_grpo.py\ntraining_progress_check.md\nwilson_ci.py\nwilson_ci_complete.csv\nwilson_ci_complete.json\nwilson_ci_complete.py\nwilson_ci_results.csv\nwilson_ci_results.json\nEXISTS",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RXFQn8nK1FmzMBqqF9ciY5",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"import matplotlib; print(matplotlib.__version__)\"",
+                "description": "Check matplotlib availability"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "396d4a0d-0447-47b5-bafe-8e9ac37e8ee4",
+            "uuid": "87bb9d1e-92b0-401a-b3ea-83667496a7b4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Y4wV4AQzGhkc3cQyre1acn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13694,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13694
+                },
+                "output_tokens": 21,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T12:45:06.427Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RXFQn8nK1FmzMBqqF9ciY5",
+              "type": "tool_result",
+              "content": "3.10.9",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "396d4a0d-0447-47b5-bafe-8e9ac37e8ee4",
+            "uuid": "404e328e-47f7-46bd-89f7-00f7e4de20e2",
+            "tool_use_result": {
+              "stdout": "3.10.9",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018HD8zwzn3M8ziQCHkWb739",
+              "name": "Bash",
+              "input": {
+                "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/paper_figures",
+                "description": "Create paper_figures directory"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "396d4a0d-0447-47b5-bafe-8e9ac37e8ee4",
+            "uuid": "446169f9-30c4-441d-b98a-92f993cf57c8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012Vowhqf8z1qqLPsXhDvfs7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1013,
+                "cache_read_input_tokens": 25535,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1013
+                },
+                "output_tokens": 62,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T12:45:09.051Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018HD8zwzn3M8ziQCHkWb739",
+              "type": "tool_result",
+              "content": "(Bash completed with no output)",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "396d4a0d-0447-47b5-bafe-8e9ac37e8ee4",
+            "uuid": "c4e93929-89ce-4cd3-9157-5cc7ce44e328",
+            "tool_use_result": {
+              "stdout": "",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": true
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now creating both outputs in parallel."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "396d4a0d-0447-47b5-bafe-8e9ac37e8ee4",
+            "uuid": "23c7acd9-5185-4bec-9243-e5db53ab524e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VEA8mipxtZhBB41wfLMxQA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 127,
+                "cache_read_input_tokens": 26548,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 127
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01A6w8TiBgymry3GbriDdREe",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/paper_tables/table_1000step_comparison.tex",
+                "content": "% 1000-step full comparison table for §4.2\n% All metrics from proofwriter_fol_100 evaluation via eval_sta.py\n\\begin{table}[t]\n\\centering\n\\caption{Performance at 1000 training steps across reward conditions. All metrics evaluated on \\textsc{ProofWriter-FOL-100} using \\texttt{eval\\_sta.py}. H7 = tautological repetition, H1 = conclusion embedding, H8 = conjunction collapse. Genuine\\% = proved samples free of all three hacking patterns.}\n\\label{tab:1000step-comparison}\n\\small\n\\setlength{\\tabcolsep}{4pt}\n\\begin{tabular}{@{}lcccccc@{}}\n\\toprule\n\\textbf{Condition} & \\textbf{PR} & \\textbf{Mean ISR} & \\textbf{H7\\%} & \\textbf{H1\\%} & \\textbf{H8\\%} & \\textbf{Genuine\\%} \\\\\n\\midrule\nExec-only           & 0.96 & 0.003 & 0\\%    & 100\\%  & ---    & 0\\%   \\\\\nISR $\\beta{=}0.1$   & 0.90 & 0.789 & 92.2\\% & 4.4\\%  & 1.1\\%  & 2.2\\% \\\\\nISR $\\beta{=}0.3$   & 0.95 & 0.734 & 0\\%    & 56.8\\% & 43.2\\% & 0\\%   \\\\\nRandom $\\beta{=}0.1$ & 0.97 & 0.689 & 100\\%  & 0\\%    & 0\\%    & 0\\%   \\\\\n\\midrule\n\\rowcolor{gray!15}\n\\textbf{SFT}        & \\textbf{0.13} & \\textbf{0.074} & \\textbf{0\\%} & \\textbf{7.7\\%} & \\textbf{---} & \\textbf{92.3\\%} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "396d4a0d-0447-47b5-bafe-8e9ac37e8ee4",
+            "uuid": "6bf0ba78-69d1-46f5-87ab-a3dee9328370",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VEA8mipxtZhBB41wfLMxQA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 127,
+                "cache_read_input_tokens": 26548,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 127
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T12:45:20.064Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01A6w8TiBgymry3GbriDdREe",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/paper_tables/table_1000step_comparison.tex"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "396d4a0d-0447-47b5-bafe-8e9ac37e8ee4",
+            "uuid": "b87f37a7-3fb3-40d8-81d1-2e88af6f0689",
+            "tool_use_result": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/paper_tables/table_1000step_comparison.tex",
+              "content": "% 1000-step full comparison table for §4.2\n% All metrics from proofwriter_fol_100 evaluation via eval_sta.py\n\\begin{table}[t]\n\\centering\n\\caption{Performance at 1000 training steps across reward conditions. All metrics evaluated on \\textsc{ProofWriter-FOL-100} using \\texttt{eval\\_sta.py}. H7 = tautological repetition, H1 = conclusion embedding, H8 = conjunction collapse. Genuine\\% = proved samples free of all three hacking patterns.}\n\\label{tab:1000step-comparison}\n\\small\n\\setlength{\\tabcolsep}{4pt}\n\\begin{tabular}{@{}lcccccc@{}}\n\\toprule\n\\textbf{Condition} & \\textbf{PR} & \\textbf{Mean ISR} & \\textbf{H7\\%} & \\textbf{H1\\%} & \\textbf{H8\\%} & \\textbf{Genuine\\%} \\\\\n\\midrule\nExec-only           & 0.96 & 0.003 & 0\\%    & 100\\%  & ---    & 0\\%   \\\\\nISR $\\beta{=}0.1$   & 0.90 & 0.789 & 92.2\\% & 4.4\\%  & 1.1\\%  & 2.2\\% \\\\\nISR $\\beta{=}0.3$   & 0.95 & 0.734 & 0\\%    & 56.8\\% & 43.2\\% & 0\\%   \\\\\nRandom $\\beta{=}0.1$ & 0.97 & 0.689 & 100\\%  & 0\\%    & 0\\%    & 0\\%   \\\\\n\\midrule\n\\rowcolor{gray!15}\n\\textbf{SFT}        & \\textbf{0.13} & \\textbf{0.074} & \\textbf{0\\%} & \\textbf{7.7\\%} & \\textbf{---} & \\textbf{92.3\\%} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Md7r19NiAvhkMfJnP19fdJ",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/paper_figures/genuine_rate_collapse.py",
+                "content": "\"\"\"Temporal Genuine Rate Collapse figure for §4.2.\"\"\"\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nplt.rcParams.update({\n    'font.family': 'serif',\n    'font.serif': ['Times New Roman', 'DejaVu Serif'],\n    'font.size': 8,\n    'axes.labelsize': 9,\n    'axes.titlesize': 9,\n    'legend.fontsize': 7,\n    'xtick.labelsize': 8,\n    'ytick.labelsize': 8,\n    'lines.linewidth': 1.4,\n    'lines.markersize': 5,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n})\n\nsteps = [500, 1000]\n\nconditions = {\n    'Exec-only':       {'500': 7.5,  '1000': 0.0,  'color': '#1f77b4', 'marker': 'o',  'ls': '-'},\n    r'ISR $\\beta{=}0.1$': {'500': 30.9, '1000': 2.2,  'color': '#ff7f0e', 'marker': 's',  'ls': '-'},\n    r'ISR $\\beta{=}0.3$': {'500': 5.6,  '1000': 0.0,  'color': '#2ca02c', 'marker': '^',  'ls': '-'},\n    r'Random $\\beta{=}0.1$': {'500': 29.1, '1000': 0.0, 'color': '#d62728', 'marker': 'D', 'ls': '-'},\n    'SFT':             {'500': 93.0, '1000': 92.3, 'color': '#7f7f7f', 'marker': 'x',  'ls': '--'},\n}\n\nfig, ax = plt.subplots(figsize=(3.5, 2.5))\n\nfor name, d in conditions.items():\n    vals = [d['500'], d['1000']]\n    ax.plot(steps, vals, color=d['color'], marker=d['marker'],\n            linestyle=d['ls'], label=name, zorder=3)\n\nax.set_xlabel('Training Steps')\nax.set_ylabel('Genuine Rate (%)')\nax.set_title('Temporal Genuine Rate Collapse Under Reward Optimization')\nax.set_xticks(steps)\nax.set_xlim(400, 1100)\nax.set_ylim(-3, 100)\nax.legend(loc='center right', frameon=True, fancybox=False, edgecolor='0.7')\nax.grid(True, alpha=0.3, linewidth=0.5)\nax.spines['top'].set_visible(False)\nax.spines['right'].set_visible(False)\n\noutdir = '/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/paper_figures'\nfig.savefig(f'{outdir}/genuine_rate_collapse.pdf')\nfig.savefig(f'{outdir}/genuine_rate_collapse.png')\nplt.close()\nprint('Saved genuine_rate_collapse.pdf and .png')\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "396d4a0d-0447-47b5-bafe-8e9ac37e8ee4",
+            "uuid": "eb0c107f-2117-4fd9-9677-68ba70230a73",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VEA8mipxtZhBB41wfLMxQA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 127,
+                "cache_read_input_tokens": 26548,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 127
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T12:45:30.974Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Md7r19NiAvhkMfJnP19fdJ",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/paper_figures/genuine_rate_collapse.py"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "396d4a0d-0447-47b5-bafe-8e9ac37e8ee4",
+            "uuid": "4c92715f-0101-496a-9dd2-4707a54336c3",
+            "tool_use_result": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/paper_figures/genuine_rate_collapse.py",
+              "content": "\"\"\"Temporal Genuine Rate Collapse figure for §4.2.\"\"\"\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nplt.rcParams.update({\n    'font.family': 'serif',\n    'font.serif': ['Times New Roman', 'DejaVu Serif'],\n    'font.size': 8,\n    'axes.labelsize': 9,\n    'axes.titlesize': 9,\n    'legend.fontsize': 7,\n    'xtick.labelsize': 8,\n    'ytick.labelsize': 8,\n    'lines.linewidth': 1.4,\n    'lines.markersize': 5,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n})\n\nsteps = [500, 1000]\n\nconditions = {\n    'Exec-only':       {'500': 7.5,  '1000': 0.0,  'color': '#1f77b4', 'marker': 'o',  'ls': '-'},\n    r'ISR $\\beta{=}0.1$': {'500': 30.9, '1000': 2.2,  'color': '#ff7f0e', 'marker': 's',  'ls': '-'},\n    r'ISR $\\beta{=}0.3$': {'500': 5.6,  '1000': 0.0,  'color': '#2ca02c', 'marker': '^',  'ls': '-'},\n    r'Random $\\beta{=}0.1$': {'500': 29.1, '1000': 0.0, 'color': '#d62728', 'marker': 'D', 'ls': '-'},\n    'SFT':             {'500': 93.0, '1000': 92.3, 'color': '#7f7f7f', 'marker': 'x',  'ls': '--'},\n}\n\nfig, ax = plt.subplots(figsize=(3.5, 2.5))\n\nfor name, d in conditions.items():\n    vals = [d['500'], d['1000']]\n    ax.plot(steps, vals, color=d['color'], marker=d['marker'],\n            linestyle=d['ls'], label=name, zorder=3)\n\nax.set_xlabel('Training Steps')\nax.set_ylabel('Genuine Rate (%)')\nax.set_title('Temporal Genuine Rate Collapse Under Reward Optimization')\nax.set_xticks(steps)\nax.set_xlim(400, 1100)\nax.set_ylim(-3, 100)\nax.legend(loc='center right', frameon=True, fancybox=False, edgecolor='0.7')\nax.grid(True, alpha=0.3, linewidth=0.5)\nax.spines['top'].set_visible(False)\nax.spines['right'].set_visible(False)\n\noutdir = '/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/paper_figures'\nfig.savefig(f'{outdir}/genuine_rate_collapse.pdf')\nfig.savefig(f'{outdir}/genuine_rate_collapse.png')\nplt.close()\nprint('Saved genuine_rate_collapse.pdf and .png')\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RFq3E2rcwpxZBWQ42U3mPx",
+              "name": "Bash",
+              "input": {
+                "command": "python3 artifacts/paper_figures/genuine_rate_collapse.py",
+                "description": "Generate the genuine rate collapse figure"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "396d4a0d-0447-47b5-bafe-8e9ac37e8ee4",
+            "uuid": "a4670dec-0bed-42ea-aae2-b4568d810a6b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CcbvEtybCTqnitWoGRDX6G",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1806,
+                "cache_read_input_tokens": 26675,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1806
+                },
+                "output_tokens": 63,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T12:45:35.624Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RFq3E2rcwpxZBWQ42U3mPx",
+              "type": "tool_result",
+              "content": "Saved genuine_rate_collapse.pdf and .png",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "396d4a0d-0447-47b5-bafe-8e9ac37e8ee4",
+            "uuid": "b1f855e2-7241-45fc-b915-2e0e16b07709",
+            "tool_use_result": {
+              "stdout": "Saved genuine_rate_collapse.pdf and .png",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me verify the outputs look correct."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "396d4a0d-0447-47b5-bafe-8e9ac37e8ee4",
+            "uuid": "364928aa-21e1-47d9-8de9-3aacac04e47a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PsZi6VQpF67wSPwJjYj42M",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 113,
+                "cache_read_input_tokens": 28481,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 113
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RYtRJm3S7fLxYuDpTC7m2w",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/paper_figures/genuine_rate_collapse.png"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "396d4a0d-0447-47b5-bafe-8e9ac37e8ee4",
+            "uuid": "a9df7fa6-3989-4a79-a45d-15aeb2bf66f2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PsZi6VQpF67wSPwJjYj42M",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 113,
+                "cache_read_input_tokens": 28481,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 113
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T12:45:38.746Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RYtRJm3S7fLxYuDpTC7m2w",
+              "type": "tool_result",
+              "content": [
+                {
+                  "type": "image",
+                  "source": {
+                    "type": "base64",
+                    "data": "[ATTACHMENT_DATA_REDACTED]",
+                    "media_type": "image/png"
+                  }
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "396d4a0d-0447-47b5-bafe-8e9ac37e8ee4",
+            "uuid": "35a1d8b7-c00d-4db4-b63d-611bd3984c38",
+            "tool_use_result": {
+              "type": "image",
+              "file": {
+                "base64": "[ATTACHMENT_DATA_REDACTED]",
+                "type": "image/png",
+                "originalSize": 92789,
+                "dimensions": {
+                  "originalWidth": 1202,
+                  "originalHeight": 774,
+                  "displayWidth": 1202,
+                  "displayHeight": 774
+                }
+              }
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019QdQeHHzTBErvaaGaR9KH2",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/paper_tables/table_1000step_comparison.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "396d4a0d-0447-47b5-bafe-8e9ac37e8ee4",
+            "uuid": "53d2e3e3-e2c0-49e8-942f-492d8b062e03",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PsZi6VQpF67wSPwJjYj42M",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 113,
+                "cache_read_input_tokens": 28481,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 113
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T12:45:39.177Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019QdQeHHzTBErvaaGaR9KH2",
+              "type": "tool_result",
+              "content": "1\t% 1000-step full comparison table for §4.2\n2\t% All metrics from proofwriter_fol_100 evaluation via eval_sta.py\n3\t\\begin{table}[t]\n4\t\\centering\n5\t\\caption{Performance at 1000 training steps across reward conditions. All metrics evaluated on \\textsc{ProofWriter-FOL-100} using \\texttt{eval\\_sta.py}. H7 = tautological repetition, H1 = conclusion embedding, H8 = conjunction collapse. Genuine\\% = proved samples free of all three hacking patterns.}\n6\t\\label{tab:1000step-comparison}\n7\t\\small\n8\t\\setlength{\\tabcolsep}{4pt}\n9\t\\begin{tabular}{@{}lcccccc@{}}\n10\t\\toprule\n11\t\\textbf{Condition} & \\textbf{PR} & \\textbf{Mean ISR} & \\textbf{H7\\%} & \\textbf{H1\\%} & \\textbf{H8\\%} & \\textbf{Genuine\\%} \\\\\n12\t\\midrule\n13\tExec-only           & 0.96 & 0.003 & 0\\%    & 100\\%  & ---    & 0\\%   \\\\\n14\tISR $\\beta{=}0.1$   & 0.90 & 0.789 & 92.2\\% & 4.4\\%  & 1.1\\%  & 2.2\\% \\\\\n15\tISR $\\beta{=}0.3$   & 0.95 & 0.734 & 0\\%    & 56.8\\% & 43.2\\% & 0\\%   \\\\\n16\tRandom $\\beta{=}0.1$ & 0.97 & 0.689 & 100\\%  & 0\\%    & 0\\%    & 0\\%   \\\\\n17\t\\midrule\n18\t\\rowcolor{gray!15}\n19\t\\textbf{SFT}        & \\textbf{0.13} & \\textbf{0.074} & \\textbf{0\\%} & \\textbf{7.7\\%} & \\textbf{---} & \\textbf{92.3\\%} \\\\\n20\t\\bottomrule\n21\t\\end{tabular}\n22\t\\end{table}\n23\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "396d4a0d-0447-47b5-bafe-8e9ac37e8ee4",
+            "uuid": "c7d0a013-85b1-4c80-a121-71b24fcd3c7c",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/paper_tables/table_1000step_comparison.tex",
+                "content": "% 1000-step full comparison table for §4.2\n% All metrics from proofwriter_fol_100 evaluation via eval_sta.py\n\\begin{table}[t]\n\\centering\n\\caption{Performance at 1000 training steps across reward conditions. All metrics evaluated on \\textsc{ProofWriter-FOL-100} using \\texttt{eval\\_sta.py}. H7 = tautological repetition, H1 = conclusion embedding, H8 = conjunction collapse. Genuine\\% = proved samples free of all three hacking patterns.}\n\\label{tab:1000step-comparison}\n\\small\n\\setlength{\\tabcolsep}{4pt}\n\\begin{tabular}{@{}lcccccc@{}}\n\\toprule\n\\textbf{Condition} & \\textbf{PR} & \\textbf{Mean ISR} & \\textbf{H7\\%} & \\textbf{H1\\%} & \\textbf{H8\\%} & \\textbf{Genuine\\%} \\\\\n\\midrule\nExec-only           & 0.96 & 0.003 & 0\\%    & 100\\%  & ---    & 0\\%   \\\\\nISR $\\beta{=}0.1$   & 0.90 & 0.789 & 92.2\\% & 4.4\\%  & 1.1\\%  & 2.2\\% \\\\\nISR $\\beta{=}0.3$   & 0.95 & 0.734 & 0\\%    & 56.8\\% & 43.2\\% & 0\\%   \\\\\nRandom $\\beta{=}0.1$ & 0.97 & 0.689 & 100\\%  & 0\\%    & 0\\%    & 0\\%   \\\\\n\\midrule\n\\rowcolor{gray!15}\n\\textbf{SFT}        & \\textbf{0.13} & \\textbf{0.074} & \\textbf{0\\%} & \\textbf{7.7\\%} & \\textbf{---} & \\textbf{92.3\\%} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n",
+                "numLines": 23,
+                "startLine": 1,
+                "totalLines": 23
+              }
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "图表清晰，SFT 稳定在 ~93% 而所有 RL 条件 genuine rate 崩塌至 0-2.2%。现在注册两个产出。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "396d4a0d-0447-47b5-bafe-8e9ac37e8ee4",
+            "uuid": "051de4db-cf29-449a-bdf0-da4cb07c1715",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Twq5LdEiL4B41wmF8nLugP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2171,
+                "cache_read_input_tokens": 28594,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2171
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01D6K952NLUpZimo9jYmKLpy",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__register_artifact",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "396d4a0d-0447-47b5-bafe-8e9ac37e8ee4",
+            "uuid": "0005f9e1-59f0-4906-9ce0-08931f6ce4e3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Twq5LdEiL4B41wmF8nLugP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2171,
+                "cache_read_input_tokens": 28594,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2171
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T12:45:43.794Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01D6K952NLUpZimo9jYmKLpy",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__register_artifact"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "396d4a0d-0447-47b5-bafe-8e9ac37e8ee4",
+            "uuid": "2b6d40fd-0489-4984-961c-a5dac0ee152e",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__register_artifact"
+              ],
+              "query": "select:mcp__agent-ml-research__register_artifact",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01P3M5oVdY7p9pL2K8K9EGqp",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "table_1000step_comparison",
+                "type": "paper",
+                "description": "LaTeX table: 1000-step full comparison across 5 reward conditions (PR, Mean ISR, H7%, H1%, H8%, Genuine%). For §4.2.",
+                "project": "solver-trace-ablation",
+                "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/paper_tables/table_1000step_comparison.tex",
+                "tags": [
+                  "paper",
+                  "table",
+                  "1000step",
+                  "section4.2"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "396d4a0d-0447-47b5-bafe-8e9ac37e8ee4",
+            "uuid": "07f2297e-09f3-4e66-98e4-5ed4021df21d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LRtEhGrErSXpiTwWFRe1yK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 767,
+                "cache_read_input_tokens": 30765,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 767
+                },
+                "output_tokens": 70,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T12:45:49.076Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01P3M5oVdY7p9pL2K8K9EGqp",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260515_35553a\\\", \\\"name\\\": \\\"table_1000step_comparison\\\", \\\"type\\\": \\\"paper\\\", \\\"description\\\": \\\"LaTeX table: 1000-step full comparison across 5 reward conditions (PR, Mean ISR, H7%, H1%, H8%, Genuine%). For §4.2.\\\", \\\"path\\\": \\\"projects/solver-trace-ablation/artifacts/_project/paper/table_1000step_comparison.tex\\\", \\\"url\\\": null, \\\"project\\\": \\\"solver-trace-ablation\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-15T12:45:48.612838+00:00\\\", \\\"tags\\\": [\\\"paper\\\", \\\"table\\\", \\\"1000step\\\", \\\"section4.2\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "396d4a0d-0447-47b5-bafe-8e9ac37e8ee4",
+            "uuid": "2b84a7cc-e786-4f7a-825e-df217b5c659b",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260515_35553a\\\", \\\"name\\\": \\\"table_1000step_comparison\\\", \\\"type\\\": \\\"paper\\\", \\\"description\\\": \\\"LaTeX table: 1000-step full comparison across 5 reward conditions (PR, Mean ISR, H7%, H1%, H8%, Genuine%). For §4.2.\\\", \\\"path\\\": \\\"projects/solver-trace-ablation/artifacts/_project/paper/table_1000step_comparison.tex\\\", \\\"url\\\": null, \\\"project\\\": \\\"solver-trace-ablation\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-15T12:45:48.612838+00:00\\\", \\\"tags\\\": [\\\"paper\\\", \\\"table\\\", \\\"1000step\\\", \\\"section4.2\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260515_35553a\", \"name\": \"table_1000step_comparison\", \"type\": \"paper\", \"description\": \"LaTeX table: 1000-step full comparison across 5 reward conditions (PR, Mean ISR, H7%, H1%, H8%, Genuine%). For §4.2.\", \"path\": \"projects/solver-trace-ablation/artifacts/_project/paper/table_1000step_comparison.tex\", \"url\": null, \"project\": \"solver-trace-ablation\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-15T12:45:48.612838+00:00\", \"tags\": [\"paper\", \"table\", \"1000step\", \"section4.2\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0159G5xayGn9Bmf4yTknNhKy",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "genuine_rate_collapse_figure",
+                "type": "chart",
+                "description": "Temporal Genuine Rate Collapse figure: 500→1000 step genuine% trajectories for 5 conditions. SFT stable ~93%, all RL conditions collapse to 0-2.2%. PDF+PNG. For §4.2.",
+                "project": "solver-trace-ablation",
+                "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/paper_figures/genuine_rate_collapse.png",
+                "tags": [
+                  "paper",
+                  "figure",
+                  "genuine-rate",
+                  "temporal-collapse",
+                  "section4.2"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "396d4a0d-0447-47b5-bafe-8e9ac37e8ee4",
+            "uuid": "5a263177-cc37-4d2a-b0be-48ccce1e7c54",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LRtEhGrErSXpiTwWFRe1yK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 767,
+                "cache_read_input_tokens": 30765,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 767
+                },
+                "output_tokens": 70,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-15T12:45:51.535Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0159G5xayGn9Bmf4yTknNhKy",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260515_ebc419\\\", \\\"name\\\": \\\"genuine_rate_collapse_figure\\\", \\\"type\\\": \\\"chart\\\", \\\"description\\\": \\\"Temporal Genuine Rate Collapse figure: 500→1000 step genuine% trajectories for 5 conditions. SFT stable ~93%, all RL conditions collapse to 0-2.2%. PDF+PNG. For §4.2.\\\", \\\"path\\\": \\\"projects/solver-trace-ablation/artifacts/_project/chart/genuine_rate_collapse.png\\\", \\\"url\\\": null, \\\"project\\\": \\\"solver-trace-ablation\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-15T12:45:51.302924+00:00\\\", \\\"tags\\\": [\\\"paper\\\", \\\"figure\\\", \\\"genuine-rate\\\", \\\"temporal-collapse\\\", \\\"section4.2\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "396d4a0d-0447-47b5-bafe-8e9ac37e8ee4",
+            "uuid": "e278aeb8-968d-48eb-8ecc-7d0ce13088fd",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260515_ebc419\\\", \\\"name\\\": \\\"genuine_rate_collapse_figure\\\", \\\"type\\\": \\\"chart\\\", \\\"description\\\": \\\"Temporal Genuine Rate Collapse figure: 500→1000 step genuine% trajectories for 5 conditions. SFT stable ~93%, all RL conditions collapse to 0-2.2%. PDF+PNG. For §4.2.\\\", \\\"path\\\": \\\"projects/solver-trace-ablation/artifacts/_project/chart/genuine_rate_collapse.png\\\", \\\"url\\\": null, \\\"project\\\": \\\"solver-trace-ablation\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-15T12:45:51.302924+00:00\\\", \\\"tags\\\": [\\\"paper\\\", \\\"figure\\\", \\\"genuine-rate\\\", \\\"temporal-collapse\\\", \\\"section4.2\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260515_ebc419\", \"name\": \"genuine_rate_collapse_figure\", \"type\": \"chart\", \"description\": \"Temporal Genuine Rate Collapse figure: 500→1000 step genuine% trajectories for 5 conditions. SFT stable ~93%, all RL conditions collapse to 0-2.2%. PDF+PNG. For §4.2.\", \"path\": \"projects/solver-trace-ablation/artifacts/_project/chart/genuine_rate_collapse.png\", \"url\": null, \"project\": \"solver-trace-ablation\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-15T12:45:51.302924+00:00\", \"tags\": [\"paper\", \"figure\", \"genuine-rate\", \"temporal-collapse\", \"section4.2\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个产出已完成并注册：\n\n**产出 1 — LaTeX 表格**: `artifacts/paper_tables/table_1000step_comparison.tex` (`art_20260515_35553a`)\n- booktabs 风格，SFT 行用 `\\rowcolor{gray!15}` + bold 突出\n- 表注包含 H7/H1/H8/Genuine 定义和数据来源说明\n\n**产出 2 — Genuine Rate Collapse 图**: `artifacts/paper_figures/genuine_rate_collapse.pdf` + `.png` (`art_20260515_ebc419`)\n- 4 条 RL 实线全部从 500 步崩塌至 0-2.2%，SFT 虚线稳定在 ~93%\n- 单栏 3.5×2.5 inch，serif 字体，300 dpi"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "396d4a0d-0447-47b5-bafe-8e9ac37e8ee4",
+            "uuid": "153176ed-91b8-444e-8b67-0fe6a75ae9ea",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ABmN56reLMGXgnzYfD2Rhs",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1178,
+                "cache_read_input_tokens": 31532,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1178
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个产出已完成并注册：\n\n**产出 1 — LaTeX 表格**: `artifacts/paper_tables/table_1000step_comparison.tex` (`art_20260515_35553a`)\n- booktabs 风格，SFT 行用 `\\rowcolor{gray!15}` + bold 突出\n- 表注包含 H7/H1/H8/Genuine 定义和数据来源说明\n\n**产出 2 — Genuine Rate Collapse 图**: `artifacts/paper_figures/genuine_rate_collapse.pdf` + `.png` (`art_20260515_ebc419`)\n- 4 条 RL 实线全部从 500 步崩塌至 0-2.2%，SFT 虚线稳定在 ~93%\n- 单栏 3.5×2.5 inch，serif 字体，300 dpi"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 58303,
+            "duration_api_ms": 57070,
+            "num_turns": 12,
+            "stop_reason": "end_turn",
+            "session_id": "396d4a0d-0447-47b5-bafe-8e9ac37e8ee4",
+            "total_cost_usd": 0.31940475,
+            "usage": {
+              "input_tokens": 12,
+              "cache_creation_input_tokens": 20869,
+              "cache_read_input_tokens": 209971,
+              "output_tokens": 3211,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 20869,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 235,
+                  "cache_read_input_tokens": 31532,
+                  "cache_creation_input_tokens": 1178,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 1178
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 3553,
+                "outputTokens": 20,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.003653,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 12,
+                "outputTokens": 3211,
+                "cacheReadInputTokens": 209971,
+                "cacheCreationInputTokens": 20869,
+                "webSearchRequests": 0,
+                "costUSD": 0.31575175,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "e7ca1718-cb40-4873-a35c-bd211d8c442d"
+          },
+          "id": "event-000032"
+        }
+      ],
+      "message_count": 32
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-1000step-panorama-table.md"
+}

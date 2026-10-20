@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4c501b138cf80dc6b621",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ssh emergency disk cleanup",
+  "task_key": "worker_ssh_emergency-disk-cleanup_20260515T134752",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_emergency-disk-cleanup_20260515T134752_result.json",
+    "occurrence": 1,
+    "bytes": 1567,
+    "sha256": "bfe3ff904e2888aa9acadd1caa2f3b1dd93d04a303b12848795409687ae44456"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇报如下：\n\n---\n\n## 清理结果\n\n### 1. 进程状态\n- **s43** (PID 356071): 已死（清理前已不存在）\n- **s44** (PID 357074/357079): kill 信号已发送，已终止\n- **tmux sessions**: 无残留\n- **GPU**: 两卡均 0 MiB 占用，完全空闲\n\n### 2. 清理目录及释放空间\n\n| 目录 | 释放空间 |\n|------|---------|\n| plan001_exec_only_s43_1000/ (全删) | ~25G |\n| plan001_exec_only_s44_1000/ (全删) | ~15G |\n| plan009_sft_baseline_s44_1000/checkpoint-1000/ | ~23G |\n| plan009_sft_baseline_s43_1000/checkpoint-1000/ | ~23G |\n| plan009_sft_baseline_s42_1000/checkpoint-1000/ | ~7.6G |\n| **合计** | **~94G** |\n\n### 3. 最终磁盘状态\n```\n/dev/md0   250G  159G  92G  64% /root/autodl-tmp\n```\n**92GB 可用**，超过 60GB 目标。\n\n### 4. grpo_exec_only.yaml\n- yaml 中**无** `save_total_limit` / `save_steps` 字段（不需要加）\n- `train_grpo.py` L462-464 已**硬编码** `save_steps=50, save_total_limit=1, save_only_model=True`\n- yaml 参数不会覆盖这些值（无对应 argparse 参数）\n- **无需修改 yaml**\n\n### 5. train_grpo.py save 逻辑\n- L462: `save_steps=50` — 每 50 步保存\n- L463: `save_total_limit=1` — 最多保留 1 个 checkpoint\n- L464: `save_only_model=True` — 只存模型权重\n- L487: 训练结束后 `trainer.save_model(args.output_dir)` 保存最终模型\n\n### 6. tmux 清理\n无需清理，无残留 session。\n\n---\n\n**服务器已就绪，两卡空闲，92GB 可用。** 训练提交由 Main Agent 处理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-emergency-disk-cleanup.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "49d1f00afc455a1eb1d7",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "paper figure fig3 hacking composition",
+  "task_key": "worker_paper_figure_fig3_hacking_composition_20260514T174806",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig3_hacking_composition_20260514T174806_result.json",
+    "occurrence": 1,
+    "bytes": 510,
+    "sha256": "acc46cd1f6cf4a278b0472c652362a9229e6a5c64fca2450d419650de93caf40"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Fig3 已生成并注册。\n\n**输出文件**：\n- PDF: `figures/paper/fig3_hacking_composition.pdf` (43K)\n- PNG: `figures/paper/fig3_hacking_composition.png` (252K)\n\n**图表核心信息**：\n- ISR s43/s44 的 H7（红色）占比 96.7%/86.5%，视觉上非常醒目\n- Random 条件下 H7 = 0%，已加注标注\n- SFT baseline 几乎全绿（92.9% Genuine）\n- ISR 区域上方有 \"ISR-specific gaming (H7)\" 括号标注\n- 副标题说明 H7 是 ISR-specific、H1 是 GRPO-universal"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig3-hacking-composition.md"
+}

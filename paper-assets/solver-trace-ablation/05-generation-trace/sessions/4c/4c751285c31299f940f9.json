@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4c751285c31299f940f9",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "paper reference audit",
+  "task_key": "worker_paper_reference-audit_20260514T194405",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_reference-audit_20260514T194405_result.json",
+    "occurrence": 1,
+    "bytes": 660,
+    "sha256": "2c38a47a8fd2379bfbde3c8d20bd8cad5914f4ac7c5a62db5214785a9cf2df64"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。结果摘要：\n\n**无缺失引用** — 33 个 .tex 中的 citation key 全部在 .bib 中找到。\n\n**4 个 CRITICAL 问题**：\n1. `rubric-grpo` — author 是 `{Various}` 占位符，需补真实作者\n2. `reward-hacking-survey` — author 是 `{Various}` 占位符\n3. `lorp` — author 是 `{Various}` 占位符\n4. `logic-rl` — author 字段只有 `Xian and others`，首作者名不完整\n\n**23 个 orphan 条目**（在 .bib 中但从未被引用），其中 `proofwriter` 值得注意——论文正文多次提到 ProofWriter 数据集但未 cite。\n\n报告已写入 `artifacts/reference_audit_report.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-reference-audit.md"
+}

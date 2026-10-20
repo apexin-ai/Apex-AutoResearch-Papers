@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4e0d5cd57113a744073a",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "diagnose 1 7b random exit",
+  "task_key": "worker_diagnose_1_7b-random-exit_20260516T210023",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_1_7b-random-exit_20260516T210023_result.json",
+    "occurrence": 1,
+    "bytes": 304,
+    "sha256": "017210d1eb4b393aefb79a2648d82ef1f3214a660301e3306a6f2c99d51d7d48"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "- **训练完成？** 是，500/500 步正常完成\n- **最终 step：** 500（epoch=2.0），总训练时间 1h14m34s\n- **Final stats：** prove_rate=0.5695, mean_isr=0.0656, parse_rate=1.0\n- **模型已保存：** final model（2 个 safetensors，共 ~6.4GB）+ checkpoint-500 目录"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-1-7b-random-exit.md"
+}

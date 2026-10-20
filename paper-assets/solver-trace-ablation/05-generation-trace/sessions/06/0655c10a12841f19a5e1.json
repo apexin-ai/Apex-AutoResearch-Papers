@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0655c10a12841f19a5e1",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "diagnose d129 random s43 failure",
+  "task_key": "worker_diagnose_d129-random-s43-failure_20260518T000121",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_d129-random-s43-failure_20260518T000121_result.json",
+    "occurrence": 1,
+    "bytes": 349,
+    "sha256": "146bc55c984c45202ff992c053f4e130382991cefed1bcf633253259e2cb9e4d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成：\n\n- **根因**: 进程被外部信号杀死（SIGKILL/SIGTERM）。日志无 Python traceback、OOM、CUDA error，训练正常运行到 step 31 后日志截断。\n- **重试 r2 状态**: PID 66669 正常运行，已到 step 31/500，开始产生非零 reward（step 29 prove_rate=0.125），训练正常推进中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-d129-random-s43-failure.md"
+}

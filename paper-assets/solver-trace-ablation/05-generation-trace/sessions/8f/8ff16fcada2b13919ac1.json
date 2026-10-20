@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8ff16fcada2b13919ac1",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops check s43 r4 progress",
+  "task_key": "worker_ops_check-s43-r4-progress_20260515T032622",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-s43-r4-progress_20260515T032622_result.json",
+    "occurrence": 1,
+    "bytes": 456,
+    "sha256": "8cba5dd0002dea7e99672918b7cd8f3174f069882751699d41c3cb72e1801955"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp1-random-b03-s43-r4 进度\n\n- **运行中**: PID 117566, etime 42:01\n- **当前 step**: 206/500 (41%)\n- **预计剩余时间**: ~56 min（基于最新 11.49 s/it × 294 step）\n- **最新 reward log step**: 206, reward=0.579, prove=0.5, isr=0.138, beta_t=0.3\n- **Checkpoint**: checkpoint-200 已存在\n- **GPU**: GPU0 83123/97887 MiB @ 90%（独占，GPU1 空闲），符合 C002\n\n未完成。下次轮询建议 ~30 min 后。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-s43-r4-progress.md"
+}

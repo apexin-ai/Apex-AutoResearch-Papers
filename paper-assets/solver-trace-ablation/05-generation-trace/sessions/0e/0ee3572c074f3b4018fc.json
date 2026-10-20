@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0ee3572c074f3b4018fc",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code d146 eval progress",
+  "task_key": "worker_code_d146-eval-progress_20260520T023711",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d146-eval-progress_20260520T023711_result.json",
+    "occurrence": 1,
+    "bytes": 492,
+    "sha256": "c153b9fa54d23f8164d84b9dab087883e04b6245e4015e9382ae5c72ca31a78c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "当前状态：\n\n- **正在处理**: `d146_pf_base` eval，进度 **71/100**（71%）\n- **GPU**: 8581 MiB 占用，50% 利用率\n- **已完成 eval**: 无（所有 7 个模型的 eval_sta_results.json 均未生成）\n- **已完成 classify**: 无（所有 7 个模型的 classify.json 均未生成）\n\nd146_pf_base 是第一个模型，按每样本 ~4-5s 估算，剩余 29 个样本约 2 分钟完成。之后还有 6 个模型（3 exec + 3 isr）待 eval + classify。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d146-eval-progress.md"
+}

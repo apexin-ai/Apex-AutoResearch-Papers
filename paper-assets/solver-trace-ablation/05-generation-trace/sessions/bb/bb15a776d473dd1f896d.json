@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "bb15a776d473dd1f896d",
+  "project": "solver-trace-ablation",
+  "kind": "worker",
+  "title": "ops sync tex remote to local",
+  "task_key": "worker_ops_sync-tex-remote-to-local_20260515T171312",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_sync-tex-remote-to-local_20260515T171312.log",
+    "occurrence": 1,
+    "bytes": 848839,
+    "sha256": "4c2fb23be123e460d6347da52d3064f019659274ae1c28e83da71e743a20e020"
+  },
+  "statistics": {
+    "messages": 169,
+    "user_turns": 0,
+    "tool_calls": 63,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 3,
+      "assistant": 37,
+      "tool_call": 63,
+      "tool_result": 63,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 169,
+      "chunks": [
+        {
+          "path": "bb15a776d473dd1f896d-part-0001.json",
+          "message_count": 93
+        },
+        {
+          "path": "bb15a776d473dd1f896d-part-0002.json",
+          "message_count": 76
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-sync-tex-remote-to-local.md"
+}

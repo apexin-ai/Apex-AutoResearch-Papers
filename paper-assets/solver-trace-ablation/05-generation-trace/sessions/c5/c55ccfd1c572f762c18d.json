@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c55ccfd1c572f762c18d",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "writing paper framing b03 update",
+  "task_key": "worker_writing_paper-framing-b03-update_20260515T200358",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_paper-framing-b03-update_20260515T200358_result.json",
+    "occurrence": 1,
+    "bytes": 531,
+    "sha256": "3e371cb697a5ad7e4edb22bf3233fde444311b6fadadf0221c3d89a0e4040074"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成 6 处修改：\n\n1. **表头**：`Random β=0.3（全部完成）` → `Random β=0.3（✅ 3-seed 全部完成）`\n2. **s43 行**：ISR 0.180→0.166，补充 `all H7a`、`(82)`、`(3)` 详情\n3. **3-seed mean 行**：std 35.1→35.9，ISR 0.091±0.090→0.087±0.084，格式调整\n4. **D060 叙事**：PR std 35.1%→35.9%\n5. **β 剂量全景表**：Random ISR 0.091±0.090→0.087±0.084，s43=0.180→0.166\n6. **Goodhart Landscape 表**：s43 行 ISR 0.180→0.166，退化模式补充绝对数"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-paper-framing-b03-update.md"
+}

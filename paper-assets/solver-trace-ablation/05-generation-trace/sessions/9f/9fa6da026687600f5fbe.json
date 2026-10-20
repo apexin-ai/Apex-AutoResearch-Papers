@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9fa6da026687600f5fbe",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code plan001 exec only s42 r4",
+  "task_key": "worker_code_plan001-exec-only-s42-r4_20260513T230425",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan001-exec-only-s42-r4_20260513T230425_result.json",
+    "occurrence": 1,
+    "bytes": 622,
+    "sha256": "87d964359828da2e850478f276f8344d6a0e510b0122c7c657b3f362f174f3a0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结论\n\n| Run | 状态 | 原因 |\n|-----|------|------|\n| r1 | 失败 | 参数错误 `--max_steps`（应为 `--num_steps`） |\n| r2 | **正在运行** | PID 84901，GPU 0，当前 step 179/500 |\n| r3 | 失败 | r2 已占满 GPU 0，重复提交导致 OOM |\n\n**r2 运行正常**，当前进度 179/500，reward_mean=0.75，prove_rate=0.75，loss=0.0608。已保存 checkpoint-100 和 checkpoint-150。\n\n不需要提交 r4。plan001-exec-only-s42 实验已在正常训练中，预计还需约 320 步完成。GPU 1 上同时在跑 plan005-sta-low-s42（exec_weight=0.9, sta_weight=0.1）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan001-exec-only-s42-r4.md"
+}

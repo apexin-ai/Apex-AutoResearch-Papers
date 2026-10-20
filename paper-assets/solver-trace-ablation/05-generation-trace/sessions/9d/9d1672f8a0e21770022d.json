@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9d1672f8a0e21770022d",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "diagnose w2 qwen3 8b exec pilot r2",
+  "task_key": "worker_diagnose_w2-qwen3-8b-exec-pilot-r2_20260516T105106",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_w2-qwen3-8b-exec-pilot-r2_20260516T105106_result.json",
+    "occurrence": 1,
+    "bytes": 561,
+    "sha256": "932fdc5059aee3b56cbcf7647131a6e9ebfaba438094cfe5f645555e65888915"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结果：训练失败（OOM）。**\n\n- 崩溃点：step 1 完成后 step 2 forward pass 时 OOM\n- 原因：Qwen3-8B 即使用 K=2、batch=1、gradient checkpointing、8bit optimizer，仍然占用 ~94.75GB，单卡 A800 (95GB) 放不下\n- 已标记 `conclusion=failed`，cron 已删除\n\n**结论：Qwen3-8B GRPO 在单卡 A800 上不可行。** 若要跑 8B 模型，需要：\n1. 双卡 FSDP/DeepSpeed，或\n2. LoRA（仅训少量参数减少 activation memory），或\n3. 进一步降低 max_completion_length 减少 activation 占用"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-w2-qwen3-8b-exec-pilot-r2.md"
+}

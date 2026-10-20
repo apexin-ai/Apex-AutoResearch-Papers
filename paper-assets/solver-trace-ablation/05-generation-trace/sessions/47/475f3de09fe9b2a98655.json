@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "475f3de09fe9b2a98655",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code eval sta prolog support",
+  "task_key": "worker_code_eval-sta-prolog-support_20260514T054312",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_eval-sta-prolog-support_20260514T054312_result.json",
+    "occurrence": 1,
+    "bytes": 995,
+    "sha256": "bdc69fae47fc2c1e83521babd32fc646e6dee52a1de3dfbaf528651c517f6e04"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。\n\n**完成情况：**\n\n1. `scripts/sta_prolog.py` — 5/5 test cases 通过（swipl 可用）\n2. `scripts/eval_sta.py --help` — `--logic_type {fol,prolog}` 和 `--max_samples` 参数正常显示\n3. Dry-run 2 samples — 端到端流程跑通：模型加载 → Prolog prompt 生成 → PrologSolver 评估 → JSON 输出\n\n**改动摘要：**\n- 新增 `--logic_type` 参数（choices: fol/prolog，默认 fol），自动选择对应的 system prompt、user template、solver 和 reward function\n- 新增 `--max_samples` 参数，限制评估样本数\n- `--solver` 改为可选，默认根据 logic_type 自动选择（fol→prover9, prolog→prolog）\n- 输出 JSON summary 中增加 `logic_type` 字段\n- FOL 原有功能不受影响（默认行为完全不变）\n\nbase 模型生成的 Prolog 被截断（max_new_tokens=64），prove 全部失败是预期行为——plan006 训练后的 checkpoint 会生成完整的 Prolog formalization。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-eval-sta-prolog-support.md"
+}

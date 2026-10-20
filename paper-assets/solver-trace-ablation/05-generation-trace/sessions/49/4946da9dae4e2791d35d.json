@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4946da9dae4e2791d35d",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "writing method fixes v2",
+  "task_key": "worker_writing_method-fixes-v2_20260515T024843",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_method-fixes-v2_20260515T024843_result.json",
+    "occurrence": 1,
+    "bytes": 1684,
+    "sha256": "e1af046c337c242b6087bf4fd9a98b3c4f5809e55a112ac85fb3faa99c53f8d6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All changes are clean. Here's the summary:\n\n## Changes made\n\n### Task 1 (Version sync) — already done\nThe paper/method.tex already contained the Algorithm environment (lines 29-44), Reward conditions table (lines 69-86), and complete 7-mode taxonomy definitions (lines 96-120). No changes needed.\n\n### Task 2 (Remove percentages) — already done\nThe taxonomy definitions in method.tex are already purely conceptual with no percentage numbers. No changes needed.\n\n### Task 3 (FOLIO dataset)\n- **1,204 is correct.** The `tasksource/folio` HuggingFace dataset has 1,204 examples with human-annotated FOL formalizations. The original FOLIO paper reports 1,435 total, so 1,204 is a filtered subset.\n- **Fixed `paper/limitations.tex`**: Changed \"reflecting the FOLIO dataset's total size of 1,435 annotated examples\" → \"drawn from the 1,204 FOL-annotated examples available in FOLIO\"\n- **proofwriter naming**: Already handled by the footnote on method.tex line 17. The paper text consistently cites FOLIO; the \"proofwriter\" filename is only an internal artifact. The experiments.tex (line 8) says \"FOLIO\" and never mentions \"proofwriter\" — no change needed there.\n\n### Task 4 (Solver call count) — already done\nLine 26 already reads \"The protocol requires $n$ additional solver calls per proved sample.\" The Algorithm (lines 29-44) shows exactly $n$ iterations. Consistent.\n\n### Additional fix\n- **Fixed duplicate `\\label{alg:sta}`** in `paper/appendix.tex`. The appendix STA Algorithm section previously duplicated the algorithm from the main body with the same label. Replaced with a forward reference to Algorithm 1 in Section 3.2."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-method-fixes-v2.md"
+}

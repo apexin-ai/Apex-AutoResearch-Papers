@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ef89410162f3971ef653",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "research plan014 downstream design",
+  "task_key": "worker_research_plan014-downstream-design_20260514T022937",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_plan014-downstream-design_20260514T022937_result.json",
+    "occurrence": 1,
+    "bytes": 893,
+    "sha256": "11da6264e2615b6414634816991d3ecd2b16352902aa90d78fc8759b45233656"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "方案设计完成。\n\n**三个方案**：\n\n**方案 A (NLI Label Accuracy)** — 推荐，代码已就绪\n- `eval_downstream.py` 已完整实现 3-way 蕴含分类 + ISR 分桶 + Best-of-N 对比\n- 只需补 ~20 行统计检验（Spearman ρ, Mann-Whitney U）\n- GPU 成本 ~4.5h（3 checkpoints × 1.5h inference）\n- 核心论证：ISR 与 NLI label accuracy 正相关 → ISR 是 genuine quality proxy\n\n**方案 B (Cross-Solver Agreement)** — 补充，零 GPU 成本\n- Prover9 vs Z3 agreement by ISR bucket\n- 复用方案 A 输出，新写 ~150 行脚本\n- 证明高 ISR formalization 不是 solver-specific artifact\n\n**方案 C (Perturbation Sensitivity)** — 不推荐\n- GPU 预算 ~18h，设计复杂，DDL 风险高\n\n**推荐 A+B 组合**，总 GPU ~4.5h，代码改动 ~170 行，5/18 前可完成。文档已写入 `artifacts/plan014_design.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-plan014-downstream-design.md"
+}

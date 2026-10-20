@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bfaf8715372390a6d822",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code prolog sta prep",
+  "task_key": "worker_code_prolog-sta-prep_20260514T015723",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prolog-sta-prep_20260514T015723_result.json",
+    "occurrence": 1,
+    "bytes": 918,
+    "sha256": "47aa4b3a34b08fe1544fcd4c96146baafcf19cb54bcb09212b3d52c8ece2dcc5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Prolog STA 代码框架已完整实现且测试通过。** 无需新建 `prolog_sta.py`——代码已存在：\n\n| 文件 | 用途 |\n|------|------|\n| `src/solvers/prolog.py` | PrologSolver — 调 `swipl` 执行证明 |\n| `src/sta/prolog_reward.py` | `prolog_sta_reward` / `fast_prolog_sta_reward` / `parse_prolog_formalization` — 完整 STA ablation + ISR |\n| `scripts/sta_prolog.py` | CLI 测试入口 |\n| `scripts/train_grpo.py` | 已集成 `--logic_type prolog` 支持 |\n\nDry-run 结果（full O(n) 模式 + fast O(1) 模式均 5/5 通过）：\n- **grandparent (all necessary)**: ISR=1.000，3 条 clause 均必要\n- **grandparent + redundant fact**: ISR=0.750，`parent(alice, charlie)` 被正确识别为冗余\n- **missing fact**: 证明失败，ISR=0.000\n- **simple fact query**: ISR=0.500，`likes(mary, wine)` 冗余\n- **chain reasoning**: ISR=1.000，3 条规则链全必要"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prolog-sta-prep.md"
+}

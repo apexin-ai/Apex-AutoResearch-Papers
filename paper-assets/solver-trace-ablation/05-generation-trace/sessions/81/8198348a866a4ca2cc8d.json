@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8198348a866a4ca2cc8d",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code plan006 prolog readiness",
+  "task_key": "worker_code_plan006-prolog-readiness_20260514T053638",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan006-prolog-readiness_20260514T053638_result.json",
+    "occurrence": 1,
+    "bytes": 1003,
+    "sha256": "042d0ddbb42926c8a8e57a6dd432748ddce8123ced4685cd7e35ea6b4e7f5684"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Report written to `/root/solver-trace-ablation/plan006_readiness_report.txt`.\n\n**Status: NEARLY_READY**\n\nWhat's ready:\n- Training data (`train_500_seed42.jsonl`) — model generates Prolog from NL, same data as FOL experiments\n- Config (`grpo_prolog_exec_only.yaml`) — logic_type=prolog, solver=prolog, all settings correct\n- Reward function — `train_grpo.py` fully dispatches to `prolog_sta_reward` when logic_type=prolog\n- SWI-Prolog 8.4.2 available, solver integration complete (`src/solvers/prolog.py` + factory)\n- Disk: 172G free — sufficient\n- `save_total_limit=1` hardcoded (C003)\n- Multi-seed via CLI override (`--seed N --output_dir ...`)\n\nWhat's missing:\n1. **eval_sta.py Prolog support** — only supports FOL currently. Needed for C004-compliant post-training ISR comparison. ~15-30 min to add. Not a launch blocker.\n2. **Dry-run** — both GPUs occupied (GPU 0: 81%, GPU 1: 98%). Recommend running first seed as dry-run (2 steps) before committing all 3."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan006-prolog-readiness-copy-2.md"
+}

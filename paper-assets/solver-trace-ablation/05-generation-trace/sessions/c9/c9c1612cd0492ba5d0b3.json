@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c9c1612cd0492ba5d0b3",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ssh disk cleanup and config fix",
+  "task_key": "worker_ssh_disk-cleanup-and-config-fix_20260515T135019",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_disk-cleanup-and-config-fix_20260515T135019_result.json",
+    "occurrence": 1,
+    "bytes": 1502,
+    "sha256": "52ff7305c6f3a93cfbab217d635a50f5e8c2ac3f9eed764399923d76ea5c2aab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**两张 GPU 并非空闲，正在运行训练任务：**\n\n| GPU | PID | 任务 | 显存 |\n|-----|-----|------|------|\n| 0 | 363697 | `plan001-exec-only-s43-1000-r2` (seed 43) | 77906 MiB |\n| 1 | 363845 | `plan001-exec-only-s44-1000-r2` (seed 44) | 77940 MiB |\n\n两个任务都是 21:51 启动（约 1 分钟前），正以 94-97% GPU 利用率运行。CUDA_VISIBLE_DEVICES 分别正确设为 0 和 1。\n\n---\n\n## 汇报\n\n### 1. 清理前后 df -h 对比\n| | Used | Avail | Use% |\n|---|---|---|---|\n| 清理前 | 159G | 92G | 64% |\n| 清理后 | 17G | 234G | 7% |\n\n### 2. 删除内容和释放空间\n- **`*.safetensors` (>100M)**: 所有实验的模型权重文件，释放约 **~130G**\n- **`checkpoint-*` 目录**: 所有中间 checkpoint 目录，释放约 **~12G**\n- **s43/s44 旧目录**: 已不存在（之前已删）\n- 总释放: **~142G**\n\n### 3. 最终可用空间\n**234G 可用**（远超 80G 要求）\n\n### 4. grpo_exec_only.yaml 修改\n**无需修改**。`train_grpo.py` 第 462-464 行已硬编码：\n```python\nsave_steps=50,\nsave_total_limit=1,\nsave_only_model=True,\n```\nYAML 中的值不会覆盖这些硬编码参数（config merge 逻辑只覆盖 `None` 或 `False` 的 CLI args，而这些参数不在 argparse 中定义）。\n\n### 5. 是否需要修改 train_grpo.py\n**不需要**。C003 约束已满足。\n\n### 注意\n两张 GPU 都在跑 plan001 exec-only 的 s43/s44 r2 训练（刚启动 ~1 分钟），不是空闲状态。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-disk-cleanup-and-config-fix.md"
+}

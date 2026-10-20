@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fa691c19bafabbba22b1",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "diagnose exec only s43 1000step r7",
+  "task_key": "worker_diagnose_exec-only-s43-1000step-r7_20260517T033630",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exec-only-s43-1000step-r7_20260517T033630_result.json",
+    "occurrence": 1,
+    "bytes": 556,
+    "sha256": "1ecca004f9a05f5de83da4eb2d878b88b9c918c052664723cd012bd9b119dcaa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。实验结果总结：\n\n**exec-only-s43-1000step-r7 → DONE (negative)**\n\n| 指标 | 值 |\n|------|-----|\n| Prove rate | 96/100 (96.0%) |\n| Mean ISR | 0.0818 |\n| H7 | 0 |\n| H1 (conclusion-in-premise) | 90/96 (93.8%) |\n| H8 | 0 |\n| **Genuine** | **6/96 (6.2%)** |\n\n结论：延长训练到 1000 步虽然恢复了 prove rate（从 500 步的 ~14% 到 96%），但模型完全依赖 H1 hacking 策略（93.8%），genuine rate 仅 6.2%，远低于 10% 阈值。s43 seed 在 exec-only reward 下的退化是不可逆的。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exec-only-s43-1000step-r7.md"
+}

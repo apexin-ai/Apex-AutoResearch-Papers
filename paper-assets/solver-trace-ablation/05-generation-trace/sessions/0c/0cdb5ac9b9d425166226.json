@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0cdb5ac9b9d425166226",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analysis sta phase1 r4 results",
+  "task_key": "worker_analysis_sta-phase1-r4-results_20260513T204651",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_sta-phase1-r4-results_20260513T204651_result.json",
+    "occurrence": 1,
+    "bytes": 1057,
+    "sha256": "4b568e6be4095e26d7d3f1b51f6b76e9f59d802e043bdf3040b3db14f8ef30e8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。总结：\n\n## 结论：NEGATIVE — `fast_isr_fol` 设计缺陷导致实验无效\n\n**指标对比**：\n\n| 指标 | Baseline | exec-only | exec-sta |\n|------|----------|-----------|----------|\n| prove_rate | 0.120 | 0.151 | 0.158 |\n| mean_isr | 0.064 | 0.148 | 0.153 |\n| last-20 MA | — | 0.200 | 0.213 |\n\n**根因**：`fast_isr_fol()` 只做 tautology check，返回 {0.0, 1.0} 二值。由于模型不产生 tautology，ISR 恒等于 prove_rate，两组实验收到**完全相同的 reward 信号**（前 20 步数据逐步一致）。\n\n**MVP 评估**：\n- ✅ #4 accuracy 无退化（+3-4pp 提升）\n- ⚠️ #1 Solver 可靠但 ISR 退化为二值\n- ❌ #2 ISR 区分度无法评估\n- ❌ #3 两组无分离（last-20 差异 0.013，纯噪声）\n\n**正面**：训练管线验证通过，GRPO 100 步稳定运行，prove_rate 有提升。\n\n**修复方向**：需将 `fast_isr_fol` 替换为连续 ISR 信号（随机采样单个 premise ablation，或直接用 `run_sta` 完整版），然后重跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-sta-phase1-r4-results.md"
+}

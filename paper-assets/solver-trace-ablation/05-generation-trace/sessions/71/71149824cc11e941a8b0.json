@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "71149824cc11e941a8b0",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "eval exp1 random b03 s43 reeval",
+  "task_key": "worker_eval_exp1-random-b03-s43-reeval_20260515T023248",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp1-random-b03-s43-reeval_20260515T023248_result.json",
+    "occurrence": 1,
+    "bytes": 979,
+    "sha256": "7161ddd60aea3055b1205b2f588577fc45ab16972704321ff661e6c553b10f81"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Checkpoint 不存在。停止任务，报告情况。\n\n**结果：exp1-random-b03-s43 checkpoint 已丢失，无法 re-eval**\n\n确认情况：\n- `/root/autodl-tmp/outputs/exp1_random_b03_s43/` — 不存在\n- `/root/autodl-tmp/outputs/exp1_random_b03_s43_eval/` — 空目录\n- `/root/autodl-tmp/outputs/exp1_random_b03_s43_r2/` — 仅含 reward_log.jsonl（2208 字节），无 checkpoint-*\n- `find -name checkpoint-*` 全局扫描确认无 `exp1_random_b03_s43` 任何变体的 checkpoint\n\n现存 checkpoint 仅有：\n- `exp1_isr_b03_s44_r2/checkpoint-500`\n- `exp1_random_b03_s44/checkpoint-100`\n- `exp1_random_b03_s44_r2/checkpoint-500`\n- `exp1_isr_b03_s43_r3/checkpoint-500`\n\n这符合 C010/C011 中提到的 disk-cleanup-v2 误删 exp1_random_b03_s43 checkpoint 的事故。任务前提（\"EXIT_CODE=129 可能已丢失\"）已确认成立。\n\n**未执行**：eval、registry 更新、artifact 注册。是否重训由 Main Agent 决策。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp1-random-b03-s43-reeval.md"
+}

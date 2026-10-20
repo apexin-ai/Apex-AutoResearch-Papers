@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7755a5a027faf99469d8",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "fix d134 preserve s47 weights",
+  "task_key": "worker_fix_d134-preserve-s47-weights_20260518T104733",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_d134-preserve-s47-weights_20260518T104733_result.json",
+    "occurrence": 1,
+    "bytes": 671,
+    "sha256": "49bd50fcb100bfb3f6fb09cf8d5069360ab4bffc0935a68279a450f1f95b7f35"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成。汇报：\n\n**Pipeline 状态**：已崩溃，未在运行。ISR s47 在 step 21/500 OOM 退出，尚未产生任何 model weights。GPU 空闲，无残留进程。\n\n**脚本修改**（第 80-91 行）：\n- `SEED != 47`：正常删除 safetensors、index.json、optimizer、training_args、global_step\n- `SEED == 47`：保留 safetensors 和 index.json，仅清理 optimizer 和 global_step（节省空间但保留推理所需权重）\n\n**需要注意**：4B 模型在单卡 A100 95GB 上 OOM，pipeline 重启前需要解决显存问题（减小 batch size、启用 gradient checkpointing 等），否则 s47 训练会再次失败。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-d134-preserve-s47-weights.md"
+}

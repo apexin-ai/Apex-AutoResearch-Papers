@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "94538c2e75bd1ae37dc3",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "diagnostics d129 1 7b isr b01 s43 check",
+  "task_key": "worker_diagnostics_d129-1_7b-isr-b01-s43-check_20260517T220937",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnostics_d129-1_7b-isr-b01-s43-check_20260517T220937_result.json",
+    "occurrence": 1,
+    "bytes": 471,
+    "sha256": "fb2f5a297ca0cb027dc9d2cf0a50b42c32023eacbf5e56af2c3e6e1837a5248c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**训练结果：成功完成。**\n\n- **500/500 steps**，无 error/traceback\n- Final model 已保存至 `/root/autodl-tmp/outputs/d129_1.7b_isr_b01_s43/`（~6.4GB, 2 个 safetensors 分片）\n- checkpoint-500 子目录存在\n- 训练时长 53 分 55 秒\n- 最终指标（训练日志，非 eval_sta）：prove_rate=0.705, mean_isr=0.420, parse_rate=1.0\n- Registry 已更新为 ANALYZING，metrics 已写入，cron 已清除\n\n可以跑 eval 了。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnostics-d129-1-7b-isr-b01-s43-check.md"
+}

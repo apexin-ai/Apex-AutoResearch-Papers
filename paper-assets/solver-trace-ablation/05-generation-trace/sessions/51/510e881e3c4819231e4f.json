@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "510e881e3c4819231e4f",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "paper round9 both batches",
+  "task_key": "worker_paper_round9-both-batches_20260517T192813",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_round9-both-batches_20260517T192813_result.json",
+    "occurrence": 1,
+    "bytes": 620,
+    "sha256": "b3aa830a785c399d7dae4f4d9cb83315ec40d788407de166551320cf9b2ceeae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Round 9 complete. Two commits:\n\n1. **`698f48b`** — Batch 1: CMH numbers moved to appendix, \"Cross-Logic Extension\" title, confound scenario distinction in §3.2, Shapley circular reasoning removed, exploratory qualifier in §4.5, Uesato 2022 reference added.\n\n2. **`f3c25a6`** — Batch 2: \"genuine window\" demoted from finding to descriptive observation (abstract/intro/conclusion), \"may be RL-specific\" caveat, ISR* trajectory compressed to endpoints, future work directions added. §5 fits within page 8, page 9 starts with §6 Limitations. No undefined references, no em-dashes in content."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-round9-both-batches.md"
+}

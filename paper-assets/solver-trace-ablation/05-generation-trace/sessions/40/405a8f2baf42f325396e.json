@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "405a8f2baf42f325396e",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analysis plan018 1000 eval sta",
+  "task_key": "worker_analysis_plan018-1000-eval-sta_20260515T153631",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan018-1000-eval-sta_20260515T153631_result.json",
+    "occurrence": 1,
+    "bytes": 1436,
+    "sha256": "a988884fc0695570b6bf5daef34f2eab5484417d92dfb3c6f6a8d51b99ea38c9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果汇总：\n\n## eval_sta 指标（已在 eval_results.json 中）\n\n| 指标 | 值 |\n|------|-----|\n| prove_rate | 0.97 (97/100) |\n| mean_isr | 0.6892 |\n| proved_only_mean_isr | 0.7105 |\n| median_isr | 0.75 |\n\n## classify_h7 Taxonomy\n\n| 类别 | 数量 | 占比 |\n|------|------|------|\n| H7a (text-match tautology) | 97 | 100% |\n| H7b (obfuscated tautology) | 0 | 0% |\n| H1 (conclusion embedding) | 0 | 0% |\n| H8 (conjunction collapse) | 0 | 0% |\n| **Genuine** | **0** | **0%** |\n\n100% single-premise, 100% H7a。所有 97 个 proved 样本都是 premise = conclusion 的 tautological collapse。\n\n## 500步 vs 1000步 对比（Random β=0.1 s42）\n\n| 指标 | 500步 | 1000步 | 变化 |\n|------|-------|--------|------|\n| prove_rate | 0.80 | 0.97 | +17pp |\n| H7 | 0 | 97 | 0→100% |\n| H1 | 58 | 0 | 58→0 |\n| H8 | 4 | 0 | 4→0 |\n| Genuine | 18 | 0 | 18→0 |\n| proved_only_ISR | — | 0.71 | — |\n\n**关键发现确认**：Random β=0.1 在 1000 步完全坍塌到 H7 tautological mode。500 步时还有多样的 hacking 模式（H1=58, H8=4, genuine=18），到 1000 步全部收敛为 single-premise tautology。H7 不是 ISR 特异的——Random reward 同样会诱发。\n\n注：eval_results.json 实际已含完整 STA 数据（per-sample ISR ablation），无需重跑 eval_sta。模型权重已被清理，无法重跑。classify_h7_results.json 已保存。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan018-1000-eval-sta.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d748e874044ac3f41407",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "eval plan006 prolog sta s44",
+  "task_key": "worker_eval_plan006-prolog-sta-s44_20260514T181922",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_plan006-prolog-sta-s44_20260514T181922_result.json",
+    "occurrence": 1,
+    "bytes": 988,
+    "sha256": "508ab7a09f5a5cd86d82428ecb006141ae3df8d5903b4caf4204277043931a20"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "plan006-prolog-sta-s44 eval + H7 分类完成，registry 已更新为 DONE。\n\n**结果汇总**：\n\n| 指标 | s44 值 |\n|------|--------|\n| Prove Rate | 0.97 (97/100) |\n| Mean ISR | 0.885 ± 0.245 |\n| Proved-only ISR | 0.9124 |\n| H7 (conclusion dup) | 0/97 (0%) |\n| H1 (conclusion embed) | 0/97 (0%) |\n| Genuine | 97/97 (100%) |\n| Conclusion | **success** |\n\n**3-seed 对比**：\n\n| Seed | PR | ISR | H7 | Genuine | Conclusion |\n|------|----|-----|----|---------|------------|\n| s42 | 0.50 | 0.50 | 100% | 0% | negative |\n| s43 | 0.38 | 0.07 | 0% | 100% | genuine |\n| s44 | 0.97 | 0.885 | 0% | 100% | **success** |\n\n值得注意：s44 训练日志曾显示 Goodhart 迹象（completion 压缩、entropy 极低），但 eval_sta.py 正式评估显示 0% hacking、PR=0.97——训练末期的行为变化实际上是模型找到了高效 Prolog 表达，而非 metric gaming。3 个 seed 结果差异极大，seed 对 Goodhart 路径有显著影响。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-plan006-prolog-sta-s44.md"
+}

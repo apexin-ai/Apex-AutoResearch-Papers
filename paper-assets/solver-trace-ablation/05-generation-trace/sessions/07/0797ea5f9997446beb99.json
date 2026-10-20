@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "0797ea5f9997446beb99",
+  "project": "solver-trace-ablation",
+  "kind": "worker",
+  "title": "code plan009 sft setup",
+  "task_key": "worker_code_plan009-sft-setup_20260514T105605",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan009-sft-setup_20260514T105605.log",
+    "occurrence": 1,
+    "bytes": 696539,
+    "sha256": "15924a05b6d0891b72748bfbf17ebad7cb7cf7655e510fcdf33fbaac46eda1fc"
+  },
+  "statistics": {
+    "messages": 572,
+    "user_turns": 0,
+    "tool_calls": 244,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 12,
+      "assistant": 69,
+      "tool_call": 244,
+      "tool_result": 244,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 572,
+      "chunks": [
+        {
+          "path": "0797ea5f9997446beb99-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "0797ea5f9997446beb99-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "0797ea5f9997446beb99-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "0797ea5f9997446beb99-part-0004.json",
+          "message_count": 32
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-plan009-sft-setup.md"
+}

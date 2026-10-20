@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d3a1ec2a2bc02cdc457f",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "fix s46 classify h7 v2",
+  "task_key": "worker_fix_s46-classify-h7-v2_20260517T035206",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_s46-classify-h7-v2_20260517T035206_result.json",
+    "occurrence": 1,
+    "bytes": 257,
+    "sha256": "da1281cb7692935b5d22127d01513c4b6e0fc70a9fdd5e25fdafb5af52d18ada"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "JSON 已生成。结果与 registry 记录完全一致：\n\n| 指标 | 分类结果 | Registry |\n|------|---------|----------|\n| H7 | 86 | 86 |\n| H1 | 2 | 2 |\n| H8 | 4 | 4 |\n| Genuine | 2 | 2 |\n\n无差异，不需要更新 registry。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-s46-classify-h7-v2.md"
+}

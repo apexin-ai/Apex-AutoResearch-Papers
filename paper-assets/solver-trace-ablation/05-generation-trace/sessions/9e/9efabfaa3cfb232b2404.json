@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9efabfaa3cfb232b2404",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code d142 gated isr reward",
+  "task_key": "worker_code_d142-gated-isr-reward_20260519T030919",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d142-gated-isr-reward_20260519T030919_result.json",
+    "occurrence": 1,
+    "bytes": 2562,
+    "sha256": "13d857d585544d7728415f23448b17cfc0ba0b38afd5641a08bd6d09bb23b0d6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 已清空。所有验证完成。\n\n---\n\n## D142 产出汇报\n\n### 1. 修改的文件\n\n**`/root/solver-trace-ablation/scripts/train_grpo.py`** — 两处修改：\n\n- **Line 277-295**: 新增 `additive_bonus_gated` reward mode 分支\n  ```python\n  elif reward_mode == \"additive_bonus_gated\":\n      result = _full_fn({}, cleaned, solver, execution_weight=1.0, sta_weight=1.0, timeout=5)\n      execution_reward = result[\"execution_reward\"]\n      isr_val = result.get(\"sta_reward\", 0.0)\n      details = result.get(\"details\", {})\n      n_premises = len(details.get(\"premises\", []))\n      beta_t = compute_beta_t()\n      gate = 1 if n_premises >= 2 else 0\n      reward_val = execution_reward + beta_t * isr_val * gate\n      # ... gated_total/h7_blocked/gated_passed tracking\n  ```\n\n- **Line 437**: argparse choices 添加 `\"additive_bonus_gated\"`\n\n### 2. n_components 计算逻辑\n\n`n_premises = len(details.get(\"premises\", []))` — 使用 `_parse_formalization()` 解析后的 premise 列表长度，与 STA evaluate 的 premise 提取逻辑一致。\n\n- H7 tautology（单前提=结论）: `n_premises=1` → gate=0 → ISR bonus 归零\n- Genuine proof（多 premise 推导）: `n_premises≥2` → gate=1 → ISR bonus 正常\n\n### 3. Dry-run 结果\n\n**Gate 逻辑验证（静态测试）：**\n\n| 样本 | n_premises | exec | ISR | gate | reward |\n|------|-----------|------|-----|------|--------|\n| H7: Cat(tom) |- Cat(tom) | 1 | 1.0 | 0.500 | 0 | 1.000 |\n| Genuine-2prem | 2 | 1.0 | 0.667 | 1 | 1.067 |\n| Genuine-3prem | 3 | 1.0 | 0.750 | 1 | 1.075 |\n| Zero-prem | 0 | 0.0 | 0.000 | 0 | 0.000 |\n\n**训练 dry-run（3 steps, seed=52）：**\n\n| Step | reward | prove_rate | ISR | gate_pass | loss | grad_norm |\n|------|--------|-----------|-----|-----------|------|-----------|\n| 1 | 0.135 | 0.125 | 0.097 | 1.000 | - | - |\n| 2 | 0.272 | 0.250 | 0.222 | 1.000 | 0.097 | 10.38 |\n| 3 | 0.127 | 0.125 | 0.018 | 1.000 | 0.214 | 3.42 |\n\n- 无 OOM，~10-15s/step（与 D134 一致）\n- gate_pass=1.000 符合预期（base model 初期不产 H7）\n- Loss 和 grad_norm 正常\n\n### 4. 新增文件\n\n- **Config**: `/root/solver-trace-ablation/configs/d142_gated_isr.yaml`\n- **Pipeline**: `/root/autodl-tmp/d142_gated_isr_pipeline.sh`\n\n### 5. 启动命令\n\n```bash\n# 在 tmux 中运行（串行跑 s52/s53/s54，每轮训练+eval+classify+cleanup）\ntmux new-session -d -s d142 'bash /root/autodl-tmp/d142_gated_isr_pipeline.sh 2>&1 | tee /root/autodl-tmp/d142_pipeline.log'\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d142-gated-isr-reward.md"
+}

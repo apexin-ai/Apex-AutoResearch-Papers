@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9d32ccafccd5ea6dfa6e",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "recovery disk cleanup and eval",
+  "task_key": "worker_recovery_disk-cleanup-and-eval_20260516T071518",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_recovery_disk-cleanup-and-eval_20260516T071518_result.json",
+    "occurrence": 1,
+    "bytes": 297,
+    "sha256": "a895896cd6167cced5d7dae58891ccd05ae5fc8dc65e6a01d73867c214b191b2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个训练都刚开始，才到 step 50/500（10%）。\n\n- `sweep_exec_only_s45` — GPU 0, step ~50/500\n- `sweep_exec_only_s46` — GPU 1, step ~50/500\n\n你的 eval 计划需要 GPU。要 kill 掉 s46（GPU 1）来跑 sweep_isr_b02_s44 的 eval 吗？或者两个都 kill？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/recovery-disk-cleanup-and-eval.md"
+}

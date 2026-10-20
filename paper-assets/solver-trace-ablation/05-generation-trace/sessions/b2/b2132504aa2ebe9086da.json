@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b2132504aa2ebe9086da",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_2_1778724667.md",
+  "task_key": "loop_2_1778724667",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_2_1778724667.md",
+    "occurrence": 1,
+    "bytes": 4784,
+    "sha256": "ec3def07eb611da372907904354bd7374b5bba4dd3d31487480f93be046ad8e4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: idle_timeout\nupdated: '2026-05-14T01:58:28+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单仅 `westd-39279:cuda:0` 和 `westd-39279:cuda:1`，禁止使用其他设备\n- submit_training_job command 必须以 `bash -c \"export CUDA_VISIBLE_DEVICES=N && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && ...\"` 格式——inline `CUDA_VISIBLE_DEVICES=X` 不等于 export，会导致 GPU 溢出（2026-05-14 plan013 事故）\n- **C001**: plan001/plan013 系列统一用 `train_500_seed42.jsonl`，不用 `proofwriter_fol_500.jsonl`\n- **C003**: 所有训练必须 `log_completions=False` + `save_total_limit=1`，output_dir 放 `/root/autodl-tmp/outputs/`——系统盘 250GB 已被撑满过一次\n- plan005 conclusion=negative，但 **不要默默跑下一个实验**——Framing 调整提案已提交 Director，等 Director 决策（目前处于\"STA as metric + proper integration\"转向中，权重配比相关后续实验需 Director 确认方向后才能启动）\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-39279，2× RTX PRO 6000 Blackwell 96GB\n- **工作目录**: `/root/solver-trace-ablation/`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- **激活命令**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型**: Qwen3-4B（ModelScope 下载，7.6GB）\n- **数据**: `/root/solver-trace-ablation/data/train_500_seed42.jsonl`（500 条 FOLIO FOL）\n- **Outputs**: `/root/autodl-tmp/outputs/`（大文件必须在此）\n- **Solvers**: Prover9 (LADR 编译)、SWI-Prolog 8.4.2、Z3 4.16.0.0\n- **活跃进程**: plan001-exec-only-s43-r4 (PID 136339, cuda:1, tmux)、plan013-random-reward-s42-r4 (PID 136261, cuda:0, tmux)\n- **Crons**: reconcile 返回 0——可能这两个 RUNNING 实验的 cron 已过期或未注册，需要检查是否有监控\n\n### 3. 📊 当前状态\n两个实验 RUNNING（均为 retry 4，前面 3 轮因 GPU 溢出/磁盘满/进程崩溃而失败）：\n- **plan001-exec-only-s43-r4** (cuda:1): exec-only 500步 seed=43，3-seed baseline 第 2 个 seed。seed=42 已成功（last100 PR=0.865）\n- **plan013-random-reward-s42-r4** (cuda:0): random reward baseline，用随机值替代 ISR，隔离 ISR-specific signal。Dream M2/W7 必修实验\n\n已完成的关键实验：\n- plan001-exec-only-s42-r2: **success**, 500步 PR=0.865, ISR=0.8612（exec-only baseline 锚点）\n- plan005-sta-low-s42: **negative**, STA weight=0.1, last100 PR=0.7725 vs exec-only 0.865（下降）。但 ISR/PR ratio=0.298 说明 STA 确实维持了结构性分离\n- plan003-eval-exec-only-r5: **success**, held-out eval confirmed penalty effect (Interpretation B)\n\n**等待中**: 两个 RUNNING 实验的 cron 回调。reconcile 返回 0 是异常——下一个\"我\"应立即验证这两个进程是否还活着、cron 是否在监控。\n\n### 4. 📋 待办（条件触发式）\n- plan001-exec-only-s43-r4 完成 → 分析 seed=43 是否复现 seed=42 的 PR>0.80 → 成功则 3-seed baseline 还差 seed=44\n- plan013-random-reward-s42-r4 完成 → 对比 random reward vs exec-only 的 ISR/结构指标 → 若 random ISR 显著差于真 ISR 则 claim \"ISR-specific signal\" 成立（Dream M2/W7）\n- 两个都完成 → 向 Director 汇报（带 [资源] 行），同时推进: (a) seed=44 exec-only 补齐 3-seed, (b) plan002 exec+STA 500步（权重待定，可能从 0.05 或 curriculum 开始）\n- plan005 negative 的 Framing 调整提案若 Director 批准 → 读 `framing-reaudit` skill → 全文 re-audit\n- DDL 2026-05-25（剩 11 天），还需: 3-seed exec+STA、random reward、downstream validation、Prolog 第二逻辑、论文写作\n\n### 5. 🎯 战略上下文\n- **核心结论链**: D001(MVP) → D003(binary ISR 无效) → D005/D007(penalty effect confirmed) → D008(Dream: story 从\"hacking detection\"转向\"STA as metric + proper integration\") → D009(数据统一+GPU隔离约束)\n- **论文 story**: STA 不再声称\"检测 reward hacking\"，改为\"principled structural metric + 合理集成方式\"。plan005 negative 说明 weight=0.1 还是太高（PR 下降 10pp），下一步可能需要更低权重或 curriculum\n- **最容易判断错的事**: (1) plan013 的 `isr_mean` 字段在 random_reward 模式下恒为 0（随机值记录在 `random_reward` 字段），不要拿它和 exec-only 的 ISR 比；(2) 不要把 plan005 的 ISR/PR 分离当 success——PR 下降 10pp 在审稿人眼中是 degradation；(3) reconcile_crons=0 可能意味着 RUNNING 实验没有监控，需要手动检查\n- **DDL 压力**: 11 天，Dream 评分 Borderline/Weak Reject，需要 random baseline + downstream validation + Prolog + 3-seed + 论文重写。GPU 必须 24/7 满载\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-1778724667.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "489367e524f3fcf19de9",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops scp archive to ec2",
+  "task_key": "worker_ops_scp-archive-to-ec2_20260525T205519",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_scp-archive-to-ec2_20260525T205519_result.json",
+    "occurrence": 1,
+    "bytes": 287,
+    "sha256": "bb250a3cd1a988162c354d164852d85d5147f028a2598b48a7ad2762cf8a7e61"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n| 项目 | 值 |\n|------|-----|\n| 文件名 | `solver-trace-ablation-final-20260525T205540Z.tar.gz` |\n| 大小 | 33M |\n| EC2 路径 | `/tmp/solver-trace-ablation-final-20260525T205540Z.tar.gz` |\n| MD5 (两端一致) | `173866b56484e42f51025ed9a2e6a322` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-scp-archive-to-ec2.md"
+}

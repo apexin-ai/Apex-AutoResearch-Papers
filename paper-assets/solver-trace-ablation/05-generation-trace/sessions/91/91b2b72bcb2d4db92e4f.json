@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "91b2b72bcb2d4db92e4f",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "check d134 random s47 details",
+  "task_key": "worker_check_d134-random-s47-details_20260518T162752",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_d134-random-s47-details_20260518T162752_result.json",
+    "occurrence": 1,
+    "bytes": 1700,
+    "sha256": "1bf53f1a56d1cd94954aa98d982065f0f4d89c387b83833d19bf2345202b1b9c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "以下是 `d134-4b-random-b01-s47` 训练的完整信息：\n\n---\n\n## 训练详情\n\n| 项目 | 值 |\n|---|---|\n| **PID** | `91314` |\n| **tmux session** | `d134-pipeline` (created Mon May 18 18:52:28 2026) |\n| **GPU** | GPU 0 — NVIDIA RTX PRO 6000 Blackwell (85553 / 97887 MiB) |\n\n### 训练命令\n```bash\n/root/miniconda3/bin/python3 scripts/train_grpo.py \\\n  --config configs/grpo_additive_random_b01.yaml \\\n  --data_path data/train_500_seed42.jsonl \\\n  --num_steps 500 \\\n  --seed 47 \\\n  --beta 0.1 \\\n  --reward_mode additive_random \\\n  --per_device_batch_size 2 \\\n  --gradient_accumulation_steps 4 \\\n  --output_dir /root/autodl-tmp/outputs/d134_4b_random_b01_s47 \\\n  --no_wandb\n```\n\n### 路径\n\n| 类型 | 路径 |\n|---|---|\n| **数据** | `data/train_500_seed42.jsonl` (符合 C001) |\n| **输出目录** | `/root/autodl-tmp/outputs/d134_4b_random_b01_s47/` |\n| **checkpoint** | `checkpoint-200` (~15G, 4 shard safetensors) |\n| **训练日志** | `/root/autodl-tmp/outputs/d134_4b_random_b01_s47/train.log` |\n| **reward 日志** | `/root/autodl-tmp/outputs/d134_4b_random_b01_s47/reward_log.jsonl` |\n| **base model** | `/root/autodl-tmp/models/Qwen3-4B` (来自 config) |\n\n### 当前进度\n\n| 指标 | 值 |\n|---|---|\n| **当前步数** | **249 / 500** (50%) |\n| **速度** | ~15.15 s/step |\n| **预计剩余** | ~1h03m |\n| **最新 reward** | step 249: reward=0.5194, prove_rate=0.500, isr=0.045, parse_rate=1.000 |\n| **上一步 reward** | step 248: reward=0.7855, prove_rate=0.750, isr=0.115, parse_rate=1.000 |\n\n### 其他 tmux session\n- `d134-cleaner` (created Mon May 18 20:02:21 2026) — 可能是磁盘清理相关"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-d134-random-s47-details.md"
+}

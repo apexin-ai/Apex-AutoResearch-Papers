@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f5003cb6f3fc73e8a6e1",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analysis exec only s46 1000step",
+  "task_key": "worker_analysis_exec-only-s46-1000step_20260522T043751",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exec-only-s46-1000step_20260522T043751_result.json",
+    "occurrence": 1,
+    "bytes": 972,
+    "sha256": "204251500af05680ed57bff9dd26d22d65573b69f440e0098f14536104d7686c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇报\n\n| 项目 | 值 |\n|------|-----|\n| **训练完成** | 是，1000/1000 steps，2h15m |\n| **W&B run ID** | 无（训练未配置 wandb） |\n| **Checkpoint** | `/root/autodl-tmp/outputs/exec_only_s46_1000_k4` |\n| **prove_rate** | **0.15** (15/100) |\n| **mean_isr** | 0.084 (全样本), 0.5597 (proved-only) |\n| **genuine_rate** | **86.7%** (13/15) |\n| **CE (H1)** | 1 |\n| **TS (H7)** | 1 |\n| **PG (H8)** | 0 |\n| **CI** | 0 |\n\n**判断：negative（非收敛）**\n\nprove_rate=15% < 30%，模型未能超越 base model 水平。与 s45 (PR=15%) 和 s52 (PR=14%) 呈现相同的 seed-dependent non-convergence 模式。不是 Goodhart collapse（那需要高 prove_rate + 低 genuine_rate），而是模型根本没学会有效证明。\n\n这是 informative negative：即使训练到 1000 步、使用不同的 batch 配置 (4/accum=2)，exec-only 的收敛仍然高度依赖随机种子。Registry 已更新为 DONE/negative。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exec-only-s46-1000step.md"
+}

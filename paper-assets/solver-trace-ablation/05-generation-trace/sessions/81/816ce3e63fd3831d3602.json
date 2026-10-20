@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "816ce3e63fd3831d3602",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops wave2 progress check",
+  "task_key": "worker_ops_wave2-progress-check_20260517T103719",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_wave2-progress-check_20260517T103719_result.json",
+    "occurrence": 1,
+    "bytes": 1546,
+    "sha256": "7dc725a953a5caf07b481166b8fabfe9d8a20b1c5e9d4cfca8361e62f3a2d13b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both experiments fully evaluated and classified. Here's the summary:\n\n---\n\n## 实验: sweep-isr-b005-s44 (ISR β=0.05, seed 44)\n```\n训练: ✅ COMPLETE (500/500 steps, runtime=2979s, ~6s/step)\nPR: 99/100 (99%)\nISR* (proved-only mean): 0.5539\nH7: 86/99 (86.9%) [H7a: 86, H7b: 0]\nH1: 0/99 (0.0%)\nH8: 10/99 (10.1%)\nN-H (non-hacking): 3/99 (3.0%)\ngenuine count: 3\n特殊观察: 极端 H7a tautology collapse — 88.9% 单前提，几乎全是 premise=conclusion 的恒真式\n```\n\n## 实验: sweep-random-b005-s43 (Random β=0.05, seed 43)\n```\n训��: ✅ COMPLETE (500/500 steps, runtime=6998s, ~14s/step)\nPR: 62/100 (62%)\nISR* (proved-only mean): 0.0058\nH7: 0/62 (0.0%) [H7a: 0, H7b: 0]\nH1: 48/62 (77.4%)\nH8: 7/62 (11.3%)\nN-H (non-hacking): 8/62 (12.9%)\ngenuine count: 8\n特殊观察: ISR≈0 但 hacking 模式不同——无 H7（不是单前提恒真），而是 H1 冗余堆砌（大量前提中包含结论，per-clause ablation 全标 unnecessary）\n```\n\n---\n\n## 关键对比 (β=0.05)\n\n| 指标 | ISR β=0.05 s44 | Random ��=0.05 s43 |\n|------|----------------|-------------------|\n| PR | 99% | 62% |\n| ISR* | 0.5539 | 0.0058 |\n| H7 | 86.9% | 0.0% |\n| H1 | 0.0% | 77.4% |\n| H8 | 10.1% | 11.3% |\n| Genuine | 3 (3.0%) | 8 (12.9%) |\n\n两种奖励信号在极低 β 下都严重 collapse，但走向不同的 hacking 模式：ISR → H7a 恒真式捷径（高 PR、高 ISR、零推理），Random → H1 冗余前提堆砌（低 PR、ISR≈0、结论嵌套在冗余前提中）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-wave2-progress-check.md"
+}

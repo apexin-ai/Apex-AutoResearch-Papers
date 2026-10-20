@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5eba4b8c75b84db9e133",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops disk cleanup",
+  "task_key": "worker_ops_disk-cleanup_20260515T002819",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_disk-cleanup_20260515T002819_result.json",
+    "occurrence": 1,
+    "bytes": 361,
+    "sha256": "4394cbe7b86594f290b218ebef511145bdf5e6199852f526a4bfa97030dd06aa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。HF cache 5.3G（含 Qwen3-4B），保留不动。\n\n## 清理结果\n\n| | 使用量 | 占比 |\n|---|---|---|\n| **清理前** | 210G / 250G | 84% |\n| **清理后** | 67G / 250G | 27% |\n| **释放** | **143G** | |\n\n保留的目录：\n- `exp1_random_b03_s44/` (15G) — 训练中\n- `exp1_isr_b03_s44_r2/` (31G) — 待分析"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-disk-cleanup.md"
+}

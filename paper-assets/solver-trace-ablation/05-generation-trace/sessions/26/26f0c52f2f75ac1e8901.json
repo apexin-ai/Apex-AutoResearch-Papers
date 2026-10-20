@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "26f0c52f2f75ac1e8901",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "check plan009 sft 1000",
+  "task_key": "worker_check_plan009-sft-1000_20260515T122447",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_plan009-sft-1000_20260515T122447_result.json",
+    "occurrence": 1,
+    "bytes": 770,
+    "sha256": "a122367cda6ef285eaeb04af0817b5deae6152c4f6a8c498cc2a11e506248357"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已正常完成。\n\n## plan009-sft-baseline-s42-1000 状态报告\n\n| 项目 | 状态 |\n|------|------|\n| PID 344799 | **已死** |\n| GPU cuda:0 | **空闲**，无进程占用 |\n| 训练 | **正常完成**，EXIT_CODE=0 |\n| 总步数 | 1000/1000 (100%) |\n| 耗时 | 23 分 25 秒 (1405.7s)，0.711 it/s |\n| 最终 loss | 0.0168，token accuracy 99.55% |\n| epoch | 15.88 |\n| 完成时间 | 2026-05-15 20:21:55 |\n| Checkpoint | `/root/autodl-tmp/outputs/plan009_sft_baseline_s42_1000/checkpoint-1000/` |\n| Final model | `/root/autodl-tmp/outputs/plan009_sft_baseline_s42_1000/`（含完整 safetensors + tokenizer） |\n| Model 大小 | ~7.5 GB（2 个 safetensors 分片） |\n\nRegistry 状态仍为 ALLOCATED，需要更新为 DONE。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-plan009-sft-1000.md"
+}

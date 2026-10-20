@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4118864ef73bc9ff72e5",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "paper d095 fig3 framing",
+  "task_key": "worker_paper_d095-fig3-framing_20260515T195733",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_d095-fig3-framing_20260515T195733_result.json",
+    "occurrence": 1,
+    "bytes": 980,
+    "sha256": "a3ee30bf32b4ee5444d63db402792a19f3129bbb64b9729bdb642637ae7120dd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All changes verified. Summary:\n\n**子任务 1 — fig3 更新完成**：\n- `paper/figures/gen_fig3.py` 和 `figures/paper/gen_fig3.py` 均已更新为 D095 数据\n- 数据：Random β=0.1 H7 从 0→13.7%, ISR β=0.1 H7 从 69.7→70.6%, genuine 和 other 相应调整\n- 注释从 `69.7% H7 (0% in Random)` → `ISR H7: 70.6% vs Random: 13.7%`\n- PDF/PNG 已重新生成（4 个文件）\n\n**子任务 2 — paper_framing.md 更新完成**（8 处修改）：\n- L117: s43 行填入 PR=92%, ISR*=0.180, H7=7.6%, H1=89.1%, genuine=3.3%\n- L119: 2-seed mean → 3-seed mean±std (PR=54.3±35.1%, ISR*=0.091±0.090, pooled H7=6.7%, H1=91.4%, genuine=1.8%)\n- L113: 表头 `s43 训练中` → `全部完成`\n- L125: 去掉 `（待 s43 确认）`\n- L131: β dose-response 表 Random PR/ISR 列填入 3-seed 数据\n- L234: Goodhart landscape 表 random β=0.3 s43 行填入完整数据\n- L121: D060 叙事 `2-seed mean PR=35.5%` → `3-seed mean PR=54.3±35.1%`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-d095-fig3-framing.md"
+}

@@ -1,0 +1,603 @@
+{
+  "schema_version": "1.0",
+  "id": "46b228e649ccc41c084e",
+  "project": "solver-trace-ablation",
+  "kind": "worker",
+  "title": "analysis fix evidence table provenance",
+  "task_key": "worker_analysis_fix-evidence-table-provenance_20260514T071442",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_fix-evidence-table-provenance_20260514T071442.log",
+    "occurrence": 1,
+    "bytes": 40696,
+    "sha256": "dcea3e7243ed3bd762bef1428178d3d40ea92f61e6c40ff30e18994cec4e4794"
+  },
+  "statistics": {
+    "messages": 12,
+    "user_turns": 0,
+    "tool_calls": 2,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 4,
+      "tool_call": 2,
+      "tool_result": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+                "session_id": "09394bbd-fea8-4b59-808c-91e90f73c874",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__save_project_file"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "8a854c1a-ef0a-410a-beda-86ba7ea33263",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778747400,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "c5b70acb-52e7-4070-a489-069e420a62e2",
+                "session_id": "09394bbd-fea8-4b59-808c-91e90f73c874"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me start by reading the current file."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "09394bbd-fea8-4b59-808c-91e90f73c874",
+            "uuid": "5516006a-fd59-4eab-ad01-2d9d6a8e596f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017AdydNkgvqHcmNCX2WBEAB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11940,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11940
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0158csex4sssqy7EsRKr1fCL",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/paper_table1_evidence.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "09394bbd-fea8-4b59-808c-91e90f73c874",
+            "uuid": "2103e26a-62ec-4c22-ac6f-64f44e2ada2c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017AdydNkgvqHcmNCX2WBEAB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11940,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11940
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T07:14:54.707Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0158csex4sssqy7EsRKr1fCL",
+              "type": "tool_result",
+              "content": "1\t# Table 1: Comprehensive Experimental Evidence for Solver-Trace Ablation\n2\t\n3\t**Model**: Qwen3-4B | **Training**: GRPO, 500 steps, K=8 | **Data**: train_500_seed42.jsonl (500 problems) | **Eval**: proofwriter_fol_100.jsonl (100 problems)\n4\t\n5\t## Main Results Table\n6\t\n7\t### Group A: Reference Baselines\n8\t\n9\t| Experiment ID | Reward Mode | Formula | β | Seed | Eval PR | Eval Mean ISR | ISR Std | Comp. Mean | Comp.=2 (%) | Eval Method | Diagnosis | Claims |\n10\t|---|---|---|---|---|---|---|---|---|---|---|---|---|\n11\t| sta-phase0-baseline | — (base model) | — | — | — | 0.12 | 0.0641 | 0.1983 | — | — | eval_sta.py | pre-training reference | — |\n12\t| sta-gt-isr-baseline | — (ground truth FOL) | — | — | — | 0.18 | 0.5588 | 0.2582 | — | — | direct computation | ISR ceiling on gold FOL | — |\n13\t\n14\t### Group B: Exec-Only Reward (r = r_exec)\n15\t\n16\t| Experiment ID | Reward Mode | Formula | β | Seed | Eval PR | Eval Mean ISR | ISR Std | Comp. Mean | Comp.=2 (%) | Eval Method | Diagnosis | Claims |\n17\t|---|---|---|---|---|---|---|---|---|---|---|---|---|\n18\t| plan001-exec-only-s42-r2 | exec-only | r = r_exec | — | 42 | 0.93 | 0.1232 | 0.1887 | 6.58† | — | eval_sta.py | genuine proofs | C1 |\n19\t| plan001-exec-only-s43-r4 | exec-only | r = r_exec | — | 43 | 0.14‡ | 0.00‡ | — | — | — | sampling (T=0.7)‡ | degraded (87% max_tokens) | C1, C2 |\n20\t| plan001-exec-only-s44 | exec-only | r = r_exec | — | 44 | 0.98 | 0.5700 | 0.2013 | 2.04 | 94% | eval_sta.py | tautological collapse | C1, C2 |\n21\t\n22\t**Exec-only 3-seed summary**: mean PR = 0.68 ± 0.47, 2/3 seeds degenerate. Cross-seed instability is the primary finding.\n23\t\n24\t### Group C: Additive ISR Bonus (r = r_exec · (1 + β · ISR))\n25\t\n26\t| Experiment ID | Reward Mode | Formula | β | Seed | Eval PR | Eval Mean ISR | ISR Std | Comp. Mean | Comp.=2 (%) | Eval Method | Diagnosis | Claims |\n27\t|---|---|---|---|---|---|---|---|---|---|---|---|---|\n28\t| plan002-additive-b03-s42 | additive ISR | r = r_exec · (1 + β·ISR) | 0.3 | 42 | 0.18 | 0.0257 | 0.0742 | — | — | eval_sta.py§ | PR collapse (Goodhart) | C3 |\n29\t| plan002-additive-b01-s42 | additive ISR | r = r_exec · (1 + β·ISR) | 0.1 | 42 | 0.81 | 0.3365 | 0.3227 | 5.58 | 3.7% | eval_sta.py | **best: PR preserved + ISR 2.73x** | C3 |\n30\t\n31\t**Dose-response**: β=0.3 → PR collapse (0.18); β=0.1 → PR preserved (0.81) with ISR 2.73x over exec-only baseline.\n32\t\n33\t### Group D: Convex ISR (r = α · r_exec + β · ISR)\n34\t\n35\t| Experiment ID | Reward Mode | Formula | β | Seed | Eval PR | Eval Mean ISR | ISR Std | Comp. Mean | Comp.=2 (%) | Eval Method | Diagnosis | Claims |\n36\t|---|---|---|---|---|---|---|---|---|---|---|---|---|\n37\t| plan005-sta-low-s42 | convex ISR | r = 0.9·r_exec + 0.1·ISR | 0.1 | 42 | —¶ | —¶ | —¶ | — | — | training logs only¶ | PR suppressed (train last100 PR=0.77) | C3 |\n38\t\n39\t### Group E: Convex Random Control (r = α · r_exec + β · random)\n40\t\n41\t| Experiment ID | Reward Mode | Formula | β | Seed | Eval PR | Eval Mean ISR | ISR Std | Comp. Mean | Comp.=2 (%) | Eval Method | Diagnosis | Claims |\n42\t|---|---|---|---|---|---|---|---|---|---|---|---|---|\n43\t| plan013-random-reward-s42-r4 | convex random | r = 0.9·r_exec + 0.1·random | 0.1 | 42 | 1.00 | 0.5350 | 0.1282 | ~2†† | ~100%†† | eval_sta.py | tautological collapse | C2 |\n44\t\n45\t### Group F: Additive Random Control (r = r_exec · (1 + β · random))\n46\t\n47\t| Experiment ID | Reward Mode | Formula | β | Seed | Eval PR | Eval Mean ISR | ISR Std | Comp. Mean | Comp.=2 (%) | Eval Method | Diagnosis | Claims |\n48\t|---|---|---|---|---|---|---|---|---|---|---|---|---|\n49\t| plan017-additive-random-s42 | additive random | r = r_exec · (1 + β·random) | 0.3 | 42 | 0.48 | 0.0453 | 0.0759 | 9.60 | 0% | eval_sta.py | complex but useless formalizations | C2, C3 |\n50\t\n51\t## Claim Evidence Summary\n52\t\n53\t### Claim 1: Exec-only reward exhibits cross-seed degeneration\n54\t| Seed | Eval PR | Eval ISR | Comp. Mean | Failure Mode |\n55\t|---|---|---|---|---|\n56\t| 42 | 0.93 | 0.1232 | 6.58 | None (genuine) |\n57\t| 43 | 0.14 | 0.00 | — | Output degeneration (max_tokens) |\n58\t| 44 | 0.98 | 0.5700 | 2.04 | Tautological collapse (premise=conclusion) |\n59\t\n60\t**Verdict**: 2/3 seeds degenerate under exec-only reward. High training PR does not guarantee genuine formalization.\n61\t\n62\t### Claim 2: ISR + component count diagnoses genuine vs degenerate proofs\n63\t| Experiment | Eval PR | Eval ISR | Comp. Mean | ISR Diagnosis |\n64\t|---|---|---|---|---|\n65\t| exec-only s42 (genuine) | 0.93 | 0.12 | 6.58 | Low ISR + high comp → genuine but imperfect |\n66\t| exec-only s44 (tautological) | 0.98 | 0.57 | 2.04 | High ISR + low comp → **tautological artifact** |\n67\t| convex random (tautological) | 1.00 | 0.54 | ~2 | High ISR + low comp → **tautological artifact** |\n68\t| additive random (complex junk) | 0.48 | 0.05 | 9.60 | Low ISR + high comp → many premises but unused |\n69\t| additive ISR β=0.1 (best) | 0.81 | 0.34 | 5.58 | Moderate ISR + high comp → **genuine improvement** |\n70\t\n71\t**Verdict**: ISR alone is ambiguous (s44 ISR=0.57 looks good but is tautological). Component count resolves the ambiguity: comp≈2 flags tautological collapse; comp>5 with moderate ISR indicates genuine proofs.\n72\t\n73\t### Claim 3: ISR-as-reward shows Goodhart effect at high dose, effective at low dose\n74\t| Reward Mode | β | Eval PR | Eval ISR | Goodhart? |\n75\t|---|---|---|---|---|\n76\t| additive ISR | 0.3 | 0.18 | 0.03 | **Yes** — PR collapse |\n77\t| additive ISR | 0.1 | 0.81 | 0.34 | **No** — sweet spot |\n78\t| convex ISR | 0.1 | —¶ | — | Partially (train PR suppressed) |\n79\t| convex random | 0.1 | 1.00 | 0.54 | Tautological (no ISR signal) |\n80\t| additive random | 0.3 | 0.48 | 0.05 | N/A (random control) |\n81\t\n82\t**Verdict**: Clear dose-response. β=0.1 additive is the working point; β=0.3 triggers Goodhart collapse. Random controls confirm ISR signal is causal (not just variance regularization).\n83\t\n84\t## Notes\n85\t\n86\t† Component count for plan001-exec-only-s42-r2 (6.58) is cross-referenced from plan001-exec-only-s44 notes, not stored in registry eval metrics. May need re-verification with eval_sta.py.\n87\t\n88\t‡ **D029**: plan001-exec-only-s43-r4 was evaluated with sampling (do_sample=True, temperature=0.7) instead of eval_sta.py greedy decoding used for all other experiments. The PR=14% result is a failure case regardless of eval method — 87% of outputs hit max_new_tokens and are unparseable. Decision: not re-evaluated; paper will note the method difference.\n89\t\n90\t§ plan002-additive-b03-s42 eval_method not explicitly recorded in registry, but eval fields (eval_prove_rate, eval_mean_isr) are consistent with eval_sta.py output format.\n91\t\n92\t¶ **D030**: plan005-sta-low-s42 checkpoint was deleted; no eval was performed. Training log windowed metrics are the only available data. Paper uses training curves as evidence for \"ISR suppresses reward hacking\" (ISR/PR ratio stable at 0.30 across training).\n93\t\n94\t†† plan013-random-reward-s42-r4 component count not in registry metrics but noted as \"trivial 2-component proofs (premise=conclusion, conclusion=conclusion)\" in eval_note.\n95\t\n96\t## Excluded Experiments (Failed / Developmental)\n97\t\n98\tThe following DONE experiments are excluded from Table 1 (crashes, early phases, duplicates):\n99\t\n100\t| Experiment ID | Reason for Exclusion |\n101\t|---|---|\n102\t| sta-phase1-exec-only-r2/r3/r4/r5 | 100-step developmental runs |\n103\t| sta-phase1-exec-sta-r2/r3/r4/r5 | 100-step developmental runs |\n104\t| plan001-exec-only-s42 | Failed (pre-checkpoint crash) |\n105\t| plan001-exec-only-s42-r3 | Failed (OOM duplicate submission) |\n106\t| plan001-exec-only-s43 | Failed (OOM from plan013 GPU overflow) |\n107\t| plan001-exec-only-s43-r2 | Failed (process crashed) |\n108\t| plan001-exec-only-s43-r3 | Failed (disk full at step 23) |\n109\t| plan013-random-reward-s42 | Failed (CUDA_VISIBLE_DEVICES not set) |\n110\t| plan013-random-reward-s42-r2 | Failed (process crashed) |\n111\t| plan013-random-reward-s42-r3 | Failed (disk full at step 28) |\n112\t| plan003-eval-exec-only-r5 | Eval of 100-step checkpoint (not 500-step) |\n113\t| plan014-downstream-nli-s42 | Downstream NLI task (separate analysis) |\n114\t\n115\t## Compact Table for Paper\n116\t\n117\t| Reward Mode | β | Seed | PR↑ | ISR↑ | Comp.↓ | Collapse? |\n118\t|---|---|---|---|---|---|---|\n119\t| *Base model* | — | — | .12 | .064 | — | — |\n120\t| Exec-only | — | 42 | **.93** | .123 | 6.58 | No |\n121\t| Exec-only | — | 43 | .14‡ | .000 | — | Degenerate |\n122\t| Exec-only | — | 44 | .98 | .570 | 2.04 | **Tautological** |\n123\t| Add. ISR | 0.3 | 42 | .18 | .026 | — | PR collapse |\n124\t| **Add. ISR** | **0.1** | **42** | **.81** | **.337** | **5.58** | **No** |\n125\t| Cvx. Random | 0.1 | 42 | 1.00 | .535 | ~2 | **Tautological** |\n126\t| Add. Random | 0.3 | 42 | .48 | .045 | 9.60 | Complex junk |\n127\t\n128\t*Generated 2026-05-14. All eval metrics from eval_sta.py full STA unless noted.*\n129\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "09394bbd-fea8-4b59-808c-91e90f73c874",
+            "uuid": "4b58e9a1-72ed-4334-b763-302dd992b4b7",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/paper_table1_evidence.md",
+                "content": "# Table 1: Comprehensive Experimental Evidence for Solver-Trace Ablation\n\n**Model**: Qwen3-4B | **Training**: GRPO, 500 steps, K=8 | **Data**: train_500_seed42.jsonl (500 problems) | **Eval**: proofwriter_fol_100.jsonl (100 problems)\n\n## Main Results Table\n\n### Group A: Reference Baselines\n\n| Experiment ID | Reward Mode | Formula | β | Seed | Eval PR | Eval Mean ISR | ISR Std | Comp. Mean | Comp.=2 (%) | Eval Method | Diagnosis | Claims |\n|---|---|---|---|---|---|---|---|---|---|---|---|---|\n| sta-phase0-baseline | — (base model) | — | — | — | 0.12 | 0.0641 | 0.1983 | — | — | eval_sta.py | pre-training reference | — |\n| sta-gt-isr-baseline | — (ground truth FOL) | — | — | — | 0.18 | 0.5588 | 0.2582 | — | — | direct computation | ISR ceiling on gold FOL | — |\n\n### Group B: Exec-Only Reward (r = r_exec)\n\n| Experiment ID | Reward Mode | Formula | β | Seed | Eval PR | Eval Mean ISR | ISR Std | Comp. Mean | Comp.=2 (%) | Eval Method | Diagnosis | Claims |\n|---|---|---|---|---|---|---|---|---|---|---|---|---|\n| plan001-exec-only-s42-r2 | exec-only | r = r_exec | — | 42 | 0.93 | 0.1232 | 0.1887 | 6.58† | — | eval_sta.py | genuine proofs | C1 |\n| plan001-exec-only-s43-r4 | exec-only | r = r_exec | — | 43 | 0.14‡ | 0.00‡ | — | — | — | sampling (T=0.7)‡ | degraded (87% max_tokens) | C1, C2 |\n| plan001-exec-only-s44 | exec-only | r = r_exec | — | 44 | 0.98 | 0.5700 | 0.2013 | 2.04 | 94% | eval_sta.py | tautological collapse | C1, C2 |\n\n**Exec-only 3-seed summary**: mean PR = 0.68 ± 0.47, 2/3 seeds degenerate. Cross-seed instability is the primary finding.\n\n### Group C: Additive ISR Bonus (r = r_exec · (1 + β · ISR))\n\n| Experiment ID | Reward Mode | Formula | β | Seed | Eval PR | Eval Mean ISR | ISR Std | Comp. Mean | Comp.=2 (%) | Eval Method | Diagnosis | Claims |\n|---|---|---|---|---|---|---|---|---|---|---|---|---|\n| plan002-additive-b03-s42 | additive ISR | r = r_exec · (1 + β·ISR) | 0.3 | 42 | 0.18 | 0.0257 | 0.0742 | — | — | eval_sta.py§ | PR collapse (Goodhart) | C3 |\n| plan002-additive-b01-s42 | additive ISR | r = r_exec · (1 + β·ISR) | 0.1 | 42 | 0.81 | 0.3365 | 0.3227 | 5.58 | 3.7% | eval_sta.py | **best: PR preserved + ISR 2.73x** | C3 |\n\n**Dose-response**: β=0.3 → PR collapse (0.18); β=0.1 → PR preserved (0.81) with ISR 2.73x over exec-only baseline.\n\n### Group D: Convex ISR (r = α · r_exec + β · ISR)\n\n| Experiment ID | Reward Mode | Formula | β | Seed | Eval PR | Eval Mean ISR | ISR Std | Comp. Mean | Comp.=2 (%) | Eval Method | Diagnosis | Claims |\n|---|---|---|---|---|---|---|---|---|---|---|---|---|\n| plan005-sta-low-s42 | convex ISR | r = 0.9·r_exec + 0.1·ISR | 0.1 | 42 | —¶ | —¶ | —¶ | — | — | training logs only¶ | PR suppressed (train last100 PR=0.77) | C3 |\n\n### Group E: Convex Random Control (r = α · r_exec + β · random)\n\n| Experiment ID | Reward Mode | Formula | β | Seed | Eval PR | Eval Mean ISR | ISR Std | Comp. Mean | Comp.=2 (%) | Eval Method | Diagnosis | Claims |\n|---|---|---|---|---|---|---|---|---|---|---|---|---|\n| plan013-random-reward-s42-r4 | convex random | r = 0.9·r_exec + 0.1·random | 0.1 | 42 | 1.00 | 0.5350 | 0.1282 | ~2†† | ~100%†† | eval_sta.py | tautological collapse | C2 |\n\n### Group F: Additive Random Control (r = r_exec · (1 + β · random))\n\n| Experiment ID | Reward Mode | Formula | β | Seed | Eval PR | Eval Mean ISR | ISR Std | Comp. Mean | Comp.=2 (%) | Eval Method | Diagnosis | Claims |\n|---|---|---|---|---|---|---|---|---|---|---|---|---|\n| plan017-additive-random-s42 | additive random | r = r_exec · (1 + β·random) | 0.3 | 42 | 0.48 | 0.0453 | 0.0759 | 9.60 | 0% | eval_sta.py | complex but useless formalizations | C2, C3 |\n\n## Claim Evidence Summary\n\n### Claim 1: Exec-only reward exhibits cross-seed degeneration\n| Seed | Eval PR | Eval ISR | Comp. Mean | Failure Mode |\n|---|---|---|---|---|\n| 42 | 0.93 | 0.1232 | 6.58 | None (genuine) |\n| 43 | 0.14 | 0.00 | — | Output degeneration (max_tokens) |\n| 44 | 0.98 | 0.5700 | 2.04 | Tautological collapse (premise=conclusion) |\n\n**Verdict**: 2/3 seeds degenerate under exec-only reward. High training PR does not guarantee genuine formalization.\n\n### Claim 2: ISR + component count diagnoses genuine vs degenerate proofs\n| Experiment | Eval PR | Eval ISR | Comp. Mean | ISR Diagnosis |\n|---|---|---|---|---|\n| exec-only s42 (genuine) | 0.93 | 0.12 | 6.58 | Low ISR + high comp → genuine but imperfect |\n| exec-only s44 (tautological) | 0.98 | 0.57 | 2.04 | High ISR + low comp → **tautological artifact** |\n| convex random (tautological) | 1.00 | 0.54 | ~2 | High ISR + low comp → **tautological artifact** |\n| additive random (complex junk) | 0.48 | 0.05 | 9.60 | Low ISR + high comp → many premises but unused |\n| additive ISR β=0.1 (best) | 0.81 | 0.34 | 5.58 | Moderate ISR + high comp → **genuine improvement** |\n\n**Verdict**: ISR alone is ambiguous (s44 ISR=0.57 looks good but is tautological). Component count resolves the ambiguity: comp≈2 flags tautological collapse; comp>5 with moderate ISR indicates genuine proofs.\n\n### Claim 3: ISR-as-reward shows Goodhart effect at high dose, effective at low dose\n| Reward Mode | β | Eval PR | Eval ISR | Goodhart? |\n|---|---|---|---|---|\n| additive ISR | 0.3 | 0.18 | 0.03 | **Yes** — PR collapse |\n| additive ISR | 0.1 | 0.81 | 0.34 | **No** — sweet spot |\n| convex ISR | 0.1 | —¶ | — | Partially (train PR suppressed) |\n| convex random | 0.1 | 1.00 | 0.54 | Tautological (no ISR signal) |\n| additive random | 0.3 | 0.48 | 0.05 | N/A (random control) |\n\n**Verdict**: Clear dose-response. β=0.1 additive is the working point; β=0.3 triggers Goodhart collapse. Random controls confirm ISR signal is causal (not just variance regularization).\n\n## Notes\n\n† Component count for plan001-exec-only-s42-r2 (6.58) is cross-referenced from plan001-exec-only-s44 notes, not stored in registry eval metrics. May need re-verification with eval_sta.py.\n\n‡ **D029**: plan001-exec-only-s43-r4 was evaluated with sampling (do_sample=True, temperature=0.7) instead of eval_sta.py greedy decoding used for all other experiments. The PR=14% result is a failure case regardless of eval method — 87% of outputs hit max_new_tokens and are unparseable. Decision: not re-evaluated; paper will note the method difference.\n\n§ plan002-additive-b03-s42 eval_method not explicitly recorded in registry, but eval fields (eval_prove_rate, eval_mean_isr) are consistent with eval_sta.py output format.\n\n¶ **D030**: plan005-sta-low-s42 checkpoint was deleted; no eval was performed. Training log windowed metrics are the only available data. Paper uses training curves as evidence for \"ISR suppresses reward hacking\" (ISR/PR ratio stable at 0.30 across training).\n\n†† plan013-random-reward-s42-r4 component count not in registry metrics but noted as \"trivial 2-component proofs (premise=conclusion, conclusion=conclusion)\" in eval_note.\n\n## Excluded Experiments (Failed / Developmental)\n\nThe following DONE experiments are excluded from Table 1 (crashes, early phases, duplicates):\n\n| Experiment ID | Reason for Exclusion |\n|---|---|\n| sta-phase1-exec-only-r2/r3/r4/r5 | 100-step developmental runs |\n| sta-phase1-exec-sta-r2/r3/r4/r5 | 100-step developmental runs |\n| plan001-exec-only-s42 | Failed (pre-checkpoint crash) |\n| plan001-exec-only-s42-r3 | Failed (OOM duplicate submission) |\n| plan001-exec-only-s43 | Failed (OOM from plan013 GPU overflow) |\n| plan001-exec-only-s43-r2 | Failed (process crashed) |\n| plan001-exec-only-s43-r3 | Failed (disk full at step 23) |\n| plan013-random-reward-s42 | Failed (CUDA_VISIBLE_DEVICES not set) |\n| plan013-random-reward-s42-r2 | Failed (process crashed) |\n| plan013-random-reward-s42-r3 | Failed (disk full at step 28) |\n| plan003-eval-exec-only-r5 | Eval of 100-step checkpoint (not 500-step) |\n| plan014-downstream-nli-s42 | Downstream NLI task (separate analysis) |\n\n## Compact Table for Paper\n\n| Reward Mode | β | Seed | PR↑ | ISR↑ | Comp.↓ | Collapse? |\n|---|---|---|---|---|---|---|\n| *Base model* | — | — | .12 | .064 | — | — |\n| Exec-only | — | 42 | **.93** | .123 | 6.58 | No |\n| Exec-only | — | 43 | .14‡ | .000 | — | Degenerate |\n| Exec-only | — | 44 | .98 | .570 | 2.04 | **Tautological** |\n| Add. ISR | 0.3 | 42 | .18 | .026 | — | PR collapse |\n| **Add. ISR** | **0.1** | **42** | **.81** | **.337** | **5.58** | **No** |\n| Cvx. Random | 0.1 | 42 | 1.00 | .535 | ~2 | **Tautological** |\n| Add. Random | 0.3 | 42 | .48 | .045 | 9.60 | Complex junk |\n\n*Generated 2026-05-14. All eval metrics from eval_sta.py full STA unless noted.*\n",
+                "numLines": 129,
+                "startLine": 1,
+                "totalLines": 129
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me analyze the file and identify what needs to be changed:\n\n1. **plan002-b03 component_count=10.67**: I need to find this. Looking at the file... In Group C, plan002-additive-b03-s42 has `—` for Comp. Mean already. In the Compact Table, it also shows `—`. Let me search more carefully... The user says \"10.67\" but I don't see 10.67 in the file. Let me re-read carefully.\n\nWait, I don't see 10.67 anywhere in this file. \n\nI'm searching through the document for \"10.67\" but it's not appearing anywhere. The plan002-b03 row already shows `—` for Comp. Mean in both tables, so either this change was already made or the number isn't present in the current version.\n\n2. **plan013-r4 component_count ~2**: This is already shown as `~2` with footnote `††` that references an eval_note about trivial 2-component proofs. The task wants me to update the footnote to clarify that this is an estimated value from eval_note, not a precise calculation from eval_sta.py.\n\n3. **plan002-b01**: I'm checking the file and plan002-additive-b01-s42 appears in Group C with PR=0.81, ISR=0.3365, and component_count=5.58, marked as \"best: PR preserved + ISR 2.73x\". It's also in the Compact Table with matching values, so it doesn't appear to be marked as incomplete or running. Let me verify what the task is asking me to find regarding plan002-b01.\n\nLooking at the specific instructions again: I need to check if 10.67 appears anywhere in the file for plan002-b03 — it doesn't, the file already shows `—`. For plan013-r4, there's already a footnote `††` but I need to verify what the task requires for the footnote content.  The main actionable item is updating that footnote wording, while plan002-b01 doesn't seem to have any incomplete markers that need attention. Looking at the footnote more carefully, I need to update the `††` note to clarify that the component count is an estimate from eval_note rather than a precise calculation from eval_sta.py, and I should express this in Chinese to match the document's language. The revised footnote should indicate the source and nature of the estimate clearly.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "09394bbd-fea8-4b59-808c-91e90f73c874",
+            "uuid": "7e6e8875-03dd-4ff5-ac44-971c176e3cf5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017coWXF5FJd8smiBFRgvGFB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3779,
+                "cache_read_input_tokens": 23781,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3779
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件中 10.67 并不存在（plan002-b03 的 Comp. Mean 已经是 `—`），plan002-b01 也已标记为已完成状态。唯一需要修改的是 plan013-r4 的 `††` 脚注。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "09394bbd-fea8-4b59-808c-91e90f73c874",
+            "uuid": "75becbf7-5482-475a-b620-f0a44cd4ad60",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017coWXF5FJd8smiBFRgvGFB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3779,
+                "cache_read_input_tokens": 23781,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3779
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HJaSgRLc4JAchfui2zxB5k",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/paper_table1_evidence.md",
+                "old_string": "†† plan013-random-reward-s42-r4 component count not in registry metrics but noted as \"trivial 2-component proofs (premise=conclusion, conclusion=conclusion)\" in eval_note.",
+                "new_string": "†† plan013-random-reward-s42-r4 component count (~2) is an estimate from eval_note (\"trivial 2-component proofs, premise=conclusion, conclusion=conclusion\"), not a precise eval_sta.py computation."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "09394bbd-fea8-4b59-808c-91e90f73c874",
+            "uuid": "e190bd42-359f-4211-af29-f4efba8e4df7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017coWXF5FJd8smiBFRgvGFB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3779,
+                "cache_read_input_tokens": 23781,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3779
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T07:15:26.410Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HJaSgRLc4JAchfui2zxB5k",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/paper_table1_evidence.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "09394bbd-fea8-4b59-808c-91e90f73c874",
+            "uuid": "a6ac3191-425a-48ed-8855-facd3b2915a3",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/paper_table1_evidence.md",
+              "oldString": "†† plan013-random-reward-s42-r4 component count not in registry metrics but noted as \"trivial 2-component proofs (premise=conclusion, conclusion=conclusion)\" in eval_note.",
+              "newString": "†† plan013-random-reward-s42-r4 component count (~2) is an estimate from eval_note (\"trivial 2-component proofs, premise=conclusion, conclusion=conclusion\"), not a precise eval_sta.py computation.",
+              "originalFile": "# Table 1: Comprehensive Experimental Evidence for Solver-Trace Ablation\n\n**Model**: Qwen3-4B | **Training**: GRPO, 500 steps, K=8 | **Data**: train_500_seed42.jsonl (500 problems) | **Eval**: proofwriter_fol_100.jsonl (100 problems)\n\n## Main Results Table\n\n### Group A: Reference Baselines\n\n| Experiment ID | Reward Mode | Formula | β | Seed | Eval PR | Eval Mean ISR | ISR Std | Comp. Mean | Comp.=2 (%) | Eval Method | Diagnosis | Claims |\n|---|---|---|---|---|---|---|---|---|---|---|---|---|\n| sta-phase0-baseline | — (base model) | — | — | — | 0.12 | 0.0641 | 0.1983 | — | — | eval_sta.py | pre-training reference | — |\n| sta-gt-isr-baseline | — (ground truth FOL) | — | — | — | 0.18 | 0.5588 | 0.2582 | — | — | direct computation | ISR ceiling on gold FOL | — |\n\n### Group B: Exec-Only Reward (r = r_exec)\n\n| Experiment ID | Reward Mode | Formula | β | Seed | Eval PR | Eval Mean ISR | ISR Std | Comp. Mean | Comp.=2 (%) | Eval Method | Diagnosis | Claims |\n|---|---|---|---|---|---|---|---|---|---|---|---|---|\n| plan001-exec-only-s42-r2 | exec-only | r = r_exec | — | 42 | 0.93 | 0.1232 | 0.1887 | 6.58† | — | eval_sta.py | genuine proofs | C1 |\n| plan001-exec-only-s43-r4 | exec-only | r = r_exec | — | 43 | 0.14‡ | 0.00‡ | — | — | — | sampling (T=0.7)‡ | degraded (87% max_tokens) | C1, C2 |\n| plan001-exec-only-s44 | exec-only | r = r_exec | — | 44 | 0.98 | 0.5700 | 0.2013 | 2.04 | 94% | eval_sta.py | tautological collapse | C1, C2 |\n\n**Exec-only 3-seed summary**: mean PR = 0.68 ± 0.47, 2/3 seeds degenerate. Cross-seed instability is the primary finding.\n\n### Group C: Additive ISR Bonus (r = r_exec · (1 + β · ISR))\n\n| Experiment ID | Reward Mode | Formula | β | Seed | Eval PR | Eval Mean ISR | ISR Std | Comp. Mean | Comp.=2 (%) | Eval Method | Diagnosis | Claims |\n|---|---|---|---|---|---|---|---|---|---|---|---|---|\n| plan002-additive-b03-s42 | additive ISR | r = r_exec · (1 + β·ISR) | 0.3 | 42 | 0.18 | 0.0257 | 0.0742 | — | — | eval_sta.py§ | PR collapse (Goodhart) | C3 |\n| plan002-additive-b01-s42 | additive ISR | r = r_exec · (1 + β·ISR) | 0.1 | 42 | 0.81 | 0.3365 | 0.3227 | 5.58 | 3.7% | eval_sta.py | **best: PR preserved + ISR 2.73x** | C3 |\n\n**Dose-response**: β=0.3 → PR collapse (0.18); β=0.1 → PR preserved (0.81) with ISR 2.73x over exec-only baseline.\n\n### Group D: Convex ISR (r = α · r_exec + β · ISR)\n\n| Experiment ID | Reward Mode | Formula | β | Seed | Eval PR | Eval Mean ISR | ISR Std | Comp. Mean | Comp.=2 (%) | Eval Method | Diagnosis | Claims |\n|---|---|---|---|---|---|---|---|---|---|---|---|---|\n| plan005-sta-low-s42 | convex ISR | r = 0.9·r_exec + 0.1·ISR | 0.1 | 42 | —¶ | —¶ | —¶ | — | — | training logs only¶ | PR suppressed (train last100 PR=0.77) | C3 |\n\n### Group E: Convex Random Control (r = α · r_exec + β · random)\n\n| Experiment ID | Reward Mode | Formula | β | Seed | Eval PR | Eval Mean ISR | ISR Std | Comp. Mean | Comp.=2 (%) | Eval Method | Diagnosis | Claims |\n|---|---|---|---|---|---|---|---|---|---|---|---|---|\n| plan013-random-reward-s42-r4 | convex random | r = 0.9·r_exec + 0.1·random | 0.1 | 42 | 1.00 | 0.5350 | 0.1282 | ~2†† | ~100%†† | eval_sta.py | tautological collapse | C2 |\n\n### Group F: Additive Random Control (r = r_exec · (1 + β · random))\n\n| Experiment ID | Reward Mode | Formula | β | Seed | Eval PR | Eval Mean ISR | ISR Std | Comp. Mean | Comp.=2 (%) | Eval Method | Diagnosis | Claims |\n|---|---|---|---|---|---|---|---|---|---|---|---|---|\n| plan017-additive-random-s42 | additive random | r = r_exec · (1 + β·random) | 0.3 | 42 | 0.48 | 0.0453 | 0.0759 | 9.60 | 0% | eval_sta.py | complex but useless formalizations | C2, C3 |\n\n## Claim Evidence Summary\n\n### Claim 1: Exec-only reward exhibits cross-seed degeneration\n| Seed | Eval PR | Eval ISR | Comp. Mean | Failure Mode |\n|---|---|---|---|---|\n| 42 | 0.93 | 0.1232 | 6.58 | None (genuine) |\n| 43 | 0.14 | 0.00 | — | Output degeneration (max_tokens) |\n| 44 | 0.98 | 0.5700 | 2.04 | Tautological collapse (premise=conclusion) |\n\n**Verdict**: 2/3 seeds degenerate under exec-only reward. High training PR does not guarantee genuine formalization.\n\n### Claim 2: ISR + component count diagnoses genuine vs degenerate proofs\n| Experiment | Eval PR | Eval ISR | Comp. Mean | ISR Diagnosis |\n|---|---|---|---|---|\n| exec-only s42 (genuine) | 0.93 | 0.12 | 6.58 | Low ISR + high comp → genuine but imperfect |\n| exec-only s44 (tautological) | 0.98 | 0.57 | 2.04 | High ISR + low comp → **tautological artifact** |\n| convex random (tautological) | 1.00 | 0.54 | ~2 | High ISR + low comp → **tautological artifact** |\n| additive random (complex junk) | 0.48 | 0.05 | 9.60 | Low ISR + high comp → many premises but unused |\n| additive ISR β=0.1 (best) | 0.81 | 0.34 | 5.58 | Moderate ISR + high comp → **genuine improvement** |\n\n**Verdict**: ISR alone is ambiguous (s44 ISR=0.57 looks good but is tautological). Component count resolves the ambiguity: comp≈2 flags tautological collapse; comp>5 with moderate ISR indicates genuine proofs.\n\n### Claim 3: ISR-as-reward shows Goodhart effect at high dose, effective at low dose\n| Reward Mode | β | Eval PR | Eval ISR | Goodhart? |\n|---|---|---|---|---|\n| additive ISR | 0.3 | 0.18 | 0.03 | **Yes** — PR collapse |\n| additive ISR | 0.1 | 0.81 | 0.34 | **No** — sweet spot |\n| convex ISR | 0.1 | —¶ | — | Partially (train PR suppressed) |\n| convex random | 0.1 | 1.00 | 0.54 | Tautological (no ISR signal) |\n| additive random | 0.3 | 0.48 | 0.05 | N/A (random control) |\n\n**Verdict**: Clear dose-response. β=0.1 additive is the working point; β=0.3 triggers Goodhart collapse. Random controls confirm ISR signal is causal (not just variance regularization).\n\n## Notes\n\n† Component count for plan001-exec-only-s42-r2 (6.58) is cross-referenced from plan001-exec-only-s44 notes, not stored in registry eval metrics. May need re-verification with eval_sta.py.\n\n‡ **D029**: plan001-exec-only-s43-r4 was evaluated with sampling (do_sample=True, temperature=0.7) instead of eval_sta.py greedy decoding used for all other experiments. The PR=14% result is a failure case regardless of eval method — 87% of outputs hit max_new_tokens and are unparseable. Decision: not re-evaluated; paper will note the method difference.\n\n§ plan002-additive-b03-s42 eval_method not explicitly recorded in registry, but eval fields (eval_prove_rate, eval_mean_isr) are consistent with eval_sta.py output format.\n\n¶ **D030**: plan005-sta-low-s42 checkpoint was deleted; no eval was performed. Training log windowed metrics are the only available data. Paper uses training curves as evidence for \"ISR suppresses reward hacking\" (ISR/PR ratio stable at 0.30 across training).\n\n†† plan013-random-reward-s42-r4 component count not in registry metrics but noted as \"trivial 2-component proofs (premise=conclusion, conclusion=conclusion)\" in eval_note.\n\n## Excluded Experiments (Failed / Developmental)\n\nThe following DONE experiments are excluded from Table 1 (crashes, early phases, duplicates):\n\n| Experiment ID | Reason for Exclusion |\n|---|---|\n| sta-phase1-exec-only-r2/r3/r4/r5 | 100-step developmental runs |\n| sta-phase1-exec-sta-r2/r3/r4/r5 | 100-step developmental runs |\n| plan001-exec-only-s42 | Failed (pre-checkpoint crash) |\n| plan001-exec-only-s42-r3 | Failed (OOM duplicate submission) |\n| plan001-exec-only-s43 | Failed (OOM from plan013 GPU overflow) |\n| plan001-exec-only-s43-r2 | Failed (process crashed) |\n| plan001-exec-only-s43-r3 | Failed (disk full at step 23) |\n| plan013-random-reward-s42 | Failed (CUDA_VISIBLE_DEVICES not set) |\n| plan013-random-reward-s42-r2 | Failed (process crashed) |\n| plan013-random-reward-s42-r3 | Failed (disk full at step 28) |\n| plan003-eval-exec-only-r5 | Eval of 100-step checkpoint (not 500-step) |\n| plan014-downstream-nli-s42 | Downstream NLI task (separate analysis) |\n\n## Compact Table for Paper\n\n| Reward Mode | β | Seed | PR↑ | ISR↑ | Comp.↓ | Collapse? |\n|---|---|---|---|---|---|---|\n| *Base model* | — | — | .12 | .064 | — | — |\n| Exec-only | — | 42 | **.93** | .123 | 6.58 | No |\n| Exec-only | — | 43 | .14‡ | .000 | — | Degenerate |\n| Exec-only | — | 44 | .98 | .570 | 2.04 | **Tautological** |\n| Add. ISR | 0.3 | 42 | .18 | .026 | — | PR collapse |\n| **Add. ISR** | **0.1** | **42** | **.81** | **.337** | **5.58** | **No** |\n| Cvx. Random | 0.1 | 42 | 1.00 | .535 | ~2 | **Tautological** |\n| Add. Random | 0.3 | 42 | .48 | .045 | 9.60 | Complex junk |\n\n*Generated 2026-05-14. All eval metrics from eval_sta.py full STA unless noted.*\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 91,
+                  "oldLines": 7,
+                  "newStart": 91,
+                  "newLines": 7,
+                  "lines": [
+                    " ",
+                    " ¶ **D030**: plan005-sta-low-s42 checkpoint was deleted; no eval was performed. Training log windowed metrics are the only available data. Paper uses training curves as evidence for \"ISR suppresses reward hacking\" (ISR/PR ratio stable at 0.30 across training).",
+                    " ",
+                    "-†† plan013-random-reward-s42-r4 component count not in registry metrics but noted as \"trivial 2-component proofs (premise=conclusion, conclusion=conclusion)\" in eval_note.",
+                    "+†† plan013-random-reward-s42-r4 component count (~2) is an estimate from eval_note (\"trivial 2-component proofs, premise=conclusion, conclusion=conclusion\"), not a precise eval_sta.py computation.",
+                    " ",
+                    " ## Excluded Experiments (Failed / Developmental)",
+                    " "
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成。实际变更：\n\n1. **plan002-b03 component_count=10.67**：文件中不存在 10.67，Comp. Mean 列已经是 `—`，无需修改。\n2. **plan013-r4 `††` 脚注**：已更新，明确标注 `~2` 为 eval_note 估算值，非 eval_sta.py 精确计算。\n3. **plan002-b01**：文件中无\"待完成\"或\"RUNNING\"标记，已显示完成数据（PR=0.81, ISR=0.3365, Comp.=5.58），无需修改。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "09394bbd-fea8-4b59-808c-91e90f73c874",
+            "uuid": "d60b1598-cae9-4fef-9cca-c066a1b9f21e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KkQa1Fu5uTdFRWJyYrGAUt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1804,
+                "cache_read_input_tokens": 27560,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1804
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成。实际变更：\n\n1. **plan002-b03 component_count=10.67**：文件中不存在 10.67，Comp. Mean 列已经是 `—`，无需修改。\n2. **plan013-r4 `††` 脚注**：已更新，明确标注 `~2` 为 eval_note 估算值，非 eval_sta.py 精确计算。\n3. **plan002-b01**：文件中无\"待完成\"或\"RUNNING\"标记，已显示完成数据（PR=0.81, ISR=0.3365, Comp.=5.58），无需修改。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 39439,
+            "duration_api_ms": 40310,
+            "num_turns": 3,
+            "stop_reason": "end_turn",
+            "session_id": "09394bbd-fea8-4b59-808c-91e90f73c874",
+            "total_cost_usd": 0.19339874999999998,
+            "usage": {
+              "input_tokens": 5,
+              "cache_creation_input_tokens": 17523,
+              "cache_read_input_tokens": 63182,
+              "output_tokens": 2015,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 17523,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 181,
+                  "cache_read_input_tokens": 27560,
+                  "cache_creation_input_tokens": 1804,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 1804
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1809,
+                "outputTokens": 16,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001889,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 5,
+                "outputTokens": 2015,
+                "cacheReadInputTokens": 63182,
+                "cacheCreationInputTokens": 17523,
+                "webSearchRequests": 0,
+                "costUSD": 0.19150975,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "f67fc417-847c-4d32-9e5f-577b13a1a2c3"
+          },
+          "id": "event-000012"
+        }
+      ],
+      "message_count": 12
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-fix-evidence-table-provenance.md"
+}

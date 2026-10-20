@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1d12c38a475c3fc78920",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "cleanup plan018 s43 disk",
+  "task_key": "worker_cleanup_plan018-s43-disk_20260514T140136",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_cleanup_plan018-s43-disk_20260514T140136_result.json",
+    "occurrence": 1,
+    "bytes": 639,
+    "sha256": "2852320f9e04cdda08c1382d07ce1a03bccfcd356bdcc1a1b79c7cf4cb0cf1a7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n| 项目 | 状态 |\n|------|------|\n| **磁盘** | 139G 可用 / 250G（45%），充足 |\n| **plan018-s43 残留目录** | 不存在，无需清理 |\n| **plan018-s43 残留进程** | 无 |\n| **GPU 0** | 占用 80189/97887 MiB — PID 479370 `plan006_prolog_exec_s44`（运行 18 分钟） |\n| **GPU 1** | 占用 81009/97887 MiB — PID 483831 `plan006_prolog_exec_s43_r3`（运行 18 分钟） |\n\n**结论：不能安全启动 plan018-s43-r2。** 两张 GPU 都被 plan006 实验占满。需要等 plan006_prolog_exec_s43_r3（GPU 1）或 plan006_prolog_exec_s44（GPU 0）完成后才能启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/cleanup-plan018-s43-disk.md"
+}

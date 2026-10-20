@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f1165f1b336e0cf14f54",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "figure fig4 prolog comparison",
+  "task_key": "worker_figure_fig4-prolog-comparison_20260514T192422",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_fig4-prolog-comparison_20260514T192422_result.json",
+    "occurrence": 1,
+    "bytes": 351,
+    "sha256": "b3de82376e7bee3a9f0fa8cbb63239982942f43dd933d91603055db901ef21f1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PDF 已生成并注册：\n\n`paper/figures/fig4_prolog_comparison.pdf` (44 KB, 矢量 PDF, 300 DPI)\n\n- **(a)** FOL vs Prolog grouped bar — ISR* 值 + PR 标注，s43† 和 s44 n=21 均已标记\n- **(b)** Prolog gaming modes — 三个 seed 各 100% 单一 gaming 机制，底部水平图例，顶部 \"universal Goodhart\" 注释"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-fig4-prolog-comparison.md"
+}

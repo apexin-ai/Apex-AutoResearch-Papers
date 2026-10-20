@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bb3912c15c44684a1d76",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_9_1778812151.md",
+  "task_key": "loop_9_1778812151",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_9_1778812151.md",
+    "occurrence": 1,
+    "bytes": 4267,
+    "sha256": "a668927f496c55aea16bad226f5e2afaef1971747efdea6225b11cc854c201d8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 9\nreason: idle_timeout\nupdated: '2026-05-15T02:29:01+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**仅 westd-39279:cuda:0 和 cuda:1**，其他设备号严禁使用\n- submit_training_job 命令必须包含完整的 `bash -c \"export CUDA_VISIBLE_DEVICES=N && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && ...\"`，缺任何一段都会失败（exp1-random-b03-s44 踩过）\n- kill_job 后必须 SSH 验证子进程清理，kill_job 只杀 tmux wrapper 不杀 Python 训练进程\n- 磁盘 240G/250G (96%)，所有 output_dir 必须放 `/root/autodl-tmp/outputs/`，`log_completions=False` + `save_total_limit=1`，eval 后立即清理 checkpoint\n- D066: **暂停 D060 'Goodhart instability' 叙事变更**，等 proofwriter 数据完成后再决定\n- Prolog STA s44 是 query-as-fact gaming（非 genuine），H7 分类器盲区需 Discussion 讨论\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-39279, 2× RTX PRO 6000 Blackwell 96GB\n- **工作目录**: `/root/solver-trace-ablation/`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- **CUDA**: 12.8, PyTorch 2.10.0+cu128\n- **模型**: Qwen3-4B via ModelScope（7.6GB）\n- **Solvers**: Prover9 (LADR 编译), SWI-Prolog 8.4.2 (`/usr/bin/swipl`), Z3 4.16.0.0\n- **数据盘**: `/root/autodl-tmp/`（250GB，96% 使用率，极度紧张）\n- **活跃进程**: 无 RUNNING 实验，无活跃 Worker，无活跃 cron\n- **两张 GPU 均空闲**\n\n### 3. 📊 当前状态\n**刚完成**: exp1-isr-b03-s43-r3 (success, PR=0.56, ISR=0.15) 和 plan017-additive-random-s42 (negative, PR=0.48)。这两个实验是 s43 checkpoint 误删后的重训批次（D067/D068）。\n\n**Registry 非 DONE 实验**:\n- `exp1-random-b03-s44-r2` — **ANALYZING**（训练已完成，等分析 eval 结果）\n- `exp1-isr-b03-s43-r4` — **PREPARING**（s43 ISR 重训，D068 安排，尚未提交）\n- `plan015-linear-s42` — **PREPARING**（linear schedule β 实验，尚未提交）\n\n**等待中**: 无活跃 Worker、无 cron 回调、无 Director 待决策。两张 GPU 空闲 = 违反 L1 红线第 5 条。\n\n**项目总览**: 62 实验（success 17, negative 19, failed 20, killed 3）。论文写作阶段，DDL 2026-05-25（剩 10 天）。三个 Core Claims 全部闭环，writing_plan.yaml 已审批。\n\n### 4. 📋 待办（条件触发式）\n- **立即**: exp1-random-b03-s44-r2 处于 ANALYZING → spawn Worker 跑 eval（eval_sta.py）并更新 registry\n- **立即**: exp1-isr-b03-s43-r4 和 plan015-linear-s42 处于 PREPARING → 两张 GPU 空闲，应立即提交（先确认磁盘空间足够）\n- **exp1-random-b03-s44-r2 eval 完成** → 更新 registry metrics + conclusion → 汇报 Director β=0.3 random 三 seed 完整结果\n- **exp1-isr-b03-s43-r4 完成** → eval → 与之前 s43 结果对比确认一致性（checkpoint 误删重训验证）\n- **论文写作**: Method + Experiments 章节 Worker 应该在跑（ROADMAP 提及\"进行中\"），确认 Worker 状态，若未启动则立即 spawn\n- **磁盘**: 96% 使用率，提交新实验前必须先清理旧 checkpoint\n\n### 5. 🎯 战略上下文\n**核心结论**: STA/ISR 是 GRPO 的诊断工具，不是优化目标。ISR 加入 reward 后发生 Goodhart collapse——高 ISR 不代表高质量推理。论文是 Goodhart's Law 案例研究。\n\n**决策链关键**:\n- D057: ISR 无结构优势已确认（random ≥ ISR），Claim 2 闭环\n- D059: Prolog 泛化 3/3 gaming，Claim 3 闭环（含 s44 query-as-fact 第 7 种 taxonomy）\n- D060/D066: β=0.3 \"multimodal Goodhart instability\" 叙事**暂停**，等更多数据\n- D063: exp1 系列 eval 曾用错测试集 (test_100.jsonl vs proofwriter_test)，已修正重跑\n- D067/D068: s43 checkpoint 误删事故，重训安排已到位\n\n**易错点**:\n- 不要把不同测试集的 eval 结果直接对比（test_100 vs proofwriter_test 事故）\n- plan013 vs plan017 公式结构不同（convex vs additive），不能简化为对照组\n- β=0.1 ISR hacking rate 69.1% (strict)，论文标\"lowest hacking rate\"而非\"no hacking\"\n- premise-count-matched 1.06x 是定论（D051），旧的 2.4x 已作废\n- 磁盘极度紧张（96%），每次实验前后都要清理\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-9-1778812151.md"
+}

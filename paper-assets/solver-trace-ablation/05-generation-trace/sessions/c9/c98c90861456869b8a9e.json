@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c98c90861456869b8a9e",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code sta core",
+  "task_key": "worker_code_sta-core_20260513T173855",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_sta-core_20260513T173855_result.json",
+    "occurrence": 1,
+    "bytes": 734,
+    "sha256": "9e3a6476e94d34bde8fa4c5e985c74c98b1748fdb402f80a494490e7c73ba941"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 import 通过，decompose_fol 工作正常。\n\n文件清单：\n- `src/__init__.py` — 空\n- `src/solvers/__init__.py` — 空\n- `src/solvers/base.py` — SolverResult + FOLSolver 抽象类\n- `src/solvers/prover9.py` — Prover9 CLI 后端\n- `src/solvers/z3_solver.py` — Z3 Python API 后端 + FOL 解析器\n- `src/solvers/factory.py` — 工厂函数，prover9 → z3 fallback\n- `src/sta/__init__.py` — 空\n- `src/sta/components.py` — FOL 组件分解\n- `src/sta/ablation.py` — STA ablation 核心逻辑\n- `src/sta/isr.py` — ISR 计算 + 批量统计\n- `src/sta/reward.py` — GRPO reward 函数（含 formalization 解析器）\n- `scripts/phase0_baseline.py` — Phase 0 baseline 脚本"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-sta-core.md"
+}

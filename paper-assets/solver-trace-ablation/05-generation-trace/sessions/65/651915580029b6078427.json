@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "651915580029b6078427",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code plan017 additive random prep",
+  "task_key": "worker_code_plan017-additive-random-prep_20260514T030008",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan017-additive-random-prep_20260514T030008_result.json",
+    "occurrence": 1,
+    "bytes": 1049,
+    "sha256": "2219988ff6ce13448ff07c77377c6d3d1c0efc4459e1f838c13631cf2374d0fc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "不是 git 仓库，无法 diff。改动很小——只在 `additive_random` 分支前添加了一行注释。\n\n总结一下已完成的工作：\n\n**现状**：`additive_random` reward mode 和配置文件都已存在。\n\n**本次唯一改动**：在 `scripts/train_grpo.py` 第 197 行插入注释：\n```python\n# plan017: matched control for additive_bonus — random replaces ISR to isolate structural signal\n```\n\n**代码验证通过**：\n- proved sample → `reward=1.0403` = `1.0 * (1 + 0.3 * 0.134)` ✓ \n- unproved/garbage sample → `reward=0.0` ✓\n\n**配置文件** `configs/grpo_additive_random.yaml` 已就绪：\n- `reward_mode: additive_random`, `beta: 0.3`, `seed: 42`\n- `output_dir: /root/autodl-tmp/outputs/plan017_additive_random_s42`\n- `data_path: data/train_500_seed42.jsonl`（符合 C001）\n\n**未运行完整 GPU dry-run**：两张 GPU 各占 80GB VRAM，无空间加载第三个模型实例。reward 函数逻辑已通过 CPU 端单元测试验证。正式训练时分配空闲 GPU 即可。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan017-additive-random-prep.md"
+}

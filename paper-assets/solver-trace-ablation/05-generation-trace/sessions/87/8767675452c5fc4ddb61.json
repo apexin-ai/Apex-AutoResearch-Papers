@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8767675452c5fc4ddb61",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "paper verify figures",
+  "task_key": "worker_paper_verify-figures_20260514T204938",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_verify-figures_20260514T204938_result.json",
+    "occurrence": 1,
+    "bytes": 930,
+    "sha256": "69c9312ae2d9cdd86c8fc97a32b5d4655b466b688ca1f86b656e08f1ca488107"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已存在且内容完整。验证结果：\n\n**Figure fixes 全部未落地。**\n\n| Figure | PDF 尺寸 | 期望 | LaTeX 环境 |\n|--------|---------|------|-----------|\n| fig1 | 11.63 in (旧) | 6.75 in | `figure` → 需 `figure*` |\n| fig2 | 6.77 in (旧) | 3.25 in | `figure` 0.95x → 需 1x |\n| fig3 | 9.77 in (旧) | 6.75 in | `figure` → 需 `figure*` |\n| fig4 | 10.02 in (旧) | 6.75 in | `figure` → 需 `figure*` |\n\n4 个 gen 脚本的 `figsize` 均未更新（fig1 仍是 15in 宽，fig2 仍是 7in 宽等）。编译无报错是因为 `includegraphics` 强制缩放，但字体被压缩到 ~5-6pt，打印不可读。\n\n**数据一致性**: fig4 Prolog s44 ISR*=0.387 正确；fig3 ISR β=0.1 s42 Genuine=32.1%（gen 脚本）vs appendix Table 30.9%，有 1.2pp 不一致。\n\n报告位于 `artifacts/_project/report/figure_verification_report.md`，已包含完整的修复清单。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-verify-figures.md"
+}

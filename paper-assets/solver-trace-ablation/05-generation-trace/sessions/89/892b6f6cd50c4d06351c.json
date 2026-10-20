@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "892b6f6cd50c4d06351c",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analysis plan013 window metrics",
+  "task_key": "worker_analysis_plan013-window-metrics_20260514T030423",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan013-window-metrics_20260514T030423_result.json",
+    "occurrence": 1,
+    "bytes": 213,
+    "sha256": "39d732450b47f4d5dae3cfac05103ec28c88a65db3a2bb79d3472b556f35fed7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。`plan013-random-reward-s42-r4` 的 metrics 字段已写入全部窗口指标，训练曲线显示 prove_rate 从初期 ~0.12 稳步上升至最终 ~0.97，500 步完整收敛。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan013-window-metrics.md"
+}

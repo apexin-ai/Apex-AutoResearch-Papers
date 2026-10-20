@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8fee6b5f863087b50446",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analysis b02 pooled prep",
+  "task_key": "worker_analysis_b02-pooled-prep_20260516T052115",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_b02-pooled-prep_20260516T052115_result.json",
+    "occurrence": 1,
+    "bytes": 1104,
+    "sha256": "c969f89ffd876787160e80b3efdd650b25d55123ee4b02981fde948790229d6e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本工作正常。s42 结果清晰：\n\n**β=0.2 ISR s42 发现**：\n- PR = 100%（所有 100 题都 proved）\n- ISR* = 0.602（proved-only mean）\n- **Genuine = 0%** — 100/100 proved 样本全是 H7a（text-match tautology）\n- ISR 分布集中在 0.5（75%）和 1.0（18%），典型的单 premise = conclusion 模式\n- 完全 Goodhart 崩溃：比 β=0.3（50% genuine）更严重\n\n与 baselines 对比：\n| β | PR | Genuine% | 模式 |\n|---|-----|----------|------|\n| 0.1 | 77±14% | 71% | 部分成功 |\n| **0.2** | **100%** (s42) | **0%** | **完全 H7a tautology** |\n| 0.3 | 66±42% | 50% | 混合不稳定 |\n\nβ=0.2 s42 的表现反直觉地比 β=0.3 更差（0% vs 50% genuine）。100% H7a 意味着模型学会了完美的 tautology 策略：每个问题都生成一条 premise 等于 conclusion，solver 必定通过，ISR ≈ 0.5。\n\n脚本已在服务器上就位 `/root/solver-trace-ablation/scripts/analyze_b02_pooled.py`。s43/s44 完成训练并跑完 eval 后，执行 `python3 scripts/analyze_b02_pooled.py` 即可得到 3-seed pooled 报告。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-b02-pooled-prep.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ab5d8c9cdd9fbae0bcac",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_17_1778944003.md",
+  "task_key": "loop_17_1778944003",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_17_1778944003.md",
+    "occurrence": 1,
+    "bytes": 3734,
+    "sha256": "d5adc490cbfdbe82e98c6cd5925d4ade9659cf754be78fea7c8a77312270dc02"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 17\nreason: max_messages\nupdated: '2026-05-16T14:49:52+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0 和 cuda:1（westd-39279），不得用其他卡\n- **旧方向全部暂停**：5-seed 扩展、1.7B β=0.3、β=0.05、random 补种——Director 明确禁止，不提交\n- tmux session 名**不得含 `.`**（导致 cron PID 验证失败的 bug，用 `-` 替代）\n- 汇报数字必须逐条标注 registry exp_id——之前因 β=0.1 数据错报被 Director 严厉纠正 3 次\n- Registry 状态机不允许 DONE→RUNNING，需创建新 exp_id（-r2/-r3 后缀）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-39279，工作目录 `/root/solver-trace-ablation`\n- Python：`/root/miniconda3/bin/python`，激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型：`/root/autodl-tmp/models/Qwen3-4B`、`/root/autodl-tmp/models/Qwen3-1.7B`、`/root/autodl-tmp/models/Qwen3-8B`\n- 数据：`/root/solver-trace-ablation/data/proofwriter_fol_100.jsonl`（100 条）\n- 磁盘：`/root/autodl-tmp/` 250GB，已用 ~216GB，剩余 ~35GB（偏紧）\n- 活跃进程：Worker `worker_code_gated-curriculum-and-submit_20260516T142942` 正在 kill 旧实验 + 实现 curriculum warmup + 提交新实验\n- Cron：gated-isr-t03-s42 (PID 860451) 和 gated-isr-t03-s43 (PID 860525) 已被 kill，cron 待清理\n- `gated-isr-t03-s43` registry 仍为 RUNNING/failed（需转 DONE）\n\n### 3. 📊 当前状态\n**刚做完**：ISR-Gated GRPO τ=0.3 双卡实验失败（death spiral: gate 太严，模型初始能力过不了 gate → zero gradient）。Director 指示 kill + 改用 2-phase curriculum。\n\n**正在做**：Worker 正在实现 `--warmup_steps` 参数（Phase 1: exec-only 热身 100 步，Phase 2: ISR-gated τ=0.2），然后双卡提交 `gated-isr-curriculum-t02-s42` / `gated-isr-curriculum-t02-s43`。\n\n**Registry RUNNING/PREPARING**：\n- gated-isr-t03-s42: DONE/failed（已标记）\n- gated-isr-t03-s43: RUNNING/failed（需转 DONE — Worker kill 后处理）\n\n**等待**：Worker 回调（curriculum 代码 + 双卡提交确认）\n\n### 4. 📋 待办（条件触发式）\n- Worker `gated-curriculum-and-submit` 回调 → 确认双卡启动、注册 registry RUNNING + cron（用 PID 不用 tmux 名）、汇报 Director\n- Curriculum 实验完成 (cron 回调) → spawn eval worker: `eval_sta.py` + `classify_h7.py` → 汇报 PR/ISR/taxonomy/genuine\n- 成功标准：PR>50% AND genuine>30%（vs exec-only baseline PR=93% genuine=7.5%）\n- 如果 curriculum 也 fail → 汇报 Director，可能需要进一步降 τ 或延长 warmup\n- gated-isr-t03-s43 registry 需转 DONE（conclusion=failed 已设，status 卡在 RUNNING）\n\n### 5. 🎯 战略上下文\n- **方向转折**：用户认为纯 negative/诊断论文说服力不够，要求正向验证。ISR-Gated GRPO 是当前唯一批准的正向方向\n- **核心 insight**：ISR 作为连续 reward → Goodhart（已证 4B/1.7B 均被 hack）。ISR 作为二值 gate（不参与梯度）→ 理论上可避免。这是论文从\"诊断问题\"转向\"提出解法\"的关键\n- **H9 发现**（1.7B）：ex falso quodlibet / 矛盾注入 = 新 hacking 模式，绕过 H7/H1/H8 检测器。已有 integration plan 在 artifacts/\n- **τ=0.3 太严的教训**：模型初始 PR≈0，过不了 gate → 无梯度 → 死亡螺旋。Curriculum warmup (100 步 exec-only) 是解法\n- **易错点**：不要混淆 `gated-isr-t03-*`（τ=0.3，已 fail）和 `gated-isr-curriculum-t02-*`（τ=0.2 + warmup，新实验）\n- **EMNLP DDL**: 2026-05-25（9 天后）\n- **标题讨论中**：PI 不满意旧标题，已提 8 个备选，推荐 \"Valid but Vacuous: Reward Hacking in Neurosymbolic Proof Generation\"\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-17-1778944003.md"
+}

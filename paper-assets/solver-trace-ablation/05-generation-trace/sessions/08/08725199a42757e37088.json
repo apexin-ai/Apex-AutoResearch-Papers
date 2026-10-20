@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "08725199a42757e37088",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "paper figure fig4 fix visual",
+  "task_key": "worker_paper_figure_fig4-fix-visual_20260514T181312",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig4-fix-visual_20260514T181312_result.json",
+    "occurrence": 1,
+    "bytes": 474,
+    "sha256": "ae280846afbc7eb4dcf266fe9a1ddebde53a059467dae422f60318fe003ae89f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个修复完成：\n\n1. **统计面板**：从右上角 `(0.97, 0.97)` 移到左上角 `(0.03, 0.97)`，legend 下移到 `center left` 避免重叠\n2. **FOL s43 ‡ 标注**：在 s43 FOL ISR 柱子上方添加 ‡ 符号（y=0.06，位于 PR 标签之上），底部添加脚注 \"‡ Evaluated with sampling (T=0.7), not greedy decoding\"\n\n数据值、颜色、字体等其他元素未改动。PDF 和 PNG 均已生成并同步到 artifacts 目录。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig4-fix-visual.md"
+}

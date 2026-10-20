@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1b39c4fcc5d14652e120",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops plan016 isr extract",
+  "task_key": "worker_ops_plan016-isr-extract_20260515T202430",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_plan016-isr-extract_20260515T202430_result.json",
+    "occurrence": 1,
+    "bytes": 1180,
+    "sha256": "aa324333edde687c83c197d1da58628d794590b739e341c9e5a6678c6de4f820"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个备份文件内容一致。以下是 plan016-extended-1000-s42 的 ISR 指标：\n\n## eval_sta 结果\n\n**文件路径**：\n- `/root/autodl-tmp/eval_results_backup/plan016_extended_1000_s42_eval_results.json`\n- `/root/autodl-tmp/eval_backups/plan016_extended_1000_s42_eval_results.json`\n\n**Summary 指标**：\n\n| 指标 | 值 |\n|------|------|\n| `mean_isr` | **0.0027** |\n| `proved_only_mean_isr` | **0.0028** |\n| `isr_std` | 0.0118 |\n| `median_isr` | 0.0 |\n| `min_isr` | 0.0 |\n| `max_isr` | 0.0588 |\n| `isr_pr_ratio` | 0.0028 |\n| `n_proved` | 96/100 |\n| `prove_rate` | 0.96 |\n\n**按 answer_type 分**：\n- `false`: 26/29 proved, mean_isr = 0.0\n- `unknown`: 30/31 proved, mean_isr = 0.00526\n- `true`: 40/40 proved, mean_isr = 0.00261\n\n## 与论文对比\n\n论文引用 ISR* = 0.003 (0.0027)：\n- `proved_only_mean_isr` = 0.0028 ≈ 0.003（四舍五入一致）\n- `mean_isr` = 0.0027（精确匹配）\n\n**结论：论文数据与 eval_sta 输出一致。**\n\n注意：`outputs/` 目录下没有 `eval_sta_plan016*.json` 文件（只有 classify_h7 文件），eval 结果仅存于 `/root/autodl-tmp/` 的两个备份目录中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-plan016-isr-extract.md"
+}

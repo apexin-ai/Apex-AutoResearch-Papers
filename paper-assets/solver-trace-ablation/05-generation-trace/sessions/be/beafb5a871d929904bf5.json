@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "beafb5a871d929904bf5",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "eval s43 do sample reeval",
+  "task_key": "worker_eval_s43-do-sample-reeval_20260514T035320",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_s43-do-sample-reeval_20260514T035320_result.json",
+    "occurrence": 1,
+    "bytes": 878,
+    "sha256": "854ecee7da00cb34506cf27a56ec98509d3f95caa92a537ed664cd8d621b425a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。结果摘要：\n\n## do_sample 评估结果\n\n| 指标 | greedy (原) | do_sample=True, T=0.7 |\n|------|-------------|----------------------|\n| prove_rate | 13% (13/100) | **14% (14/100)** |\n| mean_isr | 0.0000 | 0.0000 |\n| avg gen time | ~12s | ~10.9s |\n\n**结论：sampling 没有修复问题。** PR 仅从 13% → 14%（多 proved 1 个样本），统计上无显著差异。所有 ISR 仍为 0.0000。\n\n大多数样本（~86/100）仍然 gen=11-12s hit max_new_tokens，即使用 temperature=0.7 sampling 也无法打断 repetition collapse。少数 proved 的样本 gen=4-7s（没有 hit max_tokens）。\n\n**这不是 greedy decoding 的 artifact。模型确实退化了。** 训练 PR=88.3% 与 eval PR=14% 的巨大差距说明 s43-r4 训练时发生了 reward hacking / 过拟合，学到的模式不具备泛化能力。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-s43-do-sample-reeval.md"
+}

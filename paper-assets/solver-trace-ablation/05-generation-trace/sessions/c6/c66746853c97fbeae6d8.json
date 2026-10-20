@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c66746853c97fbeae6d8",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "monitor plan001 r2 plan005",
+  "task_key": "worker_monitor_plan001-r2-plan005_20260513T234045",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_plan001-r2-plan005_20260513T234045_result.json",
+    "occurrence": 1,
+    "bytes": 1640,
+    "sha256": "a03cf0df9f00ce4f2a6c88e5b1fd8c264bcc2862bf0f48702f8c5a4cb29300b7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态汇报\n\n### 实验 1: plan001-exec-only-s42-r2 (cuda:0)\n\n| 项目 | 值 |\n|------|-----|\n| PID 84901 | **存活**，已运行 1h00m |\n| 当前进度 | **478/500**（95.6%） |\n| 最新 metrics (step 478) | prove_rate=**1.000**, isr=**1.000**, reward=**1.000** |\n| 近 20 步 prove_rate 范围 | 0.500 - 1.000，多数 ≥ 0.875 |\n| Checkpoints | checkpoint-400, checkpoint-450 ✅ |\n| 速度 | ~5-7s/step |\n| **预计剩余** | **~2 分钟** |\n\nprove_rate 在 step 378 后确实基本饱和（频繁触及 1.0），reward = prove_rate = isr（sta_weight=0 符合预期）。\n\n---\n\n### 实验 2: plan005-sta-low-s42 (cuda:1)\n\n| 项目 | 值 |\n|------|-----|\n| PID 85790 | **存活**，已运行 58m |\n| 当前进度 | **403/500**（80.6%） |\n| 最新 metrics (step 403) | prove_rate=**0.750**, isr=**0.333**, reward=**0.708** |\n| 近 20 步 prove_rate 范围 | 0.250 - 1.000，多数 0.750-1.000 |\n| 近 20 步 ISR 范围 | 0.036 - 0.464，多数 0.1-0.3 |\n| Checkpoints | checkpoint-350, checkpoint-400 ✅ |\n| 速度 | ~8-10s/step |\n| **预计剩余** | **~15 分钟** |\n\n---\n\n### 对比要点\n\n- **prove_rate**: exec-only 在 step 450+ 几乎全 ≥ 0.875；STA-low 在 step 400 附近仍有波动（0.25-1.0），整体偏低\n- **ISR**: exec-only 的 ISR ≡ prove_rate（无 STA 成分，符合预期）；STA-low 的 ISR 远低于 prove_rate（多数 0.1-0.3），说明 STA weight=0.1 对 solver trace 的中间步骤评分拉低了 ISR\n- **收敛状态**: exec-only 即将完成且已饱和；STA-low 还有约 100 步，prove_rate 上升趋势存在但远未饱和"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-plan001-r2-plan005.md"
+}

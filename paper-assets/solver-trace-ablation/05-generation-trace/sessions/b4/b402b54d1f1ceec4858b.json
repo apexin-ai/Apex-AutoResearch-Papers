@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "b402b54d1f1ceec4858b",
+  "project": "solver-trace-ablation",
+  "kind": "worker",
+  "title": "code d158 sft eval gate",
+  "task_key": "worker_code_d158-sft-eval-gate_20260520T145414",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d158-sft-eval-gate_20260520T145414.log",
+    "occurrence": 1,
+    "bytes": 645879,
+    "sha256": "743c6c8633ac95194e705a62411cb4b0ae34b524a8711899cd7cc7108f10ce3f"
+  },
+  "statistics": {
+    "messages": 411,
+    "user_turns": 0,
+    "tool_calls": 173,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 60,
+      "tool_call": 173,
+      "tool_result": 173,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 411,
+      "chunks": [
+        {
+          "path": "b402b54d1f1ceec4858b-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "b402b54d1f1ceec4858b-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "b402b54d1f1ceec4858b-part-0003.json",
+          "message_count": 51
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-d158-sft-eval-gate.md"
+}

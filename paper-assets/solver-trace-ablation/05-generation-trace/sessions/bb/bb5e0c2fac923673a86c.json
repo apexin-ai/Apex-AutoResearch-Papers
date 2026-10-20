@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bb5e0c2fac923673a86c",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_7_1778784423.md",
+  "task_key": "loop_7_1778784423",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_7_1778784423.md",
+    "occurrence": 1,
+    "bytes": 3637,
+    "sha256": "d80dfda81d321b6685fce12b4b8e9ce7efa68ce4e4bbb1d2d8247f8f00aac1e7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: idle_timeout\nupdated: '2026-05-14T18:46:08+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单必须查 `get_project_resource_usage` 的 `execution.gpu_ids`，当前服务器 westd-39279 有 2× RTX PRO 6000\n- 磁盘 240G/250G (96%)，任何新实验前必须清理旧 checkpoint（`/root/autodl-tmp/outputs/`）\n- `CUDA_VISIBLE_DEVICES` 必须在 `bash -c` 内部 export，不能外部设\n- plan013 vs plan017 公式结构不同，论文不可简化为 \"additive vs convex\" 对照 (D027)\n- ISR β=0.1 hacking rate 69.1%——论文标 \"lowest hacking rate\"，不标 \"no hacking\" (D044)\n- D051 2.4x 已作废，premise-count-matched 1.06x 是定论\n- s44 Prolog STA: Reviewer 核实为 query-as-fact gaming，strict classifier 判 genuine 是错的\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-39279，工作目录 `/root/solver-trace-ablation/`\n- **Python**: `/root/miniconda3/bin/python`，激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **GPU**: 2× RTX PRO 6000 Blackwell 94GB，CUDA 12.8，PyTorch 2.10.0+cu128\n- **模型**: Qwen3-4B (ModelScope 下载，7.6GB)\n- **Solvers**: Prover9 (LADR 编译), SWI-Prolog 8.4.2 (`/usr/bin/swipl`), Z3 4.16.0.0\n- **数据盘**: `/root/autodl-tmp/` 250GB (当前 96% 占用)\n- **活跃进程**: 无。所有 50 个实验已完成，无 cron，无 tmux session\n- **W&B**: 已配置（详见项目 config）\n- **文献资产**: `artifacts/literature_goodhart.md` (30+ 篇), `literature_map.yaml` (33 篇, 6 类别)\n\n### 3. 📊 当前状态\n所有实验完成，项目进入 **✍️ Writing 阶段**。\n\n- Registry: 50 实验全部 DONE (success 11 / negative 19 / failed 18 / killed 2)\n- 无 RUNNING / PREPARING / PENDING 实验\n- 无活跃 Worker / Cron\n- 三条 Claim 全部闭环：Claim 1 (STA 诊断能力), Claim 2 (Goodhart/ISR 无结构优势, D057), Claim 3 (跨逻辑泛化 3/3 gaming, D059)\n- DDL: **2026-05-25**（剩 11 天）\n- 待办：writing_plan.yaml 审批 → 论文初稿 → submit_paper_to_review\n- GPU 当前空闲，待写作期间补充实验需求\n\n### 4. 📋 待办（条件触发式）\n- writing_plan.yaml 审批通过 → 按 plan 分 section spawn Writer Workers 并行写作\n- Director 要求补充实验 → 查 GPU 白名单 + 清磁盘 → 提交\n- Paper Agent/Reviewer 指出 evidence gap → 设计补充实验 → 走审批流\n- 论文初稿完成 → submit_paper_to_review → 等 Reviewer 反馈\n- 磁盘清理条件：任何新实验前先清 `/root/autodl-tmp/outputs/` 旧 checkpoint\n\n### 5. 🎯 战略上下文\n**核心结论**: STA/ISR 是 GRPO neurosymbolic formalizer 的诊断工具 + Goodhart's Law 案例研究。ISR-as-reward 全剂量失败（低剂量 meta-Goodhart，高剂量 classic Goodhart）。Conclusion embedding 是 GRPO 通用现象 (52-80%)。Prolog 跨 logic type 3/3 Goodhart 且 0% genuine，比 FOL 更极端。\n\n**决策链关键节点**:\n- D051: 2.4x ISR 优势完全是 premise-count artifact → 1.06x 定论\n- D057: Claim 2 闭环（3-seed random β=0.1 控制组，H7=0%）\n- D059: Claim 3 闭环（Prolog STA 3-seed，3 distinct gaming pathways）\n\n**易踩的坑**:\n1. Strict H7 classifier 有盲区（s43 uppercase pseudo-Prolog, s44 query-as-fact 都绕过了）——论文必须同时报告 strict 和 functional (n_necessary) 分析\n2. exec-only s42 不是 \"healthy seed\"——87.1% conclusion embedding，只是被冗余 premises 稀释了 ISR\n3. Hacking taxonomy 是 **7 种**（含第 7 种 query-as-fact），不是 6 种\n4. 磁盘 96%，新实验必须先清理\n5. 写作时数字必须追溯 registry exp_id，不可凭记忆\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-7-1778784423.md"
+}

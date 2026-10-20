@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2a1cb2e71db2eb1ed2db",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "paper page compression",
+  "task_key": "worker_paper_page-compression_20260514T200009",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_page-compression_20260514T200009_result.json",
+    "occurrence": 1,
+    "bytes": 60,
+    "sha256": "539c5ee280c83496452f08c60fabeaa8aa9295cad606b6a30c73790da829b681"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 11:10pm (UTC)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-page-compression-copy-2.md"
+}

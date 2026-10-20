@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "becc04698d90f4411368",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops submit exec only s46",
+  "task_key": "worker_ops_submit-exec-only-s46_20260517T005240",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_submit-exec-only-s46_20260517T005240_result.json",
+    "occurrence": 1,
+    "bytes": 214,
+    "sha256": "fa307a8176002b20471b4d9ea4d48da63326442552b4f6a5ad36ab6574e204cf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练正常启动：\n\n| 项目 | 值 |\n|------|-----|\n| PID | 5439 |\n| GPU | 1 |\n| 显存占用 | 24,770 MiB / 97,887 MiB |\n| GPU 利用率 | 96% |\n| tmux session | `plan001-exec-only-s46` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-submit-exec-only-s46.md"
+}

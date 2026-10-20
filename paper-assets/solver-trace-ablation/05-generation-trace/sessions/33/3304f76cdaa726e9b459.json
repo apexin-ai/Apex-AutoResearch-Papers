@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3304f76cdaa726e9b459",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ssh check both warmstart status",
+  "task_key": "worker_ssh_check-both-warmstart-status_20260516T171200",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check-both-warmstart-status_20260516T171200_result.json",
+    "occurrence": 1,
+    "bytes": 501,
+    "sha256": "e39e1213eb09a6cd44b69b4c5ea9f480efc3cb53a0f80dc2e06597d45b1d86ac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断完成\n\n| 实验 | 状态 | 结论 |\n|------|------|------|\n| **gated-isr-warmstart-t015-s43** (τ=0.15) | DONE ✓ | 300/300 完成，registry 已更新 conclusion=success。训练动态：67% 步 prove_rate=0，后 30 步近乎 collapse，需 eval_sta.py 确认最终模型质量 |\n| **gated-isr-warmstart-t02-s43-r2** (τ=0.2) | 运行中 228/300 | GPU 0 正常跑，95% util，预计几分钟内完成 |\n\nt02 无需干预，等它自然结束后再更新 registry。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-both-warmstart-status.md"
+}

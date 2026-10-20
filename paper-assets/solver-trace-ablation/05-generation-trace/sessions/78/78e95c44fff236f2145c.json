@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "78e95c44fff236f2145c",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "paper writing introduction",
+  "task_key": "worker_paper_writing_introduction_20260514T192854",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_introduction_20260514T192854_result.json",
+    "occurrence": 1,
+    "bytes": 979,
+    "sha256": "7dc449a0a607f381ee354e394b98e098964f110bba62ccfa226b5a7a93425304"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Introduction 已写入。主要改动：\n\n1. **结构调整**：按 Hook → Gap → 现有方法不足 → STA/ISR + 诊断结果 → Meta-Goodhart → Cross-logic → Contributions → Road map 六段式重组\n2. **Contributions 改为 `enumerate[nosep,leftmargin=*]`** 编号列表，每条 1-2 句\n3. **`\\autoref{fig:sta-overview}`** 替换 `Figure~\\ref{}`\n4. **`\\citep{}` 替换 `\\cite{}`**（ACL 格式要求括号引用）\n5. **补充引用**：加入 `\\citep{lightman-verify-step}`（process reward）、`\\citep{folio}`（数据集）\n6. **新增内容**：process reward 局限性段落、\"No existing method provides...\" 总结句、annotation-free/solver-agnostic 定位\n7. **末尾 road map** 指向 `\\S\\ref{sec:related-work}`/`\\S\\ref{sec:method}`/`\\S\\ref{sec:experiments}`/`\\S\\ref{sec:discussion}`\n8. **所有数字与 experiments.tex/method.tex 一致**：93%/87%/0.642→0.132→0.003、64.5% H7、1.06×、92.9% genuine 等"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-introduction.md"
+}

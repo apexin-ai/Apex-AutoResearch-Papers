@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8a66195354d0f3286051",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "paper figure fig4 prolog",
+  "task_key": "worker_paper_figure_fig4_prolog_20260514T180942",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig4_prolog_20260514T180942_result.json",
+    "occurrence": 1,
+    "bytes": 334,
+    "sha256": "b33c1d91a7d63a4d13cdc2e1f19e7be323e1b8c9934fadd962ca132ab618456c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Fig4 已生成并注册（`art_20260514_48cbb0`）。\n\n- PDF: `figures/paper/fig4_prolog_comparison.pdf`（24KB, 300 DPI 矢量）\n- 脚本: `figures/paper/gen_fig4.py`\n- 包含：grouped bars（FOL 深蓝 / Prolog 橙红）、PR 标注、s44† tautological 注释、FOL/Prolog 均值虚线、右上角统计面板"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig4-prolog.md"
+}

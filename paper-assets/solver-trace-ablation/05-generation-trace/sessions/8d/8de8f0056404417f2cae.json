@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8de8f0056404417f2cae",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "diagnose 1 7b isr b03 exit",
+  "task_key": "worker_diagnose_1_7b-isr-b03-exit_20260516T214442",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_1_7b-isr-b03-exit_20260516T214442_result.json",
+    "occurrence": 1,
+    "bytes": 556,
+    "sha256": "dadc9296c90bdf7a215d52c36367e9b0107b6d2b6e0ee9f6da5f36cb4c3e8c2a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：**预期的 training collapse 没有发生。**\n\n- **训练完成**：500/500 步，正常结束，耗时 ~2h\n- **最终统计**：prove_rate=0.165, mean_isr=0.053\n- **模型已保存**：两个 safetensors 文件（~6.4GB total）+ checkpoint-500\n\n训练**没有** collapse。最后几步 prove_rate 在 0.0~0.625 之间波动（batch variance 大），整体 prove_rate≈16.5% 维持了非零学习信号。ISR 很低（0.053），说明 ISR 惩罚在 1.7B 模型上压制了 metric gaming 但没有导致零梯度崩溃。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-1-7b-isr-b03-exit.md"
+}

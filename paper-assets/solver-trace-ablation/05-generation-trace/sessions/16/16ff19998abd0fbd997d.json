@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "16ff19998abd0fbd997d",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "figure fig1 sta overview",
+  "task_key": "worker_figure_fig1-sta-overview_20260514T192343",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_fig1-sta-overview_20260514T192343_result.json",
+    "occurrence": 1,
+    "bytes": 191,
+    "sha256": "a76feb529a92d3f45e77b5d29b01f1fc77879af4ffb5a768b0fdaf1e5d8b88e2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PDF 已生成并注册：`paper/figures/fig1_sta_overview.pdf` (37KB, 矢量 PDF)。\n\n生成脚本在 `paper/figures/gen_fig1.py`，后续需要微调可直接修改重跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-fig1-sta-overview.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5c4acdb3a75b085bb3eb",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "diag w2 1 7b pilot check",
+  "task_key": "worker_diag_w2-1_7b-pilot-check_20260516T111929",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_w2-1_7b-pilot-check_20260516T111929_result.json",
+    "occurrence": 1,
+    "bytes": 1162,
+    "sha256": "01b5f3137bdd611e389e33ea35812223078eedf53b8d8d47e3ced4cfe086c087"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n### 两个实验均正常运行中\n\n| 项目 | w2-qwen3-1.7b-exec-pilot | w2-qwen3-1.7b-isr-pilot |\n|------|--------------------------|-------------------------|\n| **状态** | 运行中 | 运行中 |\n| **当前步数** | 75/500 (15%) | 75/500 (15%) |\n| **运行时间** | ~11m27s | ~11m29s |\n| **GPU** | GPU 0, 41026 MiB, 70% util | GPU 1, 41026 MiB, 93% util |\n| **Checkpoint** | checkpoint-50 已保存 | checkpoint-50 已保存 |\n| **错误** | 无 | 无 |\n\n### 关键指标（最近 steps）\n\n- **exec-pilot**: reward 接近 0（step 55-75 大部分为 0.0，偶尔 0.125），prove_rate 极低。训练信号弱。\n- **isr-pilot**: reward 明显更高（step 74=0.754, step 75=0.508），prove_rate 达到 50-75%。ISR reward 在发挥作用。\n\n### 其他\n- 磁盘：/root/autodl-tmp 199G/250G (80%)，剩余 52G，暂时安全\n- 无 error/traceback/OOM\n- 预计完成时间：按 ~9s/step 估算，剩余 425 步 ≈ 64 分钟（~20:25 左右完成）\n\n### 问题确认\ntmux session name 含 `.` 导致 cron 监控无法匹配，但训练进程本身不受影响，两个实验都在正常推进。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-w2-1-7b-pilot-check.md"
+}

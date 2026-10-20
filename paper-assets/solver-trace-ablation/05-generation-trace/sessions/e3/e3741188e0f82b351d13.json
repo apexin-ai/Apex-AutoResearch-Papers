@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e3741188e0f82b351d13",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analysis plan018 additive random b01 s42",
+  "task_key": "worker_analysis_plan018-additive-random-b01-s42_20260514T081124",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan018-additive-random-b01-s42_20260514T081124_result.json",
+    "occurrence": 1,
+    "bytes": 83,
+    "sha256": "dbc085a8a7cd53fb4caaac81e3d6f4a720a397cfbdba8c227e76dd532d25f674"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有后台任务已完成。plan018 分析工作已全部结束。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan018-additive-random-b01-s42.md"
+}

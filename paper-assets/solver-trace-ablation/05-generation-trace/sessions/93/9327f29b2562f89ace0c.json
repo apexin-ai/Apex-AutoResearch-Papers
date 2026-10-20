@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "9327f29b2562f89ace0c",
+  "project": "solver-trace-ablation",
+  "kind": "worker",
+  "title": "eval batch sta 3ckpt",
+  "task_key": "worker_eval_batch-sta-3ckpt_20260514T031822",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_batch-sta-3ckpt_20260514T031822.log",
+    "occurrence": 1,
+    "bytes": 1003652,
+    "sha256": "2191e26c27fda59b61434d6c4d06b0ee02ae271a06c1b3036eecda0a8c15c751"
+  },
+  "statistics": {
+    "messages": 774,
+    "user_turns": 0,
+    "tool_calls": 339,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 3,
+      "assistant": 90,
+      "tool_call": 339,
+      "tool_result": 339,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 774,
+      "chunks": [
+        {
+          "path": "9327f29b2562f89ace0c-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "9327f29b2562f89ace0c-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "9327f29b2562f89ace0c-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "9327f29b2562f89ace0c-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "9327f29b2562f89ace0c-part-0005.json",
+          "message_count": 54
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-batch-sta-3ckpt.md"
+}

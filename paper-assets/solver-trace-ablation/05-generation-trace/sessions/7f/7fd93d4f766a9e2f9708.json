@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7fd93d4f766a9e2f9708",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "knowledge table2 h7 update",
+  "task_key": "worker_knowledge_table2-h7-update_20260514T101302",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_knowledge_table2-h7-update_20260514T101302_result.json",
+    "occurrence": 1,
+    "bytes": 807,
+    "sha256": "2c325d72e616cefe3dc9a419e1077fa6103783a345344e1ac8e95edb138cf8b8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。更新汇总：\n\n**新建文件：**\n- `artifacts/table2_hacking_taxonomy.csv` — 含 H1/H3/H4/H7 + Genuine/Total，H7 含 3-seed 数据\n- `artifacts/table2_hacking_taxonomy.tex` — LaTeX 表格，脚注含 H7 multi-seed 明细和定义\n\n**更新文件：**\n- `artifacts/paper_tables_draft.md` — Table 2 加入 H7 行，H1 从 72.8%→60.5%（10 samples reclassified to H7），新增 H7 interpretation\n- `artifacts/hacking_taxonomy_comparison.md` — 分布表 H7 从 † 改为校准值 10/12.3%，H1 从 59→49，Key Findings 新增 H7 条目，Mode 6 section 更名为 H7 并补充校准数据\n\n**关键数值变化：** H7 的 10 samples 从 H1 (Conclusion Embedding) 中拆出，H1 Δ 从 -5.7pp 变为 -18.0pp，总 hacking rate 不变（74.1% vs 82.3%）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/knowledge-table2-h7-update.md"
+}

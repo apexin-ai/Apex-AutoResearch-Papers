@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3ebfee9cdfc4ca6a7ed0",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "eval random b03 s44 r2 check",
+  "task_key": "worker_eval_random-b03-s44-r2-check_20260515T025517",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_random-b03-s44-r2-check_20260515T025517_result.json",
+    "occurrence": 1,
+    "bytes": 59,
+    "sha256": "feea162cebb5385818ef8c2d0444e625f2d577933e473481609eb9152cd91e2a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 4:10am (UTC)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-random-b03-s44-r2-check.md"
+}

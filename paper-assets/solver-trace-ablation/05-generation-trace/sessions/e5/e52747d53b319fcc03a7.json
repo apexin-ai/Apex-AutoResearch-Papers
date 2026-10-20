@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "e52747d53b319fcc03a7",
+  "project": "solver-trace-ablation",
+  "kind": "worker",
+  "title": "infra env setup",
+  "task_key": "worker_infra_env-setup_20260513T173539",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_env-setup_20260513T173539.log",
+    "occurrence": 1,
+    "bytes": 492970,
+    "sha256": "c46a7ba31a238ea2bba5541af80a30a353461b0bc0eab4e98afc759f42304970"
+  },
+  "statistics": {
+    "messages": 415,
+    "user_turns": 0,
+    "tool_calls": 178,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 55,
+      "tool_call": 178,
+      "tool_result": 178,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 415,
+      "chunks": [
+        {
+          "path": "e52747d53b319fcc03a7-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "e52747d53b319fcc03a7-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "e52747d53b319fcc03a7-part-0003.json",
+          "message_count": 55
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/infra-env-setup.md"
+}

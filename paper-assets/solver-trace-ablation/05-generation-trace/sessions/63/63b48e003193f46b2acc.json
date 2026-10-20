@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0",
+  "id": "63b48e003193f46b2acc",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "writing related work",
+  "task_key": "worker_writing_related-work_20260514T191232",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_related-work_20260514T191232_result.json",
+    "occurrence": 1,
+    "bytes": 1075,
+    "sha256": "575adc086e3cb8667b2f7858cc9f66085c50c063c197bde57b10ca31338de8f7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "草稿已写入 `paper/related_work.tex`。\n\n```json\n{\n  \"section\": \"related_work\",\n  \"word_count\": 753,\n  \"citations_needed\": [],\n  \"notes\": \"All 19 citations use existing bib entries. No new bib entries required. Four clusters ordered far→near: mutation testing (3 refs), reward shaping / process supervision (4 refs), Goodhart / reward hacking (5 refs), neurosymbolic reasoning (7 refs). Each cluster ends with differentiation to STA/ISR. Cross-references to §3 (diagnostic) and §4 (Goodhart) match existing section labels.\"\n}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "section": "related_work",
+              "word_count": 753,
+              "citations_needed": [],
+              "notes": "All 19 citations use existing bib entries. No new bib entries required. Four clusters ordered far→near: mutation testing (3 refs), reward shaping / process supervision (4 refs), Goodhart / reward hacking (5 refs), neurosymbolic reasoning (7 refs). Each cluster ends with differentiation to STA/ISR. Cross-references to §3 (diagnostic) and §4 (Goodhart) match existing section labels."
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-related-work-copy-2.md"
+}

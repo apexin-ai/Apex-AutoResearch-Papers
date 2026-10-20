@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9ac3f957bb6b3feaa96a",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops check server status",
+  "task_key": "worker_ops_check-server-status_20260513T230158",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-server-status_20260513T230158_result.json",
+    "occurrence": 1,
+    "bytes": 1660,
+    "sha256": "f8a56086664d484aaa753b2a826fc6139d42d19a413e8e2f859919855e27c47d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n### PID 存活状态\n\n| 实验 ID | PID | 状态 | 退出码 | 说明 |\n|---------|-----|------|--------|------|\n| plan001-exec-only-s42 | 83029 | **DEAD** | 2 | 22:20:57Z 即退出 |\n| plan001-exec-only-s42-r2 | 84896 | **ALIVE** | — | 训练中 |\n| plan001-exec-only-s42-r3 | 85710 | **DEAD** | 1 | 22:42:59Z 即退出 |\n| plan005-sta-low-s42 | 85790 | **ALIVE** | — | 训练中 |\n| plan003-eval-exec-only-r5 | 83690 | **DEAD** | 0 | 正常完成，输出 177KB |\n\n### 训练进度\n\n| 实验 | 当前步数 | 进度 | 速度 | tqdm 预估剩余 |\n|------|---------|------|------|--------------|\n| plan001-exec-only-s42-r2 | 158/500 | 31.6% | ~7.5s/step | ~43 min |\n| plan005-sta-low-s42 | 149/500 | 29.8% | ~8.1s/step | ~47 min |\n\n最新 reward：\n- **r2** (exec_only): step 158 reward=0.375, prove_rate=0.375\n- **sta-low**: step 149 reward=0.000, prove_rate=0.000（波动大，step 147 曾达 0.834）\n\n### GPU 使用\n\n| GPU | 显存 | 利用率 | 占用者 |\n|-----|------|--------|--------|\n| cuda:0 | 80323/97887 MiB (82%) | 91% | plan001-exec-only-s42-r2 |\n| cuda:1 | 80355/97887 MiB (82%) | 91% | plan005-sta-low-s42 |\n\n### 已完成实验\n\n- **plan003-eval-exec-only-r5**: 输出存在于 `/root/autodl-tmp/outputs/plan003_eval_exec_only_r5.json` (177KB)\n\n### 死进程（可清理）\n\n- PID 83029 (plan001-exec-only-s42) — exit code 2，启动即失败\n- PID 85710 (plan001-exec-only-s42-r3) — exit code 1，启动即失败\n\n这两个无需清理（进程已不存在），但日志值得检查以了解失败原因。两个存活的训练预计约 45 分钟后完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-server-status.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f6b147727c5f95c8c4ad",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "exp exp2 greedy reeval",
+  "task_key": "worker_exp_exp2-greedy-reeval_20260514T220504",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_exp2-greedy-reeval_20260514T220504_result.json",
+    "occurrence": 1,
+    "bytes": 995,
+    "sha256": "93a3cf4b6d0ee27596c5237e23847169b9b3e7f576bc08e77a27dda50bd634c6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**EXP-2 已完成。** 注册表 `plan001-exec-only-s43-r4` 已包含 greedy 和 sampling 对比结果，checkpoint 已按 C003 删除。\n\n汇总：\n\n| 指标 | Greedy (T=0) | Sampling (T=0.7) | Δ |\n|------|-------------|-------------------|---|\n| PR | 0.13 | 0.14 | -0.01 |\n| ISR* | 0 | 0 | 0 |\n| H1% | 100% (13/13) | 100% (14/14) | — |\n| H7% | 0% | 0% | — |\n| Genuine% | 0% | 0% | — |\n| Mean components (proved) | 18.92 | 18.5 | +0.42 |\n\n结论：**s43 collapse is decoding-invariant**。两种解码策略下 ISR*=0、H1=100%、genuine=0%，PR 仅差 1pp。~85% 的输入触达 max_new_tokens（长重复 clause 输出），~15% 能解析的样本包含 conclusion verbatim 在 14-30 premises 中（n_necessary=0 → ISR=0）。\n\n注册表注释中提到的报告文件 `exp2_s43_greedy_vs_sample.txt` 不存在于服务器上（可能未实际写入）。如果需要生成该报告文件，可以从注册表数据生成。否则无需进一步操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-exp2-greedy-reeval.md"
+}

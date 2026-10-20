@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4b1db2a6a0f494612cf0",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code beta sweep prep",
+  "task_key": "worker_code_beta-sweep-prep_20260516T021822",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_beta-sweep-prep_20260516T021822_result.json",
+    "occurrence": 1,
+    "bytes": 2512,
+    "sha256": "998278aff6469a76b3ebfe599cbdaefd1218de2a887564643a42fa317acd59e5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两张 GPU 均已释放。\n\n---\n\n## 产出汇总\n\n### 1. 环境验证\n| 项目 | 状态 |\n|------|------|\n| GPU | 2 × RTX PRO 6000 96GB，空闲 |\n| PyTorch | 2.10.0+cu128, CUDA=True |\n| `train_grpo.py` | 存在 (19KB, May 15) |\n| `grpo_additive_bonus.yaml` | 存在，base model=Qwen3-4B |\n| `data/train_500_seed42.jsonl` | 存在 (500 examples) |\n| `save_total_limit` | 硬编码为 1 (C003 ✓) |\n\n### 2. train_grpo.py CLI 参数\n| 参数 | 类型 | 默认值 |\n|------|------|--------|\n| `--model_path` | str | None (yaml 覆盖) |\n| `--data_path` | str | None |\n| `--reward_mode` | str | None |\n| `--output_dir` | str | None |\n| `--num_steps` | int | 100 |\n| `--per_device_batch_size` | int | 4 |\n| `--gradient_accumulation_steps` | int | 2 |\n| `--num_generations` | int | 4 |\n| `--max_completion_length` | int | 512 |\n| `--learning_rate` | float | 1e-6 |\n| `--exec_weight` | float | 0.5 |\n| `--sta_weight` | float | 0.5 |\n| **`--beta`** | **float** | **0.3** |\n| `--beta_schedule` | str | \"fixed\" |\n| `--beta_schedule_midpoint` | int | 250 |\n| `--seed` | int | 42 |\n| `--solver` | str | None |\n| `--logic_type` | str | None |\n| `--wandb_project` | str | None |\n| `--wandb_run` | str | None |\n| `--no_wandb` | flag | False |\n| `--warmup_ratio` | float | 0.0 |\n| `--config` | str | None |\n\n`--beta` 接受任意 float，dry-run 确认 β=0.05 被正确传入（日志显示 `beta_t=0.0500`）。\n\n### 3. Launch 脚本\n**路径**: `/root/solver-trace-ablation/scripts/launch_beta_sweep.sh`\n\n包含 9 条注释掉的命令（3 β × 3 seeds），output_dir 命名：\n- `sweep_isr_b005_s{42,43,44}`\n- `sweep_isr_b02_s{42,43,44}`\n- `sweep_isr_b05_s{42,43,44}`\n\n### 4. Dry-run 结果\n**成功**。β=0.05, seed=42, 2 步训练正常完成：\n- Step 1: reward=0.13, prove_rate=0.125, isr=0.100, parse_rate=1.0\n- Step 2: reward=0.00, prove_rate=0.000, isr=0.000, parse_rate=1.0\n- 每步 ~16-21s，loss=0.026, grad_norm=2.77\n- Final model save 因 /tmp 根分区空间不足失败（预期内，正式训练输出到 `/root/autodl-tmp/outputs/` 数据盘无此问题）\n\n### 5. 注意事项\n- **GPU 0 有活跃进程**（PID 586161, 79GB）——启动 sweep 前需确认该进程身份，避免冲突\n- 每个实验约占 ~80GB 显存，**每张 GPU 同一时间只能跑 1 个实验**\n- 9 个实验串行需 ~9 × 3h = 27h；双 GPU 并行约 ~15h\n- 根分区空间紧张，确保所有 output_dir 指向 `/root/autodl-tmp/outputs/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-beta-sweep-prep.md"
+}

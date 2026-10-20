@@ -1,0 +1,1458 @@
+{
+  "schema_version": "1.0",
+  "id": "7f99c0ef603086250c14",
+  "project": "solver-trace-ablation",
+  "kind": "conversation",
+  "title": "analysis registry taxonomy s43 s44",
+  "task_key": "worker_analysis_registry-taxonomy-__-s43-s44_20260515T164655",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_registry-taxonomy-__-s43-s44_20260515T164655.jsonl",
+    "occurrence": 1,
+    "bytes": 79442,
+    "sha256": "8d538dcca170b4d7803d01f2b50472589a807c660f4c751c86e191e9eccbdf7f"
+  },
+  "statistics": {
+    "messages": 71,
+    "user_turns": 0,
+    "tool_calls": 35,
+    "roles": {
+      "tool_call": 35,
+      "tool_result": 35,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T16:55:17.393789+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_registry-taxonomy-__-s43-s44_20260515T164655",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact",
+              "max_results": "6"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T16:55:17.394160+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_registry-taxonomy-__-s43-s44_20260515T164655",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T16:55:17.394348+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_registry-taxonomy-__-s43-s44_20260515T164655",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'plan001-exec-only-s43-1000-r2'}",
+              "project": "solver-trace-ablation",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T16:55:17.394493+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3867}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_registry-taxonomy-__-s43-s44_20260515T164655",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T16:55:17.394616+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_registry-taxonomy-__-s43-s44_20260515T164655",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'plan001-exec-only-s44-1000-r2'}",
+              "project": "solver-trace-ablation",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T16:55:17.394797+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3279}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_registry-taxonomy-__-s43-s44_20260515T164655",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T16:55:17.394959+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_registry-taxonomy-__-s43-s44_20260515T164655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "find /root/solver-trace-ablation -name \"classify_h7*\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T16:55:17.395084+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_registry-taxonomy-__-s43-s44_20260515T164655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "ls /root/solver-trace-ablation/eval_results/",
+              "account": "root"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T16:55:17.395204+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/solver-trace-ablation/scripts/__pycache__/classify_h7.cpython-312.pyc\\\\n/root/solver-trace-ablation/scripts/classify_h7.py\\\\n/root/solver-trace-ablation/scripts/classify_h7.py.bak\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.12}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_registry-taxonomy-__-s43-s44_20260515T164655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T16:55:17.395323+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/solver-trace-ablation/eval_results/': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.76}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_registry-taxonomy-__-s43-s44_20260515T164655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T16:55:17.395479+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_registry-taxonomy-__-s43-s44_20260515T164655",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "limit": "30",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T16:55:17.395922+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (80,599 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/771d790d-567a-45b4-b07f-5d71b4c9e854/tool-results/mcp-agent-ml-research-read_registry-1778863644413.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/771d790d-567a-45b4-b07f-5d71b4c9e854/tool-results/mcp-agent-ml-research-read_registry-1778863644413.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/771d790d-567a-45b4-b07f-5d71b4c9e854/tool-results/mcp-agent-ml-research-read_registry-1778863644413.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_registry-taxonomy-__-s43-s44_20260515T164655",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T16:55:17.396096+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_registry-taxonomy-__-s43-s44_20260515T164655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "find /root/solver-trace-ablation -path \"*/eval*\" -name \"*.json\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T16:55:17.396223+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_registry-taxonomy-__-s43-s44_20260515T164655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "ls /root/solver-trace-ablation/outputs/",
+              "account": "root"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T16:55:17.396349+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/solver-trace-ablation/outputs/eval_sta_plan001_exec_only_s42.json\\\\n/root/solver-trace-ablation/outputs/eval_sta_plan013_random_reward_s42_r4.json\\\\n/root/solver-trace-ablation/outputs/eval_sta_plan002_additive_b03.json\\\\n/root/solver-trace-ablation/outputs/eval_sta_plan001_exec_only_s43_r4.json\\\\n/root/solver-trace-ablation/outputs/eval_sta_plan001_s43_r4_do_sample.json\\\\n/root/solver-trace-ablation/outputs/eval_sta_plan017_additive_random_s42.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_registry-taxonomy-__-s43-s44_20260515T164655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T16:55:17.396475+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"eval_sta_plan001_exec_only_s42.json\\\\neval_sta_plan001_exec_only_s43_r4.json\\\\neval_sta_plan001_s43_r4_do_sample.json\\\\neval_sta_plan002_additive_b03.json\\\\neval_sta_plan013_random_reward_s42_r4.json\\\\neval_sta_plan017_additive_random_s42.json\\\\ngrpo_dryrun.log\\\\ngt_isr_baseline.json\\\\nh7_classification\\\\nphase0_baseline.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_registry-taxonomy-__-s43-s44_20260515T164655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T16:55:17.396624+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_registry-taxonomy-__-s43-s44_20260515T164655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "ls -la /root/solver-trace-ablation/outputs/h7_classification/",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T16:55:17.396770+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 8\\\\ndrwxr-xr-x 2 root root   51 May 15 06:07 .\\\\ndrwxr-xr-x 3 root root 4096 May 15 06:07 ..\\\\n-rw-r--r-- 1 root root 2683 May 15 06:08 exp2_s43_greedy_vs_sample.txt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_registry-taxonomy-__-s43-s44_20260515T164655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T16:55:17.396901+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_registry-taxonomy-__-s43-s44_20260515T164655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "find /root/solver-trace-ablation -name \"*exec*s44*\" -o -name \"*exec*s43*1000*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T16:55:17.397019+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_registry-taxonomy-__-s43-s44_20260515T164655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T16:55:17.397135+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_registry-taxonomy-__-s43-s44_20260515T164655",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/771d790d-567a-45b4-b07f-5d71b4c9e854/tool-results/mcp-agent-ml-research-read_registry-1778863644413.txt | python3 -c \"\nimport json, sys\nraw = json.load(sys.stdin)\ndata = json.loads(raw['result'])\nexps = data['data']['experiments']\n# Find exec-only experiments\nfor eid, exp in exps.items():\n    if 'exec' in eid.lower():\n        print(f'=== {eid} ===')\n        for k in ['status','conclusion','metrics','checkpoint_path','log_path','notes']:\n            if k in exp:\n                print(f'  {k}: {exp[k]}')\n        print()\n\"",
+              "description": "Extract exec-only experiments from registry dump"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T16:55:17.397299+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== plan001-exec-only-s44-1000-r2 ===\n  status: DONE\n  conclusion: success\n  metrics: {'prove_rate': 1, 'n_proved': 100, 'n_problems': 100, 'mean_isr': 0.002, 'isr_std': 0.0146, 'h7_count': 0, 'h7_rate': 0, 'h7a_count': 0, 'h7b_count': 0, 'h1_count': 85, 'h1_rate': 0.85, 'h8_count': 15, 'h8_rate': 0.15, 'genuine_count': 3, 'genuine_rate': 0.03}\n  checkpoint_path: /root/autodl-tmp/outputs/plan001_exec_only_s44_1000_r2\n  log_path: ~/runs/solver-trace-ablation/plan001-exec-only-s44-1000-r2.log\n\n=== plan001-exec-only-s43-1000-r2 ===\n  status: DONE\n  conclusion: success\n  metrics: {'prove_rate': 0.9, 'isr': 0.5308, 'isr_std': 0.2472, 'genuine_rate': 0, 'h7_rate': 1, 'h1_rate': 0, 'h8_rate': 0, 'n_proved': 90, 'n_problems': 100}\n  checkpoint_path: /root/autodl-tmp/outputs/plan001_exec_only_s43_1000_r2\n  log_path: ~/runs/solver-trace-ablation/plan001-exec-only-s43-1000-r2.log\n  notes: 训练完成 1000/1000 步。训练 log 指标: prove_rate=0.835, mean_isr=0.477。等待 eval_sta.py + classify_h7 正式评估。r2 重跑原因: r1 因磁盘满在 step 150 崩溃。\n\n=== plan001-exec-only-s43-r4 ===\n  status: DONE\n  conclusion: negative\n  metrics: {'eval_sampling_prove_rate': 0.14, 'eval_sampling_mean_isr': 0, 'eval_sampling_n_proved': 14, 'eval_sampling_temperature': 0.7, 'eval_sampling_method': 'do_sample=True, temperature=0.7', 'eval_sampling_by_answer': {'true': {'count': 34, 'proved': 6, 'prove_rate': 0.176}, 'false': {'count': 25, 'proved': 2, 'prove_rate': 0.08}, 'unknown': {'count': 41, 'proved': 6, 'prove_rate': 0.146}}, 'eval_greedy_prove_rate': 0.13, 'eval_greedy_mean_isr': 0, 'eval_greedy_proved_only_isr': 0, 'eval_greedy_n_proved': 13, 'eval_greedy_method': 'eval_sta.py default (do_sample=False)', 'eval_greedy_by_answer': {'true': {'count': 34, 'proved': 4, 'prove_rate': 0.118}, 'false': {'count': 25, 'proved': 5, 'prove_rate': 0.2}, 'unknown': {'count': 41, 'proved': 4, 'prove_rate': 0.0976}}, 'eval_greedy_h7_count': 0, 'eval_greedy_h7_rate': 0, 'eval_greedy_h1_count': 13, 'eval_greedy_h1_rate': 1, 'eval_greedy_genui\n…[truncated 2916 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_registry-taxonomy-__-s43-s44_20260515T164655",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T16:55:17.397491+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_registry-taxonomy-__-s43-s44_20260515T164655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "find /root/solver-trace-ablation -name \"*.json\" -newer /root/solver-trace-ablation/outputs/eval_sta_plan001_exec_only_s42.json -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T16:55:17.397617+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_registry-taxonomy-__-s43-s44_20260515T164655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "find /root/solver-trace-ablation -name \"*s44*\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T16:55:17.397799+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/solver-trace-ablation/outputs/eval_sta_plan013_random_reward_s42_r4.json\\\\n/root/solver-trace-ablation/outputs/eval_sta_plan002_additive_b03.json\\\\n/root/solver-trace-ablation/outputs/eval_sta_plan001_exec_only_s43_r4.json\\\\n/root/solver-trace-ablation/outputs/eval_sta_plan001_s43_r4_do_sample.json\\\\n/root/solver-trace-ablation/outputs/eval_sta_plan017_additive_random_s42.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_registry-taxonomy-__-s43-s44_20260515T164655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T16:55:17.397938+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_registry-taxonomy-__-s43-s44_20260515T164655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "find /root/solver-trace-ablation -name \"*s43*1000*\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-15T16:55:17.398093+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/solver-trace-ablation/configs/plan018_random_b01_s44.yaml\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_registry-taxonomy-__-s43-s44_20260515T164655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T16:55:17.398260+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_registry-taxonomy-__-s43-s44_20260515T164655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-15T16:55:17.398387+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_registry-taxonomy-__-s43-s44_20260515T164655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "find /root/autodl-tmp -name \"eval*\" -path \"*exec*\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-15T16:55:17.398511+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/outputs/eval_sta_plan001_exec_only_s44.json\\\\n/root/autodl-tmp/outputs/plan001_exec_only_s43_1000_r2/eval_sta_results.json\\\\n/root/autodl-tmp/outputs/eval_sta_plan006_prolog_exec_s42.json\\\\n/root/autodl-tmp/outputs/plan001_exec_only_s44_1000_r2/eval_sta_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_registry-taxonomy-__-s43-s44_20260515T164655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-15T16:55:17.398657+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_registry-taxonomy-__-s43-s44_20260515T164655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "cat /root/autodl-tmp/outputs/plan001_exec_only_s44_1000_r2/eval_sta_results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-15T16:55:17.399115+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"n_problems\\\\\\\": 100,\\\\n    \\\\\\\"n_proved\\\\\\\": 100,\\\\n    \\\\\\\"prove_rate\\\\\\\": 1.0,\\\\n    \\\\\\\"mean_isr\\\\\\\": 0.002,\\\\n    \\\\\\\"isr_std\\\\\\\": 0.0146,\\\\n    \\\\\\\"median_isr\\\\\\\": 0.0,\\\\n    \\\\\\\"isr_pr_ratio\\\\\\\": 0.002,\\\\n    \\\\\\\"proved_only_mean_isr\\\\\\\": 0.002,\\\\n    \\\\\\\"min_isr\\\\\\\": 0.0,\\\\n    \\\\\\\"max_isr\\\\\\\": 0.125,\\\\n    \\\\\\\"by_answer_type\\\\\\\": {\\\\n      \\\\\\\"false\\\\\\\": {\\\\n        \\\\\\\"count\\\\\\\": 25,\\\\n        \\\\\\\"proved\\\\\\\": 25,\\\\n        \\\\\\\"prove_rate\\\\\\\": 1.0,\\\\n        \\\\\\\"mean_isr\\\\\\\": 0.0\\\\n      },\\\\n      \\\\\\\"unknown\\\\\\\": {\\\\n        \\\\\\\"count\\\\\\\": 41,\\\\n        \\\\\\\"proved\\\\\\\": 41,\\\\n        \\\\\\\"prove_rate\\\\\\\": 1.0,\\\\n        \\\\\\\"mean_isr\\\\\\\": 0.004924953095684803\\\\n      },\\\\n      \\\\\\\"true\\\\\\\": {\\\\n        \\\\\\\"count\\\\\\\": 34,\\\\n        \\\\\\\"proved\\\\\\\": 34,\\\\n        \\\\\\\"prove_rate\\\\\\\": 1.0,\\\\n        \\\\\\\"mean_isr\\\\\\\": 0.0\\\\n      }\\\\n    },\\\\n    \\\\\\\"elapsed_seconds\\\\\\\": 229.1,\\\\n    \\\\\\\"avg_time_per_sample\\\\\\\": 2.3,\\\\n    \\\\\\\"solver\\\\\\\": \\\\\\\"Prover9Solver\\\\\\\",\\\\n    \\\\\\\"logic_type\\\\\\\": \\\\\\\"fol\\\\\\\",\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/outputs/plan001_exec_only_s44_1000_r2\\\\\\\"\\\\n  },\\\\n  \\\\\\\"results\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 0,\\\\n      \\\\\\\"id\\\\\\\": \\\\\\\"folio_765\\\\\\\",\\\\n      \\\\\\\"context\\\\\\\": \\\\\\\"Tipped employees are not entitled to be paid the federal minimum wage by their employees. \\\\\\\\nIf a person is a white-collar worker, they are entitled to be paid the federal minimum wage by their employees. \\\\\\\\nAll lawyers are white-collar workers.\\\\\\\\nEvery advocate is a lawyer.\\\\\\\\nMary is not a lawyer or a tipped employee.\\\\\\\",\\\\n      \\\\\\\"question\\\\\\\": \\\\\\\"Mary is an advocate.\\\\\\\",\\\\n      \\\\\\\"answer\\\\\\\": \\\\\\\"false\\\\\\\",\\\\n      \\\\\\\"formalization\\\\\\\": \\\\\\\"Premises:\\\\\\\\n1. ∀x (A(x) ∨ T(x))\\\\\\\\n2. ∀x (W(x))\\\\\\\\n3. ∀x (L(x))\\\\\\\\n4. W(a)\\\\\\\\n5. L(a)\\\\\\\\n6. A(a)\\\\\\\\n7. T(a)\\\\\\\\n8. A(a)\\\\\\\\n9. W(a)\\\\\\\\n10. A(a)\\\\\\\\n11. W(a)\\\\\\\\n12. A(a)\\\\\\\\nConclusion: A(a)\\\\\\\",\\\\n \n…[truncated 8470 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_registry-taxonomy-__-s43-s44_20260515T164655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-15T16:55:17.399313+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_registry-taxonomy-__-s43-s44_20260515T164655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "cat /root/autodl-tmp/outputs/plan001_exec_only_s43_1000_r2/eval_sta_results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-15T16:55:17.399445+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_registry-taxonomy-__-s43-s44_20260515T164655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "head -100 /root/solver-trace-ablation/scripts/classify_h7.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-15T16:55:17.399773+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"n_problems\\\\\\\": 100,\\\\n    \\\\\\\"n_proved\\\\\\\": 90,\\\\n    \\\\\\\"prove_rate\\\\\\\": 0.9,\\\\n    \\\\\\\"mean_isr\\\\\\\": 0.5308,\\\\n    \\\\\\\"isr_std\\\\\\\": 0.2472,\\\\n    \\\\\\\"median_isr\\\\\\\": 0.6667,\\\\n    \\\\\\\"isr_pr_ratio\\\\\\\": 0.5898,\\\\n    \\\\\\\"proved_only_mean_isr\\\\\\\": 0.5898,\\\\n    \\\\\\\"min_isr\\\\\\\": 0.0,\\\\n    \\\\\\\"max_isr\\\\\\\": 1.0,\\\\n    \\\\\\\"by_answer_type\\\\\\\": {\\\\n      \\\\\\\"false\\\\\\\": {\\\\n        \\\\\\\"count\\\\\\\": 25,\\\\n        \\\\\\\"proved\\\\\\\": 23,\\\\n        \\\\\\\"prove_rate\\\\\\\": 0.92,\\\\n        \\\\\\\"mean_isr\\\\\\\": 0.52\\\\n      },\\\\n      \\\\\\\"unknown\\\\\\\": {\\\\n        \\\\\\\"count\\\\\\\": 41,\\\\n        \\\\\\\"proved\\\\\\\": 37,\\\\n        \\\\\\\"prove_rate\\\\\\\": 0.9024390243902439,\\\\n        \\\\\\\"mean_isr\\\\\\\": 0.5528455284552846\\\\n      },\\\\n      \\\\\\\"true\\\\\\\": {\\\\n        \\\\\\\"count\\\\\\\": 34,\\\\n        \\\\\\\"proved\\\\\\\": 30,\\\\n        \\\\\\\"prove_rate\\\\\\\": 0.8823529411764706,\\\\n        \\\\\\\"mean_isr\\\\\\\": 0.5122549019607843\\\\n      }\\\\n    },\\\\n    \\\\\\\"elapsed_seconds\\\\\\\": 429.4,\\\\n    \\\\\\\"avg_time_per_sample\\\\\\\": 4.3,\\\\n    \\\\\\\"solver\\\\\\\": \\\\\\\"Prover9Solver\\\\\\\",\\\\n    \\\\\\\"logic_type\\\\\\\": \\\\\\\"fol\\\\\\\",\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/outputs/plan001_exec_only_s43_1000_r2\\\\\\\"\\\\n  },\\\\n  \\\\\\\"results\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 0,\\\\n      \\\\\\\"id\\\\\\\": \\\\\\\"folio_765\\\\\\\",\\\\n      \\\\\\\"context\\\\\\\": \\\\\\\"Tipped employees are not entitled to be paid the federal minimum wage by their employees. \\\\\\\\nIf a person is a white-collar worker, they are entitled to be paid the federal minimum wage by their employees. \\\\\\\\nAll lawyers are white-collar workers.\\\\\\\\nEvery advocate is a lawyer.\\\\\\\\nMary is not a lawyer or a tipped employee.\\\\\\\",\\\\n      \\\\\\\"question\\\\\\\": \\\\\\\"Mary is an advocate.\\\\\\\",\\\\n      \\\\\\\"answer\\\\\\\": \\\\\\\"false\\\\\\\",\\\\n      \\\\\\\"formalization\\\\\\\": \\\\\\\"Premises:  \\\\\\\\n1. ∃x (x = mary ∧ isAdvocate(x))  \\\\\\\\n\\\\\\\\nConclusion:  \\\\\\\\n∃x (x = mary ∧ isAdvocate(x))  \\\\\\\\n\\\\\\\\n---\\\\\\\\n\\\\\\\\n### Explanation:  \\\\\\\\n- `is\n…[truncated 7593 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_registry-taxonomy-__-s43-s44_20260515T164655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-15T16:55:17.400005+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nClassify hacking patterns in eval results.\\\\n\\\\nH7a: standard tautology — single premise text-matches conclusion\\\\n     (whitespace/case normalized)\\\\nH7b: obfuscated tautology — single premise, logically equivalent but\\\\n     textually different (vacuous quantifier wrapping, variable renaming)\\\\n     Detection: strip vacuous quantifiers + alpha-normalize, then fallback\\\\n     to quantifier-count + predicate-overlap heuristic\\\\nH1:  multi-premise, at least one premise == conclusion (conclusion embedding)\\\\nH8:  conclusion is top-level conjunction of premises (conjunction collapse)\\\\n\\\\nUsage:\\\\n    python scripts/classify_h7.py --eval_path /path/to/eval_results.json\\\\n    python scripts/classify_h7.py --batch f1.json f2.json ... --out /path/to/output.txt\\\\n    python scripts/classify_h7.py --batch f1.json f2.json ... --json_out /path/to/audit.json\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport json\\\\nimport argparse\\\\nimport re\\\\nimport sys\\\\nimport os\\\\nimport hashlib\\\\n\\\\n\\\\ndef normalize_fol(s):\\\\n    s = s.strip()\\\\n    s = re.sub(r'\\\\\\\\s+', ' ', s)\\\\n    return s\\\\n\\\\n\\\\ndef strip_outer_parens(s):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Strip matching outer parentheses if present.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    s = s.strip()\\\\n    if not (s.startswith('(') and s.endswith(')')):\\\\n        return s\\\\n    depth = 0\\\\n    for i, c in enumerate(s):\\\\n        if c == '(':\\\\n            depth += 1\\\\n        elif c == ')':\\\\n            depth -= 1\\\\n        if depth == 0 and i < len(s) - 1:\\\\n            return s\\\\n    return s[1:-1].strip()\\\\n\\\\n\\\\ndef strip_outer_parens_recursive(s):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Recursively strip ALL layers of matching outer parentheses.\\\\n    D086-P1 fix: D084 re-audit used deeper paren normalization.\\\\n    Won't strip non-matching outer parens like (A) ∧ (B).\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    s = s.strip()\\\\n    while s.startswith('(') and s.endswith(')'):\\\\n        depth = 0\\\\n        is_matching = True\\\\n       \n…[truncated 1324 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_registry-taxonomy-__-s43-s44_20260515T164655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-15T16:55:17.400208+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_registry-taxonomy-__-s43-s44_20260515T164655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "wc -l /root/solver-trace-ablation/scripts/classify_h7.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-15T16:55:17.400345+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"605 /root/solver-trace-ablation/scripts/classify_h7.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_registry-taxonomy-__-s43-s44_20260515T164655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-15T16:55:17.400468+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_registry-taxonomy-__-s43-s44_20260515T164655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "head -300 /root/solver-trace-ablation/scripts/classify_h7.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-15T16:55:17.400587+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_registry-taxonomy-__-s43-s44_20260515T164655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "tail -305 /root/solver-trace-ablation/scripts/classify_h7.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-15T16:55:17.400824+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nClassify hacking patterns in eval results.\\\\n\\\\nH7a: standard tautology — single premise text-matches conclusion\\\\n     (whitespace/case normalized)\\\\nH7b: obfuscated tautology — single premise, logically equivalent but\\\\n     textually different (vacuous quantifier wrapping, variable renaming)\\\\n     Detection: strip vacuous quantifiers + alpha-normalize, then fallback\\\\n     to quantifier-count + predicate-overlap heuristic\\\\nH1:  multi-premise, at least one premise == conclusion (conclusion embedding)\\\\nH8:  conclusion is top-level conjunction of premises (conjunction collapse)\\\\n\\\\nUsage:\\\\n    python scripts/classify_h7.py --eval_path /path/to/eval_results.json\\\\n    python scripts/classify_h7.py --batch f1.json f2.json ... --out /path/to/output.txt\\\\n    python scripts/classify_h7.py --batch f1.json f2.json ... --json_out /path/to/audit.json\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport json\\\\nimport argparse\\\\nimport re\\\\nimport sys\\\\nimport os\\\\nimport hashlib\\\\n\\\\n\\\\ndef normalize_fol(s):\\\\n    s = s.strip()\\\\n    s = re.sub(r'\\\\\\\\s+', ' ', s)\\\\n    return s\\\\n\\\\n\\\\ndef strip_outer_parens(s):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Strip matching outer parentheses if present.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    s = s.strip()\\\\n    if not (s.startswith('(') and s.endswith(')')):\\\\n        return s\\\\n    depth = 0\\\\n    for i, c in enumerate(s):\\\\n        if c == '(':\\\\n            depth += 1\\\\n        elif c == ')':\\\\n            depth -= 1\\\\n        if depth == 0 and i < len(s) - 1:\\\\n            return s\\\\n    return s[1:-1].strip()\\\\n\\\\n\\\\ndef strip_outer_parens_recursive(s):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Recursively strip ALL layers of matching outer parentheses.\\\\n    D086-P1 fix: D084 re-audit used deeper paren normalization.\\\\n    Won't strip non-matching outer parens like (A) ∧ (B).\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    s = s.strip()\\\\n    while s.startswith('(') and s.endswith(')'):\\\\n        depth = 0\\\\n        is_matching = True\\\\n       \n…[truncated 6896 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_registry-taxonomy-__-s43-s44_20260515T164655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-15T16:55:17.401101+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    results = data.get('results', data.get('samples', []))\\\\n    proved = [r for r in results if r.get('execution_reward', 0) == 1.0]\\\\n\\\\n    h7a_count = 0\\\\n    h7b_count = 0\\\\n    h1_strict = 0\\\\n    h8_count = 0\\\\n    h7_relaxed = 0\\\\n    conclusion_in_premise = 0\\\\n    isr_1_count = 0\\\\n    single_premise_count = 0\\\\n    content_independent_count = 0\\\\n    h7a_examples = []\\\\n    h7b_examples = []\\\\n    h1_examples = []\\\\n    h8_examples = []\\\\n    hacked_ids = set()\\\\n\\\\n    for idx, r in enumerate(proved):\\\\n        details = r.get('details', {})\\\\n        premises = details.get('premises', [])\\\\n        conclusion = details.get('conclusion', '')\\\\n        isr = details.get('isr', 0)\\\\n        formalization = r.get('formalization', '')\\\\n\\\\n        if not isinstance(premises, list):\\\\n            premises = [premises]\\\\n\\\\n        _is_h7a = is_h7_strict(premises, conclusion)\\\\n        _is_h7b = False if _is_h7a else is_h7b_obfuscated(premises, conclusion)\\\\n        _is_h1 = False if (_is_h7a or _is_h7b) else is_h1_strict(premises, conclusion)\\\\n        _is_h8 = is_h8_conjunction_collapse(premises, conclusion)\\\\n\\\\n        if _is_h7a:\\\\n            h7a_count += 1\\\\n            hacked_ids.add(idx)\\\\n            if len(h7a_examples) < 3:\\\\n                h7a_examples.append({\\\\n                    'id': r.get('id', '?'),\\\\n                    'n_premises': len(premises),\\\\n                    'premise': [normalize_fol(p) for p in premises],\\\\n                    'conclusion': normalize_fol(conclusion),\\\\n                    'isr': isr,\\\\n                })\\\\n\\\\n        if _is_h7b:\\\\n            h7b_count += 1\\\\n            hacked_ids.add(idx)\\\\n            if len(h7b_examples) < 3:\\\\n                h7b_examples.append({\\\\n                    'id': r.get('id', '?'),\\\\n                    'n_premises': len(premises),\\\\n                    'premise': [normalize_fol(p) for p in premises],\\\\n                  \n…[truncated 6775 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_registry-taxonomy-__-s43-s44_20260515T164655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-15T16:55:17.401307+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_registry-taxonomy-__-s43-s44_20260515T164655",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "cd /root/solver-trace-ablation && export CUDA_VISIBLE_DEVICES=\"\" && python3 scripts/classify_h7.py --batch /root/autodl-tmp/outputs/plan001_exec_only_s44_1000_r2/eval_sta_results.json /root/autodl-tmp/outputs/plan001_exec_only_s43_1000_r2/eval_sta_results.json --json_out /tmp/h7_audit_exec_only_3seed.json --out /tmp/h7_audit_exec_only_3seed.txt",
+              "account": "root"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-15T16:55:17.401483+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n============================================================\\\\n  results\\\\n============================================================\\\\nTotal samples: 100, Proved: 100\\\\nH7a (text-match tautology):                 0/100 = 0.0%\\\\nH7b (obfuscated tautology):                 0/100 = 0.0%\\\\nH7 total (H7a + H7b):                       0/100 = 0.0%\\\\nH1 strict  (multi-prem, concl in premises): 85/100 = 85.0%\\\\nH8 conj-collapse (concl = P1∧P2∧...):      15/100 = 15.0%\\\\nAny conclusion-in-premise (H7a+H1):         85/100 = 85.0%\\\\nContent-independent predicates:              100/100 = 100.0%\\\\nGenuine (proved - H7 - H1 - H8):           3/100 = 3.0%\\\\n---\\\\nH7 relaxed (single_premise + ISR>=0.5):     0/100 = 0.0%\\\\nSingle premise: 0/100 = 0.0%\\\\nISR = 1.0:      0/100 = 0.0%\\\\n\\\\n  H1 examples (first 3):\\\\n    folio_765: 12 premises, isr=0.0\\\\n    folio_1179: 16 premises, isr=0.0\\\\n    folio_66: 8 premises, isr=0.0\\\\n\\\\n  H8 examples (first 3):\\\\n    folio_938: prems=['∀x ((C(x) ∨ R(x)) ∧ (C(x) ∧ S(x)) ∧ (R(x) ∧ W(x)) ∧ (W(x) ∧ L(x)) ∧ (L(x) ∧ A(x)))', 'C(a)', 'S(a)', 'R(a)', 'W(a)', 'L(a)', 'A(a)', '¬(W(a) ∧ A(a))', '¬(C(a) ∧ S(a))', '¬(W(a))', '¬(A(a))', '¬(W(a))', '¬(A(a))'], concl=(W(a) ∧ A(a))\\\\n    folio_1312: prems=['∀x (P(x) ∨ Q(x))', '∀x ((P(x) ∨ Q(x)) ∧ (R(x) ∨ S(x)) ∧ (S(x) ∨ T(x)) ∧ (T(x) ∨ U(x)))', 'R(a)', 'S(a)', 'T(a)', 'U(a)', 'R(a)', 'S(a)', 'T(a)', 'U(a)', 'R(a)', 'S(a)', 'T(a)', 'U(a)'], concl=(R(a) ∧ S(a))\\\\n    folio_491: prems=['∀x (S(x) ∧ ¬T(x) → D(x))', 'S(a)', 'D(a)', 'T(a)', 'D(a)', 'S(a)', 'T(a)', 'D(a)', 'S(a)', 'T(a)', 'D(a)', 'S(a)', 'T(a)', 'D(a)'], concl=S(a) ∧ T(a)\\\\n\\\\n============================================================\\\\n  results\\\\n============================================================\\\\nTotal samples: 100, Proved: 90\\\\nH7a (text-match tautology):                 90/90 = 100.0%\\\\nH7b (obfuscated tautology):                 0/90 = 0.0%\\\\nH7 total (H7a + H7b):        \n…[truncated 1571 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_registry-taxonomy-__-s43-s44_20260515T164655",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-15T16:55:17.401674+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_registry-taxonomy-__-s43-s44_20260515T164655",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "cd /root/solver-trace-ablation && export CUDA_VISIBLE_DEVICES=\"\" && python3 -c \"\nimport json, sys\nsys.path.insert(0, 'scripts')\nfrom classify_h7 import *\n\nwith open('/root/autodl-tmp/outputs/plan001_exec_only_s44_1000_r2/eval_sta_results.json') as f:\n    data = json.load(f)\n\nresults = data['results']\nproved = [r for r in results if r.get('execution_reward', 0) == 1.0]\n\ngenuine_proofs = []\nfor idx, r in enumerate(proved):\n    details = r.get('details', {})\n    premises = details.get('premises', [])\n    conclusion = details.get('conclusion', '')\n    isr = details.get('isr', 0)\n    formalization = r.get('formalization', '')\n\n    _is_h7a = is_h7_strict(premises, conclusion)\n    _is_h7b = False if _is_h7a else is_h7b_obfuscated(premises, conclusion)\n    _is_h1 = False if (_is_h7a or _is_h7b) else is_h1_strict(premises, conclusion)\n    _is_h8 = is_h8_conjunction_collapse(premises, conclusion)\n\n    is_hacked = _is_h7a or _is_h7b or _is_h1 or _is_h8\n    if not is_hacked:\n        genuine_proofs.append({\n            'index': r.get('index'),\n            'id': r.get('id'),\n            'question': r.get('question'),\n            'answer': r.get('answer'),\n            'context': r.get('context', '')[:200],\n            'premises': premises,\n            'conclusion': conclusion,\n            'isr': isr,\n            'n_components': details.get('n_components'),\n            'n_necessary': details.get('n_necessary'),\n            'formalization': formalization[:500],\n            'h7a': _is_h7a, 'h7b': _is_h7b, 'h1': _is_h1, 'h8': _is_h8,\n        })\n\nprint(f'Found {len(genuine_proofs)} genuine proofs')\nfor i, gp in enumerate(genuine_proofs):\n    print(f'\\\\n===== GENUINE PROOF {i+1} =====')\n    print(f'ID: {gp[\\\"id\\\"]}')\n    print(f'Index: {gp[\\\"index\\\"]}')\n    print(f'Question: {gp[\\\"question\\\"]}')\n    print(f'Answer: {gp[\\\"answer\\\"]}')\n    print(f'ISR: {gp[\\\"isr\\\"]}')\n    print(f'n_components: {gp[\\\"n_components\\\"]}, n_necessary: {gp[\\\"n_necessary\\\"]}')\n    print(f'Premises ({len(gp[\\\"premises\\\"])}):')\n    for j, p in enumerate(gp['premises']):\n        print(f'  P{j+1}: {p}')\n    print(f'Conclusion: {gp[\\\"conclusion\\\"]}')\n    print(f'\\\\nFormalization (raw):\\\\n{gp[\\\"formalization\\\"]}')\n    print(f'\\\\nContext: {gp[\\\"context\\\"]}...')\n\"\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-15T16:55:17.401897+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Found 3 genuine proofs\\\\n\\\\n===== GENUINE PROOF 1 =====\\\\nID: folio_1296\\\\nIndex: 51\\\\nQuestion: Fido is not a nonflying bird in Antarctica, and he cannot glid in the air.\\\\nAnswer: false\\\\nISR: 0.0\\\\nn_components: 13, n_necessary: 0\\\\nPremises (12):\\\\n  P1: ∀x ((F(x) ∧ G(x)) ∨ (S(x) ∧ A(x)))\\\\n  P2: ∀x ((S(x) ∧ A(x)) ∨ (F(x) ∧ G(x)))\\\\n  P3: F(a)\\\\n  P4: A(a)\\\\n  P5: G(a)\\\\n  P6: S(a)\\\\n  P7: ¬(S(a))\\\\n  P8: ¬G(a)\\\\n  P9: ¬(S(a))\\\\n  P10: ¬G(a)\\\\n  P11: ¬(S(a))\\\\n  P12: ¬G(a)\\\\nConclusion: (S(a) ∧ A(a)) ∨ (F(a) ∧ G(a))\\\\n\\\\nFormalization (raw):\\\\nPremises:\\\\n1. ∀x ((F(x) ∧ G(x)) ∨ (S(x) ∧ A(x)))\\\\n2. ∀x ((S(x) ∧ A(x)) ∨ (F(x) ∧ G(x)))\\\\n3. F(a)\\\\n4. A(a)\\\\n5. G(a)\\\\n6. S(a)\\\\n7. ¬(S(a))\\\\n8. ¬G(a)\\\\n9. ¬(S(a))\\\\n10. ¬G(a)\\\\n11. ¬(S(a))\\\\n12. ¬G(a)\\\\nConclusion: (S(a) ∧ A(a)) ∨ (F(a) ∧ G(a))\\\\n\\\\nContext: Those who can fly over a vast distance glide in the air. \\\\nFlightless birds cannot fly over a vast distance. \\\\nPenguins are flightless birds. \\\\nNonflying birds in Antarctica are penguins. \\\\nFido is a peng...\\\\n\\\\n===== GENUINE PROOF 2 =====\\\\nID: folio_1428\\\\nIndex: 52\\\\nQuestion: The bird is either unpredictable or changing.\\\\nAnswer: false\\\\nISR: 0.0\\\\nn_components: 17, n_necessary: 0\\\\nPremises (16):\\\\n  P1: ∀x ((B(x) ∨ S(x)) ∧ (H(x) ∨ L(x)) ∧ (S(x) ∨ U(x)) ∧ (U(x) ∨ C(x)) ∧ (U(x) ∨ P(x)))\\\\n  P2: H(a)\\\\n  P3: S(a)\\\\n  P4: U(a)\\\\n  P5: C(a)\\\\n  P6: P(a)\\\\n  P7: U(a)\\\\n  P8: C(a)\\\\n  P9: U(a)\\\\n  P10: C(a)\\\\n  P11: U(a)\\\\n  P12: C(a)\\\\n  P13: U(a)\\\\n  P14: C(a)\\\\n  P15: U(a)\\\\n  P16: C(a)\\\\nConclusion: U(a) ∨ C(a)\\\\n\\\\nFormalization (raw):\\\\nPremises:\\\\n1. ∀x ((B(x) ∨ S(x)) ∧ (H(x) ∨ L(x)) ∧ (S(x) ∨ U(x)) ∧ (U(x) ∨ C(x)) ∧ (U(x) ∨ P(x)))\\\\n2. H(a)\\\\n3. S(a)\\\\n4. U(a)\\\\n5. C(a)\\\\n6. P(a)\\\\n7. U(a)\\\\n8. C(a)\\\\n9. U(a)\\\\n10. C(a)\\\\n11. U(a)\\\\n12. C(a)\\\\n13. U(a)\\\\n14. C(a)\\\\n15. U(a)\\\\n16. C(a)\\\\nConclusion: U(a) ∨ C(a)\\\\n\\\\nContext: Everything in Size Town is big or small.\\\\nAll big things in Size Town are\n…[truncated 1128 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_registry-taxonomy-__-s43-s44_20260515T164655",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-15T16:55:17.402132+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_registry-taxonomy-__-s43-s44_20260515T164655",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/771d790d-567a-45b4-b07f-5d71b4c9e854/tool-results/mcp-agent-ml-research-read_registry-1778863644413.txt | python3 -c \"\nimport json, sys\nraw = json.load(sys.stdin)\ndata = json.loads(raw['result'])\nexps = data['data']['experiments']\n# Find ALL s42 experiments\nfor eid, exp in exps.items():\n    if 's42' in eid.lower() and 'exec' in eid.lower():\n        print(f'{eid}: status={exp.get(\\\"status\\\")}, conclusion={exp.get(\\\"conclusion\\\")}, checkpoint={exp.get(\\\"checkpoint_path\\\",\\\"N/A\\\")}, metrics_keys={list(exp.get(\\\"metrics\\\",{}).keys())[:10]}')\n\"",
+              "description": "Find all s42 exec-only experiments in registry"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-15T16:55:17.402272+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "plan001-exec-only-s42: status=DONE, conclusion=failed, checkpoint=N/A (failed before checkpoint), metrics_keys=[]\nplan001-exec-only-s42-r2: status=DONE, conclusion=success, checkpoint=/root/autodl-tmp/outputs/plan001_exec_only_s42/checkpoint-500, metrics_keys=['eval_prove_rate', 'eval_mean_isr', 'eval_isr_std', 'eval_proved_only_isr', 'eval_median_isr', 'eval_n_proved', 'eval_n_problems', 'eval_method', 'eval_data', 'h7_rate']"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_registry-taxonomy-__-s43-s44_20260515T164655",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-15T16:55:17.402395+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_registry-taxonomy-__-s43-s44_20260515T164655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "find /root/autodl-tmp/outputs -maxdepth 1 -name \"*exec*s42*\" -type d",
+              "account": "root"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-15T16:55:17.402517+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_registry-taxonomy-__-s43-s44_20260515T164655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-15T16:55:17.402707+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_registry-taxonomy-__-s43-s44_20260515T164655",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "cd /root/solver-trace-ablation && export CUDA_VISIBLE_DEVICES=\"\" && python3 scripts/classify_h7.py --eval_path /root/autodl-tmp/outputs/eval_sta_plan001_exec_only_s44.json --json_out /tmp/h7_s42_check.json 2>&1 | head -30",
+              "account": "root"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-15T16:55:17.402892+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n============================================================\\\\n  plan001_exec_only_s44\\\\n============================================================\\\\nTotal samples: 100, Proved: 97\\\\nH7a (text-match tautology):                 97/97 = 100.0%\\\\nH7b (obfuscated tautology):                 0/97 = 0.0%\\\\nH7 total (H7a + H7b):                       97/97 = 100.0%\\\\nH1 strict  (multi-prem, concl in premises): 0/97 = 0.0%\\\\nH8 conj-collapse (concl = P1∧P2∧...):      0/97 = 0.0%\\\\nAny conclusion-in-premise (H7a+H1):         97/97 = 100.0%\\\\nContent-independent predicates:              71/97 = 73.2%\\\\nGenuine (proved - H7 - H1 - H8):           0/97 = 0.0%\\\\n---\\\\nH7 relaxed (single_premise + ISR>=0.5):     97/97 = 100.0%\\\\nSingle premise: 97/97 = 100.0%\\\\nISR = 1.0:      13/97 = 13.4%\\\\n\\\\n  H7a examples (first 3):\\\\n    folio_765: 1 premises, isr=0.5\\\\n    folio_1179: 1 premises, isr=0.5\\\\n    folio_66: 1 premises, isr=0.5\\\\n\\\\n\\\\n===================================================================================================================\\\\n  SUMMARY TABLE\\\\n===================================================================================================================\\\\nRun                                      Proved    H7a    H7b     H7     H1     H8  Genuine    Gen% CntIndep\\\\n-------------------------------------------------------------------------------------------------------------------\\\\nplan001_exec_only_s44                        97     97      0     97      0      0        0    0.0%       71\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_registry-taxonomy-__-s43-s44_20260515T164655",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-15T16:55:17.403051+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_registry-taxonomy-__-s43-s44_20260515T164655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "ls -la /root/solver-trace-ablation/outputs/eval_sta_plan001_exec_only_s42.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-15T16:55:17.403180+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 252563 May 14 11:24 /root/solver-trace-ablation/outputs/eval_sta_plan001_exec_only_s42.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_registry-taxonomy-__-s43-s44_20260515T164655",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-15T16:55:17.403331+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_registry-taxonomy-__-s43-s44_20260515T164655",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "cd /root/solver-trace-ablation && export CUDA_VISIBLE_DEVICES=\"\" && python3 scripts/classify_h7.py --eval_path /root/solver-trace-ablation/outputs/eval_sta_plan001_exec_only_s42.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-15T16:55:17.403493+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n============================================================\\\\n  plan001_exec_only_s42\\\\n============================================================\\\\nTotal samples: 100, Proved: 93\\\\nH7a (text-match tautology):                 1/93 = 1.1%\\\\nH7b (obfuscated tautology):                 0/93 = 0.0%\\\\nH7 total (H7a + H7b):                       1/93 = 1.1%\\\\nH1 strict  (multi-prem, concl in premises): 80/93 = 86.0%\\\\nH8 conj-collapse (concl = P1∧P2∧...):      6/93 = 6.5%\\\\nAny conclusion-in-premise (H7a+H1):         81/93 = 87.1%\\\\nContent-independent predicates:              1/93 = 1.1%\\\\nGenuine (proved - H7 - H1 - H8):           7/93 = 7.5%\\\\n---\\\\nH7 relaxed (single_premise + ISR>=0.5):     0/93 = 0.0%\\\\nSingle premise: 0/93 = 0.0%\\\\nISR = 1.0:      1/93 = 1.1%\\\\n\\\\n  H7a examples (first 3):\\\\n    folio_558: 2 premises, isr=0.0\\\\n\\\\n  H1 examples (first 3):\\\\n    folio_765: 6 premises, isr=0.14285714285714285\\\\n    folio_1179: 6 premises, isr=0.0\\\\n    folio_66: 7 premises, isr=0.125\\\\n\\\\n  H8 examples (first 3):\\\\n    folio_1331: prems=['∀x (criminal(x) ∧ ¬foundGuilty(x) → innocent(x))', '∀x (criminal(x) ∧ ¬committedCrime(x) → innocent(x))', '∀x (criminal(x) → foundGuilty(x) ∨ sentencedPunishment(x))', '∀x (foundGuilty(x) → sentencedPunishment(x))', '∀x (foundGuilty(x) → argueAgainstPunishment(x))', 'criminal(garry) ∧ ¬committedCrime(garry) ∧ argueAgainstPunishment(garry)', '¬committedCrime(garry) ∧ argueAgainstPunishment(garry)', '¬committedCrime(garry)', 'argueAgainstPunishment(garry)'], concl=¬committedCrime(garry) ∧ argueAgainstPunishment(garry)\\\\n    folio_1296: prems=['∀x ∀y fluent(x, y)', '∀x ¬fluent(x, y)', '∀x penguin(x)', '∀x antarcticNonflying(x) → penguin(x)', 'penguin(fido)', '¬fluent(fido, y)', '¬penguin(fido)', '¬antarcticNonflying(fido)'], concl=¬antarcticNonflying(fido) ∧ ¬fluent(fido, y)\\\\n    folio_1255: prems=['∀x(present(x) → attend(x))', '∀x(tutorial(x) → invite(x))', '∀x(attend(x) →\n…[truncated 1172 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_registry-taxonomy-__-s43-s44_20260515T164655",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-15T16:55:17.403690+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_registry-taxonomy-__-s43-s44_20260515T164655",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "cd /root/solver-trace-ablation && export CUDA_VISIBLE_DEVICES=\"\" && python3 -c \"\nimport json, sys\nsys.path.insert(0, 'scripts')\nfrom classify_h7 import *\n\nwith open('/root/autodl-tmp/outputs/plan001_exec_only_s44_1000_r2/eval_sta_results.json') as f:\n    data = json.load(f)\n\nresults = data['results']\nproved = [r for r in results if r.get('execution_reward', 0) == 1.0]\n\n# Detailed classification\ncategories = {'h7a_only': [], 'h7b_only': [], 'h1_only': [], 'h8_only': [], \n              'h1_and_h8': [], 'genuine': [], 'other_combo': []}\n\nfor idx, r in enumerate(proved):\n    details = r.get('details', {})\n    premises = details.get('premises', [])\n    conclusion = details.get('conclusion', '')\n    isr = details.get('isr', 0)\n\n    _h7a = is_h7_strict(premises, conclusion)\n    _h7b = False if _h7a else is_h7b_obfuscated(premises, conclusion)\n    _h1 = False if (_h7a or _h7b) else is_h1_strict(premises, conclusion)\n    _h8 = is_h8_conjunction_collapse(premises, conclusion)\n\n    flags = []\n    if _h7a: flags.append('H7a')\n    if _h7b: flags.append('H7b')\n    if _h1: flags.append('H1')\n    if _h8: flags.append('H8')\n\n    rid = r.get('id', '?')\n    entry = (rid, idx, len(premises), isr, conclusion[:60])\n\n    if not flags:\n        categories['genuine'].append(entry)\n    elif flags == ['H1']:\n        categories['h1_only'].append(entry)\n    elif flags == ['H8']:\n        categories['h8_only'].append(entry)\n    elif flags == ['H1', 'H8']:\n        categories['h1_and_h8'].append(entry)\n    elif flags == ['H7a']:\n        categories['h7a_only'].append(entry)\n    else:\n        categories['other_combo'].append((rid, flags))\n\nprint('=== s44-1000-r2 Classification Breakdown ===')\nfor cat, items in categories.items():\n    print(f'{cat}: {len(items)}')\n\nprint(f'\\\\nVerification: H1_only({len(categories[\\\"h1_only\\\"])}) + H8_only({len(categories[\\\"h8_only\\\"])}) + H1_and_H8({len(categories[\\\"h1_and_h8\\\"])}) + genuine({len(categories[\\\"genuine\\\"])}) = {len(categories[\\\"h1_only\\\"])+len(categories[\\\"h8_only\\\"])+len(categories[\\\"h1_and_h8\\\"])+len(categories[\\\"genuine\\\"])}')\n\nprint(f'\\\\nGenuine proofs:')\nfor rid, idx, np, isr, concl in categories['genuine']:\n    print(f'  {rid} (idx={idx}): {np} premises, ISR={isr}, concl={concl}')\n\nprint(f'\\\\nH1-and-H8 overlap:')\nfor rid, idx, np, isr, concl in categories['h1_and_h8']:\n    print(f'  {rid} (idx={idx}): {np} premises, ISR={isr}, concl={concl}')\n\nprint(f'\\\\nH8-only (not H1):')\nfor rid, idx, np, isr, concl in categories['h8_only']:\n    print(f'  {rid} (idx={idx}): {np} premises, ISR={isr}, concl={concl}')\n\"\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-15T16:55:17.403892+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== s44-1000-r2 Classification Breakdown ===\\\\nh7a_only: 0\\\\nh7b_only: 0\\\\nh1_only: 82\\\\nh8_only: 12\\\\nh1_and_h8: 3\\\\ngenuine: 3\\\\nother_combo: 0\\\\n\\\\nVerification: H1_only(82) + H8_only(12) + H1_and_H8(3) + genuine(3) = 100\\\\n\\\\nGenuine proofs:\\\\n  folio_1296 (idx=51): 12 premises, ISR=0.0, concl=(S(a) ∧ A(a)) ∨ (F(a) ∧ G(a))\\\\n  folio_1428 (idx=52): 16 premises, ISR=0.0, concl=U(a) ∨ C(a)\\\\n  folio_1051 (idx=82): 9 premises, ISR=0.0, concl=C(a) ∨ S(a)\\\\n\\\\nH1-and-H8 overlap:\\\\n  folio_574 (idx=33): 15 premises, ISR=0.0, concl=(R(a) ∧ Y(a))\\\\n  folio_212 (idx=77): 8 premises, ISR=0.0, concl=(B(a) ∧ C(a))\\\\n  folio_990 (idx=89): 15 premises, ISR=0.0, concl=(B(x) ∧ C(x))\\\\n\\\\nH8-only (not H1):\\\\n  folio_938 (idx=7): 13 premises, ISR=0.0, concl=(W(a) ∧ A(a))\\\\n  folio_1312 (idx=9): 14 premises, ISR=0.0, concl=(R(a) ∧ S(a))\\\\n  folio_491 (idx=31): 14 premises, ISR=0.0, concl=S(a) ∧ T(a)\\\\n  folio_149 (idx=34): 7 premises, ISR=0.0, concl=A(a) ∧ B(a) ∧ C(a)\\\\n  folio_960 (idx=44): 14 premises, ISR=0.0, concl=S(x) �� T(x)\\\\n  folio_359 (idx=58): 14 premises, ISR=0.0, concl=(¬A(x) ∧ ¬C(x))\\\\n  folio_1069 (idx=65): 7 premises, ISR=0.0, concl=V(x) ∧ R(x)\\\\n  folio_672 (idx=76): 9 premises, ISR=0.0, concl=A(a) ∧ B(a)\\\\n  folio_714 (idx=87): 13 premises, ISR=0.0, concl=(M(a) ∧ F(a))\\\\n  folio_643 (idx=90): 7 premises, ISR=0.0, concl=A(a) ∧ S(a)\\\\n  folio_678 (idx=94): 17 premises, ISR=0.0, concl=A(a) ∧ S(a) ∧ D(a) ∧ F(a) ∧ G(a) ∧ H(a) ∧ K(a) ∧ L(a)\\\\n  folio_959 (idx=99): 14 premises, ISR=0.0, concl=S(a) ∧ T(a)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.57}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_registry-taxonomy-__-s43-s44_20260515T164655",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-15T16:55:17.404094+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_registry-taxonomy-__-s43-s44_20260515T164655",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "cd /root/solver-trace-ablation && export CUDA_VISIBLE_DEVICES=\"\" && python3 -c \"\nimport json, sys\nsys.path.insert(0, 'scripts')\nfrom classify_h7 import *\n\nwith open('outputs/eval_sta_plan001_exec_only_s42.json') as f:\n    data = json.load(f)\n\nresults = data['results']\nproved = [r for r in results if r.get('execution_reward', 0) == 1.0]\n\ngenuine_proofs = []\nfor idx, r in enumerate(proved):\n    details = r.get('details', {})\n    premises = details.get('premises', [])\n    conclusion = details.get('conclusion', '')\n    isr = details.get('isr', 0)\n    \n    _h7a = is_h7_strict(premises, conclusion)\n    _h7b = False if _h7a else is_h7b_obfuscated(premises, conclusion)\n    _h1 = False if (_h7a or _h7b) else is_h1_strict(premises, conclusion)\n    _h8 = is_h8_conjunction_collapse(premises, conclusion)\n    \n    if not (_h7a or _h7b or _h1 or _h8):\n        # Check if conclusion is a disjunction with ground fact disjuncts  \n        has_disj = '∨' in conclusion and '∧' not in conclusion.replace('(','').replace(')','').split('∨')[0]\n        # Check if any premise after ∀x instantiation matches conclusion\n        premise_matches_concl = False\n        for p in premises:\n            p_stripped = p.strip()\n            # Check ∀x stripping\n            import re\n            m = re.match(r'^[∀∃]\\w+\\s+(.+)$', p_stripped)\n            if m:\n                inner = normalize_for_match(m.group(1))\n                norm_concl = normalize_for_match(conclusion)\n                if inner == norm_concl:\n                    premise_matches_concl = True\n                    break\n        \n        genuine_proofs.append({\n            'id': r.get('id', '?'),\n            'idx': idx,\n            'n_premises': len(premises),\n            'isr': isr,\n            'conclusion': conclusion[:80],\n            'premises_short': [p[:50] for p in premises[:3]],\n            'has_disjunction': '∨' in conclusion,\n            'premise_instantiation_match': premise_matches_concl,\n        })\n\nprint(f'Found {len(genuine_proofs)} genuine proofs in s42-r2:')\nfor g in genuine_proofs:\n    print(f'  {g[\\\"id\\\"]} (idx={g[\\\"idx\\\"]}): {g[\\\"n_premises\\\"]} prems, ISR={g[\\\"isr\\\"]}, disj={g[\\\"has_disjunction\\\"]}, prem_inst_match={g[\\\"premise_instantiation_match\\\"]}')\n    print(f'    Concl: {g[\\\"conclusion\\\"]}')\n    print(f'    First prems: {g[\\\"premises_short\\\"]}')\n\"\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-15T16:55:17.404273+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Found 7 genuine proofs in s42-r2:\\\\n  folio_71 (idx=5): 8 prems, ISR=0.2, disj=False, prem_inst_match=False\\\\n    Concl: acRateLow(b) → easy(b)\\\\n    First prems: ['∀x (easy(x) → acRateLow(x))', '∀x (noviceRecommended(x) → easy(x))', '∀x easy(x) ∨ hard(x)']\\\\n  folio_1119 (idx=10): 7 prems, ISR=0.0, disj=True, prem_inst_match=False\\\\n    Concl: likesSpanish(fabien) ∨ likesSpain(fabien)\\\\n    First prems: ['∀x (likesCheese(x) ∨ francophile(x))', '∀x (¬francophile(x) → ¬likesSpain(x))', '∀x (likesCheese(x) ∨ likesSpain(x))']\\\\n  folio_267 (idx=30): 2 prems, ISR=0.3333333333333333, disj=False, prem_inst_match=False\\\\n    Concl: bornInGreece(a)\\\\n    First prems: ['∀x bornInGreece(x)', '¬bornInGreece(a)']\\\\n  folio_414 (idx=47): 7 prems, ISR=0.125, disj=False, prem_inst_match=False\\\\n    Concl: t(a)\\\\n    First prems: ['∀x(p(x) → q(x))', '∀x(q(x) → r(x))', '∀x(r(x) → s(x))']\\\\n  folio_40 (idx=70): 5 prems, ISR=0.16666666666666666, disj=False, prem_inst_match=False\\\\n    Concl: ¬lastHeavyCruiser(salem)\\\\n    First prems: ['∀x ¬lastHeavyCruiser(x)', '∀x lastHeavyCruiser(x) → openToPublic(x)', '∀x openToPublic(x) → museumShip(x)']\\\\n  folio_212 (idx=72): 2 prems, ISR=0.5, disj=False, prem_inst_match=False\\\\n    Concl: ∀x ¬author(x) → ¬generalPractitionerSon(x) ∧ ∃x generalPractitionerSon(x) ∧ ¬aut\\\\n    First prems: ['∀x ¬author(x) → ¬generalPractitionerSon(x)', '∃x generalPractitionerSon(x) ∧ ¬author(x)']\\\\n  folio_714 (idx=81): 2 prems, ISR=0.6666666666666666, disj=False, prem_inst_match=False\\\\n    Concl: ∀x ¬sportsCar(x) ∧ ¬familyUse(x)\\\\n    First prems: ['∀x ¬sportsCar(x) ∧ familyUse(x)', '∀x ¬sportsCar(x) → ¬familyUse(x)']\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_registry-taxonomy-__-s43-s44_20260515T164655",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-15T16:55:17.404466+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_registry-taxonomy-__-s43-s44_20260515T164655",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "plan001-exec-only-s44-1000-r2",
+              "field": "notes",
+              "value": "Taxonomy audit (2026-05-15): H1_only=82, H8_only=12, H1∩H8=3, genuine=3 (all H1-near). 3个genuine proof全部ISR=0, 结论为析取式, universal premise实例化后精确等于/包含结论 + ground facts冗余满足各析取项: folio_1296(∀x实例化+析取交换), folio_1428(∀x子公式+ground facts重复6次), folio_1051(∀x(C(x)∨S(x))实例化=C(a)∨S(a)精确匹配). classify_h7漏检原因: H1不做∀x实例化, H8不检查析取式. Per C013: H1-near保留为genuine但标记. genuine_strict=0.",
+              "project": "solver-trace-ablation"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-15T16:55:17.404665+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan001-exec-only-s44-1000-r2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T13:51:03.762Z\\\", \\\"updated_at\\\": \\\"2026-05-15T16:54:05.329Z\\\", \\\"hypothesis\\\": \\\"Exec-only GRPO 1000步 seed=44（r2 重跑）：r1 因磁盘满被 kill。磁盘已清理（92GB 可用），从 step 0 重跑。\\\", \\\"parent\\\": \\\"plan001-exec-only-s44-1000\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-15T13:51:35.383Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_exec_only.yaml --data_path data/train_500_seed42.jsonl --num_steps 1000 --seed 44 --output_dir /root/autodl-tmp/outputs/plan001_exec_only_s44_1000_r2\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-15T16:11:51.095Z\\\", \\\"training_hours\\\": 2.34}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_exec_only.yaml --data_path data/train_500_seed42.jsonl --num_steps 1000 --seed 44 --output_dir /root/autodl-tmp/outputs/plan001_exec_only_s44_1000_r2\\\\\\\"\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"363840\\\", \\\"log_path\\\": \\\"~/runs/solver-trace-ablation/plan001-exec-only-s44-1000-r2.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T13:51:37.012Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 8895.8, \\\"gpu_hours\\\": 2.47, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/outputs/plan001_exec_only_s44_1000_r2\\\"}, \\\"pid\\\": \\\"363840\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/outputs/plan001_exec_only_s44_1000_r2/eval_sta_results.json\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T16:11:54.9436\n…[truncated 2237 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_registry-taxonomy-__-s43-s44_20260515T164655",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-15T16:55:17.404854+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_registry-taxonomy-__-s43-s44_20260515T164655",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "plan001-exec-only-s44-1000-r2",
+              "field": "metrics",
+              "value": "{'prove_rate': 1, 'n_proved': 100, 'n_problems': 100, 'mean_isr': 0.002, 'isr_std': 0.0146, 'h7_count': 0, 'h7_rate': 0, 'h7a_count': 0, 'h7b_count': 0, 'h1_count': 85, 'h1_rate': 0.85, 'h8_count': 15, 'h8_rate': 0.15, 'h1_h8_overlap': 3, 'genuine_count': 3, 'genuine_rate': 0.03, 'genuine_h1_near': 3, 'genuine_strict': 0, 'genuine_strict_rate': 0, 'content_independent_rate': 1, 'taxonomy_audit': '2026-05-15'}",
+              "project": "solver-trace-ablation"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-15T16:55:17.405187+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan001-exec-only-s44-1000-r2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T13:51:03.762Z\\\", \\\"updated_at\\\": \\\"2026-05-15T16:54:09.434Z\\\", \\\"hypothesis\\\": \\\"Exec-only GRPO 1000步 seed=44（r2 重跑）：r1 因磁盘满被 kill。磁盘已清理（92GB 可用），从 step 0 重跑。\\\", \\\"parent\\\": \\\"plan001-exec-only-s44-1000\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-15T13:51:35.383Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_exec_only.yaml --data_path data/train_500_seed42.jsonl --num_steps 1000 --seed 44 --output_dir /root/autodl-tmp/outputs/plan001_exec_only_s44_1000_r2\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-15T16:11:51.095Z\\\", \\\"training_hours\\\": 2.34}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_exec_only.yaml --data_path data/train_500_seed42.jsonl --num_steps 1000 --seed 44 --output_dir /root/autodl-tmp/outputs/plan001_exec_only_s44_1000_r2\\\\\\\"\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"363840\\\", \\\"log_path\\\": \\\"~/runs/solver-trace-ablation/plan001-exec-only-s44-1000-r2.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T13:51:37.012Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 8895.8, \\\"gpu_hours\\\": 2.47, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/outputs/plan001_exec_only_s44_1000_r2\\\"}, \\\"pid\\\": \\\"363840\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/outputs/plan001_exec_only_s44_1000_r2/eval_sta_results.json\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T16:11:54.9436\n…[truncated 1291 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_registry-taxonomy-__-s43-s44_20260515T164655",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-15T16:55:17.405501+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_registry-taxonomy-__-s43-s44_20260515T164655",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "plan001-exec-only-s43-1000-r2",
+              "field": "metrics",
+              "value": "{'prove_rate': 0.9, 'n_proved': 90, 'n_problems': 100, 'isr': 0.5308, 'isr_std': 0.2472, 'h7_count': 90, 'h7_rate': 1, 'h7a_count': 90, 'h7b_count': 0, 'h1_count': 0, 'h1_rate': 0, 'h8_count': 0, 'h8_rate': 0, 'genuine_count': 0, 'genuine_rate': 0, 'genuine_h1_near': 0, 'genuine_strict': 0, 'content_independent_rate': 0.011, 'single_premise_rate': 1, 'taxonomy_audit': '2026-05-15'}",
+              "project": "solver-trace-ablation"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-15T16:55:17.405808+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan001-exec-only-s43-1000-r2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T13:51:02.684Z\\\", \\\"updated_at\\\": \\\"2026-05-15T16:54:17.337Z\\\", \\\"hypothesis\\\": \\\"Exec-only GRPO 1000步 seed=43（r2 重跑）：r1 因磁盘满在 step 150 崩溃。磁盘已清理（92GB 可用），从 step 0 重跑。\\\", \\\"parent\\\": \\\"plan001-exec-only-s43-1000\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"started_at\\\": \\\"2026-05-15T13:51:29.890Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_exec_only.yaml --data_path data/train_500_seed42.jsonl --num_steps 1000 --seed 43 --output_dir /root/autodl-tmp/outputs/plan001_exec_only_s43_1000_r2\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-15T16:05:05.890Z\\\", \\\"training_hours\\\": 2.23}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_exec_only.yaml --data_path data/train_500_seed42.jsonl --num_steps 1000 --seed 43 --output_dir /root/autodl-tmp/outputs/plan001_exec_only_s43_1000_r2\\\\\\\"\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"363692\\\", \\\"log_path\\\": \\\"~/runs/solver-trace-ablation/plan001-exec-only-s43-1000-r2.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T13:51:32.190Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/outputs/plan001_exec_only_s43_1000_r2\\\", \\\"wall_clock_seconds\\\": 8963.7, \\\"gpu_hours\\\": 2.49}, \\\"pid\\\": \\\"363692\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/outputs/plan001_exec_only_s43_1000_r2/eval_sta_results.json\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T16:05:\n…[truncated 828 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_registry-taxonomy-__-s43-s44_20260515T164655",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-15T16:55:17.406061+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_registry-taxonomy-__-s43-s44_20260515T164655",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "plan001-exec-only-s43-1000-r2",
+              "field": "notes",
+              "value": "Taxonomy audit (2026-05-15): 90/90 proved = H7a (100% tautology). All single-premise with conclusion text-matching premise. Content-independent predicates only 1/90. ISR分布反映H7a下quantifier结构差异(部分有∃x wrapping). genuine_strict=0. s43 1000步与500步(s43-r4)同为H7主导模式,但1000步PR大幅提升(14%→90%)。",
+              "project": "solver-trace-ablation"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-15T16:55:17.406314+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan001-exec-only-s43-1000-r2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T13:51:02.684Z\\\", \\\"updated_at\\\": \\\"2026-05-15T16:54:22.074Z\\\", \\\"hypothesis\\\": \\\"Exec-only GRPO 1000步 seed=43（r2 重跑）：r1 因磁盘满在 step 150 崩溃。磁盘已清理（92GB 可用），从 step 0 重跑。\\\", \\\"parent\\\": \\\"plan001-exec-only-s43-1000\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"started_at\\\": \\\"2026-05-15T13:51:29.890Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_exec_only.yaml --data_path data/train_500_seed42.jsonl --num_steps 1000 --seed 43 --output_dir /root/autodl-tmp/outputs/plan001_exec_only_s43_1000_r2\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-15T16:05:05.890Z\\\", \\\"training_hours\\\": 2.23}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_exec_only.yaml --data_path data/train_500_seed42.jsonl --num_steps 1000 --seed 43 --output_dir /root/autodl-tmp/outputs/plan001_exec_only_s43_1000_r2\\\\\\\"\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"363692\\\", \\\"log_path\\\": \\\"~/runs/solver-trace-ablation/plan001-exec-only-s43-1000-r2.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T13:51:32.190Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/outputs/plan001_exec_only_s43_1000_r2\\\", \\\"wall_clock_seconds\\\": 8963.7, \\\"gpu_hours\\\": 2.49}, \\\"pid\\\": \\\"363692\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/outputs/plan001_exec_only_s43_1000_r2/eval_sta_results.json\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T16:05:\n…[truncated 983 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_registry-taxonomy-__-s43-s44_20260515T164655",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-15T16:55:17.406577+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_registry-taxonomy-__-s43-s44_20260515T164655",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "exec-only-3seed-taxonomy-audit",
+              "type": "report",
+              "description": "Taxonomy audit for exec-only 1000-step experiments (s43, s44). Verifies s44's 3 genuine proofs are all H1-near (disjunction embedding via ∀x instantiation), genuine_strict=0.",
+              "project": "solver-trace-ablation",
+              "content_filename": "exec_only_3seed_taxonomy_audit.md",
+              "content": "# Exec-Only 1000-Step Taxonomy Audit (2026-05-15)\n\n## Summary\n\n| Seed | Proved | H7a | H7b | H1 | H8 | H1∩H8 | Genuine | Gen% | Gen_strict | Pattern |\n|------|--------|-----|-----|----|----|--------|---------|------|------------|---------|\n| s43  | 90/100 | 90  | 0   | 0  | 0  | 0      | 0       | 0%   | 0          | 100% H7a tautology |\n| s44  | 100/100| 0   | 0   | 85 | 15 | 3      | 3       | 3%   | 0          | H1+H8 dominant, 3 H1-near |\n\n## s44 Genuine Proof Audit (3 proofs → all H1-near)\n\n### folio_1296 (idx=51) — Fido/penguin\n- **Conclusion**: `(S(a) ∧ A(a)) ∨ (F(a) ∧ G(a))`\n- **P1**: `∀x ((F(x) ∧ G(x)) ∨ (S(x) ∧ A(x)))` → instantiated at a = conclusion (disjunct commuted)\n- **Ground facts**: F(a), A(a), G(a), S(a) all present → both disjuncts trivially satisfied\n- **ISR**: 0.0, n_necessary=0\n- **Verdict**: H1-near. ∀x instantiation + disjunct commutativity = conclusion. NOT genuine reasoning.\n\n### folio_1428 (idx=52) — Size Town bird\n- **Conclusion**: `U(a) ∨ C(a)`\n- **P1 conjunct**: `(U(x) ∨ C(x))` → instantiated = conclusion exactly\n- **Ground facts**: U(a) ×6, C(a) ×6 — massive redundancy\n- **ISR**: 0.0, n_necessary=0\n- **Verdict**: H1-near. Conclusion = sub-formula of ∀x premise after instantiation. Ground facts also satisfy. NOT genuine.\n\n### folio_1051 (idx=82) — Dune creative/sci-fi\n- **Conclusion**: `C(a) ∨ S(a)`\n- **P1**: `∀x (C(x) ∨ S(x))` → instantiated at a = `C(a) ∨ S(a)` **exact match**\n- **Ground facts**: C(a), S(a) present 3x each\n- **ISR**: 0.0, n_necessary=0\n- **Verdict**: H1-near. Most clear-cut case — P1 instantiation IS the conclusion. Only ∀x prefix prevents text match. NOT genuine.\n\n## Classifier Gap Analysis\n\nAll 3 escape classify_h7 because:\n1. **H7** requires single premise → these have 9-16 premises\n2. **H1** requires exact text match after normalization → `∀x (C(x) ∨ S(x))` ≠ `C(a) ∨ S(a)` (quantifier + variable)\n3. **H8** requires top-level conjunction → conclusions are disjunctions (∨)\n\nRoot cause: No detector for \"disjunction embedding\" or \"universal quantifier instantiation match.\"\n\n## Per C013 Classification\n\nPer C013: \"H1-near 保留为 genuine 但单独标记\"\n- genuine_count = 3 (formal, per C013 formula)\n- genuine_h1_near = 3 (all 3 are H1-near)\n- genuine_strict = 0 (excluding H1-near)\n\n## 3-Seed Statistics (1000 steps, genuine_strict)\n\n| Seed | n_proved | genuine_strict | rate |\n|------|----------|----------------|------|\n| s43  | 90       | 0              | 0.0% |\n| s44  | 100      | 0              | 0.0% |\n\nNote: s42-r2 is 500 steps (checkpoint-500), not 1000 steps. No s42-1000 experiment exists.\nFor the two available 1000-step seeds: **genuine_strict = 0.0% ± 0.0%**\n\n## Cross-Seed Hacking Mode Divergence\n\ns43 and s44 learned completely different hacking strategies at 1000 steps:\n- **s43**: Single-premise tautology (H7a=100%), ISR=0.53 (meaningless under H7)\n- **s44**: Multi-premise conclusion embedding (H1=85%) + conjunction collapse (H8=15%), ISR≈0, content-independent predicates=100%\n\nThis extreme mode divergence across seeds is itself a finding: exec-only reward provides no consistent pressure toward any particular hacking mode.\n",
+              "tags": "['taxonomy', 'exec-only', 'D090', 'genuine-audit']"
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-15T16:55:17.406877+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260515_79720b\\\", \\\"name\\\": \\\"exec-only-3seed-taxonomy-audit\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"Taxonomy audit for exec-only 1000-step experiments (s43, s44). Verifies s44's 3 genuine proofs are all H1-near (disjunction embedding via ∀x instantiation), genuine_strict=0.\\\", \\\"path\\\": \\\"projects/solver-trace-ablation/artifacts/_project/report/exec_only_3seed_taxonomy_audit.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"solver-trace-ablation\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-15T16:55:03.251101+00:00\\\", \\\"tags\\\": [\\\"taxonomy\\\", \\\"exec-only\\\", \\\"D090\\\", \\\"genuine-audit\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_registry-taxonomy-__-s43-s44_20260515T164655",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-15T16:55:17.407116+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 完成。核心结论：\n\n**s44-1000-r2 的 3 个 \"genuine\" proof 全部是 H1-near，genuine_strict = 0。**\n\n三个 proof 共享同一漏检模式：结论是析取式 (∨)，存在 `∀x` premise 实例化后精确等于/包含结论，加上 ground facts 冗余满足各析取项。ISR 全部为 0。classify_h7 漏检因为：H1 不做 ∀x 实例化文本匹配，H8 只查合取式。\n\n### 已完成\n\n| 项目 | 结果 |\n|------|------|\n| s43-1000-r2 taxonomy | H7a=90/90 (100%), genuine=0 ✓ |\n| s44-1000-r2 taxonomy | H1=85, H8=15, H1∩H8=3, genuine=3 (all H1-near) |\n| s44 3个genuine审查 | folio_1296/1428/1051 均为 ∀x 实例化析取式，非真实推理 |\n| Registry 更新 | 两个实验 metrics + notes 已更新，含 genuine_strict=0 |\n| 审计报告 | `art_20260515_79720b` 已注册 |\n\n### 待注意\n- **无 s42-1000 实验**：任务提到 s42: genuine=0/96，但 registry 和服务器均无 s42 1000步实验。s42-r2 是 500 步 (genuine=7/93)，其 7 个 genuine 尚未做 H1-near 审计。\n- **两 seed 统计** (1000步): genuine_strict = 0.0% ± 0.0% (s43, s44)。Reviewer 怀疑的 1.0%±1.7% 已被修正为 0。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_registry-taxonomy-__-s43-s44_20260515T164655"
+          },
+          "id": "event-000071"
+        }
+      ],
+      "message_count": 71
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-registry-taxonomy-s43-s44.md"
+}

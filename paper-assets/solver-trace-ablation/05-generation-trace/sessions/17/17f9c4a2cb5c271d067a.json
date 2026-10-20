@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "17f9c4a2cb5c271d067a",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "diagnose gpu process check",
+  "task_key": "worker_diagnose_gpu-process-check_20260516T035023",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_gpu-process-check_20260516T035023_result.json",
+    "occurrence": 1,
+    "bytes": 1369,
+    "sha256": "ec378e7248462e5a4e9ac07816b6185ae38f657907275837c423b264b5d8c7d6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n### sweep-isr-b005-s42 — 已完成，无需恢复\n\n- **实际状态**: 正常完成 (EXIT_CODE=0)，于 `2026-05-16T03:50:36Z` 退出\n- **训练进度**: 500/500 steps (100%)\n- **最终指标**: prove_rate=0.888, mean_isr=0.577\n- **输出**: `/root/autodl-tmp/outputs/sweep_isr_b005_s42/` — 完整模型已保存 (~15GB, 4 shards) + checkpoint-500\n- **tmux**: 已退出，无残留进程\n- **结论**: Registry 标记 killed 是错误的。实验已成功完成，建议更新 registry 为 `conclusion=success`\n\n---\n\n### sweep-isr-b01-s45 — 正在运行，有效训练\n\n| 项目 | 值 |\n|------|-----|\n| PID | 604569 |\n| 启动时间 | 11:21 (今天，约30分钟前) |\n| 当前 step | 177/500 (35%) |\n| GPU | GPU 0, 79.5GB/97.9GB, 93% 利用率 |\n| CUDA_VISIBLE_DEVICES | 0 |\n| 最近 reward | step 176=0.379, step 177=0.257 |\n| prove_rate | ~0.25-0.375 (正在学习中) |\n| step time | ~7-12s/step |\n| 预计剩余 | ~40-50 min |\n| wandb run | sweep-isr-b01-s45-r3 |\n| config | grpo_additive_bonus_b01.yaml, β=0.1, seed=45, num_gen=4 |\n| checkpoint | checkpoint-150 已保存 (15GB) |\n\n- **结论**: 有效运行，step 在增长，reward/loss 在变化。建议恢复 registry 为 `RUNNING`\n\n---\n\n### 环境概况\n- 磁盘: 152G/250G (61%)，99G 可用 — 充足\n- GPU 1: 空闲 (0MiB, 0%)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-gpu-process-check.md"
+}

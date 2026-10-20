@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5fafcfef5ea36cebfe8a",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code eval scripts prep",
+  "task_key": "worker_code_eval-scripts-prep_20260514T013607",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_eval-scripts-prep_20260514T013607_result.json",
+    "occurrence": 1,
+    "bytes": 1693,
+    "sha256": "ff774f2f7e88446503951b0112658b806c6ed79475eedafe9c9f46c6a830bdc8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个脚本都就绪。\n\n---\n\n### 任务 1：plan005 held-out eval\n\n`eval_sta.py` 无需修改，已支持所有需要的参数和输出格式。可直接执行的命令：\n\n```bash\nexport CUDA_VISIBLE_DEVICES=0  # 根据空闲GPU调整\ncd /root/solver-trace-ablation && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\npython3 scripts/eval_sta.py \\\n  --model_path /root/autodl-tmp/outputs/plan005_sta_low_s42/checkpoint-500 \\\n  --data_path data/proofwriter_fol_100.jsonl \\\n  --output_path /root/autodl-tmp/outputs/plan005_eval_sta_held_out.json\n```\n\n### 任务 2：plan014 downstream validation\n\n`eval_downstream.py` 已创建并验证。逻辑：\n- 生成 FOL → Prover9 证明 conclusion → \"true\"；证明 ¬conclusion → \"false\"；都不行 → \"unknown\"\n- 与 gold label 对比计算 accuracy，按 answer type 分组，输出 confusion matrix\n\n可直接执行的命令（对多个 checkpoint 跑）：\n\n```bash\n# plan005 (exec+STA)\nexport CUDA_VISIBLE_DEVICES=0\ncd /root/solver-trace-ablation && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\npython3 scripts/eval_downstream.py \\\n  --checkpoint_path /root/autodl-tmp/outputs/plan005_sta_low_s42/checkpoint-500 \\\n  --data_path data/proofwriter_fol_100.jsonl \\\n  --output_path /root/autodl-tmp/outputs/plan014_downstream_plan005.json\n\n# plan001 exec-only s42 (baseline对比)\npython3 scripts/eval_downstream.py \\\n  --checkpoint_path /root/autodl-tmp/outputs/plan001_exec_only_s42 \\\n  --data_path data/proofwriter_fol_100.jsonl \\\n  --output_path /root/autodl-tmp/outputs/plan014_downstream_plan001_s42.json\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-eval-scripts-prep.md"
+}

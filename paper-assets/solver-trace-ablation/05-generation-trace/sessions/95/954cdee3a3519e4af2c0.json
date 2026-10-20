@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "954cdee3a3519e4af2c0",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops kill leaked process",
+  "task_key": "worker_ops_kill-leaked-process_20260514T035918",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-leaked-process_20260514T035918_result.json",
+    "occurrence": 1,
+    "bytes": 316,
+    "sha256": "964bdede31c5a64946e2626b27e8fb6e0649be62bdad8accadfa935a38fd752e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **PID 209114 已 kill**，cuda:1 泄漏进程已清除\n- **cuda:1** 现在只有 PID 207121（plan017 训练进程），显存 79604MiB/97887MiB，GPU 利用率 90%，运行正常\n- **cuda:0** 有 PID 208833，显存 16452MiB，正常运行\n\nplan017 无 OOM 风险，状态健康。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-leaked-process.md"
+}

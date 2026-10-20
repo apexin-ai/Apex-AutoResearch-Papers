@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f1d9ed5317bde4e8af61",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_1_1778715780.md",
+  "task_key": "loop_1_1778715780",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_1_1778715780.md",
+    "occurrence": 1,
+    "bytes": 4652,
+    "sha256": "185d25f96aa04d31a762bf78c58dc76b890fe2ae296c657e0d259df5a3a896af"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 1\nreason: max_wall_time\nupdated: '2026-05-13T23:34:41+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-39279 cuda:0, cuda:1 **只有这两张**，禁止用其他 GPU\n- `CUDA_VISIBLE_DEVICES` 必须在 `bash -c \"...\"` **内部**设置（r3 OOM 教训：外部设置不被继承）\n- submit_training_job 命令**禁止加调试前缀**（如 `--help | grep && ...`）——bash wrapper PID 退出会导致 cron 误判 DONE/failed，但实际训练子进程仍在跑\n- 参数名是 `--num_steps`（不是 `--max_steps`）——已连续 2 次因此失败\n- STA reward 权重**禁止 50/50**（α=0.5/β=0.5 导致 prove_rate 从 baseline 0.12 退化到 0.10）。低权重 STA（0.9/0.1）已验证有效\n- `fast_isr_fol()` 是二值信号，**不能用于训练 reward**——必须用 `sta_reward()`（full STA，连续 ISR 0.0-1.0）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-39279，SSH `connect.westd.seetacloud.com:39279`，账户 root\n- 工作目录：`/root/solver-trace-ablation/`\n- Python：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`（aml-train 镜像，**不是 venv**）\n- 模型：`/root/solver-trace-ablation/models/Qwen3-4B`（7.6GB，ModelScope 下载）\n- 数据：`data/train_500_seed42.jsonl`（500行）、`data/test_100.jsonl`（held-out）、`data/proofwriter_fol_100.jsonl`（Phase 0）、另有 seed123/456 shuffle\n- 输出：`/root/autodl-tmp/outputs/`（根分区 30GB 限制，大文件必须存这里）\n- Solvers：Prover9（LADR 源码编译）、SWI-Prolog 8.4.2、Z3 4.16.0\n- W&B：disabled（`--no_wandb`），本地 JSONL logging\n- **注意**：reward_log.jsonl 多轮 run 追加同一文件，分析时按 timestamp 过滤\n- **注意**：2 个 swipl 僵尸进程（PID 95935, 96445）占 99.9% CPU，需清理\n\n### 3. 📊 当前状态\n**刚收到 WRITE HANDOFF，以下是最后已知状态（~23:30 UTC）：**\n\n| 实验 | GPU | 状态 | 进度 | 关键 metrics |\n|------|-----|------|------|-------------|\n| plan001-exec-only-s42-r2 | cuda:0 | RUNNING | 361/500 | prove_rate 0.625-1.0, isr≡prove_rate |\n| plan005-sta-low-s42 | cuda:1 | RUNNING | 306/500 | prove_rate 0.5-1.0, isr 0.03-0.27 |\n\n- plan001-r2 预计 ~15min 完成，plan005 预计 ~30min\n- plan013-random-reward 代码已就绪（Worker 刚完成），配置 `configs/grpo_random_reward.yaml`，等 GPU 空闲提交\n- Prolog STA 代码已完成（`src/solvers/prolog.py` + `src/sta/prolog_reward.py` + configs），5/5 测试通过\n- P2 eval 脚本已就绪：`eval_sta.py`、`eval_o1_vs_on.py`、`train_sft.py`\n- plan003-eval-exec-only-r5 已完成：prove_rate=0.32, proved_only_isr=0.6423（基于 100-step checkpoint，需用 500-step checkpoint 重跑）\n\n**等待中**：\n- plan001-r2 和 plan005 的 cron 完成回调\n- Director 审批 Dream 模拟结果（已发送但未回调）\n\n### 4. 📋 待办（条件触发式）\n- plan001-r2 cron 回调 → 分析 500 步结果 + 用 eval_sta.py 在 test_100.jsonl 上跑 full STA eval（plan_003 正式版）→ 汇报 Director\n- plan005 cron 回调 → 分析 prove_rate/ISR 趋势，对比 plan001 baseline，判断低权重 STA 是否抑制 reward hacking → 汇报\n- 两卡空闲后 → 立即提交 plan013-random-reward (cuda:0) + plan001 seed=123 第二个 seed (cuda:1)\n- plan003 eval 完成 → 对比 exec-only vs STA checkpoint 的 proved_only_isr，这是消歧实验（ISR 下降是因果的还是相关的）\n- plan_006 Prolog 实验 → 代码已就绪，需要 Prolog 训练数据（ProofWriter subset 或 GSM8K-Prolog）\n\n### 5. 🎯 战略上下文\n- **DDL**：EMNLP 2026 ARR May 25（12 天）\n- **核心发现**：continuous ISR 与 prove_rate 解耦验证通过（r5），但 50/50 权重导致 prove_rate 退化（negative）→ 低权重(0.9/0.1)正在验证中\n- **MVP 状态**：4/4 pass criteria 通过（基于 r5 100-step 结果），但 Director 将 exec-sta-r5 标记为 negative（prove_rate < baseline）\n- **plan001-r2 是 truth source**：experiment_plan.yaml plan_001 的 registry_id 已指向 r2。r1(参数错)、r3(OOM 重复提交) 都是已知失败\n- **最易判断错的事**：plan001-r2 的 cron 状态。它的 bash wrapper PID(84896) 已退出，cron 可能再次误判 failed。实际训练 PID 是 84901。收到 cron 回调说 failed 时，先 SSH 确认 PID 84901 是否真的退出，不要盲信\n- **GPU 预算**：30h 总预算，已用 ~5h（含空转浪费），剩余 ~25h。每分钟空转都是浪费\n- **决策链**：D001(MVP 方案) → D002(100步+Phase0) → D004(50/50 过于惩罚) → D005(ISR/PR 因果待验) → D006(检测 hacking claim 降级为观察性)\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-1-1778715780.md"
+}

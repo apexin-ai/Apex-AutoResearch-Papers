@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eed246eff40f77ec639b",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "diag b02 s42 exit129",
+  "task_key": "worker_diag_b02-s42-exit129_20260516T050113",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_b02-s42-exit129_20260516T050113_result.json",
+    "occurrence": 1,
+    "bytes": 1380,
+    "sha256": "89e39c8e982363f5f92821a45b9724db79e4b4023c1c5aa886a7674309c3e59d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断报告\n\n### b02-s42 失败原因\n\n**Exit 129 (SIGHUP) 发生在第一次运行的 step 80**，写到 `sweep_isr_b02_s42/`（只有 checkpoint-50 + 80 行 reward_log）。原因大概率是 SSH session 断开或 tmux 被杀，不是 OOM。\n\n**已成功重跑为 v2**：`sweep_isr_b02_s42_v2/` 包含完整结果：\n- 500/500 步完成，final model 已保存（~15GB safetensors）\n- checkpoint-500 存在\n- eval/ 目录已存在（已做过评估）\n- reward_log.jsonl 126KB（完整）\n\n**结论：b02-s42 不需要重跑。** v2 已经成功完成。旧的 `sweep_isr_b02_s42/`（15GB）可以清理。\n\n### 当前双跑状态\n\n| 指标 | GPU 0 (b02-s43) | GPU 1 (b02-s44) |\n|------|-----------------|-----------------|\n| PID | 633515 | 659716 |\n| 显存 | 85430/97887 MiB (87%) | 80318/97887 MiB (82%) |\n| 利用率 | 90% | 94% |\n| 温度 | 59°C | 60°C |\n\n- **RAM**: 77GB / 1TB used，922GB available — 完全安全\n- **磁盘**: 212GB / 250GB (85%)，剩余 39GB — 两个 run 各需 ~15GB，勉强够用。训练完成后建议清理 `sweep_isr_b02_s42/`（废弃的 v1）释放 15GB。\n\n### 结论\n\n- b02-s42 ✅ 已完成（v2），无需重跑\n- 双跑安全 ✅，RAM 充裕，GPU 温度正常\n- 唯一风险是磁盘（39GB free），两个 run 完成后会到 ~9GB，建议跑完后立即清理 v1 废弃目录"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-b02-s42-exit129.md"
+}

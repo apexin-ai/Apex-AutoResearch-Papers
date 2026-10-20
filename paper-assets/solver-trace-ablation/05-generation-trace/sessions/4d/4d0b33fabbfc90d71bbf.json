@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4d0b33fabbfc90d71bbf",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code config merge rootfix",
+  "task_key": "worker_code_config-merge-rootfix_20260513T200401",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_config-merge-rootfix_20260513T200401_result.json",
+    "occurrence": 1,
+    "bytes": 705,
+    "sha256": "f94989a5068fa09d75fb8da49d07e46660fcd6b1825763e08e81dd5eed870bdf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。验证结果汇总：\n\n### 修复内容\n`parse_args()` 的 config merge 改为 Method A：YAML 值通过 `parser.set_defaults()` 注入，然后二次 `parse_args()` 让 CLI 参数可覆盖。同时添加了 `os.environ[\"WANDB_MODE\"] = \"disabled\"`、`JSONLLogCallback`、`logging_steps` 可配置参数。\n\n### 3 步验证结果\n\n| 检查项 | exec-only | exec-sta |\n|--------|-----------|----------|\n| `no_wandb` = True | ✅ | ✅ |\n| 3 步无 crash | ✅ | ✅ |\n| `training_log.jsonl` 条数 | 4 条（3 step + 1 summary）| 4 条 |\n| reward 值合理 | 0.25 / 0.0 / 0.375 | 0.25 / 0.0 / 0.375 |\n| parse_rate | 1.0 | 1.0 |\n| prove_rate | 0.208 | 0.208 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-config-merge-rootfix.md"
+}

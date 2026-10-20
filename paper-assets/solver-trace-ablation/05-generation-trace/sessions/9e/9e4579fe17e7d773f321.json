@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9e4579fe17e7d773f321",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_4_1778748198.md",
+  "task_key": "loop_4_1778748198",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1778748198.md",
+    "occurrence": 1,
+    "bytes": 4539,
+    "sha256": "a35ec1caa5662566a92ef20e7baa41aa0e8673570b570a2feb49efee3d53a1aa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-14T08:28:31+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：仅 `westd-39279:cuda:0` 和 `westd-39279:cuda:1`，submit_training_job GPU 编号从 0 开始\n- 训练数据：所有 FOL 实验必须用 `train_500_seed42.jsonl`（C001 约束，D009）\n- 命令格式：`bash -c \"export CUDA_VISIBLE_DEVICES=N && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 ...\"`（tmux 跑在 sh 下，source 是 bash built-in）\n- 磁盘：output_dir 必须放 `/root/autodl-tmp/outputs/`，`log_completions=False` + `save_total_limit=1`（C003）\n- paper_framing.md 尚未更新到 D035 Goodhart 叙事——改 framing 前必须等 Director 正式 [FRAMING APPROVED]，当前 D035 只是决策记录\n- plan013 vs plan017 公式结构不同，论文不可简化为 \"additive vs convex\" 对照（Reviewer D027 警告）\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-39279, 工作目录 `/root/solver-trace-ablation/`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- **GPU**: 2× RTX PRO 6000 Blackwell 96GB, CUDA 12.8, PyTorch 2.10.0+cu128\n- **模型**: Qwen3-4B via ModelScope（7.6GB）\n- **Solvers**: Prover9 (LADR 源码编译), SWI-Prolog 8.4.2 (`/usr/bin/swipl`), Z3 4.16.0.0\n- **磁盘**: 系统盘 22G free, 数据盘 `/root/autodl-tmp/` 142G free\n- **活跃进程**: 无（plan002-b01 和 plan016 均已完成）\n- **活跃 Cron**: 0\n- **活跃 Worker**: `worker_code_plan006-dryrun_20260514T081656`（plan006 Prolog dry-run 代码准备）\n\n### 3. 📊 当前状态\n**刚完成**: plan002-b01 (ISR β=0.1, SUCCESS, PR=0.81/ISR=0.337) + plan016 (1000步, SUCCESS, ISR 崩塌 0.123→0.003) + plan018 (random β=0.1 对照, NEGATIVE, PR=0.79/ISR=0.104)。三个实验的 eval 和分析全部完成，registry 已更新。\n\n**关键发现（本轮最重要）**: β=0.1 同剂量对照证明 ISR 信号有结构价值（ISR 3.2x > random），但 β=0.3 时 ISR 比 random 更差（PR 18% vs 48%）——经典 Goodhart 效应。D035 决策选 Framing C: Goodhart 主线叙事。\n\n**Registry 摘要**: 35 实验, DONE=32 (success 9, negative 9, failed 14), PREPARING=3 (plan006 Prolog ×3 seeds)。**两张 GPU 当前空闲。**\n\n**等待中**:\n- Worker `plan006-dryrun` 正在运行（Prolog dry-run 代码准备）→ 回调后可提交 plan006\n- 无 Director 待决策项（D035 已选定 Goodhart framing）\n\n### 4. 📋 待办（条件触发式）\n- `plan006-dryrun` Worker 回调到达 → 检查 dry-run 结果（PR<5% 用 K=16，否则 K=8）→ 立即提交 plan006-prolog-exec-s42 (cuda:0) + plan006-prolog-exec-s43 (cuda:1)，s44 排队等卡空出\n- plan006 任一 seed 完成 → eval_sta.py Prolog 模式分析 → 第三个 seed 上空出的卡\n- plan006 3-seed 全部完成 → 判断 Claim 3 (cross-logic generality) 成立或降级 future work → 汇报 Director\n- plan006 3-seed 完成 + Goodhart framing 确认 → 启动论文写作（paper_framing.md 需先更新到 Goodhart 叙事，走 framing-reaudit skill）\n- **两张 GPU 空闲超过 1 小时未提交 = 失职** → plan006 dry-run 如果卡住，必须催/诊断\n\n### 5. 🎯 战略上下文\n**项目核心结论链**:\n- D007: exec-only ISR 有机提升，50/50 权重是退化根因\n- D010→D020→D026: ISR-as-reward 全面失败（凸组合→penalty, β=0.3→最差, β=0.3 random→比 ISR 好）\n- D031: β=0.1 ISR 异常好（PR=0.81, ISR=0.337），紧急补 random 对照\n- D033→D035: **Goodhart 主线叙事**——低剂量(β=0.1) ISR 有效, 高剂量(β=0.3) ISR 比 random 更差\n\n**九组对照表是论文核心 Table 1**（memory.md \"Held-out eval_sta 全量结果\" 段），包含 plan001×3seeds + plan016 + plan002-b01 + plan018 + plan002-b03 + plan017 + plan013。\n\n**最容易判断错的事**:\n1. paper_framing.md 当前仍是旧的 3-claim 诊断框架（Claim 1 ISR diagnostic / Claim 2 GRPO saturation / Claim 3 cross-logic），D035 Goodhart 叙事尚未写入——不要按旧 framing 写论文\n2. plan016 的 \"success\" conclusion 是训练完成意义上的 success，不是 ISR 改善——实际结果是 ISR 崩塌到 0.003（矛盾爆炸），这是 **负面证据**，但对 Goodhart 叙事是 **正面支撑**\n3. plan013 (convex 0.9/0.1 random) 的 PR=100% 看起来惊人，实际是 100% tautological collapse（ISR=0.535 是 2-component 假高）\n4. DDL 5/25 还剩 11 天，GPU 时间充裕（528 GPU·h 剩余 vs ~10h 需求），瓶颈是 plan006 结果 + 论文写作速度\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1778748198.md"
+}

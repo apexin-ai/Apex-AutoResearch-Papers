@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dbd7e8abfc87532bed0f",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "eval t015 final collect",
+  "task_key": "worker_eval_t015-final-collect_20260516T191454",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_t015-final-collect_20260516T191454_result.json",
+    "occurrence": 1,
+    "bytes": 464,
+    "sha256": "ab33c229136338eb16e88c4690582bb9769319cee49a83af40a1af47f301ac60"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## τ=0.15 Eval 结果 (gated_warmstart_v3_t015_s43)\n\n| 指标 | 值 |\n|------|-----|\n| n_proved / n_problems | 41 / 100 |\n| prove_rate (PR) | **41.0%** |\n| mean_isr (全样本) | 0.0512 |\n| mean_isr (proved-only) | 0.1248 |\n| H7% | 0/41 = **0.0%** |\n| H1% | 1/41 = **2.4%** |\n| H8% | 0/41 = **0.0%** |\n| Genuine% | 40/41 = **97.6%** |\n\nH1 唯一案例是 folio_1030（10 premises, ISR=0.0）。无 tautology 或 conjunction collapse。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-t015-final-collect.md"
+}

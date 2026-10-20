@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d654d72ad300d468a1cb",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops wave1 cleanup restart",
+  "task_key": "worker_ops_wave1-cleanup-restart_20260517T062326",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_wave1-cleanup-restart_20260517T062326_result.json",
+    "occurrence": 1,
+    "bytes": 435,
+    "sha256": "6a0e80d0ccca3ad15b88204c6bac86c6c971ecbc3907cb54d0318f0fd724510f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**结果汇总：**\n- 清理释放：autodl-tmp 从 ~190G used 恢复到 61G 可用（释放约 ~30G 失败 checkpoint）\n- 根分区：21G 可用\n- **实验 1** (plan018-additive-random-b01-s45)：PID 171186，cuda:0，48.6GB 显存，94% util\n- **实验 2** (sweep-random-b005-s42)：PID 171264，cuda:1，44.8GB 显存，95% util\n\n两个实验均正常运行，各自独占一张 GPU，无越界。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-wave1-cleanup-restart.md"
+}

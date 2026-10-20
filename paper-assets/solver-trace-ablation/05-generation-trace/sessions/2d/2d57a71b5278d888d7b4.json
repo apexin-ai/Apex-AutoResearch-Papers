@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2d57a71b5278d888d7b4",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "paper r30 p0c confound final",
+  "task_key": "worker_paper_r30-p0c-confound-final_20260522T155849",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_r30-p0c-confound-final_20260522T155849_result.json",
+    "occurrence": 1,
+    "bytes": 1297,
+    "sha256": "d80ea97dad0a2161d24763bd172ef1418c4b694cff566fc431428c69c8aafd78"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Compile clean: 0 undefined refs, 0 multiply-defined labels, 24 pages.\n\n---\n\n**修改汇总**:\n\n### 任务 1: experiments.tex (paper/ + docs/paper/)\n\n**L44** — `$3.2\\times$ → $214\\times$ raw`:\n- Before: `the apparent ISR advantage collapses from $3.2\\times$ to $1.06\\times$`\n- After: `the apparent $214\\times$ raw ISR advantage collapses to $1.06\\times$`\n\n**L79-85** — Premise-count confound paragraph 全量替换:\n- Before: 用 `$3.2\\times$` 和 \"independent of premise count\" 的两层框架（5行）\n- After: Director 确认的精确措辞——Scalar Goodhart（`$214\\times$ → $1.06\\times$`, McNemar `p=0.317`, `n=100`）+ Compositional Goodhart（\"robust in modal premise-count range 4–6\", `19.7%` vs `0%` TS, complexity dependence is mechanistic）（7行）\n\n### 任务 2: appendix.tex (paper/ + docs/paper/)\n\n**L128** — McNemar 详情更新:\n- Before: `$n{=}16$ paired samples; the near-unity ratio indicates...negligible`\n- After: `McNemar's test: $\\chi^2{=}1.0$, $p{=}0.317$, $n{=}100$ problem-level matched pairs...not statistically significant`\n\n**L130+** — 新增 `tab:premise-bin-modes` 表格（6行数据，3 premise bins × 2 conditions）\n\n### 编译\n0 undefined, 0 multiply, 24 pages, 无 citation warnings。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-r30-p0c-confound-final.md"
+}

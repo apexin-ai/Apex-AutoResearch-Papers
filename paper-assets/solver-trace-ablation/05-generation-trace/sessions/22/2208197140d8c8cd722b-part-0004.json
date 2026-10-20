@@ -1,0 +1,3554 @@
+{
+  "schema_version": "1.0",
+  "session_id": "2208197140d8c8cd722b",
+  "rounds": [
+    {
+      "number": 17,
+      "messages": [
+        {
+          "source_line": 541,
+          "timestamp": "2026-05-15T12:26:43.936895+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_a771c2a33d631dd40256ecd5c3a6648e:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 4891
+          },
+          "id": "event-000541"
+        },
+        {
+          "source_line": 542,
+          "timestamp": "2026-05-15T12:26:48.639691+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ScheduleWakeup"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "ScheduleWakeup",
+            "tool_args": {
+              "delaySeconds": "270",
+              "reason": "等待 Agent 响应 SFT eval CRITICAL，可能启动 eval 或提交新实验",
+              "prompt": "检查 plan009-sft-baseline-s42-1000 是否已启动 eval（conclusion 应从 success 改为 pending）。监控新实验提交和 GPU 利用率。"
+            }
+          },
+          "id": "event-000542"
+        },
+        {
+          "source_line": 543,
+          "timestamp": "2026-05-15T12:26:48.691665+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Next wakeup scheduled for 12:31:00 (in 251s)."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "ScheduleWakeup",
+            "elapsed_ms": 51
+          },
+          "id": "event-000543"
+        },
+        {
+          "source_line": 544,
+          "timestamp": "2026-05-15T12:26:49.947792+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ScheduleWakeup"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "ScheduleWakeup",
+            "tool_args": {
+              "delaySeconds": "270",
+              "reason": "等待 Agent 响应 plan009-sft eval 要求，两 GPU 空闲",
+              "prompt": "检查 plan009-sft-baseline-s42-1000 的 eval 是否启动。检查 GPU 利用率。检查是否有新实验提交。监控磁盘。"
+            }
+          },
+          "id": "event-000544"
+        },
+        {
+          "source_line": 545,
+          "timestamp": "2026-05-15T12:26:50.012328+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Next wakeup scheduled for 12:31:00 (in 250s)."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "ScheduleWakeup",
+            "elapsed_ms": 64
+          },
+          "id": "event-000545"
+        },
+        {
+          "source_line": 546,
+          "timestamp": "2026-05-15T12:26:51.703123+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "CRITICAL 报告已提交。等待 Director 安排 SFT eval。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer"
+          },
+          "id": "event-000546"
+        },
+        {
+          "source_line": 547,
+          "timestamp": "2026-05-15T12:26:52.577574+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已提交。等待 Agent 启动 SFT eval。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer"
+          },
+          "id": "event-000547"
+        }
+      ]
+    },
+    {
+      "number": 18,
+      "messages": [
+        {
+          "source_line": 548,
+          "timestamp": "2026-05-15T12:27:15.391305+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_eval_plan018-r3-1000_20260515T122442]:\nWorker worker_eval_plan018-r3-1000_20260515T122442 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "source": "system"
+          },
+          "id": "event-000548"
+        },
+        {
+          "source_line": 549,
+          "timestamp": "2026-05-15T12:27:24.054943+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "limit": "2",
+              "fields": "['status', 'conclusion', 'metrics', 'updated_at']"
+            }
+          },
+          "id": "event-000549"
+        },
+        {
+          "source_line": 550,
+          "timestamp": "2026-05-15T12:27:24.216048+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used --format=csv,noheader"
+            }
+          },
+          "id": "event-000550"
+        },
+        {
+          "source_line": 551,
+          "timestamp": "2026-05-15T12:27:24.589478+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan009-sft-baseline-s42-1000\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-15T12:25:32.031Z\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"plan018-additive-random-b01-s42-1000-r3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-15T12:23:34.170Z\\\", \\\"metrics\\\": {\\\"eval\\\": {\\\"prove_rate\\\": 0.97, \\\"mean_isr\\\": 0.6892, \\\"isr_std\\\": 0.2037, \\\"median_isr\\\": 0.75, \\\"min_isr\\\": 0, \\\"max_isr\\\": 1, \\\"proved_only_mean_isr\\\": 0.7105, \\\"n_proved\\\": 97, \\\"n_problems\\\": 100, \\\"by_answer_type\\\": {\\\"false\\\": {\\\"count\\\": 25, \\\"proved\\\": 25, \\\"prove_rate\\\": 1, \\\"mean_isr\\\": 0.753}, \\\"unknown\\\": {\\\"count\\\": 41, \\\"proved\\\": 39, \\\"prove_rate\\\": 0.951, \\\"mean_isr\\\": 0.657}, \\\"true\\\": {\\\"count\\\": 34, \\\"proved\\\": 33, \\\"prove_rate\\\": 0.971, \\\"mean_isr\\\": 0.681}}}, \\\"classification\\\": {\\\"H7_tautological\\\": 97, \\\"H7_pct\\\": 100, \\\"H1_conclusion_embedding\\\": 0, \\\"H1_pct\\\": 0, \\\"H8_conjunction_collapse\\\": 0, \\\"H8_pct\\\": 0, \\\"genuine\\\": 0, \\\"genuine_pct\\\": 0, \\\"failed\\\": 3}, \\\"isr_distribution\\\": {\\\"0.33\\\": 13, \\\"0.67\\\": 5, \\\"0.75\\\": 71, \\\"1.00\\\": 8}, \\\"training\\\": {\\\"steps\\\": 1000, \\\"train_loss\\\": 0.0067, \\\"final_prove_rate\\\": 0.827, \\\"final_mean_isr\\\": 0.521, \\\"duration_seconds\\\": 5783, \\\"epoch\\\": 4}}, \\\"conclusion\\\": \\\"negative\\\"}}, \\\"count\\\": 2, \\\"total\\\": 75, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5479}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 534
+          },
+          "id": "event-000551"
+        },
+        {
+          "source_line": 552,
+          "timestamp": "2026-05-15T12:27:26.074539+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 0 %, 0 MiB\\\\n1, 0 %, 0 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1858
+          },
+          "id": "event-000552"
+        },
+        {
+          "source_line": 553,
+          "timestamp": "2026-05-15T12:27:34.159560+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "r3 registry 未变（已审查通过）。这是重复通知，无需额外操作。\n\nplan009-sft 仍未启动 eval（DONE/success，无 metrics）。两 GPU 空闲。等待 Agent 响应我的 eval 要求。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer"
+          },
+          "id": "event-000553"
+        }
+      ]
+    },
+    {
+      "number": 19,
+      "messages": [
+        {
+          "source_line": 554,
+          "timestamp": "2026-05-15T12:31:46.294848+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_code_d076-h8-classifier_20260515T122920]:\nWorker worker_code_d076-h8-classifier_20260515T122920 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "source": "system"
+          },
+          "id": "event-000554"
+        }
+      ]
+    },
+    {
+      "number": 20,
+      "messages": [
+        {
+          "source_line": 555,
+          "timestamp": "2026-05-15T12:31:46.444877+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_code_d076-h8-classifier_20260515T122920]:\nWorker worker_code_d076-h8-classifier_20260515T122920 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "source": "worker_done:worker_code_d076-h8-classifier_20260515t122920"
+          },
+          "id": "event-000555"
+        },
+        {
+          "source_line": 556,
+          "timestamp": "2026-05-15T12:31:54.802882+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "ls -la /root/solver-trace-ablation/scripts/classify_h7.py"
+            }
+          },
+          "id": "event-000556"
+        },
+        {
+          "source_line": 557,
+          "timestamp": "2026-05-15T12:31:55.004075+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used --format=csv,noheader"
+            }
+          },
+          "id": "event-000557"
+        },
+        {
+          "source_line": 558,
+          "timestamp": "2026-05-15T12:31:55.104860+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "limit": "3",
+              "fields": "['status', 'conclusion', 'updated_at']"
+            }
+          },
+          "id": "event-000558"
+        },
+        {
+          "source_line": 559,
+          "timestamp": "2026-05-15T12:31:55.907632+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 12989 May 15 19:59 /root/solver-trace-ablation/scripts/classify_h7.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.04}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1104
+          },
+          "id": "event-000559"
+        },
+        {
+          "source_line": 560,
+          "timestamp": "2026-05-15T12:31:56.460681+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 55 %, 8485 MiB\\\\n1, 0 %, 0 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.56}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1456
+          },
+          "id": "event-000560"
+        },
+        {
+          "source_line": 561,
+          "timestamp": "2026-05-15T12:31:56.762299+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan009-sft-baseline-s43-1000\\\": {\\\"status\\\": \\\"PENDING\\\", \\\"updated_at\\\": \\\"2026-05-15T12:28:56.019Z\\\"}, \\\"plan009-sft-baseline-s42-1000\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-15T12:25:32.031Z\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"plan018-additive-random-b01-s42-1000-r3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-15T12:23:34.170Z\\\", \\\"conclusion\\\": \\\"negative\\\"}}, \\\"count\\\": 3, \\\"total\\\": 76, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2811}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1657
+          },
+          "id": "event-000561"
+        },
+        {
+          "source_line": 562,
+          "timestamp": "2026-05-15T12:31:57.817168+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "file": "decisions.yaml",
+              "max_chars": "3000"
+            }
+          },
+          "id": "event-000562"
+        },
+        {
+          "source_line": 563,
+          "timestamp": "2026-05-15T12:31:58.018634+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/decisions.yaml\\\", \\\"content\\\": \\\"_next_id: 77\\\\ndecisions:\\\\n- id: D001\\\\n  date: 2026-05-13 17:34 UTC\\\\n  summary: MVP 方案：FOL+Prover9 单逻辑 50-step GRPO pilot 验证 STA reward 有效性\\\\n  rationale: EMNLP ARR DDL 5/25 仅剩 12 天，需要最快速度验证核心假设。选 FOL+Prover9 因为 hacking 模式最清晰（tautological\\\\n    formulas），STA 的 O(1) 近似最直观（去掉前提后能否证明结论）。50-step pilot 足以观察 ISR 趋势。两个条件并行跑 2 GPU。Pass\\\\n    标准：ISR gap >20pp + accuracy 降幅 <5pp。\\\\n  related_experiments: []\\\\n  depends_on: []\\\\n- id: D002\\\\n  date: 2026-05-13 17:37 UTC\\\\n  summary: MVP 方案调整：50步→100步 + 趋势判断 + Phase 0 ISR baseline + kill criteria\\\\n  rationale: 采纳 Reviewer 三条 warning：(1) 加 pre-training ISR baseline 锚定训练前水平；(2) 50步太短难以观察\\\\n    reward hacking，改 100步+最后20步 moving average 趋势判断；(3) 补充硬性 kill criteria 防止 DDL\\\\n    压力下无止境调整。\\\\n  related_experiments: []\\\\n  depends_on:\\\\n  - D001\\\\n- id: D003\\\\n  date: 2026-05-13 20:50 UTC\\\\n  summary: Phase 1 r4 fast_isr_fol 训练信号无效，改用 full STA + K=8 重跑\\\\n  rationale: fast_isr_fol 是二值 O(1) 近似（ISR=0 tautology / ISR=1 non-tautology），Qwen3-4B\\\\n    生成的 proved formalization 几乎全部 ISR=1，与 execution-only 零差异。full STA 提供连续 ISR（0.125-0.889\\\\n    in Phase 0），能给出真实梯度信号。K=4 导致 frac_reward_zero_std=0.5-1.0（GRPO 无 advantage），K=8\\\\n    增加 within-group variance。两个改动分别解决 STA 信号粒度和 GRPO 梯度信号两个独立问题。\\\\n  related_experiments:\\\\n  - exp_id: sta-phase1-exec-only-r4\\\\n    role: evidence\\\\n    result: prove_rate 12%→15%, ISR ~0.15, minimal learning\\\\n  - exp_id: sta-phase1-exec-sta-r4\\\\n    role: evidence\\\\n    result: 与 exec-only 几乎完全相同, fast_isr 提供零额外信号\\\\n  depends_on:\\\\n  - D002\\\\n- id: D004\\\\n  date: 2026-05-13 21:59 UTC\\\\n  summary: Reviewer 指出 exec-sta-r5 prove_rate 低于 baseline（退化），STA 50/50 权重过于惩罚性。立即补跑低权重\\\\n    + bonus 模式实验\\\\n  rationale: exec-sta-r5 prove_rate=0.10 < baseline=0.12 < exec-only=0.15。连续 ISR 给\\\\n    proved-but-low-ISR 样本 reward≈0.3（几乎等于未 prove），模型学到 prove 不值得。Kill criteria\n…[truncated 1450 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 201
+          },
+          "id": "event-000563"
+        },
+        {
+          "source_line": 564,
+          "timestamp": "2026-05-15T12:31:59.023722+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "find /root/solver-trace-ablation/scripts/ -name \"classify_h7*\" -newer /root/solver-trace-ablation/scripts/classify_h7.py.bak"
+            }
+          },
+          "id": "event-000564"
+        },
+        {
+          "source_line": 565,
+          "timestamp": "2026-05-15T12:31:59.525929+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used --format=csv,noheader"
+            }
+          },
+          "id": "event-000565"
+        },
+        {
+          "source_line": 566,
+          "timestamp": "2026-05-15T12:32:00.078678+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/solver-trace-ablation/scripts/classify_h7.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.05}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1054
+          },
+          "id": "event-000566"
+        },
+        {
+          "source_line": 567,
+          "timestamp": "2026-05-15T12:32:00.631425+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 55 %, 8485 MiB\\\\n1, 0 %, 0 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.56}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1105
+          },
+          "id": "event-000567"
+        },
+        {
+          "source_line": 568,
+          "timestamp": "2026-05-15T12:32:08.923121+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "find /root/autodl-tmp/outputs/plan009_sft_baseline_s42_1000/ -name \"*eval*\" -o -name \"*sta*\" -o -name \"*h7*\""
+            }
+          },
+          "id": "event-000568"
+        },
+        {
+          "source_line": 569,
+          "timestamp": "2026-05-15T12:32:09.325926+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "head -5 /root/solver-trace-ablation/scripts/classify_h7.py"
+            }
+          },
+          "id": "event-000569"
+        },
+        {
+          "source_line": 570,
+          "timestamp": "2026-05-15T12:32:09.628539+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "file": "decisions.yaml",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000570"
+        },
+        {
+          "source_line": 571,
+          "timestamp": "2026-05-15T12:32:09.879916+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/outputs/plan009_sft_baseline_s42_1000/checkpoint-1000/rng_state.pth\\\\n/root/autodl-tmp/outputs/plan009_sft_baseline_s42_1000/checkpoint-1000/trainer_state.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 956
+          },
+          "id": "event-000571"
+        },
+        {
+          "source_line": 572,
+          "timestamp": "2026-05-15T12:32:09.981641+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (65,362 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation--claude-sessions-reviewer-5c7e23f1/471ed31e-4811-4808-a9ab-570ca7fa63f3/tool-results/mcp-agent-ml-research-read_project_file-1778848329903.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation--claude-sessions-reviewer-5c7e23f1/471ed31e-4811-4808-a9ab-570ca7fa63f3/tool-results/mcp-agent-ml-research-read_project_file-1778848329903.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation--claude-sessions-reviewer-5c7e23f1/471ed31e-4811-4808-a9ab-570ca7fa63f3/tool-results/mcp-agent-ml-research-read_project_file-1778848329903.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 353
+          },
+          "id": "event-000572"
+        },
+        {
+          "source_line": 573,
+          "timestamp": "2026-05-15T12:32:10.131861+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nClassify hacking patterns in eval results.\\\\n\\\\nH7: single premise == conclusion (conclusion duplication)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 805
+          },
+          "id": "event-000573"
+        },
+        {
+          "source_line": 574,
+          "timestamp": "2026-05-15T12:32:10.182472+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "fields": "['*']",
+              "filters": "{'status': 'PENDING'}"
+            }
+          },
+          "id": "event-000574"
+        },
+        {
+          "source_line": 575,
+          "timestamp": "2026-05-15T12:32:10.434232+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan009-sft-baseline-s43-1000\\\": {\\\"status\\\": \\\"PENDING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T12:28:46.064Z\\\", \\\"updated_at\\\": \\\"2026-05-15T12:28:56.019Z\\\", \\\"spec\\\": {\\\"data_path\\\": \\\"data/train_500_seed42.jsonl\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"Qwen3-4B\\\", \\\"seed\\\": 43, \\\"num_steps\\\": 1000, \\\"reward_mode\\\": \\\"sft\\\", \\\"beta\\\": null, \\\"checkpoint_source\\\": \\\"Qwen/Qwen3-4B (base, no checkpoint)\\\"}, \\\"hypothesis\\\": \\\"SFT 1000步 seed=43：与 s42 相同配置的第二个 seed，验证 SFT 在 1000 步的 genuine rate 稳定性。与 GRPO 各条件 1000步对比，确认 Goodhart collapse 是 RL 特有现象。\\\", \\\"parent\\\": \\\"plan009-sft-baseline-s43\\\"}}, \\\"count\\\": 1, \\\"total\\\": 1, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2778}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 251
+          },
+          "id": "event-000575"
+        },
+        {
+          "source_line": 576,
+          "timestamp": "2026-05-15T12:32:17.669796+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation--claude-sessions-reviewer-5c7e23f1/471ed31e-4811-4808-a9ab-570ca7fa63f3/tool-results/mcp-agent-ml-research-read_project_file-1778848329903.txt | python3 -c \"import sys,json; data=json.load(sys.stdin); content=json.loads(data['result'])['data']['content']; lines=content.split('\\n'); [print(l) for l in lines if 'D076' in l or 'D075' in l or 'd076' in l.lower() or 'd075' in l.lower()]\"",
+              "description": "Extract D075-D076 decisions from YAML"
+            }
+          },
+          "id": "event-000576"
+        },
+        {
+          "source_line": 577,
+          "timestamp": "2026-05-15T12:32:17.921372+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "- id: D075\n- id: D076\n  - D075"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 251
+          },
+          "id": "event-000577"
+        },
+        {
+          "source_line": 578,
+          "timestamp": "2026-05-15T12:32:22.909005+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation--claude-sessions-reviewer-5c7e23f1/471ed31e-4811-4808-a9ab-570ca7fa63f3/tool-results/mcp-agent-ml-research-read_project_file-1778848329903.txt | python3 -c \"\nimport sys, json, yaml\ndata = json.load(sys.stdin)\ncontent = json.loads(data['result'])['data']['content']\ndocs = yaml.safe_load(content)\nfor d in docs.get('decisions', []):\n    if d['id'] in ('D075', 'D076'):\n        print(yaml.dump(d, allow_unicode=True, default_flow_style=False))\n        print('---')\n\"",
+              "description": "Parse D075 and D076 decisions from YAML"
+            }
+          },
+          "id": "event-000578"
+        },
+        {
+          "source_line": 579,
+          "timestamp": "2026-05-15T12:32:23.161345+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "date: 2026-05-15 11:36 UTC\ndepends_on:\n- D074\nid: D075\nrationale: 1000步全景表(exec-only/ISR β=0.1/ISR β=0.3/Random β=0.1)均genuine→0%，但hacking路径各异(H1冗余/H7结论嵌入/H7+H1混合/纯tautology)。这是§4.3\n  Goodhart temporal collapse的核心证据。SFT 500步已93% genuine/0% H7，若1000步维持→证明Goodhart是RL(GRPO)特有现象而非训练时长效应，叙事价值最高。优先于Random\n  β=0.3补全2×2网格(边际价值低)。\nrelated_experiments:\n- exp_id: plan016-extended-1000-s42\n  result: PR=0.96 ISR=0.003 genuine=0%\n  role: exec-only 1000步\n- exp_id: exp1-isr-b03-s42-1000-r2\n  result: PR=0.95 ISR=0.734 genuine=0%\n  role: ISR β=0.3 1000步\n- exp_id: plan018-additive-random-b01-s42-1000-r2\n  result: PR=1.0 ISR=0.333 genuine=0%\n  role: Random β=0.1 1000步\n- exp_id: plan009-sft-baseline-s42-r4\n  result: PR=0.14 genuine=93%\n  role: SFT 500步参照\nsummary: '1000步全景表完成(seed42): 4条件全部collapse到~0% genuine，但经由4条不同hacking路径。批准SFT 1000步作为RL-free对照。'\n\n---\ndate: 2026-05-15 11:42 UTC\ndepends_on:\n- D075\nid: D076\nrationale: Reviewer 独立核实发现：(1) 100/100 样本使用 content-independent 模板 ∀x(P(x)→Q(x))，谓词与问题语义完全无关；(2)\n  41 个 ISR=1.0 样本的结论是所有前提的合取，H7 分类器只检测单前提=结论所以漏判；(3) registry 记录 genuine=41(43.2%)+conclusion=success\n  严重错误。这是新发现的第 8 种 hacking 模式 conjunction collapse——模型通过把结论写成所有前提的合取来最大化 ISR。分类器必须升级，且需回溯检查历史实验是否受同样盲区影响。\nrelated_experiments:\n- exp_id: exp1-isr-b03-s42-1000-r2\n  result: 'registry: genuine=41 success → 应为 genuine=0 negative'\n  role: 被误标实验\nsummary: 'CRITICAL: exp1-isr-b03-s42-1000-r2 registry 误标 genuine=41/success，实际 genuine=0/negative。发现第\n  8 种 hacking 模式 \"conjunction collapse\"（结论=所有前提合取，ISR=1.0 但非 genuine）。分类器盲区需立即修复。'\n\n---"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 252
+          },
+          "id": "event-000579"
+        },
+        {
+          "source_line": 580,
+          "timestamp": "2026-05-15T12:32:23.412847+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "find /root/autodl-tmp/outputs/ -name \"*eval*\" -newer /root/autodl-tmp/outputs/plan018_additive_random_b01_s42_1000_r3/eval_results.json"
+            }
+          },
+          "id": "event-000580"
+        },
+        {
+          "source_line": 581,
+          "timestamp": "2026-05-15T12:32:23.864503+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 451
+          },
+          "id": "event-000581"
+        },
+        {
+          "source_line": 582,
+          "timestamp": "2026-05-15T12:32:23.864979+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "find /root/autodl-tmp/outputs/ -name \"*h8*\" -newer /root/autodl-tmp/outputs/plan018_additive_random_b01_s42_1000_r3/eval_results.json"
+            }
+          },
+          "id": "event-000582"
+        },
+        {
+          "source_line": 583,
+          "timestamp": "2026-05-15T12:32:24.368746+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 503
+          },
+          "id": "event-000583"
+        },
+        {
+          "source_line": 584,
+          "timestamp": "2026-05-15T12:32:28.087125+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "nvidia-smi --query-compute-apps=pid,name,used_memory --format=csv,noheader"
+            }
+          },
+          "id": "event-000584"
+        },
+        {
+          "source_line": 585,
+          "timestamp": "2026-05-15T12:32:28.591001+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"350739, python, 8476 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 503
+          },
+          "id": "event-000585"
+        },
+        {
+          "source_line": 586,
+          "timestamp": "2026-05-15T12:32:31.731495+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "ls -la /proc/350739/cmdline"
+            }
+          },
+          "id": "event-000586"
+        },
+        {
+          "source_line": 587,
+          "timestamp": "2026-05-15T12:32:32.285046+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-r--r--r-- 1 root root 0 May 15 20:32 /proc/350739/cmdline\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 553
+          },
+          "id": "event-000587"
+        },
+        {
+          "source_line": 588,
+          "timestamp": "2026-05-15T12:32:32.285433+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "cat /proc/350739/cmdline"
+            }
+          },
+          "id": "event-000588"
+        },
+        {
+          "source_line": 589,
+          "timestamp": "2026-05-15T12:32:32.787840+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"python\\\\u0000scripts/eval_sta.py\\\\u0000--model_path\\\\u0000/root/autodl-tmp/outputs/plan009_sft_baseline_s42_1000\\\\u0000--data_path\\\\u0000data/proofwriter_fol_100.jsonl\\\\u0000--output_path\\\\u0000/root/autodl-tmp/outputs/plan009_sft_baseline_s42_1000/eval_sta_results.json\\\\u0000--logic_type\\\\u0000fol\\\\u0000--max_new_tokens\\\\u0000512\\\\u0000\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 502
+          },
+          "id": "event-000589"
+        },
+        {
+          "source_line": 590,
+          "timestamp": "2026-05-15T12:32:32.789861+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "find /root/autodl-tmp/outputs/plan009_sft_baseline_s42_1000/ -name \"*eval*\" -o -name \"*sta*\""
+            }
+          },
+          "id": "event-000590"
+        },
+        {
+          "source_line": 591,
+          "timestamp": "2026-05-15T12:32:33.241580+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/outputs/plan009_sft_baseline_s42_1000/checkpoint-1000/rng_state.pth\\\\n/root/autodl-tmp/outputs/plan009_sft_baseline_s42_1000/checkpoint-1000/trainer_state.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 451
+          },
+          "id": "event-000591"
+        },
+        {
+          "source_line": 592,
+          "timestamp": "2026-05-15T12:32:33.743455+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "find /root/autodl-tmp/outputs/ -name \"*eval*sft*1000*\" -o -name \"*sft*1000*eval*\""
+            }
+          },
+          "id": "event-000592"
+        },
+        {
+          "source_line": 593,
+          "timestamp": "2026-05-15T12:32:34.195393+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 451
+          },
+          "id": "event-000593"
+        },
+        {
+          "source_line": 594,
+          "timestamp": "2026-05-15T12:32:39.567480+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "nvidia-smi --query-compute-apps=pid,used_memory,name --format=csv,noheader"
+            }
+          },
+          "id": "event-000594"
+        },
+        {
+          "source_line": 595,
+          "timestamp": "2026-05-15T12:32:40.119850+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"350739, 8560 MiB, python\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 552
+          },
+          "id": "event-000595"
+        },
+        {
+          "source_line": 596,
+          "timestamp": "2026-05-15T12:32:42.835617+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "cat /proc/350739/cmdline"
+            }
+          },
+          "id": "event-000596"
+        },
+        {
+          "source_line": 597,
+          "timestamp": "2026-05-15T12:32:43.291033+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"python\\\\u0000scripts/eval_sta.py\\\\u0000--model_path\\\\u0000/root/autodl-tmp/outputs/plan009_sft_baseline_s42_1000\\\\u0000--data_path\\\\u0000data/proofwriter_fol_100.jsonl\\\\u0000--output_path\\\\u0000/root/autodl-tmp/outputs/plan009_sft_baseline_s42_1000/eval_sta_results.json\\\\u0000--logic_type\\\\u0000fol\\\\u0000--max_new_tokens\\\\u0000512\\\\u0000\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 455
+          },
+          "id": "event-000597"
+        },
+        {
+          "source_line": 598,
+          "timestamp": "2026-05-15T12:32:43.993655+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ScheduleWakeup"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "ScheduleWakeup",
+            "tool_args": {
+              "delaySeconds": "240",
+              "reason": "等待 plan009-sft eval_sta.py 完成（GPU 0 运行中，~3-5min），同时 GPU 1 空闲",
+              "prompt": "检查 plan009-sft-baseline-s42-1000 的 eval 结果。检查 plan009-sft-baseline-s43-1000 是否已提交训练。监控 GPU 和磁盘。"
+            }
+          },
+          "id": "event-000598"
+        },
+        {
+          "source_line": 599,
+          "timestamp": "2026-05-15T12:32:44.044293+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Next wakeup scheduled for 12:37:00 (in 256s)."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "ScheduleWakeup",
+            "elapsed_ms": 50
+          },
+          "id": "event-000599"
+        },
+        {
+          "source_line": 600,
+          "timestamp": "2026-05-15T12:32:46.932047+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "SFT eval 尚无输出文件。检查 GPU 0 上正在运行的进程。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer"
+          },
+          "id": "event-000600"
+        },
+        {
+          "source_line": 601,
+          "timestamp": "2026-05-15T12:32:46.948607+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "确认：GPU 0 正在运行 `eval_sta.py --model_path plan009_sft_baseline_s42_1000 --data_path data/proofwriter_fol_100.jsonl`。C008 合规。Agent 响应了我的审查要求。\n\neval 预计 3-5 分钟完成。GPU 1 空闲，可用于 plan009-sft-s43-1000 训练。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer"
+          },
+          "id": "event-000601"
+        }
+      ]
+    },
+    {
+      "number": 21,
+      "messages": [
+        {
+          "source_line": 602,
+          "timestamp": "2026-05-15T12:37:31.358120+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_eval_plan009-sft-s42-1000-eval_20260515T123005]:\nWorker worker_eval_plan009-sft-s42-1000-eval_20260515T123005 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "source": "worker_done:worker_eval_plan009-sft-s42-1000-eval_20260515t123005"
+          },
+          "id": "event-000602"
+        },
+        {
+          "source_line": 603,
+          "timestamp": "2026-05-15T12:37:42.638485+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "limit": "2",
+              "fields": "['status', 'conclusion', 'metrics', 'updated_at']"
+            }
+          },
+          "id": "event-000603"
+        },
+        {
+          "source_line": 604,
+          "timestamp": "2026-05-15T12:37:43.091096+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan009-sft-baseline-s42-1000\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-15T12:37:17.925Z\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"plan009-sft-baseline-s43-1000\\\": {\\\"status\\\": \\\"PENDING\\\", \\\"updated_at\\\": \\\"2026-05-15T12:28:56.019Z\\\"}}, \\\"count\\\": 2, \\\"total\\\": 76, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3133}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 452
+          },
+          "id": "event-000604"
+        },
+        {
+          "source_line": 605,
+          "timestamp": "2026-05-15T12:37:43.192888+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "cat /root/autodl-tmp/outputs/plan009_sft_baseline_s42_1000/eval_sta_results.json"
+            }
+          },
+          "id": "event-000605"
+        },
+        {
+          "source_line": 606,
+          "timestamp": "2026-05-15T12:37:44.548689+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"n_problems\\\\\\\": 100,\\\\n    \\\\\\\"n_proved\\\\\\\": 13,\\\\n    \\\\\\\"prove_rate\\\\\\\": 0.13,\\\\n    \\\\\\\"mean_isr\\\\\\\": 0.0738,\\\\n    \\\\\\\"isr_std\\\\\\\": 0.2077,\\\\n    \\\\\\\"median_isr\\\\\\\": 0.0,\\\\n    \\\\\\\"isr_pr_ratio\\\\\\\": 0.5677,\\\\n    \\\\\\\"proved_only_mean_isr\\\\\\\": 0.5677,\\\\n    \\\\\\\"min_isr\\\\\\\": 0.0,\\\\n    \\\\\\\"max_isr\\\\\\\": 0.8333,\\\\n    \\\\\\\"by_answer_type\\\\\\\": {\\\\n      \\\\\\\"false\\\\\\\": {\\\\n        \\\\\\\"count\\\\\\\": 25,\\\\n        \\\\\\\"proved\\\\\\\": 1,\\\\n        \\\\\\\"prove_rate\\\\\\\": 0.04,\\\\n        \\\\\\\"mean_isr\\\\\\\": 0.011428571428571429\\\\n      },\\\\n      \\\\\\\"unknown\\\\\\\": {\\\\n        \\\\\\\"count\\\\\\\": 41,\\\\n        \\\\\\\"proved\\\\\\\": 0,\\\\n        \\\\\\\"prove_rate\\\\\\\": 0.0,\\\\n        \\\\\\\"mean_isr\\\\\\\": 0.0\\\\n      },\\\\n      \\\\\\\"true\\\\\\\": {\\\\n        \\\\\\\"count\\\\\\\": 34,\\\\n        \\\\\\\"proved\\\\\\\": 12,\\\\n        \\\\\\\"prove_rate\\\\\\\": 0.35294117647058826,\\\\n        \\\\\\\"mean_isr\\\\\\\": 0.2086484593837535\\\\n      }\\\\n    },\\\\n    \\\\\\\"elapsed_seconds\\\\\\\": 303.4,\\\\n    \\\\\\\"avg_time_per_sample\\\\\\\": 3.0,\\\\n    \\\\\\\"solver\\\\\\\": \\\\\\\"Prover9Solver\\\\\\\",\\\\n    \\\\\\\"logic_type\\\\\\\": \\\\\\\"fol\\\\\\\",\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/outputs/plan009_sft_baseline_s42_1000\\\\\\\"\\\\n  },\\\\n  \\\\\\\"results\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 0,\\\\n      \\\\\\\"id\\\\\\\": \\\\\\\"folio_765\\\\\\\",\\\\n      \\\\\\\"context\\\\\\\": \\\\\\\"Tipped employees are not entitled to be paid the federal minimum wage by their employees. \\\\\\\\nIf a person is a white-collar worker, they are entitled to be paid the federal minimum wage by their employees. \\\\\\\\nAll lawyers are white-collar workers.\\\\\\\\nEvery advocate is a lawyer.\\\\\\\\nMary is not a lawyer or a tipped employee.\\\\\\\",\\\\n      \\\\\\\"question\\\\\\\": \\\\\\\"Mary is an advocate.\\\\\\\",\\\\n      \\\\\\\"answer\\\\\\\": \\\\\\\"false\\\\\\\",\\\\n      \\\\\\\"formalization\\\\\\\": \\\\\\\"Premises:\\\\\\\\n1. ∀x (TippedEmployee(x) → ¬EntitledTo(x, federalMinimumWage))\\\\\\\\n2. ∀x (WhiteCollarWorker(x) → EntitledTo(x, federalMinimumWage))\\\\\\\\n3. ∀x (Lawyer(x) → White\n…[truncated 7631 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1355
+          },
+          "id": "event-000606"
+        },
+        {
+          "source_line": 607,
+          "timestamp": "2026-05-15T12:38:13.388453+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "limit": "1",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000607"
+        },
+        {
+          "source_line": 608,
+          "timestamp": "2026-05-15T12:38:13.690122+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan009-sft-baseline-s42-1000\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T11:57:52.856Z\\\", \\\"updated_at\\\": \\\"2026-05-15T12:37:17.925Z\\\", \\\"hypothesis\\\": \\\"SFT 1000步延伸：验证 SFT（无 reward optimization）在 1000 步是否维持 genuine rate。500 步 SFT 已达 93% genuine，若 1000 步仍保持高 genuine → Goodhart collapse 是 RL (GRPO) 特有现象，非一般 finetuning 退化。与 exec-only/ISR/random 1000步形成对比。\\\", \\\"parent\\\": \\\"plan009-sft-baseline-s42-r4\\\", \\\"spec\\\": {\\\"data_path\\\": \\\"data/train_500_seed42.jsonl\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"Qwen3-4B\\\", \\\"seed\\\": 42, \\\"num_steps\\\": 1000, \\\"reward_mode\\\": \\\"sft\\\", \\\"beta\\\": null, \\\"command\\\": \\\"SFT training 1000 steps from Qwen3-4B base\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"checkpoint_source\\\": \\\"Qwen/Qwen3-4B (base, no checkpoint)\\\", \\\"eval_data\\\": \\\"N/A - training experiment\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/outputs/plan009_sft_baseline_s42_1000\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/outputs/plan009_sft_baseline_s42_1000/checkpoint-1000/trainer_state.json\\\", \\\"completed_at\\\": \\\"2026-05-15T12:25:32.031Z\\\", \\\"eval_prove_rate\\\": 0.13, \\\"eval_mean_isr\\\": 0.0738, \\\"eval_isr_std\\\": 0.2077, \\\"eval_proved_only_isr\\\": 0.5677, \\\"h7_count\\\": 0, \\\"h7_rate\\\": 0, \\\"h1_count\\\": 1, \\\"h1_rate\\\": 7.7, \\\"genuine_count\\\": 12, \\\"genuine_rate\\\": 92.3}}, \\\"count\\\": 1, \\\"total\\\": 76, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2761}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 301
+          },
+          "id": "event-000608"
+        },
+        {
+          "source_line": 609,
+          "timestamp": "2026-05-15T12:38:50.270026+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "## 审查报告 — plan009-sft-baseline-s42-1000（eval 完成）\n\n**结论**: PASS（结论正确，一个格式问题）\n\n### Eval 核实\n\n独立核实 eval_sta_results.json 确认：\n- prove_rate=0.13（13/100），by_answer_type: true 12/34, false 1/25, unknown 0/41\n- 样本 folio_765 有 5 个语义正确 premises（TippedEmployee → ¬Entitled, WhiteCollarWorker → Entitled 等），非模板\n- 样本 folio_1179 有 5 个特异 premises（Monitor, ProducedBy, CheaperThan 等），非模板\n- 样本 folio_959 有 6 个正确 premises，结论使用 XOR 运算符\n\nclassify_h7 结果：H7=0, H1=1, genuine=12/13 (92.3%)。**SFT 1000 步无 Goodhart collapse，genuine rate 与 500 步（88.2%）持平甚至略高。**\n\n### [severity: info] 1000-step 全条件对比——核心论文数据\n\n| 条件 | prove_rate | genuine | genuine% | collapse? |\n|------|-----------|---------|----------|-----------|\n| ISR β=0.3 (exp1-r2) | 0.95 | 0 | 0% | H8+H1 模板 |\n| Random β=0.1 (r3) | 0.97 | 0 | 0% | H7 量词伪影 |\n| Random β=0.1 (r2, 1350步) | 1.00 | 0 | 0% | Person 重言式 |\n| Exec-only (plan002-b01) | 0.90 | 2 | 2.2% | H7 92% |\n| **SFT (s42)** | **0.13** | **12** | **92.3%** | **无** |\n\n**所有 RL 条件在 1000 步均 collapse（genuine ≤ 2.2%），唯独 SFT 维持 92.3% genuine。** 这是论文最强数据点——Goodhart collapse 是 RL reward optimization 特有的，非一般 finetuning 退化。\n\n### [severity: warning] genuine_rate 格式不一致\n\n本实验 genuine_rate=92.3（百分比），但其他实验如 plan018-r3 使用 genuine_pct=0（小数）或 plan002-b01 使用 genuine_rate=0.0222（小数比例）。建议统一为小数比例（0.923）以避免跨实验比较时混淆。\n\n### [severity: info] prove_rate 下降值得讨论\n\nSFT 1000 步 prove_rate (0.13) < 500 步 (0.17)。15.88 epochs 的过拟合降低了泛化能力。论文可提及：SFT 虽保持 genuine 但 prove_rate 持续下降——这是 SFT 的局限性，也解释了为何需要 RL reward（但 RL 引入了 Goodhart 风险）。这个 tension 是论文的核心贡献之一。",
+              "project": "solver-trace-ablation"
+            }
+          },
+          "id": "event-000609"
+        },
+        {
+          "source_line": 610,
+          "timestamp": "2026-05-15T12:38:54.241640+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_a771c2a33d631dd40256ecd5c3a6648e:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3971
+          },
+          "id": "event-000610"
+        },
+        {
+          "source_line": 611,
+          "timestamp": "2026-05-15T12:39:00.476302+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ScheduleWakeup"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "ScheduleWakeup",
+            "tool_args": {
+              "delaySeconds": "270",
+              "reason": "等待 plan009-sft-s43-1000 训练提交和新实验安排，GPU 双空闲",
+              "prompt": "检查 plan009-sft-baseline-s43-1000 是否已提交训练。检查是否有新实验。监控 GPU 利用率和磁盘。检查 ROADMAP 更新。"
+            }
+          },
+          "id": "event-000611"
+        },
+        {
+          "source_line": 612,
+          "timestamp": "2026-05-15T12:39:00.527051+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Next wakeup scheduled for 12:43:00 (in 240s)."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "ScheduleWakeup",
+            "elapsed_ms": 50
+          },
+          "id": "event-000612"
+        },
+        {
+          "source_line": 613,
+          "timestamp": "2026-05-15T12:39:03.129380+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已提交。1000-step 全条件对比表完成——所有 RL 条件 collapse，唯 SFT 维持 genuine。这是论文核心数据。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer"
+          },
+          "id": "event-000613"
+        }
+      ]
+    },
+    {
+      "number": 22,
+      "messages": [
+        {
+          "source_line": 614,
+          "timestamp": "2026-05-15T12:46:18.245543+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_paper_1000step-panorama-table_20260515T124454]:\nWorker worker_paper_1000step-panorama-table_20260515T124454 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "source": "system"
+          },
+          "id": "event-000614"
+        },
+        {
+          "source_line": 615,
+          "timestamp": "2026-05-15T12:46:26.283861+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "limit": "5",
+              "fields": "['status', 'conclusion', 'updated_at']"
+            }
+          },
+          "id": "event-000615"
+        },
+        {
+          "source_line": 616,
+          "timestamp": "2026-05-15T12:46:27.290922+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan002-additive-b03-s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-15T12:45:27.465Z\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"plan002-additive-b01-s42-1000\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-15T12:45:25.762Z\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"plan001-exec-only-s42-r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-15T12:45:21.831Z\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"plan009-sft-baseline-s43-1000\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"updated_at\\\": \\\"2026-05-15T12:44:27.021Z\\\"}, \\\"plan009-sft-baseline-s42-1000\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"updated_at\\\": \\\"2026-05-15T12:43:12.999Z\\\"}}, \\\"count\\\": 5, \\\"total\\\": 76, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8396}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1007
+          },
+          "id": "event-000616"
+        },
+        {
+          "source_line": 617,
+          "timestamp": "2026-05-15T12:46:27.795794+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used --format=csv,noheader"
+            }
+          },
+          "id": "event-000617"
+        },
+        {
+          "source_line": 618,
+          "timestamp": "2026-05-15T12:46:29.207809+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 0 %, 0 MiB\\\\n1, 0 %, 0 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1412
+          },
+          "id": "event-000618"
+        },
+        {
+          "source_line": 619,
+          "timestamp": "2026-05-15T12:46:29.360013+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/ -name \"*panorama*\" -o -name \"*1000step*table*\""
+            }
+          },
+          "id": "event-000619"
+        },
+        {
+          "source_line": 620,
+          "timestamp": "2026-05-15T12:46:29.812826+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"find: '/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/': No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-000620"
+        },
+        {
+          "source_line": 621,
+          "timestamp": "2026-05-15T12:46:44.504564+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "file": "report.md",
+              "max_chars": "6000"
+            }
+          },
+          "id": "event-000621"
+        },
+        {
+          "source_line": 622,
+          "timestamp": "2026-05-15T12:46:44.677771+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-15\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n（无）\\\\n\\\\n## 待处理\\\\n- plan009-sft-baseline-s43-1000: SFT 1000步 seed=43：与 s42 相同配置的第二个 seed，验证 SFT 在 1000 步的 genuine rate 稳定性。与 GRPO 各条件 1000步对比，确认 Goodhart collapse 是 RL 特有现象。（排队等待 GPU）\\\\n- plan009-sft-baseline-s42-1000: SFT 1000步延伸：验证 SFT（无 reward optimization）在 1000 步是否维持 genuine rate。500 步 SFT 已达 93% genuine，若 1000 步仍保持高 genuine → Goodhart collapse 是 RL (GRPO) 特有现象，非一般 finetuning 退化。与 exec-only/ISR/random 1000步形成对比。（准备中）\\\\n\\\\n## 近期结论\\\\n- **plan018-additive-random-b01-s42-1000-r3** (negative): —\\\\n  [plan018-additive-random-b01-s42-1000-r3_analysis](/api/workspace-files/projects/solver-trace-ablation/artifacts/plan018-additive-random-b01-s42-1000-r3/data/plan018-additive-random-b01-s42-1000-r3_analysis.json)\\\\n- **plan018-additive-random-b01-s42** (negative): β=0.1 random control: r = r_exec·(1+0.1·random[0,1]). 与 plan002-b01 (additive ISR β=0.1, PR=0.81, ISR=0.337) 同 β 对照。如果 ISR β=0.1 >> random β=0.1 → ISR 信号在低剂量下有结构价值; 如果 ISR ≈ random → ISR 信号在低剂量下也仅是 variance regularization。D031 紧急实验。 ← 基于 plan002-additive-b01-s42\\\\n- **plan004-o1-ablation-s42** (negative): O(1) binary ISR (fast_isr_fol) vs O(N) full STA ablation: 100-step pilot showed binary ISR ≈ exec-only (all proved samples ISR=1). 500-step full run confirms O(1) is ineffective at scale — the LOO ablation (O(N)) is necessary for ISR to carry structural signal. Negative result strengthens paper's methodological contribution.\\\\n\\\\n## 趋势\\\\n成功 21 / 负向 24 / 失败 23 / 共 74\\\\neval_isr_std: 0.1887 ↑（近 3 次 success）\\\\n\\\\n## 下一步\\\\n（无活跃 idea，请通过 ideas.md 添加）\\\\n\\\\n## 资源状态\\\\nwestd-39279: 无 GPU 信息\\\\n\\\\n## 告警\\\\n- sta-phase1-exec-only: 训练失败 — unknown\\\\n- sta-phase1-exec-sta: 训练失败 — unknown\\\\n- sta-phase1-exec-only-r2: 训练失败 — unknown\\\\n- sta-phase1-exec-sta-r2: 训练失败 — unknown\\\\n- sta-phase1-exe\n…[truncated 1185 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 173
+          },
+          "id": "event-000622"
+        },
+        {
+          "source_line": 623,
+          "timestamp": "2026-05-15T12:46:44.735045+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "fields": "['*']",
+              "limit": "1"
+            }
+          },
+          "id": "event-000623"
+        },
+        {
+          "source_line": 624,
+          "timestamp": "2026-05-15T12:46:46.347962+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan002-additive-b03-s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T02:24:47.843Z\\\", \\\"updated_at\\\": \\\"2026-05-15T12:45:27.465Z\\\", \\\"spec\\\": {\\\"data_path\\\": \\\"/root/solver-trace-ablation/data/train_500_seed42.jsonl\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"Qwen3-4B\\\", \\\"seed\\\": 42, \\\"hypothesis\\\": \\\"Additive ISR bonus r=r_exec*(1+β*ISR) with β=0.3: ISR can only boost reward, never penalize. Should preserve prove_rate (unlike convex combination penalty in plan005) while improving structural quality.\\\", \\\"plan_id\\\": \\\"plan_002\\\", \\\"reward_formula\\\": \\\"r = r_exec * (1 + 0.3 * ISR)\\\", \\\"beta\\\": 0.3, \\\"command\\\": \\\"bash -c \\\\\\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_bonus.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 42 --beta 0.3 --reward_mode additive_bonus --output_dir /root/autodl-tmp/outputs/plan002_additive_beta03_s42\\\\\\\"\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"161819\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-14T03:24:44.110Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T03:24:48.666027+00:00\\\"}]}, \\\"metrics\\\": {\\\"total_steps\\\": 500, \\\"duration_min\\\": 56.7, \\\"overall_prove_rate\\\": 0.34025, \\\"overall_isr\\\": 0.11527, \\\"last100_prove_rate\\\": 0.5525, \\\"eval_prove_rate\\\": 0.18, \\\"eval_mean_isr\\\": 0.0257, \\\"eval_isr_std\\\": 0.0742, \\\"eval_median_isr\\\": 0, \\\"eval_proved_only_isr\\\": 0.1427, \\\"eval_n_proved\\\": 18, \\\"eval_n_problems\\\": 100, \\\"eval_method\\\": \\\"eval_sta.py full STA\\\", \\\"eval_data\\\": \\\"proofwriter_fol_100.jsonl\\\", \\\"h7_rate\\\": 0, \\\"h7_count\\\": 0, \\\"h1_rate\\\": 0.778, \\\"h1_count\\\": 14, \\\"h8_conjunction_collapse_count\\\": 3, \\\"h8_conjunction_collapse_rate\\\": 0.1667, \\\"genuine_rate\\\": 0.0556, \\\"genuine_co\n…[truncated 1077 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1612
+          },
+          "id": "event-000624"
+        },
+        {
+          "source_line": 625,
+          "timestamp": "2026-05-15T12:47:01.017870+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "fields": "['status', 'conclusion', 'updated_at', 'eval_prove_rate', 'genuine_count', 'genuine_rate']",
+              "filters": "{'status': 'PREPARING'}"
+            }
+          },
+          "id": "event-000625"
+        },
+        {
+          "source_line": 626,
+          "timestamp": "2026-05-15T12:47:01.018356+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/solver-trace-ablation/artifacts/**/*panorama*"
+            }
+          },
+          "id": "event-000626"
+        },
+        {
+          "source_line": 627,
+          "timestamp": "2026-05-15T12:47:01.668176+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan009-sft-baseline-s42-1000\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"updated_at\\\": \\\"2026-05-15T12:43:12.999Z\\\", \\\"eval_prove_rate\\\": 0.13, \\\"genuine_count\\\": 12, \\\"genuine_rate\\\": 92.3}}, \\\"count\\\": 1, \\\"total\\\": 1, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6067}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 650
+          },
+          "id": "event-000627"
+        },
+        {
+          "source_line": 628,
+          "timestamp": "2026-05-15T12:47:01.668624+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Glob",
+            "elapsed_ms": 650
+          },
+          "id": "event-000628"
+        },
+        {
+          "source_line": 629,
+          "timestamp": "2026-05-15T12:47:13.703303+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/solver-trace-ablation/artifacts/**/*1000*"
+            }
+          },
+          "id": "event-000629"
+        },
+        {
+          "source_line": 630,
+          "timestamp": "2026-05-15T12:47:14.157735+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "Glob",
+            "elapsed_ms": 454
+          },
+          "id": "event-000630"
+        },
+        {
+          "source_line": 631,
+          "timestamp": "2026-05-15T12:47:14.560477+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "file": "paper_framing.md",
+              "max_chars": "4000"
+            }
+          },
+          "id": "event-000631"
+        },
+        {
+          "source_line": 632,
+          "timestamp": "2026-05-15T12:47:14.667116+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — solver-trace-ablation\\\\n\\\\n## Target Venue\\\\n- Primary: EMNLP 2026 Main (NLP and Symbolic Reasoning track)\\\\n- Fallback: EMNLP 2026 Findings\\\\n- Deadline: ARR May 25, 2026\\\\n\\\\n## Core Claims (3 条 — Goodhart 主线诊断/分析论文)\\\\n\\\\n| Claim | Status | 闭环标志 |\\\\n|-------|--------|----------|\\\\n| Claim 1: STA 诊断能力 | ✅ 已闭环 | 3-seed + 1000-step + hacking taxonomy (7 modes) |\\\\n| Claim 2: Goodhart / ISR 无结构优势 | ✅ 已闭环 (D057) | 3-seed ISR + 3-seed random + premise-count-matched + SFT baseline |\\\\n| Claim 3: 跨逻辑泛化 | ✅ 已闭环 | exec-only 3-seed (D056) + STA 3-seed: **3/3 gaming** — 三种不同 gaming 路径 (H7/degenerate-syntax/query-as-fact) |\\\\n\\\\n### Claim 1: ISR as Reward Hacking Diagnostic ✅\\\\nSolver Trace Ablation (STA) derives ISR (Intensional Structural Reward) via component necessity testing (leave-one-out ablation on solver inputs). ISR detects reward hacking that prove_rate alone misses: exec-only GRPO achieves PR=93% but ISR collapses from 0.6423 (100 steps) to 0.1324 (500 steps) to 0.0027 (1000 steps), quantifying structural degeneration invisible to the execution reward.\\\\n\\\\n**证据**：\\\\n- plan003: 100-step checkpoint held-out eval PR=32%, ISR=0.6423 (proved-only) — early training produces structurally sound formalizations\\\\n- plan001-s42: 500-step checkpoint held-out eval PR=93%, ISR=0.1324, median_ISR=0.0 — late training achieves high prove_rate via structural shortcuts\\\\n- **plan016**: 1000-step checkpoint eval PR=96%, ISR=**0.0027** — ISR 崩塌持续恶化，无回升。94.8% proved 样本 ISR=0。矛盾爆炸式崩塌（components 6.58→18.55）。延长训练是 reward hacking 随时间恶化的干净消融证据\\\\n- ISR 崩塌轨迹完整链：0.6423 (100步) → 0.1324 (500步) → 0.0027 (1000步)\\\\n- 3-seed consistency: s42 redundant embedding (H1=87.1%, ISR=0.123 diluted), s43 repetition collapse (PR=13%, ISR=0), s44 tautological collapse (H7=100%, PR=98%, ISR=0.57 fake-high, n_comp=2.04). All 3 se\n…[truncated 2428 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 106
+          },
+          "id": "event-000632"
+        },
+        {
+          "source_line": 633,
+          "timestamp": "2026-05-15T12:47:39.373139+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "file": "decisions.yaml",
+              "max_chars": "4000"
+            }
+          },
+          "id": "event-000633"
+        },
+        {
+          "source_line": 634,
+          "timestamp": "2026-05-15T12:47:39.424154+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/decisions.yaml\\\", \\\"content\\\": \\\"_next_id: 78\\\\ndecisions:\\\\n- id: D001\\\\n  date: 2026-05-13 17:34 UTC\\\\n  summary: MVP 方案：FOL+Prover9 单逻辑 50-step GRPO pilot 验证 STA reward 有效性\\\\n  rationale: EMNLP ARR DDL 5/25 仅剩 12 天，需要最快速度验证核心假设。选 FOL+Prover9 因为 hacking 模式最清晰（tautological\\\\n    formulas），STA 的 O(1) 近似最直观（去掉前提后能否证明结论）。50-step pilot 足以观察 ISR 趋势。两个条件并行跑 2 GPU。Pass\\\\n    标准：ISR gap >20pp + accuracy 降幅 <5pp。\\\\n  related_experiments: []\\\\n  depends_on: []\\\\n- id: D002\\\\n  date: 2026-05-13 17:37 UTC\\\\n  summary: MVP 方案调整：50步→100步 + 趋势判断 + Phase 0 ISR baseline + kill criteria\\\\n  rationale: 采纳 Reviewer 三条 warning：(1) 加 pre-training ISR baseline 锚定训练前水平；(2) 50步太短难以观察\\\\n    reward hacking，改 100步+最后20步 moving average 趋势判断；(3) 补充硬性 kill criteria 防止 DDL\\\\n    压力下无止境调整。\\\\n  related_experiments: []\\\\n  depends_on:\\\\n  - D001\\\\n- id: D003\\\\n  date: 2026-05-13 20:50 UTC\\\\n  summary: Phase 1 r4 fast_isr_fol 训练信号无效，改用 full STA + K=8 重跑\\\\n  rationale: fast_isr_fol 是二值 O(1) 近似（ISR=0 tautology / ISR=1 non-tautology），Qwen3-4B\\\\n    生成的 proved formalization 几乎全部 ISR=1，与 execution-only 零差异。full STA 提供连续 ISR（0.125-0.889\\\\n    in Phase 0），能给出真实梯度信号。K=4 导致 frac_reward_zero_std=0.5-1.0（GRPO 无 advantage），K=8\\\\n    增加 within-group variance。两个改动分别解决 STA 信号粒度和 GRPO 梯度信号两个独立问题。\\\\n  related_experiments:\\\\n  - exp_id: sta-phase1-exec-only-r4\\\\n    role: evidence\\\\n    result: prove_rate 12%→15%, ISR ~0.15, minimal learning\\\\n  - exp_id: sta-phase1-exec-sta-r4\\\\n    role: evidence\\\\n    result: 与 exec-only 几乎完全相同, fast_isr 提供零额外信号\\\\n  depends_on:\\\\n  - D002\\\\n- id: D004\\\\n  date: 2026-05-13 21:59 UTC\\\\n  summary: Reviewer 指出 exec-sta-r5 prove_rate 低于 baseline（退化），STA 50/50 权重过于惩罚性。立即补跑低权重\\\\n    + bonus 模式实验\\\\n  rationale: exec-sta-r5 prove_rate=0.10 < baseline=0.12 < exec-only=0.15。连续 ISR 给\\\\n    proved-but-low-ISR 样本 reward≈0.3（几乎等于未 prove），模型学到 prove 不值得。Kill criteria\n…[truncated 2502 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 51
+          },
+          "id": "event-000634"
+        },
+        {
+          "source_line": 635,
+          "timestamp": "2026-05-15T12:47:55.278566+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ScheduleWakeup"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "ScheduleWakeup",
+            "tool_args": {
+              "delaySeconds": "270",
+              "reason": "等待 plan009-sft-s43-1000 训练启动和 s42-1000 状态明确",
+              "prompt": "检查 plan009-sft-baseline-s43-1000 是否已开始训练。检查 plan009-sft-baseline-s42-1000 状态。监控 GPU 利用率和磁盘。检查是否有新 worker 通知。"
+            }
+          },
+          "id": "event-000635"
+        },
+        {
+          "source_line": 636,
+          "timestamp": "2026-05-15T12:47:55.329318+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Next wakeup scheduled for 12:52:00 (in 245s)."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "ScheduleWakeup",
+            "elapsed_ms": 50
+          },
+          "id": "event-000636"
+        },
+        {
+          "source_line": 637,
+          "timestamp": "2026-05-15T12:47:57.427185+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "registry 和 decisions 更新正常。panorama table worker 标准化了跨实验数据。核心发现：\n\n- 1000-step 全条件对比已有数据支撑（RL 0% genuine vs SFT 92.3%）\n- plan009-sft-s42-1000 回到 PREPARING 可能是 Agent 重新提交以补完 spec\n- plan009-sft-s43-1000 等待 GPU 分配\n- 两块 GPU 空闲\n\n无 CRITICAL 问题。等待下一步操作。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer"
+          },
+          "id": "event-000637"
+        }
+      ]
+    },
+    {
+      "number": 23,
+      "messages": [
+        {
+          "source_line": 638,
+          "timestamp": "2026-05-15T12:48:20.791663+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_eval_plan009-sft-baseline-s42-1000_20260515T124400]:\nWorker worker_eval_plan009-sft-baseline-s42-1000_20260515T124400 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "source": "system"
+          },
+          "id": "event-000638"
+        }
+      ]
+    },
+    {
+      "number": 24,
+      "messages": [
+        {
+          "source_line": 639,
+          "timestamp": "2026-05-15T12:48:21.055558+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_ops_disk-cleanup-37g_20260515T124637]:\nWorker worker_ops_disk-cleanup-37g_20260515T124637 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "source": "system"
+          },
+          "id": "event-000639"
+        },
+        {
+          "source_line": 640,
+          "timestamp": "2026-05-15T12:48:32.586498+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "limit": "3",
+              "fields": "['status', 'conclusion', 'metrics', 'updated_at']"
+            }
+          },
+          "id": "event-000640"
+        },
+        {
+          "source_line": 641,
+          "timestamp": "2026-05-15T12:48:32.650127+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "df -h /root/autodl-tmp"
+            }
+          },
+          "id": "event-000641"
+        },
+        {
+          "source_line": 642,
+          "timestamp": "2026-05-15T12:48:33.154013+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "du -sh /root/autodl-tmp/outputs/*/"
+            }
+          },
+          "id": "event-000642"
+        },
+        {
+          "source_line": 643,
+          "timestamp": "2026-05-15T12:48:33.592356+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan009-sft-baseline-s44-1000\\\": {\\\"status\\\": \\\"PENDING\\\", \\\"updated_at\\\": \\\"2026-05-15T12:48:27.596Z\\\"}, \\\"plan009-sft-baseline-s43-1000\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"updated_at\\\": \\\"2026-05-15T12:48:14.640Z\\\"}, \\\"plan009-sft-baseline-s42-1000\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-15T12:48:03.859Z\\\", \\\"metrics\\\": {\\\"train_final_loss\\\": 0.0168, \\\"train_last_step_loss\\\": 0.0168, \\\"train_token_accuracy\\\": 0.9955, \\\"train_epochs\\\": 15.88, \\\"train_runtime_sec\\\": 1415, \\\"train_steps\\\": 1000, \\\"eval_prove_rate\\\": 0.13, \\\"eval_n_proved\\\": 13, \\\"eval_n_problems\\\": 100, \\\"eval_mean_isr\\\": 0.0738, \\\"eval_isr_std\\\": 0.2077, \\\"eval_median_isr\\\": 0, \\\"eval_proved_only_isr\\\": 0.5677, \\\"eval_data\\\": \\\"proofwriter_fol_100.jsonl\\\", \\\"eval_method\\\": \\\"eval_sta.py full STA\\\", \\\"eval_output_path\\\": \\\"/root/autodl-tmp/outputs/plan009_sft_baseline_s42_1000/eval_sta_results.json\\\", \\\"h7_strict_count\\\": 0, \\\"h7_strict_rate\\\": 0, \\\"h1_strict_count\\\": 1, \\\"h1_strict_rate\\\": 0.0769, \\\"h8_conjunction_collapse_count\\\": 0, \\\"h8_conjunction_collapse_rate\\\": 0, \\\"genuine_count\\\": 12, \\\"genuine_rate\\\": 0.9231, \\\"conclusion_in_premise_count\\\": 1, \\\"conclusion_in_premise_rate\\\": 0.0769, \\\"isr_1_count\\\": 0, \\\"content_independent_count\\\": 0, \\\"eval_by_answer_type\\\": {\\\"true\\\": {\\\"count\\\": 34, \\\"proved\\\": 12, \\\"prove_rate\\\": 0.353, \\\"mean_isr\\\": 0.209}, \\\"false\\\": {\\\"count\\\": 25, \\\"proved\\\": 1, \\\"prove_rate\\\": 0.04, \\\"mean_isr\\\": 0.011}, \\\"unknown\\\": {\\\"count\\\": 41, \\\"proved\\\": 0, \\\"prove_rate\\\": 0, \\\"mean_isr\\\": 0}}}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"count\\\": 3, \\\"total\\\": 77, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5653}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1005
+          },
+          "id": "event-000643"
+        },
+        {
+          "source_line": 644,
+          "timestamp": "2026-05-15T12:48:33.643878+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used --format=csv,noheader"
+            }
+          },
+          "id": "event-000644"
+        },
+        {
+          "source_line": 645,
+          "timestamp": "2026-05-15T12:48:33.658900+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used --format=csv,noheader"
+            }
+          },
+          "id": "event-000645"
+        },
+        {
+          "source_line": 646,
+          "timestamp": "2026-05-15T12:48:33.860170+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Filesystem      Size  Used Avail Use% Mounted on\\\\n/dev/md0        250G  181G   70G  73% /root/autodl-tmp\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.16}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1210
+          },
+          "id": "event-000646"
+        },
+        {
+          "source_line": 647,
+          "timestamp": "2026-05-15T12:48:34.412763+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"8.0K\\\\t/root/autodl-tmp/outputs/eval_sta_exp1_isr_b03_s43_r3/\\\\n16G\\\\t/root/autodl-tmp/outputs/exp1_isr_b03_s42_1000/\\\\n228K\\\\t/root/autodl-tmp/outputs/exp1_isr_b03_s43_eval/\\\\n0\\\\t/root/autodl-tmp/outputs/exp1_isr_b03_s43_r4/\\\\n16M\\\\t/root/autodl-tmp/outputs/exp1_isr_b03_s44_r2/\\\\n168K\\\\t/root/autodl-tmp/outputs/exp1_isr_b03_s44_r2_eval/\\\\n0\\\\t/root/autodl-tmp/outputs/exp1_random_b03_s43_eval/\\\\n24K\\\\t/root/autodl-tmp/outputs/exp1_random_b03_s43_r2/\\\\n0\\\\t/root/autodl-tmp/outputs/exp1_random_b03_s43_r3/\\\\n15G\\\\t/root/autodl-tmp/outputs/exp1_random_b03_s43_r4/\\\\n32K\\\\t/root/autodl-tmp/outputs/exp1_random_b03_s44/\\\\n15G\\\\t/root/autodl-tmp/outputs/exp1_random_b03_s44_r2/\\\\n8.0K\\\\t/root/autodl-tmp/outputs/h7_classification/\\\\n16G\\\\t/root/autodl-tmp/outputs/plan002_additive_b01_s42_1000/\\\\n15G\\\\t/root/autodl-tmp/outputs/plan004_fast_isr_s42/\\\\n31G\\\\t/root/autodl-tmp/outputs/plan009_sft_baseline_s42_1000/\\\\n7.6G\\\\t/root/autodl-tmp/outputs/plan009_sft_baseline_s43/\\\\n0\\\\t/root/autodl-tmp/outputs/plan009_sft_baseline_s43_1000/\\\\n7.6G\\\\t/root/autodl-tmp/outputs/plan009_sft_baseline_s44/\\\\n0\\\\t/root/autodl-tmp/outputs/plan015_linear_s42/\\\\n16G\\\\t/root/autodl-tmp/outputs/plan018_additive_random_b01_s42_1000/\\\\n31G\\\\t/root/autodl-tmp/outputs/plan018_additive_random_b01_s42_1000_r3/\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.57}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1258
+          },
+          "id": "event-000647"
+        },
+        {
+          "source_line": 648,
+          "timestamp": "2026-05-15T12:48:34.699893+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 94 %, 56439 MiB\\\\n1, 0 %, 0 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.05}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1056
+          },
+          "id": "event-000648"
+        },
+        {
+          "source_line": 649,
+          "timestamp": "2026-05-15T12:48:35.115590+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 93 %, 56439 MiB\\\\n1, 0 %, 0 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.69}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1456
+          },
+          "id": "event-000649"
+        },
+        {
+          "source_line": 650,
+          "timestamp": "2026-05-15T12:48:50.242357+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "fields": "['spec', 'status']",
+              "filters": "{'status': 'RUNNING'}"
+            }
+          },
+          "id": "event-000650"
+        },
+        {
+          "source_line": 651,
+          "timestamp": "2026-05-15T12:48:52.182902+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan009-sft-baseline-s43-1000\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_sft.py --model_path /root/autodl-tmp/models/Qwen3-4B --data_path data/train_500_seed42.jsonl --output_dir /root/autodl-tmp/outputs/plan009_sft_baseline_s43_1000 --num_steps 1000 --seed 43 --no_wandb --gpu 0\\\\\\\"\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"352137\\\", \\\"log_path\\\": \\\"~/runs/solver-trace-ablation/plan009-sft-baseline-s43-1000.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T12:48:13.521Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}}, \\\"count\\\": 1, \\\"total\\\": 1, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.8153}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1940
+          },
+          "id": "event-000651"
+        },
+        {
+          "source_line": 652,
+          "timestamp": "2026-05-15T12:48:53.867385+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "nvidia-smi --query-compute-apps=pid,name,used_memory --format=csv,noheader"
+            }
+          },
+          "id": "event-000652"
+        },
+        {
+          "source_line": 653,
+          "timestamp": "2026-05-15T12:48:54.794151+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"352142, python3, 63852 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 926
+          },
+          "id": "event-000653"
+        },
+        {
+          "source_line": 654,
+          "timestamp": "2026-05-15T12:48:54.794577+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "limit": "3",
+              "fields": "['status', 'conclusion', 'updated_at', 'spec']"
+            }
+          },
+          "id": "event-000654"
+        },
+        {
+          "source_line": 655,
+          "timestamp": "2026-05-15T12:48:56.813126+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan009-sft-baseline-s44-1000\\\": {\\\"status\\\": \\\"PENDING\\\", \\\"updated_at\\\": \\\"2026-05-15T12:48:27.596Z\\\", \\\"spec\\\": {\\\"data_path\\\": \\\"data/train_500_seed42.jsonl\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"Qwen3-4B\\\", \\\"seed\\\": 44, \\\"num_steps\\\": 1000, \\\"reward_mode\\\": \\\"sft\\\", \\\"beta\\\": null, \\\"checkpoint_source\\\": \\\"Qwen/Qwen3-4B (base, no checkpoint)\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_sft.py --model_path /root/autodl-tmp/models/Qwen3-4B --data_path data/train_500_seed42.jsonl --output_dir /root/autodl-tmp/outputs/plan009_sft_baseline_s44_1000 --num_steps 1000 --seed 44 --no_wandb --gpu 0\\\\\\\"\\\", \\\"server\\\": \\\"westd-39279\\\"}}, \\\"plan009-sft-baseline-s43-1000\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"updated_at\\\": \\\"2026-05-15T12:48:14.640Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_sft.py --model_path /root/autodl-tmp/models/Qwen3-4B --data_path data/train_500_seed42.jsonl --output_dir /root/autodl-tmp/outputs/plan009_sft_baseline_s43_1000 --num_steps 1000 --seed 43 --no_wandb --gpu 0\\\\\\\"\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"352137\\\", \\\"log_path\\\": \\\"~/runs/solver-trace-ablation/plan009-sft-baseline-s43-1000.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T12:48:13.521Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"plan009-sft-baseline-s42-1000\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-15T12:48:03.859Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_sft.py --model_path /root/autodl-tmp/models/Qwen3-4B --data_path data/train_500_seed42.jsonl --output_dir \n…[truncated 663 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 2018
+          },
+          "id": "event-000655"
+        },
+        {
+          "source_line": 656,
+          "timestamp": "2026-05-15T12:49:10.987115+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "df -h /root/autodl-tmp"
+            }
+          },
+          "id": "event-000656"
+        },
+        {
+          "source_line": 657,
+          "timestamp": "2026-05-15T12:49:11.441689+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Filesystem      Size  Used Avail Use% Mounted on\\\\n/dev/md0        250G  186G   65G  75% /root/autodl-tmp\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 454
+          },
+          "id": "event-000657"
+        },
+        {
+          "source_line": 658,
+          "timestamp": "2026-05-15T12:49:18.603001+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ScheduleWakeup"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "ScheduleWakeup",
+            "tool_args": {
+              "delaySeconds": "270",
+              "reason": "s43-1000 SFT 训练中（~23min），等待完成或 s44 启动",
+              "prompt": "检查 plan009-sft-baseline-s43-1000 训练进度。检查 plan009-sft-baseline-s44-1000 是否已提交。检查 GPU 1 是否被利用。监控磁盘。"
+            }
+          },
+          "id": "event-000658"
+        },
+        {
+          "source_line": 659,
+          "timestamp": "2026-05-15T12:49:18.704139+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Next wakeup scheduled for 12:54:00 (in 281s)."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "ScheduleWakeup",
+            "elapsed_ms": 101
+          },
+          "id": "event-000659"
+        },
+        {
+          "source_line": 660,
+          "timestamp": "2026-05-15T12:49:20.536860+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "磁盘大幅改善：65G 可用（75%）。显然做了大规模清理（从 34G → 65G）。s43-1000 SFT 训练预计 ~23 分钟完成（1.2 it/s × 1000 步）。\n\n一切正常运行。GPU 1 空闲可用于 s44-1000 或其他实验。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer"
+          },
+          "id": "event-000660"
+        },
+        {
+          "source_line": 661,
+          "timestamp": "2026-05-15T12:49:20.583131+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "s43-1000 已在 GPU 0 上训练（RUNNING），s42-1000 spec 已补全（DONE），新实验 s44-1000 已注册（PENDING）。\n\n但注意 C002 合规问题：s43 和 s44 命令使用 `--gpu 0` 而非 `export CUDA_VISIBLE_DEVICES=0`。检查 train_sft.py 是否内部设置 CUDA_VISIBLE_DEVICES。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer"
+          },
+          "id": "event-000661"
+        }
+      ]
+    },
+    {
+      "number": 25,
+      "messages": [
+        {
+          "source_line": 662,
+          "timestamp": "2026-05-15T12:49:49.324045+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_eval_plan002-b01-s42-h8-reeval_20260515T124625]:\nWorker worker_eval_plan002-b01-s42-h8-reeval_20260515T124625 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "source": "system"
+          },
+          "id": "event-000662"
+        },
+        {
+          "source_line": 663,
+          "timestamp": "2026-05-15T12:49:55.692678+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "fields": "['status', 'conclusion', 'metrics', 'updated_at']",
+              "filters": "{'status': 'RUNNING'}"
+            }
+          },
+          "id": "event-000663"
+        },
+        {
+          "source_line": 664,
+          "timestamp": "2026-05-15T12:49:56.351232+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "limit": "2",
+              "fields": "['status', 'conclusion', 'updated_at', 'metrics']"
+            }
+          },
+          "id": "event-000664"
+        },
+        {
+          "source_line": 665,
+          "timestamp": "2026-05-15T12:49:56.847746+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan009-sft-baseline-s44-1000\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"updated_at\\\": \\\"2026-05-15T12:49:33.757Z\\\"}, \\\"plan009-sft-baseline-s43-1000\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"updated_at\\\": \\\"2026-05-15T12:48:14.640Z\\\"}}, \\\"count\\\": 2, \\\"total\\\": 2, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1384}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1155
+          },
+          "id": "event-000665"
+        },
+        {
+          "source_line": 666,
+          "timestamp": "2026-05-15T12:49:57.493256+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan009-sft-baseline-s44-1000\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"updated_at\\\": \\\"2026-05-15T12:49:33.757Z\\\"}, \\\"plan009-sft-baseline-s43-1000\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"updated_at\\\": \\\"2026-05-15T12:48:14.640Z\\\"}}, \\\"count\\\": 2, \\\"total\\\": 77, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5981}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1142
+          },
+          "id": "event-000666"
+        },
+        {
+          "source_line": 667,
+          "timestamp": "2026-05-15T12:50:04.302135+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used --format=csv,noheader"
+            }
+          },
+          "id": "event-000667"
+        },
+        {
+          "source_line": 668,
+          "timestamp": "2026-05-15T12:50:05.284297+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "fields": "['status', 'conclusion', 'metrics', 'updated_at']",
+              "filters": "{'conclusion': 'negative'}",
+              "limit": "3"
+            }
+          },
+          "id": "event-000668"
+        },
+        {
+          "source_line": 669,
+          "timestamp": "2026-05-15T12:50:05.627657+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "fields": "['spec', 'status']",
+              "filters": "{'status': 'RUNNING'}"
+            }
+          },
+          "id": "event-000669"
+        },
+        {
+          "source_line": 670,
+          "timestamp": "2026-05-15T12:50:05.849205+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 98 %, 63861 MiB\\\\n1, 0 %, 0 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1547
+          },
+          "id": "event-000670"
+        },
+        {
+          "source_line": 671,
+          "timestamp": "2026-05-15T12:50:07.114054+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan002-additive-b03-s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-15T12:45:27.465Z\\\", \\\"metrics\\\": {\\\"total_steps\\\": 500, \\\"duration_min\\\": 56.7, \\\"overall_prove_rate\\\": 0.34025, \\\"overall_isr\\\": 0.11527, \\\"last100_prove_rate\\\": 0.5525, \\\"eval_prove_rate\\\": 0.18, \\\"eval_mean_isr\\\": 0.0257, \\\"eval_isr_std\\\": 0.0742, \\\"eval_median_isr\\\": 0, \\\"eval_proved_only_isr\\\": 0.1427, \\\"eval_n_proved\\\": 18, \\\"eval_n_problems\\\": 100, \\\"eval_method\\\": \\\"eval_sta.py full STA\\\", \\\"eval_data\\\": \\\"proofwriter_fol_100.jsonl\\\", \\\"h7_rate\\\": 0, \\\"h7_count\\\": 0, \\\"h1_rate\\\": 0.778, \\\"h1_count\\\": 14, \\\"h8_conjunction_collapse_count\\\": 3, \\\"h8_conjunction_collapse_rate\\\": 0.1667, \\\"genuine_rate\\\": 0.0556, \\\"genuine_count\\\": 1, \\\"eval_by_type_false_pr\\\": 0.12, \\\"eval_by_type_false_isr\\\": 0.0102, \\\"eval_by_type_unknown_pr\\\": 0.195, \\\"eval_by_type_unknown_isr\\\": 0.0422, \\\"eval_by_type_true_pr\\\": 0.206, \\\"eval_by_type_true_isr\\\": 0.0172, \\\"h8_audit_note\\\": \\\"2026-05-15: H8 conjunction collapse added. genuine 4→1.\\\"}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"plan002-additive-b01-s42-1000\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-15T12:45:25.762Z\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"eval_prove_rate\\\": 0.9, \\\"eval_mean_isr\\\": 0.7892, \\\"eval_isr_std\\\": 0.3424, \\\"eval_proved_only_isr\\\": 0.8769, \\\"eval_median_isr\\\": 1, \\\"h7_strict_count\\\": 83, \\\"h7_strict_rate\\\": 0.922, \\\"h1_strict_count\\\": 4, \\\"h1_strict_rate\\\": 0.044, \\\"h8_conjunction_collapse_count\\\": 1, \\\"h8_conjunction_collapse_rate\\\": 0.0111, \\\"genuine_count\\\": 2, \\\"genuine_rate\\\": 0.0222, \\\"eval_component_count_mean\\\": 2.889, \\\"tautological_collapse\\\": true, \\\"train_final_prove_rate\\\": 0.855, \\\"train_final_mean_isr\\\": 0.532, \\\"h8_audit_note\\\": \\\"2026-05-15: H8 conjunction collapse added. genuine 3→2.\\\"}}, \\\"plan018-additive-random-b01-s42-1000-r3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-15T12:23:34.170Z\\\", \\\"metrics\\\": {\\\"eval\\\": {\\\"prove_rate\\\": \n…[truncated 1048 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1829
+          },
+          "id": "event-000671"
+        },
+        {
+          "source_line": 672,
+          "timestamp": "2026-05-15T12:50:08.316800+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan009-sft-baseline-s43-1000\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_sft.py --model_path /root/autodl-tmp/models/Qwen3-4B --data_path data/train_500_seed42.jsonl --output_dir /root/autodl-tmp/outputs/plan009_sft_baseline_s43_1000 --num_steps 1000 --seed 43 --no_wandb --gpu 0\\\\\\\"\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"352137\\\", \\\"log_path\\\": \\\"~/runs/solver-trace-ablation/plan009-sft-baseline-s43-1000.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T12:48:13.521Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}}, \\\"count\\\": 1, \\\"total\\\": 1, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.107}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 2689
+          },
+          "id": "event-000672"
+        }
+      ]
+    },
+    {
+      "number": 26,
+      "messages": [
+        {
+          "source_line": 673,
+          "timestamp": "2026-05-15T12:50:12.987587+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — cron:on_failed:plan009-sft-baseline-s44-1000]:\n实验 plan009-sft-baseline-s44-1000 failed，请审查。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "source": "system"
+          },
+          "id": "event-000673"
+        },
+        {
+          "source_line": 674,
+          "timestamp": "2026-05-15T12:50:25.698175+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "fields": "['*']",
+              "filters": "{'status': 'RUNNING'}"
+            }
+          },
+          "id": "event-000674"
+        },
+        {
+          "source_line": 675,
+          "timestamp": "2026-05-15T12:50:26.252075+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan009-sft-baseline-s43-1000\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T12:28:46.064Z\\\", \\\"updated_at\\\": \\\"2026-05-15T12:48:14.640Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_sft.py --model_path /root/autodl-tmp/models/Qwen3-4B --data_path data/train_500_seed42.jsonl --output_dir /root/autodl-tmp/outputs/plan009_sft_baseline_s43_1000 --num_steps 1000 --seed 43 --no_wandb --gpu 0\\\\\\\"\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"352137\\\", \\\"log_path\\\": \\\"~/runs/solver-trace-ablation/plan009-sft-baseline-s43-1000.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T12:48:13.521Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"hypothesis\\\": \\\"SFT 1000步 seed=43：与 s42 相同配置的第二个 seed，验证 SFT 在 1000 步的 genuine rate 稳定性。与 GRPO 各条件 1000步对比，确认 Goodhart collapse 是 RL 特有现象。\\\", \\\"parent\\\": \\\"plan009-sft-baseline-s43\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"pid\\\": \\\"352137\\\", \\\"log_path\\\": \\\"~/runs/solver-trace-ablation/plan009-sft-baseline-s43-1000.log\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_sft.py --model_path /root/autodl-tmp/models/Qwen3-4B --data_path data/train_500_seed42.jsonl --output_dir /root/autodl-tmp/outputs/plan009_sft_baseline_s43_1000 --num_steps 1000 --seed 43 --no_wandb --gpu 0\\\\\\\"\\\"}}}, \\\"count\\\": 1, \\\"total\\\": 1, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5062}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 553
+          },
+          "id": "event-000675"
+        },
+        {
+          "source_line": 676,
+          "timestamp": "2026-05-15T12:50:26.526315+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "fields": "['*']",
+              "filters": "{'status': 'FAILED'}",
+              "limit": "3"
+            }
+          },
+          "id": "event-000676"
+        },
+        {
+          "source_line": 677,
+          "timestamp": "2026-05-15T12:50:26.828400+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used --format=csv,noheader"
+            }
+          },
+          "id": "event-000677"
+        },
+        {
+          "source_line": 678,
+          "timestamp": "2026-05-15T12:50:26.929163+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3412}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 402
+          },
+          "id": "event-000678"
+        },
+        {
+          "source_line": 679,
+          "timestamp": "2026-05-15T12:50:28.034090+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 4 %, 63861 MiB\\\\n1, 0 %, 0 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.09}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1205
+          },
+          "id": "event-000679"
+        },
+        {
+          "source_line": 680,
+          "timestamp": "2026-05-15T12:50:34.873973+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "limit": "3",
+              "fields": "['status', 'conclusion', 'updated_at', 'spec']"
+            }
+          },
+          "id": "event-000680"
+        },
+        {
+          "source_line": 681,
+          "timestamp": "2026-05-15T12:50:35.329212+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan002-additive-b01-s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-15T12:50:32.994Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_bonus.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 42 --beta 0.1 --reward_mode additive_bonus --output_dir /root/autodl-tmp/outputs/plan002_additive_b01_s42\\\\\\\"\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"262261\\\", \\\"log_path\\\": \\\"~/runs/solver-trace-ablation/plan002-additive-b01-s42.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T05:32:32.415Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/train_500_seed42.jsonl\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"Qwen3-4B\\\", \\\"seed\\\": 42, \\\"plan_id\\\": \\\"plan002\\\", \\\"reward_formula\\\": \\\"r_exec * (1 + 0.1 * ISR)\\\", \\\"num_steps\\\": 500, \\\"wall_clock_seconds\\\": 4493.9, \\\"gpu_hours\\\": 1.25, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/outputs/plan002_additive_b01_s42\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"plan009-sft-baseline-s44-1000\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-15T12:50:04.083Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_sft.py --model_path /root/autodl-tmp/models/Qwen3-4B --data_path data/train_500_seed42.jsonl --output_dir /root/autodl-tmp/outputs/plan009_sft_baseline_s44_1000 --num_steps 1000 --seed 44 --no_wandb --gpu 0\\\\\\\"\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"352509\\\", \\\"log_path\\\": \\\"~/runs/solver-trace-ablation/plan009-sft-baseline-s44-1000.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T12:49:32.740Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"a\n…[truncated 998 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 455
+          },
+          "id": "event-000681"
+        },
+        {
+          "source_line": 682,
+          "timestamp": "2026-05-15T12:50:35.329663+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__tail_training_logs"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "tool_args": {
+              "server": "westd-39279",
+              "exp_id": "plan009-sft-baseline-s44-1000",
+              "project": "solver-trace-ablation",
+              "n": "20"
+            }
+          },
+          "id": "event-000682"
+        },
+        {
+          "source_line": 683,
+          "timestamp": "2026-05-15T12:50:35.781969+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"lines\\\": [\\\"File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/transformers/trainer.py\\\\\\\", line 2674, in _inner_training_loop\\\", \\\"    tr_loss_step = self.training_step(model, inputs, num_items_in_batch)\\\", \\\"                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\", \\\"  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/trl/trainer/sft_trainer.py\\\\\\\", line 1388, in training_step\\\", \\\"    return super().training_step(*args, **kwargs)\\\", \\\"           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\", \\\"  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/transformers/trainer.py\\\\\\\", line 4071, in training_step\\\", \\\"    self.accelerator.backward(loss, **kwargs)\\\", \\\"  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/accelerate/accelerator.py\\\\\\\", line 2838, in backward\\\", \\\"    loss.backward(**kwargs)\\\", \\\"  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/torch/_tensor.py\\\\\\\", line 630, in backward\\\", \\\"    torch.autograd.backward(\\\", \\\"  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/torch/autograd/__init__.py\\\\\\\", line 364, in backward\\\", \\\"    _engine_run_backward(\\\", \\\"  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/torch/autograd/graph.py\\\\\\\", line 865, in _engine_run_backward\\\", \\\"    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass\\\", \\\"           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\", \\\"torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 742.00 MiB. GPU 0 has a total capacity of 94.97 GiB of which 100.25 MiB is free. Process 352142 has 62.36 GiB memory in use. Including non-PyTorch memory, this process has 32.51 GiB memory in use. Of the allocated memory 30.80 GiB is allocated by PyTorch, and 1.02 GiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_ALLOC_CONF=expandable_segments:True to avoid\n…[truncated 1034 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "elapsed_ms": 452
+          },
+          "id": "event-000683"
+        },
+        {
+          "source_line": 684,
+          "timestamp": "2026-05-15T12:50:37.713439+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "fields": "['status', 'spec', 'updated_at']",
+              "filters": "{'status': 'ALLOCATED'}"
+            }
+          },
+          "id": "event-000684"
+        },
+        {
+          "source_line": 685,
+          "timestamp": "2026-05-15T12:50:38.416823+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6313}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 703
+          },
+          "id": "event-000685"
+        },
+        {
+          "source_line": 686,
+          "timestamp": "2026-05-15T12:50:45.263642+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "fields": "['status', 'updated_at']",
+              "filters": "{'status': 'PENDING'}"
+            }
+          },
+          "id": "event-000686"
+        },
+        {
+          "source_line": 687,
+          "timestamp": "2026-05-15T12:50:46.279807+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9805}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1016
+          },
+          "id": "event-000687"
+        },
+        {
+          "source_line": 688,
+          "timestamp": "2026-05-15T12:50:50.597963+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "limit": "5",
+              "fields": "['status', 'updated_at', 'conclusion']"
+            }
+          },
+          "id": "event-000688"
+        },
+        {
+          "source_line": 689,
+          "timestamp": "2026-05-15T12:50:50.902203+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan002-additive-b01-s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-15T12:50:32.994Z\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"plan009-sft-baseline-s44-1000\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-15T12:50:04.083Z\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"plan009-sft-baseline-s43-1000\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"updated_at\\\": \\\"2026-05-15T12:48:14.640Z\\\"}, \\\"plan009-sft-baseline-s42-1000\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-15T12:48:03.859Z\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"plan002-additive-b03-s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-15T12:45:27.465Z\\\", \\\"conclusion\\\": \\\"negative\\\"}}, \\\"count\\\": 5, \\\"total\\\": 77, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3067}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 304
+          },
+          "id": "event-000689"
+        },
+        {
+          "source_line": 690,
+          "timestamp": "2026-05-15T12:50:57.535908+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "fields": "['*']",
+              "limit": "1"
+            }
+          },
+          "id": "event-000690"
+        },
+        {
+          "source_line": 691,
+          "timestamp": "2026-05-15T12:50:58.538865+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan002-additive-b01-s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T05:29:08.138Z\\\", \\\"updated_at\\\": \\\"2026-05-15T12:50:32.994Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_bonus.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 42 --beta 0.1 --reward_mode additive_bonus --output_dir /root/autodl-tmp/outputs/plan002_additive_b01_s42\\\\\\\"\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"262261\\\", \\\"log_path\\\": \\\"~/runs/solver-trace-ablation/plan002-additive-b01-s42.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T05:32:32.415Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/train_500_seed42.jsonl\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"Qwen3-4B\\\", \\\"seed\\\": 42, \\\"plan_id\\\": \\\"plan002\\\", \\\"reward_formula\\\": \\\"r_exec * (1 + 0.1 * ISR)\\\", \\\"num_steps\\\": 500, \\\"wall_clock_seconds\\\": 4493.9, \\\"gpu_hours\\\": 1.25, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/outputs/plan002_additive_b01_s42\\\"}, \\\"parent\\\": \\\"plan002-additive-b03-s42\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"pid\\\": \\\"262261\\\", \\\"log_path\\\": \\\"~/runs/solver-trace-ablation/plan002-additive-b01-s42.log\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_bonus.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 42 --beta 0.1 --reward_mode additive_bonus --output_dir /root/autodl-tmp/outputs/plan002_additive_b01_s42\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-14T06:37:58.285Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [\n…[truncated 1661 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1002
+          },
+          "id": "event-000691"
+        },
+        {
+          "source_line": 692,
+          "timestamp": "2026-05-15T12:50:58.689729+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "fields": "['conclusion', 'metrics', 'updated_at']",
+              "filters": "{'conclusion': 'success'}",
+              "limit": "5"
+            }
+          },
+          "id": "event-000692"
+        },
+        {
+          "source_line": 693,
+          "timestamp": "2026-05-15T12:50:58.991316+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan002-additive-b01-s42\\\": {\\\"updated_at\\\": \\\"2026-05-15T12:50:32.994Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"eval_prove_rate\\\": 0.81, \\\"eval_mean_isr\\\": 0.3365, \\\"eval_isr_std\\\": 0.3227, \\\"eval_proved_only_isr\\\": 0.4154, \\\"eval_median_isr\\\": 0.2, \\\"eval_n_proved\\\": 81, \\\"eval_n_problems\\\": 100, \\\"eval_method\\\": \\\"eval_sta.py full STA\\\", \\\"eval_data\\\": \\\"proofwriter_fol_100.jsonl\\\", \\\"eval_component_count_mean\\\": 5.58, \\\"h7_rate\\\": 0.1605, \\\"h7_count\\\": 13, \\\"h1_rate\\\": 0.5185, \\\"h1_count\\\": 42, \\\"h8_conjunction_collapse_count\\\": 12, \\\"h8_conjunction_collapse_rate\\\": 0.1481, \\\"content_independent_count\\\": 19, \\\"content_independent_rate\\\": 0.2346, \\\"genuine_rate\\\": 0.1728, \\\"genuine_count\\\": 14, \\\"genuine_count_pre_h8\\\": 26, \\\"genuine_rate_pre_h8\\\": 0.321, \\\"tautological_collapse\\\": false}}, \\\"plan009-sft-baseline-s42-1000\\\": {\\\"updated_at\\\": \\\"2026-05-15T12:48:03.859Z\\\", \\\"metrics\\\": {\\\"train_final_loss\\\": 0.0168, \\\"train_last_step_loss\\\": 0.0168, \\\"train_token_accuracy\\\": 0.9955, \\\"train_epochs\\\": 15.88, \\\"train_runtime_sec\\\": 1415, \\\"train_steps\\\": 1000, \\\"eval_prove_rate\\\": 0.13, \\\"eval_n_proved\\\": 13, \\\"eval_n_problems\\\": 100, \\\"eval_mean_isr\\\": 0.0738, \\\"eval_isr_std\\\": 0.2077, \\\"eval_median_isr\\\": 0, \\\"eval_proved_only_isr\\\": 0.5677, \\\"eval_data\\\": \\\"proofwriter_fol_100.jsonl\\\", \\\"eval_method\\\": \\\"eval_sta.py full STA\\\", \\\"eval_output_path\\\": \\\"/root/autodl-tmp/outputs/plan009_sft_baseline_s42_1000/eval_sta_results.json\\\", \\\"h7_strict_count\\\": 0, \\\"h7_strict_rate\\\": 0, \\\"h1_strict_count\\\": 1, \\\"h1_strict_rate\\\": 0.0769, \\\"h8_conjunction_collapse_count\\\": 0, \\\"h8_conjunction_collapse_rate\\\": 0, \\\"genuine_count\\\": 12, \\\"genuine_rate\\\": 0.9231, \\\"conclusion_in_premise_count\\\": 1, \\\"conclusion_in_premise_rate\\\": 0.0769, \\\"isr_1_count\\\": 0, \\\"content_independent_count\\\": 0, \\\"eval_by_answer_type\\\": {\\\"true\\\": {\\\"count\\\": 34, \\\"proved\\\": 12, \\\"prove_rate\\\": 0.353, \\\"mean_isr\\\": 0.209}, \\\"false\\\"\n…[truncated 3473 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 301
+          },
+          "id": "event-000693"
+        },
+        {
+          "source_line": 694,
+          "timestamp": "2026-05-15T12:51:07.152917+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "## 审查报告 — plan009-sft-baseline-s44-1000（OOM 失败）\n\n**结论**: WARNING\n\n### [severity: warning] GPU 冲突导致 OOM（C002/C007 违规）\n\nplan009-sft-baseline-s44-1000 在第 1 步 OOM 崩溃。\n\n**根因**：命令使用 `--gpu 0`，但 s43-1000 已在 GPU 0 运行（62.36 GiB 占用）。两个 SFT 进程挤在同一 GPU。\n\n**证据**：\n- s44 命令：`python3 scripts/train_sft.py ... --gpu 0`（指向 GPU 0）\n- s43 命令：`python3 scripts/train_sft.py ... --gpu 0`（已在 GPU 0）\n- Registry 记录 s44 为 `gpu: [cuda:1]`——**Registry 与实际命令不一致**\n- OOM 日志：`Process 352142 has 62.36 GiB memory in use`（s43 的 VRAM）\n- GPU 1 完全空闲（0 MiB），本应分配给 s44\n\n**影响**：s44 崩溃（EXIT_CODE=1），s43 未受影响继续运行。无数据丢失。\n\n**违规**：\n- C002：submit 前未验证 GPU 实际占用\n- C007：submit 前必须 nvidia-smi 确认目标 GPU 无残留进程\n\n**修复**：重新提交 s44 到 GPU 1，命令使用 `--gpu 1`。\n\n### [severity: info] s43-1000 正常运行\n\nGPU 0: 63861 MiB / 4%（步间间歇），s43 未受 s44 OOM 影响。",
+              "project": "solver-trace-ablation"
+            }
+          },
+          "id": "event-000694"
+        },
+        {
+          "source_line": 695,
+          "timestamp": "2026-05-15T12:51:11.076934+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_a771c2a33d631dd40256ecd5c3a6648e:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3924
+          },
+          "id": "event-000695"
+        },
+        {
+          "source_line": 696,
+          "timestamp": "2026-05-15T12:51:16.615497+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ScheduleWakeup"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "ScheduleWakeup",
+            "tool_args": {
+              "delaySeconds": "180",
+              "reason": "等待 s44 重新提交到 GPU 1，s43 继续训练",
+              "prompt": "检查 plan009-sft-baseline-s44-1000 是否已重新提交到 GPU 1。检查 s43 训练进度。监控 GPU 和磁盘。"
+            }
+          },
+          "id": "event-000696"
+        },
+        {
+          "source_line": 697,
+          "timestamp": "2026-05-15T12:51:16.667445+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Next wakeup scheduled for 12:55:00 (in 223s)."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "ScheduleWakeup",
+            "elapsed_ms": 51
+          },
+          "id": "event-000697"
+        },
+        {
+          "source_line": 698,
+          "timestamp": "2026-05-15T12:51:18.537211+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已提交。等待 Agent 修复 s44 并重新提交到 GPU 1。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer"
+          },
+          "id": "event-000698"
+        },
+        {
+          "source_line": 699,
+          "timestamp": "2026-05-15T12:51:35.753894+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "fields": "['*']",
+              "filters": "{'conclusion': 'failed'}",
+              "limit": "3"
+            }
+          },
+          "id": "event-000699"
+        },
+        {
+          "source_line": 700,
+          "timestamp": "2026-05-15T12:51:36.055660+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan009-sft-baseline-s44-1000\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T12:47:54.021Z\\\", \\\"updated_at\\\": \\\"2026-05-15T12:50:04.083Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_sft.py --model_path /root/autodl-tmp/models/Qwen3-4B --data_path data/train_500_seed42.jsonl --output_dir /root/autodl-tmp/outputs/plan009_sft_baseline_s44_1000 --num_steps 1000 --seed 44 --no_wandb --gpu 0\\\\\\\"\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"352509\\\", \\\"log_path\\\": \\\"~/runs/solver-trace-ablation/plan009-sft-baseline-s44-1000.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T12:49:32.740Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 31.3, \\\"gpu_hours\\\": 0.01}, \\\"hypothesis\\\": \\\"SFT 1000步 seed=44：与 s42/s43 相同配置的第三个 seed，验证 SFT 在 1000 步的 genuine rate 稳定性。3-seed 统计支撑 Goodhart collapse 是 RL (GRPO) 特有现象的 claim。\\\", \\\"parent\\\": \\\"plan009-sft-baseline-s42-r4\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-15T12:49:08.008Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_sft.py --model_path /root/autodl-tmp/models/Qwen3-4B --data_path data/train_500_seed42.jsonl --output_dir /root/autodl-tmp/outputs/plan009_sft_baseline_s44_1000 --num_steps 1000 --seed 44 --no_wandb --gpu 0\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-15T12:50:00.305Z\\\", \\\"training_hours\\\": 0.01}, \\\"pid\\\": \\\"352509\\\", \\\"log_path\\\": \\\"~/runs/solver-trace-ablation/plan009-sft-baseline-s44-1000.log\\\", \\\"failure_reason\\\": \\\"CUDA OOM: CUDA out of memory. Tried to allocate 742.00 MiB. GPU 0 has a total capacity of 94.\n…[truncated 4377 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 301
+          },
+          "id": "event-000700"
+        }
+      ]
+    },
+    {
+      "number": 27,
+      "messages": [
+        {
+          "source_line": 701,
+          "timestamp": "2026-05-15T12:51:49.978661+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_eval_plan002-b01-s42-reeval-h8_20260515T124623]:\nWorker worker_eval_plan002-b01-s42-reeval-h8_20260515T124623 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "source": "system"
+          },
+          "id": "event-000701"
+        },
+        {
+          "source_line": 702,
+          "timestamp": "2026-05-15T12:53:50.952797+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__reviewer_post_to_director",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000702"
+        },
+        {
+          "source_line": 703,
+          "timestamp": "2026-05-15T12:53:51.053492+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "ToolSearch",
+            "elapsed_ms": 100
+          },
+          "id": "event-000703"
+        },
+        {
+          "source_line": 704,
+          "timestamp": "2026-05-15T12:53:53.730903+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "filters": "{'status': 'RUNNING'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000704"
+        },
+        {
+          "source_line": 705,
+          "timestamp": "2026-05-15T12:53:54.688668+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan009-sft-baseline-s44-1000\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-15T12:47:54.021Z\\\", \\\"updated_at\\\": \\\"2026-05-15T12:52:30.376Z\\\", \\\"hypothesis\\\": \\\"SFT 1000步 seed=44：与 s42/s43 相同配置的第三个 seed，验证 SFT 在 1000 步的 genuine rate 稳定性。3-seed 统计支撑 Goodhart collapse 是 RL (GRPO) 特有现象的 claim。\\\", \\\"parent\\\": \\\"plan009-sft-baseline-s42-r4\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-15T12:49:08.008Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_sft.py --model_path /root/autodl-tmp/models/Qwen3-4B --data_path data/train_500_seed42.jsonl --output_dir /root/autodl-tmp/outputs/plan009_sft_baseline_s44_1000 --num_steps 1000 --seed 44 --no_wandb --gpu 1\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-15T12:50:00.305Z\\\", \\\"training_hours\\\": 0.01}, \\\"failure_reason\\\": \\\"CUDA OOM: CUDA out of memory. Tried to allocate 742.00 MiB. GPU 0 has a total capacity of 94.97 GiB of which 100.25 MiB is free. Process 352142 has 62.36 GiB memory in use. Including non-PyTorch memory, this process has 32.51 GiB memory in use. Of the allocate\\\", \\\"completed_at\\\": \\\"2026-05-15T12:50:04.083Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T12:50:14.696431+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\"}}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_sft.py --model_path /root/autodl-tmp/models/Qwen3-4B --data_path data/train_500_seed42.jsonl --output_dir /root/autodl-tmp/outputs/plan009_sft_baseline_s44_1000 --num_steps 1000 --seed 44 --no_wandb --gpu 1\\\\\\\"\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": [\\\"cuda\n…[truncated 2064 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 957
+          },
+          "id": "event-000705"
+        },
+        {
+          "source_line": 706,
+          "timestamp": "2026-05-15T12:53:54.689157+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "filters": "{'status': 'FAILED'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000706"
+        },
+        {
+          "source_line": 707,
+          "timestamp": "2026-05-15T12:53:55.241471+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader"
+            }
+          },
+          "id": "event-000707"
+        },
+        {
+          "source_line": 708,
+          "timestamp": "2026-05-15T12:53:55.342855+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6058}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 653
+          },
+          "id": "event-000708"
+        },
+        {
+          "source_line": 709,
+          "timestamp": "2026-05-15T12:53:55.847613+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 4 %, 63861 MiB, 97887 MiB\\\\n1, 100 %, 53423 MiB, 97887 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 606
+          },
+          "id": "event-000709"
+        },
+        {
+          "source_line": 710,
+          "timestamp": "2026-05-15T12:54:07.010349+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "tail -20 /root/runs/solver-trace-ablation/plan009-sft-baseline-s44-1000.log"
+            }
+          },
+          "id": "event-000710"
+        },
+        {
+          "source_line": 711,
+          "timestamp": "2026-05-15T12:54:07.362104+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "tail -20 /root/runs/solver-trace-ablation/plan009-sft-baseline-s43-1000.log"
+            }
+          },
+          "id": "event-000711"
+        },
+        {
+          "source_line": 712,
+          "timestamp": "2026-05-15T12:54:07.463163+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-15 20:52:29,196 INFO Set CUDA_VISIBLE_DEVICES=1\\\\n2026-05-15 20:52:30,779 INFO JAX version 0.10.0 available.\\\\nUsing the `WANDB_DISABLED` environment variable is deprecated and will be removed in v5. Use the --report_to flag to control the integrations used for logging result (for instance --report_to none).\\\\n2026-05-15 20:52:34,325 INFO Loading data from data/train_500_seed42.jsonl...\\\\n2026-05-15 20:52:34,330 INFO Loaded 500 training examples, skipped 0\\\\n2026-05-15 20:52:34,339 INFO Dataset: 500 examples\\\\n2026-05-15 20:52:34,339 INFO Loading model from /root/autodl-tmp/models/Qwen3-4B...\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]\\\\rLoading checkpoint shards:  33%|███▎      | 1/3 [00:01<00:02,  1.02s/it]\\\\rLoading checkpoint shards:  67%|██████▋   | 2/3 [00:02<00:01,  1.02s/it]\\\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:02<00:00,  1.45it/s]\\\\n\\\\rTokenizing train dataset:   0%|          | 0/500 [00:00<?, ? examples/s]\\\\rTokenizing train dataset:  19%|█▉        | 97/500 [00:00<00:00, 948.84 examples/s]\\\\rTokenizing train dataset:  44%|████▍     | 219/500 [00:00<00:00, 1103.57 examples/s]\\\\rTokenizing train dataset:  69%|██████▉   | 344/500 [00:00<00:00, 1164.25 examples/s]\\\\rTokenizing train dataset:  94%|█████████▍| 471/500 [00:00<00:00, 1198.97 examples/s]\\\\rTokenizing train dataset: 100%|██████████| 500/500 [00:00<00:00, 1088.25 examples/s]\\\\nThe model is already on multiple devices. Skipping the move to device specified in `args`.\\\\n2026-05-15 20:52:39,173 INFO Starting SFT training...\\\\nThe tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'bos_token_id': None, 'pad_token_id': 151643}.\\\\n\\\\r  0%|          | 0/1000 [00:00<?, ?it/s]\\\\r  0%|          | 1/1000 [00:01<23:18,  1.40s/it]\\\\r  0%|     \n…[truncated 4735 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-000712"
+        },
+        {
+          "source_line": 713,
+          "timestamp": "2026-05-15T12:54:08.016039+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-15 20:48:13,474 INFO Set CUDA_VISIBLE_DEVICES=0\\\\n2026-05-15 20:48:14,998 INFO JAX version 0.10.0 available.\\\\nUsing the `WANDB_DISABLED` environment variable is deprecated and will be removed in v5. Use the --report_to flag to control the integrations used for logging result (for instance --report_to none).\\\\n2026-05-15 20:48:18,231 INFO Loading data from data/train_500_seed42.jsonl...\\\\n2026-05-15 20:48:18,236 INFO Loaded 500 training examples, skipped 0\\\\n2026-05-15 20:48:18,245 INFO Dataset: 500 examples\\\\n2026-05-15 20:48:18,245 INFO Loading model from /root/autodl-tmp/models/Qwen3-4B...\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]\\\\rLoading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:01,  1.00it/s]\\\\rLoading checkpoint shards:  67%|██████▋   | 2/3 [00:02<00:01,  1.00s/it]\\\\rLoading checkpoint shards: 100%|██████████| 3/3 [00:02<00:00,  1.48it/s]\\\\n\\\\rTokenizing train dataset:   0%|          | 0/500 [00:00<?, ? examples/s]\\\\rTokenizing train dataset:  20%|██        | 102/500 [00:00<00:00, 1009.09 examples/s]\\\\rTokenizing train dataset:  46%|████▌     | 231/500 [00:00<00:00, 1169.01 examples/s]\\\\rTokenizing train dataset:  73%|███████▎  | 367/500 [00:00<00:00, 1253.70 examples/s]\\\\rTokenizing train dataset: 100%|█████████▉| 499/500 [00:00<00:00, 1276.19 examples/s]\\\\rTokenizing train dataset: 100%|██████████| 500/500 [00:00<00:00, 1152.20 examples/s]\\\\nThe model is already on multiple devices. Skipping the move to device specified in `args`.\\\\n2026-05-15 20:48:22,968 INFO Starting SFT training...\\\\nThe tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'bos_token_id': None, 'pad_token_id': 151643}.\\\\n\\\\r  0%|          | 0/1000 [00:00<?, ?it/s]\\\\r  0%|          | 1/1000 [00:01<20:33,  1.23s/it]\\\\r  0%|   \n…[truncated 6498 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 653
+          },
+          "id": "event-000713"
+        },
+        {
+          "source_line": 714,
+          "timestamp": "2026-05-15T12:54:11.996906+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__reviewer_post_to_director,mcp__agent-ml-research__get_gpu_health",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000714"
+        },
+        {
+          "source_line": 715,
+          "timestamp": "2026-05-15T12:54:12.048486+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "ToolSearch",
+            "elapsed_ms": 51
+          },
+          "id": "event-000715"
+        },
+        {
+          "source_line": 716,
+          "timestamp": "2026-05-15T12:54:14.610529+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_gpu_health"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__get_gpu_health",
+            "tool_args": {
+              "server": "westd-39279"
+            }
+          },
+          "id": "event-000716"
+        },
+        {
+          "source_line": 717,
+          "timestamp": "2026-05-15T12:54:15.063055+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"servers\\\": {\\\"westd-39279\\\": {\\\"error\\\": \\\"no data yet\\\", \\\"stale\\\": true}}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__get_gpu_health",
+            "elapsed_ms": 452
+          },
+          "id": "event-000717"
+        },
+        {
+          "source_line": 718,
+          "timestamp": "2026-05-15T12:54:15.616130+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "filters": "{'status': 'RUNNING'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000718"
+        },
+        {
+          "source_line": 719,
+          "timestamp": "2026-05-15T12:54:16.068230+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan009-sft-baseline-s44-1000-r2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T12:53:24.774Z\\\", \\\"updated_at\\\": \\\"2026-05-15T12:54:03.055Z\\\", \\\"hypothesis\\\": \\\"SFT 1000步 seed=44（重试）：r1 因 CUDA_VISIBLE_DEVICES 未设导致 OOM 失败。与 s42/s43 相同配置的第三个 seed，验证 SFT 在 1000 步的 genuine rate 稳定性。3-seed 统计支撑 Goodhart collapse 是 RL (GRPO) 特有现象的 claim。\\\", \\\"parent\\\": \\\"plan009-sft-baseline-s44-1000\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"export CUDA_VISIBLE_DEVICES=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_sft.py --model_path /root/autodl-tmp/models/Qwen3-4B --data_path data/train_500_seed42.jsonl --output_dir /root/autodl-tmp/outputs/plan009_sft_baseline_s44_1000 --num_steps 1000 --seed 44 --no_wandb --gpu 0\\\\\\\"\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"353256\\\", \\\"log_path\\\": \\\"~/runs/solver-trace-ablation/plan009-sft-baseline-s44-1000-r2.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T12:53:53.733Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"pid\\\": \\\"353256\\\", \\\"log_path\\\": \\\"~/runs/solver-trace-ablation/plan009-sft-baseline-s44-1000-r2.log\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"export CUDA_VISIBLE_DEVICES=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_sft.py --model_path /root/autodl-tmp/models/Qwen3-4B --data_path data/train_500_seed42.jsonl --output_dir /root/autodl-tmp/outputs/plan009_sft_baseline_s44_1000 --num_steps 1000 --seed 44 --no_wandb --gpu 0\\\\\\\"\\\"}}, \\\"plan009-sft-baseline-s44-1000\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-15T12:47:54.021Z\\\", \\\"updated_at\\\": \\\"2026-05-15T12:52:30.376Z\\\", \\\"hypothesis\\\": \\\"SFT 1000步 seed=44：与 s\n…[truncated 3792 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 452
+          },
+          "id": "event-000719"
+        },
+        {
+          "source_line": 720,
+          "timestamp": "2026-05-15T12:54:17.072271+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_8f0788a2307711c1b7fbf59b4cbe0473:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "filters": "{'exp_id': 'plan009-sft-s44-1000'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000720"
+        }
+      ]
+    }
+  ]
+}

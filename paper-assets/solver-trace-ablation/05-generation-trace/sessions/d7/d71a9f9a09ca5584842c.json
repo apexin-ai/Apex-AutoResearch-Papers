@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d71a9f9a09ca5584842c",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops full compile and eval",
+  "task_key": "worker_ops_full-compile-and-eval_20260515T070522",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_full-compile-and-eval_20260515T070522_result.json",
+    "occurrence": 1,
+    "bytes": 681,
+    "sha256": "131f963173b5803a3d02a20235ad90a52a119b3cb516f807b133f26b702ceb37"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三项结果汇报：\n\n**1. Eval 指标（plan018-additive-random-b01-s43-r2）**\n- Registry 中已有：`eval_prove_rate = 0.88`, `eval_mean_isr = 0.058`\n- 无需重新运行 eval\n\n**2. LaTeX 编译结果**\n- 编译成功，14 页，516,993 bytes\n- **Errors: 0**\n- **Undefined references/citations: 0**\n- Warnings 仅有：2x `'h' float specifier changed to 'ht'`（无害）+ 7x hyperref PDF string token warnings（math symbols in section titles，无害）\n\n**3. `app:o1-ablation` label**\n- 正确解析为 `\\newlabel{app:o1-ablation}{{E.3}{14}{...}{subsection.E.3}{}}`\n- 即 Appendix E.3，第 14 页，标题 \"$O(1)$ vs.\\ $O(n)$ ISR Ablation\""
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-full-compile-and-eval.md"
+}

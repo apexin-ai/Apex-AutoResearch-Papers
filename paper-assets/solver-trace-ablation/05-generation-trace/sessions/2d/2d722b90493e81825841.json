@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2d722b90493e81825841",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "eval s46 then submit 7b exec",
+  "task_key": "worker_eval_s46-then-submit-7b-exec_20260516T091847",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_s46-then-submit-7b-exec_20260516T091847_result.json",
+    "occurrence": 1,
+    "bytes": 1119,
+    "sha256": "308663f03fb37403d3c375d598b86ce1a3d777da55e6af8d9c70ffcb962a19de"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Training PID is **799959**, running on cuda:0 only.\n\n---\n\n## Summary\n\n### Step 1: s46 eval_sta results\n| Metric | Value |\n|--------|-------|\n| Prove rate | **43/100 (43.0%)** |\n| Mean ISR | 0.0061 |\n| Proved-only ISR | 0.0143 |\n\n### Step 2: classify_h7 taxonomy\n| Category | Count | % of proved |\n|----------|-------|-------------|\n| Proved | 43 | - |\n| H7a (text-match tautology) | 3 | 7.0% |\n| H7b (obfuscated tautology) | 0 | 0.0% |\n| H1 strict (concl in premises) | 39 | 90.7% |\n| H8 (conj-collapse) | 4 | 9.3% |\n| **Genuine** | **1** | **2.3%** |\n\nPer C013 taxonomy: genuine = proved(43) − H7(3) − H1_exact(39) − H8(4) = **1** (some overlap between categories, net genuine = 1).\n\n### Step 3: 7B (Qwen3-8B) exec-only pilot\n- **Successfully launched** on cuda:0, tmux session `w2-qwen3-8b-exec-pilot`\n- PID: 799959\n- GPU memory: 48.6 GB / 97.9 GB (well within budget)\n- Step 1 completed at 31.5s/step, prove_rate=0.500, reward=0.5000\n- Config: `grpo_exec_only_8b.yaml` (batch=2, grad_accum=4, gradient_checkpointing, adamw_bnb_8bit)\n- ETA: ~4.4 hours for 500 steps"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-s46-then-submit-7b-exec.md"
+}

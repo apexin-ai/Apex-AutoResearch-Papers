@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f97d7a949e3a0be921de",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "fix sweep isr b005 s42 restart",
+  "task_key": "worker_fix_sweep-isr-b005-s42-restart_20260516T024718",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_sweep-isr-b005-s42-restart_20260516T024718_result.json",
+    "occurrence": 1,
+    "bytes": 610,
+    "sha256": "c9e3da98e49b6b949c0eaa0987d7342a61880c926f066b048ca46c172c20480e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**sweep-isr-b005-s42 已经在正常训练，无需修复。**\n\n当前状态：\n- **GPU 0**: `sweep-isr-b01-s45` (β=0.1, seed=45) — 正常运行\n- **GPU 1**: `sweep-isr-b005-s42` (β=0.05, seed=42) — 正常运行，已完成 47 步，reward_log 持续更新\n\n命令路径已经是正确的 `scripts/train_grpo.py --config configs/grpo_additive_bonus.yaml` 格式。看起来之前的失败已被修复并成功重启。\n\n唯一的问题是 registry 中没有该实验的条目（可能是手动启动的），但训练本身在正常推进。需要我补注册 registry 条目吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-sweep-isr-b005-s42-restart.md"
+}

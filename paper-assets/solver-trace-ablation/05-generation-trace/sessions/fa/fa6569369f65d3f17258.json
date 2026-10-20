@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fa6569369f65d3f17258",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops final sync compile",
+  "task_key": "worker_ops_final-sync-compile_20260515T220442",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_final-sync-compile_20260515T220442_result.json",
+    "occurrence": 1,
+    "bytes": 425,
+    "sha256": "e3e32049ab3de29f3d44120aeef3a61eff1be3116f83e5986cfe528d11dd4724"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All checks pass:\n\n| Check | Result |\n|-------|--------|\n| Files synced | 4/4, MD5 verified |\n| PDF compiled | 19 pages, 589,819 bytes |\n| Fatal errors | 0 |\n| Undefined citations | 0 |\n| Undefined references | 0 |\n| PDF size | 589KB > 500KB |\n| Body text | Conclusion ends on page 8; References start on pages 8–9; Appendix pages 10–19 |\n| Overfull hboxes | 2 (both in tables — non-critical) |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-final-sync-compile.md"
+}

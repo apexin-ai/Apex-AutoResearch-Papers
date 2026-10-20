@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5d1a3ce3f0282eafaeee",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code fix prolog prompt mismatch",
+  "task_key": "worker_code_fix-prolog-prompt-mismatch_20260514T062901",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-prolog-prompt-mismatch_20260514T062901_result.json",
+    "occurrence": 1,
+    "bytes": 983,
+    "sha256": "3b153c331c984215a79db3571b24c21e7811d8bcdbc543ce471f420550b001b6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部通过。\n\n**修复结果：**\n\n| 项目 | 修改前 (eval_sta.py) | 修改后 (= train_grpo.py) |\n|------|---------------------|------------------------|\n| PROLOG_SYSTEM_PROMPT 角色 | \"Prolog expert\" | \"Prolog logic programming expert\" |\n| PROLOG_SYSTEM_PROMPT 任务描述 | \"formalize them as a Prolog program with a query\" | \"formalize them into Prolog\" |\n| 输出格式示例 | `fact1.` / `rule1 :- body1.` / `?- query.` | `<fact_or_rule>.` / `Query: <goal>` |\n| 语法说明 | \"atoms start lowercase, variables start uppercase. End each clause with a period.\" | \"facts (predicate(args).), rules (head :- body.), variables start with uppercase, atoms/predicates start with lowercase.\" |\n| PROLOG_USER_TEMPLATE | \"Formalize the following as a Prolog program with a query\" | \"Formalize the following in Prolog\" |\n\n**验证：**\n- `sta_prolog.py --test`: 5/5 PASS\n- `eval_sta.py --help`: `--logic_type {fol,prolog}` 参数正常"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-prolog-prompt-mismatch.md"
+}

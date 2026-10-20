@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8787dd5d1294d3764625",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops compile pdf",
+  "task_key": "worker_ops_compile-pdf_20260517T143921",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_compile-pdf_20260517T143921_result.json",
+    "occurrence": 1,
+    "bytes": 268,
+    "sha256": "e8cc758a221fe405a1ae5eb0a802de63bc91c05a96d285e58ef4737deee27e55"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译成功。\n\n- **PDF**: 587KB, 21 页\n- **Warning**: 2 处未定义引用 `\\ref{app:hyperparameters}`（`experiments.tex` 第 74 行），appendix 中缺少对应 `\\label{app:hyperparameters}`。非致命，需要补上 label 或移除引用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-compile-pdf.md"
+}

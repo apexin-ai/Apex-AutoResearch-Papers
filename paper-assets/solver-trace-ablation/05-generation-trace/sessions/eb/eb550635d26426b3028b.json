@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eb550635d26426b3028b",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "eval plan009 sft r4",
+  "task_key": "worker_eval_plan009-sft-r4_20260514T133910",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_plan009-sft-r4_20260514T133910_result.json",
+    "occurrence": 1,
+    "bytes": 3412,
+    "sha256": "44c71f30a160ccbe21b5e73fc1fb3b2e08cc153c16eb6affb08fa3de1b494a28"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "评估完成。完整分析报告如下。\n\n---\n\n## Plan009 SFT Baseline 评估报告\n\n### 实验配置\n- **模型**: Qwen3-4B, SFT 500 steps, seed=42\n- **训练数据**: data/train_500_seed42.jsonl (500 samples)\n- **评估数据**: data/proofwriter_fol_100.jsonl (100 samples)\n- **Checkpoint**: `/root/autodl-tmp/outputs/plan009_sft_baseline_s42/checkpoint-500`\n- **训练日志**: `~/runs/solver-trace-ablation/plan009-sft-baseline-s42-r4.log`\n- **评估结果**: `/root/autodl-tmp/outputs/plan009_sft_baseline_s42/eval_results.json`\n\n### 训练指标\n| 指标 | 值 |\n|------|-----|\n| Final loss | 0.0287 |\n| Token accuracy | 99.35% |\n| Epoch | 7.94 |\n| Training time | 789.6s (13.2 min) |\n\n### 评估指标\n\n| 指标 | SFT baseline | Base (zero-shot) | GRPO exec-only | GRPO ISR β=0.1 |\n|------|-------------|------------------|----------------|----------------|\n| **Prove Rate** | **0.14** | 0.12 | 0.93 | 0.81 |\n| **Mean ISR** | **0.080** | 0.064 | 0.123 | 0.337 |\n| ISR Std | 0.214 | — | — | — |\n| Median ISR | 0.0 | — | — | — |\n| **Proved-only ISR** | **0.571** | — | ~0.132† | — |\n| Max ISR | 0.833 | — | — | — |\n\n†推算值：mean_isr(0.123) / prove_rate(0.93) ≈ 0.132\n\n### By answer type 分解\n\n| Type | Count | Proved | PR | Mean ISR |\n|------|-------|--------|------|----------|\n| true | 34 | 13 | 38.2% | 0.226 |\n| unknown | 41 | 1 | 2.4% | 0.008 |\n| false | 25 | 0 | 0.0% | 0.000 |\n\n### 关键发现\n\n**1. SFT 对 prove rate 几乎无提升**\n\nPR: 0.12 (base) → 0.14 (SFT) → 0.93 (GRPO exec-only)。SFT 仅提升 2 个百分点，而 GRPO 提升 81 个百分点。这证实 prove rate 的大幅跃升来自 RL reward signal，不是训练数据曝光。\n\n**2. SFT 无 hacking 模式**\n\n- 无 ISR=1.0 的 tautological collapse\n- Max ISR = 0.833，分布合理\n- Proved-only ISR = 0.571 — 当 SFT 成功证明时，57% 的组件是必要的，说明形式化质量健康\n\n**3. GRPO exec-only 呈现明显 padding 行为**\n\n对比 proved-only ISR：\n- SFT: 0.571（proved 时大部分组件必要）\n- GRPO exec-only: ~0.132（proved 时仅 13% 组件必要）\n\nGRPO exec-only 模型大幅提升 PR 但代价是加入大量冗余组件（不影响正确性但不必要），表明模型学会了\"安全padding\"策略来最大化 exec reward。\n\n**4. SFT 存在严重的 answer type 偏斜**\n\n只能证明 \"true\" 类问题（38.2%），完全不能处理 \"false\"（0%）和 \"unknown\"（2.4%）。这说明 SFT 学到的是浅层的\"肯定确认\"模式，不是真正的逻辑推理。\n\n### 对论文 story 的影响\n\n这是审稿人要求的关键对照实验，结论清晰：\n\n1. **Hacking 是 RL-reward-specific，不是 finetuning 通用问题**。SFT 不 hack（proved-only ISR = 0.571），GRPO exec-only 表现出 padding（proved-only ISR = 0.132）。这支持论文的核心论点：exec-only reward 导致 Goodhart 效应。\n\n2. **SFT 作为 \"data exposure\" 控制组**。PR 从 0.12 到 0.14 的微弱提升证明：模型看到训练数据本身不足以学会 FOL 形式化，RL 的探索-利用循环是关键。\n\n3. **SFT 的 answer type 偏斜是有价值的补充发现**。可用于论文讨论\"为什么 RL 比 SFT 更有效\"——SFT 只学到表面模式（偏向 true），RL 通过 solver feedback 学到了更通用的形式化策略。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-plan009-sft-r4.md"
+}

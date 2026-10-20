@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a0bdcda9a95b38deb898",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "eval d165 s44 final check and eval",
+  "task_key": "worker_eval_d165-s44-final-check-and-eval_20260521T153501",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_d165-s44-final-check-and-eval_20260521T153501_result.json",
+    "occurrence": 1,
+    "bytes": 1109,
+    "sha256": "de8f8ef1e78b4d7f15ef5fca28178b918b4fc04afa1b5d2abd20e3f944fb5296"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。\n\n## d165-llama-exec-s44 最终结果\n\n**训练状态**: completed (500/500 steps, 80min31s)\n**Final reward stats**: prove_rate=0.104, mean_isr=0.053\n\n### Eval 结果 (STA on proofwriter_fol_100)\n| Metric | Value |\n|--------|-------|\n| PR | 16% (16/100) |\n| ISR* | 0.549 |\n| genuine% | 87.5% |\n\n### Hacking Mode 分布\n| Mode | Count | % of proved |\n|------|-------|-------------|\n| CE (conclusion echo) | 2 | 12.5% |\n| TS (trace shortcut) | 0 | 0% |\n| PG (proof gaming) | 0 | 0% |\n| CI (content-independent) | 0 | 0% |\n| **Genuine** | **14** | **87.5%** |\n\n### 3-Seed Summary (D165 LLaMA-3.2-3B exec-only)\n| Seed | PR | ISR* | genuine% |\n|------|-----|------|----------|\n| 42 | 14% | 0.547 | 85.7% |\n| 43 | 15% | 0.566 | 86.7% |\n| 44 | 16% | 0.549 | 87.5% |\n| **Mean±Std** | **15.0±1.0%** | **0.554±0.010** | **86.6±0.9%** |\n\nLLaMA exec-only 三个 seed 高度一致：PR 低（~15%），ISR* 中等（~0.55），genuine 率高（~87%）。与 Qwen 的 bootstrap 现象形成对比——LLaMA 不 bootstrap，结论 negative 确认。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-d165-s44-final-check-and-eval.md"
+}

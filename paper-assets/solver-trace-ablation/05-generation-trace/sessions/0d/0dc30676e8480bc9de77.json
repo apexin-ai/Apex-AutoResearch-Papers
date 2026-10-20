@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0dc30676e8480bc9de77",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "eval plan006 prolog exec s43r3 s44",
+  "task_key": "worker_eval_plan006-prolog-exec-s43r3-s44_20260514T155640",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_plan006-prolog-exec-s43r3-s44_20260514T155640_result.json",
+    "occurrence": 1,
+    "bytes": 56,
+    "sha256": "513ceef395399661631385ae74be3a32b23c61a100f371f88525b79b5310d21a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval just started, model loaded. Waiting."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-plan006-prolog-exec-s43r3-s44.md"
+}

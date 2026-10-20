@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "112084b48d75b4609359",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "fix d134 analysis prefixes",
+  "task_key": "worker_fix_d134-analysis-prefixes_20260518T134949",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_d134-analysis-prefixes_20260518T134949_result.json",
+    "occurrence": 1,
+    "bytes": 1014,
+    "sha256": "8915ef56aed36ba6e6936c7faac17060471d966f477fbac23215a4ec1d4d2b77"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Script works. Results:\n\n**Discovery:** 6 runs found (4 ISR, 2 RANDOM)\n| Source | Condition | Seed |\n|---|---|---|\n| `d134_4b_isr_b01_s47/classify.json` | ISR | 47 |\n| `d134_4b_isr_b01_s48/classify.json` | ISR | 48 |\n| `d134_4b_isr_b01_s49/classify.json` | ISR | 49 |\n| `plan002_..._s42_1000_taxonomy_unified.json` | ISR | 42 |\n| `plan018_additive_random_b01_s44_r2/taxonomy.json` | RANDOM | 44 |\n| `plan018_random_s42_taxonomy_verification.json` | RANDOM | 42 |\n\n**Condition stats:**\n- ISR (n=4): H7 rate 91.8±7.7%, Genuine 1.3±1.3%\n- RANDOM (n=2): H7 rate 0.0±0.0%, Genuine 11.0±6.0%\n\n**Statistical tests all run:**\n- Fisher H7 domination: p=0.067\n- Mann-Whitney H7: U=8.0, p=0.050\n- Permutation genuine: p=1.000 (RANDOM genuine > ISR, as expected)\n\nBoth local and remote copies are updated. Note that `d134_4b_isr_b01_s50` was skipped (no classify.json, only train.log) and `plan002_additive_b01_s45_1000` was skipped (no classify.json or taxonomy.json in that directory)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-d134-analysis-prefixes.md"
+}

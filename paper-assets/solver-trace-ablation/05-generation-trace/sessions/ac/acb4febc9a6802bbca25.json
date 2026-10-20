@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "acb4febc9a6802bbca25",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops d134 s47 pr verify s48 status",
+  "task_key": "worker_ops_d134-s47-pr-verify-s48-status_20260518T174743",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d134-s47-pr-verify-s48-status_20260518T174743_result.json",
+    "occurrence": 1,
+    "bytes": 1265,
+    "sha256": "9880ae0ef4844dfcde196072a692b39979ad2bc8abc724582cca462b516f68d8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### 1. s47 eval_results.json (summary)\n\n| 指标 | 值 |\n|---|---|\n| n_problems | 100 |\n| **n_proved** | **89** |\n| **prove_rate** | **0.89** |\n| mean_isr | 0.0857 |\n| isr_std | 0.1259 |\n| median_isr | 0.0 |\n| proved_only_mean_isr | 0.0963 |\n\n### 2. s47 classify.json\n\n| 指标 | 值 |\n|---|---|\n| n_proved | 89 |\n| h7_total_count | 0 |\n| h1_strict_count | 79 (88.76%) |\n| h8_conjunction_collapse | 4 (4.49%) |\n| conclusion_in_premise | 79 (88.76%) |\n| content_independent | 4 (4.49%) |\n| **genuine_count** | **6 (6.74%)** |\n\n### 3. s47 真实最终 eval PR\n\n**eval PR = 89/100 = 89%**，来源：`eval_results.json` 的 `prove_rate: 0.89`。\n\n训练日志的 `prove_rate=0.629` 是训练集上最后一个 batch 的 moving average（`Final reward stats: prove_rate: 0.62875`），不是 eval 指标。eval 在 held-out 的 `proofwriter_fol_100.jsonl` 上跑的结果是 89%，这是论文应该用的数字。\n\n### 4. s48 训练进度\n\n| 指标 | 值 |\n|---|---|\n| 当前 step | **50/500** (10%) |\n| 速度 | ~9 s/step |\n| 已用时间 | ~8 min |\n| 预估剩余 | **~68 min (~1h8m)** |\n| GPU 占用 | PID 121901, 84688 MiB |\n| 当前 prove_rate | 0.0~0.125（早期阶段，尚未起飞） |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-d134-s47-pr-verify-s48-status.md"
+}

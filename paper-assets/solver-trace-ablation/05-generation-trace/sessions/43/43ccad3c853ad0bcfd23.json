@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "43ccad3c853ad0bcfd23",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_3_1778737259.md",
+  "task_key": "loop_3_1778737259",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3_1778737259.md",
+    "occurrence": 1,
+    "bytes": 4835,
+    "sha256": "51aad8d7dba8c2116dc51d38e44ee904fbf282340286a768e64e62af318435d7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: idle_timeout\nupdated: '2026-05-14T05:34:24+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目 GPU 白名单: westd-39279 的 cuda:0 和 cuda:1（2 × RTX PRO 6000 96GB）。禁止用其他 GPU\n- C001: 所有训练统一用 `data/train_500_seed42.jsonl`，禁止 `proofwriter_fol_500.jsonl`\n- C002: 命令必须 `export CUDA_VISIBLE_DEVICES=N`，禁止 inline 赋值（`CUDA_VISIBLE_DEVICES=0 python`）\n- C003: `save_total_limit=1` + 禁用 completions parquet，output 放 `/root/autodl-tmp/outputs/`\n- C004: 跨 run ISR 对比只能用 `eval_sta.py` full STA，禁止引用训练日志 ISR\n- C005: 任何 Worker（含 fix/ops）跑 Python 前必须显式设 CUDA_VISIBLE_DEVICES\n- ISR-as-reward 路线已全面失败（D020），论文已转向诊断/分析贡献，**不要再尝试任何 ISR reward 方案**\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-39279，2× RTX PRO 6000 Blackwell 96GB，CUDA 12.8，PyTorch 2.10.0+cu128\n- **环境**: aml-train 镜像，conda base（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）。**无 .venv**\n- **代码**: `/root/solver-trace-ablation/`\n- **模型**: `/root/autodl-tmp/models/Qwen3-4B`（7.6GB，ModelScope 下载）\n- **输出**: `/root/autodl-tmp/outputs/`（系统盘 250GB 有限，大文件必须放这里）\n- **Solvers**: Prover9 (LADR 2009-11A 源码编译), SWI-Prolog 8.4.2, Z3 4.16.0.0\n- **eval 数据**: `/root/solver-trace-ablation/data/proofwriter_fol_100.jsonl`（100题 held-out eval）\n- **训练数据**: `/root/solver-trace-ablation/data/train_500_seed42.jsonl`（500题）\n- **活跃进程**: plan002-additive-b01-s42（PID 262261, cuda:0, tmux session）\n- **plan016**: ALLOCATED 状态待提交（cuda:1），等 cuda:1 空出\n\n### 3. 📊 当前状态\n**RUNNING**: plan002-additive-b01-s42（additive ISR β=0.1, cuda:0）— 这是 β=0.3 负面后的最后一次尝试，若也 negative → additive bonus 路线彻底关闭\n\n**ALLOCATED 待提交**: plan016-extended-1000-s42（exec-only 1000步 extended training, cuda:1）— 等 cuda:1 空出后提交\n\n**刚完成但未汇报 Director 的关键结果**:\n- plan017-additive-random-s42: **negative**。Eval PR=0.48, ISR=0.0453, proved_only_ISR=0.0943。33% 已证明样本 ISR=0（n_necessary=0，结论不依赖任何前提）。与 plan013 不同的 failure mode：additive random 防止了 2-component 坍缩但模型转向生成多前提但无用的 formalization。Variance regularization 不足以产生 genuine proofs\n- plan001-exec-only-s44: **negative**。TAUTOLOGICAL COLLAPSE 确认。eval PR=98% 但 94% 样本仅 2 components（premise=conclusion tautology），与 plan013 random reward 完全一致。3-seed 结果：s42=genuine, s43=degraded(PR=13%), s44=tautological(PR=98% fake)\n\n**所有 29 个实验**: 6 success / 9 negative / 14 failed\n\n### 4. 📋 待办（条件触发式）\n- plan002-b01-s42 cron 回调到达 → spawn worker 跑 eval_sta.py on checkpoint → 若 negative → additive bonus 路线彻底关闭，论文纯诊断，向 Director 汇报 Kill Criteria #4 触发\n- plan002-b01-s42 完成且 cuda:0 空出 → 提交 plan016-extended-1000-s42 到 cuda:1（或 cuda:0，看哪个先空）\n- plan016 完成 → eval_sta.py 分析 1000步是否出现不同的退化轨迹\n- 上述全部完成 → plan006 Prolog GRPO 是下一个大实验（D024 已批准，3 seeds，6 GPU·h），验证 hacking 现象跨 logic type 泛化。Prolog STA 代码已就绪，dry-run 已通过\n- 论文 paper_framing.md 已重写（D023），但尚未开始实际 LaTeX 写作\n\n### 5. 🎯 战略上下文\n**核心结论**: ISR-as-reward 全面失败（D020），论文已 pivot 为**诊断/分析贡献**：\n1. ISR 检测 reward hacking（ISR 崩塌轨迹 0.64→0.13）\n2. GRPO saturation 机制（PR→1.0 时 loss→0 停止学习）\n3. Hacking 策略分类学（4 种模式：conclusion embedding / P→P tautology / repetitive cycling / length-exploiting tautology）\n4. ISR 能力边界（syntactic necessity ≠ semantic faithfulness）\n\n**最容易判断错的事**:\n1. **s44 的 ISR=0.57 看起来不错但是 fake** — 它来自 2-component tautology（P⊢P），与 GT ISR 0.559 接近纯属巧合。n_components 必须一起看\n2. **训练日志 ISR 不可用于跨 run 对比** — 不同 run 用了不同版本的 ISR 计算（_fast_fn vs _full_fn），只有 eval_sta.py 输出可信\n3. **plan013 random reward ISR=0.535 也是 fake** — 100% P→P tautology，ISR=0.5 是 2-component 机械值（D018 推翻了 D017）\n4. **DDL 5月25日剩 11 天**，plan006 Prolog 是论文能进 Main vs 降级 Findings 的关键（D024）——不要拖延\n5. **exec-only s42 是唯一产生 genuine proofs 的 seed**（mean_components=6.58），其他 seed 和 reward 方案全部退化。这是论文的核心数据点\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-1778737259.md"
+}

@@ -1,0 +1,212 @@
+{
+  "schema_version": "1.0",
+  "id": "5f135950f3a756c25e98",
+  "project": "solver-trace-ablation",
+  "kind": "conversation",
+  "title": "code d146 config audit",
+  "task_key": "worker_code_d146-config-audit_20260519T155056",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_d146-config-audit_20260519T155056.jsonl",
+    "occurrence": 1,
+    "bytes": 7673,
+    "sha256": "49a4112650a32ea33a745af7fb1bfec082c991641ad7d591058fbca4105cbc8a"
+  },
+  "statistics": {
+    "messages": 9,
+    "user_turns": 0,
+    "tool_calls": 4,
+    "roles": {
+      "tool_call": 4,
+      "tool_result": 4,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T15:51:24.915468+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d146-config-audit_20260519T155056",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T15:51:24.915827+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d146-config-audit_20260519T155056",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T15:51:24.916003+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d146-config-audit_20260519T155056",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "grep -rn \"num_generations\" /root/solver-trace-ablation/configs/*.yaml",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T15:51:24.916140+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d146-config-audit_20260519T155056",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "grep -n \"num_generations\" /root/solver-trace-ablation/scripts/train_grpo.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T15:51:24.916266+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d146-config-audit_20260519T155056",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "ls -la /root/solver-trace-ablation/configs/*.yaml",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T15:51:24.916441+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/solver-trace-ablation/configs/d142_gated_isr.yaml:8:num_generations: 4\\\\n/root/solver-trace-ablation/configs/grpo_additive_bonus.yaml:8:num_generations: 4\\\\n/root/solver-trace-ablation/configs/grpo_additive_bonus_b005.yaml:8:num_generations: 4\\\\n/root/solver-trace-ablation/configs/grpo_additive_bonus_b01.yaml:8:num_generations: 4\\\\n/root/solver-trace-ablation/configs/grpo_additive_bonus_b01_1.7b.yaml:8:num_generations: 4\\\\n/root/solver-trace-ablation/configs/grpo_additive_bonus_b01_8b.yaml:8:num_generations: 2\\\\n/root/solver-trace-ablation/configs/grpo_additive_bonus_b02.yaml:8:num_generations: 4\\\\n/root/solver-trace-ablation/configs/grpo_additive_bonus_b03_1.7b.yaml:8:num_generations: 4\\\\n/root/solver-trace-ablation/configs/grpo_additive_random.yaml:8:num_generations: 4\\\\n/root/solver-trace-ablation/configs/grpo_additive_random_b005.yaml:8:num_generations: 4\\\\n/root/solver-trace-ablation/configs/grpo_additive_random_b01.yaml:8:num_generations: 4\\\\n/root/solver-trace-ablation/configs/grpo_exec_only.yaml:8:num_generations: 4\\\\n/root/solver-trace-ablation/configs/grpo_exec_only_1.7b.yaml:8:num_generations: 4\\\\n/root/solver-trace-ablation/configs/grpo_exec_only_8b.yaml:8:num_generations: 2\\\\n/root/solver-trace-ablation/configs/grpo_exec_retrain.yaml:7:num_generations: 8\\\\n/root/solver-trace-ablation/configs/grpo_exec_retrain_v3.yaml:7:num_generations: 8\\\\n/root/solver-trace-ablation/configs/grpo_exec_sta.yaml:8:num_generations: 4\\\\n/root/solver-trace-ablation/configs/grpo_fast_isr_ablation.yaml:8:num_generations: 4\\\\n/root/solver-trace-ablation/configs/grpo_isr_gated.yaml:8:num_generations: 8\\\\n/root/solver-trace-ablation/configs/grpo_isr_gated_curriculum.yaml:8:num_generations: 8\\\\n/root/solver-trace-ablation/configs/grpo_isr_gated_warmstart.yaml:8:num_generations: 8\\\\n/root/solver-trace-ablation/configs/grpo_isr_gated_warmstart_v2.yaml:10:num_generations: 8\\\\n/root/solver-trace-ablation/configs/grpo_isr_wa\n…[truncated 1614 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d146-config-audit_20260519T155056",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T15:51:24.916603+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"442:    parser.add_argument(\\\\\\\"--num_generations\\\\\\\", type=int, default=None)\\\\n490:    if args.num_generations is None:\\\\n491:        args.num_generations = 4\\\\n590:        num_generations=args.num_generations,\\\\n604:        generation_batch_size=args.num_generations,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d146-config-audit_20260519T155056",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T15:51:24.916812+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 355 May 19 11:14 /root/solver-trace-ablation/configs/d142_gated_isr.yaml\\\\n-rw-r--r-- 1 root root 418 May 16 11:37 /root/solver-trace-ablation/configs/grpo_additive_bonus.yaml\\\\n-rw-r--r-- 1 root root 406 May 16 11:51 /root/solver-trace-ablation/configs/grpo_additive_bonus_b005.yaml\\\\n-rw-r--r-- 1 root root 418 May 16 11:37 /root/solver-trace-ablation/configs/grpo_additive_bonus_b01.yaml\\\\n-rw-r--r-- 1 root root 513 May 16 19:07 /root/solver-trace-ablation/configs/grpo_additive_bonus_b01_1.7b.yaml\\\\n-rw-r--r-- 1 root root 481 May 16 18:29 /root/solver-trace-ablation/configs/grpo_additive_bonus_b01_8b.yaml\\\\n-rw-r--r-- 1 root root 403 May 16 11:50 /root/solver-trace-ablation/configs/grpo_additive_bonus_b02.yaml\\\\n-rw-r--r-- 1 root root 513 May 17 03:31 /root/solver-trace-ablation/configs/grpo_additive_bonus_b03_1.7b.yaml\\\\n-rw-r--r-- 1 root root 443 May 16 11:21 /root/solver-trace-ablation/configs/grpo_additive_random.yaml\\\\n-rw-r--r-- 1 root root 438 May 17 14:24 /root/solver-trace-ablation/configs/grpo_additive_random_b005.yaml\\\\n-rw-r--r-- 1 root root 447 May 16 11:21 /root/solver-trace-ablation/configs/grpo_additive_random_b01.yaml\\\\n-rw-r--r-- 1 root root 434 May 16 11:21 /root/solver-trace-ablation/configs/grpo_exec_only.yaml\\\\n-rw-r--r-- 1 root root 485 May 16 19:07 /root/solver-trace-ablation/configs/grpo_exec_only_1.7b.yaml\\\\n-rw-r--r-- 1 root root 492 May 16 18:29 /root/solver-trace-ablation/configs/grpo_exec_only_8b.yaml\\\\n-rw-r--r-- 1 root root 413 May 16 23:45 /root/solver-trace-ablation/configs/grpo_exec_retrain.yaml\\\\n-rw-r--r-- 1 root root 349 May 17 00:05 /root/solver-trace-ablation/configs/grpo_exec_retrain_v3.yaml\\\\n-rw-r--r-- 1 root root 431 May 16 11:21 /root/solver-trace-ablation/configs/grpo_exec_sta.yaml\\\\n-rw-r--r-- 1 root root 465 May 16 11:21 /root/solver-trace-ablation/configs/grpo_fast_isr_ablation.yaml\\\\n-rw-r--r-- 1 root root 434 May 16 22:19 /root/solver-tra\n…[truncated 2370 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d146-config-audit_20260519T155056",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T15:51:24.917005+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 审计结果\n\n### train_grpo.py 默认值\n`num_generations` 默认 **4**（line 491: `args.num_generations = 4`）\n\n### 各 config 文件 num_generations 值\n\n| 值 | config 文件 |\n|---|---|\n| **16** | `grpo_prolog_exec_only_k16_warmup.yaml` |\n| **8** | `grpo_exec_retrain.yaml`, `grpo_exec_retrain_v3.yaml`, `grpo_isr_gated.yaml`, `grpo_isr_gated_curriculum.yaml`, `grpo_isr_gated_warmstart.yaml`, `grpo_isr_gated_warmstart_v2.yaml`, `grpo_isr_warmstart_t015.yaml`, `grpo_isr_warmstart_v3.yaml` |\n| **4** | 其余 29 个 config（含所有 sweep_*, plan018_*, additive_bonus/random 系列, exec_only, exec_sta, prolog, prooffol, llama, d142_gated_isr 等） |\n| **2** | `grpo_additive_bonus_b01_8b.yaml`, `grpo_exec_only_8b.yaml`（8B 模型显存限制） |\n\n总计 40 个 config：2 个=16，8 个=8，28 个=4，2 个=2。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d146-config-audit_20260519T155056"
+          },
+          "id": "event-000009"
+        }
+      ],
+      "message_count": 9
+    }
+  ],
+  "readable_path": "readable/conversations/code-d146-config-audit.md"
+}

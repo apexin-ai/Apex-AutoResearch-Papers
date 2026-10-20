@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "cc7e3c818230d8d12524",
+  "project": "solver-trace-ablation",
+  "kind": "worker",
+  "title": "pipeline s46 8b k8 full v2",
+  "task_key": "worker_pipeline_s46-8b-k8-full-v2_20260522T034053",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_pipeline_s46-8b-k8-full-v2_20260522T034053.log",
+    "occurrence": 1,
+    "bytes": 475201,
+    "sha256": "184e541e2582dc016bfb87e788841d0284d805f20366fda24f10e1a7888cb7c1"
+  },
+  "statistics": {
+    "messages": 326,
+    "user_turns": 0,
+    "tool_calls": 84,
+    "roles": {
+      "log": 1,
+      "system": 73,
+      "record": 1,
+      "assistant": 64,
+      "tool_call": 84,
+      "tool_result": 84,
+      "result": 19
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 326,
+      "chunks": [
+        {
+          "path": "cc7e3c818230d8d12524-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "cc7e3c818230d8d12524-part-0002.json",
+          "message_count": 146
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/pipeline-s46-8b-k8-full-v2.md"
+}

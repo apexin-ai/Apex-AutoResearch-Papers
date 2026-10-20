@@ -1,0 +1,75 @@
+{
+  "schema_version": "1.0",
+  "id": "adef188fb6982613a604",
+  "project": "solver-trace-ablation",
+  "kind": "worker",
+  "title": "fix paper compilation p0p1",
+  "task_key": "worker_fix_paper-compilation-p0p1_20260514T232349",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_paper-compilation-p0p1_20260514T232349.log",
+    "occurrence": 1,
+    "bytes": 977277,
+    "sha256": "db5962788b56e50db74ace70c6276af4ed4a234fdae9cfd5423b7a12826b2721"
+  },
+  "statistics": {
+    "messages": 434,
+    "user_turns": 2,
+    "tool_calls": 145,
+    "roles": {
+      "log": 1,
+      "system": 88,
+      "record": 9,
+      "assistant": 44,
+      "tool_call": 145,
+      "tool_result": 145,
+      "user": 2
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 105,
+      "chunks": [
+        {
+          "path": "adef188fb6982613a604-part-0001.json",
+          "message_count": 105
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 139,
+      "chunks": [
+        {
+          "path": "adef188fb6982613a604-part-0001.json",
+          "message_count": 75
+        },
+        {
+          "path": "adef188fb6982613a604-part-0002.json",
+          "message_count": 64
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 190,
+      "chunks": [
+        {
+          "path": "adef188fb6982613a604-part-0002.json",
+          "message_count": 116
+        },
+        {
+          "path": "adef188fb6982613a604-part-0003.json",
+          "message_count": 74
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/fix-paper-compilation-p0p1.md"
+}

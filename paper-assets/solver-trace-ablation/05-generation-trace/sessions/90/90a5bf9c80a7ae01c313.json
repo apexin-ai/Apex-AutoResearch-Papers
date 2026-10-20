@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "90a5bf9c80a7ae01c313",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analysis s44 r2 prep",
+  "task_key": "worker_analysis_s44-r2-prep_20260515T181700",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_s44-r2-prep_20260515T181700_result.json",
+    "occurrence": 1,
+    "bytes": 1404,
+    "sha256": "d0e8755e111666ea58c4496e04751d4eb88cddea4bc5dabce6cc34c036a64372"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总报告\n\n### 脚本就绪性\n\n| 脚本 | 状态 | 说明 |\n|------|------|------|\n| `classify_h7.py` | **就绪** | 存在，文件头包含 H7a/H7b/H1/H8 分类逻辑（D086 版本） |\n| `eval_sta.py` | **就绪** | 存在，支持 FOL/Prolog，输出 ISR/prove_rate 等指标 |\n\n> 注：ssh_read_only 禁止 `&&`/`;`，无法做 `--help` 或 `import` 测试。但两个脚本文件头正确，高度可信可用。\n\n### 已有 taxonomy 分类数据\n\n| 实验 | 分类文件 | 核心指标 |\n|------|----------|----------|\n| **s42** (500步) | `h7_classification/plan018_additive_random_b01_s42_h7.json` | 79 proved, H7=0, H1=58, H8=4, **genuine=18 (22.8%)** |\n| **s43-r3** (500步) | `plan018_additive_random_b01_s43_r3/taxonomy_results.json` | 94 proved, H7=36, H1=56, H8=1, **genuine=1 (1.1%)** |\n| **s43-r3** | `eval_sta_results.json` + `analysis.json` 也存在 | eval_sta 已完成 |\n\n### s44-r2 训练进度\n\n- **当前 step: 172 / 500 (34%)**\n- 每步 ~15-17s，预计剩余 ~1.5 小时\n- 输出目录已创建：`plan018_additive_random_b01_s44_r2/`，含 checkpoint-150 和 reward_log.jsonl\n- 无 taxonomy/eval 结果（预期，训练未完成）\n\n### 问题\n\n无阻塞性问题。两个脚本就绪，s42 和 s43-r3 分类数据完整，s44-r2 训练正常推进中。训练完成后可直接执行 classify_h7.py → eval_sta.py 流程。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-s44-r2-prep.md"
+}

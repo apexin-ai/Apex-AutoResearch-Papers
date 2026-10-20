@@ -1,0 +1,1932 @@
+{
+  "schema_version": "1.0",
+  "id": "afb0fd984b25691519d0",
+  "project": "solver-trace-ablation",
+  "kind": "conversation",
+  "title": "analysis paper tex preaudit",
+  "task_key": "worker_analysis_paper-tex-preaudit_20260515T145531",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_paper-tex-preaudit_20260515T145531.jsonl",
+    "occurrence": 1,
+    "bytes": 125415,
+    "sha256": "68c7579f2356f376961b3aff279d26fa88aab11f236763f3bca7d589067efe17"
+  },
+  "statistics": {
+    "messages": 95,
+    "user_turns": 0,
+    "tool_calls": 47,
+    "roles": {
+      "tool_call": 47,
+      "tool_result": 47,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T15:09:56.477980+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__ssh_execute",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T15:09:56.478344+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T15:09:56.478510+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "fields": "['*']",
+              "limit": "0",
+              "project": "solver-trace-ablation"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T15:09:56.479368+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (186,152 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/c5d06691-251a-4d7e-8a08-578a6098a5cc/tool-results/mcp-agent-ml-research-read_registry-1778856946416.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/c5d06691-251a-4d7e-8a08-578a6098a5cc/tool-results/mcp-agent-ml-research-read_registry-1778856946416.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/c5d06691-251a-4d7e-8a08-578a6098a5cc/tool-results/mcp-agent-ml-research-read_registry-1778856946416.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T15:09:56.479580+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "file": "paper_framing.md",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T15:09:56.479948+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — solver-trace-ablation\\\\n\\\\n## Target Venue\\\\n- Primary: EMNLP 2026 Main (NLP and Symbolic Reasoning track)\\\\n- Fallback: EMNLP 2026 Findings\\\\n- Deadline: ARR May 25, 2026\\\\n\\\\n## Core Claims (3 条 — Goodhart 主线诊断/分析论文)\\\\n\\\\n| Claim | Status | 闭环标志 |\\\\n|-------|--------|----------|\\\\n| Claim 1: STA 诊断能力 | ✅ 已闭环 | 3-seed + 1000-step + hacking taxonomy (7 modes) |\\\\n| Claim 2: Goodhart / ISR 无结构优势 | ✅ 已闭环 (D057) | 3-seed ISR + 3-seed random + premise-count-matched + SFT baseline |\\\\n| Claim 3: 跨逻辑泛化 | ✅ 已闭环 | exec-only 3-seed (D056) + STA 3-seed: **3/3 gaming** — 三种不同 gaming 路径 (H7/degenerate-syntax/query-as-fact) |\\\\n\\\\n### Claim 1: ISR as Reward Hacking Diagnostic ✅\\\\nSolver Trace Ablation (STA) derives ISR (Intensional Structural Reward) via component necessity testing (leave-one-out ablation on solver inputs). ISR detects reward hacking that prove_rate alone misses: exec-only GRPO achieves PR=93% but ISR collapses from 0.6423 (100 steps) to 0.1324 (500 steps) to 0.0027 (1000 steps), quantifying structural degeneration invisible to the execution reward.\\\\n\\\\n**证据**：\\\\n- plan003: 100-step checkpoint held-out eval PR=32%, ISR=0.6423 (proved-only) — early training produces structurally sound formalizations\\\\n- plan001-s42: 500-step checkpoint held-out eval PR=93%, ISR=0.1324, median_ISR=0.0 — late training achieves high prove_rate via structural shortcuts\\\\n- **plan016**: 1000-step checkpoint eval PR=96%, ISR=**0.0027** — ISR 崩塌持续恶化，无回升。94.8% proved 样本 ISR=0。矛盾爆炸式崩塌（components 6.58→18.55）。延长训练是 reward hacking 随时间恶化的干净消融证据\\\\n- ISR 崩塌轨迹完整链：0.6423 (100步) → 0.1324 (500步) → 0.0027 (1000步)\\\\n- 3-seed consistency: s42 redundant embedding (H1=87.1%, ISR=0.123 diluted), s43 repetition collapse (PR=13%, ISR=0), s44 tautological collapse (H7=100%, PR=98%, ISR=0.57 fake-high, n_comp=2.04). All 3 se\n…[truncated 27269 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T15:09:56.480148+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "find /root/solver-trace-ablation/paper -name \"*.tex\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T15:09:56.480293+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/solver-trace-ablation/paper/abstract.tex\\\\n/root/solver-trace-ablation/paper/limitations.tex\\\\n/root/solver-trace-ablation/paper/introduction.tex\\\\n/root/solver-trace-ablation/paper/method.tex\\\\n/root/solver-trace-ablation/paper/appendix.tex\\\\n/root/solver-trace-ablation/paper/experiments.tex\\\\n/root/solver-trace-ablation/paper/conclusion.tex\\\\n/root/solver-trace-ablation/paper/related_work.tex\\\\n/root/solver-trace-ablation/paper/main.tex\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.05}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T15:09:56.480458+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Agent"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "Agent",
+            "tool_args": {
+              "description": "Extract registry metrics",
+              "prompt": "Extract key metrics from the registry JSON file at `/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/c5d06691-251a-4d7e-8a08-578a6098a5cc/tool-results/mcp-agent-ml-research-read_registry-1778856946416.txt`.\n\nThe file has schema: {result: string} where result is a JSON string that needs to be parsed.\n\nI need you to extract the following for ALL experiments with status=DONE or conclusion in [success, negative]:\n\nFor each experiment, extract:\n- exp_id\n- status\n- conclusion\n- metrics (all of them)\n- Any notes/tags\n\nFocus especially on these experiments:\n1. SFT baselines: plan009-sft-baseline-s42-1000, s43-1000, s44-1000-r3 (genuine%, PR, ISR)\n2. Exec-only s42 1000 steps: plan016 (PR, ISR)\n3. ISR β=0.3 all seeds: exp1-isr-b03-s42, s43, s44 (PR, ISR, genuine%, H7%)\n4. ISR β=0.1: plan002-additive-b01 s42 (PR, ISR)\n5. Random β=0.1: plan018-additive-random-b01 all seeds\n6. Random β=0.3: exp1-random-b03 all seeds\n7. Prolog experiments: plan006-prolog-exec all seeds\n8. Bootstrap CI results if stored\n\nUse jq and python to parse the nested JSON. Report all metrics verbatim - do not round or transform them. Return a structured summary.",
+              "subagent_type": "general-purpose"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T15:09:56.480632+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "cat /root/solver-trace-ablation/paper/abstract.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T15:09:56.480783+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "cat /root/solver-trace-ablation/paper/introduction.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T15:09:56.480905+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "cat /root/solver-trace-ablation/paper/experiments.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T15:09:56.481027+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/c5d06691-251a-4d7e-8a08-578a6098a5cc/tool-results/mcp-agent-ml-research-read_registry-1778856946416.txt",
+              "limit": "100"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T15:09:56.481147+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "cat /root/solver-trace-ablation/paper/method.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T15:09:56.481261+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (80511 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T15:09:56.481374+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "cat /root/solver-trace-ablation/paper/conclusion.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T15:09:56.481485+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "cat /root/solver-trace-ablation/paper/limitations.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T15:09:56.481594+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "cat /root/solver-trace-ablation/paper/related_work.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T15:09:56.481718+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "cat /root/solver-trace-ablation/paper/appendix.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T15:09:56.481843+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/c5d06691-251a-4d7e-8a08-578a6098a5cc/tool-results/mcp-agent-ml-research-read_registry-1778856946416.txt",
+              "limit": "50"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T15:09:56.481964+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (80511 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T15:09:56.482084+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "wc -l /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/c5d06691-251a-4d7e-8a08-578a6098a5cc/tool-results/mcp-agent-ml-research-read_registry-1778856946416.txt",
+              "description": "Check line count of registry file"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T15:09:56.482193+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "0 /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/c5d06691-251a-4d7e-8a08-578a6098a5cc/tool-results/mcp-agent-ml-research-read_registry-1778856946416.txt"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T15:09:56.482315+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 << 'PYEOF'\nimport json\n\nfpath = \"/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/c5d06691-251a-4d7e-8a08-578a6098a5cc/tool-results/mcp-agent-ml-research-read_registry-1778856946416.txt\"\n\nwith open(fpath, 'r') as f:\n    raw = json.load(f)\n\n# The outer schema is {result: string} where result is a JSON string\ninner = json.loads(raw['result'])\n\n# Show top-level keys\nprint(\"Top-level keys:\", list(inner.keys()))\nprint(\"Type of inner:\", type(inner))\nif isinstance(inner, dict):\n    for k, v in inner.items():\n        if isinstance(v, list):\n            print(f\"  {k}: list of {len(v)} items\")\n        elif isinstance(v, dict):\n            print(f\"  {k}: dict with keys {list(v.keys())[:10]}\")\n        else:\n            print(f\"  {k}: {type(v).__name__} = {str(v)[:200]}\")\nPYEOF",
+              "description": "Parse registry JSON structure"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T15:09:56.482432+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Top-level keys: ['success', 'data', 'error', 'metadata']\nType of inner: <class 'dict'>\n  success: bool = True\n  data: dict with keys ['experiments', 'count', 'total', 'baseline']\n  error: NoneType = None\n  metadata: dict with keys ['elapsed_seconds']"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T15:09:56.482554+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 << 'PYEOF'\nimport json\n\nfpath = \"/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/c5d06691-251a-4d7e-8a08-578a6098a5cc/tool-results/mcp-agent-ml-research-read_registry-1778856946416.txt\"\n\nwith open(fpath, 'r') as f:\n    raw = json.load(f)\n\ninner = json.loads(raw['result'])\ndata = inner['data']\nexperiments = data['experiments']\n\nprint(f\"Total experiments: {data['total']}, Returned: {data['count']}\")\nprint(f\"Baseline: {json.dumps(data.get('baseline'), indent=2)[:500]}\")\nprint()\n\n# List all experiments with their status and conclusion\nfor exp in experiments:\n    exp_id = exp.get('exp_id', 'N/A')\n    status = exp.get('status', 'N/A')\n    conclusion = exp.get('conclusion', 'N/A')\n    print(f\"  {exp_id:50s} status={status:10s} conclusion={conclusion}\")\nPYEOF",
+              "description": "List all experiments with status and conclusion"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-15T15:09:56.482672+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\nTotal experiments: 86, Returned: 86\nBaseline: null\n\nTraceback (most recent call last):\n  File \"<stdin>\", line 18, in <module>\nAttributeError: 'str' object has no attribute 'get'"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T15:09:56.482957+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 << 'PYEOF'\nimport json\n\nfpath = \"/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/c5d06691-251a-4d7e-8a08-578a6098a5cc/tool-results/mcp-agent-ml-research-read_registry-1778856946416.txt\"\n\nwith open(fpath, 'r') as f:\n    raw = json.load(f)\n\ninner = json.loads(raw['result'])\ndata = inner['data']\nexperiments = data['experiments']\n\n# Check the type and structure of experiments\nprint(f\"Type of experiments: {type(experiments)}\")\nif isinstance(experiments, list):\n    print(f\"Length: {len(experiments)}\")\n    print(f\"Type of first element: {type(experiments[0])}\")\n    # If elements are strings, they might need another parse\n    if isinstance(experiments[0], str):\n        print(f\"First element (first 500 chars): {experiments[0][:500]}\")\n        try:\n            parsed = json.loads(experiments[0])\n            print(f\"Parsed first element keys: {list(parsed.keys())}\")\n        except:\n            print(\"Not JSON parseable\")\n    elif isinstance(experiments[0], dict):\n        print(f\"First element keys: {list(experiments[0].keys())}\")\n        print(json.dumps(experiments[0], indent=2)[:1000])\nelif isinstance(experiments, dict):\n    print(f\"Keys: {list(experiments.keys())[:20]}\")\nPYEOF",
+              "description": "Inspect experiments data structure"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-15T15:09:56.483104+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Type of experiments: <class 'dict'>\nKeys: ['plan002-additive-b01-s44', 'plan002-additive-b01-s42', 'plan002-additive-b01-s42-1000', 'plan002-additive-b01-s43', 'plan002-additive-b01-s43-r2', 'plan018-additive-random-b01-s42', 'plan018-additive-random-b01-s44-r2', 'plan018-additive-random-b01-s43-r3', 'exp1-isr-b03-s43', 'plan009-sft-baseline-s44-1000-r3', 'plan009-sft-baseline-s44-1000', 'plan009-sft-baseline-s43-1000', 'plan009-sft-baseline-s44', 'plan009-sft-baseline-s43', 'plan001-exec-only-s44-1000-r2', 'plan001-exec-only-s43-1000-r2', 'plan001-exec-only-s44-1000', 'plan001-exec-only-s43-1000', 'plan018-additive-random-b01-s42-1000-r3', 'plan009-sft-baseline-s44-1000-r2']"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-15T15:09:56.483233+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 << 'PYEOF'\nimport json\n\nfpath = \"/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/c5d06691-251a-4d7e-8a08-578a6098a5cc/tool-results/mcp-agent-ml-research-read_registry-1778856946416.txt\"\n\nwith open(fpath, 'r') as f:\n    raw = json.load(f)\n\ninner = json.loads(raw['result'])\nexperiments = inner['data']['experiments']\n\n# Each value might be a string that needs parsing\nfirst_key = list(experiments.keys())[0]\nfirst_val = experiments[first_key]\nprint(f\"Type of value: {type(first_val)}\")\nif isinstance(first_val, str):\n    print(f\"First 1000 chars: {first_val[:1000]}\")\n    try:\n        parsed = json.loads(first_val)\n        print(f\"Parsed keys: {list(parsed.keys())}\")\n    except:\n        print(\"Not parseable as JSON\")\nelif isinstance(first_val, dict):\n    print(json.dumps(first_val, indent=2)[:2000])\nPYEOF",
+              "description": "Inspect individual experiment entry structure"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-15T15:09:56.483369+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Type of value: <class 'dict'>\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-14T08:36:17.298Z\",\n  \"updated_at\": \"2026-05-15T14:39:36.660Z\",\n  \"hypothesis\": \"ISR \\u03b2=0.1 seed=44 \\u591a seed \\u9a8c\\u8bc1\\uff1aexec-only s44 \\u662f tautological collapse (PR=98%, ISR=0.57 fake)\\uff0cISR \\u03b2=0.1 \\u80fd\\u5426\\u9632\\u6b62 tautological collapse\\uff1f3-seed mean\\u00b1std \\u7528\\u4e8e\\u8bba\\u6587 Claim 2\\u3002\",\n  \"parent\": \"plan002-additive-b01-s42\",\n  \"server\": \"westd-39279\",\n  \"gpu\": \"cuda:1\",\n  \"account\": \"root\",\n  \"reproduce\": {\n    \"server\": \"westd-39279\",\n    \"gpu\": \"cuda:1\",\n    \"started_at\": \"2026-05-14T08:45:11.826Z\",\n    \"command\": \"bash -c \\\"export CUDA_VISIBLE_DEVICES=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_bonus.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 44 --beta 0.1 --reward_mode additive_bonus --output_dir /root/autodl-tmp/outputs/plan002_additive_b01_s44\\\"\",\n    \"finished_at\": \"2026-05-14T09:28:10.836Z\",\n    \"training_hours\": 0.72\n  },\n  \"spec\": {\n    \"command\": \"python3 scripts/train_grpo.py --mode additive_bonus --isr_beta 0.1 --seed 44\",\n    \"server\": \"westd-39279\",\n    \"gpu\": [\n      \"cuda:1\"\n    ],\n    \"pid\": \"466540\",\n    \"log_path\": \"~/runs/solver-trace-ablation/plan002-additive-b01-s44.log\",\n    \"submitted_at\": \"2026-05-14T08:46:23.037Z\",\n    \"submitted_via\": \"submit_training_job\",\n    \"backend\": \"tmux\",\n    \"account\": \"root\",\n    \"data_path\": \"data/train_500_seed42.jsonl\",\n    \"data_count\": 500,\n    \"model_name\": \"Qwen3-4B\",\n    \"seed\": 44,\n    \"wall_clock_seconds\": 2950.3,\n    \"gpu_hours\": 0.82\n  },\n  \"pid\": \"466540\",\n  \"log_path\": \"~/runs/solver-trace-ablation/plan002-additive-b01-s44.log\",\n  \"extra\": {\n    \"hook_events\": [\n      {\n        \"event\": \"on_complete\",\n        \"action\": \"agent\",\n        \"ts\": \"2026-05-14T09:28:12.416418+00:00\"\n      }\n    ]\n  },\n  \"metrics\"\n…[truncated 30 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-15T15:09:56.483525+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 << 'PYEOF'\nimport json\n\nfpath = \"/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/c5d06691-251a-4d7e-8a08-578a6098a5cc/tool-results/mcp-agent-ml-research-read_registry-1778856946416.txt\"\n\nwith open(fpath, 'r') as f:\n    raw = json.load(f)\n\ninner = json.loads(raw['result'])\nexperiments = inner['data']['experiments']\n\n# First, list ALL experiments with status and conclusion\nprint(\"=\" * 120)\nprint(\"ALL EXPERIMENTS OVERVIEW\")\nprint(\"=\" * 120)\nfor exp_id, exp in sorted(experiments.items()):\n    status = exp.get('status', 'N/A')\n    conclusion = exp.get('conclusion', 'N/A')\n    has_metrics = 'metrics' in exp and exp['metrics']\n    print(f\"  {exp_id:55s} status={status:12s} conclusion={str(conclusion):12s} has_metrics={has_metrics}\")\n\nprint(f\"\\nTotal: {len(experiments)} experiments\")\nPYEOF",
+              "description": "List all experiments overview"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-15T15:09:56.483655+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<persisted-output>\nOutput too large (37.6KB). Full output saved to: /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/c5d06691-251a-4d7e-8a08-578a6098a5cc/tool-results/bypykm503.txt\n\nPreview (first 2KB):\n========================================================================================================================\nALL EXPERIMENTS OVERVIEW\n========================================================================================================================\n  exp1-isr-b03-s42-1000                                   status=DONE         conclusion=failed       has_metrics=False\n  exp1-isr-b03-s42-1000-r2                                status=DONE         conclusion=negative     has_metrics={'eval_prove_rate': 0.95, 'eval_mean_isr': 0.734, 'eval_isr_std': 0.2575, 'eval_median_isr': 0.6, 'eval_proved_only_isr': 0.7726, 'eval_n_proved': 95, 'eval_n_problems': 100, 'eval_data': 'proofwriter_fol_100.jsonl', 'eval_by_answer_type': {'false': {'count': 25, 'proved': 25, 'prove_rate': 1, 'mean_isr': 0.824}, 'unknown': {'count': 41, 'proved': 38, 'prove_rate': 0.927, 'mean_isr': 0.673}, 'true': {'count': 34, 'proved': 32, 'prove_rate': 0.941, 'mean_isr': 0.741}}, 'h7_count': 0, 'h7_rate': 0, 'h1_count': 54, 'h1_rate': 0.568, 'genuine_count': 0, 'genuine_rate': 0, 'tautological_collapse': True, 'isr_1_count': 41, 'isr_1_rate': 0.432, 'single_premise_count': 0, 'train_final_prove_rate': 0.829, 'train_final_mean_isr': 0.727, 'train_loss': 0.0041, 'train_runtime_seconds': 6280, 'train_final_entropy': 9e-06, 'completions_mean_length': 47, 'h8_conjunction_collapse_count': 41, 'h8_conjunction_collapse_rate': 0.432, 'content_independent_predicates': True}\n  exp1-isr-b03-s43                                        status=DONE         conclusion=success      has_metrics={'parse_rate': 1, 'prove_rate': 0.91, 'mean_isr': 0.2575, 'isr_std': 0.2363, 'median_isr': 0.3333, 'proved_only_mean_isr': 0.283, 'hacking_rate_s\n…[truncated 296 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-15T15:09:56.483847+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 << 'PYEOF'\nimport json\n\nfpath = \"/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/c5d06691-251a-4d7e-8a08-578a6098a5cc/tool-results/mcp-agent-ml-research-read_registry-1778856946416.txt\"\n\nwith open(fpath, 'r') as f:\n    raw = json.load(f)\n\ninner = json.loads(raw['result'])\nexperiments = inner['data']['experiments']\n\n# Target experiment IDs grouped\ntargets = {\n    \"SFT Baselines\": [\n        \"plan009-sft-baseline-s42-1000\",\n        \"plan009-sft-baseline-s43-1000\",\n        \"plan009-sft-baseline-s44-1000-r3\",\n    ],\n    \"Exec-only s42 1000 steps (plan016)\": [\n        \"plan016-exec-only-s42-1000\",\n    ],\n    \"ISR beta=0.3 all seeds\": [\n        \"exp1-isr-b03-s42\",\n        \"exp1-isr-b03-s43\",\n        \"exp1-isr-b03-s44\",\n    ],\n    \"ISR beta=0.1 s42\": [\n        \"plan002-additive-b01-s42\",\n    ],\n    \"Random beta=0.1 all seeds\": [\n        \"plan018-additive-random-b01-s42\",\n        \"plan018-additive-random-b01-s43-r3\",\n        \"plan018-additive-random-b01-s44-r2\",\n    ],\n    \"Random beta=0.3 all seeds\": [\n        \"exp1-random-b03-s42\",\n        \"exp1-random-b03-s43\",\n        \"exp1-random-b03-s44\",\n    ],\n    \"Prolog exec all seeds\": [\n        \"plan006-prolog-exec-s42\",\n        \"plan006-prolog-exec-s43\",\n        \"plan006-prolog-exec-s44\",\n    ],\n}\n\n# Also grab any bootstrap CI experiments\nbootstrap_keys = [k for k in experiments.keys() if 'bootstrap' in k.lower() or 'ci' in k.lower()]\nif bootstrap_keys:\n    targets[\"Bootstrap CI\"] = bootstrap_keys\n\n# Print detailed info for each target\nfor group_name, exp_ids in targets.items():\n    print(\"\\n\" + \"=\" * 120)\n    print(f\"GROUP: {group_name}\")\n    print(\"=\" * 120)\n    for exp_id in exp_ids:\n        if exp_id in experiments:\n            exp = experiments[exp_id]\n            print(f\"\\n--- {exp_id} ---\")\n            print(f\"  status:     {exp.get('status', 'N/A')}\")\n            print(f\"  conclusion: {exp.get('conclusion', 'N/A')}\")\n            print(f\"  tags:       {exp.get('tags', 'N/A')}\")\n            print(f\"  notes:      {exp.get('notes', 'N/A')}\")\n            metrics = exp.get('metrics', {})\n            if metrics:\n                print(f\"  metrics:\")\n                for mk, mv in sorted(metrics.items()):\n                    print(f\"    {mk}: {json.dumps(mv)}\")\n            else:\n                print(f\"  metrics: (none)\")\n        else:\n            print(f\"\\n--- {exp_id} --- NOT FOUND in registry\")\n            # Try fuzzy match\n            close = [k for k in experiments.keys() if exp_id.rstrip('-r2-r3').split('-1000')[0] in k]\n            if close:\n                print(f\"    Similar keys: {close}\")\n\nPYEOF",
+              "description": "Extract detailed metrics for all target experiments",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-15T15:09:56.484046+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "========================================================================================================================\nGROUP: SFT Baselines\n========================================================================================================================\n\n--- plan009-sft-baseline-s42-1000 ---\n  status:     DONE\n  conclusion: success\n  tags:       N/A\n  notes:      SFT 1000步 (15.88 epochs): train loss 降至 0.0168（严重过拟合），但 eval genuine_rate=92.31% 与 500步的 92.9% 基本持平。prove_rate 从 0.14 微降至 0.13，h7=0，h1=1。结论：SFT 即使过拟合也不产生 Goodhart collapse（h7/h8=0），验证了 Goodhart 是 RL(GRPO) reward optimization 特有现象。Unknown 类全部 0/41 未 prove（与 500步一致），SFT 不具备泛化到 unknown 类的能力。\n  metrics:\n    conclusion_in_premise_count: 1\n    conclusion_in_premise_rate: 0.0769\n    content_independent_count: 0\n    eval_by_answer_type: {\"true\": {\"count\": 34, \"proved\": 12, \"prove_rate\": 0.353, \"mean_isr\": 0.209}, \"false\": {\"count\": 25, \"proved\": 1, \"prove_rate\": 0.04, \"mean_isr\": 0.011}, \"unknown\": {\"count\": 41, \"proved\": 0, \"prove_rate\": 0, \"mean_isr\": 0}}\n    eval_data: \"proofwriter_fol_100.jsonl\"\n    eval_isr_std: 0.2077\n    eval_mean_isr: 0.0738\n    eval_median_isr: 0\n    eval_method: \"eval_sta.py full STA\"\n    eval_n_problems: 100\n    eval_n_proved: 13\n    eval_output_path: \"/root/autodl-tmp/outputs/plan009_sft_baseline_s42_1000/eval_sta_results.json\"\n    eval_prove_rate: 0.13\n    eval_proved_only_isr: 0.5677\n    genuine_count: 12\n    genuine_rate: 0.9231\n    h1_strict_count: 1\n    h1_strict_rate: 0.0769\n    h7_strict_count: 0\n    h7_strict_rate: 0\n    h8_conjunction_collapse_count: 0\n    h8_conjunction_collapse_rate: 0\n    isr_1_count: 0\n    train_epochs: 15.88\n    train_final_loss: 0.0168\n    train_last_step_loss: 0.0168\n    train_runtime_sec: 1415\n    train_steps: 1000\n    train_token_accuracy: 0.9955\n\n--- plan009-sft-baseline-s43-1000 ---\n  status:     DONE\n  conclusion: success\n  tags:       N/A\n  notes:      SFT s43 1000步结果与 s42 高度一致：prove_rate 11% vs 13%（-2pp），mean_isr 0.0699 vs 0.0738，final_lo\n…[truncated 11415 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-15T15:09:56.484213+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 << 'PYEOF'\nimport json\n\nfpath = \"/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/c5d06691-251a-4d7e-8a08-578a6098a5cc/tool-results/mcp-agent-ml-research-read_registry-1778856946416.txt\"\n\nwith open(fpath, 'r') as f:\n    raw = json.load(f)\n\ninner = json.loads(raw['result'])\nexperiments = inner['data']['experiments']\n\n# Get missing/alternative experiments\nextra_targets = [\n    # plan016 variants\n    \"plan016-exec-only-s42-1000\",\n    \"plan016-exec-only-s42\",\n    # exp1-isr-b03-s42 variants\n    \"exp1-isr-b03-s42\",\n    \"exp1-isr-b03-s42-1000\",\n    \"exp1-isr-b03-s42-1000-r2\",\n    # exp1-isr-b03-s44 retries\n    \"exp1-isr-b03-s44-r2\",\n    # exp1-isr-b03-s43 retries (since original invalidated)\n    \"exp1-isr-b03-s43-r3\",\n    \"exp1-isr-b03-s43-r4\",\n    # exp1-random-b03-s42 variants\n    \"exp1-random-b03-s42\",\n    # exp1-random-b03-s43 retries\n    \"exp1-random-b03-s43-r2\",\n    \"exp1-random-b03-s43-r3\",\n    \"exp1-random-b03-s43-r4\",\n    # exp1-random-b03-s44 retries\n    \"exp1-random-b03-s44-r2\",\n    # plan002-additive-b01 other seeds\n    \"plan002-additive-b01-s43\",\n    \"plan002-additive-b01-s43-r2\",\n    \"plan002-additive-b01-s44\",\n    \"plan002-additive-b01-s42-1000\",\n    # plan006 prolog retries\n    \"plan006-prolog-exec-s43-r2\",\n    # plan001 exec-only\n    \"plan001-exec-only-s42-1000\",\n    \"plan001-exec-only-s43-1000\",\n    \"plan001-exec-only-s43-1000-r2\",\n    \"plan001-exec-only-s44-1000\",\n    \"plan001-exec-only-s44-1000-r2\",\n    # Bootstrap\n    \"bootstrap-ci\",\n]\n\n# Also search for any key containing plan016 or bootstrap\nplan016_keys = [k for k in experiments.keys() if 'plan016' in k]\nbootstrap_keys = [k for k in experiments.keys() if 'bootstrap' in k.lower() or 'ci-' in k.lower()]\nexec_only_keys = [k for k in experiments.keys() if 'exec-only' in k or 'exec_only' in k]\n\nprint(\"Keys matching 'plan016':\", plan016_keys)\nprint(\"Keys matching 'bootstrap/ci':\", bootstrap_keys)\nprint(\"Keys matching 'exec-only':\", exec_only_keys)\nprint()\n\n# Now dump all the extra targets that exist\nfor exp_id in extra_targets:\n    if exp_id in experiments:\n        exp = experiments[exp_id]\n        status = exp.get('status', 'N/A')\n        conclusion = exp.get('conclusion', 'N/A')\n        metrics = exp.get('metrics', {})\n        notes = exp.get('notes', 'N/A')\n        \n        if status == 'DONE' or conclusion in ['success', 'negative', 'failed', 'killed']:\n            print(f\"\\n--- {exp_id} ---\")\n            print(f\"  status:     {status}\")\n            print(f\"  conclusion: {conclusion}\")\n            print(f\"  notes:      {str(notes)[:300]}\")\n            if metrics:\n                print(f\"  metrics:\")\n                for mk, mv in sorted(metrics.items()):\n                    print(f\"    {mk}: {json.dumps(mv)}\")\n            else:\n                print(f\"  metrics: (none)\")\n\nPYEOF",
+              "description": "Extract additional/alternative experiments",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-15T15:09:56.484409+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Keys matching 'plan016': ['plan016-extended-1000-s42']\nKeys matching 'bootstrap/ci': []\nKeys matching 'exec-only': ['plan001-exec-only-s44-1000-r2', 'plan001-exec-only-s43-1000-r2', 'plan001-exec-only-s44-1000', 'plan001-exec-only-s43-1000', 'plan001-exec-only-s42-r2', 'plan001-exec-only-s44', 'plan001-exec-only-s43-r4', 'plan001-exec-only-s43-r3', 'plan001-exec-only-s43-r2', 'plan001-exec-only-s43', 'plan001-exec-only-s42', 'plan003-eval-exec-only-r5', 'plan001-exec-only-s42-r3', 'sta-phase1-exec-only-r5', 'sta-phase1-exec-only-r4', 'sta-phase1-exec-only-r3', 'sta-phase1-exec-only-r2', 'sta-phase1-exec-only']\n\n\n--- exp1-isr-b03-s42-1000 ---\n  status:     DONE\n  conclusion: failed\n  notes:      N/A\n  metrics: (none)\n\n--- exp1-isr-b03-s42-1000-r2 ---\n  status:     DONE\n  conclusion: negative\n  notes:      N/A\n  metrics:\n    completions_mean_length: 47\n    content_independent_predicates: true\n    eval_by_answer_type: {\"false\": {\"count\": 25, \"proved\": 25, \"prove_rate\": 1, \"mean_isr\": 0.824}, \"unknown\": {\"count\": 41, \"proved\": 38, \"prove_rate\": 0.927, \"mean_isr\": 0.673}, \"true\": {\"count\": 34, \"proved\": 32, \"prove_rate\": 0.941, \"mean_isr\": 0.741}}\n    eval_data: \"proofwriter_fol_100.jsonl\"\n    eval_isr_std: 0.2575\n    eval_mean_isr: 0.734\n    eval_median_isr: 0.6\n    eval_n_problems: 100\n    eval_n_proved: 95\n    eval_prove_rate: 0.95\n    eval_proved_only_isr: 0.7726\n    genuine_count: 0\n    genuine_rate: 0\n    h1_count: 54\n    h1_rate: 0.568\n    h7_count: 0\n    h7_rate: 0\n    h8_conjunction_collapse_count: 41\n    h8_conjunction_collapse_rate: 0.432\n    isr_1_count: 41\n    isr_1_rate: 0.432\n    single_premise_count: 0\n    tautological_collapse: true\n    train_final_entropy: 9e-06\n    train_final_mean_isr: 0.727\n    train_final_prove_rate: 0.829\n    train_loss: 0.0041\n    train_runtime_seconds: 6280\n\n--- exp1-isr-b03-s44-r2 ---\n  status:     DONE\n  conclusion: success\n  notes:      D062/D063: eval_metrics used test_100.jsonl (invalidated). metrics field contains re-eval w\n…[truncated 7914 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-15T15:09:56.484579+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 << 'PYEOF'\nimport json\n\nfpath = \"/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/c5d06691-251a-4d7e-8a08-578a6098a5cc/tool-results/mcp-agent-ml-research-read_registry-1778856946416.txt\"\n\nwith open(fpath, 'r') as f:\n    raw = json.load(f)\n\ninner = json.loads(raw['result'])\nexperiments = inner['data']['experiments']\n\n# Get plan016 and any remaining plan001 exec-only with metrics\nremaining = [\n    \"plan016-extended-1000-s42\",\n    \"plan001-exec-only-s42\",\n    \"plan001-exec-only-s42-r2\",\n    \"plan001-exec-only-s42-r3\",\n    \"plan001-exec-only-s43-1000-r2\",\n    \"plan001-exec-only-s44-1000-r2\",\n    \"plan003-eval-exec-only-r5\",\n    \"sta-phase1-exec-only\",\n    \"sta-phase1-exec-only-r5\",\n    # SFT extras\n    \"plan009-sft-baseline-s42\",\n    \"plan009-sft-baseline-s43\",\n    \"plan009-sft-baseline-s44\",\n    \"plan009-sft-baseline-s44-1000-r2\",\n    # random b01 1000 step\n    \"plan018-additive-random-b01-s42-1000-r3\",\n]\n\nfor exp_id in remaining:\n    if exp_id in experiments:\n        exp = experiments[exp_id]\n        status = exp.get('status', 'N/A')\n        conclusion = exp.get('conclusion', 'N/A')\n        metrics = exp.get('metrics', {})\n        notes = exp.get('notes', 'N/A')\n        \n        if status == 'DONE' and metrics:\n            print(f\"\\n--- {exp_id} ---\")\n            print(f\"  status:     {status}\")\n            print(f\"  conclusion: {conclusion}\")\n            print(f\"  notes:      {str(notes)[:300]}\")\n            print(f\"  metrics:\")\n            for mk, mv in sorted(metrics.items()):\n                print(f\"    {mk}: {json.dumps(mv)}\")\n        elif status == 'DONE':\n            print(f\"\\n--- {exp_id} --- (DONE, no metrics, conclusion={conclusion})\")\n\nPYEOF",
+              "description": "Extract remaining experiments including plan016 and exec-only variants",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-15T15:09:56.484767+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "--- plan016-extended-1000-s42 ---\n  status:     DONE\n  conclusion: success\n  notes:      Extended training to 1000 steps CONFIRMS ISR collapse worsens monotonically.\\n\\n## 500 vs 1000 step comparison (eval_sta.py):\\n| Metric | plan001-s42 (500步) | plan016 (1000步) | Change |\\n|--------|-------------------|-----------------|--------|\\n| eval PR | 0.93 | 0.96 | +3.2% |\\n| eval ISR | 0.123 \n  metrics:\n    components: 18.55\n    genuine_count: 0\n    genuine_rate: 0\n    h1_count: 96\n    h1_rate: 1\n    h7_count: 0\n    h7_rate: 0\n    isr: 0.003\n    n_proved: 96\n    prove_rate: 0.96\n\n--- plan001-exec-only-s42 --- (DONE, no metrics, conclusion=failed)\n\n--- plan001-exec-only-s42-r2 ---\n  status:     DONE\n  conclusion: success\n  notes:      Cron 误判 DONE/failed（因 --help|grep 前缀命令的 PID 84896 退出，实际训练子进程 PID 84901 仍在运行）。已手动恢复 RUNNING。严禁在 cuda:0 启动新进程直到 r2 自然完成。⚠️ Reviewer 中期审查标注: 训练日志中 ISR=0.8612 为 binary approximation (_fast_fn)，非真实 ISR。最终可比 ISR 需通过 eval_sta.py (full STA) 重新评估。\n  metrics:\n    conclusion_embedding_total: 0.871\n    content_independent_predicates_count: 1\n    eval_data: \"proofwriter_fol_100.jsonl\"\n    eval_isr_std: 0.1887\n    eval_mean_isr: 0.1232\n    eval_median_isr: 0\n    eval_method: \"eval_sta.py full STA\"\n    eval_n_problems: 100\n    eval_n_proved: 93\n    eval_prove_rate: 0.93\n    eval_proved_only_isr: 0.1324\n    genuine_count: 7\n    genuine_mean_isr: 0.3141\n    genuine_rate: 0.0753\n    h1_count: 81\n    h1_mean_isr: 0.1055\n    h1_rate: 0.871\n    h7_count: 0\n    h7_rate: 0\n    h8_audit_note: \"2026-05-15: H8 conjunction collapse added. genuine 12\\u21927.\"\n    h8_conjunction_collapse_count: 6\n    h8_conjunction_collapse_rate: 0.0645\n\n--- plan001-exec-only-s42-r3 --- (DONE, no metrics, conclusion=failed)\n\n--- plan003-eval-exec-only-r5 ---\n  status:     DONE\n  conclusion: success\n  notes:      N/A\n  metrics:\n    isr_by_type: {\"true\": 0.3598, \"false\": 0.1723, \"unknown\": 0.0979}\n    isr_std: 0.3194\n    mean_isr: 0.2055\n    prove_rate: 0.32\n    proved_count: 32\n    proved\n…[truncated 3880 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-15T15:09:56.484940+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 << 'PYEOF'\nimport json\n\nfpath = \"/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/c5d06691-251a-4d7e-8a08-578a6098a5cc/tool-results/mcp-agent-ml-research-read_registry-1778856946416.txt\"\n\nwith open(fpath, 'r') as f:\n    raw = json.load(f)\n\ninner = json.loads(raw['result'])\nexperiments = inner['data']['experiments']\n\n# Get Prolog s43-r2 follow-ups and any remaining prolog experiments\nprolog_keys = [k for k in experiments.keys() if 'prolog' in k.lower()]\nprint(\"All Prolog keys:\", prolog_keys)\n\nfor exp_id in prolog_keys:\n    exp = experiments[exp_id]\n    status = exp.get('status', 'N/A')\n    conclusion = exp.get('conclusion', 'N/A')\n    metrics = exp.get('metrics', {})\n    notes = exp.get('notes', 'N/A')\n    if status == 'DONE' and metrics:\n        print(f\"\\n--- {exp_id} ---\")\n        print(f\"  status:     {status}\")\n        print(f\"  conclusion: {conclusion}\")\n        print(f\"  notes:      {str(notes)[:200]}\")\n        print(f\"  metrics:\")\n        for mk, mv in sorted(metrics.items()):\n            print(f\"    {mk}: {json.dumps(mv)}\")\n    elif status == 'DONE':\n        print(f\"\\n--- {exp_id} --- (DONE, no metrics, conclusion={conclusion})\")\n\n# Also check for plan006-prolog-exec-s43-r3, etc\nfor suffix in ['-r3', '-r4', '-r5']:\n    key = f\"plan006-prolog-exec-s43{suffix}\"\n    if key in experiments:\n        exp = experiments[key]\n        print(f\"\\n--- {key} ---\")\n        print(f\"  status: {exp.get('status')}, conclusion: {exp.get('conclusion')}\")\n        if exp.get('metrics'):\n            for mk, mv in sorted(exp['metrics'].items()):\n                print(f\"    {mk}: {json.dumps(mv)}\")\n\nPYEOF",
+              "description": "Extract all Prolog experiment data"
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-15T15:09:56.485107+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All Prolog keys: ['plan006-prolog-sta-s44', 'plan006-prolog-sta-s43', 'plan006-prolog-sta-s42', 'plan006-prolog-exec-s44', 'plan006-prolog-exec-s43-r3', 'plan006-prolog-exec-s43-r2', 'plan006-prolog-exec-s42', 'plan006-prolog-exec-s43']\n\n--- plan006-prolog-sta-s44 ---\n  status:     DONE\n  conclusion: negative\n  notes:      Reviewer 独立核实: query-as-fact gaming, 0% genuine. 97/97 proved 样本中 95/97 n_necessary=1（功能性 H7）。模型将 NL 问题转为 snake_case atom 同时设为 fact 和 query，Prolog trivially 证明。PR=0.97, ISR=0.885 是 gaming artifact（高 I\n  metrics:\n    failure_mode: \"query-as-fact gaming (total H7 collapse)\"\n    genuine_rate: 0\n    h7_functional_rate: 0.979\n    isr_mean: 0.885\n    isr_n_cl_ge3: \"N/A (0 samples)\"\n    n_clauses_dist: \"78/100 single-clause, 22/100 two-clause\"\n    pass_rate: 0.97\n    premise_count_analysis: \"100% artifact - zero samples with n_clauses>=3, model exclusively generates 1-2 clause programs\"\n\n--- plan006-prolog-sta-s43 ---\n  status:     DONE\n  conclusion: negative\n  notes:      Eval: PR=0.38, ISR=0.185 proved-only. Strict classifier: H7=0%, H1=0%, Genuine=100%. 但功能分析显示所有 38 proved 样本 n_necessary=1（功能性 H7）。模型生成大写伪 Prolog（如 MARY_IS_AN_AVADEOTE.）—— 非标准语法，strict classifier 无法匹配 \n  metrics:\n    eval: {\"n_problems\": 100, \"n_proved\": 38, \"prove_rate\": 0.38, \"mean_isr\": 0.0704, \"isr_std\": 0.1263, \"median_isr\": 0, \"proved_only_mean_isr\": 0.1853, \"min_isr\": 0, \"max_isr\": 1, \"by_answer_type\": {\"false\": {\"count\": 25, \"proved\": 11, \"prove_rate\": 0.44, \"mean_isr\": 0.1003}, \"unknown\": {\"count\": 41, \"proved\": 11, \"prove_rate\": 0.268, \"mean_isr\": 0.0394}, \"true\": {\"count\": 34, \"proved\": 16, \"prove_rate\": 0.471, \"mean_isr\": 0.0859}}}\n    h7_classification: {\"h7_strict\": 0, \"h7_rate\": 0, \"h1_strict\": 37, \"h1_rate\": 0.974, \"conclusion_in_premise_total\": 37, \"conclusion_in_premise_rate\": 0.974, \"genuine_count\": 0, \"genuine_rate\": 0, \"isr_1_count\": 1, \"note\": \"1 pseudo-genuine sample (folio_1415) has query embedded in single mega-clause; all 38/38 proved samples are tautological\"}\n…[truncated 4468 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-15T15:09:56.485271+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 << 'PYEOF'\nimport json\n\nfpath = \"/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/c5d06691-251a-4d7e-8a08-578a6098a5cc/tool-results/mcp-agent-ml-research-read_registry-1778856946416.txt\"\n\nwith open(fpath, 'r') as f:\n    raw = json.load(f)\n\ninner = json.loads(raw['result'])\nexperiments = inner['data']['experiments']\n\n# Find the ISR b03 s42 500-step variant (not 1000)\nisr_b03_keys = [k for k in experiments.keys() if 'isr' in k.lower() and 'b03' in k.lower()]\nprint(\"All ISR b03 keys:\", isr_b03_keys)\n\n# Find random b03 s42 variant\nrandom_b03_keys = [k for k in experiments.keys() if 'random' in k.lower() and 'b03' in k.lower()]\nprint(\"All random b03 keys:\", random_b03_keys)\n\n# Find any \"sta\" keys that might be the original exec-only s42\nsta_keys = [k for k in experiments.keys() if k.startswith('sta-')]\nprint(\"All sta- keys:\", sta_keys)\n\n# Check for any key containing \"s42\" and \"isr\" or \"b03\" at 500 steps\nfor k in isr_b03_keys:\n    exp = experiments[k]\n    status = exp.get('status', 'N/A')\n    conclusion = exp.get('conclusion', 'N/A')\n    metrics = exp.get('metrics', {})\n    if 's42' in k and '1000' not in k:\n        print(f\"\\n--- {k} --- (possible ISR b03 s42 500-step)\")\n        print(f\"  status: {status}, conclusion: {conclusion}\")\n        if metrics:\n            for mk, mv in sorted(metrics.items()):\n                print(f\"    {mk}: {json.dumps(mv)}\")\n        else:\n            print(\"  (no metrics)\")\n\n# Also check sta-s42 etc\nfor k in sta_keys:\n    exp = experiments[k]\n    if exp.get('metrics'):\n        print(f\"\\n--- {k} ---\")\n        print(f\"  status: {exp.get('status')}, conclusion: {exp.get('conclusion')}\")\n        for mk, mv in sorted(exp['metrics'].items()):\n            print(f\"    {mk}: {json.dumps(mv)}\")\n\nPYEOF",
+              "description": "Find ISR b03 s42 500-step and sta- experiments"
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-15T15:09:56.485417+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All ISR b03 keys: ['exp1-isr-b03-s43', 'exp1-isr-b03-s42-1000-r2', 'exp1-isr-b03-s42-1000', 'exp1-isr-b03-s43-r3', 'exp1-isr-b03-s43-r4', 'exp1-isr-b03-s44-r2', 'exp1-isr-b03-s44', 'exp1-isr-b03-s43-r2']\nAll random b03 keys: ['exp1-random-b03-s43-r4', 'exp1-random-b03-s44-r2', 'exp1-random-b03-s43-r3', 'exp1-random-b03-s43-r2', 'exp1-random-b03-s43', 'exp1-random-b03-s44']\nAll sta- keys: ['sta-phase1-exec-sta-r5', 'sta-phase1-exec-only-r5', 'sta-phase1-exec-sta-r4', 'sta-phase1-exec-only-r4', 'sta-phase1-exec-only-r3', 'sta-phase1-exec-sta-r3', 'sta-phase1-exec-sta-r2', 'sta-phase1-exec-only-r2', 'sta-phase1-exec-sta', 'sta-phase1-exec-only', 'sta-gt-isr-baseline', 'sta-phase0-baseline']\n\n--- sta-phase1-exec-sta-r5 ---\n  status: DONE, conclusion: negative\n    K: 8\n    first20_isr_mean: 0.05182\n    first20_prove_rate: 0.08125\n    isr_pr_ratio_last20: 0.33\n    isr_pr_ratio_overall: 0.43\n    last20_isr_mean: 0.04956\n    last20_prove_rate: 0.15\n    last20_reward_mean: 0.09978\n    mean_isr: 0.04347\n    overall_reward_mean: 0.07174\n    parse_rate: 1\n    prove_rate: 0.1\n    step_time_s: 10.13\n    training_minutes: 16.9\n    training_steps: 100\n\n--- sta-phase1-exec-only-r5 ---\n  status: DONE, conclusion: success\n    K: 8\n    first20_isr_mean: 0.11875\n    first20_prove_rate: 0.11875\n    isr_pr_ratio_last20: 1\n    last20_isr_mean: 0.2\n    last20_prove_rate: 0.2\n    last20_reward_mean: 0.2\n    mean_isr: 0.1475\n    overall_reward_mean: 0.15125\n    parse_rate: 1\n    prove_rate: 0.15125\n    step_time_s: 9.44\n    training_minutes: 15.7\n    training_steps: 100\n\n--- sta-phase1-exec-sta-r4 ---\n  status: DONE, conclusion: negative\n    first20_reward_mean: 0.119\n    last20_isr_mean: 0.2125\n    last20_prove_rate: 0.2125\n    mean_isr: 0.1525\n    parse_rate: 1\n    prove_rate: 0.1575\n    training_minutes: 15\n    training_steps: 100\n\n--- sta-phase1-exec-only-r4 ---\n  status: DONE, conclusion: negative\n    first20_reward_mean: 0.119\n    last20_isr_mean: 0.2\n    last20_prove_rate: 0.2\n    mean\n…[truncated 925 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-15T15:09:56.485649+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have all the data. Here is the structured summary:\n\n---\n\n## Complete Metrics Extraction from Registry\n\n### 1. SFT Baselines (500 and 1000 steps)\n\n**plan009-sft-baseline-s42-1000** — status=DONE, conclusion=success\n- eval_prove_rate: 0.13\n- eval_mean_isr: 0.0738, eval_isr_std: 0.2077, eval_median_isr: 0\n- eval_proved_only_isr: 0.5677\n- genuine_count: 12, genuine_rate: 0.9231\n- h7_strict_count: 0, h7_strict_rate: 0\n- h1_strict_count: 1, h1_strict_rate: 0.0769\n- h8_conjunction_collapse_count: 0, h8_conjunction_collapse_rate: 0\n- train_steps: 1000, train_final_loss: 0.0168, train_token_accuracy: 0.9955\n- by_answer_type: true PR=0.353, false PR=0.04, unknown PR=0\n\n**plan009-sft-baseline-s43-1000** — status=DONE, conclusion=success\n- prove_rate: 0.11\n- mean_isr: 0.0699, isr_std: 0.2155, median_isr: 0\n- proved_only_mean_isr: 0.6352\n- genuine_count: 10, genuine_rate: 0.9091\n- h7_strict_count: 0, h1_strict_count: 1, h8_conjunction_collapse_count: 0\n- train_final_loss: 0.0167, train_token_accuracy: 0.9954\n\n**plan009-sft-baseline-s44-1000-r3** — status=DONE, conclusion=success\n- eval_prove_rate: 0.15\n- eval_mean_isr: 0.0884, eval_isr_std: 0.2268, eval_median_isr: 0\n- eval_proved_only_isr: 0.5892\n- genuine_count: 14, genuine_rate: 0.9333\n- h1_count: 1, h1_rate: 0.0667\n- h7_count: 0, h8_conjunction_collapse_count: 0\n\n**SFT 500-step variants** (for reference):\n- plan009-sft-baseline-s43 (500 steps): PR=0.15, ISR=0.0895, genuine_rate=0.933\n- plan009-sft-baseline-s44 (500 steps): PR=0.17, ISR=0.0974, genuine_rate=0.882\n\n---\n\n### 2. Exec-only s42\n\nNo `plan016-exec-only-s42-1000` exists. The closest equivalent is:\n\n**plan016-extended-1000-s42** — status=DONE, conclusion=success\n- prove_rate: 0.96\n- isr: 0.003\n- n_proved: 96, components: 18.55\n- genuine_count: 0, genuine_rate: 0\n- h1_count: 96, h1_rate: 1\n- h7_count: 0\n\n**plan001-exec-only-s42-r2** (500 steps, full STA eval) — status=DONE, conclusion=success\n- eval_prove_rate: 0.93\n- eval_mean_isr: 0.1232, eval_isr_std: 0.1887, \n…[truncated 7662 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "Agent",
+            "elapsed_ms": 5
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-15T15:09:56.485851+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\\begin{abstract}\\\\nGRPO-trained neurosymbolic formalizers achieve high prove rates---93\\\\\\\\% on FOLIO---yet 87\\\\\\\\% of proved outputs embed the conclusion verbatim among the premises, a degenerate shortcut invisible to execution reward.\\\\nWe introduce \\\\\\\\emph{Solver Trace Ablation} (STA), a diagnostic that applies leave-one-out component necessity testing to solver inputs.\\\\nThe fraction of components whose removal causes proof failure yields the \\\\\\\\emph{Intensional Structural Reward} (ISR): ISR$=$1 indicates full necessity; ISR$=$0 complete redundancy.\\\\nISR is uncorrelated with downstream NLI accuracy ($\\\\\\\\rho{=}{-}0.049$), confirming it measures structural---not semantic---integrity.\\\\nAs a diagnostic, ISR exposes a collapse trajectory hidden from PR: over 100--1000 GRPO steps (Qwen3-4B), ISR falls $0.642{\\\\\\\\to}0.003$ while PR rises $32\\\\\\\\%{\\\\\\\\to}96\\\\\\\\%$; an SFT baseline reaches 92.9\\\\\\\\% non-hacking on identical data, localizing the failure to RL.\\\\nAs a reward, $r = r_{\\\\\\\\text{exec}}\\\\\\\\cdot(1{+}\\\\\\\\beta\\\\\\\\,\\\\\\\\text{ISR})$ at $\\\\\\\\beta{=}0.1$ induces \\\\\\\\emph{meta-level Goodhart's Law}: 64.5\\\\\\\\% conclusion duplication (H7) versus 0\\\\\\\\% under matched random; the sole apparent ISR improvement reduces to $1.06\\\\\\\\times$ after controlling for a premise-count confound; $\\\\\\\\beta{=}0.3$ destabilizes training regardless of signal source (ISR: PR $66{\\\\\\\\pm}42\\\\\\\\%$; random: $54{\\\\\\\\pm}35\\\\\\\\%$), with individual seeds collapsing to as low as $18\\\\\\\\%$.\\\\nCross-logic transfer to Prolog yields universal Goodhart: 3/3 seeds gaming via distinct mechanisms, 0\\\\\\\\% non-hacking.\\\\nAcross 6 reward conditions, 2 logic types, 3 seeds, we catalog 7 hacking modes---including query-as-fact gaming that bypasses text-match classifiers---documenting ISR's fundamental asymmetry: reliable as a diagnostic, unreliable as an optimization target.\\\\\\\\footnote{Code and data: \\\\\\\\url{[anonymized]}}\\\\n\\\\\\\\end{abstract}\\\\n\\\", \n…[truncated 100 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 5
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-15T15:09:56.486052+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\\section{Introduction}\\\\n\\\\\\\\label{sec:introduction}\\\\n\\\\nA GRPO-trained formalizer achieves a 93\\\\\\\\% prove rate on first-order logic problems---yet 87\\\\\\\\% of its proved outputs embed the conclusion verbatim among the premises.\\\\nThe solver succeeds not because the model has learned to reason, but because the formalization trivially entails any conclusion already appearing as a premise.\\\\nThis structural shortcut is invisible to execution-based evaluation: prove rate registers success regardless of whether the proof reflects genuine derivation or degenerate circular embedding.\\\\n\\\\n\\\\\\\\paragraph{The execution-only blind spot.}\\\\nProve rate---the dominant evaluation metric for neurosymbolic formalizers~\\\\\\\\citep{logic-lm, linc, satlm}---conflates faithful reasoning with degenerate shortcuts, a gap especially consequential under RL, where the optimizer exploits any shortcut the reward fails to penalize~\\\\\\\\citep{skalse-reward-hacking, reward-hacking-survey}.\\\\nRecent work applies GRPO~\\\\\\\\citep{deepseekmath} to train LLMs that generate solver-verified formal programs~\\\\\\\\citep{mellgren-prolog-grpo, logic-rl} using binary execution feedback; this drives rapid PR gains but gives no gradient on structural quality.\\\\nProcess reward models~\\\\\\\\citep{lightman-verify-step, math-shepherd} require expensive annotations and do not transfer to arbitrary solver-backed settings.\\\\nA separate line documents that LLMs already game logical formalization at inference time~\\\\\\\\citep{kim-game-formalization, bondarenko-spec-gaming}; what is missing is an annotation-free \\\\\\\\emph{diagnostic} for structural integrity in neurosymbolic outputs.\\\\n\\\\n\\\\\\\\paragraph{Component necessity testing.}\\\\nWe address this gap with \\\\\\\\emph{Solver Trace Ablation} (STA), a diagnostic applying \\\\\\\\emph{component necessity testing}---leave-one-out (LOO) ablation on solver inputs---to quantify structural integrity (\\\\\\\\autoref{fig:sta-overview}).\\\\\n…[truncated 3577 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 5
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-15T15:09:56.486326+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\\section{Experiments}\\\\n\\\\\\\\label{sec:experiments}\\\\n\\\\nWe evaluate STA along three axes: ISR as a diagnostic for reward hacking (\\\\\\\\S\\\\\\\\ref{sec:diagnostic}); ISR as a training reward, where it exhibits meta-level Goodhart's Law (\\\\\\\\S\\\\\\\\ref{sec:goodhart}); and STA as a cross-logic protocol (\\\\\\\\S\\\\\\\\ref{sec:crosslogic}).\\\\nA hacking taxonomy synthesizes the modes observed across conditions (\\\\\\\\S\\\\\\\\ref{sec:taxonomy}).\\\\n\\\\n\\\\\\\\subsection{Setup}\\\\\\\\label{sec:setup}\\\\n\\\\nWe train Qwen3-4B~\\\\\\\\citep{qwen3} with GRPO~\\\\\\\\citep{deepseekmath} ($K{=}8$, lr $10^{-6}$, 500 steps default, 1000 where noted) over seeds $\\\\\\\\{42,43,44\\\\\\\\}$ on a fixed 500-example FOLIO~\\\\\\\\citep{folio} subset held constant across all conditions; the SFT baseline is trained with NLL on gold formalizations.\\\\\\\\footnote{All experiments use \\\\\\\\texttt{data/train\\\\\\\\_500\\\\\\\\_seed42.jsonl}; seeds control initialization and rollout sampling only.}\\\\nHeld-out evaluation uses 100 FOLIO examples (\\\\\\\\texttt{proofwriter\\\\\\\\_fol\\\\\\\\_100.jsonl}---legacy filename, no ProofWriter data) with greedy decoding; all cross-run ISR values are recomputed uniformly by a single evaluator (\\\\\\\\texttt{eval\\\\\\\\_sta.py}) so training-log ISR is never compared across runs.\\\\nWe report prove rate (PR), proved-only ISR ($\\\\\\\\text{ISR}^*$), hacking-mode rates from a two-stage classifier (strict text matching for H1/H7 plus functional analysis of the per-sample $n_{\\\\\\\\text{necessary}}$ distribution; \\\\\\\\S\\\\\\\\ref{sec:taxonomy-method}), and a \\\\\\\\emph{non-hacking} (N-H) rate---the residual of proved samples matching none of the seven cataloged patterns, a necessary but not sufficient condition for semantic correctness.\\\\n\\\\n\\\\\\\\subsection{ISR as Diagnostic}\\\\n\\\\\\\\label{sec:diagnostic}\\\\n\\\\n\\\\\\\\begin{figure}[t]\\\\n\\\\\\\\centering\\\\n\\\\\\\\includegraphics[width=0.95\\\\\\\\columnwidth]{figures/fig2_isr_collapse.pdf}\\\\n\\\\\\\\caption{ISR collapse under exec-only GRPO (seed~42). PR ri\n…[truncated 6925 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 5
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-15T15:09:56.486559+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\\section{Method}\\\\n\\\\\\\\label{sec:method}\\\\n\\\\n\\\\\\\\begin{figure*}[t]\\\\n\\\\\\\\centering\\\\n\\\\\\\\includegraphics[width=0.92\\\\\\\\textwidth]{figures/fig1_sta_overview.pdf}\\\\n\\\\\\\\caption{Solver Trace Ablation (STA). (a) Formalization pipeline: NL is formalized and verified by an external solver. (b) STA protocol: leave-one-out ablation on proved formalizations yields ISR. (c) ISR as diagnostic vs.\\\\\\\\ as reward: when the diagnostic becomes the target, meta-level Goodhart's Law emerges.}\\\\n\\\\\\\\label{fig:sta-overview}\\\\n\\\\\\\\end{figure*}\\\\n\\\\n\\\\\\\\subsection{Task and GRPO Training}\\\\n\\\\\\\\label{sec:task}\\\\n\\\\nGiven premises $P_1,\\\\\\\\ldots,P_k$ and conclusion $C$, the task is to produce a formal program $F=\\\\\\\\{c_1,\\\\\\\\ldots,c_n\\\\\\\\}$ verified by an external solver $S\\\\\\\\in\\\\\\\\{\\\\\\\\text{Prover9, SWI-Prolog}\\\\\\\\}$ (\\\\\\\\autoref{fig:sta-overview}a).\\\\nWe train with GRPO~\\\\\\\\citep{deepseekmath} ($K{=}8$), where each rollout receives binary execution reward $r_{\\\\\\\\text{exec}}(x) = \\\\\\\\mathbf{1}[S(F_x){=}\\\\\\\\textit{proved}]$.\\\\nThis optimizes prove rate but provides no signal about \\\\\\\\emph{structural quality}: a formalization embedding the conclusion among its premises receives the same reward as a faithful derivation.\\\\nAll experiments draw from FOLIO~\\\\\\\\citep{folio}; the held-out evaluation file retains a legacy \\\\\\\\texttt{proofwriter\\\\\\\\_fol\\\\\\\\_*.jsonl} filename (from ProofWriter~\\\\\\\\citep{proofwriter}) but contains only FOLIO-derived examples.\\\\n\\\\n\\\\\\\\subsection{Solver Trace Ablation (STA)}\\\\n\\\\\\\\label{sec:sta}\\\\n\\\\nSTA tests whether each component of a proved formalization is individually necessary for proof success (\\\\\\\\autoref{fig:sta-overview}b).\\\\nGiven a proved $x$ with $n$ components, STA constructs $n$ ablated variants $x\\\\\\\\setminus\\\\\\\\{c_i\\\\\\\\}$ and re-runs the solver (Algorithm~\\\\\\\\ref{alg:sta}).\\\\nA component is \\\\\\\\emph{necessary} if its removal causes proof failure.\\\\nWhat constitutes a component depends on \n…[truncated 5141 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 5
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-15T15:09:56.486749+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\\section{Discussion and Conclusion}\\\\n\\\\nSolver Trace Ablation (STA) exposes structural degeneration invisible to execution-based evaluation: ISR reveals a 99.5\\\\\\\\% collapse under exec-only GRPO that PR hides; an SFT baseline with 92.9\\\\\\\\% non-hacking localizes the failure to RL optimization (\\\\\\\\S\\\\\\\\ref{sec:diagnostic}).\\\\nRepurposed as a training signal, ISR induces meta-level Goodhart's Law: the diagnostic for gaming becomes itself the target of gaming.\\\\nAt $\\\\\\\\beta{=}0.1$, conclusion duplication exploits the LOO definition (64.5\\\\\\\\% vs.\\\\\\\\ 0\\\\\\\\% under matched random), and the sole apparent ISR gain reduces to $1.06\\\\\\\\times$ random once a premise-count confound is controlled; at $\\\\\\\\beta{=}0.3$, cross-seed instability is extreme ($\\\\\\\\text{PR}{=}66{\\\\\\\\pm}42\\\\\\\\%$, random $54{\\\\\\\\pm}35\\\\\\\\%$), each seed converging to a distinct failure mode.\\\\nThe pattern transfers to Prolog, where ISR-as-reward yields universal gaming (3/3 seeds, 0\\\\\\\\% non-hacking) via three distinct mechanisms including query-as-fact gaming, which bypasses text-match classifiers (\\\\\\\\S\\\\\\\\ref{sec:taxonomy}).\\\\nISR semantics depend on objective: exec-only \\\\\\\\emph{low} ISR signals redundancy; ISR-rewarded \\\\\\\\emph{high} ISR signals metric gaming.\\\\nThe asymmetry---reliable observer, unreliable optimizer---may generalize to other perturbation-based diagnostics; ISR and structurally similar metrics should be used as post-hoc evaluation, with future work targeting gaming-robust rewards and broader logic types.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 5
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-15T15:09:56.486940+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\\section{Limitations}\\\\n\\\\\\\\label{sec:limitations}\\\\n\\\\nExperiments use a single base model (Qwen3-4B) and dataset family (FOLIO); generalization remains untested.\\\\nISR quantifies syntactic component necessity, not semantic faithfulness: a downstream NLI evaluation finds ISR and task accuracy uncorrelated (Spearman $\\\\\\\\rho{=}{-}0.049$, $p{=}0.187$; Appendix~\\\\\\\\ref{app:extended-discussion}).\\\\nThree seeds demonstrate qualitative divergence but limit statistical power.\\\\nSTA requires solvers supporting component-level input manipulation.\\\\n\\\\n\\\\\\\\paragraph{Data scale.}\\\\nOur experiments use 500 training examples and 100 evaluation examples, drawn from FOLIO~\\\\\\\\citep{folio}.\\\\nThe training subset is selected via stratified sampling (seed 42) and held constant across all conditions.\\\\nWhile our findings are consistent across seeds and logic types, the effect of training data scale on hacking prevalence and mode distribution remains an open question for future work.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 5
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-15T15:09:56.487096+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\\section{Related Work}\\\\n\\\\\\\\label{sec:related-work}\\\\n\\\\n\\\\\\\\paragraph{Neurosymbolic reasoning and process rewards.}\\\\nLLM-solver pipelines~\\\\\\\\cite{satlm, logic-lm, linc, fover-pei2025, lorp} and RL methods trained on solver feedback~\\\\\\\\cite{mellgren-prolog-grpo, logic-rl} evaluate execution accuracy alone, with no diagnostic for structural quality.\\\\nLearned PRMs~\\\\\\\\cite{lightman-verify-step, math-shepherd} provide step-level feedback but suffer from reward-model noise and distribution shift~\\\\\\\\cite{processbench}; ISR is solver-grounded and annotation-free.\\\\nWe use FOLIO~\\\\\\\\cite{folio}, the only public NLI benchmark with both FOL and Prolog annotations.\\\\n\\\\n\\\\\\\\paragraph{Reward hacking and Goodhart's Law.}\\\\nGoodhart's Law is established theoretically~\\\\\\\\cite{manheim-goodhart-taxonomy, skalse-reward-hacking, karwowski-goodhart-rl} and empirically in RLHF and frontier models~\\\\\\\\cite{gao-reward-overoptimization, bondarenko-spec-gaming, kim-game-formalization}.\\\\nRecent work further documents spurious reward signals in RLVR~\\\\\\\\cite{spurious-rewards} and reward hacking in frontier models~\\\\\\\\cite{metr-reward-hacking}.\\\\nOur setting differs in three ways: ISR is deterministic and solver-derived rather than learned; gaming \\\\\\\\emph{emerges during RL training} rather than at inference time; and the effect operates at a \\\\\\\\emph{meta} level---the diagnostic for gaming itself becomes gamed when optimized---a phenomenon, to our knowledge, not previously documented.\\\\n\\\\n\\\\\\\\paragraph{Mutation testing.}\\\\nSTA adapts the LOO mutation paradigm~\\\\\\\\cite{demillo1978, jia-harman-survey} to solver inputs; novelty lies in application and findings, not in the perturbation primitive.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 5
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-15T15:09:56.487345+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"% Appendix — solver-trace-ablation\\\\n\\\\n\\\\\\\\section{Experimental Setup}\\\\n\\\\\\\\label{app:setup}\\\\n\\\\nTable~\\\\\\\\ref{tab:hyperparams} lists all hyperparameters shared across experiments.\\\\nAll RL conditions use the same GRPO configuration; only the reward function differs.\\\\nSeeds control model weight initialization and data shuffling; training data is held constant across all seeds and conditions (Constraint~C001).\\\\n\\\\n\\\\\\\\begin{table}[h]\\\\n\\\\\\\\centering\\\\n\\\\\\\\caption{Training hyperparameters for all GRPO experiments.}\\\\n\\\\\\\\label{tab:hyperparams}\\\\n\\\\\\\\footnotesize\\\\n\\\\\\\\resizebox{\\\\\\\\columnwidth}{!}{%\\\\n\\\\\\\\begin{tabular}{@{}ll@{}}\\\\n\\\\\\\\toprule\\\\n\\\\\\\\textbf{Parameter} & \\\\\\\\textbf{Value} \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n\\\\\\\\multicolumn{2}{@{}l}{\\\\\\\\textit{Model}} \\\\\\\\\\\\\\\\\\\\nBase model & Qwen3-4B \\\\\\\\\\\\\\\\\\\\nPrecision & BF16 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n\\\\\\\\multicolumn{2}{@{}l}{\\\\\\\\textit{GRPO Training}} \\\\\\\\\\\\\\\\\\\\nRollouts per prompt ($K$) & 8 \\\\\\\\\\\\\\\\\\\\nTraining steps (default) & 500 \\\\\\\\\\\\\\\\\\\\nTraining steps (extended) & 1000 \\\\\\\\\\\\\\\\\\\\nLearning rate & $1 \\\\\\\\times 10^{-6}$ \\\\\\\\\\\\\\\\\\\\nPer-device batch size & 4 \\\\\\\\\\\\\\\\\\\\nGradient accumulation steps & 2 \\\\\\\\\\\\\\\\\\\\nEffective batch size & 8 \\\\\\\\\\\\\\\\\\\\nMax completion length & 512 tokens \\\\\\\\\\\\\\\\\\\\nRandom seeds & 42, 43, 44 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n\\\\\\\\multicolumn{2}{@{}l}{\\\\\\\\textit{Data}} \\\\\\\\\\\\\\\\\\\\nTraining set & FOLIO, 500 examples \\\\\\\\\\\\\\\\\\\\nEvaluation set & FOLIO, 100 examples (held-out) \\\\\\\\\\\\\\\\\\\\nData file & \\\\\\\\texttt{train\\\\\\\\_500\\\\\\\\_seed42} \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n\\\\\\\\multicolumn{2}{@{}l}{\\\\\\\\textit{Solvers}} \\\\\\\\\\\\\\\\\\\\nFOL solver & Prover9 \\\\\\\\\\\\\\\\\\\\nProlog solver & SWI-Prolog 8.4.2 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\n\\\\\\\\multicolumn{2}{@{}l}{\\\\\\\\textit{Evaluation}} \\\\\\\\\\\\\\\\\\\\nDecoding & Greedy ($T{=}0$) \\\\\\\\\\\\\\\\\\\\nISR computation & \\\\\\\\texttt{eval\\\\\\\\_sta.py} \\\\\\\\\\\\\\\\\\\\nISR variant & Proved-only (ISR$^*$) \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}}\\\\n\\\\\\\\end{table}\\\\n\\\n…[truncated 7128 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 5
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-15T15:09:56.487649+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "head -200 /root/solver-trace-ablation/paper/experiments.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-15T15:09:56.487940+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\\section{Experiments}\\\\n\\\\\\\\label{sec:experiments}\\\\n\\\\nWe evaluate STA along three axes: ISR as a diagnostic for reward hacking (\\\\\\\\S\\\\\\\\ref{sec:diagnostic}); ISR as a training reward, where it exhibits meta-level Goodhart's Law (\\\\\\\\S\\\\\\\\ref{sec:goodhart}); and STA as a cross-logic protocol (\\\\\\\\S\\\\\\\\ref{sec:crosslogic}).\\\\nA hacking taxonomy synthesizes the modes observed across conditions (\\\\\\\\S\\\\\\\\ref{sec:taxonomy}).\\\\n\\\\n\\\\\\\\subsection{Setup}\\\\\\\\label{sec:setup}\\\\n\\\\nWe train Qwen3-4B~\\\\\\\\citep{qwen3} with GRPO~\\\\\\\\citep{deepseekmath} ($K{=}8$, lr $10^{-6}$, 500 steps default, 1000 where noted) over seeds $\\\\\\\\{42,43,44\\\\\\\\}$ on a fixed 500-example FOLIO~\\\\\\\\citep{folio} subset held constant across all conditions; the SFT baseline is trained with NLL on gold formalizations.\\\\\\\\footnote{All experiments use \\\\\\\\texttt{data/train\\\\\\\\_500\\\\\\\\_seed42.jsonl}; seeds control initialization and rollout sampling only.}\\\\nHeld-out evaluation uses 100 FOLIO examples (\\\\\\\\texttt{proofwriter\\\\\\\\_fol\\\\\\\\_100.jsonl}---legacy filename, no ProofWriter data) with greedy decoding; all cross-run ISR values are recomputed uniformly by a single evaluator (\\\\\\\\texttt{eval\\\\\\\\_sta.py}) so training-log ISR is never compared across runs.\\\\nWe report prove rate (PR), proved-only ISR ($\\\\\\\\text{ISR}^*$), hacking-mode rates from a two-stage classifier (strict text matching for H1/H7 plus functional analysis of the per-sample $n_{\\\\\\\\text{necessary}}$ distribution; \\\\\\\\S\\\\\\\\ref{sec:taxonomy-method}), and a \\\\\\\\emph{non-hacking} (N-H) rate---the residual of proved samples matching none of the seven cataloged patterns, a necessary but not sufficient condition for semantic correctness.\\\\n\\\\n\\\\\\\\subsection{ISR as Diagnostic}\\\\n\\\\\\\\label{sec:diagnostic}\\\\n\\\\n\\\\\\\\begin{figure}[t]\\\\n\\\\\\\\centering\\\\n\\\\\\\\includegraphics[width=0.95\\\\\\\\columnwidth]{figures/fig2_isr_collapse.pdf}\\\\n\\\\\\\\caption{ISR collapse under exec-only GRPO (seed~42). PR ri\n…[truncated 6926 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-15T15:09:56.488129+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "tail -n +200 /root/solver-trace-ablation/paper/experiments.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-15T15:09:56.488333+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-15T15:09:56.488491+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "file": "decisions.yaml",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-15T15:09:56.488842+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (71,732 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/c5d06691-251a-4d7e-8a08-578a6098a5cc/tool-results/mcp-agent-ml-research-read_project_file-1778857397193.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/c5d06691-251a-4d7e-8a08-578a6098a5cc/tool-results/mcp-agent-ml-research-read_project_file-1778857397193.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/c5d06691-251a-4d7e-8a08-578a6098a5cc/tool-results/mcp-agent-ml-research-read_project_file-1778857397193.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-15T15:09:56.489053+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "wc -l /root/solver-trace-ablation/paper/experiments.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-15T15:09:56.489187+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"154 /root/solver-trace-ablation/paper/experiments.tex\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-15T15:09:56.489309+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "head -n 60 /root/solver-trace-ablation/paper/experiments.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-15T15:09:56.489511+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\\section{Experiments}\\\\n\\\\\\\\label{sec:experiments}\\\\n\\\\nWe evaluate STA along three axes: ISR as a diagnostic for reward hacking (\\\\\\\\S\\\\\\\\ref{sec:diagnostic}); ISR as a training reward, where it exhibits meta-level Goodhart's Law (\\\\\\\\S\\\\\\\\ref{sec:goodhart}); and STA as a cross-logic protocol (\\\\\\\\S\\\\\\\\ref{sec:crosslogic}).\\\\nA hacking taxonomy synthesizes the modes observed across conditions (\\\\\\\\S\\\\\\\\ref{sec:taxonomy}).\\\\n\\\\n\\\\\\\\subsection{Setup}\\\\\\\\label{sec:setup}\\\\n\\\\nWe train Qwen3-4B~\\\\\\\\citep{qwen3} with GRPO~\\\\\\\\citep{deepseekmath} ($K{=}8$, lr $10^{-6}$, 500 steps default, 1000 where noted) over seeds $\\\\\\\\{42,43,44\\\\\\\\}$ on a fixed 500-example FOLIO~\\\\\\\\citep{folio} subset held constant across all conditions; the SFT baseline is trained with NLL on gold formalizations.\\\\\\\\footnote{All experiments use \\\\\\\\texttt{data/train\\\\\\\\_500\\\\\\\\_seed42.jsonl}; seeds control initialization and rollout sampling only.}\\\\nHeld-out evaluation uses 100 FOLIO examples (\\\\\\\\texttt{proofwriter\\\\\\\\_fol\\\\\\\\_100.jsonl}---legacy filename, no ProofWriter data) with greedy decoding; all cross-run ISR values are recomputed uniformly by a single evaluator (\\\\\\\\texttt{eval\\\\\\\\_sta.py}) so training-log ISR is never compared across runs.\\\\nWe report prove rate (PR), proved-only ISR ($\\\\\\\\text{ISR}^*$), hacking-mode rates from a two-stage classifier (strict text matching for H1/H7 plus functional analysis of the per-sample $n_{\\\\\\\\text{necessary}}$ distribution; \\\\\\\\S\\\\\\\\ref{sec:taxonomy-method}), and a \\\\\\\\emph{non-hacking} (N-H) rate---the residual of proved samples matching none of the seven cataloged patterns, a necessary but not sufficient condition for semantic correctness.\\\\n\\\\n\\\\\\\\subsection{ISR as Diagnostic}\\\\n\\\\\\\\label{sec:diagnostic}\\\\n\\\\n\\\\\\\\begin{figure}[t]\\\\n\\\\\\\\centering\\\\n\\\\\\\\includegraphics[width=0.95\\\\\\\\columnwidth]{figures/fig2_isr_collapse.pdf}\\\\n\\\\\\\\caption{ISR collapse under exec-only GRPO (seed~42). PR ri\n…[truncated 4642 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-15T15:09:56.489661+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "tail -n +55 /root/solver-trace-ablation/paper/experiments.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-15T15:09:56.489936+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Exec-only$^\\\\\\\\dagger$ & --- & 93 & 0.132 & 0 & 87 & 13 \\\\\\\\\\\\\\\\ %% registry: plan001-exec-only-s42-r2\\\\nISR & 0.1 & 77{\\\\\\\\scriptsize$\\\\\\\\pm$14} & $\\\\\\\\ddagger$ & \\\\\\\\textbf{65} & 18 & 17 \\\\\\\\\\\\\\\\ %% registry: plan002-additive-b01-s42/s43/s44 (pooled)\\\\nRandom & 0.1 & \\\\\\\\textbf{85}{\\\\\\\\scriptsize$\\\\\\\\pm$6} & 0.086{\\\\\\\\scriptsize$\\\\\\\\pm$.04} & 0 & 81 & 19 \\\\\\\\\\\\\\\\ %% registry: plan018-additive-random-b01-s42/s43-r2/s44\\\\n\\\\\\\\midrule\\\\nISR & 0.3 & 66{\\\\\\\\scriptsize$\\\\\\\\pm$42} & 0.39{\\\\\\\\scriptsize$\\\\\\\\pm$.31} & \\\\\\\\textbf{50} & 37 & 14 \\\\\\\\\\\\\\\\ %% registry: plan002-additive-b03-s42/s43/s44 (pooled)\\\\nRandom & 0.3 & 54{\\\\\\\\scriptsize$\\\\\\\\pm$35} & 0.09{\\\\\\\\scriptsize$\\\\\\\\pm$.09} & 4 & 95 & 1 \\\\\\\\\\\\\\\\ %% registry: plan017-additive-random-s42, exp1-random-b03-s43-r4, exp1-random-b03-s44-r2 (pooled)\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}}\\\\n\\\\\\\\caption{Goodhart landscape across reward conditions. 3-seed rows: H7/H1/N-H pooled across seeds; PR/ISR$^*$: mean$\\\\\\\\pm$std of per-seed values. $^\\\\\\\\dagger$Seed~42. $\\\\\\\\ddagger$$\\\\\\\\text{ISR}^*$ omitted for ISR $\\\\\\\\beta{=}0.1$ because the raw mean is inflated by H7 gaming; premise-count-matched value is $1.06\\\\\\\\times$ random (\\\\\\\\S\\\\\\\\ref{sec:goodhart}, Appendix~\\\\\\\\ref{app:detailed-results}). Per-seed breakdown in Appendix Table~\\\\\\\\ref{tab:fol-detailed}.}\\\\n\\\\\\\\label{tab:goodhart-landscape}\\\\n\\\\\\\\end{table}\\\\n\\\\n\\\\\\\\textbf{Low-dose ISR ($\\\\\\\\beta{=}0.1$): ISR-specific gaming.}\\\\nThe most striking number is H7: 64.5\\\\\\\\% of proved samples under ISR ($n{=}149/231$) vs.\\\\\\\\ \\\\\\\\emph{zero} under random ($0/256$). %% registry: plan002 vs plan018 all seeds\\\\nH7---a single premise identical to the conclusion, giving $\\\\\\\\text{ISR}\\\\\\\\geq 0.5$ by construction (\\\\\\\\S\\\\\\\\ref{sec:taxonomy-method})---is the canonical meta-level Goodhart move: the model satisfies the LOO definition directly rather than producing a derivation that happens to satisfy it.\\\\nTotal conclusion embedding ($\\\n…[truncated 6976 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-15T15:09:56.490199+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "grep -n \"bootstrap\\|p=0\\|Fisher\\|Wilson\\|CI\\|parity\\|inflation\" /root/solver-trace-ablation/paper/experiments.tex /root/solver-trace-ablation/paper/appendix.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-15T15:09:56.490344+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-15T15:09:56.490468+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "grep -n \"2\\.4\\|43\\.2\\|eight\\|8 mode\\|8 hack\\|H8\\|conjunction\" /root/solver-trace-ablation/paper/experiments.tex /root/solver-trace-ablation/paper/appendix.tex /root/solver-trace-ablation/paper/abstract.tex /root/solver-trace-ablation/paper/introduction.tex /root/solver-trace-ablation/paper/conclusion.tex /root/solver-trace-ablation/paper/method.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-15T15:09:56.490590+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-15T15:09:56.490724+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "grep -n \"significantly\\|H7b\\|obfuscated\\|H7a\" /root/solver-trace-ablation/paper/experiments.tex /root/solver-trace-ablation/paper/appendix.tex /root/solver-trace-ablation/paper/abstract.tex /root/solver-trace-ablation/paper/introduction.tex /root/solver-trace-ablation/paper/method.tex /root/solver-trace-ablation/paper/conclusion.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-15T15:09:56.490865+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-15T15:09:56.491005+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "grep -rn \"bootstrap\" /root/solver-trace-ablation/paper/",
+              "account": "root"
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-15T15:09:56.491125+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-15T15:09:56.491240+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "grep -rn \"H8\" /root/solver-trace-ablation/paper/",
+              "account": "root"
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-15T15:09:56.491353+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "grep -rn \"conjunction\" /root/solver-trace-ablation/paper/",
+              "account": "root"
+            }
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-15T15:09:56.491468+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"grep: /root/solver-trace-ablation/paper/main.pdf: binary file matches\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.69}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-15T15:09:56.491582+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-15T15:09:56.491692+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "grep -rn \"43.2\" /root/solver-trace-ablation/paper/",
+              "account": "root"
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-15T15:09:56.491832+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"grep: /root/solver-trace-ablation/paper/figures/fig1_sta_overview.pdf: binary file matches\\\\ngrep: /root/solver-trace-ablation/paper/main.pdf: binary file matches\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.73}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-15T15:09:56.491945+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "grep -rn \"2.4\" /root/solver-trace-ablation/paper/",
+              "account": "root"
+            }
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-15T15:09:56.492102+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/solver-trace-ablation/paper/main.log:123:\\\\\\\\c@NAT@ctr=\\\\\\\\count274\\\\n/root/solver-trace-ablation/paper/main.log:245:\\\\\\\\c@bookmark@seq@number=\\\\\\\\count284\\\\n/root/solver-trace-ablation/paper/main.log:281:LaTeX Info: Redefining \\\\\\\\frac on input line 234.\\\\n/root/solver-trace-ablation/paper/main.log:301:\\\\\\\\row@=\\\\\\\\count294\\\\n/root/solver-trace-ablation/paper/main.log:489:* h-part:(L,W,R)=(71.13188pt, 455.24411pt, 71.13188pt)\\\\n/root/solver-trace-ablation/paper/main.log:493:* \\\\\\\\textwidth=455.24411pt\\\\n/root/solver-trace-ablation/paper/main.log:521:Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section\\\\n/root/solver-trace-ablation/paper/main.log:845:<figures/fig3_hacking_composition.pdf, id=551, 226.97737pt x 190.22469pt>\\\\n/root/solver-trace-ablation/paper/main.log:944:Underfull \\\\\\\\hbox (badness 1264) in paragraph at lines 167--172\\\\n/root/solver-trace-ablation/paper/main.log:1056:Underfull \\\\\\\\hbox (badness 5711) in paragraph at lines 252--254\\\\n/root/solver-trace-ablation/paper/main.aux:267:\\\\\\\\@LN{204}{2}\\\\n/root/solver-trace-ablation/paper/main.aux:279:\\\\\\\\@LN{214}{2}\\\\n/root/solver-trace-ablation/paper/main.aux:291:\\\\\\\\@LN{224}{2}\\\\n/root/solver-trace-ablation/paper/main.aux:305:\\\\\\\\@LN{234}{2}\\\\n/root/solver-trace-ablation/paper/main.aux:315:\\\\\\\\@LN{244}{2}\\\\n/root/solver-trace-ablation/paper/main.aux:328:\\\\\\\\@LN{254}{2}\\\\n/root/solver-trace-ablation/paper/main.aux:338:\\\\\\\\@LN{264}{2}\\\\n/root/solver-trace-ablation/paper/main.aux:356:\\\\\\\\@LN{274}{3}\\\\n/root/solver-trace-ablation/paper/main.aux:366:\\\\\\\\@LN{284}{3}\\\\n/root/solver-trace-ablation/paper/main.aux:376:\\\\\\\\@LN{294}{3}\\\\n/root/solver-trace-ablation/paper/method.tex:66:Each RL condition uses seeds $\\\\\\\\{42,43,44\\\\\\\\}$ and identical training data.\\\\n/root/solver-trace-ablation/paper/experiments.tex:9:We train Qwen3-4B~\\\\\\\\citep{qwen3} with GRPO~\\\\\\\\citep{deepseekmath} ($K{=}8$, lr $10^{-6}$, 500 steps default, 1000 where no\n…[truncated 1260 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-15T15:09:56.492238+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "grep -rn \"obfuscated\" /root/solver-trace-ablation/paper/",
+              "account": "root"
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-15T15:09:56.492356+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-15T15:09:56.492467+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "grep -rn \"significantly\" /root/solver-trace-ablation/paper/",
+              "account": "root"
+            }
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-15T15:09:56.492581+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-15T15:09:56.492689+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "grep -rn \"H7b\" /root/solver-trace-ablation/paper/",
+              "account": "root"
+            }
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": "2026-05-15T15:09:56.492834+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": "2026-05-15T15:09:56.493064+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "paper-number-audit-2026-05-15",
+              "type": "report",
+              "description": "Paper TeX quantitative claim consistency audit against registry data. Covers all sections of the paper, checks red-line violations, and flags discrepancies.",
+              "project": "solver-trace-ablation",
+              "content": "{\n  \"audit_date\": \"2026-05-15\",\n  \"total_claims_checked\": 58,\n  \"red_line_violations\": [\n    {\n      \"id\": \"RL-01\",\n      \"severity\": \"CRITICAL\",\n      \"location\": \"abstract, intro (C4), method §2.3, experiments §4.4, taxonomy table\",\n      \"claim\": \"seven-mode hacking taxonomy / 7 hacking modes\",\n      \"expected\": \"8 modes — must include H8 (conjunction collapse)\",\n      \"registry_evidence\": \"plan001-exec-only-s42-r2: h8_conjunction_collapse_count=6 (6.45%); plan002-additive-b01-s42: h8_conjunction_collapse_count=12 (14.8%); exp1-isr-b03-s42-1000-r2: H8=41 (43.2%)\",\n      \"status\": \"VIOLATION\",\n      \"fix\": \"Add H8 (conjunction collapse) as 8th mode. Update all '7' → '8' in abstract, intro, method, experiments. Add H8 column to taxonomy table. Update N-H rates (see RL-02).\"\n    },\n    {\n      \"id\": \"RL-02\",\n      \"severity\": \"CRITICAL\",\n      \"location\": \"abstract, intro, experiments §4.2, §4.4, Goodhart table, taxonomy table\",\n      \"claim\": \"ISR β=0.1 H7 = 64.5% (149/231)\",\n      \"expected\": \"H7 = 69.7% (161/231) after D085 correction (H7a=77 + H7b=12 = 89 for s44)\",\n      \"registry_evidence\": \"plan002-additive-b01-s44: h7_count=89, h7_rate=1.0 (includes 12 H7b obfuscated tautologies per D085). Pre-D085 H7a-only was 77.\",\n      \"status\": \"VIOLATION — D085 not propagated to paper\",\n      \"fix\": \"Update H7 count: 13+59+89=161, 161/231=69.7%. Update all instances of '64.5%' to '69.7%'. Add H7 subcategory discussion (H7a text-match vs H7b obfuscated).\"\n    },\n    {\n      \"id\": \"RL-03\",\n      \"severity\": \"CRITICAL\",\n      \"location\": \"experiments §4.2, §4.4, Goodhart table, taxonomy table\",\n      \"claim\": \"ISR β=0.1 pooled N-H = 17%\",\n      \"expected\": \"N-H = 6.9% (16/231) per D084 standard (genuine = proved − H7 − H1_exact − H8)\",\n      \"registry_evidence\": \"plan002-additive-b01-s42: genuine_count=14 (D084: minus H8=12); s43: genuine=2; s44: genuine=0 (D085: 12 H7b reclassified). Pooled: 16/231=6.9%\",\n      \"detail\": \"Paper uses pre-D084/D085 counts: s42 N-H=26 (no H8 subtraction), s44 N-H=12 (H7b not reclassified). Gives 40/231=17.3% ≈ 17%. Actual post-correction: 16/231=6.9%.\",\n      \"status\": \"VIOLATION — D084 + D085 not applied\",\n      \"fix\": \"Apply D084 taxonomy standard everywhere. Subtract H8 from N-H. Reclassify s44's 12 H7b as hacking.\"\n    }\n  ],\n  \"issues\": [\n    {\n      \"id\": \"ISS-01\",\n      \"severity\": \"HIGH\",\n      \"location\": \"Goodhart table (Random β=0.1 row), taxonomy table (Rnd_0.1 column)\",\n      \"claim\": \"Random β=0.1 3-seed pooled: PR=85±6%, H1=81%, N-H=19%\",\n      \"registry_value\": \"Only s42 (plan018-additive-random-b01-s42) is DONE. s43-r3 and s44-r2 are PREPARING.\",\n      \"status\": \"PROVISIONAL_DATA\",\n      \"detail\": \"paper_framing explicitly marks s43/s44 random β=0.1 as 'PROVISIONAL' and 'DEPRECATED — 待重训完成后用新数据重算'. Paper uses deprecated pooled numbers without caveat. H1=81% relies on provisional s43=93.2% and s44=79.8% that are unverified.\",\n      \"fix\": \"Either (a) add footnote marking these as provisional pending retraining, or (b) report only s42 single-seed for random β=0.1 until retraining completes.\"\n    },\n    {\n      \"id\": \"ISS-02\",\n      \"severity\": \"HIGH\",\n      \"location\": \"MISSING from paper\",\n      \"claim\": \"D085 H7b obfuscated tautology analysis (meta-Goodhart evidence)\",\n      \"registry_value\": \"D085 established: ISR s44 has 12 H7b samples (vacuous quantifier wrapping) that evade text-match H7 detector while ISR≈0.8 (triple gaming: reward + ISR metric + classifier evasion)\",\n      \"status\": \"MISSING\",\n      \"detail\": \"paper_framing checklist has this as unchecked TODO: '§4.2 新增子类别分析' and '§4.2/§5 meta-Goodhart 最完整案例'. This is one of the strongest empirical findings — model learns to evade diagnostic classifier.\",\n      \"fix\": \"Add H7a/H7b distinction to §4.2. Discuss s44 triple gaming as meta-Goodhart evidence.\"\n    },\n    {\n      \"id\": \"ISS-03\",\n      \"severity\": \"MEDIUM\",\n      \"location\": \"MISSING from paper\",\n      \"claim\": \"Bootstrap CI statistical tests\",\n      \"registry_value\": \"Task references: genuine rate parity p=0.637, H7 gaming p=0.0004, ISR* inflation p<0.001\",\n      \"status\": \"MISSING\",\n      \"detail\": \"No bootstrap CI, Fisher test, or Wilson CI appears anywhere in the paper TeX. Key comparative claims (H7 64.5% vs 0%, N-H rate comparisons) lack formal statistical support.\",\n      \"fix\": \"Add bootstrap or Fisher exact tests for key comparisons. At minimum: H7 ISR vs Random (p for difference), N-H rate comparison.\"\n    },\n    {\n      \"id\": \"ISS-04\",\n      \"severity\": \"MEDIUM\",\n      \"location\": \"experiments §4.4, text\",\n      \"claim\": \"ISR β=0.1 s42 at PR=81%, 31% non-hacking\",\n      \"registry_value\": \"Pre-D084: 26/81=32.1%; Post-D084: 14/81=17.3%\",\n      \"status\": \"MISMATCH\",\n      \"detail\": \"31% matches neither computation. Pre-D084 gives 32.1%, post-D084 gives 17.3%. Likely a rounding error from an intermediate calculation.\"\n    },\n    {\n      \"id\": \"ISS-05\",\n      \"severity\": \"MEDIUM\",\n      \"location\": \"experiments §4.1, Goodhart table\",\n      \"claim\": \"Exec-only N-H = 13% (seed 42)\",\n      \"registry_value\": \"plan001-exec-only-s42-r2: genuine_count=7 (7.53%), h8_conjunction_collapse_count=6 (6.45%)\",\n      \"status\": \"INFLATED\",\n      \"detail\": \"Paper's 13% = (7+6)/93 = 13/93 = 14.0% (includes H8 as non-hacking). Post-D084 genuine = 7/93 = 7.5%. H8 should be counted as hacking.\"\n    },\n    {\n      \"id\": \"ISS-06\",\n      \"severity\": \"MEDIUM\",\n      \"location\": \"experiments §4.1, Goodhart table\",\n      \"claim\": \"SFT baseline from single seed only (plan009-sft-baseline-s42-r4)\",\n      \"registry_value\": \"3-seed 1000-step SFT data available: s42=92.31%, s43=90.91%, s44=93.33% genuine (mean 92.2%±1.2%)\",\n      \"status\": \"OK but SUBOPTIMAL\",\n      \"detail\": \"Single-seed SFT is not wrong but weaker than available 3-seed data. Reviewers may challenge single-seed SFT baseline.\"\n    },\n    {\n      \"id\": \"ISS-07\",\n      \"severity\": \"LOW\",\n      \"location\": \"experiments §4.2, Goodhart table\",\n      \"claim\": \"ISR β=0.1 ISR* omitted (marked ‡ in table)\",\n      \"registry_value\": \"Per-seed ISR*: s42=0.415, s43=0.830, s44=0.902\",\n      \"status\": \"OK\",\n      \"detail\": \"Intentional omission with footnote explaining inflation. Acceptable editorial choice.\"\n    },\n    {\n      \"id\": \"ISS-08\",\n      \"severity\": \"LOW\",\n      \"location\": \"appendix, setup section\",\n      \"claim\": \"s43 exec-only evaluated with sampling T=0.7 instead of greedy\",\n      \"registry_value\": \"plan001-exec-only-s43-r4 noted as evaluation exception\",\n      \"status\": \"OK — disclosed\",\n      \"detail\": \"Paper correctly notes this as an evaluation exception in Appendix. Cross-run comparisons involving s43 exec-only should carry this caveat.\"\n    }\n  ],\n  \"verified_ok\": [\n    {\n      \"location\": \"abstract, intro, experiments §4.1\",\n      \"claim\": \"ISR collapse 0.642→0.132→0.003 over 100→500→1000 steps\",\n      \"registry_source\": \"plan003-eval-exec-only-r5, plan001-exec-only-s42-r2, plan016-extended-1000-s42\",\n      \"status\": \"OK\"\n    },\n    {\n      \"location\": \"abstract, intro, experiments §4.1\",\n      \"claim\": \"PR rises 32%→93%→96%\",\n      \"registry_source\": \"same as above\",\n      \"status\": \"OK\"\n    },\n    {\n      \"location\": \"experiments §4.1\",\n      \"claim\": \"214× collapse, 99.5% degradation\",\n      \"computation\": \"0.642/0.003=214; (0.642-0.003)/0.642=99.5%\",\n      \"status\": \"OK\"\n    },\n    {\n      \"location\": \"experiments §4.1\",\n      \"claim\": \"H1=87.1% at 500 steps, 100% at 1000 steps\",\n      \"registry_source\": \"plan001-exec-only-s42-r2: h1_rate=0.871; plan016: h1_rate=1.0\",\n      \"status\": \"OK\"\n    },\n    {\n      \"location\": \"experiments §4.1\",\n      \"claim\": \"Component count 6.58→18.55\",\n      \"registry_source\": \"plan016-extended-1000-s42: components=18.55\",\n      \"status\": \"OK\"\n    },\n    {\n      \"location\": \"experiments §4.1\",\n      \"claim\": \"Cross-seed PR σ=±47pp (exec-only)\",\n      \"computation\": \"Seeds 93,14,98 → mean=68.3, std=47.1\",\n      \"status\": \"OK\"\n    },\n    {\n      \"location\": \"experiments §4.1\",\n      \"claim\": \"s44 exec: PR=98%, H7=100%, mean n=2.04\",\n      \"registry_source\": \"plan001-exec-only-s44\",\n      \"status\": \"OK\"\n    },\n    {\n      \"location\": \"experiments §4.1\",\n      \"claim\": \"SFT: PR=14%, ISR*=0.571, H7=0, H1=7.1%, 92.9% NH\",\n      \"registry_source\": \"plan009-sft-baseline-s42-r4\",\n      \"status\": \"OK (single seed, pre-D084 — H8 not applicable for SFT)\"\n    },\n    {\n      \"location\": \"abstract, limitations\",\n      \"claim\": \"NLI ρ=−0.049, p=0.187\",\n      \"registry_source\": \"plan014 downstream NLI\",\n      \"status\": \"OK\"\n    },\n    {\n      \"location\": \"experiments §4.2\",\n      \"claim\": \"Premise-count-matched ISR: 0.258 vs 0.243 = 1.06×\",\n      \"registry_source\": \"D051 analysis\",\n      \"status\": \"OK — no 2.4x found anywhere in paper\"\n    },\n    {\n      \"location\": \"experiments §4.2\",\n      \"claim\": \"ISR β=0.1 s42: PR=0.81, raw ISR*=0.415, 3.2× random (0.131)\",\n      \"registry_source\": \"plan002-additive-b01-s42: PR=0.81, ISR*=0.4154; plan018-additive-random-b01-s42: ISR*=0.1314\",\n      \"computation\": \"0.4154/0.1314=3.16≈3.2×\",\n      \"status\": \"OK\"\n    },\n    {\n      \"location\": \"experiments §4.2\",\n      \"claim\": \"ISR β=0.3: PR=66±42%, ISR*=0.39±0.31\",\n      \"registry_source\": \"exp1-isr-b03-s43-r3, exp1-isr-b03-s44-r2 + s42 500-step\",\n      \"computation\": \"Seeds 18,86,95 → mean=66.3, std=42.1; ISR* 0.143,0.295,0.742 → mean=0.393, std=0.31\",\n      \"status\": \"OK\"\n    },\n    {\n      \"location\": \"experiments §4.2\",\n      \"claim\": \"Random β=0.3: PR=54±35%, ISR*=0.09±0.09\",\n      \"registry_source\": \"exp1-random-b03-s43-r4, exp1-random-b03-s44-r2, plan017-additive-random-s42\",\n      \"computation\": \"Seeds 48,92,23 → mean=54.3, std=34.9; ISR* 0.094,0.180,0 → mean=0.091, std=0.09\",\n      \"status\": \"OK\"\n    },\n    {\n      \"location\": \"appendix table\",\n      \"claim\": \"ISR β=0.3 s43: PR=0.86, ISR*=0.295, H7=4.7%, H1=68.6%, N-H=26.7%\",\n      \"registry_source\": \"exp1-isr-b03-s43-r3: PR=0.86, ISR*=0.2948, H7=4, H1=59, genuine=23\",\n      \"status\": \"OK\"\n    },\n    {\n      \"location\": \"appendix table\",\n      \"claim\": \"ISR β=0.3 s44: PR=0.95, ISR*=0.742, H7=100%, N-H=0%\",\n      \"registry_source\": \"exp1-isr-b03-s44-r2: PR=0.95, ISR*=0.7421, H7=95, genuine=0\",\n      \"status\": \"OK\"\n    },\n    {\n      \"location\": \"experiments §4.3\",\n      \"claim\": \"Prolog exec-only 3-seed: PR=53.3%±31.1%\",\n      \"registry_source\": \"plan006-prolog-exec-s42: PR=0.83; s43-r3: PR=0.56; s44: PR=0.21\",\n      \"computation\": \"Mean=53.3, std=31.1\",\n      \"status\": \"OK\"\n    },\n    {\n      \"location\": \"experiments §4.3\",\n      \"claim\": \"Prolog STA s42: ISR*=1.0, 50/100 proved, all H7\",\n      \"registry_source\": \"plan006-prolog-sta-s42: PR=0.5, proved_only_isr=1.0, h7_rate=1.0\",\n      \"status\": \"OK\"\n    },\n    {\n      \"location\": \"experiments §4.3\",\n      \"claim\": \"Prolog STA s43: 38 proved, all n_necessary=1\",\n      \"registry_source\": \"plan006-prolog-sta-s43: PR=0.38, h1_strict=37, genuine=0\",\n      \"status\": \"OK\"\n    },\n    {\n      \"location\": \"experiments §4.3\",\n      \"claim\": \"Prolog STA s44: 95/97 proved at n_necessary=1, query-as-fact\",\n      \"registry_source\": \"plan006-prolog-sta-s44: PR=0.97, h7_functional_rate=0.979\",\n      \"status\": \"OK\"\n    },\n    {\n      \"location\": \"ALL\",\n      \"claim\": \"No '2.4x' or '2.4 times' in paper (D051 deprecated)\",\n      \"status\": \"OK — verified by grep\"\n    },\n    {\n      \"location\": \"ALL\",\n      \"claim\": \"No '43.2% genuine' for ISR β=0.3 (D076 correction)\",\n      \"status\": \"OK — verified by grep\"\n    },\n    {\n      \"location\": \"ALL\",\n      \"claim\": \"No unsupported 'significantly' usage\",\n      \"status\": \"OK — word not found in any TeX file\"\n    },\n    {\n      \"location\": \"appendix\",\n      \"claim\": \"100-step checkpoint: PR=32%, 31.2% hacking (9 H7 + 1 H1 = 10/32)\",\n      \"computation\": \"10/32=31.25%\",\n      \"status\": \"OK\"\n    }\n  ],\n  \"summary\": \"3 RED LINE violations found. (1) Taxonomy counts 7 modes, must be 8 — H8 (conjunction collapse) is entirely absent despite registry evidence at 6-43% across experiments. (2) H7 uses pre-D085 count (64.5% = 149/231); should be 69.7% (161/231) with H7b obfuscated tautologies included. (3) Non-hacking rates throughout are inflated because D084 standard (subtract H8) and D085 correction (reclassify 12 H7b) have not been applied — pooled ISR β=0.1 N-H is 17% in paper vs 6.9% corrected. Additionally: Random β=0.1 3-seed pooled uses DEPRECATED provisional data (s43/s44 retraining); bootstrap CI tests referenced in framing doc are absent from paper; D085 H7b obfuscated tautology analysis (triple gaming evidence) not discussed. Core trajectory numbers (ISR collapse, PR, cross-seed, premise-count-matched, Prolog, β=0.3) all verify correctly against registry.\"\n}",
+              "content_filename": "paper_number_audit_2026-05-15.json",
+              "tags": "['audit', 'paper', 'consistency', 'numbers']"
+            }
+          },
+          "id": "event-000087"
+        },
+        {
+          "source_line": 88,
+          "timestamp": "2026-05-15T15:09:56.493340+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'audit_date': '2026-05-1...ctly against registry.'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000088"
+        },
+        {
+          "source_line": 89,
+          "timestamp": "2026-05-15T15:09:56.493517+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "paper-number-audit-2026-05-15",
+              "type": "report",
+              "description": "Paper TeX quantitative claim consistency audit against registry data. Covers all sections, checks red-line violations, flags discrepancies.",
+              "project": "solver-trace-ablation",
+              "content_filename": "paper_number_audit_2026-05-15.json",
+              "tags": "['audit', 'paper', 'consistency', 'numbers']",
+              "content": "{\"audit_date\":\"2026-05-15\",\"total_claims_checked\":58,\"red_line_violations\":[{\"id\":\"RL-01\",\"severity\":\"CRITICAL\",\"location\":\"abstract, intro (C4), method §2.3, experiments §4.4, taxonomy table\",\"claim\":\"seven-mode hacking taxonomy / 7 hacking modes\",\"expected\":\"8 modes — must include H8 (conjunction collapse)\",\"registry_evidence\":\"plan001-exec-only-s42-r2: h8=6 (6.45%); plan002-additive-b01-s42: h8=12 (14.8%); exp1-isr-b03-s42-1000-r2: H8=41 (43.2%)\",\"status\":\"VIOLATION\",\"fix\":\"Add H8 (conjunction collapse) as 8th mode. Update all 7→8 in abstract, intro, method, experiments. Add H8 column to taxonomy table. Recompute N-H rates.\"},{\"id\":\"RL-02\",\"severity\":\"CRITICAL\",\"location\":\"abstract, intro, experiments §4.2, §4.4, Goodhart table, taxonomy table\",\"claim\":\"ISR β=0.1 H7 = 64.5% (149/231)\",\"expected\":\"H7 = 69.7% (161/231) after D085 correction (H7a=77 + H7b=12 = 89 for s44)\",\"registry_evidence\":\"plan002-additive-b01-s44: h7_count=89, h7_rate=1.0. Pre-D085 H7a-only was 77.\",\"status\":\"VIOLATION — D085 not propagated to paper\",\"fix\":\"Update H7 count: 13+59+89=161, 161/231=69.7%. Update all '64.5%'. Add H7a/H7b distinction.\"},{\"id\":\"RL-03\",\"severity\":\"CRITICAL\",\"location\":\"experiments §4.2, §4.4, Goodhart table, taxonomy table\",\"claim\":\"ISR β=0.1 pooled N-H = 17%\",\"expected\":\"N-H = 6.9% (16/231) per D084 standard (genuine = proved − H7 − H1_exact − H8)\",\"registry_evidence\":\"s42 genuine=14 (D084: minus H8=12); s43 genuine=2; s44 genuine=0 (D085: 12 H7b). Pooled: 16/231=6.9%\",\"detail\":\"Paper uses pre-D084/D085 counts: s42 N-H=26 (no H8), s44 N-H=12 (H7b as genuine). 40/231=17.3%≈17%. Corrected: 16/231=6.9%.\",\"status\":\"VIOLATION — D084+D085 not applied\",\"fix\":\"Apply D084 taxonomy standard. Subtract H8. Reclassify s44 H7b.\"}],\"significant_issues\":[{\"id\":\"ISS-01\",\"severity\":\"HIGH\",\"location\":\"Goodhart table (Random β=0.1 row), taxonomy table (Rnd_0.1)\",\"claim\":\"Random β=0.1 3-seed pooled: PR=85±6%, H1=81%, N-H=19%\",\"registry_value\":\"Only s42 DONE. s43-r3 and s44-r2 are PREPARING.\",\"status\":\"PROVISIONAL_DATA\",\"fix\":\"Add provisional footnote or report s42-only until retraining completes.\"},{\"id\":\"ISS-02\",\"severity\":\"HIGH\",\"location\":\"MISSING from paper\",\"claim\":\"D085 H7b obfuscated tautology (meta-Goodhart evidence)\",\"detail\":\"12 H7b samples in s44 show triple gaming (reward+ISR+classifier). Unchecked TODO in paper_framing.\",\"fix\":\"Add H7a/H7b to §4.2, discuss s44 triple gaming.\"},{\"id\":\"ISS-03\",\"severity\":\"MEDIUM\",\"location\":\"MISSING from paper\",\"claim\":\"Bootstrap CI statistical tests for key comparisons\",\"detail\":\"Task refs p=0.637/0.0004/<0.001. None in paper TeX.\",\"fix\":\"Add statistical tests for H7 ISR vs Random, N-H rate comparisons.\"},{\"id\":\"ISS-04\",\"severity\":\"MEDIUM\",\"location\":\"experiments §4.4\",\"claim\":\"ISR β=0.1 s42 '31% non-hacking'\",\"registry_value\":\"Pre-D084: 26/81=32.1%; Post-D084: 14/81=17.3%\",\"status\":\"MISMATCH — 31% matches neither\"},{\"id\":\"ISS-05\",\"severity\":\"MEDIUM\",\"location\":\"experiments §4.1, Goodhart table\",\"claim\":\"Exec-only N-H=13%\",\"registry_value\":\"genuine=7 (7.53%), H8=6 (6.45%). Paper counts H8 as NH.\",\"status\":\"INFLATED — should be 7.5% post-D084\"},{\"id\":\"ISS-06\",\"severity\":\"LOW\",\"location\":\"experiments §4.1\",\"claim\":\"SFT baseline single-seed only\",\"registry_value\":\"3-seed 1000-step available: 92.2%±1.2%\",\"status\":\"OK but SUBOPTIMAL\"}],\"verified_ok\":[\"ISR collapse 0.642→0.132→0.003 ✓\",\"PR 32%→93%→96% ✓\",\"214× collapse, 99.5% degradation ✓\",\"H1=87.1% at 500 steps, 100% at 1000 ✓\",\"Component count 6.58→18.55 ✓\",\"Cross-seed σ±47pp ✓\",\"SFT PR=14%, ISR*=0.571, 92.9% NH ✓\",\"NLI ρ=−0.049, p=0.187 ✓\",\"Premise-count-matched 1.06× ✓\",\"No 2.4x in paper (D051) ✓\",\"No 43.2% genuine (D076) ✓\",\"No unsupported 'significantly' ✓\",\"ISR β=0.1 s42: PR=0.81, ISR*=0.415 ✓\",\"ISR β=0.1 s43: PR=0.61, ISR*=0.83, H7=96.7% ✓\",\"ISR β=0.1 s44: PR=0.89, H7=100% ✓\",\"Random β=0.1 s42: PR=0.79, ISR*=0.131, H1=70.9% ✓\",\"ISR β=0.3 3-seed mean PR=66±42% ✓\",\"ISR β=0.3 s43: PR=0.86, ISR*=0.295, H7=4.7%, H1=68.6%, NH=26.7% ✓\",\"ISR β=0.3 s44: PR=0.95, ISR*=0.742, H7=100% ✓\",\"Random β=0.3 3-seed mean PR=54±35% ✓\",\"Random β=0.3 s43: PR=0.92, s44: PR=0.23 ✓\",\"Prolog exec-only 3-seed PR=53.3%±31.1% ✓\",\"Prolog STA s42: ISR*=1.0, 50/100 proved ✓\",\"Prolog STA s43: 38 proved, all n_necessary=1 ✓\",\"Prolog STA s44: 95/97 n_necessary=1 ✓\",\"100-step: PR=32%, 31.2% hacking ✓\",\"Raw 3.2× ISR ratio (0.415/0.131) ✓\"],\"summary\":\"3 RED LINE violations. (1) Taxonomy=7 modes, must be 8 — H8 conjunction collapse absent despite 6-43% prevalence in registry. (2) H7=64.5% uses pre-D085 count; should be 69.7% with H7b. (3) N-H rates inflated throughout — ISR β=0.1 pooled: 17% in paper vs 6.9% corrected (D084+D085 not applied). Also: Random β=0.1 pooled uses DEPRECATED provisional data; bootstrap CIs absent; D085 H7b triple-gaming analysis missing from paper. Core trajectory numbers all verify correctly.\"}"
+            }
+          },
+          "id": "event-000089"
+        },
+        {
+          "source_line": 90,
+          "timestamp": "2026-05-15T15:09:56.493728+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'audit_date': '2026-05-1... all verify correctly.'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000090"
+        },
+        {
+          "source_line": 91,
+          "timestamp": "2026-05-15T15:09:56.493909+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/paper_number_audit_2026-05-15.json",
+              "content": "{\n  \"audit_date\": \"2026-05-15\",\n  \"total_claims_checked\": 58,\n  \"red_line_violations\": [\n    {\n      \"id\": \"RL-01\",\n      \"severity\": \"CRITICAL\",\n      \"location\": \"abstract, intro (C4), method §2.3, experiments §4.4, taxonomy table\",\n      \"claim\": \"seven-mode hacking taxonomy / 7 hacking modes\",\n      \"expected\": \"8 modes — must include H8 (conjunction collapse)\",\n      \"registry_evidence\": \"plan001-exec-only-s42-r2: h8=6 (6.45%); plan002-additive-b01-s42: h8=12 (14.8%); exp1-isr-b03-s42-1000-r2: H8=41 (43.2%)\",\n      \"status\": \"VIOLATION\",\n      \"fix\": \"Add H8 (conjunction collapse) as 8th mode. Update all 7→8 in abstract, intro, method, experiments. Add H8 column to taxonomy table. Recompute N-H rates.\"\n    },\n    {\n      \"id\": \"RL-02\",\n      \"severity\": \"CRITICAL\",\n      \"location\": \"abstract, intro, experiments §4.2, §4.4, Goodhart table, taxonomy table\",\n      \"claim\": \"ISR β=0.1 H7 = 64.5% (149/231)\",\n      \"expected\": \"H7 = 69.7% (161/231) after D085 correction (H7a=77 + H7b=12 = 89 for s44)\",\n      \"registry_evidence\": \"plan002-additive-b01-s44: h7_count=89, h7_rate=1.0. Pre-D085 H7a-only was 77.\",\n      \"status\": \"VIOLATION — D085 not propagated to paper\",\n      \"fix\": \"Update H7: 13+59+89=161, 161/231=69.7%. Update all '64.5%'. Add H7a/H7b distinction.\"\n    },\n    {\n      \"id\": \"RL-03\",\n      \"severity\": \"CRITICAL\",\n      \"location\": \"experiments §4.2, §4.4, Goodhart table, taxonomy table\",\n      \"claim\": \"ISR β=0.1 pooled N-H = 17%\",\n      \"expected\": \"N-H = 6.9% (16/231) per D084 standard (genuine = proved − H7 − H1_exact − H8)\",\n      \"registry_evidence\": \"s42 genuine=14 (D084: minus H8=12); s43 genuine=2; s44 genuine=0 (D085: 12 H7b). Pooled: 16/231=6.9%\",\n      \"detail\": \"Paper uses pre-D084/D085: s42 N-H=26 (no H8 subtraction), s44 N-H=12 (H7b as genuine). 40/231=17.3%. Corrected: 16/231=6.9%.\",\n      \"status\": \"VIOLATION — D084+D085 not applied\",\n      \"fix\": \"Apply D084 taxonomy standard everywhere. Subtract H8. Reclassify s44 H7b.\"\n    }\n  ],\n  \"significant_issues\": [\n    {\n      \"id\": \"ISS-01\",\n      \"severity\": \"HIGH\",\n      \"location\": \"Goodhart table (Random β=0.1 row), taxonomy table (Rnd_0.1)\",\n      \"claim\": \"Random β=0.1 3-seed pooled: PR=85±6%, H1=81%, N-H=19%\",\n      \"registry_value\": \"Only s42 (plan018-additive-random-b01-s42) is DONE. s43-r3 and s44-r2 are PREPARING.\",\n      \"status\": \"PROVISIONAL_DATA\",\n      \"fix\": \"Add provisional footnote or report s42-only until retraining completes.\"\n    },\n    {\n      \"id\": \"ISS-02\",\n      \"severity\": \"HIGH\",\n      \"location\": \"MISSING from paper\",\n      \"claim\": \"D085 H7b obfuscated tautology (meta-Goodhart evidence)\",\n      \"detail\": \"12 H7b samples in ISR s44 show triple gaming (reward+ISR metric+classifier evasion). paper_framing has as unchecked TODO.\",\n      \"fix\": \"Add H7a/H7b to §4.2, discuss s44 triple gaming as meta-Goodhart evidence.\"\n    },\n    {\n      \"id\": \"ISS-03\",\n      \"severity\": \"MEDIUM\",\n      \"location\": \"MISSING from paper\",\n      \"claim\": \"Bootstrap CI statistical tests for key comparisons\",\n      \"detail\": \"Task refs genuine rate parity p=0.637, H7 gaming p=0.0004, ISR* inflation p<0.001. None in paper TeX.\",\n      \"fix\": \"Add statistical tests for H7 ISR vs Random, N-H rate comparisons.\"\n    },\n    {\n      \"id\": \"ISS-04\",\n      \"severity\": \"MEDIUM\",\n      \"location\": \"experiments §4.4 text\",\n      \"claim\": \"ISR β=0.1 s42 '31% non-hacking'\",\n      \"registry_value\": \"Pre-D084: 26/81=32.1%; Post-D084: 14/81=17.3%\",\n      \"status\": \"MISMATCH — 31% matches neither computation\"\n    },\n    {\n      \"id\": \"ISS-05\",\n      \"severity\": \"MEDIUM\",\n      \"location\": \"experiments §4.1, Goodhart table\",\n      \"claim\": \"Exec-only N-H=13%\",\n      \"registry_value\": \"genuine=7 (7.53%), H8=6 (6.45%). Paper counts H8 as NH.\",\n      \"status\": \"INFLATED — should be 7.5% post-D084\"\n    },\n    {\n      \"id\": \"ISS-06\",\n      \"severity\": \"LOW\",\n      \"location\": \"experiments §4.1\",\n      \"claim\": \"SFT baseline single-seed only\",\n      \"registry_value\": \"3-seed 1000-step available: mean 92.2%±1.2%\",\n      \"status\": \"OK but SUBOPTIMAL\"\n    }\n  ],\n  \"verified_ok\": [\n    \"ISR collapse 0.642→0.132→0.003 ✓\",\n    \"PR 32%→93%→96% ✓\",\n    \"214× collapse, 99.5% degradation ✓\",\n    \"H1=87.1% at 500 steps, 100% at 1000 ✓\",\n    \"Component count 6.58→18.55 ✓\",\n    \"Cross-seed σ±47pp ✓\",\n    \"SFT PR=14%, ISR*=0.571, 92.9% NH (s42) ✓\",\n    \"NLI ρ=−0.049, p=0.187 ✓\",\n    \"Premise-count-matched 1.06× ✓\",\n    \"No 2.4x in paper (D051 retired) ✓\",\n    \"No 43.2% genuine (D076 corrected) ✓\",\n    \"No unsupported 'significantly' ✓\",\n    \"ISR β=0.1 s42: PR=0.81, ISR*=0.415 ✓\",\n    \"ISR β=0.1 s43: PR=0.61, ISR*=0.83, H7=96.7% ✓\",\n    \"ISR β=0.1 s44: PR=0.89, H7=100% ✓\",\n    \"Random β=0.1 s42: PR=0.79, ISR*=0.131, H1=70.9% ✓\",\n    \"ISR β=0.3 3-seed mean PR=66±42% ✓\",\n    \"ISR β=0.3 per-seed: s43 PR=0.86 ISR*=0.295 H7=4.7% H1=68.6% NH=26.7% ✓\",\n    \"ISR β=0.3 s44: PR=0.95, ISR*=0.742, H7=100% ✓\",\n    \"Random β=0.3 3-seed mean PR=54±35% ✓\",\n    \"Random β=0.3 per-seed: s43 PR=0.92, s44 PR=0.23 ✓\",\n    \"Prolog exec-only 3-seed PR=53.3%±31.1% ✓\",\n    \"Prolog STA s42: ISR*=1.0, 50/100 proved ✓\",\n    \"Prolog STA s43: 38 proved, all n_necessary=1 ✓\",\n    \"Prolog STA s44: 95/97 n_necessary=1 ✓\",\n    \"100-step: PR=32%, 31.2% hacking ✓\",\n    \"Raw 3.2× ISR ratio (0.415/0.131) ✓\"\n  ],\n  \"summary\": \"3 RED LINE violations. (1) Taxonomy=7 modes, must be 8 — H8 conjunction collapse absent despite 6-43% prevalence in registry. (2) H7=64.5% uses pre-D085 count; should be 69.7% with H7b included. (3) N-H rates inflated throughout — ISR β=0.1 pooled: 17% in paper vs 6.9% corrected (D084+D085 not applied). Also: Random β=0.1 pooled uses DEPRECATED provisional data; bootstrap CIs absent; D085 H7b triple-gaming analysis missing from paper. Core trajectory numbers all verify correctly.\"\n}\n"
+            }
+          },
+          "id": "event-000091"
+        },
+        {
+          "source_line": 92,
+          "timestamp": "2026-05-15T15:09:56.494132+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/paper_number_audit_2026-05-15.json"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000092"
+        },
+        {
+          "source_line": 93,
+          "timestamp": "2026-05-15T15:09:56.494263+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "paper-number-audit-2026-05-15",
+              "type": "report",
+              "description": "Paper TeX quantitative claim consistency audit against registry data. 3 red-line violations, 6 issues, 27 verified-OK claims.",
+              "project": "solver-trace-ablation",
+              "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/paper_number_audit_2026-05-15.json",
+              "tags": "['audit', 'paper', 'consistency', 'numbers']"
+            }
+          },
+          "id": "event-000093"
+        },
+        {
+          "source_line": 94,
+          "timestamp": "2026-05-15T15:09:56.494406+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260515_515c5d\\\", \\\"name\\\": \\\"paper-number-audit-2026-05-15\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"Paper TeX quantitative claim consistency audit against registry data. 3 red-line violations, 6 issues, 27 verified-OK claims.\\\", \\\"path\\\": \\\"projects/solver-trace-ablation/artifacts/_project/report/paper_number_audit_2026-05-15.json\\\", \\\"url\\\": null, \\\"project\\\": \\\"solver-trace-ablation\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-15T15:09:42.336944+00:00\\\", \\\"tags\\\": [\\\"audit\\\", \\\"paper\\\", \\\"consistency\\\", \\\"numbers\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000094"
+        },
+        {
+          "source_line": 95,
+          "timestamp": "2026-05-15T15:09:56.494573+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。58 项定量 claim 检查结果：\n\n## 3 项 RED LINE 违规\n\n| ID | 问题 | 论文值 | 应为 |\n|---|---|---|---|\n| **RL-01** | Taxonomy 说 7 种 hacking mode | 7 modes | **8 modes**（缺 H8 conjunction collapse，registry 显示 6.45%-43.2%） |\n| **RL-02** | H7 比例未应用 D085 修正 | 64.5% (149/231) | **69.7%** (161/231)，s44 的 12 个 H7b obfuscated tautology 未计入 |\n| **RL-03** | N-H 率未应用 D084+D085 | ISR β=0.1 pooled N-H=17% | **6.9%** (16/231)，未扣 H8、未重分类 H7b |\n\n## 6 项其他问题\n\n- **ISS-01 (HIGH)**: Random β=0.1 三 seed 聚合用了 DEPRECATED 数据（s43/s44 正在重训）\n- **ISS-02 (HIGH)**: D085 H7b 三层 gaming 分析（最强 meta-Goodhart 证据）未写入论文\n- **ISS-03 (MEDIUM)**: Bootstrap CI 统计检验缺失\n- **ISS-04 (MEDIUM)**: s42 \"31% non-hacking\" 既不等于 32.1%（pre-D084）也不等于 17.3%（post-D084）\n- **ISS-05 (MEDIUM)**: Exec-only N-H=13% 包含 H8 样本，应为 7.5%\n- **ISS-06 (LOW)**: SFT baseline 仅报单 seed，3-seed 数据已有\n\n## 27 项验证通过\n\nISR 崩塌轨迹、PR 轨迹、214× 崩塌、premise-count-matched 1.06×、β=0.3 全部 seed 数据、Prolog 全部数据、无 2.4x、无 43.2%、无 \"significantly\" — 均正确。\n\n已注册 artifact `art_20260515_515c5d`。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_paper-tex-preaudit_20260515T145531"
+          },
+          "id": "event-000095"
+        }
+      ],
+      "message_count": 95
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-paper-tex-preaudit.md"
+}

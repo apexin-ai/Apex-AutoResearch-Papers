@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "648de9d12e05e7fef773",
+  "project": "solver-trace-ablation",
+  "kind": "conversation",
+  "title": "write related work expansion",
+  "task_key": "worker_write_related-work-expansion_20260514T230849",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_write_related-work-expansion_20260514T230849.jsonl",
+    "occurrence": 1,
+    "bytes": 180,
+    "sha256": "5b92cc40cd12ee979280e758d4a3eaf262c2577498f2bb8e13152a42c73abb12"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T23:09:06.199114+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 11:10pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_write_related-work-expansion_20260514T230849"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/write-related-work-expansion.md"
+}

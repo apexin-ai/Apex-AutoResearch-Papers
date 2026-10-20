@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bbd7ba1d0fe693cf71ef",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "diagnose w2 qwen3 8b isr pilot r2",
+  "task_key": "worker_diagnose_w2-qwen3-8b-isr-pilot-r2_20260516T105130",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_w2-qwen3-8b-isr-pilot-r2_20260516T105130_result.json",
+    "occurrence": 1,
+    "bytes": 579,
+    "sha256": "e24af63c6e454aa8829b99d06200f9af6a8cf5d9d703b4077035ff39218c43b7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结果：训练失败。** Step 1 即 OOM。\n\n- K=4 (r1) OOM → K=2 (r2) 仍然 OOM\n- Qwen3-8B GRPO 在单卡 A100-95GB 上即使 K=2、batch=1 也放不下——forward pass 已占 94.75 GiB，compute_loss 阶段 lm_head 再申请 1.16 GiB 失败\n- 输出目录仅 reward_log.jsonl（1 step），无 checkpoint\n\nRegistry 已更新为 `DONE/failed`，cron 已删除。\n\n**下一步选项**：若要继续 8B 实验，需要 (1) 双卡并行，或 (2) QLoRA 4-bit 量化，或 (3) 进一步缩减 max_completion_length / 换更激进的 offload 策略。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-w2-qwen3-8b-isr-pilot-r2.md"
+}

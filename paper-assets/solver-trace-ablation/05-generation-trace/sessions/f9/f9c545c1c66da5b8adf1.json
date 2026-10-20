@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f9c545c1c66da5b8adf1",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops d142 status check",
+  "task_key": "worker_ops_d142-status-check_20260519T070507",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d142-status-check_20260519T070507_result.json",
+    "occurrence": 1,
+    "bytes": 1834,
+    "sha256": "799aa19fd1010c4e44cc7f0dfab2f3dd2ff560e3b73dd0f1fc9d6fdb7d474226"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## D142 Gated ISR 实验状态报告\n\n### 1. GPU 状态\n**空闲**。cuda:0 无进程，0MiB 占用。\n\n### 2. Pipeline 状态\n**全部完成**，failures: 0。最后一个 seed (s54) 于 `2026-05-19 06:39:20 UTC` 完成。Pipeline 已自动清理 checkpoint 权重，磁盘 41G/250G (17%)。\n\n### 3. 各 seed 详细 metrics\n\n| Metric | s52 | s53 | s54 |\n|--------|-----|-----|-----|\n| **PR** (Prove Rate) | **100%** (100/100) | **96%** (96/100) | **91%** (91/100) |\n| **ISR*** (proved_only_mean) | **1.0000** | **0.6514** | **0.2731** |\n| **TS%** (H7 tautology) | 0.0% | 0.0% | 0.0% |\n| **CE%** (H1 concl-in-prem) | 0.0% | 3.1% (3/96) | 3.3% (3/91) |\n| **PG%** (H8 conj-collapse) | **100.0%** (100/100) | **89.6%** (86/96) | **0.0%** (0/91) |\n| **Genuine%** | **0.0%** (0/100) | **7.3%** (7/96) | **96.7%** (88/91) |\n| **CI%** (content-indep) | 100.0% (100/100) | 0.0% | 35.2% (32/91) |\n| **ISR=1.0 count** | 100 (100%) | 5 (5.2%) | 0 (0%) |\n| Single premise | 0 | 0 | 0 |\n\n### 4. 关键发现\n\n**s52 完全崩溃**：100% PG (conjunction collapse)，ISR=1.0 且 genuine=0%。模型学会了一个退化策略——结论 = 所有前提的合取（`∀x(P(x)→Q(x)) ∧ ∃x P(x)`），content-independent predicates 100%。所有样本使用相同模板化公式，完全忽略原始问题内容。\n\n**s53 大部分崩溃**：89.6% PG，仅 7.3% genuine。比 s52 稍好但仍以 hacking 为主。\n\n**s54 表现正常**：0% PG，96.7% genuine，ISR*=0.27。这个 seed 没有学到 conjunction collapse 策略。\n\n**跨 seed 方差极大**：同一 gated ISR (b=0.1) 配置，三个 seed 的 genuine% 分别为 0%、7.3%、96.7%。Gated ISR reward 未能稳定抑制 PG collapse——2/3 seeds 仍崩溃。\n\n注：classify.json 中无 S-NH% 字段，如需该指标需另行计算。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-d142-status-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8bbdebd4780c6f587a6e",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "diagnose sweep isr b005 s43",
+  "task_key": "worker_diagnose_sweep-isr-b005-s43_20260517T084958",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_sweep-isr-b005-s43_20260517T084958_result.json",
+    "occurrence": 1,
+    "bytes": 1347,
+    "sha256": "868fe6fb2cd5ce249fb3d8156b3ba4cae2e2213b90d9362241c26bb39d8cf0a0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n### 根因：磁盘满（C003 再犯）\n\n`/dev/md0` → `/root/autodl-tmp` **250G/250G，剩 28K，100% 满**。\n\n两个实验都在 step 50 首次保存 checkpoint 时崩溃，错误完全相同：\n```\nsafetensors_rust.SafetensorError: I/O error: No space left on device (os error 28)\n```\n\n调用链：`trainer.train()` → `_save_checkpoint` → `save_pretrained` → `safe_save_file`\n\n### 磁盘占用分析\n\n`/root/autodl-tmp/outputs/` 占 **211G**，主要被 7 个 ~31G 的旧 checkpoint 目录占满：\n\n| 目录 | 大小 |\n|------|------|\n| plan001_exec_only_s43_1000_r2 | 31G |\n| plan001_exec_only_s46 | 31G |\n| plan002_additive_b01_s45 | 31G |\n| plan002_additive_b01_s46 | 31G |\n| plan018_random_b01_s45 | 31G |\n| plan018_random_b01_s46 | 31G |\n| sweep_random_b005_s42 | 31G |\n\n加上 models/ 36G，总计 ~253G 超出 250G 容量。\n\n### 结论\n\n- **同一原因**：两个实验因同一块磁盘满而失败\n- **非 code bug**：资源不足，可重试\n- **前提**：必须先清理旧 checkpoint 释放空间（清理 2 个 31G 目录即可腾出 ~62G）\n- **注意 C010/C011 约束**：清理前需交叉检查 registry，不能删 `conclusion=success` 且标记 `needs-re-eval` 的 checkpoint\n\n需要我检查 registry 状态并制定安全的清理方案吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-sweep-isr-b005-s43.md"
+}

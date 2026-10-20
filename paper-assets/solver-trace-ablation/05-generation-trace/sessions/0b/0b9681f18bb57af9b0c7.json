@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0b9681f18bb57af9b0c7",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code data preparation",
+  "task_key": "worker_code_data-preparation_20260513T215917",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_data-preparation_20260513T215917_result.json",
+    "occurrence": 1,
+    "bytes": 670,
+    "sha256": "143b245e4a5860dec9f5a5791b66f941cad0d23b366c1394876c4cca907f6c77"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。产出汇总：\n\n**数据文件** (6个)：\n- `data/phase0_100.jsonl` — 100 条 Phase 0 baseline\n- `data/train_500.jsonl` — 500 条训练集 (与 phase0 不重叠)\n- `data/test_100.jsonl` — 100 条 held-out 测试集 (与 phase0、train 均不重叠)\n- `data/train_500_seed{42,123,456}.jsonl` — 3 种 shuffle\n\n**脚本** (2个)：\n- `scripts/prepare_data.py` — 数据拆分 + shuffle 生成\n- `scripts/verify_xor.py` — XOR 展开验证 + 重叠检查\n\n**验证结果**：\n- 3 集完全不重叠 ✓\n- XOR 展开无错误、无残留 ✓\n- 126 个括号不匹配来自 FOLIO 上游标注缺陷，非本项目引入"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-data-preparation.md"
+}

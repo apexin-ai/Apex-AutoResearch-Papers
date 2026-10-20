@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "ee19a91092a92c075ff1",
+  "project": "solver-trace-ablation",
+  "kind": "conversation",
+  "title": "analysis exp1 isr b03 s44 r2",
+  "task_key": "worker_analysis_exp1-isr-b03-s44-r2_20260515T001756",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_exp1-isr-b03-s44-r2_20260515T001756.jsonl",
+    "occurrence": 1,
+    "bytes": 287,
+    "sha256": "1ac8bf2ab14492be7edf0f03976c0570270671d05d460455262d2204e76f05c6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T00:18:04.891874+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "API Error: 500 Internal server error. This is a server-side issue, usually temporary — try again in a moment. If it persists, check status.claude.com."
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp1-isr-b03-s44-r2_20260515T001756"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-exp1-isr-b03-s44-r2.md"
+}

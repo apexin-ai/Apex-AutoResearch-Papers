@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b3c17f39a42e972334bc",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analysis pooled statistics recalc",
+  "task_key": "worker_analysis_pooled-statistics-recalc_20260515T192941",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_pooled-statistics-recalc_20260515T192941_result.json",
+    "occurrence": 1,
+    "bytes": 1381,
+    "sha256": "977faa86f6951c054217a23a04e06d64d68d7180ee895ac8fc981ac7dfe3db5c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总报告：\n\n---\n\n## Pooled Statistics — ISR β=0.1 vs Random β=0.1 (FINAL)\n\n### Genuine rate\n- **ISR**: 14/231 = **6.06%** [Wilson 95% CI: 3.64–9.91%]\n- **Random**: 25/262 = **9.54%** [Wilson 95% CI: 6.55–13.71%]\n- **Fisher exact**: OR=0.61, **p=0.182 (n.s.)**, ISR < Random\n- **Bootstrap diff**: −4.44pp [−17.44%, +8.57%] — 跨零，无显著差异\n\n### H7 rate\n- **ISR**: 163/231 = **70.56%** [Wilson 95% CI: 64.39–76.07%]\n- **Random**: 36/262 = **13.74%** [Wilson 95% CI: 10.09–18.44%]\n- **Fisher exact**: OR=15.05, **p=1.33×10⁻³⁹ (\\*\\*\\*)**\n- **Bootstrap diff**: +59.25pp [+5.74%, +100.00%]\n\n### Per-seed genuine rates\n| | s42 | s43 | s44 | Mean±SD |\n|--|--|--|--|--|\n| ISR | 17.28% | 0% | 0% | 5.76±9.98% |\n| Random | 22.78% | 1.06% | 6.74% | 10.20±11.27% |\n\n### H7b specificity\nISR=2, Random=0, Exec-only=0 — H7b 仍为 ISR-specific。\n\n### Claim 2 结论\nISR reward 不提升 genuine reasoning（6.06% vs 9.54%, p=0.18），但将 H7 tautological gaming 放大 5.1 倍（70.56% vs 13.74%, p<10⁻³⁹）。ISR 信号是 Goodhart 效应放大器，非 reasoning 改善器。\n\n---\n\nJSON 已保存至 `westd-39279:/root/solver-trace-ablation/outputs/pooled_statistics_2026-05-15.json`，memory.md 已更新（DEPRECATED 部分已替换为 FINAL 数据），artifact 已注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-pooled-statistics-recalc.md"
+}

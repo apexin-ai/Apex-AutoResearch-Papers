@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "924752115d367d60e1e7",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "writing w1 framing revision",
+  "task_key": "worker_writing_w1-framing-revision_20260516T023002",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_w1-framing-revision_20260516T023002_result.json",
+    "occurrence": 1,
+    "bytes": 1183,
+    "sha256": "f654b5eca4d485d4615d94f0ea67fb88be1b86621c863491ab1f84d6310cc31c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All `.tex` files are clean — no remaining \"meta-level Goodhart's Law\" phrases.\n\n**Summary of changes:**\n\n**Title** (main.tex): \"...Meta-Level Goodhart's Law in a GRPO-Trained Neurosymbolic Formalizer\" → \"...Goodhart Effects in GRPO-Trained Neurosymbolic Formalizers\"\n\n**Meta-level Goodhart reframing** across 7 .tex files (abstract, introduction, method, experiments, conclusion, related_work):\n- Removed all claims of discovering a new concept\n- Positioned as \"an empirical instance of Goodhart's Law at the meta level\" within the Manheim & Garrabrant (2019) taxonomy\n- Key phrase consistently used: \"the diagnostic designed to detect gaming becomes gamed when optimized\"\n- C2 contribution reworded to \"first empirical evidence\" rather than naming a new phenomenon\n- related_work.tex: \"not previously documented\" → \"first empirical evidence ... within the \\citet{manheim-goodhart-taxonomy} taxonomy\"\n\n**paper_framing.md**: Claim 2 heading, story spine, headline result, and practitioner insights all updated to match the new empirical-instance framing.\n\nBib entry for `manheim-goodhart-taxonomy` already existed and is unchanged."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-w1-framing-revision.md"
+}

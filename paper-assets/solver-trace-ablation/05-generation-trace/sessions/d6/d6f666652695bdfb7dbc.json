@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d6f666652695bdfb7dbc",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "eval plan001 exec only s46 r2",
+  "task_key": "worker_eval_plan001-exec-only-s46-r2_20260517T022350",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_plan001-exec-only-s46-r2_20260517T022350_result.json",
+    "occurrence": 1,
+    "bytes": 665,
+    "sha256": "fa7ce7501e52fd75ef91efdd70198c5de73181b10ae888cc895cf9cac3087b30"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果汇总：\n\n**plan001-exec-only-s46 eval 结果：**\n\n| 指标 | 值 |\n|------|-----|\n| prove_rate | 93/100 = **93.0%** |\n| mean_isr | **0.083** |\n| H7 | 0/93 = 0.0% |\n| H1 | 83/93 = 89.2% |\n| H8 | 4/93 = 4.3% |\n| Genuine | 9/93 = **9.7%** |\n\n**跨 seed 对比（exec-only）：**\n\n| Seed | PR | Genuine% |\n|------|-----|---------|\n| s42 | 90% | — |\n| s44 | 93% | — |\n| **s46** | **93%** | **9.7%** |\n\ns46 prove_rate 与 s44 一致（93%），符合预期。H1 占 89.2% 说明绝大多数证明是 conclusion-in-premise 模式，Genuine 仅 9.7%，ISR 极低（0.083）——典型 exec-only baseline 行为。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-plan001-exec-only-s46-r2.md"
+}

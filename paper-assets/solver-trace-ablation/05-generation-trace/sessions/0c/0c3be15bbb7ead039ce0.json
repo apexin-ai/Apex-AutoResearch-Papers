@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0c3be15bbb7ead039ce0",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops kill 261641 and verify",
+  "task_key": "worker_ops_kill-261641-and-verify_20260514T055354",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-261641-and-verify_20260514T055354_result.json",
+    "occurrence": 1,
+    "bytes": 514,
+    "sha256": "dc349c9a2d702d50e56ca3d5d253b0af90580473fba3f711ce41ae19c0e62d24"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n| 项目 | 状态 |\n|------|------|\n| PID 261641 | 已不存在（自行退出），无需 kill |\n| GPU 0 | 79613 / 97887 MiB — PID 262266 (plan002-b01) |\n| GPU 1 | 80355 / 97887 MiB — PID 263273 (plan016) |\n| plan002-b01 | 正常运行，GPU 0 |\n| plan016 | 正常运行，GPU 1 |\n| 非训练 GPU 进程 | 无，两张卡各只有一个训练进程 |\n\n僵尸进程已自行清除，GPU 1 显存被 plan016 正常占用（非僵尸），两个训练任务均正常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-261641-and-verify.md"
+}

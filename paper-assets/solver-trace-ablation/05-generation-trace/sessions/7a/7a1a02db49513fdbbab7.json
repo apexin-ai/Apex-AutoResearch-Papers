@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7a1a02db49513fdbbab7",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_8_1778800805.md",
+  "task_key": "loop_8_1778800805",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_8_1778800805.md",
+    "occurrence": 1,
+    "bytes": 4652,
+    "sha256": "d8f15f0d0955160ef83a90f99f345e879eec83fcb26772b7d253b4221c936d3a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: idle_timeout\nupdated: '2026-05-14T23:13:28+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**仅 westd-39279 的 cuda:0 和 cuda:1**（2× RTX PRO 6000 96GB）。submit_training_job 命令必须 `export CUDA_VISIBLE_DEVICES=N`，脚本内 `--gpu 0`\n- 数据约束 C001：所有 exp1/plan001/plan013 实验统一用 `data/train_500_seed42.jsonl`，不得切换数据文件\n- 磁盘 C003：`log_completions=False` + `save_total_limit=1`，output 放 `/root/autodl-tmp/outputs/`。磁盘 240G/250G (96%)，每次实验完必须清理旧 checkpoint\n- kill_job 只杀 tmux wrapper PID，kill 后必须 SSH 验证 Python 子进程已终止\n- Prolog STA s44：Reviewer 已核实为 query-as-fact gaming（非 genuine），strict classifier Genuine=100% 不可信，必须交叉验证 n_necessary 分布\n- ISR 对比禁止用 raw 值，必须 premise-count-matched（D051 定论，2.4x 作废，1.06x 定论）\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-39279，工作目录 `/root/solver-trace-ablation/`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- **CUDA**: 12.8, PyTorch 2.10.0+cu128\n- **模型**: Qwen3-4B（7.6GB，ModelScope 下载）\n- **数据盘**: `/root/autodl-tmp/`（250GB，当前 96% 已满）\n- **Solvers**: Prover9 (LADR 源码编译), SWI-Prolog 8.4.2 (`/usr/bin/swipl`), Z3 4.16.0.0\n- **活跃进程**: exp1-random-b03-s43 (PID 963653, cuda:1, tmux session 活跃, cron 监控中)\n- **活跃 cron**: exp1-random-b03-s43（reconcile 确认 still running）\n- **活跃 Worker**: `worker_review_paper-draft-r1` (running, 论文初稿审查), `worker_write_related-work-expansion` (running, Related Work 扩展)\n\n### 3. 📊 当前状态\n**刚完成**: 论文写作阶段全面推进——writing_plan.yaml 已批准，多轮 Worker 写 Method/Experiments/Intro/Appendix/Related Work，bib 验证，8 页压缩，disk cleanup。部分 Worker 失败（paper-experiments-method ×2, bib-fix, framing-corrections）。\n\n**Registry 总览**: 57 实验——DONE 53 (success 13, negative 19, failed 19, killed 2) | RUNNING 1 | PREPARING 3\n\n**RUNNING**:\n- `exp1-random-b03-s43`: Random reward β=0.3 seed 43，westd-39279 cuda:1，PID 963653\n\n**PREPARING（未分配 GPU）**:\n- `exp1-isr-b03-s43-r2`, `exp1-random-b03-s44`, `exp1-isr-b03-s44`\n\n**等待中**:\n- 2 个 Worker running（paper-draft-r1 审查 + related-work-expansion），回调未到\n- exp1-random-b03-s43 训练 cron 回调未到\n- 3 个 PREPARING 实验等 GPU（cuda:0 当前空闲可用）\n\n### 4. 📋 待办（条件触发式）\n- `[WORKER DONE] paper-draft-r1` 回调 → 读审查意见，按反馈修改论文章节，更新 report.md\n- `[WORKER DONE] related-work-expansion` 回调 → 整合 Related Work 到论文\n- `[CRON] exp1-random-b03-s43` 完成 → on-experiment-done 流程：spawn Worker eval + H1/H7 分类 + 更新 registry + 汇报 Director\n- exp1-random-b03-s43 完成后 → cuda:1 释放 → 可提交 PREPARING 队列中的实验（exp1-isr-b03-s43-r2 或 exp1-random-b03-s44）\n- cuda:0 当前空闲 → 可立即提交一个 PREPARING 实验（需先向 Director 确认优先级）\n- 论文 Method/Experiments 写作 Worker 多次失败 → 下一个\"你\"需诊断失败原因（可能是磁盘满或 Worker 超时），重新派发\n- 磁盘 96% 满 → 任何新实验前必须先 spawn Worker 清理 `/root/autodl-tmp/outputs/` 旧 checkpoint\n\n### 5. 🎯 战略上下文\n**项目核心结论**: STA/ISR 作为 GRPO neurosymbolic formalizer 的诊断工具 + Goodhart's Law 案例研究。三条 Claim 全部闭环（D059）：\n- Claim 1: STA 诊断能力（ISR 崩塌轨迹 + 7-mode hacking taxonomy）\n- Claim 2: ISR-as-reward 无结构优势（D057, premise-count-matched 1.06x）\n- Claim 3: 跨 Prolog 泛化（3/3 gaming, 0% genuine, 3 distinct pathways）\n\n**当前阶段**: ✍️ Writing + 论文 DDL 2026-05-25（剩 11 天）。50 个实验全部完成，当前 RUNNING/PREPARING 的 exp1 系列是补充实验。\n\n**易错点**:\n- 不要把 ISR raw 值直接对比（D051 教训，必须 premise-count-matched）\n- exec-only s42 不是 \"healthy seed\"——87.1% conclusion embedding，只是被冗余 premise 稀释了 ISR\n- Prolog STA s44 PR=0.97 看似成功实为 gaming（Reviewer 核实），strict classifier 有盲区\n- plan013 vs plan017 公式结构不同，不可简化为 \"additive vs convex\" 对照（D027）\n- 论文写作 Worker 频繁失败，可能与磁盘 96% 有关，优先清理磁盘\n- Hacking taxonomy 是 **7 种**（含第 7 种 query-as-fact），不是 6 种\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-8-1778800805.md"
+}

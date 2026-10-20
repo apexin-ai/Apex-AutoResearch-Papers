@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5a90425c15277da09b55",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "check d134 s51 and original seeds",
+  "task_key": "worker_check_d134-s51-and-original-seeds_20260518T154305",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_d134-s51-and-original-seeds_20260518T154305_result.json",
+    "occurrence": 1,
+    "bytes": 2198,
+    "sha256": "989f3df2240b55f305f7cbd4ec59e38589a8a68682e3724f1839f7bd84772320"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here are the results:\n\n---\n\n## s51 ISR Status\n\n```\nStep: 45/500\nGPU: 87% util, 84793 MiB used\nETA: ~1h50m\nLatest rewards: step43=0.386, step44=0.129, step45=0.000 (sporadic signal, still early)\nclassify.json already exists (from pipeline pre-run, keys: n_total/n_proved/h7*/h1*)\n```\n\nTraining is running normally at step 45/500.\n\n---\n\n## Original Seeds Audit\n\n| Condition | Seed | Dir Found | Classify/Taxonomy File | Format | Keys | Compatible w/ C013 |\n|-----------|------|-----------|----------------------|--------|------|-------------------|\n| **ISR** | s42 | N (files only) | `plan002_..._s42_taxonomy_unified.json` | taxonomy_unified | proved/H7/H1_exact/H1_near/H8/genuine | **YES** (C013 standard) |\n| ISR | s42 | N | `plan002_..._s42_1000_taxonomy_unified.json` | taxonomy_unified | same as above | **YES** (1000-step variant) |\n| ISR | s43 | **N** | **None** | — | — | **MISSING** |\n| ISR | s44 | **N** | **None** | — | — | **MISSING** |\n| ISR | s45 | Y (1000-step) | `h7_classification.json` | h7 only | results | **NO** (h7-only, no full taxonomy) |\n| ISR | s46 | **N** | **None** | — | — | **MISSING** |\n| **Random** | s42 | N (file only) | `plan018_random_s42_taxonomy_verification.json` | verification | total/proved/taxonomy/verification | **Partial** (different schema) |\n| Random | s43 | **N** | **None** | — | — | **MISSING** |\n| Random | s44 | Y (r2 dir) | `taxonomy.json` | taxonomy | eval_results (flat) | **NO** (different schema) |\n| Random | s45 | N (log only) | **None** | — | — | **MISSING** |\n| Random | s46 | **N** | **None** | — | — | **MISSING** |\n\n### Summary\n\n- **Only ISR s42** has C013-compatible `taxonomy_unified` format (proved/H7/H1_exact/H1_near/H8/genuine).\n- **ISR s43, s44, s46** and **Random s43, s45, s46**: no classify/taxonomy data at all, no checkpoints (deleted by disk cleanup).\n- **ISR s45**: has checkpoint + h7_classification only (no full taxonomy).\n- **Random s42, s44**: have taxonomy files but in incompatible older schemas.\n- Checkpoints: only ISR s45 retains model weights. All others were cleaned up — re-eval from checkpoint is impossible for those seeds."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-d134-s51-and-original-seeds.md"
+}

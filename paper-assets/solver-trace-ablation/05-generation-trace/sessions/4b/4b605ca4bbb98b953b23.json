@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4b605ca4bbb98b953b23",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "urgent kill dup eval submit sft r4",
+  "task_key": "worker_urgent_kill-dup-eval-submit-sft-r4_20260514T114750",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_urgent_kill-dup-eval-submit-sft-r4_20260514T114750_result.json",
+    "occurrence": 1,
+    "bytes": 660,
+    "sha256": "cbe0249d06534a95354c35faede08e21840d64eb2be8f32faa8ea4897365947d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "plan006-prolog-exec-s42 registry 已更新。\n\n**总结：**\n\n1. **Kill 重复 eval**: PID 567813 和 570911 已 kill，仅保留 570264（已完成）\n2. **Eval 结果** (plan006-prolog-exec-s42): prove_rate=83%, mean_isr=0.031, proved_only_isr=0.037 — registry 已更新\n3. **plan009-sft-r4 无法提交**: GPU 1 被 PID 572609 占用 (~56GB)，是一个已在跑的 `plan009_sft_baseline_s42`（`--gpu 1 --no_wandb`，已运行 ~4 分钟）\n\n**需要你决定**：PID 572609 这个现有 SFT 进程要 kill 还是等它跑完？它用了 `--gpu 1` 而非 `CUDA_VISIBLE_DEVICES=1 --gpu 0`（违反 C002），且没有 wandb 记录。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/urgent-kill-dup-eval-submit-sft-r4.md"
+}

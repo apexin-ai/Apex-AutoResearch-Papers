@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4d32f06f7949ee0b05b0",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "paper figure fig1 sta overview",
+  "task_key": "worker_paper_figure_fig1_sta_overview_20260514T173028",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig1_sta_overview_20260514T173028_result.json",
+    "occurrence": 1,
+    "bytes": 460,
+    "sha256": "3dacbb6145a6dd5fd5d117bccbf5437540d8e2d963f23db3211623a45bbedc8d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Fig 1 生成完毕。\n\n- **PDF**: `figures/paper/fig1_sta_overview.pdf` (49K, 矢量)\n- **PNG**: `figures/paper/fig1_sta_overview.png` (275K, 300 DPI)\n- 已注册 artifact: `art_20260514_59704d`\n\n三个 panel 均清晰可读：(a) 垂直流程图展示形式化管线，(b) LOO 消融过程含 ISR=2/4=0.50 计算，(c) Diagnostic→Reward 的 Goodhart 效应对比。生成脚本保留在 `figures/paper/gen_fig1.py` 便于后续微调。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig1-sta-overview.md"
+}

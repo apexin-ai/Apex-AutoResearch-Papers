@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bc59b47290025a4c7f2e",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "eval plan006 collect and run v3",
+  "task_key": "worker_eval_plan006-collect-and-run-v3_20260514T160756",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_plan006-collect-and-run-v3_20260514T160756_result.json",
+    "occurrence": 1,
+    "bytes": 109,
+    "sha256": "3bae213e04a88a425f070acdaf7a91e088fcdc360a15228e757588dee76d2f8b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PID 881804 仍在运行 eval_sta.py（plan006-prolog-exec-s43-r3）。60 秒后再次检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-plan006-collect-and-run-v3.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a4df9c65fd55ab762dac",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_2_1778725514.md",
+  "task_key": "loop_2_1778725514",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_2_1778725514.md",
+    "occurrence": 1,
+    "bytes": 5428,
+    "sha256": "aa26a9c2b1bf4ca0135f14807a37e649a7025846b28c4f5ee0ca320a43be7c75"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: idle_timeout\nupdated: '2026-05-14T02:11:07+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**只能用 westd-39279 的 cuda:0 和 cuda:1**（config `gpu_ids`）\n- **C001**: 所有 plan001/plan013 实验统一用 `train_500_seed42.jsonl`，不是 `proofwriter_fol_500.jsonl`\n- **C002**: 每次 submit_training_job 后必须 `nvidia-smi` 验证只占目标 GPU（plan013 GPU overflow 事故教训）\n- **C003**: 训练必须 `log_completions=False` + `save_total_limit=1`，output_dir 放 `/root/autodl-tmp/outputs/`（250GB 系统盘被 completions parquet 撑满过）\n- submit_training_job command 格式：`bash -c \"export CUDA_VISIBLE_DEVICES=N && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 ...\"`。**必须 export**，inline 赋值子进程看不到\n- plan013 random_reward 模式下 `isr_mean` 字段恒为 0（`sta_reward=0`），随机值在 `random_reward` 字段。分析时忽略 isr_mean\n- **旧凸组合公式已废弃**（D010）：r = α·r_exec + β·r_exec·ISR, α+β=1 → ISR<1 永远是 penalty。新公式 r = r_exec · (1 + β·ISR)\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-39279，2× RTX PRO 6000 Blackwell 94GB\n- **工作目录**: `/root/solver-trace-ablation/`\n- **Python**: `/root/miniconda3/bin/python`（conda base，不是 venv）\n- **激活**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **CUDA**: 12.8, PyTorch 2.10.0+cu128, 镜像 aml-train\n- **模型**: Qwen3-4B（ModelScope 下载，7.6GB）\n- **数据**: `data/train_500_seed42.jsonl`（500条 FOLIO FOL），`data/proofwriter_fol_100.jsonl`（100条 eval）\n- **Outputs**: `/root/autodl-tmp/outputs/` (checkpoints + reward_log)\n- **Solvers**: Prover9 (LADR 源码编译), SWI-Prolog 8.4.2, Z3 4.16.0.0\n- **活跃进程**:\n  - plan013-random-reward-s42-r4: PID 136261, cuda:0, tmux session 有 cron 监控\n  - plan001-exec-only-s43-r4: PID 136339, cuda:1, tmux session 有 cron 监控\n- **Prolog STA**: 代码就绪（`src/sta/prolog_reward.py`），dry-run 通过，plan006 可直接启动\n\n### 3. 📊 当前状态\n**刚完成**: 处理了 plan001-exec-only-s43-r3 和 plan013-random-reward-s42-r3 的磁盘满崩溃（清理 171GB），修复 `log_completions=False`，重新提交为 r4。\n\n**RUNNING 实验**:\n- `plan001-exec-only-s43-r4` (cuda:1): exec-only seed=43 第二个种子复现，预期 ~70min\n- `plan013-random-reward-s42-r4` (cuda:0): random reward baseline，隔离 ISR-specific signal vs 多目标正则化\n\n**RUNNING Workers**:\n- `worker_research_plan014-downstream-design`: 调研下游验证任务设计（打破 ISR circularity）\n- `worker_code_plan002-additive-bonus-reward`: 编写新 additive bonus reward 代码（r = r_exec · (1 + β·ISR)）\n\n**已完成关键实验**:\n- plan001-exec-only-s42-r2: **SUCCESS**, last100 prove_rate=0.865, ISR=0.8612（exec-only baseline 锚定）\n- plan005-sta-low-s42: **NEGATIVE**, last100 prove_rate=0.7725 (vs exec-only 0.865 ↓)，ISR/PR=0.298。确认凸组合公式是 penalty → 触发 D010 公式转向\n- plan003-eval-exec-only-r5: **SUCCESS**, held-out proved_only_isr=0.6423，确认 ISR organic 提升\n\n### 4. 📋 待办（条件触发式）\n- plan001-exec-only-s43-r4 cron 回调 → 分析 metrics，与 s42 (prove_rate=0.865) 对比 → 一致则 exec-only baseline 2-seed 锚定完成\n- plan013-random-reward-s42-r4 cron 回调 → 分析 prove_rate + random_reward 字段，与 plan001 对比 → 若 prove_rate ≈ exec-only 则 \"ISR-specific > random\" claim 成立，若 prove_rate ↓ 则多目标正则化本身就有 penalty effect\n- worker_code_plan002-additive-bonus-reward 完成 → review 代码 → 提交 plan002 (additive bonus β=0.3) 到 cuda:0（等 plan013 完成后）\n- worker_research_plan014-downstream-design 完成 → 整合调研结果 → 设计 plan014 downstream validation 实验\n- plan001 + plan013 都完成后 → 两张 GPU 空闲 → 立即启动 plan002 (additive bonus, cuda:0) + plan001 seed=44 第三个种子 (cuda:1)\n- 3-seed exec-only baseline 完成后 → 启动 plan006 Prolog（代码已就绪）\n\n### 5. 🎯 战略上下文\n**项目核心结论链**:\n- D003: binary ISR 无效 → 必须用 continuous ISR\n- D007/D008: exec-only ISR 提升是 organic 的，50/50 STA 是 penalty effect (Interpretation B confirmed)\n- D010: 凸组合公式废弃 → additive bonus r = r_exec · (1 + β·ISR)\n- D011: Narrative A+C 批准 — STA as diagnostic metric 为主线\n\n**论文 story**: \"STA detects hacking\" 已降级为观察性表述 → 转为 \"STA as principled structural metric + proper integration (additive bonus)\"。plan002 是验证新 story 的关键实验。\n\n**DDL**: 2026-05-25（剩 11 天）\n\n**易错点**:\n- 不要用旧凸组合公式提交 plan002，必须用 additive bonus（Worker 正在写代码）\n- plan013 分析时不要看 `isr_mean`（恒为 0），要看 `random_reward` 字段\n- exec-only baseline 目前只有 1 个成功种子 (s42)，s43 正在跑，s44 还没开始 → 3-seed 尚未完成\n- Dream 审稿指出 5 个结构性弱点：(1) related work 不足 (2) RIP framing 过度 (3) ISR circularity (4) single-seed (5) ISR sparsity。plan013 解决 #3 partial，plan014 解决 #3 full，3-seed 解决 #4\n- `reward_log.jsonl` 多轮 run 会追加到同一文件 → 分析时必须按 timestamp 过滤或使用独立 output_dir\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-1778725514.md"
+}

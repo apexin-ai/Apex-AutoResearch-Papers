@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9ce4026a804ecf641be3",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_12_1778860452.md",
+  "task_key": "loop_12_1778860452",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_12_1778860452.md",
+    "occurrence": 1,
+    "bytes": 4945,
+    "sha256": "7b5910f028f6e901c99fb4bb02d4f8e7cdd4a6909bb5d3b34ff6dc819f49df31"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 12\nreason: idle_timeout\nupdated: '2026-05-15T15:47:21+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: **westd-39279:cuda:0** 和 **westd-39279:cuda:1**，禁止使用其他 GPU\n- Eval 数据集必须用 `proofwriter_fol_100.jsonl`，**绝对不能用 test_100.jsonl**（D062/D063 教训）\n- 大文件（模型 checkpoint、输出）必须放 `/root/autodl-tmp/`，根分区曾因磁盘满导致两个实验崩溃（D080）\n- Taxonomy 已升级到 **8 种** hacking modes（H1-H8），H8=conjunction collapse，论文和分析必须用 8-mode 版本\n- D051: premise-count-matched 1.06x 是定论，2.4x 已作废，论文中不可出现旧数字\n- D088: H7 是 additive reward 特有，**不是** GRPO 通用终态——论文措辞必须精确\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-39279，账户 root\n- **工作目录**: `/root/solver-trace-ablation`\n- **Python**: `/root/miniconda3/bin/python`，激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **输出目录**: `/root/autodl-tmp/outputs/`（所有 checkpoint + training output）\n- **模型**: Qwen3-4B（基座）\n- **训练数据**: `data/train_500_seed42.jsonl`（500 条）\n- **Eval 数据**: `proofwriter_fol_100.jsonl`（100 条）\n- **活跃进程**:\n  - `plan001-exec-only-s43-1000-r2`: PID 363692, tmux session, cuda:0, 输出 `/root/autodl-tmp/outputs/plan001_exec_only_s43_1000_r2`\n  - `plan001-exec-only-s44-1000-r2`: PID 363840, tmux session, cuda:1, 输出 `/root/autodl-tmp/outputs/plan001_exec_only_s44_1000_r2`\n- **活跃 Cron**: 2 个，分别监控上述两个实验\n- **活跃 Worker**: `worker_code_paper-tex-redline-fix_20260515T152900`（论文 TeX 修订，turn 15，正在编辑 appendix）\n\n### 3. 📊 当前状态\n上一个 session 处理了 D080 磁盘满事故（清理磁盘后重提交 exec-only s43/s44 1000步）、D079 SFT 3-seed Reviewer PASS、D081-D088 一系列 taxonomy 和 framing 修正，以及论文 TeX 一致性修复。\n\n**Registry 状态**:\n- RUNNING (2): `plan001-exec-only-s43-1000-r2` (cuda:0), `plan001-exec-only-s44-1000-r2` (cuda:1) — exec-only 1000步 3-seed 的最后两个 seed，是论文 §4 最终数据表的关键缺失\n- PREPARING (3): `plan002-additive-b01-s43-r2` (ISR β=0.1 s43 重训), `plan018-additive-random-b01-s44-r2` (Random β=0.1 s44 重训), `plan018-additive-random-b01-s43-r3` (Random β=0.1 s43 重训) — 均为数据丢失后的重训，等 GPU 释放\n- 总计 81 实验，success 22 / negative 25 / failed 26\n\n**等待中**:\n- 2 个 cron 回调（exec-only s43/s44 完成时触发）\n- 1 个 Worker 回调（paper-tex-redline-fix 完成时触发）\n- 3 个 PREPARING 实验等 GPU 释放后提交\n\n### 4. 📋 待办（条件触发式）\n- exec-only s43-1000-r2 或 s44-1000-r2 cron 回调 → spawn Worker 做 eval + taxonomy 分类（H1-H8） → update_registry with metrics → 与 s42 (PR=0.96, ISR=0.003, H1=100%) 对比\n- 两个 exec-only 均完成 → 3-seed mean±std 计算 → 更新论文 §4 主表（SFT 92.2% vs exec-only ?% vs ISR ~2% vs random 0%）→ 汇报 Director\n- GPU 释放后 → 立即提交 PREPARING 队列中的实验（cuda:0 跑 plan018-random-s43-r3，cuda:1 跑 plan018-random-s44-r2；plan002-b01-s43-r2 排第三）\n- paper-tex-redline-fix Worker 完成 → review 修改内容，确认 D085-D088 的 taxonomy/framing 修正已正确反映到 TeX\n- 所有重训实验完成 → 最终论文数字一致性审计 → submit_paper_to_review\n- DDL 2026-05-25，剩 10 天\n\n### 5. 🎯 战略上下文\n**核心结论**: STA/ISR 是 GRPO neurosymbolic formalizer 的诊断工具 + Goodhart's Law 案例。3 个 Claims 全部有实验支撑：(1) STA 诊断能力，(2) ISR 作为 reward 无结构优势（Goodhart），(3) 跨逻辑泛化（Prolog）。\n\n**决策链关键节点**:\n- D057: Claim 2 确立——ISR 无结构优势，H7=0% 全 3 seed random 一致\n- D079: SFT 3-seed PASS，genuine=92.2%±1.2%，Goodhart collapse 确认为 RL(GRPO) 特有\n- D088: H7 是 additive reward 特有终态，不是 GRPO 通用——这个修正很重要，论文措辞需精确\n- D076: ISR β=0.3 的 43.2% 是 H8 不是 genuine——之前误标已纠正\n\n**易错点**:\n- 不要把 exec-only（纯 H1 tautology）和 additive reward 条件（H7/H8）的 hacking 模式混为一谈——它们是不同的 collapse 路径\n- PREPARING 的 3 个实验是**数据恢复重训**，不是新实验。它们的 metric 应与原始实验一致（允许 seed noise），如果差异大需要调查\n- 1000步全条件 genuine→0% 是核心论点，但不同条件走不同 hacking 路径（whack-a-mole），论文需要精确区分\n- Bootstrap CI 已完成（genuine rate parity p=0.637, H7 gaming p=0.0004, ISR* inflation p<0.001），不需要重跑\n- Worker 曾在 register_artifact 后卡死（memory.md 记录），分析 Worker 核心产出是 artifact JSON，registry 更新可由 Main Agent 接手\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-12-1778860452.md"
+}

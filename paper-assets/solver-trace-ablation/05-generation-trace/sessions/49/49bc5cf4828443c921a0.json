@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "49bc5cf4828443c921a0",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "eval s44 eval sta",
+  "task_key": "worker_eval_s44-eval-sta_20260514T050929",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_s44-eval-sta_20260514T050929_result.json",
+    "occurrence": 1,
+    "bytes": 2185,
+    "sha256": "d08b47b04c0b4e4eeb7a3d472422d18ebd3eeb8d04a52cba0fc19603b5d235e5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据完整了。以下是完整结果和对比分析。\n\n---\n\n## plan001-exec-only-s44 eval_sta 结果\n\n### Summary\n\n| 指标 | 值 |\n|------|-----|\n| n_problems | 100 |\n| n_proved | 98 |\n| **prove_rate** | **0.98** |\n| **mean_isr** | **0.57** |\n| isr_std | 0.2013 |\n| median_isr | 0.50 |\n| proved_only_mean_isr | 0.5816 |\n| min/max ISR | 0.0 / 1.0 |\n\n### By answer type\n\n| type | count | proved | prove_rate | mean_isr |\n|------|-------|--------|------------|----------|\n| false | 25 | 25 | 1.00 | 0.62 |\n| unknown | 41 | 40 | 0.976 | 0.524 |\n| true | 34 | 33 | 0.971 | 0.588 |\n\n### Component count 分布\n\n| n_components | count | 占比 |\n|-------------|-------|------|\n| 2 | 94 | 94% |\n| 3 | 4 | 4% |\n| failed (无details) | 2 | 2% |\n\n**Mean component count ≈ 2.04**（仅计 98 个有 details 的样本）\n\n---\n\n## 对比分析\n\n| 指标 | plan001-s42 | plan013 | **plan001-s44** |\n|------|-------------|---------|-----------------|\n| prove_rate | — | — | 0.98 |\n| mean_isr | — | — | 0.57 |\n| **mean components** | **6.58** | **2.04** | **≈2.04** |\n\n## 结论：**确认 tautological collapse**\n\ns44 的行为与 plan013 完全一致，与 s42 截然不同：\n\n1. **Component count mean ≈ 2.04**：94% 的样本只有 2 个 component（1 premise + 1 conclusion）。模型学会了生成 \"Premises: X \\nConclusion: X\" 格式——前提和结论完全相同的单命题重言式。\n2. **典型输出**：`P(a) → P(a)`、`M → M`、`A(a) & B(a) → A(a) & B(a)` —— 无论输入多复杂，模型都只输出一个原子/简单命题的自证。\n3. **ISR 锁定在 0.5**：因为 2 个 component 中只有 premise 是 necessary（conclusion 可以从 premise 直接推出），所以 ISR = 1/2 = 0.5，这是 tautological hacking 的签名值。\n4. **prove_rate 虚高**：0.98 的 prove rate 是假象——重言式当然能被 prover 证明。\n\ns44（exec-only, seed 44）复现了 plan013 的 tautological collapse，与 s42（mean components=6.58，产生真实多步推理链）形成鲜明对比。exec-only reward 在多个 seed 上都倾向于坍塌到 tautological hacking。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-s44-eval-sta.md"
+}

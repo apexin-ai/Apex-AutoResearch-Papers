@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "59125e5937cfe44de8ff",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "check d134 status quick",
+  "task_key": "worker_check_d134-status-quick_20260518T121711",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_d134-status-quick_20260518T121711_result.json",
+    "occurrence": 1,
+    "bytes": 660,
+    "sha256": "af93e1aa4c819cb8fdd0a4a937d36507c2206f83c9facbfdc60e0e270643d0af"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "D134 pipeline 状态：\n\n| 项目 | 状态 |\n|---|---|\n| **s48 训练** | step 199/500 (40%), ~25min elapsed, ETA ~18min. reward=1.075, prove_rate=1.0, ISR=0.75, loss=0.0, grad_norm=0.0 |\n| **tmux** | read-only 模式无法执行 tmux ls |\n| **GPU** | 7% util, 84465/97887 MiB used (~86%) |\n| **磁盘** | 223G/250G used (89%), 28G avail |\n| **cleaner log** | 不存在 |\n\n注意事项：\n- **loss=0.0, grad_norm=0.0** 已持续多步，entropy 极低 (0.01-0.05)，模型可能已 collapse（reward_std=0, frac_reward_zero_std=1.0）。\n- **磁盘 89%**，剩余 28G，考虑到 C003 约束需关注后续 checkpoint 保存空间。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-d134-status-quick.md"
+}

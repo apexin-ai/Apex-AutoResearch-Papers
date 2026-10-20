@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2df11d749c754bd7638e",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code classify h8 upgrade",
+  "task_key": "worker_code_classify-h8-upgrade_20260515T115437",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_classify-h8-upgrade_20260515T115437_result.json",
+    "occurrence": 1,
+    "bytes": 1475,
+    "sha256": "17c4196049ef81b1156a4586b6ea77a3bb320cf781fd3e43cf8f69ce85215fe7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n## 分类器升级\n\n`scripts/classify_h7.py` 新增两个检测规则：\n- **H8 conjunction-collapse**: 结论是前提的顶层合取（如 `P1 ∧ P2`），通过括号感知的分割器实现\n- **Content-independent predicates**: 所有谓词为单字母（P, Q, R...）的标记\n\ngenuine 定义更新为 `proved - |H7 ∪ H1 ∪ H8|`（集合去重）。\n\n## 回溯审计结果（24 个 eval 文件）\n\n**Genuine 下调的实验：**\n\n| exp_id | 旧 genuine | 新 genuine | H8 count | \n|--------|-----------|-----------|----------|\n| plan001-exec-only-s42-r2 | 12 (12.9%) | **7 (7.5%)** | 6 |\n| plan002-additive-b01-s42-1000 | 3 (3.0%) | **2 (2.2%)** | 1 |\n| plan002-additive-b03-s42 | 4 (22.2%) | **1 (5.6%)** | 3 |\n\n**H8 检出但 genuine 不变（已为 0）：**\n- exp1-isr-b03-s42-1000-r2: H8=41（95 个 proved 全是 H1 或 H8）\n- plan004-o1-ablation-s42: H8=2\n\n**无 H8 的实验：** plan006-prolog-exec-s42 (genuine=86, 100%), plan009-sft (genuine 93-94%), plan017-random, plan013-r4 等均 H8=0。\n\n## 无法验证\n\n**plan002-additive-b01-s42**（genuine=25，任务最高优先级）checkpoint 和 eval 文件已被删除，无法重新分类。需要从 base model 重训以验证 H8 影响。\n\n## Registry 已更新\n\n5 个实验的 metrics 已写入 h8_conjunction_collapse_count/rate 和更正后的 genuine 值。审计报告位于 `/root/autodl-tmp/outputs/h8_retroactive_audit.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-classify-h8-upgrade.md"
+}

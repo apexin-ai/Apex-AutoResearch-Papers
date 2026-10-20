@@ -1,0 +1,222 @@
+{
+  "audit_date": "2026-05-15",
+  "files_checked": [
+    "paper/abstract.tex",
+    "paper/introduction.tex",
+    "paper/method.tex",
+    "paper/experiments.tex",
+    "paper/conclusion.tex",
+    "paper/appendix.tex",
+    "paper/limitations.tex",
+    "paper/related_work.tex",
+    "artifacts/_project/paper/table_1000step_comparison.tex",
+    "artifacts/_project/paper/table1_goodhart.tex",
+    "artifacts/_project/paper/table3_isr_collapse.tex",
+    "artifacts/_project/paper/table4_beta01_comparison.tex"
+  ],
+  "inconsistencies": [
+    {
+      "id": "INC-01",
+      "file": "paper/abstract.tex, paper/introduction.tex, paper/method.tex, paper/experiments.tex",
+      "line": "abstract:9, intro:33, method:71, experiments:155",
+      "claim": "Seven hacking modes / seven-mode taxonomy",
+      "paper_value": "7 hacking modes",
+      "registry_value": "8 hacking modes (H8 = conjunction collapse added per memory.md)",
+      "severity": "high",
+      "details": "Paper claims 7 modes everywhere, but 1000-step table (table_1000step_comparison.tex) uses H8 as an 8th mode. H8 is not defined in Appendix hacking mode definitions (App B only documents 7). Memory.md confirms taxonomy expanded 7->8. Writing_plan still says 7. The paper must either (a) add H8 to taxonomy and update count to 8, or (b) remove H8 from the 1000-step table and fold it into an existing mode."
+    },
+    {
+      "id": "INC-02",
+      "file": "paper/appendix.tex",
+      "line": 369,
+      "claim": "ISR beta=0.1 s42 N-H=30.9%",
+      "paper_value": "30.9%",
+      "registry_value": "17.3% (genuine_count=14, H8_count=12 reclassified from non-hacking; D078)",
+      "severity": "high",
+      "details": "Registry post-H8 audit: H1=42, H7=13, H8=12, genuine=14 (total=81). Paper's 30.9% counts H8 samples as non-hacking. If H8 is a valid mode (which INC-01 implies), N-H drops from 30.9% to 17.3%. This is the D078 correction not yet applied to the paper."
+    },
+    {
+      "id": "INC-03",
+      "file": "paper/experiments.tex",
+      "line": 84,
+      "claim": "ISR beta=0.1 500-step genuine rate = 30.9%",
+      "paper_value": "30.9%",
+      "registry_value": "17.3% (post-H8 reclassification, D078)",
+      "severity": "high",
+      "details": "Text says 'ISR beta=0.1's modest genuine rate at 500 steps (30.9%)'. This is the s42 N-H% before H8 reclassification. After D078, genuine=17.3%. Directly linked to INC-02."
+    },
+    {
+      "id": "INC-04",
+      "file": "paper/experiments.tex",
+      "line": 56,
+      "claim": "ISR beta=0.1 pooled N-H=17%",
+      "paper_value": "17% (Table tab:goodhart-landscape)",
+      "registry_value": "12.1% (pooled: 28/231 after H8 reclassification)",
+      "severity": "high",
+      "details": "Table tab:goodhart-landscape ISR beta=0.1 row shows N-H=17%. After H8: s42 genuine=14/81, s43=2/61, s44=12/89. Pooled=28/231=12.1%. Also affects Table tab:hacking-taxonomy non-hacking row (17->~12). Contingent on INC-01 resolution."
+    },
+    {
+      "id": "INC-05",
+      "file": "paper/appendix.tex",
+      "line": "97-99",
+      "claim": "Wilson CI: ISR genuine=17.3% [13.0, 22.7] vs Random 17.4%, Fisher p=1.0",
+      "paper_value": "ISR genuine=17.3%, p=1.0 (identical to Random)",
+      "registry_value": "ISR genuine=12.1% pooled (28/231) after H8 reclassification",
+      "severity": "high",
+      "details": "Wilson CI table (tab:bootstrap-ci) reports ISR genuine=17.3% with n=231. This used pre-H8 data (s42 had ~40 genuine). Post-H8 with 28/231=12.1%, the CI narrows and shifts down; ISR is now LOWER than Random (12.1% vs 17.4%). Fisher test would yield p<0.1 instead of p=1.0. The key claim 'identical genuine rates' may no longer hold. MUST be recalculated."
+    },
+    {
+      "id": "INC-06",
+      "file": "paper/experiments.tex",
+      "line": 84,
+      "claim": "1000-step ISR beta=0.1 genuine collapses to 3.0%",
+      "paper_value": "3.0%",
+      "registry_value": "2.2% (genuine_count=2, n_proved=90, 2/90=2.22%)",
+      "severity": "medium",
+      "details": "Text says 'genuine rate collapses to 3.0%' but table_1000step_comparison.tex shows Genuine=2.2%, consistent with registry (genuine_count=2). Internal inconsistency: text vs own table. Likely 3.0% = 3/100 (fraction of all samples), while 2.2% = 2/90 (fraction of proved). Paper should use proved-sample denominator to be consistent with all other N-H rates."
+    },
+    {
+      "id": "INC-07",
+      "file": "artifacts/_project/paper/table_1000step_comparison.tex",
+      "line": 16,
+      "claim": "Random beta=0.1 1000-step: H7=100%",
+      "paper_value": "H7=100%, H1=0%",
+      "registry_value": "H1_count=97 (all 97 proved classified as H1), H7 not reported",
+      "severity": "medium",
+      "details": "1000-step table labels Random beta=0.1 as H7=100%. Registry (plan018-random-b01-s42-1000-r3) shows H1_count=97, taut_collapse=TRUE. Memory notes '3-comp vs 4-comp' structure, suggesting multi-component proofs (H1, not H7 which requires single-premise). If genuinely 3-component tautological proofs, these are H1 not H7. Needs verification against raw classification data."
+    },
+    {
+      "id": "INC-08",
+      "file": "paper/experiments.tex",
+      "line": 161,
+      "claim": "Closest high-PR non-hacking: ISR beta=0.1 s42 at PR=81%, 31% non-hacking",
+      "paper_value": "31% non-hacking",
+      "registry_value": "17.3% non-hacking (post-H8)",
+      "severity": "high",
+      "details": "Same root cause as INC-02. If H8 is a hacking mode, the 'closest' non-hacking rate drops from 31% to 17.3%. Still the closest among GRPO conditions, but the gap to SFT (91.3%) widens."
+    },
+    {
+      "id": "INC-09",
+      "file": "paper/experiments.tex",
+      "line": 55,
+      "claim": "Exec-only s42 N-H=13%",
+      "paper_value": "13% (Table tab:goodhart-landscape)",
+      "registry_value": "7.5% (genuine_count=7, H8_count=6; 7/93=7.5%)",
+      "severity": "medium",
+      "details": "Table shows exec-only N-H=13%. Registry has H8_count=6 for exec-only s42. Without H8: N-H=12/93=12.9%. With H8: N-H=7/93=7.5%. Contingent on INC-01 resolution."
+    },
+    {
+      "id": "INC-10",
+      "file": "artifacts/_project/paper/table_1000step_comparison.tex",
+      "line": "1-22",
+      "claim": "1000-step table uses 'Mean ISR' not 'ISR*'",
+      "paper_value": "Column header: 'Mean ISR'",
+      "registry_value": "Paper states 'We report proved-only ISR (ISR*) throughout' (method.tex:51)",
+      "severity": "low",
+      "details": "method.tex line 51 claims 'We report proved-only ISR (ISR*) throughout'. The 1000-step table reports mean ISR (all-sample average), not ISR*. For ISR beta=0.1: mean ISR=0.789 vs ISR*=0.877. For SFT: mean ISR=0.074 vs ISR*=0.568. The column is labeled correctly as 'Mean ISR' but contradicts the 'throughout' claim. Either change the column to ISR* or qualify the 'throughout' statement."
+    },
+    {
+      "id": "INC-11",
+      "file": "artifacts/_project/paper/table4_beta01_comparison.tex",
+      "line": "19-21",
+      "claim": "Table footnote: 'ISR reward achieves 3.2x higher structural quality...confirming genuine structural guidance'",
+      "paper_value": "3.2x genuine advantage",
+      "registry_value": "1.06x after premise-count matching (paper main text correctly states this)",
+      "severity": "low",
+      "details": "Artifact table footnote contradicts the paper's main analysis which shows the 3.2x advantage is a premise-minimization artifact (1.06x after matching). This artifact table may not be in the final paper, but if included, the footnote must be updated."
+    },
+    {
+      "id": "INC-12",
+      "file": "artifacts/_project/paper/table3_isr_collapse.tex",
+      "line": 13,
+      "claim": "ISR collapse percentage at 1000 steps: -99.6%",
+      "paper_value": "-99.6% (table footnote)",
+      "registry_value": "-99.5% (used in body text: (0.642-0.003)/0.642=99.53%)",
+      "severity": "low",
+      "details": "Table footnote says '-99.6% at 1000 steps' while paper body says '99.5% degradation'. Difference is rounding: 0.6423->0.0028 gives 99.56%, 0.642->0.003 gives 99.53%. Both round differently. Minor but should be consistent."
+    },
+    {
+      "id": "INC-13",
+      "file": "paper/appendix.tex",
+      "line": "92-109",
+      "claim": "Table labeled 'tab:bootstrap-ci' but contains Wilson CIs",
+      "paper_value": "Label: bootstrap-ci",
+      "registry_value": "Content: Wilson CIs and Fisher exact tests",
+      "severity": "low",
+      "details": "Table ref label is 'bootstrap-ci' but the analysis uses Wilson confidence intervals and Fisher exact tests, not bootstrap. Misleading label. The p-values mentioned in the task (p=0.637, p=0.0004) do not appear in the paper — they may be from an earlier bootstrap analysis that was replaced by Wilson CIs."
+    },
+    {
+      "id": "INC-14",
+      "file": "paper/experiments.tex",
+      "line": 93,
+      "claim": "Random beta=0.3 near-universal H1 hacking (96%)",
+      "paper_value": "96%",
+      "registry_value": "Pooled H1: 154/163=94.5%; mean-of-seeds: (100+90.2+100)/3=96.7%",
+      "severity": "low",
+      "details": "Paper says 96%. Pooled rate is 94.5%, mean-of-seeds is 96.7%. The 96% appears to be a rounded mean-of-seeds, while other pooled statistics in the paper use sample-weighted pooling. Inconsistent aggregation method, though low impact."
+    }
+  ],
+  "verified_correct": [
+    "ISR collapse trajectory: 0.6423 -> 0.1324 -> 0.003 (all sources consistent)",
+    "PR trajectory: 32% -> 93% -> 96% (exec-only s42)",
+    "214x collapse ratio (0.642/0.003)",
+    "SFT 3-seed pooled: PR=15.3% (46/300), N-H=91.3% (42/46), H7=0%, H1=8.7% (4/46), n=46",
+    "SFT per-seed range: 88-93% non-hacking",
+    "H7 pooled ISR beta=0.1: 64.5% (149/231) vs 0% random (0/256)",
+    "ISR beta=0.3 instability: PR=66±42%, spanning 18-95%",
+    "Random beta=0.3 instability: PR=54±35%, spanning 23-92%",
+    "ISR beta=0.3 per-seed modes: s42=reward collapse (PR=18%), s43=H1 shortcutting (PR=86%, H1=69%, N-H=27%), s44=pure H7 (PR=95%, H7=100%, ISR*=0.742)",
+    "Prolog universal Goodhart: 3/3 seeds, 0% non-hacking",
+    "Prolog exec-only: s42 ISR*=0.037 (PR=0.83), s43 ISR*=0.015 (PR=0.56)",
+    "Prolog ISR: s42 ISR*=1.0 (50/100), s43 38 proved functional H7, s44 95/97 query-as-fact",
+    "O(1) ablation: PR=63%, ISR*=0.007",
+    "NLI correlation: rho=-0.049, p=0.187",
+    "1.06x premise-count-matched ISR ratio",
+    "n_comp: 5.58 (ISR s42) vs 8.46 (Random s42)",
+    "1000-step exec-only: PR=0.96, ISR=0.003, H1=100%, genuine=0%, n_comp=18.55",
+    "1000-step ISR beta=0.1: PR=0.90, H7=92.2%, H1=4.4%, H8=1.1% (table)",
+    "1000-step ISR beta=0.3: H8=43.2%, genuine=0% (D076 correctly applied)",
+    "1000-step SFT s42: PR=0.13, genuine=92.3%",
+    "Exec-only cross-seed: s42 PR=93% H1=87%, s43 PR=13% repetition, s44 PR=98% tautological H7=100% n=2.04",
+    "Exec-only PR sigma=±47pp",
+    "ISR beta=0.1 3-seed: PR=77±14%, ISR*=0.716±0.26",
+    "Random beta=0.1 3-seed: PR=85±6%, ISR*=0.086±0.039",
+    "All appendix per-seed PR and ISR* values match registry",
+    "Base model: PR=0.12",
+    "Ground-truth FOL: ISR*=0.559",
+    "SFT ISR* (s42): 0.571",
+    "94.8% ISR=0 ratio at 1000 steps",
+    "Component count inflation 6.58->18.55",
+    "100-step hacking: 31.2% (10/32) vs SFT 7.1% (1/14)",
+    "Total conclusion embedding (H1+H7) GRPO-universal 68-97%",
+    "Random beta=0.1 pooled H1=81%, ISR beta=0.1 pooled H1=18%",
+    "Related work citations: spurious-rewards and metr-reward-hacking present (per memory.md)"
+  ],
+  "taxonomy_status": {
+    "paper_value": "7 modes throughout (abstract, intro, method, taxonomy section, appendix definitions)",
+    "registry_and_memory_value": "8 modes (H8 = conjunction collapse added)",
+    "1000step_table_value": "Uses H8 as column — implies 8 modes",
+    "writing_plan_value": "7 modes",
+    "recommendation": "MUST resolve: either (a) upgrade paper to 8 modes, add H8 definition to appendix, update all counts and N-H percentages, recalculate Wilson CIs; or (b) fold H8 into existing mode (e.g., 'tautological collapse variant') and relabel in 1000-step table. Option (a) is cleaner but requires cascading updates to INC-02 through INC-09."
+  },
+  "d076_status": "CORRECTLY APPLIED. 1000-step table shows ISR beta=0.3 H8=43.2%, Genuine=0%. Memory confirms D076 correction.",
+  "d078_status": "APPLIED TO REGISTRY ONLY. Registry shows plan002-b01-s42 genuine_count=14. Paper still uses pre-H8 value (N-H=30.9% = ~25 non-hacking). Paper TeX files need updating.",
+  "bootstrap_ci_check": {
+    "p_0637": "NOT FOUND in any TeX file. Paper uses Wilson CIs, not bootstrap. May be from superseded analysis.",
+    "p_0004": "NOT FOUND in any TeX file. Paper uses Fisher exact tests with p=1.0 and p<0.001.",
+    "p_lt_001": "FOUND. Used in Wilson CI table for ISR/Random vs Exec-only genuine rate and H7 ISR vs Random."
+  },
+  "sft_3seed_500step": {
+    "PR_mean_std": "0.153±0.015 — MATCHES registry (s42=0.14, s43=0.15, s44=0.17)",
+    "genuine_mean_std": "91.5%±2.7% (mean of per-seed rates) — paper uses POOLED 91.3% (42/46) which is also correct",
+    "note": "Paper consistently uses pooled (91.3%), not mean (91.5%). Both are valid."
+  },
+  "stale_data_risk": [
+    "ISR beta=0.1 s42 N-H% (30.9% -> 17.3% post-H8) — HIGH RISK, affects main claims",
+    "Pooled ISR beta=0.1 N-H% (17% -> 12.1%) — HIGH RISK, affects table and Wilson CIs",
+    "Wilson CI Fisher p=1.0 for ISR vs Random genuine — HIGH RISK, may flip to significant difference",
+    "Exec-only s42 N-H (13% -> 7.5%) — MEDIUM RISK, secondary claim",
+    "1000-step genuine 3.0% vs 2.2% — MEDIUM RISK, text/table mismatch"
+  ],
+  "summary": "14 inconsistencies found (6 high, 3 medium, 5 low). The dominant issue is H8 taxonomy: memory.md records expansion from 7 to 8 hacking modes, the 1000-step table uses H8, but the paper body/appendix still claims 7 modes. This creates a cascade: if H8 is accepted, all N-H percentages for ISR beta=0.1 (and to a lesser extent exec-only) are inflated because H8 samples are counted as non-hacking. The Wilson CI analysis claiming 'identical genuine rates' between ISR and Random (p=1.0) may no longer hold after recalculation. D076 (ISR beta=0.3 1000-step) is correctly applied. D078 (plan002-b01-s42 genuine_count=14) is in registry but not in paper TeX. All other quantitative claims (ISR collapse trajectory, SFT stats, Prolog results, per-seed breakdowns, aggregation statistics) verify correctly against registry."
+}

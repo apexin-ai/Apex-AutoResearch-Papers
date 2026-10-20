@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "id": "7e8af41ee016b6cb73a2",
+  "project": "solver-trace-ablation",
+  "kind": "worker",
+  "title": "ops check training processes 20260514T230639 retry1",
+  "task_key": "worker_ops_check-training-processes_20260514T230639_retry1",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-training-processes_20260514T230639_retry1.log",
+    "occurrence": 1,
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "statistics": {
+    "messages": 0,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {},
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [],
+  "readable_path": "readable/worker-executions/ops-check-training-processes-20260514t230639-retry1.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aec090f32227477dbec6",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "paper final sync compile",
+  "task_key": "worker_paper_final-sync-compile_20260522T132545",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_final-sync-compile_20260522T132545_result.json",
+    "occurrence": 1,
+    "bytes": 500,
+    "sha256": "79acb0b5e8f2143131b6f0a769365965b27991889cf841c6b8021ae53bf1a9d8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全量验证结果：\n\n| 检查项 | 结果 |\n|--------|------|\n| 同步状态 | 零差异 |\n| 编译 | 成功 |\n| 总页数 | 22 |\n| 主文页数 | 7 页（References 起始于第 8 页，符合 8 页限制） |\n| Undefined refs | 0 |\n| Missing citations | 0 |\n| Multiply-defined labels | 0 |\n| `tab:classifier-precision` | 渲染正常（第 14 页） |\n| Critical warnings | 无（仅 infwarerr 包加载信息，非实际警告） |\n\n全部通过，无任何问题。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-final-sync-compile.md"
+}

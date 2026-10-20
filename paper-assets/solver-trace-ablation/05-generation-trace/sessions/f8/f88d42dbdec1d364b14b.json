@@ -1,0 +1,785 @@
+{
+  "schema_version": "1.0",
+  "id": "f88d42dbdec1d364b14b",
+  "project": "solver-trace-ablation",
+  "kind": "worker",
+  "title": "paper citation fix",
+  "task_key": "worker_paper_citation-fix_20260515T225012",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_citation-fix_20260515T225012.log",
+    "occurrence": 1,
+    "bytes": 80188,
+    "sha256": "8862c73947c75eba041ca9eec2163f8886ca2c821051184e941d2d4109c1ca8a"
+  },
+  "statistics": {
+    "messages": 16,
+    "user_turns": 0,
+    "tool_calls": 4,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 4,
+      "tool_call": 4,
+      "tool_result": 4,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+                "session_id": "e5ff183e-076e-46ed-9cb3-633025413080",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__save_project_file"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "352cdbe5-2098-44e1-97c0-09d926fcd3c0",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778889000,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "e90fb4a7-1efb-43c2-92be-385cd9e319ba",
+                "session_id": "e5ff183e-076e-46ed-9cb3-633025413080"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me read the two files to understand the current state.",
+              "signature": "EvUBClkIDRgCKkC137Johiu6QwqFjdiJZaQG9+FDhIzYavxuKRUEaMVuLXp96d8KzyifDQaTbRTml33PDF3ata+0uDjQKk8Z8bbBMg9jbGF1ZGUtb3B1cy00LTY4ABIMbE+1NsNGaKNnQoinGgxag1s1XN+pxWA3f38iMDbsKnVdTVcGmHNmgLfj4/POwX9VCIxErsxaq3BZlQZQd1NcYA/dXeajCgFzUl7ePCpK5IJL6vUyjIePzNRiWP+Gp0G4VxMe6IW/ZBDiDZybyKng8GMm+Hs3FFvoQGdW6aSay8U6kJyQlsG5RnszOiaU4ffjb47R9oiXKe4YAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e5ff183e-076e-46ed-9cb3-633025413080",
+            "uuid": "380ea1cd-aff0-4d11-8305-0f667339acb9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QB67HXxCBAMbYL3Vjk85QX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14001,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14001
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TYwv87hoDKuE2tSaGtxAUm",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/method.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e5ff183e-076e-46ed-9cb3-633025413080",
+            "uuid": "9295ef2f-11ea-43e1-9a59-abfbcb3e2393",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QB67HXxCBAMbYL3Vjk85QX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14001,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14001
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T22:50:21.750Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TYwv87hoDKuE2tSaGtxAUm",
+              "type": "tool_result",
+              "content": "1\t\\section{Method}\n2\t\\label{sec:method}\n3\t\n4\t\\begin{figure*}[t]\n5\t\\centering\n6\t\\includegraphics[width=0.92\\textwidth]{figures/fig1_sta_overview.pdf}\n7\t\\caption{Solver Trace Ablation (STA). (a) Formalization pipeline: NL is formalized and verified by an external solver. (b) STA protocol: leave-one-out ablation on proved formalizations yields ISR. (c) ISR as diagnostic vs.\\ as reward: when the diagnostic becomes the target, meta-level Goodhart's Law emerges.}\n8\t\\label{fig:sta-overview}\n9\t\\end{figure*}\n10\t\n11\t\\subsection{Task and GRPO Training}\n12\t\\label{sec:task}\n13\t\n14\tGiven premises $P_1,\\ldots,P_k$ and conclusion $C$, the task is to produce a formal program $F=\\{c_1,\\ldots,c_n\\}$ verified by an external solver $S\\in\\{\\text{Prover9, SWI-Prolog}\\}$ (Figure~\\ref{fig:sta-overview}a).\n15\tWe train with GRPO~\\citep{deepseekmath} ($K{=}8$), where each rollout receives binary execution reward $r_{\\text{exec}}(x) = \\mathbf{1}[S(F_x){=}\\textit{proved}]$.\n16\tThis optimizes prove rate but provides no signal about \\emph{structural quality}: a formalization embedding the conclusion among its premises receives the same reward as a faithful derivation.\n17\tAll experiments draw from FOLIO~\\citep{folio}; the held-out evaluation file retains a legacy \\texttt{proofwriter\\_fol\\_*.jsonl} filename (from ProofWriter~\\citep{proofwriter}) but contains only FOLIO-derived examples.\n18\t\n19\t\\subsection{Solver Trace Ablation (STA)}\n20\t\\label{sec:sta}\n21\t\n22\tSTA tests whether each component of a proved formalization is individually necessary for proof success (Figure~\\ref{fig:sta-overview}b).\n23\tGiven a proved $x$ with $n$ components, STA constructs $n$ ablated variants $x\\setminus\\{c_i\\}$ and re-runs the solver (Algorithm~\\ref{alg:sta}).\n24\tA component is \\emph{necessary} if its removal causes proof failure.\n25\tWhat constitutes a component depends on the logic: premises in FOL, clauses or ground facts in Prolog.\n26\tLOO ablation itself is standard in mutation testing, sensitivity analysis, and feature attribution~\\citep{demillo1978, sundararajan-ig}; our novelty is its application as a GRPO-hacking diagnostic and the empirical phenomena it surfaces.\n27\t\n28\t\\begin{algorithm}[t]\n29\t\\caption{Solver Trace Ablation (STA)}\n30\t\\label{alg:sta}\n31\t\\begin{algorithmic}[1]\n32\t\\REQUIRE Proved formalization $x = \\{c_1, \\ldots, c_n\\}$, solver $S$\n33\t\\ENSURE $\\text{ISR}(x) \\in [0, 1]$\n34\t\\STATE $\\textit{necessary} \\gets 0$\n35\t\\FOR{$i = 1$ to $n$}\n36\t    \\IF{$S(x \\setminus \\{c_i\\}) = \\textit{failed}$}\n37\t        \\STATE $\\textit{necessary} \\gets \\textit{necessary} + 1$\n38\t    \\ENDIF\n39\t\\ENDFOR\n40\t\\RETURN $\\textit{necessary} \\,/\\, n$\n41\t\\end{algorithmic}\n42\t\\end{algorithm}\n43\t\n44\t\\paragraph{Intensional Structural Reward.}\n45\tISR is the fraction of necessary components:\n46\t\\begin{equation}\n47\t  \\text{ISR}(x) = \\frac{1}{n}\\sum_{i=1}^{n}\\mathbf{1}\\bigl[S(x\\setminus\\{c_i\\})=\\textit{failed}\\bigr]\n48\t  \\label{eq:isr}\n49\t\\end{equation}\n50\tISR is defined only for proved formalizations: ISR${=}1$ means every component is necessary; ISR${=}0$ means complete redundancy.\n51\tWe report \\emph{proved-only} ISR (denoted ISR$^*$) throughout to avoid conflating structural quality with prove rate.\n52\t\n53\t\\paragraph{Limitations of ISR.}\n54\tISR measures syntactic component necessity, not semantic faithfulness: a formalization can achieve $\\text{ISR}{=}1$ while semantically unrelated to the NL input (e.g., a single premise identical to the conclusion).\n55\tISR is also sensitive to component count $n$: when $n{=}2$, $\\text{ISR}\\geq 0.5$ regardless of proof quality.\n56\tWe control for this confound via premise-count-matched analysis in \\S\\ref{sec:goodhart}.\n57\tThe $O(n)$ per-clause LOO ablation is necessary: a cheaper $O(1)$ binary variant produces near-zero ISR scores ($\\text{ISR}^*{=}0.007$) indistinguishable from exec-only, because models generate redundant premise copies whose individual removal never changes the proof outcome.\n58\tHowever, the $O(1)$ variant includes a tautology check (conclusion provable under empty premises $\\to$ ISR${=}0$) absent from exec-only, introducing a training-time confound that depresses prove rate ($63\\%$ vs.\\ $93\\%$ exec-only); the two conditions are therefore non-equivalent in training dynamics despite producing comparable ISR signals (Appendix~\\ref{app:o1-ablation}).\n59\t\n60\t\\subsection{Reward Conditions and Hacking Modes}\n61\t\\label{sec:rewards}\n62\t\\label{sec:taxonomy-method}\n63\t\n64\tWe study six conditions: exec-only ($r_{\\text{exec}}$), ISR low/high-dose ($r_{\\text{exec}}\\cdot(1{+}\\beta\\,\\text{ISR})$ at $\\beta\\in\\{0.1,0.3\\}$), matched random controls ($r_{\\text{exec}}\\cdot(1{+}\\beta u)$, $u\\sim\\mathcal{U}(0,1)$), and an SFT baseline (NLL on gold formalizations).\n65\tMultiplicative bonuses apply only to proved samples, keeping the prove-rate floor intact.\n66\tRandom isolates ISR-specific signal from generic reward-variance effects; SFT isolates whether structural degeneration arises from RL optimization or data exposure alone.\n67\tEach RL condition uses seeds $\\{42,43,44\\}$ and identical training data.\n68\tAn earlier convex formulation ($\\alpha r_{\\text{exec}} + \\beta r_{\\text{exec}}\\text{ISR}$, $\\alpha{+}\\beta{=}1$) was discarded because $\\text{ISR}{<}1$ always penalized relative to exec-only, collapsing PR (Appendix~\\ref{app:setup}).\n69\t\n70\t\\paragraph{Hacking taxonomy.}\n71\tAcross conditions, seeds, and logic types we identify eight structural-degeneration modes (full definitions in Appendix~\\ref{app:hacking-modes}):\n72\t\\textbf{H1} (conclusion embedded among multiple premises),\n73\t\\textbf{H7} (single-premise conclusion duplication, subtypes H7a standard and H7b obfuscated tautology; targets the ISR signal directly, since removing the sole premise forces $\\text{ISR}\\geq 0.5$),\n74\t\\textbf{H8} (premise-subset gaming: each component is LOO-necessary but the premise set is a strict subset of what the problem requires, inflating ISR without faithful reasoning; Appendix~\\ref{app:h8}),\n75\t\\textbf{tautological collapse} (minimal two-component $P{\\to}P$ without explicit ISR inflation),\n76\t\\textbf{repetition collapse} (identical clauses repeated to inflate component count),\n77\t\\textbf{complexity-without-utility} (elaborate but vacuous premises),\n78\t\\textbf{contradiction explosion} (contradictory premises trivializing any conclusion via \\emph{ex falso}), and\n79\t\\textbf{query-as-fact gaming} (Prolog-specific: emit the NL question as an atom asserted as both fact and query; evades text-match classifiers).\n80\tModes are identified by a two-stage procedure: strict normalized text matching (H1/H7) plus functional analysis of the per-sample $n_{\\text{necessary}}$ distribution (catches modes evading text matching).\n81\tWe report both classifications in \\S\\ref{sec:experiments}.\n82\t\n83\tIn interpreting ISR results we distinguish two failure semantics that share a numerical signature: an exec-only \\emph{low} ISR signals \\emph{redundancy} (e.g., repeated ground facts in Prolog), whereas an ISR-rewarded \\emph{high} ISR signals \\emph{metric gaming} (H7-style constructions).\n84\tA bare ISR difference therefore does not translate directly into a reasoning-ability difference; the mode breakdown is what licenses such interpretation.\n85\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "e5ff183e-076e-46ed-9cb3-633025413080",
+            "uuid": "ebb55662-134f-43dc-bcd7-b6ce98dc22dc",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/method.tex",
+                "content": "\\section{Method}\n\\label{sec:method}\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=0.92\\textwidth]{figures/fig1_sta_overview.pdf}\n\\caption{Solver Trace Ablation (STA). (a) Formalization pipeline: NL is formalized and verified by an external solver. (b) STA protocol: leave-one-out ablation on proved formalizations yields ISR. (c) ISR as diagnostic vs.\\ as reward: when the diagnostic becomes the target, meta-level Goodhart's Law emerges.}\n\\label{fig:sta-overview}\n\\end{figure*}\n\n\\subsection{Task and GRPO Training}\n\\label{sec:task}\n\nGiven premises $P_1,\\ldots,P_k$ and conclusion $C$, the task is to produce a formal program $F=\\{c_1,\\ldots,c_n\\}$ verified by an external solver $S\\in\\{\\text{Prover9, SWI-Prolog}\\}$ (Figure~\\ref{fig:sta-overview}a).\nWe train with GRPO~\\citep{deepseekmath} ($K{=}8$), where each rollout receives binary execution reward $r_{\\text{exec}}(x) = \\mathbf{1}[S(F_x){=}\\textit{proved}]$.\nThis optimizes prove rate but provides no signal about \\emph{structural quality}: a formalization embedding the conclusion among its premises receives the same reward as a faithful derivation.\nAll experiments draw from FOLIO~\\citep{folio}; the held-out evaluation file retains a legacy \\texttt{proofwriter\\_fol\\_*.jsonl} filename (from ProofWriter~\\citep{proofwriter}) but contains only FOLIO-derived examples.\n\n\\subsection{Solver Trace Ablation (STA)}\n\\label{sec:sta}\n\nSTA tests whether each component of a proved formalization is individually necessary for proof success (Figure~\\ref{fig:sta-overview}b).\nGiven a proved $x$ with $n$ components, STA constructs $n$ ablated variants $x\\setminus\\{c_i\\}$ and re-runs the solver (Algorithm~\\ref{alg:sta}).\nA component is \\emph{necessary} if its removal causes proof failure.\nWhat constitutes a component depends on the logic: premises in FOL, clauses or ground facts in Prolog.\nLOO ablation itself is standard in mutation testing, sensitivity analysis, and feature attribution~\\citep{demillo1978, sundararajan-ig}; our novelty is its application as a GRPO-hacking diagnostic and the empirical phenomena it surfaces.\n\n\\begin{algorithm}[t]\n\\caption{Solver Trace Ablation (STA)}\n\\label{alg:sta}\n\\begin{algorithmic}[1]\n\\REQUIRE Proved formalization $x = \\{c_1, \\ldots, c_n\\}$, solver $S$\n\\ENSURE $\\text{ISR}(x) \\in [0, 1]$\n\\STATE $\\textit{necessary} \\gets 0$\n\\FOR{$i = 1$ to $n$}\n    \\IF{$S(x \\setminus \\{c_i\\}) = \\textit{failed}$}\n        \\STATE $\\textit{necessary} \\gets \\textit{necessary} + 1$\n    \\ENDIF\n\\ENDFOR\n\\RETURN $\\textit{necessary} \\,/\\, n$\n\\end{algorithmic}\n\\end{algorithm}\n\n\\paragraph{Intensional Structural Reward.}\nISR is the fraction of necessary components:\n\\begin{equation}\n  \\text{ISR}(x) = \\frac{1}{n}\\sum_{i=1}^{n}\\mathbf{1}\\bigl[S(x\\setminus\\{c_i\\})=\\textit{failed}\\bigr]\n  \\label{eq:isr}\n\\end{equation}\nISR is defined only for proved formalizations: ISR${=}1$ means every component is necessary; ISR${=}0$ means complete redundancy.\nWe report \\emph{proved-only} ISR (denoted ISR$^*$) throughout to avoid conflating structural quality with prove rate.\n\n\\paragraph{Limitations of ISR.}\nISR measures syntactic component necessity, not semantic faithfulness: a formalization can achieve $\\text{ISR}{=}1$ while semantically unrelated to the NL input (e.g., a single premise identical to the conclusion).\nISR is also sensitive to component count $n$: when $n{=}2$, $\\text{ISR}\\geq 0.5$ regardless of proof quality.\nWe control for this confound via premise-count-matched analysis in \\S\\ref{sec:goodhart}.\nThe $O(n)$ per-clause LOO ablation is necessary: a cheaper $O(1)$ binary variant produces near-zero ISR scores ($\\text{ISR}^*{=}0.007$) indistinguishable from exec-only, because models generate redundant premise copies whose individual removal never changes the proof outcome.\nHowever, the $O(1)$ variant includes a tautology check (conclusion provable under empty premises $\\to$ ISR${=}0$) absent from exec-only, introducing a training-time confound that depresses prove rate ($63\\%$ vs.\\ $93\\%$ exec-only); the two conditions are therefore non-equivalent in training dynamics despite producing comparable ISR signals (Appendix~\\ref{app:o1-ablation}).\n\n\\subsection{Reward Conditions and Hacking Modes}\n\\label{sec:rewards}\n\\label{sec:taxonomy-method}\n\nWe study six conditions: exec-only ($r_{\\text{exec}}$), ISR low/high-dose ($r_{\\text{exec}}\\cdot(1{+}\\beta\\,\\text{ISR})$ at $\\beta\\in\\{0.1,0.3\\}$), matched random controls ($r_{\\text{exec}}\\cdot(1{+}\\beta u)$, $u\\sim\\mathcal{U}(0,1)$), and an SFT baseline (NLL on gold formalizations).\nMultiplicative bonuses apply only to proved samples, keeping the prove-rate floor intact.\nRandom isolates ISR-specific signal from generic reward-variance effects; SFT isolates whether structural degeneration arises from RL optimization or data exposure alone.\nEach RL condition uses seeds $\\{42,43,44\\}$ and identical training data.\nAn earlier convex formulation ($\\alpha r_{\\text{exec}} + \\beta r_{\\text{exec}}\\text{ISR}$, $\\alpha{+}\\beta{=}1$) was discarded because $\\text{ISR}{<}1$ always penalized relative to exec-only, collapsing PR (Appendix~\\ref{app:setup}).\n\n\\paragraph{Hacking taxonomy.}\nAcross conditions, seeds, and logic types we identify eight structural-degeneration modes (full definitions in Appendix~\\ref{app:hacking-modes}):\n\\textbf{H1} (conclusion embedded among multiple premises),\n\\textbf{H7} (single-premise conclusion duplication, subtypes H7a standard and H7b obfuscated tautology; targets the ISR signal directly, since removing the sole premise forces $\\text{ISR}\\geq 0.5$),\n\\textbf{H8} (premise-subset gaming: each component is LOO-necessary but the premise set is a strict subset of what the problem requires, inflating ISR without faithful reasoning; Appendix~\\ref{app:h8}),\n\\textbf{tautological collapse} (minimal two-component $P{\\to}P$ without explicit ISR inflation),\n\\textbf{repetition collapse} (identical clauses repeated to inflate component count),\n\\textbf{complexity-without-utility} (elaborate but vacuous premises),\n\\textbf{contradiction explosion} (contradictory premises trivializing any conclusion via \\emph{ex falso}), and\n\\textbf{query-as-fact gaming} (Prolog-specific: emit the NL question as an atom asserted as both fact and query; evades text-match classifiers).\nModes are identified by a two-stage procedure: strict normalized text matching (H1/H7) plus functional analysis of the per-sample $n_{\\text{necessary}}$ distribution (catches modes evading text matching).\nWe report both classifications in \\S\\ref{sec:experiments}.\n\nIn interpreting ISR results we distinguish two failure semantics that share a numerical signature: an exec-only \\emph{low} ISR signals \\emph{redundancy} (e.g., repeated ground facts in Prolog), whereas an ISR-rewarded \\emph{high} ISR signals \\emph{metric gaming} (H7-style constructions).\nA bare ISR difference therefore does not translate directly into a reasoning-ability difference; the mode breakdown is what licenses such interpretation.\n",
+                "numLines": 85,
+                "startLine": 1,
+                "totalLines": 85
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GXdU8w6CkhW7Xc4UBwojqr",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/references.bib"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e5ff183e-076e-46ed-9cb3-633025413080",
+            "uuid": "ca293f27-0b1c-4026-bef4-83617f1aded6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QB67HXxCBAMbYL3Vjk85QX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14001,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 14001
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T22:50:22.073Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GXdU8w6CkhW7Xc4UBwojqr",
+              "type": "tool_result",
+              "content": "1\t% ============================================================\n2\t% Category 1: Neurosymbolic reasoning + RL/GRPO\n3\t% ============================================================\n4\t\n5\t@article{deepseekmath,\n6\t  author       = {Zhihong Shao and Peiyi Wang and Qihao Zhu and Runxin Xu and others},\n7\t  title        = {{DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models}},\n8\t  journal      = {arXiv preprint arXiv:2402.03300},\n9\t  year         = {2024},\n10\t  eprint       = {2402.03300},\n11\t  archivePrefix = {arXiv},\n12\t  primaryClass = {cs.AI},\n13\t}\n14\t\n15\t@article{logic-rl,\n16\t  author       = {Tian Xie and Zitian Gao and Qingnan Ren and Haoming Luo and Yuqian Hong and Bryan Dai and Joey Zhou and Kai Qiu and Zhirong Wu and Chong Luo},\n17\t  title        = {{Logic-RL: Unleashing LLM Reasoning with Rule-Based Reinforcement Learning}},\n18\t  journal      = {arXiv preprint arXiv:2502.14768},\n19\t  year         = {2025},\n20\t  eprint       = {2502.14768},\n21\t  archivePrefix = {arXiv},\n22\t  primaryClass = {cs.AI},\n23\t}\n24\t\n25\t@article{mellgren-prolog-grpo,\n26\t  author       = {Niklas Mellgren and Peter Schneider-Kamp and Lukas Galke},\n27\t  title        = {{Training Language Models to Use Prolog as a Tool}},\n28\t  journal      = {arXiv preprint arXiv:2512.07407},\n29\t  year         = {2025},\n30\t  eprint       = {2512.07407},\n31\t  archivePrefix = {arXiv},\n32\t  primaryClass = {cs.AI},\n33\t}\n34\t\n35\t@inproceedings{satlm,\n36\t  author       = {Xi Ye and Qiaochu Chen and Isil Dillig and Greg Durrett},\n37\t  title        = {{SatLM: Satisfiability-Aided Language Models Using Declarative Prompting}},\n38\t  booktitle    = {Advances in Neural Information Processing Systems (NeurIPS)},\n39\t  year         = {2023},\n40\t}\n41\t\n42\t% ============================================================\n43\t% Category 2: Reward shaping for code/formal verification\n44\t% ============================================================\n45\t\n46\t@inproceedings{lightman-verify-step,\n47\t  author       = {Hunter Lightman and Vineet Kosaraju and Yura Burda and others},\n48\t  title        = {{Let's Verify Step by Step}},\n49\t  booktitle    = {Proceedings of the International Conference on Learning Representations (ICLR)},\n50\t  year         = {2024},\n51\t  note         = {arXiv:2305.20050},\n52\t}\n53\t\n54\t@inproceedings{skalse-reward-hacking,\n55\t  author       = {Joar Skalse and Nikolaus H. R. Howe and Dmitrii Krasheninnikov and David Krueger},\n56\t  title        = {{Defining and Characterizing Reward Hacking}},\n57\t  booktitle    = {Advances in Neural Information Processing Systems (NeurIPS)},\n58\t  year         = {2022},\n59\t  note         = {arXiv:2209.13085},\n60\t}\n61\t\n62\t% ============================================================\n63\t% Category 3: Mutation testing in software engineering\n64\t% ============================================================\n65\t\n66\t@article{demillo1978,\n67\t  author       = {Richard A. DeMillo and Richard J. Lipton and Frederick G. Sayward},\n68\t  title        = {{Hints on Test Data Selection: Help for the Practicing Programmer}},\n69\t  journal      = {Computer},\n70\t  volume       = {11},\n71\t  number       = {4},\n72\t  pages        = {34--41},\n73\t  year         = {1978},\n74\t}\n75\t\n76\t@article{jia-harman-survey,\n77\t  author       = {Yue Jia and Mark Harman},\n78\t  title        = {{An Analysis and Survey of the Development of Mutation Testing}},\n79\t  journal      = {IEEE Transactions on Software Engineering},\n80\t  volume       = {37},\n81\t  number       = {5},\n82\t  pages        = {649--678},\n83\t  year         = {2011},\n84\t}\n85\t\n86\t@article{spurious-rewards,\n87\t  author       = {Rulin Shao and Shuyue Stella Li and Rui Xin and Scott Geng and Yiping Wang and Sewoong Oh and Simon Shaolei Du and Nathan Lambert and Sewon Min and Ranjay Krishna and Yulia Tsvetkov and Hannaneh Hajishirzi and Pang Wei Koh and Luke Zettlemoyer},\n88\t  title        = {{Spurious Rewards: Rethinking Training Signals in RLVR}},\n89\t  journal      = {arXiv preprint arXiv:2506.10947},\n90\t  year         = {2025},\n91\t  eprint       = {2506.10947},\n92\t  archivePrefix = {arXiv},\n93\t  primaryClass = {cs.AI},\n94\t}\n95\t\n96\t@article{bondarenko-spec-gaming,\n97\t  author       = {Alexander Bondarenko and Denis Volk and Dmitrii Volkov and Jeffrey Ladish},\n98\t  title        = {{Demonstrating Specification Gaming in Reasoning Models}},\n99\t  journal      = {arXiv preprint arXiv:2502.13295},\n100\t  year         = {2025},\n101\t  eprint       = {2502.13295},\n102\t  archivePrefix = {arXiv},\n103\t  primaryClass = {cs.AI},\n104\t}\n105\t\n106\t@inproceedings{kim-game-formalization,\n107\t  author       = {Kyuhee Kim and Auguste Poiroux and Antoine Bosselut},\n108\t  title        = {{Do LLMs Game Formalization? Evaluating Faithfulness in Logical Reasoning}},\n109\t  booktitle    = {VerifAI-2 Workshop at the International Conference on Learning Representations (ICLR)},\n110\t  year         = {2026},\n111\t  note         = {arXiv:2604.19459},\n112\t}\n113\t\n114\t@inproceedings{gao-reward-overoptimization,\n115\t  author       = {Leo Gao and John Schulman and Jacob Hilton},\n116\t  title        = {{Scaling Laws for Reward Model Overoptimization}},\n117\t  booktitle    = {Proceedings of the International Conference on Machine Learning (ICML)},\n118\t  year         = {2023},\n119\t  note         = {arXiv:2210.10760},\n120\t}\n121\t\n122\t@inproceedings{karwowski-goodhart-rl,\n123\t  author       = {Jacek Karwowski and Oliver Hayman and Xingjian Bai and Klaus Kiendlhofer and Charlie Griffin and Joar Skalse},\n124\t  title        = {{Goodhart's Law in Reinforcement Learning}},\n125\t  booktitle    = {Proceedings of the International Conference on Learning Representations (ICLR)},\n126\t  year         = {2024},\n127\t  note         = {arXiv:2310.09144},\n128\t}\n129\t\n130\t% ============================================================\n131\t% Category 6: FOL/Prolog formalization with LLMs\n132\t% ============================================================\n133\t\n134\t@inproceedings{folio,\n135\t  author       = {Simeng Han and Hailey Schoelkopf and Yilun Zhao and Zhenting Qi and Martin Riddell and Luke Benson and Lucy Sun and Ekaterina Zubova and Yujie Qiao and Matthew Burtell and David Peng and Jonathan Fan and Yixin Liu and Brian Wong and Malcolm Sailor and Ansong Ni and Linyong Nan and Jungo Kasai and Tao Yu and Rui Zhang and Shafiq Joty and Alexander R. Fabbri and Wojciech Kryscinski and Xi Victoria Lin and Caiming Xiong and Dragomir Radev},\n136\t  title        = {{FOLIO: Natural Language Reasoning with First-Order Logic}},\n137\t  booktitle    = {Proceedings of the Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n138\t  year         = {2024},\n139\t  note         = {arXiv:2209.00840},\n140\t}\n141\t\n142\t@inproceedings{logic-lm,\n143\t  author       = {Liangming Pan and Alon Albalak and Xinyi Wang and William Yang Wang},\n144\t  title        = {{Logic-LM: Empowering Large Language Models with Symbolic Solvers for Faithful Logical Reasoning}},\n145\t  booktitle    = {Findings of the Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n146\t  year         = {2023},\n147\t}\n148\t\n149\t@inproceedings{linc,\n150\t  author       = {Theo X. Olausson and Alex Gu and Ben Lipkin and Cedegao E. Zhang and Armando Solar-Lezama and Joshua B. Tenenbaum and Roger Levy},\n151\t  title        = {{LINC: A Neurosymbolic Approach for Logical Reasoning by Combining Language Models with First-Order Logic Provers}},\n152\t  booktitle    = {Proceedings of the Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n153\t  year         = {2023},\n154\t}\n155\t\n156\t@article{fover-pei2025,\n157\t  author       = {Yu Pei and Yongping Du and Xingnan Jin},\n158\t  title        = {{FoVer: First-Order Logic Verification for Natural Language Reasoning}},\n159\t  journal      = {Transactions of the Association for Computational Linguistics},\n160\t  volume       = {13},\n161\t  pages        = {1340--1359},\n162\t  year         = {2025},\n163\t}\n164\t\n165\t@article{lorp,\n166\t  author       = {Zhengkun Di and Chaoli Zhang and Hongtao Lv and Lizhen Cui and Lei Liu},\n167\t  title        = {{LoRP: LLM-based Logical Reasoning via Prolog}},\n168\t  journal      = {Knowledge-Based Systems},\n169\t  year         = {2025},\n170\t}\n171\t\n172\t@article{manheim-goodhart-taxonomy,\n173\t  author       = {David Manheim and Scott Garrabrant},\n174\t  title        = {{Categorizing Variants of Goodhart's Law}},\n175\t  journal      = {arXiv preprint arXiv:1803.04585},\n176\t  year         = {2019},\n177\t  eprint       = {1803.04585},\n178\t  archivePrefix = {arXiv},\n179\t  primaryClass = {cs.AI},\n180\t}\n181\t\n182\t@inproceedings{math-shepherd,\n183\t  author       = {Peiyi Wang and Lei Li and Zhihong Shao and Runxin Xu and others},\n184\t  title        = {{Math-Shepherd: Verify and Reinforce LLMs Step-by-step without Human Annotations}},\n185\t  booktitle    = {Proceedings of the Association for Computational Linguistics (ACL)},\n186\t  year         = {2024},\n187\t  note         = {arXiv:2312.08935},\n188\t}\n189\t\n190\t% ============================================================\n191\t% Reward shaping and process supervision\n192\t% ============================================================\n193\t\n194\t@article{rlsf,\n195\t  author       = {Piyush Jha and Prithwish Jana and Pranavkrishna Suresh and Arnav Arora and Vijay Ganesh},\n196\t  title        = {{RLSF: Reinforcement Learning via Symbolic Feedback}},\n197\t  journal      = {arXiv preprint arXiv:2405.16661},\n198\t  year         = {2024},\n199\t  eprint       = {2405.16661},\n200\t  archivePrefix = {arXiv},\n201\t  primaryClass = {cs.AI},\n202\t}\n203\t\n204\t@article{rubric-grpo,\n205\t  author       = {Manish Bhattarai and Ismael Boureima and Nishath Rajiv Ranasinghe and Scott Pakin and Dan O'Malley},\n206\t  title        = {{Rubric-Grounded Reinforcement Learning: Structured Judge Rewards for Generalizable Reasoning}},\n207\t  journal      = {arXiv preprint arXiv:2605.08061},\n208\t  year         = {2026},\n209\t  eprint       = {2605.08061},\n210\t  archivePrefix = {arXiv},\n211\t}\n212\t\n213\t@article{gao-effective-rl-reward,\n214\t  author       = {Jiaxuan Gao and Shusheng Xu and Wenjie Ye and Weilin Liu and Chuyi He and Wei Fu and Zhiyu Mei and Guangju Wang and Yi Wu},\n215\t  title        = {{On Designing Effective RL Reward at Training Time for LLM Reasoning}},\n216\t  journal      = {arXiv preprint arXiv:2410.15115},\n217\t  year         = {2024},\n218\t  eprint       = {2410.15115},\n219\t  archivePrefix = {arXiv},\n220\t  primaryClass = {cs.AI},\n221\t}\n222\t\n223\t@inproceedings{kwa-catastrophic-goodhart,\n224\t  author       = {Thomas Kwa and Drake Thomas and Adri\\`{a} Garriga-Alonso},\n225\t  title        = {{Catastrophic Goodhart: Regularizing RLHF with KL Divergence Does Not Mitigate Heavy-Tailed Reward Misspecification}},\n226\t  booktitle    = {Advances in Neural Information Processing Systems (NeurIPS)},\n227\t  year         = {2024},\n228\t  note         = {arXiv:2407.14503},\n229\t}\n230\t\n231\t@article{deepseek-prover-v15,\n232\t  author       = {{DeepSeek AI}},\n233\t  title        = {{DeepSeek-Prover-V1.5: Harnessing Proof Assistant Feedback for Reinforcement Learning and Monte-Carlo Tree Search}},\n234\t  journal      = {arXiv preprint arXiv:2408.08152},\n235\t  year         = {2024},\n236\t  eprint       = {2408.08152},\n237\t  archivePrefix = {arXiv},\n238\t}\n239\t\n240\t% ============================================================\n241\t% Additional reward-shaping papers\n242\t% ============================================================\n243\t\n244\t@article{reward-hacking-survey,\n245\t  author       = {Xiaohua Wang and Muzhao Tian and Yuqi Zeng and Zisu Huang and others},\n246\t  title        = {{Reward Hacking in the Era of Large Models: Mechanisms, Emergent Misalignment, Challenges}},\n247\t  journal      = {arXiv preprint arXiv:2604.13602},\n248\t  year         = {2026},\n249\t  eprint       = {2604.13602},\n250\t  archivePrefix = {arXiv},\n251\t}\n252\t\n253\t@misc{metr-reward-hacking,\n254\t  author       = {{METR}},\n255\t  title        = {{Recent Frontier Models Are Reward Hacking}},\n256\t  year         = {2025},\n257\t  howpublished = {METR blog post},\n258\t  note         = {\\url{https://metr.org/blog/2025-06-05-recent-reward-hacking/}},\n259\t}\n260\t\n261\t@inproceedings{sundararajan-ig,\n262\t  author       = {Mukund Sundararajan and Ankur Taly and Qiqi Yan},\n263\t  title        = {{Axiomatic Attribution for Deep Networks}},\n264\t  booktitle    = {Proceedings of the 34th International Conference on Machine Learning (ICML)},\n265\t  year         = {2017},\n266\t  note         = {arXiv:1703.01365},\n267\t}\n268\t\n269\t@inproceedings{proofwriter,\n270\t  author       = {Oyvind Tafjord and Bhavana Dalvi and Peter Clark},\n271\t  title        = {{ProofWriter: Generating Implications, Proofs, and Abductive Statements over Natural Language}},\n272\t  booktitle    = {Findings of the Association for Computational Linguistics (ACL)},\n273\t  year         = {2021},\n274\t  note         = {arXiv:2012.13048},\n275\t}\n276\t\n277\t@article{qwen3,\n278\t  author       = {{Qwen Team}},\n279\t  title        = {{Qwen3 Technical Report}},\n280\t  journal      = {arXiv preprint arXiv:2505.09388},\n281\t  year         = {2025},\n282\t  eprint       = {2505.09388},\n283\t  archivePrefix = {arXiv},\n284\t  primaryClass = {cs.CL},\n285\t}\n286\t\n287\t@inproceedings{processbench,\n288\t  author       = {Chujie Zheng and Zhenru Zhang and Beichen Zhang and Runji Lin and Keming Lu and Bowen Yu and Dayiheng Liu and Jingren Zhou and Junyang Lin},\n289\t  title        = {{ProcessBench: Identifying Process Errors in Mathematical Reasoning}},\n290\t  booktitle    = {Proceedings of the Association for Computational Linguistics (ACL)},\n291\t  year         = {2025},\n292\t  note         = {arXiv:2412.06559},\n293\t}\n294\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "e5ff183e-076e-46ed-9cb3-633025413080",
+            "uuid": "69383063-bb50-42dc-ac56-82697820f548",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/references.bib",
+                "content": "% ============================================================\n% Category 1: Neurosymbolic reasoning + RL/GRPO\n% ============================================================\n\n@article{deepseekmath,\n  author       = {Zhihong Shao and Peiyi Wang and Qihao Zhu and Runxin Xu and others},\n  title        = {{DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models}},\n  journal      = {arXiv preprint arXiv:2402.03300},\n  year         = {2024},\n  eprint       = {2402.03300},\n  archivePrefix = {arXiv},\n  primaryClass = {cs.AI},\n}\n\n@article{logic-rl,\n  author       = {Tian Xie and Zitian Gao and Qingnan Ren and Haoming Luo and Yuqian Hong and Bryan Dai and Joey Zhou and Kai Qiu and Zhirong Wu and Chong Luo},\n  title        = {{Logic-RL: Unleashing LLM Reasoning with Rule-Based Reinforcement Learning}},\n  journal      = {arXiv preprint arXiv:2502.14768},\n  year         = {2025},\n  eprint       = {2502.14768},\n  archivePrefix = {arXiv},\n  primaryClass = {cs.AI},\n}\n\n@article{mellgren-prolog-grpo,\n  author       = {Niklas Mellgren and Peter Schneider-Kamp and Lukas Galke},\n  title        = {{Training Language Models to Use Prolog as a Tool}},\n  journal      = {arXiv preprint arXiv:2512.07407},\n  year         = {2025},\n  eprint       = {2512.07407},\n  archivePrefix = {arXiv},\n  primaryClass = {cs.AI},\n}\n\n@inproceedings{satlm,\n  author       = {Xi Ye and Qiaochu Chen and Isil Dillig and Greg Durrett},\n  title        = {{SatLM: Satisfiability-Aided Language Models Using Declarative Prompting}},\n  booktitle    = {Advances in Neural Information Processing Systems (NeurIPS)},\n  year         = {2023},\n}\n\n% ============================================================\n% Category 2: Reward shaping for code/formal verification\n% ============================================================\n\n@inproceedings{lightman-verify-step,\n  author       = {Hunter Lightman and Vineet Kosaraju and Yura Burda and others},\n  title        = {{Let's Verify Step by Step}},\n  booktitle    = {Proceedings of the International Conference on Learning Representations (ICLR)},\n  year         = {2024},\n  note         = {arXiv:2305.20050},\n}\n\n@inproceedings{skalse-reward-hacking,\n  author       = {Joar Skalse and Nikolaus H. R. Howe and Dmitrii Krasheninnikov and David Krueger},\n  title        = {{Defining and Characterizing Reward Hacking}},\n  booktitle    = {Advances in Neural Information Processing Systems (NeurIPS)},\n  year         = {2022},\n  note         = {arXiv:2209.13085},\n}\n\n% ============================================================\n% Category 3: Mutation testing in software engineering\n% ============================================================\n\n@article{demillo1978,\n  author       = {Richard A. DeMillo and Richard J. Lipton and Frederick G. Sayward},\n  title        = {{Hints on Test Data Selection: Help for the Practicing Programmer}},\n  journal      = {Computer},\n  volume       = {11},\n  number       = {4},\n  pages        = {34--41},\n  year         = {1978},\n}\n\n@article{jia-harman-survey,\n  author       = {Yue Jia and Mark Harman},\n  title        = {{An Analysis and Survey of the Development of Mutation Testing}},\n  journal      = {IEEE Transactions on Software Engineering},\n  volume       = {37},\n  number       = {5},\n  pages        = {649--678},\n  year         = {2011},\n}\n\n@article{spurious-rewards,\n  author       = {Rulin Shao and Shuyue Stella Li and Rui Xin and Scott Geng and Yiping Wang and Sewoong Oh and Simon Shaolei Du and Nathan Lambert and Sewon Min and Ranjay Krishna and Yulia Tsvetkov and Hannaneh Hajishirzi and Pang Wei Koh and Luke Zettlemoyer},\n  title        = {{Spurious Rewards: Rethinking Training Signals in RLVR}},\n  journal      = {arXiv preprint arXiv:2506.10947},\n  year         = {2025},\n  eprint       = {2506.10947},\n  archivePrefix = {arXiv},\n  primaryClass = {cs.AI},\n}\n\n@article{bondarenko-spec-gaming,\n  author       = {Alexander Bondarenko and Denis Volk and Dmitrii Volkov and Jeffrey Ladish},\n  title        = {{Demonstrating Specification Gaming in Reasoning Models}},\n  journal      = {arXiv preprint arXiv:2502.13295},\n  year         = {2025},\n  eprint       = {2502.13295},\n  archivePrefix = {arXiv},\n  primaryClass = {cs.AI},\n}\n\n@inproceedings{kim-game-formalization,\n  author       = {Kyuhee Kim and Auguste Poiroux and Antoine Bosselut},\n  title        = {{Do LLMs Game Formalization? Evaluating Faithfulness in Logical Reasoning}},\n  booktitle    = {VerifAI-2 Workshop at the International Conference on Learning Representations (ICLR)},\n  year         = {2026},\n  note         = {arXiv:2604.19459},\n}\n\n@inproceedings{gao-reward-overoptimization,\n  author       = {Leo Gao and John Schulman and Jacob Hilton},\n  title        = {{Scaling Laws for Reward Model Overoptimization}},\n  booktitle    = {Proceedings of the International Conference on Machine Learning (ICML)},\n  year         = {2023},\n  note         = {arXiv:2210.10760},\n}\n\n@inproceedings{karwowski-goodhart-rl,\n  author       = {Jacek Karwowski and Oliver Hayman and Xingjian Bai and Klaus Kiendlhofer and Charlie Griffin and Joar Skalse},\n  title        = {{Goodhart's Law in Reinforcement Learning}},\n  booktitle    = {Proceedings of the International Conference on Learning Representations (ICLR)},\n  year         = {2024},\n  note         = {arXiv:2310.09144},\n}\n\n% ============================================================\n% Category 6: FOL/Prolog formalization with LLMs\n% ============================================================\n\n@inproceedings{folio,\n  author       = {Simeng Han and Hailey Schoelkopf and Yilun Zhao and Zhenting Qi and Martin Riddell and Luke Benson and Lucy Sun and Ekaterina Zubova and Yujie Qiao and Matthew Burtell and David Peng and Jonathan Fan and Yixin Liu and Brian Wong and Malcolm Sailor and Ansong Ni and Linyong Nan and Jungo Kasai and Tao Yu and Rui Zhang and Shafiq Joty and Alexander R. Fabbri and Wojciech Kryscinski and Xi Victoria Lin and Caiming Xiong and Dragomir Radev},\n  title        = {{FOLIO: Natural Language Reasoning with First-Order Logic}},\n  booktitle    = {Proceedings of the Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n  year         = {2024},\n  note         = {arXiv:2209.00840},\n}\n\n@inproceedings{logic-lm,\n  author       = {Liangming Pan and Alon Albalak and Xinyi Wang and William Yang Wang},\n  title        = {{Logic-LM: Empowering Large Language Models with Symbolic Solvers for Faithful Logical Reasoning}},\n  booktitle    = {Findings of the Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n  year         = {2023},\n}\n\n@inproceedings{linc,\n  author       = {Theo X. Olausson and Alex Gu and Ben Lipkin and Cedegao E. Zhang and Armando Solar-Lezama and Joshua B. Tenenbaum and Roger Levy},\n  title        = {{LINC: A Neurosymbolic Approach for Logical Reasoning by Combining Language Models with First-Order Logic Provers}},\n  booktitle    = {Proceedings of the Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n  year         = {2023},\n}\n\n@article{fover-pei2025,\n  author       = {Yu Pei and Yongping Du and Xingnan Jin},\n  title        = {{FoVer: First-Order Logic Verification for Natural Language Reasoning}},\n  journal      = {Transactions of the Association for Computational Linguistics},\n  volume       = {13},\n  pages        = {1340--1359},\n  year         = {2025},\n}\n\n@article{lorp,\n  author       = {Zhengkun Di and Chaoli Zhang and Hongtao Lv and Lizhen Cui and Lei Liu},\n  title        = {{LoRP: LLM-based Logical Reasoning via Prolog}},\n  journal      = {Knowledge-Based Systems},\n  year         = {2025},\n}\n\n@article{manheim-goodhart-taxonomy,\n  author       = {David Manheim and Scott Garrabrant},\n  title        = {{Categorizing Variants of Goodhart's Law}},\n  journal      = {arXiv preprint arXiv:1803.04585},\n  year         = {2019},\n  eprint       = {1803.04585},\n  archivePrefix = {arXiv},\n  primaryClass = {cs.AI},\n}\n\n@inproceedings{math-shepherd,\n  author       = {Peiyi Wang and Lei Li and Zhihong Shao and Runxin Xu and others},\n  title        = {{Math-Shepherd: Verify and Reinforce LLMs Step-by-step without Human Annotations}},\n  booktitle    = {Proceedings of the Association for Computational Linguistics (ACL)},\n  year         = {2024},\n  note         = {arXiv:2312.08935},\n}\n\n% ============================================================\n% Reward shaping and process supervision\n% ============================================================\n\n@article{rlsf,\n  author       = {Piyush Jha and Prithwish Jana and Pranavkrishna Suresh and Arnav Arora and Vijay Ganesh},\n  title        = {{RLSF: Reinforcement Learning via Symbolic Feedback}},\n  journal      = {arXiv preprint arXiv:2405.16661},\n  year         = {2024},\n  eprint       = {2405.16661},\n  archivePrefix = {arXiv},\n  primaryClass = {cs.AI},\n}\n\n@article{rubric-grpo,\n  author       = {Manish Bhattarai and Ismael Boureima and Nishath Rajiv Ranasinghe and Scott Pakin and Dan O'Malley},\n  title        = {{Rubric-Grounded Reinforcement Learning: Structured Judge Rewards for Generalizable Reasoning}},\n  journal      = {arXiv preprint arXiv:2605.08061},\n  year         = {2026},\n  eprint       = {2605.08061},\n  archivePrefix = {arXiv},\n}\n\n@article{gao-effective-rl-reward,\n  author       = {Jiaxuan Gao and Shusheng Xu and Wenjie Ye and Weilin Liu and Chuyi He and Wei Fu and Zhiyu Mei and Guangju Wang and Yi Wu},\n  title        = {{On Designing Effective RL Reward at Training Time for LLM Reasoning}},\n  journal      = {arXiv preprint arXiv:2410.15115},\n  year         = {2024},\n  eprint       = {2410.15115},\n  archivePrefix = {arXiv},\n  primaryClass = {cs.AI},\n}\n\n@inproceedings{kwa-catastrophic-goodhart,\n  author       = {Thomas Kwa and Drake Thomas and Adri\\`{a} Garriga-Alonso},\n  title        = {{Catastrophic Goodhart: Regularizing RLHF with KL Divergence Does Not Mitigate Heavy-Tailed Reward Misspecification}},\n  booktitle    = {Advances in Neural Information Processing Systems (NeurIPS)},\n  year         = {2024},\n  note         = {arXiv:2407.14503},\n}\n\n@article{deepseek-prover-v15,\n  author       = {{DeepSeek AI}},\n  title        = {{DeepSeek-Prover-V1.5: Harnessing Proof Assistant Feedback for Reinforcement Learning and Monte-Carlo Tree Search}},\n  journal      = {arXiv preprint arXiv:2408.08152},\n  year         = {2024},\n  eprint       = {2408.08152},\n  archivePrefix = {arXiv},\n}\n\n% ============================================================\n% Additional reward-shaping papers\n% ============================================================\n\n@article{reward-hacking-survey,\n  author       = {Xiaohua Wang and Muzhao Tian and Yuqi Zeng and Zisu Huang and others},\n  title        = {{Reward Hacking in the Era of Large Models: Mechanisms, Emergent Misalignment, Challenges}},\n  journal      = {arXiv preprint arXiv:2604.13602},\n  year         = {2026},\n  eprint       = {2604.13602},\n  archivePrefix = {arXiv},\n}\n\n@misc{metr-reward-hacking,\n  author       = {{METR}},\n  title        = {{Recent Frontier Models Are Reward Hacking}},\n  year         = {2025},\n  howpublished = {METR blog post},\n  note         = {\\url{https://metr.org/blog/2025-06-05-recent-reward-hacking/}},\n}\n\n@inproceedings{sundararajan-ig,\n  author       = {Mukund Sundararajan and Ankur Taly and Qiqi Yan},\n  title        = {{Axiomatic Attribution for Deep Networks}},\n  booktitle    = {Proceedings of the 34th International Conference on Machine Learning (ICML)},\n  year         = {2017},\n  note         = {arXiv:1703.01365},\n}\n\n@inproceedings{proofwriter,\n  author       = {Oyvind Tafjord and Bhavana Dalvi and Peter Clark},\n  title        = {{ProofWriter: Generating Implications, Proofs, and Abductive Statements over Natural Language}},\n  booktitle    = {Findings of the Association for Computational Linguistics (ACL)},\n  year         = {2021},\n  note         = {arXiv:2012.13048},\n}\n\n@article{qwen3,\n  author       = {{Qwen Team}},\n  title        = {{Qwen3 Technical Report}},\n  journal      = {arXiv preprint arXiv:2505.09388},\n  year         = {2025},\n  eprint       = {2505.09388},\n  archivePrefix = {arXiv},\n  primaryClass = {cs.CL},\n}\n\n@inproceedings{processbench,\n  author       = {Chujie Zheng and Zhenru Zhang and Beichen Zhang and Runji Lin and Keming Lu and Bowen Yu and Dayiheng Liu and Jingren Zhou and Junyang Lin},\n  title        = {{ProcessBench: Identifying Process Errors in Mathematical Reasoning}},\n  booktitle    = {Proceedings of the Association for Computational Linguistics (ACL)},\n  year         = {2025},\n  note         = {arXiv:2412.06559},\n}\n",
+                "numLines": 294,
+                "startLine": 1,
+                "totalLines": 294
+              }
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The relevant line in method.tex is line 26:\n\n```\nLOO ablation itself is standard in mutation testing, sensitivity analysis, and feature attribution~\\citep{demillo1978, sundararajan-ig}; our novelty is its application as a GRPO-hacking diagnostic and the empirical phenomena it surfaces.\n```\n\nIt already cites `demillo1978` (mutation testing) and `sundararajan-ig` (Integrated Gradients - Sundararajan et al. 2017). The `sundararajan-ig` entry is already in the bib file at line 261.\n\n\nI see that `sundararajan-ig` already covers feature attribution through Integrated Gradients, so that part has a citation. But the task asks to add 1-2 classic feature attribution methods like SHAP or LIME, and checking the bib file shows neither of those are currently included. I'm going to add the SHAP paper (Lundberg & Lee 2017) as a canonical feature attribution reference since it's more widely recognized than Integrated Gradients for this purpose. I'll create the bibtex entry with the full citation details and insert it into the bibliography.\n\nNow I need to update the citation on line 26 of method.tex to include the new SHAP reference alongside the existing ones.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e5ff183e-076e-46ed-9cb3-633025413080",
+            "uuid": "268f13ac-6906-4f38-8401-90db3b95cd81",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XSyiNtjZmKrsqV6Q1KsKkw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7427,
+                "cache_read_input_tokens": 25842,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7427
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Line 26 already cites `sundararajan-ig` (Integrated Gradients) for feature attribution, but adding the canonical SHAP reference strengthens it. I'll add Lundberg & Lee 2017."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e5ff183e-076e-46ed-9cb3-633025413080",
+            "uuid": "cbd378d9-5ac9-49a4-a9df-67e1a4eeb3d9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XSyiNtjZmKrsqV6Q1KsKkw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7427,
+                "cache_read_input_tokens": 25842,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7427
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012p7Rp5XvxpVexsZeDGeLEb",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/references.bib",
+                "old_string": "@inproceedings{sundararajan-ig,\n  author       = {Mukund Sundararajan and Ankur Taly and Qiqi Yan},\n  title        = {{Axiomatic Attribution for Deep Networks}},\n  booktitle    = {Proceedings of the 34th International Conference on Machine Learning (ICML)},\n  year         = {2017},\n  note         = {arXiv:1703.01365},\n}",
+                "new_string": "@inproceedings{sundararajan-ig,\n  author       = {Mukund Sundararajan and Ankur Taly and Qiqi Yan},\n  title        = {{Axiomatic Attribution for Deep Networks}},\n  booktitle    = {Proceedings of the 34th International Conference on Machine Learning (ICML)},\n  year         = {2017},\n  note         = {arXiv:1703.01365},\n}\n\n@inproceedings{lundberg-shap,\n  author       = {Scott M. Lundberg and Su-In Lee},\n  title        = {{A Unified Approach to Interpreting Model Predictions}},\n  booktitle    = {Advances in Neural Information Processing Systems (NeurIPS)},\n  year         = {2017},\n  note         = {arXiv:1705.07874},\n}"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e5ff183e-076e-46ed-9cb3-633025413080",
+            "uuid": "5326d4d2-a6dd-434b-b152-2fae26a851f4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XSyiNtjZmKrsqV6Q1KsKkw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7427,
+                "cache_read_input_tokens": 25842,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7427
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T22:50:49.112Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012p7Rp5XvxpVexsZeDGeLEb",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/references.bib has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "e5ff183e-076e-46ed-9cb3-633025413080",
+            "uuid": "96734198-6baf-48df-8966-9e13f85e51b2",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/references.bib",
+              "oldString": "@inproceedings{sundararajan-ig,\n  author       = {Mukund Sundararajan and Ankur Taly and Qiqi Yan},\n  title        = {{Axiomatic Attribution for Deep Networks}},\n  booktitle    = {Proceedings of the 34th International Conference on Machine Learning (ICML)},\n  year         = {2017},\n  note         = {arXiv:1703.01365},\n}",
+              "newString": "@inproceedings{sundararajan-ig,\n  author       = {Mukund Sundararajan and Ankur Taly and Qiqi Yan},\n  title        = {{Axiomatic Attribution for Deep Networks}},\n  booktitle    = {Proceedings of the 34th International Conference on Machine Learning (ICML)},\n  year         = {2017},\n  note         = {arXiv:1703.01365},\n}\n\n@inproceedings{lundberg-shap,\n  author       = {Scott M. Lundberg and Su-In Lee},\n  title        = {{A Unified Approach to Interpreting Model Predictions}},\n  booktitle    = {Advances in Neural Information Processing Systems (NeurIPS)},\n  year         = {2017},\n  note         = {arXiv:1705.07874},\n}",
+              "originalFile": "% ============================================================\n% Category 1: Neurosymbolic reasoning + RL/GRPO\n% ============================================================\n\n@article{deepseekmath,\n  author       = {Zhihong Shao and Peiyi Wang and Qihao Zhu and Runxin Xu and others},\n  title        = {{DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models}},\n  journal      = {arXiv preprint arXiv:2402.03300},\n  year         = {2024},\n  eprint       = {2402.03300},\n  archivePrefix = {arXiv},\n  primaryClass = {cs.AI},\n}\n\n@article{logic-rl,\n  author       = {Tian Xie and Zitian Gao and Qingnan Ren and Haoming Luo and Yuqian Hong and Bryan Dai and Joey Zhou and Kai Qiu and Zhirong Wu and Chong Luo},\n  title        = {{Logic-RL: Unleashing LLM Reasoning with Rule-Based Reinforcement Learning}},\n  journal      = {arXiv preprint arXiv:2502.14768},\n  year         = {2025},\n  eprint       = {2502.14768},\n  archivePrefix = {arXiv},\n  primaryClass = {cs.AI},\n}\n\n@article{mellgren-prolog-grpo,\n  author       = {Niklas Mellgren and Peter Schneider-Kamp and Lukas Galke},\n  title        = {{Training Language Models to Use Prolog as a Tool}},\n  journal      = {arXiv preprint arXiv:2512.07407},\n  year         = {2025},\n  eprint       = {2512.07407},\n  archivePrefix = {arXiv},\n  primaryClass = {cs.AI},\n}\n\n@inproceedings{satlm,\n  author       = {Xi Ye and Qiaochu Chen and Isil Dillig and Greg Durrett},\n  title        = {{SatLM: Satisfiability-Aided Language Models Using Declarative Prompting}},\n  booktitle    = {Advances in Neural Information Processing Systems (NeurIPS)},\n  year         = {2023},\n}\n\n% ============================================================\n% Category 2: Reward shaping for code/formal verification\n% ============================================================\n\n@inproceedings{lightman-verify-step,\n  author       = {Hunter Lightman and Vineet Kosaraju and Yura Burda and others},\n  title        = {{Let's Verify Step by Step}},\n  booktitle    = {Proceedings of the International Conference on Learning Representations (ICLR)},\n  year         = {2024},\n  note         = {arXiv:2305.20050},\n}\n\n@inproceedings{skalse-reward-hacking,\n  author       = {Joar Skalse and Nikolaus H. R. Howe and Dmitrii Krasheninnikov and David Krueger},\n  title        = {{Defining and Characterizing Reward Hacking}},\n  booktitle    = {Advances in Neural Information Processing Systems (NeurIPS)},\n  year         = {2022},\n  note         = {arXiv:2209.13085},\n}\n\n% ============================================================\n% Category 3: Mutation testing in software engineering\n% ============================================================\n\n@article{demillo1978,\n  author       = {Richard A. DeMillo and Richard J. Lipton and Frederick G. Sayward},\n  title        = {{Hints on Test Data Selection: Help for the Practicing Programmer}},\n  journal      = {Computer},\n  volume       = {11},\n  number       = {4},\n  pages        = {34--41},\n  year         = {1978},\n}\n\n@article{jia-harman-survey,\n  author       = {Yue Jia and Mark Harman},\n  title        = {{An Analysis and Survey of the Development of Mutation Testing}},\n  journal      = {IEEE Transactions on Software Engineering},\n  volume       = {37},\n  number       = {5},\n  pages        = {649--678},\n  year         = {2011},\n}\n\n@article{spurious-rewards,\n  author       = {Rulin Shao and Shuyue Stella Li and Rui Xin and Scott Geng and Yiping Wang and Sewoong Oh and Simon Shaolei Du and Nathan Lambert and Sewon Min and Ranjay Krishna and Yulia Tsvetkov and Hannaneh Hajishirzi and Pang Wei Koh and Luke Zettlemoyer},\n  title        = {{Spurious Rewards: Rethinking Training Signals in RLVR}},\n  journal      = {arXiv preprint arXiv:2506.10947},\n  year         = {2025},\n  eprint       = {2506.10947},\n  archivePrefix = {arXiv},\n  primaryClass = {cs.AI},\n}\n\n@article{bondarenko-spec-gaming,\n  author       = {Alexander Bondarenko and Denis Volk and Dmitrii Volkov and Jeffrey Ladish},\n  title        = {{Demonstrating Specification Gaming in Reasoning Models}},\n  journal      = {arXiv preprint arXiv:2502.13295},\n  year         = {2025},\n  eprint       = {2502.13295},\n  archivePrefix = {arXiv},\n  primaryClass = {cs.AI},\n}\n\n@inproceedings{kim-game-formalization,\n  author       = {Kyuhee Kim and Auguste Poiroux and Antoine Bosselut},\n  title        = {{Do LLMs Game Formalization? Evaluating Faithfulness in Logical Reasoning}},\n  booktitle    = {VerifAI-2 Workshop at the International Conference on Learning Representations (ICLR)},\n  year         = {2026},\n  note         = {arXiv:2604.19459},\n}\n\n@inproceedings{gao-reward-overoptimization,\n  author       = {Leo Gao and John Schulman and Jacob Hilton},\n  title        = {{Scaling Laws for Reward Model Overoptimization}},\n  booktitle    = {Proceedings of the International Conference on Machine Learning (ICML)},\n  year         = {2023},\n  note         = {arXiv:2210.10760},\n}\n\n@inproceedings{karwowski-goodhart-rl,\n  author       = {Jacek Karwowski and Oliver Hayman and Xingjian Bai and Klaus Kiendlhofer and Charlie Griffin and Joar Skalse},\n  title        = {{Goodhart's Law in Reinforcement Learning}},\n  booktitle    = {Proceedings of the International Conference on Learning Representations (ICLR)},\n  year         = {2024},\n  note         = {arXiv:2310.09144},\n}\n\n% ============================================================\n% Category 6: FOL/Prolog formalization with LLMs\n% ============================================================\n\n@inproceedings{folio,\n  author       = {Simeng Han and Hailey Schoelkopf and Yilun Zhao and Zhenting Qi and Martin Riddell and Luke Benson and Lucy Sun and Ekaterina Zubova and Yujie Qiao and Matthew Burtell and David Peng and Jonathan Fan and Yixin Liu and Brian Wong and Malcolm Sailor and Ansong Ni and Linyong Nan and Jungo Kasai and Tao Yu and Rui Zhang and Shafiq Joty and Alexander R. Fabbri and Wojciech Kryscinski and Xi Victoria Lin and Caiming Xiong and Dragomir Radev},\n  title        = {{FOLIO: Natural Language Reasoning with First-Order Logic}},\n  booktitle    = {Proceedings of the Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n  year         = {2024},\n  note         = {arXiv:2209.00840},\n}\n\n@inproceedings{logic-lm,\n  author       = {Liangming Pan and Alon Albalak and Xinyi Wang and William Yang Wang},\n  title        = {{Logic-LM: Empowering Large Language Models with Symbolic Solvers for Faithful Logical Reasoning}},\n  booktitle    = {Findings of the Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n  year         = {2023},\n}\n\n@inproceedings{linc,\n  author       = {Theo X. Olausson and Alex Gu and Ben Lipkin and Cedegao E. Zhang and Armando Solar-Lezama and Joshua B. Tenenbaum and Roger Levy},\n  title        = {{LINC: A Neurosymbolic Approach for Logical Reasoning by Combining Language Models with First-Order Logic Provers}},\n  booktitle    = {Proceedings of the Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n  year         = {2023},\n}\n\n@article{fover-pei2025,\n  author       = {Yu Pei and Yongping Du and Xingnan Jin},\n  title        = {{FoVer: First-Order Logic Verification for Natural Language Reasoning}},\n  journal      = {Transactions of the Association for Computational Linguistics},\n  volume       = {13},\n  pages        = {1340--1359},\n  year         = {2025},\n}\n\n@article{lorp,\n  author       = {Zhengkun Di and Chaoli Zhang and Hongtao Lv and Lizhen Cui and Lei Liu},\n  title        = {{LoRP: LLM-based Logical Reasoning via Prolog}},\n  journal      = {Knowledge-Based Systems},\n  year         = {2025},\n}\n\n@article{manheim-goodhart-taxonomy,\n  author       = {David Manheim and Scott Garrabrant},\n  title        = {{Categorizing Variants of Goodhart's Law}},\n  journal      = {arXiv preprint arXiv:1803.04585},\n  year         = {2019},\n  eprint       = {1803.04585},\n  archivePrefix = {arXiv},\n  primaryClass = {cs.AI},\n}\n\n@inproceedings{math-shepherd,\n  author       = {Peiyi Wang and Lei Li and Zhihong Shao and Runxin Xu and others},\n  title        = {{Math-Shepherd: Verify and Reinforce LLMs Step-by-step without Human Annotations}},\n  booktitle    = {Proceedings of the Association for Computational Linguistics (ACL)},\n  year         = {2024},\n  note         = {arXiv:2312.08935},\n}\n\n% ============================================================\n% Reward shaping and process supervision\n% ============================================================\n\n@article{rlsf,\n  author       = {Piyush Jha and Prithwish Jana and Pranavkrishna Suresh and Arnav Arora and Vijay Ganesh},\n  title        = {{RLSF: Reinforcement Learning via Symbolic Feedback}},\n  journal      = {arXiv preprint arXiv:2405.16661},\n  year         = {2024},\n  eprint       = {2405.16661},\n  archivePrefix = {arXiv},\n  primaryClass = {cs.AI},\n}\n\n@article{rubric-grpo,\n  author       = {Manish Bhattarai and Ismael Boureima and Nishath Rajiv Ranasinghe and Scott Pakin and Dan O'Malley},\n  title        = {{Rubric-Grounded Reinforcement Learning: Structured Judge Rewards for Generalizable Reasoning}},\n  journal      = {arXiv preprint arXiv:2605.08061},\n  year         = {2026},\n  eprint       = {2605.08061},\n  archivePrefix = {arXiv},\n}\n\n@article{gao-effective-rl-reward,\n  author       = {Jiaxuan Gao and Shusheng Xu and Wenjie Ye and Weilin Liu and Chuyi He and Wei Fu and Zhiyu Mei and Guangju Wang and Yi Wu},\n  title        = {{On Designing Effective RL Reward at Training Time for LLM Reasoning}},\n  journal      = {arXiv preprint arXiv:2410.15115},\n  year         = {2024},\n  eprint       = {2410.15115},\n  archivePrefix = {arXiv},\n  primaryClass = {cs.AI},\n}\n\n@inproceedings{kwa-catastrophic-goodhart,\n  author       = {Thomas Kwa and Drake Thomas and Adri\\`{a} Garriga-Alonso},\n  title        = {{Catastrophic Goodhart: Regularizing RLHF with KL Divergence Does Not Mitigate Heavy-Tailed Reward Misspecification}},\n  booktitle    = {Advances in Neural Information Processing Systems (NeurIPS)},\n  year         = {2024},\n  note         = {arXiv:2407.14503},\n}\n\n@article{deepseek-prover-v15,\n  author       = {{DeepSeek AI}},\n  title        = {{DeepSeek-Prover-V1.5: Harnessing Proof Assistant Feedback for Reinforcement Learning and Monte-Carlo Tree Search}},\n  journal      = {arXiv preprint arXiv:2408.08152},\n  year         = {2024},\n  eprint       = {2408.08152},\n  archivePrefix = {arXiv},\n}\n\n% ============================================================\n% Additional reward-shaping papers\n% ============================================================\n\n@article{reward-hacking-survey,\n  author       = {Xiaohua Wang and Muzhao Tian and Yuqi Zeng and Zisu Huang and others},\n  title        = {{Reward Hacking in the Era of Large Models: Mechanisms, Emergent Misalignment, Challenges}},\n  journal      = {arXiv preprint arXiv:2604.13602},\n  year         = {2026},\n  eprint       = {2604.13602},\n  archivePrefix = {arXiv},\n}\n\n@misc{metr-reward-hacking,\n  author       = {{METR}},\n  title        = {{Recent Frontier Models Are Reward Hacking}},\n  year         = {2025},\n  howpublished = {METR blog post},\n  note         = {\\url{https://metr.org/blog/2025-06-05-recent-reward-hacking/}},\n}\n\n@inproceedings{sundararajan-ig,\n  author       = {Mukund Sundararajan and Ankur Taly and Qiqi Yan},\n  title        = {{Axiomatic Attribution for Deep Networks}},\n  booktitle    = {Proceedings of the 34th International Conference on Machine Learning (ICML)},\n  year         = {2017},\n  note         = {arXiv:1703.01365},\n}\n\n@inproceedings{proofwriter,\n  author       = {Oyvind Tafjord and Bhavana Dalvi and Peter Clark},\n  title        = {{ProofWriter: Generating Implications, Proofs, and Abductive Statements over Natural Language}},\n  booktitle    = {Findings of the Association for Computational Linguistics (ACL)},\n  year         = {2021},\n  note         = {arXiv:2012.13048},\n}\n\n@article{qwen3,\n  author       = {{Qwen Team}},\n  title        = {{Qwen3 Technical Report}},\n  journal      = {arXiv preprint arXiv:2505.09388},\n  year         = {2025},\n  eprint       = {2505.09388},\n  archivePrefix = {arXiv},\n  primaryClass = {cs.CL},\n}\n\n@inproceedings{processbench,\n  author       = {Chujie Zheng and Zhenru Zhang and Beichen Zhang and Runji Lin and Keming Lu and Bowen Yu and Dayiheng Liu and Jingren Zhou and Junyang Lin},\n  title        = {{ProcessBench: Identifying Process Errors in Mathematical Reasoning}},\n  booktitle    = {Proceedings of the Association for Computational Linguistics (ACL)},\n  year         = {2025},\n  note         = {arXiv:2412.06559},\n}\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 266,
+                  "oldLines": 6,
+                  "newStart": 266,
+                  "newLines": 14,
+                  "lines": [
+                    "   note         = {arXiv:1703.01365},",
+                    " }",
+                    " ",
+                    "+@inproceedings{lundberg-shap,",
+                    "+  author       = {Scott M. Lundberg and Su-In Lee},",
+                    "+  title        = {{A Unified Approach to Interpreting Model Predictions}},",
+                    "+  booktitle    = {Advances in Neural Information Processing Systems (NeurIPS)},",
+                    "+  year         = {2017},",
+                    "+  note         = {arXiv:1705.07874},",
+                    "+}",
+                    "+",
+                    " @inproceedings{proofwriter,",
+                    "   author       = {Oyvind Tafjord and Bhavana Dalvi and Peter Clark},",
+                    "   title        = {{ProofWriter: Generating Implications, Proofs, and Abductive Statements over Natural Language}},"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JNvKZuU5pUBC2dbW7urfzL",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/method.tex",
+                "old_string": "~\\citep{demillo1978, sundararajan-ig}",
+                "new_string": "~\\citep{demillo1978, sundararajan-ig, lundberg-shap}"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e5ff183e-076e-46ed-9cb3-633025413080",
+            "uuid": "ec7388d8-1a9e-4b3d-b128-82a6315aabda",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XSyiNtjZmKrsqV6Q1KsKkw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7427,
+                "cache_read_input_tokens": 25842,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7427
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T22:50:50.015Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JNvKZuU5pUBC2dbW7urfzL",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/method.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "e5ff183e-076e-46ed-9cb3-633025413080",
+            "uuid": "8151f809-1021-4784-839f-8f283761bf95",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/method.tex",
+              "oldString": "~\\citep{demillo1978, sundararajan-ig}",
+              "newString": "~\\citep{demillo1978, sundararajan-ig, lundberg-shap}",
+              "originalFile": "\\section{Method}\n\\label{sec:method}\n\n\\begin{figure*}[t]\n\\centering\n\\includegraphics[width=0.92\\textwidth]{figures/fig1_sta_overview.pdf}\n\\caption{Solver Trace Ablation (STA). (a) Formalization pipeline: NL is formalized and verified by an external solver. (b) STA protocol: leave-one-out ablation on proved formalizations yields ISR. (c) ISR as diagnostic vs.\\ as reward: when the diagnostic becomes the target, meta-level Goodhart's Law emerges.}\n\\label{fig:sta-overview}\n\\end{figure*}\n\n\\subsection{Task and GRPO Training}\n\\label{sec:task}\n\nGiven premises $P_1,\\ldots,P_k$ and conclusion $C$, the task is to produce a formal program $F=\\{c_1,\\ldots,c_n\\}$ verified by an external solver $S\\in\\{\\text{Prover9, SWI-Prolog}\\}$ (Figure~\\ref{fig:sta-overview}a).\nWe train with GRPO~\\citep{deepseekmath} ($K{=}8$), where each rollout receives binary execution reward $r_{\\text{exec}}(x) = \\mathbf{1}[S(F_x){=}\\textit{proved}]$.\nThis optimizes prove rate but provides no signal about \\emph{structural quality}: a formalization embedding the conclusion among its premises receives the same reward as a faithful derivation.\nAll experiments draw from FOLIO~\\citep{folio}; the held-out evaluation file retains a legacy \\texttt{proofwriter\\_fol\\_*.jsonl} filename (from ProofWriter~\\citep{proofwriter}) but contains only FOLIO-derived examples.\n\n\\subsection{Solver Trace Ablation (STA)}\n\\label{sec:sta}\n\nSTA tests whether each component of a proved formalization is individually necessary for proof success (Figure~\\ref{fig:sta-overview}b).\nGiven a proved $x$ with $n$ components, STA constructs $n$ ablated variants $x\\setminus\\{c_i\\}$ and re-runs the solver (Algorithm~\\ref{alg:sta}).\nA component is \\emph{necessary} if its removal causes proof failure.\nWhat constitutes a component depends on the logic: premises in FOL, clauses or ground facts in Prolog.\nLOO ablation itself is standard in mutation testing, sensitivity analysis, and feature attribution~\\citep{demillo1978, sundararajan-ig}; our novelty is its application as a GRPO-hacking diagnostic and the empirical phenomena it surfaces.\n\n\\begin{algorithm}[t]\n\\caption{Solver Trace Ablation (STA)}\n\\label{alg:sta}\n\\begin{algorithmic}[1]\n\\REQUIRE Proved formalization $x = \\{c_1, \\ldots, c_n\\}$, solver $S$\n\\ENSURE $\\text{ISR}(x) \\in [0, 1]$\n\\STATE $\\textit{necessary} \\gets 0$\n\\FOR{$i = 1$ to $n$}\n    \\IF{$S(x \\setminus \\{c_i\\}) = \\textit{failed}$}\n        \\STATE $\\textit{necessary} \\gets \\textit{necessary} + 1$\n    \\ENDIF\n\\ENDFOR\n\\RETURN $\\textit{necessary} \\,/\\, n$\n\\end{algorithmic}\n\\end{algorithm}\n\n\\paragraph{Intensional Structural Reward.}\nISR is the fraction of necessary components:\n\\begin{equation}\n  \\text{ISR}(x) = \\frac{1}{n}\\sum_{i=1}^{n}\\mathbf{1}\\bigl[S(x\\setminus\\{c_i\\})=\\textit{failed}\\bigr]\n  \\label{eq:isr}\n\\end{equation}\nISR is defined only for proved formalizations: ISR${=}1$ means every component is necessary; ISR${=}0$ means complete redundancy.\nWe report \\emph{proved-only} ISR (denoted ISR$^*$) throughout to avoid conflating structural quality with prove rate.\n\n\\paragraph{Limitations of ISR.}\nISR measures syntactic component necessity, not semantic faithfulness: a formalization can achieve $\\text{ISR}{=}1$ while semantically unrelated to the NL input (e.g., a single premise identical to the conclusion).\nISR is also sensitive to component count $n$: when $n{=}2$, $\\text{ISR}\\geq 0.5$ regardless of proof quality.\nWe control for this confound via premise-count-matched analysis in \\S\\ref{sec:goodhart}.\nThe $O(n)$ per-clause LOO ablation is necessary: a cheaper $O(1)$ binary variant produces near-zero ISR scores ($\\text{ISR}^*{=}0.007$) indistinguishable from exec-only, because models generate redundant premise copies whose individual removal never changes the proof outcome.\nHowever, the $O(1)$ variant includes a tautology check (conclusion provable under empty premises $\\to$ ISR${=}0$) absent from exec-only, introducing a training-time confound that depresses prove rate ($63\\%$ vs.\\ $93\\%$ exec-only); the two conditions are therefore non-equivalent in training dynamics despite producing comparable ISR signals (Appendix~\\ref{app:o1-ablation}).\n\n\\subsection{Reward Conditions and Hacking Modes}\n\\label{sec:rewards}\n\\label{sec:taxonomy-method}\n\nWe study six conditions: exec-only ($r_{\\text{exec}}$), ISR low/high-dose ($r_{\\text{exec}}\\cdot(1{+}\\beta\\,\\text{ISR})$ at $\\beta\\in\\{0.1,0.3\\}$), matched random controls ($r_{\\text{exec}}\\cdot(1{+}\\beta u)$, $u\\sim\\mathcal{U}(0,1)$), and an SFT baseline (NLL on gold formalizations).\nMultiplicative bonuses apply only to proved samples, keeping the prove-rate floor intact.\nRandom isolates ISR-specific signal from generic reward-variance effects; SFT isolates whether structural degeneration arises from RL optimization or data exposure alone.\nEach RL condition uses seeds $\\{42,43,44\\}$ and identical training data.\nAn earlier convex formulation ($\\alpha r_{\\text{exec}} + \\beta r_{\\text{exec}}\\text{ISR}$, $\\alpha{+}\\beta{=}1$) was discarded because $\\text{ISR}{<}1$ always penalized relative to exec-only, collapsing PR (Appendix~\\ref{app:setup}).\n\n\\paragraph{Hacking taxonomy.}\nAcross conditions, seeds, and logic types we identify eight structural-degeneration modes (full definitions in Appendix~\\ref{app:hacking-modes}):\n\\textbf{H1} (conclusion embedded among multiple premises),\n\\textbf{H7} (single-premise conclusion duplication, subtypes H7a standard and H7b obfuscated tautology; targets the ISR signal directly, since removing the sole premise forces $\\text{ISR}\\geq 0.5$),\n\\textbf{H8} (premise-subset gaming: each component is LOO-necessary but the premise set is a strict subset of what the problem requires, inflating ISR without faithful reasoning; Appendix~\\ref{app:h8}),\n\\textbf{tautological collapse} (minimal two-component $P{\\to}P$ without explicit ISR inflation),\n\\textbf{repetition collapse} (identical clauses repeated to inflate component count),\n\\textbf{complexity-without-utility} (elaborate but vacuous premises),\n\\textbf{contradiction explosion} (contradictory premises trivializing any conclusion via \\emph{ex falso}), and\n\\textbf{query-as-fact gaming} (Prolog-specific: emit the NL question as an atom asserted as both fact and query; evades text-match classifiers).\nModes are identified by a two-stage procedure: strict normalized text matching (H1/H7) plus functional analysis of the per-sample $n_{\\text{necessary}}$ distribution (catches modes evading text matching).\nWe report both classifications in \\S\\ref{sec:experiments}.\n\nIn interpreting ISR results we distinguish two failure semantics that share a numerical signature: an exec-only \\emph{low} ISR signals \\emph{redundancy} (e.g., repeated ground facts in Prolog), whereas an ISR-rewarded \\emph{high} ISR signals \\emph{metric gaming} (H7-style constructions).\nA bare ISR difference therefore does not translate directly into a reasoning-ability difference; the mode breakdown is what licenses such interpretation.\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 23,
+                  "oldLines": 7,
+                  "newStart": 23,
+                  "newLines": 7,
+                  "lines": [
+                    " Given a proved $x$ with $n$ components, STA constructs $n$ ablated variants $x\\setminus\\{c_i\\}$ and re-runs the solver (Algorithm~\\ref{alg:sta}).",
+                    " A component is \\emph{necessary} if its removal causes proof failure.",
+                    " What constitutes a component depends on the logic: premises in FOL, clauses or ground facts in Prolog.",
+                    "-LOO ablation itself is standard in mutation testing, sensitivity analysis, and feature attribution~\\citep{demillo1978, sundararajan-ig}; our novelty is its application as a GRPO-hacking diagnostic and the empirical phenomena it surfaces.",
+                    "+LOO ablation itself is standard in mutation testing, sensitivity analysis, and feature attribution~\\citep{demillo1978, sundararajan-ig, lundberg-shap}; our novelty is its application as a GRPO-hacking diagnostic and the empirical phenomena it surfaces.",
+                    " ",
+                    " \\begin{algorithm}[t]",
+                    " \\caption{Solver Trace Ablation (STA)}"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- `references.bib`: 添加了 `lundberg-shap`（Lundberg & Lee, \"A Unified Approach to Interpreting Model Predictions\", NeurIPS 2017, arXiv:1705.07874）\n- `method.tex` 第 26 行: `\\citep{demillo1978, sundararajan-ig}` → `\\citep{demillo1978, sundararajan-ig, lundberg-shap}`\n\n原本已有 `sundararajan-ig`（Integrated Gradients）覆盖 feature attribution，现在加上 SHAP 使引用更完整。改动不影响页数。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "e5ff183e-076e-46ed-9cb3-633025413080",
+            "uuid": "b407df09-b6d5-4c4d-a264-51239a18b50b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LuzhaWCG4ucGvfdFRuxxLM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1736,
+                "cache_read_input_tokens": 33269,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1736
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- `references.bib`: 添加了 `lundberg-shap`（Lundberg & Lee, \"A Unified Approach to Interpreting Model Predictions\", NeurIPS 2017, arXiv:1705.07874）\n- `method.tex` 第 26 行: `\\citep{demillo1978, sundararajan-ig}` → `\\citep{demillo1978, sundararajan-ig, lundberg-shap}`\n\n原本已有 `sundararajan-ig`（Integrated Gradients）覆盖 feature attribution，现在加上 SHAP 使引用更完整。改动不影响页数。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 36420,
+            "duration_api_ms": 37346,
+            "num_turns": 5,
+            "stop_reason": "end_turn",
+            "session_id": "e5ff183e-076e-46ed-9cb3-633025413080",
+            "total_cost_usd": 0.231301,
+            "usage": {
+              "input_tokens": 5,
+              "cache_creation_input_tokens": 23164,
+              "cache_read_input_tokens": 70952,
+              "output_tokens": 1916,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 23164,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 171,
+                  "cache_read_input_tokens": 33269,
+                  "cache_creation_input_tokens": 1736,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 1736
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 3060,
+                "outputTokens": 13,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.0031249999999999997,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 5,
+                "outputTokens": 1916,
+                "cacheReadInputTokens": 70952,
+                "cacheCreationInputTokens": 23164,
+                "webSearchRequests": 0,
+                "costUSD": 0.22817600000000002,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "dd6b2d43-f1a1-419e-a41d-ed558292cc03"
+          },
+          "id": "event-000016"
+        }
+      ],
+      "message_count": 16
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-citation-fix.md"
+}

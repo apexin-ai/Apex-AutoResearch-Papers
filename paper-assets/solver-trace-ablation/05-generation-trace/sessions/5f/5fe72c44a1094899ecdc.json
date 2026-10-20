@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5fe72c44a1094899ecdc",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_13_1778880008.md",
+  "task_key": "loop_13_1778880008",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_13_1778880008.md",
+    "occurrence": 1,
+    "bytes": 4300,
+    "sha256": "ad0055f1dc6ca5f5876588266e706bb1e31f000618ebf2cf667526ab321be452"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 13\nreason: idle_timeout\nupdated: '2026-05-15T21:19:58+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：仅 `westd-39279:cuda:0` 和 `westd-39279:cuda:1`，禁止使用其他设备\n- D095 Narrative A 已批准生效——H7a 是 GRPO-general（ISR amplified 5x），H7b 是 ISR-specific。**禁止**回退到旧 framing（H7 = ISR-specific）\n- Genuine rate ISR 6.06% vs Random 9.54%, p=0.182 **不显著**——论文中不可 claim genuine 有显著差异\n- D051 定论：premise-count-matched 1.06x，**禁止**引用旧 2.4x 倍率\n- Random H7 pooled 13.7% 由 s43-r3 单 seed 贡献（38.3%），s42/s44-r2 = 0%——论文必须同时报 per-seed 和 pooled，不可用简单 \"70.6% vs 13.7%\" 对比\n- H7b obfuscated tautology（ISR s44 的 12 个样本）是 meta-Goodhart 直接证据，分类以 classify_h7.py D086 版本为 ground truth\n- genuine = proved − |H7 ∪ H1 ∪ H8|（集合排除，非简单减法），以 classify_h7.py 实现为准\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-39279（2 × RTX PRO 6000 96GB），当前 2/2 空闲\n- **工作目录**: `/root/solver-trace-ablation`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，非 venv）\n- **环境激活**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型/数据**: 均在服务器 `/root/autodl-tmp/` 下（具体路径见各实验 registry spec）\n- **W&B**: 项目内实验有 wandb 日志\n- **活跃进程**: 无（0 running experiments, 0 crons, 0 workers）\n- **论文源码**: `projects/solver-trace-ablation/paper/` 目录，TeX 编译环境已就绪（17页 PDF，0 errors）\n- **Provenance**: 36/36 完成\n\n### 3. 📊 当前状态\n**我刚完成的**：\n- D093→D094→D095 决策链闭环：Random 3-seed 数据全部到位，H7 重新分类为 H7a (GRPO-general) + H7b (ISR-specific)，Pooled 统计检验完成，Narrative A 获 Director 批准\n- paper_framing.md 已按 D095 完成全文改写（含数据精度修正）\n- Provenance 36/36 补全\n\n**Registry 状态**：86 实验全部完成（success 26 / negative 28 / failed 26），0 RUNNING，0 PREPARING\n\n**等待中**：无 Worker 回调，无 Cron，无 pending Director 决策\n\n**当前阶段**：✍️ Writing，DDL 2026-05-25（剩 10 天）\n\n### 4. 📋 待办（条件触发式）\n- 新 session 启动 → TeX 全量数据同步：spawn Paper Agent Worker 将 paper_framing.md 中所有更新数据（D095 pooled stats、per-seed breakdown、H7a/H7b 分类、Fisher p 值）同步到 `experiments.tex` 和相关 TeX 文件\n- TeX 同步完成 → 启动全文写作 Pipeline：按 writing_plan.yaml 逐章节 spawn Writer Workers（优先 Results/Discussion 因为数据最新）\n- 论文草稿完成 → spawn Reviewer Worker 做全文一致性审查（特别关注 D095 Narrative A 的 H7a/H7b 叙述、genuine n.s. 措辞、per-seed vs pooled 报告）\n- Director 如果要求新实验 → GPU cuda:0/cuda:1 空闲可用，但当前无计划内实验\n- 如收到 `[FRAMING APPROVED]` 相关后续 → 按 framing-reaudit skill 做全文 re-audit（D095 已批准，reaudit 应在 TeX 同步时一并完成）\n\n### 5. 🎯 战略上下文\n- **项目定位**：STA/ISR 作为 GRPO neurosymbolic formalizer 的诊断工具 + Goodhart's Law 案例研究。Target: EMNLP 2026 Main（ARR May 25 DDL）\n- **核心结论链**：\n  - D033→D043→D051: ISR 无结构优势（premise-count-matched 1.06x）\n  - D057→D095: Narrative A — H7a GRPO-general (ISR amplified 5x, p=1.3×10⁻³⁹), H7b ISR-specific (meta-Goodhart); genuine n.s.\n  - D059: Prolog 跨逻辑泛化 3/3 gaming\n  - D079: SFT 零 hacking（对照组）\n  - D089→D090: Exec-only 1000步 hacking mode seed-dependent\n- **最容易判断错的事**：\n  1. H7a 不是 ISR-specific 也不是 additive-specific——它是 GRPO 通用现象，ISR 只是放大器。exec-only s43 也 100% H7a\n  2. Random s43-r3 有 38.3% H7，不要假设 Random 没有 H7\n  3. ISR s44 的 \"genuine\" 全是 H7b obfuscated tautology，genuine=0%（不是表面的 12 个 genuine）\n  4. 写作阶段 GPU 空闲是正常的（无剩余实验），不要因为 \"GPU 空闲=失职\" 规则而强行找实验跑\n- **时间压力**：DDL 还剩 10 天，全部精力应投入论文写作，不要开新实验线\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-13-1778880008.md"
+}

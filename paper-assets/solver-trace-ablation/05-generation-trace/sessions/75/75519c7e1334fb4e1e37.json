@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "75519c7e1334fb4e1e37",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "writing method section draft",
+  "task_key": "worker_writing_method-section-draft_20260515T023348",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_method-section-draft_20260515T023348_result.json",
+    "occurrence": 1,
+    "bytes": 1238,
+    "sha256": "47b10444ca3c9c9b2a6d27abea630884b2cf2c58b3232ad5dcfc2dd931b25cfd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Method 章节已写入 `docs/paper/method.tex`（version 11，coverage 29/29）。\n\n**结构**（约 1100 字，含 LaTeX 环境）：\n- 3.1 Task — 形式化定义 $\\pi_\\theta: x \\to y$，FOL/Prolog 双 solver\n- 3.2 GRPO with Execution-Only Reward — 含 group normalization 公式 + $r_{\\text{exec}} = \\mathcal{S}(y)$\n- 3.3 STA Protocol — 三步 LOO 算法，proved-only footnote 强调 C004\n- 3.4 ISR Definition — $\\mathrm{ISR}(x,y) = \\frac{1}{n}\\sum_i \\mathbf{1}[\\mathcal{S}(y_{\\setminus i})=0]$，明确两个 scope limits（syntactic ≠ semantic; count bias）\n- 3.5 Reward Formulations — 5 个公式（exec / additive ISR / additive random / convex / SFT），明示 random 是 matched control（D033/D057）\n- 3.6 Hacking Taxonomy — 7 modes，含 query-as-fact gaming（Prolog s44 classifier blind spot, C006）\n\n**符号一致性**：$r_{\\text{exec}}$, $\\mathrm{ISR}$, $\\beta$, $n$, $c_i$, $\\mathcal{S}$ 全程统一。所有引用用 `\\citep{placeholder}` 占位（GRPO/Prover9/SWI-Prolog/ProofWriter/PPO/neurosymbolic GRPO 共 6 处）。\n\n注意：tool 报警说有 2 个数字未挂 claims（`\\{0, 1\\}` 等公式中的常量），无需 provenance 追溯，可忽略。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-method-section-draft.md"
+}

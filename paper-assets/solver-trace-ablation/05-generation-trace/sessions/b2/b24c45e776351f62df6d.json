@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b24c45e776351f62df6d",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code plan006 eval prep",
+  "task_key": "worker_code_plan006-eval-prep_20260514T111651",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan006-eval-prep_20260514T111651_result.json",
+    "occurrence": 1,
+    "bytes": 2293,
+    "sha256": "b8470884ac485c68f84b78d4e65459d593ca7de8ede0baad4be3b36292c4a231"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整分析结果：\n\n## eval_sta.py 是否需要修改：**不需要**\n\neval_sta.py 从数据中只读取 `context`、`question`、`answer` 三个自然语言字段（第230-232行），完全不引用 `prolog_premises`/`prolog_query`/`fol_premises`/`fol_conclusion`。Prolog eval 流程：\n\n1. `--logic_type prolog` → 选择 PROLOG_SYSTEM_PROMPT + PROLOG_USER_TEMPLATE + `prolog_sta_reward` 作为 reward_fn + `prolog` solver\n2. 把自然语言 context/question 喂给模型，模型生成 Prolog formalization\n3. `prolog_sta_reward()` 解析 formalization 文本提取 clauses 和 query，用 swipl 验证\n\n**空的 `prolog_premises`/`prolog_query` 字段完全不影响 eval。**\n\n## 训练状态\n\n当前 step 444/500，约 5-6 分钟后完成。完成后最终模型权重会保存到 `/root/autodl-tmp/outputs/plan006_prolog_exec_s42/` 根目录（参照 plan006-prolog-sta-s42 的模式）。\n\n## 完整 eval 命令\n\n```bash\n# 遵循 C002/C005：必须显式设 CUDA_VISIBLE_DEVICES\nexport CUDA_VISIBLE_DEVICES=<空闲GPU编号>\n\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\ncd /root/solver-trace-ablation\n\npython scripts/eval_sta.py \\\n  --model_path /root/autodl-tmp/outputs/plan006_prolog_exec_s42 \\\n  --data_path data/test_held_out.jsonl \\\n  --output_path /root/autodl-tmp/outputs/plan006_prolog_exec_s42/eval_results.json \\\n  --logic_type prolog \\\n  --max_samples 100\n```\n\n## 注意事项\n\n1. **GPU 分配**：运行前需确认哪张 GPU 空闲（`nvidia-smi`），显式设置 `CUDA_VISIBLE_DEVICES`\n2. **数据选择**：plan006-prolog-sta-s42 的 eval 用的是 `train_500_seed42.jsonl --max_samples 100`（不是 test set）。如果需要跨实验可比，应与之保持一致。如用 `test_held_out.jsonl` 则是 100 条测试集\n3. **等训练完成**：当前只有 checkpoint-400，须等最终模型权重保存到根目录后才能 eval。如果着急，也可先 eval checkpoint-400：`--model_path /root/autodl-tmp/outputs/plan006_prolog_exec_s42/checkpoint-400`\n4. **预期结果**：根据训练日志，exec-only 模式下 prove_rate≈1.0 但 ISR 极低（~0.05-0.1），与 sta 模式（ISR=0.5, 100% H7）形成对比。exec-only 不优化 ISR，所以 eval ISR 可能更低"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan006-eval-prep.md"
+}

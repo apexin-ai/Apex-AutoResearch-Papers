@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d0f0710443f8f3eb5653",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "knowledge paper framing update",
+  "task_key": "worker_knowledge_paper-framing-update_20260514T172304",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_knowledge_paper-framing-update_20260514T172304_result.json",
+    "occurrence": 1,
+    "bytes": 875,
+    "sha256": "501111616552a5dd3bb2d009ccd2a8e60129fb1424b28fdabf89a3b65ae62574"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "paper_framing.md 已更新。变更摘要：\n\n1. **新增 Claim 状态总览表**：Claim 1 ✅、Claim 2 ✅ (D057)、Claim 3 ⏳\n2. **Claim 2 标题**：`D033→D043→D051 定论` → `D033→D043→D051→D057 闭环`，加 ✅\n3. **Claim 3 标题**：移除 `conditional on plan006`，改为 `exec-only D056 done; STA awaiting s43/s44`\n4. **Claim 3 证据重组**：分为 Part A (D056 exec-only 闭环) 和 Part B (STA Goodhart 跨逻辑复现)，添加 D056 结论总结和 C006 ISR 语义区分警告\n5. **β 剂量表**：补全 3-seed random PR/ISR 数据（之前缺 s43/s44 random 的 per-seed 标注）\n6. **Goodhart Landscape 标题**：更新为 `D033→D051→D057 闭环`\n7. **Structural Fixes checklist**：新增 D057/D056/SFT baseline 已完成项 + Claim 3 待办项\n\nClaim statements 未改动，仅更新 evidence 和 status。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/knowledge-paper-framing-update.md"
+}

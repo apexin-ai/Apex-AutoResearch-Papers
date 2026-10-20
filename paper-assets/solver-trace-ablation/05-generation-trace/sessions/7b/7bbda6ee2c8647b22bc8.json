@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7bbda6ee2c8647b22bc8",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "diagnose w2 qwen3 8b isr pilot",
+  "task_key": "worker_diagnose_w2-qwen3-8b-isr-pilot_20260516T100844",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_w2-qwen3-8b-isr-pilot_20260516T100844_result.json",
+    "occurrence": 1,
+    "bytes": 649,
+    "sha256": "e2be12b1798ae09441941fb034b73be24134b122ae985a0f4bea952a1933dcb9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n**w2-qwen3-8b-isr-pilot 训练失败 — OOM**\n\n- **失败点**：step 1/500，forward pass 的 `lm_head` 分配 1.16 GiB 失败\n- **显存状况**：H800 95GB 全卡，PyTorch 已占 93.42 GiB，剩余仅 502 MiB\n- **配置**：Qwen3-8B, num_generations=4, per_device_batch_size=1, gradient_checkpointing=True, adamw_bnb_8bit\n- **Checkpoint**：无（仅 reward_log.jsonl）\n- **Registry**：已更新 conclusion=failed，记录 failure_reason\n- **Cron**：已删除\n\n**可行方向**：8B 模型单卡 GRPO 需要进一步降低显存——可选方案包括 num_generations=2、LoRA/QLoRA、或双卡并行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-w2-qwen3-8b-isr-pilot.md"
+}

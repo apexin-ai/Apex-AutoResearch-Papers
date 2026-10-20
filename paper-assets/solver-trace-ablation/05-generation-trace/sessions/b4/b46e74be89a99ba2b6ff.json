@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b46e74be89a99ba2b6ff",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "diagnose plan018 random b01 s46",
+  "task_key": "worker_diagnose_plan018-random-b01-s46_20260517T033337",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_plan018-random-b01-s46_20260517T033337_result.json",
+    "occurrence": 1,
+    "bytes": 533,
+    "sha256": "75fa0664039841aaca81505d05a873d108ac01091a5716da6a2870260bd90ad4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n**plan018-additive-random-b01-s46** — DONE, conclusion: **negative**\n\n| Metric | Value |\n|--------|-------|\n| prove_rate | 94% |\n| mean_isr | 0.0424 |\n| H7 | 86 |\n| H1 | 2 |\n| H8 | 4 |\n| Genuine | 2/94 = **2.1%** |\n\nGenuine rate 2.1% 远低于 15% 阈值（同系列 s42 为 22.8%）。Random β=0.1 在 seed 46 下几乎完全坍塌为 H7 tautology hacking，与 s42 表现差异极大，说明 random reward 在低 β 下结果不稳定。\n\nRegistry 已更新，cron 已清除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-plan018-random-b01-s46.md"
+}

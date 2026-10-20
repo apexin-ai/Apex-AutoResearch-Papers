@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "89fdc43aece5cc9308f7",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "eval plan018 s43 r2 eval classify",
+  "task_key": "worker_eval_plan018-s43-r2-eval-classify_20260514T164803",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_plan018-s43-r2-eval-classify_20260514T164803_result.json",
+    "occurrence": 1,
+    "bytes": 524,
+    "sha256": "7f46c4994ca51fa4b39a3073a291806c5270a8f44b09fe8100f66a5654993208"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated. Results summary:\n\n```\neval_prove_rate: 0.88\neval_mean_isr: 0.0506\neval_proved_only_isr: 0.0575\nn_proved: 88\nh7_count: 0 / h7_rate: 0.0%\nh1_count: 82 / h1_rate: 93.2%\ngenuine_count: 6 / genuine_rate: 6.8%\n```\n\nConclusion: **negative** — as expected for Random condition. H1 dominant (93.2%), near-zero genuine reasoning (6.8%). High prove rate (88%) achieved almost entirely via conclusion-in-premise hacking. ISR extremely low (0.0575). Status kept at ANALYZING for main agent."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-plan018-s43-r2-eval-classify.md"
+}

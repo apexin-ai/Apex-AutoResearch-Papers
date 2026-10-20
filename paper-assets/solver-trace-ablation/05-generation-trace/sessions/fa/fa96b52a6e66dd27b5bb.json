@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fa96b52a6e66dd27b5bb",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code plan017 additive random",
+  "task_key": "worker_code_plan017-additive-random_20260514T030802",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan017-additive-random_20260514T030802_result.json",
+    "occurrence": 1,
+    "bytes": 646,
+    "sha256": "5c74ee6ef533bbd3fb7d006d78774ce3b72adb7a89f55f11b219f133cacbe4e1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`--help` 正常输出，`additive_random` 已在 reward_mode choices 中。\n\n**结论：plan017 additive random control 的配置和代码已全部就绪，无需修改。**\n\n- `configs/grpo_additive_random.yaml` — 参数与 plan002 对齐，reward_mode 为 `additive_random`\n- `train_grpo.py` — `additive_random` 分支实现 `r = r_exec * (1 + β * random())`，记录 `random_reward`\n- `argparse` choices 已包含 `additive_random`\n- dry-run `--help` 通过\n\n启动训练时需要 `export CUDA_VISIBLE_DEVICES=N` 显式指定空闲 GPU（遵守 C002），当前两张卡都在用，等有空闲 GPU 后再启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan017-additive-random-copy-2.md"
+}

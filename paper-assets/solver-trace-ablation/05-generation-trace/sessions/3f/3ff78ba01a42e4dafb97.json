@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3ff78ba01a42e4dafb97",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "eval w2 qwen3 1 7b exec finalize r3",
+  "task_key": "worker_eval_w2-qwen3-1_7b-exec-finalize-r3_20260516T121618",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_w2-qwen3-1_7b-exec-finalize-r3_20260516T121618_result.json",
+    "occurrence": 1,
+    "bytes": 112,
+    "sha256": "3d5759c94c19a4061641929d36993cc430e344e9752eb36a079f289e467e0d5a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval is at 68/100 — all FAILED so far. Waiting ~3min for completion, will process results then."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-w2-qwen3-1-7b-exec-finalize-r3.md"
+}

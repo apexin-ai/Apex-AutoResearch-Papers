@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b16b1e4fcf263f03d364",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analysis training status check",
+  "task_key": "worker_analysis_training-status-check_20260514T164557",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_training-status-check_20260514T164557_result.json",
+    "occurrence": 1,
+    "bytes": 1023,
+    "sha256": "c4fa61934f65e4e63108fa423bb719daac1253e96d191b1a2654a929ac9711d8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 训练状态检查 (2026-05-15 ~00:50 UTC)\n\n### plan018-additive-random-b01-s43-r2\n- 进程: **已完成** (PID 858386 不存在)\n- 当前 step: **500/500 ✓ 训练完成**\n- prove_rate (final): 0.5925\n- ISR (final mean): 0.099\n- 最后几步 (498-499): PR=1.000, ISR=0.039-0.093; step 500: PR=0.625, ISR=0.018\n- 磁盘: 71G free (72%)\n- 模型已保存，EXIT_CODE=0，耗时 78 min\n- 状态: **正常完成**\n\n### plan006-prolog-sta-s43\n- 进程: **存活** (PID 901135, uptime 9m35s)\n- 当前 step: **46/500** (9%)\n- prove_rate (recent): 0.000-0.375，波动大，多数 step 在 0.25 左右\n- ISR (recent): 0.000-0.115，低\n- parse_rate: 1.000\n- GPU 1: 90% util, 80073/97887 MiB\n- ETA: ~1h42m\n- 是否出现早期饱和: **否** — step 46 时 PR 仍在 0.0-0.375 波动，远未饱和，与 s42 的 step ~100 饱和模式不同（目前太早下结论）\n- 状态: **正常运行**\n\n**注意**: plan018 已完成，GPU 0 现在空闲 (0% util, 0 MiB)，可调度新任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-training-status-check.md"
+}

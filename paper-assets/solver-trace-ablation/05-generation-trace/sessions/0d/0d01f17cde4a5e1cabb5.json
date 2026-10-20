@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "0d01f17cde4a5e1cabb5",
+  "project": "solver-trace-ablation",
+  "kind": "worker",
+  "title": "eval plan018 additive random b01 s42",
+  "task_key": "worker_eval_plan018-additive-random-b01-s42_20260514T081100",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_plan018-additive-random-b01-s42_20260514T081100.log",
+    "occurrence": 1,
+    "bytes": 517445,
+    "sha256": "b9c64893937ddb1d39a63888a72431be05ff76f035ee6d805740b04b71b43d42"
+  },
+  "statistics": {
+    "messages": 351,
+    "user_turns": 0,
+    "tool_calls": 139,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 3,
+      "assistant": 67,
+      "tool_call": 139,
+      "tool_result": 139,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 351,
+      "chunks": [
+        {
+          "path": "0d01f17cde4a5e1cabb5-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "0d01f17cde4a5e1cabb5-part-0002.json",
+          "message_count": 171
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-plan018-additive-random-b01-s42.md"
+}

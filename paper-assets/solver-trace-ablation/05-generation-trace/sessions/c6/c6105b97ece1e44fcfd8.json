@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c6105b97ece1e44fcfd8",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_15_1778897875.md",
+  "task_key": "loop_15_1778897875",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_15_1778897875.md",
+    "occurrence": 1,
+    "bytes": 3393,
+    "sha256": "8d969626e0948164b00187f6e26ff44224c4725c4b87def8493b66c171d24703"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 15\nreason: idle_timeout\nupdated: '2026-05-16T02:17:41+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：仅 `westd-39279:cuda:0` 和 `westd-39279:cuda:1`，禁止使用其他 GPU\n- D095 Narrative A 已批准生效，所有 paper 内容必须与 D095 数据一致，禁止私自改 framing\n- genuine rate ISR 6.06% vs Random 9.54%，p=0.182 **不显著**——禁止 claim genuine rate 有显著差异\n- H7a 是 GRPO 通用 seed-dependent 现象，**不是 ISR 独有**（来回修正 8 次 D087-D094 的血泪教训）。只有 H7b（obfuscated tautology）才是 ISR-specific\n- Random H7 pooled 13.7% 由 s43-r3 单 seed 贡献（38.3%），s42/s44-r2 均为 0%——论文必须同时报 per-seed 和 pooled\n- D051 premise-count-matched ISR 优势仅 1.06x，2.4x 已作废\n- genuine = proved − |H7 ∪ H1 ∪ H8|（集合排除，非简单减法）\n- EMNLP 主体 ≤8 页硬限制\n\n### 2. 🖥️ 基础设施快照\n- 服务器：`westd-39279`，账号 `root`，工作目录 `/root/solver-trace-ablation`\n- GPU：2 × RTX PRO 6000 96GB，当前 2/2 空闲（无剩余实验）\n- Python 环境：服务器用 conda（`/root/miniconda3/bin/python`），预置镜像 `aml-train`\n- 活跃进程：无（0 cron，0 Worker，0 RUNNING 实验）\n- 产出目录：`/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/`\n- submission.zip 已生成（733KB，0 error）\n\n### 3. 📊 当前状态\n全部 86 实验已完成（success 26 / negative 28 / failed 26）。项目处于 **Writing 阶段末期**。\n\n已完成的里程碑：\n- TeX 全量数据同步到 D095 最终数字\n- Provenance 36/36\n- 引用审计 30/30 真实\n- 一致性检查 0 critical\n- PDF 全文视觉审查（修复 Table 4/5 重叠 + Table 8 超宽）\n- 页数缩减 ≤8 页\n- Checklist 验证通过\n- Language polish ~30 处编辑完成\n- Submission package 生成\n- Reviewer 最终一致性审查 PASS\n\n等待中：**Review Director 最终审**——这是提交前最后一步。无 Worker/Cron 回调待处理。\n\n### 4. 📋 待办（条件触发式）\n- Review Director 最终审通过 → 提交准备完成，通知 Director 可以提交\n- Review Director 最终审发现问题 → spawn Worker 修复，重新编译 + 视觉审查\n- Director 要求最终润色 → spawn Writer Worker 执行指定修改\n- DDL 2026-05-25 逼近（剩 9 天）→ 如无 Director 回复，主动 ping 催审\n\n### 5. 🎯 战略上下文\n**项目核心结论**：STA/ISR 作为 GRPO neurosymbolic formalizer 的诊断工具 + Goodhart's Law 案例研究。三个 Claim 全部闭环：(1) ISR 诊断 reward hacking（崩塌链 0.6423→0.1324→0.0027）；(2) ISR-as-reward 展现 meta-Goodhart（无结构优势，1.06x）；(3) 跨逻辑泛化（Prolog 3/3 gaming）。\n\n**决策链关键节点**：D087-D094 是 H7 归属的 8 次修正，最终 D095 确立 Narrative A（H7a=GRPO-general, H7b=ISR-specific）。这段历史是本项目最复杂的分析过程。\n\n**最易判断错的事**：H7 的归属。直觉上会认为 H7 是 ISR 独有的（因为 ISR 的 H7 rate 远高于 Random），但 D087-D094 已证明 H7a 在 exec-only 和 Random 中也出现，是 seed-dependent 的 GRPO 通用现象。写任何涉及 H7 的内容时必须区分 H7a/H7b。\n\n**当前唯一阻塞**：Review Director 最终审。论文已 submission-ready，等审通过即可提交。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-15-1778897875.md"
+}

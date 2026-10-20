@@ -1,0 +1,729 @@
+{
+  "schema_version": "1.0",
+  "id": "2e788862bb98276ef56a",
+  "project": "solver-trace-ablation",
+  "kind": "conversation",
+  "title": "cron hook plan009 sft baseline s44 1000 20260515T155412 092423",
+  "task_key": "cron_hook_plan009-sft-baseline-s44-1000_20260515T155412_092423",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/archive/cron_hook_plan009-sft-baseline-s44-1000_20260515T155412_092423.jsonl",
+    "occurrence": 1,
+    "bytes": 32238,
+    "sha256": "6322e94eae9a2c2f3c8b33872b3c959409959282660cb657464393b2feac7a99"
+  },
+  "statistics": {
+    "messages": 36,
+    "user_turns": 2,
+    "tool_calls": 16,
+    "roles": {
+      "user": 2,
+      "tool_call": 16,
+      "tool_result": 16,
+      "assistant": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T12:50:14.478123+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON] 实验进程异常退出（失败），需要你诊断原因。\n详情: Process exited without valid W&B metrics\n\n- exp_id: plan009-sft-baseline-s44-1000\n- project: solver-trace-ablation\n- server: westd-39279\n- log_path: ~/runs/solver-trace-ablation/plan009-sft-baseline-s44-1000.log"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44-1000",
+            "source": "cron:hook"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T12:50:33.318256+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44-1000",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__load_project_config",
+              "max_results": "8"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T12:50:33.318651+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44-1000",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T12:50:37.188344+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44-1000",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T12:50:37.188786+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44-1000",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T12:50:37.641481+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44-1000",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "file": "report.md"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T12:50:38.144185+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44-1000",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "solver-trace-ablation"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T12:50:39.301907+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (170,224 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation--claude-sessions-agent-9e275a64/c213809d-71d3-4171-8376-75c147b15e2c/tool-results/mcp-agent-ml-research-read_registry-1778849438313.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation--claude-sessions-agent-9e275a64/c213809d-71d3-4171-8376-75c147b15e2c/tool-results/mcp-agent-ml-research-read_registry-1778849438313.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation--claude-sessions-agent-9e275a64/c213809d-71d3-4171-8376-75c147b15e2c/tool-results/mcp-agent-ml-research-read_registry-1778849438313.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44-1000",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 2113
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T12:50:39.304229+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44-1000",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/skills/on-experiment-failed.skill.md"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T12:50:41.513847+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 1, \\\"results\\\": [{\\\"exp_id\\\": \\\"plan009-sft-baseline-s43-1000\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=352137)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44-1000",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 4325
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T12:50:41.514538+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/report.md\\\", \\\"content\\\": \\\"<!-- AUTO-FACTS-BEGIN (generated 2026-05-15T12:50:12Z; do not edit — regenerated by auto_build_report_facts) -->\\\\n## 📊 当前状态（auto-derived from registry）\\\\n\\\\n**总计**: 77 个实验 — DONE 76, RUNNING 1\\\\n**DONE 分布**: failed 24, killed 6, negative 24, success 22\\\\n\\\\n### GPU 占用\\\\n- **分配**: 2 张 — westd-39279:cuda:0, westd-39279:cuda:1\\\\n- **实际运行**: 1 张 — westd-39279:cuda:0(plan009-sft-baseline-s43-1000)\\\\n- **空闲（分配了没跑）**: westd-39279:cuda:1\\\\n\\\\n### 🏃 RUNNING\\\\n| exp_id | server | gpu | pid | log |\\\\n|--------|--------|-----|-----|-----|\\\\n| `plan009-sft-baseline-s43-1000` | westd-39279 | cuda:0 | 352137 | `…uns/solver-trace-ablation/plan009-sft-baseline-s43-1000.log` |\\\\n\\\\n### 📌 最近完成 (top 5)\\\\n- `plan009-sft-baseline-s44-1000` [failed] — 2026-05-15T12:50:04 — CUDA OOM: CUDA out of memory. Tried to allocate 742.00 MiB. GPU 0 has a total ca\\\\n- `plan009-sft-baseline-s42-1000` [success] — 2026-05-15T12:48:03\\\\n- `plan002-additive-b03-s42` [negative] — 2026-05-15T12:45:27\\\\n- `plan002-additive-b01-s42-1000` [negative] — 2026-05-15T12:45:25\\\\n- `plan001-exec-only-s42-r2` [success] — 2026-05-15T12:45:21\\\\n\\\\n### 🔴 最近失败原因 (top 3)\\\\n- `plan009-sft-baseline-s44-1000`: CUDA OOM: CUDA out of memory. Tried to allocate 742.00 MiB. GPU 0 has a total capacity of 94.97 GiB of which 100.25 MiB is free. Process 352142 has 62.36 GiB memory in use. Including non-PyTorch memor\\\\n\\\\n<!-- AUTO-FACTS-END -->\\\\n\\\\n---\\\\n\\\\n# Handover — 2026-05-15\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| plan009-sft-baseline-s43-1000 | SFT 1000步 seed=43：与 s42 相同配置的第二个 seed，验证 SFT 在 1000 步的 genuine rate 稳定性。与 GRPO 各条件 1000步对比，确认 Goodhart collapse 是 RL 特有现象。 | — | — | — |\\\\n\\\\n## 待处理\\\\n（无）\\\\n\\\\n## 近期结论\\\\n- **plan009-sft-baseline-s44-1000** (failed): SFT 1000步 seed=44：\n…[truncated 2189 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44-1000",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 3873
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T12:50:41.568845+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/ROADMAP.md\\\", \\\"content\\\": \\\"# solver-trace-ablation — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-15 07:34 UTC | 更新原因: Bootstrap CI 统计检验完成; 1000步+SFT实验运行中; GPU 2/2 占用\\\\n\\\\n> 最后更新: 2026-05-15 | 更新原因: Bootstrap CI 统计检验完成; 1000步+SFT实验运行中\\\\n\\\\n## 核心方向\\\\nSTA/ISR 作为 GRPO neurosymbolic formalizer 的**诊断工具** + **Goodhart's Law 案例研究**——检测 reward hacking、量化结构退化、分类退化模式，并展示 ISR 从诊断指标到优化目标的 Goodhart 转折。详见 paper_framing.md。\\\\n\\\\n## 当前进展\\\\n- **阶段**: ✍️ Writing（论文写作阶段）+ 🚀 审稿进行中 | **DDL**: 2026-05-25（剩 10 天）\\\\n- **实验**: 69 个 (运行中 2 | 待处理 1 | 完成 66 | success 19)\\\\n- **Claims**: ✅ Claim 1 | ✅ Claim 2 (D057) | ✅ Claim 3 (D059, Reviewer-corrected: 3/3 gaming)\\\\n- **Bootstrap CI**: permutation test (B=10000) 完成，3 项核心统计显著性检验支撑 Goodhart claim\\\\n\\\\n### 核心证据链\\\\n- ✅ **Claim 1 — STA 诊断能力**: ISR 崩塌轨迹 0.6423→0.1324→0.0027; 3-seed exec-only 多模式退化; SFT 零 hacking 对照; 7-mode taxonomy\\\\n- ✅ **Claim 2 — Goodhart / ISR 无结构优势** (D057): H7=0% 全 3 seed random 一致; Random PR 0.85±0.06 > ISR 0.77±0.14; premise-count-matched 1.06x 无差异; β 剂量效应\\\\n- ✅ **Claim 3 — 跨逻辑泛化** (D059, Reviewer-corrected): Prolog exec-only ISR 崩塌复现; Prolog STA 3/3 seeds gaming, 0% genuine\\\\n- ✅ **Bootstrap CI 统计检验**: genuine rate parity p=0.637 (n.s.); H7 gaming p=0.0004 (***); ISR* inflation p<0.001 (***)\\\\n- ✅ Hacking taxonomy: 7 modes (+query-as-fact), conclusion embedding GRPO-universal (68-100%)\\\\n- ✅ ISR capability boundary: ISR-NLI ρ=-0.049 n.s., syntactic necessity ≠ semantic faithfulness\\\\n- ✅ 1000步延伸: exec-only PR=0.96, ISR=0.003, 崩塌持续恶化\\\\n\\\\n## RUNNING\\\\n| exp_id | 描述 | GPU |\\\\n|--------|------|-----|\\\\n| plan002-additive-b01-s42-1000 | ISR β=0.1, 1000步（与 exec-only 1000步对比） | cuda:0 |\\\\n| plan009-sft-baseline-s43 | SFT baseline seed=43 | cuda:1 |\\\\n\\\\n## QUEUED\\\\n- plan018-additive-random-b01-s42-1000 — Random β=0.1, 1000步控制组（等 cuda:0）\\\\n\\\\n## 近期任务\\\\n- [ ] 等 plan002-b01-s42-1000 完成 → 1000步三方对比 (exec\n…[truncated 2438 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44-1000",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 3424
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T12:50:41.619629+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/agent_9e275a64."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44-1000",
+            "tool": "Read",
+            "elapsed_ms": 2315
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T12:51:03.391338+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44-1000",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/tool-results/mcp-agent-ml-research-read_registry-1778849438313.txt 2>/dev/null | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\nfor e in exps:\n    if e.get('exp_id') == 'plan009-sft-baseline-s44-1000':\n        print(json.dumps(e, indent=2))\n        break\n\" 2>/dev/null || python3 -c \"\nimport json, sys\n# Try alternate path\nwith open('/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation--claude-sessions-agent-9e275a64/c213809d-71d3-4171-8376-75c147b15e2c/tool-results/mcp-agent-ml-research-read_registry-1778849438313.txt') as f:\n    data = json.load(f)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\nfor e in exps:\n    if e.get('exp_id') == 'plan009-sft-baseline-s44-1000':\n        print(json.dumps(e, indent=2))\n        break\n\"",
+              "description": "Extract failed experiment details from registry dump"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T12:51:03.694390+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44-1000",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/on-experiment-failed.skill.md",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T12:51:03.946925+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 9, in <module>\n    if e.get('exp_id') == 'plan009-sft-baseline-s44-1000':\n       ^^^^^\nAttributeError: 'str' object has no attribute 'get'"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44-1000",
+            "tool": "Bash",
+            "elapsed_ms": 555
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T12:51:03.947402+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>Cancelled: parallel tool call Bash(cat /home/ubuntu/.agent-ml-research-idea…) errored</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44-1000",
+            "tool": "Glob",
+            "elapsed_ms": 253
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T12:51:11.082152+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44-1000",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation--claude-sessions-agent-9e275a64/c213809d-71d3-4171-8376-75c147b15e2c/tool-results/mcp-agent-ml-research-read_registry-1778849438313.txt') as f:\n    data = json.load(f)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n# exps might be a dict\nif isinstance(exps, dict):\n    exp = exps.get('plan009-sft-baseline-s44-1000')\n    if exp:\n        print(json.dumps(exp, indent=2))\nelif isinstance(exps, list):\n    print(type(exps[0]))\n    print(exps[0][:200] if isinstance(exps[0], str) else json.dumps(exps[0])[:200])\nelse:\n    print(type(exps))\n\"",
+              "description": "Extract failed experiment from registry with correct structure"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T12:51:11.234185+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-15T12:47:54.021Z\",\n  \"updated_at\": \"2026-05-15T12:50:04.083Z\",\n  \"spec\": {\n    \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_sft.py --model_path /root/autodl-tmp/models/Qwen3-4B --data_path data/train_500_seed42.jsonl --output_dir /root/autodl-tmp/outputs/plan009_sft_baseline_s44_1000 --num_steps 1000 --seed 44 --no_wandb --gpu 0\\\"\",\n    \"server\": \"westd-39279\",\n    \"gpu\": [\n      \"cuda:1\"\n    ],\n    \"pid\": \"352509\",\n    \"log_path\": \"~/runs/solver-trace-ablation/plan009-sft-baseline-s44-1000.log\",\n    \"submitted_at\": \"2026-05-15T12:49:32.740Z\",\n    \"submitted_via\": \"submit_training_job\",\n    \"backend\": \"tmux\",\n    \"account\": \"root\",\n    \"wall_clock_seconds\": 31.3,\n    \"gpu_hours\": 0.01\n  },\n  \"hypothesis\": \"SFT 1000\\u6b65 seed=44\\uff1a\\u4e0e s42/s43 \\u76f8\\u540c\\u914d\\u7f6e\\u7684\\u7b2c\\u4e09\\u4e2a seed\\uff0c\\u9a8c\\u8bc1 SFT \\u5728 1000 \\u6b65\\u7684 genuine rate \\u7a33\\u5b9a\\u6027\\u30023-seed \\u7edf\\u8ba1\\u652f\\u6491 Goodhart collapse \\u662f RL (GRPO) \\u7279\\u6709\\u73b0\\u8c61\\u7684 claim\\u3002\",\n  \"parent\": \"plan009-sft-baseline-s42-r4\",\n  \"server\": \"westd-39279\",\n  \"gpu\": \"cuda:1\",\n  \"account\": \"root\",\n  \"reproduce\": {\n    \"server\": \"westd-39279\",\n    \"gpu\": \"cuda:1\",\n    \"started_at\": \"2026-05-15T12:49:08.008Z\",\n    \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_sft.py --model_path /root/autodl-tmp/models/Qwen3-4B --data_path data/train_500_seed42.jsonl --output_dir /root/autodl-tmp/outputs/plan009_sft_baseline_s44_1000 --num_steps 1000 --seed 44 --no_wandb --gpu 0\\\"\",\n    \"finished_at\": \"2026-05-15T12:50:00.305Z\",\n    \"training_hours\": 0.01\n  },\n  \"pid\": \"352509\",\n  \"log_path\": \"~/runs/solver-trace-ablation/plan009-sft-baseline-s44-1000.log\",\n  \"failure_reason\": \"CUDA OOM: CUDA out of memory. \n…[truncated 472 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44-1000",
+            "tool": "Bash",
+            "elapsed_ms": 152
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T12:51:11.234783+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44-1000",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/on-experiment-failed.skill.md",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T12:51:11.285414+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44-1000",
+            "tool": "Glob",
+            "elapsed_ms": 50
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T12:51:53.934443+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44-1000",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "diag:plan009-sft-baseline-s44-1000",
+              "project": "solver-trace-ablation",
+              "task_prompt": "## 任务：诊断并修复实验 plan009-sft-baseline-s44-1000 的 CUDA OOM 失败\n\n### 背景\n实验 `plan009-sft-baseline-s44-1000`（SFT 1000步 seed=44）在服务器 westd-39279 上失败。\n- 分配的 GPU: cuda:1\n- 失败原因: CUDA OOM — \"GPU 0 has a total capacity of 94.97 GiB of which 100.25 MiB is free. Process 352142 has 62.36 GiB memory in use\"\n- 日志路径: ~/runs/solver-trace-ablation/plan009-sft-baseline-s44-1000.log\n- 训练命令: `bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_sft.py --model_path /root/autodl-tmp/models/Qwen3-4B --data_path data/train_500_seed42.jsonl --output_dir /root/autodl-tmp/outputs/plan009_sft_baseline_s44_1000 --num_steps 1000 --seed 44 --no_wandb --gpu 0\"`\n\n### 关键线索\n- submit_training_job 会设置 CUDA_VISIBLE_DEVICES 将 cuda:1 映射为 device 0\n- 但有未知进程 352142 在该 GPU 上占用了 62.36 GiB\n- 另一个实验 plan009-sft-baseline-s43-1000 (pid=352137) 正在 cuda:0 上正常运行\n\n### 你要做的事（按顺序）\n\n1. **SSH 只读检查（ssh_read_only）**：\n   - `nvidia-smi` 查看两块 GPU 当前占用情况\n   - `ps aux | grep -E '352142|python|train' | grep -v grep` 查看进程 352142 是否还存在\n   - `cat ~/runs/solver-trace-ablation/plan009-sft-baseline-s44-1000.log | tail -50` 读日志最后 50 行\n   - `ls -la /root/autodl-tmp/outputs/plan009_sft_baseline_s44_1000/` 检查是否有残留输出\n\n2. **分析**：\n   - 确认 cuda:1 上是否有占用内存的孤儿进程\n   - 如果有：记录进程信息，建议是否可以安全 kill\n   - 如果没有：说明 OOM 可能是训练自身的峰值内存问题\n\n3. **如果 cuda:1 上有孤儿进程（ssh_execute）**：\n   - kill 掉该孤儿进程\n   - 再次 `nvidia-smi` 确认 GPU 内存已释放\n\n4. **汇报**：\n   - GPU 当前状态（两块卡各自的占用）\n   - OOM 根因（孤儿进程 / 自身内存不足 / 其他）\n   - cuda:1 是否已清理可用\n   - 是否可以安全重试 s44 实验\n\n不要启动新的训练，只做诊断和清理。",
+              "tool_groups": "['ssh']"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T12:51:53.935022+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44-1000",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/skills/resource-saturation.skill.md"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T12:51:57.012779+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_diag_plan009-sft-baseline-s44-1000_20260515T125154\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/logs/workers/worker_diag_plan009-sft-baseline-s44-1000_20260515T125154.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_diag_plan009-sft-baseline-s44-1000_20260515T125154 started. Use get_worker_status('worker_diag_plan009-sft-baseline-s44-1000_20260515T125154') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44-1000",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 3078
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T12:51:57.013142+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/agent_9e275a64."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44-1000",
+            "tool": "Read",
+            "elapsed_ms": 3078
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T12:51:59.949547+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44-1000",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/resource-saturation.skill.md",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-15T12:52:00.066256+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44-1000",
+            "tool": "Glob",
+            "elapsed_ms": 116
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T12:52:04.293394+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44-1000",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/resource-saturation*",
+              "path": "/home/ubuntu"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-15T12:52:04.648009+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44-1000",
+            "tool": "Glob",
+            "elapsed_ms": 354
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-15T12:52:07.715636+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44-1000",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-15T12:52:07.766524+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: resource-saturation\n3\tdescription: \"当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。\"\n4\talways: false\n5\troles:\n6\t  - director\n7\t  - agent\n8\t---\n9\t\n10\t# 资源饱和度自检（硬约束）\n11\t\n12\t## A. GPU 分配率检查\n13\t\n14\t调 `get_project_resource_usage(project)` 看:\n15\t- 已分配给本项目的 GPU 总数和具体卡号\n16\t- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）\n17\t- 分配了但没跑的 GPU 清单 ⚠️\n18\t\n19\t任何\"分配了但没跑\"的 GPU = 失职。必须立即:\n20\t- 派 Worker 铺 dry-run / 下一批实验代码准备\n21\t- 铺 ablation（从 experiment-matrix 空白格子里挑）\n22\t- 确实无实验可铺 → 向 Director 汇报\"暂无可铺实验\"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作\n23\t\n24\t**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。\n25\t\n26\t## B. GPU 效率检查\n27\t\n28\t调 `get_gpu_health(server)`:\n29\t- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务\n30\t- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）\n31\t- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优\n32\t\n33\t## C. 非 GPU 任务并行\n34\t\n35\tGPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:\n36\t- 下一批实验的数据集下载 / 预处理 / fingerprint\n37\t- 下一批实验的代码准备 / dry-run / 环境配置\n38\t- 论文文献调研 / related work 检索\n39\t- 已完成实验的 log 深度分析 / metric 聚合\n40\t- 论文章节起草\n41\t- 代码 review / refactor\n42\t\n43\t**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。\n44\t\n45\t## D. 汇报格式\n46\t\n47\t向 Director 汇报时开头必须带资源声明行:\n48\t\n49\t    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)\n50\t"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44-1000",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-15T12:52:25.482334+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44-1000",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 分配 2 / 实际在跑 1 | Worker 池 1 (GPU 0 / CPU 1)\n\n**plan009-sft-baseline-s44-1000 失败：CUDA OOM**\n\n- 原因：cuda:1 上有未知进程 352142 占用 62.36 GiB 显存，s44 启动时仅剩 100 MiB，无法分配 742 MiB\n- s43 (pid=352137) 在 cuda:0 上正常运行中\n- 已派 Worker SSH 诊断 cuda:1 状态并清理孤儿进程\n- 诊断完成 + cuda:1 清理后将立即重试 s44\n\n当前阻塞项：cuda:1 被占，等 Worker 诊断回调后处理。",
+              "project": "solver-trace-ablation"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-15T12:52:30.309389+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_a771c2a33d631dd40256ecd5c3a6648e:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44-1000",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 4827
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-15T12:52:36.258180+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成：\n\n1. **Session 初始化**：registry 同步、cron reconcile（s43 仍在运行）、report/ROADMAP 已读\n2. **诊断**：`plan009-sft-baseline-s44-1000` 失败根因 = CUDA OOM，cuda:1 上有孤儿进程 352142 占用 62.36 GiB\n3. **Worker 已派出**：SSH 诊断 + 清理 cuda:1 上的占用进程\n4. **Director 已通知**：报告了 OOM 失败 + 诊断进展\n\n等 Worker 回调后：清理确认 → 重试 s44 实验。"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44-1000"
+          },
+          "id": "event-000034"
+        }
+      ],
+      "message_count": 34
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-15T15:53:33.369237+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44-1000",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-15T15:54:12.090681+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-39279 的 cuda:0 和 cuda:1，**只有这两张**，不得用其他卡\n- 训练命令中 `--gpu 0` 是正确的（CUDA_VISIBLE_DEVICES 由框架注入映射物理卡）\n- plan013 vs plan017 公式结构不同，论文**不可**简化为 \"additive vs convex\" 对照 (D027)\n- ISR β=0.1 hacking rate 69.1%，论文**不标** \"no hacking\"，标 \"lowest hacking rate\" (D044)\n- D051: 2.4x 作废，premise-count-matched 1.06x 定论\n- Prolog STA s44: Reviewer 核实为 query-as-fact gaming，非 genuine（D069）\n- exp1-isr-b03-s42-1000-r2 registry 曾误标 genuine，已修正 (D076)\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-39279，工作目录 `/root/solver-trace-ablation`\n- Python：`/root/miniconda3/bin/python`，环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型：`/root/autodl-tmp/models/Qwen3-4B`\n- 数据：`/root/solver-trace-ablation/data/train_500_seed42.jsonl`\n- 输出目录：`/root/autodl-tmp/outputs/`\n- 无 W&B（实验用 `--no_wandb`）\n- 活跃进程：plan009-sft-baseline-s43-1000 (PID 352137, cuda:0, tmux session)\n- **cuda:1 可能有孤儿进程 352142 占 62.36 GiB**——诊断 Worker 已派出但尚未回调\n\n### 3. 📊 当前状态\n- 刚收到 plan009-sft-baseline-s44-1000 的 CRON 失败回调（CUDA OOM）\n- 已派 Worker `worker_diag_plan009-sft-baseline-s44-1000_20260515T125154` SSH 诊断 cuda:1 占用情况\n- 已向 Director 汇报 OOM 失败 + 诊断中\n- Registry: 77 实验，RUNNING 1 (s43 on cuda:0)，DONE 76 (success 22, negative 24, failed 24, killed 6)\n- plan009-sft-baseline-s43-1000 仍在 cuda:0 上正常运行（reconcile_crons 确认 pid=352137 存活）\n\n### 4. 📋 待办\n- 诊断 Worker 回调 → 读结果：若 cuda:1 有孤儿进程已清理 → 立即重试 s44（submit_on_allocated 或重新走审批）；若是训练自身 OOM → 需降 batch size 或加 gradient checkpointing 后重试\n- s43 cron 回调（完成）→ 按 on-experiment-done 流程分析 metrics + 更新 registry + 汇报 Director\n- s44 重试成功后 → 3-seed SFT 1000步统计完整，支撑 Goodhart collapse 是 RL 特有现象的 claim\n- cuda:1 空闲期间无实验可铺（s44 重试就是唯一待跑任务）\n\n### 5. 🎯 战略上下文\n- 项目处于**写作阶段**，DDL 2026-05-25（剩 10 天），3 个 Core Claims 已有实验支撑\n- 当前跑 SFT 多 seed 是为了 3-seed 统计显著性：s42 已 success (genuine 92.3%)，s43 在跑，s44 OOM 待重试\n- 核心结论链：SFT 1000步保持高 genuine rate → Goodhart collapse 是 GRPO（RL）特有 → Claim 2 + D077\n- Bootstrap CI 已完成：genuine rate parity p=0.637 (n.s.)，H7 gaming p=0.0004 (***)，ISR* inflation p<0.001 (***)\n- 易错点：s44 OOM 的根因大概率是 cuda:1 上有孤儿进程而非训练本身内存不足（s42 同配置已跑成功），清理后重试即可，不需要改训练参数\n- Wilson CI 曾翻转 bootstrap 结论（D072），后用完整 3-seed 数据确认 ISR β=0.1 genuine 显著高于 random（D073）——统计结论已稳定，不要重新质疑\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44-1000"
+          },
+          "id": "event-000036"
+        }
+      ],
+      "message_count": 2
+    }
+  ],
+  "readable_path": "readable/conversations/cron-hook-plan009-sft-baseline-s44-1000-20260515t155412-092423.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "242cf9c2f0ed92caee71",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "research sft literature linkage",
+  "task_key": "worker_research_sft-literature-linkage_20260515T082640",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_sft-literature-linkage_20260515T082640_result.json",
+    "occurrence": 1,
+    "bytes": 271,
+    "sha256": "a11f935fef899dd40e81678453c69090b47a1c77ef79b7454e9756c65e54ec23"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "memory.md 已更新。\n\n总结：literature_map 中 66 篇论文无一做 SFT vs GRPO 的 reward hacking 对比实验。STA 用 SFT baseline 隔离 RL-induced gaming（0% H7 vs ~87% H1）是独特的实验设计，可在论文中强调为 contribution。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-sft-literature-linkage.md"
+}

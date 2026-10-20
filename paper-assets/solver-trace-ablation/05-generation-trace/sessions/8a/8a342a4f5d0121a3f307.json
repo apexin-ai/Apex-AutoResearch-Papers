@@ -1,0 +1,372 @@
+{
+  "schema_version": "1.0",
+  "id": "8a342a4f5d0121a3f307",
+  "project": "solver-trace-ablation",
+  "kind": "conversation",
+  "title": "ops d134 s47 pr verify s48 status",
+  "task_key": "worker_ops_d134-s47-pr-verify-s48-status_20260518T174743",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_ops_d134-s47-pr-verify-s48-status_20260518T174743.jsonl",
+    "occurrence": 1,
+    "bytes": 14840,
+    "sha256": "05bd634c3798a8aa081287e05a1a61c93b945ac7f78e5b1b5b368f7130a02d48"
+  },
+  "statistics": {
+    "messages": 17,
+    "user_turns": 0,
+    "tool_calls": 8,
+    "roles": {
+      "tool_call": 8,
+      "tool_result": 8,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-18T17:48:27.271568+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_d134-s47-pr-verify-s48-status_20260518T174743",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-18T17:48:27.272094+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_d134-s47-pr-verify-s48-status_20260518T174743",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-18T17:48:27.272491+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_d134-s47-pr-verify-s48-status_20260518T174743",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "cat /root/autodl-tmp/outputs/d134_4b_random_b01_s47/eval_results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-18T17:48:27.272734+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_d134-s47-pr-verify-s48-status_20260518T174743",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "cat /root/autodl-tmp/outputs/d134_4b_random_b01_s47/classify.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-18T17:48:27.273415+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"n_problems\\\\\\\": 100,\\\\n    \\\\\\\"n_proved\\\\\\\": 89,\\\\n    \\\\\\\"prove_rate\\\\\\\": 0.89,\\\\n    \\\\\\\"mean_isr\\\\\\\": 0.0857,\\\\n    \\\\\\\"isr_std\\\\\\\": 0.1259,\\\\n    \\\\\\\"median_isr\\\\\\\": 0.0,\\\\n    \\\\\\\"isr_pr_ratio\\\\\\\": 0.0963,\\\\n    \\\\\\\"proved_only_mean_isr\\\\\\\": 0.0963,\\\\n    \\\\\\\"min_isr\\\\\\\": 0.0,\\\\n    \\\\\\\"max_isr\\\\\\\": 0.5,\\\\n    \\\\\\\"by_answer_type\\\\\\\": {\\\\n      \\\\\\\"false\\\\\\\": {\\\\n        \\\\\\\"count\\\\\\\": 25,\\\\n        \\\\\\\"proved\\\\\\\": 21,\\\\n        \\\\\\\"prove_rate\\\\\\\": 0.84,\\\\n        \\\\\\\"mean_isr\\\\\\\": 0.07230880230880231\\\\n      },\\\\n      \\\\\\\"unknown\\\\\\\": {\\\\n        \\\\\\\"count\\\\\\\": 41,\\\\n        \\\\\\\"proved\\\\\\\": 38,\\\\n        \\\\\\\"prove_rate\\\\\\\": 0.926829268292683,\\\\n        \\\\\\\"mean_isr\\\\\\\": 0.09340002815612572\\\\n      },\\\\n      \\\\\\\"true\\\\\\\": {\\\\n        \\\\\\\"count\\\\\\\": 34,\\\\n        \\\\\\\"proved\\\\\\\": 30,\\\\n        \\\\\\\"prove_rate\\\\\\\": 0.8823529411764706,\\\\n        \\\\\\\"mean_isr\\\\\\\": 0.08617158984806043\\\\n      }\\\\n    },\\\\n    \\\\\\\"elapsed_seconds\\\\\\\": 626.4,\\\\n    \\\\\\\"avg_time_per_sample\\\\\\\": 6.3,\\\\n    \\\\\\\"solver\\\\\\\": \\\\\\\"Prover9Solver\\\\\\\",\\\\n    \\\\\\\"logic_type\\\\\\\": \\\\\\\"fol\\\\\\\",\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/outputs/d134_4b_random_b01_s47\\\\\\\"\\\\n  },\\\\n  \\\\\\\"results\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 0,\\\\n      \\\\\\\"id\\\\\\\": \\\\\\\"folio_765\\\\\\\",\\\\n      \\\\\\\"context\\\\\\\": \\\\\\\"Tipped employees are not entitled to be paid the federal minimum wage by their employees. \\\\\\\\nIf a person is a white-collar worker, they are entitled to be paid the federal minimum wage by their employees. \\\\\\\\nAll lawyers are white-collar workers.\\\\\\\\nEvery advocate is a lawyer.\\\\\\\\nMary is not a lawyer or a tipped employee.\\\\\\\",\\\\n      \\\\\\\"question\\\\\\\": \\\\\\\"Mary is an advocate.\\\\\\\",\\\\n      \\\\\\\"answer\\\\\\\": \\\\\\\"false\\\\\\\",\\\\n      \\\\\\\"formalization\\\\\\\": \\\\\\\"Premises:  \\\\\\\\n1. ∀x (Advocate(x) → WhiteCollar(x))  \\\\\\\\n2. ∀x (WhiteCollar(x) → MinimumWage(x))  \\\\\\\\n3. Advocate(Mary)  \\\\\\\\n4. MinimumWage(Mary)  \\\\\n…[truncated 8051 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_d134-s47-pr-verify-s48-status_20260518T174743",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-18T17:48:27.273722+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_d134-s47-pr-verify-s48-status_20260518T174743",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "ls /root/autodl-tmp/outputs/d134_4b_random_b01_s47/eval_results/",
+              "account": "root"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-18T17:48:27.273991+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"eval_results\\\\\\\": {\\\\n    \\\\\\\"n_total\\\\\\\": 100,\\\\n    \\\\\\\"n_proved\\\\\\\": 89,\\\\n    \\\\\\\"h7a_count\\\\\\\": 0,\\\\n    \\\\\\\"h7a_rate\\\\\\\": 0.0,\\\\n    \\\\\\\"h7b_count\\\\\\\": 0,\\\\n    \\\\\\\"h7b_rate\\\\\\\": 0.0,\\\\n    \\\\\\\"h7_total_count\\\\\\\": 0,\\\\n    \\\\\\\"h7_total_rate\\\\\\\": 0.0,\\\\n    \\\\\\\"h1_strict_count\\\\\\\": 79,\\\\n    \\\\\\\"h1_strict_rate\\\\\\\": 0.8876,\\\\n    \\\\\\\"h8_conjunction_collapse_count\\\\\\\": 4,\\\\n    \\\\\\\"h8_conjunction_collapse_rate\\\\\\\": 0.0449,\\\\n    \\\\\\\"conclusion_in_premise_count\\\\\\\": 79,\\\\n    \\\\\\\"conclusion_in_premise_rate\\\\\\\": 0.8876,\\\\n    \\\\\\\"h7_relaxed_count\\\\\\\": 0,\\\\n    \\\\\\\"h7_relaxed_rate\\\\\\\": 0.0,\\\\n    \\\\\\\"single_premise_count\\\\\\\": 0,\\\\n    \\\\\\\"single_premise_rate\\\\\\\": 0.0,\\\\n    \\\\\\\"isr_1_count\\\\\\\": 0,\\\\n    \\\\\\\"isr_1_rate\\\\\\\": 0.0,\\\\n    \\\\\\\"content_independent_count\\\\\\\": 4,\\\\n    \\\\\\\"content_independent_rate\\\\\\\": 0.0449,\\\\n    \\\\\\\"genuine_count\\\\\\\": 6,\\\\n    \\\\\\\"genuine_rate\\\\\\\": 0.0674,\\\\n    \\\\\\\"h7_strict_count\\\\\\\": 0,\\\\n    \\\\\\\"h7_strict_rate\\\\\\\": 0.0\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_d134-s47-pr-verify-s48-status_20260518T174743",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-18T17:48:27.274225+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_d134-s47-pr-verify-s48-status_20260518T174743",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "tail -20 /root/autodl-tmp/outputs/d134_4b_random_b01_s47/train.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-18T17:48:27.274440+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/outputs/d134_4b_random_b01_s47/eval_results/': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_d134-s47-pr-verify-s48-status_20260518T174743",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-18T17:48:27.274675+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_d134-s47-pr-verify-s48-status_20260518T174743",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "nvidia-smi --query-compute-apps=pid,used_memory --format=csv",
+              "account": "root"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-18T17:48:27.275027+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\r                                                   \\\\r\\\\r 99%|█████████▊| 493/500 [1:51:57<01:21, 11.64s/it]\\\\r 99%|█████████▉| 494/500 [1:52:14<01:20, 13.49s/it]{'loss': -0.0955, 'grad_norm': 10.54617977142334, 'learning_rate': 1.6e-08, 'num_tokens': 1609524.0, 'completions/mean_length': 145.5, 'completions/min_length': 128.0, 'completions/max_length': 190.5, 'completions/clipped_ratio': 0.0, 'completions/mean_terminated_length': 145.5, 'completions/min_terminated_length': 128.0, 'completions/max_terminated_length': 190.5, 'rewards/reward_fn/mean': 1.045746088027954, 'rewards/reward_fn/std': 0.021121264901012182, 'reward': 1.045746088027954, 'reward_std': 0.02112127374857664, 'frac_reward_zero_std': 0.0, 'entropy': 0.02826435025781393, 'clip_ratio/low_mean': 0.0, 'clip_ratio/low_min': 0.0, 'clip_ratio/high_mean': 0.0, 'clip_ratio/high_max': 0.0, 'clip_ratio/region_mean': 0.0, 'step_time': 11.195664488710463, 'epoch': 1.97}\\\\n[REWARD_LOG] step=494 reward=1.0586 prove_rate=1.000 isr=0.116 parse_rate=1.000 random=0.586 beta_t=0.1000\\\\n\\\\r                                                   \\\\r\\\\r 99%|█████████▉| 494/500 [1:52:14<01:20, 13.49s/it]\\\\r 99%|█████████▉| 495/500 [1:52:26<01:05, 13.08s/it]{'loss': 0.0966, 'grad_norm': 12.054583549499512, 'learning_rate': 1.4e-08, 'num_tokens': 1612491.0, 'completions/mean_length': 168.875, 'completions/min_length': 93.5, 'completions/max_length': 308.0, 'completions/clipped_ratio': 0.0, 'completions/mean_terminated_length': 168.875, 'completions/min_terminated_length': 93.5, 'completions/max_terminated_length': 308.0, 'rewards/reward_fn/mean': 1.058646559715271, 'rewards/reward_fn/std': 0.0274021839722991, 'reward': 1.058646559715271, 'reward_std': 0.027402217499911785, 'frac_reward_zero_std': 0.0, 'entropy': 0.0605403995141387, 'clip_ratio/low_mean': 0.0, 'clip_ratio/low_min': 0.0, 'clip_ratio/high_mean': 0.0, 'clip_ratio/high_max': 0.0, 'clip_ratio/region_mean': 0.0,\n…[truncated 6298 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_d134-s47-pr-verify-s48-status_20260518T174743",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-18T17:48:27.275299+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"pid, used_gpu_memory [MiB]\\\\n121901, 84688 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.59}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_d134-s47-pr-verify-s48-status_20260518T174743",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-18T17:48:27.275555+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_d134-s47-pr-verify-s48-status_20260518T174743",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "tail -10 /root/autodl-tmp/outputs/d134_4b_random_b01_s48/train.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-18T17:48:27.275864+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[REWARD_LOG] step=46 reward=0.0000 prove_rate=0.000 isr=0.000 parse_rate=1.000 random=0.613 beta_t=0.1000\\\\n\\\\r                                                  \\\\r\\\\r  9%|▉         | 46/500 [07:32<1:15:03,  9.92s/it]\\\\r  9%|▉         | 47/500 [07:40<1:12:14,  9.57s/it]{'loss': 0.0, 'grad_norm': 0.0, 'learning_rate': 9.1e-07, 'num_tokens': 134487.0, 'completions/mean_length': 144.0, 'completions/min_length': 136.0, 'completions/max_length': 152.0, 'completions/clipped_ratio': 0.0, 'completions/mean_terminated_length': 144.0, 'completions/min_terminated_length': 136.0, 'completions/max_terminated_length': 152.0, 'rewards/reward_fn/mean': 0.0, 'rewards/reward_fn/std': 0.0, 'reward': 0.0, 'reward_std': 0.0, 'frac_reward_zero_std': 1.0, 'entropy': 0.03983272239565849, 'clip_ratio/low_mean': 0.0, 'clip_ratio/low_min': 0.0, 'clip_ratio/high_mean': 0.0, 'clip_ratio/high_max': 0.0, 'clip_ratio/region_mean': 0.0, 'step_time': 8.47148865647614, 'epoch': 0.18}\\\\n[REWARD_LOG] step=47 reward=0.1291 prove_rate=0.125 isr=0.025 parse_rate=1.000 random=0.324 beta_t=0.1000\\\\n\\\\r                                                  \\\\r\\\\r  9%|▉         | 47/500 [07:40<1:12:14,  9.57s/it]\\\\r 10%|▉         | 48/500 [07:50<1:12:59,  9.69s/it]{'loss': -0.0397, 'grad_norm': 20.170494079589844, 'learning_rate': 9.08e-07, 'num_tokens': 137621.0, 'completions/mean_length': 138.25, 'completions/min_length': 131.0, 'completions/max_length': 148.5, 'completions/clipped_ratio': 0.0, 'completions/mean_terminated_length': 138.25, 'completions/min_terminated_length': 131.0, 'completions/max_terminated_length': 148.5, 'rewards/reward_fn/mean': 0.12914514541625977, 'rewards/reward_fn/std': 0.25829029083251953, 'reward': 0.12914514541625977, 'reward_std': 0.25829029083251953, 'frac_reward_zero_std': 0.5, 'entropy': 0.058131988160312176, 'clip_ratio/low_mean': 0.0, 'clip_ratio/low_min': 0.0, 'clip_ratio/high_mean': 0.0, 'clip_ratio/high_max': 0.0, 'cli\n…[truncated 2418 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_d134-s47-pr-verify-s48-status_20260518T174743",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-18T17:48:27.276123+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_d134-s47-pr-verify-s48-status_20260518T174743",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "grep -c \"REWARD_LOG\" /root/autodl-tmp/outputs/d134_4b_random_b01_s48/train.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-18T17:48:27.276340+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"50\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_d134-s47-pr-verify-s48-status_20260518T174743",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-18T17:48:27.276612+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### 1. s47 eval_results.json (summary)\n\n| 指标 | 值 |\n|---|---|\n| n_problems | 100 |\n| **n_proved** | **89** |\n| **prove_rate** | **0.89** |\n| mean_isr | 0.0857 |\n| isr_std | 0.1259 |\n| median_isr | 0.0 |\n| proved_only_mean_isr | 0.0963 |\n\n### 2. s47 classify.json\n\n| 指标 | 值 |\n|---|---|\n| n_proved | 89 |\n| h7_total_count | 0 |\n| h1_strict_count | 79 (88.76%) |\n| h8_conjunction_collapse | 4 (4.49%) |\n| conclusion_in_premise | 79 (88.76%) |\n| content_independent | 4 (4.49%) |\n| **genuine_count** | **6 (6.74%)** |\n\n### 3. s47 真实最终 eval PR\n\n**eval PR = 89/100 = 89%**，来源：`eval_results.json` 的 `prove_rate: 0.89`。\n\n训练日志的 `prove_rate=0.629` 是训练集上最后一个 batch 的 moving average（`Final reward stats: prove_rate: 0.62875`），不是 eval 指标。eval 在 held-out 的 `proofwriter_fol_100.jsonl` 上跑的结果是 89%，这是论文应该用的数字。\n\n### 4. s48 训练进度\n\n| 指标 | 值 |\n|---|---|\n| 当前 step | **50/500** (10%) |\n| 速度 | ~9 s/step |\n| 已用时间 | ~8 min |\n| 预估剩余 | **~68 min (~1h8m)** |\n| GPU 占用 | PID 121901, 84688 MiB |\n| 当前 prove_rate | 0.0~0.125（早期阶段，尚未起飞） |"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_d134-s47-pr-verify-s48-status_20260518T174743"
+          },
+          "id": "event-000017"
+        }
+      ],
+      "message_count": 17
+    }
+  ],
+  "readable_path": "readable/conversations/ops-d134-s47-pr-verify-s48-status.md"
+}

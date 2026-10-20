@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f4192c0852288124292d",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ssh eval sft s43 1000",
+  "task_key": "worker_ssh_eval-sft-s43-1000_20260515T131940",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_eval-sft-s43-1000_20260515T131940_result.json",
+    "occurrence": 1,
+    "bytes": 1218,
+    "sha256": "e92e76331bfb0d63f72cca1bcf723e9580cc0973f65c15f7c48a326b2007832c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## plan009-sft-baseline-s43-1000 评估结果\n\n| 指标 | s43-1000 | s42-1000 |\n|------|----------|----------|\n| **prove_rate** | 11.0% (11/100) | — |\n| **mean_isr** | 0.0699 | — |\n| **isr_std** | 0.2155 | — |\n| **proved_only_mean_isr** | 0.6352 | — |\n| **median_isr** | 0.0 | — |\n\n### Hacking Taxonomy\n\n| 分类 | count | rate |\n|------|-------|------|\n| **H7** (conclusion duplication) | 0 | 0.0% |\n| **H1** (conclusion embedding) | 1 | 9.1% |\n| **H8** (conjunction collapse) | 0 | 0.0% |\n| **genuine** | **10** | **90.9%** |\n\n### 按 answer_type 分组\n\n| answer_type | n | proved | prove_rate | mean_isr |\n|-------------|---|--------|------------|----------|\n| true | 34 | 11 | 32.4% | 0.2055 |\n| false | 25 | 0 | 0.0% | 0.0 |\n| unknown | 41 | 0 | 0.0% | 0.0 |\n\n### 与 s42-1000 对比\n\n- **genuine_count**: s43=10 vs s42=12 — s43 少 2 个 genuine proof\n- **genuine_rate**: s43=90.9% vs s42=92.3% — 基本一致\n- SFT baseline 在两个 seed 上表现一致：prove_rate 低（仅 true 类被证明），几乎无 hacking 行为，genuine rate > 90%\n\n结果已保存至 `/root/autodl-tmp/outputs/plan009_sft_baseline_s43_1000/eval_sta_results.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-eval-sft-s43-1000.md"
+}

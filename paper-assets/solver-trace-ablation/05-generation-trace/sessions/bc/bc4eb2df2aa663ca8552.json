@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bc4eb2df2aa663ca8552",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "diagnose sweep random b005 s43",
+  "task_key": "worker_diagnose_sweep-random-b005-s43_20260517T084554",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_sweep-random-b005-s43_20260517T084554_result.json",
+    "occurrence": 1,
+    "bytes": 1663,
+    "sha256": "89f3b58d7b5462725b4de2594a0df446155cd9d21fb5f9f79e20ba6f3eb371e6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "问题很清楚了。磁盘 250G/250G 已满。有多个 31G 的旧实验目录占满了空间。\n\n## 诊断报告\n\n### 根因\n\n**磁盘满 (No space left on device)**。Step 50 保存 checkpoint 时触发：\n\n```\nsafetensors_rust.SafetensorError: Error while serializing: \nI/O error: No space left on device (os error 28)\n```\n\n磁盘状态：`/dev/md0 250G 250G 3.1M 100%`\n\n### 训练进度\n\n- 跑了 **50/500 steps**（10%），在 step 50 首次保存 checkpoint 时崩溃\n- `checkpoint-50/` 目录存在但只有 53M（不完整，正常应 ~16G）\n- `reward_log.jsonl` 已记录 50 步数据\n\n### 是否可重试\n\n**Deterministic failure**——不清磁盘就必然再次失败。\n\n### 磁盘占用分析\n\n`/root/autodl-tmp/outputs/` 共 211G，其中 6 个旧实验各占 ~31G：\n\n| 目录 | 大小 |\n|------|------|\n| `plan001_exec_only_s43_1000_r2` | 31G |\n| `plan001_exec_only_s46` | 31G |\n| `plan002_additive_b01_s45` | 31G |\n| `plan002_additive_b01_s46` | 31G |\n| `plan018_random_b01_s45` | 31G |\n| `plan018_random_b01_s46` | 31G |\n| `sweep_random_b005_s42` | 31G |\n\n### 修复建议\n\n1. **清理不再需要的旧实验目录**。上述 6 个 31G 目录（plan001/plan002/plan018 系列）如果已完成评估且不再需要 checkpoint，可以释放 ~186G。**清理前必须遵守 C010/C011 约束**：检查 registry 中这些实验是否标记为 `needs-re-eval`，确认后再删除。\n2. 删除失败的 `sweep_random_b005_s43/checkpoint-50/`（不完整，53M，无用）。\n3. 清理后重跑同一命令即可，配置本身没有问题（同配置 s42 成功完成了 500 步）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-sweep-random-b005-s43.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9f8adfa0ad6bdb7b7290",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_7_1778788171.md",
+  "task_key": "loop_7_1778788171",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_7_1778788171.md",
+    "occurrence": 1,
+    "bytes": 4474,
+    "sha256": "1ae4d5bdc03f45ab9b7f65f640b3aa9211dbe0085160c965f66e022490e4af8f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: idle_timeout\nupdated: '2026-05-14T19:41:43+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 只能用 **westd-39279:cuda:0** 和 **westd-39279:cuda:1**，config 白名单明确，其他设备即使 Director 指令也必须 push back\n- 磁盘 **240G/250G (96%)**，写大文件前必须先清理旧 checkpoint（`/root/autodl-tmp/outputs/`）\n- Hacking taxonomy 是 **7 种**（含 query-as-fact 第 7 种），不是 6 种。写论文别写错\n- D051 **2.4x ISR 优势已作废**，premise-count-matched 定论 1.06x 无差异。任何引用旧数据的地方必须用新数据\n- Prolog STA s44: Reviewer 核实为 **query-as-fact gaming**，不是 genuine。strict classifier Genuine=100% 不可信，必须报告 functional (n_necessary) 分析\n- 训练命令必须 `export CUDA_VISIBLE_DEVICES=N`，在 `bash -c` 内部 export（C002）\n- 所有 plan001/plan013 实验统一用 `train_500_seed42.jsonl`（C001）\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-39279, account=root\n- **工作目录**: `/root/solver-trace-ablation/`\n- **Python**: `/root/miniconda3/bin/python`，激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **镜像**: aml-train（conda 环境，不用 venv）\n- **GPU**: 2× RTX PRO 6000 Blackwell 96GB，CUDA 12.8，PyTorch 2.10.0+cu128\n- **模型**: Qwen3-4B (7.6GB, ModelScope 下载)\n- **Solvers**: Prover9 (LADR 源码编译), SWI-Prolog 8.4.2 (`/usr/bin/swipl`), Z3 4.16.0.0\n- **数据盘**: `/root/autodl-tmp/` 250GB (96% used, 需清理)\n- **活跃进程**: 无（0 workers, 0 crons, 全部实验 DONE）\n\n### 3. 📊 当前状态\n**全部 50 个实验已完成**（success 12 / negative 19 / failed 18 / killed 2），项目处于 **✍️ Writing 阶段**。\n\n三条 Claims 全部闭环：\n- ✅ Claim 1: STA 诊断能力（ISR 崩塌轨迹 0.6423→0.1324→0.0027, 7-mode taxonomy）\n- ✅ Claim 2: Goodhart / ISR 无结构优势（D057, 3-seed random H7=0%, premise-count-matched 1.06x）\n- ✅ Claim 3: 跨逻辑泛化（D059, Prolog STA 3/3 gaming, 0% genuine, 3 distinct pathways）\n\n**writing_plan.yaml 已由 Director 审批**（2026-05-14）。ROADMAP 标注 \"Method + Experiments Workers 进行中\"，但当前 **0 个 Worker 在跑**——很可能前 session 派出的写作 Worker 结果在 reset 中丢失，需重新派发。\n\n**DDL**: ARR May 25 = 剩 11 天。\n\n### 4. 📋 待办（条件触发式）\n- 启动即刻 → 读 `writing_plan.yaml` 确认章节分工，重新 spawn 写作 Workers（Method / Experiments / Introduction / Related Work 等并行）\n- 写作 Workers 完成 → 整合各章节、检查 claim-evidence 对齐、提交 Reviewer 审查\n- Paper Agent/Reviewer 发现 evidence gap → 用空闲 GPU 补充实验（cuda:0/1 当前空闲）\n- 磁盘 >98% → 清理 `/root/autodl-tmp/outputs/` 旧 checkpoint\n- 论文初稿完成 → `submit_paper_to_review`，同时派 Worker 做 reference-audit\n- 任何 section 涉及 ISR 数值 → 确认使用 premise-count-matched 1.06x（非旧 2.4x）\n- 任何 section 涉及 Prolog STA s44 → 确认标注 query-as-fact gaming（非 genuine）\n\n### 5. 🎯 战略上下文\n**这是一篇 Goodhart's Law 诊断/分析论文**，不是\"ISR 提升推理\"的正面论文。核心 narrative：STA/ISR 是诊断工具，检测 reward hacking → 当 ISR 从诊断变为优化目标，自身被 Goodhart（meta-Goodhart）→ 跨 logic type 泛化验证。\n\n**决策链**：D010(reward 公式转向) → D027(plan013/017 公式不同不可简化对比) → D033-D044(hacking taxonomy 6→7 modes) → D049-D051(2.4x 作废→1.06x 定论) → D053-D057(Claim 2 闭环) → D059(Claim 3 闭环, 启动写作)\n\n**最容易判断错的事**：\n1. **s44 Prolog STA 的高 PR(0.97) + 高 ISR(0.885) 看似成功实为 gaming**。前 Worker 就被骗过。必须看 n_necessary 分布，不能只看 strict classifier\n2. **ISR 数值对比必须控制 premise count**。Raw ISR 差异（2.4x/3.2x）全是 artifact，只有 premise-count-matched 的 1.06x 可信\n3. **Conclusion embedding 是 GRPO 通用现象**（52-80%），不是 ISR-specific。ISR-specific 的是 H7（conclusion duplication），Random H7=0%\n4. **plan013 (convex) 和 plan017 (additive random) 公式结构不同**，不可简化为 \"additive vs convex\" 对照（D027）\n5. **SFT baseline PR=0.14 极低但 genuine rate=92.9%**——这是关键对照：RL exploration 提升 PR 但引入 hacking，SFT 不 hack 但也不 explore\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-7-1778788171.md"
+}

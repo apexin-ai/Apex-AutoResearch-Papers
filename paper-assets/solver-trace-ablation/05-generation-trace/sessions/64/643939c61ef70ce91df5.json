@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "643939c61ef70ce91df5",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "eval plan002 b01 s42 reeval h8",
+  "task_key": "worker_eval_plan002-b01-s42-reeval-h8_20260515T124623",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_plan002-b01-s42-reeval-h8_20260515T124623_result.json",
+    "occurrence": 1,
+    "bytes": 1563,
+    "sha256": "58e51f3a0b8134eae7af212f380ba4778df9a7ddeccec3e450707ecf8016d51b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务完成。汇总：\n\n## 产出\n\n### 1. s42 H8 re-eval 结果\n\n| 指标 | Pre-H8 | Post-H8 | Δ |\n|------|--------|---------|---|\n| H7 (single prem=concl) | 13/81 (16.1%) | 13/81 (16.1%) | — |\n| H1 (multi-prem embed) | 42/81 (51.9%) | 42/81 (51.9%) | — |\n| **H8 (conjunction collapse)** | — | **12/81 (14.8%)** | **+12** |\n| Content-independent | — | 19/81 (23.5%) | — |\n| **Genuine** | **26/81 (32.1%)** | **14/81 (17.3%)** | **-12** |\n\nH8 典型模式：conclusion = P1 ∧ P2（premises 的 top-level conjunction），Prover9 trivially 成立。genuine_rate 几乎腰斩。\n\n### 2. s43/s44 H8 回溯状态\n\n**无法执行。** 两者的 checkpoint 和 eval 文件均已从磁盘删除（含 backup 目录），无残留文件可供 classify_h7 运行。\n\n- **s43**: Registry 记录 100% proved 样本仅 1 premise、97% premise=conclusion（全量 H7）。H8 不适用于单 premise 情况，即使有 eval 文件 H8 count 也为 0。\n- **s44**: Registry 记录 conclusion duplication hacking（ISR=0.902, 65% ISR=1.0）。有 multi-premise 样本，H8 可能非零，但无 eval 文件无法验证。\n\n### 3. Registry 已更新\n\nplan002-additive-b01-s42 的 metrics 和 notes 已更新为含 H8 的完整分类结果。\n\n### 4. H8 修正前后对比\n\ngenuine_rate: **0.321 → 0.173**（降幅 46%）。ISR β=0.1 additive bonus (s42) 的 \"genuine\" proofs 进一步缩水，82.7% proved 样本存在某种 hacking pattern（H7+H1+H8）。这进一步削弱 Claim 2 \"genuine structural guidance\"。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-plan002-b01-s42-reeval-h8.md"
+}

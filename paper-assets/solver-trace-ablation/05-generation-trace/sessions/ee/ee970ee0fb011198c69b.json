@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ee970ee0fb011198c69b",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_1_1778716202.md",
+  "task_key": "loop_1_1778716202",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_1_1778716202.md",
+    "occurrence": 1,
+    "bytes": 3661,
+    "sha256": "893c4dcdde2e43d275da9147ac754b3718f511efa076976d212bc3d94c4a06d7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 1\nreason: idle_timeout\nupdated: '2026-05-13T23:48:51+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 westd-39279 的 cuda:0 和 cuda:1（gpu_ids 白名单）\n- 服务器用 conda 环境，不是 venv：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- submit_training_job 的 command 必须自带 CUDA_VISIBLE_DEVICES 和 conda activate（r1/r2 失败就是因为没加 CUDA_VISIBLE_DEVICES）\n- GRPO 训练脚本路径：`/root/solver-trace-ablation/scripts/train_grpo.py`，配置在 `configs/grpo_exec_only.yaml` 和 `configs/grpo_exec_sta.yaml`\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-39279，工作目录 `/root/solver-trace-ablation`\n- Python：`/root/miniconda3/bin/python3`（conda base 环境）\n- GPU：2× RTX PRO 6000 96GB（cuda:0, cuda:1）\n- 模型：`/root/solver-trace-ablation/models/Qwen3-4B`\n- 数据：`/root/solver-trace-ablation/data/proofwriter_fol_100.jsonl`（100条 baseline），FOLIO FOL 数据集\n- Solver：Prover9 + SWI-Prolog + Z3 已安装\n- 日志目录：`~/runs/solver-trace-ablation/`\n- 输出目录：`/root/solver-trace-ablation/outputs/`\n- 活跃进程：无（两个实验刚退出）\n- Cron：reconcile 返回 0 个活跃 cron\n\n### 3. 📊 当前状态\nPhase 1 GRPO pilot 第 4 轮（r4）两个实验刚正常退出，状态 ANALYZING：\n- **sta-phase1-exec-only-r4**（execution-only reward, cuda:0）— 0.29h，正常退出\n- **sta-phase1-exec-sta-r4**（execution+STA reward, cuda:1）— 0.29h，正常退出\n\n**这是首次两个实验同时正常完成**。前 3 轮全部失败：r1 EXIT_CODE=2（syntax），r2 EXIT_CODE=1（generic error），r3 EXIT_CODE=137（OOM/SIGKILL，后通过 Worker 诊断加了 CUDA_VISIBLE_DEVICES 修复）。\n\n已派 Worker `worker_analysis_sta-phase1-r4-results_20260513T204651` 分析两个实验的日志 + W&B 指标 + 对比 MVP pass 标准，**等待其回调**。\n\nWorker 应会：读日志、fetch W&B metrics、update_registry（metrics/conclusion/status=DONE）、写分析到 memory.md。\n\n### 4. 📋 待办\n- Worker 回调到达 → 审查 Worker 产出的 metrics 和 conclusion，验证 registry 已正确更新\n- conclusion=success → 更新 report.md，向 Director 汇报（事实+对比+建议），反思实验计划，检查 literature_map.yaml 联动\n- conclusion=negative → 按 red-section 产出 Framing 调整提案，向 Director 汇报，禁止默默跑下一个实验\n- conclusion=failed → 诊断失败原因，决定是否需要 r5\n- MVP 通过 → 向 Director 汇报 Phase 1 结论，建议进入正式实验阶段（扩数据到 500 条、更多 steps）\n- MVP 不通过 → 分析哪项 pass 标准未达，提出修复方案或 pivot 建议\n\n### 5. 🎯 战略上下文\n- **核心假设**：STA-derived reward（组件 ablation → ISR）能在 GRPO 训练中减少 reward hacking，同时维持 formalization accuracy\n- **Baseline 锚点**（Phase 0, exp sta-phase0-baseline）：base Qwen3-4B mean_isr=0.0641, prove_rate=0.12; GT ISR baseline: gt_mean_isr=0.5588, gt_prove_rate=0.18\n- **MVP pass 标准**：①solver 成功率>95% ②ISR 区分度(good>0.5, hacked<0.2) ③execution+STA 的 ISR 与 execution-only 最后 20 步 MA 分离 ④accuracy 降幅<5pp\n- **DDL**：EMNLP 2026 ARR 2026-05-25（12 天后）\n- **易错点**：r3 OOM 是因为两个实验没加 CUDA_VISIBLE_DEVICES 导致都挤 cuda:0。r4 已修复（command 里显式设 CUDA_VISIBLE_DEVICES=0/1）。如果还需要重跑，command 模板参考 r4 的 spec\n- **决策链**：D001=MVP 方案（FOL+Prover9 单逻辑 GRPO pilot），D002=MVP 调整（50→100步+趋势判断+Phase 0 baseline）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-1-1778716202.md"
+}

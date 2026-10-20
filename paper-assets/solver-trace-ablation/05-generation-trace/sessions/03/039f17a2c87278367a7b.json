@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "039f17a2c87278367a7b",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops sync paper to remote",
+  "task_key": "worker_ops_sync-paper-to-remote_20260515T201426",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_sync-paper-to-remote_20260515T201426_result.json",
+    "occurrence": 1,
+    "bytes": 410,
+    "sha256": "5748ed58771fde4054615b9185a83bea9efb50ef17033fa436ee474e412ba853"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n| 检查项 | 结果 |\n|--------|------|\n| SCP 推送 5 个 .tex 文件 | 成功 |\n| 旧数据残留 grep (69.7, 0/256, 18.4%, 0.0002 等) | **零匹配 — PASS** |\n| D095 关键数据 70.6% | abstract:7, experiments:69,158 — 确认 |\n| D095 关键数据 13.7% | abstract:7, experiments:69,80,158 — 确认 |\n| D095 关键数据 p=0.182 | experiments:80 — 确认 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-sync-paper-to-remote.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "08beab3b76b5b8f49659",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analysis random b01 cross seed interim",
+  "task_key": "worker_analysis_random-b01-cross-seed-interim_20260514T150143",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_random-b01-cross-seed-interim_20260514T150143_result.json",
+    "occurrence": 1,
+    "bytes": 742,
+    "sha256": "173bc67bd840e1855a31cca38482fa7031ba0b190624d1a19178b4715c64d5b9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。已写入并注册 (art_20260514_76792b)。\n\n**核心数字**:\n- Random β=0.1 (n=2): PR=0.84±0.07, mean ISR=0.083±0.030, proved-only ISR=0.100±0.044\n- ISR β=0.1 (n=3): PR=0.77±0.14, mean ISR=0.549±0.236, proved-only ISR=0.716±0.263\n- 聚合 ISR 比率 6.62×，但 2/3 ISR seeds 是 conclusion duplication hacking (s43 H7=96.7%, s44 H7=86.5%)\n- 同 seed 配对: s42 仅 3.24× (可能 genuine)，s44 12.97× (hacking-driven, PR 完全相同 0.89=0.89)\n\n**D043 框架**: β=0.1 不是 sweet spot 而是 \"lowest hacking rate\"；Random 低 ISR 是冗余编码非推理差 (C006)。\n\n**待办**: Random s43-r2 (ALLOCATED) 完成后补齐 3-seed；ISR s42 H7 逐样本审查决定是否 genuine。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-random-b01-cross-seed-interim.md"
+}

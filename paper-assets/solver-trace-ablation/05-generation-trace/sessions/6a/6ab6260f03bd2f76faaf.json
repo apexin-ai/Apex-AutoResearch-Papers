@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6ab6260f03bd2f76faaf",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "paper writing conclusion",
+  "task_key": "worker_paper_writing_conclusion_20260514T193745",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_conclusion_20260514T193745_result.json",
+    "occurrence": 1,
+    "bytes": 752,
+    "sha256": "337c3cb5569e33c17da6514cfe972a9a8007cc615a067e2628b744fc3cc120e8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Conclusion written (~300 words). Structure:\n\n- **Summary** — four contributions referenced by section: diagnostic collapse trajectory (§4.2), meta-level Goodhart with premise-count confound (§4.3), cross-logic Prolog transfer with universal Goodhart (§4.4), 7-mode hacking taxonomy including query-as-fact (§4.5). Closes with the \"fundamental asymmetry\" framing.\n- **Limitations** — single model/dataset, ISR≠semantic faithfulness, 3-seed power, solver decomposability requirement.\n- **Future Work** — ISR+NLI joint diagnostics, adaptive reward weighting, broader logic types/models, higher-order mutations.\n\nNo detailed numbers repeated; claims are consistent with the abstract and introduction's four contributions."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-conclusion.md"
+}

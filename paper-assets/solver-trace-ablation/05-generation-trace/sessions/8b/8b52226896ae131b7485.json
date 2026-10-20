@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8b52226896ae131b7485",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code d157 shuffled isr impl",
+  "task_key": "worker_code_d157-shuffled-isr-impl_20260520T143537",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d157-shuffled-isr-impl_20260520T143537_result.json",
+    "occurrence": 1,
+    "bytes": 1211,
+    "sha256": "1cf67068b44846ec9cd0fde510b40c1c6550ea4eadf1c1fff4711841d2d6790d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU released, temp files cleaned. Here's the summary:\n\n---\n\n**Dry-run 通过。** 3 个 step 全部正常完成，reward 计算无报错。\n\n### 代码改动 (train_grpo.py, 637→676 行)\n1. `step_buf` 新增 `shuffle_n_proved`, `shuffle_identity` 字段\n2. `reward_fn` 内新增 `_shuffle_buf` 和 `shuffled_isr` elif 分支 — 先收集所有 ISR 值（placeholder reward=0），再在 batch 内对 proved samples 做 `_random.Random(stats[\"total\"]).shuffle()`\n3. 循环后 post-process：proved>1 时 shuffle ISR 并重算 reward=exec*(1+β*shuffled_isr)，proved≤1 时记录 identity\n4. `get_step_stats()` 输出和重置新增 shuffle 字段\n5. argparse choices 新增 `shuffled_isr`\n6. `LocalLogCallback` 打印 shuffle 统计\n\n### 配置文件\n`configs/grpo_shuffled_isr_b01.yaml` — 与 ISR β=0.1 配置一致，仅改 `reward_mode: shuffled_isr`\n\n### Dry-run log (关键行)\n```\nstep=1  reward=0.2700  prove=0.250  isr=0.200  beta_t=0.1000  shuffle_proved=2  shuffle_id=1\nstep=2  reward=0.0000  prove=0.000  isr=0.000  beta_t=0.1000  (no proved → no shuffle)\nstep=3  reward=0.5250  prove=0.500  isr=0.250  beta_t=0.1000  shuffle_proved=4  shuffle_id=1\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d157-shuffled-isr-impl.md"
+}

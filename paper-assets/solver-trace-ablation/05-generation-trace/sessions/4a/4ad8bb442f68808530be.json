@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4ad8bb442f68808530be",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "paper final data integration",
+  "task_key": "worker_paper_final-data-integration_20260517T143500",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_final-data-integration_20260517T143500_result.json",
+    "occurrence": 1,
+    "bytes": 816,
+    "sha256": "7da0c04c774cad8bbffbce390edfd2022ad15ccc4f17bfc784d6e06328af549b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All done. Provenance: 36/36 claims traced, no untraced in main sections.\n\nSummary of modifications:\n\n| # | File | Lines | Change |\n|---|------|-------|--------|\n| 1a | `experiments.tex` | L94 | Forward reference updated: s42-only → seeds 42+45 with both genuine trajectories |\n| 1b | `experiments.tex` | L101–104 | Temporal analysis paragraph rewritten: two-seed comparison (s42: 17%→2%, s45: 55%→0%), collapse severity correlates with initial genuine window |\n| 2 | `conclusion.tex` | L7 | 1000-step reference updated: \"seed~42\" → \"both seeds~42 and~45\" with per-seed numbers |\n| 3 | `experiments.tex` | L106–109 | β=0.05 paragraph rewritten: 3-seed random data (s42 PR=0%, s43 PR=62%, s44 PR=7%; median 7%), ISR PR≥99% with H7 87–100%, fixed three -ing phrase endings |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-final-data-integration.md"
+}

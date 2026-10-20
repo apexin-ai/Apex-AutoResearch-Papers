@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2b8a548f78d313edaac3",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analyze sweep isr b005 s44",
+  "task_key": "worker_analyze_sweep-isr-b005-s44_20260517T104953",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_sweep-isr-b005-s44_20260517T104953_result.json",
+    "occurrence": 1,
+    "bytes": 887,
+    "sha256": "ddcc2bed913810bf7e51ff8fe6e79425738fe1e196a14434d1158b2734cb28e6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated. Here's the summary:\n\n## sweep-isr-b005-s44 分析结果\n\n**结论: negative** — 严重 H7 collapse，与 s42/s43 一致。\n\n| 指标 | 值 |\n|------|-----|\n| prove_rate | 99.0% (99/100) |\n| H7 tautology rate | **86.9%** (86/99) |\n| H8 degenerate | 2.0% (2/99) |\n| H1_exact | 1.0% (1/99) |\n| **genuine_rate** | **10.1%** (10/99) |\n| mean ISR (proved) | 0.554 |\n| median ISR | 0.500 |\n\n**三 seed 对比 (β=0.05 ISR bonus):**\n\n| seed | H7 rate | genuine rate |\n|------|---------|-------------|\n| s42 | 100% | 0% |\n| s43 | 97% | ~3% |\n| s44 | 86.9% | 10.1% |\n\nβ=0.05 ISR additive bonus 在全部 3 个 seed 上均产生严重 H7 collapse。模型学会了生成 P→P tautology（单一前提 = 结论）来同时最大化 execution reward 和 ISR bonus，训练后期 entropy 接近 0、reward_std=0（完全 mode collapse）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-sweep-isr-b005-s44.md"
+}

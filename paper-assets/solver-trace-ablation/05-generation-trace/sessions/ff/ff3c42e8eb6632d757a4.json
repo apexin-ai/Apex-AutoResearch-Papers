@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "ff3c42e8eb6632d757a4",
+  "project": "solver-trace-ablation",
+  "kind": "conversation",
+  "title": "exp exp2 greedy reeval",
+  "task_key": "worker_exp_exp2-greedy-reeval_20260514T220504",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_exp_exp2-greedy-reeval_20260514T220504.jsonl",
+    "occurrence": 1,
+    "bytes": 174,
+    "sha256": "762f84da00eefca194476d600cdbf2533232d30a4f7f8862a3f22e28c3ce39dc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T22:05:13.004330+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 11:10pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_exp2-greedy-reeval_20260514T220504"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/exp-exp2-greedy-reeval.md"
+}

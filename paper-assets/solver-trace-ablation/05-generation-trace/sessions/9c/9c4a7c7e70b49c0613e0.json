@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "9c4a7c7e70b49c0613e0",
+  "project": "solver-trace-ablation",
+  "kind": "conversation",
+  "title": "ops sync figures and check s43",
+  "task_key": "worker_ops_sync-figures-and-check-s43_20260515T040801",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_ops_sync-figures-and-check-s43_20260515T040801.jsonl",
+    "occurrence": 1,
+    "bytes": 181,
+    "sha256": "57354545e328ab77beec3002865455059d3a5225a082cb954f46c94349ac9437"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T04:08:12.131500+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 4:10am (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync-figures-and-check-s43_20260515T040801"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/ops-sync-figures-and-check-s43.md"
+}

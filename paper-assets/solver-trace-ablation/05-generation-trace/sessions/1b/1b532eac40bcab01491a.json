@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1b532eac40bcab01491a",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "audit s42 b03 strict genuine",
+  "task_key": "worker_audit_s42-b03-strict-genuine_20260518T094352",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_s42-b03-strict-genuine_20260518T094352_result.json",
+    "occurrence": 1,
+    "bytes": 2288,
+    "sha256": "1bd34a5539096ae839d1c1ea5cec5b3e47af60522101d56e6a88130d7bdd9ffd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "12 H1, 5 genuine confirmed。现在分析这 5 个 genuine 样本的谓词。\n\n```\n=== s42 β=0.3 strict genuine audit ===\nTotal proved: 17\nH1 (exact match): 12\nH7: 0\nH8: 0\nContent-independent (in H1 bucket): 1 (folio_888, uses G/W/C/P/A single-letter predicates)\nGenuine (taxonomy): 5\n\nGenuine 样本明细:\n\n  Sample 1 — Idx 30, folio_769 (ISR=0.125)\n    predicates=[Advocate, Tipped, FederalMinWageEntitled, WhiteCollarWorker, Lawyer]\n    content_dependent=True\n    Notes: conclusion extends P5 with extra conjunct, requires reasoning\n\n  Sample 2 — Idx 45, folio_1371 (ISR=0.231)\n    predicates=[IsPet, IsGhost, IsCat, IsDog, Barks, IsDead, IsAlive]\n    content_dependent=True\n    Notes: combines P0+P4 to derive disjunction, genuine multi-step reasoning\n\n  Sample 3 — Idx 54, folio_499 (ISR=0.250)\n    predicates=[IsRacehorse, IsInRace, IsHorse, IsSafeForRider, DetroitCity]\n    content_dependent=True\n    ⚠️ H1-near: conclusion = P4 with conjunction order swapped (IsHorse∧IsInRace vs IsInRace∧IsHorse)\n\n  Sample 4 — Idx 69, folio_755 (ISR=0.714)\n    predicates=[Rec, NegRev, Rating, TakeOut, Popular, Popularity]\n    content_dependent=True\n    Notes: abbreviated but semantic (Rec=Recommended, NegRev=NegativeReview); highest ISR, requires multi-premise reasoning\n\n  Sample 5 — Idx 70, folio_167 (ISR=0.250)\n    predicates=[LeaderOfCountryForLife, HasPower, IsKing, IsQueen, IsFemale, IsMale, Elizabeth]\n    content_dependent=True\n    ⚠️ H1-near: conclusion = P0 instantiated with constant \"Elizabeth\" (trivial universal instantiation)\n\nStrict genuine (genuine AND content-dependent) = 5/17 (29.4%)\n```\n\n**关键发现：**\n\n1. **5 个 genuine 全部 content-dependent**——1 个 content-independent 样本 (folio_888) 在 H1 bucket 内，不影响 genuine 计数。\n\n2. **但 5 个中有 2 个是 H1-near**（C013 规定保留为 genuine 但单独标记）：\n   - folio_499：conclusion = premise 的 conjunction 重排序\n   - folio_167：conclusion = premise 的 universal instantiation\n   \n3. **真正需要多步推理的 genuine 只有 3 个**：folio_769、folio_1371、folio_755。\n\n如果区分 strict-genuine 和 H1-near：**strict genuine (excluding H1-near) = 3/17 (17.6%)**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-s42-b03-strict-genuine.md"
+}

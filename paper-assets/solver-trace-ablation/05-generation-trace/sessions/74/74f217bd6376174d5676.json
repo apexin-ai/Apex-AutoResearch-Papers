@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "74f217bd6376174d5676",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "submit w2 qwen3 1 7b isr b03",
+  "task_key": "worker_submit_w2-qwen3-1_7b-isr-b03_20260516T193056",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_w2-qwen3-1_7b-isr-b03_20260516T193056_result.json",
+    "occurrence": 1,
+    "bytes": 180,
+    "sha256": "7afec6a22e3bd3631ddb9448624f5d5dfb374b0ca5bfe96179b3ad06e96ae84b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 0 当前有 15210 MiB 占用，GPU 1 空闲。按 C007 约束，目标 GPU 须无残留进程。确认是否仍提交到 cuda:0？还是改用空闲的 cuda:1？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-w2-qwen3-1-7b-isr-b03.md"
+}

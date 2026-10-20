@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bdb62bccd3b0b6d1e7d8",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "paper final check and compile",
+  "task_key": "worker_paper_final-check-and-compile_20260522T114610",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_final-check-and-compile_20260522T114610_result.json",
+    "occurrence": 1,
+    "bytes": 1329,
+    "sha256": "096d8a4d88259b22373b07aafcc4f086b055ac0589916a652ed05524382d5245"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results summary:\n\n**1. 8B appendix** (`app:8b-results`, line 729): Complete. PR=14%, ISR*=0.573, genuine=92.9%, CE=1, K=4 stagnation, K=8 non-convergence — all present. No changes needed.\n\n**2. Limitations 8B caveat** (line 4): Consistent — \"neither Qwen3-8B nor LLaMA-3.2-3B converges under our GRPO configuration\" with correct appendix refs.\n\n**3. Sync status**: \n- .tex/.bib files: only `main.tex` differed (docs/paper had float/placeins packages; paper/ had `\\input{checklist}` which per CLAUDE.md belongs on OpenReview, not in PDF). Synced docs/paper → paper.\n- Figures: fig4, fig5 (pdf/png/gen_*.py) differed. Synced.\n- Now clean — zero diffs.\n\n**4. Compilation**: Success.\n- Total pages: **22**\n- Main text (§1-5) ends on page 8, References start on page 8 — **within 8-page limit** (Limitations + Ethics don't count per EMNLP rules)\n- Appendix starts page 10\n- **Undefined references: 0**\n- **Missing citations: 0**\n\n**5. Em-dash check**: All `---` occurrences are legitimate LaTeX em-dashes (used as \"N/A\" markers in tables like `--- & 12 & ---`) or standard LaTeX triple-dash em-dashes in section headers (e.g., `\"What ISR measures---and what it does not\"`). The Unicode em-dash `—` appears only in a comment line (`% Appendix — solver-trace-ablation`). No issues."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-final-check-and-compile.md"
+}

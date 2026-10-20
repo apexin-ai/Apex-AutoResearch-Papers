@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5b9c32cf8461d482f667",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "eval plan006 prolog exec s43r3 s44 v2",
+  "task_key": "worker_eval_plan006-prolog-exec-s43r3-s44-v2_20260514T160336",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_plan006-prolog-exec-s43r3-s44-v2_20260514T160336_result.json",
+    "occurrence": 1,
+    "bytes": 96,
+    "sha256": "4ef54343281604496cdc5222f0d251e1f4d7a1e24f35e46ff0ea7b96b021ab51"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval is running. s43-r3 at 32/100, s44 queued after. I'll check back in ~4.5 min."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-plan006-prolog-exec-s43r3-s44-v2.md"
+}

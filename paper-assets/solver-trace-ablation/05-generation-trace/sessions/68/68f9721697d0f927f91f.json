@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "68f9721697d0f927f91f",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analysis plan002 additive b01 s42 1000",
+  "task_key": "worker_analysis_plan002-additive-b01-s42-1000_20260515T084715",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan002-additive-b01-s42-1000_20260515T084715_result.json",
+    "occurrence": 1,
+    "bytes": 787,
+    "sha256": "ba849d90f4f11f376c57190323e06b94fa22c632782ed9391d458c609db886a8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。汇总：\n\n## plan002-additive-b01-s42-1000 — **NEGATIVE (tautological collapse)**\n\n| 指标 | 500步 baseline | 1000步 (本次) | 变化 |\n|------|---------------|--------------|------|\n| PR | 0.81 | **0.90** | +9pp |\n| ISR | 0.42 | **0.79** | +37pp |\n| ISR* | — | **0.88** | — |\n| H7 rate | 16.0% | **92.2%** | +76pp |\n| H1 rate | 51.9% | **4.4%** | -48pp |\n| genuine | 30.9% | **3.0%** | -28pp |\n| component_count_mean | — | 2.89 | — |\n| tautological_collapse | false | **true** | — |\n\nISR 和 PR 的提升完全由 H7 gaming 驱动——模型学会了生成 single-premise tautology（premise == conclusion），92.2% 的 proved samples 都是这种模式。仅 3 个 genuine proof。延长训练放大了 Goodhart 效应。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan002-additive-b01-s42-1000.md"
+}

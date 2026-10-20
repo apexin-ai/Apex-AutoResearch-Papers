@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "056220c37f674ff939ec",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "check d129 1 7b random b01 s44",
+  "task_key": "worker_check_d129-1_7b-random-b01-s44_20260518T024426",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_d129-1_7b-random-b01-s44_20260518T024426_result.json",
+    "occurrence": 1,
+    "bytes": 572,
+    "sha256": "957afae8e9b272a4e9271d90b6c671a74c9a73906404e8483e1b56dcdf7e6681"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n## d129-1_7b-random-b01-s44 结果\n\n| 指标 | 值 |\n|---|---|\n| **训练状态** | 已完成 (500/500 steps) |\n| **prove_rate** | 100% |\n| **mean_ISR** | 0.0072 |\n| **median_ISR** | 0 |\n| **H1%** | 84% |\n| **H7%** | 0% |\n| **H8%** | 0% |\n| **genuine%** | 16% |\n| **content_independent%** | 100% |\n\n**GPU**: 空闲（0MiB 占用）\n**Registry**: 已更新为 DONE/success\n\n符合预期：random reward 下模型学会了 prove（100%）但几乎零 ISR，84% H1（结论直接复制前提），仅 16% genuine。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-d129-1-7b-random-b01-s44.md"
+}

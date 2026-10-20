@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8a839d0a8887d8f99a96",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "eval d165 s42 eval and s43",
+  "task_key": "worker_eval_d165-s42-eval-and-s43_20260521T104038",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_d165-s42-eval-and-s43_20260521T104038_result.json",
+    "occurrence": 1,
+    "bytes": 130,
+    "sha256": "12ef01dad3a33784e1ed630ac9b785ec88572cb8ba350b17a19293fef0899d1a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Monitor 超时，但 eval 早已完成，不影响结果。所有任务均已完成，无需重新设置 Monitor。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-d165-s42-eval-and-s43.md"
+}

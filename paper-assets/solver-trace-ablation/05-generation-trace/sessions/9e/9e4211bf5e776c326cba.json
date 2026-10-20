@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "9e4211bf5e776c326cba",
+  "project": "solver-trace-ablation",
+  "kind": "conversation",
+  "title": "infra disk cleanup",
+  "task_key": "worker_infra_disk-cleanup_20260514T211308",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_infra_disk-cleanup_20260514T211308.jsonl",
+    "occurrence": 1,
+    "bytes": 170,
+    "sha256": "9b7ae31cf25af01aff14d0e4a43978bbb12fec9eb7307b2077c67339ff9bc64e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T21:13:15.487298+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 11:10pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_infra_disk-cleanup_20260514T211308"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/infra-disk-cleanup.md"
+}

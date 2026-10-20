@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d4a7203017690bbf6792",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "submit 1 7b isr b01",
+  "task_key": "worker_submit_1_7b-isr-b01_20260516T211151",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_1_7b-isr-b01_20260516T211151_result.json",
+    "occurrence": 1,
+    "bytes": 563,
+    "sha256": "4d2605881161cfa7426206d453e72a74a1c7261c6d17a780ec7901475a52089d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已成功启动并在运行中。\n\n**汇报：**\n\n- **tmux session**: `isr_b01_1_7b`\n- **PID**: 960894（GPU-0，`GPU-bee2603b-...`）\n- **GPU 显存占用**: 39588 MiB / 97887 MiB（GPU-0）\n- **训练状态**: 已开始跑 step，step 1 reward=0.54, step 2 reward=0.0，约 9-14s/it，预估总时间 ~1.5h\n- **配置确认**: `CUDA_VISIBLE_DEVICES=0`，数据 `train_500_seed42.jsonl`，`additive_bonus` mode，β=0.1，500 steps\n\nGPU-1 上 `isr_1_7b` session 也在正常运行（PID 921785, 42566 MiB）。两卡互不干扰。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-1-7b-isr-b01.md"
+}

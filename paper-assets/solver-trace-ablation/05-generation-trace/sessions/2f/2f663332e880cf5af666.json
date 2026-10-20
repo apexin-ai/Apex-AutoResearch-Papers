@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "2f663332e880cf5af666",
+  "project": "solver-trace-ablation",
+  "kind": "conversation",
+  "title": "paper verify figures",
+  "task_key": "worker_paper_verify-figures_20260514T204938",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_verify-figures_20260514T204938.jsonl",
+    "occurrence": 1,
+    "bytes": 172,
+    "sha256": "029f315a4df38e5ffac2e62be4f4f89b0025b0e6ac9ed0377130900fca7f5ae9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T20:49:45.692513+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 11:10pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_verify-figures_20260514T204938"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/paper-verify-figures.md"
+}

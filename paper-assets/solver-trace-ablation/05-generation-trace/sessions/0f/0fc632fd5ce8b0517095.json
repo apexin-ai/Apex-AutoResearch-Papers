@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0fc632fd5ce8b0517095",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "eval d157 shuffled isr s43",
+  "task_key": "worker_eval_d157-shuffled-isr-s43_20260520T173648",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_d157-shuffled-isr-s43_20260520T173648_result.json",
+    "occurrence": 1,
+    "bytes": 352,
+    "sha256": "9b248d8fc0048795a8706ee51a5ee48b44547ecd1dcf1946d508d76d6e36e8bf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**d157-shuffled-isr-s43 结果摘要：**\n\n| Metric | s42 | s43 |\n|--------|-----|-----|\n| prove_rate | 0.15 | 0.16 |\n| proved_only_isr | 0.5673 | 0.5675 |\n| genuine | 13/15 (86.7%) | 14/16 (87.5%) |\n| TS | 1 | 1 |\n| CE | 1 | 1 |\n\n两个 seed 高度一致，conclusion=success，registry 已更新为 DONE。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-d157-shuffled-isr-s43.md"
+}

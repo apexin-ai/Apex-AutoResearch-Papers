@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "e720e65b00355fb6fc91",
+  "project": "solver-trace-ablation",
+  "kind": "conversation",
+  "title": "audit reference final",
+  "task_key": "worker_audit_reference-final_20260514T202934",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_audit_reference-final_20260514T202934.jsonl",
+    "occurrence": 1,
+    "bytes": 173,
+    "sha256": "cc5ea2a3b79c46ba1a55520b62976e1fd273d88c00b7b05ef51012fd870a0d57"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T20:29:44.375501+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 11:10pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_reference-final_20260514T202934"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/audit-reference-final.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3adb4d15dc351c728277",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "train exp1 random b03 s44 r2",
+  "task_key": "worker_train_exp1-random-b03-s44-r2_20260515T004642",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_exp1-random-b03-s44-r2_20260515T004642_result.json",
+    "occurrence": 1,
+    "bytes": 409,
+    "sha256": "bc36c613ba65f86b625484b8ad6b04497608a6c366852be6865789d14daa2ce4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp1-random-b03-s44-r2 已在 registry 注册为 RUNNING。\n\n**状态总结：**\n- 训练进程 PID 51297 已在 cuda:1 运行，当前 step 26/500\n- 磁盘 184GB 可用，无需清理\n- Registry 已注册，cron 可自动监控\n- 所有约束满足：C001（train_500_seed42.jsonl）✓、C002（export CUDA_VISIBLE_DEVICES=1）✓、C003（output_dir 在 /root/autodl-tmp/outputs/）✓"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-exp1-random-b03-s44-r2.md"
+}

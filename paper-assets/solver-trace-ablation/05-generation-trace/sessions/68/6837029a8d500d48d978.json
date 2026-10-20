@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6837029a8d500d48d978",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "diagnose w2 qwen3 1 7b pilot",
+  "task_key": "worker_diagnose_w2-qwen3-1_7b-pilot_20260516T111933",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_w2-qwen3-1_7b-pilot_20260516T111933_result.json",
+    "occurrence": 1,
+    "bytes": 370,
+    "sha256": "4cc1ce3ed4ee19bd9c8afce2584952f1130244dbe0a38c0cbd6fac8f560adb0b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验都在正常跑：\n\n- **exec-pilot** (cuda:0): step 76/500, reward=0.25\n- **isr-pilot** (cuda:1): step 75/500, reward=0.51\n\ncron 报 failed 纯粹是 exp_id 含点号导致 tmux session 命名不合法的跟踪问题，训练进程不受影响。预计还需 ~65 分钟完成。\n\n报告已写入 `artifacts/diagnose_w2_1.7b_pilot.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-w2-qwen3-1-7b-pilot.md"
+}

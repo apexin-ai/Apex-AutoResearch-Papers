@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "07a9525884763c369f2e",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "urgent kill eval and cleanup",
+  "task_key": "worker_urgent_kill-eval-and-cleanup_20260514T115006",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_urgent_kill-eval-and-cleanup_20260514T115006_result.json",
+    "occurrence": 1,
+    "bytes": 675,
+    "sha256": "a7cb0d033fe93e9776e52fa2fa5ccf3afbfa28b79bfa6e2558606a4df518e5dd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告：\n\n1. **进程清理**: 4 个问题进程 (567813, 570264, 570911, 565583) 全部成功 kill\n2. **GPU VRAM**:\n   - GPU 0: 80223/97887 MiB (91%) — 另一个训练任务 PID 564905\n   - GPU 1: 55903/97887 MiB (7%) — 仅剩 plan009-sft-r4 (PID 572609)，eval 进程占用的 VRAM 已释放\n3. **plan009-sft-r4**: 正常运行，step 100/500，速度 ~1.25 it/s\n4. **卡死原因**: `eval_results.json` 存在 (441KB, 19:48 写入)，说明 eval 可能在评估完成后的后处理阶段卡住（而非文件锁问题）。已删除可能损坏的输出文件\n5. **当前 GPU 状态**: 两张卡各跑一个训练任务，无残留 eval 进程"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/urgent-kill-eval-and-cleanup.md"
+}

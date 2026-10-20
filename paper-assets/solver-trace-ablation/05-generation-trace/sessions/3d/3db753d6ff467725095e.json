@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3db753d6ff467725095e",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analyze d154 8b exec s42 k8",
+  "task_key": "worker_analyze_d154-8b-exec-s42-k8_20260522T063100",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_d154-8b-exec-s42-k8_20260522T063100_result.json",
+    "occurrence": 1,
+    "bytes": 2055,
+    "sha256": "3ff465b865545121b9849de3590ea797a5ad31708af6f8179833536754d82755"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 总结：d154-8b-exec-s42-k8\n\n### 训练状态\n**完成 500/500 步**，总耗时 1h41m（12:45→14:27 UTC）。无 OOM 或 error。\n\n### 核心结论：训练完全失败 — 零梯度信号\n\n整个 500 步训练中 **loss=0.0, grad_norm=0.0**，模型权重本质上没有更新。\n\n**根因**：`frac_reward_zero_std=1.0` — 每个 batch 内所有 K=8 个 completion 获得相同 reward（全 0 或全 1），GRPO advantage=0，无梯度。8B 模型太确定性，K=8 没能增加组内 reward 方差。\n\n### 训练指标轨迹\n| 阶段 | reward | prove_rate | ISR | 特征 |\n|------|--------|------------|-----|------|\n| Step 1-50 | 零星非零（0.06-0.5） | 0-50% | 0-0.4 | 基础模型能力的波动 |\n| Step 50-450 | 绝大多数为 0 | ~0% | ~0% | 完全 stagnation |\n| Step 450-500 | 偶发 spike（476: 0.81, 488: 0.75） | 大多为 0 | ~0 | 未恢复 |\n\n**Final reward stats**（训练结束时的评估）：parse_rate=1.0, prove_rate=0.159, mean_isr=0.083 — 基本是 base model 水平。\n\n**train_loss=0.017**（仅来自前几步有 reward 的 batch）。\n\n### 与 K=4v2 对比\nK=8 与 K=4v2 呈现相同 stagnation 模式。增大 K 未能解决问题 — 8B 模型在 exec-only 下太确定性，所有 K 个 completion 趋同。\n\n**Hypothesis 被否决**：Qwen3-8B exec-only 未出现 Goodhart collapse（高 prove_rate + 低 ISR），而是 complete stagnation（无学习）。\n\n### 关键信息\n| 项目 | 值 |\n|------|-----|\n| W&B | **无**（未集成） |\n| Checkpoint | `/root/autodl-tmp/outputs/8b_exec_only_s42_k8/`（31GB） |\n| 也存于 | `/root/runs/solver-trace-ablation/d154-8b-exec-s42-k8.log` |\n| Registry | **无条目** |\n| Eval | **未单独跑 eval** |\n\n### 建议\n这个 checkpoint 本质是 base Qwen3-8B（未经有效训练），单独跑 eval 意义不大。31GB 的 checkpoint 可以考虑清理。如需 8B exec-only 数据点，可能需要换策略（如增大 batch size、温度调参、或混合 reward）来打破 zero-variance 问题。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-d154-8b-exec-s42-k8.md"
+}

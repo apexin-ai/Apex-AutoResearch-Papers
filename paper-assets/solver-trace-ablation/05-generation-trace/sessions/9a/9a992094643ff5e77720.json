@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9a992094643ff5e77720",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analysis premise count matched isr",
+  "task_key": "worker_analysis_premise-count-matched-isr_20260514T154703",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_premise-count-matched-isr_20260514T154703_result.json",
+    "occurrence": 1,
+    "bytes": 1754,
+    "sha256": "6c0971ad6458d34d3e1aeabfd77a50df46dba37c5adec800a46f7a47baab8881"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。所有三个任务的结果：\n\n---\n\n## Task 1: Premise-count-matched ISR — 完全验证\n\n从 eval JSON 重新派生，数字与 r5 artifact 完全一致：\n\n| Bucket | ISR n | ISR mean | Rnd n | Rnd mean | Δ |\n|--------|-------|----------|-------|----------|---|\n| 1 | 2 | 0.5000 | 0 | — | — |\n| 2 | 13 | 0.9077 | 0 | — | — |\n| 3 | 2 | 0.2500 | 4 | 0.4375 | **-0.1875** (Random 更高) |\n| 4 | 0 | — | 0 | — | — |\n| 5+ | 9 | 0.2595 | 19 | 0.2026 | +0.0569 |\n\n**Matched (≥3 premises): ISR=0.2578 vs Random=0.2434, ratio=1.06x**\n\n**结论：2.4x 是 premise-count 分布 artifact。** ISR genuine 57.7% 的样本在 ≤2 premises 桶（Random 在此桶为 0），LOO 删 1/2 premise 机械性地给出 ISR ≥ 0.5。在唯一重叠区间（≥3 premises），两者几乎无差异。n=3 桶中 Random 反而更高。\n\n---\n\n## Task 2: H1 计数差异 — 已解决\n\n| Normalization | Random s42 H1 |\n|---------------|---------------|\n| strip | 56/79 |\n| strip+collapse | 56/79 |\n| strip+lower | 56/79 |\n| strip+lower+nospace | 56/79 |\n| alnum+lower | 61/79 |\n\n所有四种合理 normalization 都给出 56/79。58 在任何 normalization 下都不可复现——可能来自旧的中间运行或不同的分类逻辑。**56/79 (70.9%) 为权威数字。**\n\n---\n\n## Task 3: genuine_isr_crosscheck.md — 已是最新\n\n当前文件已是 r5 版本，所有修正均已到位：\n- Section 3 正确显示 Random H1=56/79 (70.9%)、H7=0%，注明 conclusion embedding 是 GRPO-universal\n- Section 5b 包含完整 premise-count-matched 分析\n- 原始\"Random 无 conclusion embedding, H1=0%\"的错误已被替换\n\n无需额外修改，也无需重新注册 artifact。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-premise-count-matched-isr.md"
+}

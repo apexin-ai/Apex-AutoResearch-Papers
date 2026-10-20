@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "34965bb2b0e8920f9190",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "prep plan018 random s43s44 readiness",
+  "task_key": "worker_prep_plan018-random-s43s44-readiness_20260514T091756",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_plan018-random-s43s44-readiness_20260514T091756_result.json",
+    "occurrence": 1,
+    "bytes": 780,
+    "sha256": "36092a38b5d4211ba64d348a065f5f6818cdac4511fed2c655120558c11ebfa3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完成，汇总：\n\n**已创建**: 服务器上 `configs/plan018_random_b01_s43.yaml` 和 `s44.yaml`\n\n**全部验证通过**:\n- 数据文件 `train_500_seed42.jsonl` 存在\n- 模型路径存在\n- Output 目录不存在（无覆盖风险）\n- 磁盘 112G 可用\n- `save_total_limit=1`、`log_completions=False` 已在脚本中硬编码\n\n**关键发现**: `train_grpo.py` 的 config 加载有 bug——argparse 默认值非 None 时 YAML 不会覆盖。因此提交命令必须显式传 `--beta 0.1 --num_steps 500 --seed 43/44`，不能只靠 YAML config。\n\n**提交命令已写入** `artifacts/plan018/random_s43s44_readiness.md`，等 GPU 空闲后替换 `N`/`M` 为实际 GPU 编号即可执行。当前两张 GPU 都被占用（~80G/98G）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-plan018-random-s43s44-readiness.md"
+}

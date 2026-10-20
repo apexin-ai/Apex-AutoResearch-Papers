@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0b7e60b8d4d7d784bcfa",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "eval s45r2 then submit 8b isr",
+  "task_key": "worker_eval_s45r2-then-submit-8b-isr_20260516T092247",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_s45r2-then-submit-8b-isr_20260516T092247_result.json",
+    "occurrence": 1,
+    "bytes": 1093,
+    "sha256": "68403044e44dc22fdd66a3c81a6642650dcea151e51f8d99bc3547b125ad2c4b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n---\n\n## 产出汇总\n\n### 1. s45-r2 Eval 结果\n| 指标 | 值 |\n|------|-----|\n| Prove rate | 99/100 (99.0%) |\n| Mean ISR | 0.5012 ± 0.2055 |\n| Median ISR | 0.5000 |\n\n**Taxonomy (C013 标准):**\n| 类别 | 数量 | 占比 |\n|------|------|------|\n| H7a (text-match tautology) | 93 | 93.9% |\n| H1 (conclusion in premises) | 5 | 5.1% |\n| H8 (conj-collapse) | 1 | 1.0% |\n| **Genuine** | **1** | **1.0%** |\n\n### 2. s45-r2 Train Metrics (后 500 步)\n- prove_rate: final=1.0, mean=0.7402\n- isr_mean: final=0.5, mean=0.3596\n- reward_mean: final=1.0, mean=0.7402\n- 首次 prove_rate=1.0: step offset 95\n\n### 3. 8B ISR β=0.1 Pilot\n- **Status**: 已启动，GPU 1 占用 49767 MiB (正常)\n- **PID**: 798398\n- **Session**: `w2-qwen3-8b-isr-pilot`\n- **Model**: Qwen3-8B, 500 steps, num_generations=4\n- **Log**: `~/runs/solver-trace-ablation/w2-qwen3-8b-isr-pilot.log`\n\n### 4. 注意事项\ns45-r2 genuine 只有 1%——和其他 exec-only seeds 一致，collapse 严重 (93.9% H7a)。8B pilot 正在跑第一步，无 OOM。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-s45r2-then-submit-8b-isr.md"
+}

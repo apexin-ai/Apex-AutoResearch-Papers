@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d39154ff698819017cc9",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "knowledge evidence tables finalize",
+  "task_key": "worker_knowledge_evidence-tables-finalize_20260514T165006",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_knowledge_evidence-tables-finalize_20260514T165006_result.json",
+    "occurrence": 1,
+    "bytes": 227,
+    "sha256": "1a70a2e783fa8250232e87b0c464bdcc35ffb161cf50d88371c48e9f39b93238"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修正完成。Summary C2 行的 ratio 从 `1.02×` → `1.06×`，Random 值从 `0.252` → `0.243`，与 Table 2 的原始数据（0.2578 / 0.2434 = 1.06×）一致。其余 12 个数据点均已正确反映。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/knowledge-evidence-tables-finalize.md"
+}

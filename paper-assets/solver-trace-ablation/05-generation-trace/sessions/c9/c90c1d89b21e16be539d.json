@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c90c1d89b21e16be539d",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analysis random s42 taxonomy verify",
+  "task_key": "worker_analysis_random-s42-taxonomy-verify_20260515T141559",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_random-s42-taxonomy-verify_20260515T141559_result.json",
+    "occurrence": 1,
+    "bytes": 1161,
+    "sha256": "54d228a90c7275abe953a1b15c825016694994a93779601ccaefc4a921792c11"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证结果汇总：\n\n**Registry genuine=23 确认一致。** 79 个 proved 样本分解如下：\n\n| 类别 | 数量 | 说明 |\n|------|------|------|\n| H7 (tautological P→P) | **0** | 无单前提自证 |\n| H1 (exact match) | **56** | 结论完全等于某个前提（registry 定义） |\n| H8 (conjunction collapse) | **3** | idx 51, 65, 82 — 结论是前提的 top-level 合取 |\n| H1-near (substring) | **8** | 结论是某前提的子串或反之（不完全等于但文本包含） |\n| Genuine (strict) | **12** | 真正需要推理的证明 |\n\n**H8 + H1-near + genuine = 3 + 8 + 12 = 23 = registry 的 genuine 数字。** Registry 用 exact string match 定义 H1，不区分 H8，所以 23 实际包含了 11 个半trivial 样本（3 H8 + 8 H1-near）。严格 genuine 只有 **12**。\n\n注意 H1-near 的两种子类型：\n- **conc_in_prem** (5 个): 结论是某前提的子表达式（如 `racehorse(detroit_city)` vs `(racehorse(detroit_city))`，仅差外层括号）\n- **prem_in_conc** (3 个): 某前提是结论的子表达式（结论是合取但未被 H8 捕获，因为只有部分 conjunct 匹配前提）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-random-s42-taxonomy-verify.md"
+}

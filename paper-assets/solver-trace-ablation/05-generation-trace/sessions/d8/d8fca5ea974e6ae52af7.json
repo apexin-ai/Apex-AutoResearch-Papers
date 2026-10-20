@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d8fca5ea974e6ae52af7",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "diag eval worker stuck check",
+  "task_key": "worker_diag_eval-worker-stuck-check_20260514T031119",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_eval-worker-stuck-check_20260514T031119_result.json",
+    "occurrence": 1,
+    "bytes": 1161,
+    "sha256": "98433bba060a414996dcfe3f62ba2b6fa01055f99011fa5f1aca856ec9e3f974"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总：\n\n### 进程状态\n\n| 任务 | 状态 | 详情 |\n|------|------|------|\n| **plan001-exec-only-s43-r4** | **已完成** | 500/500 steps，日志最后修改 11:12:03（约30分钟前）。耗时 ~1h31m。无 exit marker 文件写入。 |\n| **plan002-additive-b03-s42** | **在跑** | 当前 step 394/500（79%），日志仍在更新。 |\n| **eval_sta.py** | **未运行** | 无 eval_sta 进程。 |\n\n### GPU 使用\n\n| GPU | 利用率 | 显存 |\n|-----|--------|------|\n| GPU 0 | 94% | 80077 / 97887 MiB |\n| GPU 1 | 90% | 80291 / 97887 MiB |\n\n两张 GPU 均高负载，应该是 plan002 在用（或 plan001-r4 训练完成后模型保存/checkpoint 进程还在）。\n\n### 结论\n\n**eval worker 卡死原因**：plan001-s43-r4 训练已完成（500/500），但 `/tmp/agent-ml-exit/plan001-exec-only-s43-r4.exit` **未写入**。eval worker 很可能在轮询这个 exit marker 等待训练完成信号，因此一直卡住。\n\n**建议**：手动创建 exit marker 文件（`touch /tmp/agent-ml-exit/plan001-exec-only-s43-r4.exit`）触发 eval worker 继续，或者直接取消 eval worker 重新启动评估。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-eval-worker-stuck-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "745ffbc22b733c9c2f7a",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analysis prolog sta s44 premise count",
+  "task_key": "worker_analysis_prolog-sta-s44-premise-count_20260514T184205",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_prolog-sta-s44-premise-count_20260514T184205_result.json",
+    "occurrence": 1,
+    "bytes": 1081,
+    "sha256": "b3f049871add4266e5d9804909628b19c6c5b463d0a223e9ea9b73d05ea96c01"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Analysis complete. Key findings:\n\n**s44 ISR=0.885 is 100% artifact.** The model collapsed entirely to single-clause H7 programs:\n- 78/100 samples: 1 clause matching the query exactly → ISR=1.0 (tautological)\n- 22/100 samples: 1 fact + 1 NL comment → ISR=0.5\n- **Zero samples have n_clauses ≥ 3** — premise-count controlled ISR cannot even be computed\n\n**All 3 Prolog STA seeds are negative** with distinct failure modes:\n\n| Seed | PR | ISR | ISR (n_cl≥3) | Failure Mode |\n|------|-----|------|-------------|-------------|\n| s42 exec | 86% | 0.043 | 0.051 | Verbose dumps, n_nec≈0 |\n| s43 STA | 36% | 0.113 | 0.149 | Always n_necessary=1 |\n| s44 STA | 97% | 0.885 | **N/A (0 samples)** | Total H7 collapse |\n\nCompared to FOL D051 (where n_prem≥3 ISR ratio was 1.06×, i.e. no real advantage), Prolog s44 is even more extreme — the model didn't just benefit from low-premise inflation, it **exclusively generated** 1-2 clause programs. Goodhart collapse is more thorough in Prolog than FOL.\n\nReport registered as `art_20260514_dd1269`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-prolog-sta-s44-premise-count.md"
+}

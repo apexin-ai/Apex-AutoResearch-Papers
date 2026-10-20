@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cd90a2529a2f9d831c38",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "fix verify gpu state and recover",
+  "task_key": "worker_fix_verify-gpu-state-and-recover_20260516T055651",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_verify-gpu-state-and-recover_20260516T055651_result.json",
+    "occurrence": 1,
+    "bytes": 836,
+    "sha256": "fe27d96ec33415c5ed48b5c2bb1ad9d0c9f97d56fd9b2d1a98910597f6cf7529"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "双 GPU 满载确认。\n\n## 报告\n\n| GPU | 实验 | PID | 当前 step | 速度 | 预计完成 |\n|-----|------|-----|-----------|------|----------|\n| cuda:0 | plan018-additive-random-b01-s45-r3 (random β=0.1, seed 45) | 688887 | 8/500 | ~10s/step | ~1.3h (~15:20 UTC) |\n| cuda:1 | sweep-isr-b02-s44 (ISR bonus β=0.2, seed 44) | 688219 | 11/500 | ~13s/step | ~1.7h (~15:40 UTC) |\n\n**磁盘**: 197G/250G (79%), 54G 空闲 — 足够完成两个实验。\n\n**处理的问题**:\n- GPU 0 上已有另一个 worker 提交的 r3 job，我提交的 r2 因 OOM 死亡 → 已清理 r2 残留目录\n- plan018-random-b01-s45-r2 registry 已标记 DONE/failed\n- sweep-isr-b02-s44 registry 从 PREPARING 更新为 RUNNING（PID 更新为实际进程 688219）\n- plan018-additive-random-b01-s45-r3 已注册到 registry"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-verify-gpu-state-and-recover.md"
+}

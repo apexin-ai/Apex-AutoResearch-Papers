@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2f18139e2da504b237a0",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "infra plan006 readiness check",
+  "task_key": "worker_infra_plan006-readiness-check_20260514T061141",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_plan006-readiness-check_20260514T061141_result.json",
+    "occurrence": 1,
+    "bytes": 678,
+    "sha256": "b5b29c8277c08052c2c17fde6134b1c2c7932d17b403d6c28c61988f24a9a1f9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Plan006 Readiness 结论：✅ READY\n\n| 检查项 | 状态 |\n|--------|------|\n| Prolog 数据 | ✅ 复用 `train_500_seed42.jsonl`，prompt 层切换为 Prolog |\n| 训练代码 | ✅ `train_grpo.py` 完整支持 `--logic_type prolog --solver prolog` |\n| SWI-Prolog | ✅ swipl 8.4.2，STA 测试 5/5 通过 |\n| Config | ✅ `grpo_prolog_exec_only.yaml` 已就绪 |\n| Dry-run | ✅ `--help` 正常 |\n| 磁盘 | ✅ 142GB 可用 |\n\n启动时 CLI 传 `--seed`/`--output_dir` 覆盖 YAML 默认值即可跑 3 seeds，无需额外代码修改或数据准备。\n\n报告已写入 `artifacts/plan006_readiness_report.md`，含完整启动命令模板。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-plan006-readiness-check.md"
+}

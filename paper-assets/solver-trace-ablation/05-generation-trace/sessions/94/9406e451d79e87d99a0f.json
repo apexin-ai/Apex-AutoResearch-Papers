@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9406e451d79e87d99a0f",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "paper classifier table",
+  "task_key": "worker_paper_classifier-table_20260522T130618",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_classifier-table_20260522T130618_result.json",
+    "occurrence": 1,
+    "bytes": 558,
+    "sha256": "20599827916a4c9a7c0ee62882539216ad2f1a946f9dc9a7d4e277040a0774a3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "插入完成。\n\n**数据来源**: 三轮验证（worker_code_r15-classifier-validation 结果 + appendix 已有文字）:\n- 分层验证 82 样本: CE=20, TS=2, PG=20, Contradiction=20, Genuine=20\n- 随机 CE∪TS 50 样本 (池比例 374:2)\n- 边界案例 20 样本: CE=10, TS=5, Genuine=5\n\n**插入位置**: `docs/paper/appendix.tex` L239–257, Boundary case validation 段落后、PG subsection 前。\n\n**缺失项**: 50 个随机样本未按 CE/TS 分开记录，已用脚注标注池比例。所有 152 样本 precision=1.00。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-classifier-table.md"
+}

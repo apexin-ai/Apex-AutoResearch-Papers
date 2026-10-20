@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aaf086d610754d5228c1",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops final tex sync compile",
+  "task_key": "worker_ops_final-tex-sync-compile_20260515T163759",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_final-tex-sync-compile_20260515T163759_result.json",
+    "occurrence": 1,
+    "bytes": 624,
+    "sha256": "df0396b50b4482498342522d280c01754212818b6ad1da717a3c650b6ce28ef6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇报：\n\n**编译结果**：成功，16 页，534,827 bytes\n\n**E1-E4 验证**：\n| 修正项 | 验证 | 位置 |\n|--------|------|------|\n| E1: genuine 2.2% | **通过** | experiments.tex:84 |\n| E2: 68--100% | **通过** | experiments.tex:70, :157 |\n| E3: Random β=0.3 H7=7 | **通过** | experiments.tex:60 (Table 1) |\n| E4: 0--7 H7a | **通过** | conclusion.tex:16 |\n\n**其他关键数字**：\n- 69.7%: experiments.tex:68, :157; introduction.tex:27, :33 — 全部一致\n- 92.2%: experiments.tex:34; introduction.tex:23 — 全部一致\n- seed 42 引用: 多处正确出现"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-final-tex-sync-compile.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4a10d26ed4466977170f",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "train s45 s46 1000step k4",
+  "task_key": "worker_train_s45-s46-1000step-k4_20260521T234124",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_s45-s46-1000step-k4_20260521T234124_result.json",
+    "occurrence": 1,
+    "bytes": 166,
+    "sha256": "5a5a1d528773d792af9476598cd936191eb8a39fec164cc19aa0459510d51dd4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "s45 training running at step 10/1000, ~9s/step. Scheduled check in 30 min (~step 200). Will continue monitoring until completion, then proceed to eval."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-s45-s46-1000step-k4.md"
+}

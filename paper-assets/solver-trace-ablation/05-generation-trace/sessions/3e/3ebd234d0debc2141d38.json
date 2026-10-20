@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3ebd234d0debc2141d38",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "submit plan009 sft r4",
+  "task_key": "worker_submit_plan009-sft-r4_20260514T114621",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_plan009-sft-r4_20260514T114621_result.json",
+    "occurrence": 1,
+    "bytes": 289,
+    "sha256": "45935d6b85b5e24b416c8193e590f55963a27eb20e1e867cca6c7f7d0497d84d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "启动成功。日志确认：\n\n- `CUDA_VISIBLE_DEVICES=1` ✅\n- 加载数据 `train_500_seed42.jsonl`，500 条 ✅\n- 正在加载模型 `/root/autodl-tmp/models/Qwen3-4B` ✅\n- wandb 已禁用 ✅\n\nplan009-sft-baseline-s42-r4 已在 cuda:1 上运行，PID 572604。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-plan009-sft-r4.md"
+}

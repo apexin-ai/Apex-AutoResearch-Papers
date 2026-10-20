@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3dacb26f753cb20ef326",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analysis plan012 hacking characterization",
+  "task_key": "worker_analysis_plan012-hacking-characterization_20260514T050649",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan012-hacking-characterization_20260514T050649_result.json",
+    "occurrence": 1,
+    "bytes": 847,
+    "sha256": "8779004da43444923db23160c58fdd099a8d63d7aaab5fc40200bb04ad311a6c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已完成并注册为 `art_20260514_faed3a`。\n\n核心发现：\n\n1. **Exec-only (s42)**: 87% proved samples 含 conclusion-in-premises hack，48% ISR=0。模型把结论塞进前提里确保 Prover9 通过，再用上下文前提填充。PR=93% 看似优秀，ISR=0.13 暴露了问题。\n\n2. **Random reward**: 100% 纯 tautology（P ⊢ P），96% 恰好 2 个 components。ISR=0.5 是因为唯一前提确实\"必要\"——但语义上完全空洞。\n\n3. **Additive β=0.3**: 79/82 失败样本连 `Conclusion` 标记都没生成（format collapse）。直接优化 ISR 摧毁了格式能力。\n\n4. **ISR 单独用不够**：random reward 的 ISR (0.54) 接近 GT (0.56)，需要联合 component count 才能区分 lean tautology 和 genuine proof。这支持论文用 (ISR, n_components) 联合诊断的设计。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan012-hacking-characterization.md"
+}

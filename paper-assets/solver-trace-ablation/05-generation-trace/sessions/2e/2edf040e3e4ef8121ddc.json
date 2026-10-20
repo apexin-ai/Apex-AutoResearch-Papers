@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2edf040e3e4ef8121ddc",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code eval sta prolog",
+  "task_key": "worker_code_eval-sta-prolog_20260514T061756",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_eval-sta-prolog_20260514T061756_result.json",
+    "occurrence": 1,
+    "bytes": 1244,
+    "sha256": "5111f7a638c7b0f4e9fb38e74f1d4b18fe793eb4b1939c65697c34e4e1000d2f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Prolog 评估管道完全正常工作：\n\n- **PrologSolver** 可用（swipl 在 PATH 中）\n- **parse_prolog_formalization** 正确解析两种格式（inline `?-` 和 labeled `Query:`）\n- **prolog_sta_reward** 返回正确结构：`execution_reward`, `sta_reward`, `combined_reward`, `details`（含 components 列表）\n- 3 个 clause 全部 necessary → ISR=1.0 ✓\n- proof 失败 → execution_reward=0, sta_reward=0 ✓\n- 有冗余 clause 时 ISR=0.333（3 个中只有 1 个 necessary）✓\n\n**结论**：eval_sta.py 的 Prolog 支持已经完整实现，无需修改。具体包括：\n- `--logic_type prolog` CLI 参数 ✓\n- PROLOG_SYSTEM_PROMPT / PROLOG_USER_TEMPLATE ✓\n- LOGIC_CONFIG 调度到 `prolog_sta_reward` ✓\n- `src/sta/prolog_reward.py` 完整实现（解析、ablation、ISR 计算）✓\n- `src/solvers/prolog.py` + factory `get_solver(\"prolog\")` ✓\n- 输出指标格式与 FOL 一致（prove_rate, mean_isr, isr_std, proved_only_isr, component stats）✓\n\n**无遗留问题**。plan006 Prolog GRPO 实验的 post-training ISR 评估可以直接用：\n```bash\npython scripts/eval_sta.py --model_path <checkpoint> --data_path <data> --output_path <out.json> --logic_type prolog\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-eval-sta-prolog.md"
+}

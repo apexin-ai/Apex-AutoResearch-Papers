@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "98d809843bba0225813d",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops plan006 dryrun",
+  "task_key": "worker_ops_plan006-dryrun_20260514T064821",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_plan006-dryrun_20260514T064821_result.json",
+    "occurrence": 1,
+    "bytes": 745,
+    "sha256": "f424cc0295ab8025ba67520e847993e300adda784ee6daa1444456354a087959"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Dry-run 结果：**PASS**\n\n| 项目 | 状态 |\n|------|------|\n| 训练完成 | 2/2 步，无报错 |\n| reward_log | 2 步数据完整（step 1 & 2） |\n| parse_rate | 1.0（模型输出格式正确，可解析） |\n| reward/ISR | 均为 0.0（2 步正常，模型尚未学到有效 trace） |\n| checkpoint 保存 | 正常（~15GB safetensors） |\n| GPU 隔离 | cuda:0 only，cuda:1 未受影响 |\n| 清理 | 已完成 |\n\n一个注意点：训练日志中未看到显式的 `swipl` 调用信息——reward 全为 0 可能是因为模型初始输出的 Prolog trace 还无法通过执行验证，但 parse_rate=1.0 说明格式解析链路正常。2 步 dry-run 不足以产生有效 reward，这是预期行为。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-plan006-dryrun.md"
+}

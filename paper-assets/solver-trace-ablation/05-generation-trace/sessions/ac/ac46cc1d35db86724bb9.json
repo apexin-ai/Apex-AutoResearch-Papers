@@ -1,0 +1,693 @@
+{
+  "schema_version": "1.0",
+  "id": "ac46cc1d35db86724bb9",
+  "project": "solver-trace-ablation",
+  "kind": "conversation",
+  "title": "code d142 registry fix",
+  "task_key": "worker_code_d142-registry-fix_20260519T135843",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_d142-registry-fix_20260519T135843.jsonl",
+    "occurrence": 1,
+    "bytes": 30489,
+    "sha256": "89bd63380e5efee3f09037eebc2f3e66b06920e22791b1e34fdb20ae50a9e725"
+  },
+  "statistics": {
+    "messages": 33,
+    "user_turns": 0,
+    "tool_calls": 16,
+    "roles": {
+      "tool_call": 16,
+      "tool_result": 16,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T14:00:55.878809+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d142-registry-fix_20260519T135843",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T14:00:55.879268+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d142-registry-fix_20260519T135843",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T14:00:55.879558+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d142-registry-fix_20260519T135843",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "account": "root",
+              "command": "cat /root/autodl-tmp/d142_gated_isr_s55/classify.json"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T14:00:55.879786+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d142-registry-fix_20260519T135843",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "account": "root",
+              "command": "cat /root/autodl-tmp/d142_gated_isr_s55/eval_results.json"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T14:00:55.880035+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"eval_results\\\\\\\": {\\\\n    \\\\\\\"n_total\\\\\\\": 100,\\\\n    \\\\\\\"n_proved\\\\\\\": 100,\\\\n    \\\\\\\"h7a_count\\\\\\\": 82,\\\\n    \\\\\\\"h7a_rate\\\\\\\": 0.82,\\\\n    \\\\\\\"h7b_count\\\\\\\": 0,\\\\n    \\\\\\\"h7b_rate\\\\\\\": 0.0,\\\\n    \\\\\\\"h7_total_count\\\\\\\": 82,\\\\n    \\\\\\\"h7_total_rate\\\\\\\": 0.82,\\\\n    \\\\\\\"h1_strict_count\\\\\\\": 0,\\\\n    \\\\\\\"h1_strict_rate\\\\\\\": 0.0,\\\\n    \\\\\\\"h8_conjunction_collapse_count\\\\\\\": 15,\\\\n    \\\\\\\"h8_conjunction_collapse_rate\\\\\\\": 0.15,\\\\n    \\\\\\\"conclusion_in_premise_count\\\\\\\": 82,\\\\n    \\\\\\\"conclusion_in_premise_rate\\\\\\\": 0.82,\\\\n    \\\\\\\"h7_relaxed_count\\\\\\\": 79,\\\\n    \\\\\\\"h7_relaxed_rate\\\\\\\": 0.79,\\\\n    \\\\\\\"single_premise_count\\\\\\\": 82,\\\\n    \\\\\\\"single_premise_rate\\\\\\\": 0.82,\\\\n    \\\\\\\"isr_1_count\\\\\\\": 4,\\\\n    \\\\\\\"isr_1_rate\\\\\\\": 0.04,\\\\n    \\\\\\\"content_independent_count\\\\\\\": 0,\\\\n    \\\\\\\"content_independent_rate\\\\\\\": 0.0,\\\\n    \\\\\\\"genuine_count\\\\\\\": 3,\\\\n    \\\\\\\"genuine_rate\\\\\\\": 0.03,\\\\n    \\\\\\\"h7_strict_count\\\\\\\": 82,\\\\n    \\\\\\\"h7_strict_rate\\\\\\\": 0.82\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.03}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d142-registry-fix_20260519T135843",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T14:00:55.880235+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d142-registry-fix_20260519T135843",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "account": "root",
+              "command": "cat /root/autodl-tmp/d142_gated_isr_s56/classify.json"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T14:00:55.880805+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"n_problems\\\\\\\": 100,\\\\n    \\\\\\\"n_proved\\\\\\\": 100,\\\\n    \\\\\\\"prove_rate\\\\\\\": 1.0,\\\\n    \\\\\\\"mean_isr\\\\\\\": 0.525,\\\\n    \\\\\\\"isr_std\\\\\\\": 0.1578,\\\\n    \\\\\\\"median_isr\\\\\\\": 0.5,\\\\n    \\\\\\\"isr_pr_ratio\\\\\\\": 0.525,\\\\n    \\\\\\\"proved_only_mean_isr\\\\\\\": 0.525,\\\\n    \\\\\\\"min_isr\\\\\\\": 0.0,\\\\n    \\\\\\\"max_isr\\\\\\\": 1.0,\\\\n    \\\\\\\"by_answer_type\\\\\\\": {\\\\n      \\\\\\\"false\\\\\\\": {\\\\n        \\\\\\\"count\\\\\\\": 25,\\\\n        \\\\\\\"proved\\\\\\\": 25,\\\\n        \\\\\\\"prove_rate\\\\\\\": 1.0,\\\\n        \\\\\\\"mean_isr\\\\\\\": 0.5733333333333334\\\\n      },\\\\n      \\\\\\\"unknown\\\\\\\": {\\\\n        \\\\\\\"count\\\\\\\": 41,\\\\n        \\\\\\\"proved\\\\\\\": 41,\\\\n        \\\\\\\"prove_rate\\\\\\\": 1.0,\\\\n        \\\\\\\"mean_isr\\\\\\\": 0.532520325203252\\\\n      },\\\\n      \\\\\\\"true\\\\\\\": {\\\\n        \\\\\\\"count\\\\\\\": 34,\\\\n        \\\\\\\"proved\\\\\\\": 34,\\\\n        \\\\\\\"prove_rate\\\\\\\": 1.0,\\\\n        \\\\\\\"mean_isr\\\\\\\": 0.4803921568627451\\\\n      }\\\\n    },\\\\n    \\\\\\\"elapsed_seconds\\\\\\\": 79.4,\\\\n    \\\\\\\"avg_time_per_sample\\\\\\\": 0.8,\\\\n    \\\\\\\"solver\\\\\\\": \\\\\\\"Prover9Solver\\\\\\\",\\\\n    \\\\\\\"logic_type\\\\\\\": \\\\\\\"fol\\\\\\\",\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/d142_gated_isr_s55\\\\\\\"\\\\n  },\\\\n  \\\\\\\"results\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 0,\\\\n      \\\\\\\"id\\\\\\\": \\\\\\\"folio_765\\\\\\\",\\\\n      \\\\\\\"context\\\\\\\": \\\\\\\"Tipped employees are not entitled to be paid the federal minimum wage by their employees. \\\\\\\\nIf a person is a white-collar worker, they are entitled to be paid the federal minimum wage by their employees. \\\\\\\\nAll lawyers are white-collar workers.\\\\\\\\nEvery advocate is a lawyer.\\\\\\\\nMary is not a lawyer or a tipped employee.\\\\\\\",\\\\n      \\\\\\\"question\\\\\\\": \\\\\\\"Mary is an advocate.\\\\\\\",\\\\n      \\\\\\\"answer\\\\\\\": \\\\\\\"false\\\\\\\",\\\\n      \\\\\\\"formalization\\\\\\\": \\\\\\\"Premises:\\\\\\\\n1. advocate(mary)\\\\\\\\nConclusion: advocate(mary)\\\\\\\",\\\\n      \\\\\\\"gen_time\\\\\\\": 0.87,\\\\n      \\\\\\\"eval_time\\\\\\\": 0.02,\\\\n      \\\\\\\"execution_reward\\\\\\\": 1.0,\\\\n      \\\\\\\"sta_reward\\\\\\\": 0.5\n…[truncated 7951 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d142-registry-fix_20260519T135843",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T14:00:55.881175+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"eval_results\\\\\\\": {\\\\n    \\\\\\\"n_total\\\\\\\": 100,\\\\n    \\\\\\\"n_proved\\\\\\\": 36,\\\\n    \\\\\\\"h7a_count\\\\\\\": 0,\\\\n    \\\\\\\"h7a_rate\\\\\\\": 0.0,\\\\n    \\\\\\\"h7b_count\\\\\\\": 0,\\\\n    \\\\\\\"h7b_rate\\\\\\\": 0.0,\\\\n    \\\\\\\"h7_total_count\\\\\\\": 0,\\\\n    \\\\\\\"h7_total_rate\\\\\\\": 0.0,\\\\n    \\\\\\\"h1_strict_count\\\\\\\": 0,\\\\n    \\\\\\\"h1_strict_rate\\\\\\\": 0.0,\\\\n    \\\\\\\"h8_conjunction_collapse_count\\\\\\\": 30,\\\\n    \\\\\\\"h8_conjunction_collapse_rate\\\\\\\": 0.8333,\\\\n    \\\\\\\"conclusion_in_premise_count\\\\\\\": 0,\\\\n    \\\\\\\"conclusion_in_premise_rate\\\\\\\": 0.0,\\\\n    \\\\\\\"h7_relaxed_count\\\\\\\": 0,\\\\n    \\\\\\\"h7_relaxed_rate\\\\\\\": 0.0,\\\\n    \\\\\\\"single_premise_count\\\\\\\": 0,\\\\n    \\\\\\\"single_premise_rate\\\\\\\": 0.0,\\\\n    \\\\\\\"isr_1_count\\\\\\\": 19,\\\\n    \\\\\\\"isr_1_rate\\\\\\\": 0.5278,\\\\n    \\\\\\\"content_independent_count\\\\\\\": 27,\\\\n    \\\\\\\"content_independent_rate\\\\\\\": 0.75,\\\\n    \\\\\\\"genuine_count\\\\\\\": 6,\\\\n    \\\\\\\"genuine_rate\\\\\\\": 0.1667,\\\\n    \\\\\\\"h7_strict_count\\\\\\\": 0,\\\\n    \\\\\\\"h7_strict_rate\\\\\\\": 0.0\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d142-registry-fix_20260519T135843",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T14:00:55.881451+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d142-registry-fix_20260519T135843",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "account": "root",
+              "command": "cat /root/autodl-tmp/d142_gated_isr_s56/eval_results.json"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-19T14:00:55.881986+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"n_problems\\\\\\\": 100,\\\\n    \\\\\\\"n_proved\\\\\\\": 36,\\\\n    \\\\\\\"prove_rate\\\\\\\": 0.36,\\\\n    \\\\\\\"mean_isr\\\\\\\": 0.2925,\\\\n    \\\\\\\"isr_std\\\\\\\": 0.4194,\\\\n    \\\\\\\"median_isr\\\\\\\": 0.0,\\\\n    \\\\\\\"isr_pr_ratio\\\\\\\": 0.8125,\\\\n    \\\\\\\"proved_only_mean_isr\\\\\\\": 0.8125,\\\\n    \\\\\\\"min_isr\\\\\\\": 0.0,\\\\n    \\\\\\\"max_isr\\\\\\\": 1.0,\\\\n    \\\\\\\"by_answer_type\\\\\\\": {\\\\n      \\\\\\\"false\\\\\\\": {\\\\n        \\\\\\\"count\\\\\\\": 25,\\\\n        \\\\\\\"proved\\\\\\\": 11,\\\\n        \\\\\\\"prove_rate\\\\\\\": 0.44,\\\\n        \\\\\\\"mean_isr\\\\\\\": 0.33\\\\n      },\\\\n      \\\\\\\"unknown\\\\\\\": {\\\\n        \\\\\\\"count\\\\\\\": 41,\\\\n        \\\\\\\"proved\\\\\\\": 12,\\\\n        \\\\\\\"prove_rate\\\\\\\": 0.2926829268292683,\\\\n        \\\\\\\"mean_isr\\\\\\\": 0.2451219512195122\\\\n      },\\\\n      \\\\\\\"true\\\\\\\": {\\\\n        \\\\\\\"count\\\\\\\": 34,\\\\n        \\\\\\\"proved\\\\\\\": 13,\\\\n        \\\\\\\"prove_rate\\\\\\\": 0.38235294117647056,\\\\n        \\\\\\\"mean_isr\\\\\\\": 0.3220588235294118\\\\n      }\\\\n    },\\\\n    \\\\\\\"elapsed_seconds\\\\\\\": 605.8,\\\\n    \\\\\\\"avg_time_per_sample\\\\\\\": 6.1,\\\\n    \\\\\\\"solver\\\\\\\": \\\\\\\"Prover9Solver\\\\\\\",\\\\n    \\\\\\\"logic_type\\\\\\\": \\\\\\\"fol\\\\\\\",\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/d142_gated_isr_s56\\\\\\\"\\\\n  },\\\\n  \\\\\\\"results\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 0,\\\\n      \\\\\\\"id\\\\\\\": \\\\\\\"folio_765\\\\\\\",\\\\n      \\\\\\\"context\\\\\\\": \\\\\\\"Tipped employees are not entitled to be paid the federal minimum wage by their employees. \\\\\\\\nIf a person is a white-collar worker, they are entitled to be paid the federal minimum wage by their employees. \\\\\\\\nAll lawyers are white-collar workers.\\\\\\\\nEvery advocate is a lawyer.\\\\\\\\nMary is not a lawyer or a tipped employee.\\\\\\\",\\\\n      \\\\\\\"question\\\\\\\": \\\\\\\"Mary is an advocate.\\\\\\\",\\\\n      \\\\\\\"answer\\\\\\\": \\\\\\\"false\\\\\\\",\\\\n      \\\\\\\"formalization\\\\\\\": \\\\\\\"Premises:\\\\\\\\n1. ∀x ((Advocate(x) → WhiteCollarWorker(x)) ∧ (WhiteCollarWorker(x) → MinimumWageEntitled(x)))\\\\\\\\n2. ∀x (MinimumWageEntitled(x) → PaidFederalMinimumWage(x))\\\\\\\\nConc\n…[truncated 7482 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d142-registry-fix_20260519T135843",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-19T14:00:55.882295+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d142-registry-fix_20260519T135843",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "account": "root",
+              "command": "cat /root/autodl-tmp/d142_gated_isr_s57/classify.json"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T14:00:55.882575+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"eval_results\\\\\\\": {\\\\n    \\\\\\\"n_total\\\\\\\": 100,\\\\n    \\\\\\\"n_proved\\\\\\\": 88,\\\\n    \\\\\\\"h7a_count\\\\\\\": 1,\\\\n    \\\\\\\"h7a_rate\\\\\\\": 0.0114,\\\\n    \\\\\\\"h7b_count\\\\\\\": 0,\\\\n    \\\\\\\"h7b_rate\\\\\\\": 0.0,\\\\n    \\\\\\\"h7_total_count\\\\\\\": 1,\\\\n    \\\\\\\"h7_total_rate\\\\\\\": 0.0114,\\\\n    \\\\\\\"h1_strict_count\\\\\\\": 18,\\\\n    \\\\\\\"h1_strict_rate\\\\\\\": 0.2045,\\\\n    \\\\\\\"h8_conjunction_collapse_count\\\\\\\": 13,\\\\n    \\\\\\\"h8_conjunction_collapse_rate\\\\\\\": 0.1477,\\\\n    \\\\\\\"conclusion_in_premise_count\\\\\\\": 19,\\\\n    \\\\\\\"conclusion_in_premise_rate\\\\\\\": 0.2159,\\\\n    \\\\\\\"h7_relaxed_count\\\\\\\": 0,\\\\n    \\\\\\\"h7_relaxed_rate\\\\\\\": 0.0,\\\\n    \\\\\\\"single_premise_count\\\\\\\": 0,\\\\n    \\\\\\\"single_premise_rate\\\\\\\": 0.0,\\\\n    \\\\\\\"isr_1_count\\\\\\\": 8,\\\\n    \\\\\\\"isr_1_rate\\\\\\\": 0.0909,\\\\n    \\\\\\\"content_independent_count\\\\\\\": 0,\\\\n    \\\\\\\"content_independent_rate\\\\\\\": 0.0,\\\\n    \\\\\\\"genuine_count\\\\\\\": 56,\\\\n    \\\\\\\"genuine_rate\\\\\\\": 0.6364,\\\\n    \\\\\\\"h7_strict_count\\\\\\\": 1,\\\\n    \\\\\\\"h7_strict_rate\\\\\\\": 0.0114\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d142-registry-fix_20260519T135843",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-19T14:00:55.882869+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d142-registry-fix_20260519T135843",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "account": "root",
+              "command": "cat /root/autodl-tmp/d142_gated_isr_s57/eval_results.json"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-19T14:00:55.883419+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"n_problems\\\\\\\": 100,\\\\n    \\\\\\\"n_proved\\\\\\\": 88,\\\\n    \\\\\\\"prove_rate\\\\\\\": 0.88,\\\\n    \\\\\\\"mean_isr\\\\\\\": 0.4497,\\\\n    \\\\\\\"isr_std\\\\\\\": 0.3136,\\\\n    \\\\\\\"median_isr\\\\\\\": 0.4,\\\\n    \\\\\\\"isr_pr_ratio\\\\\\\": 0.511,\\\\n    \\\\\\\"proved_only_mean_isr\\\\\\\": 0.511,\\\\n    \\\\\\\"min_isr\\\\\\\": 0.0,\\\\n    \\\\\\\"max_isr\\\\\\\": 1.0,\\\\n    \\\\\\\"by_answer_type\\\\\\\": {\\\\n      \\\\\\\"false\\\\\\\": {\\\\n        \\\\\\\"count\\\\\\\": 25,\\\\n        \\\\\\\"proved\\\\\\\": 18,\\\\n        \\\\\\\"prove_rate\\\\\\\": 0.72,\\\\n        \\\\\\\"mean_isr\\\\\\\": 0.452\\\\n      },\\\\n      \\\\\\\"unknown\\\\\\\": {\\\\n        \\\\\\\"count\\\\\\\": 41,\\\\n        \\\\\\\"proved\\\\\\\": 41,\\\\n        \\\\\\\"prove_rate\\\\\\\": 1.0,\\\\n        \\\\\\\"mean_isr\\\\\\\": 0.49065040650406505\\\\n      },\\\\n      \\\\\\\"true\\\\\\\": {\\\\n        \\\\\\\"count\\\\\\\": 34,\\\\n        \\\\\\\"proved\\\\\\\": 29,\\\\n        \\\\\\\"prove_rate\\\\\\\": 0.8529411764705882,\\\\n        \\\\\\\"mean_isr\\\\\\\": 0.3985294117647059\\\\n      }\\\\n    },\\\\n    \\\\\\\"elapsed_seconds\\\\\\\": 171.9,\\\\n    \\\\\\\"avg_time_per_sample\\\\\\\": 1.7,\\\\n    \\\\\\\"solver\\\\\\\": \\\\\\\"Prover9Solver\\\\\\\",\\\\n    \\\\\\\"logic_type\\\\\\\": \\\\\\\"fol\\\\\\\",\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/d142_gated_isr_s57\\\\\\\"\\\\n  },\\\\n  \\\\\\\"results\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 0,\\\\n      \\\\\\\"id\\\\\\\": \\\\\\\"folio_765\\\\\\\",\\\\n      \\\\\\\"context\\\\\\\": \\\\\\\"Tipped employees are not entitled to be paid the federal minimum wage by their employees. \\\\\\\\nIf a person is a white-collar worker, they are entitled to be paid the federal minimum wage by their employees. \\\\\\\\nAll lawyers are white-collar workers.\\\\\\\\nEvery advocate is a lawyer.\\\\\\\\nMary is not a lawyer or a tipped employee.\\\\\\\",\\\\n      \\\\\\\"question\\\\\\\": \\\\\\\"Mary is an advocate.\\\\\\\",\\\\n      \\\\\\\"answer\\\\\\\": \\\\\\\"false\\\\\\\",\\\\n      \\\\\\\"formalization\\\\\\\": \\\\\\\"Premises:\\\\\\\\n1. advocate(mary)\\\\\\\\n2. ∀x (advocate(x) → lawyer(x))\\\\\\\\nConclusion: ∀x (advocate(x) → lawyer(x))\\\\\\\",\\\\n      \\\\\\\"gen_time\\\\\\\": 1.31,\\\\n      \\\\\\\"eval_time\\\\\\\": 0.03,\\\\n      \\\\\\\"e\n…[truncated 7855 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d142-registry-fix_20260519T135843",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-19T14:00:55.883778+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d142-registry-fix_20260519T135843",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "filters": "{'exp_id': 'd142-gated-isr-s55'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-19T14:00:55.884032+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d142-registry-fix_20260519T135843",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "filters": "{'exp_id': 'd142-gated-isr-s56'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-19T14:00:55.884289+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7982}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d142-registry-fix_20260519T135843",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-19T14:00:55.884529+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d142-registry-fix_20260519T135843",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "filters": "{'exp_id': 'd142-gated-isr-s57'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-19T14:00:55.884797+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6538}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d142-registry-fix_20260519T135843",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-19T14:00:55.885042+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0608}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d142-registry-fix_20260519T135843",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-19T14:00:55.885329+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d142-registry-fix_20260519T135843",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "limit": "0",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-19T14:00:55.888036+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (324,152 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/3398621e-be10-4dc6-9180-597dd710b33a/tool-results/mcp-agent-ml-research-read_registry-1779199156758.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/3398621e-be10-4dc6-9180-597dd710b33a/tool-results/mcp-agent-ml-research-read_registry-1779199156758.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/3398621e-be10-4dc6-9180-597dd710b33a/tool-results/mcp-agent-ml-research-read_registry-1779199156758.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d142-registry-fix_20260519T135843",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 2
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-19T14:00:55.888421+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d142-registry-fix_20260519T135843",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/3398621e-be10-4dc6-9180-597dd710b33a/tool-results/mcp-agent-ml-research-read_registry-1779199156758.txt | python3 -c \"import sys,json; data=json.loads(json.loads(sys.stdin.read())['result']); exps=data['data']['experiments']; [print(k) for k in exps if 'd142' in k.lower() or 'gated' in k.lower()]\"",
+              "description": "Find d142/gated experiment IDs in registry"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-19T14:00:55.888731+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "d142-gated-isr-s57\nd142-gated-isr-s56\nd142-gated-isr-s55\nd142-gated-isr-s54\nd142-gated-isr-s53\nd142-gated-isr-s52\ngated-isr-warmstart-t015-s43\ngated-isr-warmstart-t02-s43-r2\ngated-isr-warmstart-t02-s43\ngated-isr-warmstart-t02-s42\ngated-isr-curriculum-t02-s43-r2\ngated-isr-curriculum-t02-s42-r2\ngated-isr-curriculum-t02-s43\ngated-isr-curriculum-t02-s42\ngated-isr-t03-s43\ngated-isr-t03-s42"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d142-registry-fix_20260519T135843",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-19T14:00:55.889001+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d142-registry-fix_20260519T135843",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/3398621e-be10-4dc6-9180-597dd710b33a/tool-results/mcp-agent-ml-research-read_registry-1779199156758.txt | python3 -c \"\nimport sys,json\ndata=json.loads(json.loads(sys.stdin.read())['result'])\nexps=data['data']['experiments']\nfor k in ['d142-gated-isr-s55','d142-gated-isr-s56','d142-gated-isr-s57']:\n    e = exps[k]\n    print(f'=== {k} ===')\n    print(f'  status: {e.get(\\\"status\\\")}')\n    print(f'  conclusion: {e.get(\\\"conclusion\\\")}')\n    print(f'  metrics: {json.dumps(e.get(\\\"metrics\\\"), indent=4)}')\n    print()\n\"",
+              "description": "Extract current metrics for d142 s55/s56/s57"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-19T14:00:55.889254+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== d142-gated-isr-s55 ===\n  status: DONE\n  conclusion: success\n  metrics: {\n    \"prove_rate\": 1,\n    \"isr\": 0.525,\n    \"TS_pct\": 82,\n    \"PG_pct\": 0,\n    \"CI_pct\": 0,\n    \"CE_pct\": 18,\n    \"genuine_pct\": 0\n}\n\n=== d142-gated-isr-s56 ===\n  status: DONE\n  conclusion: success\n  metrics: {\n    \"prove_rate\": 0.36,\n    \"isr\": 0.293,\n    \"TS_pct\": 0,\n    \"PG_pct\": 91,\n    \"CI_pct\": 0,\n    \"CE_pct\": 9,\n    \"genuine_pct\": 0\n}\n\n=== d142-gated-isr-s57 ===\n  status: DONE\n  conclusion: success\n  metrics: {\n    \"prove_rate\": 0.88,\n    \"isr\": 0.45,\n    \"TS_pct\": 0,\n    \"PG_pct\": 73,\n    \"CI_pct\": 0,\n    \"CE_pct\": 27,\n    \"genuine_pct\": 0\n}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d142-registry-fix_20260519T135843",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-19T14:00:55.889621+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d142-registry-fix_20260519T135843",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "d142-gated-isr-s55",
+              "field": "metrics",
+              "value": "{'prove_rate': 1, 'isr': 0.525, 'TS_pct': 82, 'CE_pct': 0, 'PG_pct': 15, 'CI_pct': 0, 'genuine_pct': 3}",
+              "project": "solver-trace-ablation"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-19T14:00:55.889981+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d142-gated-isr-s55\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T07:55:06.673Z\\\", \\\"updated_at\\\": \\\"2026-05-19T14:00:46.803Z\\\", \\\"hypothesis\\\": \\\"Expanding gated ISR (n_components >= 2 gate, beta=0.1) to 6 seeds to verify whether TS-to-PG mode migration is systematic. D142 s52-s54 showed 2/3 PG collapse after gate eliminated TS; additional seeds test if this pattern holds with statistical power for Fisher exact test. Parent: D142.\\\", \\\"parent\\\": \\\"d142-gated-isr-s52\\\", \\\"spec\\\": {\\\"command\\\": \\\"part of d142 ext pipeline (serial s55→s56→s57)\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": 322582, \\\"data_path\\\": \\\"/root/solver-trace-ablation/data/train_500_seed42.jsonl\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"Qwen/Qwen3-4B\\\", \\\"seed\\\": 55, \\\"reward_mode\\\": \\\"additive_bonus_gated\\\", \\\"beta\\\": 0.1, \\\"steps\\\": 500, \\\"tmux_session\\\": \\\"d142ext\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/d142_ext_pipeline.log\\\"}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/d142_gated_isr_s55\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/d142_gated_isr_s55/train.log\\\", \\\"metrics\\\": {\\\"prove_rate\\\": 1, \\\"isr\\\": 0.525, \\\"TS_pct\\\": 82, \\\"CE_pct\\\": 0, \\\"PG_pct\\\": 15, \\\"CI_pct\\\": 0, \\\"genuine_pct\\\": 3}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-19T12:11:20.350Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0496}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d142-registry-fix_20260519T135843",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-19T14:00:55.890271+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d142-registry-fix_20260519T135843",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "d142-gated-isr-s56",
+              "field": "metrics",
+              "value": "{'prove_rate': 0.36, 'isr': 0.2925, 'TS_pct': 0, 'CE_pct': 0, 'PG_pct': 83, 'CI_pct': 75, 'genuine_pct': 17}",
+              "project": "solver-trace-ablation"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-19T14:00:55.890586+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d142-gated-isr-s56\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T07:55:09.394Z\\\", \\\"updated_at\\\": \\\"2026-05-19T14:00:47.956Z\\\", \\\"hypothesis\\\": \\\"Expanding gated ISR (n_components >= 2 gate, beta=0.1) to 6 seeds to verify whether TS-to-PG mode migration is systematic. D142 s52-s54 showed 2/3 PG collapse after gate eliminated TS; additional seeds test if this pattern holds with statistical power for Fisher exact test. Parent: D142.\\\", \\\"parent\\\": \\\"d142-gated-isr-s52\\\", \\\"spec\\\": {\\\"command\\\": \\\"part of d142 ext pipeline (serial s55→s56→s57)\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"data_path\\\": \\\"/root/solver-trace-ablation/data/train_500_seed42.jsonl\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"Qwen/Qwen3-4B\\\", \\\"seed\\\": 56, \\\"reward_mode\\\": \\\"additive_bonus_gated\\\", \\\"beta\\\": 0.1, \\\"steps\\\": 500, \\\"checkpoint_source\\\": \\\"trained from base\\\", \\\"eval_data\\\": \\\"data/proofwriter_fol_100.jsonl\\\"}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/d142_gated_isr_s56\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/d142_gated_isr_s56/train.log\\\", \\\"metrics\\\": {\\\"prove_rate\\\": 0.36, \\\"isr\\\": 0.2925, \\\"TS_pct\\\": 0, \\\"CE_pct\\\": 0, \\\"PG_pct\\\": 83, \\\"CI_pct\\\": 75, \\\"genuine_pct\\\": 17}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-19T12:11:51.474Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9333}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d142-registry-fix_20260519T135843",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-19T14:00:55.890884+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d142-registry-fix_20260519T135843",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "d142-gated-isr-s57",
+              "field": "metrics",
+              "value": "{'prove_rate': 0.88, 'isr': 0.4497, 'TS_pct': 1, 'CE_pct': 20, 'PG_pct': 15, 'CI_pct': 0, 'genuine_pct': 64}",
+              "project": "solver-trace-ablation"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-19T14:00:55.891184+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"d142-gated-isr-s57\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T07:55:11.226Z\\\", \\\"updated_at\\\": \\\"2026-05-19T14:00:48.838Z\\\", \\\"hypothesis\\\": \\\"Expanding gated ISR (n_components >= 2 gate, beta=0.1) to 6 seeds to verify whether TS-to-PG mode migration is systematic. D142 s52-s54 showed 2/3 PG collapse after gate eliminated TS; additional seeds test if this pattern holds with statistical power for Fisher exact test. Parent: D142.\\\", \\\"parent\\\": \\\"d142-gated-isr-s52\\\", \\\"spec\\\": {\\\"command\\\": \\\"part of d142 ext pipeline (serial s55→s56→s57)\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"data_path\\\": \\\"/root/solver-trace-ablation/data/train_500_seed42.jsonl\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"Qwen/Qwen3-4B\\\", \\\"seed\\\": 57, \\\"reward_mode\\\": \\\"additive_bonus_gated\\\", \\\"beta\\\": 0.1, \\\"steps\\\": 500, \\\"checkpoint_source\\\": \\\"trained from base\\\", \\\"eval_data\\\": \\\"data/proofwriter_fol_100.jsonl\\\"}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/d142_gated_isr_s57\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/d142_gated_isr_s57/train.log\\\", \\\"metrics\\\": {\\\"prove_rate\\\": 0.88, \\\"isr\\\": 0.4497, \\\"TS_pct\\\": 1, \\\"CE_pct\\\": 20, \\\"PG_pct\\\": 15, \\\"CI_pct\\\": 0, \\\"genuine_pct\\\": 64}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-19T12:12:17.369Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8554}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d142-registry-fix_20260519T135843",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-19T14:00:55.891535+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个实验的 registry metrics 已更新完成。汇总：\n\n| | s55 | s56 | s57 |\n|---|---|---|---|\n| prove_rate | 1.0 | 0.36 | 0.88 |\n| isr | 0.525 | 0.2925 | 0.4497 |\n| TS_pct | 82 | 0 | 1 |\n| CE_pct | 0 | 0 | 20 |\n| PG_pct | 15 | 83 | 15 |\n| CI_pct | 0 | 75 | 0 |\n| genuine_pct | 3 | 17 | 64 |\n\n主要修正：s55 的 CE/PG 被互换了（CE 18→0, PG 0→15）；s56 的 PG 从 91→83，新增 CI=75；s57 的 PG 从 73→15，CE 从 27→20，genuine 从 0→64。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_d142-registry-fix_20260519T135843"
+          },
+          "id": "event-000033"
+        }
+      ],
+      "message_count": 33
+    }
+  ],
+  "readable_path": "readable/conversations/code-d142-registry-fix.md"
+}

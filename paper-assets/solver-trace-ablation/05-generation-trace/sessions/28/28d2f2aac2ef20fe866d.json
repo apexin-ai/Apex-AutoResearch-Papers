@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "28d2f2aac2ef20fe866d",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ssh eval both warmstart",
+  "task_key": "worker_ssh_eval-both-warmstart_20260516T171445",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_eval-both-warmstart_20260516T171445_result.json",
+    "occurrence": 1,
+    "bytes": 88,
+    "sha256": "9b5de4ba2ca9d9399b5f3d667d51c115eab064b0613ad64cb617331bad84e7d2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Evals running on both GPUs. I'll check back in ~4.5 minutes for progress."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-eval-both-warmstart.md"
+}

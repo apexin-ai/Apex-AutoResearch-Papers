@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "627d4c2424d64904c5e0",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "fix kill orphan and diagnose b02",
+  "task_key": "worker_fix_kill-orphan-and-diagnose-b02_20260516T035942",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_kill-orphan-and-diagnose-b02_20260516T035942_result.json",
+    "occurrence": 1,
+    "bytes": 990,
+    "sha256": "4050395935c2e06c52476d90c276783aa213fe11750df3b433a6869da4bc550d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 0 清理\n- PID 604569: **KILLED**\n- GPU 0 释放: **yes** (0 MiB, 0%)\n\n## sweep-isr-b02-s42 诊断\n- PID 625433: **不存在**（旧 PID）\n- **实际 PID 626802: 仍在运行**，etime 6m04s，GPU 1 占用 80068 MiB\n- 输出目录: 存在\n- checkpoint 数量: **0**（尚未保存）\n- reward_log 行数: **34**（最后 step=35, reward=0.57, prove_rate=50%）\n- 死因: **未死** — 进程活着，35/500 steps (7%)，~7.6s/step，预计还需 ~59 分钟\n- 注意: `--no_wandb` 模式，无 W&B 追踪\n\n## GPU 全局状态\n| GPU | 显存 | 利用率 |\n|-----|------|--------|\n| cuda:0 | 0 MiB | 0% |\n| cuda:1 | 80077 MiB | 91% |\n\n- 残留进程: PID 626802 (`python3 train_grpo.py ... sweep_isr_b02_s42`) on GPU 1\n- tmux sessions: `sweep-isr-b02-s42` (1 window)\n- PID 604563 (旧 sweep-isr-b01-s45 tmux server) 仍在进程表但 session 已不存在，可忽略\n\n**GPU 0 已完全空闲可用。GPU 1 被 sweep-isr-b02-s42 正常占用。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-kill-orphan-and-diagnose-b02.md"
+}

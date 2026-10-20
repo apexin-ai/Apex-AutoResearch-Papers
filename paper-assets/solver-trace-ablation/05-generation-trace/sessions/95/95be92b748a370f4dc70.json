@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "95be92b748a370f4dc70",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "eval exp1 isr b03 s43 r3",
+  "task_key": "worker_eval_exp1-isr-b03-s43-r3_20260515T021540",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp1-isr-b03-s43-r3_20260515T021540_result.json",
+    "occurrence": 1,
+    "bytes": 178,
+    "sha256": "e4ccc2ac27d49c8f8d8a96cce9c066b4a6b6a3e49f0d1bf89186aaccca00fb73"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "eval_sta.py 已经在 GPU 0 上运行（PID 108514），参数完全匹配。已运行约 1 分钟，预计 15-25 分钟完成。4.5 分钟后回来检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp1-isr-b03-s43-r3-copy-2.md"
+}

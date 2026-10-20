@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5fa83fd38c27a36eb0de",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_13_1778871791.md",
+  "task_key": "loop_13_1778871791",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_13_1778871791.md",
+    "occurrence": 1,
+    "bytes": 4227,
+    "sha256": "80205d6bbe187f3aec431b9535bc2d8d372309e83f90f34555cfac9b25800397"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 13\nreason: idle_timeout\nupdated: '2026-05-15T18:48:37+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 **只有** `westd-39279:cuda:0` 和 `westd-39279:cuda:1`，绝对不能碰其他卡\n- Random s43/s44 旧统计量（genuine=6.8%/20.2%、Fisher p、Wilson CI）已 **DEPRECATED**——绝对不能写入论文，必须等新数据重算\n- D051: **2.4x 倍率作废**，premise-count-matched 1.06x 是定论，不可引用旧数字\n- `classify_h7.py` 以 **D086 版本**为准，之前版本有 bug\n- genuine 计算公式: `proved − H7 − H1_exact − H8`（D084 标准），不是简单的 proved count\n- SFT 脚本 `--gpu N` 是物理编号；GRPO 走 `CUDA_VISIBLE_DEVICES` 映射，脚本内不需要 `--gpu`\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: `westd-39279`，工作目录 `/root/solver-trace-ablation`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- **模型/数据**: 均在服务器 `/root/solver-trace-ablation/` 下（configs/ scripts/ 等）\n- **活跃进程**: `plan018-additive-random-b01-s44-r2` — PID 533415, cuda:1, cron 监控中（reconcile 确认 still running）\n- **cuda:0 当前空闲**（plan018-s43-r3 和 plan002-s43-r2 已完成，ROADMAP 未及时更新）\n- **Worker 池**: 0 个运行中（⚠️ 违反 <2 失职约束，需立即补）\n\n### 3. 📊 当前状态\n**刚完成的关键事件**:\n- `plan018-additive-random-b01-s43-r3` (Random β=0.1 s43 重训) → **negative**, 但发现 **H7=38.3%** 推翻了 \"Random H7=0%\" 定论 → 触发 D092/D093 framing 调整\n- `plan002-additive-b01-s43-r2` (ISR β=0.1 s43 重训) → **negative**\n- D090: Exec-only 3-seed 1000步全部完成，genuine=1.0%±1.7%，Goodhart collapse 确认 seed-invariant\n\n**Registry**: 86 实验 — 85 DONE (success 26 / negative 27 / failed 26 / killed 6), 1 RUNNING\n**唯一 RUNNING**: `plan018-additive-random-b01-s44-r2` (Random β=0.1 s44) — cuda:1, PID 533415, cron 自动监控\n\n**等待中**:\n- s44-r2 cron 回调（训练完成后系统自动通知）\n- **D092 Framing 提案**在 `memory.md` 中已写好 DRAFT，等 s44-r2 数据后定稿提交 Director 审批\n- **无 Director 待决策项**（Framing 提案尚未正式提交）\n\n### 4. 📋 待办（条件触发式）\n- **s44-r2 cron 回调到达** → spawn Worker 跑 `eval_sta.py`（用 cuda:0）+ `classify_h7.py` 做 taxonomy → 更新 registry → 重算 Random 3-seed pooled 统计量（genuine rate, Fisher exact test ISR vs Random H7, Wilson CI）→ 定稿 Framing 提案 → `main_agent_post_to_director` 提交审批\n- **Director 批准 Framing** → Read `framing-reaudit.skill.md` → spawn Worker 全文 re-audit → 更新 paper_framing.md + 论文各章节\n- **cuda:0 空闲（现在就是）** → 没有待提交实验了（s44-r2 是最后一个实验计划），但可以用来跑 eval/taxonomy 分析任务\n- **所有 Random 新数据就位** → 重写论文 §4.2 对照表、§5 Discussion H7 mechanism 段、Abstract 措辞调整\n\n### 5. 🎯 战略上下文\n- **DDL 2026-05-25（剩 10 天）**，论文处于 Writing + Review 阶段，3 个 Core Claims 证据链已全部就位\n- **最大叙事变动**: D093 发现 Random s43 也有 H7=38.3%，原 \"H7 ISR-exclusive\" claim 作废。memory.md 中有 3 种备选叙事（A: ISR amplifies H7 / B: H7 reward-general / C: seed-dependent），**推荐叙事 A 为主线**\n- **s44-r2 是最后一个计划实验**——完成后进入纯写作阶段。s44-r2 的 H7 rate 决定 amplification 叙事的强度：H7=0% 最佳（pooled ~13%），H7>30% 叙事仍成立但需更 nuanced\n- **易错点**: ROADMAP 中 plan018-s43-r3 和 plan002-s43-r2 仍标为 RUNNING 但实际已 DONE，report.md 也滞后——需要更新\n- **易错点**: exec-only s43 1000步是 100% H7（D089），这和 \"H7 仅限 additive reward\" (D088) 矛盾——需核实 D089 的 s43 是真的 exec-only 还是标注错误，这影响 H7 mechanism 论述\n- **决策链**: D084(taxonomy标准) → D085(H7b) → D086(classify_h7) → D087→D088(H7=additive特有) → D089(seed-dependent modes) → D090(3-seed确认) → D092(暂停H7 claim) → D093(Random有H7)\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-13-1778871791.md"
+}

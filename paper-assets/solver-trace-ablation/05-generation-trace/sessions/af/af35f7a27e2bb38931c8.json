@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "af35f7a27e2bb38931c8",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "paper p0 edits group2",
+  "task_key": "worker_paper_p0-edits-group2_20260522T121443",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_p0-edits-group2_20260522T121443_result.json",
+    "occurrence": 1,
+    "bytes": 915,
+    "sha256": "5d8eec0218333d3f7d8df23d7834aa7ff56c8265538bbb9b1e1df78eb6d98e71"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Summary of all edits:\n\n| Task | File | Change |\n|------|------|--------|\n| **C** | `related_work.tex:21` | Expanded Helff citation to \"IPT\" acronym; added 1 sentence distinguishing IPT (input-level, inference-time) from STA (component-level, training-time) |\n| **D.1** | `abstract.tex:6` | Added \"In our Qwen3-4B case study,\" before the observe-vs-optimize asymmetry claim |\n| **D.1** | `introduction.tex:30` | Changed \"This asymmetry persists\" → \"In this setting, the asymmetry persists\" |\n| **D.1** | `conclusion.tex` | Already scoped — no change needed |\n| **E.2** | `appendix.tex:763-764` | Removed orphan labels `tab:8b-config` and `tab:8b-comparison` (aliases for `tab:8b-combined` which is already referenced on L733) |\n| **E.3** | `ethics.tex:6` | Added \"Code, evaluation scripts, the ProofFOL dataset, and trained model checkpoints will be released upon acceptance.\" |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-p0-edits-group2.md"
+}

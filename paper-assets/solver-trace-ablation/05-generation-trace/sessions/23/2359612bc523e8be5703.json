@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2359612bc523e8be5703",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_5_1778768194.md",
+  "task_key": "loop_5_1778768194",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_5_1778768194.md",
+    "occurrence": 1,
+    "bytes": 4198,
+    "sha256": "555ce988c2c0cb1ffe9557fe1e9694d7cf28a442d2b8c114f535d52e85eddd49"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: idle_timeout\nupdated: '2026-05-14T14:13:36+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：仅 westd-39279:cuda:0 和 westd-39279:cuda:1，gpu_ids=[cuda:0, cuda:1]\n- plan013 vs plan017 公式结构不同，不可简化为 \"additive vs convex\" 对照（D027）\n- ISR β=0.1 hacking rate 仍达 74%——论文不可标 \"no hacking\"，应标 \"lowest hacking rate\"（D038）\n- β=0.1 3-seed 未全部出齐前，论文统计用单 seed 数据须标注 preliminary\n- conda 环境，不是 venv：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-39279，account=root，工作目录 /root/solver-trace-ablation\n- Python：/root/miniconda3/bin/python3（conda base 环境）\n- 模型：Qwen3-4B（HF 缓存位置未确认，训练脚本自动加载）\n- 训练数据：/root/solver-trace-ablation/data/train_500_seed42.jsonl（500 条）\n- 评估数据：/root/solver-trace-ablation/data/proofwriter_fol_100.jsonl（100 条）\n- Checkpoint 输出：/root/autodl-tmp/outputs/（各实验子目录）\n- 训练日志：~/runs/solver-trace-ablation/（各实验 .log 文件）\n- 活跃进程：无（两卡均空闲）\n- Cron：无活跃 cron（reconcile 结果为 0）\n\n### 3. 📊 当前状态\n刚收到 plan002-additive-b01-s43 训练完成回调（ANALYZING 状态）。已派两个 Worker：\n- **Worker 1**（analysis:plan002-b01-s43）：SSH 跑 eval_sta.py + taxonomy 分析 + 更新 registry → 等回调\n- **Worker 2**（prep:plan006-prolog-readiness）：检查 Prolog 数据/配置/脚本是否就绪 → 等回调\n\nRegistry 状态：\n- ANALYZING 1：plan002-additive-b01-s43（等 Worker 1 完成分析后转 DONE）\n- QUEUED 2：plan006-prolog-exec-s42, plan006-prolog-sta-s42（已批准，等 Worker 2 确认就绪后 allocate_and_submit）\n- PENDING 2：plan018-additive-random-b01-s43, plan018-additive-random-b01-s44（审批卡片已发，等 Director 批准）\n- PREPARING 4：plan006-prolog-sta-s43, plan006-prolog-sta-s44, plan006-prolog-exec-s43, plan006-prolog-exec-s44\n\n已向 Director 汇报当前状态（GPU 空闲 + 分析中 + 审批请求）。\n\n### 4. 📋 待办\n- Worker 1 回调（s43 分析完成）→ 读 metrics，按 on-experiment-done 流程处理：更新 report.md，计算 3-seed mean±std（s42 PR=0.81/ISR=0.337, s44 PR=0.89/ISR=0.803, s43=?），汇报 Director，文献联动\n- Worker 2 回调（plan006 就绪检查）→ 就绪则立即 allocate_and_submit plan006-prolog-exec-s42 到 cuda:0 + plan006-prolog-sta-s42 到 cuda:1；未就绪则派 Worker 准备 Prolog 数据/配置\n- plan018-random s43/s44 审批通过 → 排队等 GPU（plan006 跑完后接力提交）\n- s43 conclusion=negative → 按 red-section 产出 Framing 调整提案，禁止默默跑下一个\n- 3-seed 全部出齐 → Table 1 + Table 2 定稿，论文写作启动评估\n\n### 5. 🎯 战略上下文\n- **核心 Framing**（D033/D034/D035）：Goodhart 主线 — ISR 在低剂量(β=0.1)有效、高剂量(β=0.3)崩塌，展示经典 Goodhart 效应。ISR 诊断保留为 Claim 1，Goodhart 剂量效应为 Claim 2，跨 logic type 泛化为 Claim 3\n- **DDL**：2026-05-25（剩 11 天），时间充裕（剩余 GPU 需求 ~12h，可用 528 GPU·h）\n- **关键证据链**：β=0.1 ISR 3.2x > random（s42 已验证），s43/s44 多 seed 验证中，Prolog 跨 logic type 尚未开始\n- **易错点**：s44 的 ISR=0.803 异常高（s42 仅 0.337），存在大 seed 方差。3-seed std 可能很大——汇报时不要只说 mean，必须附 std 并讨论 variance 含义\n- **D040 分类**：plan002-b01-s44 已重分类为 \"new hacking pattern (semantic drift)\"，ISR=0.803 中 65% 是 ISR=1.0（可能是 fake high），注意不要将其直接等同于 genuine structural improvement\n- **plan018-random-s42 是 negative**：random β=0.1 的 ISR=0.104 远低于 ISR-guided 的 0.337，但 conclusion 标了 negative（因为 random 组表现差是预期的？实际对 ISR 信号的结构价值是正面证据）。这个 negative 标注可能有歧义，下一个 \"你\" 不要因此触发 red-section 流程——D031/D032 已确认这是支持 ISR 的证据\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5-1778768194.md"
+}

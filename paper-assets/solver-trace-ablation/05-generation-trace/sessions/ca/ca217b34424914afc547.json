@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "ca217b34424914afc547",
+  "project": "solver-trace-ablation",
+  "kind": "worker",
+  "title": "analyze sweep random b005 s43",
+  "task_key": "worker_analyze_sweep-random-b005-s43_20260517T105210",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_sweep-random-b005-s43_20260517T105210.log",
+    "occurrence": 1,
+    "bytes": 753235,
+    "sha256": "87463e170d6db0ebf45de3e9212fc877429fb092c3aa741f8b36dacb99d970ba"
+  },
+  "statistics": {
+    "messages": 476,
+    "user_turns": 0,
+    "tool_calls": 203,
+    "roles": {
+      "log": 1,
+      "system": 10,
+      "record": 1,
+      "assistant": 56,
+      "tool_call": 203,
+      "tool_result": 203,
+      "result": 2
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 476,
+      "chunks": [
+        {
+          "path": "ca217b34424914afc547-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "ca217b34424914afc547-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "ca217b34424914afc547-part-0003.json",
+          "message_count": 116
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analyze-sweep-random-b005-s43.md"
+}

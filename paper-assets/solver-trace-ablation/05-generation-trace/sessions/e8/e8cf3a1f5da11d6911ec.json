@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e8cf3a1f5da11d6911ec",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "fix critical gpu cleanup resubmit",
+  "task_key": "worker_fix_critical-gpu-cleanup-resubmit_20260516T040520",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_critical-gpu-cleanup-resubmit_20260516T040520_result.json",
+    "occurrence": 1,
+    "bytes": 988,
+    "sha256": "df974e1b863aec2e3a88116f6090173e87895574ecd08dcd1c39eb903b4e02d0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Step 1-2: GPU 清理\n- GPU 0: 16293 MiB → 0 MiB ✓ (kill 631194)\n- GPU 1: 80077 MiB → 0 MiB ✓ (kill 626802)\n- 额外残留: PID 631803 (GPU 0, 重新出现) → kill → 0 MiB ✓\n- 额外残留: PID 632790 (eval_sta.py on GPU 0) → kill → 0 MiB ✓\n\n## Step 3: 模型一致性\n- 之前实验模型: Qwen3ForCausalLM (sweep_isr_b005_s42 checkpoint)\n- config yaml 模型: `/root/autodl-tmp/models/Qwen3-4B`\n- 一致性: **MATCH** ✓\n- 修正动作: 无\n\n## Step 5: 提交前验证\n- GPU 0: 0 MiB ✓\n- GPU 1: 0 MiB ✓\n\n## Step 6-7: 提交\n- cuda:0 sweep-isr-b02-s43: PID=633515, tmux=✓\n- cuda:1 sweep-isr-b02-s42: PID=633657, tmux=✓\n- **注意**: 添加了 `--no_wandb` 参数（服务器 wandb API key 缺失，与之前 worker 处理方式一致）\n\n## Step 8: 30s 后验证\n- cuda:0: 80719 MiB, 94% utilization, PID 633515 alive ✓\n- cuda:1: 78887 MiB, 94% utilization, PID 633657 alive ✓\n- **结论: 双卡满载正常** ✓"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-critical-gpu-cleanup-resubmit.md"
+}

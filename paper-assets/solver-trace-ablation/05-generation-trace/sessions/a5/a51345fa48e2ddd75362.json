@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a51345fa48e2ddd75362",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_17_1778940603.md",
+  "task_key": "loop_17_1778940603",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_17_1778940603.md",
+    "occurrence": 1,
+    "bytes": 3556,
+    "sha256": "848c5be4ecf985ef9b92c4ce9403296292342babf6250ef998e89d8d79fa48a6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 17\nreason: idle_timeout\nupdated: '2026-05-16T14:09:59+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单仅 `westd-39279:cuda:0` 和 `westd-39279:cuda:1`，无其他可用\n- 8B 全参 GRPO 已确认不可行（4 次 OOM），不要再尝试——D108 决策已定\n- 1.7B 两个 pilot 结论均为 negative（exec=0% genuine, ISR=100% H9），但这是**正面叙事素材**（\"小模型也 hack\"），不是失败——D109 framing 约束\n- Paper DDL: ARR May 25, 2026（剩 9 天），不能再开长周期新实验\n- submit_training_job 命令必须自带 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base &&` 前缀（服务器用 conda，非 venv）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-39279，工作目录 `/root/solver-trace-ablation`\n- Python：`/root/miniconda3/bin/python`（conda base 环境）\n- 模型：`/root/autodl-tmp/models/` 下有 Qwen3-4B / Qwen3-1.7B / Qwen3-8B\n- 数据：`/root/solver-trace-ablation/data/train_500_seed42.jsonl`（500 examples）\n- Eval 数据：`proofwriter_fol_100.jsonl`\n- Checkpoints：`/root/autodl-tmp/outputs/` 下各实验目录\n- W&B：项目 `solver-trace-ablation`\n- HF cache：`/root/autodl-tmp/.hf_cache`\n- 活跃进程：无（0 RUNNING，2 GPU 空闲）\n- Cron：reconcile 返回 0 active\n\n### 3. 📊 当前状态\n**刚完成**：w2-qwen3-1.7b-exec-pilot（negative, 0% genuine）和 w2-qwen3-1.7b-isr-pilot（negative, H9 新模式 100%）。D110 确认 H9 Ex Falso Quodlibet 为新型 hacking。\n\n**Registry**：114 实验，0 RUNNING，9 PREPARING，2 QUEUED。全部 GPU 空闲。\n\n**等待中**：\n- 无 Worker 回调\n- 无 Cron 活跃\n- 无 Director 决策等待（D108-D110 已确认）\n\n**关键缺口**：2 GPU 空闲 = 失职状态。ROADMAP P0 已完成（1.7B pilot），应推进 P1（1.7B eval 已在 pilot 中完成）或 P4（5-seed 扩展）或论文写作任务。\n\n### 4. 📋 待办（条件触发式）\n- Director 指令到达 → 按指令执行，开头带 `[资源]` 行汇报\n- 新 session 启动 → 立即向 Director 汇报：1.7B 双 pilot 完成 + H9 发现 + GPU 空闲，请求下一步指令（是提交 5-seed 扩展？还是全力写论文？）\n- 若 Director 批准 5-seed → spawn worker 提交 `sweep-random-b01-s45/s46`（QUEUED 状态，已有配置）\n- 若 Director 指示写论文 → spawn writer workers 并行处理 ROADMAP 中的写作任务清单（Abstract 精简、dose-response 更新、H9 写入 taxonomy 等）\n- 1.7B H9 结果需要写入论文 → 更新 hacking taxonomy 从 8 modes 到 9 modes，experiments.tex 加 1.7B 跨 scale 段落\n\n### 5. 🎯 战略上下文\n**核心结论链**：\n- D106: β 剂量越高 hacking 越严重，β=0.2 最大 exploitation，genuine 是 seed-dependent 残留\n- D108: 8B 不可行 → 1.7B 替代作为跨 scale 证据\n- D109: 1.7B 结果 framing = \"小模型也 hack\"（强化普遍性 claim）\n- D110: H9 Ex Falso Quodlibet 是 1.7B ISR 独有的新 hacking 模式（注入矛盾前提实现 ex falso 证明）\n\n**易错点**：\n- 不要把 1.7B negative 当作项目失败——D109 明确这是正面叙事（universality across scale）\n- H9 只在 1.7B ISR 出现，4B 没有——不能说 \"all models exhibit H9\"\n- 论文 hacking taxonomy 目前写的是 8 modes，需要更新为 9（加 H9）\n- 5-seed 扩展实验（QUEUED/PREPARING）是为了 tighter CI，但离 DDL 只有 9 天，Director 可能判断不值得跑\n- 当前 0/2 GPU 利用率，新 session 第一优先级是恢复 GPU 饱和或确认 Director 允许全力写论文\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-17-1778940603.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5543a0ec02d7db5138da",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops server status check",
+  "task_key": "worker_ops_server-status-check_20260513T233559",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_server-status-check_20260513T233559_result.json",
+    "occurrence": 1,
+    "bytes": 1296,
+    "sha256": "7964736f10cd9fd7cf75e3ae5e37c7af423a320acd4e20f7681e42b2d1b332c3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇总\n\n### plan001-exec-only-s42-r2 (cuda:0)\n- **状态**: 运行中，PID 84901，已运行 ~56 分钟\n- **进度**: 434/500 步 (87%)\n- **最新 metrics** (step 434): reward_mean=0.75, prove_rate=0.75, parse_rate=1.0\n- **趋势**: 大部分步骤 reward_mean=1.0，偶尔降到 0.625-0.875，模型已收敛\n- **Checkpoints**: checkpoint-350, checkpoint-400\n- **预计**: 约 10-15 分钟完成\n\n### plan005-sta-low-s42 (cuda:1)\n- **状态**: 运行中，PID 85795（实际训练进程），已运行 ~54 分钟\n- **进度**: 369/500 步 (74%)\n- **最新 metrics** (step 369): reward_mean=0.92, prove_rate=1.0, isr_mean=0.19, parse_rate=1.0\n- **趋势**: prove_rate 多在 0.5-1.0 间波动，reward 因 STA 组件 (isr_mean) 较低而低于 plan001\n- **Checkpoints**: checkpoint-300, checkpoint-350\n- **预计**: 约 20-25 分钟完成\n\n### GPU\n| GPU | 利用率 | 显存 |\n|-----|--------|------|\n| 0 | 82% | 80.3/97.9 GB |\n| 1 | 91% | 80.4/97.9 GB |\n\n### 僵尸进程\n6 个 swipl 相关进程（PID 95932-96445）已全部 kill，释放了 2 核 CPU。\n\n### tmux sessions\n- `plan001-exec-only-s42-r2` — 运行中\n- `plan005-sta-low-s42` — 运行中\n\n### 异常\n无异常。两个实验稳定推进中，预计 plan001 先完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-server-status-check.md"
+}

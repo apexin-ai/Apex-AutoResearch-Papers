@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "b967f6881b6f68c77a1b",
+  "project": "solver-trace-ablation",
+  "kind": "worker",
+  "title": "analysis 4b dose response table",
+  "task_key": "worker_analysis_4b-dose-response-table_20260516T110236",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_4b-dose-response-table_20260516T110236.log",
+    "occurrence": 1,
+    "bytes": 709437,
+    "sha256": "38725738bb62fd59fc2526834551f14be65fb0013c6d0170f1ab7aa5ecfceb88"
+  },
+  "statistics": {
+    "messages": 156,
+    "user_turns": 0,
+    "tool_calls": 63,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 26,
+      "tool_call": 63,
+      "tool_result": 63,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 156,
+      "chunks": [
+        {
+          "path": "b967f6881b6f68c77a1b-part-0001.json",
+          "message_count": 125
+        },
+        {
+          "path": "b967f6881b6f68c77a1b-part-0002.json",
+          "message_count": 31
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-4b-dose-response-table.md"
+}

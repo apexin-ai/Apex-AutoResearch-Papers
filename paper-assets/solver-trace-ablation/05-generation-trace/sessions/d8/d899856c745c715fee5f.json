@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "d899856c745c715fee5f",
+  "project": "solver-trace-ablation",
+  "kind": "worker",
+  "title": "analysis exp1 isr b03 s44 r2 retry",
+  "task_key": "worker_analysis_exp1-isr-b03-s44-r2-retry_20260515T001926",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp1-isr-b03-s44-r2-retry_20260515T001926.log",
+    "occurrence": 1,
+    "bytes": 761338,
+    "sha256": "dfc2babb0501f60ebb7b14609fd0e0b7fff5caeb0f24430ef5ae7794e454043f"
+  },
+  "statistics": {
+    "messages": 442,
+    "user_turns": 0,
+    "tool_calls": 178,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 82,
+      "tool_call": 178,
+      "tool_result": 178,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 442,
+      "chunks": [
+        {
+          "path": "d899856c745c715fee5f-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "d899856c745c715fee5f-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "d899856c745c715fee5f-part-0003.json",
+          "message_count": 82
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-exp1-isr-b03-s44-r2-retry.md"
+}

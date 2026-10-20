@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e5f39be7d620109de4f9",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "investigate random data provenance",
+  "task_key": "worker_investigate_random-data-provenance_20260515T141005",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_investigate_random-data-provenance_20260515T141005_result.json",
+    "occurrence": 1,
+    "bytes": 4573,
+    "sha256": "3f3d08fc2cab68f59275cd97a0ea82e02b34af0aa4d979a67b698d6df22998aa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Here's the full report:\n\n---\n\n## plan018-random-b01-s42\n- **output_dir**: `plan018_additive_random_b01_s42/` → **DELETED**\n  - Alternative: `_1000/` (16MB, metadata only) and `_1000_r3/` (16MB, metadata only) exist but are **different model runs**\n- **checkpoint**: **NOT_FOUND** — no .safetensors in any dir (all 3 dirs are 16MB = tokenizer + config only, weights stripped)\n- **eval_sta_results.json**: **EXISTS** — standalone at `/root/autodl-tmp/outputs/eval_sta_plan018_additive_random_b01_s42.json`\n  - prove_rate=0.79, mean_isr=0.1038, n_proved=79, model_path points to original (deleted) dir\n  - Contains full per-sample STA details (100 problems)\n- **_1000/eval/sta_results.json**: EXISTS but **WRONG MODEL** — degenerate collapse (prove_rate=1.0, ISR=0.3333 for ALL samples, all formalizations are `∀x (Person(x, \"Google\", x))`)\n- **_1000_r3/eval_results.json**: EXISTS but **DIFFERENT MODEL** — prove_rate=0.97, mean_isr=0.6892\n- **H7 taxonomy files**: **NOT_FOUND**\n- **H8 audit file**: **NOT_FOUND** (the only H8 file on disk is for plan002/ISR side)\n- **Backup**: EXISTS in both `eval_results_backup/` and `eval_backups/` — same content as standalone eval_sta file\n- **genuine_count 可验证**: **PARTIALLY** — eval file has per-sample STA data, but no H7/H8 classification file on disk. Registry's genuine_count=23 cannot be independently reproduced from files alone (needs rerunning H7/H8 taxonomy pipeline on the eval file).\n\n## plan018-random-b01-s43-r2\n- **output_dir**: **NOT_FOUND**\n- **checkpoint**: **NOT_FOUND**\n- **eval_sta_results.json**: **NOT_FOUND**\n- **eval_results.json**: **NOT_FOUND**\n- **H7 taxonomy files**: **NOT_FOUND**\n- **Backup**: **NOT_FOUND** (nothing in either backup dir)\n- **Training log only**: `/root/runs/solver-trace-ablation/plan018-additive-random-b01-s43-r2.log` — training completed 500 steps, final reward stats: prove_rate=0.5925, mean_isr=0.0988 (⚠️ training log metrics, NOT eval_sta — per C004 不可用于跨 run 对比)\n- **Config**: `/root/solver-trace-ablation/configs/plan018_random_b01_s43.yaml`\n- **genuine_count 可验证**: **NO** — zero eval artifacts on disk. Registry's genuine_count=6 has no supporting evidence.\n\n## plan018-random-b01-s44\n- **output_dir**: **NOT_FOUND**\n- **checkpoint**: **NOT_FOUND** (registry 记录的 `checkpoint-500` 已删除)\n- **eval_sta_results.json**: **NOT_FOUND**\n- **eval_results.json**: **NOT_FOUND**\n- **H7 taxonomy files**: **NOT_FOUND**\n- **Backup**: **NOT_FOUND**\n- **Training log only**: `/root/runs/solver-trace-ablation/plan018-additive-random-b01-s44.log` — training completed 500 steps, final reward stats: prove_rate=0.64675, mean_isr=0.08092 (training log only)\n- **Config**: `/root/solver-trace-ablation/configs/plan018_random_b01_s44.yaml`\n- **genuine_count 可验证**: **NO** — no eval file, no genuine_count in registry (18 is pooled 推算值), no checkpoint to re-eval.\n\n## ISR 侧 eval 文件\n- **plan002 ISR β=0.1 s42**: `/root/autodl-tmp/outputs/plan002_additive_b01_s42_1000/eval/eval_sta_results.json` — prove_rate=0.90, mean_isr=0.7892\n  - Backup: `/root/autodl-tmp/eval_results_backup/plan002_additive_b01_s42_eval_sta_results.json`\n  - H8 audit: `/root/autodl-tmp/outputs/h7_classification/plan002_additive_b01_s42_h8.json` — genuine_count=14\n  - Model weights: **NOT_FOUND** (dir 16MB, metadata only)\n- **plan002 ISR β=0.1 s43/s44**: **NOT_FOUND** — no files anywhere\n- **plan018 ISR (non-random) dirs**: **NOT_FOUND**\n\n## 备份目录状态\n| 目录 | 文件数 | 内容 |\n|------|--------|------|\n| `eval_results_backup/` | 3 | plan002_s42, plan016_s42, plan018_random_s42 |\n| `eval_backups/` | 1 | plan018_random_s42 (same content) |\n\n## 磁盘\n47G / 250G used (19%)\n\n---\n\n## 结论\n\n| 实验 | Eval 可溯源 | Checkpoint 可重评 | genuine_count 来源 |\n|------|------------|-------------------|-------------------|\n| s42 | **YES** — standalone eval_sta file exists | **NO** — weights deleted | Registry only (需重跑 H7/H8 pipeline 验证) |\n| s43-r2 | **NO** — 完全丢失 | **NO** — 完全丢失 | Registry only, 无任何证据 |\n| s44 | **NO** — 完全丢失 | **NO** — 完全丢失 | 推算值, 无原始数据 |\n\n**Critical**: s43-r2 和 s44 的 eval 数据、checkpoint 全部丢失，无法溯源也无法重评。论文中使用的 genuine_count（s43=6, s44=18推算）仅存于 registry 记录中。如需论文数据可验证，这两个实验必须重训+重评。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/investigate-random-data-provenance.md"
+}

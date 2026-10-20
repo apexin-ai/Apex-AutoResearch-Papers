@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3b9a7c06280135679709",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code verify num generations",
+  "task_key": "worker_code_verify-num-generations_20260516T030412",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_verify-num-generations_20260516T030412_result.json",
+    "occurrence": 1,
+    "bytes": 1454,
+    "sha256": "ac24417800d7163696cd80686e961b99470d18d7bfc9bd67fe63da238ecd7364"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 实际步数\n- **sweep-isr-b01-s45**: 100 步（完成）\n- **sweep-isr-b005-s42**: 100 步（完成）\n\n### 实际 K 值：**K=4**（两个实验均是）\n\n判据：所有 prove_rate 值都是 1/8 的整数倍，从未出现 1/16 的值（如 0.0625、0.1875、0.3125）。\n\nbatch_size=2 时，prove_rate 粒度 = 1/(2K)：\n- K=4 → 粒度 1/8 = 0.125 ✓（与观测吻合）\n- K=8 → 粒度 1/16 = 0.0625 ✗（从未观测到）\n\n### prove_rate 分布\n\n**sweep-isr-b01-s45** (β=0.1) — 出现的非零值：\n\n| prove_rate | 对应 | 示例步 |\n|---|---|---|\n| 0.125 = 1/8 | 1/8 proved | 73, 80, 86, 87, 89 |\n| 0.25 = 2/8 | 2/8 proved | 75 |\n| 0.375 = 3/8 | 3/8 proved | 76 |\n| 0.5 = 4/8 | 4/8 proved | 20, 71, 72, 79, 82, 85, 94, 95 |\n| 0.875 = 7/8 | 7/8 proved | 96 |\n\n大量步数 prove_rate=0（前 19 步全是 0），整体训练信号很弱。\n\n**sweep-isr-b005-s42** (β=0.05) — 出现的非零值：\n\n| prove_rate | 对应 | 示例步 |\n|---|---|---|\n| 0.125 = 1/8 | | 1, 9, 12, 75, 80, 83, 87, 89, 92 |\n| 0.25 = 2/8 | | 71, 85, 96 |\n| 0.375 = 3/8 | | 3, 79, 81, 95 |\n| 0.5 = 4/8 | | 5, 19, 86, 90, 93, 98, 100 |\n| 0.625 = 5/8 | | 11, 73, 76, 82, 94 |\n| 0.75 = 6/8 | | 20 |\n\nb005-s42 的 prove_rate 分布更丰富，训练信号明显好于 b01-s45。\n\n**结论：K=8 配置未生效，被 argparse 默认值 K=4 覆盖。** 两个实验实际都以 K=4 运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-verify-num-generations.md"
+}

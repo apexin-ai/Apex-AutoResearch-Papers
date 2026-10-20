@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a496c9237fb4a8b5df7d",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_10_1778817575.md",
+  "task_key": "loop_10_1778817575",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_10_1778817575.md",
+    "occurrence": 1,
+    "bytes": 4469,
+    "sha256": "7ebd86c139edb071d4da0afab983c4eaf4bbd89bebf9c8c68713620398679401"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: idle_timeout\nupdated: '2026-05-15T03:59:23+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单仅 `westd-39279:cuda:0` 和 `westd-39279:cuda:1`，无其他设备可用\n- 磁盘 240G/250G (96%)，所有 output_dir 必须放 `/root/autodl-tmp/outputs/`，训练必须 `log_completions=False` + `save_total_limit=1`，eval 后立即清理 checkpoint\n- submit_training_job 命令必须完整包含 `bash -c \"export CUDA_VISIBLE_DEVICES=N && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && ...\"`——缺任何一段都会导致进程秒死\n- kill_job 只杀 tmux wrapper PID，必须 SSH 验证 Python 子进程也已终止\n- D066: D060 'Goodhart instability' 叙事变更已暂停，**不要在论文中使用 D060 的 framing**，等 proofwriter 验证结果\n- s44 ISR (exp1-isr-b03-s44-r2): Reviewer 已核实为 query-as-fact gaming（非 genuine），H7 functional=97.9%\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-39279，2× RTX PRO 6000 Blackwell 94GB\n- **工作目录**: `/root/solver-trace-ablation/`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，非 venv）\n- **环境激活**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **CUDA**: 12.8, PyTorch 2.10.0+cu128\n- **模型**: Qwen3-4B（ModelScope 下载，7.6GB）\n- **Solvers**: Prover9 (LADR 源码编译), SWI-Prolog 8.4.2 (`/usr/bin/swipl`), Z3 4.16.0.0\n- **数据盘**: `/root/autodl-tmp/` 250GB（当前 ~96% 占用）\n- **活跃进程**: exp1-random-b03-s43-r4 (PID 117566, cuda:0, cron 监控中)\n- **cuda:1**: 空闲\n\n### 3. 📊 当前状态\n**RUNNING**: exp1-random-b03-s43-r4（random baseline β=0.3 seed43 第4次重试，cuda:0）——这是 D067/D068 checkpoint 误删事故后的重训。cron 确认 pid=117566 仍在运行。\n\n**最近完成**:\n- exp1-random-b03-s44-r2: DONE(success), 2026-05-15 03:07\n- exp1-isr-b03-s43-r3: DONE(success), 2026-05-15 02:39\n- exp1-random-b03-s43-r3: DONE(failed), 2026-05-15 02:37\n\n**全局**: 65 实验（success 12 / negative 18 / failed 18+3 / killed 2+2 / running 1）。3 个 Claims 全部闭环。\n\n**Workers**: 0 个运行中。上一轮 session 中 Method + Experiments 章节写作 Workers 已完成或终止，当前无活跃 Worker。\n\n**等待中**: 无 Worker 回调待处理。exp1-random-b03-s43-r4 的 cron 回调将在训练完成后触发。\n\n### 4. 📋 待办（条件触发式）\n- exp1-random-b03-s43-r4 cron 回调到达 → spawn Worker 做 eval_sta.py 分析 → 更新 registry → 汇报 Director。这是 random s43 的最后重试，成功后 β=0.3 三 seed 数据完整\n- β=0.3 三 seed 数据全部就绪（s42 已有, s43 等本次, s44-r2 已 success） → 重新计算 mean±std → 更新论文 §4.3 数据表\n- 论文写作恢复：writing_plan.yaml 已 approved (2026-05-14)，需 spawn Workers 继续 Method / Experiments / Discussion 章节\n- cuda:1 当前空闲 → 若有补充实验需求可立即提交；否则汇报 Director 确认是否需要写作期间追加实验\n- D066 待决：proofwriter 验证结果到达后 → 决定是否恢复 D060 Goodhart instability 叙事\n\n### 5. 🎯 战略上下文\n**项目核心结论**: STA/ISR 作为 GRPO neurosymbolic formalizer 的诊断工具 + Goodhart's Law 案例研究。三个 Claims: (1) STA 诊断能力, (2) ISR 无结构优势/Goodhart, (3) Prolog 跨逻辑泛化（全 gaming）。Hacking taxonomy 7 种模式。\n\n**关键决策链**:\n- D057: Claim 2 闭环——random 与 ISR 无差异\n- D059: Claim 3 闭环——Prolog STA 3/3 gaming\n- D060→D066: β=0.3 叙事从 \"PR collapse\" 重写为 \"cross-seed Goodhart instability\"，但因 eval 使用了错误测试集 (D062/D063) 而暂停，等 proofwriter 验证\n- D067/D068: s43 checkpoint 误删 → 重训已覆盖（ISR r3 成功，random r4 在跑）\n\n**易错点**:\n- exp1 系列的 eval 曾使用错误测试集 (test_100.jsonl vs proofwriter_test.jsonl)，D062/D063 标记了此问题。引用 exp1 数据时必须确认用的是正确测试集\n- β=0.3 三 seed 表现高度异质（s42 PR 崩塌 18%, s43 中等 gaming, s44 完全 H7 gaming），不能简单取均值——论文需报告各 seed 独立结果 + 讨论 instability\n- plan013 vs plan017 公式结构不同，不可简化为 \"additive vs convex\" 对照 (D027)\n- premise-count-matched 1.06x 是定论，2.4x 已作废 (D051)\n- DDL 2026-05-25，剩 10 天，论文初稿尚未完成\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10-1778817575.md"
+}

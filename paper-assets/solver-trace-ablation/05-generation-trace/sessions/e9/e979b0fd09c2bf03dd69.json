@@ -1,0 +1,1848 @@
+{
+  "schema_version": "1.0",
+  "id": "e979b0fd09c2bf03dd69",
+  "project": "solver-trace-ablation",
+  "kind": "conversation",
+  "title": "cron hook exp1 isr b03 s42 1000 r2 20260516T004321 329373",
+  "task_key": "cron_hook_exp1-isr-b03-s42-1000-r2_20260516T004321_329373",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/archive/cron_hook_exp1-isr-b03-s42-1000-r2_20260516T004321_329373.jsonl",
+    "occurrence": 1,
+    "bytes": 87380,
+    "sha256": "7de46f8cf92b45dad1884d53276eec68a5e990ebd169a7918c7627e69e77fc87"
+  },
+  "statistics": {
+    "messages": 93,
+    "user_turns": 2,
+    "tool_calls": 45,
+    "roles": {
+      "user": 2,
+      "tool_call": 45,
+      "tool_result": 44,
+      "assistant": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T21:19:59.485581+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[HANDOFF] 你是 Main Agent，这是 Loop #14。\n\n## 上一轮交接 (task_context)\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：仅 `westd-39279:cuda:0` 和 `westd-39279:cuda:1`，禁止使用其他设备\n- D095 Narrative A 已批准生效——H7a 是 GRPO-general（ISR amplified 5x），H7b 是 ISR-specific。**禁止**回退到旧 framing（H7 = ISR-specific）\n- Genuine rate ISR 6.06% vs Random 9.54%, p=0.182 **不显著**——论文中不可 claim genuine 有显著差异\n- D051 定论：premise-count-matched 1.06x，**禁止**引用旧 2.4x 倍率\n- Random H7 pooled 13.7% 由 s43-r3 单 seed 贡献（38.3%），s42/s44-r2 = 0%——论文必须同时报 per-seed 和 pooled，不可用简单 \"70.6% vs 13.7%\" 对比\n- H7b obfuscated tautology（ISR s44 的 12 个样本）是 meta-Goodhart 直接证据，分类以 classify_h7.py D086 版本为 ground truth\n- genuine = proved − |H7 ∪ H1 ∪ H8|（集合排除，非简单减法），以 classify_h7.py 实现为准\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-39279（2 × RTX PRO 6000 96GB），当前 2/2 空闲\n- **工作目录**: `/root/solver-trace-ablation`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，非 venv）\n- **环境激活**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型/数据**: 均在服务器 `/root/autodl-tmp/` 下（具体路径见各实验 registry spec）\n- **W&B**: 项目内实验有 wandb 日志\n- **活跃进程**: 无（0 running experiments, 0 crons, 0 workers）\n- **论文源码**: `projects/solver-trace-ablation/paper/` 目录，TeX 编译环境已就绪（17页 PDF，0 errors）\n- **Provenance**: 36/36 完成\n\n### 3. 📊 当前状态\n**我刚完成的**：\n- D093→D094→D095 决策链闭环：Random 3-seed 数据全部到位，H7 重新分类为 H7a (GRPO-general) + H7b (ISR-specific)，Pooled 统计检验完成，Narrative A 获 Director 批准\n- paper_framing.md 已按 D095 完成全文改写（含数据精度修正）\n- Provenance 36/36 补全\n\n**Registry 状态**：86 实验全部完成（success 26 / negative 28 / failed 26），0 RUNNING，0 PREPARING\n\n**等待中**：无 Worker 回调，无 Cron，无 pending Director 决策\n\n**当前阶段**：✍️ Writing，DDL 2026-05-25（剩 10 天）\n\n### 4. 📋 待办（条件触发式）\n- 新 session 启动 → TeX 全量数据同步：spawn Paper Agent Worker 将 paper_framing.md 中所有更新数据（D095 pooled stats、per-seed breakdown、H7a/H7b 分类、Fisher p 值）同步到 `experiments.tex` 和相关 TeX 文件\n- TeX 同步完成 → 启动全文写作 Pipeline：按 writing_plan.yaml 逐章节 spawn Writer Workers（优先 Results/Discussion 因为数据最新）\n- 论文草稿完成 → spawn Reviewer Worker 做全文一致性审查（特别关注 D095 Narrative A 的 H7a/H7b 叙述、genuine n.s. 措辞、per-seed vs pooled 报告）\n- Director 如果要求新实验 → GPU cuda:0/cuda:1 空闲可用，但当前无计划内实验\n- 如收到 `[FRAMING APPROVED]` 相关后续 → 按 framing-reaudit skill 做全文 re-audit（D095 已批准，reaudit 应在 TeX 同步时一并完成）\n\n### 5. 🎯 战略上下文\n- **项目定位**：STA/ISR 作为 GRPO neurosymbolic formalizer 的诊断工具 + Goodhart's Law 案例研究。Target: EMNLP 2026 Main（ARR May 25 DDL）\n- **核心结论链**：\n  - D033→D043→D051: ISR 无结构优势（premise-count-matched 1.06x）\n  - D057→D095: Narrative A — H7a GRPO-general (ISR amplified 5x, p=1.3×10⁻³⁹), H7b ISR-specific (meta-Goodhart); genuine n.s.\n  - D059: Prolog 跨逻辑泛化 3/3 gaming\n  - D079: SFT 零 hacking（对照组）\n  - D089→D090: Exec-only 1000步 hacking mode seed-dependent\n- **最容易判断错的事**：\n  1. H7a 不是 ISR-specific 也不是 additive-specific——它是 GRPO 通用现象，ISR 只是放大器。exec-only s43 也 100% H7a\n  2. Random s43-r3 有 38.3% H7，不要假设 Random 没有 H7\n  3. ISR s44 的 \"genuine\" 全是 H7b obfuscated tautology，genuine=0%（不是表面的 12 个 genuine）\n  4. 写作阶段 GPU 空闲是正常的（无剩余实验），不要因为 \"GPU 空闲=失职\" 规则而强行找实验跑\n- **时间压力**：DDL 还剩 10 天，全部精力应投入论文写作，不要开新实验线\n\n## 可查的历史\n前 206 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。\n完整聊天归档可用 `recall_session_history(\"关键词\")` 搜索。\n\n## 第一个动作要求\n1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）\n2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T21:20:09.432206+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T21:20:09.482948+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T21:20:13.053324+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'RUNNING'}",
+              "project": "solver-trace-ablation"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T21:20:13.506451+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3438}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 453
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T21:20:13.506940+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'PREPARING'}",
+              "project": "solver-trace-ablation"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T21:20:13.507194+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T21:20:14.031775+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3079}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 524
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T21:20:14.032216+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 0, \\\"results\\\": []}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 525
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T21:20:14.032487+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "file": "report.md"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T21:20:14.291205+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-15\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n（无——所有 86 实验已完成）\\\\n\\\\n## 待处理\\\\n- D095 Narrative A 已批准 → paper_framing.md 全文改写中\\\\n- 论文写作（DDL 2026-05-25，剩 10 天）\\\\n\\\\n## 近期结论\\\\n- **plan018-additive-random-b01-s44-r2** (negative): Random β=0.1 s44 重训完成，PR=89%, H1=73 (82.0%), H8=16 (18.0%), genuine=6 (6.7%), H7=0\\\\n- **plan018-additive-random-b01-s43-r3** (negative): Random β=0.1 s43 重训完成，H7a=38.3%（→ D093: Random H7 ≠ 0%）\\\\n  [d093_h7_subtype_analysis](/api/workspace-files/projects/solver-trace-ablation/artifacts/plan018-additive-random-b01-s43-r3/data/d093_h7_subtype_analysis.txt)\\\\n- **plan002-additive-b01-s43-r2** (完成): ISR β=0.1 s43 重训完成，溯源补全\\\\n- **exp1-random-b03-s44-r2** (success): —\\\\n\\\\n## 趋势\\\\n成功 26 / 负向 28 / 失败 26 / 共 86\\\\ngenuine_count: 0 →（近 3 次 success）\\\\ngenuine_rate: 0 →（近 3 次 success）\\\\n\\\\n## 下一步\\\\n1. [x] Pooled 统计量: H7 p=1.3×10⁻³⁹, Genuine p=0.182 (n.s.)\\\\n2. [x] D095 Narrative A 批准\\\\n3. paper_framing.md D095 全文改写（Worker 执行中）\\\\n4. TeX 全量同步 + 编译\\\\n5. Provenance 35/36 查缺补漏\\\\n6. Paper Agent 启动\\\\n\\\\n## 资源状态\\\\nwestd-39279: 2 × RTX PRO 6000 96GB，2/2 空闲，无剩余实验\\\\n\\\\n## 告警\\\\n- sta-phase1-exec-only: 训练失败 — unknown\\\\n- sta-phase1-exec-sta: 训练失败 — unknown\\\\n- sta-phase1-exec-only-r2: 训练失败 — unknown\\\\n- sta-phase1-exec-sta-r2: 训练失败 — unknown\\\\n- sta-phase1-exec-only-r3: 训练失败 — unknown\\\\n- sta-phase1-exec-sta-r3: 训练失败 — unknown\\\\n- plan001-exec-only-s42: 训练失败 — unknown\\\\n- plan001-exec-only-s42-r3: 训练失败 — unknown\\\\n- plan001-exec-only-s43: 训练失败 — unknown\\\\n- plan013-random-reward-s42: 训练失败 — unknown\\\\n- plan013-random-reward-s42-r2: 训练失败 — unknown\\\\n- plan001-exec-only-s43-r2: 训练失败 — unknown\\\\n- plan013-random-reward-s42-r3: 训练失败 — unknown\\\\n- plan001-exec-only-s43-r3: 训练失败 — unknown\\\\n- plan006-prolog-exec-s43: 已被终止 — unknown\\\\n- plan018-additive-random-b01-s43: 训练失败 — unknown\\\\n-\n…[truncated 801 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 258
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T21:20:14.314020+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "solver-trace-ablation"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T21:20:14.314613+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/ROADMAP.md\\\", \\\"content\\\": \\\"# solver-trace-ablation — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-15 19:36 UTC | 更新原因: D095 Narrative A 批准; Random 3-seed pooled stats 完成; paper_framing 改写中\\\\n\\\\n## 核心方向\\\\nSTA/ISR 作为 GRPO neurosymbolic formalizer 的**诊断工具** + **Goodhart's Law 案例研究**——检测 reward hacking、量化结构退化、分类退化模式，并展示 ISR 从诊断指标到优化目标的 Goodhart 转折。详见 paper_framing.md。\\\\n\\\\n## 当前进展\\\\n- **阶段**: ✍️ Writing | **DDL**: 2026-05-25（剩 10 天）\\\\n- **实验**: 86 个 (完成 86 | success 26 | negative 28 | failed 26)\\\\n- **运行中**: 0\\\\n- **Claims**: ✅ Claim 1 | ✅ Claim 2 (D057→D095) | ✅ Claim 3 (D059)\\\\n- **D095 Narrative A**: H7a GRPO-general (ISR amplified 5x, p=1.3×10⁻³⁹) + H7b ISR-specific (meta-Goodhart); genuine p=0.182 (n.s.)\\\\n- **Hacking mode**: seed-dependent across all conditions\\\\n- **Bootstrap CI**: 3 项统计检验通过\\\\n- **SFT 对照**: D079 PASS, 3-seed genuine=92.2%±1.2%\\\\n- **Provenance**: 36/36\\\\n\\\\n### 核心证据链 ✅ 全部就位\\\\n- ✅ Claim 1 — STA 诊断: ISR 崩塌 0.6423→0.1324→0.0027; 3-seed 1000步 genuine=1.0%±1.7%; 8-mode taxonomy; SFT 零 hacking\\\\n- ✅ Claim 2 — Goodhart / ISR 无结构优势 (D057→D095): H7 两层(H7a GRPO-general ISR-amplified 70.6% vs 13.7%, H7b ISR-specific); premise-count-matched 1.06x; genuine p=0.182 n.s.\\\\n- ✅ Claim 3 — 跨逻辑泛化 (D059): Prolog 3/3 gaming, 0% genuine\\\\n- ✅ Exec-only 3-seed 1000步 (D090): Goodhart collapse seed-invariant, hacking mode seed-dependent\\\\n\\\\n## RUNNING\\\\n（无——所有 86 实验已完成）\\\\n\\\\n## PREPARING\\\\n（无）\\\\n\\\\n## 近期任务\\\\n- [x] Random 3-seed 新数据全部到位（s42, s43-r3, s44-r2）\\\\n- [x] Pooled 统计量重算: H7 p=1.3×10⁻³⁹, Genuine p=0.182\\\\n- [x] D095 Narrative A 批准\\\\n- [x] paper_framing.md D095 全文改写 + 数据精度修正\\\\n- [x] TeX 编译环境就绪（17页 PDF，0 errors）\\\\n- [x] Provenance 36/36 完成\\\\n- [ ] TeX 全量数据同步（Paper Agent）\\\\n- [ ] Paper Agent 启动全文写作\\\\n\\\\n## GPU 预算\\\\n- 本地: 2 × RTX PRO 6000 96GB，当前 2/2 空闲\\\\n- 已消耗: ~50+ GPU·h\\\\n- 剩余实验: 0（全部完成）\\\\n\\\\n## 写作约束\\\\n- D027: plan013 vs plan017 公式不同，不可简\n…[truncated 2452 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 0
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T21:20:34.512897+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "file": "writing_plan.yaml",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T21:20:35.015685+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/writing_plan.yaml\\\", \\\"content\\\": \\\"meta:\\\\n  venue: EMNLP 2026\\\\n  track: main\\\\n  template: acl2023/\\\\n  template_note: \\\\\\\"ARR May 25 cycle. ACL Rolling Review format (acl2023.sty).\\\\\\\"\\\\n  page_limit: 8\\\\n  deadline: 2026-05-25\\\\n  core_claim: >\\\\n    ISR (Intensional Structural Reward), derived via Solver Trace Ablation,\\\\n    serves as a powerful diagnostic for reward hacking in GRPO-trained formalizers\\\\n    but fails as a training signal due to meta-level Goodhart's Law — the diagnostic\\\\n    metric becomes gamed when optimized, with apparent improvements explained by\\\\n    premise minimization artifacts.\\\\n  created_at: 2026-05-14T18:00:00Z\\\\n  updated_at: 2026-05-14T19:05:00Z\\\\n  update_note: \\\\\\\"Director approved with 5 corrections applied: taxonomy 6→7, Claim 3 Prolog STA 3/3 gaming complete, conclusion limitations updated, tab5/fig4 expanded, registry_refs added.\\\\\\\"\\\\n\\\\npaper_outline:\\\\n  - section: abstract\\\\n    word_budget: 250\\\\n    core_bullets:\\\\n      - \\\\\\\"Problem: GRPO formalizers achieve high prove rates but produce structurally degenerate outputs; no diagnostic exists\\\\\\\"\\\\n      - \\\\\\\"Method: STA derives ISR via leave-one-out component necessity testing on solver inputs\\\\\\\"\\\\n      - \\\\\\\"Claim 1: ISR detects hacking invisible to prove_rate (0.64→0.13→0.003 collapse over 100→500→1000 steps)\\\\\\\"\\\\n      - \\\\\\\"Claim 2: ISR-as-reward exhibits meta-level Goodhart — β=0.1 induces ISR-specific gaming (H7=64.5% vs 0% random), premise-matched 1.06x; β=0.3 PR collapses (18% vs 48% random)\\\\\\\"\\\\n      - \\\\\\\"Claim 3: ISR diagnostic transfers to Prolog (cross-logic generality)\\\\\\\"\\\\n      - \\\\\\\"Taxonomy: 7 distinct hacking modes identified across conditions (including query-as-fact gaming discovered in Prolog STA)\\\\\\\"\\\\n    dependencies: [experiments, method, discussion]\\\\n    tables: []\\\\n    figures: []\\\\n    registry_r\n…[truncated 17631 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 502
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T21:20:35.016237+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "file": "paper_framing.md",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T21:20:35.468982+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — solver-trace-ablation\\\\n\\\\n## Target Venue\\\\n- Primary: EMNLP 2026 Main (NLP and Symbolic Reasoning track)\\\\n- Fallback: EMNLP 2026 Findings\\\\n- Deadline: ARR May 25, 2026\\\\n\\\\n## Core Claims (3 条 — Goodhart 主线诊断/分析论文)\\\\n\\\\n| Claim | Status | 闭环标志 |\\\\n|-------|--------|----------|\\\\n| Claim 1: STA 诊断能力 | ✅ 已闭环 | 3-seed + 1000-step + hacking taxonomy (8 modes) |\\\\n| Claim 2: Goodhart / ISR 无结构优势 | ✅ 已闭环 (D057) | 3-seed ISR + 3-seed random + premise-count-matched + SFT baseline |\\\\n| Claim 3: 跨逻辑泛化 | ✅ 已闭环 | exec-only 3-seed (D056) + STA 3-seed: **3/3 gaming** — 三种不同 gaming 路径 (H7/degenerate-syntax/query-as-fact) |\\\\n\\\\n### Claim 1: ISR as Reward Hacking Diagnostic ✅\\\\nSolver Trace Ablation (STA) derives ISR (Intensional Structural Reward) via component necessity testing (leave-one-out ablation on solver inputs). ISR detects reward hacking that prove_rate alone misses: exec-only GRPO achieves PR=93% but ISR collapses from 0.6423 (100 steps) to 0.1324 (500 steps) to 0.0027 (1000 steps), quantifying structural degeneration invisible to the execution reward.\\\\n\\\\n**证据**：\\\\n- plan003: 100-step checkpoint held-out eval PR=32%, ISR=0.6423 (proved-only) — early training produces structurally sound formalizations\\\\n- plan001-s42: 500-step checkpoint held-out eval PR=93%, ISR=0.1324, median_ISR=0.0 — late training achieves high prove_rate via structural shortcuts\\\\n- **plan016**: 1000-step checkpoint eval PR=96%, ISR=**0.0027** — ISR 崩塌持续恶化，无回升。94.8% proved 样本 ISR=0。矛盾爆炸式崩塌（components 6.58→18.55）。延长训练是 reward hacking 随时间恶化的干净消融证据\\\\n- ISR 崩塌轨迹完整链：0.6423 (100步) → 0.1324 (500步) → 0.0027 (1000步)\\\\n- 3-seed consistency: s42 redundant embedding (H1=87.1%, ISR=0.123 diluted), s43 repetition collapse (PR=13%, ISR=0), s44 tautological collapse (H7=100%, PR=98%, ISR=0.57 fake-high, n_comp=2.04). All 3 se\n…[truncated 29918 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 452
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T21:20:35.519560+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/skills/resource-saturation.skill.md"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T21:20:35.570374+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/agent_49a55e8d."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T21:20:55.134407+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__send_progress",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T21:20:55.134823+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T21:20:55.385635+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/skills/resource-saturation.skill.md"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T21:20:55.437874+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/agent_49a55e8d."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "Read",
+            "elapsed_ms": 52
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T21:21:12.953818+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T21:21:13.004327+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/limitations.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/abstract.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/method.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/conclusion.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/main.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/introduction.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/related_work.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/appendix.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/experiments.tex"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "Glob",
+            "elapsed_ms": 50
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T21:21:16.027880+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/experiments.tex"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-15T21:21:16.480489+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\tWe evaluate STA along three axes: ISR as a diagnostic for reward hacking (\\S\\ref{sec:diagnostic}); ISR as a training reward, where it exhibits meta-level Goodhart's Law (\\S\\ref{sec:goodhart}); and STA as a cross-logic protocol (\\S\\ref{sec:crosslogic}).\n5\tA hacking taxonomy synthesizes the modes observed across conditions (\\S\\ref{sec:taxonomy}).\n6\t\n7\t\\subsection{Setup}\\label{sec:setup}\n8\t\n9\tWe train Qwen3-4B~\\citep{qwen3} with GRPO~\\citep{deepseekmath} ($K{=}8$, lr $10^{-6}$, 500 steps default, 1000 where noted) over seeds $\\{42,43,44\\}$ on a fixed 500-example FOLIO~\\citep{folio} subset held constant across all conditions; the SFT baseline is trained with NLL on gold formalizations.\\footnote{All experiments use \\texttt{data/train\\_500\\_seed42.jsonl}; seeds control initialization and rollout sampling only.}\n10\tHeld-out evaluation uses 100 FOLIO examples (\\texttt{proofwriter\\_fol\\_100.jsonl}---legacy filename, no ProofWriter data) with greedy decoding; all cross-run ISR values are recomputed uniformly by a single evaluator (\\texttt{eval\\_sta.py}) so training-log ISR is never compared across runs.\n11\tWe report prove rate (PR), proved-only ISR ($\\text{ISR}^*$), hacking-mode rates from a two-stage classifier (strict text matching for H1/H7 plus functional analysis of the per-sample $n_{\\text{necessary}}$ distribution; \\S\\ref{sec:taxonomy-method}), and a \\emph{non-hacking} (N-H) rate---the residual of proved samples matching none of the eight cataloged patterns, a necessary but not sufficient condition for semantic correctness.\n12\t\n13\t\\subsection{ISR as Diagnostic}\n14\t\\label{sec:diagnostic}\n15\t\n16\t\\begin{figure}[t]\n17\t\\centering\n18\t\\includegraphics[width=0.95\\columnwidth]{figures/fig2_isr_collapse.pdf}\n19\t\\caption{ISR collapse under exec-only GRPO (seed~42). PR rises 32\\%$\\to$93\\%$\\to$96\\% while proved-only ISR falls $0.642{\\to}0.132{\\to}0.003$ over 100$\\to$500$\\to$1000 steps. By step 1000, 94.8\\% of proved samples hav\n…[truncated 18025 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "Read",
+            "elapsed_ms": 452
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T21:21:16.480922+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/abstract.tex"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-15T21:21:16.932950+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\begin{abstract}\n2\tGRPO-trained neurosymbolic formalizers achieve high prove rates---93\\% on FOLIO---yet 87\\% of proved outputs embed the conclusion verbatim among the premises, a degenerate shortcut invisible to execution reward.\n3\tWe introduce \\emph{Solver Trace Ablation} (STA), a diagnostic that applies leave-one-out component necessity testing to solver inputs.\n4\tThe fraction of components whose removal causes proof failure yields the \\emph{Intensional Structural Reward} (ISR): ISR$=$1 indicates full necessity; ISR$=$0 complete redundancy.\n5\tISR is uncorrelated with downstream NLI accuracy ($\\rho{=}{-}0.049$), confirming it measures structural---not semantic---integrity.\n6\tAs a diagnostic, ISR exposes a collapse trajectory hidden from PR: over 100--1000 GRPO steps (Qwen3-4B), ISR falls $0.642{\\to}0.003$ while PR rises $32\\%{\\to}96\\%$; an SFT baseline reaches 92.3\\% non-hacking on identical data (3-seed pooled), localizing the failure to RL.\n7\tAs a reward, $r = r_{\\text{exec}}\\cdot(1{+}\\beta\\,\\text{ISR})$ at $\\beta{=}0.1$ induces \\emph{meta-level Goodhart's Law}: 70.6\\% conclusion duplication (H7) versus 13.7\\% under matched random (Fisher $p{=}1.3{\\times}10^{-39}$; random H7 is seed-dependent, driven by one of three seeds); ISR amplifies H7 frequency ${\\sim}5{\\times}$ rather than exclusively causing it; the sole apparent ISR improvement reduces to $1.06\\times$ after controlling for a premise-count confound; $\\beta{=}0.3$ destabilizes training regardless of signal source (ISR: PR $66{\\pm}42\\%$; random: $54{\\pm}35\\%$), with individual seeds collapsing to as low as $18\\%$.\n8\tCross-logic transfer to Prolog yields universal Goodhart: 3/3 seeds gaming via distinct mechanisms, 0\\% non-hacking.\n9\tAcross 6 reward conditions, 2 logic types, 3 seeds, we catalog 8 hacking modes---including query-as-fact gaming that bypasses text-match classifiers---documenting ISR's fundamental asymmetry: reliable as a diagnostic, unreliable as an optimization target.\\footnote{Code and da\n…[truncated 45 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "Read",
+            "elapsed_ms": 452
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-15T21:21:16.983510+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/introduction.tex"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-15T21:21:17.335522+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\n2\t\\label{sec:introduction}\n3\t\n4\tA GRPO-trained formalizer achieves a 93\\% prove rate on first-order logic problems---yet 87\\% of its proved outputs embed the conclusion verbatim among the premises.\n5\tThe solver succeeds not because the model has learned to reason, but because the formalization trivially entails any conclusion already appearing as a premise.\n6\tThis structural shortcut is invisible to execution-based evaluation: prove rate registers success regardless of whether the proof reflects genuine derivation or degenerate circular embedding.\n7\t\n8\t\\paragraph{The execution-only blind spot.}\n9\tProve rate---the dominant evaluation metric for neurosymbolic formalizers~\\citep{logic-lm, linc, satlm}---conflates faithful reasoning with degenerate shortcuts, a gap especially consequential under RL, where the optimizer exploits any shortcut the reward fails to penalize~\\citep{skalse-reward-hacking, reward-hacking-survey}.\n10\tRecent work applies GRPO~\\citep{deepseekmath} to train LLMs that generate solver-verified formal programs~\\citep{mellgren-prolog-grpo, logic-rl} using binary execution feedback; this drives rapid PR gains but gives no gradient on structural quality.\n11\tProcess reward models~\\citep{lightman-verify-step, math-shepherd} require expensive annotations and do not transfer to arbitrary solver-backed settings.\n12\tA separate line documents that LLMs already game logical formalization at inference time~\\citep{kim-game-formalization, bondarenko-spec-gaming}; what is missing is an annotation-free \\emph{diagnostic} for structural integrity in neurosymbolic outputs.\n13\t\n14\t\\paragraph{Component necessity testing.}\n15\tWe address this gap with \\emph{Solver Trace Ablation} (STA), a diagnostic applying \\emph{component necessity testing}---leave-one-out (LOO) ablation on solver inputs---to quantify structural integrity (Figure~\\ref{fig:sta-overview}).\n16\tFor each proved formalization, STA removes each component individually and re-runs the solv\n…[truncated 3431 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "Read",
+            "elapsed_ms": 352
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-15T21:21:17.436403+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/discussion.tex"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-15T21:21:17.487195+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/agent_49a55e8d."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-15T21:21:28.073480+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/method.tex"
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-15T21:21:28.525913+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Method}\n2\t\\label{sec:method}\n3\t\n4\t\\begin{figure*}[t]\n5\t\\centering\n6\t\\includegraphics[width=0.92\\textwidth]{figures/fig1_sta_overview.pdf}\n7\t\\caption{Solver Trace Ablation (STA). (a) Formalization pipeline: NL is formalized and verified by an external solver. (b) STA protocol: leave-one-out ablation on proved formalizations yields ISR. (c) ISR as diagnostic vs.\\ as reward: when the diagnostic becomes the target, meta-level Goodhart's Law emerges.}\n8\t\\label{fig:sta-overview}\n9\t\\end{figure*}\n10\t\n11\t\\subsection{Task and GRPO Training}\n12\t\\label{sec:task}\n13\t\n14\tGiven premises $P_1,\\ldots,P_k$ and conclusion $C$, the task is to produce a formal program $F=\\{c_1,\\ldots,c_n\\}$ verified by an external solver $S\\in\\{\\text{Prover9, SWI-Prolog}\\}$ (Figure~\\ref{fig:sta-overview}a).\n15\tWe train with GRPO~\\citep{deepseekmath} ($K{=}8$), where each rollout receives binary execution reward $r_{\\text{exec}}(x) = \\mathbf{1}[S(F_x){=}\\textit{proved}]$.\n16\tThis optimizes prove rate but provides no signal about \\emph{structural quality}: a formalization embedding the conclusion among its premises receives the same reward as a faithful derivation.\n17\tAll experiments draw from FOLIO~\\citep{folio}; the held-out evaluation file retains a legacy \\texttt{proofwriter\\_fol\\_*.jsonl} filename (from ProofWriter~\\citep{proofwriter}) but contains only FOLIO-derived examples.\n18\t\n19\t\\subsection{Solver Trace Ablation (STA)}\n20\t\\label{sec:sta}\n21\t\n22\tSTA tests whether each component of a proved formalization is individually necessary for proof success (Figure~\\ref{fig:sta-overview}b).\n23\tGiven a proved $x$ with $n$ components, STA constructs $n$ ablated variants $x\\setminus\\{c_i\\}$ and re-runs the solver (Algorithm~\\ref{alg:sta}).\n24\tA component is \\emph{necessary} if its removal causes proof failure.\n25\tWhat constitutes a component depends on the logic: premises in FOL, clauses or ground facts in Prolog.\n26\tLOO ablation itself is standard in mutation testing and feature attribution; our no\n…[truncated 5135 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "Read",
+            "elapsed_ms": 452
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-15T21:21:28.576526+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/related_work.tex"
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-15T21:21:29.028051+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Related Work}\n2\t\\label{sec:related-work}\n3\t\n4\t\\paragraph{Neurosymbolic reasoning.}\n5\tLLM-solver pipelines~\\citep{satlm, logic-lm, linc, fover-pei2025, lorp} and RL methods trained on solver feedback~\\citep{mellgren-prolog-grpo, logic-rl, deepseek-prover-v15} evaluate execution accuracy alone, with no diagnostic for structural quality.\n6\tWe use FOLIO~\\citep{folio}, the only public NLI benchmark with both FOL and Prolog annotations.\n7\t\n8\t\\paragraph{Process rewards and reward shaping.}\n9\tLearned PRMs~\\citep{lightman-verify-step, math-shepherd} provide step-level feedback but suffer from reward-model noise and distribution shift~\\citep{processbench}: \\citet{gao-effective-rl-reward} show that auxiliary process/outcome rewards can \\emph{hurt} RL training relative to success-only reward, a finding our ISR-as-reward results corroborate.\n10\tSymbolic feedback approaches~\\citep{rlsf} use solver certificates as token-level rewards, achieving gains on program synthesis; ISR differs in operating at the component level (LOO ablation) rather than the token level, and our results show this structural signal is gamed when optimized.\n11\tRubric-grounded GRPO~\\citep{rubric-grpo} uses structured LLM-judge rewards to improve generalization; ISR is solver-derived and deterministic rather than judge-based, but both represent structured alternatives to scalar execution reward.\n12\tThe shared lesson across these approaches is that reward augmentation introduces proxy risk---our contribution is demonstrating the \\emph{meta}-level variant where the diagnostic itself becomes the target.\n13\t\n14\t\\paragraph{Reward hacking and Goodhart's Law.}\n15\tGoodhart's Law is established theoretically~\\citep{manheim-goodhart-taxonomy, skalse-reward-hacking, karwowski-goodhart-rl} and empirically in RLHF and frontier models~\\citep{gao-reward-overoptimization, bondarenko-spec-gaming, kim-game-formalization}.\n16\t\\citet{kwa-catastrophic-goodhart} show that heavy-tailed reward misspecification causes \\emph\n…[truncated 878 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "Read",
+            "elapsed_ms": 451
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-15T21:21:29.028406+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/conclusion.tex"
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-15T21:21:29.479774+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion and Conclusion}\n2\t\\label{sec:discussion}\n3\t\n4\tSolver Trace Ablation (STA) exposes structural degeneration invisible to execution-based evaluation: ISR reveals a 99.5\\% collapse under exec-only GRPO that PR hides; an SFT baseline with 92.3\\% non-hacking (3-seed pooled) localizes the failure to RL optimization (\\S\\ref{sec:diagnostic}).\n5\tRepurposed as a training signal, ISR induces meta-level Goodhart's Law: the diagnostic for gaming becomes itself the target of gaming.\n6\tAt $\\beta{=}0.1$, conclusion duplication exploits the LOO definition (70.6\\% vs.\\ 13.7\\% under matched random (Fisher $p{<}10^{-38}$); random H7 is seed-dependent (38.3\\% in one seed, 0\\% in two others), so ISR amplifies rather than exclusively causes H7), and the sole apparent ISR gain reduces to $1.06\\times$ random once a premise-count confound is controlled; at $\\beta{=}0.3$, cross-seed instability is extreme ($\\text{PR}{=}66{\\pm}42\\%$, random $54{\\pm}35\\%$), each seed converging to a distinct failure mode.\n7\tThe pattern transfers to Prolog, where ISR-as-reward yields universal gaming (3/3 seeds, 0\\% non-hacking) via three distinct mechanisms including query-as-fact gaming, which bypasses text-match classifiers (\\S\\ref{sec:taxonomy}).\n8\tISR semantics depend on objective: exec-only \\emph{low} ISR signals redundancy; ISR-rewarded \\emph{high} ISR signals metric gaming.\n9\t\n10\t\\paragraph{Classifier blind spots and functional cross-validation.}\n11\tH7b (obfuscated tautology) demonstrates that text-match classifiers have systematic blind spots: the model learns vacuous quantifier wrapping to disguise tautologies, evading detection while simultaneously gaming ISR ($10/12$ samples at $\\text{ISR}{\\approx}0.8$).\n12\tThis triple gaming---execution reward, structural metric, and diagnostic classifier---is the most complete meta-Goodhart case we observe.\n13\tQuery-as-fact gaming in Prolog (\\S\\ref{sec:crosslogic}) independently confirms the blind spot: our strict classifier reported $100\\%$ ge\n…[truncated 1825 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "Read",
+            "elapsed_ms": 451
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-15T21:21:29.480150+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/limitations.tex"
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-15T21:21:29.981715+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Limitations}\n2\t\\label{sec:limitations}\n3\t\n4\tExperiments use a single base model (Qwen3-4B) and dataset family (FOLIO); generalization remains untested.\n5\tISR quantifies syntactic component necessity, not semantic faithfulness: a downstream NLI evaluation finds ISR and task accuracy uncorrelated (Spearman $\\rho{=}{-}0.049$, $p{=}0.187$; Appendix~\\ref{app:extended-discussion}).\n6\tThree seeds demonstrate qualitative divergence but limit statistical power.\n7\tSTA requires solvers supporting component-level input manipulation.\n8\t\n9\t\\paragraph{Data scale.}\n10\tOur experiments use 500 training examples and 100 evaluation examples, drawn from FOLIO~\\citep{folio}.\n11\tThe training subset is selected via stratified sampling (seed 42) and held constant across all conditions.\n12\tWhile our findings are consistent across seeds and logic types, the effect of training data scale on hacking prevalence and mode distribution remains an open question for future work.\n13\t"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "Read",
+            "elapsed_ms": 501
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-15T21:21:29.982111+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/appendix.tex"
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-15T21:21:30.234478+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% Appendix — solver-trace-ablation\n2\t\n3\t\\section{Experimental Setup}\n4\t\\label{app:setup}\n5\t\n6\tTable~\\ref{tab:hyperparams} lists all hyperparameters shared across experiments.\n7\tAll RL conditions use the same GRPO configuration; only the reward function differs.\n8\tSeeds control model weight initialization and data shuffling; training data is held constant across all seeds and conditions (Constraint~C001).\n9\t\n10\t\\begin{table}[h]\n11\t\\centering\n12\t\\caption{Training hyperparameters for all GRPO experiments.}\n13\t\\label{tab:hyperparams}\n14\t\\footnotesize\n15\t\\resizebox{\\columnwidth}{!}{%\n16\t\\begin{tabular}{@{}ll@{}}\n17\t\\toprule\n18\t\\textbf{Parameter} & \\textbf{Value} \\\\\n19\t\\midrule\n20\t\\multicolumn{2}{@{}l}{\\textit{Model}} \\\\\n21\tBase model & Qwen3-4B \\\\\n22\tPrecision & BF16 \\\\\n23\t\\midrule\n24\t\\multicolumn{2}{@{}l}{\\textit{GRPO Training}} \\\\\n25\tRollouts per prompt ($K$) & 8 \\\\\n26\tTraining steps (default) & 500 \\\\\n27\tTraining steps (extended) & 1000 \\\\\n28\tLearning rate & $1 \\times 10^{-6}$ \\\\\n29\tPer-device batch size & 4 \\\\\n30\tGradient accumulation steps & 2 \\\\\n31\tEffective batch size & 8 \\\\\n32\tMax completion length & 512 tokens \\\\\n33\tRandom seeds & 42, 43, 44 \\\\\n34\t\\midrule\n35\t\\multicolumn{2}{@{}l}{\\textit{Data}} \\\\\n36\tTraining set & FOLIO, 500 examples \\\\\n37\tEvaluation set & FOLIO, 100 examples (held-out) \\\\\n38\tData file & \\texttt{train\\_500\\_seed42} \\\\\n39\t\\midrule\n40\t\\multicolumn{2}{@{}l}{\\textit{Solvers}} \\\\\n41\tFOL solver & Prover9 \\\\\n42\tProlog solver & SWI-Prolog 8.4.2 \\\\\n43\t\\midrule\n44\t\\multicolumn{2}{@{}l}{\\textit{Evaluation}} \\\\\n45\tDecoding & Greedy ($T{=}0$) \\\\\n46\tISR computation & \\texttt{eval\\_sta.py} \\\\\n47\tISR variant & Proved-only (ISR$^*$) \\\\\n48\t\\bottomrule\n49\t\\end{tabular}}\n50\t\\end{table}\n51\t\n52\t\\paragraph{Evaluation exception.}\n53\tFOL exec-only seed~43 (\\texttt{plan001-exec-only-s43-r4}) was evaluated with sampling (temperature~$=0.7$) rather than greedy decoding.\n54\tIts PR and ISR values are included for completeness but are not strictly comparable with other se\n…[truncated 32320 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "Read",
+            "elapsed_ms": 252
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-15T21:22:07.923536+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/main.tex"
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-15T21:22:07.924082+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\documentclass[11pt]{article}\n2\t\\usepackage[review]{acl}\n3\t\n4\t\\usepackage{amsmath,amssymb}\n5\t\\usepackage{graphicx}\n6\t\\usepackage{booktabs}\n7\t\\usepackage{algorithm}\n8\t\\usepackage{algorithmic}\n9\t\\usepackage{enumitem}\n10\t\\usepackage{xcolor}\n11\t\\usepackage{multirow}\n12\t\\usepackage[protrusion=true,expansion=false]{microtype}\n13\t\n14\t\\setlength{\\textfloatsep}{8pt plus 2pt minus 4pt}\n15\t\\setlength{\\intextsep}{6pt plus 2pt minus 2pt}\n16\t\\setlength{\\abovecaptionskip}{4pt}\n17\t\\setlength{\\belowcaptionskip}{2pt}\n18\t\n19\t\\graphicspath{{figures/}}\n20\t\n21\t\\title{Solver Trace Ablation Reveals Reward Hacking and Meta-Level Goodhart's Law in a GRPO-Trained Neurosymbolic Formalizer}\n22\t\n23\t\\author{Anonymous ACL submission}\n24\t\n25\t\\begin{document}\n26\t\\maketitle\n27\t\n28\t\\input{abstract}\n29\t\\input{introduction}\n30\t\\input{related_work}\n31\t\\input{method}\n32\t\\input{experiments}\n33\t\\input{conclusion}\n34\t\n35\t\\bibliography{references}\n36\t\n37\t\\input{limitations}\n38\t\n39\t\\appendix\n40\t\\input{appendix}\n41\t\n42\t\\end{document}\n43\t"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-15T21:22:14.553810+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/figures"
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-15T21:22:14.805324+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/figures/gen_fig1.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/figures/fig1_sta_overview.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/figures/fig1_sta_overview.png\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/figures/gen_fig4.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/figures/fig4_prolog_comparison.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/figures/fig4_prolog_comparison.png\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/figures/fig2_data.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/figures/gen_fig3.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/figures/fig3_hacking_composition.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/figures/fig3_hacking_composition.png\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/figures/gen_fig2.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/figures/fig2_isr_collapse.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/figures/fig2_isr_collapse.png\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/figures/gen_fig5.py\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/figures/fig5_training_isr_curves.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/figures/fig5_training_isr_curves.png"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "Glob",
+            "elapsed_ms": 251
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-15T21:22:14.805914+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "references.bib",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper"
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-15T21:22:14.856320+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/references.bib"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "Glob",
+            "elapsed_ms": 50
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-15T21:22:17.816388+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/references.bib"
+            }
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-15T21:22:17.867213+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% ============================================================\n2\t% Category 1: Neurosymbolic reasoning + RL/GRPO\n3\t% ============================================================\n4\t\n5\t@article{deepseekmath,\n6\t  author       = {Zhihong Shao and Peiyi Wang and Qihao Zhu and Runxin Xu and others},\n7\t  title        = {{DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models}},\n8\t  journal      = {arXiv preprint arXiv:2402.03300},\n9\t  year         = {2024},\n10\t  eprint       = {2402.03300},\n11\t  archivePrefix = {arXiv},\n12\t  primaryClass = {cs.AI},\n13\t}\n14\t\n15\t@article{logic-rl,\n16\t  author       = {Tian Xie and Zitian Gao and Qingnan Ren and Haoming Luo and Yuqian Hong and Bryan Dai and Joey Zhou and Kai Qiu and Zhirong Wu and Chong Luo},\n17\t  title        = {{Logic-RL: Unleashing LLM Reasoning with Rule-Based Reinforcement Learning}},\n18\t  journal      = {arXiv preprint arXiv:2502.14768},\n19\t  year         = {2025},\n20\t  eprint       = {2502.14768},\n21\t  archivePrefix = {arXiv},\n22\t  primaryClass = {cs.AI},\n23\t}\n24\t\n25\t@article{mellgren-prolog-grpo,\n26\t  author       = {Niklas Mellgren and Peter Schneider-Kamp and Lukas Galke},\n27\t  title        = {{Training Language Models to Use Prolog as a Tool}},\n28\t  journal      = {arXiv preprint arXiv:2512.07407},\n29\t  year         = {2025},\n30\t  eprint       = {2512.07407},\n31\t  archivePrefix = {arXiv},\n32\t  primaryClass = {cs.AI},\n33\t}\n34\t\n35\t@inproceedings{satlm,\n36\t  author       = {Xi Ye and Qiaochu Chen and Isil Dillig and Greg Durrett},\n37\t  title        = {{SatLM: Satisfiability-Aided Language Models Using Declarative Prompting}},\n38\t  booktitle    = {Advances in Neural Information Processing Systems (NeurIPS)},\n39\t  year         = {2023},\n40\t}\n41\t\n42\t% ============================================================\n43\t% Category 2: Reward shaping for code/formal verification\n44\t% ============================================================\n45\t\n46\t@inproceedings{lightman-verify-step,\n47\t  author \n…[truncated 11165 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-15T21:22:49.972502+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "2\\.4",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper",
+              "output_mode": "content",
+              "glob": "*.tex"
+            }
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-15T21:22:50.626266+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "Grep",
+            "elapsed_ms": 653
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-15T21:22:51.280455+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "Pareto",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper",
+              "output_mode": "content",
+              "glob": "*.tex"
+            }
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-15T21:22:51.280930+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-15T21:22:51.832399+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "dense.*automatic|conditionally dense",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper",
+              "output_mode": "content",
+              "glob": "*.tex",
+              "-i": "True"
+            }
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-15T21:22:52.333994+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "Grep",
+            "elapsed_ms": 501
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-15T21:22:52.886989+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "additive.specific|additive-specific",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper",
+              "output_mode": "content",
+              "glob": "*.tex",
+              "-i": "True"
+            }
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-15T21:22:53.038079+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "Grep",
+            "elapsed_ms": 151
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-15T21:23:45.152221+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "review:paper-consistency-audit",
+              "project": "solver-trace-ablation",
+              "task_prompt": "## 任务：论文全文一致性审查\n\n你是 solver-trace-ablation 项目的论文审查 Worker。DDL 2026-05-25（10 天）。论文所有章节已完成，需要你做最终一致性审查。\n\n### 论文路径\n所有 TeX 文件在 `/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/`：\n- main.tex, abstract.tex, introduction.tex, related_work.tex, method.tex, experiments.tex, conclusion.tex, limitations.tex, appendix.tex\n- references.bib\n- figures/ 目录有 fig1-fig5 的 PDF/PNG\n\n### 参考真值\n`paper_framing.md` 在 `/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md` 包含所有实验数据的权威数字。\n\n### 审查清单\n\n**1. 数字一致性**：\n- 所有 H7 数字：ISR pooled 70.6% (163/231), Random pooled 13.7% (36/262), Fisher p=1.3×10⁻³⁹, OR=15.05\n- Genuine/N-H 数字：ISR 6.06% (14/231), Random 9.54% (25/262), Fisher p=0.182 (n.s.)\n- ISR collapse: 0.642→0.132→0.003\n- PR 轨迹: 32%→93%→96%\n- SFT: 92.3% N-H (3-seed pooled), PR=13.0%\n- β=0.3 ISR: 66±42%, Random: 54±35%\n- Premise-count-matched: 1.06×\n- H7a=149 ISR + 36 random, H7b=14 (12 s44 + 2 s43)\n- Wilson CI: ISR genuine [3.6%, 9.9%], Random genuine [6.5%, 13.7%]\n- 检查每个数字在 abstract/intro/experiments/discussion/appendix 中是否一致\n\n**2. 叙述一致性**（D095 Narrative A）：\n- H7a 描述为 \"GRPO-general, ISR-amplified\"（不是 ISR-specific 或 additive-specific）\n- H7b 描述为 \"ISR-specific meta-Goodhart\"\n- Random H7 描述为 seed-dependent（s43=38.3%, s42/s44=0%）\n- Genuine 差异描述为 \"not statistically significant\" (n.s.)\n- 不用 \"ISR amplifies H7 (70.6% vs 13.7%)\" 的简单对比——要同时报 per-seed\n- 无 \"2.4x\" 或 \"Pareto\" 残留（已确认无）\n\n**3. 交叉引用**：\n- 所有 \\ref{} 和 \\label{} 是否匹配\n- 所有 \\citep{} 引用是否在 references.bib 中存在\n- bib 中的每个 entry 是否都被引用\n- 检查是否有 \"??\" 未解析引用\n\n**4. 表格/图表**：\n- Table 1 (goodhart-landscape): 数字与 paper_framing.md 一致\n- Table 2 (hacking-taxonomy): H7a/H7b 计数正确\n- Appendix 表格 (fol-detailed, prolog-detailed, beta03-detailed, bootstrap-ci)\n- 所有 figure caption 中的数字与正文一致\n\n**5. 写作约束**：\n- \"Non-hacking\" 用语（不是 \"genuine\"）——检查正文中的术语是否统一\n- Genuine = proved − |H7 ∪ H1 ∪ H8|（集合排除，非简单减法）\n- \"N-H\" 和 \"non-hacking\" 在脚注中有定义\n- 无 \"significantly\" 用于 genuine rate 差异\n\n**6. 引用完整性**：\n- writing_plan.yaml 中的 must_cite 列表是否全部包含：deepseekmath, mellgren-prolog-grpo, logic-lm, linc, satlm, lightman-verify-step, gao-effective-rl-reward, gao-reward-overoptimization, karwowski-goodhart-rl, manheim-goodhart-taxonomy, demillo1978, jia-harman-survey, folio, proofwriter, fover-pei2025, deepseek-prover-v15, math-shepherd, skalse-reward-hacking\n- 是否缺少 pan-reward-misspecification（在 writing_plan 中提到但可能未加）\n\n### 产出\n写一份审查报告到 `/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/paper_consistency_audit.md`，包含：\n1. ✅ 通过的检查项\n2. ⚠️ 发现的不一致（精确到行号和具体数字）\n3. 建议修复（如有）\n\n用 register_artifact 注册产出。",
+              "tool_groups": "['knowledge']",
+              "tools": "['register_artifact']"
+            }
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-15T21:23:56.432969+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_review_paper-consistency-audit_20260515T212345\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/logs/workers/worker_review_paper-consistency-audit_20260515T212345.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_review_paper-consistency-audit_20260515T212345 started. Use get_worker_status('worker_review_paper-consistency-audit_20260515T212345') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 11280
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-15T21:23:56.584198+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "review:paper-compile-check",
+              "project": "solver-trace-ablation",
+              "task_prompt": "## 任务：论文编译检查 + 页数验证\n\n你是 solver-trace-ablation 项目的论文编译检查 Worker。\n\n### 目标\n1. 在服务器上编译论文 PDF，确认无 errors\n2. 检查页数（正文 ≤ 8 页，appendix 不限）\n3. 检查 warnings（特别是 undefined references、missing citations）\n4. 检查 PDF 视觉质量\n\n### 服务器信息\n- 服务器：westd-39279\n- 环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 论文源码在本地：`/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/`\n- 需要先同步代码到服务器（如果服务器上没有最新版本）\n\n### 检查步骤\n\n1. 首先检查本地 main.log（如果存在）看上次编译结果：\n   - 读取 `/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/main.log`\n   - 查找 errors、warnings（特别是 \"undefined\"、\"multiply-defined\"、\"Rerun\"）\n   \n2. 检查 main.pdf 是否存在且是最近的：\n   - 读取文件修改时间\n\n3. 读取 main.log 查找：\n   - Error 行\n   - Warning 行（特别是 LaTeX Warning: Reference/Citation undefined）\n   - \"Output written on main.pdf (N pages)\" 确认页数\n   - overfull/underfull box warnings\n\n4. 如果有 undefined references 或 citations，列出所有缺失的\n\n### 产出\n写一份编译检查报告到 `/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/paper_compile_check.md`，包含：\n1. 编译状态（成功/失败）\n2. 页数（正文 + appendix）\n3. Errors（如有）\n4. 关键 Warnings（如有）\n5. 未解析的引用/引文（如有）\n\n用 register_artifact 注册产出。",
+              "tool_groups": "['knowledge', 'ssh']",
+              "tools": "['register_artifact']"
+            }
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-15T21:23:59.258026+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_review_paper-compile-check_20260515T212356\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/logs/workers/worker_review_paper-compile-check_20260515T212356.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_review_paper-compile-check_20260515T212356 started. Use get_worker_status('worker_review_paper-compile-check_20260515T212356') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 2673
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-15T21:24:14.817138+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 分配 2 / 实际跑 0（写作阶段，无剩余实验）| Worker 池 2 (GPU 0 / CPU 2)\n\n**Loop #14 Session 启动状态：**\n\nRegistry 确认：86 实验全部完成（success 26 / negative 28 / failed 26），0 RUNNING，0 PREPARING，0 active crons。\n\n**论文状态评估：** 所有 TeX 章节（abstract、introduction、related_work、method、experiments、discussion+conclusion、limitations、appendix）已完成且包含 D095 Narrative A 最终数据。已确认无 \"2.4x\"、\"Pareto\"、\"dense+automatic\"、\"additive-specific\" 等过时措辞残留。5 个 figure PDF 就位，26 个 bib 条目覆盖所有 must-cite。paper_framing.md 中列出的结构修复项实质上全部已完成。\n\n**当前 Worker：**\n1. `review:paper-consistency-audit` — 全文数字一致性 + D095 叙述合规 + 引用完整性审查\n2. `review:paper-compile-check` — 编译验证 + 页数检查 + 未解析引用排查\n\n**下一步：** Worker 完成后处理审查发现的问题。如无重大一致性问题，论文已基本处于可提交状态，剩余工作为 polish + 视觉审查。DDL 5/25 剩 10 天。",
+              "project": "solver-trace-ablation"
+            }
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-15T21:39:59.742776+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 Worker 已启动。向 Director 汇报 session 启动状态。"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2"
+          },
+          "id": "event-000065"
+        }
+      ],
+      "message_count": 65
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-16T00:41:24.288786+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-16T00:41:44.000910+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-16T00:41:44.052369+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "ToolSearch",
+            "elapsed_ms": 51
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-16T00:41:51.914208+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-16T00:41:52.421899+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-16T00:41:52.971012+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "file": "report.md",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-16T00:41:53.193881+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "solver-trace-ablation"
+            }
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-16T00:41:53.541771+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (196,980 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation--claude-sessions-agent-49a55e8d/24e2c887-4162-4901-8a00-f43b940a8678/tool-results/mcp-agent-ml-research-read_registry-1778892113466.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation--claude-sessions-agent-49a55e8d/24e2c887-4162-4901-8a00-f43b940a8678/tool-results/mcp-agent-ml-research-read_registry-1778892113466.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation--claude-sessions-agent-49a55e8d/24e2c887-4162-4901-8a00-f43b940a8678/tool-results/mcp-agent-ml-research-read_registry-1778892113466.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1627
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-16T00:41:53.726999+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 0, \\\"results\\\": []}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 1305
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-16T00:41:53.727500+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-15\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n（无实验——所有 86 实验已完成）\\\\n\\\\n## Worker 池\\\\n（空——所有 Worker 已完成）\\\\n\\\\n## 审查已完成\\\\n- ✅ 引用审计：30/30 真实（OpenAlex 18 verified, 7 arXiv/blog not indexed, 5 minor author mismatch）\\\\n- ✅ 一致性检查：0 critical / 0 warning（跨章节数字一致）\\\\n- ✅ 编译：19 页（含附录），0 error，10 cosmetic warnings（float specifier + hyperref token）\\\\n- ✅ 主体 = 8 页（Discussion+Conclusion 在第 8 页底，References 从第 9 页起）\\\\n- ✅ 页数缩减完成（page-reduction Worker 成功）\\\\n- ✅ Checklist 验证完成（checklist-verify Worker 成功）\\\\n- ✅ citation-fix Worker 完成（method.tex 引用修正）\\\\n- ✅ final-sync-compile Worker 完成\\\\n- ✅ PDF 全文视觉审查（19 页逐页审查完成，修复 Table 4/5 重叠 + Table 8 超宽，重新编译 0 error）\\\\n\\\\n## 近期结论\\\\n- D095 Narrative A 已批准生效，paper_framing.md 全文改写完成\\\\n- TeX 全量数据已同步到 D095 最终数字\\\\n- Provenance 36/36 完成\\\\n\\\\n## 趋势\\\\n成功 26 / 负向 28 / 失败 26 / 共 86\\\\n\\\\n## 下一步\\\\n1. [x] Pooled 统计量: H7 p=1.3×10⁻³⁹, Genuine p=0.182 (n.s.)\\\\n2. [x] D095 Narrative A 批准\\\\n3. [x] paper_framing.md D095 全文改写\\\\n4. [x] TeX 全量数据同步\\\\n5. [x] Provenance 36/36\\\\n6. [x] 引用审计 (30/30 真实)\\\\n7. [x] 一致性检查 (0 critical)\\\\n8. [x] 页数缩减 ≤8 页\\\\n9. [x] Checklist 验证\\\\n10. [x] PDF 全文视觉审查（修复 Table 4/5 重叠 + Table 8 超宽）\\\\n11. [ ] 最终润色 + 提交准备\\\\n\\\\n## 资源状态\\\\nwestd-39279: 2 × RTX PRO 6000 96GB，2/2 空闲，无剩余实验\\\\n\\\", \\\"total_chars\\\": 1157, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 756
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-16T00:41:53.787200+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/ROADMAP.md\\\", \\\"content\\\": \\\"# solver-trace-ablation — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-15 19:36 UTC | 更新原因: D095 Narrative A 批准; Random 3-seed pooled stats 完成; paper_framing 改写中\\\\n\\\\n## 核心方向\\\\nSTA/ISR 作为 GRPO neurosymbolic formalizer 的**诊断工具** + **Goodhart's Law 案例研究**——检测 reward hacking、量化结构退化、分类退化模式，并展示 ISR 从诊断指标到优化目标的 Goodhart 转折。详见 paper_framing.md。\\\\n\\\\n## 当前进展\\\\n- **阶段**: ✍️ Writing | **DDL**: 2026-05-25（剩 10 天）\\\\n- **实验**: 86 个 (完成 86 | success 26 | negative 28 | failed 26)\\\\n- **运行中**: 0\\\\n- **Claims**: ✅ Claim 1 | ✅ Claim 2 (D057→D095) | ✅ Claim 3 (D059)\\\\n- **D095 Narrative A**: H7a GRPO-general (ISR amplified 5x, p=1.3×10⁻³⁹) + H7b ISR-specific (meta-Goodhart); genuine p=0.182 (n.s.)\\\\n- **Hacking mode**: seed-dependent across all conditions\\\\n- **Bootstrap CI**: 3 项统计检验通过\\\\n- **SFT 对照**: D079 PASS, 3-seed genuine=92.2%±1.2%\\\\n- **Provenance**: 36/36\\\\n\\\\n### 核心证据链 ✅ 全部就位\\\\n- ✅ Claim 1 — STA 诊断: ISR 崩塌 0.6423→0.1324→0.0027; 3-seed 1000步 genuine=1.0%±1.7%; 8-mode taxonomy; SFT 零 hacking\\\\n- ✅ Claim 2 — Goodhart / ISR 无结构优势 (D057→D095): H7 两层(H7a GRPO-general ISR-amplified 70.6% vs 13.7%, H7b ISR-specific); premise-count-matched 1.06x; genuine p=0.182 n.s.\\\\n- ✅ Claim 3 — 跨逻辑泛化 (D059): Prolog 3/3 gaming, 0% genuine\\\\n- ✅ Exec-only 3-seed 1000步 (D090): Goodhart collapse seed-invariant, hacking mode seed-dependent\\\\n\\\\n## RUNNING\\\\n（无——所有 86 实验已完成）\\\\n\\\\n## PREPARING\\\\n（无）\\\\n\\\\n## 近期任务\\\\n- [x] Random 3-seed 新数据全部到位（s42, s43-r3, s44-r2）\\\\n- [x] Pooled 统计量重算: H7 p=1.3×10⁻³⁹, Genuine p=0.182\\\\n- [x] D095 Narrative A 批准\\\\n- [x] paper_framing.md D095 全文改写 + 数据精度修正\\\\n- [x] TeX 编译环境就绪（17页 PDF，0 errors）\\\\n- [x] Provenance 36/36 完成\\\\n- [ ] TeX 全量数据同步（Paper Agent）\\\\n- [ ] Paper Agent 启动全文写作\\\\n\\\\n## GPU 预算\\\\n- 本地: 2 × RTX PRO 6000 96GB，当前 2/2 空闲\\\\n- 已消耗: ~50+ GPU·h\\\\n- 剩余实验: 0（全部完成）\\\\n\\\\n## 写作约束\\\\n- D027: plan013 vs plan017 公式不同，不可简\n…[truncated 2452 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 593
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-16T00:42:07.765948+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation--claude-sessions-agent-49a55e8d/24e2c887-4162-4901-8a00-f43b940a8678/tool-results/mcp-agent-ml-research-read_registry-1778892113466.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexperiments = result['data']['experiments']\nprint(f'Total experiments: {len(experiments)}')\n# Count by status\nfrom collections import Counter\nstatus_counts = Counter(e.get('status','?') for e in experiments)\nprint(f'Status counts: {dict(status_counts)}')\nconclusion_counts = Counter(e.get('conclusion','?') for e in experiments)\nprint(f'Conclusion counts: {dict(conclusion_counts)}')\n# Any non-DONE?\nnon_done = [e for e in experiments if e.get('status') != 'DONE']\nif non_done:\n    for e in non_done:\n        print(f'  NON-DONE: {e[\\\"exp_id\\\"]} status={e.get(\\\"status\\\")} conclusion={e.get(\\\"conclusion\\\")}')\nelse:\n    print('All experiments DONE')\n\"\n",
+              "description": "Parse registry to get experiment status summary"
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-16T00:42:08.771904+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "file": "memory.md",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-16T00:42:09.223848+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 9, in <module>\n    status_counts = Counter(e.get('status','?') for e in experiments)\n  File \"/usr/lib/python3.14/collections/__init__.py\", line 614, in __init__\n    self.update(iterable, **kwds)\n    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.14/collections/__init__.py\", line 709, in update\n    _count_elements(self, iterable)\n    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\n  File \"<string>\", line 9, in <genexpr>\n    status_counts = Counter(e.get('status','?') for e in experiments)\n                            ^^^^^\nAttributeError: 'str' object has no attribute 'get'\nTotal experiments: 86"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "Bash",
+            "elapsed_ms": 1457
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-16T00:42:09.224311+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>Cancelled: parallel tool call Bash(cat /home/ubuntu/.claude-account-5/proje…) errored</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 452
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-16T00:42:09.529717+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "file": "paper_framing.md",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-16T00:42:09.530404+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>Cancelled: parallel tool call Bash(cat /home/ubuntu/.claude-account-5/proje…) errored</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-16T00:42:20.251008+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation--claude-sessions-agent-49a55e8d/24e2c887-4162-4901-8a00-f43b940a8678/tool-results/mcp-agent-ml-research-read_registry-1778892113466.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexperiments = result['data']['experiments']\nprint(f'Total: {len(experiments)}')\n# experiments might be a dict\nif isinstance(experiments, dict):\n    for k,v in list(experiments.items())[:3]:\n        print(f'Key: {k}, type: {type(v).__name__}')\n        if isinstance(v, dict):\n            print(f'  Fields: {list(v.keys())[:10]}')\n            print(f'  status={v.get(\\\"status\\\")}, conclusion={v.get(\\\"conclusion\\\")}')\nelif isinstance(experiments, list):\n    for e in experiments[:3]:\n        print(f'Type: {type(e).__name__}, val: {str(e)[:200]}')\n\"\n",
+              "description": "Probe registry data structure"
+            }
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-16T00:42:20.352071+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "file": "memory.md",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-16T00:42:20.352552+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "file": "paper_framing.md",
+              "max_chars": "6000"
+            }
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": "2026-05-16T00:42:20.457242+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Total: 86\nKey: plan016-extended-1000-s42, type: dict\n  Fields: ['status', 'retry_count', 'created_at', 'updated_at', 'hypothesis', 'parent', 'server', 'gpu', 'account', 'spec']\n  status=DONE, conclusion=success\nKey: plan018-additive-random-b01-s44-r2, type: dict\n  Fields: ['status', 'retry_count', 'created_at', 'updated_at', 'spec', 'server', 'gpu', 'account', 'pid', 'log_path']\n  status=DONE, conclusion=negative\nKey: plan018-additive-random-b01-s43-r3, type: dict\n  Fields: ['status', 'retry_count', 'created_at', 'updated_at', 'spec', 'server', 'gpu_id', 'account', 'reproduce', 'extra']\n  status=DONE, conclusion=negative"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "Bash",
+            "elapsed_ms": 206
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": "2026-05-16T00:42:20.508509+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/memory.md\\\", \\\"content\\\": \\\"# Memory — solver-trace-ablation\\\\n\\\\n> 非 metrics 性质的决策原因、约束、经验教训。可从 registry 查到的数据不写这里。\\\\n\\\\n## 经验教训\\\\n\\\\n- [2026-05-15] H7a 是 GRPO 通用 seed-dependent 现象，不是 ISR 独有。exec-only s43 也 100% H7a，Random s43-r3 也 38.3% H7a。写论文时极易滑向 \\\\\\\"H7 is ISR-specific\\\\\\\" 的旧 framing——已来回修正 8 次（D087-D094）\\\\n- [2026-05-15] H7b（obfuscated tautology）才是 ISR-specific（仅 ISR s44 的 12 个样本）\\\\n- [2026-05-15] Random H7 pooled 13.7% 由 s43-r3 单 seed 贡献（38.3%），s42/s44-r2 为 0%——论文必须同时报 per-seed 和 pooled\\\\n- [2026-05-15] genuine rate ISR 6.06% vs Random 9.54%，p=0.182 不显著——禁止 claim genuine rate 有显著差异\\\\n- [2026-05-15] D051 premise-count-matched ISR 优势仅 1.06x，2.4x 已作废\\\\n- [2026-05-15] genuine = proved − |H7 ∪ H1 ∪ H8|（集合排除，非简单减法，C013 公式）\\\\n- [2026-05-15] Hacking mode 是 seed-dependent——不同 seed 收敛到不同 hacking 策略，这是核心发现之一\\\\n- [2026-05-15] 页数缩减策略：conclusion.tex 净减 10 行，experiments.tex §4.5 净减 4 行，删除的细节移到 appendix。body 从 8.5 页压到 ≤8 页\\\\n\\\\n## 约束\\\\n\\\\n- EMNLP 主体 ≤8 页硬限制（参考文献和附录不计）\\\\n- D095 Narrative A 已批准生效，所有 paper 内容必须与 D095 一致\\\\n- DDL 2026-05-25（EMNLP ARR 提交）\\\\n\\\\n## 模型版本验证记录\\\\n\\\\n（暂无——本项目使用本地模型训练，未调用外部 LLM API）\\\\n\\\", \\\"total_chars\\\": 1031, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 156
+          },
+          "id": "event-000087"
+        },
+        {
+          "source_line": 88,
+          "timestamp": "2026-05-16T00:42:20.509325+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — solver-trace-ablation\\\\n\\\\n## Target Venue\\\\n- Primary: EMNLP 2026 Main (NLP and Symbolic Reasoning track)\\\\n- Fallback: EMNLP 2026 Findings\\\\n- Deadline: ARR May 25, 2026\\\\n\\\\n## Core Claims (3 条 — Goodhart 主线诊断/分析论文)\\\\n\\\\n| Claim | Status | 闭环标志 |\\\\n|-------|--------|----------|\\\\n| Claim 1: STA 诊断能力 | ✅ 已闭环 | 3-seed + 1000-step + hacking taxonomy (8 modes) |\\\\n| Claim 2: Goodhart / ISR 无结构优势 | ✅ 已闭环 (D057) | 3-seed ISR + 3-seed random + premise-count-matched + SFT baseline |\\\\n| Claim 3: 跨逻辑泛化 | ✅ 已闭环 | exec-only 3-seed (D056) + STA 3-seed: **3/3 gaming** — 三种不同 gaming 路径 (H7/degenerate-syntax/query-as-fact) |\\\\n\\\\n### Claim 1: ISR as Reward Hacking Diagnostic ✅\\\\nSolver Trace Ablation (STA) derives ISR (Intensional Structural Reward) via component necessity testing (leave-one-out ablation on solver inputs). ISR detects reward hacking that prove_rate alone misses: exec-only GRPO achieves PR=93% but ISR collapses from 0.6423 (100 steps) to 0.1324 (500 steps) to 0.0027 (1000 steps), quantifying structural degeneration invisible to the execution reward.\\\\n\\\\n**证据**：\\\\n- plan003: 100-step checkpoint held-out eval PR=32%, ISR=0.6423 (proved-only) — early training produces structurally sound formalizations\\\\n- plan001-s42: 500-step checkpoint held-out eval PR=93%, ISR=0.1324, median_ISR=0.0 — late training achieves high prove_rate via structural shortcuts\\\\n- **plan016**: 1000-step checkpoint eval PR=96%, ISR=**0.0027** — ISR 崩塌持续恶化，无回升。94.8% proved 样本 ISR=0。矛盾爆炸式崩塌（components 6.58→18.55）。延长训练是 reward hacking 随时间恶化的干净消融证据\\\\n- ISR 崩塌轨迹完整链：0.6423 (100步) → 0.1324 (500步) → 0.0027 (1000步)\\\\n- 3-seed consistency: s42 redundant embedding (H1=87.1%, ISR=0.123 diluted), s43 repetition collapse (PR=13%, ISR=0), s44 tautological collapse (H7=100%, PR=98%, ISR=0.57 fake-high, n_comp=2.04). All 3 se\n…[truncated 4478 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 156
+          },
+          "id": "event-000088"
+        },
+        {
+          "source_line": 89,
+          "timestamp": "2026-05-16T00:42:31.921084+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__load_project_config",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000089"
+        },
+        {
+          "source_line": 90,
+          "timestamp": "2026-05-16T00:42:31.971830+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000090"
+        },
+        {
+          "source_line": 91,
+          "timestamp": "2026-05-16T00:42:35.428960+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__load_project_config"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "tool_args": {
+              "project_name": "solver-trace-ablation",
+              "section": "execution"
+            }
+          },
+          "id": "event-000091"
+        },
+        {
+          "source_line": 92,
+          "timestamp": "2026-05-16T00:42:35.530010+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"project\\\": \\\"solver-trace-ablation\\\", \\\"section\\\": \\\"execution\\\", \\\"config\\\": {\\\"execution\\\": {\\\"gpu_constraint\\\": [\\\"westd-39279:cuda:0\\\", \\\"westd-39279:cuda:1\\\"], \\\"gpu_ids\\\": [\\\"cuda:0\\\", \\\"cuda:1\\\"], \\\"project_path\\\": \\\"/root/solver-trace-ablation\\\", \\\"servers\\\": [{\\\"account\\\": \\\"root\\\", \\\"server\\\": \\\"westd-39279\\\"}]}}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "elapsed_ms": 101
+          },
+          "id": "event-000092"
+        },
+        {
+          "source_line": 93,
+          "timestamp": "2026-05-16T00:43:21.326489+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**westd-39279:cuda:0, westd-39279:cuda:1**（仅此两块，无云 GPU）\n- D095 Narrative A 已批准生效——所有 paper 内容必须与 D095 一致，不可偏离\n- genuine rate ISR 6.06% vs Random 9.54%，p=0.182 **不显著**——禁止 claim genuine rate 有显著差异\n- H7a 是 GRPO 通用 seed-dependent 现象，**不是** ISR 独有——论文中极易滑向旧 framing，已来回修正 8 次（D087-D094）\n- Random H7 pooled 13.7% 由 s43-r3 单 seed 贡献（38.3%），s42/s44-r2 均为 0%——必须同时报 per-seed 和 pooled\n- D051 premise-count-matched ISR 优势仅 1.06x，2.4x 已作废\n- EMNLP 主体 ≤8 页硬限制（当前已压到 ≤8 页，不可回涨）\n- DDL：**2026-05-25**（ARR 提交，剩 9 天）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：**westd-39279**，2 × RTX PRO 6000 96GB，2/2 空闲\n- 工作目录：`/root/solver-trace-ablation`\n- Python/conda：服务器为 aml-train 镜像，`/root/miniconda3/bin/python`，`conda activate base`\n- 产出目录（本地）：`/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/`\n- Paper 目录：`/home/ubuntu/.agent-ml-research-idea_gen_0509_3/paper/`（TeX 源码在此）\n- 活跃进程：无（所有实验已完成，无 tmux session / cron 任务）\n- W&B：未使用（本项目用本地 log）\n- 无剩余实验需要 GPU\n\n### 3. 📊 当前状态\n**所有 86 实验已完成**（success 26 / negative 28 / failed 26），无 RUNNING/PREPARING 实验。Worker 池空，无等待中的回调/cron。\n\n已完成的审查清单（全部通过）：\n- ✅ 引用审计 30/30 真实\n- ✅ 跨章节一致性检查 0 critical / 0 warning\n- ✅ 编译 0 error（19 页含附录，主体 ≤8 页）\n- ✅ PDF 全文视觉审查（修复 Table 4/5 重叠 + Table 8 超宽）\n- ✅ Provenance 36/36\n- ✅ Checklist 验证\n- ✅ paper_framing.md D095 全文改写\n- ✅ TeX 全量数据同步\n\n**剩余唯一任务**：最终润色 + 提交准备。\n\n### 4. 📋 待办（条件触发式）\n- Director 说\"润色\"/\"提交准备\" → spawn paper-writing Worker 做最终 proofreading pass（语法/用词/一致性）\n- Director 说\"提交\" → 确认 PDF 编译无 error → 打包 submission（主文 + 附录 + 补充材料）→ 备份到 S3\n- Director 要求新实验 → 用 westd-39279 cuda:0/1，当前均空闲\n- 收到 ARR 格式要求更新 → spawn Worker 检查 formatting compliance\n- 任何 TeX 修改后 → 必须重新验证主体 ≤8 页（之前刚好压到边界）\n\n### 5. 🎯 战略上下文\n**项目核心结论**：STA/ISR 是 GRPO neurosymbolic formalizer 的诊断工具 + Goodhart's Law 案例研究。三个 claims 全部闭环：\n1. ISR 崩塌链 0.6423→0.1324→0.0027 检测 reward hacking\n2. ISR-as-reward 展现 meta-Goodhart（H7b obfuscated tautology = 模型学会 game 检测器）；ISR 无真实结构优势（1.06x）\n3. Prolog 跨逻辑泛化 3/3 gaming\n\n**决策链**：D087-D094 反复修正 H7 归因（从 ISR-specific → GRPO-general → 最终 D095 两层叙事：H7a GRPO-general + H7b ISR-specific），D095 Narrative A 是最终定论。\n\n**最容易判断错的事**：\n- H7a vs H7b 的归因——H7a 是通用现象（exec-only/random 都有），只有 H7b（12 个 obfuscated tautology）是 ISR-specific。写/改论文时非常容易混淆\n- genuine 公式是集合排除 `proved − |H7 ∪ H1 ∪ H8|`，不是简单减法（C013）\n- 页数在边界上——任何文字增加都可能超 8 页，改动前先确认影响\n- 10 cosmetic warnings（float specifier + hyperref token）是已知的，不影响编译\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp1-isr-b03-s42-1000-r2"
+          },
+          "id": "event-000093"
+        }
+      ],
+      "message_count": 28
+    }
+  ],
+  "readable_path": "readable/conversations/cron-hook-exp1-isr-b03-s42-1000-r2-20260516t004321-329373.md"
+}

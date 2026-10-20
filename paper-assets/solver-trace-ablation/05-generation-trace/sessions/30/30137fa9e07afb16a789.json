@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "30137fa9e07afb16a789",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_7_1778784337.md",
+  "task_key": "loop_7_1778784337",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_7_1778784337.md",
+    "occurrence": 1,
+    "bytes": 4724,
+    "sha256": "76610cb0f1e472dcb1f86de9ad164b7b458ee5095037bed2e37d699f6262a80d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: idle_timeout\nupdated: '2026-05-14T18:45:04+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单严格限制 `westd-39279:cuda:0` 和 `westd-39279:cuda:1`，禁用任何其他 GPU\n- 所有 plan001/plan013 实验统一使用 `train_500_seed42.jsonl`（C001 约束），不要用旧的 `proofwriter_fol_500.jsonl`\n- 所有命令必须 `export CUDA_VISIBLE_DEVICES=N`，在 `bash -c` 内部 export（C002 约束）\n- `log_completions=False` + `save_total_limit=1`，output_dir 放 `/root/autodl-tmp/outputs/`（C003 约束）\n- 磁盘 240G/250G (96%)，跑新实验前必须先清理旧 checkpoint\n- kill_job 后必须 SSH 验证子进程已终止（历史事故）\n- Prolog STA s44: Reviewer 已核实为 query-as-fact gaming，**不是 genuine**。H7 strict classifier 有盲区，论文必须同时报告 strict 和 functional (n_necessary) 分析\n- D051 定论：ISR 2.4x 优势已作废，premise-count-matched 1.06x 无差异。论文中禁止引用旧的 2.4x/3.2x 数字\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-39279, 2× RTX PRO 6000 Blackwell (94GB VRAM each)\n- **工作目录**: `/root/solver-trace-ablation/`\n- **Python**: conda 环境，激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **镜像**: aml-train（CUDA 12.8, PyTorch 2.10.0+cu128, transformers/trl/vllm/accelerate 预装）\n- **模型**: Qwen3-4B via ModelScope, 7.6GB\n- **Solvers**: Prover9 (LADR 源码编译), SWI-Prolog 8.4.2 (`/usr/bin/swipl`), Z3 4.16.0.0\n- **磁盘**: 系统盘 30GB (22G free), 数据盘 `/root/autodl-tmp/` 250GB (**96% 满，需清理**)\n- **活跃进程**: 无训练进程，无 cron，GPU 空闲\n- **活跃 Worker**: 2 个（见§3）\n\n### 3. 📊 当前状态\n项目处于 **写作阶段**，DDL **2026-05-25**（剩 11 天）。50 个实验全部完成，三条 Claim 均已闭环。\n\n**刚完成**: D059 Claim 3 闭环（Prolog STA 3-seed 全部 Goodhart，0% genuine，三种不同 gaming 路径）+ D057 Claim 2 闭环（3-seed random 对照完成）+ D058 plan016 1000步 hacking 分析 + Reviewer 修正 s44 为 query-as-fact gaming + hacking taxonomy 扩展到 7 种。\n\n**2 个 Worker 仍在运行**（未收到回调）:\n1. `worker_analysis_prolog-sta-s44-premise-count_20260514T184205` — Prolog STA s44 的 premise count 分析\n2. `worker_research_prolog-sta-literature-linkage_20260514T184211` — Prolog STA 结果的文献关联\n\n**等待中**:\n- 上述 2 个 Worker 的 `[WORKER DONE]` 回调\n- `writing_plan.yaml` 审批（Director 尚未批准）\n- Paper Agent Full Draft 启动（D059 已发指令，等 writing_plan 审批后正式开始）\n\n### 4. 📋 待办（条件触发式）\n- Worker `prolog-sta-s44-premise-count` 完成 → 整合结果到 memory.md，更新 Claim 3 证据链\n- Worker `prolog-sta-literature-linkage` 完成 → 整合文献到 literature_map.yaml，更新 paper_framing.md 相关工作定位\n- `writing_plan.yaml` 获 Director 审批 → 立即 spawn 多个 Writer Worker 并行写各章节（Method / Experiments / Results 可并行）\n- 写作过程中 Paper Agent/Reviewer 要求补充实验 → 用 cuda:0/cuda:1 跑，但**先清磁盘**\n- 论文初稿完成 → submit_paper_to_review\n- Director 发 `[FRAMING APPROVED]` → Read `framing-reaudit.skill.md` 做全文 re-audit\n\n### 5. 🎯 战略上下文\n**核心 narrative**: STA/ISR 是 GRPO neurosymbolic formalizer 的**诊断工具** + **Goodhart's Law 案例研究**。ISR 作为 reward 全剂量失败（低剂量 meta-Goodhart gaming ISR，高剂量 classic Goodhart PR 崩塌），但作为诊断指标能检测 prove_rate 看不到的结构退化。\n\n**决策链关键节点**:\n- D010: 旧凸组合公式废弃 → 新 additive bonus 公式\n- D051: ISR 2.4x 优势作废（premise-count artifact），定论 1.06x 无差异\n- D057: Claim 2 3-seed 闭环，H7 是 ISR-specific（Random 0%），结论 embedding 是 GRPO 通用（52-80%）\n- D059: Claim 3 闭环，Prolog STA 3/3 Goodhart，0% genuine\n\n**易错点**:\n1. **不要把 strict H7 classifier 结果当 ground truth** — s43 uppercase pseudo-Prolog 和 s44 query-as-fact 都绕过了 strict classifier。必须用 n_necessary 做 functional 分析交叉验证\n2. **plan013 vs plan017 公式结构不同**（convex vs additive），不可简化为 \"additive vs convex\" 对照（D027）\n3. **ISR β=0.1 hacking rate 69.1% (strict, D044)** — 论文标 \"lowest hacking rate\" 而非 \"no hacking\"\n4. **SFT baseline (plan009)** 跑了 4 轮才成功（r4），之前 r1-r3 全 failed。SFT PR=0.14 是真实基线，证明 RL exploration 才是 PR 提升的关键\n5. **磁盘 96% 满** — 跑任何新实验前必须先清理 `/root/autodl-tmp/outputs/` 下旧 checkpoint\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-7-1778784337.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "129162e025855f26d6f0",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops full tex sync compile",
+  "task_key": "worker_ops_full-tex-sync-compile_20260515T163130",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_full-tex-sync-compile_20260515T163130_result.json",
+    "occurrence": 1,
+    "bytes": 1109,
+    "sha256": "d89b846b2a866fbb62fa85c4d7a1bafaff5ff1f25fe9f0c4d039f6b984c8d53e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Label warning 已消除。\n\n## 报告\n\n### 编译结果\n- **状态**: 成功\n- **页数**: 16\n- **文件大小**: 534,695 bytes (~522 KB)\n\n### 数字一致性检查\n\n| 检查项 | 结果 | 位置 |\n|--------|------|------|\n| H7 rate = 69.7% (非旧版 64.5%) | 通过 | experiments.tex:68,157; introduction.tex:27,33; conclusion.tex:5,16; abstract.tex:7 |\n| SFT prove rate = 13.0% (非 14%) | 通过 | experiments.tex:34; introduction.tex:23 |\n| SFT non-hacking = 92.2% (非 92.9%) | 通过 | experiments.tex:34; introduction.tex:23 |\n| eight-mode taxonomy (非 seven) | 通过 | method.tex:71; experiments.tex:11,156 |\n| seed~42 qualifiers | 通过 | experiments.tex:19,24,68,84,128,152,157; conclusion.tex:5,16; introduction.tex:33 |\n| 500-step qualifiers for H7 | 通过 | experiments.tex:9,26,68,84,157; conclusion.tex:5,16; abstract.tex:7 |\n\n### 编译 Warnings\n- `h` float specifier changed to `ht` (3 处) — 无害，LaTeX 标准行为\n- hyperref token warnings (7 处) — 来自 section title 中的数学符号，不影响输出\n- 无 Error，无 Label 问题"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-full-tex-sync-compile.md"
+}

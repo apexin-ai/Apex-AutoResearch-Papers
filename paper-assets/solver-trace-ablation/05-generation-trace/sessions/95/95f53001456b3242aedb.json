@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "95f53001456b3242aedb",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "eval collect plan018 s44 results",
+  "task_key": "worker_eval_collect-plan018-s44-results_20260514T142801",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_collect-plan018-s44-results_20260514T142801_result.json",
+    "occurrence": 1,
+    "bytes": 589,
+    "sha256": "bb45ffbed6a749eb631d165d1dd4dd38c62974811556f0c128f0cea77384f32c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE。结果摘要：\n\n| 指标 | 值 |\n|------|-----|\n| PR | 0.89 (89/100) |\n| mean ISR | 0.0619 |\n| median ISR | 0.0 |\n| proved-only ISR | 0.0695 |\n| ISR=0 样本数 | 72/89 (81%) |\n| ISR=1.0 样本数 | 2 |\n\n按 answer_type：unknown PR 最高 (0.976, ISR=0.089)，true 最低 (0.824, ISR=0.035)。\n\n典型模式：模型生成大量冗余重复 premises（如 `MinWage(m)` 重复 20 次），删除任一条不影响证明，导致 ISR=0。这符合 C006 定义的 exec-only 冗余编码，random reward 未提供推理结构信号。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-collect-plan018-s44-results.md"
+}

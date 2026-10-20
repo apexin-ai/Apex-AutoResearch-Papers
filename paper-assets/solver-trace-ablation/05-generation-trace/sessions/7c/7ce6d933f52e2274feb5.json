@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7ce6d933f52e2274feb5",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ssh diagnose curriculum crash",
+  "task_key": "worker_ssh_diagnose-curriculum-crash_20260516T145431",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_diagnose-curriculum-crash_20260516T145431_result.json",
+    "occurrence": 1,
+    "bytes": 902,
+    "sha256": "c9f41536d5264fe5e55fdd634ce2662938a821e772510605d33487716a2e5523"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。诊断总结：\n\n## 诊断结果\n\n**根因：数据盘 `/root/autodl-tmp` 250G/250G 100% 满**，两个实验在 checkpoint 保存时 `SafetensorError: No space left on device (os error 28)` 崩溃。\n\n| 实验 | 崩溃位置 | Phase 2 触发？ | Checkpoint 可用？ |\n|------|----------|---------------|-------------------|\n| `t02-s42` | step 50/500 | 未到（warmup=100） | 不可用（shard 1/4 仅 12KB） |\n| `t02-s43` | step 100/500 | 刚触发（step 91 出现 `gate_pass=1.0`） | 不可用（同上） |\n\n**附：`gated-isr-t03-s43`** 旧实验日志尾部同为磁盘满崩溃（step 100），registry 已是 DONE/failed，未修改。\n\n**两张 GPU 当前空闲（0MiB），tmux 无 session，进程已清除干净。**\n\n重跑前需要先清理 `/root/autodl-tmp` 腾出空间——当前根分区有 21G 余量但数据盘完全满。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-diagnose-curriculum-crash.md"
+}

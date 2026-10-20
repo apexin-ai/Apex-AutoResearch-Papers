@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f0c69e663c8977992347",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops submit isr b01 s45 1000",
+  "task_key": "worker_ops_submit-isr-b01-s45-1000_20260517T114839",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_submit-isr-b01-s45-1000_20260517T114839_result.json",
+    "occurrence": 1,
+    "bytes": 72,
+    "sha256": "1998f24b29ed020053736b3ebd9476b5893f819fa5b2f79bf7ec74b0fca1a6e7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已在后台稳定运行，无需进一步操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-submit-isr-b01-s45-1000.md"
+}

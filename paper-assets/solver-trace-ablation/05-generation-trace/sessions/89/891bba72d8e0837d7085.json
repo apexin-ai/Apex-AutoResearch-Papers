@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "891bba72d8e0837d7085",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops d134 final data collect",
+  "task_key": "worker_ops_d134-final-data-collect_20260519T022150",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d134-final-data-collect_20260519T022150_result.json",
+    "occurrence": 1,
+    "bytes": 279,
+    "sha256": "fd5e25204027a09508219fa3f905ebe9fb5b4f403eb3c8779891b1c97b2752c4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已保存到 `artifacts/d134_full_data.txt`。\n\n注意：Part 1 的 classify 列全为 0，因为脚本查找的 key 名与 classify.json 实际 key 不匹配。Part 2 的 d134_analysis.py 输出包含了正确的分类详情，所有 10 个 seed 数据完整。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-d134-final-data-collect.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5cd42a1277b2021011e4",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops plan006 readiness check",
+  "task_key": "worker_ops_plan006-readiness-check_20260514T055701",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_plan006-readiness-check_20260514T055701_result.json",
+    "occurrence": 1,
+    "bytes": 1013,
+    "sha256": "80bdead740c0fb59c753a36e0df839d86add0b88bcdefe35d98e27caaf9e0f27"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## plan006 Prolog GRPO 就绪性报告\n\n**所有 6 项检查全部 ✅，无阻塞项。**\n\n| 项目 | 状态 |\n|------|------|\n| Prolog STA 代码 (`prolog_reward.py`, `prolog.py`, factory) | ✅ |\n| swipl (`/usr/bin/swipl`, 在 PATH) | ✅ |\n| 训练数据 (`train_500_seed42.jsonl`, 500条, C001合规) | ✅ |\n| 训练脚本 (`--logic_type prolog` 完整支持) | ✅ |\n| Eval 脚本 (`eval_sta.py --logic_type prolog` 完整支持) | ✅ |\n| 磁盘 (142G free, 单次~15G) | ✅ |\n\n**vs 旧报告变化**: 此前标记的 4 个 ❌（config data_path、eval_sta Prolog 支持、multi-seed、WandB）已全部修复。configs 已指向 `train_500_seed42.jsonl`，`eval_sta.py` 已有完整 Prolog 支持。\n\n**磁盘建议**: `grpo_exec_only` + `grpo_exec_sta`（各 15G）为早期试跑，可安全删除回收 30G。\n\n**启动命令模板**已写入报告，遵守 C001-C005 全部约束。等 GPU 释放即可跑。\n\n报告已更新至 `artifacts/plan006_readiness.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-plan006-readiness-check.md"
+}

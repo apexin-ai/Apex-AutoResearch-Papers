@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4d9bb1b3d0648a6da4c1",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "fix plan014 downstream nli",
+  "task_key": "worker_fix_plan014-downstream-nli_20260514T035317",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_plan014-downstream-nli_20260514T035317_result.json",
+    "occurrence": 1,
+    "bytes": 1100,
+    "sha256": "5992765b7bfd6e1113e24c7b0964858993cab950b7b0159c6e6ad6e9264c095f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。\n\n**修改摘要：**\n\n1. **`load_model` 函数** (line 67)：新增 `base_model` 参数。检查 checkpoint 目录是否有 `tokenizer_config.json`——有则从 checkpoint 加载 tokenizer，没有则回退到 `base_model` 路径加载；`base_model` 也未提供时抛出明确的 `ValueError`。\n\n2. **新增 `--base_model` CLI 参数**：可选参数，指定 base model 路径用于 tokenizer 加载。\n\n3. **调用处** (line 451)：`load_model(args.checkpoint_path, base_model=args.base_model)`。\n\n**验证结果：**\n- checkpoint 有 tokenizer → 直接加载成功\n- checkpoint 无 tokenizer 且无 `--base_model` → 抛出清晰的 ValueError\n- base model tokenizer 从 `/root/autodl-tmp/models/Qwen3-4B` 加载正常，vocab_size=151643\n\n使用示例（当 checkpoint 缺 tokenizer 时）：\n```bash\npython scripts/eval_downstream.py \\\n  --checkpoint_path /path/to/checkpoint-500 \\\n  --base_model /root/autodl-tmp/models/Qwen3-4B \\\n  --data_path data/proofwriter_fol_100.jsonl \\\n  --output_path results/downstream.json\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-plan014-downstream-nli.md"
+}

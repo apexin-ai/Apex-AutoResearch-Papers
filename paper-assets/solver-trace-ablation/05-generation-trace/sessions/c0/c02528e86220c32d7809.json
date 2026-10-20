@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "c02528e86220c32d7809",
+  "project": "solver-trace-ablation",
+  "kind": "conversation",
+  "title": "analysis cross experiment summary",
+  "task_key": "worker_analysis_cross-experiment-summary_20260514T145619",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_cross-experiment-summary_20260514T145619.jsonl",
+    "occurrence": 1,
+    "bytes": 181,
+    "sha256": "c84e3d8add582213a9bc369de30ce772bd4265063fb7dd11c3af4f06e358bd4e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T14:56:26.291522+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 4pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_cross-experiment-summary_20260514T145619"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-cross-experiment-summary.md"
+}

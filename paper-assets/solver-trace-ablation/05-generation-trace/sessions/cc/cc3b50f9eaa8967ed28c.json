@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cc3b50f9eaa8967ed28c",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "write paper review fixes",
+  "task_key": "worker_write_paper-review-fixes_20260514T231354",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_write_paper-review-fixes_20260514T231354_result.json",
+    "occurrence": 1,
+    "bytes": 2466,
+    "sha256": "0f36db0b1f0913ce742d3e95bfca9cc6424547a3ba9352c19372d0969c04cdb7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All checks pass:\n\n1. **`\\bibliographystyle{acl_natbib}`** is set automatically by `acl.sty` (line 195) — main.tex doesn't need it separately.\n2. **Code/data release** (m3): footnote exists only in `abstract.tex` — no duplicates.\n3. **discussion.tex vs conclusion.tex**: `discussion.tex` doesn't exist. `conclusion.tex` has \"Discussion and Conclusion\" as combined section. main.tex only includes `conclusion.tex`. No duplication.\n4. **main.tex vs paper.tex**: `main.tex` is the active file (complete includes, proper packages). `paper.tex` is an older version that references a non-existent `discussion.tex`.\n\n## Summary of all changes:\n\n**M4 (Kim et al. differentiation)** — `related_work.tex`: Expanded the Kim et al. comparison to explicitly name their findings (axiom fabrication, premise mistranslation) and sharpen the contrast (inference-time prompting vs. RL training emergence, seven-mode taxonomy + cross-logic transfer).\n\n**M7 (Reference coverage)** — `references.bib`: Added 3 new entries:\n- `processbench` (Zheng et al., ACL 2025, arXiv 2412.06559) — PRMs fail to generalize\n- `school-reward-hacks` (Taylor et al., arXiv 2508.17511) — reward hacking generalizes to misalignment\n- `macdiarmid-emergent-misalignment` (MacDiarmid et al., Anthropic, arXiv 2511.18397) — production RL reward hacking\n\n`related_work.tex`: Cited all 3 new papers in appropriate paragraphs. Total references: 39 → 42.\n\n**m1 (Classifier precision/recall)** — `appendix.tex`: Expanded classifier validation from 3 sentences to a full paragraph explaining: deterministic rule-based nature, manual precision verification (50 samples, >95%, Wilson CI), recall limitations, functional LOO cross-validation procedure, and the query-as-fact false negative discovery.\n\n**m3 (Code/data release)** — Confirmed: single footnote in `abstract.tex`, no duplicates.\n\n**M3 (Solver-agnostic weakening)** — `introduction.tex`: Changed \"solver-agnostic diagnostic\" to \"diagnostic...adaptable in principle to any solver supporting component-level input manipulation\". `method.tex`: Changed \"solver-agnostic\" to \"solver-agnostic in principle---applicable to any solver accepting component-level input manipulation\".\n\n**Extra checks** — `acl.sty` already sets `\\bibliographystyle{acl_natbib}`. No discussion/conclusion duplication. `paper.tex` is stale (references non-existent `discussion.tex`), `main.tex` is the active file."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/write-paper-review-fixes.md"
+}

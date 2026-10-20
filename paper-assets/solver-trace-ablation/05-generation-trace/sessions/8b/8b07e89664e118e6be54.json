@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8b07e89664e118e6be54",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code plan015 curriculum",
+  "task_key": "worker_code_plan015-curriculum_20260515T005630",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan015-curriculum_20260515T005630_result.json",
+    "occurrence": 1,
+    "bytes": 2420,
+    "sha256": "57b935735bd076af8f8ce8e8fd9b5f653fbabee58b9d74ddd02ffebd05aaadf2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### 1. 代码已有 schedule 支持，无需修改\n\n`scripts/train_grpo.py` 已完整实现所有 plan_015 需要的功能：\n\n- **CLI 参数**（L371-374）：`--beta_schedule {fixed,linear,sigmoid}` 和 `--beta_schedule_midpoint`（默认 250）\n- **`compute_beta_t()`**（L154-163）：\n  - `fixed`: `beta_t = beta`\n  - `linear`: `beta_t = beta * min(step / max_steps, 1.0)` — 0 到 beta 线性增长\n  - `sigmoid`: `beta_t = beta / (1 + exp(-(step - midpoint) / (T/10)))` — S 曲线\n- **step 同步**（L319）：`LocalLogCallback.on_step_end` 将 `state.global_step` 写入 `schedule_state['current_step']`\n- **beta_t 记录**（L284-285, L338, L349）：每步的 `beta_t` 写入 `reward_log.jsonl` 和日志\n\n### 2. 训练命令（copy-paste ready）\n\n**Run 1 — Linear ramp**:\n```bash\nexport CUDA_VISIBLE_DEVICES=0\ncd /root/solver-trace-ablation\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\npython3 scripts/train_grpo.py \\\n  --config configs/grpo_additive_bonus.yaml \\\n  --data_path data/train_500_seed42.jsonl \\\n  --num_steps 500 --seed 42 --beta 0.1 \\\n  --reward_mode additive_bonus \\\n  --beta_schedule linear \\\n  --output_dir /root/autodl-tmp/outputs/plan015_linear_s42\n```\n\n**Run 2 — Sigmoid**:\n```bash\nexport CUDA_VISIBLE_DEVICES=0\ncd /root/solver-trace-ablation\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\npython3 scripts/train_grpo.py \\\n  --config configs/grpo_additive_bonus.yaml \\\n  --data_path data/train_500_seed42.jsonl \\\n  --num_steps 500 --seed 42 --beta 0.1 \\\n  --reward_mode additive_bonus \\\n  --beta_schedule sigmoid --beta_schedule_midpoint 250 \\\n  --output_dir /root/autodl-tmp/outputs/plan015_sigmoid_s42\n```\n\n注意：按 C002 约束，`CUDA_VISIBLE_DEVICES` 使用 `export` 而非 inline 赋值。\n\n### 3. 注意事项\n\n- 两个 run 不能同时跑在同一张 GPU 上（按 C007，提交前需 `nvidia-smi` 确认 GPU 空闲）\n- `--config configs/grpo_additive_bonus.yaml` 中的默认值可能覆盖 CLI 的 `--beta 0.1`，需确认 YAML 中 beta 字段的值（config merge 逻辑是 YAML 仅填充 CLI 未设置的值，CLI 显式设置的 `--beta 0.1` 会保留）\n- 实际上 config merge 代码（L389-394）只在 `current is None` 时覆盖，`--beta` 默认值是 0.3 不是 None，所以 CLI 传的 `0.1` 会被保留——没问题"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan015-curriculum.md"
+}

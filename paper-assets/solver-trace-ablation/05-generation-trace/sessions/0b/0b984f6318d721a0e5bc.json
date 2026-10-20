@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0b984f6318d721a0e5bc",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_11_1778847578.md",
+  "task_key": "loop_11_1778847578",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_11_1778847578.md",
+    "occurrence": 1,
+    "bytes": 4466,
+    "sha256": "62aa36d912cb6ab719b1ebcb4fd59e8f890f65978c71822182f9419425ae34a6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 11\nreason: idle_timeout\nupdated: '2026-05-15T11:48:42+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单仅 westd-39279:cuda:0 和 westd-39279:cuda:1，不可用其他设备\n- 所有 eval 必须用 `proofwriter_fol_100.jsonl`，绝不能用 `test_100.jsonl`（D062/D063 教训）\n- eval 前必须检查 GPU 空闲，避免与训练进程 OOM 冲突\n- plan013 vs plan017 公式结构不同，不可简化为 \"additive vs convex\" 对照（D027）\n- ISR β=0.1 hacking rate 69.1%(strict) vs random 74.7%——论文不标 \"no hacking\"，标 \"lowest hacking rate\"（D044）\n- D051: 2.4x 倍数作废，premise-count-matched 1.06x 定论\n- Prolog STA s44: Reviewer 核实为 query-as-fact gaming，非 genuine。H7 分类器盲区需 Discussion 讨论\n- Bootstrap CI 数据已定：genuine rate parity p=0.637 (n.s.), H7 gaming p=0.0004 (***), ISR* inflation p<0.001 (***)\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-39279，account=root，工作目录 /root/solver-trace-ablation\n- Python：/root/miniconda3/bin/python（conda base 环境，激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- 镜像：aml-train，不要用 venv\n- 模型：/root/autodl-tmp/models/Qwen3-4B\n- 训练输出根目录：/root/autodl-tmp/outputs/\n- 训练日志根目录：~/runs/solver-trace-ablation/\n- HF cache：/root/autodl-tmp/.hf_cache\n- 评估脚本：/root/solver-trace-ablation/scripts/eval_sta.py\n- 评估数据：/root/solver-trace-ablation/data/proofwriter_fol_100.jsonl\n- 活跃进程：plan018-additive-random-b01-s42-1000 (PID 197860, cuda:1, tmux 管理, cron 监控中)\n\n### 3. 📊 当前状态\n**刚做的事**：收到 plan002-additive-b01-s42-1000（ISR β=0.1, 1000步）ANALYZING 回调，已 spawn Worker (`worker_analysis_plan002-additive-b01-s42-1000_20260515T084715`) 做 eval+分析。\n\n**等待中的回调**：\n- Worker `worker_analysis_plan002-additive-b01-s42-1000_20260515T084715`（running）→ eval 完成后需更新 registry + 汇报 Director\n- Worker `worker_analysis_plan009-sft-baseline-s44_20260515T082722`（running）→ SFT s44 eval 分析\n- Cron 监控 plan018-additive-random-b01-s42-1000（RUNNING, cuda:1, PID 197860）→ Random β=0.1 1000步控制组\n\n**Registry 摘要**：70 个实验，DONE 68（success 21, negative 20, failed 21, killed 6），ANALYZING 1（plan002-b01-s42-1000），RUNNING 1（plan018-random-b01-s42-1000）\n\n### 4. 📋 待办\n- Worker plan002-b01-s42-1000 分析完成 → 读 metrics，更新 registry(conclusion+metrics+checkpoint_path)，更新 report.md，与 500 步版本(PR=0.81, ISR=0.42, genuine=30.9%)和 exec-only 1000步(PR=0.96, ISR=0.003, H1=100%)对比，汇报 Director\n- Worker plan009-sft-baseline-s44 分析完成 → 同上流程，与 s42(PR=0.14, genuine=92.9%)和 s43(PR=0.15, genuine=93.3%)对比，补全 SFT 3-seed 统计\n- plan018-additive-random-b01-s42-1000 cron 回调 → spawn eval Worker，完成后做 1000 步三方对比(exec-only vs ISR β=0.1 vs random β=0.1)，这是论文核心数据点\n- 1000 步三方对比全部就绪 → 向 Director 汇报完整 1000 步延伸结论，推进论文 §4.2 写作\n- cuda:0 空出后（plan002-1000 eval 跑完）→ 检查 QUEUED 队列，plan018-random 完成后接力下一个实验或释放 GPU\n\n### 5. 🎯 战略上下文\n**项目阶段**：Writing + 审稿进行中，DDL 2026-05-25（剩 10 天）。所有 3 个 Core Claims 已有实验支撑。\n\n**核心 story**：STA/ISR 作为 GRPO neurosymbolic formalizer 的诊断工具 + Goodhart's Law 案例研究。ISR 从诊断指标到优化目标时出现 Goodhart 转折。\n\n**1000 步实验的意义**：验证 500 步观察到的趋势在更长训练中是否持续。exec-only 1000 步已确认崩塌加剧(ISR 0.003)。ISR β=0.1 1000步（正在分析）和 Random β=0.1 1000步（正在训练）将完成三方对比，决定 §4.2 的最终叙述。\n\n**容易判断错的事**：\n- ISR β=0.1 只有 s42 是 success seed（genuine=30.9%），s43/s44 均为 hacking。3-seed mean 才是论文报告值，不要只看 s42\n- D072/D073：Wilson CI 分析曾短暂翻转 bootstrap 结论（ISR β=0.1 genuine 显著高于 random），后用完整 3-seed 数据确认，HOLD 已解除\n- Hacking taxonomy 是 7 种（含 query-as-fact 第 7 种），不是 6 种\n- `--no_wandb` flag 在 plan002-b01-s42-1000 训练命令中，CRON 说 \"W&B data available\" 可能不准确，以 log 文件和本地 eval 为准\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-11-1778847578.md"
+}

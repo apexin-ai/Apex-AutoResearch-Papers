@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f45cc299fc25cba66348",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops disk cleanup inventory",
+  "task_key": "worker_ops_disk-cleanup-inventory_20260515T115819",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_disk-cleanup-inventory_20260515T115819_result.json",
+    "occurrence": 1,
+    "bytes": 2658,
+    "sha256": "06959cea994a74e9e8e330e1aaeca4aec5ffa529f0d6235cf1d54ac6585e3bc2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "盘点完成。以下是完整清理方案。\n\n---\n\n## 磁盘总览\n\n```\n/dev/md0    250G used 172G avail 79G (69%)\n```\n\n**顶层空间分布：**\n| 目录 | 大小 |\n|------|------|\n| outputs/ | 173G |\n| models/ | 16G（Qwen3-4B 7.6G + Qwen3-4B-ms 7.6G）|\n| .hf_cache/ | 5.3G |\n| gpt2-small/ | 526M |\n\n---\n\n## 清理候选项\n\n### 第一优先级：重复 checkpoint（低风险，高收益）\n\n| 路径 | 实验 | 类型 | 大小 | 风险 |\n|------|------|------|------|------|\n| `outputs/exp1_isr_b03_s42_1000/checkpoint-1000/` | exp1_isr_b03_s42 | 重复最终 checkpoint — root 已有完整模型权重，checkpoint-1000 仅多一个 trainer_state.json (896K) | **~16G** | 低 |\n| `outputs/plan018_additive_random_b01_s42_1000/checkpoint-1000/` | plan018_s42 | 重复最终 checkpoint — root 已有完整模型权重，checkpoint-1000 仅多一个 trainer_state.json (932K) | **~16G** | 低 |\n\n**小计：~32G**\n\n### 第二优先级：废弃缓存和旧模型（低风险）\n\n| 路径 | 类型 | 大小 | 风险 |\n|------|------|------|------|\n| `.hf_cache/Qwen/Qwen2.5-1.5B-Instruct/` | 废弃 HF 缓存（项目用 Qwen3-4B） | **2.9G** | 低 |\n| `.hf_cache/Qwen/Qwen2.5-0.5B/` | 废弃 HF 缓存 | **954M** | 低 |\n| `.hf_cache/openai-community/` | gpt2 缓存 | **1.1G** | 低 |\n| `.hf_cache/models--openai-community--gpt2/` | gpt2 缓存 | **363M** | 低 |\n| `gpt2-small/` | 废弃模型目录 | **526M** | 低 |\n\n**小计：~5.8G**\n\n### 第三优先级：重复 base model（中风险）\n\n| 路径 | 类型 | 大小 | 风险 |\n|------|------|------|------|\n| `models/Qwen3-4B-ms/` 或 `models/Qwen3-4B/`（二选一）| 重复 base model（HF vs ModelScope 来源）| **7.6G** | 中 — 需确认训练脚本引用的是哪个路径 |\n\n**小计：~7.6G**\n\n---\n\n## 不可碰（仅标注）\n\n| 路径 | 大小 | 原因 |\n|------|------|------|\n| `outputs/plan018_additive_random_b01_s42_1000_r3/` | 16G | 正在训练（checkpoint-900 + checkpoint-950 生成中）|\n| `outputs/plan009_sft_baseline_s42_1000/` | 23G（含 15G optimizer.pt）| 即将启动训练。注：checkpoint-50 含 15G optimizer.pt，若从头训练则整个 checkpoint-50 可清理 |\n\n---\n\n## 汇总\n\n| 类别 | 可回收空间 |\n|------|-----------|\n| 低风险可立即清理 | **~37.8G**（重复 checkpoint 32G + 废弃缓存 5.8G）|\n| 中风险需确认后清理 | **~7.6G**（重复 base model）|\n| 暂不可碰待后续处理 | ~39G（运行中 + 即将启动）|\n| **预计可回收总计** | **~45.4G** |\n\n清理后磁盘预计从 172G/250G (69%) 降至 ~127G/250G (51%)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-disk-cleanup-inventory.md"
+}

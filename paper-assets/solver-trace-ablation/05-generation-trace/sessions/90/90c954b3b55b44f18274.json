@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "90c954b3b55b44f18274",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "infra plan006 readiness",
+  "task_key": "worker_infra_plan006-readiness_20260514T055827",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_plan006-readiness_20260514T055827_result.json",
+    "occurrence": 1,
+    "bytes": 4625,
+    "sha256": "c64ce4a7a7bb6e7a567e197e8ab093ecace6c09712d0cf599f2e9854606d38b6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有数据收集完毕。\n\n---\n\n## plan006 Prolog exec-only 就绪验证报告\n\n### 1. Prolog 训练配置 ✅\n- `configs/grpo_prolog_exec_only.yaml` 存在\n- 关键参数：`logic_type: prolog`, `reward_mode: execution_only`, `solver: prolog`, `sta_weight: 0.0`\n- 数据路径：`data/train_500_seed42.jsonl`（符合 C001）\n- `num_steps: 100`, `seed: 42`, `no_wandb: true`\n- 需要为 seed=43/44 覆盖 `--seed` 和 `--output_dir`\n\n### 2. Prolog 训练数据 ✅\n- `data/train_500_seed42.jsonl`：500 条，含 context/question/answer/fol_premises/fol_conclusion\n- `build_prolog_dataset()` 只用 context + question 字段构建 Prolog prompt（PROLOG_SYSTEM_PROMPT），FOL 数据直接可用\n- 模型被要求将自然语言形式化为 Prolog（非 FOL），这正是 plan006 的实验目标\n\n### 3. SWI-Prolog solver ✅\n- swipl 在 `/usr/lib/swi-prolog/bin/x86_64-linux/swipl`\n- `src/solvers/prolog.py` 通过 subprocess 调 swipl，写临时 .pl 文件\n- `src/solvers/factory.py` 中 `\"prolog\"` → `PrologSolver`\n- `train_grpo.py` 中 `--logic_type prolog` 自动选择 prolog solver + prolog reward\n\n### 4. Prolog STA 代码 ✅\n- `src/sta/prolog_reward.py` 完整实现：\n  - `parse_prolog_formalization()` — 解析 Facts/Rules + Query\n  - `prolog_sta_ablation()` — 逐条去除 clause 检查 query 是否 break\n  - `prolog_isr()` — necessary_clauses / total_clauses\n  - `prolog_sta_reward()` / `fast_prolog_sta_reward()` — 完整和快速 reward\n- `scripts/eval_sta.py` 支持 `--logic_type prolog`，映射到 prolog solver 和 reward_fn\n\n### 5. 磁盘空间 ⚠️ 充足但建议清理\n\n| 目录 | 大小 | 状态 |\n|------|------|------|\n| grpo_exec_only | 15G | 旧实验，可清理 |\n| grpo_exec_sta | 15G | 旧实验，可清理 |\n| plan001_exec_only_s42 | 15G | 已有 eval，可清理 |\n| plan002_additive_b01_s42 | 20G | **活跃** |\n| plan005_sta_low_s42 | 15G | 看情况 |\n| plan016_extended_1000_s42 | 15G | **活跃** |\n\n- **可用空间**：142G / 250G (56%)\n- **plan006 预计需求**：3 seeds × ~15G = ~45G\n- 当前空间足够，无需立即清理\n- 如需释放空间：grpo_exec_only + grpo_exec_sta + plan001_exec_only_s42 = **45G 可释放**\n- 提到的 plan001_s43_r4 和 plan001_s44 不在当前 outputs 列表中，可能已清理\n\n### 6. 当前训练进程\n\n| GPU | 实验 | PID | 进度 | 估计 |\n|-----|------|-----|------|------|\n| cuda:0 | plan002-b01 | 262266 | step 209/500 (42%) | reward_log 最后时间戳 06:00，当前 13:58，日志可能有缓冲延迟，实际进度可能更高 |\n| cuda:1 | plan016 | 263273 | step 145/1000 (14.5%) | 同上，step_time ~4-38s 变化大 |\n\n两卡 94% GPU-Util，训练正常进行。reward_log 时间戳 ~8h 前，实际步数可能远超日志显示。\n\n### 7. plan006 启动命令模板\n\n3 条命令，每条单独一张卡跑（等 GPU 释放后）：\n\n**Seed 42:**\n```bash\nexport CUDA_VISIBLE_DEVICES=0\ncd /root/solver-trace-ablation && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base\nnohup python scripts/train_grpo.py \\\n  --config configs/grpo_prolog_exec_only.yaml \\\n  --seed 42 \\\n  --output_dir /root/autodl-tmp/outputs/plan006_prolog_exec_s42 \\\n  > /root/autodl-tmp/outputs/plan006_prolog_exec_s42.log 2>&1 &\n```\n\n**Seed 43:**\n```bash\nexport CUDA_VISIBLE_DEVICES=0\ncd /root/solver-trace-ablation && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base\nnohup python scripts/train_grpo.py \\\n  --config configs/grpo_prolog_exec_only.yaml \\\n  --seed 43 \\\n  --output_dir /root/autodl-tmp/outputs/plan006_prolog_exec_s43 \\\n  > /root/autodl-tmp/outputs/plan006_prolog_exec_s43.log 2>&1 &\n```\n\n**Seed 44:**\n```bash\nexport CUDA_VISIBLE_DEVICES=1\ncd /root/solver-trace-ablation && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base\nnohup python scripts/train_grpo.py \\\n  --config configs/grpo_prolog_exec_only.yaml \\\n  --seed 44 \\\n  --output_dir /root/autodl-tmp/outputs/plan006_prolog_exec_s44 \\\n  > /root/autodl-tmp/outputs/plan006_prolog_exec_s44.log 2>&1 &\n```\n\n注意：\n- 每条 `export CUDA_VISIBLE_DEVICES` 必须独立行（C002）\n- `save_total_limit=1` 已在 train_grpo.py 中硬编码（C003）\n- `log_completions=False` 已设置，不会生成 completions parquet\n- 两卡只能同时跑 2 个 seed，第 3 个等一个完成后再启动\n- 100 步训练，预计 ~30-60 分钟/seed（参考现有实验 step_time）\n\n### 结论\n\n**plan006 全部前置条件已满足**，GPU 释放后可直接启动。无缺失项。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-plan006-readiness.md"
+}

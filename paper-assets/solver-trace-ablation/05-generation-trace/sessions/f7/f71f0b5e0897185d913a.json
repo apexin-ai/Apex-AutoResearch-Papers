@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f71f0b5e0897185d913a",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analyze plan014 downstream nli s42",
+  "task_key": "worker_analyze_plan014-downstream-nli-s42_20260514T042736",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_plan014-downstream-nli-s42_20260514T042736_result.json",
+    "occurrence": 1,
+    "bytes": 2273,
+    "sha256": "c02f0b9b2c4eababfd523772925a87fe07e05a1662b2f6a11052a017c5f4184a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验成功完成（EXIT_CODE=0）。以下是完整结果：\n\n## plan014 Downstream NLI 结果\n\n### 配置\n- Checkpoint: plan001_exec_only_s42\n- 100 samples, K=8 generations, T=0.7\n- Solver: prover9\n- 推理耗时 408.8s，评估 13.6s\n\n### 核心指标\n\n| 指标 | 值 |\n|------|-----|\n| Overall accuracy | **34.1%** |\n| Proved rate | 732/800 (91.5%) |\n| Parse errors | 0 |\n\n### 按 gold label 分解 — 严重 true bias\n\n| Gold Label | Accuracy | 分布 |\n|------------|----------|------|\n| true | **91.2%** (248/272) | 34% of data |\n| unknown | 7.6% (25/328) | 41% of data |\n| false | **0.0%** (0/200) | 25% of data |\n\n模型几乎总是预测 \"true\"（entailment），完全无法预测 \"false\"。\n\n### ISR 与 NLI 准确率的关系\n\n**ISR bucket:**\n\n| Bucket | μ(ISR) | Accuracy | n |\n|--------|--------|----------|---|\n| high | 0.94 | 75.0% | 12 |\n| mid | 0.48 | 37.7% | 69 |\n| low | 0.08 | 32.7% | 651 |\n\nBucket 层面有单调趋势，但 high bucket 仅 12 个样本。\n\n**ISR quartile（等分）:**\n\n| Quartile | Range | Accuracy | n |\n|----------|-------|----------|---|\n| Q1 | [0.00, 0.00] | 30.6% | 183 |\n| Q2 | [0.00, 0.11] | **43.2%** | 183 |\n| Q3 | [0.11, 0.17] | 28.4% | 183 |\n| Q4 | [0.17, 1.00] | 33.3% | 183 |\n\nQuartile 层面**非单调**（Q2 最高，Q3 最低），无清晰趋势。\n\n### Best-of-N 选择\n\n| 策略 | Accuracy |\n|------|----------|\n| oracle | 44.0% |\n| isr_best | 35.0% |\n| prove_first | 35.0% |\n| random | 34.1% |\n\nISR-best 仅比 random 高 +0.9 pp，与 prove_first 持平。\n\n### 统计检验 — 全部不显著\n\n| Test | Statistic | p-value |\n|------|-----------|---------|\n| Spearman ρ(ISR, correct) | **-0.049** | 0.187 |\n| Mann-Whitney Q4>Q1 | U=17202 | 0.288 |\n| Bootstrap BoN (ISR vs random) | diff=0.009 | 95% CI [-0.015, +0.037] |\n\n### 结论\n\n**ISR 作为 downstream NLI quality proxy 的结果是阴性的。** Spearman ρ 接近零且不显著，Best-of-N ISR 选择无实质提升，quartile 分析非单调。主要原因：模型存在严重的 \"true\" prediction bias（false accuracy = 0%），NLI 任务本身的 accuracy 天花板很低（overall 34.1%），ISR 的区分度在此基础上没有空间发挥。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-plan014-downstream-nli-s42.md"
+}

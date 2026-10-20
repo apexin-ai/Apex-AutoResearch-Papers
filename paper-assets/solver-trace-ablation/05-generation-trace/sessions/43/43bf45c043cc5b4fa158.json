@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "43bf45c043cc5b4fa158",
+  "project": "solver-trace-ablation",
+  "kind": "worker",
+  "title": "eval analysis plan009 sft r4",
+  "task_key": "worker_eval-analysis_plan009-sft-r4_20260514T122601",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval-analysis_plan009-sft-r4_20260514T122601.log",
+    "occurrence": 1,
+    "bytes": 654320,
+    "sha256": "9a8d449bdda10bf6e959da02b8d5ab3a5d207678e164752aae4a9479fdc046ec"
+  },
+  "statistics": {
+    "messages": 301,
+    "user_turns": 0,
+    "tool_calls": 101,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "assistant": 86,
+      "record": 11,
+      "tool_call": 101,
+      "tool_result": 101
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 301,
+      "chunks": [
+        {
+          "path": "43bf45c043cc5b4fa158-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "43bf45c043cc5b4fa158-part-0002.json",
+          "message_count": 121
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-analysis-plan009-sft-r4.md"
+}

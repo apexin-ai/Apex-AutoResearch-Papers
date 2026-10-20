@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "904b6de7e8f829a5cd02",
+  "project": "solver-trace-ablation",
+  "kind": "worker",
+  "title": "eval b03 isr s43 random s43",
+  "task_key": "worker_eval_b03-isr-s43-random-s43_20260514T234153",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_b03-isr-s43-random-s43_20260514T234153.log",
+    "occurrence": 1,
+    "bytes": 548651,
+    "sha256": "251be943439661d1c5a4d112d9756842e9b762d24eae477c416844d5efa72f1d"
+  },
+  "statistics": {
+    "messages": 296,
+    "user_turns": 0,
+    "tool_calls": 86,
+    "roles": {
+      "log": 1,
+      "system": 41,
+      "record": 5,
+      "assistant": 66,
+      "tool_call": 86,
+      "tool_result": 86,
+      "result": 11
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 296,
+      "chunks": [
+        {
+          "path": "904b6de7e8f829a5cd02-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "904b6de7e8f829a5cd02-part-0002.json",
+          "message_count": 116
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-b03-isr-s43-random-s43.md"
+}

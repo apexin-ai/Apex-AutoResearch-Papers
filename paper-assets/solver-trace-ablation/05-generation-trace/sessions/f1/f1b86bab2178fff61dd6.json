@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f1b86bab2178fff61dd6",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_18_1778957043.md",
+  "task_key": "loop_18_1778957043",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_18_1778957043.md",
+    "occurrence": 1,
+    "bytes": 3208,
+    "sha256": "2db99ea34c05f77082bde69d186edd0110df540a73cef2bfd0e3b5911dec8920"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 18\nreason: idle_timeout\nupdated: '2026-05-16T18:43:52+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-39279 cuda:0, cuda:1（仅此两张，D108 确认）\n- 8B 全参 GRPO 已证明不可行（3 次 OOM），不要再尝试——D108 决策改用 1.7B\n- 1.7B 实验必须用 K=4（与 4B 匹配），不能降 K 来省显存\n- `--no_wandb` 模式下 cron 无法通过 W&B 验证成功——必须确保脚本有 sentinel 文件或改回 wandb 监控\n- 论文 DDL: 2026-05-25（剩 9 天），不可浪费 GPU 在已验证无效的方向\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-39279，工作目录 /root/solver-trace-ablation/\n- Python：/root/miniconda3/bin/python（conda base 环境）\n- 模型：Qwen3-4B（主力）、Qwen3-1.7B（W2 跨 scale）——路径需 Worker 确认\n- 数据：/root/solver-trace-ablation/data/proofwriter_fol_100.jsonl（100 条）\n- 输出：/root/autodl-tmp/outputs/\n- W&B：项目 solver-trace-ablation（多数实验用 --no_wandb）\n- 活跃进程：无（两张卡空闲）\n- Cron：reconcile 返回 0 活跃\n\n### 3. 📊 当前状态\n- **刚做完**：收到 gated-isr-t03-s43 失败回调，已 spawn Worker（worker_diagnose_gated-isr-t03-s43_20260516T144126）SSH 诊断两个 gated-ISR 实验失败原因\n- **等待中**：上述诊断 Worker 回调（预计分钟级）\n- **Registry**：116 实验，无 RUNNING，PENDING 2（random-b01-s46, exec-only-s46），PREPARING 7（5-seed 扩展等）\n- **关键**：两张 GPU 当前空闲，属于失职状态——诊断完成后需立即提交新实验\n- gated-isr-t03-s42 和 s43 都同样失败（\"process dead 5× with no sentinel/W&B\"），高度怀疑是 config 文件不存在或 --no_wandb 导致 cron 监控无法确认成功\n\n### 4. 📋 待办\n- Worker 诊断回调到达 → 根据根因决定：\n  - 若 config 缺失 → 补 config 重新提交\n  - 若 OOM → 降 num_generations 或换 1.7B\n  - 若代码 bug → 修复后重提\n  - 若 --no_wandb 导致 cron 误判 → 加 sentinel 机制或开 wandb\n- GPU 空闲恢复后 → 优先提交 ROADMAP P0：1.7B exec-only + 1.7B ISR β=0.1（双卡并行）\n- 1.7B 完成 → 立即 eval + classify_h7，对比 4B hacking patterns\n- Director 如审批 PENDING 实验（random-b01-s46, exec-only-s46）→ submit_on_allocated\n\n### 5. 🎯 战略上下文\n- **核心结论**：STA/ISR 作为诊断工具 + Goodhart 案例研究。4B 三个 Claims 全部就位。W2 需求跨 scale 验证（D108: 1.7B 替代 8B）\n- **D110**：1.7B ISR β=0.1 pilot 发现新 hacking 模式 H9 \"Ex Falso Quodlibet\"\n- **D109**：1.7B 结果必须框架为\"小模型也 hack\"（Reviewer 约束）\n- **gated-ISR 实验**：这是尝试用 ISR 门控（threshold=0.3, min_components>2）避免 Goodhart 的新方向。两个 seed 都失败说明可能有系统性问题（config/代码）而非随机故障\n- **易错点**：不要假设 .venv 存在（用 conda）；不要用 nohup 启动训练（必须 submit_training_job）；--no_wandb 模式需要额外 sentinel 机制否则 cron 会误判失败\n- **决策链**：D106(dose-response 叙事) → D107(8B OOM) → D108(转 1.7B) → D109(framing 约束) → D110(H9 新发现)\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-18-1778957043.md"
+}

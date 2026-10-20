@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7c82f988dd2dda6c43ef",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_5_1778759619.md",
+  "task_key": "loop_5_1778759619",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_5_1778759619.md",
+    "occurrence": 1,
+    "bytes": 5687,
+    "sha256": "54875c0500cd0a930c895cdfbe645da432b67ab5ac77d21781875a33b6bab5d8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: idle_timeout\nupdated: '2026-05-14T11:51:13+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: **只能用 westd-39279 的 cuda:0 和 cuda:1**（`execution.gpu_ids`），其他 GPU 一律拒绝，即使 Director 指令也必须 push back\n- C001: 所有实验统一使用 `data/train_500_seed42.jsonl`，禁止其他数据文件\n- C002: 提交前必须 `export CUDA_VISIBLE_DEVICES=N`（在 bash -c 内部），禁止 inline 赋值 `VAR=X cmd`。历史上两次 GPU 冲突事故\n- C003: `save_total_limit=1` + `log_completions=False`，output_dir 放 `/root/autodl-tmp/outputs/`。磁盘 250G 曾满过\n- C004: 跨 run ISR 对比只能引用 `eval_sta.py` 产出，禁止引用训练日志 ISR（不同 run 可能用 binary vs full ISR）\n- C005: 所有 Worker（含 fix/ops）启动 Python 前必须设 CUDA_VISIBLE_DEVICES\n- plan009 SFT baseline 必须用 Qwen3-4B（与 GRPO 实验一致），之前误用 Qwen2.5-1.5B 被 kill\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-39279, account=root\n- **工作目录**: `/root/solver-trace-ablation/`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- **GPU**: 2× RTX PRO 6000 Blackwell 94GB, CUDA 12.8, PyTorch 2.10.0+cu128\n- **模型**: Qwen3-4B at `/root/autodl-tmp/models/Qwen3-4B`（通过 ModelScope 下载）\n- **数据**: `data/train_500_seed42.jsonl`（500 条 FOLIO FOL）, `data/proofwriter_fol_100.jsonl`（eval 100 条）\n- **Solvers**: Prover9 (LADR 编译), SWI-Prolog 8.4.2 (`/usr/bin/swipl`), Z3 4.16.0\n- **磁盘**: 数据盘 `/root/autodl-tmp/` 250GB (~142G free), 系统盘 30GB (~22G free)\n- **HF cache**: `/root/autodl-tmp/.hf_cache`\n- **活跃进程**:\n  - plan018-additive-random-b01-s44: PID 564900, cuda:0, tmux session, cron 监控中（reconcile 确认 still running）\n  - plan009-sft-baseline-s42-r4: PID 572604, cuda:1, ALLOCATED 状态（刚提交，有 Worker `worker_urgent_kill-dup-eval-submit-sft-r4` 在处理）\n\n### 3. 📊 当前状态\n**刚做完**: plan006-prolog-exec-s42 训练完成 → Worker `worker_eval_plan006-prolog-exec-s42` 正在跑 eval。两个 disk-cleanup Worker 也在运行。一个 urgent Worker 在处理 kill 重复 eval + 提交 SFT r4。\n\n**Registry 活跃实验**:\n| exp_id | 状态 | GPU | 摘要 |\n|--------|------|-----|------|\n| plan018-additive-random-b01-s44 | RUNNING | cuda:0 | Random β=0.1 s44 控制组，与 plan002-b01-s44 (ISR) 同 seed 对照 |\n| plan009-sft-baseline-s42-r4 | ALLOCATED | cuda:1 | SFT baseline Qwen3-4B, r4 修复 CUDA_VISIBLE_DEVICES+gpu+no_wandb |\n| plan006-prolog-exec-s43 | PREPARING | — | Prolog exec-only s43，等 GPU |\n| plan006-prolog-exec-s44 | PREPARING | — | Prolog exec-only s44，等 GPU |\n| plan006-prolog-sta-s43 | PREPARING | — | Prolog exec+STA s43，等 GPU |\n| plan006-prolog-sta-s44 | PREPARING | — | Prolog exec+STA s44，等 GPU |\n\n**等待中**:\n- Worker `worker_eval_plan006-prolog-exec-s42` → eval 结果回调\n- Worker `worker_urgent_kill-dup-eval-submit-sft-r4` → SFT r4 提交确认\n- Cron 监控 plan018-additive-random-b01-s44 → 完成回调\n- plan009-sft-baseline-s42-r4 可能还需 cron 注册（Worker 正在处理）\n\n### 4. 📋 待办（条件触发式）\n- plan018-additive-random-b01-s44 完成回调 → spawn eval Worker (eval_sta.py) → 与 plan002-b01-s44 对比 → 更新 Table 2 多 seed 数据\n- plan006-prolog-exec-s42 eval Worker 完成 → 分析 Prolog exec-only 退化模式 → 与 plan006-prolog-sta-s42 (100% H7) 对照 → 汇报 Director\n- plan009-sft-baseline-s42-r4 进入 RUNNING → 等完成 → eval → 与 GRPO exec-only 对比 hacking taxonomy → 回答 \"hacking 是 GRPO-specific 还是 general finetuning artifact\"\n- cuda:0 空出（plan018-s44 完成后） → 提交 plan006-prolog-exec-s43（PREPARING → PENDING → 审批 → 提交）\n- cuda:1 空出（plan009 完成后） → 提交 plan006-prolog-exec-s44 或 plan006-prolog-sta-s43\n- 3-seed random β=0.1 全出齐（s42 done + s43 done + s44 running） → 与 3-seed ISR β=0.1 对比 → 定稿 Claim 2 多 seed 证据\n- plan006 Prolog 全 6 个实验完成 → Claim 3 跨 logic type 证据链定稿\n\n### 5. 🎯 战略上下文\n**核心 story**: STA/ISR 作为 GRPO neurosymbolic formalizer 的**诊断工具** + **Goodhart's Law 案例研究**。DDL 2026-05-25（剩 11 天）。\n\n**已建立的证据链**:\n- Claim 1 (ISR 崩塌): 0.6423→0.1324→0.0027 (100→500→1000步), 跨 seed 3 种退化模式\n- Claim 2 (Goodhart β 剂量效应): β=0.1 sweet spot (ISR 3.2x > random), β=0.3 collapse。但 D043 降级：2/3 seeds β=0.1 ISR 膨胀为 artifact（H7 conclusion duplication），\"sweet spot\" 叙事已弱化\n- Claim 3 (跨 logic type): Prolog STA s42 = 100% H7（negative），exec-only s42 eval 中\n\n**关键决策链**: D035 选了 Framing C (Goodhart 主线) → D041 Claim 2 pivot (\"all doses hack, ISR shifts mode not reduces it\") → D043 \"sweet spot\" 降级 → D044 strict hacking taxonomy\n\n**易错点**:\n- plan002-b01-s43/s44 都是 negative（H7 conclusion duplication），不要把 s42 单 seed 的 \"ISR 3.2x > random\" 当稳健结论——多 seed 后 ISR β=0.1 的 narrative 是 \"mode shift not net reduction\"\n- Prolog 比 FOL 更容易 hack（100 步即饱和 vs FOL 500 步），不要期望 Prolog 出 positive\n- plan013 (convex random) 和 plan017 (additive random β=0.3) 公式结构不同，不可简化为 \"additive vs convex\" 对照（D027）\n- SFT baseline (plan009) 已失败 3 次（r1 模型错、r2 GPU 冲突 OOM、r3 缺 CUDA_VISIBLE_DEVICES），r4 是第四次尝试，注意验证是否真正 RUNNING\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5-1778759619.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "982c45f5e0444f0640f1",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops disk cleanup westd39279",
+  "task_key": "worker_ops_disk-cleanup-westd39279_20260514T053423",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_disk-cleanup-westd39279_20260514T053423_result.json",
+    "occurrence": 1,
+    "bytes": 555,
+    "sha256": "68cba034bfc9a119b11dff958497543e4bc6769ae1b48c4e67f4fa644bff02f4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "释放成功。磁盘从 6.4G → **172G 可用**（释放约 165G）。\n\n### 剩余空间分布\n\n| 路径 | 大小 |\n|------|------|\n| `/root/autodl-tmp/outputs/` | 61G（5个目录） |\n| └ grpo_exec_only | 15G |\n| └ grpo_exec_sta | 15G |\n| └ plan001_exec_only_s42 | 15G |\n| └ plan005_sta_low_s42 | 15G |\n| └ plan002_additive_b01_s42 | 4K（空） |\n| `/root/autodl-tmp/models/` | 16G |\n| `/root/autodl-tmp/gpt2-small/` | 526M |\n| **总使用** | **79G / 250G** |\n\n172G 空闲，足够跑多轮 1000 步实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-disk-cleanup-westd39279.md"
+}

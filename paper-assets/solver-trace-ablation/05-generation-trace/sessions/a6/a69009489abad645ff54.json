@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a69009489abad645ff54",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analysis exec only s43 1000 r2 eval",
+  "task_key": "worker_analysis_exec-only-s43-1000-r2-eval_20260515T160926",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exec-only-s43-1000-r2-eval_20260515T160926_result.json",
+    "occurrence": 1,
+    "bytes": 471,
+    "sha256": "ca58043b49d621372ef9f538a1b614b184f9143428d9db3dbf83c5b673e8e35b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "eval_sta.py 已在运行中（27/100），约 5 分钟后检查完成状态。发现：\n- **Checkpoint**: `/root/autodl-tmp/outputs/plan001_exec_only_s43_1000_r2/`\n- **训练结果**: prove_rate=0.835, mean_isr=0.477, 1000步完成\n- **eval 输出路径**: `/root/autodl-tmp/outputs/plan001_exec_only_s43_1000_r2/eval_sta_results.json`\n- **数据**: `data/proofwriter_fol_100.jsonl` (符合 C008)\n- 另一个 worker 已启动 eval，无需重复运行"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exec-only-s43-1000-r2-eval.md"
+}

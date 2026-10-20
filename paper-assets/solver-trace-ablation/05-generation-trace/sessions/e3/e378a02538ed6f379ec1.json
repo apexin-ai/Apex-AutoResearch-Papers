@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e378a02538ed6f379ec1",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "monitor plan001 r2 quick check",
+  "task_key": "worker_monitor_plan001-r2-quick-check_20260513T224150",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_plan001-r2-quick-check_20260513T224150_result.json",
+    "occurrence": 1,
+    "bytes": 326,
+    "sha256": "97f2b3d19b543eb130e0304ebb6e7aa515662976e5e893087741cdc92a2cb2ff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已成功启动：\n\n- **PID 84896** 存活，运行 1m26s\n- **GPU 0**: 91% 利用率，79165 MiB 显存占用\n- **日志**: 正在输出训练样本的 rich table（GRPO 训练的 completion 展示），说明训练循环已经开始\n\n`--help | grep` 前缀没有导致问题，训练正常进入。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-plan001-r2-quick-check.md"
+}

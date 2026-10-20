@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "871ac94c309b1d51c73e",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "research d146 prooffol data",
+  "task_key": "worker_research_d146-prooffol-data_20260519T135905",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_d146-prooffol-data_20260519T135905_result.json",
+    "occurrence": 1,
+    "bytes": 2039,
+    "sha256": "d880311d708f61ca2c7052503166935b44c79d874686f9822a97d31262b42ad8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。报告如下：\n\n---\n\n## ProofFOL 数据准备报告\n\n### 1. 来源\n- **论文**: [Strategies for Improving NL-to-FOL Translation with LLMs](https://arxiv.org/abs/2409.16461) (arXiv:2409.16461)\n- **GitHub**: `https://github.com/RamyaKeerthy/Translation-NL2FOL`\n- **数据文件**: `data/train/proof_train_fol.json`\n\n### 2. 原始数据集\n- 总条数：**10,424**（train），600（test）\n- 字段：`id`, `input`, `label`, `output`\n- `output` 字段包含结构化 FOL：`Predicates` + `Premise_FOL-` + `Conclusion_FOL-`，每条 FOL 后跟 `::: NL` 对齐说明\n- 成功解析：**10,332**（92 条因 FOL 解析为空被跳过，0.9%）\n\n### 3. 与 FOLIO 格式兼容性\n- 字段完全对齐：`id`, `context`, `question`, `answer`, `fol_premises`, `fol_conclusion`, `depth` — **零差异**\n- FOL 符号风格一致（`∀`, `∃`, `∧`, `→`, `¬`），与 FOLIO 使用相同 Unicode\n- 区别：ProofFOL 的 FOL 是 GPT-4o 生成 + Prover9 验证的银标准数据；谓词更简单（`Blue(x)`, `Rough(x)` 等 ProofWriter 风格），不如 FOLIO 的真实世界谓词复杂\n\n### 4. 生成文件\n| 文件 | 路径 | 条数 |\n|------|------|------|\n| 训练集 | `/root/solver-trace-ablation/data/prooffol_train_500.jsonl` | 500 |\n| 评估集 | `/root/solver-trace-ablation/data/prooffol_eval_100.jsonl` | 100 |\n\n### 5. Sanity check 结果\n- ID 前缀：全部 `prooffol_*`，无 `folio_` 污染\n- 空 `fol_premises`：0\n- 空 `fol_conclusion`：0\n- Train/Eval ID 重叠：0\n- 标签分布（train_500）：true=180, unknown=176, false=144（较均衡）\n- Depth 分布（全集）：d2=1978, d3=867, d4=3919, d5=3528, d6/7/8=40\n- seed=42 可复现\n\n### 6. 注意事项\n- ProofFOL 来自 ProofWriter，谓词语义简单（颜色/属性），推理链较长（depth 4-5 为主），与 FOLIO 的真实世界知识推理有风格差异——这正是跨数据集验证的意义\n- FOL 是 GPT-4o 银标准翻译，非人工标注，但经 Prover9 正确性验证过滤"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-d146-prooffol-data.md"
+}

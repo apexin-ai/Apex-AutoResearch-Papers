@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "63bc679c68350f1b7bec",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops d134 random s48 completion check",
+  "task_key": "worker_ops_d134-random-s48-completion-check_20260518T175729",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d134-random-s48-completion-check_20260518T175729_result.json",
+    "occurrence": 1,
+    "bytes": 1043,
+    "sha256": "85a7fa202953b24357ca6a07d9fd73aac10041fe1641766929c105beacdcf00a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结构化摘要\n\n### s48 结论：FAILED\n- **崩溃点**: step 100/500，checkpoint-100 保存时 `safetensors_rust.SafetensorError: No space left on device (os error 28)`\n- **训练指标 (step 100)**: prove_rate=0.250, ISR=0.057\n- **Registry**: 已更新为 `DONE / failed`\n- **Cron**: 已删除\n\n### s49 状态：正在跑但即将崩溃\n- PID 124789，GPU 0 占用 80294 MiB，当前 step 6/500\n- **磁盘 250G/250G，仅剩 816K** — 到 checkpoint save 时必定 OOM on disk\n- 未注册到 registry\n\n### 磁盘/GPU\n- **磁盘**: 250G/250G (100%)，816K 可用\n- **GPU 0**: 93% util, PID 124789 (s49)\n\n### 紧急问题\ns49 在 ~step 50 时会尝试保存 checkpoint（约 7 分钟后），届时因磁盘满必定崩溃。\n\n**可立即释放的空间：**\n- s48 的 checkpoint-50 (15G) + checkpoint-100 (13G, 不完整) = 28G\n- s47 目录 16G（需确认是否已完成 eval）\n\n是否要删除 s48 的 checkpoint 目录来救 s49？s48 已判定 failed，这些 checkpoint 没有保留价值。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-d134-random-s48-completion-check.md"
+}

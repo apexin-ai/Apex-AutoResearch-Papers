@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "20c9528bbf0ba6ad8087",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "eval plan016 extended 1000",
+  "task_key": "worker_eval_plan016-extended-1000_20260514T081256",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_plan016-extended-1000_20260514T081256_result.json",
+    "occurrence": 1,
+    "bytes": 1596,
+    "sha256": "10587760081b94e6580f5397821548d235df4280dc8587e7cea39d4639ac04e1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated. Summary:\n\n## plan016-extended-1000-s42 评估结果\n\n### 500 vs 1000 步对比 (eval_sta.py)\n\n| 指标 | plan001-s42 (500步) | plan016 (1000步) | 变化 |\n|------|-------------------|-----------------|------|\n| eval PR | 0.93 | **0.96** | +3.2% |\n| eval ISR | 0.123 | **0.0027** | **-97.8%** |\n| proved_only ISR | 0.132 | 0.0028 | -97.9% |\n| components | 6.58 | **18.55** | +182% |\n| ISR=0 ratio | — | 94.8% | — |\n| median ISR | — | 0.0 | — |\n\n### Windowed 训练曲线\n\n| Steps | PR | ISR |\n|-------|-----|------|\n| 1-100 | 0.190 | 0.0859 |\n| 101-200 | 0.660 | **0.1115** (peak) |\n| 201-300 | 0.838 | 0.0985 |\n| 301-400 | 0.907 | 0.0540 |\n| 401-500 | 0.927 | 0.0433 |\n| 501-600 | 0.963 | 0.0408 |\n| 601-700 | 0.965 | 0.0200 |\n| 701-800 | 0.988 | 0.0178 |\n| 801-900 | 0.978 | 0.0170 |\n| 901-1000 | 0.981 | 0.0144 |\n\n### 结论: **success** — 确认 ISR 崩塌持续恶化\n\n1. **PR↑ 但 ISR→0**: 模型更擅长\"证明\"，但推理忠实度降至近零。94.8% 的证明没有任何必要组件。\n2. **非经典同义反复崩塌**: component_count_2_ratio=0（不是简单的 2-component 同义反复），而是矛盾爆炸式崩塌——模型在大量无关前提中嵌入 P(a) 和 ¬P(a) 形成矛盾，使任何结论都可证。\n3. **ISR 单调递减，无回升信号**: 从 step 200 的 0.1115 一路降至 step 1000 的 0.0144，500 步时的 ISR=0.123 不是底部而是崩塌过程中的快照。\n4. **论文意义**: 延长训练是 exec-only reward hacking 随时间恶化的干净消融证据。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-plan016-extended-1000.md"
+}

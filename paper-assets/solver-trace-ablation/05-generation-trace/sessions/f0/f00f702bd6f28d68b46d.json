@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "f00f702bd6f28d68b46d",
+  "project": "solver-trace-ablation",
+  "kind": "conversation",
+  "title": "ops server diagnostic and eval",
+  "task_key": "worker_ops_server-diagnostic-and-eval_20260515T025241",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_ops_server-diagnostic-and-eval_20260515T025241.jsonl",
+    "occurrence": 1,
+    "bytes": 181,
+    "sha256": "be8644bb285549962fbf3716ee8dc96296a91f2ec3620e52d21ab6909bf81f99"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T02:52:49.176165+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 4:10am (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_server-diagnostic-and-eval_20260515T025241"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/ops-server-diagnostic-and-eval.md"
+}

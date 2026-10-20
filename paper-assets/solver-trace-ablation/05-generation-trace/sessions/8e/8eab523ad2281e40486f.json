@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8eab523ad2281e40486f",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops cleanup pid 946257",
+  "task_key": "worker_ops_cleanup-pid-946257_20260522T185031",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cleanup-pid-946257_20260522T185031_result.json",
+    "occurrence": 1,
+    "bytes": 138,
+    "sha256": "eed9ea7f7a5573848041ad592a4b0c0473bba0073fb5aff6d92fab9b7f95e1e4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结果：**\n- PID 946257 已不存在（进程已自行退出）\n- GPU 当前无任何计算进程占用，全部空闲"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cleanup-pid-946257.md"
+}

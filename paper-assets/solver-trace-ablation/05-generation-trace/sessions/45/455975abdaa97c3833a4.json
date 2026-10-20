@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "455975abdaa97c3833a4",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "submit gated isr dual pilot",
+  "task_key": "worker_submit_gated-isr-dual-pilot_20260516T141922",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_gated-isr-dual-pilot_20260516T141922_result.json",
+    "occurrence": 1,
+    "bytes": 996,
+    "sha256": "2745022503cce6e9d0471434c098b77ca21d1f7e70d2a2dd0f701ba5b96a0295"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练正常运行，汇报如下：\n\n**GPU 状态**\n| GPU | Memory | Util | PID |\n|-----|--------|------|-----|\n| 0 (s42) | 81,638 / 97,887 MiB (83%) | 97% | 860451 |\n| 1 (s43) | 82,250 / 97,887 MiB (84%) | 97% | 860525 |\n\n**训练进度**（启动 ~45s 后）\n- **s42**: step 8/500, ~5.25s/step\n- **s43**: step 12/500, ~3.73s/step\n\n**Step metrics（早期）**\n- reward: 0.0（正常，模型尚未学会生成可证明的 FOL）\n- prove_rate: 0.0–0.125\n- gate_pass: 0.000（ISR gate 尚未通过，符合预期——需要先学会证明才能触发 gate）\n- parse_rate: 0.0–1.0\n\n**修复记录**：原 config `per_device_batch_size=2` 改为 1 后触发 TRL 验证错误（`generation_batch_size=4` 不能被 `num_generations=8` 整除）。修复：在 GRPOConfig 中显式设置 `generation_batch_size=num_generations`（=8），保持 effective batch = 1×8×4 = 32 不变。\n\n无 OOM，训练正常推进。预估 500 步约 30–45 分钟完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-gated-isr-dual-pilot.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e7d16be8ecbeb75a3680",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_12_1778860708.md",
+  "task_key": "loop_12_1778860708",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_12_1778860708.md",
+    "occurrence": 1,
+    "bytes": 3212,
+    "sha256": "046b6f0834fa96d3ae9a72cac5de933bc1b713848c61c5c98d6ec317782c3b48"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 12\nreason: idle_timeout\nupdated: '2026-05-15T15:54:12+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-39279 的 cuda:0 和 cuda:1，**只有这两张**，不得用其他卡\n- 训练命令中 `--gpu 0` 是正确的（CUDA_VISIBLE_DEVICES 由框架注入映射物理卡）\n- plan013 vs plan017 公式结构不同，论文**不可**简化为 \"additive vs convex\" 对照 (D027)\n- ISR β=0.1 hacking rate 69.1%，论文**不标** \"no hacking\"，标 \"lowest hacking rate\" (D044)\n- D051: 2.4x 作废，premise-count-matched 1.06x 定论\n- Prolog STA s44: Reviewer 核实为 query-as-fact gaming，非 genuine（D069）\n- exp1-isr-b03-s42-1000-r2 registry 曾误标 genuine，已修正 (D076)\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-39279，工作目录 `/root/solver-trace-ablation`\n- Python：`/root/miniconda3/bin/python`，环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型：`/root/autodl-tmp/models/Qwen3-4B`\n- 数据：`/root/solver-trace-ablation/data/train_500_seed42.jsonl`\n- 输出目录：`/root/autodl-tmp/outputs/`\n- 无 W&B（实验用 `--no_wandb`）\n- 活跃进程：plan009-sft-baseline-s43-1000 (PID 352137, cuda:0, tmux session)\n- **cuda:1 可能有孤儿进程 352142 占 62.36 GiB**——诊断 Worker 已派出但尚未回调\n\n### 3. 📊 当前状态\n- 刚收到 plan009-sft-baseline-s44-1000 的 CRON 失败回调（CUDA OOM）\n- 已派 Worker `worker_diag_plan009-sft-baseline-s44-1000_20260515T125154` SSH 诊断 cuda:1 占用情况\n- 已向 Director 汇报 OOM 失败 + 诊断中\n- Registry: 77 实验，RUNNING 1 (s43 on cuda:0)，DONE 76 (success 22, negative 24, failed 24, killed 6)\n- plan009-sft-baseline-s43-1000 仍在 cuda:0 上正常运行（reconcile_crons 确认 pid=352137 存活）\n\n### 4. 📋 待办\n- 诊断 Worker 回调 → 读结果：若 cuda:1 有孤儿进程已清理 → 立即重试 s44（submit_on_allocated 或重新走审批）；若是训练自身 OOM → 需降 batch size 或加 gradient checkpointing 后重试\n- s43 cron 回调（完成）→ 按 on-experiment-done 流程分析 metrics + 更新 registry + 汇报 Director\n- s44 重试成功后 → 3-seed SFT 1000步统计完整，支撑 Goodhart collapse 是 RL 特有现象的 claim\n- cuda:1 空闲期间无实验可铺（s44 重试就是唯一待跑任务）\n\n### 5. 🎯 战略上下文\n- 项目处于**写作阶段**，DDL 2026-05-25（剩 10 天），3 个 Core Claims 已有实验支撑\n- 当前跑 SFT 多 seed 是为了 3-seed 统计显著性：s42 已 success (genuine 92.3%)，s43 在跑，s44 OOM 待重试\n- 核心结论链：SFT 1000步保持高 genuine rate → Goodhart collapse 是 GRPO（RL）特有 → Claim 2 + D077\n- Bootstrap CI 已完成：genuine rate parity p=0.637 (n.s.)，H7 gaming p=0.0004 (***)，ISR* inflation p<0.001 (***)\n- 易错点：s44 OOM 的根因大概率是 cuda:1 上有孤儿进程而非训练本身内存不足（s42 同配置已跑成功），清理后重试即可，不需要改训练参数\n- Wilson CI 曾翻转 bootstrap 结论（D072），后用完整 3-seed 数据确认 ISR β=0.1 genuine 显著高于 random（D073）——统计结论已稳定，不要重新质疑\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-12-1778860708.md"
+}

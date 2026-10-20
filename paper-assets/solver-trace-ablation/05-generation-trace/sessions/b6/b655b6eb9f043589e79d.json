@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b655b6eb9f043589e79d",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "diagnose gated isr warmstart t02 s43 r2",
+  "task_key": "worker_diagnose_gated-isr-warmstart-t02-s43-r2_20260516T173633",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_gated-isr-warmstart-t02-s43-r2_20260516T173633_result.json",
+    "occurrence": 1,
+    "bytes": 1065,
+    "sha256": "582e9c1702aa6344ade8a0587876407141e10089392e6addc0019f22249e3fda"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结论\n\n**root_cause**: 实验没有崩溃——已正常完成 300 步并保存最终模型。\"没有 W&B metrics\" 是因为配置文件 `configs/grpo_isr_warmstart_v3.yaml` 显式设置了 `no_wandb: true`。\n\n**evidence**:\n- `reward_log.jsonl` 有完整 300 行（step 1→300）\n- 最终模型 safetensors（~15GB）和 checkpoint-300 已保存\n- trainer_state.json 显示 `global_step: 300`\n- 训练时间段：2026-05-16 16:52→17:23（约 31 分钟）\n- 配置中 `no_wandb: true` 导致无 W&B 上报\n\n**reward collapse 情况**（虽然没导致崩溃，但训练质量差）:\n- 300 步中 219 步（73%）reward_mean=0.0\n- τ=0.2 门槛过严，大部分 step 被 ISR gate 过滤，有效梯度信号极稀疏\n\n**recommendation**: \n- 实验已完成，不需要重试\n- 如需 W&B tracking，去掉 `no_wandb: true` 或改为 `no_wandb: false`\n- 73% zero-reward 表明 τ=0.2 对 s43 确实过严（与已知结论一致：τ=0.15 的 s43 已成功），这个 run 的模型质量很可能不如 τ=0.15 版本"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-gated-isr-warmstart-t02-s43-r2.md"
+}

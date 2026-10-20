@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "35e9eb5638ba2d94c1cf",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "research plan005 negative literature",
+  "task_key": "worker_research_plan005-negative-literature_20260514T020402",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_plan005-negative-literature_20260514T020402_result.json",
+    "occurrence": 1,
+    "bytes": 1546,
+    "sha256": "73276ad84500fee4962525b90507ece4260ffec0580438618acd0ca8fa6ab3b4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**调研报告** → `artifacts/plan005_negative_literature.md`\n**文献地图** → `literature_map.yaml` 新增 5 篇论文（reward-shaping category）\n\n### 核心结论\n\nplan005 的 NEGATIVE 结果（ISR 降低 prove_rate）是 multi-objective RL 中已知的 **auxiliary reward degradation** 现象，5 篇论文从不同角度确认：\n\n1. **Gao et al. (2024)** — process reward 在 RL 训练中可能**比 success-only reward 更差**\n2. **Ye et al. (2025, PROF)** — 朴素混合 PRM+ORM 导致退化，需 consistency filtering\n3. **Moskovitz et al. (2023, ICLR 2024)** — 固定权重线性组合存在过度优化阈值\n4. **Skalse et al. (2022, NeurIPS)** — 理论证明：任何非常数 proxy reward 都可能降低 true reward\n5. **Rezaei et al. (2026, PROGRS)** — 无条件 process reward 会放大失败模式，需 outcome-conditioned centering\n\n**推荐改进方向**：Bonus-only + Outcome-conditioned ISR（仅对 prove 成功的样本施加正向 ISR bonus），实施复杂度低且同时解决 hackability 和 gradient corruption 问题。\n\nSources:\n- [Gao et al. - On Designing Effective RL Reward](https://arxiv.org/abs/2410.15115)\n- [Ye et al. - Beyond Correctness (PROF)](https://arxiv.org/abs/2509.03403)\n- [Moskovitz et al. - Confronting Reward Model Overoptimization](https://arxiv.org/abs/2310.04373)\n- [Skalse et al. - Defining and Characterizing Reward Hacking](https://arxiv.org/abs/2209.13085)\n- [Rezaei et al. - PROGRS](https://arxiv.org/abs/2604.02341)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-plan005-negative-literature.md"
+}

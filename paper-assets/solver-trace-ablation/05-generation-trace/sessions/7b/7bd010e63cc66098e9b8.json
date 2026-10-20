@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7bd010e63cc66098e9b8",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_16_1778911247.md",
+  "task_key": "loop_16_1778911247",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_16_1778911247.md",
+    "occurrence": 1,
+    "bytes": 4543,
+    "sha256": "76e0da255cd204d2bbf39d357334aebf8bb69573f589673bedec724447570850"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 16\nreason: idle_timeout\nupdated: '2026-05-16T05:33:28+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单仅 `westd-39279:cuda:0` 和 `westd-39279:cuda:1`，禁止使用任何其他 GPU\n- Round 2 sweep 全部用 Qwen3-4B（`/root/autodl-tmp/models/Qwen3-4B`），不是 Round 1 的 Qwen2.5-1.5B\n- 训练命令必须 `python3 scripts/train_grpo.py --config configs/...`（不是 `train_grpo.py`，首次提交因缺 `scripts/` 前缀导致 GPU 空转）\n- K=4（per_device_batch_size=2, K=4, B×K=8），D099/D100 已确认，论文已修正，不可回退到 K=8\n- Round 2 无 wandb key，所有实验必须 `--no_wandb`，metrics 从 `reward_log.csv` / output_dir 提取\n- D095 Narrative A 已批准生效：H7a=GRPO-general seed-dependent，H7b=ISR-specific，genuine rate ISR vs Random p=0.182 不显著——禁止 claim genuine 有显著差异\n- 双实验并行时注意 RAM OOM（sweep-isr-b01-s45 曾被 OOM kill at step 219）\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-39279，工作目录 `/root/autodl-tmp/solver-trace-ablation/`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- **环境激活**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型**: `/root/autodl-tmp/models/Qwen3-4B`\n- **数据**: 未在 registry spec 中明确记录 data_path，需 SSH 确认（config yaml 中定义）\n- **Config 目录**: `configs/`（如 `grpo_additive_bonus.yaml`、`grpo_additive_bonus_b01.yaml`）\n- **活跃进程**: sweep-isr-b02-s44, PID=659716, cuda:1\n- **Cron**: reconcile_crons 确认 sweep-isr-b02-s44 仍在运行\n- **cuda:0 空闲**（分配了没跑 = 失职状态）\n\n### 3. 📊 当前状态\n**刚完成的关键事件**:\n- `sweep-isr-b02-s42` SUCCESS: prove_rate=1.0, mean_isr=0.6017, genuine=0%, content_independent=99 → β=0.2 完全 Goodhart collapse，与 β=0.3 模式一致\n- `sweep-isr-b02-s43` FAILED: EXIT_CODE=1，尚未诊断原因，需要 spawn worker 查 log\n- `sweep-isr-b005-s42` SUCCESS: prove_rate=0.888, ISR=0.577, genuine≥75%, 96.3% 样本精确 ISR=0.75 → β=0.05 保留结构但 mode collapse 到单一模板\n- `sweep-isr-b01-s45` + `plan018-additive-random-b01-s45` 被 kill（b02 提交时 GPU 冲突 / OOM）\n\n**正在运行**: sweep-isr-b02-s44（β=0.2 seed=44, cuda:1）——β=0.2 第 3 seed，完成后 β=0.2 三 seed 集齐（s42 success, s43 failed 需重跑, s44 pending）\n\n**等待中**: \n- sweep-isr-b02-s44 的 cron 回调\n- cuda:0 空闲，应立即排实验（sweep-isr-b02-s43 重跑 或 P2/P3 实验）\n- 13 个 PREPARING 实验待排队（D101 排期表在 ROADMAP 中）\n\n### 4. 📋 待办（条件触发式）\n- **立即**: cuda:0 空闲 → 诊断 sweep-isr-b02-s43 失败原因 → 修复后重跑（β=0.2 s43 是 P1）\n- sweep-isr-b02-s44 完成 → 分析 β=0.2 三 seed 一致性 → 更新 registry + report.md → 汇报 Director\n- β=0.2 三 seed 全部 done → 开始 P2（sweep-random-b01-s45）和 P3（5-seed 扩展）\n- β=0.2 结果如与 β=0.3 一致（全 Goodhart collapse） → 剂量-响应曲线确认：β=0.05 保留 / β∈(0.05,0.1) 相变 / β≥0.1 崩塌 → 更新论文 Fig 2 dose-response\n- 所有 Round 2 sweep 完成 → 通知 Director 进入最终 Review 阶段\n\n### 5. 🎯 战略上下文\n**核心结论**: ISR 作为诊断指标有效（Claim 1），但转为优化目标后触发 Goodhart's Law（Claim 2），且跨逻辑泛化（Claim 3）。三条 claim 全部闭环，论文处于 Writing + Review 阶段。\n\n**决策链**: D095（Narrative A: H7a GRPO-general + H7b ISR-specific）→ D096（Round 2 plan）→ D098/D099/D100（K=4 确认 + config bug 修复）→ D101（Round 2 排期）→ D102（β=0.05 Goodhart 阈值定位，辅助证据不升级 claim）\n\n**最容易判断错的事**:\n1. β=0.2 s42 的 prove_rate=1.0 + genuine=0% 看似\"极端 hacking\"——但这正是 Goodhart 预期，不是异常。不要当 negative 处理\n2. β=0.05 的 96.3% ISR=0.75 均匀性是 mode collapse，不是\"ISR 保留成功\"——论文必须同时报告多样性丧失\n3. sweep-isr-b02-s42 的 conclusion=success 但 exit code=129（SIGHUP）——metrics 正常，是 cron 判定逻辑的 edge case，不影响数据\n4. 13 个 PREPARING 实验中有重复（plan001/plan002 系列 vs sweep 系列覆盖相同条件），不要全部提交——以 sweep 系列为准（D101 排期）\n5. DDL 还剩 9 天（2026-05-25），Round 2 是补充证据，不改核心 narrative——不要因为新数据点而重开 framing 讨论\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-16-1778911247.md"
+}

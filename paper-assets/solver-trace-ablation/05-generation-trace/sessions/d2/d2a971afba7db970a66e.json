@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d2a971afba7db970a66e",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "monitor phase1 r4 verify",
+  "task_key": "worker_monitor_phase1-r4-verify_20260513T203157",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_phase1-r4-verify_20260513T203157_result.json",
+    "occurrence": 1,
+    "bytes": 1681,
+    "sha256": "618a0e448fa1690717ace0947d26b5f82a542dfac5bf1530be92389bd7bf526a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Phase 1 r4 训练状态报告\n\n### 进程状态\n| 实验 | PID | 状态 | 运行时间 |\n|------|-----|------|---------|\n| exec-only-r4 | 70716 (子进程 70721) | **存活** | 3min 45s |\n| exec-sta-r4 | 70797 (子进程 70802) | **存活** | 3min 43s |\n\n### GPU 隔离\n| GPU | 型号 | 进程 PID | 显存占用 | GPU 利用率 |\n|-----|------|----------|---------|-----------|\n| cuda:0 | RTX PRO 6000 Black (98GB) | 70721 (exec-only) | **80,676 MiB / 97,887 MiB (82%)** | 91% |\n| cuda:1 | RTX PRO 6000 Black (98GB) | 70802 (exec-sta) | **80,676 MiB / 97,887 MiB (82%)** | 89% |\n\nGPU 隔离正常，各占一块卡，无交叉。\n\n### 训练进度\n两个实验均已完成 **24/100 steps**（24%），运行约 3 分 46 秒，平均 ~9.4s/step。\n\n**exec-only reward 趋势**: 0.25 → 0.00 → 0.50 → 0.125 → ... → 1.00 (step 23) → 0.50 (step 24)\n**exec-sta reward 趋势**: 0.25 → 0.00 → 0.50 → 0.125 → ... → 1.00 (step 23) → 0.3125 (step 24)\n\nparse_rate 始终 1.000，模型输出格式没问题。两个实验在 step 24 开始出现 isr 差异（exec-only: 0.125, exec-sta: 0.125），reward 也开始分化（0.50 vs 0.3125），符合预期——两个 reward 函数开始产生不同信号。\n\n### 输出文件\nreward_log.jsonl 已生成，位于 `/root/autodl-tmp/outputs/grpo_exec_only/` 和 `/root/autodl-tmp/outputs/grpo_exec_sta/`（注意路径不含 `phase1_` 和 `_r4`）。\n\n### 异常\n- 无报错、无 OOM、无 CUDA error\n- 唯一 warning 是 vLLM 版本兼容性提示（0.18.1 vs 支持的 0.11-0.17），不影响训练\n- 预计总训练时间约 15-16 分钟（100 steps × ~9.4s/step）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-phase1-r4-verify.md"
+}

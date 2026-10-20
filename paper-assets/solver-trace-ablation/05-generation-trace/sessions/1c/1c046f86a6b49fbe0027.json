@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1c046f86a6b49fbe0027",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "write paper main intro limits",
+  "task_key": "worker_write_paper-main-intro-limits_20260514T215337",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_write_paper-main-intro-limits_20260514T215337_result.json",
+    "occurrence": 1,
+    "bytes": 1476,
+    "sha256": "4d95eb2fae83dfc417b83d9dce082afce232ec81a8b0c4a83061d756bacc873f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All edits applied. Build passes (no errors; the one undefined ref `app:100step` is from method/experiments which another worker owns).\n\nSummary of changes:\n- **main.tex:21** — title now \"...in a GRPO-Trained Neurosymbolic Formalizer: A Case Study with Qwen3-4B\" (singular + case-study qualifier).\n- **main.tex:34** — added `\\input{limitations}` after `\\input{conclusion}`, before bibliography.\n- **abstract.tex** — \"maximal tightness\" → \"syntactic component necessity\"; added NLI correlation result; \"solver-agnostic\" qualified (\"validated on two structurally different solvers: Prover9 and SWI-Prolog\"); 3× \"genuine\" → \"non-hacking\"; code-release footnote appended.\n- **introduction.tex** — \"maximally tight\" reframed as \"syntactic component necessity\"; NLI ρ=−0.049 result inserted right after ISR definition; 3× \"genuine\" → \"non-hacking\".\n- **limitations.tex** (new) — promoted from `\\paragraph{Limitations}` to `\\section{Limitations}` after conclusion; added Data-scale paragraph with FOLIO size, stratified sampling, seed-42 note.\n- **conclusion.tex** — removed in-place Limitations paragraph; added Shapley-vs-LOO sentence in \"Interpreting ISR\"; added anti-gaming regularization sentence in \"Meta-Level Goodhart\"; 1× \"genuine\" → \"non-hacking\".\n\nOutput: 13 pages (body + refs + appendix); ACL places Limitations after conclusion / before refs and excludes it from the 8-page body count."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/write-paper-main-intro-limits.md"
+}

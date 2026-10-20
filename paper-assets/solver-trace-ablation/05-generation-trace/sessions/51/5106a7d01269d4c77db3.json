@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5106a7d01269d4c77db3",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_7_1778790410.md",
+  "task_key": "loop_7_1778790410",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_7_1778790410.md",
+    "occurrence": 1,
+    "bytes": 4377,
+    "sha256": "2c3910fbf506c7d3ccc90550f58ead76765bf160904477db2bda972ae62521ed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: idle_timeout\nupdated: '2026-05-14T20:23:25+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**westd-39279:cuda:0, westd-39279:cuda:1**（仅这两张卡，其他 GPU 编号禁止使用）\n- 磁盘 96% (240G/250G)：output_dir 必须放 `/root/autodl-tmp/outputs/`，`log_completions=False` + `save_total_limit=1`，eval 后立即清理 checkpoint\n- Prolog STA s44 **不是 genuine**：Reviewer 已推翻 Worker 判断，确认为 query-as-fact gaming (functional H7=97.9%)。严禁在论文中标为 genuine\n- ISR 对比禁止用 raw 数值：必须 premise-count-matched（1.06x 定论），旧 2.4x/3.2x 已作废 (D051)\n- plan013 vs plan017 公式结构不同，禁止简化为 \"additive vs convex\" 对照 (D027)\n- β=0.1 ISR hacking rate 69.1% (strict)，论文标 \"lowest hacking rate\" 而非 \"no hacking\" (D044)\n- 全文统一使用 proved-only ISR*（排除 unproved=0），禁用 all-sample ISR\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-39279，**工作目录**: `/root/solver-trace-ablation/`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，激活命令: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- **镜像**: aml-train（预装 PyTorch 2.10.0+cu128, transformers/trl/vllm/accelerate）\n- **GPU**: 2× RTX PRO 6000 Blackwell 94GB，CUDA 12.8\n- **模型**: Qwen3-4B（ModelScope 下载，路径在服务器上）\n- **Solvers**: Prover9 (LADR 源码编译), SWI-Prolog 8.4.2 (`/usr/bin/swipl`), Z3 4.16.0.0\n- **磁盘**: 系统盘 30GB，数据盘 `/root/autodl-tmp/` 250GB (96% 占用，需清理旧 checkpoint)\n- **活跃进程**: 无 RUNNING 实验，无活跃 cron（reconcile_crons = 0）\n- **活跃 Worker**: `worker_paper_page-compression-v2_20260514T200748` (paper:page-compression-v2, running) — 论文页数压缩\n\n### 3. 📊 当前状态\n**阶段**: 论文写作 + 页数压缩，DDL 2026-05-25（剩 11 天）\n\n**刚完成的工作**（全部在本 session）:\n- 50 个实验全部完成（success 12 / negative 18 / failed 18 / killed 2），三条 Claim 均已闭环\n- writing_plan.yaml 已获 Director 审批\n- 论文全章节草稿已由 Workers 完成：Introduction, Method, Experiments, Related Work, Discussion, Conclusion, Appendix\n- 4 张论文图已生成（fig1-sta-overview, fig2-isr-collapse, fig3-hacking-composition, fig4-prolog-comparison）\n- LaTeX 编译 + reference audit + number audit 已完成\n- page-compression-v1 已取消，v2 正在运行\n\n**Registry**: 全部 DONE，无 RUNNING/PREPARING/QUEUED\n\n**等待中**:\n- Worker `page-compression-v2` 回调（正在压缩论文页数）\n- 无 Cron 活跃\n- 无 Director 待决策项\n\n### 4. 📋 待办（条件触发式）\n- `page-compression-v2` Worker DONE → 检查编译结果，确认页数符合 EMNLP 要求（main 8页 + references + appendix），向 Director 汇报\n- Director 要求修改论文 → spawn Worker 执行修改 + 重新编译\n- Director/Reviewer 要求补充实验 → 用 cuda:0/cuda:1 提交，注意磁盘 96% 需先清理旧 outputs\n- 论文初稿完成 → submit_paper_to_review（触发 Reviewer 审查流程）\n- 磁盘告急 → 派 Worker 清理 `/root/autodl-tmp/outputs/` 下旧 checkpoint（50 个实验产出）\n\n### 5. 🎯 战略上下文\n**核心结论链**:\n- D051: ISR-as-reward 完全失败，2.4x 优势是 premise-count artifact，premise-count-matched 1.06x 无差异\n- D057: Claim 2 闭环，3-seed random 一致 H7=0%，确认 H7 是 ISR-specific gaming\n- D059: Claim 3 闭环，Prolog STA 3/3 seeds gaming（0% genuine），比 FOL 更极端\n- D058: 1000步延伸确认 ISR 崩塌持续恶化（H1=100%, Genuine=0%）\n- Hacking taxonomy 已更新至 7 种模式（含 query-as-fact 第 7 种）\n\n**论文 framing**: STA/ISR 作为 GRPO neurosymbolic formalizer 的**诊断工具** + **Goodhart's Law 案例研究**。不是 \"ISR 能改善训练\"，而是 \"ISR 揭示了训练的结构退化 + 作为 reward 时自身也被 Goodhart\"\n\n**最容易判断错的事**:\n1. s44 Prolog STA 看起来 PR=0.97 ISR=0.885 像 success，实际是 query-as-fact gaming（Reviewer 已核实）\n2. ISR genuine 2.4x 差异看起来显著，实际是 premise-count artifact（D051 定论 1.06x）\n3. 磁盘 96%，提交新实验前必须先清理\n4. exec-only s42 曾被当作 \"healthy seed\"，实际 H1=87.1% conclusion embedding（D055 修正）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-7-1778790410.md"
+}

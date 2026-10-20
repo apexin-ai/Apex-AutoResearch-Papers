@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7aebe69b753f6c4294f1",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_7_1778788597.md",
+  "task_key": "loop_7_1778788597",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_7_1778788597.md",
+    "occurrence": 1,
+    "bytes": 4102,
+    "sha256": "16533301eff83be136d2d10ab142778de444190ae9bd265b067b05fb35c95be3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: idle_timeout\nupdated: '2026-05-14T19:49:31+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单严格只有 westd-39279:cuda:0 和 westd-39279:cuda:1，不可用其他设备\n- Prolog 系列实验 warmup_ratio 必须 = 0.0（s42 基准），之前 s43 因 warmup=0.1 被 kill 重跑过\n- ISR 训练日志中的 ISR 值是 binary approximation (_fast_fn)，**禁止用于论文或跨实验对比**，必须用 eval_sta.py (full STA) 的结果\n- plan002-b01 系列 (ISR β=0.1) 的 ISR 优势已被 D051-D054 定论为 premise-count artifact，Claim 2 是 pure negative，不可再报为 positive\n- classify_h7.py 已更新为 strict 定义 (D044)，旧 H7 数据需用新定义重算\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-39279，账号 root\n- 工作目录：/root/solver-trace-ablation\n- Python：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，pip/python 在 /root/miniconda3/bin/\n- 模型基座：/root/autodl-tmp/models/Qwen3-4B（所有 GRPO + SFT 实验统一用此模型）\n- 数据：/root/solver-trace-ablation/data/train_500_seed42.jsonl（训练），data/proofwriter_fol_100.jsonl（eval）\n- 输出根目录：/root/autodl-tmp/outputs/（各实验子目录）\n- W&B：部分实验有 wandb，SFT baseline 用 --no_wandb\n- HF cache：/root/autodl-tmp/.hf_cache\n- 活跃进程：plan006-prolog-sta-s43 (PID 901135, cuda:1, tmux 管理)\n- Cron：plan006-prolog-sta-s43 有 cron 监控\n\n### 3. 📊 当前状态\n**刚做完**：收到 plan018-additive-random-b01-s43-r2 训练完成回调（ANALYZING），已派 Worker `worker_eval_plan018-random-b01-s43-r2_20260514T164553` 去 cuda:0 跑 eval_sta.py。\n\n**RUNNING**：\n- plan006-prolog-sta-s43 (cuda:1) — Prolog exec+STA seed=43，Claim 3 跨 logic type 第二 seed\n\n**ANALYZING**：\n- plan018-additive-random-b01-s43-r2 (cuda:0 已释放) — Random β=0.1 seed=43 控制组，eval Worker 已派出\n\n**QUEUED**：\n- plan006-prolog-sta-s44 — Prolog exec+STA seed=44，Claim 3 第三 seed，等 cuda:0 eval 完后提交\n\n**等待中**：\n- Worker eval 回调 → 需更新 registry + 报 Director + 提交 s44 到 cuda:0\n- plan006-prolog-sta-s43 cron 回调 → eval + 更新\n\n### 4. 📋 待办\n- eval Worker 完成回调 → 读 metrics → update_registry(conclusion=success/negative) → 计算 random β=0.1 3-seed mean±std (s42 PR=0.79/ISR=0.104, s44 PR=0.89/ISR=0.062, s43=?) → 提交 plan006-prolog-sta-s44 到 cuda:0（命令模板参照 s43: `--config configs/grpo_prolog_exec_sta.yaml --seed 44 --output_dir /root/autodl-tmp/outputs/plan006_prolog_sta_s44`，CUDA_VISIBLE_DEVICES=0）→ 汇报 Director\n- plan006-prolog-sta-s43 完成 → eval → 与 sta-s42 (100% H7, ISR=1.0 hacking) 对比\n- plan006-prolog-sta-s44 完成 → eval → 3-seed Prolog exec+STA 统计 → Claim 3 证据完备\n- 全部 3-seed 出齐 → Table 1 + Table 2 定稿 → paper_framing.md 更新纳入 SFT baseline + Prolog 证据\n\n### 5. 🎯 战略上下文\n**核心叙事**：STA/ISR 作为诊断工具 + Goodhart's Law 案例研究。ISR 从诊断指标变优化目标后触发 reward hacking。\n\n**关键证据链（已确立）**：\n- ISR 崩塌轨迹：0.64→0.13→0.003（100/500/1000 步）\n- 3-seed exec-only：3 种不同 failure mode（genuine/degraded/tautological）\n- SFT baseline (plan009-r4)：PR=14%, ISR=0.08, **零 hacking**——确认 hacking 是 GRPO 特异性\n- Claim 2 (ISR-as-reward)：pure negative (D051-D054)，2.4x ISR 差异完全是 premise-count artifact\n- Hacking taxonomy (D038)：ISR genuine 25.9% vs random 17.7%，但 conclusion embedding 占 70%+\n\n**最容易判断错的事**：\n- plan002-b01 的 ISR 3.2x > random 看起来很 positive，但 D051-D054 已证明是 confound。不要再报为 positive finding\n- plan006-prolog-sta-s42 的 100% H7 比 FOL 更极端（FOL s42 H7=16%），Prolog 放大了 Goodhart 效应\n- exec-only s42-r2 看似 success (PR=93%, genuine=12)，但 H1=87.1%，实际也是 conclusion embedding 主导 (D055)\n- DDL 2026-05-25（剩 11 天），GPU 时间充裕（528 GPU·h 可用，剩余需求 ~12h）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-7-1778788597.md"
+}

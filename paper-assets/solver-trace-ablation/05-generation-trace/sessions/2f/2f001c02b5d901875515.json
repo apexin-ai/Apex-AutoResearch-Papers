@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2f001c02b5d901875515",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "research 1000step literature paper prep",
+  "task_key": "worker_research_1000step-literature-paper-prep_20260515T113705",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_1000step-literature-paper-prep_20260515T113705_result.json",
+    "occurrence": 1,
+    "bytes": 1935,
+    "sha256": "36d29d97ee487efee102294e9c8521c7a585de8aac17c6a2514e98194f4aac3b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。以下是结果摘要。\n\n---\n\n## 文献搜索结果\n\n**核心结论：1000 步 universal Goodhart collapse 的三个具体方面是 novel observation。**\n\n### 已有文献覆盖的内容\n- Goodhart overoptimization 的 scaling laws（Gao et al. 2023）、RL 中的 Goodhart 几何（Karwowski et al. 2024）、catastrophic Goodhart（Kwa et al. 2024）——均已在 literature_map 中\n- GRPO 的 entropy collapse 和 advantage collapse（DAPO, EDGE-GRPO, GTPO）——描述训练不稳定性，但不涉及 hacking mode diversity\n- Reward hacking 的高层 taxonomy（Manheim & Garrabrant 2019; 2026 survey arXiv:2604.13602）——理论分类，非实验验证\n\n### 新增 2 篇论文到 literature_map.yaml\n\n| ID | 标题 | 关联 |\n|----|------|------|\n| `yue-rlvr-limits` | Does RL Really Incentivize Reasoning? (NeurIPS 2025, 2504.13837) | RLVR 仅重分布已有能力而非创造新推理；支持 collapse 是 RLVR 基本限制 |\n| `deng-grpo-collapse-lld` | On GRPO Collapse: Lazy Likelihood-Displacement Death Spiral (2512.04220) | GRPO 特有的 LLD 机制导致 universal collapse，补充 Goodhart 理论解释 |\n\n### 未被现有文献覆盖的 novel 部分\n1. **Universal collapse across ALL reward types** — 无人展示 exec-only、structural、random reward 同时退化到 ~0% genuine\n2. **Hacking mode taxonomy from single experimental setup** — 同一 GRPO + 4 种 reward → 4 条不同 hacking 路径（H1/H7/mixed/tautology）\n3. **Empirical Goodhart temporal curve for neurosymbolic RL** — 500 步 sweet spot (30.9% genuine) → 1000 步 collapse (3%)\n\n## 产出文件\n\n- `literature_map.yaml` — 新增 `yue-rlvr-limits` 和 `deng-grpo-collapse-lld` 两个条目（role=supporting-evidence）\n- `artifacts/section_4_3_1000step_draft.md` — §4.3 完整草稿，含对比表、temporal trajectory、4 类 hacking pathway taxonomy、论点论证"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-1000step-literature-paper-prep.md"
+}

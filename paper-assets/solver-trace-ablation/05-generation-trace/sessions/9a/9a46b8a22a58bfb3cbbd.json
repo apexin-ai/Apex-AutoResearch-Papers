@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9a46b8a22a58bfb3cbbd",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "cleanup 8b checkpoints",
+  "task_key": "worker_cleanup_8b-checkpoints_20260522T063550",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_cleanup_8b-checkpoints_20260522T063550_result.json",
+    "occurrence": 1,
+    "bytes": 181,
+    "sha256": "b77b2a71daaebb5d603c8f83845edce5ada6e44e62a2c4d7b006e26151e00ba0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- 删除: `/root/autodl-tmp/outputs/8b_exec_only_s42_k8/` (31 GB)\n- 磁盘变化: 134G → 103G used (54% → 42%)，释放 ~31 GB，可用空间 148 GB"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/cleanup-8b-checkpoints.md"
+}

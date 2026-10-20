@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2cee538b43dda90b8449",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "diag plan006 prolog sta s42",
+  "task_key": "worker_diag_plan006-prolog-sta-s42_20260514T094801",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_plan006-prolog-sta-s42_20260514T094801_result.json",
+    "occurrence": 1,
+    "bytes": 1248,
+    "sha256": "7cf124877bafbc33f6c9f304f3a70de53c9afed5027a88399bf05465e37945f6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n## 结论\n\n**根因**：命令行 `--data_path data/prolog/train_500_seed42.jsonl` 路径错误。`data/prolog/` 目录不存在。\n\n实际数据文件在 `data/train_500_seed42.jsonl`（无 `prolog/` 子目录），两个 YAML 配置里也都正确写的 `data_path: data/train_500_seed42.jsonl`。是提交命令时 `--data_path` 覆盖了配置中的正确路径。\n\n**两个实验都失败了**：\n- plan006-prolog-exec-s42 — 同样在 17:45:32 因 `FileNotFoundError` 崩溃，并非 RUNNING\n- plan006-prolog-sta-s42 — 17:45:35 同样报错\n\n**配置对比**（两个 YAML 仅以下字段不同）：\n| 字段 | exec_only | exec_sta |\n|------|-----------|----------|\n| reward_mode | execution_only | execution_sta |\n| exec_weight | 1.0 | 0.5 |\n| sta_weight | 0.0 | 0.5 |\n\n**不需要生成新数据**。现有 `data/train_500_seed42.jsonl` 就是正确的训练数据（符合 C001 约束），配置中 `logic_type: prolog` + `solver: prolog` 控制 solver 类型，数据集本身是通用的。\n\n**修复方式**：重新提交时去掉 `--data_path` 参数（让配置文件的值生效），或改为 `--data_path data/train_500_seed42.jsonl`。两个实验都需要重新提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-plan006-prolog-sta-s42.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d49a43a856d4b3134aa6",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "eval d129 1 7b isr b01 s44",
+  "task_key": "worker_eval_d129-1_7b-isr-b01-s44_20260517T233608",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_d129-1_7b-isr-b01-s44_20260517T233608_result.json",
+    "occurrence": 1,
+    "bytes": 103,
+    "sha256": "645c3948aa0e2baeeff88b45bc72202bdd143ebd63fad71f32af280555462b6f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 后台运行中，2.5 分钟后回来检查完成状态并继续 classify 流程。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-d129-1-7b-isr-b01-s44.md"
+}

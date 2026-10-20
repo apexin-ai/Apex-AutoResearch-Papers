@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6618c076543d340c7438",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code isr monitoring fix",
+  "task_key": "worker_code_isr-monitoring-fix_20260514T013628",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_isr-monitoring-fix_20260514T013628_result.json",
+    "occurrence": 1,
+    "bytes": 971,
+    "sha256": "14798de623554c6867a5c25584b825b27d102c07ca014945ee17728688daf148"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "当前 `execution_only` 分支（train_grpo.py:167-172）已经调用 `_full_fn`（即 `sta_reward`/`prolog_sta_reward`），会执行完整 STA ablation 并计算真实 ISR。`result[\"sta_reward\"]` 返回的是 `compute_isr(ablation_results)` 的结果（[0,1] 连续值），不是二值的 execution_reward。\n\n代码流程：\n1. `_full_fn({}, cleaned, solver, execution_weight=1.0, sta_weight=0.0, timeout=5)` — 内部先 prove，proved 后跑 `run_sta` + `compute_isr` 得到真实 ISR\n2. `reward_val = result[\"execution_reward\"]` — reward 仍然只用 0/1\n3. `isr = result.get(\"sta_reward\", 0.0)` — 取到真实 ISR 写入 log\n\n脚本 import 和 `--help` 均通过，无语法错误。\n\n如果之前跑的训练中 isr_mean == prove_rate，那可能是那次训练加载的是更早版本的代码（该文件今天 09:40 才更新）。下一次启动 execution_only 训练时，ISR 监控会反映真实 formalization 质量。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-isr-monitoring-fix.md"
+}

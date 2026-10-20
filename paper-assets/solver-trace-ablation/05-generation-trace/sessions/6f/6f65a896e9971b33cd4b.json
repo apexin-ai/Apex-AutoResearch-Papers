@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6f65a896e9971b33cd4b",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "submit random b01 s45 restart",
+  "task_key": "worker_submit_random-b01-s45-restart_20260516T055702",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_random-b01-s45-restart_20260516T055702_result.json",
+    "occurrence": 1,
+    "bytes": 372,
+    "sha256": "bbee005f9318f21b915c29fc93da99ca4872730751095a0c8281bdb9a535d36b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**状态汇总：**\n- 磁盘：54GB free（安全）\n- GPU：cuda:0 占用 25.7GB / 91% utilization，训练正常运行\n- tmux session：`plan018-additive-random-b01-s45-r3`\n- 训练数据：`data/train_500_seed42.jsonl`（500 examples，符合 C001）\n- output：`/root/autodl-tmp/outputs/plan018_random_b01_s45_r3`\n- Registry：RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-random-b01-s45-restart.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6cbe65ba2823f2e2c5fa",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "research evidence chain audit",
+  "task_key": "worker_research_evidence-chain-audit_20260514T055852",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_evidence-chain-audit_20260514T055852_result.json",
+    "occurrence": 1,
+    "bytes": 1118,
+    "sha256": "955ed93fdb930f25cf305f42ad15b7fa53eb6d3bb253d695ae846aa9692cac5d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "产出已写入 `artifacts/_project/report/evidence_audit.md`。核心发现：\n\n**Table 1 数据问题（3 个需立即处理）：**\n\n1. **plan001-s43 PR 应为 14% 而非 13%** — registry 记录 `eval_sampling_n_proved=14`，所有引用 \"13%\" 的地方需修正\n2. **plan001-s43 评估方法不一致** — s43 用 `eval_sampling` (temperature=0.7)，其他 5 组全用 `eval_sta.py full STA`。论文 Table 1 需统一，建议对 s43 checkpoint 重跑 eval_sta.py\n3. **3/6 组缺少 component count 的 registry 来源** — plan001-s42 (6.58)、plan013 (2.04)、plan002 (10.67) 的 n_components 不在 registry 中，需追溯来源或重新评估后补入\n\n**证据覆盖度：**\n- Claim 1 (ISR 诊断): ✅ 充分，1 处需补充 (s43 评估方法统一)\n- Claim 2 (GRPO 饱和): ✅ 充分，5 组实验全部可追溯\n- Claim 3 (跨逻辑泛化): ❌ 无证据，plan006 未启动\n\n**可立即启动写作的章节**：Introduction、Method、Results §4.1-4.3、Discussion (ISR boundary)、Related Work。仅 §4.4 Cross-Logic 和 Extended Training 依赖未完成实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-evidence-chain-audit.md"
+}

@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "cf911ea0601c8ded085f",
+  "project": "solver-trace-ablation",
+  "kind": "conversation",
+  "title": "paper fix references",
+  "task_key": "worker_paper_fix-references_20260514T204920",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_fix-references_20260514T204920.jsonl",
+    "occurrence": 1,
+    "bytes": 172,
+    "sha256": "04097ce79280137bfdf24353a1925beea82b1e4f9b6dd70c9b3a664a46754ea3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T20:49:27.826257+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 11:10pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_fix-references_20260514T204920"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/paper-fix-references.md"
+}

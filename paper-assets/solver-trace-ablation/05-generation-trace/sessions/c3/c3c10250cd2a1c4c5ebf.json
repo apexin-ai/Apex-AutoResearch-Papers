@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c3c10250cd2a1c4c5ebf",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "infra check training progress",
+  "task_key": "worker_infra_check-training-progress_20260514T145637",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_check-training-progress_20260514T145637_result.json",
+    "occurrence": 1,
+    "bytes": 2886,
+    "sha256": "3fab0aa27999a98413518f777e01557315ece1538e9a2dd9773b4dbd93f326ab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`save_total_limit=1` 和 `log_completions=False` 已硬编码在脚本中，符合 C003 约束。\n\n---\n\n## 报告\n\n### 1. 训练进度\n\n| 实验 | GPU | Step | 进度 | 剩余时间 | 预计完成 |\n|------|-----|------|------|----------|---------|\n| plan006-prolog-exec-s44 | cuda:0 | 347/500 | 69% | ~21 min | ~23:17 |\n| plan006-prolog-exec-s43-r3 | cuda:1 | 259/500 | 52% | ~1h08m | ~00:05 |\n\n**s44 关键指标** (step 347): reward=1.0, prove_rate=1.0, isr=0.480, loss=0.0 — 模型已收敛饱和\n**s43-r3 关键指标** (step 259): reward=0.875, prove_rate=0.875, isr=0.023 — 仍在训练中，step_time ~16s（比 s44 慢）\n\n### 2. 资源状态\n\n| 资源 | 状态 |\n|------|------|\n| 磁盘 | 120G/250G (48%) — 131G 可用，健康 |\n| cuda:0 | 80189/97887 MiB (82%), util 0%* |\n| cuda:1 | 81009/97887 MiB (83%), util 92% |\n\n*cuda:0 util=0% 是快照瞬时值，内存占用确认模型已加载，训练正常运行。\n\n### 3. 下批实验准备状态\n\n所有前置条件已满足：\n- `configs/grpo_additive_random.yaml` ✅\n- `configs/grpo_prolog_exec_sta.yaml` ✅\n- `data/train_500_seed42.jsonl` ✅ (C001)\n- `save_total_limit=1`, `log_completions=False` 硬编码 ✅ (C003)\n- output_dir 无冲突（plan006_prolog_sta_s43/s44 存在但为空，plan018 目录不存在会自动创建）\n\n### 草拟提交命令\n\n**优先级 1 — plan018-additive-random-b01-s43-r2**（cuda:0 释放后）\n```bash\nbash -c \"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_random.yaml --beta 0.1 --seed 43 --num_steps 500 --output_dir /root/autodl-tmp/outputs/plan018_additive_random_b01_s43_r2\"\n```\n\n**优先级 2 — plan006-prolog-sta-s43**（cuda:1 释放后）\n```bash\nbash -c \"export CUDA_VISIBLE_DEVICES=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_prolog_exec_sta.yaml --seed 43 --num_steps 500 --output_dir /root/autodl-tmp/outputs/plan006_prolog_sta_s43\"\n```\n\n**优先级 3 — plan006-prolog-sta-s44**（等上面任一完成后接替该 GPU）\n```bash\nbash -c \"export CUDA_VISIBLE_DEVICES={0或1} && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_prolog_exec_sta.yaml --seed 44 --num_steps 500 --output_dir /root/autodl-tmp/outputs/plan006_prolog_sta_s44\"\n```\n\n### GPU 分配时间线\n\n1. **~23:17** — cuda:0 空闲 → 提交 plan018-additive-random-b01-s43-r2\n2. **~00:05** — cuda:1 空闲 → 提交 plan006-prolog-sta-s43\n3. plan006-prolog-sta-s44 需等 #1 或 #2 完成（预计 ~2h 后有 GPU 空出）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-check-training-progress.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "78b0f22ae1fbe174fffa",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops sft s44 registry fix",
+  "task_key": "worker_ops_sft-s44-registry-fix_20260515T084021",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_sft-s44-registry-fix_20260515T084021_result.json",
+    "occurrence": 1,
+    "bytes": 1890,
+    "sha256": "71477675e263b4fc7dadfb2151337bc2b0810052b1d476900df0fab9683d0e9c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All steps complete. Here's the summary:\n\n---\n\n## 1. 修正后的 s44 指标\n\n| Metric | 旧值 (test_100.jsonl) | 新值 (proofwriter_fol_100.jsonl) |\n|--------|----------------------|--------------------------------|\n| prove_rate | 0.14 (14/100) | **0.17 (17/100)** |\n| mean_isr | 0.0784 | **0.0974** |\n| proved_only_isr | 0.56 | **0.5729** |\n| isr_std | 0.2454 | **0.2409** |\n| by_answer_type | 50/44/6 | **34/25/41** |\n\nRegistry 已更新。\n\n## 2. H7/H1/Genuine 分类 (s44, 17 proved)\n\n| Category | Count | Rate |\n|----------|-------|------|\n| H7 | 0 | 0.000 |\n| H1 | 2 | 0.118 |\n| Genuine | **15** | **0.882** |\n\nH1 样本：folio_1117 (idx=59, conclusion `Like(fabien,cheese)` 出现在 P3 中), folio_167 (idx=70, `Leader(elizabeth)` 直接作为 P5)。\n\n## 3. SFT 3-seed Pooled Wilson CI\n\n| Metric | Pooled | 95% CI |\n|--------|--------|--------|\n| Prove Rate | 46/300 = 0.153 | [0.117, 0.199] |\n| Genuine Rate | 42/300 = 0.140 | [0.105, 0.184] |\n| Genuine/Proved | 42/46 = 0.913 | [0.797, 0.966] |\n| H7 Rate | 0/300 = 0.000 | [0.000, 0.013] |\n| H1 Rate | 4/300 = 0.013 | [0.005, 0.034] |\n| ISR* (proved-only) | 0.580 ± 0.014 | — |\n\n**Fisher exact: SFT vs Exec-Only pooled genuine:**\n- SFT: 42/300 (14.0%), Exec-only: 12/300 (4.0%)\n- Odds ratio = 3.91, **p = 0.000023** (significant)\n\nPer-seed breakdown:\n- s42-r4: PR=0.14, genuine=13, H1=1\n- s43: PR=0.15, genuine=14, H1=1\n- s44: PR=0.17, genuine=15, H1=2\n\n## 4. 错误 eval 排查\n\n训练日志中无 eval 命令记录（log 仅包含 SFT 训练输出）。错误 eval 由 worker 单独执行，registry 中旧 by_answer_type 分布为 True=50/False=44/Unknown=6，这是 **test_100.jsonl** 的特征分布（vs proofwriter_fol_100.jsonl 的 34/25/41）。违反 C008/C009 约束——eval 时使用了 test_100.jsonl 或脚本默认值指向了错误数据集。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-sft-s44-registry-fix.md"
+}

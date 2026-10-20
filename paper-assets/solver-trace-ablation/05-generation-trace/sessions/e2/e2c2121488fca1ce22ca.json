@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e2c2121488fca1ce22ca",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops d142 ext s55 s57 launch",
+  "task_key": "worker_ops_d142-ext-s55-s57-launch_20260519T075545",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d142-ext-s55-s57-launch_20260519T075545_result.json",
+    "occurrence": 1,
+    "bytes": 406,
+    "sha256": "ed3dc3fc24f5b953500fa03f8c0522e94eef953defd2d9e1c69c7055676d6171"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Pipeline 已启动，s55 训练进行中。\n\n**汇报：**\n\n1. **Pipeline 脚本**: `/root/autodl-tmp/d142_gated_isr_pipeline_ext.sh`\n2. **tmux session**: `d142ext`\n3. **PID**: 322582 (GPU 0, 78188 MiB)\n4. **s55 训练状态**: 已开始，模型加载完成，GRPO training 进入 step 循环（mode=additive_bonus_gated, steps=500）\n5. **磁盘**: 210G 可用 (41G/250G used, 17%)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-d142-ext-s55-s57-launch.md"
+}

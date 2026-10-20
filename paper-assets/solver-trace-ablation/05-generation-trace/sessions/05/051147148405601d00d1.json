@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "051147148405601d00d1",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code d146 eval add baseline",
+  "task_key": "worker_code_d146-eval-add-baseline_20260519T182107",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d146-eval-add-baseline_20260519T182107_result.json",
+    "occurrence": 1,
+    "bytes": 383,
+    "sha256": "974bb78f32cc501ebf3941c05cc002efb71998d64d109d616b3eeca30fe7a582"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**产出：**\n1. Base model 路径：`/root/autodl-tmp/models/Qwen3-4B`\n2. 脚本已修改：在 `EVAL_FILES=()` 之后、6 个实验循环之前插入了 Step 0，执行 base model 的 eval_sta.py + classify_h7.py，输出到 `$OUT/d146_pf_base/`，并将 eval 结果加入 `EVAL_FILES` 数组（纳入 batch summary）\n3. `bash -n` 语法检查通过"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d146-eval-add-baseline.md"
+}

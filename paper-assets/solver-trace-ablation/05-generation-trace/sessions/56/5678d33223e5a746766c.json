@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5678d33223e5a746766c",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code fix experiment plan registry ids",
+  "task_key": "worker_code_fix-experiment-plan-registry-ids_20260514T063003",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-experiment-plan-registry-ids_20260514T063003_result.json",
+    "occurrence": 1,
+    "bytes": 524,
+    "sha256": "6de69a5c11f0cbf463b9f3fc887124b9c0b6bbaf1a37b25b36ab383cbbed47fb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "补全完成。修改汇总：\n\n| plan | 补全的 registry_id | 状态 |\n|------|-------------------|------|\n| plan_014 | `plan014-downstream-nli-s42` | DONE (negative) |\n| plan_016 | `plan016-extended-1000-s42` | RUNNING |\n| plan_017 | `plan017-additive-random-s42` | DONE (negative) |\n\n修改后有 registry_id 的 plan：001, 002, 003, 005, 013, 014, 016, 017 = **8/17**（47.1%）。其余 9 个 plan（004, 006-012, 015）在 registry 中无对应实验，属于未启动状态，无需链接。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-experiment-plan-registry-ids.md"
+}

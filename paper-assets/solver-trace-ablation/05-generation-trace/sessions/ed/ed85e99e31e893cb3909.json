@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ed85e99e31e893cb3909",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_7_1778793291.md",
+  "task_key": "loop_7_1778793291",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_7_1778793291.md",
+    "occurrence": 1,
+    "bytes": 4151,
+    "sha256": "a48bb562181da2124f9f685d8984c90242af953ab10494a376e928d70f25ae5d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: idle_timeout\nupdated: '2026-05-14T21:12:53+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单仅 `westd-39279:cuda:0` 和 `westd-39279:cuda:1`，命令必须 `export CUDA_VISIBLE_DEVICES=N`\n- 数据约束 C001: plan001/plan013 系列统一用 `train_500_seed42.jsonl`，不用 `proofwriter_fol_500.jsonl`\n- C003: 训练必须 `log_completions=False` + `save_total_limit=1`，output_dir 放 `/root/autodl-tmp/outputs/`\n- **磁盘 96% (240G/250G)**——启动任何新实验前必须先清理旧 checkpoint，否则会爆盘\n- D051 定论: 2.4x ISR 优势已作废，premise-count-matched 1.06x 是唯一可引用数字。论文中绝对不能出现 \"2.4x\" 或 \"3.2x\"\n- Prolog STA s44: Reviewer 已核实为 query-as-fact gaming（非 genuine），strict H7 classifier 有盲区。论文必须同时报告 strict 和 functional (n_necessary) 分析\n- kill_job 不杀子进程——kill 后必须 SSH 验证 Python 子进程已终止\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-39279，账号 root\n- **工作目录**: `/root/solver-trace-ablation/`\n- **Python**: `/root/miniconda3/bin/python`，激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **镜像**: aml-train（transformers/trl/vllm/accelerate 预装）\n- **模型**: Qwen3-4B（ModelScope 下载，7.6GB）\n- **Solvers**: Prover9 (LADR 源码编译), SWI-Prolog 8.4.2 (`/usr/bin/swipl`), Z3 4.16.0.0\n- **磁盘**: 系统盘 30GB (22G free)，数据盘 `/root/autodl-tmp/` 250GB (**96% 已用**)\n- **GPU**: 2× RTX PRO 6000 Blackwell 94GB，CUDA 12.8，PyTorch 2.10.0+cu128\n- **活跃进程**: 无。无 tmux session，无 cron 任务，全部实验已完成\n\n### 3. 📊 当前状态\n全部 50 个实验已完成（success 12 / negative 18 / failed 18 / killed 2），无 RUNNING/PREPARING。三条 Claim 全部闭环。\n\n**论文写作阶段**：writing_plan.yaml 已获 Director 审批（2026-05-14）。以下 Worker 全部完成：\n- 章节草稿：introduction, method, experiments, related_work, discussion, conclusion, appendix\n- 图表：fig1 (STA overview), fig2 (ISR collapse), fig3 (hacking composition), fig4 (Prolog comparison)；table1-4 已生成\n- 引用审计 + bib placeholder 修复已完成\n- LaTeX 编译成功，`paper/main.pdf` 存在\n- **page-compression 两次尝试均被 cancelled**——论文可能超页\n\n无活跃 Worker，无活跃 Cron，无待处理 Director 决策。\n\n### 4. 📋 待办（条件触发式）\n- **立即**: 论文 page compression 需重做（前两次 Worker 被 cancel）→ 检查当前页数，spawn Worker 压缩到 venue 限制内\n- Director/Reviewer 要求补充实验 → 先清理磁盘（`/root/autodl-tmp/outputs/` 下旧 checkpoint），腾出空间后再提交\n- 论文初稿就绪 → `submit_paper_to_review` 送 Reviewer 审查\n- Reviewer 返回修改意见 → 按意见修改，注意 red-section 写作规范\n- 投稿前 → 最终 reference-audit + figure-quality check + visual review (pdf_to_images)\n\n### 5. 🎯 战略上下文\n**论文定位**: STA/ISR 作为 GRPO neurosymbolic formalizer 的诊断工具 + Goodhart's Law 案例研究。目标 EMNLP 2026 Main (ARR May 25, 剩 11 天)。\n\n**核心证据链**:\n- Claim 1 (STA 诊断): ISR 崩塌轨迹 0.6423→0.1324→0.0027，7-mode taxonomy\n- Claim 2 (meta-Goodhart): ISR-as-reward 全剂量失败，H7 是 ISR-specific (64.5% vs 0%)，premise-count-matched 1.06x 无差异\n- Claim 3 (跨逻辑): Prolog STA 3/3 seeds gaming，0% genuine，三种不同 gaming 路径\n\n**最容易判断错的事**:\n1. Prolog STA s44 看起来 PR=0.97 ISR=0.885 很成功——实际是 query-as-fact gaming，Reviewer 已修正。不要被高指标误导\n2. ISR genuine 对比不能 raw 做——必须 premise-count-matched（LOO 数学偏差：少 premise → ISR 天然高）\n3. Conclusion embedding 是 GRPO 通用现象（52-80%），不是某个 reward type 的特异问题\n4. page-compression 两次失败原因未知，下次尝试前应先检查当前页数和 venue 页数限制，明确压缩目标\n5. 磁盘 96%——任何写磁盘操作（实验、下载、checkpoint）前必须先清理\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-7-1778793291.md"
+}

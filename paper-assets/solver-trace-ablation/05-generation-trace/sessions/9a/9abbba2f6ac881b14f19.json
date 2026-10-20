@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9abbba2f6ac881b14f19",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops disk cleanup and resume",
+  "task_key": "worker_ops_disk-cleanup-and-resume_20260517T001737",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_disk-cleanup-and-resume_20260517T001737_result.json",
+    "occurrence": 1,
+    "bytes": 1491,
+    "sha256": "d251c10c8efd32f8ee3cf4fb47525447f889ece15c8e45e9f7b46fe0d5755e97"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n| 指标 | 值 |\n|------|------|\n| 清理前 | 250G / 250G (100%) |\n| 清理后 | 55G / 250G (22%) |\n| **释放空间** | **~195G** |\n\n### 删除明细\n- `exec_retrain_v3_s42` + `exec_retrain_v3_s43`: 全删 (30G, 失败实验)\n- `plan001_exec_only_s43_1000_r2`: 删 checkpoint-100 + 顶层 model (~24G)\n- `gated_warmstart_v3_t015_s43` + `gated_warmstart_v3_s43_r2`: 删 model + checkpoint-300 (~62G)\n- `plan018_additive_random_b01_s44_r2` + `plan001_exec_only_s44_1000_r2`: 删 model (~32G)\n- 4 个 `w2_1.7b_*` 目录: 删 model + checkpoint-500 (~52G)\n\n### checkpoint-50 状态\n\n- **global_step=50**, epoch=0.2, 4 shard model weights 完整 (~15G)\n- **无 optimizer/scheduler/rng state** — 不能真正 resume，只能 warm-start\n\n### 建议\n\ncheckpoint-50 缺少 optimizer 状态，按 C012 约束，不建议用它做 resume（步数语义不明确）。建议从 base model 重新训练 1000 步：\n\n```bash\nexport CUDA_VISIBLE_DEVICES=0\npython train_grpo.py \\\n  --model_path /root/autodl-tmp/models/Qwen2.5-7B-Instruct \\\n  --data_path data/train_500_seed42.jsonl \\\n  --output_dir /root/autodl-tmp/outputs/plan001_exec_only_s43_1000_r3 \\\n  --num_train_steps 1000 \\\n  --seed 43 \\\n  --save_total_limit 1 \\\n  ...\n```\n\n如果只需要 50 步之后的训练效果且接受 optimizer reset，也可以用 checkpoint-50 作为 `--model_path` 起点训练 950 步（但注意这与从头训练 1000 步不完全等价）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-disk-cleanup-and-resume.md"
+}

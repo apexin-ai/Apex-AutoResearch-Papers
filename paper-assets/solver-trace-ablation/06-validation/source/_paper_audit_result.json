@@ -1,0 +1,555 @@
+{
+  "phase1": {
+    "figure_check": {
+      "passed": true,
+      "critical": [],
+      "warning": [
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:related-work} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:ai-assistants} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:experiments} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:introduction} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:setup} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:method} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:10"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:74"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:130"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:228"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:554"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:810"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:836"
+        },
+        {
+          "kind": "missing_required_section",
+          "message": "Venue requires a 'Ethics Statement' section but none was found",
+          "location": "cross-file"
+        }
+      ],
+      "info": [],
+      "summary": "0 critical, 14 warning, 0 info"
+    },
+    "consistency": {
+      "paper_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper",
+      "sections": [
+        {
+          "file": "abstract.tex",
+          "role": "headline",
+          "num_numbers": 0,
+          "num_cites": 0
+        },
+        {
+          "file": "checklist.tex",
+          "role": "other",
+          "num_numbers": 4,
+          "num_cites": 5
+        },
+        {
+          "file": "conclusion.tex",
+          "role": "headline",
+          "num_numbers": 1,
+          "num_cites": 2
+        },
+        {
+          "file": "discussion.tex",
+          "role": "other",
+          "num_numbers": 0,
+          "num_cites": 0
+        },
+        {
+          "file": "ethics.tex",
+          "role": "other",
+          "num_numbers": 0,
+          "num_cites": 0
+        },
+        {
+          "file": "experiments.tex",
+          "role": "result",
+          "num_numbers": 30,
+          "num_cites": 6
+        },
+        {
+          "file": "introduction.tex",
+          "role": "intro",
+          "num_numbers": 3,
+          "num_cites": 18
+        },
+        {
+          "file": "limitations.tex",
+          "role": "other",
+          "num_numbers": 0,
+          "num_cites": 0
+        },
+        {
+          "file": "method.tex",
+          "role": "other",
+          "num_numbers": 18,
+          "num_cites": 4
+        },
+        {
+          "file": "related_work.tex",
+          "role": "other",
+          "num_numbers": 0,
+          "num_cites": 47
+        }
+      ],
+      "critical": [],
+      "warning": [
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'easy-to-hard' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'grattafiori2024llama' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'lundberg2017unified' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'processbench' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'prooffol-thatikonda2024' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'vstar' is never cited.",
+          "location": "references.bib"
+        }
+      ],
+      "info": [
+        {
+          "kind": "notation_per_section",
+          "message": "Inline math symbols collected per section.",
+          "data": {
+            "checklist": [
+              "\\beta",
+              "\\pm"
+            ],
+            "experiments": [
+              "\\approx",
+              "\\beta",
+              "\\cdot",
+              "\\chi",
+              "\\dagger",
+              "\\leq",
+              "\\overline",
+              "\\sim",
+              "\\times"
+            ],
+            "introduction": [
+              "\\approx",
+              "\\beta",
+              "\\sim",
+              "\\to"
+            ],
+            "method": [
+              "\\P",
+              "\\S",
+              "\\beta",
+              "\\boldsymbol",
+              "\\cdot",
+              "\\dagger",
+              "\\ddagger",
+              "\\geq",
+              "\\gets",
+              "\\in",
+              "\\ldots",
+              "\\pm",
+              "\\setminus",
+              "\\sim",
+              "\\textit",
+              "\\times",
+              "\\uparrow"
+            ]
+          }
+        }
+      ],
+      "summary": {
+        "critical": 0,
+        "warning": 6,
+        "info": 1
+      }
+    },
+    "compile_result": {
+      "success": true,
+      "passed": true,
+      "compiled": {
+        "success": true,
+        "pdf_path": "<compiled-in-isolated-tmpdir>",
+        "paper_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/_audit_compile_2lef0s0u",
+        "main_tex": "main.tex",
+        "log_tail": "\n\nPackage hyperref Warning: Token not allowed in a PDF string (Unicode):\n(hyperref)                removing `math shift' on input line 804.\n\n\nUnderfull \\hbox (badness 1009) in paragraph at lines 807--809\n\\OT1/cmr/m/n/10.95 rather than greedy de-cod-ing (\\TS1/cmr/m/n/10.95 �[][]\\OT1/\ncmr/m/n/10.95 A[][]). To as-\n []\n\n\nUnderfull \\vbox (badness 10000) has occurred while \\output is active []\n\n [22]\nUnderfull \\hbox (badness 10000) in paragraph at lines 870--872\n[]\\OT1/cmr/m/n/10.95 This re-sult mir-rors two other non-\n []\n\n\nUnderfull \\hbox (badness 4739) in paragraph at lines 870--872\n\\OT1/cmr/m/n/10.95 lacks FOL gen-er-a-tion ca-pa-bil-ity en-tirely.\n []\n\n\nUnderfull \\hbox (badness 6510) in paragraph at lines 870--872\n\\OT1/cmr/m/n/10.95 thresh-old for GRPO-driven de-gen-er-a-tion:\n []\n\n) [23] (./main.aux)\n ***********\nLaTeX2e <2025-11-01>\nL3 programming layer <2026-01-19>\n ***********\nPackage rerunfilecheck Info: File `main.out' has not changed.\n(rerunfilecheck)             Checksum: 712FF3A42C363507EA4640D2F675772D;6652.\n ) \nHere is how much of TeX's memory you used:\n 16112 strings out of 469438\n 255734 string characters out of 5468411\n 775268 words of memory out of 5000000\n 44327 multiletter control sequences out of 15000+600000\n 647318 words of font info for 108 fonts, out of 8000000 for 9000\n 59 hyphenation exceptions out of 8191\n 84i,14n,93p,1001b,697s stack positions out of 10000i,1000n,20000p,200000b,200000s\n </home/ubuntu/.texlive2025/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm0900.60\n0pk> </home/ubuntu/.texlive2025/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1095.\n600pk> </home/ubuntu/.texlive2025/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm100\n0.600pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pf\nb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></us\nr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx6.pfb></usr/share\n/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texliv\ne/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/texlive/texmf\n-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/\nfonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/\ntype1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/p\nublic/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a\nmsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts\n/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextr\na/cmmib9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr1\n0.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></\nusr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/shar\ne/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texliv\ne/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-\ndist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/f\nonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/ty\npe1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub\nlic/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams\nfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c\nm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti\n9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>\n</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/s\nhare/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb>\nOutput written on main.pdf (23 pages, 4144246 bytes).\nPDF statistics:\n 1169 PDF objects out of 1200 (max. 8388607)\n 1022 compressed objects within 11 object streams\n 216 named destinations out of 1000 (max. 500000)\n 15671 words of extra memory for PDF output out of 17280 (max. 10000000)\n",
+        "error": "",
+        "pages": 23,
+        "warnings": [
+          "`h' float specifier changed to `ht'.",
+          "Token not allowed in a PDF string (Unicode):",
+          "Token not allowed in a PDF string (Unicode):",
+          "Token not allowed in a PDF string (Unicode):",
+          "Token not allowed in a PDF string (Unicode):",
+          "Token not allowed in a PDF string (Unicode):",
+          "Token not allowed in a PDF string (Unicode):",
+          "Token not allowed in a PDF string (Unicode):",
+          "Token not allowed in a PDF string (Unicode):",
+          "Token not allowed in a PDF string (Unicode):",
+          "Token not allowed in a PDF string (Unicode):",
+          "Token not allowed in a PDF string (Unicode):",
+          "Token not allowed in a PDF string (Unicode):"
+        ]
+      },
+      "pages": 23,
+      "page_status": "ok",
+      "max_pages": null,
+      "min_pages": null,
+      "critical_warnings": [],
+      "minor_warnings": [
+        "`h' float specifier changed to `ht'.",
+        "Token not allowed in a PDF string (Unicode):",
+        "Token not allowed in a PDF string (Unicode):",
+        "Token not allowed in a PDF string (Unicode):",
+        "Token not allowed in a PDF string (Unicode):",
+        "Token not allowed in a PDF string (Unicode):",
+        "Token not allowed in a PDF string (Unicode):",
+        "Token not allowed in a PDF string (Unicode):",
+        "Token not allowed in a PDF string (Unicode):",
+        "Token not allowed in a PDF string (Unicode):",
+        "Token not allowed in a PDF string (Unicode):",
+        "Token not allowed in a PDF string (Unicode):",
+        "Token not allowed in a PDF string (Unicode):",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 8--8",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 8--8",
+        "Underfull \\hbox (badness 1558) in paragraph at lines 2--8",
+        "Underfull \\hbox (badness 1168) in paragraph at lines 2--8",
+        "Underfull \\hbox (badness 1142) in paragraph at lines 2--8",
+        "Underfull \\hbox (badness 1342) in paragraph at lines 2--8",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 5--8",
+        "Underfull \\hbox (badness 3954) in paragraph at lines 5--8",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 10--16",
+        "Underfull \\hbox (badness 1132) in paragraph at lines 10--16",
+        "Underfull \\hbox (badness 3701) in paragraph at lines 10--16",
+        "Underfull \\hbox (badness 2285) in paragraph at lines 10--16",
+        "Underfull \\hbox (badness 1852) in paragraph at lines 10--16",
+        "Underfull \\hbox (badness 1755) in paragraph at lines 10--16",
+        "Underfull \\hbox (badness 1168) in paragraph at lines 10--16",
+        "Underfull \\hbox (badness 2293) in paragraph at lines 19--20",
+        "Underfull \\hbox (badness 1655) in paragraph at lines 23--28",
+        "Underfull \\hbox (badness 1748) in paragraph at lines 34--35",
+        "Underfull \\hbox (badness 1325) in paragraph at lines 51--57",
+        "Underfull \\hbox (badness 1033) in paragraph at lines 59--60",
+        "Underfull \\hbox (badness 1292) in paragraph at lines 65--69",
+        "Underfull \\hbox (badness 4378) in paragraph at lines 65--69",
+        "Underfull \\vbox (badness 10000) has occurred while \\output is active []",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 96--101",
+        "Underfull \\hbox (badness 2426) in paragraph at lines 96--101",
+        "Underfull \\hbox (badness 4001) in paragraph at lines 96--101",
+        "Underfull \\hbox (badness 3138) in paragraph at lines 96--101",
+        "Underfull \\hbox (badness 1742) in paragraph at lines 96--101",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 96--101",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 96--101",
+        "Underfull \\hbox (badness 1735) in paragraph at lines 96--101",
+        "Underfull \\hbox (badness 1033) in paragraph at lines 96--101",
+        "Underfull \\hbox (badness 5274) in paragraph at lines 22--26",
+        "Underfull \\hbox (badness 3601) in paragraph at lines 22--26",
+        "Underfull \\hbox (badness 1648) in paragraph at lines 22--26",
+        "Underfull \\hbox (badness 1910) in paragraph at lines 22--26",
+        "Underfull \\hbox (badness 1769) in paragraph at lines 22--26",
+        "Underfull \\hbox (badness 1472) in paragraph at lines 42--46",
+        "Underfull \\vbox (badness 2913) has occurred while \\output is active []",
+        "Underfull \\hbox (badness 2181) in paragraph at lines 112--115",
+        "Underfull \\hbox (badness 6236) in paragraph at lines 116--119",
+        "Underfull \\hbox (badness 5077) in paragraph at lines 116--119",
+        "Underfull \\hbox (badness 1184) in paragraph at lines 116--119",
+        "Underfull \\hbox (badness 7415) in paragraph at lines 120--122",
+        "Underfull \\hbox (badness 1077) in paragraph at lines 4--41",
+        "Underfull \\hbox (badness 4872) in paragraph at lines 6--10",
+        "Underfull \\hbox (badness 3930) in paragraph at lines 13--18",
+        "Underfull \\hbox (badness 3954) in paragraph at lines 52--56",
+        "Underfull \\hbox (badness 1783) in paragraph at lines 52--56",
+        "Underfull \\hbox (badness 6808) in paragraph at lines 52--56",
+        "Underfull \\hbox (badness 1533) in paragraph at lines 85--90",
+        "Underfull \\hbox (badness 1436) in paragraph at lines 85--90",
+        "Underfull \\hbox (badness 1087) in paragraph at lines 93--97",
+        "Underfull \\hbox (badness 3657) in paragraph at lines 119--125",
+        "Underfull \\hbox (badness 1092) in paragraph at lines 127--131",
+        "Underfull \\hbox (badness 5431) in paragraph at lines 133--138",
+        "Underfull \\hbox (badness 1092) in paragraph at lines 200--205",
+        "Underfull \\hbox (badness 3078) in paragraph at lines 214--218",
+        "Underfull \\hbox (badness 1014) in paragraph at lines 221--226",
+        "Underfull \\hbox (badness 5578) in paragraph at lines 243--249",
+        "Underfull \\hbox (badness 1442) in paragraph at lines 243--249",
+        "Underfull \\hbox (badness 1147) in paragraph at lines 258--263",
+        "Underfull \\hbox (badness 2753) in paragraph at lines 277--284",
+        "Underfull \\hbox (badness 2181) in paragraph at lines 295--299",
+        "Underfull \\hbox (badness 3179) in paragraph at lines 302--308",
+        "Underfull \\hbox (badness 3601) in paragraph at lines 302--308",
+        "Underfull \\hbox (badness 2073) in paragraph at lines 310--314",
+        "Underfull \\hbox (badness 1694) in paragraph at lines 316--322",
+        "Underfull \\hbox (badness 1173) in paragraph at lines 331--336",
+        "Underfull \\hbox (badness 3058) in paragraph at lines 331--336",
+        "Underfull \\hbox (badness 1466) in paragraph at lines 356--360",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 356--360",
+        "Underfull \\hbox (badness 3849) in paragraph at lines 356--360",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 356--360",
+        "Underfull \\hbox (badness 1264) in paragraph at lines 385--390",
+        "Underfull \\hbox (badness 4366) in paragraph at lines 401--406",
+        "Underfull \\hbox (badness 4266) in paragraph at lines 53--56",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 61--63",
+        "Underfull \\hbox (badness 1742) in paragraph at lines 61--63",
+        "Underfull \\hbox (badness 1584) in paragraph at lines 69--73",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 122--129",
+        "Underfull \\hbox (badness 1845) in paragraph at lines 122--129",
+        "Underfull \\hbox (badness 1237) in paragraph at lines 122--129",
+        "Underfull \\hbox (badness 2547) in paragraph at lines 122--129",
+        "Underfull \\hbox (badness 1286) in paragraph at lines 122--129",
+        "Underfull \\hbox (badness 2635) in paragraph at lines 122--129",
+        "Underfull \\vbox (badness 3769) has occurred while \\output is active []",
+        "Underfull \\hbox (badness 1308) in paragraph at lines 191--195",
+        "Underfull \\hbox (badness 1152) in paragraph at lines 191--195",
+        "Underfull \\hbox (badness 1337) in paragraph at lines 191--195",
+        "Underfull \\hbox (badness 4556) in paragraph at lines 207--214",
+        "Underfull \\hbox (badness 3029) in paragraph at lines 207--214",
+        "Underfull \\hbox (badness 1565) in paragraph at lines 216--219",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 216--219",
+        "Underfull \\hbox (badness 6842) in paragraph at lines 216--219",
+        "Underfull \\hbox (badness 2103) in paragraph at lines 216--219",
+        "Underfull \\hbox (badness 1308) in paragraph at lines 224--227",
+        "Underfull \\vbox (badness 4266) has occurred while \\output is active []",
+        "Underfull \\hbox (badness 2707) in paragraph at lines 336--338",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 346--347",
+        "Underfull \\hbox (badness 2020) in paragraph at lines 368--371",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 373--374",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 400--401",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 400--401",
+        "Underfull \\hbox (badness 1466) in paragraph at lines 412--415",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 427--428",
+        "Underfull \\hbox (badness 1845) in paragraph at lines 435--437",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 450--451",
+        "Underfull \\hbox (badness 1888) in paragraph at lines 465--466",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 475--476",
+        "Underfull \\hbox (badness 5711) in paragraph at lines 491--493",
+        "Underfull \\hbox (badness 1735) in paragraph at lines 503--504",
+        "Underfull \\hbox (badness 2359) in paragraph at lines 516--518",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 528--529",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 699--704",
+        "Underfull \\hbox (badness 4859) in paragraph at lines 699--704",
+        "Underfull \\hbox (badness 1472) in paragraph at lines 699--704",
+        "Underfull \\hbox (badness 1314) in paragraph at lines 699--704",
+        "Underfull \\hbox (badness 2119) in paragraph at lines 784--784",
+        "Underfull \\hbox (badness 1430) in paragraph at lines 783--792",
+        "Underfull \\hbox (badness 1354) in paragraph at lines 796--800",
+        "Underfull \\hbox (badness 2229) in paragraph at lines 796--800",
+        "Underfull \\hbox (badness 3701) in paragraph at lines 796--800",
+        "Underfull \\hbox (badness 1009) in paragraph at lines 807--809",
+        "Underfull \\vbox (badness 10000) has occurred while \\output is active []",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 870--872",
+        "Underfull \\hbox (badness 4739) in paragraph at lines 870--872",
+        "Underfull \\hbox (badness 6510) in paragraph at lines 870--872"
+      ],
+      "issues": [],
+      "summary": "PASS"
+    },
+    "refs_result": null,
+    "internal_leak": {
+      "passed": true,
+      "critical": [],
+      "warning": [],
+      "info": [],
+      "summary": "0 critical, 0 warning, 0 info"
+    }
+  },
+  "content_findings": [
+    {
+      "severity": "warning",
+      "dimension": "符号一致性",
+      "message": "FOL (First-Order Logic) 全文从未展开定义。Introduction、Method、Experiments 中多处使用 \"FOL\" 但无首次出现时的完整形式。审稿人可能认为缺乏定义。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "符号一致性",
+      "message": "abstract.tex:4 GRPO 在摘要中使用 (\"GRPO-trained formalizations\") 但未展开为 \"Group Relative Policy Optimization\"。写作规范要求 Abstract 内缩写自包含。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "贡献-范围对齐",
+      "message": "method.tex:65 + experiments.tex Table 1: Method 声称 \"six conditions\" 但 Table 1 主结果含 Shuffled-ISR 第 7 行（另有 ISR 5-seed 重复行），读者数条目时会困惑。建议在 Method 或 Table caption 中显式说明 Shuffled-ISR 是额外 deconfounding control。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "章节结构",
+      "message": "conclusion.tex: Discussion and Conclusion 仅 4 句话（~70 words）。虽满足 8-page 约束，但过度压缩可能让审稿人认为缺乏高层解读。建议补充 1-2 句关于 broader implications 或 community takeaway。"
+    },
+    {
+      "severity": "info",
+      "dimension": "写作规则",
+      "message": "abstract.tex: ~183 words，在 200-word 限制内 ✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "写作规则",
+      "message": "limitations.tex: 73 words / 3 points。符合用户自定义规则（\"一小段，覆盖3个点\"），但在该维度的通用标准（≥150 words）下偏短。若审稿人 expecting more substance，可考虑每点加一句解释。"
+    },
+    {
+      "severity": "info",
+      "dimension": "叙事一致性",
+      "message": "叙事主线高度一致。Abstract/Intro 的 \"problem\"（execution-only evaluation → shortcuts）→ Method 的 \"solution\"（STA/ISR）→ Experiments 的 \"验证\"（C1 degeneration + C2 Goodhart + C3 cross-domain）→ Conclusion 的总结 均指向同一主线 \"observe vs optimize asymmetry\"。未检测到叙事漂移。"
+    },
+    {
+      "severity": "info",
+      "dimension": "Claim 强度",
+      "message": "experiments.tex:68 唯一使用 \"significantly\" 处有 χ²=174.8, p<10⁻³⁸ 支撑 ✓。其余 claim 均使用恰当 hedging（\"exploratory\", \"suggestive\", \"consistent with\"）。"
+    },
+    {
+      "severity": "info",
+      "dimension": "去AI",
+      "message": "正文无 em-dash（仅 appendix.tex 第 1 行 LaTeX 注释中有一个，不渲染）。无 en-dash。无 filler words（notably/importantly/furthermore）。无 -ing 分词短语结尾。无 AI 黑名单用词（delve/leverage/utilize/myriad/plethora）。写作风格干净。"
+    },
+    {
+      "severity": "info",
+      "dimension": "实验严谨性",
+      "message": "多 seed 结果报告 mean±std ✓; 统计检验完整（Fisher, χ², CMH, Clopper-Pearson CI, Bonferroni correction）✓; SFT baseline + Random control 设计合理 ✓; Shuffled-ISR deconfounding 控制 ✓。"
+    },
+    {
+      "severity": "info",
+      "dimension": "可复现性",
+      "message": "Hyperparameters table ✓; GPU型号+时间 ✓; 代码匿名链接 ✓; 数据集构建流程 ✓。"
+    },
+    {
+      "severity": "info",
+      "dimension": "内部信息残留",
+      "message": "appendix.tex Table hyperparams \"Data file: train\\_500\\_seed42\" 暴露内部文件名，但不影响匿名性且有助复现，可保留。"
+    },
+    {
+      "severity": "info",
+      "dimension": "审稿规则",
+      "message": "checklist.tex 未 \\input 进 main.tex ✓（符合 EMNLP 2026 规则：checklist 在 OpenReview form 中填写，不在 PDF 里）。"
+    },
+    {
+      "severity": "info",
+      "dimension": "审稿规则",
+      "message": "Limitations 在正文中 (\\input{limitations} before \\bibliography) ✓; appendix 中无重复 limitations section ✓。"
+    },
+    {
+      "severity": "info",
+      "dimension": "Related Work 结构",
+      "message": "采用 4 个 \\paragraph 主题分组（Neurosymbolic reasoning / Reward hacking / Process rewards / Mutation testing），非堆砌式，符合规范 ✓。"
+    }
+  ],
+  "visual_findings": [
+    {
+      "severity": "warning",
+      "dimension": "page 2-7",
+      "message": "Figures 2-5 使用红-绿对比作为核心色彩编码（绿=genuine/pass, 红=fail/hacking），对色盲读者（deuteranopia，约 8% 男性）不友好。Figure 1 和 Figure 6(a) 使用红-蓝对比无此问题。建议将绿色替换为蓝色或使用 Okabe-Ito 色板，或至少用不同 hatching/marker shape 辅助区分"
+    },
+    {
+      "severity": "warning",
+      "dimension": "page 4",
+      "message": "Figure 2（STA 核心架构图）出现在第 4 页而非前 2 页。作为传达论文核心 idea 的概念图，更早出现能帮审稿人在扫读阶段建立认知锚点。当前第一个 display item 是 Figure 1（p2 训练曲线），信息价值低于 Figure 2"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 7",
+      "message": "Figure 4 的水平堆叠条形图中，各 hacking mode 颜色区分依赖色相差异但饱和度接近（绿/红/粉/棕），缩小或灰度打印时辨识度下降。建议增加 hatching pattern 或调整亮度梯度"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 7",
+      "message": "Figure 5 的 bar chart 纵轴标签 \"Percentage (%)\" 和 x 轴标签字号偏小（约正文字号 60-65%），接近可读性下限"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 5",
+      "message": "Table 1 caption 较长（约 4 行），信息丰富且自包含，但最后的脚注标记（†, ‡, FN-corrected）密度较高，审稿人快速扫读时可能遗漏"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 19-20",
+      "message": "Tables 9-12（per-seed detailed results）数据密集，行数多列数多，字号压缩明显。作为附录数据表可接受，但部分数字列间距紧凑"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 16-18",
+      "message": "附录 C.2-C.9（Hacking Mode Definitions）连续 3 页纯文本+代码示例，无任何 figure/table 穿插。作为分类参考材料可以接受，但如果能加一个 summary table 列出所有 modes 的关键属性会更易读"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 23",
+      "message": "最后一页内容约占 60%，底部约 40% 空白。不影响审稿但说明附录空间未完全利用"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 8",
+      "message": "第 8 页内容密度高——Figure 6 + Section 4.5 Hacking Taxonomy + Section 5 Discussion and Conclusion + Section 6 Limitations + 作者归属全部挤在一页。虽然无溢出，但视觉上略拥挤"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 1",
+      "message": "Title/Abstract/Introduction 排版整洁专业，行号（review 模式）正常显示，无异常"
+    }
+  ],
+  "counts": {
+    "critical": 0,
+    "warning": 167,
+    "info": 19
+  },
+  "error": "",
+  "timestamp": "2026-05-25T14:10:34.401487+00:00"
+}

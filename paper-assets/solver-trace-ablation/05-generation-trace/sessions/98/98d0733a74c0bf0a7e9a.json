@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "98d0733a74c0bf0a7e9a",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_10_1778815823.md",
+  "task_key": "loop_10_1778815823",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_10_1778815823.md",
+    "occurrence": 1,
+    "bytes": 4283,
+    "sha256": "925f11ab7fda29c5d86f4fda742a1203e170803d09cbc99c068578166445010a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: idle_timeout\nupdated: '2026-05-15T03:21:03+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单只有 `westd-39279:cuda:0` 和 `westd-39279:cuda:1`，不可用其他卡\n- submit_training_job 命令必须 `bash -c \"export CUDA_VISIBLE_DEVICES=N && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && ...\"`，GPU 编号从 0 开始\n- 所有训练实验统一数据 `data/train_500_seed42.jsonl`（C001 约束），eval 用 `data/eval_100_seed99.jsonl`\n- β=0.3 ISR 历史极差（PR=18%），不要误判为 success——必须跑 eval_sta.py + H1/H7 分类确认\n- strict classifier Genuine=100% 不可信，必须交叉验证 n_necessary 分布（s44 教训）\n- output_dir 必须放 `/root/autodl-tmp/outputs/`，磁盘 240G/250G 极紧张，eval 后立即清理 checkpoint\n- `log_completions=False` + `save_total_limit=1`（C003 约束）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-39279，工作目录 `/root/solver-trace-ablation/`\n- Python：`/root/miniconda3/bin/python`，激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型：Qwen3-4B（通过 ModelScope 下载，7.6GB）\n- 数据：训练 `data/train_500_seed42.jsonl` (500条)，eval `data/eval_100_seed99.jsonl`\n- Solvers：Prover9 (LADR 源码编译)、SWI-Prolog 8.4.2 (`/usr/bin/swipl`)、Z3 4.16.0.0\n- GPU：2× RTX PRO 6000 Blackwell 94GB，CUDA 12.8，PyTorch 2.10.0+cu128\n- 磁盘：数据盘 `/root/autodl-tmp/` 250GB（剩 ~10GB 极紧张）\n- 活跃进程：exp1-random-b03-s44 在 cuda:1 上 RUNNING（PID 未确认，需 SSH 查）\n\n### 3. 📊 当前状态\n收到 CRON 回调：`exp1-isr-b03-s44-r2`（ISR β=0.3 seed 44 retry）训练完成，状态 ANALYZING。我已派出两个 Worker：\n1. `worker_analysis_exp1-isr-b03-s44-r2`：分析日志 + 跑 eval_sta.py + 更新 registry（cuda:0）\n2. `worker_analysis_check-pending-evals`：检查 exp1-isr-b03-s43 和 exp1-random-b03-s43 是否已有 eval 结果\n\nRegistry 当前状态：\n- **ANALYZING**: exp1-isr-b03-s44-r2（ISR β=0.3 s44，Worker 正在分析）\n- **RUNNING**: exp1-random-b03-s44（Random β=0.3 s44，cuda:1）\n- **DONE 待 eval**: exp1-isr-b03-s43（ISR β=0.3 s43，标 success 但无 eval metrics）、exp1-random-b03-s43（Random β=0.3 s43，同上）\n- 其余 56 个实验全部 DONE\n\n等待中：两个 Worker 回调 + exp1-random-b03-s44 CRON 回调\n\n### 4. 📋 待办\n- Worker analysis:exp1-isr-b03-s44-r2 回调 → 读 metrics，update_registry(status=DONE)，判断 conclusion（大概率 negative，参考 s42 PR=18%）→ 按 on-experiment-done skill 处理 → 汇报 Director\n- Worker check-pending-evals 回调 → 如果 exp1-isr-b03-s43 和 exp1-random-b03-s43 没有 eval 结果 → 等 cuda:0 空闲后派 Worker 跑 eval\n- exp1-random-b03-s44 CRON 回调 → 同上分析流程\n- 四个 β=0.3 实验全部 eval 完成 → 聚合 3-seed 统计（ISR β=0.3: s42/s43/s44; Random β=0.3: s42/s43/s44）→ 更新 Table 1 数据 → 汇报 Director\n- 磁盘 <10GB → 完成 eval 后立即清理旧 checkpoint（`/root/autodl-tmp/outputs/` 下已完成实验的 checkpoint）\n\n### 5. 🎯 战略上下文\n项目处于 **Writing 阶段**，DDL 2026-05-25（剩 10 天）。三条 Claim 全部闭环（D057/D059）。核心结论：\n- **Claim 1**：STA 是有效诊断工具，ISR 崩塌轨迹 0.64→0.13→0.003，7 种 hacking taxonomy\n- **Claim 2**（D057）：ISR-as-reward 无结构优势，premise-count-matched 1.06x 无差异，2.4x 是 artifact\n- **Claim 3**（D059）：跨 Prolog 泛化，3/3 seeds 全 Goodhart，0% genuine，三种不同 gaming pathway\n\n当前 β=0.3 实验是补充 Table 1 的 3-seed 统计数据，不影响核心 Claims。β=0.3 历史上极差（s42: PR=18%/ISR=0.026），预期 s43/s44 同样 negative——这恰好支持 \"β 剂量效应\" narrative（β 越高崩塌越严重）。\n\n**易错点**：\n- EXIT_CODE=129 是 tmux cleanup 假阳性，不代表训练失败——必须检查日志确认 500/500 步完成\n- ISR β=0.3 的 \"success\" 标准和 β=0.1 不同——β=0.3 PR 崩塌（<20%）本身就是论文需要的 negative 数据点，应标 conclusion=negative 而非 failed\n- 不要因为这些是补充实验就忽略 eval——Table 1 需要完整 3-seed mean±std\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10-1778815823.md"
+}

@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "7f1edf3311e0dc6579ad",
+  "project": "solver-trace-ablation",
+  "kind": "worker",
+  "title": "eval plan002 sta",
+  "task_key": "worker_eval_plan002-sta_20260514T032542",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_plan002-sta_20260514T032542.log",
+    "occurrence": 1,
+    "bytes": 550755,
+    "sha256": "c74d8d9f17abc65899bb1772a18ded2e10fb53622a7af2e23dbe026f105d9141"
+  },
+  "statistics": {
+    "messages": 387,
+    "user_turns": 0,
+    "tool_calls": 163,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 56,
+      "tool_call": 163,
+      "tool_result": 163,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 387,
+      "chunks": [
+        {
+          "path": "7f1edf3311e0dc6579ad-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "7f1edf3311e0dc6579ad-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "7f1edf3311e0dc6579ad-part-0003.json",
+          "message_count": 27
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-plan002-sta.md"
+}

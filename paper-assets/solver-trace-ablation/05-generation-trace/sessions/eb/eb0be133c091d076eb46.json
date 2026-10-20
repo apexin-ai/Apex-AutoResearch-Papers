@@ -1,0 +1,776 @@
+{
+  "schema_version": "1.0",
+  "id": "eb0be133c091d076eb46",
+  "project": "solver-trace-ablation",
+  "kind": "conversation",
+  "title": "paper d095 appendix",
+  "task_key": "worker_paper_d095-appendix_20260515T195700",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_d095-appendix_20260515T195700.jsonl",
+    "occurrence": 1,
+    "bytes": 24321,
+    "sha256": "8fe768392cb014bcfb18f362467ae3e9ac60219abcfc7542f91e080df585b5c5"
+  },
+  "statistics": {
+    "messages": 37,
+    "user_turns": 0,
+    "tool_calls": 18,
+    "roles": {
+      "tool_call": 18,
+      "tool_result": 18,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T19:59:37.336409+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d095-appendix_20260515T195700",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/appendix.tex"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T19:59:37.337191+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% Appendix — solver-trace-ablation\n2\t\n3\t\\section{Experimental Setup}\n4\t\\label{app:setup}\n5\t\n6\tTable~\\ref{tab:hyperparams} lists all hyperparameters shared across experiments.\n7\tAll RL conditions use the same GRPO configuration; only the reward function differs.\n8\tSeeds control model weight initialization and data shuffling; training data is held constant across all seeds and conditions (Constraint~C001).\n9\t\n10\t\\begin{table}[h]\n11\t\\centering\n12\t\\caption{Training hyperparameters for all GRPO experiments.}\n13\t\\label{tab:hyperparams}\n14\t\\footnotesize\n15\t\\resizebox{\\columnwidth}{!}{%\n16\t\\begin{tabular}{@{}ll@{}}\n17\t\\toprule\n18\t\\textbf{Parameter} & \\textbf{Value} \\\\\n19\t\\midrule\n20\t\\multicolumn{2}{@{}l}{\\textit{Model}} \\\\\n21\tBase model & Qwen3-4B \\\\\n22\tPrecision & BF16 \\\\\n23\t\\midrule\n24\t\\multicolumn{2}{@{}l}{\\textit{GRPO Training}} \\\\\n25\tRollouts per prompt ($K$) & 8 \\\\\n26\tTraining steps (default) & 500 \\\\\n27\tTraining steps (extended) & 1000 \\\\\n28\tLearning rate & $1 \\times 10^{-6}$ \\\\\n29\tPer-device batch size & 4 \\\\\n30\tGradient accumulation steps & 2 \\\\\n31\tEffective batch size & 8 \\\\\n32\tMax completion length & 512 tokens \\\\\n33\tRandom seeds & 42, 43, 44 \\\\\n34\t\\midrule\n35\t\\multicolumn{2}{@{}l}{\\textit{Data}} \\\\\n36\tTraining set & FOLIO, 500 examples \\\\\n37\tEvaluation set & FOLIO, 100 examples (held-out) \\\\\n38\tData file & \\texttt{train\\_500\\_seed42} \\\\\n39\t\\midrule\n40\t\\multicolumn{2}{@{}l}{\\textit{Solvers}} \\\\\n41\tFOL solver & Prover9 \\\\\n42\tProlog solver & SWI-Prolog 8.4.2 \\\\\n43\t\\midrule\n44\t\\multicolumn{2}{@{}l}{\\textit{Evaluation}} \\\\\n45\tDecoding & Greedy ($T{=}0$) \\\\\n46\tISR computation & \\texttt{eval\\_sta.py} \\\\\n47\tISR variant & Proved-only (ISR$^*$) \\\\\n48\t\\bottomrule\n49\t\\end{tabular}}\n50\t\\end{table}\n51\t\n52\t\\paragraph{Evaluation exception.}\n53\tFOL exec-only seed~43 (\\texttt{plan001-exec-only-s43-r4}) was evaluated with sampling (temperature~$=0.7$) rather than greedy decoding.\n54\tIts PR and ISR values are included for completeness but are not strictly comparable with other se\n…[truncated 31791 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d095-appendix_20260515T195700",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T19:59:37.337551+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d095-appendix_20260515T195700",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/appendix.tex",
+              "old_string": "  & 43 & 500 & 0.88 & 0.058 & 0 & 93.2 & 6.8 & \\\\\n  & 44 & 500 & 0.89 & 0.070 & 0 & 79.8 & 20.2 & \\\\\n\\cmidrule(l){2-9}\n  & \\multicolumn{2}{l}{3-seed mean$\\pm$std} & \\makebox[0pt][l]{$0.85{\\pm}0.06$} & & \\makebox[0pt][l]{$0.086{\\pm}0.039$} & & & H7 = 0\\% all seeds \\\\",
+              "new_string": "  & 43 & 500 & 0.94 & 0.150 & \\textbf{38.3} & 59.6 & 1.1 & H7a${=}36$; H8${=}1$ \\\\\n  & 44 & 500 & 0.89 & 0.070 & 0 & 82.0 & 6.7 & H8${=}16$ (H1$\\cap$H8: 6) \\\\\n\\cmidrule(l){2-9}\n  & \\multicolumn{2}{l}{3-seed mean$\\pm$std} & \\makebox[0pt][l]{$0.87{\\pm}0.08$} & & \\makebox[0pt][l]{$0.117{\\pm}0.042$} & & & H7 seed-dep.: 0/38/0\\% \\\\"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T19:59:37.337959+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d095-appendix_20260515T195700",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T19:59:37.338137+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d095-appendix_20260515T195700",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/appendix.tex",
+              "old_string": "  & 43 & 500 & 0.61 & 0.830 & \\textbf{96.7} & 0 & ${\\sim}$3 & H7 dominant \\\\",
+              "new_string": "  & 43 & 500 & 0.61 & 0.830 & \\textbf{100} & 0 & 0 & H7a${=}59$, H7b${=}2$ \\\\"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T19:59:37.338393+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d095-appendix_20260515T195700",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T19:59:37.338550+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d095-appendix_20260515T195700",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/appendix.tex",
+              "old_string": "\\begin{tabular}{@{}lcccc@{}}\n\\toprule\n\\textbf{Comparison} & \\textbf{Condition} & \\textbf{Control} & \\textbf{OR} & \\textbf{$p$} \\\\\n\\midrule\n\\multicolumn{5}{@{}l}{\\textit{Genuine rate (H8+FN corrected)}} \\\\\nISR vs.\\ Random & 6.9\\% {\\scriptsize[4.3,11.0]} & 18.4\\% {\\scriptsize[14.0,23.7]} & 0.33 & 0.0002 \\\\\nISR vs.\\ Exec-only & 6.9\\% & 7.5\\% & 0.91 & 0.81 \\\\\nRandom vs.\\ Exec-only & 18.4\\% & 7.5\\% & 2.76 & 0.012 \\\\\n\\midrule\n\\multicolumn{5}{@{}l}{\\textit{Genuine rate (H8-only, conservative)}} \\\\\nISR vs.\\ Random & 12.1\\% & 18.4\\% & 0.61 & 0.060 \\\\\n\\midrule\n\\multicolumn{5}{@{}l}{\\textit{H7 gaming rate}} \\\\\nISR vs.\\ Random & 69.7\\% & 0\\% & $\\infty$ & ${<}0.001$ \\\\\n\\midrule\n\\multicolumn{5}{@{}l}{\\textit{SFT vs.\\ Exec-only genuine rate}} \\\\\nSFT vs.\\ Exec-only & 92.3\\% {\\scriptsize[79.7,97.3]} & 7.5\\% & 147 & ${<}0.001$ \\\\\n\\bottomrule\n\\end{tabular}\n\\\\[2pt]\n{\\footnotesize ISR: $n{=}231$ (3 seeds). Random: $n{=}256$ (3 seeds). Exec-only: $n{=}93$ (s42). SFT: $n{=}39$ (3 seeds, 1000 steps). 95\\% Wilson CIs in brackets where shown.}",
+              "new_string": "\\begin{tabular}{@{}lcccc@{}}\n\\toprule\n\\textbf{Comparison} & \\textbf{Condition} & \\textbf{Control} & \\textbf{OR} & \\textbf{$p$} \\\\\n\\midrule\n\\multicolumn{5}{@{}l}{\\textit{Genuine rate (H8+FN corrected)}} \\\\\nISR vs.\\ Random & 6.1\\% {\\scriptsize[3.6,9.9]} & 9.5\\% {\\scriptsize[6.5,13.7]} & 0.61 & 0.182 (n.s.) \\\\\nISR vs.\\ Exec-only & 6.1\\% & 7.5\\% & 0.80 & 0.81 \\\\\nRandom vs.\\ Exec-only & 9.5\\% & 7.5\\% & 1.30 & 0.64 \\\\\n\\midrule\n\\multicolumn{5}{@{}l}{\\textit{H7 gaming rate}} \\\\\nISR vs.\\ Random & 70.6\\% {\\scriptsize[64.3,76.3]} & 13.7\\% {\\scriptsize[9.9,18.6]} & 15.05 & $1.3{\\times}10^{-39}$ \\\\\n\\midrule\n\\multicolumn{5}{@{}l}{\\textit{SFT vs.\\ Exec-only genuine rate}} \\\\\nSFT vs.\\ Exec-only & 92.3\\% {\\scriptsize[79.7,97.3]} & 7.5\\% & 147 & ${<}0.001$ \\\\\n\\bottomrule\n\\end{tabular}\n\\\\[2pt]\n{\\footnotesize ISR: $n{=}231$ (3 seeds). Random: $n{=}262$ (3 seeds). Exec-only: $n{=}93$ (s42). SFT: $n{=}39$ (3 seeds, 1000 steps). 95\\% Wilson CIs in brackets where shown.}"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T19:59:37.338900+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d095-appendix_20260515T195700",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T19:59:37.339151+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d095-appendix_20260515T195700",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/appendix.tex",
+              "old_string": "\\paragraph{Impact on genuine-rate comparison.}\nUnder the primary correction (H8 + FN): ISR genuine $= 16/231 = 6.9\\%$ vs.\\ random genuine $= 47/256 = 18.4\\%$ (Fisher $p{=}0.0002$).\nUnder conservative correction (H8 only, no FN fix): ISR genuine $= 28/231 = 12.1\\%$ vs.\\ $18.4\\%$ (Fisher $p{=}0.060$).\nBoth scenarios are directionally consistent: ISR-specific gaming modes reduce genuine output relative to a matched control.",
+              "new_string": "\\paragraph{Impact on genuine-rate comparison.}\nAfter H8 reclassification and H7 false-negative correction: ISR genuine $= 14/231 = 6.1\\%$ vs.\\ random genuine $= 25/262 = 9.5\\%$ (Fisher $p{=}0.182$, n.s.; Wilson 95\\% CI: ISR [3.6\\%, 9.9\\%], Random [6.5\\%, 13.7\\%]).\nThe direction is consistent with ISR-specific gaming modes displacing genuine output, but the effect is not statistically significant at the conventional $\\alpha{=}0.05$ threshold."
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T19:59:37.339435+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d095-appendix_20260515T195700",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T19:59:37.339586+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d095-appendix_20260515T195700",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/appendix.tex",
+              "old_string": "H7a (text-match detectable): 64.5\\% pooled (149/231) under ISR~$\\beta{=}0.1$ (s42: 16.0\\%, s43: 96.7\\%, s44: 86.5\\%).\nCombined H7 (H7a + H7b): 69.7\\% (161/231; includes s44 FN correction).\n\\textbf{Zero} occurrences under Random~$\\beta{=}0.1$ across all three seeds ($0/256$).",
+              "new_string": "H7a (text-match detectable): 64.5\\% pooled (149/231) under ISR~$\\beta{=}0.1$ (s42: 16.0\\%, s43: 100\\%, s44: 86.5\\%).\nCombined H7 (H7a + H7b): 70.6\\% (163/231; s43 H7a${=}59$ + H7b${=}2$; includes s44 FN correction).\nRandom~$\\beta{=}0.1$ pooled: 13.7\\% (36/262, all H7a; driven by seed~43 at 38.3\\%, seeds~42 and~44 at 0\\%)."
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T19:59:37.339885+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d095-appendix_20260515T195700",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T19:59:37.340045+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d095-appendix_20260515T195700",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/appendix.tex",
+              "old_string": "under ISR reward, it shifts to H7 (69.7\\% pooled)",
+              "new_string": "under ISR reward, it shifts to H7 (70.6\\% pooled)"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T19:59:37.340278+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d095-appendix_20260515T195700",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T19:59:37.340430+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d095-appendix_20260515T195700",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/appendix.tex",
+              "old_string": "H7 & Single prem.\\ = concl. & $\\bullet$ & \\textbf{70} & 0 & 0 \\\\",
+              "new_string": "H7 & Single prem.\\ = concl. & $\\bullet$ & \\textbf{71} & 14$^\\dagger$ & 0 \\\\"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T19:59:37.340660+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d095-appendix_20260515T195700",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T19:59:37.340862+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d095-appendix_20260515T195700",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/appendix.tex",
+              "old_string": "\\caption{Hacking taxonomy across FOL conditions (\\% of proved samples). ISR/Rand columns: $\\beta{=}0.1$ 3-seed pooled. H7 includes subtypes H7a (text-match, $n{=}149$) and H7b (obfuscated tautology, $n{=}12$; s44 only). Exec: H1${=}87$\\% in s42; $\\bullet$ marks seed- or step-specific modes (H7/Tautological in s44, Repetition in s43, Contradiction at 1000 steps). H8: premise-subset gaming (Appendix~\\ref{app:h8}). C-w/o-util.: complexity-without-utility (random-specific). Q-as-fact: Prolog STA only (Table~\\ref{tab:prolog-detailed}).}",
+              "new_string": "\\caption{Hacking taxonomy across FOL conditions (\\% of proved samples). ISR/Rand columns: $\\beta{=}0.1$ 3-seed pooled. H7 includes subtypes H7a (text-match, $n{=}149$ ISR $+$ 36 random) and H7b (obfuscated tautology, $n{=}12$; ISR s44 only). $^\\dagger$Random H7 driven by seed~43 (38.3\\%); seeds~42/44: 0\\%. Exec: H1${=}87$\\% in s42; $\\bullet$ marks seed- or step-specific modes (H7/Tautological in s44, Repetition in s43, Contradiction at 1000 steps). H8: premise-subset gaming (Appendix~\\ref{app:h8}). C-w/o-util.: complexity-without-utility (random-specific). Q-as-fact: Prolog STA only (Table~\\ref{tab:prolog-detailed}).}"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T19:59:37.341124+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d095-appendix_20260515T195700",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T19:59:37.341309+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d095-appendix_20260515T195700",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/appendix.tex",
+              "offset": "237",
+              "limit": "8"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T19:59:37.341509+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "237\tRandom~$\\beta{=}0.1$ pooled: 13.7\\% (36/262, all H7a; driven by seed~43 at 38.3\\%, seeds~42 and~44 at 0\\%).\n238\t\n239\t\n240\t\\subsection{H7b --- Obfuscated Tautology}\n241\t\n242\t\\paragraph{Definition.}\n243\tA single-premise formalization logically equivalent to H7a (premise = conclusion) but with surface-form differences that evade the text-match H7 classifier.\n244\tThe model achieves this through vacuous quantifier wrapping ($11/12$ instances) or structural simplification ($1/12$)."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d095-appendix_20260515T195700",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T19:59:37.341659+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d095-appendix_20260515T195700",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/appendix.tex",
+              "offset": "234",
+              "limit": "4"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T19:59:37.341861+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "234\t\\paragraph{Prevalence.}\n235\tH7a (text-match detectable): 64.5\\% pooled (149/231) under ISR~$\\beta{=}0.1$ (s42: 16.0\\%, s43: 100\\%, s44: 86.5\\%).\n236\tCombined H7 (H7a + H7b): 70.6\\% (163/231; s43 H7a${=}59$ + H7b${=}2$; includes s44 FN correction).\n237\tRandom~$\\beta{=}0.1$ pooled: 13.7\\% (36/262, all H7a; driven by seed~43 at 38.3\\%, seeds~42 and~44 at 0\\%)."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d095-appendix_20260515T195700",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T19:59:37.342017+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d095-appendix_20260515T195700",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/appendix.tex",
+              "old_string": "H7a (text-match detectable): 64.5\\% pooled (149/231) under ISR~$\\beta{=}0.1$ (s42: 16.0\\%, s43: 100\\%, s44: 86.5\\%).",
+              "new_string": "H7a (text-match detectable): 64.5\\% pooled (149/231) under ISR~$\\beta{=}0.1$ (s42: 16.0\\%, s43: 96.7\\%, s44: 86.5\\%)."
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T19:59:37.342249+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d095-appendix_20260515T195700",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T19:59:37.342414+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d095-appendix_20260515T195700",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/appendix.tex",
+              "offset": "87",
+              "limit": "27"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T19:59:37.342559+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "87\t\\begin{table}[h]\n88\t\\centering\n89\t\\caption{Fisher exact tests for genuine rate across conditions (3-seed pooled). ISR $\\beta{=}0.1$ genuine rate is corrected for H8 reclassification and H7 false negatives (Appendix~\\ref{app:h8}).}\n90\t\\label{tab:bootstrap-ci}\n91\t\\small\n92\t\\begin{tabular}{@{}lcccc@{}}\n93\t\\toprule\n94\t\\textbf{Comparison} & \\textbf{Condition} & \\textbf{Control} & \\textbf{OR} & \\textbf{$p$} \\\\\n95\t\\midrule\n96\t\\multicolumn{5}{@{}l}{\\textit{Genuine rate (H8+FN corrected)}} \\\\\n97\tISR vs.\\ Random & 6.1\\% {\\scriptsize[3.6,9.9]} & 9.5\\% {\\scriptsize[6.5,13.7]} & 0.61 & 0.182 (n.s.) \\\\\n98\tISR vs.\\ Exec-only & 6.1\\% & 7.5\\% & 0.80 & 0.81 \\\\\n99\tRandom vs.\\ Exec-only & 9.5\\% & 7.5\\% & 1.30 & 0.64 \\\\\n100\t\\midrule\n101\t\\multicolumn{5}{@{}l}{\\textit{H7 gaming rate}} \\\\\n102\tISR vs.\\ Random & 70.6\\% {\\scriptsize[64.3,76.3]} & 13.7\\% {\\scriptsize[9.9,18.6]} & 15.05 & $1.3{\\times}10^{-39}$ \\\\\n103\t\\midrule\n104\t\\multicolumn{5}{@{}l}{\\textit{SFT vs.\\ Exec-only genuine rate}} \\\\\n105\tSFT vs.\\ Exec-only & 92.3\\% {\\scriptsize[79.7,97.3]} & 7.5\\% & 147 & ${<}0.001$ \\\\\n106\t\\bottomrule\n107\t\\end{tabular}\n108\t\\\\[2pt]\n109\t{\\footnotesize ISR: $n{=}231$ (3 seeds). Random: $n{=}262$ (3 seeds). Exec-only: $n{=}93$ (s42). SFT: $n{=}39$ (3 seeds, 1000 steps). 95\\% Wilson CIs in brackets where shown.}\n110\t\\end{table}\n111\t\n112\t\\paragraph{Meta-level Goodhart: implications.}\n113\tThe meta-Goodhart finding extends beyond this specific system."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d095-appendix_20260515T195700",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-15T19:59:37.342770+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d095-appendix_20260515T195700",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nfrom scipy.stats import fisher_exact\n# ISR vs Exec-only genuine\n# ISR: 14 genuine, 217 non-genuine (231 total)\n# Exec: 7 genuine, 86 non-genuine (93 total)\ntable1 = [[14, 217], [7, 86]]\nor1, p1 = fisher_exact(table1)\nprint(f'ISR vs Exec: OR={or1:.2f}, p={p1:.3f}')\n\n# Random vs Exec-only genuine\n# Random: 25 genuine, 237 non-genuine (262 total)\n# Exec: 7 genuine, 86 non-genuine (93 total)\ntable2 = [[25, 237], [7, 86]]\nor2, p2 = fisher_exact(table2)\nprint(f'Random vs Exec: OR={or2:.2f}, p={p2:.3f}')\n\"\n",
+              "description": "Compute Fisher exact test p-values for updated genuine rates"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T19:59:37.342951+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "ISR vs Exec: OR=0.79, p=0.623\nRandom vs Exec: OR=1.30, p=0.676"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d095-appendix_20260515T195700",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-15T19:59:37.343095+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d095-appendix_20260515T195700",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/appendix.tex",
+              "old_string": "ISR vs.\\ Exec-only & 6.1\\% & 7.5\\% & 0.80 & 0.81 \\\\\nRandom vs.\\ Exec-only & 9.5\\% & 7.5\\% & 1.30 & 0.64 \\\\",
+              "new_string": "ISR vs.\\ Exec-only & 6.1\\% & 7.5\\% & 0.79 & 0.62 \\\\\nRandom vs.\\ Exec-only & 9.5\\% & 7.5\\% & 1.30 & 0.68 \\\\"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-15T19:59:37.343331+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d095-appendix_20260515T195700",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-15T19:59:37.343485+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d095-appendix_20260515T195700",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/appendix.tex",
+              "offset": "518",
+              "limit": "12"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-15T19:59:37.343633+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "518\t  & 44 & 0.23 & 0 & 0 & 100 & 0 & \\\\\n519\t\\cmidrule(l){2-8}\n520\t  & \\multicolumn{2}{l}{3-seed mean$\\pm$std} & \\makebox[0pt][l]{$0.54{\\pm}0.35$} & & \\makebox[0pt][l]{$0.09{\\pm}0.09$} & & \\\\\n521\t\\bottomrule\n522\t\\end{tabular}\n523\t\\end{table}\n524\t\n525\t\\subsection{Early-Training Hacking Analysis (100-Step Checkpoint)}\n526\t\\label{app:100step}\n527\t\n528\tTo control for the prove-rate confound in our SFT comparison (\\S\\ref{sec:diagnostic}), we analyze the exec-only checkpoint at 100 training steps (seed~42), where PR${=}32$\\%---higher than SFT (13.0\\%, 3-seed pooled) but still early in training.\n529\tOf the 32 proved samples, 9 (28.1\\%) exhibit H7 hacking (single premise identical to conclusion) and 1 (3.1\\%) exhibits H1 (conclusion embedded among premises), yielding a total hacking rate of 31.2\\%."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d095-appendix_20260515T195700",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-15T19:59:37.343811+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d095-appendix_20260515T195700",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper && grep -n \"69\\.7\\|0/256\\|18\\.4\\|47/256\\|16/231\\|n{=}256\\|0\\.0002\" appendix.tex"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-15T19:59:37.343997+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d095-appendix_20260515T195700",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-15T19:59:37.344171+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d095-appendix_20260515T195700",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper && grep -n \"70\\.6\\|13\\.7\\|14/231\\|25/262\\|n{=}262\\|0\\.182\\|163/231\\|36/262\" appendix.tex"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-15T19:59:37.344308+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "97:ISR vs.\\ Random & 6.1\\% {\\scriptsize[3.6,9.9]} & 9.5\\% {\\scriptsize[6.5,13.7]} & 0.61 & 0.182 (n.s.) \\\\\n102:ISR vs.\\ Random & 70.6\\% {\\scriptsize[64.3,76.3]} & 13.7\\% {\\scriptsize[9.9,18.6]} & 15.05 & $1.3{\\times}10^{-39}$ \\\\\n109:{\\footnotesize ISR: $n{=}231$ (3 seeds). Random: $n{=}262$ (3 seeds). Exec-only: $n{=}93$ (s42). SFT: $n{=}39$ (3 seeds, 1000 steps). 95\\% Wilson CIs in brackets where shown.}\n187:After H8 reclassification and H7 false-negative correction: ISR genuine $= 14/231 = 6.1\\%$ vs.\\ random genuine $= 25/262 = 9.5\\%$ (Fisher $p{=}0.182$, n.s.; Wilson 95\\% CI: ISR [3.6\\%, 9.9\\%], Random [6.5\\%, 13.7\\%]).\n211:Under exec-only and Random reward, it manifests as H1 (71--93\\%); under ISR reward, it shifts to H7 (70.6\\% pooled).\n236:Combined H7 (H7a + H7b): 70.6\\% (163/231; s43 H7a${=}59$ + H7b${=}2$; includes s44 FN correction).\n237:Random~$\\beta{=}0.1$ pooled: 13.7\\% (36/262, all H7a; driven by seed~43 at 38.3\\%, seeds~42 and~44 at 0\\%)."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d095-appendix_20260515T195700",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-15T19:59:37.344475+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 7 modifications applied and verified. Summary:\n\n1. **tab:fol-beta01-detailed** — Random β=0.1 s43/s44 rows and 3-seed summary updated to D095 data; ISR s43 H7 updated from 96.7→100%\n2. **tab:bootstrap-ci** — Genuine rate and H7 rows updated with D095 Fisher tests; conservative correction row removed; n=256→262\n3. **Impact on genuine-rate comparison** — Rewritten with D095 numbers (6.1% vs 9.5%, p=0.182 n.s.)\n4. **H7a prevalence** — Combined H7 updated to 70.6% (163/231); Random H7 now 13.7% (36/262) with seed-dependency note\n5. **H1 prevalence** — 69.7→70.6%\n6. **tab:hacking-taxonomy-app** — H7 Random column 0→14† with footnote; caption updated with H7a count (149 ISR + 36 random)\n7. **β=0.3 table** — Verified unchanged, no edits needed"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_d095-appendix_20260515T195700"
+          },
+          "id": "event-000037"
+        }
+      ],
+      "message_count": 37
+    }
+  ],
+  "readable_path": "readable/conversations/paper-d095-appendix.md"
+}

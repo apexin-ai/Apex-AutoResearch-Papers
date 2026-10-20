@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "009c52665f478e6d1fc2",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "write appendix 100step",
+  "task_key": "worker_write_appendix-100step_20260514T220521",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_write_appendix-100step_20260514T220521_result.json",
+    "occurrence": 1,
+    "bytes": 211,
+    "sha256": "cc41c77e79af86fb47cca0f335d02c6f96090da07efbeea7988529fe724dda5f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "新 subsection 已插入 `\\section{Per-Seed Detailed Results}` 末尾，紧接 Prolog Goodhart 段落之后，与同节 100-step ISR 轨迹讨论自然衔接。`\\label{app:100step}` 已就位。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/write-appendix-100step.md"
+}

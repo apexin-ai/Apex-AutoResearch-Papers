@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "293462621b085edba4af",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "figure prolog comparison",
+  "task_key": "worker_figure_prolog-comparison_20260515T202755",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_prolog-comparison_20260515T202755_result.json",
+    "occurrence": 1,
+    "bytes": 287,
+    "sha256": "fe483d504a6d5e02e056ef7faa344f8dcb9d0282ea9ffd0ba633a435c1dc3837"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据与 registry 一致，无需更新。已添加 PNG 输出。\n\n生成完成：\n- `fig4_prolog_comparison.pdf`\n- `fig4_prolog_comparison.png`\n\ns43 FOL 的 `†` 注脚已保留，右 panel gaming mode 标签正确，Okabe-Ito 配色方案与其他图表一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-prolog-comparison.md"
+}

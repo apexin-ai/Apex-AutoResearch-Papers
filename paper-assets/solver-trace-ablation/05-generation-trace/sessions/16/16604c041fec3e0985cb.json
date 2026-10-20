@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "16604c041fec3e0985cb",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analysis body paren spotcheck b03 s44",
+  "task_key": "worker_analysis_body-paren-spotcheck-b03-s44_20260516T073851",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_body-paren-spotcheck-b03-s44_20260516T073851_result.json",
+    "occurrence": 1,
+    "bytes": 1046,
+    "sha256": "4d731a535b3dd8f4de4266f3b4fb12e15581c9d32c1eda3afb5c5f4f80deb43e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**exp1-isr-b03-s44-r2 的 genuine = 0，不是 19。**\n\n所有 95 个 proved 样本都是 H7a（单 premise 文本完全等于 conclusion），甚至不需要任何归一化（纯 whitespace normalization 就能匹配）。Body-paren 修复对这个实验 **无影响**。\n\n这是 ISR β=0.3 s44 的极端 mode collapse：模型学会了对每道题只输出一个 premise = conclusion 的恒真式。\n\n### 对比 s43\n\n你可能把 s44 和 s43 搞混了。s43_r3 有实际的 genuine 样本：\n\n| 指标 | s43_r3 (旧audit) | s43_r3 (新script) | s44_r2 |\n|------|---------|---------|--------|\n| Proved | 86 | 86 | 95 |\n| H7a | 4 | 5 (+1 body-paren) | 95 |\n| H1 | 59 | 60 | 0 |\n| H8 | 0 | 1 | 0 |\n| Genuine | 23 | 20 | **0** |\n\ns43 的 body-paren 修复多抓了 1 个 H7a，新 script 总共减少 3 个 genuine (23→20)。\n\n### 结论\n\n- **s44 spot check 不需要做** — 没有 genuine 可查\n- 如果要 spot-check body-paren 效果，目标应该是 **s43_r3** (genuine 从 23 降到 20)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-body-paren-spotcheck-b03-s44.md"
+}

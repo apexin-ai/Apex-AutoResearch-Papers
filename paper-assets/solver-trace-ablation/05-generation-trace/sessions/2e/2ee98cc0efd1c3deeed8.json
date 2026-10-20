@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2ee98cc0efd1c3deeed8",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "fix fig4 pr value",
+  "task_key": "worker_fix_fig4-pr-value_20260515T000220",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_fig4-pr-value_20260515T000220_result.json",
+    "occurrence": 1,
+    "bytes": 355,
+    "sha256": "f08448f79ac51f36fd5fb221eb5bb767a9a382fd03979ee052a168ec516d1adc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成：\n\n- **Line 239**: `fol_isr = [0.1324, 0.13, 0.5816]` → `fol_isr = [0.1324, 0, 0.5816]`（还原 s43 ISR 为 0）\n- **`fol_pr` 变量不存在**：fig4 不绘制 FOL prove rate，论文 experiments.tex 已写 `PR=13%`，无需修改\n\nfig4 新文件：\n- 大小：32663 bytes\n- md5：`de74830013ab38436f2a3a9b5b72c408`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-fig4-pr-value.md"
+}

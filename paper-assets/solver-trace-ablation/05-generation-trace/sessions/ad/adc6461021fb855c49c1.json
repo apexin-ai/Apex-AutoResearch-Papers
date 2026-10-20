@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "adc6461021fb855c49c1",
+  "project": "solver-trace-ablation",
+  "kind": "worker",
+  "title": "analysis wilson ci complete",
+  "task_key": "worker_analysis_wilson-ci-complete_20260515T081720",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_wilson-ci-complete_20260515T081720.log",
+    "occurrence": 1,
+    "bytes": 800575,
+    "sha256": "ef9ed98d8106a03202fd0ab1ac7578f2f6d23e670ba6af0a5df300d23c9bb415"
+  },
+  "statistics": {
+    "messages": 237,
+    "user_turns": 1,
+    "tool_calls": 88,
+    "roles": {
+      "log": 1,
+      "system": 16,
+      "record": 1,
+      "assistant": 41,
+      "tool_call": 88,
+      "tool_result": 88,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 25,
+      "chunks": [
+        {
+          "path": "adc6461021fb855c49c1-part-0001.json",
+          "message_count": 25
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 212,
+      "chunks": [
+        {
+          "path": "adc6461021fb855c49c1-part-0001.json",
+          "message_count": 155
+        },
+        {
+          "path": "adc6461021fb855c49c1-part-0002.json",
+          "message_count": 57
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-wilson-ci-complete.md"
+}

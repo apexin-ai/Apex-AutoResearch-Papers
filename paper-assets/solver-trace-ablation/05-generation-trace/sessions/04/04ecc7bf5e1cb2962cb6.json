@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "04ecc7bf5e1cb2962cb6",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_16_1778905785.md",
+  "task_key": "loop_16_1778905785",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_16_1778905785.md",
+    "occurrence": 1,
+    "bytes": 5065,
+    "sha256": "539484c64013c30b2c7a1e1e4fdceb7e8163b07c018f814e81b11cb56b1a6de6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 16\nreason: idle_timeout\nupdated: '2026-05-16T04:29:40+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **GPU 白名单**：westd-39279 仅 cuda:0 / cuda:1（2× RTX PRO 6000 96GB），不存在其他 GPU\n- **Round 2 无 wandb**：服务器 wandb key 缺失，所有 sweep 实验必须 `--no_wandb`。metrics 从 `reward_log.csv` / `output_dir` 提取，不能依赖 wandb\n- **训练脚本路径**：`python3 scripts/train_grpo.py --config configs/...`（不是根目录 `train_grpo.py`），首次提交曾因缺 `scripts/` 前缀导致 GPU 空转\n- **Round 2 模型是 Qwen3-4B**（`/root/autodl-tmp/models/Qwen3-4B`），与 Round 1 的 Qwen2.5-1.5B-Instruct 不同，这是 D096 设计意图，不要混淆\n- **双实验并行有 OOM 风险**：sweep-isr-b01-s45 在双跑时被 RAM OOM kill（exit 137, step 219/500）。当前 b02-s42+s43 双跑中，需监控是否复现\n- **β=0.07/0.03 不排**（D102 决策），DDL 9 天，多 seed 复现 > 更多剂量点\n- **Genuine rate p=0.182 不显著**（D095），禁止 claim ISR vs Random genuine rate 有显著差异\n\n### 2. 🖥️ 基础设施快照\n- **服务器**：westd-39279，工作目录 `/root/autodl-tmp/solver-trace-ablation/`（推测，需 Worker 确认）\n- **Python**：conda 环境 `/root/miniconda3/bin/python`（aml-train 镜像），激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型**：`/root/autodl-tmp/models/Qwen3-4B`\n- **Config 目录**：`configs/grpo_additive_bonus.yaml`（β=0.3）、`configs/grpo_additive_bonus_b01.yaml`（β=0.1）、β=0.2/0.05 config 由 Round 2 Worker 创建（具体路径需查服务器）\n- **活跃进程**：\n  - sweep-isr-b02-s43：PID 633515, cuda:0, output `/root/autodl-tmp/outputs/sweep_isr_b02_s43`\n  - sweep-isr-b02-s42：PID 633657, cuda:1, output `/root/autodl-tmp/outputs/sweep_isr_b02_s42_v2`（注意 `_v2` 后缀，因重提交）\n- **Cron 监控**：2 个 active cron 跟踪上述两个实验\n- **HF cache**：`/root/autodl-tmp/.hf_cache`（AutoDL 规范）\n\n### 3. 📊 当前状态\n**刚完成**：\n- sweep-isr-b005-s42 (success)：β=0.05 ISR 保留 genuine≥75%，ISR=0.759，但 96.3% 样本固定 ISR=0.75（mode collapse 到 4-premise/3-necessary 模板）。Goodhart 阈值锁定 β∈(0.05, 0.1)（D102）\n- sweep-isr-b01-s45 (killed)：RAM OOM at step 219/500，双跑内存不足\n- 论文 Round 2 fixes 已提交（commit 8fd6215）：15 H8 samples, σ notation, SFT 92.3%, RW softening\n\n**RUNNING（2/2 GPU 占满）**：\n- sweep-isr-b02-s42 + s43：β=0.2 ISR 中间剂量（填 0.1↔0.3 间隙），~1h 预估，500 steps\n\n**待处理（PREPARING 14 + ALLOCATED 1）**：\n- P1：sweep-isr-b02-s44（β=0.2 第 3 seed）\n- P1：sweep-isr-b005-s43, s44（β=0.05 复现 seed）\n- P2：sweep-random-b01-s45（匹配对照）\n- P3：5-seed 扩展（exec/random/ISR s45+s46，仅 GPU 空余时）\n- DEFER：w2-qwen3-7b-pilot（投稿后/rebuttal）\n- plan018-additive-random-b01-s45 (ALLOCATED but killed)：状态不一致，需清理\n\n**等待中**：\n- 2 个 cron 回调（b02-s42/s43 完成时触发）\n- Review Director 最终审\n- DDL 2026-05-25（剩 9 天）\n\n### 4. 📋 待办（条件触发式）\n- **sweep-isr-b02-s42+s43 cron 回调** → spawn Worker 分析（reward_log.csv + classify_h7.py）→ 与 β=0.1/0.3 对比剂量梯度 → 更新 registry + report.md → 向 Director 汇报\n- **b02 分析完成 + GPU 释放** → 立即提交 sweep-isr-b02-s44（P1 第 3 seed）+ sweep-isr-b005-s43（β=0.05 复现）双跑\n- **b02 三 seed 全完** → 更新 paper Table 1 dose-response 行 → β 剂量全景表新增 0.2 行\n- **如 b02 双跑再次 OOM** → 改为串行（一次一个），向 Director 说明\n- **Director 最终审返回** → 按反馈修改论文\n- **所有 Round 2 sweep 完成** → 论文 experiments.tex + appendix.tex 更新完整 dose-response 证据 → submission package 重新打包\n\n### 5. 🎯 战略上下文\n**项目处于 Writing+Review 末期，3 条 Core Claim 全部闭环。** 当前 Round 2 sweep 是补充证据（dose-response 更密采样），不改变核心 narrative。\n\n**核心结论链**：\n- D095：Narrative A 生效（H7a GRPO-general + H7b ISR-specific）\n- D102：Goodhart 阈值 β∈(0.05, 0.1)，尖锐相变非渐变。β=0.05 genuine≥75% 但 mode collapse\n- D100：K=4 confirmed（非 K=8），所有条件统一\n\n**易错点**：\n- β=0.05 不能只说\"ISR 保留\"——必须诚实报告 96.3% 样本 ISR=0.75 的 mode collapse（D102 Director 明确要求）\n- H7a 是 GRPO 通用现象，不是 ISR 独有（已来回修正 8 次 D087-D094），极易滑回旧 framing\n- Random H7 pooled 13.7% 由 s43-r3 单 seed 贡献（38.3%），其余为 0%——必须同时报 per-seed 和 pooled\n- plan018-additive-random-b01-s45 状态异常（ALLOCATED + conclusion=killed），需 update_registry 清理\n- Round 2 用 Qwen3-4B 而 Round 1 用 Qwen2.5-1.5B，论文需明确区分两轮实验的 model scale（或 Director 可能认为这是 confound——注意 D096 说这是设计意图）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-16-1778905785.md"
+}

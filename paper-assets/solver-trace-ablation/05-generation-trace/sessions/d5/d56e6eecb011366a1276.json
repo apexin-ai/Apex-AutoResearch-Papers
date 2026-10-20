@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "id": "d56e6eecb011366a1276",
+  "project": "solver-trace-ablation",
+  "kind": "worker",
+  "title": "writing paper trim v2 20260515T033710 retry1",
+  "task_key": "worker_writing_paper-trim-v2_20260515T033710_retry1",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_paper-trim-v2_20260515T033710_retry1.log",
+    "occurrence": 1,
+    "bytes": 564917,
+    "sha256": "077637853c773072ac4dfe8a6efdae83150cb66c0e28213c75f6530a8c9ebbe4"
+  },
+  "statistics": {
+    "messages": 169,
+    "user_turns": 0,
+    "tool_calls": 64,
+    "roles": {
+      "log": 1,
+      "system": 3,
+      "record": 2,
+      "assistant": 34,
+      "tool_call": 64,
+      "tool_result": 64,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 169,
+      "chunks": [
+        {
+          "path": "d56e6eecb011366a1276-part-0001.json",
+          "message_count": 169
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/writing-paper-trim-v2-20260515t033710-retry1.md"
+}

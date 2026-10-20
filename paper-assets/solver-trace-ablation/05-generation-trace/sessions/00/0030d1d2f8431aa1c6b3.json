@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0030d1d2f8431aa1c6b3",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_6_1778779901.md",
+  "task_key": "loop_6_1778779901",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_6_1778779901.md",
+    "occurrence": 1,
+    "bytes": 4971,
+    "sha256": "7c7b13417bc79f9e4d3ebf60555de9c46a20e0e4a0a42fbbee487fb6f91f06a8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 6\nreason: idle_timeout\nupdated: '2026-05-14T17:29:30+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单仅 `westd-39279:cuda:0` 和 `westd-39279:cuda:1`，无其他可用 GPU\n- 所有训练命令必须 `bash -c \"export CUDA_VISIBLE_DEVICES=N && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && ...\"`，不可假设 .venv\n- 数据约束 C001: 所有 plan001/plan013 系列实验统一使用 `train_500_seed42.jsonl`\n- 磁盘约束 C003: `log_completions=False` + `save_total_limit=1`，output_dir 放 `/root/autodl-tmp/outputs/`，eval 后立即清理 checkpoint\n- kill_job 只杀 tmux wrapper，必须 SSH 验证子进程已终止\n- ISR raw 对比已被 D051 作废——论文中禁止报告 raw ISR 差异（3.2x/2.4x），必须 premise-count-matched\n- ISR β=0.1 hacking rate 69.1%（D044 strict 定义），论文不可标 \"no hacking\"，应标 \"lowest hacking rate\"\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-39279，2× RTX PRO 6000 Blackwell (94GB VRAM each)\n- **工作目录**: `/root/solver-trace-ablation/`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- **激活**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **CUDA**: 12.8, PyTorch 2.10.0+cu128\n- **模型**: Qwen3-4B（ModelScope 下载，7.6GB）\n- **Solvers**: Prover9 (LADR 源码编译), SWI-Prolog 8.4.2 (`/usr/bin/swipl`), Z3 4.16.0.0\n- **磁盘**: 系统盘 30GB (~22G free), 数据盘 `/root/autodl-tmp/` 250GB (~131G free)\n- **活跃进程**:\n  - plan006-prolog-sta-s43: PID 901135, cuda:1\n  - plan006-prolog-sta-s44: PID 908945, cuda:0\n- **Cron**: 2 个活跃（分别监控 s43/s44），reconcile 确认 both still running\n- **W&B**: 项目内使用，eval 指标通过 eval_sta.py 产出\n\n### 3. 📊 当前状态\n**刚完成**: D057 Claim 2 数据链闭环（3-seed random β=0.1 控制组全部出齐），Prolog exec-only 3-seed eval (D056)，exec-only s42 H1 审计 (D055)。已向 Director 汇报 D057 闭环 + Claim 3 进度。\n\n**正在跑**:\n- `plan006-prolog-sta-s43` (RUNNING, cuda:1) — Prolog STA seed=43，Claim 3 第二 seed\n- `plan006-prolog-sta-s44` (RUNNING, cuda:0) — Prolog STA seed=44，Claim 3 第三 seed\n\n**3 个 Worker 仍在运行**（均 17:23 启动，可能即将完成或超时）:\n- `worker_knowledge_paper-framing-update` — 更新 paper_framing.md 纳入最新证据\n- `worker_knowledge_table-compilation` — 编译论文 Table 1/Table 2 数据\n- `worker_knowledge_table-data-json` — 生成表格数据 JSON\n\n**Registry**: 48 DONE + 2 RUNNING = 50 实验。成功 11 / 负向 17 / 失败 18 / killed 2。\n\n### 4. 📋 待办（条件触发式）\n- plan006-prolog-sta-s43 cron 回调到达 → spawn worker 跑 eval_sta.py (Prolog mode) → 记录 metrics 到 registry\n- plan006-prolog-sta-s44 cron 回调到达 → 同上\n- 两个 Prolog STA eval 都完成 → 计算 3-seed mean±std (s42/s43/s44) → 更新 Claim 3 证据链 → 汇报 Director\n- Prolog STA 3-seed 结果若全为 H7=100% (如 s42) → Claim 3 \"跨 logic type Goodhart 泛化\" 直接成立，narrative 最强\n- Prolog STA 3-seed 结果若混合 → 需要 nuanced framing，与 Director 讨论\n- 3 个 knowledge worker 完成 → 检查 paper_framing.md / table JSON 产出质量\n- 全部 3-seed 出齐 → Table 1 (exec-only 对比) + Table 2 (ISR/random 对比) 定稿 → 启动论文写作流程\n- DDL 2026-05-25 (剩 11 天) → 实验阶段接近尾声，写作应尽快启动\n\n### 5. 🎯 战略上下文\n**核心 framing**: STA/ISR 作为 GRPO neurosymbolic formalizer 的**诊断工具** + **Goodhart's Law 案例研究**。不是 \"ISR 提升质量\"，而是 \"ISR 揭示 reward hacking + ISR 自身也被 game\"。\n\n**三条 Claim**:\n- Claim 1 ✅: STA 诊断能力——ISR 崩塌轨迹、跨 seed 多模式退化、SFT 零 hacking 对照\n- Claim 2 ✅ (D057 closed): Goodhart / ISR 无结构优势——H7=0% 全 3 seed random 一致，premise-count-matched 1.06x 无差异，β 剂量效应\n- Claim 3 ⏳: 跨逻辑泛化——Prolog exec-only 3-seed done (ISR<0.1 全部)，STA s42 done (100% H7)，**s43/s44 是最后两个实验**\n\n**关键决策链**: D051 (ISR 无真实结构优势，premise-count artifact) → D053 (Claim 2 回归 pure negative) → D057 (Claim 2 3-seed 闭环)\n\n**最容易判断错的事**:\n1. **不要把 Prolog STA eval 的 ISR=1.0 当成 \"好\"**——s42 已证明 100% H7，ISR=1 是 conclusion duplication artifact\n2. **exec-only s42 不是 healthy seed**——87.1% conclusion embedding (D055)，所有 exec-only seeds 都有 87-100% embedding\n3. **plan013 (convex random) 和 plan017/018 (additive random) 公式不同**，不可简化为 \"additive vs convex\" 对照 (D027)\n4. **Prolog 训练 ~100 步即饱和**(s42 经验)，s43/s44 预计 ~1-2h 即完成，不要按 FOL 的 ~70min 估计\n5. **写作阶段不要用 D049 的数字**（2.4x ISR 优势）——已被 D051 推翻，premise-count-matched 后无差异\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-6-1778779901.md"
+}

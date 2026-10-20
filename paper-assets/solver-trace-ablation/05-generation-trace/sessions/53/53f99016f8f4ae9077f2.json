@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "53f99016f8f4ae9077f2",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops sync tex remote to local",
+  "task_key": "worker_ops_sync-tex-remote-to-local_20260515T171312",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_sync-tex-remote-to-local_20260515T171312_result.json",
+    "occurrence": 1,
+    "bytes": 823,
+    "sha256": "952f8b5ca8534027a2e67e988916b2317a75db487b4e3bc019c35fcc17e21058"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证完成。同步结果：\n\n**experiments.tex** (165行)\n- \"functionally degenerate\" 描述 — line 32: 3个 s44-1000 样本被标记为 functionally degenerate (D091 修正内容)\n- 1000 步 3-seed genuine: `$0\\%$ non-hacking` — 正确（D091 将原来的 \"≤3% non-hacking\" 修正为 \"0% non-hacking\"，3个样本重新分类为退化）\n\n**appendix.tex** (549行)\n- line 394: Table caption 包含 s44-1000 退化样本脚注说明 `$^\\ddagger$Three s44-1000 samples escape text-match heuristics...but exhibit ISR${=}0$ and functionally degenerate proof structures...reclassified as degenerate`\n\n**introduction.tex** (34行)\n- line 27: `69.7\\% of proved samples at 500 steps` — \"at 500 steps\" 限定词存在\n\n所有 D091 修正均已在本地文件中验证通过。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-sync-tex-remote-to-local.md"
+}

@@ -1,0 +1,1756 @@
+{
+  "schema_version": "1.0",
+  "id": "0825c3bf2d4144e2c3cd",
+  "project": "solver-trace-ablation",
+  "kind": "conversation",
+  "title": "writing paper framing d095 update",
+  "task_key": "worker_writing_paper-framing-d095-update_20260515T193520",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_writing_paper-framing-d095-update_20260515T193520.jsonl",
+    "occurrence": 1,
+    "bytes": 56365,
+    "sha256": "028449ca4431092b3cea8048873a5a3b0cd611b0a037906ef1a610a632506649"
+  },
+  "statistics": {
+    "messages": 85,
+    "user_turns": 0,
+    "tool_calls": 42,
+    "roles": {
+      "tool_call": 42,
+      "tool_result": 42,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T19:47:06.863754+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T19:47:06.864144+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T19:47:06.864314+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "file": "paper_framing.md",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T19:47:06.864686+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — solver-trace-ablation\\\\n\\\\n## Target Venue\\\\n- Primary: EMNLP 2026 Main (NLP and Symbolic Reasoning track)\\\\n- Fallback: EMNLP 2026 Findings\\\\n- Deadline: ARR May 25, 2026\\\\n\\\\n## Core Claims (3 条 — Goodhart 主线诊断/分析论文)\\\\n\\\\n| Claim | Status | 闭环标志 |\\\\n|-------|--------|----------|\\\\n| Claim 1: STA 诊断能力 | ✅ 已闭环 | 3-seed + 1000-step + hacking taxonomy (8 modes) |\\\\n| Claim 2: Goodhart / ISR 无结构优势 | ✅ 已闭环 (D057) | 3-seed ISR + 3-seed random + premise-count-matched + SFT baseline |\\\\n| Claim 3: 跨逻辑泛化 | ✅ 已闭环 | exec-only 3-seed (D056) + STA 3-seed: **3/3 gaming** — 三种不同 gaming 路径 (H7/degenerate-syntax/query-as-fact) |\\\\n\\\\n### Claim 1: ISR as Reward Hacking Diagnostic ✅\\\\nSolver Trace Ablation (STA) derives ISR (Intensional Structural Reward) via component necessity testing (leave-one-out ablation on solver inputs). ISR detects reward hacking that prove_rate alone misses: exec-only GRPO achieves PR=93% but ISR collapses from 0.6423 (100 steps) to 0.1324 (500 steps) to 0.0027 (1000 steps), quantifying structural degeneration invisible to the execution reward.\\\\n\\\\n**证据**：\\\\n- plan003: 100-step checkpoint held-out eval PR=32%, ISR=0.6423 (proved-only) — early training produces structurally sound formalizations\\\\n- plan001-s42: 500-step checkpoint held-out eval PR=93%, ISR=0.1324, median_ISR=0.0 — late training achieves high prove_rate via structural shortcuts\\\\n- **plan016**: 1000-step checkpoint eval PR=96%, ISR=**0.0027** — ISR 崩塌持续恶化，无回升。94.8% proved 样本 ISR=0。矛盾爆炸式崩塌（components 6.58→18.55）。延长训练是 reward hacking 随时间恶化的干净消融证据\\\\n- ISR 崩塌轨迹完整链：0.6423 (100步) → 0.1324 (500步) → 0.0027 (1000步)\\\\n- 3-seed consistency: s42 redundant embedding (H1=87.1%, ISR=0.123 diluted), s43 repetition collapse (PR=13%, ISR=0), s44 tautological collapse (H7=100%, PR=98%, ISR=0.57 fake-high, n_comp=2.04). All 3 se\n…[truncated 27998 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T19:47:06.865022+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T19:47:06.865315+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Paper Framing — solver-trace-ablation\n2\t\n3\t## Target Venue\n4\t- Primary: EMNLP 2026 Main (NLP and Symbolic Reasoning track)\n5\t- Fallback: EMNLP 2026 Findings\n6\t- Deadline: ARR May 25, 2026\n7\t\n8\t## Core Claims (3 条 — Goodhart 主线诊断/分析论文)\n9\t\n10\t| Claim | Status | 闭环标志 |\n11\t|-------|--------|----------|\n12\t| Claim 1: STA 诊断能力 | ✅ 已闭环 | 3-seed + 1000-step + hacking taxonomy (8 modes) |\n13\t| Claim 2: Goodhart / ISR 无结构优势 | ✅ 已闭环 (D057) | 3-seed ISR + 3-seed random + premise-count-matched + SFT baseline |\n14\t| Claim 3: 跨逻辑泛化 | ✅ 已闭环 | exec-only 3-seed (D056) + STA 3-seed: **3/3 gaming** — 三种不同 gaming 路径 (H7/degenerate-syntax/query-as-fact) |\n15\t\n16\t### Claim 1: ISR as Reward Hacking Diagnostic ✅\n17\tSolver Trace Ablation (STA) derives ISR (Intensional Structural Reward) via component necessity testing (leave-one-out ablation on solver inputs). ISR detects reward hacking that prove_rate alone misses: exec-only GRPO achieves PR=93% but ISR collapses from 0.6423 (100 steps) to 0.1324 (500 steps) to 0.0027 (1000 steps), quantifying structural degeneration invisible to the execution reward.\n18\t\n19\t**证据**：\n20\t- plan003: 100-step checkpoint held-out eval PR=32%, ISR=0.6423 (proved-only) — early training produces structurally sound formalizations\n21\t- plan001-s42: 500-step checkpoint held-out eval PR=93%, ISR=0.1324, median_ISR=0.0 — late training achieves high prove_rate via structural shortcuts\n22\t- **plan016**: 1000-step checkpoint eval PR=96%, ISR=**0.0027** — ISR 崩塌持续恶化，无回升。94.8% proved 样本 ISR=0。矛盾爆炸式崩塌（components 6.58→18.55）。延长训练是 reward hacking 随时间恶化的干净消融证据\n23\t- ISR 崩塌轨迹完整链：0.6423 (100步) → 0.1324 (500步) → 0.0027 (1000步)\n24\t- 3-seed consistency: s42 redundant embedding (H1=87.1%, ISR=0.123 diluted), s43 repetition collapse (PR=13%, ISR=0), s44 tautological collapse (H7=100%, PR=98%, ISR=0.57 fake-high, n_comp=2.04). All 3 seeds exhibit 87-100% conclusion embedding.\n25\t- Hacking taxonomy: 8 distinct modes identified and quantified (plan012 + plan017 D027 + D043 conclusion d\n…[truncated 29369 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T19:47:06.865664+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md",
+              "old_string": "| s42 (ISR β=0.1) | 0.81 | **0.415** | 16.0% (13/81) | 51.9% (42/81) | 67.9% | 32.1% (26) |",
+              "new_string": "| s42 (ISR β=0.1) | 0.81 | **0.415** | 16.0% (13/81, all H7a) | 51.9% (42/81) | 67.9% | 17.3% (14/81, D078) |"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T19:47:06.865867+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>File has been modified since read, either by the user or by a linter. Read it again before attempting to write it.</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T19:47:06.866000+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md",
+              "old_string": "| s43 (ISR β=0.1) | 0.61 | **0.830** | **96.7%** (59/61) | 0% | 96.7% | ~3% (~2) |",
+              "new_string": "| s43-r2 (ISR β=0.1) | 0.61 | **0.830** | **100%** (61/61, 59 H7a + 2 H7b) | 0% | 100% | 0% |"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T19:47:06.866126+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>File has been modified since read, either by the user or by a linter. Read it again before attempting to write it.</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T19:47:06.866247+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md",
+              "old_string": "| s44 (ISR β=0.1) | 0.89 | **0.902** | **100%** (89/89, H7 FN corrected) | 0% | 100% | **0%** (0; 12 原 \"genuine\" 全为 n_prem=1 H7 false negative) |",
+              "new_string": "| s44 (ISR β=0.1) | 0.89 | **0.902** | **100%** (89/89, 77 H7a + 12 H7b, FN corrected) | 0% | 100% | 0% |"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T19:47:06.866378+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>File has been modified since read, either by the user or by a linter. Read it again before attempting to write it.</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T19:47:06.866500+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md",
+              "old_string": "| s43-r3 (random β=0.1) | 0.94 | 0.1495 | **38.3%** (36/94, 全 H7a) | **59.6%** (56/94) | 97.9% | **1.1%** (1/94; H8=1) |",
+              "new_string": "| s43-r3 (random β=0.1) | 0.94 | 0.150 | **38.3%** (36/94, all H7a) | **59.6%** (56/94) | 97.9% | **1.1%** (1/94) |"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T19:47:06.866621+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>File has been modified since read, either by the user or by a linter. Read it again before attempting to write it.</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T19:47:06.866757+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md",
+              "old_string": "| s44-r2 (random β=0.1) | 0.89 | 0.0695 | **0%** (0/89) | **82.0%** (73/89) | 82.0% | **6.7%** (6/89; H8=16, H1∩H8=6, C013 集合排除) |",
+              "new_string": "| s44-r2 (random β=0.1) | 0.89 | 0.070 | **0%** (0/89) | **82.0%** (73/89) | 82.0% | **6.7%** (6/89; H8=16) |"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T19:47:06.866907+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>File has been modified since read, either by the user or by a linter. Read it again before attempting to write it.</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T19:47:06.867026+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md",
+              "old_string": "| **Random 3-seed mean±std** | **0.87±0.08** | **0.099±0.044** | **12.8%±22.1%** (s42=0%, s43=38.3%, s44=0%) | **71.7%±11.3%** | — | **9.5% pooled (25/262)** [6.5%, 13.7%] Wilson 95% CI. Per-seed: s42=22.8%, s43-r3=1.1%, s44-r2=6.7% |",
+              "new_string": "| **Random 3-seed mean±std** | **0.87±0.08** | **0.117±0.042** | **12.8%±22.1%** | **71.7%±11.4%** | — | **9.5% pooled (25/262)** [6.5%, 13.7%] Wilson 95% CI |"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T19:47:06.867145+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>File has been modified since read, either by the user or by a linter. Read it again before attempting to write it.</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T19:47:06.867259+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md",
+              "old_string": "| **ISR 3-seed mean±std** | **0.77±0.14** | **0.716±0.26** | **70.6% pooled (163/231)** [64.4%, 76.1%]. Per-seed: s42=16%, s43=100%, s44=100% | **17.3%** | — | **6.9% pooled (16/231)** [4.3%, 11.0%] Wilson 95% CI |",
+              "new_string": "| **ISR 3-seed mean±std** | **0.77±0.14** | **0.716±0.26** | **70.6% (163/231)** [64.3%, 76.3%] | **18.2%** | — | **6.1% pooled (14/231)** [3.6%, 10.0%] Wilson 95% CI |"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T19:47:06.867383+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>File has been modified since read, either by the user or by a linter. Read it again before attempting to write it.</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T19:47:06.867524+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T19:47:06.867839+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Paper Framing — solver-trace-ablation\n2\t\n3\t## Target Venue\n4\t- Primary: EMNLP 2026 Main (NLP and Symbolic Reasoning track)\n5\t- Fallback: EMNLP 2026 Findings\n6\t- Deadline: ARR May 25, 2026\n7\t\n8\t## Core Claims (3 条 — Goodhart 主线诊断/分析论文)\n9\t\n10\t| Claim | Status | 闭环标志 |\n11\t|-------|--------|----------|\n12\t| Claim 1: STA 诊断能力 | ✅ 已闭环 | 3-seed + 1000-step + hacking taxonomy (8 modes) |\n13\t| Claim 2: Goodhart / ISR 无结构优势 | ✅ 已闭环 (D057) | 3-seed ISR + 3-seed random + premise-count-matched + SFT baseline |\n14\t| Claim 3: 跨逻辑泛化 | ✅ 已闭环 | exec-only 3-seed (D056) + STA 3-seed: **3/3 gaming** — 三种不同 gaming 路径 (H7/degenerate-syntax/query-as-fact) |\n15\t\n16\t### Claim 1: ISR as Reward Hacking Diagnostic ✅\n17\tSolver Trace Ablation (STA) derives ISR (Intensional Structural Reward) via component necessity testing (leave-one-out ablation on solver inputs). ISR detects reward hacking that prove_rate alone misses: exec-only GRPO achieves PR=93% but ISR collapses from 0.6423 (100 steps) to 0.1324 (500 steps) to 0.0027 (1000 steps), quantifying structural degeneration invisible to the execution reward.\n18\t\n19\t**证据**：\n20\t- plan003: 100-step checkpoint held-out eval PR=32%, ISR=0.6423 (proved-only) — early training produces structurally sound formalizations\n21\t- plan001-s42: 500-step checkpoint held-out eval PR=93%, ISR=0.1324, median_ISR=0.0 — late training achieves high prove_rate via structural shortcuts\n22\t- **plan016**: 1000-step checkpoint eval PR=96%, ISR=**0.0027** — ISR 崩塌持续恶化，无回升。94.8% proved 样本 ISR=0。矛盾爆炸式崩塌（components 6.58→18.55）。延长训练是 reward hacking 随时间恶化的干净消融证据\n23\t- ISR 崩塌轨迹完整链：0.6423 (100步) → 0.1324 (500步) → 0.0027 (1000步)\n24\t- 3-seed consistency: s42 redundant embedding (H1=87.1%, ISR=0.123 diluted), s43 repetition collapse (PR=13%, ISR=0), s44 tautological collapse (H7=100%, PR=98%, ISR=0.57 fake-high, n_comp=2.04). All 3 seeds exhibit 87-100% conclusion embedding.\n25\t- Hacking taxonomy: 8 distinct modes identified and quantified (plan012 + plan017 D027 + D043 conclusion d\n…[truncated 29485 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T19:47:06.868064+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md",
+              "old_string": "| s42 (ISR β=0.1) | 0.81 | **0.415** | 16.0% (13/81) | 51.9% (42/81) | 67.9% | 32.1% (26) |",
+              "new_string": "| s42 (ISR β=0.1) | 0.81 | **0.415** | 16.0% (13/81, all H7a) | 51.9% (42/81) | 67.9% | 17.3% (14/81, D078) |"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T19:47:06.868281+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T19:47:06.868416+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md",
+              "old_string": "| s43 (ISR β=0.1) | 0.61 | **0.830** | **96.7%** (59/61) | 0% | 96.7% | ~3% (~2) |",
+              "new_string": "| s43-r2 (ISR β=0.1) | 0.61 | **0.830** | **100%** (61/61, 59 H7a + 2 H7b) | 0% | 100% | 0% |"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T19:47:06.868610+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-15T19:47:06.868756+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md",
+              "old_string": "| s44 (ISR β=0.1) | 0.89 | **0.902** | **100%** (89/89, H7 FN corrected) | 0% | 100% | **0%** (0; 12 原 \"genuine\" 全为 n_prem=1 H7 false negative) |",
+              "new_string": "| s44 (ISR β=0.1) | 0.89 | **0.902** | **100%** (89/89, 77 H7a + 12 H7b, FN corrected) | 0% | 100% | 0% |"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T19:47:06.868975+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-15T19:47:06.869103+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md",
+              "old_string": "| s43-r3 (random β=0.1) | 0.94 | 0.1495 | **38.3%** (36/94, 全 H7a) | **59.6%** (56/94) | 97.9% | **1.1%** (1/94; H8=1) |",
+              "new_string": "| s43-r3 (random β=0.1) | 0.94 | 0.150 | **38.3%** (36/94, all H7a) | **59.6%** (56/94) | 97.9% | **1.1%** (1/94) |"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-15T19:47:06.869312+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-15T19:47:06.869498+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md",
+              "old_string": "| s44-r2 (random β=0.1) | 0.89 | 0.0695 | **0%** (0/89) | **82.0%** (73/89) | 82.0% | **6.7%** (6/89; H8=16, H1∩H8=6, C013 集合排除) |",
+              "new_string": "| s44-r2 (random β=0.1) | 0.89 | 0.070 | **0%** (0/89) | **82.0%** (73/89) | 82.0% | **6.7%** (6/89; H8=16) |"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-15T19:47:06.869740+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-15T19:47:06.869942+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md",
+              "old_string": "| **Random 3-seed mean±std** | **0.87±0.08** | **0.099±0.044** | **12.8%±22.1%** (s42=0%, s43=38.3%, s44=0%) | **71.7%±11.3%** | — | **9.5% pooled (25/262)** [6.5%, 13.7%] Wilson 95% CI. Per-seed: s42=22.8%, s43-r3=1.1%, s44-r2=6.7% |",
+              "new_string": "| **Random 3-seed mean±std** | **0.87±0.08** | **0.117±0.042** | **12.8%±22.1%** | **71.7%±11.4%** | — | **9.5% pooled (25/262)** [6.5%, 13.7%] Wilson 95% CI |"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-15T19:47:06.870464+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-15T19:47:06.870764+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md",
+              "old_string": "| **ISR 3-seed mean±std** | **0.77±0.14** | **0.716±0.26** | **70.6% pooled (163/231)** [64.4%, 76.1%]. Per-seed: s42=16%, s43=100%, s44=100% | **17.3%** | — | **6.9% pooled (16/231)** [4.3%, 11.0%] Wilson 95% CI |",
+              "new_string": "| **ISR 3-seed mean±std** | **0.77±0.14** | **0.716±0.26** | **70.6% (163/231)** [64.3%, 76.3%] | **18.2%** | — | **6.1% pooled (14/231)** [3.6%, 10.0%] Wilson 95% CI |"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-15T19:47:06.871053+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-15T19:47:06.871236+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md",
+              "old_string": "**Pooled 统计检验 (D095 最终版，C013 集合排除公式)**\n\n| 对比 | ISR | Random | Fisher p (two-sided) | OR | Wilson 95% CI |\n|------|-----|--------|---------------------|-----|---------------|\n| H7 rate | 163/231 (70.6%) | 36/262 (13.7%) | **p = 1.33×10⁻³⁹ ***** | 15.05 | ISR [64.4%, 76.1%]; Random [10.1%, 18.4%] |\n| Genuine rate | 16/231 (6.9%) | 25/262 (9.5%) | p = 0.329 (n.s.) | 0.705 | ISR [4.3%, 11.0%]; Random [6.5%, 13.7%] |\n\nH7 差异极度显著（OR=15.05），genuine 差异不显著（p=0.329）——ISR 改变 hacking composition 而非 genuine output 总量。",
+              "new_string": "**Pooled Genuine Rate 统计检验 (D095 最终)**\n\n| 指标 | ISR | Random | Fisher p (two-sided) | OR |\n|------|-----|--------|---------------------|-----|\n| H7 rate | 163/231=70.6% [64.3%, 76.3%] | 36/262=13.7% [9.9%, 18.6%] | **p = 1.3×10⁻³⁹** | 15.05 |\n| Genuine rate | 14/231=6.1% [3.6%, 10.0%] | 25/262=9.5% [6.5%, 13.7%] | p = 0.18 (n.s.) | 0.61 |\n\nWilson 95% CI 括号内标注。H7 差异极度显著（ISR 放大 H7 频率 ~5x）。Genuine rate 差异不显著（p=0.18），ISR 数值上略低但样本量不足以达到统计显著性。"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-15T19:47:06.871457+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-15T19:47:06.871595+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md",
+              "old_string": "- **H7a 是 GRPO 通用 seed-dependent 退化模式，ISR 使其系统化 (D095 Narrative A)**：H7a (text-match tautology) 出现在所有训练模式中——exec-only s43=100%, Random s43-r3=38.3%, ISR pooled=70.6%。关键差异不在平均频率，在于 ISR 让 H7 从随机事件变为近乎必然的收敛方向：ISR 2/3 seeds 出现 H7 且频率极高 (97-100%)，Random 仅 1/3 seeds (38.3%)。**H7b (obfuscated tautology) 仍为 ISR-specific**——仅 ISR s44 的 12 个样本，Random/exec-only 均为 0。β=0.3 Random 出现少量 H7a（s42=4, s43-r4=7），呈剂量梯度（Random β=0.1: 0-38% seed-dependent → β=0.3: 4-7 个 → ISR β=0.1: 70.6% pooled）",
+              "new_string": "- **H7 分两层 (D095 Narrative A)**：\n  - **H7a (text-match tautology) 是 GRPO 通用现象**：Random β=0.1 pooled H7=13.7% (36/262), ISR β=0.1 pooled H7=70.6% (163/231), Fisher p=1.3×10⁻³⁹ (OR=15.05)。ISR 信号将 H7 频率放大 ~5x，但 H7a 并非 ISR 独有——Random s43-r3 出现 38.3% H7a (D093)。H7a 结构因条件而异：exec-only = 单前提 P→P；Random = 多前提中嵌入匹配前提。\n  - **H7b (obfuscated tautology) 是 ISR-specific meta-Goodhart**：仅 ISR s44 产出 12 个 H7b（vacuous quantifier wrapping 伪装），Random 3-seed 和 exec-only 3-seed 均为 0 H7b。Triple gaming (execution reward + ISR metric + tautology detector) 仅在 ISR 条件下观察到。\n  - **β 剂量梯度**：Random β=0.1 H7=13.7% → Random β=0.3 H7a=4-7个 → ISR β=0.1 H7=70.6%。ISR 信号是 H7 的主要放大器，additive reward 结构提供基础可能性。"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-15T19:47:06.871860+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-15T19:47:06.872009+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md",
+              "old_string": "- **Conclusion embedding 是 GRPO 通用策略**：Random H1=81.3%±11.3% > ISR H1=17.3%。Random 的 H1 率反而更高（ISR 将 H1 转化为 H7）",
+              "new_string": "- **Conclusion embedding 是 GRPO 通用策略**：Random H1=71.7%±11.4% > ISR H1=18.2%。Random 的 H1 率反而更高（ISR 将 H1 转化为 H7）"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-15T19:47:06.872209+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-15T19:47:06.872339+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md",
+              "old_string": "- **Random PR 更高更稳定**：0.85±0.06 vs ISR 0.77±0.14，ISR-as-reward 无 PR 优势",
+              "new_string": "- **Random PR 更高更稳定**：0.87±0.08 vs ISR 0.77±0.14，ISR-as-reward 无 PR 优势"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-15T19:47:06.872534+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-15T19:47:06.872662+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md",
+              "old_string": "- ⚠️ s43/s44 几乎 100% H7（96.7%/100% FN-corrected），无 H1",
+              "new_string": "- ⚠️ s43/s44 均 100% H7（s43: 61/61 incl. 2 H7b; s44: 89/89 incl. 12 H7b），无 H1"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-15T19:47:06.872939+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-15T19:47:06.873076+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md",
+              "old_string": "| random β=0.1 (s43-r3) | r = r_exec·(1+0.1·random) | 0.94 | 0.1495 | **H7a 38.3%**, H1 59.6%, H8 1.1% | control (D093: H7 non-ISR-specific) |",
+              "new_string": "| random β=0.1 (s43) | r = r_exec·(1+0.1·random) | 0.94 | 0.150 | H7 38.3%, H1 60%, genuine 1.1% | control |"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-15T19:47:06.873274+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-15T19:47:06.873402+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md",
+              "old_string": "| random β=0.1 (s44-r2) | r = r_exec·(1+0.1·random) | 0.89 | 0.0695 | H1 82%, **H8 18%** (H1∩H8=6), genuine 6.7% | control |",
+              "new_string": "| random β=0.1 (s44) | r = r_exec·(1+0.1·random) | 0.89 | 0.070 | H1 82%, H8 18%, genuine 6.7% | control |"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-15T19:47:06.873597+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-15T19:47:06.873806+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md",
+              "old_string": "including ISR-specific \"conclusion duplication with ISR inflation\", H7b \"obfuscated tautology\" via vacuous quantifier wrapping that evades text-match detectors, H8 \"conjunction collapse\", and Prolog-specific \"query-as-fact gaming\")",
+              "new_string": "including H7a tautological collapse (GRPO-general, ISR-amplified 5x, Fisher p=1.3×10⁻³⁹), H7b obfuscated tautology (ISR-specific meta-Goodhart), H8 \"conjunction collapse\", and Prolog-specific \"query-as-fact gaming\")"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-15T19:47:06.874035+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-15T19:47:06.874170+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md",
+              "old_string": "At low dose (β=0.1), ISR reward systematically induces tautological collapse (H7) in 2/3 seeds (vs 1/3 under random reward), while H7b obfuscated tautology remains ISR-specific; the remaining seed's apparent structural improvement (2.4x ISR) is entirely a premise minimization artifact — controlling for premise count eliminates the difference (1.06x).",
+              "new_string": "At low dose (β=0.1), ISR reward amplifies H7 tautological collapse ~5x (ISR H7=70.6% vs Random H7=13.7%, Fisher p=1.3×10⁻³⁹), with H7b obfuscated tautology as ISR-specific meta-Goodhart; the apparent structural improvement (2.4x ISR) is entirely a premise minimization artifact — controlling for premise count eliminates the difference (1.06x)."
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-15T19:47:06.874386+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-15T19:47:06.874521+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "True",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md",
+              "old_string": "compared to ~16% genuine residual in FOL",
+              "new_string": "compared to ~6% genuine residual in FOL"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-15T19:47:06.874738+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md has been updated. All occurrences were successfully replaced."
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-15T19:47:06.874902+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md",
+              "old_string": "- **3/3 seeds 全部 Goodhart，0% genuine across all seeds**——比 FOL ISR β=0.1（2/3 seeds hacking, ~16% genuine residual）更极端",
+              "new_string": "- **3/3 seeds 全部 Goodhart，0% genuine across all seeds**——比 FOL ISR β=0.1（2/3 seeds hacking, ~6% genuine residual）更极端"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-15T19:47:06.875107+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-15T19:47:06.875238+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md",
+              "old_string": "- 解读：Prolog 的更简单语义使 Goodhart 更彻底——FOL 中仍有 ~16% genuine residual，Prolog 中为 0%。形式语言越简单，reward hacking 越完全",
+              "new_string": "- 解读：Prolog 的更简单语义使 Goodhart 更彻底——FOL 中仍有 ~6% genuine residual，Prolog 中为 0%。形式语言越简单，reward hacking 越完全"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-15T19:47:06.875434+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-15T19:47:06.875564+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md",
+              "old_string": "| 0.1 | 0.81 (s42) / 0.61 (s43) / 0.89 (s44) | 0.79 (s42) / 0.94 (s43-r3) / 0.89 (s44-r2) | **0.415** (s42) / **0.830** (s43) / **0.902** (s44) | 0.131 (s42) / 0.1495 (s43-r3) / 0.0695 (s44-r2) | D095 Narrative A: H7a GRPO-general seed-dependent; H7b ISR-specific; premise-count-matched 无结构差异 |",
+              "new_string": "| 0.1 | 0.81 (s42) / 0.61 (s43) / 0.89 (s44) | 0.79 (s42) / 0.94 (s43-r3) / 0.89 (s44-r2) | **0.415** (s42) / **0.830** (s43) / **0.902** (s44) | 0.131 (s42) / 0.150 (s43-r3) / 0.070 (s44-r2) | H7a GRPO-general (Random 13.7%), ISR amplifies 5x (70.6%); H7b ISR-specific; premise-count-matched 无结构差异 |"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-15T19:47:06.875788+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-15T19:47:06.875930+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md",
+              "old_string": "s42 完成了完整双侧 H8 审计。s43-r2/s44-r2 为重训新数据，classify_h7.py 直接输出即为准确值。",
+              "new_string": "s42 完成了完整双侧 H8 审计。s43-r2/s44-r2 为重训新数据，classify_h7.py 直接输出即为准确值。Random pooled H8: 4+1+16=21/262=8.0%。"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-15T19:47:06.876128+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-15T19:47:06.876291+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md",
+              "old_string": "7. **\"Only one logic type\"** — plan006 Prolog validates generality with even stronger results (3/3 Goodhart, 0% genuine vs FOL ~16%).",
+              "new_string": "7. **\"Only one logic type\"** — plan006 Prolog validates generality with even stronger results (3/3 Goodhart, 0% genuine vs FOL ~6%)."
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-15T19:47:06.876533+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-15T19:47:06.876748+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md",
+              "old_string": "- [ ] **C013: genuine 公式改为集合排除 proved − |H7 ∪ H1 ∪ H8|**",
+              "new_string": "- [ ] **C013: genuine 公式改为集合排除 proved − |H7 ∪ H1 ∪ H8|**\n- [ ] **D095: H7 two-layer framing (H7a GRPO-general + H7b ISR-specific) — 更新 §4.2 H7 讨论, Abstract, Headline**\n- [ ] **D093/D088 correction: H7a not additive-reward-specific (exec-only s43 = 100% H7a) — 更新 mechanism discussion**"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-15T19:47:06.877025+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-15T19:47:06.877202+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "DEPRECATED|PROVISIONAL|重训中|待重训完成|待 s43-r3/s44-r2|~16%",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-15T19:47:06.877332+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-15T19:47:06.877459+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "64\\.5%|0\\.1495|0\\.0695|6\\.9% pooled|16/231|75\\.3%",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-15T19:47:06.877578+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-15T19:47:06.877768+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md",
+              "offset": "47",
+              "limit": "22"
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-15T19:47:06.877923+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "47\t| Seed | PR | proved_only ISR | H7 (单premise=结论) | H1 (多premise含结论) | H7+H1 | Genuine % |\n48\t|------|-----|-----------------|---------------------|----------------------|-------|-----------|\n49\t| s42 (ISR β=0.1) | 0.81 | **0.415** | 16.0% (13/81, all H7a) | 51.9% (42/81) | 67.9% | 17.3% (14/81, D078) |\n50\t| s43-r2 (ISR β=0.1) | 0.61 | **0.830** | **100%** (61/61, 59 H7a + 2 H7b) | 0% | 100% | 0% |\n51\t| s44 (ISR β=0.1) | 0.89 | **0.902** | **100%** (89/89, 77 H7a + 12 H7b, FN corrected) | 0% | 100% | 0% |\n52\t| s42 (random β=0.1) | 0.79 | 0.131 | **0%** (0/79) | **73.4%** (58/79) | 73.4% | **22.8%** (18; H8=4, D086 clean run) |\n53\t| s43-r3 (random β=0.1) | 0.94 | 0.150 | **38.3%** (36/94, all H7a) | **59.6%** (56/94) | 97.9% | **1.1%** (1/94) |\n54\t| s44-r2 (random β=0.1) | 0.89 | 0.070 | **0%** (0/89) | **82.0%** (73/89) | 82.0% | **6.7%** (6/89; H8=16) |\n55\t| **Random 3-seed mean±std** | **0.87±0.08** | **0.117±0.042** | **12.8%±22.1%** | **71.7%±11.4%** | — | **9.5% pooled (25/262)** [6.5%, 13.7%] Wilson 95% CI |\n56\t| **ISR 3-seed mean±std** | **0.77±0.14** | **0.716±0.26** | **70.6% (163/231)** [64.3%, 76.3%] | **18.2%** | — | **6.1% pooled (14/231)** [3.6%, 10.0%] Wilson 95% CI |\n57\t\n58\t**Pooled Genuine Rate 统计检验 (D095 最终)**\n59\t\n60\t| 指标 | ISR | Random | Fisher p (two-sided) | OR |\n61\t|------|-----|--------|---------------------|-----|\n62\t| H7 rate | 163/231=70.6% [64.3%, 76.3%] | 36/262=13.7% [9.9%, 18.6%] | **p = 1.3×10⁻³⁹** | 15.05 |\n63\t| Genuine rate | 14/231=6.1% [3.6%, 10.0%] | 25/262=9.5% [6.5%, 13.7%] | p = 0.18 (n.s.) | 0.61 |\n64\t\n65\tWilson 95% CI 括号内标注。H7 差异极度显著（ISR 放大 H7 频率 ~5x）。Genuine rate 差异不显著（p=0.18），ISR 数值上略低但样本量不足以达到统计显著性。\n66\t\n67\t⚠️ **Pooled H7 解读警告（D095 Reviewer W2）**：pooled 13.7% 由 s43-r3 单 seed 贡献（36/94=38.3%），s42 和 s44-r2 均为 0%。论文必须同时报 per-seed 和 pooled，且显著标注 Random H7 的单 seed 来源。不可用 \"ISR amplifies H7 (70.6% vs 13.7%)\" 的简单对比。\n68\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-15T19:47:06.878065+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md",
+              "offset": "79",
+              "limit": "12"
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-15T19:47:06.878195+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "79\t**关键发现 (D057 3-seed closed)**：\n80\t- **H7 分两层 (D095 Narrative A)**：\n81\t  - **H7a (text-match tautology) 是 GRPO 通用现象**：Random β=0.1 pooled H7=13.7% (36/262), ISR β=0.1 pooled H7=70.6% (163/231), Fisher p=1.3×10⁻³⁹ (OR=15.05)。ISR 信号将 H7 频率放大 ~5x，但 H7a 并非 ISR 独有——Random s43-r3 出现 38.3% H7a (D093)。H7a 结构因条件而异：exec-only = 单前提 P→P；Random = 多前提中嵌入匹配前提。\n82\t  - **H7b (obfuscated tautology) 是 ISR-specific meta-Goodhart**：仅 ISR s44 产出 12 个 H7b（vacuous quantifier wrapping 伪装），Random 3-seed 和 exec-only 3-seed 均为 0 H7b。Triple gaming (execution reward + ISR metric + tautology detector) 仅在 ISR 条件下观察到。\n83\t  - **β 剂量梯度**：Random β=0.1 H7=13.7% → Random β=0.3 H7a=4-7个 → ISR β=0.1 H7=70.6%。ISR 信号是 H7 的主要放大器，additive reward 结构提供基础可能性。\n84\t- **H7b obfuscated tautology 是 meta-Goodhart 新证据线 (D085)**：ISR s44 的 12 个 H7b 样本展示模型不仅 game reward（H7 tautology 获得 r_exec=1），还学会规避 H7 文本匹配检测器（vacuous quantifier wrapping 伪装），且 10/12 样本 ISR≈0.8 同时 game 了 ISR 评分。三层 gaming 堆叠：execution reward + structural metric + diagnostic classifier = meta-Goodhart 的最完整案例\n85\t- **Conclusion embedding 是 GRPO 通用策略**：Random H1=71.7%±11.4% > ISR H1=18.2%。Random 的 H1 率反而更高（ISR 将 H1 转化为 H7）\n86\t- **ISR 改变了 hacking 的组成而非总量**：总 conclusion-in-premise 率接近，但 ISR 将 H1 转化为更极端的 H7\n87\t- **Random PR 更高更稳定**：0.87±0.08 vs ISR 0.77±0.14，ISR-as-reward 无 PR 优势\n88\t- **Premise-count-matched 无差异**：控制 premise 数后 ISR=0.2578 vs Random=0.2434 (1.06x)，ISR 不提供真实结构优势\n89\t- **ISR-as-reward 完全失败**：低剂量 gaming ISR 本身，高剂量 PR 崩塌，premise minimization 不是推理改善\n90\t- **结论**: ISR 的核心价值在诊断（Claim 1），作为 reward 不可靠且不提供真实结构优势"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-15T19:47:06.878336+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md",
+              "offset": "189",
+              "limit": "16"
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-15T19:47:06.878538+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "189\t  1. ISR quantifies hacking invisible to prove_rate (64% → 13% → 0.3% collapse over training)\n190\t  2. ISR as proxy metric exhibits **meta-level Goodhart's Law**: at low dose (β=0.1), ISR reward induces ISR-specific gaming in 2/3 seeds (conclusion duplication inflating ISR), while the apparent \"genuine improvement\" in the remaining seed is entirely a premise minimization artifact (premise-count-matched: 1.06x, no real difference); at high dose (β=0.3), ISR produces **extreme cross-seed instability** (PR=66±42%) with three distinct Goodhart pathways — Reward Collapse (s42, 18%), H1-Dominant Shortcutting (s43, 86% PR, H1=68.6%, genuine=26.7%), and Pure H7 Meta-Goodhart where the structural metric itself is gamed (s44, 95% PR + 100% H7 + ISR=0.742)\n191\t  3. Conclusion embedding (52-93% of proved samples) is GRPO-universal regardless of reward type; ISR reward restructures but doesn't reduce it\n192\t  4. Different reward formulations produce distinct, classifiable hacking strategies (8 modes identified, including H7a tautological collapse (GRPO-general, ISR-amplified 5x, Fisher p=1.3×10⁻³⁹), H7b obfuscated tautology (ISR-specific meta-Goodhart), H8 \"conjunction collapse\", and Prolog-specific \"query-as-fact gaming\")\n193\t  5. ISR measures syntactic component necessity, not semantic faithfulness — premise minimization inflates ISR without improving reasoning\n194\t  6. SFT baseline confirms hacking is RL-reward-specific (PR=14%, 92.9% genuine, near-zero hacking)\n195\t  7. ISR diagnostic and Goodhart effects transfer across logic types (FOL→Prolog): Prolog STA shows **universal Goodhart** — 3/3 seeds converge to gaming (clean H7 / degenerate syntax / query-as-fact), 0% genuine, demonstrating that simpler formal languages enable more complete exploitation with zero genuine residual\n196\t- **Actionable insights for practitioners**:\n197\t  1. Never trust prove_rate alone — use ISR + component count as joint diagnostic\n198\t  2. Single-seed GRPO results are unreliable (2/3 exec-on\n…[truncated 2424 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-15T19:47:06.878753+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md",
+              "offset": "223",
+              "limit": "12"
+            }
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-15T19:47:06.878913+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "223\t| ISR β=0.1 (s42) | r = r_exec·(1+0.1·ISR) | 0.81 | **0.415** | H1 52%, H7 16%, premise minimization | **meta-Goodhart** (premise-matched 1.06x) |\n224\t| ISR β=0.1 (s43) | r = r_exec·(1+0.1·ISR) | 0.61 | **0.830** | **H7 97%**, ISR inflation | **meta-Goodhart** |\n225\t| ISR β=0.1 (s44) | r = r_exec·(1+0.1·ISR) | 0.89 | **0.902** | **H7 100%** (H7a=77 + H7b=12, FN corrected), ISR inflation + classifier evasion | **meta-Goodhart** (triple: reward + ISR + detector) |\n226\t| random β=0.1 (s42) | r = r_exec·(1+0.1·random) | 0.79 | 0.131 | H1 71%, redundant premises | control |\n227\t| random β=0.1 (s43) | r = r_exec·(1+0.1·random) | 0.94 | 0.150 | H7 38.3%, H1 60%, genuine 1.1% | control |\n228\t| random β=0.1 (s44) | r = r_exec·(1+0.1·random) | 0.89 | 0.070 | H1 82%, H8 18%, genuine 6.7% | control |\n229\t| ISR β=0.3 (s42) | r = r_exec·(1+0.3·ISR) | 0.18 | 0.143 | PR 崩塌（经典 Goodhart） | post-Goodhart |\n230\t| ISR β=0.3 (s43) | r = r_exec·(1+0.3·ISR) | 0.86 | 0.295 | **H1=68.6%**, H7=4.7%, genuine=26.7% — H1-Dominant Shortcutting | **meta-Goodhart (H1 path)** |\n231\t| ISR β=0.3 (s44) | r = r_exec·(1+0.3·ISR) | 0.95 | **0.742** | **H7=100%**, ISR 被同时 game — Pure H7 Meta-Goodhart | **meta-Goodhart extreme** |\n232\t| random β=0.3 (s42) | r = r_exec·(1+0.3·random) | 0.48 | 0.094 | complexity-without-utility | control |\n233\t| random β=0.3 (s44) | r = r_exec·(1+0.3·random) | 0.23 | 0.000 | H1=100%, conclusion embedding | control |\n234\t| random β=0.3 (s43) | r = r_exec·(1+0.3·random) | — | — | 训练中 (exp1-random-b03-s43-r4) | control |"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-15T19:47:06.879053+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md",
+              "offset": "300",
+              "limit": "10"
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-15T19:47:06.879182+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "300\t- [ ] **D085: H7b obfuscated tautology → §4.2 新增子类别分析 + Discussion: models learn to evade diagnostic classifiers (meta-meta-Goodhart)**\n301\t- [ ] **D085: s44 triple gaming (reward + ISR metric + H7 detector) 作为 meta-Goodhart 最完整案例写入 §4.2/§5**\n302\t- [ ] **D086: β=0.3 H7 dose-response gradient (Random β=0.1: 13.7% pooled → β=0.3: 4-7/seed → ISR β=0.1: 70.6% pooled) 写入 Discussion**\n303\t- [ ] **D095: Narrative A — H7a GRPO-general + H7b ISR-specific; 更新 §4.2 数据表 + Discussion H7 mechanism 段**\n304\t- [ ] **D095/W2: Per-seed + pooled 双报要求；Random H7 单 seed 来源标注**\n305\t- [ ] **D095/W3: Discussion 新增 hack mode switching 段（GRPO 退化模式受初始化影响）**\n306\t- [ ] **C013: genuine 公式改为集合排除 proved − |H7 ∪ H1 ∪ H8|**\n307\t- [ ] **D095: H7 two-layer framing (H7a GRPO-general + H7b ISR-specific) — 更新 §4.2 H7 讨论, Abstract, Headline**\n308\t- [ ] **D093/D088 correction: H7a not additive-reward-specific (exec-only s43 = 100% H7a) — 更新 mechanism discussion**\n309\t- [x] D084: genuine 计数标准统一 (genuine = proved − H7 − H1_exact − H8), H1-near 降级为 supplementary-only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-15T19:47:06.879334+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md"
+            }
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-15T19:47:06.879602+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Paper Framing — solver-trace-ablation\n2\t\n3\t## Target Venue\n4\t- Primary: EMNLP 2026 Main (NLP and Symbolic Reasoning track)\n5\t- Fallback: EMNLP 2026 Findings\n6\t- Deadline: ARR May 25, 2026\n7\t\n8\t## Core Claims (3 条 — Goodhart 主线诊断/分析论文)\n9\t\n10\t| Claim | Status | 闭环标志 |\n11\t|-------|--------|----------|\n12\t| Claim 1: STA 诊断能力 | ✅ 已闭环 | 3-seed + 1000-step + hacking taxonomy (8 modes) |\n13\t| Claim 2: Goodhart / ISR 无结构优势 | ✅ 已闭环 (D057) | 3-seed ISR + 3-seed random + premise-count-matched + SFT baseline |\n14\t| Claim 3: 跨逻辑泛化 | ✅ 已闭环 | exec-only 3-seed (D056) + STA 3-seed: **3/3 gaming** — 三种不同 gaming 路径 (H7/degenerate-syntax/query-as-fact) |\n15\t\n16\t### Claim 1: ISR as Reward Hacking Diagnostic ✅\n17\tSolver Trace Ablation (STA) derives ISR (Intensional Structural Reward) via component necessity testing (leave-one-out ablation on solver inputs). ISR detects reward hacking that prove_rate alone misses: exec-only GRPO achieves PR=93% but ISR collapses from 0.6423 (100 steps) to 0.1324 (500 steps) to 0.0027 (1000 steps), quantifying structural degeneration invisible to the execution reward.\n18\t\n19\t**证据**：\n20\t- plan003: 100-step checkpoint held-out eval PR=32%, ISR=0.6423 (proved-only) — early training produces structurally sound formalizations\n21\t- plan001-s42: 500-step checkpoint held-out eval PR=93%, ISR=0.1324, median_ISR=0.0 — late training achieves high prove_rate via structural shortcuts\n22\t- **plan016**: 1000-step checkpoint eval PR=96%, ISR=**0.0027** — ISR 崩塌持续恶化，无回升。94.8% proved 样本 ISR=0。矛盾爆炸式崩塌（components 6.58→18.55）。延长训练是 reward hacking 随时间恶化的干净消融证据\n23\t- ISR 崩塌轨迹完整链：0.6423 (100步) → 0.1324 (500步) → 0.0027 (1000步)\n24\t- 3-seed consistency: s42 redundant embedding (H1=87.1%, ISR=0.123 diluted), s43 repetition collapse (PR=13%, ISR=0), s44 tautological collapse (H7=100%, PR=98%, ISR=0.57 fake-high, n_comp=2.04). All 3 seeds exhibit 87-100% conclusion embedding.\n25\t- Hacking taxonomy: 8 distinct modes identified and quantified (plan012 + plan017 D027 + D043 conclusion d\n…[truncated 29692 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-15T19:47:06.879841+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有 12 项修改 + 一致性修正全部完成。验证摘要：\n\n| 修改项 | 状态 |\n|--------|------|\n| 1. Random s43/s44 行 | ✅ ISR 0.150/0.070, all H7a, 去 H8/C013 附注 |\n| 2. Random pooled 行 | ✅ 0.117±0.042, 12.8%±22.1%, 71.7%±11.4% |\n| 3. ISR pooled 行 | ✅ 70.6% [64.3%, 76.3%], 18.2%, 6.1% (14/231) [3.6%, 10.0%] |\n| 4. 统计检验段 | ✅ D095 最终：H7 p=1.3×10⁻³⁹, Genuine p=0.18 (n.s.), OR=0.61 |\n| 5. 关键发现 H7 | ✅ 三层结构：H7a GRPO-general / H7b ISR-specific / β 梯度 |\n| 6. Goodhart Landscape s43/s44 | ✅ 去 PROVISIONAL, 更新数据 |\n| 7. Story Spine point 4 | ✅ H7a tautological collapse + H7b obfuscated tautology |\n| 8. Headline result | ✅ Fisher p=1.3×10⁻³⁹, ISR 70.6% vs Random 13.7% |\n| 9. 残留标记清理 | ✅ 无 DEPRECATED/PROVISIONAL/64.5%/0.1495/0.0695 |\n| 10. β 剂量表 | ✅ 0.150/0.070, H7a GRPO-general 描述 |\n| 11. H8 审计说明 | ✅ Random pooled H8: 21/262=8.0% |\n| 12. Dream fixes | ✅ D095 + D093/D088 两项已添加 |\n\n额外一致性修正：ISR s42 genuine 32.1%→17.3% (14/81), s43 96.7%→100% (61/61), FOL/Prolog ~16%→~6%, H1 81.3%→71.7%, PR 0.85→0.87。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-framing-d095-update_20260515T193520"
+          },
+          "id": "event-000085"
+        }
+      ],
+      "message_count": 85
+    }
+  ],
+  "readable_path": "readable/conversations/writing-paper-framing-d095-update.md"
+}

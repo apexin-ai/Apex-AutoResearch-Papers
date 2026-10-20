@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6c4cb9dc7fae5053b054",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code prepare plan013 submission",
+  "task_key": "worker_code_prepare-plan013-submission_20260513T234655",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prepare-plan013-submission_20260513T234655_result.json",
+    "occurrence": 1,
+    "bytes": 1687,
+    "sha256": "b57cc49cca55a6c1daa38ef3ac3b1e05b81383916e477828383889859d4aefe1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。汇总结果：\n\n---\n\n**验证结果：全部 OK**\n\n| 检查项 | 状态 |\n|--------|------|\n| `configs/grpo_random_reward.yaml` | ✓ 存在，内容正确 |\n| `scripts/train_grpo.py` random_reward 模式 | ✓ L173-186 实现完整 |\n| `data/train_500_seed42.jsonl` | ✓ 500 samples |\n| `models/Qwen3-4B` | ✓ 存在 |\n| reward_mode=random_reward | ✓ |\n| exec_weight=0.9, sta_weight=0.1 | ✓ |\n| num_steps=500, K=8, seed=42 | ✓ |\n| output_dir=/root/autodl-tmp/outputs/plan013_random_reward_s42 | ✓ |\n| 所有 import | ✓ 无报错 |\n| **cuda:0** | **空闲** (0 MiB, 0% util) |\n| cuda:1 | 占用 (80355 MiB) |\n\n**配置文件完整内容：**\n```yaml\nmodel_path: /root/solver-trace-ablation/models/Qwen3-4B\ndata_path: data/train_500_seed42.jsonl\nreward_mode: random_reward\noutput_dir: /root/autodl-tmp/outputs/plan013_random_reward_s42\nnum_steps: 500\nper_device_batch_size: 4\ngradient_accumulation_steps: 2\nnum_generations: 8\nmax_completion_length: 512\nlearning_rate: 1.0e-6\nexec_weight: 0.9\nsta_weight: 0.1\nseed: 42\nsolver: prover9\nlogic_type: fol\nwandb_project: solver-trace-ablation\nwandb_run: plan013_random_reward\nno_wandb: false\n```\n\n**推荐提交命令：**\n```\nbash -c 'CUDA_VISIBLE_DEVICES=0 source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_random_reward.yaml'\n```\n\n注：配置文件中已包含 num_steps=500、seed=42、output_dir，无需在命令行重复指定。vLLM 版本警告（0.18.1 vs TRL 支持的 0.11-0.17）不影响训练（GRPO 不走 vLLM 路径）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prepare-plan013-submission.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c3ff318b50dccc0da8a4",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "prep next batch b02 s44",
+  "task_key": "worker_prep_next-batch-b02-s44_20260516T043006",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_next-batch-b02-s44_20260516T043006_result.json",
+    "occurrence": 1,
+    "bytes": 1565,
+    "sha256": "e8158d2b3b9d7a0749bee9683724206f4c956a4ea08e76e69f4556be9767c0af"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n### 1. 当前训练进度\n\n| 实验 | PID | Step | 已运行 | 速率 | 预计剩余 |\n|---|---|---|---|---|---|\n| sweep-isr-b02-s42 | 633657 | **146/500** | 20m10s | ~8.3s/step | **~49 min** |\n| sweep-isr-b02-s43 | 633515 | **128/500** | 20m16s | ~9.5s/step | **~59 min** |\n\nGPU 状态：cuda:0 93% (80GB/98GB), cuda:1 90% (85GB/98GB) — 正常。\n\n两个实验约 **1 小时内完成**（~05:20-05:30 UTC）。\n\n零奖励 batch 比例：s42 75/147 (51%), s43 66/129 (51%) — GRPO 正常范围，不算 collapse。\n\n### 2. b02-s44 提交准备\n\n| 检查项 | 状态 |\n|---|---|\n| Config `grpo_additive_bonus_b02.yaml` | OK, data_path=`train_500_seed42.jsonl` (C001) |\n| 模型 `/root/autodl-tmp/models/Qwen3-4B` | OK |\n| 脚本 `classify_h7.py` | OK (22KB) |\n| `save_total_limit=1` (C003) | OK, hardcoded in `train_grpo.py` |\n| 磁盘 | 54GB free (79%) — 够用 |\n\n**就绪。** 提交命令（等 GPU 释放后）：\n\n```bash\n# C007: 先 nvidia-smi 确认 GPU 已释放\n# C002/C005: 显式 export\nexport CUDA_VISIBLE_DEVICES=0   # 选先释放的那张卡\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\ncd /root/solver-trace-ablation\npython3 scripts/train_grpo.py \\\n  --config configs/grpo_additive_bonus_b02.yaml \\\n  --seed 44 --num_steps 500 --num_generations 4 \\\n  --output_dir /root/autodl-tmp/outputs/sweep_isr_b02_s44 \\\n  --no_wandb\n```\n\n### 3. 异常\n\n无。dry-run（`--help`）需要 `ssh_execute` 才能运行，但所有文件和路径已确认存在。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-next-batch-b02-s44.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "afa27801ebd88974d3da",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "recon s45 progress",
+  "task_key": "worker_recon_s45-progress_20260522T014130",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_recon_s45-progress_20260522T014130_result.json",
+    "occurrence": 1,
+    "bytes": 491,
+    "sha256": "987c5f56236b74d2971b6f918c40a68d0a812ab40371b2983eacf3a6b2135e5e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**s45 训练状态：正在运行**\n\n| 指标 | 值 |\n|------|-----|\n| 当前 step | 865 / 1000 |\n| 进度 | 86% |\n| 已运行 | ~1h58m |\n| 剩余估计 | ~17 min |\n| GPU 占用 | 64,577 / 97,887 MiB (66%) |\n| GPU 利用率 | 55% |\n| Checkpoint | 已保存（最新） |\n| Eval | 未生成 |\n\n近几步 reward 偏低（step 862-865 连续 reward=0），prove_rate=0，entropy 很低（~0.02-0.03），有 collapse 迹象。预计约 17 分钟后完成 1000 步。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/recon-s45-progress.md"
+}

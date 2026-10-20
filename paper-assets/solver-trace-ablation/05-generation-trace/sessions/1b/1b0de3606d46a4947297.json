@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1b0de3606d46a4947297",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analysis paper tex preaudit",
+  "task_key": "worker_analysis_paper-tex-preaudit_20260515T145531",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_paper-tex-preaudit_20260515T145531_result.json",
+    "occurrence": 1,
+    "bytes": 1356,
+    "sha256": "7a5b8e8204b491707ea72b51556bea90e78bbbffb0a9d7c045c04fd9058b1bf7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。58 项定量 claim 检查结果：\n\n## 3 项 RED LINE 违规\n\n| ID | 问题 | 论文值 | 应为 |\n|---|---|---|---|\n| **RL-01** | Taxonomy 说 7 种 hacking mode | 7 modes | **8 modes**（缺 H8 conjunction collapse，registry 显示 6.45%-43.2%） |\n| **RL-02** | H7 比例未应用 D085 修正 | 64.5% (149/231) | **69.7%** (161/231)，s44 的 12 个 H7b obfuscated tautology 未计入 |\n| **RL-03** | N-H 率未应用 D084+D085 | ISR β=0.1 pooled N-H=17% | **6.9%** (16/231)，未扣 H8、未重分类 H7b |\n\n## 6 项其他问题\n\n- **ISS-01 (HIGH)**: Random β=0.1 三 seed 聚合用了 DEPRECATED 数据（s43/s44 正在重训）\n- **ISS-02 (HIGH)**: D085 H7b 三层 gaming 分析（最强 meta-Goodhart 证据）未写入论文\n- **ISS-03 (MEDIUM)**: Bootstrap CI 统计检验缺失\n- **ISS-04 (MEDIUM)**: s42 \"31% non-hacking\" 既不等于 32.1%（pre-D084）也不等于 17.3%（post-D084）\n- **ISS-05 (MEDIUM)**: Exec-only N-H=13% 包含 H8 样本，应为 7.5%\n- **ISS-06 (LOW)**: SFT baseline 仅报单 seed，3-seed 数据已有\n\n## 27 项验证通过\n\nISR 崩塌轨迹、PR 轨迹、214× 崩塌、premise-count-matched 1.06×、β=0.3 全部 seed 数据、Prolog 全部数据、无 2.4x、无 43.2%、无 \"significantly\" — 均正确。\n\n已注册 artifact `art_20260515_515c5d`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-paper-tex-preaudit.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "da0fbc240031dfc432d8",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analysis batch classify h7 all",
+  "task_key": "worker_analysis_batch-classify-h7-all_20260515T144204",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_batch-classify-h7-all_20260515T144204_result.json",
+    "occurrence": 1,
+    "bytes": 4084,
+    "sha256": "15e1f9a8dcc524cbeae5b216096f99415f2783f2cbe9efb2bd994227adad4d15"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有结果已收集完毕。以下是完整汇总。\n\n---\n\n## 批量 H7a/H7b 分类结果\n\n### 完整结果表\n\n**ISR 条件**\n\n| 实验 | Proved | H7a | H7b | H7 | H1 | H8 | Genuine | Gen% |\n|------|--------|-----|-----|----|----|----|----|------|\n| plan002_additive_b01_s44 (ISR s44) | 89 | 77 | **11** | 88 | 0 | 0 | 1 | 1.1% |\n| plan002_additive_b01_s42 | 81 | 13 | 0 | 13 | 42 | 12 | 14 | 17.3% |\n| plan002_additive_b01_s42_1000 | 90 | 83 | 0 | 83 | 4 | 1 | 2 | 2.2% |\n| plan001_exec_only_s42 | 93 | 0 | 0 | 0 | 81 | 6 | 7 | 7.5% |\n| plan001_exec_only_s43_r4 | 13 | 0 | 0 | 0 | 13 | 1 | 0 | 0.0% |\n| plan001_exec_only_s44 | 97 | 97 | 0 | 97 | 0 | 0 | 0 | 0.0% |\n| plan001_s44_eval_sta | 98 | 98 | 0 | 98 | 0 | 0 | 0 | 0.0% |\n| plan002_additive_b03 | 18 | 0 | 0 | 0 | 14 | 3 | 1 | 5.6% |\n| plan003_eval_exec_only_r5 | 32 | 9 | 0 | 9 | 1 | 2 | 20 | 62.5% |\n| plan004_fast_isr_s42 | 63 | 0 | 0 | 0 | 63 | 2 | 0 | 0.0% |\n| plan006_prolog_exec_s42 | 86 | 0 | 0 | 0 | 0 | 0 | 86 | 100.0% |\n| plan016_extended_1000_s42 | 96 | 0 | 0 | 0 | 96 | 0 | 0 | 0.0% |\n| exp1_isr_b03_s43 | 91 | 2 | 0 | 2 | 68 | 2 | 19 | 20.9% |\n| exp1_isr_b03_s43_r3 | 86 | 4 | 0 | 4 | 59 | 0 | 23 | 26.7% |\n| exp1_isr_b03_s44_r2_eval | 98 | 98 | 0 | 98 | 0 | 0 | 0 | 0.0% |\n| exp1_isr_b03_s44_r2_correct | 95 | 95 | 0 | 95 | 0 | 0 | 0 | 0.0% |\n| exp1_isr_b03_s42_1000 | 95 | 0 | 0 | 0 | 54 | 41 | 0 | 0.0% |\n\n**Random 条件**\n\n| 实验 | Proved | H7a | H7b | H7 | H1 | H8 | Genuine | Gen% |\n|------|--------|-----|-----|----|----|----|----|------|\n| plan013_random_reward_s42_r4 | 100 | 100 | **0** | 100 | 0 | 0 | 0 | 0.0% |\n| plan017_additive_random_s42 | 48 | 0 | **0** | 0 | 48 | 0 | 0 | 0.0% |\n| plan018_additive_random_b01_s42 | 79 | 0 | **0** | 0 | 56 | 0 | 23 | 29.1% |\n| plan018_additive_random_b01_s42_1000 | 100 | 100 | **0** | 100 | 0 | 0 | 0 | 0.0% |\n| plan018_additive_random_b01_s42_1000_r3 | 97 | 97 | **0** | 97 | 0 | 0 | 0 | 0.0% |\n| exp1_random_b03_s43 | 79 | 0 | **0** | 0 | 60 | 1 | 18 | 22.8% |\n| exp1_random_b03_s44_r2 | 23 | 0 | **0** | 0 | 23 | 0 | 0 | 0.0% |\n| exp1_random_b03_s43_r4 | 92 | 0 | **0** | 0 | 89 | 0 | 3 | 3.3% |\n\n**SFT baselines**\n\n| 实验 | Proved | H7a | H7b | H7 | H1 | H8 | Genuine | Gen% |\n|------|--------|-----|-----|----|----|----|----|------|\n| plan009_sft_s42_1000 | 13 | 0 | 0 | 0 | 1 | 0 | 12 | 92.3% |\n| plan009_sft_s43_1000 | 11 | 0 | 0 | 0 | 1 | 0 | 10 | 90.9% |\n| plan009_sft_s44_1000 | 15 | 0 | 0 | 0 | 1 | 0 | 14 | 93.3% |\n| plan009_sft_s43 | 15 | 0 | 0 | 0 | 1 | 0 | 14 | 93.3% |\n| plan009_sft_s44 | 17 | 0 | 0 | 0 | 1 | 0 | 16 | 94.1% |\n\n---\n\n### 三项关键验证\n\n**验证 1：Random 侧 H7b = 0** — **全部通过 ✅**\n\n8 个 Random eval 文件，H7b 全部为 0。\"H7b is ISR-specific\" claim 成立。\n\n**验证 2：ISR s44 H7b ≥ 11（auto）** — **通过 ✅**\n\n`plan002_additive_b01_s44_eval.json` 检出 H7b=11（vacuous quantifier wrapping 模式，如 `∃x(P(x))` → `∃x(∃y(P(y)))`）。加上手动确认的 folio_304，总计 H7b=12。\n\n注意：初始批量运行未覆盖此文件（它在 `eval_results_backup/` 而非 `outputs/` 目录），补跑后确认。\n\n**验证 3：ISR s42 1000-step H7b** — **H7b = 0**\n\n`plan002_additive_b01_s42_1000`: H7a=83, H7b=0。该实验没有 obfuscated tautology，原有的 87 H7 在新分类下拆为 H7a=83 + H1=4（多 premise 嵌入）。\n\n---\n\n### 结论\n\n1. **H7b 是 ISR-specific 且 seed-specific**：仅在 `plan002_additive_b01_s44`（ISR + seed 44）中出现 H7b=11。其他 ISR 实验（包括 s42、s43、其他 s44 runs）均为 H7b=0。Random 侧 8 个实验全部 H7b=0。\n\n2. **自动检测覆盖率**：H7b auto=11/12 = 91.7%。仅 1 例 folio_304（structural simplification）需手动补充。\n\n3. **输出已保存**：\n   - `/root/autodl-tmp/outputs/h7_classification/batch_h7ab_all.json`\n   - `/root/autodl-tmp/outputs/h7_classification/batch_h7ab_all.txt`\n   \n   （注：这两个文件不含 `eval_results_backup/` 中的 3 个补充文件的结果）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-batch-classify-h7-all.md"
+}

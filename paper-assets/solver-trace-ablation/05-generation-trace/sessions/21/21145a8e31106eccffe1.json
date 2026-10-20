@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "21145a8e31106eccffe1",
+  "project": "solver-trace-ablation",
+  "kind": "worker",
+  "title": "code d158 sft eval then d157 submit",
+  "task_key": "worker_code_d158-sft-eval-then-d157-submit_20260520T145313",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d158-sft-eval-then-d157-submit_20260520T145313.log",
+    "occurrence": 1,
+    "bytes": 594059,
+    "sha256": "a3e311de537214b0ced7176879a5f0033789c63ce6658253335e8c0868a46e4e"
+  },
+  "statistics": {
+    "messages": 430,
+    "user_turns": 0,
+    "tool_calls": 178,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 69,
+      "tool_call": 178,
+      "tool_result": 178,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 430,
+      "chunks": [
+        {
+          "path": "21145a8e31106eccffe1-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "21145a8e31106eccffe1-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "21145a8e31106eccffe1-part-0003.json",
+          "message_count": 70
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-d158-sft-eval-then-d157-submit.md"
+}

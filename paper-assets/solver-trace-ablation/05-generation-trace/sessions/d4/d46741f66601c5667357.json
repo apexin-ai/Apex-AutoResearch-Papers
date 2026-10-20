@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d46741f66601c5667357",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "eval 1 7b isr b01 eval",
+  "task_key": "worker_eval_1_7b-isr-b01-eval_20260516T221533",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_1_7b-isr-b01-eval_20260516T221533_result.json",
+    "occurrence": 1,
+    "bytes": 408,
+    "sha256": "a905745325c9a2f265f95f1c642868c59af1efd4745b789abfb95b8b613a572e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 1.7B ISR β=0.1 Eval\n\n- n_proved / n_problems: 100/100\n- prove_rate: 100%\n- mean_isr: 0.600 (σ=0.000)\n- H7%: 0%\n- H1%: 100%\n- H8%: 0%\n- Genuine%: **0.0%**\n\n完全 H1 collapse：模型学会了每次都把结论放进 premises（2 premises, ISR=0.6 uniformly）。β=0.1 的 ISR reward 过弱，未能抑制 shortcut hacking，反而 100% 收敛到 conclusion-in-premise 策略。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-1-7b-isr-b01-eval.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7f0bdfff5ee74a5840be",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "research framing prep",
+  "task_key": "worker_research_framing-prep_20260515T181727",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_framing-prep_20260515T181727_result.json",
+    "occurrence": 1,
+    "bytes": 944,
+    "sha256": "a30ef1f628f3d8067345c46e46a33d1d86274abfd98e9ac99a964dd8dd5492ee"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Framing 调整提案已保存到 memory.md 末尾，标题 `## [DRAFT] Framing 调整提案 — H7 Specificity (D092/D093)`。\n\n提案核心：\n\n**三种备选叙事**：\n- **A (推荐主线)**: ISR amplifies H7 — additive reward 结构引入 H7 可能性 (D088)，ISR 信号放大频率（64.5% vs Random PENDING）\n- **B (补充)**: H7 is reward-general — 强化 Goodhart universality，ISR 改变 hacking composition 而非总量\n- **C (robustness)**: seed/config-dependent — 高方差本身是发现\n\n**对 Claim 2 核心无影响** — 1.06x premise-count-matched 和 β 剂量效应均不依赖 H7 specificity。\n\n**关键待定项**：\n1. s44-r2 数据 → Random pooled H7 rate → 决定 amplification 幅度\n2. Random s43-r3 的 H7 子类别（H7a vs H7b）→ meta-Goodhart triple gaming 是否仍 ISR-specific\n3. D089 exec-only s43 \"全 H7\" 需核实是否影响 D088 \"additive-only H7\" 结论"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-framing-prep.md"
+}

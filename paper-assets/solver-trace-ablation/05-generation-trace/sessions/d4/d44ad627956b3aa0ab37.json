@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d44ad627956b3aa0ab37",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analysis bootstrap ci",
+  "task_key": "worker_analysis_bootstrap-ci_20260515T070938",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bootstrap-ci_20260515T070938_result.json",
+    "occurrence": 1,
+    "bytes": 1552,
+    "sha256": "9bc84883f8b3c8bcb9f343172f46d208c91ef8f75320c8c07f60aa48c5ca4b95"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Script ran successfully. Results saved to `/root/autodl-tmp/outputs/bootstrap_ci_results.json`.\n\nSummary of results:\n\n**Per-experiment bootstrap 95% CIs (on proved samples):**\n\n| Experiment | PR | H7 | H1 | Genuine | ISR* |\n|---|---|---|---|---|---|\n| exec_only_s42 | .93 [.88,.98] | 0% | 86.0% [78.5,92.5] | 14.0% [7.5,21.5] | .132 [.095,.173] |\n| isr_b01_s42 | .81 [.73,.88] | 14.8% [7.4,23.5] | 44.4% [33.3,55.6] | 40.7% [29.6,51.9] | .415 [.349,.482] |\n| random_b01_s42 | .79 [.71,.87] | 0% | 63.3% [51.9,73.4] | 36.7% [26.6,48.1] | .131 [.101,.163] |\n| isr_b03_s43 | .86 [.79,.92] | 2.3% [0,5.8] | 67.4% [57.0,76.7] | 30.2% [20.9,40.7] | .295 [.246,.345] |\n| random_b03_s43 | .92 [.86,.97] | 0% | 58.7% [48.9,68.5] | 41.3% [31.5,51.1] | .180 [.159,.203] |\n| exec_only_s44 | .97 [.93,1.0] | 100% | 0% | 0% | .567 [.536,.603] |\n\n**Key comparisons (permutation test):**\n- ISR β=0.1 vs Random β=0.1 genuine rate: diff=+0.04, p=0.637 (not significant)\n- ISR β=0.1 vs Random β=0.1 H7 rate: diff=+0.148, **p=0.0004**\n- Exec-only vs ISR β=0.1 H1 rate: diff=+0.416, **p<0.001**\n- ISR β=0.1 vs Random β=0.1 ISR*: diff=+0.284, **p<0.001**\n- ISR β=0.3 vs Random β=0.3 genuine: diff=-0.111, p=0.156 (not significant)\n\n**Missing experiments:** SFT baseline (plan009) has no eval file on the server — checkpoint was likely deleted in a prior disk cleanup. The ISR β=0.1 vs Random β=0.1 genuine rate comparison is NOT significant (p=0.637), meaning the genuine rate advantage doesn't survive bootstrap with n=100."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-bootstrap-ci.md"
+}

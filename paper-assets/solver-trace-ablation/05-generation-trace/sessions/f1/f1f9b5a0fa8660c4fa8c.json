@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f1f9b5a0fa8660c4fa8c",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "fix 8b oom and dual submit",
+  "task_key": "worker_fix_8b-oom-and-dual-submit_20260516T094246",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_8b-oom-and-dual-submit_20260516T094246_result.json",
+    "occurrence": 1,
+    "bytes": 553,
+    "sha256": "90aa71cb8092e0de177b40ef9a2fa2349282068d1f84d224d86e1145b7949231"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "双卡启动成功，无 OOM。\n\n**结果汇总：**\n\n| 项目 | 状态 |\n|------|------|\n| Config 修改 | ✅ 两文件均为 `batch_size: 1`, `grad_accum: 8` |\n| GPU 0 (exec-only) | ✅ 49767/97887 MiB, 97% util, training step 0/500 |\n| GPU 1 (ISR β=0.1) | ✅ 49767/97887 MiB, 94% util, training step 0/500 |\n| OOM | 无，~51% 显存占用，余量充足 |\n\n两个 tmux session 均在正常训练中：\n- `w2-qwen3-8b-exec-pilot` → cuda:0, mode=execution_only\n- `w2-qwen3-8b-isr-pilot` → cuda:1, mode=additive_bonus"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-8b-oom-and-dual-submit.md"
+}

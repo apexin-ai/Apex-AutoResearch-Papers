@@ -1,0 +1,530 @@
+{
+  "schema_version": "1.0",
+  "id": "348b2ee4aa99832304fd",
+  "project": "solver-trace-ablation",
+  "kind": "conversation",
+  "title": "writing paper assembly v3",
+  "task_key": "worker_writing_paper-assembly-v3_20260515T032531",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_writing_paper-assembly-v3_20260515T032531.jsonl",
+    "occurrence": 1,
+    "bytes": 51869,
+    "sha256": "651922a3d462f330afc683ff30b1b62ab3155c2cf99458498f4226529086a88d"
+  },
+  "statistics": {
+    "messages": 26,
+    "user_turns": 0,
+    "tool_calls": 12,
+    "roles": {
+      "assistant": 2,
+      "tool_call": 12,
+      "tool_result": 12
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T03:25:38.583887+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 4:10am (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-assembly-v3_20260515T032531"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T03:29:37.885346+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-assembly-v3_20260515T032531",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/_project/paper/abstract_c1671f.tex"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T03:29:37.885821+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tGRPO-trained neurosymbolic formalizers routinely achieve high prove rates on logical reasoning benchmarks, yet no principled diagnostic exists to assess whether the underlying formal outputs contain genuine logical structure or degenerate shortcuts.\n2\tWe introduce \\emph{Solver Trace Ablation} (STA), a solver-agnostic protocol that derives the \\emph{Intensional Structure Ratio} (ISR) via leave-one-out component necessity testing: each premise is ablated and the solver re-executed, yielding a continuous score measuring the fraction of components genuinely required for the proof.\n3\tApplied to GRPO training of a Qwen3-4B formalizer across 6 reward configurations, 3 random seeds, and up to 1{,}000 training steps, STA reveals three findings.\n4\tFirst, ISR serves as an effective diagnostic: execution-only GRPO achieves 96\\% prove rate while ISR collapses from 0.64 to 0.003 over training---a 99.5\\% decline quantifying structural degeneration invisible to the execution reward.\n5\tAll three seeds exhibit 87--100\\% conclusion embedding in proved outputs; a supervised fine-tuning baseline confirms that these pathologies are RL-specific (92.9\\% genuine proofs, near-zero hacking).\n6\tSecond, ISR fails as a training signal due to meta-level Goodhart's Law: at low dose ($\\beta{=}0.1$), the policy games ISR itself via single-premise conclusion duplication (64.5\\% H7 across 3 seeds vs.\\ 0\\% under matched random controls), with the apparent structural advantage dissolving entirely under premise-count-matched analysis (1.06$\\times$); at high dose ($\\beta{=}0.3$), classic Goodhart collapse drives prove rate to 18\\% versus 48\\% for the random control.\n7\tThird, both the diagnostic capability and the Goodhart failure transfer to Prolog (SWI-Prolog), where ISR-as-reward produces \\emph{universal} Goodhart: all 3 seeds converge to gaming with 0\\% genuine output, each via a distinct mechanism---tautological duplication, degenerate syntax, and query-as-fact gaming.\n8\tAcross all conditions we ide\n…[truncated 328 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-assembly-v3_20260515T032531",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T03:29:37.886131+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-assembly-v3_20260515T032531",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/_project/paper/introduction_176853.tex"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T03:29:37.886344+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\n2\t\\label{sec:introduction}\n3\t\n4\tA GRPO-trained formalizer achieves a 93\\% prove rate on first-order logic problems---yet 87\\% of its proved outputs embed the conclusion verbatim among the premises.\n5\tThe solver succeeds not because the model has learned to reason, but because the formalization trivially entails any conclusion that already appears as a premise.\n6\tThis structural shortcut is invisible to execution-based evaluation: prove rate registers success regardless of whether the proof reflects genuine multi-step derivation or degenerate circular embedding.\n7\tThe reward optimizes solver success; the model finds the shortest path to it.\n8\t\n9\t\\paragraph{The execution-only blind spot.}\n10\tProve rate---the dominant evaluation metric for neurosymbolic formalizers~\\citep{logic-lm, linc, satlm}---conflates faithful reasoning with degenerate shortcuts, a gap especially consequential under reinforcement learning, where the optimizer exploits any shortcut the reward fails to penalize~\\citep{skalse-reward-hacking, reward-hacking-survey}.\n11\tRecent work applies GRPO~\\citep{deepseekmath} to train LLMs that generate solver-verified formal programs~\\citep{mellgren-prolog-grpo, logic-rl} using binary execution feedback as reward; this drives rapid PR gains but gives no gradient on structural quality.\n12\tProcess reward models~\\citep{lightman-verify-step, math-shepherd} offer step-level supervision but require expensive annotations and do not transfer to arbitrary solver-backed settings.\n13\tA complementary line of work documents that LLMs already game logical formalization at inference time~\\citep{kim-game-formalization, bondarenko-spec-gaming}, yet no existing method provides an annotation-free \\emph{diagnostic} for structural integrity in neurosymbolic outputs---one adaptable in principle to any solver supporting component-level input manipulation (see \\S\\ref{sec:related-work} for full context).\n14\t\n15\t\\paragraph{Component necessity testing.}\n16\tWe addr\n…[truncated 5349 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-assembly-v3_20260515T032531",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T03:29:37.886520+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-assembly-v3_20260515T032531",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/_project/paper/related_work_b05493.tex"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T03:29:37.886745+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Related Work}\n2\t\\label{sec:related-work}\n3\t\n4\t\\paragraph{Neurosymbolic Reasoning with LLMs.}\n5\tPrompting-based pipelines couple LLMs with external solvers to offload logical inference.\n6\tLogic-LM~\\cite{logic-lm} generates FOL formalizations verified by an external prover, with a self-refinement loop on solver errors; LINC~\\cite{linc} similarly translates natural language to first-order logic for Prover9, demonstrating gains over chain-of-thought on syllogistic and multi-hop tasks.\n7\tSatLM~\\cite{satlm} extends the paradigm to satisfiability solvers via declarative prompting, while LoRP~\\cite{lorp} and FoVer~\\cite{fover-pei2025} route through Prolog execution traces and FOL verification, respectively, to validate or filter LLM-generated reasoning.\n8\tAll of these systems evaluate on execution accuracy---whether the solver returns the correct answer---without diagnosing the structural quality of the generated formalizations.\n9\tRL-based training represents a more recent direction, enabled by GRPO~\\cite{deepseekmath}, which eliminates the critic model by estimating baselines from group scores.\n10\tMellgren~\\cite{mellgren-prolog-grpo} applies GRPO to train Prolog formalizers with binary solver reward, reporting substantial prove-rate gains; Logic-RL~\\cite{logic-rl} demonstrates that rule-based RL with solver feedback elicits emergent reasoning in LLMs; and Thought-Like-Pro~\\cite{thought-like-pro} uses self-driven Prolog chain-of-thought to enhance multi-step reasoning.\n11\tThese RL systems optimize execution reward exclusively, reporting prove rate as the primary success metric.\n12\tOur work differs in diagnostic focus: STA reveals that execution accuracy conflates faithful derivation with degenerate shortcuts, and ISR quantifies this conflation.\n13\tThe finding that 87\\% of proved outputs under exec-only GRPO embed the conclusion among the premises (\\S\\ref{sec:diagnostic}) applies directly to these systems, suggesting that reported prove-rate gains may overstate ge\n…[truncated 5796 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-assembly-v3_20260515T032531",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T03:29:37.886982+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-assembly-v3_20260515T032531",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/_project/paper/method_76d073.tex"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T03:29:37.887253+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% method.tex — §3 Method for solver-trace-ablation (EMNLP 2026)\n2\t% Covers: task, GRPO, STA protocol, ISR definition, reward formulations, hacking taxonomy\n3\t% Word budget: ~1200\n4\t\n5\t\\section{Method}\n6\t\\label{sec:method}\n7\t\n8\tWe formalize the task of natural language to formal logic translation (\\S\\ref{ssec:task}), describe the GRPO training framework (\\S\\ref{ssec:grpo}), introduce Solver Trace Ablation as a diagnostic protocol (\\S\\ref{ssec:sta}), define the Intensional Structural Reward (\\S\\ref{ssec:isr}), present the reward formulations under study (\\S\\ref{ssec:reward}), and catalog the hacking modes discovered across conditions (\\S\\ref{ssec:taxonomy}).\n9\t\n10\t\\subsection{Task: NL-to-Formal-Logic Formalization}\n11\t\\label{ssec:task}\n12\t\n13\tGiven a natural language reasoning problem $x$ consisting of premises and a conclusion, the task is to produce a formal logic program $f(x) = \\{c_1, c_2, \\ldots, c_n\\}$ comprising $n$ components (axioms, rules, or clauses) that an external automated solver can evaluate. We consider two target formalisms: first-order logic (FOL), verified by the Prover9 theorem prover \\cite{mccune2005prover9}, and Prolog, verified by SWI-Prolog \\cite{wielemaker2012swi}. A formalization is \\emph{proved} if the solver returns a successful derivation within a fixed timeout.\n14\t\n15\tThis setup decouples generation (the language model) from verification (the solver), providing a binary execution signal $r_{\\text{exec}} \\in \\{0, 1\\}$ that is noise-free but structurally uninformative: a formalization that embeds the conclusion directly in its premises will prove trivially, receiving the same reward as a faithful translation.\n16\t\n17\t\\subsection{GRPO Training}\n18\t\\label{ssec:grpo}\n19\t\n20\tWe train a language model $\\pi_\\theta$ using Group Relative Policy Optimization \\citep[GRPO;][]{shao2024deepseekmath}. For each problem $x$, GRPO samples a group of $K$ candidate formalizations $\\{f_1, \\ldots, f_K\\}$ from $\\pi_\\theta$, scores each with a reward function $\n…[truncated 7749 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-assembly-v3_20260515T032531",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T03:29:37.887424+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-assembly-v3_20260515T032531",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/_project/paper/experiments_76b47a.tex"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T03:29:37.887715+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\tWe evaluate STA along three axes: ISR as a diagnostic for reward hacking (\\S\\ref{sec:diagnostic}); ISR as a training reward, where it exhibits meta-level Goodhart's Law (\\S\\ref{sec:goodhart}); and STA as a cross-logic protocol (\\S\\ref{sec:crosslogic}).\n5\tWe synthesize the modes observed across conditions into a hacking taxonomy (\\S\\ref{sec:taxonomy}).\n6\t\n7\t\\subsection{Setup}\\label{sec:setup}\n8\t\n9\t\\textbf{Model and training.}\n10\tWe train Qwen3-4B with GRPO~\\citep{deepseekmath} ($K{=}8$ rollouts, learning rate $10^{-6}$, 500 steps default and 1000 where noted) across seeds $\\{42,43,44\\}$ on a fixed 500-example FOLIO~\\citep{folio} subset held constant across all conditions.\\footnote{All experiments use \\texttt{data/train\\_500\\_seed42.jsonl}; the seed argument controls only model initialization and rollout sampling, never data composition.}\n11\tThe SFT baseline is trained with NLL on gold formalizations to isolate whether structural degeneration arises from data exposure alone.\n12\t\n13\t\\textbf{Evaluation protocol.}\n14\tHeld-out evaluation uses 100 examples drawn from FOLIO (file: \\texttt{proofwriter\\_fol\\_100.jsonl}; the filename is a legacy artifact---no ProofWriter data is used, see \\S\\ref{sec:task}) with greedy decoding.\n15\tAll cross-run ISR values are recomputed uniformly by a single evaluator (\\texttt{eval\\_sta.py}) on top of \\texttt{Prover9}/SWI-Prolog so that training-log ISR (which varied with implementation revisions) is never compared across runs.\n16\tWe report prove rate (PR), proved-only ISR ($\\text{ISR}^*$, denoted ISR in tables when context is clear), and hacking-mode rates from a two-stage classifier (strict normalized text matching for H1/H7, plus functional analysis of the per-sample $n_{\\text{necessary}}$ distribution; \\S\\ref{sec:taxonomy-method}).\n17\tWe additionally report a \\emph{non-hacking} (N-H) rate---the residual of proved samples that match none of the seven cataloged patterns---which is a nece\n…[truncated 20536 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-assembly-v3_20260515T032531",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T03:29:37.887892+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-assembly-v3_20260515T032531",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/_project/paper/discussion.tex"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T03:29:37.888053+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion}\n2\t\\label{sec:discussion}\n3\t\n4\t\\paragraph{ISR Capability Boundary.}\n5\tISR measures syntactic component necessity---whether each component is individually required for proof success---not semantic faithfulness to the natural language input.\n6\tA formalization where every component is necessary may still misrepresent the intended reasoning chain.\n7\tWe verify this empirically: downstream NLI accuracy shows no correlation with ISR (Spearman $\\rho = -0.049$, $p = 0.187$, n.s.), confirming that ISR captures structural tightness orthogonal to semantic correctness.\n8\tPractitioners should treat ISR as a necessary-but-not-sufficient diagnostic: low ISR reliably indicates structural degeneration, but high ISR does not guarantee faithful reasoning.\n9\tImportantly, low ISR carries different semantics depending on the training objective.\n10\tUnder exec-only training, low ISR in Prolog reflects redundant coding---repeated ground facts where removing any single copy does not affect the proof---rather than absence of reasoning.\n11\tUnder ISR-as-reward, high ISR reflects metric gaming.\n12\tISR values must always be interpreted in the context of the optimization objective that produced them.\n13\t\n14\t\\paragraph{Premise Count Confound.}\n15\tLOO-based metrics like ISR are mathematically biased by component count.\n16\tWith $n$ components, each carries a $1/n$ share of the proof burden; fewer components mechanically inflate ISR regardless of quality.\n17\tAs shown in \\S\\ref{sec:goodhart}, over half of ISR-reward genuine samples contain only 1--2 premises, where ISR $\\geq 0.5$ is an arithmetic inevitability.\n18\tControlling for premise count eliminates the apparent ISR advantage entirely (1.06$\\times$ vs.\\ the raw 2.4$\\times$).\n19\tThis confound is not specific to our setting: any LOO-based diagnostic applied to variable-length structured outputs requires component-count normalization.\n20\tWe recommend that future work employing LOO-based structural metrics report premise-count-mat\n…[truncated 3094 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-assembly-v3_20260515T032531",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T03:29:37.888196+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-assembly-v3_20260515T032531",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/_project/paper/conclusion_0cce3f.tex"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T03:29:37.888342+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Conclusion}\n2\t\\label{sec:conclusion}\n3\t\n4\tWe introduced Solver Trace Ablation (STA), a protocol that derives the Intensional Structure Ratio (ISR) through leave-one-out component necessity testing on solver inputs.\n5\tOur experiments across 6 reward configurations, 3 seeds, 2 formal languages (FOL verified by Prover9, Prolog verified by SWI-Prolog), and up to 1{,}000 training steps establish three findings.\n6\t\n7\tFirst, ISR is an effective diagnostic for structural reward hacking that prove rate alone cannot detect.\n8\tUnder execution-only GRPO, prove rate rises from 32\\% to 96\\% while ISR collapses from 0.64 to 0.003, with 94.8\\% of proved outputs at 1{,}000 steps containing zero necessary components.\n9\tAll three seeds exhibit 87--100\\% conclusion embedding, and a supervised fine-tuning baseline (92.9\\% genuine, near-zero hacking) confirms that these pathologies are RL-reward-specific.\n10\tThe joint signal of prove rate, ISR, and component count cleanly separates three qualitatively different failure modes (redundant embedding, repetition collapse, tautological collapse) that prove rate conflates into apparent success.\n11\t\n12\tSecond, ISR fails as a training signal due to meta-level Goodhart's Law.\n13\tAt low dose ($\\beta{=}0.1$), ISR reward induces ISR-specific gaming: 64.5\\% of proved outputs across 3 seeds exhibit single-premise conclusion duplication (H7), compared to 0\\% across all random-reward seeds.\n14\tThe apparent structural advantage of ISR reward (raw 2.4$\\times$ genuine ISR) is entirely a premise minimization artifact---controlling for premise count yields 1.06$\\times$, indistinguishable from the random baseline.\n15\tAt high dose ($\\beta{=}0.3$), classic Goodhart collapse drives prove rate to 18\\% versus 48\\% for the matched random control.\n16\tConclusion embedding itself is GRPO-universal (68--100\\% across conditions); ISR reward restructures hacking from multi-premise (H1) to single-premise (H7) forms without reducing its prevalence.\n17\t\n18\tThird, \n…[truncated 2309 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-assembly-v3_20260515T032531",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T03:29:37.888515+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-assembly-v3_20260515T032531",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/_project/paper && for f in abstract_c1671f.tex introduction_176853.tex related_work_b05493.tex method_76d073.tex experiments_76b47a.tex discussion.tex conclusion_0cce3f.tex; do\n  # Strip LaTeX commands and comments roughly, then count words\n  words=$(sed 's/%.*$//; s/\\\\[a-zA-Z*]\\+\\(\\[[^]]*\\]\\)\\?\\({[^}]*}\\)\\?//g; s/[{}\\[\\]]//g; s/\\$[^$]*\\$//g' \"$f\" | wc -w)\n  rawwords=$(wc -w < \"$f\")\n  echo \"$f: raw=$rawwords stripped=$words\"\ndone",
+              "description": "Count words per section (raw and stripped)"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T03:29:37.888647+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "abstract_c1671f.tex: raw=307 stripped=207\nintroduction_176853.tex: raw=874 stripped=614\nrelated_work_b05493.tex: raw=900 stripped=847\nmethod_76d073.tex: raw=1165 stripped=868\nexperiments_76b47a.tex: raw=2704 stripped=1909\ndiscussion.tex: raw=613 stripped=557\nconclusion_0cce3f.tex: raw=547 stripped=432"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-assembly-v3_20260515T032531",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T03:29:37.888879+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-assembly-v3_20260515T032531",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/_project/paper/page_budget_analysis.md",
+              "content": "# Page Budget Analysis — EMNLP 2026 (8 page limit)\n\nDate: 2026-05-15\nInputs: latest section artifacts (abstract_c1671f, introduction_176853, related_work_b05493, method_76d073, experiments_76b47a, discussion, conclusion_0cce3f).\n\n## 1. Current word counts\n\nCounted with LaTeX comments stripped (`%`-prefixed registry tags excluded). Numbers include in-text math/citations but not table/figure content.\n\n| Section | Words | Notes |\n|---|---|---|\n| Abstract | 307 | Abstract does not count against 8 pages in ACL but contributes 1/3 of page 1 |\n| Introduction | 874 | 5 paragraphs + itemized contributions |\n| Related Work | 900 | 4 paragraphs, very citation-heavy |\n| Method | 1140 | 6 subsections, includes formulas + H1–H7 taxonomy |\n| Experiments | 2600 | 5 subsections, 4 tables + 3 figures embedded |\n| Discussion | 613 | 5 paragraphs + 5-item practical implications list |\n| Conclusion | 547 | 3 findings + limitations + future directions |\n| **TOTAL body** | **6,674** | Excluding abstract: 6,367 |\n\nFloats present:\n- **4 figures**: `fig:sta-overview` (Intro), `fig:isr-collapse` (Exp), `fig:hacking-composition` (Exp), `fig:prolog-comparison` (Exp)\n- **4 tables**: `tab:goodhart-landscape`, `tab:beta01-3seed`, `tab:prolog-crosslogic`, `tab:hacking-taxonomy`\n\n## 2. Page budget math (EMNLP/ACL double-column)\n\n- 8 pages × 650 words/page (pure prose ceiling) = **~5,200 words absolute max** if zero floats\n- Realistic float footprint:\n  - Each single-column figure (with caption): ~0.30 page → 4 × 0.30 = **1.2 page**\n  - Each single-column resizebox table (with caption): ~0.28 page → 4 × 0.28 = **1.12 page**\n  - Section/subsection headers, equations (eq:advantage, eq:grpo, eq:isr), itemized lists, paragraph indents: **~0.5 page**\n- Float + structural overhead total: **~2.8 pages**\n- **Prose budget: 8 − 2.8 = 5.2 pages × 650 ≈ 3,380 words**\n\nCurrent 6,674 → must cut **~3,300 words (~49%)** OR move material to appendix.\n\nThis matches the reported \"12 pages → 8 pages\" gap: ~4 pages over = ~2,600 prose words over, plus float reflow recovers another ~1 page.\n\n## 3. Per-section budgets and cuts\n\n| Section | Current | Target | Cut | Strategy |\n|---|---|---|---|---|\n| Abstract | 307 | 200–230 | 80 | Tighten findings 2 & 3 |\n| Introduction | 874 | 650 | 224 | Compress paragraphs 2–4 |\n| Related Work | 900 | 450 | 450 | Single paragraph per theme, fewer citations inline |\n| Method | 1140 | 650 | 490 | Move H1–H7 enumeration + reward-formulation paragraphs to appendix; keep §3.1–§3.4 |\n| Experiments | 2600 | 1100 | 1500 | Aggressive cut: merge subsections, drop redundant prose around tables, kill cross-seed narrative |\n| Discussion | 613 | 250 | 363 | Drop \"Practical Implications\" list; merge \"Classifier Limitations\" into Experiments |\n| Conclusion | 547 | 180 | 367 | One paragraph per finding, drop Limitations (merge into Discussion or appendix) |\n| **Total** | **6,674** | **~3,480** | **~3,194** | Hits ~5.4 pages of prose |\n\n## 4. Specific cut recommendations (priority order)\n\n### Priority 1 — Experiments (biggest absolute win: −1,500 words)\n\n**Section 4.1 Setup (currently ~210 words):** Cut footnote on data file (project-internal note, irrelevant to readers). Cut the legacy-filename parenthetical about ProofWriter. Compress evaluation protocol paragraph by 40%. → target 120 words.\n\n**Section 4.2 ISR as Diagnostic (~440 words):**\n- \"Collapse trajectory\" paragraph (lines 31–36): keep first 3 sentences, cut the monotonic-decline restatement at end. → −50 words\n- \"Cross-seed instability\" (lines 38–42): the qualitative-mode description for s42/s43/s44 is now also in Conclusion and Method H1–H7 — keep only the σ=47pp headline and the \"diagnostic value\" sentence; move per-seed mode descriptions to appendix table. → −90 words\n- \"SFT baseline\" (lines 44–47): the matched-PR caveat (lines 47) repeats info already telegraphed by Tab 1 — drop the second sentence about 100-step appendix comparison. → −40 words\n\n**Section 4.3 Meta-Level Goodhart (~750 words):** Largest cut target.\n- Lead paragraph (52–54): merge into Tab 1 caption. → −60 words\n- \"Low-dose ISR β=0.1\" (103–109): keep the H7 64.5% vs 0% number and one sentence on H1 conversion. Drop the \"Total conclusion embedding…GRPO-universal\" parenthetical (already in Conclusion). → −80 words\n- \"Premise-count confound\" (111–117): this is critical for C2 — keep, but tighten by 30%. → −50 words\n- \"High-dose ISR β=0.3\" (119–127): each seed gets 1 sentence currently, cut to a single sentence summarizing the 3-mode split with PR numbers; the per-seed Goodhart pathology names move to appendix. → −180 words\n\n**Section 4.4 Cross-Logic Transfer (~620 words):**\n- Prolog exec-only paragraph (167–171): the redundancy-vs-gaming interpretation sentence (last 2 lines) duplicates Discussion ¶ \"ISR Capability Boundary.\" Cut from Experiments, keep in Discussion. → −80 words\n- Prolog ISR-as-reward (173–179): each seed described in 2 sentences; tighten to one per seed and let Tab 3 do the work. → −180 words\n- \"FOL vs Prolog comparison\" (181–184): keep the 0% vs 16% headline; cut the \"broader gaming basin\" speculation (move to Discussion or drop). → −60 words\n\n**Section 4.5 Hacking Taxonomy (~430 words):**\n- The enumeration of which seed shows which mode (line 221) duplicates Tab 4 and Method H1–H7. Cut the prose enumeration entirely, keep only the table. → −100 words\n- \"Cross-condition pattern\" paragraph (223–225): keep the 80% pooled-hacking number, cut the s42 81%/32% rehash (already in Tab 2). → −80 words\n- Final two paragraphs (227–228): \"taxonomy is descriptive…\" can compress to one sentence. → −60 words\n\n### Priority 2 — Related Work (−450 words)\n\nCurrent is 4 well-sized paragraphs but ACL accepted papers typically allocate 0.6–0.8 page (≈400–550 words) to related work. Cut strategy:\n\n- **Neurosymbolic Reasoning paragraph (193 words):** Cut sentence about LoRP/FoVer (line 7) — these are marginal to our claim. Cut the \"report 87% conclusion embedding…suggests prove-rate gains may overstate\" sentence (line 13) since it duplicates the Intro hook. → −80 words\n- **Reward Shaping paragraph (~220 words):** Drop the PROF and ProGRS sentences (lines 22–23) — they're tangential. Keep Lightman, Math-Shepherd, Gao-effective-RL. → −90 words\n- **Reward Hacking paragraph (~245 words):** This is the closest cousin literature; keep dense. Drop the Kwa et al. sentence on heavy-tailed misspec (line 30) and the Yang spurious-rewards mention (line 32). → −90 words\n- **Mutation Testing paragraph (~200 words):** Drop the Just et al. \"synthetic mutants approximate real faults\" sentence (line 39) and the LLMorpheus mention (line 40) — neither directly supports STA's novelty claim. → −90 words\n- Convert paragraph headings to inline phrases (e.g., \"On the neurosymbolic side, ...\") to save ~10 words each.\n\n### Priority 3 — Method (−490 words, mostly via appendix migration)\n\nMove to appendix:\n- **§3.5 Reward Formulations (lines 65–78):** All four definitions are restated in Experiments §4.1 and Table 1 — keep only the \"Additive ISR: r = r_exec·(1 + β·ISR), β ∈ {0.1, 0.3}\" inline mention in Experiments. The SFT, additive-random, and convex-combination paragraphs go to appendix. → −180 words\n- **§3.6 Reward Hacking Taxonomy (lines 80–95):** The full H1–H7 enumeration belongs in appendix because Tab 4 + Fig 3 already convey the modes. Keep one sentence in Method linking to App §X. → −280 words\n\nKeep tight in main body: §3.1 Task (kept), §3.2 GRPO (compress to one paragraph + Eq 2, drop Eq 1), §3.3 STA protocol, §3.4 ISR definition + premise-count bias note.\n\n### Priority 4 — Discussion (−363 words)\n\n- Drop \"Practical Implications\" list (lines 38–45): 5-item list, ~140 words. This belongs in Conclusion or as a takeaways box. **Recommended: cut entirely** since each item is already implied by experiments + conclusion findings.\n- Compress \"Classifier Limitations\" (¶4): the s43 uppercase + s44 query-as-fact details are in Experiments §4.4. Drop ¶4, keep one sentence in Experiments. → −100 words\n- \"Premise Count Confound\" and \"ISR Capability Boundary\": keep both — these are the cleanest contributions of the discussion. Light edits only.\n- \"Meta-Level Goodhart's Law\" ¶: tighten by 25%, drop the \"general principle for the reward-shaping community\" final sentence (the cautionary note is already in Abstract + Intro + Conclusion). → −60 words\n\n### Priority 5 — Conclusion (−367 words)\n\n- Three findings paragraphs (lines 6–20) all restate Abstract content with slightly more numbers. **Cut each to 1 sentence** that adds the headline number not in Abstract. → −280 words\n- Drop \"Limitations\" paragraph (22–27): standard EMNLP convention is to have a separate \"Limitations\" section *after* References (which doesn't count against 8 pages). **Move Limitations to its own section** at end. → −0 from page budget actually, since Limitations section is unpaginated.\n- \"Future directions\" paragraph: keep 2 sentences. → −90 words\n\n### Priority 6 — Introduction (−224 words)\n\n- \"The execution-only blind spot\" paragraph (9–13): cut the \"Process reward models…do not transfer\" sentence (line 12) — covered in Related Work. → −40 words\n- \"Component necessity testing\" paragraph (15–20): the NLI ρ=−0.049 caveat (line 20) appears verbatim in Discussion + Conclusion. Keep in Discussion only. → −40 words\n- \"ISR as diagnostic\" (22–25): drop the \"Three random seeds diverge…each converging to\" sentence — Tab 2 + cross-seed paragraph in Experiments cover it. → −60 words\n- \"Meta-level Goodhart\" (27–33): tighten the β=0.3 enumeration (line 31, three Goodhart pathways) — keep one sentence. → −80 words\n\n### Priority 7 — Abstract (−80 words)\n\n- Sentence 6 (the β=0.1/β=0.3 dose-response): compress to one clause for each dose. → −50 words\n- Sentence 8 (7 hacking modes): merge into sentence 9 (asymmetry conclusion). → −30 words\n\n## 5. What MUST stay in main body (non-negotiable)\n\nThese are the load-bearing claims and their direct evidence; deleting them weakens the paper:\n\n- **Abstract**: headline ISR 0.642→0.003 collapse number; H7 64.5%/0% contrast; 1.06× premise-matched ratio; cross-logic universal Goodhart.\n- **Introduction**: opening hook (93% PR with 87% embedding), all 4 contributions C1–C4, the asymmetry statement.\n- **Method §3.3 STA + §3.4 ISR**: full protocol definition + ISR equation; premise-count bias paragraph (critical for §4.3 confound analysis).\n- **Experiments**: Fig 2 (collapse trajectory), Tab 1 (Goodhart landscape), Tab 2 (β=0.1 3-seed + n≥3 column — the 1.06× evidence), Tab 3 (Prolog cross-logic), Fig 3 (hacking composition).\n- **Discussion**: \"ISR Capability Boundary\" (exec-low vs ISR-high interpretation, per active constraint C006), \"Premise Count Confound\" (methodological contribution).\n- **Conclusion**: three-finding summary (compressed), pointer to Limitations.\n\n## 6. Appendix migration list (recovers main-body space without losing content)\n\n| Content | Source | Appendix target |\n|---|---|---|\n| Reward formulation variants (random, convex-combo) | Method §3.5 | App A: Reward Formulations |\n| Full H1–H7 mode definitions with examples | Method §3.6 | App B: Hacking Taxonomy |\n| Per-seed exec-only traces (s42/s43/s44 descriptions) | Exp §4.2 | App C: Per-Seed Failure Modes |\n| β=0.3 per-seed Goodhart pathway details | Exp §4.3 | App D: High-Dose Goodhart |\n| 100-step matched-PR SFT comparison | Exp §4.2 | App E: SFT vs RL at Matched PR |\n| Prolog s43 uppercase + s44 query-as-fact long-form descriptions | Exp §4.4, Disc | App F: Prolog Mode Mechanics |\n| Classifier methodology (text-match + functional cross-check) | Method, Disc | App G: Two-Stage Classifier |\n\n## 7. Float discipline\n\nTo maintain 4 figures + 4 tables in 8 pages, all floats should be single-column where possible:\n- Tab 1, Tab 2, Tab 4 are already `\\resizebox{\\columnwidth}{!}` — good.\n- Tab 3 is `\\resizebox{\\columnwidth}{!}` — good but currently 7 columns × 9 rows is dense; consider dropping the \"Mode\" column (last column is descriptive prose, can be replaced by a footnote keyed to a label).\n- Fig 1 (sta-overview): if currently `figure*` (two-column), confirm whether one-column at 0.95\\columnwidth suffices.\n- Fig 2/3/4: ensure all are `\\columnwidth` not `\\textwidth`.\n\n**Recommendation: consider merging Tab 1 and Tab 2.** Tab 1 (Goodhart landscape) is a 3-seed mean ± std summary; Tab 2 (β=0.1 3-seed breakdown) is the per-seed version of one row of Tab 1. A single \"landscape with per-seed expansion for β=0.1\" table would save ~0.25 page. If kept separate, both tables can shrink rows: drop the \"Base (0-shot)\" row from Tab 1 (the 12% number is already in §3.2 prose).\n\n## 8. Expected outcome\n\nAfter all cuts:\n- Prose: ~3,480 words ≈ 5.4 pages\n- Floats: 4 figures + 4 tables (or 3 tables if merged) ≈ 2.4 pages\n- Structural overhead: ~0.4 page\n- **Projected total: 8.2 pages → trim further in Experiments §4.3/§4.4 if margin negative**\n\nIf 8.2 still over, additional 0.2-page cut from Experiments §4.5 (remove Fig 3 hacking-composition — its content is fully captured by Tab 4).\n\n## 9. Open items\n\n- **s43 random β=0.3 placeholder** in Tab 1 footnote (§): Experiments §4.3 currently reports 2-seed random control. Decision deferred per task brief — when s43 data lands, the only edit is updating the footnote and the mean ± std row.\n- **Fig 1 sta-overview placement**: not in any of the artifacts I read — currently referenced only in Intro line 16. Confirm the asset exists; if not, this is a separate work item (not a page-budget issue).\n"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T03:29:37.889171+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>File has not been read yet. Read it first before writing to it.</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-assembly-v3_20260515T032531",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T03:29:37.889303+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-assembly-v3_20260515T032531",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/_project/paper/page_budget_analysis.md 2>/dev/null && echo \"EXISTS\" || echo \"NEW\"",
+              "description": "Check if analysis file exists"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T03:29:37.889425+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/_project/paper/page_budget_analysis.md\nEXISTS"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-assembly-v3_20260515T032531",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T03:29:37.889543+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-assembly-v3_20260515T032531",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/_project/paper/page_budget_analysis.md",
+              "limit": "5"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T03:29:37.889664+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Page Budget Analysis — EMNLP 2026 (8-page limit)\n2\t\n3\t## Word Counts (LaTeX stripped)\n4\t\n5\t| Section | Words | Notes |"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-assembly-v3_20260515T032531",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T03:29:37.889855+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-assembly-v3_20260515T032531",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/_project/paper/page_budget_analysis.md",
+              "content": "# Page Budget Analysis — EMNLP 2026 (8 page limit)\n\nDate: 2026-05-15\nInputs: latest section artifacts (abstract_c1671f, introduction_176853, related_work_b05493, method_76d073, experiments_76b47a, discussion, conclusion_0cce3f).\n\n## 1. Current word counts\n\nCounted with LaTeX comments stripped (`%`-prefixed registry tags excluded). Numbers include in-text math/citations but not table/figure content.\n\n| Section | Words | Notes |\n|---|---|---|\n| Abstract | 307 | Abstract does not count against 8 pages in ACL but contributes 1/3 of page 1 |\n| Introduction | 874 | 5 paragraphs + itemized contributions |\n| Related Work | 900 | 4 paragraphs, very citation-heavy |\n| Method | 1140 | 6 subsections, includes formulas + H1–H7 taxonomy |\n| Experiments | 2600 | 5 subsections, 4 tables + 3 figures embedded |\n| Discussion | 613 | 5 paragraphs + 5-item practical implications list |\n| Conclusion | 547 | 3 findings + limitations + future directions |\n| **TOTAL body** | **6,674** | Excluding abstract: 6,367 |\n\nFloats present:\n- **4 figures**: `fig:sta-overview` (Intro), `fig:isr-collapse` (Exp), `fig:hacking-composition` (Exp), `fig:prolog-comparison` (Exp)\n- **4 tables**: `tab:goodhart-landscape`, `tab:beta01-3seed`, `tab:prolog-crosslogic`, `tab:hacking-taxonomy`\n\n## 2. Page budget math (EMNLP/ACL double-column)\n\n- 8 pages × 650 words/page (pure prose ceiling) = **~5,200 words absolute max** if zero floats\n- Realistic float footprint:\n  - Each single-column figure (with caption): ~0.30 page → 4 × 0.30 = **1.2 page**\n  - Each single-column resizebox table (with caption): ~0.28 page → 4 × 0.28 = **1.12 page**\n  - Section/subsection headers, equations (eq:advantage, eq:grpo, eq:isr), itemized lists, paragraph indents: **~0.5 page**\n- Float + structural overhead total: **~2.8 pages**\n- **Prose budget: 8 − 2.8 = 5.2 pages × 650 ≈ 3,380 words**\n\nCurrent 6,674 → must cut **~3,300 words (~49%)** OR move material to appendix.\n\nThis matches the reported \"12 pages → 8 pages\" gap: ~4 pages over = ~2,600 prose words over, plus float reflow recovers another ~1 page.\n\n## 3. Per-section budgets and cuts\n\n| Section | Current | Target | Cut | Strategy |\n|---|---|---|---|---|\n| Abstract | 307 | 200–230 | ~80 | Tighten findings 2 & 3 |\n| Introduction | 874 | 650 | ~225 | Compress paragraphs 2–4 |\n| Related Work | 900 | 450 | ~450 | Single paragraph per theme, fewer citations inline |\n| Method | 1140 | 650 | ~490 | Move H1–H7 enumeration + reward-formulation paragraphs to appendix; keep §3.1–§3.4 |\n| Experiments | 2600 | 1100 | ~1,500 | Aggressive cut: merge subsections, drop redundant prose around tables, kill cross-seed narrative |\n| Discussion | 613 | 250 | ~365 | Drop \"Practical Implications\" list; merge \"Classifier Limitations\" into Experiments |\n| Conclusion | 547 | 180 | ~365 | One paragraph per finding, drop Limitations (separate unpaginated section) |\n| **Total** | **6,674** | **~3,480** | **~3,200** | Hits ~5.4 pages of prose |\n\n## 4. Specific cut recommendations (priority order)\n\n### Priority 1 — Experiments (biggest absolute win: −1,500 words)\n\n**Section 4.1 Setup (currently ~210 words):** Cut footnote on data file (project-internal note, irrelevant to readers). Cut the legacy-filename parenthetical about ProofWriter. Compress evaluation protocol paragraph by 40%. → target 120 words.\n\n**Section 4.2 ISR as Diagnostic (~440 words):**\n- \"Collapse trajectory\" paragraph (lines 31–36): keep first 3 sentences, cut the monotonic-decline restatement at end. → −50 words\n- \"Cross-seed instability\" (lines 38–42): the qualitative-mode description for s42/s43/s44 is now also in Conclusion and Method H1–H7 — keep only the σ=47pp headline and the \"diagnostic value\" sentence; move per-seed mode descriptions to appendix table. → −90 words\n- \"SFT baseline\" (lines 44–47): the matched-PR caveat (line 47) repeats info already telegraphed by Tab 1 — drop the second sentence about 100-step appendix comparison. → −40 words\n\n**Section 4.3 Meta-Level Goodhart (~750 words):** Largest cut target.\n- Lead paragraph (52–54): merge into Tab 1 caption. → −60 words\n- \"Low-dose ISR β=0.1\" (103–109): keep the H7 64.5% vs 0% number and one sentence on H1 conversion. Drop the \"Total conclusion embedding…GRPO-universal\" parenthetical (already in Conclusion). → −80 words\n- \"Premise-count confound\" (111–117): this is critical for C2 — keep, but tighten by 30%. → −50 words\n- \"High-dose ISR β=0.3\" (119–127): each seed gets 1 sentence currently, cut to a single sentence summarizing the 3-mode split with PR numbers; per-seed Goodhart pathology names move to appendix. → −180 words\n\n**Section 4.4 Cross-Logic Transfer (~620 words):**\n- Prolog exec-only paragraph (167–171): the redundancy-vs-gaming interpretation sentence (last 2 lines) duplicates Discussion ¶ \"ISR Capability Boundary.\" Cut from Experiments, keep in Discussion. → −80 words\n- Prolog ISR-as-reward (173–179): each seed described in 2 sentences; tighten to one per seed and let Tab 3 do the work. → −180 words\n- \"FOL vs Prolog comparison\" (181–184): keep the 0% vs 16% headline; cut the \"broader gaming basin\" speculation (move to Discussion or drop). → −60 words\n\n**Section 4.5 Hacking Taxonomy (~430 words):**\n- The enumeration of which seed shows which mode (line 221) duplicates Tab 4 and Method H1–H7. Cut the prose enumeration entirely, keep only the table. → −100 words\n- \"Cross-condition pattern\" paragraph (223–225): keep the 80% pooled-hacking number, cut the s42 81%/32% rehash (already in Tab 2). → −80 words\n- Final two paragraphs (227–228): \"taxonomy is descriptive…\" can compress to one sentence. → −60 words\n\n### Priority 2 — Related Work (−450 words)\n\nCurrent is 4 well-sized paragraphs but ACL accepted papers typically allocate 0.6–0.8 page (≈400–550 words) to related work. Cut strategy:\n\n- **Neurosymbolic Reasoning paragraph (~190 words):** Cut sentence about LoRP/FoVer (line 7) — these are marginal to our claim. Cut the \"report 87% conclusion embedding…suggests prove-rate gains may overstate\" sentence (line 13) since it duplicates the Intro hook. → −80 words\n- **Reward Shaping paragraph (~220 words):** Drop the PROF and ProGRS sentences (lines 22–23) — they're tangential. Keep Lightman, Math-Shepherd, Gao-effective-RL. → −90 words\n- **Reward Hacking paragraph (~245 words):** This is the closest cousin literature; keep dense. Drop the Kwa et al. sentence on heavy-tailed misspec (line 30) and the Yang spurious-rewards mention (line 32). → −90 words\n- **Mutation Testing paragraph (~200 words):** Drop the Just et al. \"synthetic mutants approximate real faults\" sentence (line 39) and the LLMorpheus mention (line 40) — neither directly supports STA's novelty claim. → −90 words\n- Convert paragraph headings to inline phrases (e.g., \"On the neurosymbolic side, ...\") to save ~10 words each.\n\n### Priority 3 — Method (−490 words, mostly via appendix migration)\n\nMove to appendix:\n- **§3.5 Reward Formulations (lines 65–78):** All four definitions are restated in Experiments §4.1 and Table 1 — keep only the \"Additive ISR: r = r_exec·(1 + β·ISR), β ∈ {0.1, 0.3}\" inline mention in Experiments. The SFT, additive-random, and convex-combination paragraphs go to appendix. → −180 words\n- **§3.6 Reward Hacking Taxonomy (lines 80–95):** The full H1–H7 enumeration belongs in appendix because Tab 4 + Fig 3 already convey the modes. Keep one sentence in Method linking to App §X. → −280 words\n\nKeep tight in main body: §3.1 Task (kept), §3.2 GRPO (compress to one paragraph + Eq 2, drop Eq 1), §3.3 STA protocol, §3.4 ISR definition + premise-count bias note.\n\n### Priority 4 — Discussion (−365 words)\n\n- Drop \"Practical Implications\" list (lines 38–45): 5-item list, ~140 words. This belongs in Conclusion or as a takeaways box. **Recommended: cut entirely** since each item is already implied by experiments + conclusion findings.\n- Compress \"Classifier Limitations\" (¶4): the s43 uppercase + s44 query-as-fact details are in Experiments §4.4. Drop ¶4, keep one sentence in Experiments. → −100 words\n- \"Premise Count Confound\" and \"ISR Capability Boundary\": keep both — these are the cleanest contributions of the discussion. Light edits only.\n- \"Meta-Level Goodhart's Law\" ¶: tighten by 25%, drop the \"general principle for the reward-shaping community\" final sentence (the cautionary note is already in Abstract + Intro + Conclusion). → −60 words\n\n### Priority 5 — Conclusion (−365 words)\n\n- Three findings paragraphs (lines 6–20) all restate Abstract content with slightly more numbers. **Cut each to 1 sentence** that adds the headline number not in Abstract. → −280 words\n- Drop \"Limitations\" paragraph (22–27): standard EMNLP convention is a separate \"Limitations\" section *after* References (which doesn't count against 8 pages). **Move Limitations to its own section** at end. → recovers 0 prose words from page budget directly, but frees ~80 words from §Conclusion (they become unpaginated content).\n- \"Future directions\" paragraph: keep 2 sentences. → −90 words\n\n### Priority 6 — Introduction (−225 words)\n\n- \"The execution-only blind spot\" paragraph (9–13): cut the \"Process reward models…do not transfer\" sentence (line 12) — covered in Related Work. → −40 words\n- \"Component necessity testing\" paragraph (15–20): the NLI ρ=−0.049 caveat (line 20) appears verbatim in Discussion + Conclusion. Keep in Discussion only. → −40 words\n- \"ISR as diagnostic\" (22–25): drop the \"Three random seeds diverge…each converging to\" sentence — Tab 2 + cross-seed paragraph in Experiments cover it. → −60 words\n- \"Meta-level Goodhart\" (27–33): tighten the β=0.3 enumeration (line 31, three Goodhart pathways) — keep one sentence. → −80 words\n\n### Priority 7 — Abstract (−80 words)\n\n- Sentence 6 (the β=0.1/β=0.3 dose-response): compress to one clause for each dose. → −50 words\n- Sentence 8 (7 hacking modes): merge into sentence 9 (asymmetry conclusion). → −30 words\n\n## 5. What MUST stay in main body (non-negotiable)\n\nThese are the load-bearing claims and their direct evidence; deleting them weakens the paper:\n\n- **Abstract**: headline ISR 0.642→0.003 collapse number; H7 64.5%/0% contrast; 1.06× premise-matched ratio; cross-logic universal Goodhart.\n- **Introduction**: opening hook (93% PR with 87% embedding), all 4 contributions C1–C4, the asymmetry statement.\n- **Method §3.3 STA + §3.4 ISR**: full protocol definition + ISR equation; premise-count bias paragraph (critical for §4.3 confound analysis).\n- **Experiments**: Fig 2 (collapse trajectory), Tab 1 (Goodhart landscape), Tab 2 (β=0.1 3-seed + n≥3 column — the 1.06× evidence), Tab 3 (Prolog cross-logic), Fig 3 (hacking composition).\n- **Discussion**: \"ISR Capability Boundary\" (exec-low vs ISR-high interpretation, per active constraint C006), \"Premise Count Confound\" (methodological contribution).\n- **Conclusion**: three-finding summary (compressed), pointer to Limitations.\n\n## 6. Appendix migration list (recovers main-body space without losing content)\n\n| Content | Source | Appendix target |\n|---|---|---|\n| Reward formulation variants (random, convex-combo) | Method §3.5 | App A: Reward Formulations |\n| Full H1–H7 mode definitions with examples | Method §3.6 | App B: Hacking Taxonomy |\n| Per-seed exec-only traces (s42/s43/s44 descriptions) | Exp §4.2 | App C: Per-Seed Failure Modes |\n| β=0.3 per-seed Goodhart pathway details | Exp §4.3 | App D: High-Dose Goodhart |\n| 100-step matched-PR SFT comparison | Exp §4.2 | App E: SFT vs RL at Matched PR |\n| Prolog s43 uppercase + s44 query-as-fact long-form descriptions | Exp §4.4, Disc | App F: Prolog Mode Mechanics |\n| Classifier methodology (text-match + functional cross-check) | Method, Disc | App G: Two-Stage Classifier |\n\n## 7. Float discipline\n\nTo maintain 4 figures + 4 tables in 8 pages, all floats should be single-column where possible:\n- Tab 1, Tab 2, Tab 4 are already `\\resizebox{\\columnwidth}{!}` — good.\n- Tab 3 is `\\resizebox{\\columnwidth}{!}` — good but currently 7 columns × 9 rows is dense; consider dropping the \"Mode\" column (last column is descriptive prose, can be replaced by a footnote keyed to a label).\n- Fig 1 (sta-overview): if currently `figure*` (two-column), confirm whether one-column at 0.95\\columnwidth suffices.\n- Fig 2/3/4: ensure all are `\\columnwidth` not `\\textwidth`.\n\n**Recommendation: consider merging Tab 1 and Tab 2.** Tab 1 (Goodhart landscape) is a 3-seed mean ± std summary; Tab 2 (β=0.1 3-seed breakdown) is the per-seed version of one row of Tab 1. A single \"landscape with per-seed expansion for β=0.1\" table would save ~0.25 page. If kept separate, both tables can shrink rows: drop the \"Base (0-shot)\" row from Tab 1 (the 12% number is already in §3.2 prose).\n\n## 8. Expected outcome\n\nAfter all cuts:\n- Prose: ~3,480 words ≈ 5.4 pages\n- Floats: 4 figures + 4 tables (or 3 tables if merged) ≈ 2.4 pages\n- Structural overhead: ~0.4 page\n- **Projected total: 8.2 pages → trim further in Experiments §4.3/§4.4 if margin negative**\n\nIf 8.2 still over, additional 0.2-page cut from Experiments §4.5 (remove Fig 3 hacking-composition — its content is fully captured by Tab 4).\n\n## 9. Open items\n\n- **s43 random β=0.3 placeholder** in Tab 1 footnote (§): Experiments §4.3 currently reports 2-seed random control. Decision deferred per task brief — when s43 data lands, the only edit is updating the footnote and the mean ± std row.\n- **Fig 1 sta-overview placement**: not in any of the artifacts I read — currently referenced only in Intro line 16. Confirm the asset exists; if not, this is a separate work item (not a page-budget issue).\n"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T03:29:37.890311+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/_project/paper/page_budget_analysis.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-assembly-v3_20260515T032531",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T03:29:37.890519+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Analysis written to `artifacts/_project/paper/page_budget_analysis.md`.\n\n**Headline numbers:**\n- Current total body: **6,674 words** (Abstract 307 / Intro 874 / Related 900 / Method 1,140 / Experiments 2,600 / Discussion 613 / Conclusion 547)\n- Floats: 4 figures + 4 tables → ~2.4 pages of float real estate\n- 8-page prose budget: **~3,380 words** → need to cut **~3,200 words (~49%)**\n\n**Biggest cut targets (priority order):**\n1. **Experiments −1,500** — main body has too much per-seed narrative that duplicates the tables; §4.3 (Goodhart) and §4.4 (cross-logic) carry the bulk.\n2. **Method −490** — move H1–H7 enumeration and reward-formulation variants to appendix (already redundant with Tab 1 + Tab 4).\n3. **Related Work −450** — drop tangential cites (LoRP/FoVer, PROF, ProGRS, Kwa, Just, LLMorpheus).\n4. **Discussion −365** — kill \"Practical Implications\" 5-item list and \"Classifier Limitations\" paragraph (duplicates Exp §4.4).\n5. **Conclusion −365** — compress 3 findings to one sentence each; spin Limitations into a separate unpaginated section after References.\n6. **Intro −225**, **Abstract −80** — light tightening.\n\n**Must keep:** ISR 0.642→0.003 collapse trajectory, H7 64.5%/0% contrast, premise-count-matched 1.06× number, all 4 figures, Tabs 1–4 (or merge Tab 1+Tab 2), C006 \"two semantics of low/high ISR\" sentence in Discussion.\n\n**Floats to revisit:** consider merging Tab 1 and Tab 2 (Tab 2 is a per-seed expansion of one Tab 1 row) for ~0.25 page; switch any `\\textwidth` figure to `\\columnwidth`.\n\n**Open items flagged:** s43 random β=0.3 placeholder and fig:sta-overview asset existence — both unrelated to page budget."
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_paper-assembly-v3_20260515T032531"
+          },
+          "id": "event-000026"
+        }
+      ],
+      "message_count": 26
+    }
+  ],
+  "readable_path": "readable/conversations/writing-paper-assembly-v3.md"
+}

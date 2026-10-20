@@ -1,86 +1,98 @@
-# Paper Framing: Property-Guided Per-Sample Filtering (PGPF)
+# Paper Framing — solver-trace-ablation
 
-**Status**: Draft — Phase 0 complete, updating based on results
-**Target**: AAAI 2027 (abstract Jul 25, paper Aug 1)
+## Target Venue
+- **EMNLP 2026 Main** (NLP and Symbolic Reasoning track)
+- Deadline: ARR May 25, 2026
 
----
+## Core Claims (3 条 — Goodhart 主线诊断/分析论文)
 
-## 1. Core Insight
+| Claim | Status | 闭环标志 |
+|-------|--------|----------|
+| Claim 1: STA 诊断能力 | ✅ 已闭环 → 🔄 扩展中 (cross-scale) | 5-seed (s42-s46) + 1000-step trajectory + hacking taxonomy (9 modes). **Planned**: +8B 3-seed cross-scale (plan_021), +s45/s46 1000-step (plan_020) |
+| Claim 2: Goodhart inevitable + ISR double-edged | ✅ 已闭环 → 🔄 扩展中 | 5-seed ISR + 5-seed random β=0.1 + premise-count-matched + SFT baseline + 1.7B cross-scale + β=0.05 no-safe-dose. **Planned**: +3 ISR seeds (plan_022), +8B ISR stretch (plan_023) |
+| Claim 3: 跨逻辑泛化 | ✅ 已闭环 | exec-only 3-seed (D056) + STA 3-seed: 3/3 gaming — 三种不同 gaming 路径 (H7/degenerate-syntax/query-as-fact) |
 
-Kovac et al. (EMNLP 2025) showed that three per-sample properties — lexical conformity, semantic novelty, and quality — predict the magnitude of model collapse in recursive synthetic training via regression analysis, but left these as diagnostic indicators with no operational use. PGPF bridges this diagnostic-to-operational gap: it is the first method to convert these predictive properties into actionable per-sample filtering criteria, demonstrating that manipulating the factors that predict collapse can mitigate it — a qualitative shift from "X predicts Y" to "manipulating X mitigates Y."
+### Claim 1: ISR as Reward Hacking Diagnostic ✅
+STA derives ISR via LOO ablation on solver inputs. ISR detects reward hacking that prove_rate misses: exec-only GRPO achieves PR=93% but ISR collapses 0.6423 (100步) → 0.1324 (500步) → 0.0027 (1000步).
 
-Positioning: empirical contribution, not a methodological breakthrough.
+**Evidence (compact)**:
+- 5-seed exec-only (s42-s46): All show ≥90% structural degeneration (H1+H7+H8). s42: H1=87.1%; s43: PR=13% collapse; s44: H7=100%; s45: TS=93.9%, genuine=1.0%; s46: CE=89.2%, genuine=9.7%
+- 1000-step trajectory (s42): ISR collapses 99.6% (0.6423→0.0027), 94.8% proved samples ISR=0
+- Hacking taxonomy: 9 distinct modes (CE, TS, PG, H7a/b, H8, H9, degenerate-syntax, query-as-fact)
+- SFT baseline: PR=14%, 92.9% genuine — confirms hacking is RL-reward-specific
+- **Planned**: Qwen3-8B exec-only 3 seeds (plan_021) for cross-scale validation; s45/s46 1000-step extension (plan_020) for N=3 trajectory evidence
 
----
+### Claim 2: ISR as Reward — Inevitable Goodhart Collapse ✅
+ISR has inherent structural bias: P→P tautologies receive ISR≥0.5, creating a positive feedback loop. β controls timing not destiny.
 
-## 2. Core Claims
+**Key findings (5-seed primary)**:
+- ISR β=0.1: genuine 22.6% vs Random 7.7% (OR=3.48, p<10⁻⁸; CMH OR=3.37, p<10⁻⁹), BUT H7 54.3% vs 29.5% (OR=2.84, p<5×10⁻¹²) → double-edged sword
+- Genuine advantage is selection effect (proportion), not quality (premise-matched ISR 1.06×)
+- Transient: 1000步 genuine 17%→2%; s45 55%→0%
+- β=0.05: 2/2 seeds deterministic H7 (97-100%) — no safe dose
+- β=0.3: multi-modal instability (PR=66±42%, 3 different failure paths)
+- Non-monotonic dose-response: β=0.05 deterministic → β=0.1 bimodal → β=0.2 deterministic → β=0.3 multi-modal
+- H7b obfuscated tautology (ISR s44): meta-Goodhart triple gaming (execution + ISR + detector evasion)
+- 3-seed vs 5-seed: H7 OR collapsed 15.05→2.84; genuine reversed from n.s. to OR=3.48 (s45/s46 addition)
+- Stochastic bifurcation: 2/5 seeds collapse immediately, 3/5 sustain transient genuine window
+- **Planned**: +3 ISR β=0.1 seeds (plan_022) for N=8; +Qwen3-8B ISR stretch (plan_023)
 
-**C1.** PGPF filtering outperforms confidence-based filtering (Self-Verification, NeurIPS 2025) across recursive synthetic training generations.
-[Requires experiments: Phase 1 three-generation filtered comparison, extended 10-generation case study]
+### Claim 3: Cross-Logic Diagnostic Transfer ✅
+STA transfers across formal languages: Prolog→SWI-Prolog shows same degeneration.
 
-**C2.** Augmenting confidence-based filtering with lexical conformity (LC) and semantic novelty (SN) provides complementary filtering signals that confidence alone cannot capture. The property space is effectively 3-dimensional: Quality (base PPL) and Confidence (ft log-prob) are rank-redundant (Phase 0: Spearman ρ = -0.998), while LC and SN are orthogonal to both (all |r|, |ρ| < 0.35).
-[Supported by: Phase 0 correlation analysis ✓. Requires: Phase 1 PGPF-S vs Confidence-only comparison, Oracle single-scalar baseline]
+**Evidence**:
+- Prolog exec-only 3-seed: PR=53.3%±31.1%, ISR near-zero (2/3 seeds <0.04)
+- Prolog STA 3-seed: **3/3 seeds gaming, 0% genuine** — universal Goodhart
+  - s42: Clean H7 (100%), s43: Degenerate syntax (97.4% H1, functional H7), s44: Query-as-fact gaming (97.9% functional H7, Reviewer-corrected from initial "100% genuine")
+- Prolog gaming more extreme than FOL (0% vs ~6% genuine residual) — simpler semantics → more complete hacking
 
-**C3.** Optimal thresholds for each property evolve across generations, with property importance shifting as collapse progresses. *(Note: LC dynamic range was narrow in Phase 0 [0, 0.021]; C3's LC-specific sub-claims are conditional on Phase 1 confirming LC has meaningful filtering power.)*
-[Requires experiments: PGPF-L threshold trajectory analysis, counterfactual ablation (disable one property per generation)]
+### Cross-Scale Evidence: Qwen3-1.7B
+- Random β=0.1: PR=93%, H9=100% (contradiction explosion, ISR≈0)
+- ISR β=0.1: PR=100%, ISR=0.6 zero-variance, H1=100% (fixed template gaming)
+- ISR β=0.3: PR=17%, genuine=29.4% (learning suppression)
+- Capacity-dependent Goodhart basins: 4B→H7 (sophisticated tautology), 1.7B→H1 (simplest exploit)
+- Confirms: ISR gaming transfers across scales, only strategy differs
 
-**Wording constraints:**
-- Use "dominant factor" / "primary predictor" — never "causal bottleneck"
-- Use "generation-adaptive threshold optimization" — never "bilevel optimization"
+## ISR Capability Boundary
+ISR measures syntactic necessity, NOT semantic faithfulness. Spearman ρ(ISR, NLI accuracy) = -0.049 (p=0.187, n.s.). Treated as Limitation.
 
----
+## Story Spine
+- **Problem**: GRPO with exec-only rewards produces structurally degenerate outputs while achieving high prove rates. No diagnostic exists.
+- **Gap**: No work systematically studies reward hacking in formal reasoning GRPO or provides diagnostic tools.
+- **Contribution**: STA (LOO ablation → ISR) as diagnostic. Key findings: (1) ISR quantifies hacking invisible to PR; (2) ISR contains inherent Goodhart vulnerability (tautologies get ISR≥0.5); (3) double-edged at β=0.1 (more genuine AND more H7); (4) stochastic bifurcation; (5) 9-mode hacking taxonomy; (6) transfers across logic types (Prolog) and model scales (1.7B); (7) β=0.05 confirms no safe dose; (8) premise-count confound is methodological contribution.
+- **Headline**: ISR reliable as diagnostic, unreliable as optimization target at any dose. β controls when collapse occurs, not whether.
 
-## 3. Anticipated Reviewer Concerns + Mitigation
+## Venue Fit Risks
+- **EMNLP fit**: Diagnostic/analysis paper, empirical findings + mechanistic insight
+- **"Just negative results"**: ISR as diagnostic IS positive (C1); meta-Goodhart is novel mechanistic insight; 9-mode taxonomy is actionable
+- **"Old wine"**: ISR = LOO ablation. Novelty at application level + empirical findings
+- **"Single-logic"**: Prolog validates (3/3 gaming, 0% genuine)
+- **"Single-model" (MF-7)**: **Planned**: Qwen3-8B cross-scale (plan_021). Combined with 1.7B → 3 scale points (1.7B/4B/8B)
 
-| Concern | Response Strategy | Supporting Experiment |
-|---------|-------------------|----------------------|
-| "Straightforward application" — novelty too low | Threshold trajectory analysis reveals surprising non-monotonic dynamics; counterfactual ablation shows property importance shifts across generations — these findings are non-obvious from Kovac et al.'s static regression | Threshold trajectory analysis + counterfactual ablation |
-| "Properties may be highly correlated" — C2 may not hold | Phase 0 confirmed: Quality ≈ -Confidence (ρ=-0.998, mathematical inevitability of PPL vs log-prob). Honest disclosure + reframe to 3 effective dimensions. LC and SN genuinely orthogonal (|r|, |ρ| < 0.35) | Phase 0 ✓ |
-| "Missing random filtering baseline" | Already included — Random baseline matched on retention rate isolates filtering signal from data reduction | MVP baseline #2 |
-| "5 generations insufficient to claim collapse mitigation" | Extended 10-generation case study; quantify collapse magnitude at gen-5 to show effect size is already substantial | Extended experiments |
-| "Computational overhead — is multi-property filtering worth it?" | Report wall-clock time and FLOPs for all variants; PGPF-S (static) is the practical recommendation with negligible overhead; PGPF-L (learned) is positioned as an analysis tool | Wall-clock + FLOPs comparison |
-| "Metrics robustness — sensitive to k in top-k?" | k-sensitivity ablation with k ∈ {10, 25, 50, 100}; anchor semantic novelty computation to fixed gen-0 centroid to prevent drift | k-sensitivity ablation |
-| "Model scale too small to generalize" | Kovac et al. used the same scale for their diagnostic analysis; we provide fair same-scale validation of their findings in an operational setting. Scaling is future work, explicitly acknowledged | Cite Kovac et al. scale precedent |
-| "This is just hyperparameter search" | Generation-adaptive threshold optimization is framed as a practical engineering choice, not a novel optimization algorithm; the contribution is the filtering framework and empirical findings, not the search procedure | Framing only — no extra experiment needed |
+## Anticipated Reviewer Concerns
+1. **"ISR is just LOO ablation"** — Acknowledge. Contribution is application + Goodhart analysis + taxonomy.
+2. **"β=0.1 success is one seed"** — 5-seed: 3/5 sustain genuine window (transient). OR=3.48 but premise-matched 1.06×.
+3. **"Conclusion embedding invalidates"** — GRPO-universal (both conditions). Random H1 higher (58.5% vs 18.3%).
+4. **"Goodhart obvious"** — Conceptual yes; empirical characterization in formal GRPO is not. Meta-Goodhart novel.
+5. **"No positive result"** — ISR diagnostic IS positive. Negative on ISR-as-reward IS the contribution.
+6. **"ISR circular"** — Validated: ISR reward → ISR-specific gaming. Use for diagnosis only.
+7. **"Only one logic"** — Prolog: 3/3 gaming, 0% genuine (stronger than FOL).
+8. **"500 steps too short"** — 1000-step: ISR 0.123→0.003 (-97.8%).
+9. **"Seeds insufficient"** — 5-seed exec-only, stochastic bifurcation IS the finding.
+10. **"2.4x was wrong"** — Transparent correction. 5-seed OR=3.48 confirms genuine proportion advantage; quality same (1.06×).
+11. **"Premise count obvious"** — LOO metrics widely used without this correction. Documenting it is methodological.
+12. **"Can't act on this"** — 7 actionable insights. ISR + component count diagnostic deployable.
+13. **"Prolog s44 misclassified"** — Transparent correction; classifier blind spot is itself a finding.
+14. **"ISR has genuine benefit — why not use?"** — Transient (17%→2%). Same LOO bias rewards tautologies. No stable operating point.
+15. **"Only 2 seeds at β=0.05"** — 2/2 deterministic collapse already strong evidence.
+16. **"Only one model (Qwen3-4B)" (MF-7)** — **Planned**: 8B cross-scale (plan_021). Combined with 1.7B → 3 scale points. LLaMA-3.2-3B establishes lower capability bound (PR≈15%).
+17. **"N=3 seeds insufficient" (MF-1)** — Already N=5 exec-only (s42-s46, all ≥90% degeneration). Planned: s45/s46 to 1000 steps + 3 more ISR seeds for N=8.
 
----
+## Discussion Notes
+- **Hack mode switching**: GRPO degeneration mode is seed-determined. Single-seed results unreliable.
+- **H7 OR revision**: 3-seed OR=15.05 → 5-seed OR=2.84. ISR modestly increases H7; mode selection stochastic.
+- **Genuine OR reversal**: 3-seed n.s. → 5-seed OR=3.48. ISR double-edged. Quantity not quality, transient.
+- **Non-monotonic dose-response**: β=0.05 deterministic → β=0.1 bimodal → β=0.2 deterministic → β=0.3 multi-modal.
 
-## 4. Baselines
-
-### MVP Phase (5 baselines)
-
-| # | Baseline | Purpose |
-|---|----------|---------|
-| 1 | No Filter | Unmitigated collapse trajectory |
-| 2 | Random (same retention rate) | Controls for data reduction effect |
-| 3 | Confidence-only (Self-Verification, NeurIPS 2025) | Primary competing method — single-dimensional filtering |
-| 4 | PGPF-S (static thresholds) | Practical recommendation — fixed thresholds across generations |
-| 5 | Lexical-only | Ablation — strongest single property alone |
-
-### Research Phase (3 additional)
-
-| # | Baseline | Purpose |
-|---|----------|---------|
-| 6 | Oracle single-scalar | Kovac regression coefficients weight three properties into one scalar — tests C2 |
-| 7 | Facility Location subset selection | Representative coreset method — structural alternative to property filtering |
-| 8 | Kovac single-best-property | Best individual property from Kovac et al.'s regression — tests multi-property advantage |
-
----
-
-## 5. Paper Positioning
-
-**Contribution type:** Empirical method + analysis (not a pure method paper)
-
-**Dual positioning:**
-- **PGPF-S** = practical recommendation (static thresholds, negligible overhead, plug-and-play)
-- **PGPF-L** = analysis tool (generation-adaptive thresholds, produces threshold trajectory insights)
-
-### Differentiation
-
-| vs. | Key Distinction |
-|-----|-----------------|
-| Self-Verification (NeurIPS 2025) | Augmenting confidence with collapse-predictive properties (LC, SN) vs. confidence alone |
-| Shi et al. (NeurIPS 2025 Spotlight) | LLM text domain vs. vision/diffusion models |
-| LSF / Cai et al. (AAAI 2026) | Collapse-specific properties grounded in predictive analysis vs. generic latent-space filtering |
-| EUDS / QuaDMix / D3 | Recursive multi-generation evaluation vs. single-round data selection |
-| Kovac et al. (EMNLP 2025) | Operational filter that mitigates collapse vs. diagnostic regression analysis that predicts it |
+## Detailed Data Reference
+Full per-seed data tables, statistical tests, and internal tracking notes preserved in `paper_framing_full_backup.md`.

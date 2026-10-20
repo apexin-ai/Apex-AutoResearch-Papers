@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "42b3b596ff0d6e231b45",
+  "project": "solver-trace-ablation",
+  "kind": "conversation",
+  "title": "ops prep s43 eval pipeline",
+  "task_key": "worker_ops_prep-s43-eval-pipeline_20260515T033726",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_ops_prep-s43-eval-pipeline_20260515T033726.jsonl",
+    "occurrence": 1,
+    "bytes": 177,
+    "sha256": "4f062c1d13fcd2e10c8a717bcae381647c529f0f1d8646b4285e19d48ff96002"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T03:37:34.402331+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 4:10am (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_prep-s43-eval-pipeline_20260515T033726"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/ops-prep-s43-eval-pipeline.md"
+}

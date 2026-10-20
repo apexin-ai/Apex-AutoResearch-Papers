@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ba5d6dd7d2cb5d78528d",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops verify plan002 code integrity",
+  "task_key": "worker_ops_verify-plan002-code-integrity_20260514T021308",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-plan002-code-integrity_20260514T021308_result.json",
+    "occurrence": 1,
+    "bytes": 1816,
+    "sha256": "3a61245fc1f6919b436d0c0dee78978ae59455270e47c4a3a8dbf9743cd00bc7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证完成。汇报结果：\n\n## 验证结果\n\n### 1. `scripts/train_grpo.py` — 全部通过\n\n| 检查项 | 状态 |\n|--------|------|\n| `make_reward_fn` 含 `beta: float = 0.3` | ✅ (L148) |\n| `additive_bonus` 分支: `r = r_exec * (1 + beta * ISR)` | ✅ (L187-195) |\n| `--reward_mode` choices 含 `additive_bonus` | ✅ (L301-302) |\n| `--beta` CLI 参数，默认 0.3 | ✅ (L312) |\n| `beta` 传入 `make_reward_fn` | ✅ (L384: `getattr(args, \"beta\", 0.3)`) |\n| `save_total_limit=1` | ✅ 硬编码在 GRPOConfig |\n| `log_completions=False` | ✅ 硬编码在 GRPOConfig |\n| 语法检查 | ✅ `ast.parse` 通过 |\n| 无重复代码块 | ✅ |\n\n### 2. `configs/grpo_additive_bonus.yaml` — 全部通过\n\n| 检查项 | 状态 |\n|--------|------|\n| `reward_mode: additive_bonus` | ✅ |\n| `beta: 0.3` | ✅ |\n| `data_path: data/train_500_seed42.jsonl` (C001) | ✅ |\n| `output_dir: /root/autodl-tmp/outputs/plan002_additive_beta03_s42` | ✅ |\n| `save_total_limit` / `log_completions` | ✅ yaml 无需设置，脚本硬编码为 1 / False |\n\n### 3. `configs/grpo_exec_only.yaml` — save_total_limit 无需修正\n\n`save_total_limit` 不在 yaml 中，脚本硬编码为 `1`，yaml 值无法覆盖（不是 argparse 参数，GRPOConfig 直接写死）。无需修改。\n\n⚠️ 附带发现：该文件 `data_path: data/proofwriter_fol_500.jsonl` 违反 C001，但这不是 plan002 范围。\n\n### 4. Dry-run — 通过\n\n`--help` 确认 `--reward_mode` 含 4 个选项（含 `additive_bonus`），`--beta` 参数存在。`ast.parse` 语法检查通过。\n\n### 5. 磁盘空间\n\n`/root/autodl-tmp/`: 250G 总量，已用 153G，剩余 **98G (62%)**，充足。\n\n**结论：plan002 additive bonus 代码完整、无冲突，可以提交训练。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-plan002-code-integrity.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "349f5ab102ecf8bf1091",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code plan009 sft setup",
+  "task_key": "worker_code_plan009-sft-setup_20260514T105605",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan009-sft-setup_20260514T105605_result.json",
+    "occurrence": 1,
+    "bytes": 1547,
+    "sha256": "495cf4db3bc31ae8b7548d039e9b0ba1cb2fd6851ba78c5688fe982073cad8bb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "模型验证通过。现在整理结果。\n\n---\n\n## 报告\n\n### 1. 模型下载路径\n`/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B-Instruct`\n\n（注意：这是 ModelScope 创建的符号链接，指向 `._____temp` 下的实际文件）\n\n### 2. 模型大小\n- 文件大小：**2.9GB**（model.safetensors = 2.88GB）\n- 参数量：**~1.5B**\n- vocab_size：151643\n\n### 3. train_sft.py 修复确认\n第 165 行：`save_total_limit=3` → `save_total_limit=1` ✓（符合 C003 约束）\n\n### 4. train_sft.py 命令行参数\n\n| 参数 | 类型 | 默认值 | 说明 |\n|------|------|--------|------|\n| `--model_path` | str | **必填** | 基座模型路径 |\n| `--data_path` | str | **必填** | FOLIO JSONL 训练数据 |\n| `--output_dir` | str | **必填** | Checkpoint 输出目录 |\n| `--max_steps` | int | 200 | 训练步数 |\n| `--num_train_epochs` | int | None | 设置后覆盖 max_steps |\n| `--per_device_batch_size` | int | 4 | 每卡 batch size |\n| `--gradient_accumulation_steps` | int | 2 | 梯度累积步数 |\n| `--learning_rate` | float | 2e-5 | 学习率 |\n| `--max_seq_length` | int | 1024 | 最大序列长度 |\n| `--seed` | int | 42 | 随机种子 |\n| `--warmup_ratio` | float | 0.1 | warmup 比例 |\n| `--logging_steps` | int | 10 | 日志间隔 |\n| `--save_steps` | int | 50 | 保存间隔 |\n| `--wandb_project` | str | None | W&B 项目名 |\n| `--wandb_run` | str | None | W&B run 名 |\n| `--no_wandb` | flag | False | 禁用 W&B |\n| `--bf16` | flag | True | BF16 训练 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan009-sft-setup.md"
+}

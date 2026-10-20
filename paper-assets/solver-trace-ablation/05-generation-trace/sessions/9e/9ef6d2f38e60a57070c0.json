@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9ef6d2f38e60a57070c0",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "diagnose w2 qwen3 1 7b exec done",
+  "task_key": "worker_diagnose_w2-qwen3-1_7b-exec-done_20260516T120855",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_w2-qwen3-1_7b-exec-done_20260516T120855_result.json",
+    "occurrence": 1,
+    "bytes": 266,
+    "sha256": "bbdf22d744fa0f3a0f0b4fb79f205f7ad7e5ae10243b84c365e6d44e1558706d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已成功完成（500/500 步，59 分钟）。Final stats: prove_rate=28.7%, mean_isr=0.093。\n\nEval 正在后台运行 (PID 852037)，预计 ~13 分钟后完成。届时继续执行 classify_h7、H9 检查、registry 更新和 cron 删除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-w2-qwen3-1-7b-exec-done.md"
+}

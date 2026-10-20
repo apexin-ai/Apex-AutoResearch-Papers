@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d603f59bcf65a24796e7",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "fix plan006 config num steps",
+  "task_key": "worker_fix_plan006-config-num-steps_20260514T090925",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_plan006-config-num-steps_20260514T090925_result.json",
+    "occurrence": 1,
+    "bytes": 474,
+    "sha256": "b695686ddd111f594ed187fe884d9879f3520b5f1c929bedf9e8f675a8b43062"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部修改完成，3 个 Prolog config 文件的 `num_steps` 已从 100 改为 500：\n\n| 文件 | 行号 | 修改 |\n|------|------|------|\n| `grpo_prolog_exec_only.yaml` | L6 | 100 → 500 |\n| `grpo_prolog_exec_sta.yaml` | L6 | 100 → 500 |\n| `grpo_prolog_exec_only_k16_warmup.yaml` | L6 | 100 → 500 |\n\n没有 `max_steps` / `num_training_steps` 等其他字段名。运行中的 FOL 实验（cuda:0 PID 466128, cuda:1 PID 466540）不受影响。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-plan006-config-num-steps.md"
+}

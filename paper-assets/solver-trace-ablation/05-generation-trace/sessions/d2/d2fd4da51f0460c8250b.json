@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d2fd4da51f0460c8250b",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "prep plan006 prolog readiness",
+  "task_key": "worker_prep_plan006-prolog-readiness_20260514T094538",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_plan006-prolog-readiness_20260514T094538_result.json",
+    "occurrence": 1,
+    "bytes": 2145,
+    "sha256": "0142855c0bdd6afd67b850cfb257222c0e09ce1ca4404fe3cf034114b8903bfc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## plan006 Prolog 实验就绪状态\n\n### ⚠️ 部分就绪\n\n### ✅ 已就绪\n\n| 检查项 | 状态 |\n|--------|------|\n| swipl (SWI-Prolog) | ✅ `/usr/bin/swipl` |\n| PrologSolver (`src/solvers/prolog.py`) | ✅ factory 已注册 |\n| Prolog STA reward (`src/sta/prolog_reward.py`) | ✅ `prolog_sta_reward` + `fast_prolog_sta_reward` |\n| `train_grpo.py` Prolog 支持 | ✅ `logic_type=prolog` → Prolog prompts + dataset builder + reward dispatch |\n| `eval_sta.py` Prolog 支持 | ✅ `--logic_type prolog` |\n| 训练数据 | ✅ `data/train_500_seed42.jsonl`（500条，用 context+question 构造 Prolog prompt，符合 C001） |\n| exec-only 配置 | ✅ `grpo_prolog_exec_only.yaml` 正确 |\n| 磁盘空间 | ✅ 82GB 可用 |\n\n### ❌ 需修复\n\n**`grpo_prolog_exec_sta.yaml` 配置不匹配任务要求**：\n\n| | 当前配置 | 任务要求 |\n|--|---------|---------|\n| reward_mode | `execution_sta`（线性组合） | `additive_bonus`（乘法 bonus） |\n| 公式 | `0.5 * exec + 0.5 * ISR` | `exec * (1 + 0.1 * ISR)` |\n| beta | 未设置 | `0.1` |\n\n需要将 `grpo_prolog_exec_sta.yaml` 修改为：\n```yaml\nreward_mode: additive_bonus\nbeta: 0.1\n```\n并删除 `exec_weight` / `sta_weight`（additive_bonus 模式不使用这两个参数）。\n\n### 训练命令（修正配置后）\n\n**plan006-prolog-exec-s42**（可直接提交）：\n```bash\nexport CUDA_VISIBLE_DEVICES=N\ncd /root/solver-trace-ablation\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\nnohup python scripts/train_grpo.py --config configs/grpo_prolog_exec_only.yaml > /root/autodl-tmp/outputs/grpo_prolog_exec_only/train.log 2>&1 &\n```\n\n**plan006-prolog-sta-s42**（需先修正配置）：\n```bash\nexport CUDA_VISIBLE_DEVICES=M\ncd /root/solver-trace-ablation\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\nnohup python scripts/train_grpo.py --config configs/grpo_prolog_exec_sta.yaml > /root/autodl-tmp/outputs/grpo_prolog_exec_sta/train.log 2>&1 &\n```\n\n（N/M 替换为实际空闲 GPU 编号，提交前 `nvidia-smi` 确认占用，遵守 C002/C005）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-plan006-prolog-readiness-copy-2.md"
+}

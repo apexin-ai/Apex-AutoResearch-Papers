@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f36546a4e0b2b1979f51",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "fix rerun sweep with fix",
+  "task_key": "worker_fix_rerun-sweep-with-fix_20260516T030624",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_rerun-sweep-with-fix_20260516T030624_result.json",
+    "occurrence": 1,
+    "bytes": 615,
+    "sha256": "29ea34309990c3ad6caafa463163a1a45a5f45a418ca1c2396ac13013faad804"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验均正常启动，正在加载 Qwen3-4B 模型。\n\n**汇报：**\n\n| 步骤 | 结果 |\n|------|------|\n| 杀进程 | PID 589918/589836 已死；额外杀掉 GPU 1 上的 eval_sta.py (PID 595725) |\n| 代码修改 | 服务器上 train_grpo.py **已经是修复后状态**（所有 argparse default=None + fallback defaults 已存在），无需再改 |\n| 清理旧输出 | `sweep_isr_b01_s45/` 和 `sweep_isr_b005_s42/` 已删除 |\n| 提交实验 | `sweep-isr-b01-s45` → GPU 0 (PID 596542)，`sweep-isr-b005-s42` → GPU 1 (PID 596620)，config 中 num_steps=500 将正确生效 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-rerun-sweep-with-fix.md"
+}

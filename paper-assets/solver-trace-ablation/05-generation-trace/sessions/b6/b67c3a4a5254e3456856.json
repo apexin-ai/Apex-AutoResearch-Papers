@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "b67c3a4a5254e3456856",
+  "project": "solver-trace-ablation",
+  "kind": "worker",
+  "title": "eval gated isr warmstart t015 s43",
+  "task_key": "worker_eval_gated-isr-warmstart-t015-s43_20260516T184743",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_gated-isr-warmstart-t015-s43_20260516T184743.log",
+    "occurrence": 1,
+    "bytes": 747069,
+    "sha256": "7c94c1d38c267f7c3fd265f51298c396d0b1ded9f653510ffc79b8e41b6addeb"
+  },
+  "statistics": {
+    "messages": 625,
+    "user_turns": 0,
+    "tool_calls": 278,
+    "roles": {
+      "log": 1,
+      "system": 6,
+      "record": 1,
+      "assistant": 60,
+      "tool_call": 278,
+      "tool_result": 278,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 625,
+      "chunks": [
+        {
+          "path": "b67c3a4a5254e3456856-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "b67c3a4a5254e3456856-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "b67c3a4a5254e3456856-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "b67c3a4a5254e3456856-part-0004.json",
+          "message_count": 85
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-gated-isr-warmstart-t015-s43.md"
+}

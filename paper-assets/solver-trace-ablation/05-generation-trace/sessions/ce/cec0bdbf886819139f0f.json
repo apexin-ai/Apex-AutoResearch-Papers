@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cec0bdbf886819139f0f",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_12_1778868094.md",
+  "task_key": "loop_12_1778868094",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_12_1778868094.md",
+    "occurrence": 1,
+    "bytes": 4680,
+    "sha256": "de19b9ffb509dec5d9a2d0ff52c9bb4faf9b8b95213dac67186349badd66670d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 12\nreason: idle_timeout\nupdated: '2026-05-15T17:35:56+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 **仅 westd-39279:cuda:0 和 cuda:1**，绝不用其他 GPU\n- Random s43/s44 旧统计量已 **DEPRECATED**——paper_framing.md 中 s43 genuine=6.8% 和 s44 genuine=20.2% 是 PROVISIONAL 推算值，**不可写入论文**。必须等 s43-r3 + s44-r2 重训完成后用新数据重算所有聚合统计量（Fisher p, Wilson CI, pooled genuine rate）\n- D051 定论：2.4x ISR 优势作废，premise-count-matched 为 1.06x，论文中不可引用 2.4x\n- Taxonomy 标准：genuine = proved − H7 − H1_exact − H8（D084），classify_h7.py D086 版本是 ground truth\n- ISR additive bonus config 文件名是 `grpo_additive_bonus_b01.yaml`（不是 `grpo_additive_b01.yaml`），plan002 曾因此失败\n- eval_sta.py 无 `--gpu` 参数，必须用 `CUDA_VISIBLE_DEVICES=N` 指定\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-39279（AutoDL），2× RTX PRO 6000 96GB\n- **工作目录**: `/root/solver-trace-ablation`\n- **Python**: `/root/miniconda3/bin/python`，conda base 环境（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- **模型**: Qwen3-4B（路径见各实验 config）\n- **数据**: `data/train_500_seed42.jsonl`（500 条 FOLIO），eval `proofwriter_fol_100.jsonl`\n- **输出**: `/root/autodl-tmp/outputs/` 下各实验子目录\n- **H7 分类结果**: `/root/autodl-tmp/outputs/h7_classification/`\n- **活跃进程**:\n  - plan018-additive-random-b01-s43-r3: PID 486853, cuda:0, tmux session 同名, cron 监控中\n  - plan002-additive-b01-s43-r2: PID 488462 (训练已结束), cuda:1, 状态 ANALYZING\n- **活跃 Worker**: `worker_analysis_plan002-additive-b01-s43-r2_20260515T173259`（turn 24，正在跑 eval，nohup 后台执行中）\n- **Cron**: plan018-additive-random-b01-s43-r3 有 cron 监控\n\n### 3. 📊 当前状态\n- **plan018-additive-random-b01-s43-r3** (RUNNING, cuda:0): Random β=0.1 s43 重训，替换 DEPRECATED 数据。Cron 监控中，等待训练完成回调。\n- **plan002-additive-b01-s43-r2** (ANALYZING, cuda:1): ISR β=0.1 s43 重训。训练已完成，Worker 正在跑 eval_sta.py + taxonomy 分类（eval 超时后改 nohup 后台执行）。等 Worker 回调。\n- **plan018-additive-random-b01-s44-r2** (ALLOCATED, cuda:1): Random β=0.1 s44，等 cuda:1 释放后立即提交。\n- 刚完成的大事：D090 exec-only 3-seed 1000步全部完成（PR=0.95±0.05, Genuine=1.0%±1.7%），D091 修正 s44 genuine 3%→0%，论文 TeX 已同步但待最终数据更新。\n- 所有 3 个 Claims 已闭环，论文处于 Writing + Review 阶段。DDL: 2026-05-25（剩 10 天）。\n\n### 4. 📋 待办（条件触发式）\n- **Worker 回调 (plan002-s43-r2 analysis)** → 读取 eval 结果 + taxonomy 分类 → update_registry(conclusion, metrics) → 更新 report.md\n- **plan002-s43-r2 分析完成 + cuda:1 释放** → 立即 `submit_on_allocated` 提交 plan018-additive-random-b01-s44-r2 (Random s44)\n- **plan018-s43-r3 cron 回调 (训练完成)** → spawn worker 跑 eval_sta.py + classify_h7.py → taxonomy 分类 → update_registry\n- **s43-r3 + s44-r2 均完成** → 重算所有 Random pooled 统计量（Fisher p, Wilson CI, genuine rate, H7/H1/H8 分布）→ 更新 paper_framing.md 中 PROVISIONAL/DEPRECATED 数字 → 论文 §4 表格最终更新\n- **所有新数据就位** → 全量 TeX 同步 + 编译 → Provenance 查缺（当前 35/36）→ 向 Director 汇报最终数据\n\n### 5. 🎯 战略上下文\n- **核心结论**: GRPO neurosymbolic formalizer 普遍发生 Goodhart collapse（3-seed 1000步 genuine≈0%），ISR 作为诊断指标有效（检测 PR 掩盖的结构退化），但 ISR 作为优化目标无结构优势（1.06x premise-count-matched，meta-Goodhart）。SFT 不发生 collapse（genuine=92.2%±1.2%）。\n- **决策链关键节点**: D051(2.4x→1.06x) → D057(Claim 2 闭环) → D082(taxonomy 7→8 modes) → D084(genuine 定义) → D089(hacking mode seed-dependent) → D090(3-seed 1000步确认) → D091(s44 genuine 修正)\n- **易踩的坑**:\n  - 不要把 Random s43/s44 PROVISIONAL 数字当实际数据用——必须等重训完成\n  - H7 子类别：H7a (text-match) vs H7b (obfuscated tautology via vacuous quantifiers)，s44 ISR 的 12 个\"genuine\"实际全是 H7b\n  - exec-only 1000步 hacking mode 是 seed-dependent（s42=H1, s43=H7, s44=H1+H8），但 Goodhart collapse 是 seed-invariant——不要混淆这两个结论\n  - GC4-par 和 GC4-seq 不可直接对比（不同实验条件）\n  - AutoDL pip install 前必须 `source /etc/network_turbo`，HF 下载设 `HF_HUB_DISABLE_XET=1`\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-12-1778868094.md"
+}

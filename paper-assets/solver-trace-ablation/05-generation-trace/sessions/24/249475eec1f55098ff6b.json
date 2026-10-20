@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0",
+  "id": "249475eec1f55098ff6b",
+  "project": "solver-trace-ablation",
+  "kind": "worker",
+  "title": "paper page compression v2 20260514T200748 retry2",
+  "task_key": "worker_paper_page-compression-v2_20260514T200748_retry2",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_page-compression-v2_20260514T200748_retry2.log",
+    "occurrence": 1,
+    "bytes": 906680,
+    "sha256": "1954723a3acb44b143988d739b1f9daf817373db0662e9bd07696d218364291d"
+  },
+  "statistics": {
+    "messages": 211,
+    "user_turns": 0,
+    "tool_calls": 78,
+    "roles": {
+      "system": 5,
+      "record": 3,
+      "assistant": 47,
+      "tool_call": 78,
+      "tool_result": 78
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 211,
+      "chunks": [
+        {
+          "path": "249475eec1f55098ff6b-part-0001.json",
+          "message_count": 129
+        },
+        {
+          "path": "249475eec1f55098ff6b-part-0002.json",
+          "message_count": 82
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-page-compression-v2-20260514t200748-retry2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4b02d9afa2f3fabc9ade",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "paper arr compliance",
+  "task_key": "worker_paper_arr-compliance_20260515T225734",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_arr-compliance_20260515T225734_result.json",
+    "occurrence": 1,
+    "bytes": 488,
+    "sha256": "14a243fce84cdb2bedd6f0f3e0ce5f97b80853b4ec3e61c33594b32d18b953b6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Overall: PASS** — 论文满足 ARR 提交要求。\n\n关键结果：\n- 匿名化完整：作者字段、代码 URL 均已匿名，无身份泄露\n- 格式正确：`acl.sty [review]`、11pt、主体 8 页\n- 引用完整：零 undefined citation/label 警告\n- Limitations 存在（Section 6）\n- Appendix 位于 references 之后，结构正确\n\n唯一提醒：提交时需在 OpenReview 表单填写 **Responsible NLP Research checklist**（非 PDF 内容）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-arr-compliance.md"
+}

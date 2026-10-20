@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "145f810ff4e1be627b61",
+  "project": "solver-trace-ablation",
+  "kind": "worker",
+  "title": "analysis sweep isr b005 s42",
+  "task_key": "worker_analysis_sweep-isr-b005-s42_20260516T025842",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_sweep-isr-b005-s42_20260516T025842.log",
+    "occurrence": 1,
+    "bytes": 722000,
+    "sha256": "da649deb201dc0fb48585d86bfb2ca74c26f29b82beb045a72b51dc0be3e38a1"
+  },
+  "statistics": {
+    "messages": 389,
+    "user_turns": 0,
+    "tool_calls": 156,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 3,
+      "assistant": 71,
+      "tool_call": 156,
+      "tool_result": 156,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 389,
+      "chunks": [
+        {
+          "path": "145f810ff4e1be627b61-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "145f810ff4e1be627b61-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "145f810ff4e1be627b61-part-0003.json",
+          "message_count": 29
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-sweep-isr-b005-s42.md"
+}

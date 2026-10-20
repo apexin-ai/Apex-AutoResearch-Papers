@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "48e8aacca51730a7f034",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "diag wave1 progress check",
+  "task_key": "worker_diag_wave1-progress-check_20260517T080506",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_wave1-progress-check_20260517T080506_result.json",
+    "occurrence": 1,
+    "bytes": 525,
+    "sha256": "ba9e7d3f42924894d761589acd3f1074ed514e255d5736a35b1c52ac5b8602bb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "| 实验 | 进度 | 状态 |\n|------|------|------|\n| **plan018-additive-random-b01-s45** | 435/500 (87%) | 训练中，prove_rate 波动 0.5-1.0 |\n| **sweep-random-b005-s42** | 499/500 (99.8%) | 即将完成，还差 1 step |\n\n**GPU 状态：**\n- GPU 0: 90% util, 85493 MiB\n- GPU 1: 90% util, 84583 MiB\n\n两卡都在满负荷运行。sweep-random-b005-s42 马上结束（step 499/500），plan018-additive-random-b01-s45 预计还需约 13 分钟完成（按每 step ~20s 估算，剩余 65 步）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-wave1-progress-check.md"
+}

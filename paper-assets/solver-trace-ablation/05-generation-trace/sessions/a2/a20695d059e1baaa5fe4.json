@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a20695d059e1baaa5fe4",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "recovery dual gpu crash",
+  "task_key": "worker_recovery_dual-gpu-crash_20260516T055312",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_recovery_dual-gpu-crash_20260516T055312_result.json",
+    "occurrence": 1,
+    "bytes": 946,
+    "sha256": "4e33d94062da4a17f165d3a736afdd64cf7c36b521757b5a00fc9b9276223a28"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**严重阻碍：**\n1. **磁盘 100% 满** — 无法运行 eval 或训练\n2. **plan018_random_b01_s45 没有 checkpoint**（只有 README + reward_log）— 无法 resume，必须重训\n3. **sweep_isr_b02_s44/checkpoint-400 不完整**（2/4 shards）— 必须用 checkpoint-350\n\n需要清理磁盘才能继续。安全可删目录（均为 DONE/success，有完整 metrics，无 needs-re-eval 标记）：\n\n| 目录 | 大小 | 实验 |\n|------|------|------|\n| sweep_isr_b02_s44/checkpoint-400 | 8.8G | 不完整，无用 |\n| sweep_isr_b02_s43 | 31G | 已完成，metrics 已记录 |\n| sweep_isr_b02_s42_v2 | 31G | 已完成，metrics 已记录 |\n| sweep_isr_b005_s42 | 31G | 已完成，metrics 已记录 |\n\n删这 4 个可释放 ~100G，足够 eval + 重训。\n\n是否执行清理？另外确认：plan018-random-b01-s45-r2 既然没有 checkpoint，要从 base model 全量重训 500 步（不是 resume）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/recovery-dual-gpu-crash.md"
+}

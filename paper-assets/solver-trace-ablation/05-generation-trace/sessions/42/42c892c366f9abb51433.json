@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "42c892c366f9abb51433",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code paper tex h7 remaining fix",
+  "task_key": "worker_code_paper-tex-h7-remaining-fix_20260515T160120",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_paper-tex-h7-remaining-fix_20260515T160120_result.json",
+    "occurrence": 1,
+    "bytes": 1126,
+    "sha256": "e1a2a05e95e605c882fcc208b9d3b086b5129e52d6315b804852bef167379ff3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两处修改完成。精确 diff：\n\n**1. experiments.tex L157**\n- old: `\\textbf{H7} (conclusion duplication) is ISR-specific at $69.7\\%$ combined vs.\\ $0\\%$ in random controls;`\n- new: `\\textbf{H7} (conclusion duplication) is ISR-accelerated at 500 steps ($69.7\\%$ combined vs.\\ $0\\%$ under random), though random $\\beta{=}0.1$ converges to $100\\%$ H7 by 1000 steps;`\n\n**2. conclusion.tex L16–17**\n- old: `random $\\beta{=}0.1$ produces $0\\%$ H7 ($0/256$)` → new: `at 500 steps, random $\\beta{=}0.1$ produces $0\\%$ H7 ($0/256$)` ... `by 1000 steps, however, random $\\beta{=}0.1$ converges to $100\\%$ H7 ($97/97$).`\n- old: `The gradient suggests H7 is primarily ISR-induced but not ISR-exclusive: high-variance reward bonuses at $\\beta{=}0.3$ can induce low-frequency H7 even without ISR signal, while ISR at any dose amplifies it by orders of magnitude.` → new: `The gradient suggests ISR accelerates H7 onset rather than being its sole cause: random training reaches the same mode given sufficient steps, while ISR at any dose amplifies early convergence by orders of magnitude.`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-paper-tex-h7-remaining-fix.md"
+}

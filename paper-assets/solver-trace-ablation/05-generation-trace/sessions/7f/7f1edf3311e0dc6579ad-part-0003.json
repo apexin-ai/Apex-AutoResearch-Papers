@@ -1,0 +1,1130 @@
+{
+  "schema_version": "1.0",
+  "session_id": "7f1edf3311e0dc6579ad",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 361,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012Yr7gtrRMmi8sjXSt8Z6bX",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "plan002-additive-b03-s42",
+                "field": "eval_isr_std",
+                "value": 0.0742,
+                "project": "solver-trace-ablation"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d16456d6-d54f-4daf-bca6-159e283d8bc0",
+            "uuid": "89f320ea-6cda-4551-bbb8-da1c765d3afe",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01C3eryRvHDGbeeVuR7ULJoz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 776,
+                "cache_read_input_tokens": 81902,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 776
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000361"
+        },
+        {
+          "source_line": 362,
+          "timestamp": "2026-05-14T03:37:10.282Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012Yr7gtrRMmi8sjXSt8Z6bX",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan002-additive-b03-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T02:24:47.843Z\\\", \\\"updated_at\\\": \\\"2026-05-14T03:37:10.226Z\\\", \\\"spec\\\": {\\\"data_path\\\": \\\"/root/solver-trace-ablation/data/train_500_seed42.jsonl\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"Qwen3-4B\\\", \\\"seed\\\": 42, \\\"hypothesis\\\": \\\"Additive ISR bonus r=r_exec*(1+β*ISR) with β=0.3: ISR can only boost reward, never penalize. Should preserve prove_rate (unlike convex combination penalty in plan005) while improving structural quality.\\\", \\\"plan_id\\\": \\\"plan_002\\\", \\\"reward_formula\\\": \\\"r = r_exec * (1 + 0.3 * ISR)\\\", \\\"beta\\\": 0.3, \\\"command\\\": \\\"bash -c \\\\\\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_bonus.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 42 --beta 0.3 --reward_mode additive_bonus --output_dir /root/autodl-tmp/outputs/plan002_additive_beta03_s42\\\\\\\"\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"161819\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-14T03:24:44.110Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T03:24:48.666027+00:00\\\"}]}, \\\"metrics\\\": {\\\"total_steps\\\": 500, \\\"duration_min\\\": 56.7, \\\"overall_prove_rate\\\": 0.34025, \\\"overall_isr\\\": 0.11527, \\\"first20_prove_rate\\\": 0.15625, \\\"last50_prove_rate\\\": 0.555, \\\"last100_prove_rate\\\": 0.5525, \\\"mean_loss\\\": 0.008914, \\\"last100_loss\\\": 0.014469, \\\"parse_rate\\\": 1, \\\"w1_50_prove_rate\\\": 0.13, \\\"w51_100_prove_rate\\\": 0.095, \\\"w101_200_prove_rate\\\": 0.185, \\\"w201_300_prove_rate\\\": 0.375, \\\"w301_400_prove_rate\\\": 0.47625, \\\"w401_500_prove_rate\\\": 0.5525, \\\"steps_ge_085\\\": 52, \\\"first_step_ge_085\\\": 46, \\\"final_prove_rate\\\": 1, \\\"final_isr_mean\\\": 0.3089, \\\"final_reward_mean\\\": 1.0927}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/outputs/plan002_additive_beta03_s42\\\", \\\"log_path\\\": \\\"~/runs/solver-trace-ablation/plan002-additive-b03-s42.log\\\", \\\"notes\\\": \\\"ISR 为 binary 近似 (_fast_fn)，不可用于论文跨 run 对比，需 eval_sta.py 统一评估真实 ISR。prove_rate 轨迹 0.13→0.095→0.185→0.375→0.476→0.553，呈稳步上升趋势，尚未完全饱和（仅 52/500 步 ≥0.85），与 plan001/plan013 的强饱和模式不同。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"eval_prove_rate\\\": 0.18, \\\"eval_mean_isr\\\": 0.0257, \\\"eval_isr_std\\\": 0.0742}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1263}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "d16456d6-d54f-4daf-bca6-159e283d8bc0",
+            "uuid": "d7e8fefd-9c98-4499-a239-2ad3bc089803",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan002-additive-b03-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T02:24:47.843Z\\\", \\\"updated_at\\\": \\\"2026-05-14T03:37:10.226Z\\\", \\\"spec\\\": {\\\"data_path\\\": \\\"/root/solver-trace-ablation/data/train_500_seed42.jsonl\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"Qwen3-4B\\\", \\\"seed\\\": 42, \\\"hypothesis\\\": \\\"Additive ISR bonus r=r_exec*(1+β*ISR) with β=0.3: ISR can only boost reward, never penalize. Should preserve prove_rate (unlike convex combination penalty in plan005) while improving structural quality.\\\", \\\"plan_id\\\": \\\"plan_002\\\", \\\"reward_formula\\\": \\\"r = r_exec * (1 + 0.3 * ISR)\\\", \\\"beta\\\": 0.3, \\\"command\\\": \\\"bash -c \\\\\\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_bonus.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 42 --beta 0.3 --reward_mode additive_bonus --output_dir /root/autodl-tmp/outputs/plan002_additive_beta03_s42\\\\\\\"\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"161819\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-14T03:24:44.110Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T03:24:48.666027+00:00\\\"}]}, \\\"metrics\\\": {\\\"total_steps\\\": 500, \\\"duration_min\\\": 56.7, \\\"overall_prove_rate\\\": 0.34025, \\\"overall_isr\\\": 0.11527, \\\"first20_prove_rate\\\": 0.15625, \\\"last50_prove_rate\\\": 0.555, \\\"last100_prove_rate\\\": 0.5525, \\\"mean_loss\\\": 0.008914, \\\"last100_loss\\\": 0.014469, \\\"parse_rate\\\": 1, \\\"w1_50_prove_rate\\\": 0.13, \\\"w51_100_prove_rate\\\": 0.095, \\\"w101_200_prove_rate\\\": 0.185, \\\"w201_300_prove_rate\\\": 0.375, \\\"w301_400_prove_rate\\\": 0.47625, \\\"w401_500_prove_rate\\\": 0.5525, \\\"steps_ge_085\\\": 52, \\\"first_step_ge_085\\\": 46, \\\"final_prove_rate\\\": 1, \\\"final_isr_mean\\\": 0.3089, \\\"final_reward_mean\\\": 1.0927}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/outputs/plan002_additive_beta03_s42\\\", \\\"log_path\\\": \\\"~/runs/solver-trace-ablation/plan002-additive-b03-s42.log\\\", \\\"notes\\\": \\\"ISR 为 binary 近似 (_fast_fn)，不可用于论文跨 run 对比，需 eval_sta.py 统一评估真实 ISR。prove_rate 轨迹 0.13→0.095→0.185→0.375→0.476→0.553，呈稳步上升趋势，尚未完全饱和（仅 52/500 步 ≥0.85），与 plan001/plan013 的强饱和模式不同。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"eval_prove_rate\\\": 0.18, \\\"eval_mean_isr\\\": 0.0257, \\\"eval_isr_std\\\": 0.0742}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1263}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"plan002-additive-b03-s42\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T02:24:47.843Z\", \"updated_at\": \"2026-05-14T03:37:10.226Z\", \"spec\": {\"data_path\": \"/root/solver-trace-ablation/data/train_500_seed42.jsonl\", \"data_count\": 500, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"hypothesis\": \"Additive ISR bonus r=r_exec*(1+β*ISR) with β=0.3: ISR can only boost reward, never penalize. Should preserve prove_rate (unlike convex combination penalty in plan005) while improving structural quality.\", \"plan_id\": \"plan_002\", \"reward_formula\": \"r = r_exec * (1 + 0.3 * ISR)\", \"beta\": 0.3, \"command\": \"bash -c \\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_bonus.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 42 --beta 0.3 --reward_mode additive_bonus --output_dir /root/autodl-tmp/outputs/plan002_additive_beta03_s42\\\"\", \"server\": \"westd-39279\", \"gpu\": [\"cuda:0\"], \"pid\": \"161819\"}, \"reproduce\": {\"finished_at\": \"2026-05-14T03:24:44.110Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T03:24:48.666027+00:00\"}]}, \"metrics\": {\"total_steps\": 500, \"duration_min\": 56.7, \"overall_prove_rate\": 0.34025, \"overall_isr\": 0.11527, \"first20_prove_rate\": 0.15625, \"last50_prove_rate\": 0.555, \"last100_prove_rate\": 0.5525, \"mean_loss\": 0.008914, \"last100_loss\": 0.014469, \"parse_rate\": 1, \"w1_50_prove_rate\": 0.13, \"w51_100_prove_rate\": 0.095, \"w101_200_prove_rate\": 0.185, \"w201_300_prove_rate\": 0.375, \"w301_400_prove_rate\": 0.47625, \"w401_500_prove_rate\": 0.5525, \"steps_ge_085\": 52, \"first_step_ge_085\": 46, \"final_prove_rate\": 1, \"final_isr_mean\": 0.3089, \"final_reward_mean\": 1.0927}, \"checkpoint_path\": \"/root/autodl-tmp/outputs/plan002_additive_beta03_s42\", \"log_path\": \"~/runs/solver-trace-ablation/plan002-additive-b03-s42.log\", \"notes\": \"ISR 为 binary 近似 (_fast_fn)，不可用于论文跨 run 对比，需 eval_sta.py 统一评估真实 ISR。prove_rate 轨迹 0.13→0.095→0.185→0.375→0.476→0.553，呈稳步上升趋势，尚未完全饱和（仅 52/500 步 ≥0.85），与 plan001/plan013 的强饱和模式不同。\", \"conclusion\": \"success\", \"eval_prove_rate\": 0.18, \"eval_mean_isr\": 0.0257, \"eval_isr_std\": 0.0742}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1263}}"
+              }
+            }
+          },
+          "id": "event-000362"
+        },
+        {
+          "source_line": 363,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Vq5GCYXBmbi5csYP4C7ZqR",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "plan002-additive-b03-s42",
+                "field": "eval_proved_only_isr",
+                "value": 0.1427,
+                "project": "solver-trace-ablation"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d16456d6-d54f-4daf-bca6-159e283d8bc0",
+            "uuid": "f94a9e03-35da-46ab-802e-25ae95b0b2a5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01C3eryRvHDGbeeVuR7ULJoz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 776,
+                "cache_read_input_tokens": 81902,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 776
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000363"
+        },
+        {
+          "source_line": 364,
+          "timestamp": "2026-05-14T03:37:11.253Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Vq5GCYXBmbi5csYP4C7ZqR",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan002-additive-b03-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T02:24:47.843Z\\\", \\\"updated_at\\\": \\\"2026-05-14T03:37:11.190Z\\\", \\\"spec\\\": {\\\"data_path\\\": \\\"/root/solver-trace-ablation/data/train_500_seed42.jsonl\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"Qwen3-4B\\\", \\\"seed\\\": 42, \\\"hypothesis\\\": \\\"Additive ISR bonus r=r_exec*(1+β*ISR) with β=0.3: ISR can only boost reward, never penalize. Should preserve prove_rate (unlike convex combination penalty in plan005) while improving structural quality.\\\", \\\"plan_id\\\": \\\"plan_002\\\", \\\"reward_formula\\\": \\\"r = r_exec * (1 + 0.3 * ISR)\\\", \\\"beta\\\": 0.3, \\\"command\\\": \\\"bash -c \\\\\\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_bonus.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 42 --beta 0.3 --reward_mode additive_bonus --output_dir /root/autodl-tmp/outputs/plan002_additive_beta03_s42\\\\\\\"\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"161819\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-14T03:24:44.110Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T03:24:48.666027+00:00\\\"}]}, \\\"metrics\\\": {\\\"total_steps\\\": 500, \\\"duration_min\\\": 56.7, \\\"overall_prove_rate\\\": 0.34025, \\\"overall_isr\\\": 0.11527, \\\"first20_prove_rate\\\": 0.15625, \\\"last50_prove_rate\\\": 0.555, \\\"last100_prove_rate\\\": 0.5525, \\\"mean_loss\\\": 0.008914, \\\"last100_loss\\\": 0.014469, \\\"parse_rate\\\": 1, \\\"w1_50_prove_rate\\\": 0.13, \\\"w51_100_prove_rate\\\": 0.095, \\\"w101_200_prove_rate\\\": 0.185, \\\"w201_300_prove_rate\\\": 0.375, \\\"w301_400_prove_rate\\\": 0.47625, \\\"w401_500_prove_rate\\\": 0.5525, \\\"steps_ge_085\\\": 52, \\\"first_step_ge_085\\\": 46, \\\"final_prove_rate\\\": 1, \\\"final_isr_mean\\\": 0.3089, \\\"final_reward_mean\\\": 1.0927}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/outputs/plan002_additive_beta03_s42\\\", \\\"log_path\\\": \\\"~/runs/solver-trace-ablation/plan002-additive-b03-s42.log\\\", \\\"notes\\\": \\\"ISR 为 binary 近似 (_fast_fn)，不可用于论文跨 run 对比，需 eval_sta.py 统一评估真实 ISR。prove_rate 轨迹 0.13→0.095→0.185→0.375→0.476→0.553，呈稳步上升趋势，尚未完全饱和（仅 52/500 步 ≥0.85），与 plan001/plan013 的强饱和模式不同。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"eval_prove_rate\\\": 0.18, \\\"eval_mean_isr\\\": 0.0257, \\\"eval_isr_std\\\": 0.0742, \\\"eval_proved_only_isr\\\": 0.1427}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1548}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "d16456d6-d54f-4daf-bca6-159e283d8bc0",
+            "uuid": "e5727ef1-12dd-4db1-8b41-657abc080da9",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan002-additive-b03-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T02:24:47.843Z\\\", \\\"updated_at\\\": \\\"2026-05-14T03:37:11.190Z\\\", \\\"spec\\\": {\\\"data_path\\\": \\\"/root/solver-trace-ablation/data/train_500_seed42.jsonl\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"Qwen3-4B\\\", \\\"seed\\\": 42, \\\"hypothesis\\\": \\\"Additive ISR bonus r=r_exec*(1+β*ISR) with β=0.3: ISR can only boost reward, never penalize. Should preserve prove_rate (unlike convex combination penalty in plan005) while improving structural quality.\\\", \\\"plan_id\\\": \\\"plan_002\\\", \\\"reward_formula\\\": \\\"r = r_exec * (1 + 0.3 * ISR)\\\", \\\"beta\\\": 0.3, \\\"command\\\": \\\"bash -c \\\\\\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_bonus.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 42 --beta 0.3 --reward_mode additive_bonus --output_dir /root/autodl-tmp/outputs/plan002_additive_beta03_s42\\\\\\\"\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"161819\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-14T03:24:44.110Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T03:24:48.666027+00:00\\\"}]}, \\\"metrics\\\": {\\\"total_steps\\\": 500, \\\"duration_min\\\": 56.7, \\\"overall_prove_rate\\\": 0.34025, \\\"overall_isr\\\": 0.11527, \\\"first20_prove_rate\\\": 0.15625, \\\"last50_prove_rate\\\": 0.555, \\\"last100_prove_rate\\\": 0.5525, \\\"mean_loss\\\": 0.008914, \\\"last100_loss\\\": 0.014469, \\\"parse_rate\\\": 1, \\\"w1_50_prove_rate\\\": 0.13, \\\"w51_100_prove_rate\\\": 0.095, \\\"w101_200_prove_rate\\\": 0.185, \\\"w201_300_prove_rate\\\": 0.375, \\\"w301_400_prove_rate\\\": 0.47625, \\\"w401_500_prove_rate\\\": 0.5525, \\\"steps_ge_085\\\": 52, \\\"first_step_ge_085\\\": 46, \\\"final_prove_rate\\\": 1, \\\"final_isr_mean\\\": 0.3089, \\\"final_reward_mean\\\": 1.0927}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/outputs/plan002_additive_beta03_s42\\\", \\\"log_path\\\": \\\"~/runs/solver-trace-ablation/plan002-additive-b03-s42.log\\\", \\\"notes\\\": \\\"ISR 为 binary 近似 (_fast_fn)，不可用于论文跨 run 对比，需 eval_sta.py 统一评估真实 ISR。prove_rate 轨迹 0.13→0.095→0.185→0.375→0.476→0.553，呈稳步上升趋势，尚未完全饱和（仅 52/500 步 ≥0.85），与 plan001/plan013 的强饱和模式不同。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"eval_prove_rate\\\": 0.18, \\\"eval_mean_isr\\\": 0.0257, \\\"eval_isr_std\\\": 0.0742, \\\"eval_proved_only_isr\\\": 0.1427}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1548}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"plan002-additive-b03-s42\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T02:24:47.843Z\", \"updated_at\": \"2026-05-14T03:37:11.190Z\", \"spec\": {\"data_path\": \"/root/solver-trace-ablation/data/train_500_seed42.jsonl\", \"data_count\": 500, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"hypothesis\": \"Additive ISR bonus r=r_exec*(1+β*ISR) with β=0.3: ISR can only boost reward, never penalize. Should preserve prove_rate (unlike convex combination penalty in plan005) while improving structural quality.\", \"plan_id\": \"plan_002\", \"reward_formula\": \"r = r_exec * (1 + 0.3 * ISR)\", \"beta\": 0.3, \"command\": \"bash -c \\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_bonus.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 42 --beta 0.3 --reward_mode additive_bonus --output_dir /root/autodl-tmp/outputs/plan002_additive_beta03_s42\\\"\", \"server\": \"westd-39279\", \"gpu\": [\"cuda:0\"], \"pid\": \"161819\"}, \"reproduce\": {\"finished_at\": \"2026-05-14T03:24:44.110Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T03:24:48.666027+00:00\"}]}, \"metrics\": {\"total_steps\": 500, \"duration_min\": 56.7, \"overall_prove_rate\": 0.34025, \"overall_isr\": 0.11527, \"first20_prove_rate\": 0.15625, \"last50_prove_rate\": 0.555, \"last100_prove_rate\": 0.5525, \"mean_loss\": 0.008914, \"last100_loss\": 0.014469, \"parse_rate\": 1, \"w1_50_prove_rate\": 0.13, \"w51_100_prove_rate\": 0.095, \"w101_200_prove_rate\": 0.185, \"w201_300_prove_rate\": 0.375, \"w301_400_prove_rate\": 0.47625, \"w401_500_prove_rate\": 0.5525, \"steps_ge_085\": 52, \"first_step_ge_085\": 46, \"final_prove_rate\": 1, \"final_isr_mean\": 0.3089, \"final_reward_mean\": 1.0927}, \"checkpoint_path\": \"/root/autodl-tmp/outputs/plan002_additive_beta03_s42\", \"log_path\": \"~/runs/solver-trace-ablation/plan002-additive-b03-s42.log\", \"notes\": \"ISR 为 binary 近似 (_fast_fn)，不可用于论文跨 run 对比，需 eval_sta.py 统一评估真实 ISR。prove_rate 轨迹 0.13→0.095→0.185→0.375→0.476→0.553，呈稳步上升趋势，尚未完全饱和（仅 52/500 步 ≥0.85），与 plan001/plan013 的强饱和模式不同。\", \"conclusion\": \"success\", \"eval_prove_rate\": 0.18, \"eval_mean_isr\": 0.0257, \"eval_isr_std\": 0.0742, \"eval_proved_only_isr\": 0.1427}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1548}}"
+              }
+            }
+          },
+          "id": "event-000364"
+        },
+        {
+          "source_line": 365,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Sx6EVkzX6ct9fCCSncszAi",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "plan002-additive-b03-s42",
+                "field": "eval_median_isr",
+                "value": 0,
+                "project": "solver-trace-ablation"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d16456d6-d54f-4daf-bca6-159e283d8bc0",
+            "uuid": "14a2fbd7-5d2e-4ed9-9519-0358802e873c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01C3eryRvHDGbeeVuR7ULJoz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 776,
+                "cache_read_input_tokens": 81902,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 776
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000365"
+        },
+        {
+          "source_line": 366,
+          "timestamp": "2026-05-14T03:37:12.198Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Sx6EVkzX6ct9fCCSncszAi",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan002-additive-b03-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T02:24:47.843Z\\\", \\\"updated_at\\\": \\\"2026-05-14T03:37:12.142Z\\\", \\\"spec\\\": {\\\"data_path\\\": \\\"/root/solver-trace-ablation/data/train_500_seed42.jsonl\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"Qwen3-4B\\\", \\\"seed\\\": 42, \\\"hypothesis\\\": \\\"Additive ISR bonus r=r_exec*(1+β*ISR) with β=0.3: ISR can only boost reward, never penalize. Should preserve prove_rate (unlike convex combination penalty in plan005) while improving structural quality.\\\", \\\"plan_id\\\": \\\"plan_002\\\", \\\"reward_formula\\\": \\\"r = r_exec * (1 + 0.3 * ISR)\\\", \\\"beta\\\": 0.3, \\\"command\\\": \\\"bash -c \\\\\\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_bonus.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 42 --beta 0.3 --reward_mode additive_bonus --output_dir /root/autodl-tmp/outputs/plan002_additive_beta03_s42\\\\\\\"\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"161819\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-14T03:24:44.110Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T03:24:48.666027+00:00\\\"}]}, \\\"metrics\\\": {\\\"total_steps\\\": 500, \\\"duration_min\\\": 56.7, \\\"overall_prove_rate\\\": 0.34025, \\\"overall_isr\\\": 0.11527, \\\"first20_prove_rate\\\": 0.15625, \\\"last50_prove_rate\\\": 0.555, \\\"last100_prove_rate\\\": 0.5525, \\\"mean_loss\\\": 0.008914, \\\"last100_loss\\\": 0.014469, \\\"parse_rate\\\": 1, \\\"w1_50_prove_rate\\\": 0.13, \\\"w51_100_prove_rate\\\": 0.095, \\\"w101_200_prove_rate\\\": 0.185, \\\"w201_300_prove_rate\\\": 0.375, \\\"w301_400_prove_rate\\\": 0.47625, \\\"w401_500_prove_rate\\\": 0.5525, \\\"steps_ge_085\\\": 52, \\\"first_step_ge_085\\\": 46, \\\"final_prove_rate\\\": 1, \\\"final_isr_mean\\\": 0.3089, \\\"final_reward_mean\\\": 1.0927}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/outputs/plan002_additive_beta03_s42\\\", \\\"log_path\\\": \\\"~/runs/solver-trace-ablation/plan002-additive-b03-s42.log\\\", \\\"notes\\\": \\\"ISR 为 binary 近似 (_fast_fn)，不可用于论文跨 run 对比，需 eval_sta.py 统一评估真实 ISR。prove_rate 轨迹 0.13→0.095→0.185→0.375→0.476→0.553，呈稳步上升趋势，尚未完全饱和（仅 52/500 步 ≥0.85），与 plan001/plan013 的强饱和模式不同。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"eval_prove_rate\\\": 0.18, \\\"eval_mean_isr\\\": 0.0257, \\\"eval_isr_std\\\": 0.0742, \\\"eval_proved_only_isr\\\": 0.1427, \\\"eval_median_isr\\\": 0}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1519}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "d16456d6-d54f-4daf-bca6-159e283d8bc0",
+            "uuid": "7636341f-2fbc-4267-97b2-1e3d94d8e452",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan002-additive-b03-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T02:24:47.843Z\\\", \\\"updated_at\\\": \\\"2026-05-14T03:37:12.142Z\\\", \\\"spec\\\": {\\\"data_path\\\": \\\"/root/solver-trace-ablation/data/train_500_seed42.jsonl\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"Qwen3-4B\\\", \\\"seed\\\": 42, \\\"hypothesis\\\": \\\"Additive ISR bonus r=r_exec*(1+β*ISR) with β=0.3: ISR can only boost reward, never penalize. Should preserve prove_rate (unlike convex combination penalty in plan005) while improving structural quality.\\\", \\\"plan_id\\\": \\\"plan_002\\\", \\\"reward_formula\\\": \\\"r = r_exec * (1 + 0.3 * ISR)\\\", \\\"beta\\\": 0.3, \\\"command\\\": \\\"bash -c \\\\\\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_bonus.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 42 --beta 0.3 --reward_mode additive_bonus --output_dir /root/autodl-tmp/outputs/plan002_additive_beta03_s42\\\\\\\"\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"161819\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-14T03:24:44.110Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T03:24:48.666027+00:00\\\"}]}, \\\"metrics\\\": {\\\"total_steps\\\": 500, \\\"duration_min\\\": 56.7, \\\"overall_prove_rate\\\": 0.34025, \\\"overall_isr\\\": 0.11527, \\\"first20_prove_rate\\\": 0.15625, \\\"last50_prove_rate\\\": 0.555, \\\"last100_prove_rate\\\": 0.5525, \\\"mean_loss\\\": 0.008914, \\\"last100_loss\\\": 0.014469, \\\"parse_rate\\\": 1, \\\"w1_50_prove_rate\\\": 0.13, \\\"w51_100_prove_rate\\\": 0.095, \\\"w101_200_prove_rate\\\": 0.185, \\\"w201_300_prove_rate\\\": 0.375, \\\"w301_400_prove_rate\\\": 0.47625, \\\"w401_500_prove_rate\\\": 0.5525, \\\"steps_ge_085\\\": 52, \\\"first_step_ge_085\\\": 46, \\\"final_prove_rate\\\": 1, \\\"final_isr_mean\\\": 0.3089, \\\"final_reward_mean\\\": 1.0927}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/outputs/plan002_additive_beta03_s42\\\", \\\"log_path\\\": \\\"~/runs/solver-trace-ablation/plan002-additive-b03-s42.log\\\", \\\"notes\\\": \\\"ISR 为 binary 近似 (_fast_fn)，不可用于论文跨 run 对比，需 eval_sta.py 统一评估真实 ISR。prove_rate 轨迹 0.13→0.095→0.185→0.375→0.476→0.553，呈稳步上升趋势，尚未完全饱和（仅 52/500 步 ≥0.85），与 plan001/plan013 的强饱和模式不同。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"eval_prove_rate\\\": 0.18, \\\"eval_mean_isr\\\": 0.0257, \\\"eval_isr_std\\\": 0.0742, \\\"eval_proved_only_isr\\\": 0.1427, \\\"eval_median_isr\\\": 0}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1519}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"plan002-additive-b03-s42\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T02:24:47.843Z\", \"updated_at\": \"2026-05-14T03:37:12.142Z\", \"spec\": {\"data_path\": \"/root/solver-trace-ablation/data/train_500_seed42.jsonl\", \"data_count\": 500, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"hypothesis\": \"Additive ISR bonus r=r_exec*(1+β*ISR) with β=0.3: ISR can only boost reward, never penalize. Should preserve prove_rate (unlike convex combination penalty in plan005) while improving structural quality.\", \"plan_id\": \"plan_002\", \"reward_formula\": \"r = r_exec * (1 + 0.3 * ISR)\", \"beta\": 0.3, \"command\": \"bash -c \\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_bonus.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 42 --beta 0.3 --reward_mode additive_bonus --output_dir /root/autodl-tmp/outputs/plan002_additive_beta03_s42\\\"\", \"server\": \"westd-39279\", \"gpu\": [\"cuda:0\"], \"pid\": \"161819\"}, \"reproduce\": {\"finished_at\": \"2026-05-14T03:24:44.110Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T03:24:48.666027+00:00\"}]}, \"metrics\": {\"total_steps\": 500, \"duration_min\": 56.7, \"overall_prove_rate\": 0.34025, \"overall_isr\": 0.11527, \"first20_prove_rate\": 0.15625, \"last50_prove_rate\": 0.555, \"last100_prove_rate\": 0.5525, \"mean_loss\": 0.008914, \"last100_loss\": 0.014469, \"parse_rate\": 1, \"w1_50_prove_rate\": 0.13, \"w51_100_prove_rate\": 0.095, \"w101_200_prove_rate\": 0.185, \"w201_300_prove_rate\": 0.375, \"w301_400_prove_rate\": 0.47625, \"w401_500_prove_rate\": 0.5525, \"steps_ge_085\": 52, \"first_step_ge_085\": 46, \"final_prove_rate\": 1, \"final_isr_mean\": 0.3089, \"final_reward_mean\": 1.0927}, \"checkpoint_path\": \"/root/autodl-tmp/outputs/plan002_additive_beta03_s42\", \"log_path\": \"~/runs/solver-trace-ablation/plan002-additive-b03-s42.log\", \"notes\": \"ISR 为 binary 近似 (_fast_fn)，不可用于论文跨 run 对比，需 eval_sta.py 统一评估真实 ISR。prove_rate 轨迹 0.13→0.095→0.185→0.375→0.476→0.553，呈稳步上升趋势，尚未完全饱和（仅 52/500 步 ≥0.85），与 plan001/plan013 的强饱和模式不同。\", \"conclusion\": \"success\", \"eval_prove_rate\": 0.18, \"eval_mean_isr\": 0.0257, \"eval_isr_std\": 0.0742, \"eval_proved_only_isr\": 0.1427, \"eval_median_isr\": 0}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1519}}"
+              }
+            }
+          },
+          "id": "event-000366"
+        },
+        {
+          "source_line": 367,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Eb3ZHjWANo7cHQzLMKf371",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "plan002-additive-b03-s42",
+                "field": "eval_isr_pr_ratio",
+                "value": 0.1427,
+                "project": "solver-trace-ablation"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d16456d6-d54f-4daf-bca6-159e283d8bc0",
+            "uuid": "d44c5e52-91c1-4f04-9347-68475a9688a5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01C3eryRvHDGbeeVuR7ULJoz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 776,
+                "cache_read_input_tokens": 81902,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 776
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000367"
+        },
+        {
+          "source_line": 368,
+          "timestamp": "2026-05-14T03:37:13.256Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Eb3ZHjWANo7cHQzLMKf371",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan002-additive-b03-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T02:24:47.843Z\\\", \\\"updated_at\\\": \\\"2026-05-14T03:37:13.192Z\\\", \\\"spec\\\": {\\\"data_path\\\": \\\"/root/solver-trace-ablation/data/train_500_seed42.jsonl\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"Qwen3-4B\\\", \\\"seed\\\": 42, \\\"hypothesis\\\": \\\"Additive ISR bonus r=r_exec*(1+β*ISR) with β=0.3: ISR can only boost reward, never penalize. Should preserve prove_rate (unlike convex combination penalty in plan005) while improving structural quality.\\\", \\\"plan_id\\\": \\\"plan_002\\\", \\\"reward_formula\\\": \\\"r = r_exec * (1 + 0.3 * ISR)\\\", \\\"beta\\\": 0.3, \\\"command\\\": \\\"bash -c \\\\\\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_bonus.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 42 --beta 0.3 --reward_mode additive_bonus --output_dir /root/autodl-tmp/outputs/plan002_additive_beta03_s42\\\\\\\"\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"161819\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-14T03:24:44.110Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T03:24:48.666027+00:00\\\"}]}, \\\"metrics\\\": {\\\"total_steps\\\": 500, \\\"duration_min\\\": 56.7, \\\"overall_prove_rate\\\": 0.34025, \\\"overall_isr\\\": 0.11527, \\\"first20_prove_rate\\\": 0.15625, \\\"last50_prove_rate\\\": 0.555, \\\"last100_prove_rate\\\": 0.5525, \\\"mean_loss\\\": 0.008914, \\\"last100_loss\\\": 0.014469, \\\"parse_rate\\\": 1, \\\"w1_50_prove_rate\\\": 0.13, \\\"w51_100_prove_rate\\\": 0.095, \\\"w101_200_prove_rate\\\": 0.185, \\\"w201_300_prove_rate\\\": 0.375, \\\"w301_400_prove_rate\\\": 0.47625, \\\"w401_500_prove_rate\\\": 0.5525, \\\"steps_ge_085\\\": 52, \\\"first_step_ge_085\\\": 46, \\\"final_prove_rate\\\": 1, \\\"final_isr_mean\\\": 0.3089, \\\"final_reward_mean\\\": 1.0927}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/outputs/plan002_additive_beta03_s42\\\", \\\"log_path\\\": \\\"~/runs/solver-trace-ablation/plan002-additive-b03-s42.log\\\", \\\"notes\\\": \\\"ISR 为 binary 近似 (_fast_fn)，不可用于论文跨 run 对比，需 eval_sta.py 统一评估真实 ISR。prove_rate 轨迹 0.13→0.095→0.185→0.375→0.476→0.553，呈稳步上升趋势，尚未完全饱和（仅 52/500 步 ≥0.85），与 plan001/plan013 的强饱和模式不同。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"eval_prove_rate\\\": 0.18, \\\"eval_mean_isr\\\": 0.0257, \\\"eval_isr_std\\\": 0.0742, \\\"eval_proved_only_isr\\\": 0.1427, \\\"eval_median_isr\\\": 0, \\\"eval_isr_pr_ratio\\\": 0.1427}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.149}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "d16456d6-d54f-4daf-bca6-159e283d8bc0",
+            "uuid": "2b84862e-d79b-4ed5-af51-633a28d190e5",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan002-additive-b03-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T02:24:47.843Z\\\", \\\"updated_at\\\": \\\"2026-05-14T03:37:13.192Z\\\", \\\"spec\\\": {\\\"data_path\\\": \\\"/root/solver-trace-ablation/data/train_500_seed42.jsonl\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"Qwen3-4B\\\", \\\"seed\\\": 42, \\\"hypothesis\\\": \\\"Additive ISR bonus r=r_exec*(1+β*ISR) with β=0.3: ISR can only boost reward, never penalize. Should preserve prove_rate (unlike convex combination penalty in plan005) while improving structural quality.\\\", \\\"plan_id\\\": \\\"plan_002\\\", \\\"reward_formula\\\": \\\"r = r_exec * (1 + 0.3 * ISR)\\\", \\\"beta\\\": 0.3, \\\"command\\\": \\\"bash -c \\\\\\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_bonus.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 42 --beta 0.3 --reward_mode additive_bonus --output_dir /root/autodl-tmp/outputs/plan002_additive_beta03_s42\\\\\\\"\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"161819\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-14T03:24:44.110Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T03:24:48.666027+00:00\\\"}]}, \\\"metrics\\\": {\\\"total_steps\\\": 500, \\\"duration_min\\\": 56.7, \\\"overall_prove_rate\\\": 0.34025, \\\"overall_isr\\\": 0.11527, \\\"first20_prove_rate\\\": 0.15625, \\\"last50_prove_rate\\\": 0.555, \\\"last100_prove_rate\\\": 0.5525, \\\"mean_loss\\\": 0.008914, \\\"last100_loss\\\": 0.014469, \\\"parse_rate\\\": 1, \\\"w1_50_prove_rate\\\": 0.13, \\\"w51_100_prove_rate\\\": 0.095, \\\"w101_200_prove_rate\\\": 0.185, \\\"w201_300_prove_rate\\\": 0.375, \\\"w301_400_prove_rate\\\": 0.47625, \\\"w401_500_prove_rate\\\": 0.5525, \\\"steps_ge_085\\\": 52, \\\"first_step_ge_085\\\": 46, \\\"final_prove_rate\\\": 1, \\\"final_isr_mean\\\": 0.3089, \\\"final_reward_mean\\\": 1.0927}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/outputs/plan002_additive_beta03_s42\\\", \\\"log_path\\\": \\\"~/runs/solver-trace-ablation/plan002-additive-b03-s42.log\\\", \\\"notes\\\": \\\"ISR 为 binary 近似 (_fast_fn)，不可用于论文跨 run 对比，需 eval_sta.py 统一评估真实 ISR。prove_rate 轨迹 0.13→0.095→0.185→0.375→0.476→0.553，呈稳步上升趋势，尚未完全饱和（仅 52/500 步 ≥0.85），与 plan001/plan013 的强饱和模式不同。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"eval_prove_rate\\\": 0.18, \\\"eval_mean_isr\\\": 0.0257, \\\"eval_isr_std\\\": 0.0742, \\\"eval_proved_only_isr\\\": 0.1427, \\\"eval_median_isr\\\": 0, \\\"eval_isr_pr_ratio\\\": 0.1427}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.149}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"plan002-additive-b03-s42\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T02:24:47.843Z\", \"updated_at\": \"2026-05-14T03:37:13.192Z\", \"spec\": {\"data_path\": \"/root/solver-trace-ablation/data/train_500_seed42.jsonl\", \"data_count\": 500, \"model_name\": \"Qwen3-4B\", \"seed\": 42, \"hypothesis\": \"Additive ISR bonus r=r_exec*(1+β*ISR) with β=0.3: ISR can only boost reward, never penalize. Should preserve prove_rate (unlike convex combination penalty in plan005) while improving structural quality.\", \"plan_id\": \"plan_002\", \"reward_formula\": \"r = r_exec * (1 + 0.3 * ISR)\", \"beta\": 0.3, \"command\": \"bash -c \\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_bonus.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 42 --beta 0.3 --reward_mode additive_bonus --output_dir /root/autodl-tmp/outputs/plan002_additive_beta03_s42\\\"\", \"server\": \"westd-39279\", \"gpu\": [\"cuda:0\"], \"pid\": \"161819\"}, \"reproduce\": {\"finished_at\": \"2026-05-14T03:24:44.110Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T03:24:48.666027+00:00\"}]}, \"metrics\": {\"total_steps\": 500, \"duration_min\": 56.7, \"overall_prove_rate\": 0.34025, \"overall_isr\": 0.11527, \"first20_prove_rate\": 0.15625, \"last50_prove_rate\": 0.555, \"last100_prove_rate\": 0.5525, \"mean_loss\": 0.008914, \"last100_loss\": 0.014469, \"parse_rate\": 1, \"w1_50_prove_rate\": 0.13, \"w51_100_prove_rate\": 0.095, \"w101_200_prove_rate\": 0.185, \"w201_300_prove_rate\": 0.375, \"w301_400_prove_rate\": 0.47625, \"w401_500_prove_rate\": 0.5525, \"steps_ge_085\": 52, \"first_step_ge_085\": 46, \"final_prove_rate\": 1, \"final_isr_mean\": 0.3089, \"final_reward_mean\": 1.0927}, \"checkpoint_path\": \"/root/autodl-tmp/outputs/plan002_additive_beta03_s42\", \"log_path\": \"~/runs/solver-trace-ablation/plan002-additive-b03-s42.log\", \"notes\": \"ISR 为 binary 近似 (_fast_fn)，不可用于论文跨 run 对比，需 eval_sta.py 统一评估真实 ISR。prove_rate 轨迹 0.13→0.095→0.185→0.375→0.476→0.553，呈稳步上升趋势，尚未完全饱和（仅 52/500 步 ≥0.85），与 plan001/plan013 的强饱和模式不同。\", \"conclusion\": \"success\", \"eval_prove_rate\": 0.18, \"eval_mean_isr\": 0.0257, \"eval_isr_std\": 0.0742, \"eval_proved_only_isr\": 0.1427, \"eval_median_isr\": 0, \"eval_isr_pr_ratio\": 0.1427}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.149}}"
+              }
+            }
+          },
+          "id": "event-000368"
+        },
+        {
+          "source_line": 369,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。注册 eval 结果 artifact。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d16456d6-d54f-4daf-bca6-159e283d8bc0",
+            "uuid": "6febbc46-70f4-4678-9087-277bbbd00ba7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018UyJ31qsQCK1Ai3E1uRN13",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7995,
+                "cache_read_input_tokens": 82678,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7995
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000369"
+        },
+        {
+          "source_line": 370,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MBM5nQveR4kdAu5REXvFwp",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "project": "solver-trace-ablation",
+                "artifact_id": "eval_sta_plan002_additive_b03",
+                "artifact_type": "eval_result",
+                "path": "/root/solver-trace-ablation/outputs/eval_sta_plan002_additive_b03.json",
+                "description": "eval_sta.py full STA evaluation of plan002-additive-b03-s42 checkpoint-500. prove_rate=0.18, mean_isr=0.0257, proved_only_isr=0.1427",
+                "metadata": "{\"exp_id\": \"plan002-additive-b03-s42\", \"eval_data\": \"proofwriter_fol_100.jsonl\", \"n_samples\": 100, \"prove_rate\": 0.18, \"mean_isr\": 0.0257, \"proved_only_isr\": 0.1427, \"component_stats\": {\"mean\": 10.67, \"median\": 9.0, \"std\": 4.49, \"min\": 5, \"max\": 24}}"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d16456d6-d54f-4daf-bca6-159e283d8bc0",
+            "uuid": "40406db9-6755-42d5-81cd-ce33881a229f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018UyJ31qsQCK1Ai3E1uRN13",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7995,
+                "cache_read_input_tokens": 82678,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7995
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000370"
+        },
+        {
+          "source_line": 371,
+          "timestamp": "2026-05-14T03:37:22.096Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Error executing tool register_artifact: 2 validation errors for register_artifactArguments\nname\n  Field required [type=missing, input_value={'project': 'solver-trace... \"min\": 5, \"max\": 24}}'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/missing\ntype\n  Field required [type=missing, input_value={'project': 'solver-trace... \"min\": 5, \"max\": 24}}'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/missing",
+              "is_error": true,
+              "tool_use_id": "toolu_01MBM5nQveR4kdAu5REXvFwp"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "d16456d6-d54f-4daf-bca6-159e283d8bc0",
+            "uuid": "a1434e7e-16fe-4afd-a69a-ea834a5f9915",
+            "tool_use_result": "Error: Error executing tool register_artifact: 2 validation errors for register_artifactArguments\nname\n  Field required [type=missing, input_value={'project': 'solver-trace... \"min\": 5, \"max\": 24}}'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/missing\ntype\n  Field required [type=missing, input_value={'project': 'solver-trace... \"min\": 5, \"max\": 24}}'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/missing"
+          },
+          "id": "event-000371"
+        },
+        {
+          "source_line": 372,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FVufaMdN3k7aFDpHyTpzjG",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__register_artifact",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d16456d6-d54f-4daf-bca6-159e283d8bc0",
+            "uuid": "92b9edfb-026e-489a-8a80-8331b533988a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01T4gSqhR68nur4ueWVfb1zx",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 556,
+                "cache_read_input_tokens": 90673,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 556
+                },
+                "output_tokens": 49,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000372"
+        },
+        {
+          "source_line": 373,
+          "timestamp": "2026-05-14T03:37:25.082Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01FVufaMdN3k7aFDpHyTpzjG",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__register_artifact"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "d16456d6-d54f-4daf-bca6-159e283d8bc0",
+            "uuid": "f4c6ff10-01c7-4a27-b679-3b411ee13569",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__register_artifact"
+              ],
+              "query": "select:mcp__agent-ml-research__register_artifact",
+              "total_deferred_tools": 26
+            }
+          },
+          "id": "event-000373"
+        },
+        {
+          "source_line": 374,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SZTgXD3fA1uiAhzjTMQ3TB",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "eval_sta_plan002_additive_b03",
+                "type": "data",
+                "description": "eval_sta.py full STA evaluation of plan002-additive-b03-s42 checkpoint-500. prove_rate=0.18, mean_isr=0.0257, proved_only_isr=0.1427",
+                "project": "solver-trace-ablation",
+                "exp_id": "plan002-additive-b03-s42",
+                "source_path": "/root/solver-trace-ablation/outputs/eval_sta_plan002_additive_b03.json",
+                "tags": [
+                  "eval",
+                  "sta",
+                  "plan002",
+                  "additive_bonus"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d16456d6-d54f-4daf-bca6-159e283d8bc0",
+            "uuid": "9d67b1df-daa5-4fc7-a62b-7682fef443d6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YNEKsmfnq4nD1wTzMp8kq7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 712,
+                "cache_read_input_tokens": 91229,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 712
+                },
+                "output_tokens": 47,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000374"
+        },
+        {
+          "source_line": 375,
+          "timestamp": "2026-05-14T03:37:30.511Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SZTgXD3fA1uiAhzjTMQ3TB",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /root/solver-trace-ablation/outputs/eval_sta_plan002_additive_b03.json\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "d16456d6-d54f-4daf-bca6-159e283d8bc0",
+            "uuid": "d5d93b7a-d2dd-4d27-9925-3af515b9fbb9",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /root/solver-trace-ablation/outputs/eval_sta_plan002_additive_b03.json\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"source_path not found: /root/solver-trace-ablation/outputs/eval_sta_plan002_additive_b03.json\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000375"
+        },
+        {
+          "source_line": 376,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The source_path is on the remote server, not locally. I need to either use content to pass the JSON or just skip the artifact registration. Let me read the summary from the remote and pass as content.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d16456d6-d54f-4daf-bca6-159e283d8bc0",
+            "uuid": "eb46ebd8-2d7f-4e0a-b54d-093e9b264262",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SyKFZQU3ssF6xKm44JiAV8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 364,
+                "cache_read_input_tokens": 91941,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 364
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000376"
+        },
+        {
+          "source_line": 377,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Source path 是远程服务器路径。用 content 方式注册。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d16456d6-d54f-4daf-bca6-159e283d8bc0",
+            "uuid": "0b834334-b38b-401b-b101-46899c55f769",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SyKFZQU3ssF6xKm44JiAV8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 364,
+                "cache_read_input_tokens": 91941,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 364
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000377"
+        },
+        {
+          "source_line": 378,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018cmKsYcr89XemBAa7SRg6o",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-39279",
+                "command": "head -40 /root/solver-trace-ablation/outputs/eval_sta_plan002_additive_b03.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d16456d6-d54f-4daf-bca6-159e283d8bc0",
+            "uuid": "c7b62d70-e9b4-4581-962b-aa2242c25c06",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SyKFZQU3ssF6xKm44JiAV8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 364,
+                "cache_read_input_tokens": 91941,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 364
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000378"
+        },
+        {
+          "source_line": 379,
+          "timestamp": "2026-05-14T03:37:36.553Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018cmKsYcr89XemBAa7SRg6o",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"n_problems\\\\\\\": 100,\\\\n    \\\\\\\"n_proved\\\\\\\": 18,\\\\n    \\\\\\\"prove_rate\\\\\\\": 0.18,\\\\n    \\\\\\\"mean_isr\\\\\\\": 0.0257,\\\\n    \\\\\\\"isr_std\\\\\\\": 0.0742,\\\\n    \\\\\\\"median_isr\\\\\\\": 0.0,\\\\n    \\\\\\\"isr_pr_ratio\\\\\\\": 0.1427,\\\\n    \\\\\\\"proved_only_mean_isr\\\\\\\": 0.1427,\\\\n    \\\\\\\"min_isr\\\\\\\": 0.0,\\\\n    \\\\\\\"max_isr\\\\\\\": 0.375,\\\\n    \\\\\\\"by_answer_type\\\\\\\": {\\\\n      \\\\\\\"false\\\\\\\": {\\\\n        \\\\\\\"count\\\\\\\": 25,\\\\n        \\\\\\\"proved\\\\\\\": 3,\\\\n        \\\\\\\"prove_rate\\\\\\\": 0.12,\\\\n        \\\\\\\"mean_isr\\\\\\\": 0.010158730158730159\\\\n      },\\\\n      \\\\\\\"unknown\\\\\\\": {\\\\n        \\\\\\\"count\\\\\\\": 41,\\\\n        \\\\\\\"proved\\\\\\\": 8,\\\\n        \\\\\\\"prove_rate\\\\\\\": 0.1951219512195122,\\\\n        \\\\\\\"mean_isr\\\\\\\": 0.04218227571886108\\\\n      },\\\\n      \\\\\\\"true\\\\\\\": {\\\\n        \\\\\\\"count\\\\\\\": 34,\\\\n        \\\\\\\"proved\\\\\\\": 7,\\\\n        \\\\\\\"prove_rate\\\\\\\": 0.20588235294117646,\\\\n        \\\\\\\"mean_isr\\\\\\\": 0.01719187675070028\\\\n      }\\\\n    },\\\\n    \\\\\\\"elapsed_seconds\\\\\\\": 588.6,\\\\n    \\\\\\\"avg_time_per_sample\\\\\\\": 5.9,\\\\n    \\\\\\\"solver\\\\\\\": \\\\\\\"Prover9Solver\\\\\\\",\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/outputs/plan002_additive_beta03_s42/checkpoint-500\\\\\\\"\\\\n  },\\\\n  \\\\\\\"results\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 0,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "d16456d6-d54f-4daf-bca6-159e283d8bc0",
+            "uuid": "543a1cf0-1cb1-4f7a-afb6-02ccb9af1318",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"n_problems\\\\\\\": 100,\\\\n    \\\\\\\"n_proved\\\\\\\": 18,\\\\n    \\\\\\\"prove_rate\\\\\\\": 0.18,\\\\n    \\\\\\\"mean_isr\\\\\\\": 0.0257,\\\\n    \\\\\\\"isr_std\\\\\\\": 0.0742,\\\\n    \\\\\\\"median_isr\\\\\\\": 0.0,\\\\n    \\\\\\\"isr_pr_ratio\\\\\\\": 0.1427,\\\\n    \\\\\\\"proved_only_mean_isr\\\\\\\": 0.1427,\\\\n    \\\\\\\"min_isr\\\\\\\": 0.0,\\\\n    \\\\\\\"max_isr\\\\\\\": 0.375,\\\\n    \\\\\\\"by_answer_type\\\\\\\": {\\\\n      \\\\\\\"false\\\\\\\": {\\\\n        \\\\\\\"count\\\\\\\": 25,\\\\n        \\\\\\\"proved\\\\\\\": 3,\\\\n        \\\\\\\"prove_rate\\\\\\\": 0.12,\\\\n        \\\\\\\"mean_isr\\\\\\\": 0.010158730158730159\\\\n      },\\\\n      \\\\\\\"unknown\\\\\\\": {\\\\n        \\\\\\\"count\\\\\\\": 41,\\\\n        \\\\\\\"proved\\\\\\\": 8,\\\\n        \\\\\\\"prove_rate\\\\\\\": 0.1951219512195122,\\\\n        \\\\\\\"mean_isr\\\\\\\": 0.04218227571886108\\\\n      },\\\\n      \\\\\\\"true\\\\\\\": {\\\\n        \\\\\\\"count\\\\\\\": 34,\\\\n        \\\\\\\"proved\\\\\\\": 7,\\\\n        \\\\\\\"prove_rate\\\\\\\": 0.20588235294117646,\\\\n        \\\\\\\"mean_isr\\\\\\\": 0.01719187675070028\\\\n      }\\\\n    },\\\\n    \\\\\\\"elapsed_seconds\\\\\\\": 588.6,\\\\n    \\\\\\\"avg_time_per_sample\\\\\\\": 5.9,\\\\n    \\\\\\\"solver\\\\\\\": \\\\\\\"Prover9Solver\\\\\\\",\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/outputs/plan002_additive_beta03_s42/checkpoint-500\\\\\\\"\\\\n  },\\\\n  \\\\\\\"results\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 0,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"summary\\\": {\\n    \\\"n_problems\\\": 100,\\n    \\\"n_proved\\\": 18,\\n    \\\"prove_rate\\\": 0.18,\\n    \\\"mean_isr\\\": 0.0257,\\n    \\\"isr_std\\\": 0.0742,\\n    \\\"median_isr\\\": 0.0,\\n    \\\"isr_pr_ratio\\\": 0.1427,\\n    \\\"proved_only_mean_isr\\\": 0.1427,\\n    \\\"min_isr\\\": 0.0,\\n    \\\"max_isr\\\": 0.375,\\n    \\\"by_answer_type\\\": {\\n      \\\"false\\\": {\\n        \\\"count\\\": 25,\\n        \\\"proved\\\": 3,\\n        \\\"prove_rate\\\": 0.12,\\n        \\\"mean_isr\\\": 0.010158730158730159\\n      },\\n      \\\"unknown\\\": {\\n        \\\"count\\\": 41,\\n        \\\"proved\\\": 8,\\n        \\\"prove_rate\\\": 0.1951219512195122,\\n        \\\"mean_isr\\\": 0.04218227571886108\\n      },\\n      \\\"true\\\": {\\n        \\\"count\\\": 34,\\n        \\\"proved\\\": 7,\\n        \\\"prove_rate\\\": 0.20588235294117646,\\n        \\\"mean_isr\\\": 0.01719187675070028\\n      }\\n    },\\n    \\\"elapsed_seconds\\\": 588.6,\\n    \\\"avg_time_per_sample\\\": 5.9,\\n    \\\"solver\\\": \\\"Prover9Solver\\\",\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/outputs/plan002_additive_beta03_s42/checkpoint-500\\\"\\n  },\\n  \\\"results\\\": [\\n    {\\n      \\\"index\\\": 0,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+              }
+            }
+          },
+          "id": "event-000379"
+        },
+        {
+          "source_line": 380,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019SdhPEjL5tCuxZRu9bWr9J",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "eval_sta_plan002_additive_b03",
+                "type": "data",
+                "description": "eval_sta.py full STA evaluation of plan002-additive-b03-s42 checkpoint-500. prove_rate=0.18, mean_isr=0.0257, proved_only_isr=0.1427. Remote path: /root/solver-trace-ablation/outputs/eval_sta_plan002_additive_b03.json on westd-39279",
+                "project": "solver-trace-ablation",
+                "exp_id": "plan002-additive-b03-s42",
+                "content": "{\"summary\":{\"n_problems\":100,\"n_proved\":18,\"prove_rate\":0.18,\"mean_isr\":0.0257,\"isr_std\":0.0742,\"median_isr\":0.0,\"isr_pr_ratio\":0.1427,\"proved_only_mean_isr\":0.1427,\"min_isr\":0.0,\"max_isr\":0.375,\"by_answer_type\":{\"false\":{\"count\":25,\"proved\":3,\"prove_rate\":0.12,\"mean_isr\":0.0102},\"unknown\":{\"count\":41,\"proved\":8,\"prove_rate\":0.1951,\"mean_isr\":0.0422},\"true\":{\"count\":34,\"proved\":7,\"prove_rate\":0.2059,\"mean_isr\":0.0172}},\"elapsed_seconds\":588.6,\"avg_time_per_sample\":5.9,\"solver\":\"Prover9Solver\",\"model_path\":\"/root/autodl-tmp/outputs/plan002_additive_beta03_s42/checkpoint-500\"},\"component_stats\":{\"proved_only\":{\"n\":18,\"mean\":10.67,\"median\":9.0,\"std\":4.49,\"min\":5,\"max\":24},\"n_necessary\":{\"mean\":1.39,\"median\":2.0,\"std\":1.04}},\"remote_path\":\"/root/solver-trace-ablation/outputs/eval_sta_plan002_additive_b03.json\",\"server\":\"westd-39279\"}",
+                "content_filename": "eval_sta_plan002_additive_b03.json",
+                "tags": [
+                  "eval",
+                  "sta",
+                  "plan002",
+                  "additive_bonus"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d16456d6-d54f-4daf-bca6-159e283d8bc0",
+            "uuid": "576bccab-fa06-44b8-8d60-97efeb79f299",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BiSWMCcmhZXjmEHtxXEpCq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 883,
+                "cache_read_input_tokens": 92305,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 883
+                },
+                "output_tokens": 60,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000380"
+        },
+        {
+          "source_line": 381,
+          "timestamp": "2026-05-14T03:37:46.530Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'summary': {'n_problems'...'server': 'westd-39279'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type",
+              "is_error": true,
+              "tool_use_id": "toolu_019SdhPEjL5tCuxZRu9bWr9J"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "d16456d6-d54f-4daf-bca6-159e283d8bc0",
+            "uuid": "af4a1121-b53d-4d69-9588-0eb1120d83d8",
+            "tool_use_result": "Error: Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'summary': {'n_problems'...'server': 'westd-39279'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type"
+          },
+          "id": "event-000381"
+        },
+        {
+          "source_line": 382,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01V8VHJs3zp8CgnTTqYk3j1u",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "eval_sta_plan002_additive_b03",
+                "type": "data",
+                "description": "eval_sta.py full STA evaluation of plan002-additive-b03-s42 checkpoint-500. prove_rate=0.18, mean_isr=0.0257, proved_only_isr=0.1427. Remote: westd-39279:/root/solver-trace-ablation/outputs/eval_sta_plan002_additive_b03.json",
+                "project": "solver-trace-ablation",
+                "exp_id": "plan002-additive-b03-s42",
+                "content": "{\"summary\":{\"n_problems\":100,\"n_proved\":18,\"prove_rate\":0.18,\"mean_isr\":0.0257,\"isr_std\":0.0742,\"median_isr\":0.0,\"isr_pr_ratio\":0.1427,\"proved_only_mean_isr\":0.1427,\"min_isr\":0.0,\"max_isr\":0.375,\"by_answer_type\":{\"false\":{\"count\":25,\"proved\":3,\"prove_rate\":0.12,\"mean_isr\":0.0102},\"unknown\":{\"count\":41,\"proved\":8,\"prove_rate\":0.1951,\"mean_isr\":0.0422},\"true\":{\"count\":34,\"proved\":7,\"prove_rate\":0.2059,\"mean_isr\":0.0172}},\"elapsed_seconds\":588.6,\"solver\":\"Prover9Solver\"},\"component_stats\":{\"proved_only\":{\"n\":18,\"mean\":10.67,\"median\":9.0,\"std\":4.49,\"min\":5,\"max\":24},\"n_necessary\":{\"mean\":1.39,\"median\":2.0,\"std\":1.04}}}",
+                "content_filename": "eval_sta_plan002_additive_b03.json",
+                "tags": [
+                  "eval",
+                  "sta",
+                  "plan002",
+                  "additive_bonus"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d16456d6-d54f-4daf-bca6-159e283d8bc0",
+            "uuid": "2525deaf-d3f6-4618-bddf-4caa2b351964",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RriB7gCp9bCLH1CYMn6BMA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 799,
+                "cache_read_input_tokens": 93188,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 799
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000382"
+        },
+        {
+          "source_line": 383,
+          "timestamp": "2026-05-14T03:37:53.069Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'summary': {'n_problems'...an': 2.0, 'std': 1.04}}}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type",
+              "is_error": true,
+              "tool_use_id": "toolu_01V8VHJs3zp8CgnTTqYk3j1u"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "d16456d6-d54f-4daf-bca6-159e283d8bc0",
+            "uuid": "2c55d3cf-c4bd-4f05-b399-3be2ad580d4e",
+            "tool_use_result": "Error: Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'summary': {'n_problems'...an': 2.0, 'std': 1.04}}}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type"
+          },
+          "id": "event-000383"
+        },
+        {
+          "source_line": 384,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MBMtwhfRCs63pCL8VqvSXh",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "eval_sta_plan002_additive_b03",
+                "type": "data",
+                "description": "eval_sta.py full STA evaluation of plan002-additive-b03-s42 checkpoint-500. prove_rate=0.18, mean_isr=0.0257, proved_only_isr=0.1427. Remote: westd-39279:/root/solver-trace-ablation/outputs/eval_sta_plan002_additive_b03.json",
+                "project": "solver-trace-ablation",
+                "exp_id": "plan002-additive-b03-s42",
+                "url": "westd-39279:/root/solver-trace-ablation/outputs/eval_sta_plan002_additive_b03.json",
+                "tags": [
+                  "eval",
+                  "sta",
+                  "plan002",
+                  "additive_bonus"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d16456d6-d54f-4daf-bca6-159e283d8bc0",
+            "uuid": "499d29e0-d0d8-419e-a0a7-b88ef57dda1a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Bii2eV8vBKrdiypvELGyyb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 720,
+                "cache_read_input_tokens": 93987,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 720
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000384"
+        },
+        {
+          "source_line": 385,
+          "timestamp": "2026-05-14T03:37:57.769Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MBMtwhfRCs63pCL8VqvSXh",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260514_4e9c19\\\", \\\"name\\\": \\\"eval_sta_plan002_additive_b03\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"eval_sta.py full STA evaluation of plan002-additive-b03-s42 checkpoint-500. prove_rate=0.18, mean_isr=0.0257, proved_only_isr=0.1427. Remote: westd-39279:/root/solver-trace-ablation/outputs/eval_sta_plan002_additive_b03.json\\\", \\\"path\\\": null, \\\"url\\\": \\\"westd-39279:/root/solver-trace-ablation/outputs/eval_sta_plan002_additive_b03.json\\\", \\\"project\\\": \\\"solver-trace-ablation\\\", \\\"exp_id\\\": \\\"plan002-additive-b03-s42\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-14T03:37:57.750574+00:00\\\", \\\"tags\\\": [\\\"eval\\\", \\\"sta\\\", \\\"plan002\\\", \\\"additive_bonus\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "d16456d6-d54f-4daf-bca6-159e283d8bc0",
+            "uuid": "8cda0017-a173-48ee-b722-74cfd354839f",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260514_4e9c19\\\", \\\"name\\\": \\\"eval_sta_plan002_additive_b03\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"eval_sta.py full STA evaluation of plan002-additive-b03-s42 checkpoint-500. prove_rate=0.18, mean_isr=0.0257, proved_only_isr=0.1427. Remote: westd-39279:/root/solver-trace-ablation/outputs/eval_sta_plan002_additive_b03.json\\\", \\\"path\\\": null, \\\"url\\\": \\\"westd-39279:/root/solver-trace-ablation/outputs/eval_sta_plan002_additive_b03.json\\\", \\\"project\\\": \\\"solver-trace-ablation\\\", \\\"exp_id\\\": \\\"plan002-additive-b03-s42\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-14T03:37:57.750574+00:00\\\", \\\"tags\\\": [\\\"eval\\\", \\\"sta\\\", \\\"plan002\\\", \\\"additive_bonus\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260514_4e9c19\", \"name\": \"eval_sta_plan002_additive_b03\", \"type\": \"data\", \"description\": \"eval_sta.py full STA evaluation of plan002-additive-b03-s42 checkpoint-500. prove_rate=0.18, mean_isr=0.0257, proved_only_isr=0.1427. Remote: westd-39279:/root/solver-trace-ablation/outputs/eval_sta_plan002_additive_b03.json\", \"path\": null, \"url\": \"westd-39279:/root/solver-trace-ablation/outputs/eval_sta_plan002_additive_b03.json\", \"project\": \"solver-trace-ablation\", \"exp_id\": \"plan002-additive-b03-s42\", \"skill\": \"\", \"created_at\": \"2026-05-14T03:37:57.750574+00:00\", \"tags\": [\"eval\", \"sta\", \"plan002\", \"additive_bonus\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000385"
+        },
+        {
+          "source_line": 386,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "eval 完成，registry 和 artifact 均已更新。\n\n## 结果汇总\n\n### plan002-additive-b03-s42 eval_sta.py 评估结果\n\n| 指标 | 值 |\n|------|-----|\n| **prove_rate** | 18.0% (18/100) |\n| **mean_isr** | 0.0257 |\n| **isr_std** | 0.0742 |\n| **median_isr** | 0.0 |\n| **proved_only_isr** | 0.1427 |\n| **max_isr** | 0.375 |\n| **isr/pr ratio** | 0.1427 |\n\n### By answer type\n| Type | n | proved | prove_rate | mean_isr |\n|------|---|--------|------------|----------|\n| true | 34 | 7 | 20.6% | 0.0172 |\n| unknown | 41 | 8 | 19.5% | 0.0422 |\n| false | 25 | 3 | 12.0% | 0.0102 |\n\n### 组件数统计（仅 proved 的 18 个样本）\n| 指标 | n_components | n_necessary |\n|------|-------------|-------------|\n| mean | 10.67 | 1.39 |\n| median | 9.0 | 2.0 |\n| std | 4.49 | 1.04 |\n| range | 5–24 | — |\n\n注意：训练日志的 last100 prove_rate 是 55.3%，但 eval_sta.py 在独立测试集上仅 18%，差距很大。这可能是训练集 vs 测试集的泛化差异，或训练时 binary ISR 近似与 full STA 评估方式的差异所致。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d16456d6-d54f-4daf-bca6-159e283d8bc0",
+            "uuid": "37b42c06-f5fd-4ff8-aab3-e73dcd876297",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UzPrDfB8xa7PMyUGrTqgSA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 689,
+                "cache_read_input_tokens": 94707,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 689
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000386"
+        },
+        {
+          "source_line": 387,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "eval 完成，registry 和 artifact 均已更新。\n\n## 结果汇总\n\n### plan002-additive-b03-s42 eval_sta.py 评估结果\n\n| 指标 | 值 |\n|------|-----|\n| **prove_rate** | 18.0% (18/100) |\n| **mean_isr** | 0.0257 |\n| **isr_std** | 0.0742 |\n| **median_isr** | 0.0 |\n| **proved_only_isr** | 0.1427 |\n| **max_isr** | 0.375 |\n| **isr/pr ratio** | 0.1427 |\n\n### By answer type\n| Type | n | proved | prove_rate | mean_isr |\n|------|---|--------|------------|----------|\n| true | 34 | 7 | 20.6% | 0.0172 |\n| unknown | 41 | 8 | 19.5% | 0.0422 |\n| false | 25 | 3 | 12.0% | 0.0102 |\n\n### 组件数统计（仅 proved 的 18 个样本）\n| 指标 | n_components | n_necessary |\n|------|-------------|-------------|\n| mean | 10.67 | 1.39 |\n| median | 9.0 | 2.0 |\n| std | 4.49 | 1.04 |\n| range | 5–24 | — |\n\n注意：训练日志的 last100 prove_rate 是 55.3%，但 eval_sta.py 在独立测试集上仅 18%，差距很大。这可能是训练集 vs 测试集的泛化差异，或训练时 binary ISR 近似与 full STA 评估方式的差异所致。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 741019,
+            "duration_api_ms": 654100,
+            "num_turns": 164,
+            "stop_reason": "end_turn",
+            "session_id": "d16456d6-d54f-4daf-bca6-159e283d8bc0",
+            "total_cost_usd": 5.47508075,
+            "usage": {
+              "input_tokens": 160,
+              "cache_creation_input_tokens": 83555,
+              "cache_read_input_tokens": 8648420,
+              "output_tokens": 25027,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 83555,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 494,
+                  "cache_read_input_tokens": 94707,
+                  "cache_creation_input_tokens": 689,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 689
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2027,
+                "outputTokens": 30,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.002177,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 160,
+                "outputTokens": 25027,
+                "cacheReadInputTokens": 8648420,
+                "cacheCreationInputTokens": 83555,
+                "webSearchRequests": 0,
+                "costUSD": 5.4729037499999995,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "d3140693-a968-4d01-8c26-7289bf738b37"
+          },
+          "id": "event-000387"
+        }
+      ]
+    }
+  ]
+}

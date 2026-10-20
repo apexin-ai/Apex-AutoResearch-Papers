@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "41a73adde2d319de8e84",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code plan014 eval impl",
+  "task_key": "worker_code_plan014-eval-impl_20260514T021241",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan014-eval-impl_20260514T021241_result.json",
+    "occurrence": 1,
+    "bytes": 1412,
+    "sha256": "5518dba5566a2afa4cca0beb36e8f235ae9e54b2f2d98fb43c3e88def569ae06"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Aggregation logic works correctly. All components verified:\n\n**Summary of what was done:**\n\n1. **`scripts/eval_downstream.py`** — complete rewrite with:\n   - **Phase 1**: GPU inference generating K=8 formalizations per sample (temperature=0.7, top_p=0.9)\n   - **Phase 2**: Full STA ISR computation for each formalization via `run_sta` + `compute_isr`\n   - **Phase 3**: 3-way NLI classification (prove conclusion → true, prove ¬conclusion → false, neither → unknown)\n   - **Aggregation**: overall accuracy, by gold label, by ISR bucket (high/mid/low), by ISR quartile, Best-of-N (Oracle/ISR-best/Random/Prove-first)\n   - **Multiprocessing**: `--workers N` for parallel CPU-bound solver evaluation\n   - **Output**: JSON with per-sample details and aggregated statistics\n\n2. **`data/test_held_out.jsonl`** — symlink to `test_100.jsonl` (100 samples, 0 overlap with training, labels: true=40, false=29, unknown=31)\n\n3. **Dry-run verified**: negation logic, 3-way classification for all three label types, parse error handling, and aggregation all pass.\n\n**To run the full eval** (once a checkpoint is available):\n```bash\nexport CUDA_VISIBLE_DEVICES=0\npython scripts/eval_downstream.py \\\n  --checkpoint_path outputs/<checkpoint_dir> \\\n  --data_path data/test_held_out.jsonl \\\n  --output_path results/plan014_downstream.json \\\n  --num_generations 8 --workers 4\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan014-eval-impl.md"
+}

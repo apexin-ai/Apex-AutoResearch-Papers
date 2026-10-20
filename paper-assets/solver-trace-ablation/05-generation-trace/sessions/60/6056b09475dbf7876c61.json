@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "6056b09475dbf7876c61",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "writing method",
+  "task_key": "worker_writing_method_20260514T194535",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_method_20260514T194535_result.json",
+    "occurrence": 1,
+    "bytes": 2249,
+    "sha256": "4cce2919575ff00c8146625a325742d2f33983798e1699c0d38d5819790c61a0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```json\n{\n  \"section\": \"Method (Section 3)\",\n  \"word_count\": \"~1020 (prose) + Algorithm 1 + Table 1 + 4 equations ≈ 1200 equivalent\",\n  \"citations_needed\": [\n    \"mccune2010prover9 (Prover9)\",\n    \"folio (FOLIO dataset)\",\n    \"deepseekmath (GRPO)\",\n    \"demillo1978 (mutation testing)\",\n    \"jia-harman-survey (mutation testing survey)\"\n  ],\n  \"figures_needed\": [\n    \"fig:sta-overview (3-panel: formalization pipeline / STA ablation protocol / ISR as diagnostic vs reward)\"\n  ],\n  \"tables_needed\": [\n    \"tab:reward (Table 1: 6 reward conditions, already included inline)\"\n  ],\n  \"notes\": [\n    \"Introduced ISR* (proved-only ISR) notation for use throughout paper\",\n    \"Convex formulation mentioned as discarded design choice, not a main condition\",\n    \"Feature attribution citation placeholder needs a specific reference (e.g., Shapley/LIME)\",\n    \"Figure reference uses fig:sta-overview (matches introduction)\",\n    \"Premise-count bias flagged here, controlled-analysis deferred to §4\",\n    \"Taxonomy quantitative analysis deferred to §4 (Experiments)\"\n  ]\n}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "section": "Method (Section 3)",
+              "word_count": "~1020 (prose) + Algorithm 1 + Table 1 + 4 equations ≈ 1200 equivalent",
+              "citations_needed": [
+                "mccune2010prover9 (Prover9)",
+                "folio (FOLIO dataset)",
+                "deepseekmath (GRPO)",
+                "demillo1978 (mutation testing)",
+                "jia-harman-survey (mutation testing survey)"
+              ],
+              "figures_needed": [
+                "fig:sta-overview (3-panel: formalization pipeline / STA ablation protocol / ISR as diagnostic vs reward)"
+              ],
+              "tables_needed": [
+                "tab:reward (Table 1: 6 reward conditions, already included inline)"
+              ],
+              "notes": [
+                "Introduced ISR* (proved-only ISR) notation for use throughout paper",
+                "Convex formulation mentioned as discarded design choice, not a main condition",
+                "Feature attribution citation placeholder needs a specific reference (e.g., Shapley/LIME)",
+                "Figure reference uses fig:sta-overview (matches introduction)",
+                "Premise-count bias flagged here, controlled-analysis deferred to §4",
+                "Taxonomy quantitative analysis deferred to §4 (Experiments)"
+              ]
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-method.md"
+}

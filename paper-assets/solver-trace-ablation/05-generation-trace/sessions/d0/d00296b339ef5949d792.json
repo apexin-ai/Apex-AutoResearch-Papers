@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d00296b339ef5949d792",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code extra seeds prep",
+  "task_key": "worker_code_extra-seeds-prep_20260516T021842",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_extra-seeds-prep_20260516T021842_result.json",
+    "occurrence": 1,
+    "bytes": 1370,
+    "sha256": "d0031a3cb461997fadd21cc409ff67d26bcc78545e1a9dc6b6d48cb0e7b68979"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 产出汇总\n\n### Config 文件内容\n\n| Config | reward_mode | beta (默认) | 其他关键参数 |\n|--------|-------------|-------------|-------------|\n| `grpo_exec_only.yaml` | execution_only | — | exec_weight=1.0, sta_weight=0.0 |\n| `grpo_additive_bonus.yaml` | additive_bonus | 0.3 | CLI `--beta 0.1` 覆盖 |\n| `grpo_additive_random_b01.yaml` | additive_random | 0.1 | 已是 0.1 |\n\n三个 config 共享：model=Qwen3-4B, batch=4, grad_accum=2, num_gen=8, max_len=512, lr=1e-6, solver=prover9。\n\n### Launch 脚本\n\n已创建：`/root/solver-trace-ablation/scripts/launch_extra_seeds.sh`\n\n6 个命令全部注释状态，启动时取消对应注释并填入 GPU 编号。\n\n### Seed 兼容性\n\n- `--seed` 是纯 argparse int（train_grpo.py:376），直接传入 `TrainingArguments(seed=...)`（:467），无任何范围限制\n- 数据文件路径由 `--data_path` 显式指定，不从 seed 派生 → seed=45/46 无需额外数据文件\n- `save_total_limit=1` 已硬编码（:463），满足 C003\n\n### 注意事项\n\n1. **`grpo_additive_bonus.yaml` 中 beta 默认 0.3**，CLI `--beta 0.1` 会覆盖，已在脚本中显式指定\n2. Random 条件使用 `grpo_additive_random_b01.yaml`（不是 `grpo_additive_random.yaml`，后者不存在）\n3. 每次最多并行 2 个实验（2 GPU），6 个实验需分 3 批跑"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-extra-seeds-prep.md"
+}

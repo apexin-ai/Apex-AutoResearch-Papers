@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e6b6f3220ffc79619d55",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "submit 1 7b dual card",
+  "task_key": "worker_submit_1_7b-dual-card_20260516T194234",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_1_7b-dual-card_20260516T194234_result.json",
+    "occurrence": 1,
+    "bytes": 602,
+    "sha256": "48875a9efa13dc0e26df8824e898b00a3bcba540a354d44f1e9ba3ff57141719"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验均已成功启动并开始训练。\n\n**汇报：**\n\n| 实验 | tmux session | PID | GPU | 显存占用 |\n|------|-------------|-----|-----|---------|\n| w2-qwen3-1.7b-random-b01 | random_1_7b | 921646 | GPU-0 (bee2603b) | 39588 MiB |\n| w2-qwen3-1.7b-isr-b03 | isr_1_7b | 921785 | GPU-1 (ea63b76b) | 39588 MiB |\n\n**初始 log 确认：**\n- random: step 1 reward=0.5196, prove_rate=0.500, ~8.56s/it → 预计 ~71 min 完成\n- isr: step 1 reward=0.6200, prove_rate=0.500, ~8.58s/it → 预计 ~71 min 完成\n\n两个实验各自独占一张 GPU，无交叉占用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-1-7b-dual-card.md"
+}

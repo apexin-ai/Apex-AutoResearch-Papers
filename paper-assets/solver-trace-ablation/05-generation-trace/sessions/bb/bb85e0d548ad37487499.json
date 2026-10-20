@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bb85e0d548ad37487499",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "debug argparse config merge",
+  "task_key": "worker_debug_argparse-config-merge_20260516T033229",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_debug_argparse-config-merge_20260516T033229_result.json",
+    "occurrence": 1,
+    "bytes": 1779,
+    "sha256": "991045ffc9a41456d41291e737797a3b7dd05f28d0d7e28a1bd81eba9905142e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个进程持续增长（b005: 163→181→241, b01: 72→74→92），确认正常训练中。\n\n---\n\n## 诊断报告\n\n### 1. Bug 诊断\n\n**argparse defaults**: 所有参数 default=None（D097/D098 修复已在服务器上）。这部分没问题。\n\n**真正的 bug 在 config merge 的 boolean 特殊处理**（line 393）：\n```python\n# 旧代码\nif current is None or (isinstance(v, bool) and v and not current):\n```\n当 `--no_wandb` 的 argparse default 是 `False`（store_true），YAML 中 `no_wandb: true` 满足第二个条件 → 强制覆盖为 True → wandb 被禁用。即使 CLI 传了 `--wandb_project`，wandb 仍被关闭。\n\n**因果链**：YAML `no_wandb: true` → wandb 禁用 → 监控 cron 检测不到 W&B 信号 → 5 次探测后判定进程死亡 → 杀 tmux session → Python 孤儿进程存活继续训练 → Registry 误标 killed。\n\n### 2. 修复内容\n\n- **`scripts/train_grpo.py` line 393**: 移除 boolean 特殊分支 → `if current is None:`\n- **两个 YAML config**: 移除 `no_wandb: true` 行\n- 本地 `artifacts/train_grpo.py` 同步修复\n\n### 3. 当前运行状态\n\n| 实验 | GPU | 当前 step | 目标 | 状态 |\n|------|-----|-----------|------|------|\n| sweep-isr-b005-s42 | cuda:1 (PID 604647) | ~241/500 | 500 | 正常训练中 |\n| sweep-isr-b01-s45 | cuda:0 (PID 604569) | ~92/500 | 500 | 正常训练中 |\n\n### 4. 实验提交状态\n\n**无需重跑**。r3 的 Python 进程作为孤儿进程仍在正常训练，num_steps=500、K=4 参数均正确。预计：\n- b005 (~2.5s/step): 还需 ~650s ≈ 11 分钟\n- b01 (~10s/step): 还需 ~4080s ≈ 68 分钟\n\n唯一缺失：这两个 run 没有 W&B 日志（因 no_wandb bug），但 `reward_log.jsonl` 完整可用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/debug-argparse-config-merge.md"
+}

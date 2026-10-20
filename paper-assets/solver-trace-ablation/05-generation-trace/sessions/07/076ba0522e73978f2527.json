@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "076ba0522e73978f2527",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "diagnose phase1 r3 failure",
+  "task_key": "worker_diagnose_phase1-r3-failure_20260513T202119",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_phase1-r3-failure_20260513T202119_result.json",
+    "occurrence": 1,
+    "bytes": 603,
+    "sha256": "18bb36c9f9b028f9027297f80a29f8f633cefa60de47ce85d0e03026065d1153"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。报告已写入 `artifacts/diagnose_phase1_r3.md`。\n\n**根因**: 启动命令缺少 `CUDA_VISIBLE_DEVICES`，两个 GRPO 进程都加载到 GPU 0，单卡 96GB 容纳不下两套完整训练状态（~132-142 GB），在 step 25 时 GPU 显存耗尽被驱动 SIGKILL。\n\n**三轮失败链**: r1 config 解析 bug → r2 wandb 认证问题 → r3 GPU 隔离缺失导致显存 OOM。\n\n**最关键修复**: 启动时加 `CUDA_VISIBLE_DEVICES=0` / `CUDA_VISIBLE_DEVICES=1` 隔离两个实验到不同 GPU。建议同时开 `gradient_checkpointing=True` 留安全余量。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-phase1-r3-failure.md"
+}

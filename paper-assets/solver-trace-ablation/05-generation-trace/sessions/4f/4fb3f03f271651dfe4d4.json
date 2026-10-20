@@ -1,0 +1,727 @@
+{
+  "schema_version": "1.0",
+  "id": "4fb3f03f271651dfe4d4",
+  "project": "solver-trace-ablation",
+  "kind": "conversation",
+  "title": "research paper evidence table",
+  "task_key": "worker_research_paper-evidence-table_20260514T090950",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_research_paper-evidence-table_20260514T090950.jsonl",
+    "occurrence": 1,
+    "bytes": 39846,
+    "sha256": "1b2d66954040ae4eb3bf73372a3cced607eda1264679e3afafe288f6715c18e3"
+  },
+  "statistics": {
+    "messages": 35,
+    "user_turns": 0,
+    "tool_calls": 17,
+    "roles": {
+      "tool_call": 17,
+      "tool_result": 17,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T09:14:41.501645+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-evidence-table_20260514T090950",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__save_project_file",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T09:14:41.502147+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-evidence-table_20260514T090950",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T09:14:41.502393+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-evidence-table_20260514T090950",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "limit": "0",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T09:14:41.502915+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (71,418 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/c90ced82-5a39-49be-a8a7-7a3187b6bb4a/tool-results/mcp-agent-ml-research-read_registry-1778749804539.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/c90ced82-5a39-49be-a8a7-7a3187b6bb4a/tool-results/mcp-agent-ml-research-read_registry-1778749804539.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/c90ced82-5a39-49be-a8a7-7a3187b6bb4a/tool-results/mcp-agent-ml-research-read_registry-1778749804539.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-evidence-table_20260514T090950",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T09:14:41.503140+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Agent"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-evidence-table_20260514T090950",
+            "tool": "Agent",
+            "tool_args": {
+              "description": "Extract experiment metrics from registry",
+              "prompt": "I need to extract metrics from a large JSON registry file for specific experiments. The file is at:\n/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/c90ced82-5a39-49be-a8a7-7a3187b6bb4a/tool-results/mcp-agent-ml-research-read_registry-1778749804539.txt\n\nThe file has schema: {result: string} where `result` is a JSON string that needs to be parsed.\n\nI need metrics for these specific exp_ids:\n1. plan001-exec-only-s42-r2\n2. plan001-exec-only-s43-r4\n3. plan001-exec-only-s44\n4. plan016-extended-1000-s42\n5. plan002-additive-b01-s42\n6. plan002-additive-b01-s43\n7. plan002-additive-b01-s44\n8. plan018-additive-random-b01-s42\n9. plan002-additive-b03-s42\n10. plan017-additive-random-s42\n11. plan013-random-reward-s42-r4\n12. plan005-sta-low-s42\n13. plan012 (hacking taxonomy results - might have a different exp_id pattern)\n\nFor each experiment, I need:\n- exp_id\n- status\n- full metrics dict (all keys and values)\n- conclusion if any\n- any notes about eval method used\n\nFirst probe the structure with jq, then extract each experiment's data. Return ALL metrics verbatim - do not summarize or abbreviate numbers. I need exact values for paper tables.",
+              "subagent_type": "general-purpose"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T09:14:41.503334+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-evidence-table_20260514T090950",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/c90ced82-5a39-49be-a8a7-7a3187b6bb4a/tool-results/mcp-agent-ml-research-read_registry-1778749804539.txt",
+              "limit": "50"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T09:14:41.503472+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (30738 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-evidence-table_20260514T090950",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T09:14:41.503607+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-evidence-table_20260514T090950",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/c90ced82-5a39-49be-a8a7-7a3187b6bb4a/tool-results/mcp-agent-ml-research-read_registry-1778749804539.txt",
+              "limit": "30"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T09:14:41.503778+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (30738 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-evidence-table_20260514T090950",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T09:14:41.503921+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-evidence-table_20260514T090950",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/c90ced82-5a39-49be-a8a7-7a3187b6bb4a/tool-results/mcp-agent-ml-research-read_registry-1778749804539.txt",
+              "limit": "20"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T09:14:41.504044+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (30738 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-evidence-table_20260514T090950",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T09:14:41.504167+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-evidence-table_20260514T090950",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "wc -l /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/c90ced82-5a39-49be-a8a7-7a3187b6bb4a/tool-results/mcp-agent-ml-research-read_registry-1778749804539.txt",
+              "description": "Check file size in lines"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-14T09:14:41.504283+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "0 /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/c90ced82-5a39-49be-a8a7-7a3187b6bb4a/tool-results/mcp-agent-ml-research-read_registry-1778749804539.txt"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-evidence-table_20260514T090950",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T09:14:41.504404+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-evidence-table_20260514T090950",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "head -c 500 /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/c90ced82-5a39-49be-a8a7-7a3187b6bb4a/tool-results/mcp-agent-ml-research-read_registry-1778749804539.txt",
+              "description": "Peek at file start to understand structure"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T09:14:41.504522+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan012-hacking-taxonomy\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T09:06:38.613Z\\\", \\\"updated_at\\\": \\\"2026-05-14T09:07:42.314Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"rule-based hacking taxonomy classification on eval_sta outputs\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"data_path\\\": \\\"eval_results.json from plan002-b01-s42 + plan018-b01-s42\\\", \\\"data_count\\\": 160, \\\"model_name\\\": \\\"N/A (rule-based analysis)\\\", \\\"seed\\\":"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-evidence-table_20260514T090950",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-14T09:14:41.504657+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-evidence-table_20260514T090950",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "FILE=\"/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/c90ced82-5a39-49be-a8a7-7a3187b6bb4a/tool-results/mcp-agent-ml-research-read_registry-1778749804539.txt\"\ncat \"$FILE\" | python3 -c \"\nimport json, sys\nraw = json.load(sys.stdin)\ndata = json.loads(raw['result'])\nexps = data['data']['experiments']\nprint('Total experiments:', len(exps))\nprint('All exp_ids:')\nfor k in sorted(exps.keys()):\n    print(f'  {k}')\n\"",
+              "description": "Parse JSON and list all experiment IDs"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-14T09:14:41.504804+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Total experiments: 40\nAll exp_ids:\n  plan001-exec-only-s42\n  plan001-exec-only-s42-r2\n  plan001-exec-only-s42-r3\n  plan001-exec-only-s43\n  plan001-exec-only-s43-r2\n  plan001-exec-only-s43-r3\n  plan001-exec-only-s43-r4\n  plan001-exec-only-s44\n  plan002-additive-b01-s42\n  plan002-additive-b01-s43\n  plan002-additive-b01-s44\n  plan002-additive-b03-s42\n  plan003-eval-exec-only-r5\n  plan005-sta-low-s42\n  plan006-prolog-exec-s42\n  plan006-prolog-exec-s43\n  plan006-prolog-exec-s44\n  plan012-hacking-taxonomy\n  plan013-random-reward-s42\n  plan013-random-reward-s42-r2\n  plan013-random-reward-s42-r3\n  plan013-random-reward-s42-r4\n  plan014-downstream-nli-s42\n  plan016-extended-1000-s42\n  plan017-additive-random-s42\n  plan018-additive-random-b01-s42\n  plan018-additive-random-b01-s43\n  plan018-additive-random-b01-s44\n  sta-gt-isr-baseline\n  sta-phase0-baseline\n  sta-phase1-exec-only\n  sta-phase1-exec-only-r2\n  sta-phase1-exec-only-r3\n  sta-phase1-exec-only-r4\n  sta-phase1-exec-only-r5\n  sta-phase1-exec-sta\n  sta-phase1-exec-sta-r2\n  sta-phase1-exec-sta-r3\n  sta-phase1-exec-sta-r4\n  sta-phase1-exec-sta-r5"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-evidence-table_20260514T090950",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-14T09:14:41.504938+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-evidence-table_20260514T090950",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "FILE=\"/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/c90ced82-5a39-49be-a8a7-7a3187b6bb4a/tool-results/mcp-agent-ml-research-read_registry-1778749804539.txt\"\ncat \"$FILE\" | python3 -c \"\nimport json, sys\n\nraw = json.load(sys.stdin)\ndata = json.loads(raw['result'])\nexps = data['data']['experiments']\n\ntargets = [\n    'plan001-exec-only-s42-r2',\n    'plan001-exec-only-s43-r4',\n    'plan001-exec-only-s44',\n    'plan016-extended-1000-s42',\n    'plan002-additive-b01-s42',\n    'plan002-additive-b01-s43',\n    'plan002-additive-b01-s44',\n    'plan018-additive-random-b01-s42',\n    'plan002-additive-b03-s42',\n    'plan017-additive-random-s42',\n    'plan013-random-reward-s42-r4',\n    'plan005-sta-low-s42',\n    'plan012-hacking-taxonomy',\n]\n\nfor t in targets:\n    if t in exps:\n        print('=' * 80)\n        print(f'EXP_ID: {t}')\n        print('=' * 80)\n        print(json.dumps(exps[t], indent=2))\n        print()\n    else:\n        print(f'NOT FOUND: {t}')\n        print()\n\" 2>&1",
+              "description": "Extract full data for all 13 requested experiments",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-14T09:14:41.505069+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<persisted-output>\nOutput too large (41.6KB). Full output saved to: /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/c90ced82-5a39-49be-a8a7-7a3187b6bb4a/tool-results/bnqd0j2jm.txt\n\nPreview (first 2KB):\n================================================================================\nEXP_ID: plan001-exec-only-s42-r2\n================================================================================\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 1,\n  \"created_at\": \"2026-05-13T22:40:41.773Z\",\n  \"updated_at\": \"2026-05-14T03:45:49.703Z\",\n  \"completed_at\": \"2026-05-13T23:46:00Z\",\n  \"extra\": {\n    \"previous_failure\": {\n      \"conclusion\": \"failed\"\n    },\n    \"hook_events\": [\n      {\n        \"event\": \"on_complete\",\n        \"action\": \"agent\",\n        \"ts\": \"2026-05-13T23:46:01.596431+00:00\"\n      }\n    ]\n  },\n  \"spec\": {\n    \"command\": \"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_exec_only.yaml --num_steps 500 --seed 42 --output_dir /root/autodl-tmp/outputs/plan001_exec_only_s42\",\n    \"server\": \"westd-39279\",\n    \"data_path\": \"/root/solver-trace-ablation/data/train_500_seed42.jsonl\",\n    \"data_count\": 500,\n    \"model_name\": \"Qwen3-4B\",\n    \"seed\": 42,\n    \"hypothesis\": \"500-step exec-only baseline for STA comparison (K=8)\",\n    \"pid\": \"84901\",\n    \"gpu\": [\n      \"cuda:0\"\n    ],\n    \"log_path\": \"~/runs/solver-trace-ablation/plan001-exec-only-s42-r2.log\",\n    \"submitted_at\": \"2026-05-13T22:42:40.204Z\",\n    \"submitted_via\": \"submit_training_job\",\n    \"backend\": \"tmux\",\n    \"account\": \"root\",\n    \"wall_clock_seconds\": 3820,\n    \"gpu_hours\": 1.06\n  },\n...\n</persisted-output>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-evidence-table_20260514T090950",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-14T09:14:41.505209+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-evidence-table_20260514T090950",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/c90ced82-5a39-49be-a8a7-7a3187b6bb4a/tool-results/bnqd0j2jm.txt",
+              "limit": "200"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-14T09:14:41.505408+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t================================================================================\n2\tEXP_ID: plan001-exec-only-s42-r2\n3\t================================================================================\n4\t{\n5\t  \"status\": \"DONE\",\n6\t  \"retry_count\": 1,\n7\t  \"created_at\": \"2026-05-13T22:40:41.773Z\",\n8\t  \"updated_at\": \"2026-05-14T03:45:49.703Z\",\n9\t  \"completed_at\": \"2026-05-13T23:46:00Z\",\n10\t  \"extra\": {\n11\t    \"previous_failure\": {\n12\t      \"conclusion\": \"failed\"\n13\t    },\n14\t    \"hook_events\": [\n15\t      {\n16\t        \"event\": \"on_complete\",\n17\t        \"action\": \"agent\",\n18\t        \"ts\": \"2026-05-13T23:46:01.596431+00:00\"\n19\t      }\n20\t    ]\n21\t  },\n22\t  \"spec\": {\n23\t    \"command\": \"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_exec_only.yaml --num_steps 500 --seed 42 --output_dir /root/autodl-tmp/outputs/plan001_exec_only_s42\",\n24\t    \"server\": \"westd-39279\",\n25\t    \"data_path\": \"/root/solver-trace-ablation/data/train_500_seed42.jsonl\",\n26\t    \"data_count\": 500,\n27\t    \"model_name\": \"Qwen3-4B\",\n28\t    \"seed\": 42,\n29\t    \"hypothesis\": \"500-step exec-only baseline for STA comparison (K=8)\",\n30\t    \"pid\": \"84901\",\n31\t    \"gpu\": [\n32\t      \"cuda:0\"\n33\t    ],\n34\t    \"log_path\": \"~/runs/solver-trace-ablation/plan001-exec-only-s42-r2.log\",\n35\t    \"submitted_at\": \"2026-05-13T22:42:40.204Z\",\n36\t    \"submitted_via\": \"submit_training_job\",\n37\t    \"backend\": \"tmux\",\n38\t    \"account\": \"root\",\n39\t    \"wall_clock_seconds\": 3820,\n40\t    \"gpu_hours\": 1.06\n41\t  },\n42\t  \"notes\": \"Cron \\u8bef\\u5224 DONE/failed\\uff08\\u56e0 --help|grep \\u524d\\u7f00\\u547d\\u4ee4\\u7684 PID 84896 \\u9000\\u51fa\\uff0c\\u5b9e\\u9645\\u8bad\\u7ec3\\u5b50\\u8fdb\\u7a0b PID 84901 \\u4ecd\\u5728\\u8fd0\\u884c\\uff09\\u3002\\u5df2\\u624b\\u52a8\\u6062\\u590d RUNNING\\u3002\\u4e25\\u7981\\u5728 cuda:0 \\u542f\\u52a8\\u65b0\\u8fdb\\u7a0b\\u76f4\\u5230 r2 \\u81ea\\u7136\\u5b8c\\u6210\\u3002\\u26a0\\ufe0f Reviewer \\u4\n…[truncated 7264 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-evidence-table_20260514T090950",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-14T09:14:41.505638+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-evidence-table_20260514T090950",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/c90ced82-5a39-49be-a8a7-7a3187b6bb4a/tool-results/bnqd0j2jm.txt",
+              "offset": "200",
+              "limit": "200"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-14T09:14:41.505893+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "200\t  },\n201\t  \"checkpoint_path\": \"/root/autodl-tmp/outputs/plan001_exec_only_s44\",\n202\t  \"conclusion\": \"negative\",\n203\t  \"notes\": \"TAUTOLOGICAL COLLAPSE \\u786e\\u8ba4\\u3002eval PR=98% \\u4f46 94% \\u6837\\u672c\\u4ec5 2 components (premise=conclusion tautology)\\uff0cmean components=2.04\\uff0c\\u4e0e plan013 random reward \\u5b8c\\u5168\\u4e00\\u81f4\\u3002ISR\\u22480.5 \\u662f 2-component artifact\\u3002s42 \\u662f\\u552f\\u4e00\\u4ea7\\u751f genuine proofs (mean components=6.58) \\u7684 seed\\u30023-seed \\u7ed3\\u679c\\uff1as42=genuine, s43=degraded(PR=13%), s44=tautological(PR=98% fake)\\u3002Exec-only reward 2/3 seeds \\u5931\\u8d25\\u3002\",\n204\t  \"completed_at\": \"2026-05-14T05:14:30.940Z\"\n205\t}\n206\t\n207\t================================================================================\n208\tEXP_ID: plan016-extended-1000-s42\n209\t================================================================================\n210\t{\n211\t  \"status\": \"DONE\",\n212\t  \"retry_count\": 0,\n213\t  \"created_at\": \"2026-05-14T05:29:47.634Z\",\n214\t  \"updated_at\": \"2026-05-14T08:15:33.185Z\",\n215\t  \"hypothesis\": \"Extended training 1000 steps exec-only: plan001-s42 500\\u6b65 PR=93% \\u662f\\u771f\\u6536\\u655b\\u8fd8\\u662f lucky early convergence? 1000\\u6b65\\u89c2\\u5bdf PR \\u548c ISR \\u5728\\u66f4\\u957f horizon \\u7684\\u884c\\u4e3a\\u3002s43(14%)/s44(98% tautological) \\u5728 500 \\u6b65\\u5747\\u5931\\u8d25\\uff0c\\u5ef6\\u957f\\u8bad\\u7ec3\\u662f\\u5426\\u80fd\\u6539\\u5584\\uff1f\",\n216\t  \"parent\": \"plan001-exec-only-s42-r2\",\n217\t  \"server\": \"westd-39279\",\n218\t  \"gpu\": \"cuda:1\",\n219\t  \"account\": \"root\",\n220\t  \"spec\": {\n221\t    \"command\": \"bash -c \\\"export CUDA_VISIBLE_DEVICES=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_exec_only.yaml --data_path data/train_500_seed42.jsonl --num_steps 1000 --seed 42 --output_dir /root/autodl-tmp/outputs/plan016_extended_1000_s42\\\"\",\n222\t    \"server\": \"westd-39279\",\n223\t    \"gpu\": [\n224\t      \"cuda:1\"\n\n…[truncated 7877 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-evidence-table_20260514T090950",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-14T09:14:41.506084+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-evidence-table_20260514T090950",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/c90ced82-5a39-49be-a8a7-7a3187b6bb4a/tool-results/bnqd0j2jm.txt",
+              "offset": "399",
+              "limit": "200"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-14T09:14:41.506314+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "399\t    \"eval_prove_rate\": 0.81,\n400\t    \"eval_mean_isr\": 0.3365,\n401\t    \"eval_isr_std\": 0.3227,\n402\t    \"eval_proved_only_isr\": 0.4154,\n403\t    \"eval_median_isr\": 0.2,\n404\t    \"eval_n_proved\": 81,\n405\t    \"eval_n_problems\": 100,\n406\t    \"eval_method\": \"eval_sta.py full STA\",\n407\t    \"eval_data\": \"proofwriter_fol_100.jsonl\",\n408\t    \"eval_component_count_mean\": 5.58,\n409\t    \"eval_component_count_2_ratio\": 0.037,\n410\t    \"eval_isr_1_ratio\": 0.124,\n411\t    \"eval_isr_0_ratio\": 0.037,\n412\t    \"eval_by_type_false_pr\": 0.88,\n413\t    \"eval_by_type_false_isr\": 0.3515,\n414\t    \"eval_by_type_unknown_pr\": 0.83,\n415\t    \"eval_by_type_unknown_isr\": 0.3684,\n416\t    \"eval_by_type_true_pr\": 0.74,\n417\t    \"eval_by_type_true_isr\": 0.2869,\n418\t    \"tautological_collapse\": false,\n419\t    \"train_total_steps\": 500,\n420\t    \"train_duration_min\": 63,\n421\t    \"train_last100_pr\": 0.6875,\n422\t    \"train_last100_isr\": 0.1954,\n423\t    \"train_last100_loss\": 0.015\n424\t  },\n425\t  \"notes\": \"SUCCESS: additive ISR \\u03b2=0.1 \\u662f\\u6700\\u4f73\\u5de5\\u4f5c\\u70b9\\u3002eval PR=0.81 (exec-only baseline 0.93 \\u7684 -12pp, \\u53ef\\u63a5\\u53d7), eval ISR=0.3365 (baseline 0.1232 \\u7684 2.73x)\\u3002\\u65e0 tautological collapse (mean components=5.58)\\u3002\\u03b2 \\u5242\\u91cf\\u54cd\\u5e94\\u6e05\\u6670\\uff1a\\u03b2=0.1 \\u2192 PR\\u4fdd\\u6301+ISR\\u63d0\\u5347; \\u03b2=0.3 \\u2192 PR\\u5d29\\u584c(0.18)\\u3002ISR-as-reward \\u5e76\\u975e\\u5168\\u9762\\u5931\\u8d25\\u2014\\u2014\\u4f4e\\u5242\\u91cf additive bonus \\u6709\\u6548\\u5f15\\u5bfc\\u7ed3\\u6784\\u6539\\u5584\\u3002\\u26a0\\ufe0f \\u6ce8\\u610f\\uff1a\\u4e0e plan017 (additive random \\u03b2=0.3) \\u76f4\\u63a5\\u5bf9\\u6bd4\\u4e0d\\u516c\\u5e73\\u2014\\u2014\\u03b2 \\u4e0d\\u5339\\u914d\\u3002\\u9700\\u8981 \\u03b2=0.1 random control \\u5b9e\\u9a8c\\u505a\\u540c \\u03b2 \\u5bf9\\u7167\\uff08D031 \\u5df2\\u6279\\u51c6\\uff09\\u3002\",\n426\t  \"checkpoint_path\": \"/root/autodl-tmp/outputs/plan002_additive_b01_s42\",\n427\t  \"completed_at\": \"2026-05-14T06:47:26.358Z\"\n428\t}\n429\t\n430\t==============================================\n…[truncated 10065 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-evidence-table_20260514T090950",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-14T09:14:41.506481+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-evidence-table_20260514T090950",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/c90ced82-5a39-49be-a8a7-7a3187b6bb4a/tool-results/bnqd0j2jm.txt",
+              "offset": "598",
+              "limit": "200"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-14T09:14:41.506657+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "598\t    \"beta\": 0.3,\n599\t    \"command\": \"bash -c \\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_bonus.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 42 --beta 0.3 --reward_mode additive_bonus --output_dir /root/autodl-tmp/outputs/plan002_additive_beta03_s42\\\"\",\n600\t    \"server\": \"westd-39279\",\n601\t    \"gpu\": [\n602\t      \"cuda:0\"\n603\t    ],\n604\t    \"pid\": \"161819\"\n605\t  },\n606\t  \"reproduce\": {\n607\t    \"finished_at\": \"2026-05-14T03:24:44.110Z\"\n608\t  },\n609\t  \"extra\": {\n610\t    \"hook_events\": [\n611\t      {\n612\t        \"event\": \"on_complete\",\n613\t        \"action\": \"agent\",\n614\t        \"ts\": \"2026-05-14T03:24:48.666027+00:00\"\n615\t      }\n616\t    ]\n617\t  },\n618\t  \"metrics\": {\n619\t    \"total_steps\": 500,\n620\t    \"duration_min\": 56.7,\n621\t    \"overall_prove_rate\": 0.34025,\n622\t    \"overall_isr\": 0.11527,\n623\t    \"first20_prove_rate\": 0.15625,\n624\t    \"last50_prove_rate\": 0.555,\n625\t    \"last100_prove_rate\": 0.5525,\n626\t    \"mean_loss\": 0.008914,\n627\t    \"last100_loss\": 0.014469,\n628\t    \"parse_rate\": 1,\n629\t    \"w1_50_prove_rate\": 0.13,\n630\t    \"w51_100_prove_rate\": 0.095,\n631\t    \"w101_200_prove_rate\": 0.185,\n632\t    \"w201_300_prove_rate\": 0.375,\n633\t    \"w301_400_prove_rate\": 0.47625,\n634\t    \"w401_500_prove_rate\": 0.5525,\n635\t    \"steps_ge_085\": 52,\n636\t    \"first_step_ge_085\": 46,\n637\t    \"final_prove_rate\": 1,\n638\t    \"final_isr_mean\": 0.3089,\n639\t    \"final_reward_mean\": 1.0927\n640\t  },\n641\t  \"checkpoint_path\": \"/root/autodl-tmp/outputs/plan002_additive_beta03_s42\",\n642\t  \"log_path\": \"~/runs/solver-trace-ablation/plan002-additive-b03-s42.log\",\n643\t  \"notes\": \"ISR \\u4e3a binary \\u8fd1\\u4f3c (_fast_fn)\\uff0c\\u4e0d\\u53ef\\u7528\\u4e8e\\u8bba\\u6587\\u8de8 run \\u5bf9\\u6bd4\\uff0c\\u9700 eval_sta.py \\u7edf\\u4e00\\u8bc4\\u4f30\\u771f\\u5b9e ISR\\u3002prove_rate \\u8f68\\u8ff9 0.13\\u21920.095\\u21920.185\\u21920.375\\\n…[truncated 8120 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-evidence-table_20260514T090950",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-14T09:14:41.506893+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-evidence-table_20260514T090950",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/c90ced82-5a39-49be-a8a7-7a3187b6bb4a/tool-results/bnqd0j2jm.txt",
+              "offset": "797",
+              "limit": "200"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-14T09:14:41.507056+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "797\t  },\n798\t  \"reproduce\": {\n799\t    \"finished_at\": \"2026-05-13T23:55:02.341Z\"\n800\t  },\n801\t  \"extra\": {\n802\t    \"hook_events\": [\n803\t      {\n804\t        \"event\": \"on_complete\",\n805\t        \"action\": \"agent\",\n806\t        \"ts\": \"2026-05-13T23:55:06.559440+00:00\"\n807\t      }\n808\t    ]\n809\t  },\n810\t  \"conclusion\": \"negative\",\n811\t  \"checkpoint_path\": \"/root/autodl-tmp/outputs/plan005_sta_low_s42/checkpoint-500\",\n812\t  \"log_path\": \"/root/autodl-tmp/outputs/plan005_sta_low_s42/reward_log.jsonl\",\n813\t  \"completed_at\": \"2026-05-13T23:59:25.396Z\",\n814\t  \"metrics\": {\n815\t    \"total_steps\": 500,\n816\t    \"duration_min\": 71,\n817\t    \"parse_rate\": 1,\n818\t    \"overall_prove_rate\": 0.5657,\n819\t    \"overall_isr\": 0.1682,\n820\t    \"last50_prove_rate\": 0.77,\n821\t    \"last50_isr\": 0.2559,\n822\t    \"last100_prove_rate\": 0.7725,\n823\t    \"last100_isr\": 0.2299,\n824\t    \"last100_loss\": 0.022752,\n825\t    \"overall_loss\": 0.017296,\n826\t    \"last100_isr_pr_ratio\": 0.298,\n827\t    \"last100_isr_lt_pr_count\": \"99/100\",\n828\t    \"first_rolling10_pr_ge_0.8\": 178,\n829\t    \"first_rolling10_pr_ge_0.9\": 439,\n830\t    \"max_rolling10_pr\": 0.9375,\n831\t    \"max_rolling10_isr\": 0.3282,\n832\t    \"windowed\": {\n833\t      \"1-50\": {\n834\t        \"pr\": 0.1775,\n835\t        \"isr\": 0.0906\n836\t      },\n837\t      \"51-100\": {\n838\t        \"pr\": 0.1775,\n839\t        \"isr\": 0.0835\n840\t      },\n841\t      \"101-200\": {\n842\t        \"pr\": 0.5062,\n843\t        \"isr\": 0.1463\n844\t      },\n845\t      \"201-300\": {\n846\t        \"pr\": 0.6713,\n847\t        \"isr\": 0.1791\n848\t      },\n849\t      \"301-400\": {\n850\t        \"pr\": 0.7013,\n851\t        \"isr\": 0.1984\n852\t      },\n853\t      \"401-500\": {\n854\t        \"pr\": 0.7725,\n855\t        \"isr\": 0.2299\n856\t      }\n857\t    }\n858\t  },\n859\t  \"notes\": \"conclusion=negative \\u57fa\\u4e8e prove_rate \\u4e0b\\u964d\\uff08last100 0.7725 vs exec-only 0.865\\uff09\\u3002\\u4f46\\u7ed3\\u6784\\u6027\\u53d1\\u73b0\\uff1aISR/PR ratio=0.298\\uff0c99/100 \\u6b65 ISR &lt; PR\\uff0c\\u8bf4\\u660e STA=0.1 \\u7ef4\\u6301\\u4e86 ISR \\u4e0e PR \\u7\n…[truncated 2788 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-evidence-table_20260514T090950",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-14T09:14:41.507301+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 13 experiments have been extracted. Here is the complete data:\n\n---\n\n## Experiment 1: plan001-exec-only-s42-r2\n\n- **status**: DONE\n- **conclusion**: success\n- **eval_method**: eval_sta.py full STA\n- **metrics**:\n  - eval_prove_rate: 0.93\n  - eval_mean_isr: 0.1232\n  - eval_isr_std: 0.1887\n  - eval_proved_only_isr: 0.1324\n  - eval_median_isr: 0\n  - eval_n_proved: 93\n  - eval_n_problems: 100\n  - eval_data: proofwriter_fol_100.jsonl\n- **notes**: Training log ISR=0.8612 was binary approximation (_fast_fn), not real ISR. Final comparable ISR obtained via eval_sta.py (full STA).\n\n---\n\n## Experiment 2: plan001-exec-only-s43-r4\n\n- **status**: DONE\n- **conclusion**: negative\n- **eval_method**: sampling eval (do_sample=True, temperature=0.7) -- **NOT eval_sta.py full STA** (different from other groups; D029 decision: not retrained, paper annotates method difference; PR=14% is a failure case regardless)\n- **metrics**:\n  - eval_sampling_prove_rate: 0.14\n  - eval_sampling_mean_isr: 0\n  - eval_sampling_n_proved: 14\n  - eval_sampling_temperature: 0.7\n  - eval_sampling_method: \"do_sample=True, temperature=0.7\"\n  - eval_sampling_by_answer:\n    - true: count=34, proved=6, prove_rate=0.176\n    - false: count=25, proved=2, prove_rate=0.08\n    - unknown: count=41, proved=6, prove_rate=0.146\n- **notes**: Train PR(last100)=0.883 but eval PR=14% (sampling T=0.7), ISR=0. 87% samples hit max_new_tokens generating unparseable long output. Extreme cross-seed instability vs s42 (eval PR=93%).\n\n---\n\n## Experiment 3: plan001-exec-only-s44\n\n- **status**: DONE\n- **conclusion**: negative\n- **eval_method**: eval_sta.py full STA\n- **metrics**:\n  - eval_prove_rate: 0.98\n  - eval_mean_isr: 0.57\n  - eval_isr_std: 0.2013\n  - eval_median_isr: 0.5\n  - eval_proved_only_isr: 0.5816\n  - eval_n_proved: 98\n  - eval_n_problems: 100\n  - eval_data: proofwriter_fol_100.jsonl\n  - eval_component_count_mean: 2.04\n  - eval_component_count_2: 94\n  - eval_component_count_3: 4\n  - eval_by_type_false_pr: 1\n  - eval_by_ty\n…[truncated 12082 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-evidence-table_20260514T090950",
+            "tool": "Agent",
+            "elapsed_ms": 4
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-14T09:14:41.507541+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-evidence-table_20260514T090950",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/paper_tables_draft.md",
+              "content": "# Paper Tables Draft (2026-05-14)\n\nAll numbers sourced from experiment registry. Eval method is eval_sta.py full STA unless noted.\n\n---\n\n## Table 1: Main Results\n\n| Method | Formula | β | Seed | eval PR | eval ISR | proved-only ISR | Comp. (mean) | Taut. Collapse? |\n|--------|---------|---|------|---------|----------|-----------------|--------------|-----------------|\n| Exec-only (500 steps) | R = 𝟙{exec} | — | 42 | 0.93 | 0.1232 | 0.1324 | 6.58† | No |\n| Exec-only (500 steps) | R = 𝟙{exec} | — | 43 | 0.14‡ | 0.00‡ | — | — | No (degenerate)‡ |\n| Exec-only (500 steps) | R = 𝟙{exec} | — | 44 | 0.98 | 0.57§ | 0.5816§ | 2.04§ | **Yes** |\n| Exec-only (1000 steps) | R = 𝟙{exec} | — | 42 | 0.96 | 0.0027 | 0.0028 | 18.55 | No |\n| ISR-additive | R = 𝟙{exec} + β·ISR | 0.1 | 42 | 0.81 | 0.3365 | 0.4154 | 5.58 | No |\n| ISR-additive | R = 𝟙{exec} + β·ISR | 0.1 | 43 | TBD | TBD | TBD | TBD | TBD |\n| ISR-additive | R = 𝟙{exec} + β·ISR | 0.1 | 44 | TBD | TBD | TBD | TBD | TBD |\n| Random-additive | R = 𝟙{exec} + β·Rand | 0.1 | 42 | 0.79 | 0.1038 | 0.1314 | 8.46 | No |\n| ISR-additive | R = 𝟙{exec} + β·ISR | 0.3 | 42 | 0.18 | 0.0257 | 0.1427 | — | — |\n| Random-additive | R = 𝟙{exec} + β·Rand | 0.3 | 42 | 0.48 | 0.0453 | 0.0943 | 9.60 | No |\n| Convex-random | R = (1−β)·𝟙{exec} + β·Rand | — | 42 | 1.00 | 0.535§ | 0.535§ | ~2§ | **Yes** (degenerate) |\n| Convex-ISR (STA) | R = (1−β)·𝟙{exec} + β·ISR | — | 42 | 0.77ᵗ | 0.2299ᵗ | — | — | — |\n\n### Footnotes\n\n- **†** Component count 6.58 for s42 exec-only sourced from plan001-s44 cross-reference notes (eval_sta output).\n- **‡** plan001-exec-only-s43-r4: sampling eval (do_sample=True, T=0.7), **not** eval_sta.py full STA. PR=0.14 reflects sampling failure; 87% of samples hit max_new_tokens generating unparseable output. Not directly comparable to greedy-decoded eval_sta results.\n- **§** Tautological artifact. s44 ISR=0.57 is a structural artifact: 94% of proofs have only 2 components (premise = conclusion tautology), so ISR ≈ 0.5 mechanically. Similarly plan013 convex-random generates trivial 2-component proofs (PR=100%, ISR=0.535 = fake).\n- **ᵗ** plan005-sta-low-s42: **training metrics only** (last-100-step window). Checkpoint deleted; no eval_sta.py run available. Not directly comparable to eval metrics.\n\n### Exec-only 3-seed summary (where comparable)\n\nOnly s42 and s44 used eval_sta.py full STA. s43 used sampling eval → excluded from aggregation.\n\n| Metric | s42 | s44 | s43 (sampling) |\n|--------|-----|-----|----------------|\n| PR | 0.93 | 0.98 | 0.14‡ |\n| ISR | 0.1232 | 0.57§ | 0.00‡ |\n| Collapse? | No | Tautological | Degenerate output |\n\n**Key finding**: Exec-only reward fails 2/3 seeds. Only s42 produces genuine proofs.\n\n### ISR β=0.1 vs Random β=0.1 (s42, head-to-head)\n\n| Metric | ISR β=0.1 | Random β=0.1 | Δ |\n|--------|-----------|--------------|---|\n| eval PR | 0.81 | 0.79 | +0.02 |\n| eval ISR | 0.3365 | 0.1038 | **+0.2327 (3.2×)** |\n| proved-only ISR | 0.4154 | 0.1314 | **+0.2840 (3.2×)** |\n| Components (mean) | 5.58 | 8.46 | −2.88 |\n| ISR=0 ratio | 0.037 | 0.367 | −0.330 |\n| ISR=1 ratio | 0.124 | 0.000 | +0.124 |\n| Taut. collapse | No | No | — |\n\n### β dose response (s42)\n\n| β | ISR-additive PR | ISR-additive ISR | Random-additive PR | Random-additive ISR |\n|---|-----------------|------------------|--------------------|---------------------|\n| 0 (exec-only) | 0.93 | 0.1232 | — | — |\n| 0.1 | 0.81 | 0.3365 | 0.79 | 0.1038 |\n| 0.3 | 0.18 | 0.0257 | 0.48 | 0.0453 |\n\n---\n\n## Table 2: Hacking Taxonomy (plan012)\n\nISR β=0.1 (plan002-additive-b01-s42) vs Random β=0.1 (plan018-additive-random-b01-s42), classified on eval outputs.\n\n| Hacking Mode | ISR β=0.1 | Random β=0.1 | Δ (pp) |\n|--------------|-----------|--------------|--------|\n| **Genuine proofs** | 25.9% | 17.7% | **+8.2** |\n| Conclusion embedding | 72.8% | 78.5% | −5.7 |\n| Complexity w/o utility | 0.0% | 3.8% | −3.8 |\n| **Total hacking rate** | 74.1% | 82.3% | **−8.2** |\n\n### Quality within genuine proofs\n\n| Metric | ISR β=0.1 | Random β=0.1 |\n|--------|-----------|--------------|\n| Genuine proof mean ISR | 0.6723 | 0.3427 |\n\n### Interpretation\n\n- ISR reward produces +8.2pp more genuine proofs than random baseline at matched β.\n- Conclusion embedding remains the dominant hacking mode for both methods (~73-79%).\n- ISR completely eliminates complexity-without-utility hacking (0% vs 3.8%).\n- Among genuine proofs, ISR-trained models achieve 2.0× higher structural quality (ISR 0.67 vs 0.34).\n\n---\n\n## Data Provenance Notes\n\n| exp_id | eval method | data |\n|--------|-------------|------|\n| plan001-exec-only-s42-r2 | eval_sta.py full STA | proofwriter_fol_100.jsonl |\n| plan001-exec-only-s43-r4 | **sampling eval (T=0.7)** | proofwriter_fol_100.jsonl |\n| plan001-exec-only-s44 | eval_sta.py full STA | proofwriter_fol_100.jsonl |\n| plan016-extended-1000-s42 | eval_sta.py full STA | proofwriter_fol_100.jsonl |\n| plan002-additive-b01-s42 | eval_sta.py full STA | proofwriter_fol_100.jsonl |\n| plan002-additive-b01-s43 | ⏳ RUNNING | — |\n| plan002-additive-b01-s44 | ⏳ RUNNING | — |\n| plan018-additive-random-b01-s42 | eval_sta.py full STA | proofwriter_fol_100.jsonl |\n| plan002-additive-b03-s42 | eval_sta.py (top-level metrics) | proofwriter_fol_100.jsonl |\n| plan017-additive-random-s42 | eval_sta.py full STA | proofwriter_fol_100.jsonl |\n| plan013-random-reward-s42-r4 | eval_sta.py full STA (degenerate) | proofwriter_fol_100.jsonl |\n| plan005-sta-low-s42 | **train log only** (no eval checkpoint) | — |\n| plan012-hacking-taxonomy | rule-based classification | eval outputs from plan002/plan018 |\n\nAll training used `data/train_500_seed42.jsonl` per constraint C001.\n"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-14T09:14:41.507803+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/paper_tables_draft.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-evidence-table_20260514T090950",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-14T09:14:41.507948+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-evidence-table_20260514T090950",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "paper_tables_draft",
+              "type": "report",
+              "description": "论文 Table 1 (Main Results) + Table 2 (Hacking Taxonomy) 定稿草案，含所有实验 eval metrics、footnotes、数据溯源",
+              "project": "solver-trace-ablation",
+              "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/paper_tables_draft.md",
+              "tags": "['paper', 'tables', 'draft']"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-14T09:14:41.508104+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260514_c6d177\\\", \\\"name\\\": \\\"paper_tables_draft\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"论文 Table 1 (Main Results) + Table 2 (Hacking Taxonomy) 定稿草案，含所有实验 eval metrics、footnotes、数据溯源\\\", \\\"path\\\": \\\"projects/solver-trace-ablation/artifacts/_project/report/paper_tables_draft.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"solver-trace-ablation\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-14T09:14:28.754196+00:00\\\", \\\"tags\\\": [\\\"paper\\\", \\\"tables\\\", \\\"draft\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-evidence-table_20260514T090950",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-14T09:14:41.508270+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "产出已写入并注册：`artifacts/paper_tables_draft.md` (art_20260514_c6d177)\n\n内容概要：\n\n**Table 1 (Main Results)** — 12 行，覆盖 6 种方法 × 多 seed/β 配置：\n- Exec-only 3 seeds: s42 正常 (PR=0.93, ISR=0.12), s43 sampling eval 退化 (PR=0.14), s44 tautological collapse (ISR=0.57§)\n- 1000-step extended: ISR 从 0.12 跌至 0.003，确认 collapse 单调恶化\n- ISR β=0.1 s42: PR=0.81, ISR=0.34 (3.2× baseline)，s43/s44 标 TBD\n- Random β=0.1 s42: PR=0.79, ISR=0.10 — 控制组证明 ISR 非纯正则化效果\n- β=0.3: 两组均 PR 崩溃 (ISR: 0.18, Random: 0.48)\n- Convex-random/Convex-ISR(STA): 退化/仅训练指标\n\n**Table 2 (Hacking Taxonomy)** — ISR β=0.1 vs Random β=0.1：\n- Genuine rate: 25.9% vs 17.7% (+8.2pp)\n- Conclusion embedding: 72.8% vs 78.5% (主导 hacking 模式)\n- Complexity w/o utility: 0% vs 3.8% (ISR 完全消除)\n- Genuine proof 质量: ISR 0.67 vs 0.34 (2.0×)\n\n所有 footnote 标注了 s43 sampling eval、s44 tautological artifact、plan005 train-only 等不可比性。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_paper-evidence-table_20260514T090950"
+          },
+          "id": "event-000035"
+        }
+      ],
+      "message_count": 35
+    }
+  ],
+  "readable_path": "readable/conversations/research-paper-evidence-table.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "93c897f86dbd27997682",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops prep s43 eval pipeline",
+  "task_key": "worker_ops_prep-s43-eval-pipeline_20260515T033726",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_prep-s43-eval-pipeline_20260515T033726_result.json",
+    "occurrence": 1,
+    "bytes": 1655,
+    "sha256": "601e416616476216305d9887726722b4ba1a9c3681df61f54bd35b17a6b2a037"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部检查完毕。汇报如下：\n\n---\n\n## Eval Pipeline 预检结果\n\n### 1. 就绪状态：**是（就绪）**\n\n| 检查项 | 状态 | 说明 |\n|--------|------|------|\n| `eval_sta.py` | ✓ | 位于 `scripts/eval_sta.py`（非根目录） |\n| 测试集 | ✓ | `data/proofwriter_fol_100.jsonl`，100 条。**注意：任务描述的 `proofwriter_test_normal.jsonl` 不存在**，按 C008 约束必须用 `proofwriter_fol_100.jsonl` |\n| Solvers | ✓ | Prover9/SWI-Prolog/Z3 已确认可用 |\n| 磁盘 | ✓ | 82G/250G (33%)，剩余 169G，eval 空间充足 |\n\n### 2. 训练进程状态\n\n- PID 117566 正在运行，已运行 **~55 分钟**\n- 输出目录 `/root/autodl-tmp/outputs/exp1_random_b03_s43_r4`，当前 **16GB**\n- GPU: cuda:0\n\n### 3. 推荐 Eval 命令\n\n训练完成后，checkpoint 路径为 `/root/autodl-tmp/outputs/exp1_random_b03_s43_r4/checkpoint-500`。\n\n```bash\nexport CUDA_VISIBLE_DEVICES=0 && \\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\ncd /root/solver-trace-ablation && \\\npython3 scripts/eval_sta.py \\\n  --model_path /root/autodl-tmp/outputs/exp1_random_b03_s43_r4/checkpoint-500 \\\n  --data_path data/proofwriter_fol_100.jsonl \\\n  --output_path /root/autodl-tmp/outputs/eval_sta_exp1_random_b03_s43_r4.json \\\n  --logic_type fol \\\n  --max_new_tokens 512 \\\n  --timeout 5\n```\n\n### 4. 关键修正\n\n任务描述中 `proofwriter_test_normal.jsonl`（258 条）在服务器上不存在。所有历史 eval（含 s42/s44）均使用 `proofwriter_fol_100.jsonl`（100 条），C008/C009 约束也明确要求此文件。eval 应沿用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-prep-s43-eval-pipeline.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b409e464cb0174669c74",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code d146 config audit",
+  "task_key": "worker_code_d146-config-audit_20260519T155056",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d146-config-audit_20260519T155056_result.json",
+    "occurrence": 1,
+    "bytes": 860,
+    "sha256": "d35fa01c8f150765969791cb81da0a6a1f76bf1d01ca1c7ba5183625b5bfa834"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 审计结果\n\n### train_grpo.py 默认值\n`num_generations` 默认 **4**（line 491: `args.num_generations = 4`）\n\n### 各 config 文件 num_generations 值\n\n| 值 | config 文件 |\n|---|---|\n| **16** | `grpo_prolog_exec_only_k16_warmup.yaml` |\n| **8** | `grpo_exec_retrain.yaml`, `grpo_exec_retrain_v3.yaml`, `grpo_isr_gated.yaml`, `grpo_isr_gated_curriculum.yaml`, `grpo_isr_gated_warmstart.yaml`, `grpo_isr_gated_warmstart_v2.yaml`, `grpo_isr_warmstart_t015.yaml`, `grpo_isr_warmstart_v3.yaml` |\n| **4** | 其余 29 个 config（含所有 sweep_*, plan018_*, additive_bonus/random 系列, exec_only, exec_sta, prolog, prooffol, llama, d142_gated_isr 等） |\n| **2** | `grpo_additive_bonus_b01_8b.yaml`, `grpo_exec_only_8b.yaml`（8B 模型显存限制） |\n\n总计 40 个 config：2 个=16，8 个=8，28 个=4，2 个=2。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d146-config-audit.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f65b12218b368e138701",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code plan004 prep",
+  "task_key": "worker_code_plan004-prep_20260514T111444",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan004-prep_20260514T111444_result.json",
+    "occurrence": 1,
+    "bytes": 1836,
+    "sha256": "695de2dcabd333c17f98db60611389530620361874ebf1fe3d272aa6ed0c7fbc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有验证通过。以下是 plan004 的完整产出报告。\n\n---\n\n## Plan004 准备完成\n\n### 配置文件\n`/root/solver-trace-ablation/configs/grpo_fast_isr_ablation.yaml`\n\n### 启动命令\n```bash\nexport CUDA_VISIBLE_DEVICES=0\ncd /root/solver-trace-ablation\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\nnohup python scripts/train_grpo.py --config configs/grpo_fast_isr_ablation.yaml > /tmp/plan004_fast_isr.log 2>&1 &\n```\n\n### 代码改动\n`scripts/train_grpo.py` 第 211-216 行，新增 `execution_fast_sta` reward mode：\n- 调用 `_fast_fn`（即 `fast_sta_reward`）替代 `_full_fn`（即 `sta_reward`）\n- argparse choices 已同步更新\n\n### O(1) vs O(N) ISR 关键区别\n\n| | O(N) `sta_reward` | O(1) `fast_sta_reward` |\n|---|---|---|\n| 函数 | `compute_isr(run_sta(...))` | `fast_isr_fol(...)` |\n| solver 调用数 | 1 + N（N=前提数） | 2（固定） |\n| 返回值域 | [0, 1] 连续（necessary/total） | {0, 1} 二值 |\n| 判定逻辑 | 逐条删除前提，检查每条是否必要 | 仅检查：结论是否为重言式（无前提可证） |\n| 丢失的信息 | — | 部分冗余（5条前提中3条必要 → ISR=0.6，但 fast 返回 1.0） |\n\n这正是 plan004 要证明的：O(1) 近似把连续 ISR 信号压缩为二值，在训练中无法区分\"部分冗余\"和\"完全必要\"的 formalization，导致 reward signal 退化。\n\n### 预计 GPU 时间\n~4-5 小时（500 steps, K=8, Qwen3-4B）。O(1) ISR 每样本只需 2 次 solver 调用，比 O(N) 快约 3-5x，但 GPU 时间主要受模型 forward/backward 约束。\n\n### 注意\n- 两张 GPU 当前均被占用，需等 plan006 完成释放 cuda:0 后再提交\n- Dry-run 无法执行（GPU 内存不足），但语法验证、AST 解析、import 检查均通过"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan004-prep.md"
+}

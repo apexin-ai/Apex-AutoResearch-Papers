@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "77b0dfd1ff3d3f8a4cdb",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "pipeline s46 eval 8b k8",
+  "task_key": "worker_pipeline_s46-eval-8b-k8_20260522T033553",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_pipeline_s46-eval-8b-k8_20260522T033553_result.json",
+    "occurrence": 1,
+    "bytes": 450,
+    "sha256": "d7d17311437f727f7add4d0cb8ff73dc833123ee33dfc9a341ac962cf89c3e42"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "准备工作全部完成。关键信息已记录：\n\n- **eval**: `python scripts/eval_sta.py --model_path <path> --data_path data/proofwriter_fol_100.jsonl --output_path <path>`\n- **classify**: `python scripts/classify_h7.py --eval_path <path>`\n- **8B dry-run 配置**: 需改 `num_generations: 4 → 8`\n- **s45 已完成**: PR=15%, ISR=0.592(proved-only), genuine=86.7%, TS=6.7%, CE=6.7%\n\n等待 s46 完成，轮询已设置。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/pipeline-s46-eval-8b-k8.md"
+}

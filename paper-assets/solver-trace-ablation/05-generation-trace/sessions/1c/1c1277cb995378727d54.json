@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1c1277cb995378727d54",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code d134 analysis recreate",
+  "task_key": "worker_code_d134-analysis-recreate_20260518T134334",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d134-analysis-recreate_20260518T134334_result.json",
+    "occurrence": 1,
+    "bytes": 1586,
+    "sha256": "c903ee0ea0cd51a71b116f6ad090e4708b869e0c4af4129e92b898881d55b174"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇报：\n\n**1. classify.json 实际字段名**\n\n嵌套在 `eval_results` 键下，主要字段：\n- `n_total`, `n_proved`, `h7a_count`, `h7b_count`, `h7_total_count`, `h7_total_rate`\n- `h1_strict_count`, `h8_conjunction_collapse_count`\n- `genuine_count`, `genuine_rate`, `content_independent_count`\n- `conclusion_in_premise_count`, `single_premise_count`, `isr_1_count`\n\n**2. 脚本创建确认**\n- 远程: `/root/solver-trace-ablation/scripts/d134_analysis.py` (shebang 已改为 `/root/miniconda3/bin/python`, chmod +x)\n- 本地: `/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/scripts/d134_analysis.py`\n\n**3. Dry run 输出**\n\n```\nFound 2 runs: 2 ISR, 0 RANDOM\n\n  PER-SEED RESULTS\ncondition  seed  PR  H7_count  H7_rate  H1  H8  genuine  genuine_rate  CI  SNH  SNH_rate\n      ISR    47  97       83   85.6%     1  10        3       3.1%       8    0     0.0%\n      ISR    48  66       66  100.0%     0   0        0       0.0%       2    0     0.0%\n\n  ISR (n=2 seeds):\n    PR:           81.5 +/- 21.9\n    H7 rate:      92.8 +/- 10.2%\n    Genuine rate: 1.5 +/- 2.2%\n    S-NH rate:    0.0 +/- 0.0%\n```\n\ns49 目录存在但尚无 classify.json（符合预期，还在训练中）。统计检验因只有 ISR 无 RANDOM 而跳过。运行命令需用 `/root/miniconda3/bin/python`（系统 python3 缺 numpy/pandas/scipy）。\n\n**4. 依赖状态**\n- `/root/miniconda3/bin/python`: numpy, pandas, scipy 均已安装，无缺依赖\n- 系统 `/usr/bin/python3`: 缺 numpy/pandas/scipy（不可用）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d134-analysis-recreate.md"
+}

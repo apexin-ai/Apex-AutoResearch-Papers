@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "72e213a914c7f14cc98f",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "infra disk cleanup",
+  "task_key": "worker_infra_disk-cleanup_20260514T214433",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_disk-cleanup_20260514T214433_result.json",
+    "occurrence": 1,
+    "bytes": 318,
+    "sha256": "b86d88d87b13c7e88e88fd8740ed3404aa43aaee864f4d955298649a46dc10fe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。\n\n**释放空间**：105GB（240G→135G，96%→54%）\n- `outputs/` 由 218G 降至 113G\n- 所有 8 个冗余 checkpoint 子目录已删除\n- 保留：每个实验的最终模型权重、eval_results.json、reward_log.jsonl\n\n**当前磁盘**：250G 中已用 135G，可用 116G。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-disk-cleanup.md"
+}

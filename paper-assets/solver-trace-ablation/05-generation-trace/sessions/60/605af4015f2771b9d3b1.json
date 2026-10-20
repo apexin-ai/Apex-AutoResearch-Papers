@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "605af4015f2771b9d3b1",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops cleanup plan002 b01 ckpt",
+  "task_key": "worker_ops_cleanup-plan002-b01-ckpt_20260514T065021",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cleanup-plan002-b01-ckpt_20260514T065021_result.json",
+    "occurrence": 1,
+    "bytes": 120,
+    "sha256": "a7568fc55d2313bf542eef4773bbc2e1fc54a453147cf4da9df072dc36bff455"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已删除 `checkpoint-500/`，释放 16G。磁盘状态：250G 总量，已用 64G，可用 187G (26%)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cleanup-plan002-b01-ckpt.md"
+}

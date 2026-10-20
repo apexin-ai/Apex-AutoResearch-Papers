@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f1d60efcfb6969cbc2e8",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analysis random 3seed pooled stats",
+  "task_key": "worker_analysis_random-3seed-pooled-stats_20260515T193119",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_random-3seed-pooled-stats_20260515T193119_result.json",
+    "occurrence": 1,
+    "bytes": 1516,
+    "sha256": "113e04eb2d7b42302b102418595f923a8def2d94b302fe120e13a734396ecd2f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果总结\n\n### 统计显著\n\n**H7 rate (ISR >> Random)**: p = 1.3×10⁻³⁹, OR = 15.05 — 极度显著。ISR 70.6% vs Random 13.7%。ISR 训练强烈诱导 H7 型 shortcut（直接输出 hypothesis 作为结论）。\n\n### 统计不显著\n\n**Genuine rate (ISR < Random)**: p = 0.18 (two-sided), p = 0.10 (one-sided) — 不显著。ISR 6.1% vs Random 9.5%，差异方向符合预期（ISR 更低）但样本量不足以达到显著性。\n\n### 对论文 Framing 的影响\n\n1. **H7 差异是铁板钉钉的主论点**：ISR 奖励导致 H7 shortcut 激增（OR=15），这是 Goodhart 效应的直接证据，可以作为论文核心 claim。\n\n2. **Genuine rate 差异不能作为独立 claim**：p=0.18 不够，只能作为 descriptive observation 或 trend 提及（\"numerically lower but not statistically significant\"）。\n\n3. **Per-seed 方差极大**是关键问题：ISR 的 H7 rate 从 16%（s42）到 100%（s43/s44），Random 从 0%（s42/s44）到 38%（s43）。论文必须报告 per-seed 数据而非仅 pooled，否则审稿人会质疑 Simpson's paradox。特别是 ISR s42 是明显的 outlier（H7 仅 16%，genuine 17.3%），需要在论文中讨论。\n\n4. **Random 的高 H1 率 (71.4%)** 说明 Random ablation 并非真正学会推理——它主要靠背答案（memorization），只是没走 H7 shortcut。Genuine proof 两边都很低（6-10%），这支持\"两种 ablation 都未学到真正推理，只是 gaming 方式不同\"的 framing。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-random-3seed-pooled-stats.md"
+}

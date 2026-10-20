@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e1fb7c177fd30ceb5a9f",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "diagnose full server status",
+  "task_key": "worker_diagnose_full-server-status_20260513T232703",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_full-server-status_20260513T232703_result.json",
+    "occurrence": 1,
+    "bytes": 1542,
+    "sha256": "c8e5965787a2f1ac2f0cc4b436b064d6f07ae8af581d22f006cf31709aadc6f7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n[诊断结果]\n\n- cuda:0: PID 84901, plan001-exec-only-s42-r2, 80314MiB/97887MiB, GPU-Util 91%, RUNNING\n- cuda:1: PID 85795, plan005-sta-low-s42, 80346MiB/97887MiB, GPU-Util 90%, RUNNING\n\n- plan001 历史:\n  - r1 (plan001-exec-only-s42.log): FAILED — `unrecognized arguments: --max_steps 500` (EXIT_CODE=2)\n  - r3 (plan001-exec-only-s42-r3.log): FAILED — torch.OutOfMemoryError: CUDA out of memory (GPU0 94.97GiB 中仅剩 30.19MiB free)\n  - r2 (plan001-exec-only-s42-r2.log): RUNNING — step 361/500, reward_log 360行\n\n- plan001 失败根因:\n  - r1: 参数名错误，用了 --max_steps 而脚本参数是 --num_steps\n  - r3: OOM，当时 cuda:0 被 r2 占用(PID 84901 占 78.43GiB)，两进程冲突\n\n- plan005 状态: RUNNING — step 306/500, reward_log 305行\n\n- plan001 最新 metrics (step 357-361):\n  prove_rate: 0.625~1.0, isr_mean: 0.625~1.0, reward_mean: 0.625~1.0\n\n- plan005 最新 metrics (step 302-306):\n  prove_rate: 0.5~1.0, isr_mean: 0.03~0.27, reward_mean: 0.45~0.93\n\n[脚本参数]\n--model_path, --data_path, --reward_mode {execution_only,execution_sta},\n--output_dir, --num_steps, --per_device_batch_size, --gradient_accumulation_steps,\n--num_generations, --max_completion_length, --learning_rate,\n--exec_weight, --sta_weight, --seed, --solver,\n--wandb_project, --wandb_run, --no_wandb, --config\n\n[数据文件]\ntrain_500_seed42.jsonl: 存在, 500行, 484KB\n\n[注意] 有2个 swipl 进程 (PID 95935, 96445) 各占 99.9% CPU，疑似死循环测试残留。\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-full-server-status.md"
+}

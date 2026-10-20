@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9d7736caaf4c47f9d4cf",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "knowledge update table compilation prolog sta",
+  "task_key": "worker_knowledge_update-table-compilation-prolog-sta_20260514T183132",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_knowledge_update-table-compilation-prolog-sta_20260514T183132_result.json",
+    "occurrence": 1,
+    "bytes": 452,
+    "sha256": "bea33b1afc17cea092033ebe0a02154dfbe5a4e4ac8b5efd5df01bcafde9c4c9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。更新内容：\n- Prolog STA 表格：s43/s44 数据填入，表头改为 \"Final\"，新增 proved_only_ISR/n_proved/Hacking Mode 列\n- 3-seed 汇总行：PR=0.62±0.31, ISR=0.485±0.408, proved_only_ISR=0.699±0.447\n- s43 注释：strict H7=0% misleading，functional analysis 38/38 tautological\n- s44 注释：unexpected genuine success\n- Data Gaps #7：RUNNING → DONE\n- Source Index：s43/s44 状态 RUNNING → DONE"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/knowledge-update-table-compilation-prolog-sta.md"
+}

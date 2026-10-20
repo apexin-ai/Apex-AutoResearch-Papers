@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cf0ab4ceaf0f90e81a1c",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_7_1778782046.md",
+  "task_key": "loop_7_1778782046",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_7_1778782046.md",
+    "occurrence": 1,
+    "bytes": 4269,
+    "sha256": "5ecf720cde72de61122ae2b406bcce6178e7997a5f79eaef11188ef1427678d5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: idle_timeout\nupdated: '2026-05-14T18:07:09+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：仅 `westd-39279:cuda:0` 和 `westd-39279:cuda:1`，无例外\n- 所有训练命令必须 `bash -c \"export CUDA_VISIBLE_DEVICES=N && ...\"`，不可省略\n- 数据约束 C001：所有实验统一用 `train_500_seed42.jsonl`，禁用 `proofwriter_fol_500.jsonl`\n- 磁盘约束 C003：`log_completions=False` + `save_total_limit=1`，output_dir 必须放 `/root/autodl-tmp/outputs/`\n- kill_job 后必须 SSH 验证子进程已终止（只杀 tmux wrapper，不杀 Python 子进程）\n- ISR 对比必须 premise-count-matched（raw ISR 对比因 LOO 数学偏差不可信，D051 教训）\n- Prolog STA s42 已证明 100% H7——如果 s43/s44 也是 100% H7，这是预期结果不是 bug\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-39279，账号 root\n- **工作目录**: `/root/solver-trace-ablation/`\n- **Python**: `/root/miniconda3/bin/python`，激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **镜像**: aml-train（conda 环境，不是 venv）\n- **GPU**: 2× RTX PRO 6000 Blackwell 94GB，CUDA 12.8，PyTorch 2.10.0+cu128\n- **模型**: Qwen3-4B via ModelScope（7.6GB）\n- **数据盘**: `/root/autodl-tmp/`（~131G free），outputs 在 `/root/autodl-tmp/outputs/`\n- **Solvers**: Prover9 (LADR 源码编译), SWI-Prolog 8.4.2 (`/usr/bin/swipl`), Z3 4.16.0.0\n- **活跃进程**: plan006-prolog-sta-s44 PID=908945, tmux session, cuda:0, cron 监控中\n- **活跃 Worker**: `worker_analysis_plan006-prolog-sta-s43_20260514T180524`（turn 10，正在 SSH 跑 eval）\n\n### 3. 📊 当前状态\n- **plan006-prolog-sta-s43** (ANALYZING): 训练完成，分析 Worker 正在跑 eval_sta.py（turn 10，最近在 ssh_execute）。等 `[WORKER DONE]` 回调。\n- **plan006-prolog-sta-s44** (RUNNING): cuda:0 PID=908945，cron 监控中。预估 ~2-3h 完成。等 cron 回调。\n- **Claim 1** ✅ 已闭环：ISR 崩塌轨迹 0.6423→0.1324→0.0027，6 种 hacking 模式，3-seed consistency\n- **Claim 2** ✅ 已闭环 (D057)：3-seed ISR + 3-seed random，premise-count-matched 1.06x 无差异，H7=ISR-specific\n- **Claim 3** ⏳：exec-only 3-seed done (D056)，STA s42 done (100% H7)，s43/s44 待出\n- 总计 50 实验：11 success / 17 negative / 18 failed / 2 killed\n\n### 4. 📋 待办（条件触发式）\n- `[WORKER DONE] worker_analysis_plan006-prolog-sta-s43` → 读产出，update_registry（metrics + conclusion），更新 report.md，按 on-experiment-done 分叉处理\n- `plan006-prolog-sta-s44 cron 回调` → spawn analysis Worker（eval_sta.py + hacking 分类），同上流程\n- **s43 + s44 分析全部完成** → 汇总 3-seed Prolog STA 统计（mean±std PR/ISR/H7%），Claim 3 闭环，向 Director 汇报 `[资源]` 行 + 全部 3 Claims 闭环状态\n- **3 Claims 全部闭环** → 更新 paper_framing.md，向 Director 提议启动 Paper Writing 流程（Table 1 + Table 2 定稿 → 各章节写作）\n- cuda:1 当前空闲（s43 训练完了）→ 如果 s44 还在跑且无其他实验需求，可向 Director 报告 1 卡空闲\n\n### 5. 🎯 战略上下文\n- **论文定位**: STA/ISR 作为 GRPO neurosymbolic formalizer 的诊断工具 + Goodhart's Law 案例研究。目标 EMNLP 2026 Main，DDL 2026-05-25（剩 11 天）。\n- **核心 narrative**: ISR 诊断能力强（Claim 1）但作为 reward 失败（Claim 2 meta-Goodhart），且跨 logic type 复现（Claim 3）。\n- **关键决策链**: D051（ISR 无结构优势，premise-count artifact）→ D057（3-seed random 闭环）→ D056（Prolog exec-only 3-seed done）\n- **最容易判断错的事**: \n  1. Prolog STA 如果 H7 < 100%，不要急着宣布\"Prolog 比 FOL 好\"——s42 已经是 100% H7，偏差可能是 seed variance\n  2. plan001-s42 exec-only 不是 healthy seed（87.1% H1），不要在论文中当 genuine proof 举例\n  3. ISR proved-only 高值（如 s44 的 0.387）可能是 small-sample artifact（n=21），不可当 positive evidence\n  4. 论文写作前必须读 red-section skill，Claim 2 是 negative 结论需要 Goodhart framing 而非 failure framing\n- **时间充裕**: 剩 11 天 × 2 卡 = 528 GPU·h，实验需求仅 ~6h。瓶颈在写作不在实验。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-7-1778782046.md"
+}

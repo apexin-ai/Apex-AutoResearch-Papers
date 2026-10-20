@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "09615a8644e8fe24fa26",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code plan017 and eval prep",
+  "task_key": "worker_code_plan017-and-eval-prep_20260514T023636",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan017-and-eval-prep_20260514T023636_result.json",
+    "occurrence": 1,
+    "bytes": 1815,
+    "sha256": "fe1ca497c351a302af0010b349a272a38e611130f094499065cc69e641f2c76b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n---\n\n### 产出总结\n\n**1. plan017 config**\n- 路径: `configs/grpo_additive_random.yaml`\n- 关键参数: `reward_mode: additive_random`, `beta: 0.3`, `data_path: data/train_500_seed42.jsonl` (C001 合规)\n- 奖励公式: `r = r_exec * (1 + 0.3 * random[0,1])`，与 plan002 `additive_bonus` 结构完全对称，random 替代 ISR\n\n**2. train_grpo.py 修改**\n- 在 `make_reward_fn` 中添加 `additive_random` 分支（line ~196）：调用 `_full_fn` 获取 execution reward，乘以 `(1 + beta * random)`\n- 在 argparse choices 列表中添加 `additive_random`\n- 随机数使用 `_random.Random(stats[\"total\"])` 确保可复现\n\n**3. eval_downstream.py 修改**\n- 新增 `scipy.stats.spearmanr` — ISR 与 NLI 正确性秩相关\n- 新增 `scipy.stats.mannwhitneyu` — Q4 vs Q1 ISR 分组 accuracy 显著性\n- 新增 `bootstrap_bon_ci()` — Best-of-N ISR-best vs random 的 95% CI（1000 次 bootstrap）\n- 统计结果写入 summary JSON 并在终端打印\n\n**4. eval_cross_solver.py**\n- 路径: `scripts/eval_cross_solver.py`（~150 行）\n- 读取 eval_downstream.py 输出 JSON → 对有 premises+conclusion 的 formalization 调 Z3 prove → 与 Prover9 结果比较\n- 输出: 四分类 agreement (both_proved/both_unproved/p9_only/z3_only)，按 ISR bucket (high/mid/low/no_isr) 分组统计\n- 支持多 worker 并行\n\n**注意事项**\n- 现有 `grpo_random_reward.yaml` 使用了 `data_path: data/proofwriter_fol_500.jsonl`，违反 C001。plan017 已修正为 `train_500_seed42.jsonl`\n- 现有 `random_reward` 模式用的是 weighted combo `r = w_exec * 1.0 + w_sta * random`，结构不同于 additive bonus。plan017 的 `additive_random` 使用乘法结构 `r_exec * (1 + β * random)` 与 plan002 完全对称，是正确的对照"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan017-and-eval-prep.md"
+}

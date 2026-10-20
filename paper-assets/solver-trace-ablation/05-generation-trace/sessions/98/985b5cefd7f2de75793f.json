@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "985b5cefd7f2de75793f",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "diag plan009 sft baseline s44 1000",
+  "task_key": "worker_diag_plan009-sft-baseline-s44-1000_20260515T125154",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_plan009-sft-baseline-s44-1000_20260515T125154_result.json",
+    "occurrence": 1,
+    "bytes": 890,
+    "sha256": "6ef2ddab4d114f2e14071c19f94a5e4bf6f12c8fe3b34a865348a69580644b0d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n## 结果\n\n**GPU 当前状态：**\n- GPU 0: s43 实验 (pid 352142) 正常运行中，占用 63852 MiB，100% 利用率\n- GPU 1: 完全空闲，0 MiB 占用\n\n**OOM 根因：CUDA_VISIBLE_DEVICES 设置错误，不是孤儿进程。**\n\n进程 352142 就是 s43 实验（seed 43），不是孤儿进程。s44 的日志明确显示 `Set CUDA_VISIBLE_DEVICES=0`，这意味着 s44 被错误地映射到了物理 GPU 0（s43 所在的卡），而不是分配的 cuda:1（物理 GPU 1）。两个实验挤在同一张卡上，backward pass 时 OOM 崩溃。\n\ns44 进程已退出（EXIT_CODE=1），输出目录为空，无需清理。\n\n**cuda:1 当前完全空闲可用。** 重试 s44 时需确保 `CUDA_VISIBLE_DEVICES=1`（不是 0）。需要检查 submit_training_job 的 GPU 映射逻辑是否有 bug，或者提交时的参数是否传错了。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-plan009-sft-baseline-s44-1000.md"
+}

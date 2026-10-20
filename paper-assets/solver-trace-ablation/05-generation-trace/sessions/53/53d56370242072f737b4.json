@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "53d56370242072f737b4",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "eval exp1 isr b03 s43 r3 monitor",
+  "task_key": "worker_eval_exp1-isr-b03-s43-r3-monitor_20260515T021829",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp1-isr-b03-s43-r3-monitor_20260515T021829_result.json",
+    "occurrence": 1,
+    "bytes": 95,
+    "sha256": "ffb11ee0f336bb4681d96b7661de4952f427f795bf1bb8c62763d6f83cc31e71"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Process still running. Polling every ~60s — I'll notify you when it completes."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp1-isr-b03-s43-r3-monitor.md"
+}

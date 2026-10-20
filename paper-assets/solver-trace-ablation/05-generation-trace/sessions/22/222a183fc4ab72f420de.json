@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "222a183fc4ab72f420de",
+  "project": "solver-trace-ablation",
+  "kind": "worker",
+  "title": "ssh warmstart transition v2",
+  "task_key": "worker_ssh_warmstart-transition-v2_20260516T161746",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_warmstart-transition-v2_20260516T161746.log",
+    "occurrence": 1,
+    "bytes": 870126,
+    "sha256": "323d2a6eef2873ba26ff767a8d44cfaf416f01c9b0c1d06ae0c2baca58925071"
+  },
+  "statistics": {
+    "messages": 512,
+    "user_turns": 0,
+    "tool_calls": 207,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 5,
+      "assistant": 90,
+      "tool_call": 207,
+      "tool_result": 207,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 512,
+      "chunks": [
+        {
+          "path": "222a183fc4ab72f420de-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "222a183fc4ab72f420de-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "222a183fc4ab72f420de-part-0003.json",
+          "message_count": 152
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-warmstart-transition-v2.md"
+}

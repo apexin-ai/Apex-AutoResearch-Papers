@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "b5b2060312364bcc773c",
+  "project": "solver-trace-ablation",
+  "kind": "worker",
+  "title": "ops full compile and eval 20260515T070522 retry1",
+  "task_key": "worker_ops_full-compile-and-eval_20260515T070522_retry1",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_full-compile-and-eval_20260515T070522_retry1.log",
+    "occurrence": 1,
+    "bytes": 858402,
+    "sha256": "eaf4ddb0a3d2aa295198865c646c23b9227c9d1a16bf762df111034c373b64ae"
+  },
+  "statistics": {
+    "messages": 145,
+    "user_turns": 1,
+    "tool_calls": 51,
+    "roles": {
+      "system": 4,
+      "record": 2,
+      "assistant": 35,
+      "tool_call": 51,
+      "tool_result": 51,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 104,
+      "chunks": [
+        {
+          "path": "b5b2060312364bcc773c-part-0001.json",
+          "message_count": 100
+        },
+        {
+          "path": "b5b2060312364bcc773c-part-0002.json",
+          "message_count": 4
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 41,
+      "chunks": [
+        {
+          "path": "b5b2060312364bcc773c-part-0002.json",
+          "message_count": 41
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-full-compile-and-eval-20260515t070522-retry1.md"
+}

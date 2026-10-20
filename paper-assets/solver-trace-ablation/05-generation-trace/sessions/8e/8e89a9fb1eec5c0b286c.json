@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8e89a9fb1eec5c0b286c",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "reviewer / loop_20.md",
+  "task_key": "loop_20",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_20.md",
+    "occurrence": 1,
+    "bytes": 4036,
+    "sha256": "a7e2085607c0b03002b89738032b340ec228212e6c2a68ecfa4e7b44fbac8cea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 20\nreason: max_wall_time\nupdated: '2026-05-19T12:06:43+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 服务器 westd-39279 只有 **1 GPU (cuda:0)**。ROADMAP 曾错误写 2 GPU，已修正。所有实验串行。\n- 训练数据必须用 `data/train_500_seed42.jsonl`（C001），禁止 `proofwriter_fol_train.jsonl`。D142-ext registry 的 data_path 字段填错了这个文件名（实际训练正确），注意不要被 registry 误导。\n- Eval 必须显式指定 `--data_path data/proofwriter_fol_100.jsonl`（C008），禁止依赖默认值。\n- D142 gated ISR 论文 claim 已从 \"eliminates TS entirely (0/3)\" 修正为 \"suppresses TS in 5/6 seeds\"。**不要回退到旧 claim**。s55 证明 exec reward alone 可驱动 TS。\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-39279(root)，1×RTX PRO 6000 Blackwell 96GB\n- 代码根目录：`/root/solver-trace-ablation`\n- Python：`/root/miniconda3/bin/python3`\n- 模型路径：`/root/autodl-tmp/models/Qwen3-4B`（1.7B 同目录）\n- 本地 workspace：`/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/`\n- 论文：`{workspace}/paper/*.tex`\n- D142-ext 输出：`/root/autodl-tmp/d142_gated_isr_s{52-57}/`（classify.json + eval_results.json 均在）\n- GPU 当前**空闲**（0% util, 0 MiB）。D142-ext pipeline 已完成。无活跃训练进程。\n- D143 ProofWriter 数据准备和 D144 LLaMA 下载状态未知——需 SSH 核实。\n\n### 3. 📊 当前状态\n**刚完成**：\n- 验证 D142-ext 6-seed 数据（s55 TS=82% 发现 → 推翻旧 claim → 论文已修正）\n- 验证 conclusion.tex + appendix §G.4 6-seed 更新的数据准确性：全部 PASS\n- R14 审稿修复方案审查（5 条方案全部审核，数据准确性确认）\n- ROADMAP GPU 数量错误发现 → 已修正\n\n**Registry RUNNING/QUEUED**：\n- d142-gated-isr-s55/s56/s57: registry 可能仍显示 RUNNING/QUEUED，但**实际已全部完成**（pipeline log: \"ALL RUNS COMPLETE, failures: 0\", 11:12 UTC）。需要 Agent 更新 registry。\n\n**等待中**：\n- D143 ProofWriter 9 experiments（cuda:0, ~18h serial）\n- D144 LLaMA-3.2-3B 9 experiments（cuda:0, ~18h serial, after D143）\n- 云 GPU 扩容申请结果\n\n### 4. 📋 待办（条件触发式）\n- D143 ProofWriter 任一 seed 完成 → 验证 classify.json 数据，检查 Goodhart collapse 是否跨数据集复现\n- D144 LLaMA 任一 seed 完成 → 同上，检查跨模型复现\n- D143/D144 全部完成 → 审查论文新增 Table 和跨维度分析段落的数据准确性\n- 论文提交前 → 最终一致性审查：abstract/intro/experiments/conclusion/appendix 数字一致性 + 新增实验数据是否正确引用 registry\n- 若 D143/D144 结果为 negative（无 collapse）→ **立即报 Director**，这会削弱而非增强论文，需要讨论是否纳入或降级 claim\n\n### 5. 🎯 战略上下文\n- **核心结论链**：D134 确立 TS deterministic attractor (5/5 ISR seeds, Fisher p=0.004) → D142 gated ISR 展示 whack-a-mole (block TS → PG emerges) → D142-ext 6-seed 修正为更 nuanced 的故事（5/6 suppress TS, 1/6 TS via exec reward, 3/6 PG migration）→ D143/D144 尝试跨数据集+跨模型泛化\n- **R14 评分 3.0 (Findings)**，ceiling 来自单模型+单数据集。D143/D144 是突破 ceiling 的唯一路径。\n- **最容易判错的事**：(1) s55 的 TS 是 gate 失败的证据——不是。Gate 正确阻断了 ISR bonus（gate_pass≈0），TS 通过 exec reward 维持。这证明 ISR bonus is sufficient but not necessary for TS。(2) Table 2 (tab:hacking-taxonomy) 混合了单 seed 和 pooled 数据，caption 有标注但 body 内不直观——审稿人 W-m2 已提过这个问题，至今未完全解决。(3) N-H (non-hacking) 始终是 upper bound——undiscovered modes 会降低真实率。s54 的 96.7% N-H 在 S-NH 下约 62%（35.2% content-independent）。\n- **DDL**：May 25，D143+D144 串行需 ~36h GPU time → May 21 完成训练 → 2-3 天 paper integration + review cycles。可行但零容错。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-20-copy-2.md"
+}

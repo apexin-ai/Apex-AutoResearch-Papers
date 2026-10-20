@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7c162fa8d2f67a057b1a",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_2_1778738617.md",
+  "task_key": "loop_2_1778738617",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_2_1778738617.md",
+    "occurrence": 1,
+    "bytes": 4533,
+    "sha256": "a431a363f9c5f84f368f5bb56a7782ca6c52cc6d138f610a66fc8967cba4ac56"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: max_messages\nupdated: '2026-05-14T05:56:37+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 **只有 westd-39279:cuda:0 和 cuda:1**，禁止用其他设备号\n- 所有训练/eval 命令必须 `bash -c \"export CUDA_VISIBLE_DEVICES=N && ...\"`（inline 赋值子进程看不到，已有 3 次 OOM 事故）\n- 数据约束 C001：plan001/plan013 系列统一用 `train_500_seed42.jsonl`，不用 `proofwriter_fol_500.jsonl`\n- 磁盘约束 C003：`log_completions=False` + `save_total_limit=1`，output_dir 放 `/root/autodl-tmp/outputs/`\n- `/root/autodl-tmp` 磁盘曾只剩 6.4G，提交新实验前必须检查磁盘并清理旧 checkpoint（plan001_s43_r4 46G, plan001_s44 31G 可清）\n- plan013 vs plan017 论文措辞不可简化为\"additive vs convex\"对照——公式结构不同，Reviewer D027 已警告\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-39279，2× RTX PRO 6000 Blackwell 96GB，CUDA 12.8\n- **环境**: conda（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`），PyTorch 2.10.0+cu128，**不是 venv**\n- **代码**: `/root/solver-trace-ablation/`\n- **模型**: Qwen3-4B @ `/root/autodl-tmp/models/Qwen3-4B`（ModelScope 下载）\n- **Solvers**: Prover9 (LADR 源码编译), SWI-Prolog 8.4.2, Z3 4.16.0.0\n- **数据**: 训练 `data/train_500_seed42.jsonl` (500条), eval `data/proofwriter_fol_100.jsonl` (100条), 源自 FOLIO\n- **大文件**: `/root/autodl-tmp/outputs/` 存 checkpoint\n- **活跃进程**:\n  - plan002-additive-b01-s42: PID 262261, cuda:0, tmux session, cron 监控中\n  - plan016-extended-1000-s42: PID 263268, cuda:1, tmux session, cron 监控中\n- **Worker 池**: 0 个运行中\n\n### 3. 📊 当前状态\n两卡满载运行中，无活跃 Worker：\n- **plan002-additive-b01-s42** (cuda:0, RUNNING): additive ISR β=0.1，关闭 additive 路线的最后数据点，预计 ~1-2h 完成\n- **plan016-extended-1000-s42** (cuda:1, RUNNING): exec-only 1000步长训练，观察 genuine proof 长期行为，预计 ~2-3h 完成\n\n已完成 31 个实验：success 6 / negative 9 / failed 14。核心证据链已建立（ISR 崩塌轨迹、3-seed 退化分类、5 种 hacking 模式、GRPO 饱和机制、ISR-as-reward 全线失败）。\n\n等待中：两个 cron 回调（plan002-b01 和 plan016 完成时自动触发）。无等待 Director 决策。\n\n### 4. 📋 待办（条件触发式）\n- plan002-b01 cron 回调 → spawn worker 跑 `eval_sta.py` → 更新 registry metrics → 若 PR≈plan002-b03(18%) 则 additive ISR 路线彻底关闭；若 β=0.1 显著优于 β=0.3 则需讨论\n- plan016 cron 回调 → spawn worker 跑 `eval_sta.py` → 若 1000步 PR 仍≈93% + ISR 仍低 → 确认 s42 genuine proof 是稳定收敛；若 ISR 进一步下降 → 强化 hacking 随训练加剧的 narrative\n- 两实验 eval 完成 → 清理磁盘（`rm -rf plan001_s43_r4 plan001_s44` 等旧 checkpoint）→ 启动 plan006 Prolog exec-only 3 seeds（已获 D024 批准，代码/数据就绪）\n- plan006 3-seed 全出 → 若复现 hacking + ISR 诊断 → Claim 3 成立，论文可全面启动；若未复现 → Claim 3 降级 future work，2-claim 论文\n- 论文写作时机：plan006 结果出齐后（或 DDL 压力大时提前启动 Method/Related Work）\n\n### 5. 🎯 战略上下文\n**项目定位已 pivot**: ISR-as-reward 全线失败（D020/D026），论文从\"ISR 改善训练\"转为\"ISR 作为诊断工具检测 reward hacking\"。paper_framing.md 已全面重写（D028），3 条 claim：(1) ISR 检测 hacking, (2) GRPO 饱和机制, (3) 跨逻辑泛化（待 plan006）。\n\n**关键决策链**: D010(reward公式转向) → D014(GRPO饱和发现) → D020(additive ISR 失败) → D021(ISR≠semantic) → D026(ISR比random更差) → D027(plan017入证据) → D028(framing重写)\n\n**易错点**:\n- 训练 log 中的 ISR 是 binary approximation (`_fast_fn`)，**禁止用于论文或跨实验对比**——必须用 `eval_sta.py` 的 full STA eval 结果\n- s44 的 ISR=0.57 看似接近 GT ISR (0.559) 但完全不同来源——GT 来自 genuine multi-component proofs，s44 来自 2-component tautology artifact\n- `save_total_limit=1` 时 checkpoint 直接在 output_dir 根目录，不创建 `checkpoint-N` 子目录——使用前先 `ls` 确认\n- eval_downstream.py 需传 `--base_model /root/autodl-tmp/models/Qwen3-4B`（checkpoint 缺 tokenizer_config.json）\n- DDL 2026-05-25 剩 11 天，GPU 预算充裕（528 GPU·h 可用，剩余需求 ~10h），**不要暗示时间不够或建议降级 venue**\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-1778738617.md"
+}

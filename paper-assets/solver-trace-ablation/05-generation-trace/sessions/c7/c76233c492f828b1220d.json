@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c76233c492f828b1220d",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code d146 isr s42 metrics",
+  "task_key": "worker_code_d146-isr-s42-metrics_20260519T235145",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d146-isr-s42-metrics_20260519T235145_result.json",
+    "occurrence": 1,
+    "bytes": 1953,
+    "sha256": "b4f264a1585cbed8bd26d5fdda6784564d883b8dd1f63668c2b6dc2f2b7444ed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## D146 isr-s42 — 已完成 (500/500)\n\n### Last 10 steps\n\n| step | prove_rate | ISR | reward | parse_rate |\n|------|-----------|------|--------|------------|\n| 491 | 0.500 | 0.156 | 0.516 | 1.0 |\n| 492 | 0.500 | 0.143 | 0.514 | 1.0 |\n| 493 | 1.000 | 0.199 | 1.020 | 1.0 |\n| 494 | 0.500 | 0.105 | 0.511 | 1.0 |\n| 495 | 1.000 | 0.253 | 1.025 | 1.0 |\n| 496 | 0.500 | 0.167 | 0.517 | 1.0 |\n| 497 | 0.500 | 0.188 | 0.519 | 1.0 |\n| 498 | 1.000 | 0.409 | 1.041 | 1.0 |\n| 499 | 0.500 | 0.188 | 0.519 | 1.0 |\n| **500** | **0.000** | **0.000** | **0.000** | 1.0 |\n\n### Every 50 steps trend\n\n| step | prove_rate | ISR | reward |\n|------|-----------|------|--------|\n| 1 | 0.000 | 0.000 | 0.000 |\n| 50 | 0.250 | 0.045 | 0.255 |\n| 100 | 0.250 | 0.098 | 0.260 |\n| 150 | 0.125 | 0.031 | 0.128 |\n| 200 | **0.875** | **0.340** | 0.909 |\n| 250 | **1.000** | **0.332** | 1.033 |\n| 300 | 0.500 | 0.167 | 0.517 |\n| 350 | 0.000 | 0.000 | 0.000 |\n| 400 | 0.500 | 0.132 | 0.513 |\n| 450 | 0.000 | 0.000 | 0.000 |\n| 500 | 0.000 | 0.000 | 0.000 |\n\n### Summary stats\n\n**prove_rate distribution (500 steps):**\n\n| prove_rate | count | pct |\n|-----------|-------|------|\n| 0.0 | 190 | 38.0% |\n| 0.125 | 16 | 3.2% |\n| 0.25 | 14 | 2.8% |\n| 0.375 | 20 | 4.0% |\n| **0.5** | **184** | **36.8%** |\n| 0.625 | 3 | 0.6% |\n| 0.75 | 6 | 1.2% |\n| 0.875 | 13 | 2.6% |\n| 1.0 | 54 | 10.8% |\n\n**Mean prove_rate** = 0.354 (weighted from distribution)\n\n高度双峰分布：38% 全失败 + 36.8% 半成功 + 10.8% 全成功。训练中后期（step 300+）基本在 {0.0, 0.5, 1.0} 之间跳动，学习已饱和。\n\n---\n\n## D146 isr-s43 — 进行中 (488/500)\n\n| step | prove_rate | ISR | reward |\n|------|-----------|------|--------|\n| 486 | 0.500 | 0.125 | 0.513 |\n| 487 | 0.500 | 0.119 | 0.512 |\n| 488 | 1.000 | 0.209 | 1.021 |\n\n剩余 12 步，预计 ~3 分钟内完成。\n\n---\n\n## D146 isr-s44\n\n**NOT EXISTS**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d146-isr-s42-metrics.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1f14a6950fae2686f1a1",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "paper r29 group3 appendix",
+  "task_key": "worker_paper_r29-group3-appendix_20260522T144647",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_r29-group3-appendix_20260522T144647_result.json",
+    "occurrence": 1,
+    "bytes": 1425,
+    "sha256": "fb1a71c380a91840d18d8cd8da3090c2c7d88fdfc184ec9fa5e666e3ba37759f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Line 827 is the last line. No `\\clearpage` or `\\newpage` at the end — nothing to fix for task O.\n\n---\n\n**Summary of changes:**\n\n### D. N=2 Sensitivity Analysis — `appendix.tex:758–779` (new)\n- Inserted `\\subsection{$N{=}2$ Sensitivity Analysis (Excluding Seed 43)}` with `\\label{app:n2-sensitivity}` between seed-convergence (E.5) and 8B results (E.7)\n- Table `tab:n2-sensitivity` with 3 rows computed from per-seed data in `tab:fol-detailed`:\n  - Exec-only 500: PR=95.5±3.5, ISR*=0.357±0.318, N-H=3.8±5.3\n  - Exec-only 1000: PR=98.0±2.8, ISR*=0.003±0.001, N-H=0.0±0.0\n  - ISR β=0.1 500: PR=85.0±5.7, ISR*=0.659±0.344, N-H=8.7±12.2\n- Text notes TS dominance in both seeds (s42: 16%, s44: 100%) and that ISR* variance reflects mode difference (CE vs TS), not data quality\n\n### Cross-reference fix — `experiments.tex:18`\nAlready pointed to `app:n2-sensitivity` (was updated prior to this session or by a concurrent edit).\n\n### F. TS Recall Lower Bound — `appendix.tex:231–232` (new)\n- Added after Classifier Validation paragraph: TSb bounds TS recall at ≥91% (149/163); other modes not estimable; non-hacking rates are upper bounds.\n- Denominator 163 = TSa(149) + TSb(14, including 12 from s44 + 2 from s43)\n\n### O. Last-page whitespace\nNo `\\clearpage`/`\\newpage` at end of appendix.tex. File ends with substantive 8B-results text (line 827). No action needed."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-r29-group3-appendix.md"
+}

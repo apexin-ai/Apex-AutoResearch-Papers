@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ad182cba8385092127b9",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code isr implementation check",
+  "task_key": "worker_code_isr-implementation-check_20260520T060240",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_isr-implementation-check_20260520T060240_result.json",
+    "occurrence": 1,
+    "bytes": 2987,
+    "sha256": "e4f6cc97d74a1ed0ed6827e51d96a39ade6deba9911707a497c99fb9c869c843"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "最后确认 `train_grpo.py` 中哪些 reward_mode 实际使用 `_full_fn`（O(n) LOO）vs `_fast_fn`（O(1) binary）。\n\n回读 train_grpo.py 158 行的关键分支，已有完整信息，汇总如下：\n\n---\n\n## 结论\n\n训练中有 **两种** ISR 实现，按 reward_mode 分发：\n\n### 1. `_full_fn`：O(n) Leave-One-Out\n\n**文件**：\n- FOL: `src/sta/reward.py` → `sta_reward()` (L72-154)\n- Prolog: `src/sta/prolog_reward.py` → `prolog_sta_reward()` (L114-161)\n\n**计算方式**：对每个 component（premise/conclusion part）逐一移除，每次重新调 solver，判断 proof 是否 break → `ISR = n_necessary / n_total`\n\n**使用此函数的 reward_mode**：\n- `execution_only` (L192) — 调 `_full_fn` 但只取 `execution_reward`，ISR 仅 log\n- `random_reward` (L198) — 调 `_full_fn`，ISR 仅 log，reward 是随机值\n- `additive_bonus` (L214) — `r = exec * (1 + beta * ISR)`，ISR 来自 full LOO\n- `additive_random` (L225) — matched control，random 替代 ISR\n- `isr_gated` (L240) — warmup 阶段 exec-only，之后 ISR gate 过滤\n- `additive_bonus_gated` (L277) — additive + gate\n\n### 2. `_fast_fn`：O(1) Binary tautology check\n\n**文件**：\n- FOL: `src/sta/isr.py` → `fast_isr_fol()` (L100-135)\n- Prolog: `src/sta/prolog_reward.py` → `fast_prolog_sta_reward()` (L164-209)\n\n**计算方式**：仅 2 次 solver 调用——(1) 原始 prove (2) 空 premises prove conclusion。如果 conclusion 不是 tautology 且原始可证 → ISR=1.0，否则 ISR=0.0。**纯 binary，无区分能力。**\n\n**使用此函数的 reward_mode**：\n- `execution_fast_sta` (L296) — 唯一使用 `_fast_fn` 的 mode\n\n### 关键代码片段\n\n**`_full_fn` 核心 (ablation.py L115-136)**:\n```python\ndef run_sta(premises, conclusion, solver, timeout=5, original_result=None):\n    components = decompose_fol(premises, conclusion)\n    for comp in components:\n        result = ablate_component(premises, conclusion, comp, solver, timeout,\n                                  original_result=original_result)\n        # is_necessary = original_proved and not ablated_proved\n```\n\n**`_fast_fn` 核心 (isr.py L100-128)**:\n```python\ndef fast_isr_fol(premises, conclusion, solver, timeout=5):\n    original = solver.prove(premises, conclusion, timeout=timeout)\n    tautology_check = solver.prove([], conclusion, timeout=timeout)\n    if not original.proved:       fast_isr = 0.0\n    elif tautology_check.proved:  fast_isr = 0.0\n    else:                         fast_isr = 1.0  # binary, no gradation\n```\n\n### 总结\n\n**除 `execution_fast_sta` 外，所有 reward_mode 都使用 O(n) full LOO 计算 ISR。** `_fast_fn` 的 binary ISR 确实对 proved sample 无区分能力（非 tautology 恒返回 1.0），但它只在 `execution_fast_sta` mode 中作为 reward signal 使用。`additive_bonus`、`isr_gated` 等实际训练 mode 使用的是 full LOO ISR，具有 [0,1] 连续区分能力。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-isr-implementation-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "45dc9c0486c7695c119d",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code fix warmup ratio support",
+  "task_key": "worker_code_fix-warmup-ratio-support_20260514T071030",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-warmup-ratio-support_20260514T071030_result.json",
+    "occurrence": 1,
+    "bytes": 378,
+    "sha256": "7cb734571fcc4ddac6d1406bf67f2bd5c0068e251d7374c97ad6422431bcb287"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成。\n\n- **L342**: `parser.add_argument(\"--warmup_ratio\", type=float, default=0.0)` — CLI 参数已添加，`--help` 可见\n- **L424**: `warmup_ratio=args.warmup_ratio` — 已传入 GRPOConfig\n- YAML 配置 `grpo_prolog_exec_only_k16_warmup.yaml` 中 `warmup_ratio: 0.1` 会通过现有的 config merge 逻辑自动加载到 `args.warmup_ratio`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-warmup-ratio-support.md"
+}

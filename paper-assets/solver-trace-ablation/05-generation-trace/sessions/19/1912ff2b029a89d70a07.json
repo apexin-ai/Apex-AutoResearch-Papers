@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1912ff2b029a89d70a07",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops gpu cleanup cuda fix resubmit",
+  "task_key": "worker_ops_gpu-cleanup-cuda-fix-resubmit_20260514T002048",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu-cleanup-cuda-fix-resubmit_20260514T002048_result.json",
+    "occurrence": 1,
+    "bytes": 638,
+    "sha256": "e63846179a3d08b346982821aa1624fe33fa12437c0983409b94d27ea0be99b7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n**GPU 清理**：kill PID 122801（占用两张 GPU 的 zombie 进程），显存归零。\n\n**CUDA 修复**：两个 config 的 `data_path` 都是错误的 `proofwriter_fol_500.jsonl`，通过 CLI `--data_path data/train_500_seed42.jsonl` 覆盖（符合 C001）。提交命令用 `export CUDA_VISIBLE_DEVICES=N`（符合 C002）。\n\n**验证结果**：\n- GPU 0: PID 126466, 25.8GB, 91% util → `plan013-random-reward-s42-r2`\n- GPU 1: PID 126546, 25.5GB, 91% util → `plan001-exec-only-s43-r2`\n- 每张 GPU 只有一个进程，无越界。\n\n两个实验均已注册 RUNNING 状态。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-cleanup-cuda-fix-resubmit.md"
+}

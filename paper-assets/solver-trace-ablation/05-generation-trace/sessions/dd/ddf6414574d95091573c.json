@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ddf6414574d95091573c",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "paper compress page overflow",
+  "task_key": "worker_paper_compress-page-overflow_20260517T154552",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_compress-page-overflow_20260517T154552_result.json",
+    "occurrence": 1,
+    "bytes": 306,
+    "sha256": "c7ac08c46cfa9642243e31ccbaa58a79d9056dc1911b43b077d0e8e0439a6a38"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "§5 now ends on page 8 with \"training signals.\", §6 Limitations starts on page 9. Only conclusion.tex was changed: 3 opening sentences compressed to 1, \"Practical implications\" paragraph removed with core sentence merged to main paragraph end. No new em-dashes, no undefined references."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-compress-page-overflow.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9237ccc40f2f7986c65e",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "emergency mkdir 8b output",
+  "task_key": "worker_emergency_mkdir-8b-output_20260522T065529",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_emergency_mkdir-8b-output_20260522T065529_result.json",
+    "occurrence": 1,
+    "bytes": 124,
+    "sha256": "20f7236da5dceb695c90726d38a220ec754a5406d09bff104e5208c896f14b98"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "目录已存在，且内含两个文件：\n\n- `classify_results.json` (758B)\n- `eval_results.json` (182KB)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/emergency-mkdir-8b-output.md"
+}

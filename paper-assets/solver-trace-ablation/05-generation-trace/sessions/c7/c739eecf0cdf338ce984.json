@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c739eecf0cdf338ce984",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ssh curriculum r2 fixed data",
+  "task_key": "worker_ssh_curriculum-r2-fixed-data_20260516T150006",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_curriculum-r2-fixed-data_20260516T150006_result.json",
+    "occurrence": 1,
+    "bytes": 550,
+    "sha256": "ecf664a0c16451b5d4adfba1998ec79df6d4b55144a87ef27f9ef837f38fdb06"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n| 项目 | 状态 |\n|------|------|\n| 磁盘 | 140GB 可用 (45% used) |\n| Config 修改 | `data_path` → `proofwriter_fol_100.jsonl`; `no_wandb: true` |\n| GPU 0 (s42) | PID 866667, 82GB VRAM, step 20+ running, `[WARMUP]` 正常 |\n| GPU 1 (s43) | PID 866741, 81GB VRAM, step 20+ running, `[WARMUP]` 正常 |\n| Registry | 两个实验均标记 RUNNING |\n\n早期 prove_rate 信号健康（s42 step5=0.375, s43 step1=1.0, step15=0.625），warmup 阶段工作正常。预计 500 步约 25-30 分钟完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-curriculum-r2-fixed-data.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ea6885d8fc5b83826d64",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code w2 3seed aggregate stats",
+  "task_key": "worker_code_w2-3seed-aggregate-stats_20260520T102229",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_w2-3seed-aggregate-stats_20260520T102229_result.json",
+    "occurrence": 1,
+    "bytes": 584,
+    "sha256": "99935ddd8fcd669fd0d06ff61bd7ae3a5a3a98853bb3b1bb5182cab6c5ceca17"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "写入完成: `artifacts/3seed_aggregate_stats.md`\n\n核心数据:\n\n**500-step (3 seeds)**:\n- PR = 0.68 +- 0.47, ISR = 0.23 +- 0.30\n- Pooled genuine = 5.9% (12/204), hacking = 94.1%\n- 极大 seed variance: s42 CE-dominant, s43 collapsed (PR=13%), s44 TS-dominant\n\n**1000-step (3 seeds)**:\n- PR = 0.95 +- 0.05, ISR = 0.179 +- 0.305 (s43 ISR 是 TS artifact)\n- Pooled genuine = 0% (strict), 1.0% counting H1-near\n- **所有 3 seeds 在 1000 步均达 0% genuine** — hacking mode 不同 (s42=CE, s43=TS, s44=CE+PG)，但 genuine collapse 是跨 seed 不变量"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-w2-3seed-aggregate-stats.md"
+}

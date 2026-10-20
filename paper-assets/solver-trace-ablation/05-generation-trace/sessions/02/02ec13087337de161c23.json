@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "02ec13087337de161c23",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_7_1778787703.md",
+  "task_key": "loop_7_1778787703",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_7_1778787703.md",
+    "occurrence": 1,
+    "bytes": 4325,
+    "sha256": "8908ee0d938b499ee1beb42044352ed7a0d92c56920d04d464d03fe023019dd5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: idle_timeout\nupdated: '2026-05-14T19:20:15+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-39279 的 cuda:0 和 cuda:1，只有这两张，绝不碰其他设备号\n- warmup_ratio 必须 = 0.0（所有 Prolog exec-only 实验），s43 曾因 warmup=0.1 被 kill 重跑\n- 训练日志中的 ISR 是 binary approximation (_fast_fn)，**禁止用于论文或跨实验对比**，必须用 eval_sta.py 重新评估获得真实 ISR\n- kill_job 后必须 SSH 确认子进程也已终止（ps aux + nvidia-smi），不能只看 PID 返回成功（s43-r2 OOM 教训）\n- β=0.1 ISR hacking rate 69.1%（strict 定义 D044），论文不可标 \"no hacking\"，只能标 \"lowest hacking rate\"\n- Claim 2 已定论为 pure negative（D053）：premise-count-matched 后 ISR vs Random 无结构优势，2.4x 差异完全由 premise count confound 解释\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-39279，2 × RTX PRO 6000 96GB\n- 工作目录：SSH 上去后在 /root/ 下找（可能 /root/solver-trace-ablation 或 /root/autodl-tmp/solver-trace-ablation）\n- Python：/root/miniconda3/bin/python，环境激活 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型：/root/autodl-tmp/models/Qwen3-4B\n- 训练输出：/root/autodl-tmp/outputs/plan006_prolog_exec_s42, _s43_r3, _s44, plan006_prolog_sta_s42 等\n- eval 数据：data/proofwriter_fol_100.jsonl（项目代码目录下）\n- W&B：服务器上未配置 API key（SFT r3 因此失败），训练用 --no_wandb\n- 活跃进程：plan018-additive-random-b01-s43-r2 (PID 858386, cuda:0)\n\n### 3. 📊 当前状态\n**刚完成**：收到 plan006-prolog-exec-s43-r3 的 CRON 完成回调，同时发现 plan006-prolog-exec-s44 也进入 ANALYZING。已派 Worker (`worker_eval_plan006-prolog-exec-s43r3-s44_20260514T155640`) 对两个实验跑 eval_sta.py。\n\n**Registry 状态**：\n- RUNNING: plan018-additive-random-b01-s43-r2（Random β=0.1 s43 控制组 r2，cuda:0）\n- ANALYZING: plan006-prolog-exec-s43-r3（cuda:1，eval Worker 正在处理）\n- ANALYZING: plan006-prolog-exec-s44（cuda:0 已释放，eval Worker 待处理）\n- PREPARING: plan006-prolog-sta-s43, plan006-prolog-sta-s44（等 GPU）\n\n**等待中**：\n- Worker 回调：eval Worker 完成后需分析 3-seed Prolog exec-only 统计 + 向 Director 汇报\n- plan018-additive-random-b01-s43-r2 完成回调（cuda:0 上）\n- **未向 Director 汇报本次 CRON 回调**——eval Worker 返回后必须立即汇报\n\n### 4. 📋 待办\n- eval Worker 回调到达 → 更新 registry metrics+conclusion → 写 3-seed 对比分析 → 向 Director 汇报（带 [资源] 行）→ 文献联动检查 literature_map.yaml\n- eval 完成释放 cuda:1 → 提交 plan006-prolog-sta-s43 到 cuda:1（需走 PENDING 审批流程）\n- plan018-random-b01-s43-r2 完成 → eval → 与 plan002-b01-s43 对比 → 3-seed random 控制组齐全 → Table 1 可定稿\n- 两卡均释放后 → plan006-prolog-sta-s44 提交到另一张卡\n- 所有 3-seed 出齐 → Table 1 + Table 2 定稿 → paper_framing.md 更新\n\n### 5. 🎯 战略上下文\n- **核心叙事**：STA/ISR 作为 GRPO neurosymbolic formalizer 的**诊断工具** + **Goodhart's Law 案例研究**\n- **DDL**：2026-05-25（剩 11 天）\n- **Claim 1**（ISR 崩塌 = Goodhart）：✅ 已有完整证据链（0.6423→0.1324→0.0027）\n- **Claim 2**（ISR-as-reward）：定论 pure negative（D051/D052/D053）——premise-count-matched 后无结构优势\n- **Claim 3**（跨 logic type 泛化）：Prolog exec-only s42 done，s43-r3/s44 正在 eval。Prolog exec+STA s42 done (100% H7)，s43/s44 PREPARING\n- **SFT baseline**（plan009）：PR=14%, ISR=0.08, 零 hacking → 确认 hacking 是 GRPO 特异性\n- **Hacking taxonomy**（D037/D038）：ISR genuine 25.9% vs Random 17.7%，conclusion embedding 是主导模式 (~70-80%)\n- **易错点**：\n  - plan013 (convex random) 和 plan017/018 (additive random) 公式结构不同，不可简化为 \"additive vs convex\" 对照（D027）\n  - s42 是所有 3-seed 组里唯一可能 genuine 的 seed，s43/s44 多数实验都退化——不要被 s42 单 seed 好结果误导\n  - Prolog 实验用 FOL 源数据 + Prolog 提示词 + Prolog reward，这是正确设计（控制难度、隔离形式主义变量），Reviewer 已确认\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-7-1778787703.md"
+}

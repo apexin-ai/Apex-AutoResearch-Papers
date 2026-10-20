@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bf8650c3c90c39524f06",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "paper round8 both batches",
+  "task_key": "worker_paper_round8-both-batches_20260517T183441",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_round8-both-batches_20260517T183441_result.json",
+    "occurrence": 1,
+    "bytes": 401,
+    "sha256": "0c7fc63e8e3a9aa602c5f789a1e2ce68021c332b440bbe04e99f09745381b02b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. Two commits created:\n\n1. `1875e7a` — `[paper] Round 8 Batch 1: novelty reframing (C2→dynamics), CMH compression, scope qualification`\n2. `d585ff9` — `[paper] Round 8 Batch 2: N-H definition, abstract simplify, taxonomy robustness, Ng 1999 + Kim comparison`\n\nBoth compile cleanly with no undefined references/citations, no new em-dashes, and the paper stays at 22 pages."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-round8-both-batches.md"
+}

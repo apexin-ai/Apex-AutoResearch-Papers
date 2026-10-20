@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cdd45fe7ccb7b4ab2cec",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code prepare gated isr replication",
+  "task_key": "worker_code_prepare-gated-isr-replication_20260516T184753",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prepare-gated-isr-replication_20260516T184753_result.json",
+    "occurrence": 1,
+    "bytes": 3537,
+    "sha256": "4e70ecd6e7d152c494b387c24b9cf21f9bb42d8d7b859d5b3c184fa215252fc6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All the information is gathered. Here's the complete report:\n\n---\n\n## Correction: τ=0.2 vs τ=0.15\n\n**The 95.2% genuine result is from `gated-isr-warmstart-t015-s43` (τ=0.15), NOT τ=0.2.** All τ=0.2 warmstart runs failed with gate_pass=0.000 — the warmstarted model couldn't exceed ISR 0.2. Preparing replications of the **τ=0.15** approach.\n\n---\n\n## Existing Configuration (the success)\n\n**`configs/grpo_isr_warmstart_t015.yaml`:**\n```yaml\nmodel_path: /root/autodl-tmp/outputs/exec_retrain_v3_s43/checkpoint-200\ndata_path: data/proofwriter_fol_100.jsonl\nreward_mode: isr_gated\nisr_threshold: 0.15\nmin_components: 2\nwarmup_steps: 0\nnum_steps: 300\nper_device_batch_size: 1\ngradient_accumulation_steps: 4\nnum_generations: 8          # K=8\nmax_completion_length: 512\nlearning_rate: 1.0e-6\nsolver: prover9\ngradient_checkpointing: true\nsave_total_limit: 1\nsave_steps: 50\nno_wandb: true\n```\n\nOriginal command:\n```bash\npython scripts/train_grpo.py --config configs/grpo_isr_warmstart_t015.yaml --seed 43 --output_dir /root/autodl-tmp/outputs/gated_warmstart_v3_t015_s43\n```\n\n---\n\n## Replication 1: τ=0.15 seed=42 (READY)\n\nWarmstart checkpoint EXISTS: `/root/autodl-tmp/outputs/exec_retrain_v3_s42/checkpoint-200`\n\n**Training command:**\n```bash\nexport CUDA_VISIBLE_DEVICES=0\npython scripts/train_grpo.py \\\n  --config configs/grpo_isr_warmstart_t015.yaml \\\n  --model_path /root/autodl-tmp/outputs/exec_retrain_v3_s42/checkpoint-200 \\\n  --seed 42 \\\n  --output_dir /root/autodl-tmp/outputs/gated_warmstart_v3_t015_s42\n```\n\n---\n\n## Replication 2: τ=0.15 seed=44 (BLOCKED — needs exec-retrain first)\n\nNo `exec_retrain_v3_s44/checkpoint-200` exists. Must first train exec-only baseline:\n\n**Step 1 — Exec retrain (500 steps, ~1hr):**\n```bash\nexport CUDA_VISIBLE_DEVICES=1\npython scripts/train_grpo.py \\\n  --config configs/grpo_exec_retrain.yaml \\\n  --seed 44 \\\n  --output_dir /root/autodl-tmp/outputs/exec_retrain_v3_s44 \\\n  --save_steps 50 \\\n  --save_total_limit 1\n```\n(Note: original exec_retrain config has save_total_limit=10 — override to 1 per C003)\n\n**Step 2 — Gated warmstart (300 steps, ~25min):**\n```bash\nexport CUDA_VISIBLE_DEVICES=1\npython scripts/train_grpo.py \\\n  --config configs/grpo_isr_warmstart_t015.yaml \\\n  --model_path /root/autodl-tmp/outputs/exec_retrain_v3_s44/checkpoint-200 \\\n  --seed 44 \\\n  --output_dir /root/autodl-tmp/outputs/gated_warmstart_v3_t015_s44\n```\n\n---\n\n## Status & Issues\n\n| Item | Status |\n|------|--------|\n| Warmstart ckpt s42 | `/root/autodl-tmp/outputs/exec_retrain_v3_s42/checkpoint-200` ✓ |\n| Warmstart ckpt s43 | `/root/autodl-tmp/outputs/exec_retrain_v3_s43/checkpoint-200` ✓ |\n| Warmstart ckpt s44 | **MISSING** — needs exec-retrain first |\n| Data file | `data/proofwriter_fol_100.jsonl` (98KB) ✓ |\n| Disk free | 50GB on /root/autodl-tmp |\n| Disk per experiment | ~30GB (warmstart output) |\n| GPUs | 2x RTX PRO 6000 98GB — currently running eval_sta.py (will free soon) |\n\n**Disk concern:** 50GB free can fit 1 warmstart (~30GB). Running both replications sequentially requires cleaning old outputs between runs, or trimming save_total_limit behavior. If exec-retrain for s44 also needed (~15GB), total footprint = 15 + 30 + 30 = 75GB > 50GB available.\n\n**Recommendation:** After eval finishes, clean `gated_warmstart_v3_t015_s43/checkpoint-300/` subdir (~15GB) to reclaim space, then run s42 first. For s44, can clean s42's checkpoint after eval."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prepare-gated-isr-replication.md"
+}

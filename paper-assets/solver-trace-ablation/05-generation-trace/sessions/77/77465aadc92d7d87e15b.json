@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "77465aadc92d7d87e15b",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops check gpu processes",
+  "task_key": "worker_ops_check-gpu-processes_20260514T222812",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-gpu-processes_20260514T222812_result.json",
+    "occurrence": 1,
+    "bytes": 684,
+    "sha256": "4a1d46ee24e4847ee902d7a8add477196a420bc6d0276289bb0312cbb8f6e9b2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Processes are β=0.3 seed 43 training, actively progressing — DO NOT kill.**\n\n| PID | Run | Step | Progress | GPU |\n|-----|-----|------|----------|-----|\n| 963576 | `exp1_isr_b03_s43` (additive_bonus) | 248/500 | 49.6% | GPU 0, 91% util |\n| 963653 | `exp1_random_b03_s43` (additive_random) | 186/500 | 37.2% | GPU 1, 89% util |\n\n- Both started 05:52, running 36 min, status `Rl` (running, not stuck).\n- Latest reward log timestamps: 22:28:50 / 22:28:49 UTC (current).\n- Checkpoints saved (200 / 150).\n- tmux: no sessions — processes orphaned but still attached to GPUs via parent PIDs 963575/963652 (likely nohup/disowned shells). Safe to leave running."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-gpu-processes.md"
+}

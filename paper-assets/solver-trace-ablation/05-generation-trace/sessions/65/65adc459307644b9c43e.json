@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "65adc459307644b9c43e",
+  "project": "solver-trace-ablation",
+  "kind": "worker",
+  "title": "code paper tex redline fix",
+  "task_key": "worker_code_paper-tex-redline-fix_20260515T152900",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_paper-tex-redline-fix_20260515T152900.log",
+    "occurrence": 1,
+    "bytes": 1302142,
+    "sha256": "85689892b23e1dd7b2b1f99cb35f36e5d0387c27385ddd3ba96b932258aae8af"
+  },
+  "statistics": {
+    "messages": 275,
+    "user_turns": 1,
+    "tool_calls": 103,
+    "roles": {
+      "log": 1,
+      "system": 23,
+      "record": 1,
+      "assistant": 42,
+      "tool_call": 103,
+      "tool_result": 103,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 168,
+      "chunks": [
+        {
+          "path": "65adc459307644b9c43e-part-0001.json",
+          "message_count": 113
+        },
+        {
+          "path": "65adc459307644b9c43e-part-0002.json",
+          "message_count": 55
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 107,
+      "chunks": [
+        {
+          "path": "65adc459307644b9c43e-part-0002.json",
+          "message_count": 83
+        },
+        {
+          "path": "65adc459307644b9c43e-part-0003.json",
+          "message_count": 24
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-paper-tex-redline-fix.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ae7d5de047abf2b68e17",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "research provenance and stats prep",
+  "task_key": "worker_research_provenance-and-stats-prep_20260515T173752",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_provenance-and-stats-prep_20260515T173752_result.json",
+    "occurrence": 1,
+    "bytes": 721,
+    "sha256": "a4f5b7882c9a25d2f2ceea5bd895efa72b67097bef3ea43d1b4d1a4ea16f10d2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个任务完成。\n\n**任务 1**: Provenance 补全 36/36。缺失项是 **C177**（\"ISR is mathematically sensitive to component count (premise count bias)\"），`evidence: []` → 添加了 plan002-additive-b01-s42 和 plan018-additive-random-b01-s42 作为证据（D051 premise-count confound 分析的底层数据来源）。\n\n**任务 2**: 统计量重算 checklist 已写入 `artifacts/stats_recalc_checklist.md` 并注册（art_20260515_2e14c3）。覆盖 5 项统计量：pooled genuine rate、Fisher exact test (两种场景)、Wilson CI、H7/H1/H8 分布汇总、premise-count-matched 1.06x 是否需更新。依赖 s43-r3（RUNNING）和 s44-r2（ALLOCATED）完成后的 eval 数据。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-provenance-and-stats-prep.md"
+}

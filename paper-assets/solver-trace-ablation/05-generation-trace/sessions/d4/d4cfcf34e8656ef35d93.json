@@ -1,0 +1,1891 @@
+{
+  "schema_version": "1.0",
+  "id": "d4cfcf34e8656ef35d93",
+  "project": "solver-trace-ablation",
+  "kind": "conversation",
+  "title": "analysis b02 pooled prep",
+  "task_key": "worker_analysis_b02-pooled-prep_20260516T052115",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_b02-pooled-prep_20260516T052115.jsonl",
+    "occurrence": 1,
+    "bytes": 90691,
+    "sha256": "f2c61645070f2e98b70650e1ab00fa959e94c0929d51f7773ba135836a7c4e1b"
+  },
+  "statistics": {
+    "messages": 93,
+    "user_turns": 0,
+    "tool_calls": 46,
+    "roles": {
+      "tool_call": 46,
+      "tool_result": 46,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T05:25:41.581253+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T05:25:41.581687+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T05:25:41.581964+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "ls -la /root/autodl-tmp/outputs/sweep_isr_b02_s42/",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T05:25:41.582110+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "ls /root/solver-trace-ablation/scripts/",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T05:25:41.582253+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/outputs/sweep_isr_b02_s42/': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.16}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T05:25:41.582392+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"__pycache__\\\\nbootstrap_ci.py\\\\nclassify_h7.py\\\\nclassify_h7.py.bak\\\\neval_cross_solver.py\\\\neval_downstream.py\\\\neval_o1_vs_on.py\\\\neval_sta.py\\\\ngenerate_figures.py\\\\ngenerate_figures.py.bak\\\\ngpu_guard.sh\\\\ngt_isr_baseline.py\\\\nlaunch_beta_sweep.sh\\\\nlaunch_extra_seeds.sh\\\\nlaunch_phase1.sh\\\\nphase0_baseline.py\\\\nplot_isr_collapse.py\\\\nprepare_data.py\\\\nrun_eval_after_training.sh\\\\nsta_prolog.py\\\\ntrain_grpo.py\\\\ntrain_grpo.py.bak\\\\ntrain_sft.py\\\\nverify_xor.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T05:25:41.582539+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "find /root/autodl-tmp/outputs/ -maxdepth 1 -type d -name \"*b02*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T05:25:41.582667+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/outputs/sweep_isr_b02_s44\\\\n/root/autodl-tmp/outputs/sweep_isr_b02_s43\\\\n/root/autodl-tmp/outputs/sweep_isr_b02_s42_v2\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T05:25:41.582862+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "find /root/autodl-tmp/outputs/ -maxdepth 1 -type d -name \"*isr*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T05:25:41.582993+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "ls /root/autodl-tmp/outputs/",
+              "account": "root"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T05:25:41.583138+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/outputs/sweep_isr_b02_s44\\\\n/root/autodl-tmp/outputs/sweep_isr_b02_s43\\\\n/root/autodl-tmp/outputs/sweep_isr_b01_s45\\\\n/root/autodl-tmp/outputs/sweep_isr_b005_s42\\\\n/root/autodl-tmp/outputs/sweep_isr_b02_s42_v2\\\\n/root/autodl-tmp/outputs/exp1_isr_b03_s44_r2\\\\n/root/autodl-tmp/outputs/exp1_isr_b03_s43_eval\\\\n/root/autodl-tmp/outputs/exp1_isr_b03_s44_r2_eval\\\\n/root/autodl-tmp/outputs/eval_sta_exp1_isr_b03_s43_r3\\\\n/root/autodl-tmp/outputs/plan004_fast_isr_s42\\\\n/root/autodl-tmp/outputs/exp1_isr_b03_s42_1000\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T05:25:41.583298+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"bootstrap_ci_results.json\\\\nd086_missed_classify_h7.json\\\\neval_sta_exp1_isr_b03_s43.json\\\\neval_sta_exp1_isr_b03_s43_r3\\\\neval_sta_exp1_isr_b03_s43_r3.json\\\\neval_sta_exp1_isr_b03_s44_r2_correct.json\\\\neval_sta_exp1_random_b03_s43.json\\\\neval_sta_exp1_random_b03_s43_r4.json\\\\neval_sta_exp1_random_b03_s44_r2.json\\\\neval_sta_plan001_exec_only_s44.json\\\\neval_sta_plan001_r2.json\\\\neval_sta_plan002.log\\\\neval_sta_plan004_fast_isr_s42.json\\\\neval_sta_plan006_prolog_exec_s42.json\\\\neval_sta_plan009_sft_s43.json\\\\neval_sta_plan009_sft_s44.json\\\\neval_sta_plan013_r4.json\\\\neval_sta_plan017_additive_random_s42.json\\\\neval_sta_plan018_additive_random_b01_s42.json\\\\neval_sta_run.log\\\\nexp1_isr_b03_s42_1000\\\\nexp1_isr_b03_s43_eval\\\\nexp1_isr_b03_s44_r2\\\\nexp1_isr_b03_s44_r2_eval\\\\nexp1_random_b03_s43_r2\\\\nexp1_random_b03_s43_r4\\\\nexp1_random_b03_s44\\\\nexp1_random_b03_s44_r2\\\\nexp4_100step_h1h7_classification.json\\\\nh7_classification\\\\nh8_retroactive_audit.json\\\\nh8_retroactive_audit.txt\\\\nisr_s44_fn_evidence.json\\\\nplan001_exec_only_s43_1000_r2\\\\nplan001_exec_only_s44_1000_r2\\\\nplan001_s44_eval_sta.json\\\\nplan002_additive_b01_s42_1000\\\\nplan002_additive_b01_s42_1000_taxonomy_unified.json\\\\nplan002_additive_b01_s42_taxonomy_unified.json\\\\nplan002_additive_b01_s43_r2\\\\nplan002_additive_b01_s45\\\\nplan003_eval_exec_only_r5.json\\\\nplan004_fast_isr_s42\\\\nplan009_sft_baseline_s42_1000\\\\nplan009_sft_baseline_s43\\\\nplan009_sft_baseline_s43_1000\\\\nplan009_sft_baseline_s44\\\\nplan009_sft_baseline_s44_1000\\\\nplan014_downstream_nli.json\\\\nplan018_additive_random_b01_s42_1000\\\\nplan018_additive_random_b01_s42_1000_r3\\\\nplan018_additive_random_b01_s43_r3\\\\nplan018_additive_random_b01_s44_r2\\\\nplan018_random_s42_taxonomy_verification.json\\\\nsft_1000_taxonomy_summary.json\\\\nsweep_isr_b005_s42\\\\nsweep_isr_b01_s45\\\\nsweep_isr_b02_s42_v2\\\\nsweep_isr_b02_s43\\\\nsweep_isr_b02_s44\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"me\n…[truncated 40 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T05:25:41.583457+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "ls -la /root/autodl-tmp/outputs/sweep_isr_b02_s42_v2/",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T05:25:41.583638+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 15728536\\\\ndrwxr-xr-x  4 root root       4096 May 16 13:11 .\\\\ndrwxr-xr-x 32 root root       4096 May 16 13:06 ..\\\\n-rw-r--r--  1 root root          0 May 16 13:11 .freeze\\\\n-rw-r--r--  1 root root       1874 May 16 12:51 README.md\\\\n-rw-r--r--  1 root root        707 May 16 12:52 added_tokens.json\\\\n-rw-r--r--  1 root root       4168 May 16 12:52 chat_template.jinja\\\\ndrwxr-xr-x  2 root root       4096 May 16 13:11 checkpoint-500\\\\n-rw-r--r--  1 root root       1535 May 16 12:52 config.json\\\\ndrwxr-xr-x  2 root root        105 May 16 12:59 eval\\\\n-rw-r--r--  1 root root        188 May 16 12:52 generation_config.json\\\\n-rw-r--r--  1 root root    1671853 May 16 12:52 merges.txt\\\\n-rw-r--r--  1 root root 4990095032 May 16 12:52 model-00001-of-00004.safetensors\\\\n-rw-r--r--  1 root root 4944309096 May 16 12:52 model-00002-of-00004.safetensors\\\\n-rw-r--r--  1 root root 4996758848 May 16 12:52 model-00003-of-00004.safetensors\\\\n-rw-r--r--  1 root root 1158754848 May 16 12:52 model-00004-of-00004.safetensors\\\\n-rw-r--r--  1 root root      32856 May 16 12:52 model.safetensors.index.json\\\\n-rw-r--r--  1 root root     126011 May 16 12:51 reward_log.jsonl\\\\n-rw-r--r--  1 root root        613 May 16 12:52 special_tokens_map.json\\\\n-rw-r--r--  1 root root   11422654 May 16 12:52 tokenizer.json\\\\n-rw-r--r--  1 root root       5459 May 16 12:52 tokenizer_config.json\\\\n-rw-r--r--  1 root root       7953 May 16 12:52 training_args.bin\\\\n-rw-r--r--  1 root root    2776833 May 16 12:52 vocab.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-16T05:25:41.583817+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "find /root/autodl-tmp/outputs/sweep_isr_b02_s42_v2/ -name \"*.json\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T05:25:41.583958+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/outputs/sweep_isr_b02_s42_v2/checkpoint-500/config.json\\\\n/root/autodl-tmp/outputs/sweep_isr_b02_s42_v2/checkpoint-500/generation_config.json\\\\n/root/autodl-tmp/outputs/sweep_isr_b02_s42_v2/checkpoint-500/model.safetensors.index.json\\\\n/root/autodl-tmp/outputs/sweep_isr_b02_s42_v2/checkpoint-500/tokenizer_config.json\\\\n/root/autodl-tmp/outputs/sweep_isr_b02_s42_v2/checkpoint-500/special_tokens_map.json\\\\n/root/autodl-tmp/outputs/sweep_isr_b02_s42_v2/checkpoint-500/added_tokens.json\\\\n/root/autodl-tmp/outputs/sweep_isr_b02_s42_v2/checkpoint-500/vocab.json\\\\n/root/autodl-tmp/outputs/sweep_isr_b02_s42_v2/checkpoint-500/tokenizer.json\\\\n/root/autodl-tmp/outputs/sweep_isr_b02_s42_v2/checkpoint-500/trainer_state.json\\\\n/root/autodl-tmp/outputs/sweep_isr_b02_s42_v2/config.json\\\\n/root/autodl-tmp/outputs/sweep_isr_b02_s42_v2/generation_config.json\\\\n/root/autodl-tmp/outputs/sweep_isr_b02_s42_v2/model.safetensors.index.json\\\\n/root/autodl-tmp/outputs/sweep_isr_b02_s42_v2/tokenizer_config.json\\\\n/root/autodl-tmp/outputs/sweep_isr_b02_s42_v2/special_tokens_map.json\\\\n/root/autodl-tmp/outputs/sweep_isr_b02_s42_v2/added_tokens.json\\\\n/root/autodl-tmp/outputs/sweep_isr_b02_s42_v2/vocab.json\\\\n/root/autodl-tmp/outputs/sweep_isr_b02_s42_v2/tokenizer.json\\\\n/root/autodl-tmp/outputs/sweep_isr_b02_s42_v2/eval/eval_sta_results.json\\\\n/root/autodl-tmp/outputs/sweep_isr_b02_s42_v2/eval/hacking_taxonomy.json\\\\n/root/autodl-tmp/outputs/sweep_isr_b02_s42_v2/eval/eval_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-16T05:25:41.584128+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "cat /root/autodl-tmp/outputs/sweep_isr_b02_s42_v2/eval/eval_sta_results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-16T05:25:41.584395+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "cat /root/autodl-tmp/outputs/sweep_isr_b02_s42_v2/eval/hacking_taxonomy.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-16T05:25:41.584838+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"n_problems\\\\\\\": 100,\\\\n    \\\\\\\"n_proved\\\\\\\": 100,\\\\n    \\\\\\\"prove_rate\\\\\\\": 1.0,\\\\n    \\\\\\\"mean_isr\\\\\\\": 0.6017,\\\\n    \\\\\\\"isr_std\\\\\\\": 0.1973,\\\\n    \\\\\\\"median_isr\\\\\\\": 0.5,\\\\n    \\\\\\\"isr_pr_ratio\\\\\\\": 0.6017,\\\\n    \\\\\\\"proved_only_mean_isr\\\\\\\": 0.6017,\\\\n    \\\\\\\"min_isr\\\\\\\": 0.3333,\\\\n    \\\\\\\"max_isr\\\\\\\": 1.0,\\\\n    \\\\\\\"by_answer_type\\\\\\\": {\\\\n      \\\\\\\"false\\\\\\\": {\\\\n        \\\\\\\"count\\\\\\\": 25,\\\\n        \\\\\\\"proved\\\\\\\": 25,\\\\n        \\\\\\\"prove_rate\\\\\\\": 1.0,\\\\n        \\\\\\\"mean_isr\\\\\\\": 0.5866666666666667\\\\n      },\\\\n      \\\\\\\"unknown\\\\\\\": {\\\\n        \\\\\\\"count\\\\\\\": 41,\\\\n        \\\\\\\"proved\\\\\\\": 41,\\\\n        \\\\\\\"prove_rate\\\\\\\": 1.0,\\\\n        \\\\\\\"mean_isr\\\\\\\": 0.5853658536585366\\\\n      },\\\\n      \\\\\\\"true\\\\\\\": {\\\\n        \\\\\\\"count\\\\\\\": 34,\\\\n        \\\\\\\"proved\\\\\\\": 34,\\\\n        \\\\\\\"prove_rate\\\\\\\": 1.0,\\\\n        \\\\\\\"mean_isr\\\\\\\": 0.6323529411764706\\\\n      }\\\\n    },\\\\n    \\\\\\\"elapsed_seconds\\\\\\\": 75.4,\\\\n    \\\\\\\"avg_time_per_sample\\\\\\\": 0.8,\\\\n    \\\\\\\"solver\\\\\\\": \\\\\\\"Prover9Solver\\\\\\\",\\\\n    \\\\\\\"logic_type\\\\\\\": \\\\\\\"fol\\\\\\\",\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/outputs/sweep_isr_b02_s42_v2/checkpoint-500\\\\\\\"\\\\n  },\\\\n  \\\\\\\"results\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 0,\\\\n      \\\\\\\"id\\\\\\\": \\\\\\\"folio_765\\\\\\\",\\\\n      \\\\\\\"context\\\\\\\": \\\\\\\"Tipped employees are not entitled to be paid the federal minimum wage by their employees. \\\\\\\\nIf a person is a white-collar worker, they are entitled to be paid the federal minimum wage by their employees. \\\\\\\\nAll lawyers are white-collar workers.\\\\\\\\nEvery advocate is a lawyer.\\\\\\\\nMary is not a lawyer or a tipped employee.\\\\\\\",\\\\n      \\\\\\\"question\\\\\\\": \\\\\\\"Mary is an advocate.\\\\\\\",\\\\n      \\\\\\\"answer\\\\\\\": \\\\\\\"false\\\\\\\",\\\\n      \\\\\\\"formalization\\\\\\\": \\\\\\\"Premises:\\\\\\\\n1. A(mary)\\\\\\\\nConclusion: A(mary)\\\\\\\",\\\\n      \\\\\\\"gen_time\\\\\\\": 1.04,\\\\n      \\\\\\\"eval_time\\\\\\\": 0.01,\\\\n      \\\\\\\"execution_reward\\\\\\\": 1.0,\\\\n      \\\\\\\"s\n…[truncated 8222 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-16T05:25:41.585060+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"sweep_isr_b02_s42_v2\\\\\\\": {\\\\n    \\\\\\\"n_total\\\\\\\": 100,\\\\n    \\\\\\\"n_proved\\\\\\\": 100,\\\\n    \\\\\\\"h7a_count\\\\\\\": 100,\\\\n    \\\\\\\"h7a_rate\\\\\\\": 1.0,\\\\n    \\\\\\\"h7b_count\\\\\\\": 0,\\\\n    \\\\\\\"h7b_rate\\\\\\\": 0.0,\\\\n    \\\\\\\"h7_total_count\\\\\\\": 100,\\\\n    \\\\\\\"h7_total_rate\\\\\\\": 1.0,\\\\n    \\\\\\\"h1_strict_count\\\\\\\": 0,\\\\n    \\\\\\\"h1_strict_rate\\\\\\\": 0.0,\\\\n    \\\\\\\"h8_conjunction_collapse_count\\\\\\\": 0,\\\\n    \\\\\\\"h8_conjunction_collapse_rate\\\\\\\": 0.0,\\\\n    \\\\\\\"conclusion_in_premise_count\\\\\\\": 100,\\\\n    \\\\\\\"conclusion_in_premise_rate\\\\\\\": 1.0,\\\\n    \\\\\\\"h7_relaxed_count\\\\\\\": 98,\\\\n    \\\\\\\"h7_relaxed_rate\\\\\\\": 0.98,\\\\n    \\\\\\\"single_premise_count\\\\\\\": 100,\\\\n    \\\\\\\"single_premise_rate\\\\\\\": 1.0,\\\\n    \\\\\\\"isr_1_count\\\\\\\": 18,\\\\n    \\\\\\\"isr_1_rate\\\\\\\": 0.18,\\\\n    \\\\\\\"content_independent_count\\\\\\\": 99,\\\\n    \\\\\\\"content_independent_rate\\\\\\\": 0.99,\\\\n    \\\\\\\"genuine_count\\\\\\\": 0,\\\\n    \\\\\\\"genuine_rate\\\\\\\": 0.0,\\\\n    \\\\\\\"h7_strict_count\\\\\\\": 100,\\\\n    \\\\\\\"h7_strict_rate\\\\\\\": 1.0\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-16T05:25:41.585226+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "cat /root/autodl-tmp/outputs/sweep_isr_b02_s42_v2/eval/eval_results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-16T05:25:41.585409+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "head -5 /root/autodl-tmp/outputs/sweep_isr_b02_s42_v2/reward_log.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-16T05:25:41.585802+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"n_problems\\\\\\\": 100,\\\\n    \\\\\\\"n_proved\\\\\\\": 100,\\\\n    \\\\\\\"prove_rate\\\\\\\": 1.0,\\\\n    \\\\\\\"mean_isr\\\\\\\": 0.6017,\\\\n    \\\\\\\"isr_std\\\\\\\": 0.1973,\\\\n    \\\\\\\"median_isr\\\\\\\": 0.5,\\\\n    \\\\\\\"isr_pr_ratio\\\\\\\": 0.6017,\\\\n    \\\\\\\"proved_only_mean_isr\\\\\\\": 0.6017,\\\\n    \\\\\\\"min_isr\\\\\\\": 0.3333,\\\\n    \\\\\\\"max_isr\\\\\\\": 1.0,\\\\n    \\\\\\\"by_answer_type\\\\\\\": {\\\\n      \\\\\\\"false\\\\\\\": {\\\\n        \\\\\\\"count\\\\\\\": 25,\\\\n        \\\\\\\"proved\\\\\\\": 25,\\\\n        \\\\\\\"prove_rate\\\\\\\": 1.0,\\\\n        \\\\\\\"mean_isr\\\\\\\": 0.5866666666666667\\\\n      },\\\\n      \\\\\\\"unknown\\\\\\\": {\\\\n        \\\\\\\"count\\\\\\\": 41,\\\\n        \\\\\\\"proved\\\\\\\": 41,\\\\n        \\\\\\\"prove_rate\\\\\\\": 1.0,\\\\n        \\\\\\\"mean_isr\\\\\\\": 0.5853658536585366\\\\n      },\\\\n      \\\\\\\"true\\\\\\\": {\\\\n        \\\\\\\"count\\\\\\\": 34,\\\\n        \\\\\\\"proved\\\\\\\": 34,\\\\n        \\\\\\\"prove_rate\\\\\\\": 1.0,\\\\n        \\\\\\\"mean_isr\\\\\\\": 0.6323529411764706\\\\n      }\\\\n    },\\\\n    \\\\\\\"elapsed_seconds\\\\\\\": 84.0,\\\\n    \\\\\\\"avg_time_per_sample\\\\\\\": 0.8,\\\\n    \\\\\\\"solver\\\\\\\": \\\\\\\"Prover9Solver\\\\\\\",\\\\n    \\\\\\\"logic_type\\\\\\\": \\\\\\\"fol\\\\\\\",\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/outputs/sweep_isr_b02_s42_v2/checkpoint-500\\\\\\\"\\\\n  },\\\\n  \\\\\\\"results\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 0,\\\\n      \\\\\\\"id\\\\\\\": \\\\\\\"folio_765\\\\\\\",\\\\n      \\\\\\\"context\\\\\\\": \\\\\\\"Tipped employees are not entitled to be paid the federal minimum wage by their employees. \\\\\\\\nIf a person is a white-collar worker, they are entitled to be paid the federal minimum wage by their employees. \\\\\\\\nAll lawyers are white-collar workers.\\\\\\\\nEvery advocate is a lawyer.\\\\\\\\nMary is not a lawyer or a tipped employee.\\\\\\\",\\\\n      \\\\\\\"question\\\\\\\": \\\\\\\"Mary is an advocate.\\\\\\\",\\\\n      \\\\\\\"answer\\\\\\\": \\\\\\\"false\\\\\\\",\\\\n      \\\\\\\"formalization\\\\\\\": \\\\\\\"Premises:\\\\\\\\n1. A(mary)\\\\\\\\nConclusion: A(mary)\\\\\\\",\\\\n      \\\\\\\"gen_time\\\\\\\": 1.1,\\\\n      \\\\\\\"eval_time\\\\\\\": 0.01,\\\\n      \\\\\\\"execution_reward\\\\\\\": 1.0,\\\\n      \\\\\\\"st\n…[truncated 8222 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-16T05:25:41.586031+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"step\\\\\\\": 1, \\\\\\\"reward_mean\\\\\\\": 0.14499999582767487, \\\\\\\"reward_std\\\\\\\": 0.4101219177246094, \\\\\\\"prove_rate\\\\\\\": 0.125, \\\\\\\"isr_mean\\\\\\\": 0.1, \\\\\\\"parse_rate\\\\\\\": 1.0, \\\\\\\"random_mean\\\\\\\": null, \\\\\\\"loss\\\\\\\": 0.0261, \\\\\\\"lr\\\\\\\": 1e-06, \\\\\\\"beta_t\\\\\\\": 0.2, \\\\\\\"timestamp\\\\\\\": \\\\\\\"2026-05-16T04:11:03.065646+00:00\\\\\\\"}\\\\n{\\\\\\\"step\\\\\\\": 2, \\\\\\\"reward_mean\\\\\\\": 0.0, \\\\\\\"reward_std\\\\\\\": 0.0, \\\\\\\"prove_rate\\\\\\\": 0.0, \\\\\\\"isr_mean\\\\\\\": 0.0, \\\\\\\"parse_rate\\\\\\\": 1.0, \\\\\\\"random_mean\\\\\\\": null, \\\\\\\"loss\\\\\\\": 0.0, \\\\\\\"lr\\\\\\\": 9.98e-07, \\\\\\\"beta_t\\\\\\\": 0.2, \\\\\\\"timestamp\\\\\\\": \\\\\\\"2026-05-16T04:11:17.025290+00:00\\\\\\\"}\\\\n{\\\\\\\"step\\\\\\\": 3, \\\\\\\"reward_mean\\\\\\\": 0.4100000262260437, \\\\\\\"reward_std\\\\\\\": 0.565887451171875, \\\\\\\"prove_rate\\\\\\\": 0.375, \\\\\\\"isr_mean\\\\\\\": 0.175, \\\\\\\"parse_rate\\\\\\\": 1.0, \\\\\\\"random_mean\\\\\\\": null, \\\\\\\"loss\\\\\\\": 0.064, \\\\\\\"lr\\\\\\\": 9.959999999999999e-07, \\\\\\\"beta_t\\\\\\\": 0.2, \\\\\\\"timestamp\\\\\\\": \\\\\\\"2026-05-16T04:11:29.964722+00:00\\\\\\\"}\\\\n{\\\\\\\"step\\\\\\\": 4, \\\\\\\"reward_mean\\\\\\\": 0.0, \\\\\\\"reward_std\\\\\\\": 0.0, \\\\\\\"prove_rate\\\\\\\": 0.0, \\\\\\\"isr_mean\\\\\\\": 0.0, \\\\\\\"parse_rate\\\\\\\": 1.0, \\\\\\\"random_mean\\\\\\\": null, \\\\\\\"loss\\\\\\\": 0.0, \\\\\\\"lr\\\\\\\": 9.94e-07, \\\\\\\"beta_t\\\\\\\": 0.2, \\\\\\\"timestamp\\\\\\\": \\\\\\\"2026-05-16T04:11:33.296673+00:00\\\\\\\"}\\\\n{\\\\\\\"step\\\\\\\": 5, \\\\\\\"reward_mean\\\\\\\": 0.2775000035762787, \\\\\\\"reward_std\\\\\\\": 0.5138579607009888, \\\\\\\"prove_rate\\\\\\\": 0.25, \\\\\\\"isr_mean\\\\\\\": 0.1375, \\\\\\\"parse_rate\\\\\\\": 1.0, \\\\\\\"random_mean\\\\\\\": null, \\\\\\\"loss\\\\\\\": 0.0429, \\\\\\\"lr\\\\\\\": 9.92e-07, \\\\\\\"beta_t\\\\\\\": 0.2, \\\\\\\"timestamp\\\\\\\": \\\\\\\"2026-05-16T04:11:41.940258+00:00\\\\\\\"}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-16T05:25:41.586220+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "find /root/solver-trace-ablation/artifacts/ -name \"*.md\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-16T05:25:41.586356+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"find: '/root/solver-trace-ablation/artifacts/': No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-16T05:25:41.586479+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "find /root/autodl-tmp/outputs/ -path \"*/eval/hacking_taxonomy.json\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-16T05:25:41.586608+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/outputs/sweep_isr_b02_s42_v2/eval/hacking_taxonomy.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-16T05:25:41.586766+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "artifacts/**/*.md",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-16T05:25:41.586923+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/phase1_r2_diagnosis.md\nartifacts/diagnose_phase1_r3.md\nartifacts/dream_reports/dream_20260513T215750/best/paper_framing.md\nartifacts/dream_reports/dream_20260513T215750/median/paper_framing.md\nartifacts/dream_reports/dream_20260513T215750/worst/paper_framing.md\nartifacts/dream_reports/dream_20260513T215750/best/review_report.md\nartifacts/dream_reports/dream_20260513T215750/median/review_report.md\nartifacts/dream_reports/dream_20260513T215750/worst/review_report.md\nartifacts/training_progress_check.md\nartifacts/seed44_readiness.md\nartifacts/plan005_negative_literature.md\nartifacts/plan013-random-reward-s42-r4/report/plan013_analysis.md\nartifacts/plan013_analysis.md\nartifacts/plan014_design.md\nartifacts/component_count_analysis.md\nartifacts/_project/report/eval_sta_comparison.md\nartifacts/plan012/report/hacking_characterization_report.md\nartifacts/hacking_characterization_report.md\nartifacts/plan002-additive-b01-s42/report/plan002-additive-b01-s42_prep.md\nartifacts/plan016-extended-1000-s42/report/plan016_submission_spec.md\nartifacts/plan006_readiness.md\nartifacts/_project/report/claim_coverage_audit.md\nartifacts/claim_coverage_audit.md\nartifacts/_project/report/paper_table1_evidence.md\nartifacts/paper_table1_evidence.md\nartifacts/table1_comparison.md\nartifacts/_project/report/table1_comparison.md\nartifacts/_project/report/hacking_taxonomy_comparison.md\nartifacts/plan018/prep_report.md\nartifacts/literature_goodhart.md\nartifacts/plan006/final_readiness.md\nartifacts/plan006/report/final_readiness.md\nartifacts/plan006/readiness_report.md\nartifacts/plan018/random_s43s44_readiness.md\nartifacts/plan006_readiness_report.md\nartifacts/dream_reports/dream_20260514T092544/best/paper_framing.md\nartifacts/dream_reports/dream_20260514T092544/median/paper_framing.md\nartifacts/dream_reports/dream_20260514T092544/worst/paper_framing.md\nartifacts/hacking_taxonomy.md\nartifacts/hacking_taxonomy_comparison.md\nartifacts/dream_reports/dream_20260514T092544/median/review_report.md\n\n…[truncated 2912 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-16T05:25:41.587065+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "find /root/autodl-tmp/outputs/ -name \"hacking_taxonomy.json\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-16T05:25:41.587187+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/outputs/sweep_isr_b02_s42_v2/eval/hacking_taxonomy.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-16T05:25:41.587301+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "find /root/autodl-tmp/outputs/ -name \"*taxonomy*\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-16T05:25:41.587431+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/outputs/plan018_random_s42_taxonomy_verification.json\\\\n/root/autodl-tmp/outputs/sft_1000_taxonomy_summary.json\\\\n/root/autodl-tmp/outputs/plan002_additive_b01_s42_1000_taxonomy_unified.json\\\\n/root/autodl-tmp/outputs/plan018_additive_random_b01_s43_r3/taxonomy_results.json\\\\n/root/autodl-tmp/outputs/plan002_additive_b01_s42_taxonomy_unified.json\\\\n/root/autodl-tmp/outputs/sweep_isr_b02_s42_v2/eval/hacking_taxonomy.json\\\\n/root/autodl-tmp/outputs/plan018_additive_random_b01_s44_r2/taxonomy.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-16T05:25:41.587677+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "head -80 /root/solver-trace-ablation/scripts/eval_sta.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-16T05:25:41.587888+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Evaluate a checkpoint with full STA (Solver Trace Ablation) metrics.\\\\n\\\\nSupports both FOL (Prover9) and Prolog (swipl) logic types.\\\\n\\\\nLoads a fine-tuned model, generates formalizations on a test set,\\\\nruns solver + STA ablation to compute ISR, and outputs a JSON report.\\\\n\\\\nInputs:\\\\n  --model_path   Path to HF checkpoint directory\\\\n  --data_path    JSONL file\\\\n  --logic_type   \\\\\\\"fol\\\\\\\" or \\\\\\\"prolog\\\\\\\"\\\\n  --output_path  Where to write the JSON report\\\\n\\\\nOutput JSON keys:\\\\n  summary.prove_rate, summary.mean_isr, summary.isr_std, summary.median_isr,\\\\n  summary.isr_pr_ratio (mean_isr / prove_rate), per-sample details in results[].\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nfrom __future__ import annotations\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport re\\\\nimport statistics\\\\nimport sys\\\\nimport time\\\\nfrom pathlib import Path\\\\n\\\\nsys.path.insert(0, str(Path(__file__).resolve().parent.parent))\\\\n\\\\nfrom src.solvers.factory import get_solver\\\\nfrom src.sta.reward import sta_reward\\\\nfrom src.sta.prolog_reward import prolog_sta_reward\\\\n\\\\n# GPU safety check: abort if target GPU has active processes (prevents OOM from GPU contention)\\\\n# Usage: wrap your command with scripts/gpu_guard.sh <gpu_id> before running eval\\\\n\\\\n\\\\n# --- FOL prompts ---\\\\n\\\\nFOL_SYSTEM_PROMPT = (\\\\n    \\\\\\\"You are a first-order logic (FOL) expert. \\\\\\\"\\\\n    \\\\\\\"Given natural language premises and a conclusion, formalize them into FOL.\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Output format:\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Premises:\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"1. <FOL formula>\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"2. <FOL formula>\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"...\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Conclusion: <FOL formula>\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Use standard FOL notation with predicate-argument syntax: \\\\\\\"\\\\n    \\\\\\\"all x (P(x) -> Q(x)), exists x P(x), P(a) & Q(a), -P(a), P(a) | Q(a), P(a) -> Q(a).\\\\\\\"\\\\n)\\\\n\\\\nFOL_USER_TEMPLATE = (\\\\n    \\\\\\\"Formalize the following in first-order logic.\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Co\n…[truncated 965 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-16T05:25:41.588041+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "head -80 /root/solver-trace-ablation/scripts/classify_h7.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-16T05:25:41.588224+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nClassify hacking patterns in eval results.\\\\n\\\\nH7a: standard tautology — single premise text-matches conclusion\\\\n     (whitespace/case normalized)\\\\nH7b: obfuscated tautology — single premise, logically equivalent but\\\\n     textually different (vacuous quantifier wrapping, variable renaming)\\\\n     Detection: strip vacuous quantifiers + alpha-normalize, then fallback\\\\n     to quantifier-count + predicate-overlap heuristic\\\\nH1:  multi-premise, at least one premise == conclusion (conclusion embedding)\\\\nH8:  conclusion is top-level conjunction of premises (conjunction collapse)\\\\n\\\\nUsage:\\\\n    python scripts/classify_h7.py --eval_path /path/to/eval_results.json\\\\n    python scripts/classify_h7.py --batch f1.json f2.json ... --out /path/to/output.txt\\\\n    python scripts/classify_h7.py --batch f1.json f2.json ... --json_out /path/to/audit.json\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport json\\\\nimport argparse\\\\nimport re\\\\nimport sys\\\\nimport os\\\\nimport hashlib\\\\n\\\\n\\\\ndef normalize_fol(s):\\\\n    s = s.strip()\\\\n    s = re.sub(r'\\\\\\\\s+', ' ', s)\\\\n    return s\\\\n\\\\n\\\\ndef strip_outer_parens(s):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Strip matching outer parentheses if present.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    s = s.strip()\\\\n    if not (s.startswith('(') and s.endswith(')')):\\\\n        return s\\\\n    depth = 0\\\\n    for i, c in enumerate(s):\\\\n        if c == '(':\\\\n            depth += 1\\\\n        elif c == ')':\\\\n            depth -= 1\\\\n        if depth == 0 and i < len(s) - 1:\\\\n            return s\\\\n    return s[1:-1].strip()\\\\n\\\\n\\\\ndef strip_outer_parens_recursive(s):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Recursively strip ALL layers of matching outer parentheses.\\\\n    D086-P1 fix: D084 re-audit used deeper paren normalization.\\\\n    Won't strip non-matching outer parens like (A) ∧ (B).\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    s = s.strip()\\\\n    while s.startswith('(') and s.endswith(')'):\\\\n        depth = 0\\\\n        is_matching = True\\\\n       \n…[truncated 786 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-16T05:25:41.588376+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "find /root/autodl-tmp/outputs/ -name \"eval_sta_results.json\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-16T05:25:41.588510+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/outputs/plan009_sft_baseline_s44_1000/eval_sta_results.json\\\\n/root/autodl-tmp/outputs/plan001_exec_only_s43_1000_r2/eval_sta_results.json\\\\n/root/autodl-tmp/outputs/plan018_additive_random_b01_s43_r3/eval_sta_results.json\\\\n/root/autodl-tmp/outputs/plan009_sft_baseline_s43_1000/eval_sta_results.json\\\\n/root/autodl-tmp/outputs/plan001_exec_only_s44_1000_r2/eval_sta_results.json\\\\n/root/autodl-tmp/outputs/sweep_isr_b02_s42_v2/eval/eval_sta_results.json\\\\n/root/autodl-tmp/outputs/plan002_additive_b01_s42_1000/eval/eval_sta_results.json\\\\n/root/autodl-tmp/outputs/plan009_sft_baseline_s42_1000/eval_sta_results.json\\\\n/root/autodl-tmp/outputs/plan018_additive_random_b01_s44_r2/eval_sta_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-16T05:25:41.588679+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/table1_draft.md",
+              "limit": "80"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-16T05:25:41.588872+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Table 1: Main Experimental Results — Prove Rate and ISR\n2\t\n3\tData source: all metrics from eval_sta.py unified evaluation (per C004), except where noted.\n4\t\n5\t## Table 1a: FOL Conditions (3-seed aggregation where available)\n6\t\n7\t| Condition | Seeds | PR (mean±std) | ISR_proved (mean±std) | Comp. Count | Status |\n8\t|-----------|-------|---------------|----------------------|-------------|--------|\n9\t| Pre-training (Qwen3-4B zero-shot) | — | 0.12 | 0.642† | — | DONE |\n10\t| Exec-only 100 steps (plan003) | s42 | 0.32 | 0.642 | — | DONE |\n11\t| **Exec-only 500 steps (plan001)** | **s42/s43/s44** | **0.68 ± 0.47** | **0.24 ± 0.30** | — | **DONE (3/3)** |\n12\t| Exec-only 1000 steps (plan016) | s42 | 0.96 | 0.003 | 18.55 | DONE |\n13\t| **ISR β=0.1 (plan002-b01)** | **s42/s43/s44** | **0.77 ± 0.14** | **0.68 ± 0.23 ⚠️** | 4.65 ± 0.84 | **DONE (3/3)** |\n14\t| ISR β=0.3 (plan002-b03) | s42 | 0.18 | 0.143 | — | DONE |\n15\t| Random β=0.1 (plan018) | s42 | 0.79 | 0.131 | 8.46 | preliminary (n=1) |\n16\t| Random β=0.3 (plan017) | s42 | 0.48 | 0.094 | 9.6 | DONE |\n17\t\n18\t† Pre-training ISR computed on 12 proved samples only; low n.\n19\t\n20\t⚠️ **ISR β=0.1 3-seed mean ISR is MISLEADING**: 2/3 seeds (s43, s44) exhibit conclusion duplication hacking that artificially inflates ISR. Raw mean should NOT be reported without qualification. See per-seed breakdown below.\n21\t\n22\t## Table 1b: Per-Seed Detail — FOL Exec-Only (plan001)\n23\t\n24\t| Seed | exp_id | PR | ISR (proved) | Median ISR | Failure Mode |\n25\t|------|--------|----|-------------|------------|-------------|\n26\t| s42 | plan001-s42-r2 | 0.93 | 0.132 | 0.0 | Conclusion embedding (H1) |\n27\t| s43 | plan001-s43-r4 | 0.14 | 0‡ | — | Repetition collapse (87% max_tokens) |\n28\t| s44 | plan001-s44 | 0.98 | 0.582 | 0.5 | Tautological collapse (94% 2-comp) |\n29\t| **3-seed** | | **0.68 ± 0.47** | **0.24 ± 0.30** | | **2/3 seeds degenerate** |\n30\t\n31\t‡ s43 eval used sampling T=0.7 (not eval_sta.py); ISR=0 from training log. Needs re-evaluation per C\n…[truncated 2713 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-16T05:25:41.589025+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "cat /root/solver-trace-ablation/scripts/classify_h7.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-16T05:25:41.589265+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nClassify hacking patterns in eval results.\\\\n\\\\nH7a: standard tautology — single premise text-matches conclusion\\\\n     (whitespace/case normalized)\\\\nH7b: obfuscated tautology — single premise, logically equivalent but\\\\n     textually different (vacuous quantifier wrapping, variable renaming)\\\\n     Detection: strip vacuous quantifiers + alpha-normalize, then fallback\\\\n     to quantifier-count + predicate-overlap heuristic\\\\nH1:  multi-premise, at least one premise == conclusion (conclusion embedding)\\\\nH8:  conclusion is top-level conjunction of premises (conjunction collapse)\\\\n\\\\nUsage:\\\\n    python scripts/classify_h7.py --eval_path /path/to/eval_results.json\\\\n    python scripts/classify_h7.py --batch f1.json f2.json ... --out /path/to/output.txt\\\\n    python scripts/classify_h7.py --batch f1.json f2.json ... --json_out /path/to/audit.json\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport json\\\\nimport argparse\\\\nimport re\\\\nimport sys\\\\nimport os\\\\nimport hashlib\\\\n\\\\n\\\\ndef normalize_fol(s):\\\\n    s = s.strip()\\\\n    s = re.sub(r'\\\\\\\\s+', ' ', s)\\\\n    return s\\\\n\\\\n\\\\ndef strip_outer_parens(s):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Strip matching outer parentheses if present.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    s = s.strip()\\\\n    if not (s.startswith('(') and s.endswith(')')):\\\\n        return s\\\\n    depth = 0\\\\n    for i, c in enumerate(s):\\\\n        if c == '(':\\\\n            depth += 1\\\\n        elif c == ')':\\\\n            depth -= 1\\\\n        if depth == 0 and i < len(s) - 1:\\\\n            return s\\\\n    return s[1:-1].strip()\\\\n\\\\n\\\\ndef strip_outer_parens_recursive(s):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Recursively strip ALL layers of matching outer parentheses.\\\\n    D086-P1 fix: D084 re-audit used deeper paren normalization.\\\\n    Won't strip non-matching outer parens like (A) ∧ (B).\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    s = s.strip()\\\\n    while s.startswith('(') and s.endswith(')'):\\\\n        depth = 0\\\\n        is_matching = True\\\\n       \n…[truncated 6951 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-16T05:25:41.589456+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/table1_draft.md",
+              "offset": "76",
+              "limit": "40"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-16T05:25:41.589607+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "76\t## Table 1g: β Dose-Response (s42 only)\n77\t\n78\t| Reward Type | β | PR | ISR (proved) | Interpretation |\n79\t|------------|---|-----|-------------|----------------|\n80\t| Exec-only | 0 | 0.93 | 0.132 | Baseline |\n81\t| ISR | 0.1 | 0.81 | 0.415 | s42 genuine; 2/3 seeds meta-Goodhart |\n82\t| ISR | 0.3 | 0.18 | 0.143 | Classic Goodhart (PR collapse) |\n83\t| Random | 0.1 | 0.79 | 0.131 | Control (no ISR-specific gaming) |\n84\t| Random | 0.3 | 0.48 | 0.094 | Control |\n85\t\n86\t## Ground Truth Reference\n87\t\n88\t| Metric | Value | Source |\n89\t|--------|-------|--------|\n90\t| GT prove_rate | 0.18 | sta-gt-isr-baseline |\n91\t| GT mean ISR | 0.559 | sta-gt-isr-baseline |\n92\t| GT ISR median | 0.613 | sta-gt-isr-baseline |\n93\t\n94\t---\n95\t\n96\t## Pending Data (cells to fill)\n97\t\n98\t1. **plan018-s43** (random β=0.1 seed 43): QUEUED — needed for 3-seed random β=0.1 aggregation\n99\t2. **plan018-s44** (random β=0.1 seed 44): ANALYZING — eval in progress\n100\t3. **plan006-exec s43/s44** (Prolog exec-only): RUNNING — needed for 3-seed Prolog aggregation\n101\t4. **plan006-sta s43/s44** (Prolog exec+STA): PREPARING — waiting for GPU\n102\t5. **plan001-s43 re-eval**: Needs eval_sta.py re-evaluation (current ISR from training log, not standardized eval)\n103\t\n104\t## Notes for Paper\n105\t\n106\t- 3-seed exec-only PR has enormous variance (0.14–0.98) — this seed sensitivity IS a finding, not a limitation\n107\t- ISR β=0.1 3-seed mean ISR must be reported with hacking mode stratification, not as raw mean\n108\t- s44 exec-only ISR=0.582 is fake-high: 94% of proofs have exactly 2 components (tautological), removing either destroys proof → ISR~0.5 mechanically\n109\t- All ISR values in this table are from eval_sta.py unless marked ‡\n110\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-16T05:25:41.589771+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "cat /root/solver-trace-ablation/scripts/run_eval_after_training.sh",
+              "account": "root"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-16T05:25:41.589927+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/bin/bash\\\\nset -e\\\\n\\\\necho \\\\\\\"[$(date)] Waiting for PID 136339 to finish...\\\\\\\"\\\\nwhile kill -0 136339 2>/dev/null; do\\\\n    sleep 30\\\\ndone\\\\necho \\\\\\\"[$(date)] PID 136339 finished. Waiting 10s for GPU memory release...\\\\\\\"\\\\nsleep 10\\\\n\\\\nexport CUDA_VISIBLE_DEVICES=1\\\\ncd /root/solver-trace-ablation\\\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\\\n\\\\necho \\\\\\\"[$(date)] Starting eval: plan001-r2 (exec-only)\\\\\\\"\\\\npython3 scripts/eval_sta.py \\\\\\\\\\\\n    --model_path /root/autodl-tmp/outputs/plan001_exec_only_s42 \\\\\\\\\\\\n    --data_path data/proofwriter_fol_100.jsonl \\\\\\\\\\\\n    --output_path /root/autodl-tmp/outputs/eval_sta_plan001_r2.json\\\\necho \\\\\\\"[$(date)] plan001-r2 eval done.\\\\\\\"\\\\n\\\\necho \\\\\\\"[$(date)] Starting eval: plan013-r4 (random reward)\\\\\\\"\\\\npython3 scripts/eval_sta.py \\\\\\\\\\\\n    --model_path /root/autodl-tmp/outputs/plan013_random_reward_s42_r4/checkpoint-500 \\\\\\\\\\\\n    --data_path data/proofwriter_fol_100.jsonl \\\\\\\\\\\\n    --output_path /root/autodl-tmp/outputs/eval_sta_plan013_r4.json\\\\necho \\\\\\\"[$(date)] plan013-r4 eval done.\\\\\\\"\\\\n\\\\necho \\\\\\\"[$(date)] All evals complete.\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-16T05:25:41.590083+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "find /root/autodl-tmp/outputs/ -maxdepth 1 -type d -name \"*b03*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-16T05:25:41.590216+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/outputs/exp1_isr_b03_s44_r2\\\\n/root/autodl-tmp/outputs/exp1_random_b03_s44\\\\n/root/autodl-tmp/outputs/exp1_isr_b03_s43_eval\\\\n/root/autodl-tmp/outputs/exp1_isr_b03_s44_r2_eval\\\\n/root/autodl-tmp/outputs/exp1_random_b03_s44_r2\\\\n/root/autodl-tmp/outputs/exp1_random_b03_s43_r2\\\\n/root/autodl-tmp/outputs/eval_sta_exp1_isr_b03_s43_r3\\\\n/root/autodl-tmp/outputs/exp1_random_b03_s43_r4\\\\n/root/autodl-tmp/outputs/exp1_isr_b03_s42_1000\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-16T05:25:41.590337+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "find /root/autodl-tmp/outputs/ -maxdepth 1 -type d -name \"*b005*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-16T05:25:41.590456+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/outputs/sweep_isr_b005_s42\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-16T05:25:41.590570+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "ls /root/autodl-tmp/outputs/sweep_isr_b005_s42/eval/",
+              "account": "root"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-16T05:25:41.590708+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/outputs/sweep_isr_b005_s42/eval/': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-16T05:25:41.590835+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "find /root/autodl-tmp/outputs/exp1_isr_b03_s42_1000/ -name \"*.json\" -path \"*/eval/*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-16T05:25:41.590951+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-16T05:25:41.591063+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "ls /root/autodl-tmp/outputs/eval_sta_exp1_isr_b03_s43_r3/",
+              "account": "root"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-16T05:25:41.591175+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"run.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-16T05:25:41.591286+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "find /root/autodl-tmp/outputs/ -name \"eval_sta*.json\" -maxdepth 1 -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-16T05:25:41.591415+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/outputs/eval_sta_plan001_r2.json\\\\n/root/autodl-tmp/outputs/eval_sta_plan013_r4.json\\\\n/root/autodl-tmp/outputs/eval_sta_plan001_exec_only_s44.json\\\\n/root/autodl-tmp/outputs/eval_sta_plan017_additive_random_s42.json\\\\n/root/autodl-tmp/outputs/eval_sta_plan018_additive_random_b01_s42.json\\\\n/root/autodl-tmp/outputs/eval_sta_plan006_prolog_exec_s42.json\\\\n/root/autodl-tmp/outputs/eval_sta_exp1_isr_b03_s43.json\\\\n/root/autodl-tmp/outputs/eval_sta_exp1_random_b03_s43.json\\\\n/root/autodl-tmp/outputs/eval_sta_exp1_isr_b03_s44_r2_correct.json\\\\n/root/autodl-tmp/outputs/eval_sta_exp1_isr_b03_s43_r3.json\\\\n/root/autodl-tmp/outputs/eval_sta_exp1_random_b03_s44_r2.json\\\\n/root/autodl-tmp/outputs/eval_sta_exp1_random_b03_s43_r4.json\\\\n/root/autodl-tmp/outputs/eval_sta_plan004_fast_isr_s42.json\\\\n/root/autodl-tmp/outputs/eval_sta_plan009_sft_s43.json\\\\n/root/autodl-tmp/outputs/eval_sta_plan009_sft_s44.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-16T05:25:41.591588+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "β.*0\\.(3|1|05).*ISR|isr.*b0[135]|genuine",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/experiments.tex",
+              "output_mode": "content",
+              "-i": "True"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-16T05:25:41.591753+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "57:ISR & 0.1 & 77{\\scriptsize$\\pm$14} & $\\ddagger$ & \\textbf{71}$^\\P$ & 18 & 6 \\\\ %% registry: plan002-additive-b01-s42/s43-r2/s44 (pooled, D095 FINAL)\n60:ISR & 0.3 & 66{\\scriptsize$\\pm$42} & 0.39{\\scriptsize$\\pm$.31} & \\textbf{50} & 37 & 12 \\\\ %% registry: plan002-additive-b03-s42/s43/s44 (pooled)\n77:The one ISR seed not dominated by H7 (s42) has raw $\\text{ISR}^{*}{=}0.415$, $3.2\\times$ its random control ($0.131$), suggesting genuine improvement.\n87:\\caption{Training ISR trajectories across reward conditions. ISR $\\beta{=}0.1$ seeds rise rapidly toward $\\text{ISR}{\\approx}1$ (meta-Goodhart gaming via H7 tautology); exec-only s44's plateau at ${\\sim}0.5$ is an H7a artifact ($n{=}2$ gives $\\text{ISR}{\\geq}0.5$ by construction), not genuine structural quality; random $\\beta{=}0.1$ remains low. The s42 1k-step trace shows ISR eventually saturates at $0.88$ through the same H7 mechanism.}\n95:This mirrors the exec-only 1000-step trajectory (\\S\\ref{sec:diagnostic}): both converge to ${\\sim}0\\%$ non-hacking proofs despite opposite ISR values ($0.88$ vs.\\ $0.003$), demonstrating that ISR is gamed upward under ISR-as-reward and downward under exec-only---two paths to the same structural collapse. %% registry: plan002-b01-s42-1000, plan016-extended-1000-s42\n98:At $\\beta{=}0.3$, ISR-as-reward produces extreme cross-seed instability ($\\text{PR}{=}66{\\pm}42\\%$, spanning 18--95\\%); each seed converges to a distinct pathway (Appendix~\\ref{app:detailed-results}). %% registry: plan002-additive-b03-s42/s43/s44"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-16T05:25:41.591891+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/outputs/eval_sta_exp1_isr_b03_s43_r3.json')); s=d['summary']; print(f'PR={s[\\\"prove_rate\\\"]}, ISR={s[\\\"mean_isr\\\"]:.4f}, n={s[\\\"n_problems\\\"]}')\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-16T05:25:41.592009+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-16T05:25:41.592121+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/outputs/eval_sta_exp1_isr_b03_s44_r2_correct.json')); s=d['summary']; print(f'PR={s[\\\"prove_rate\\\"]}, ISR={s[\\\"mean_isr\\\"]:.4f}, n={s[\\\"n_problems\\\"]}')\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-16T05:25:41.592236+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-16T05:25:41.592345+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/outputs/eval_sta_plan004_fast_isr_s42.json')); s=d['summary']; print(f'PR={s[\\\"prove_rate\\\"]}, ISR={s[\\\"mean_isr\\\"]:.4f}, n={s[\\\"n_problems\\\"]}')\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-16T05:25:41.592477+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-16T05:25:41.592602+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "head -20 /root/autodl-tmp/outputs/eval_sta_exp1_isr_b03_s43_r3.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-16T05:25:41.592749+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"n_problems\\\\\\\": 100,\\\\n    \\\\\\\"n_proved\\\\\\\": 86,\\\\n    \\\\\\\"prove_rate\\\\\\\": 0.86,\\\\n    \\\\\\\"mean_isr\\\\\\\": 0.2535,\\\\n    \\\\\\\"isr_std\\\\\\\": 0.2406,\\\\n    \\\\\\\"median_isr\\\\\\\": 0.3333,\\\\n    \\\\\\\"isr_pr_ratio\\\\\\\": 0.2948,\\\\n    \\\\\\\"proved_only_mean_isr\\\\\\\": 0.2948,\\\\n    \\\\\\\"min_isr\\\\\\\": 0.0,\\\\n    \\\\\\\"max_isr\\\\\\\": 0.75,\\\\n    \\\\\\\"by_answer_type\\\\\\\": {\\\\n      \\\\\\\"false\\\\\\\": {\\\\n        \\\\\\\"count\\\\\\\": 25,\\\\n        \\\\\\\"proved\\\\\\\": 23,\\\\n        \\\\\\\"prove_rate\\\\\\\": 0.92,\\\\n        \\\\\\\"mean_isr\\\\\\\": 0.33399999999999996\\\\n      },\\\\n      \\\\\\\"unknown\\\\\\\": {\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-16T05:25:41.592873+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "head -20 /root/autodl-tmp/outputs/eval_sta_exp1_isr_b03_s44_r2_correct.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-16T05:25:41.593002+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"n_problems\\\\\\\": 100,\\\\n    \\\\\\\"n_proved\\\\\\\": 95,\\\\n    \\\\\\\"prove_rate\\\\\\\": 0.95,\\\\n    \\\\\\\"mean_isr\\\\\\\": 0.705,\\\\n    \\\\\\\"isr_std\\\\\\\": 0.1718,\\\\n    \\\\\\\"median_isr\\\\\\\": 0.75,\\\\n    \\\\\\\"isr_pr_ratio\\\\\\\": 0.7421,\\\\n    \\\\\\\"proved_only_mean_isr\\\\\\\": 0.7421,\\\\n    \\\\\\\"min_isr\\\\\\\": 0.0,\\\\n    \\\\\\\"max_isr\\\\\\\": 0.75,\\\\n    \\\\\\\"by_answer_type\\\\\\\": {\\\\n      \\\\\\\"false\\\\\\\": {\\\\n        \\\\\\\"count\\\\\\\": 25,\\\\n        \\\\\\\"proved\\\\\\\": 23,\\\\n        \\\\\\\"prove_rate\\\\\\\": 0.92,\\\\n        \\\\\\\"mean_isr\\\\\\\": 0.69\\\\n      },\\\\n      \\\\\\\"unknown\\\\\\\": {\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-16T05:25:41.593118+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "head -20 /root/autodl-tmp/outputs/eval_sta_plan004_fast_isr_s42.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-16T05:25:41.593252+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"n_problems\\\\\\\": 100,\\\\n    \\\\\\\"n_proved\\\\\\\": 63,\\\\n    \\\\\\\"prove_rate\\\\\\\": 0.63,\\\\n    \\\\\\\"mean_isr\\\\\\\": 0.0072,\\\\n    \\\\\\\"isr_std\\\\\\\": 0.0286,\\\\n    \\\\\\\"median_isr\\\\\\\": 0.0,\\\\n    \\\\\\\"isr_pr_ratio\\\\\\\": 0.0115,\\\\n    \\\\\\\"proved_only_mean_isr\\\\\\\": 0.0115,\\\\n    \\\\\\\"min_isr\\\\\\\": 0.0,\\\\n    \\\\\\\"max_isr\\\\\\\": 0.1905,\\\\n    \\\\\\\"by_answer_type\\\\\\\": {\\\\n      \\\\\\\"false\\\\\\\": {\\\\n        \\\\\\\"count\\\\\\\": 25,\\\\n        \\\\\\\"proved\\\\\\\": 14,\\\\n        \\\\\\\"prove_rate\\\\\\\": 0.56,\\\\n        \\\\\\\"mean_isr\\\\\\\": 0.0044444444444444444\\\\n      },\\\\n      \\\\\\\"unknown\\\\\\\": {\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-16T05:25:41.593410+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "ls /root/autodl-tmp/outputs/sweep_isr_b02_s43/",
+              "account": "root"
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-16T05:25:41.593532+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"README.md\\\\ncheckpoint-450\\\\nreward_log.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-16T05:25:41.593644+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "ls /root/autodl-tmp/outputs/sweep_isr_b02_s44/",
+              "account": "root"
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-16T05:25:41.593780+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"README.md\\\\ncheckpoint-100\\\\nreward_log.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-16T05:25:41.593892+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "grep -c \"genuine_count\" /root/solver-trace-ablation/scripts/classify_h7.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-16T05:25:41.594005+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"5\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-16T05:25:41.594127+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "grep -n \"genuine\" /root/solver-trace-ablation/scripts/classify_h7.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-16T05:25:41.594252+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"397:    genuine_count = n - len(hacked_ids)\\\\n421:        'genuine_count': genuine_count,\\\\n422:        'genuine_rate': round(genuine_count / n, 4) if n else 0,\\\\n447:    print(f\\\\\\\"Genuine (proved - H7 - H1 - H8):           {res['genuine_count']}/{n} = {res['genuine_rate']*100:.1f}%\\\\\\\")\\\\n578:        gen = res['genuine_count']\\\\n579:        gen_r = res['genuine_rate'] * 100\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-16T05:25:41.594369+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "grep -n -A5 \"hacked_ids\" /root/solver-trace-ablation/scripts/classify_h7.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-16T05:25:41.594504+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"317:    hacked_ids = set()\\\\n318-\\\\n319-    for idx, r in enumerate(proved):\\\\n320-        details = r.get('details', {})\\\\n321-        premises = details.get('premises', [])\\\\n322-        conclusion = details.get('conclusion', '')\\\\n--\\\\n336:            hacked_ids.add(idx)\\\\n337-            if len(h7a_examples) < 3:\\\\n338-                h7a_examples.append({\\\\n339-                    'id': r.get('id', '?'),\\\\n340-                    'n_premises': len(premises),\\\\n341-                    'premise': [normalize_fol(p) for p in premises],\\\\n--\\\\n348:            hacked_ids.add(idx)\\\\n349-            if len(h7b_examples) < 3:\\\\n350-                h7b_examples.append({\\\\n351-                    'id': r.get('id', '?'),\\\\n352-                    'n_premises': len(premises),\\\\n353-                    'premise': [normalize_fol(p) for p in premises],\\\\n--\\\\n360:            hacked_ids.add(idx)\\\\n361-            if len(h1_examples) < 3:\\\\n362-                h1_examples.append({\\\\n363-                    'id': r.get('id', '?'),\\\\n364-                    'n_premises': len(premises),\\\\n365-                    'premise': [normalize_fol(p) for p in premises],\\\\n--\\\\n372:            hacked_ids.add(idx)\\\\n373-            if len(h8_examples) < 3:\\\\n374-                h8_examples.append({\\\\n375-                    'id': r.get('id', '?'),\\\\n376-                    'n_premises': len(premises),\\\\n377-                    'premise': [normalize_fol(p) for p in premises],\\\\n--\\\\n397:    genuine_count = n - len(hacked_ids)\\\\n398-    return {\\\\n399-        'n_total': total,\\\\n400-        'n_proved': n,\\\\n401-        'h7a_count': h7a_count,\\\\n402-        'h7a_rate': round(h7a_count / n, 4) if n else 0,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-16T05:25:41.594657+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "0\\.05|b005",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/experiments.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": "2026-05-16T05:25:41.594796+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "32:By 1000 steps, all three converge to high PR ($0.95{\\pm}0.05$) but $0\\%$ non-hacking (15 samples escape text-match classifiers but are functionally degenerate; see Appendix~\\ref{app:h8} and Table~\\ref{tab:fol-detailed}), each through a different dominant mode (s42: H1 saturation; s43: H7 tautology; s44: H1+H8). %% registry: plan016-extended-1000-s42, plan001-exec-only-s43-1000-r2, plan001-exec-only-s44-1000-r2"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": "2026-05-16T05:25:41.594917+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "ls /root/autodl-tmp/outputs/sweep_isr_b005_s42/",
+              "account": "root"
+            }
+          },
+          "id": "event-000087"
+        },
+        {
+          "source_line": 88,
+          "timestamp": "2026-05-16T05:25:41.595040+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"README.md\\\\nadded_tokens.json\\\\nchat_template.jinja\\\\ncheckpoint-500\\\\nconfig.json\\\\ngeneration_config.json\\\\nmerges.txt\\\\nmodel-00001-of-00004.safetensors\\\\nmodel-00002-of-00004.safetensors\\\\nmodel-00003-of-00004.safetensors\\\\nmodel-00004-of-00004.safetensors\\\\nmodel.safetensors.index.json\\\\nreward_log.jsonl\\\\nspecial_tokens_map.json\\\\ntokenizer.json\\\\ntokenizer_config.json\\\\ntraining_args.bin\\\\nvocab.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000088"
+        },
+        {
+          "source_line": 89,
+          "timestamp": "2026-05-16T05:25:41.595296+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "cat > /root/solver-trace-ablation/scripts/analyze_b02_pooled.py << 'SCRIPT_EOF'\n#!/usr/bin/env python3\n\"\"\"Pooled analysis for β=0.2 ISR GRPO across 3 seeds.\n\nReads eval_sta_results.json + hacking_taxonomy.json from each seed's\neval/ directory. Computes pooled statistics and compares to baselines.\n\nUsage:\n    python scripts/analyze_b02_pooled.py                    # all 3 seeds\n    python scripts/analyze_b02_pooled.py --seeds 42         # s42 only\n    python scripts/analyze_b02_pooled.py --seeds 42 43 44   # explicit\n\"\"\"\n\nimport argparse\nimport json\nimport os\nimport sys\nimport statistics\nfrom pathlib import Path\nfrom collections import OrderedDict\n\nOUTPUT_BASE = \"/root/autodl-tmp/outputs\"\n\nSEED_DIR_MAP = {\n    42: \"sweep_isr_b02_s42_v2\",\n    43: \"sweep_isr_b02_s43\",\n    44: \"sweep_isr_b02_s44\",\n}\n\n# Paper-authoritative baselines (from experiments.tex, Table 1)\nBASELINES = OrderedDict([\n    (\"ISR β=0.1 (3-seed)\", {\n        \"pr_mean\": 0.77, \"pr_std\": 0.14,\n        \"genuine_pct\": 71, \"h7_pct\": 18, \"h1_pct\": 6,\n        \"note\": \"2/3 seeds meta-Goodhart; ISR* misleading\",\n    }),\n    (\"ISR β=0.3 (3-seed)\", {\n        \"pr_mean\": 0.66, \"pr_std\": 0.42,\n        \"isr_mean\": 0.39, \"isr_std\": 0.31,\n        \"genuine_pct\": 50, \"h7_pct\": 37, \"h1_pct\": 12,\n        \"note\": \"extreme cross-seed instability\",\n    }),\n    (\"ISR β=0.05 (s42)\", {\n        \"pr_mean\": None,\n        \"note\": \"no eval data yet (sweep_isr_b005_s42)\",\n    }),\n    (\"Random β=0.1 (s42)\", {\n        \"pr_mean\": 0.79, \"isr_mean\": 0.131,\n        \"note\": \"control, no ISR-specific gaming\",\n    }),\n    (\"Random β=0.3 (s42)\", {\n        \"pr_mean\": 0.48, \"isr_mean\": 0.094,\n        \"note\": \"control\",\n    }),\n    (\"Exec-only 500 (3-seed)\", {\n        \"pr_mean\": 0.68, \"pr_std\": 0.47,\n        \"isr_mean\": 0.24, \"isr_std\": 0.30,\n        \"note\": \"2/3 seeds degenerate\",\n    }),\n])\n\n\ndef load_seed_data(seed):\n    dirname = SEED_DIR_MAP.get(seed)\n    if not dirname:\n        return None, f\"Unknown seed {seed}\"\n    \n    base = os.path.join(OUTPUT_BASE, dirname)\n    if not os.path.isdir(base):\n        return None, f\"Directory not found: {base}\"\n    \n    eval_dir = os.path.join(base, \"eval\")\n    if not os.path.isdir(eval_dir):\n        return None, f\"No eval/ directory (training may still be running): {base}\"\n\n    # Load eval_sta_results\n    sta_path = os.path.join(eval_dir, \"eval_sta_results.json\")\n    if not os.path.exists(sta_path):\n        sta_path = os.path.join(eval_dir, \"eval_results.json\")\n    if not os.path.exists(sta_path):\n        return None, f\"No eval results JSON in {eval_dir}\"\n    \n    with open(sta_path) as f:\n        sta_data = json.load(f)\n\n    # Load hacking taxonomy\n    tax_path = os.path.join(eval_dir, \"hacking_taxonomy.json\")\n    tax_data = None\n    if os.path.exists(tax_path):\n        with open(tax_path) as f:\n            raw = json.load(f)\n            # taxonomy file may be keyed by dirname\n            if dirname in raw:\n                tax_data = raw[dirname]\n            elif len(raw) == 1:\n                tax_data = list(raw.values())[0]\n            else:\n                tax_data = raw\n\n    # Load training log (last step)\n    log_path = os.path.join(base, \"reward_log.jsonl\")\n    last_step = None\n    if os.path.exists(log_path):\n        with open(log_path) as f:\n            lines = f.readlines()\n            if lines:\n                last_step = json.loads(lines[-1].strip())\n\n    return {\n        \"seed\": seed,\n        \"dirname\": dirname,\n        \"sta\": sta_data,\n        \"taxonomy\": tax_data,\n        \"last_step\": last_step,\n    }, None\n\n\ndef extract_metrics(data):\n    s = data[\"sta\"][\"summary\"]\n    t = data[\"taxonomy\"]\n    \n    m = {\n        \"seed\": data[\"seed\"],\n        \"n_problems\": s[\"n_problems\"],\n        \"n_proved\": s[\"n_proved\"],\n        \"prove_rate\": s[\"prove_rate\"],\n        \"mean_isr\": s[\"mean_isr\"],\n        \"isr_std\": s[\"isr_std\"],\n        \"median_isr\": s[\"median_isr\"],\n        \"proved_only_mean_isr\": s.get(\"proved_only_mean_isr\", s[\"mean_isr\"]),\n    }\n    \n    if t:\n        m.update({\n            \"h7a\": t.get(\"h7a_count\", 0),\n            \"h7b\": t.get(\"h7b_count\", 0),\n            \"h7_total\": t.get(\"h7_total_count\", 0),\n            \"h1\": t.get(\"h1_strict_count\", 0),\n            \"h8\": t.get(\"h8_conjunction_collapse_count\", 0),\n            \"genuine\": t.get(\"genuine_count\", 0),\n            \"genuine_rate\": t.get(\"genuine_rate\", 0),\n        })\n\n    if data[\"last_step\"]:\n        m[\"train_final_step\"] = data[\"last_step\"].get(\"step\")\n        m[\"train_final_pr\"] = data[\"last_step\"].get(\"prove_rate\")\n        m[\"train_final_isr\"] = data[\"last_step\"].get(\"isr_mean\")\n    \n    # ISR distribution from per-sample results\n    results = data[\"sta\"].get(\"results\", [])\n    isr_values = []\n    for r in results:\n        if r.get(\"execution_reward\", 0) > 0:\n            det = r.get(\"details\", {})\n            isr = det.get(\"isr\", r.get(\"sta_reward\"))\n            if isr is not None:\n                isr_values.append(isr)\n    m[\"isr_values\"] = isr_values\n    \n    return m\n\n\ndef pooled_stats(metrics_list):\n    n = len(metrics_list)\n    \n    prs = [m[\"prove_rate\"] for m in metrics_list]\n    isrs = [m[\"mean_isr\"] for m in metrics_list]\n    proved_isrs = [m[\"proved_only_mean_isr\"] for m in metrics_list]\n    \n    pool = {\n        \"n_seeds\": n,\n        \"pr_mean\": statistics.mean(prs),\n        \"pr_std\": statistics.stdev(prs) if n > 1 else 0,\n        \"pr_values\": prs,\n        \"isr_mean\": statistics.mean(isrs),\n        \"isr_std\": statistics.stdev(isrs) if n > 1 else 0,\n        \"isr_values\": isrs,\n        \"isr_proved_mean\": statistics.mean(proved_isrs),\n        \"isr_proved_std\": statistics.stdev(proved_isrs) if n > 1 else 0,\n    }\n    \n    if all(\"genuine\" in m for m in metrics_list):\n        genuines = [m[\"genuine\"] for m in metrics_list]\n        genuine_rates = [m[\"genuine_rate\"] for m in metrics_list]\n        h7s = [m[\"h7_total\"] for m in metrics_list]\n        h1s = [m[\"h1\"] for m in metrics_list]\n        h8s = [m[\"h8\"] for m in metrics_list]\n        n_proved_list = [m[\"n_proved\"] for m in metrics_list]\n        \n        pool.update({\n            \"genuine_values\": genuines,\n            \"genuine_rate_mean\": statistics.mean(genuine_rates),\n            \"genuine_rate_std\": statistics.stdev(genuine_rates) if n > 1 else 0,\n            \"h7_values\": h7s,\n            \"h7_rate_mean\": statistics.mean([h/p if p else 0 for h, p in zip(h7s, n_proved_list)]),\n            \"h1_values\": h1s,\n            \"h1_rate_mean\": statistics.mean([h/p if p else 0 for h, p in zip(h1s, n_proved_list)]),\n            \"h8_values\": h8s,\n            \"h8_rate_mean\": statistics.mean([h/p if p else 0 for h, p in zip(h8s, n_proved_list)]),\n        })\n    \n    # Pool all per-sample ISR values\n    all_isr = []\n    for m in metrics_list:\n        all_isr.extend(m.get(\"isr_values\", []))\n    if all_isr:\n        pool[\"pooled_isr_median\"] = statistics.median(all_isr)\n        pool[\"pooled_isr_mean\"] = statistics.mean(all_isr)\n        pool[\"pooled_n_samples\"] = len(all_isr)\n    \n    return pool\n\n\ndef fmt_pct(v, digits=1):\n    return f\"{v*100:.{digits}f}%\"\n\n\ndef fmt_pm(mean, std, pct=True):\n    if pct:\n        return f\"{mean*100:.0f}±{std*100:.0f}%\"\n    return f\"{mean:.3f}±{std:.3f}\"\n\n\ndef generate_report(metrics_list, pool, errors):\n    lines = []\n    lines.append(\"# β=0.2 ISR GRPO — Pooled Analysis\")\n    lines.append(\"\")\n    lines.append(f\"**Seeds analyzed**: {len(metrics_list)}/3\")\n    if errors:\n        lines.append(f\"**Missing seeds**: {', '.join(errors)}\")\n    lines.append(\"\")\n    \n    # Per-seed table\n    lines.append(\"## Per-Seed Breakdown\")\n    lines.append(\"\")\n    lines.append(\"| Seed | PR | ISR* (proved) | Med ISR | H7a | H7b | H1 | H8 | Genuine | Gen% |\")\n    lines.append(\"|------|----|--------------|---------|-----|-----|----|----|---------|------|\")\n    \n    for m in metrics_list:\n        h7a = m.get(\"h7a\", \"—\")\n        h7b = m.get(\"h7b\", \"—\")\n        h1 = m.get(\"h1\", \"—\")\n        h8 = m.get(\"h8\", \"—\")\n        gen = m.get(\"genuine\", \"—\")\n        gen_r = fmt_pct(m[\"genuine_rate\"]) if \"genuine_rate\" in m else \"—\"\n        lines.append(\n            f\"| s{m['seed']} | {fmt_pct(m['prove_rate'])} | {m['proved_only_mean_isr']:.3f} \"\n            f\"| {m['median_isr']:.3f} | {h7a} | {h7b} | {h1} | {h8} | {gen} | {gen_r} |\"\n        )\n    \n    # Pooled row\n    if pool[\"n_seeds\"] > 1:\n        lines.append(\n            f\"| **Pooled** | **{fmt_pm(pool['pr_mean'], pool['pr_std'])}** \"\n            f\"| **{fmt_pm(pool['isr_proved_mean'], pool['isr_proved_std'], pct=False)}** \"\n            f\"| {pool.get('pooled_isr_median', 0):.3f} \"\n            f\"| — | — | — | — \"\n            f\"| — | **{fmt_pct(pool.get('genuine_rate_mean', 0))}** |\"\n        )\n    lines.append(\"\")\n    \n    # Training summary\n    lines.append(\"## Training Summary\")\n    lines.append(\"\")\n    for m in metrics_list:\n        step = m.get(\"train_final_step\", \"?\")\n        pr = m.get(\"train_final_pr\")\n        isr = m.get(\"train_final_isr\")\n        pr_s = f\"{pr:.3f}\" if pr is not None else \"?\"\n        isr_s = f\"{isr:.4f}\" if isr is not None else \"?\"\n        lines.append(f\"- **s{m['seed']}**: final step {step}, train PR={pr_s}, train ISR={isr_s}\")\n    lines.append(\"\")\n    \n    # Pooled stats\n    lines.append(\"## Pooled Statistics\")\n    lines.append(\"\")\n    lines.append(f\"- **Prove Rate**: {fmt_pm(pool['pr_mean'], pool['pr_std'])}\")\n    lines.append(f\"- **ISR* (proved-only mean)**: {fmt_pm(pool['isr_proved_mean'], pool['isr_proved_std'], pct=False)}\")\n    if \"pooled_isr_median\" in pool:\n        lines.append(f\"- **Pooled ISR median** (across {pool['pooled_n_samples']} samples): {pool['pooled_isr_median']:.3f}\")\n    if \"genuine_rate_mean\" in pool:\n        lines.append(f\"- **Genuine rate**: {fmt_pm(pool['genuine_rate_mean'], pool['genuine_rate_std'])}\")\n        lines.append(f\"- **H7 rate**: {fmt_pct(pool['h7_rate_mean'])}\")\n        lines.append(f\"- **H1 rate**: {fmt_pct(pool['h1_rate_mean'])}\")\n        lines.append(f\"- **H8 rate**: {fmt_pct(pool['h8_rate_mean'])}\")\n    lines.append(\"\")\n    \n    # Baseline comparison\n    lines.append(\"## Baseline Comparison\")\n    lines.append(\"\")\n    lines.append(\"| Condition | PR | ISR* | Genuine% | H7% | Note |\")\n    lines.append(\"|-----------|-----|------|----------|-----|------|\")\n    \n    # Current β=0.2 row\n    gen_s = fmt_pct(pool.get(\"genuine_rate_mean\", 0)) if \"genuine_rate_mean\" in pool else \"—\"\n    h7_s = fmt_pct(pool.get(\"h7_rate_mean\", 0)) if \"h7_rate_mean\" in pool else \"—\"\n    lines.append(\n        f\"| **ISR β=0.2 ({pool['n_seeds']}-seed)** \"\n        f\"| **{fmt_pm(pool['pr_mean'], pool['pr_std'])}** \"\n        f\"| **{fmt_pm(pool['isr_proved_mean'], pool['isr_proved_std'], pct=False)}** \"\n        f\"| **{gen_s}** | **{h7_s}** | **this analysis** |\"\n    )\n    \n    for name, bl in BASELINES.items():\n        pr_s = fmt_pm(bl[\"pr_mean\"], bl.get(\"pr_std\", 0)) if bl.get(\"pr_mean\") is not None else \"—\"\n        isr_s = fmt_pm(bl[\"isr_mean\"], bl.get(\"isr_std\", 0), pct=False) if bl.get(\"isr_mean\") is not None else \"—\"\n        gen_s = f\"{bl['genuine_pct']}%\" if bl.get(\"genuine_pct\") is not None else \"—\"\n        h7_s = f\"{bl['h7_pct']}%\" if bl.get(\"h7_pct\") is not None else \"—\"\n        lines.append(f\"| {name} | {pr_s} | {isr_s} | {gen_s} | {h7_s} | {bl.get('note', '')} |\")\n    \n    lines.append(\"\")\n    \n    # ISR distribution analysis\n    if any(m.get(\"isr_values\") for m in metrics_list):\n        lines.append(\"## ISR Distribution\")\n        lines.append(\"\")\n        for m in metrics_list:\n            vals = m.get(\"isr_values\", [])\n            if not vals:\n                continue\n            lines.append(f\"### s{m['seed']} (n={len(vals)} proved)\")\n            buckets = {\"0.0\": 0, \"(0,0.25]\": 0, \"(0.25,0.5]\": 0, \"(0.5,0.75]\": 0, \"(0.75,1.0)\": 0, \"1.0\": 0}\n            for v in vals:\n                if v == 0:\n                    buckets[\"0.0\"] += 1\n                elif v <= 0.25:\n                    buckets[\"(0,0.25]\"] += 1\n                elif v <= 0.5:\n                    buckets[\"(0.25,0.5]\"] += 1\n                elif v <= 0.75:\n                    buckets[\"(0.5,0.75]\"] += 1\n                elif v < 1.0:\n                    buckets[\"(0.75,1.0)\"] += 1\n                else:\n                    buckets[\"1.0\"] += 1\n            lines.append(\"| Range | Count | % |\")\n            lines.append(\"|-------|-------|---|\")\n            for rng, cnt in buckets.items():\n                lines.append(f\"| {rng} | {cnt} | {cnt/len(vals)*100:.1f}% |\")\n            lines.append(\"\")\n    \n    # Interpretation\n    lines.append(\"## Interpretation\")\n    lines.append(\"\")\n    \n    if pool[\"n_seeds\"] >= 3:\n        pr = pool[\"pr_mean\"]\n        gen = pool.get(\"genuine_rate_mean\", 0)\n        h7 = pool.get(\"h7_rate_mean\", 0)\n        \n        if gen < 0.05:\n            lines.append(\"**Complete Goodhart collapse**: 0% genuine proofs. β=0.2 ISR reward is fully gamed.\")\n        elif gen < 0.20:\n            lines.append(f\"**Severe hacking**: only {fmt_pct(gen)} genuine. Dominant mode: {'H7 tautology' if h7 > 0.5 else 'mixed'}.\")\n        elif gen > 0.50:\n            lines.append(f\"**Partial success**: {fmt_pct(gen)} genuine proofs survive. Best β tested so far.\")\n        \n        if pr > 0.90:\n            lines.append(f\"- High PR ({fmt_pct(pr)}) suggests training converges but may be surface-level.\")\n        \n        lines.append(\"\")\n        lines.append(\"### β Dose-Response Position\")\n        lines.append(\"- β=0.1: high PR, 71% genuine (best), but 2/3 seeds meta-Goodhart\")\n        lines.append(f\"- **β=0.2: PR={fmt_pm(pool['pr_mean'], pool['pr_std'])}, genuine={fmt_pct(gen)}** ← this\")\n        lines.append(\"- β=0.3: PR=66±42%, 50% genuine, extreme instability\")\n    else:\n        lines.append(f\"*Only {pool['n_seeds']}/3 seeds available. Pooled stats are preliminary.*\")\n    \n    lines.append(\"\")\n    return \"\\n\".join(lines)\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"Pooled analysis for β=0.2 ISR\")\n    parser.add_argument(\"--seeds\", nargs=\"+\", type=int, default=[42, 43, 44])\n    parser.add_argument(\"--output\", type=str, default=None,\n                        help=\"Output markdown file path\")\n    args = parser.parse_args()\n\n    metrics_list = []\n    errors = []\n    \n    for seed in args.seeds:\n        data, err = load_seed_data(seed)\n        if err:\n            errors.append(f\"s{seed}: {err}\")\n            print(f\"[WARN] s{seed}: {err}\", file=sys.stderr)\n            continue\n        m = extract_metrics(data)\n        metrics_list.append(m)\n    \n    if not metrics_list:\n        print(\"ERROR: No seed data available. Exiting.\", file=sys.stderr)\n        sys.exit(1)\n    \n    pool = pooled_stats(metrics_list)\n    report = generate_report(metrics_list, pool, errors)\n    \n    if args.output:\n        os.makedirs(os.path.dirname(args.output) or \".\", exist_ok=True)\n        with open(args.output, \"w\") as f:\n            f.write(report)\n        print(f\"Report saved to {args.output}\", file=sys.stderr)\n    \n    print(report)\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF\necho \"Script created: $?\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000089"
+        },
+        {
+          "source_line": 90,
+          "timestamp": "2026-05-16T05:25:41.595676+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Script created: 0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000090"
+        },
+        {
+          "source_line": 91,
+          "timestamp": "2026-05-16T05:25:41.595855+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "cd /root/solver-trace-ablation && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 scripts/analyze_b02_pooled.py --seeds 42",
+              "account": "root"
+            }
+          },
+          "id": "event-000091"
+        },
+        {
+          "source_line": 92,
+          "timestamp": "2026-05-16T05:25:41.596020+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# β=0.2 ISR GRPO — Pooled Analysis\\\\n\\\\n**Seeds analyzed**: 1/3\\\\n\\\\n## Per-Seed Breakdown\\\\n\\\\n| Seed | PR | ISR* (proved) | Med ISR | H7a | H7b | H1 | H8 | Genuine | Gen% |\\\\n|------|----|--------------|---------|-----|-----|----|----|---------|------|\\\\n| s42 | 100.0% | 0.602 | 0.500 | 100 | 0 | 0 | 0 | 0 | 0.0% |\\\\n\\\\n## Training Summary\\\\n\\\\n- **s42**: final step 500, train PR=0.875, train ISR=0.5208\\\\n\\\\n## Pooled Statistics\\\\n\\\\n- **Prove Rate**: 100±0%\\\\n- **ISR* (proved-only mean)**: 0.602±0.000\\\\n- **Pooled ISR median** (across 100 samples): 0.500\\\\n- **Genuine rate**: 0±0%\\\\n- **H7 rate**: 100.0%\\\\n- **H1 rate**: 0.0%\\\\n- **H8 rate**: 0.0%\\\\n\\\\n## Baseline Comparison\\\\n\\\\n| Condition | PR | ISR* | Genuine% | H7% | Note |\\\\n|-----------|-----|------|----------|-----|------|\\\\n| **ISR β=0.2 (1-seed)** | **100±0%** | **0.602±0.000** | **0.0%** | **100.0%** | **this analysis** |\\\\n| ISR β=0.1 (3-seed) | 77±14% | — | 71% | 18% | 2/3 seeds meta-Goodhart; ISR* misleading |\\\\n| ISR β=0.3 (3-seed) | 66±42% | 0.390±0.310 | 50% | 37% | extreme cross-seed instability |\\\\n| ISR β=0.05 (s42) | — | — | — | — | no eval data yet (sweep_isr_b005_s42) |\\\\n| Random β=0.1 (s42) | 79±0% | 0.131±0.000 | — | — | control, no ISR-specific gaming |\\\\n| Random β=0.3 (s42) | 48±0% | 0.094±0.000 | — | — | control |\\\\n| Exec-only 500 (3-seed) | 68±47% | 0.240±0.300 | — | — | 2/3 seeds degenerate |\\\\n\\\\n## ISR Distribution\\\\n\\\\n### s42 (n=100 proved)\\\\n| Range | Count | % |\\\\n|-------|-------|---|\\\\n| 0.0 | 0 | 0.0% |\\\\n| (0,0.25] | 0 | 0.0% |\\\\n| (0.25,0.5] | 75 | 75.0% |\\\\n| (0.5,0.75] | 7 | 7.0% |\\\\n| (0.75,1.0) | 0 | 0.0% |\\\\n| 1.0 | 18 | 18.0% |\\\\n\\\\n## Interpretation\\\\n\\\\n*Only 1/3 seeds available. Pooled stats are preliminary.*\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.64}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000092"
+        },
+        {
+          "source_line": 93,
+          "timestamp": "2026-05-16T05:25:41.596218+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本工作正常。s42 结果清晰：\n\n**β=0.2 ISR s42 发现**：\n- PR = 100%（所有 100 题都 proved）\n- ISR* = 0.602（proved-only mean）\n- **Genuine = 0%** — 100/100 proved 样本全是 H7a（text-match tautology）\n- ISR 分布集中在 0.5（75%）和 1.0（18%），典型的单 premise = conclusion 模式\n- 完全 Goodhart 崩溃：比 β=0.3（50% genuine）更严重\n\n与 baselines 对比：\n| β | PR | Genuine% | 模式 |\n|---|-----|----------|------|\n| 0.1 | 77±14% | 71% | 部分成功 |\n| **0.2** | **100%** (s42) | **0%** | **完全 H7a tautology** |\n| 0.3 | 66±42% | 50% | 混合不稳定 |\n\nβ=0.2 s42 的表现反直觉地比 β=0.3 更差（0% vs 50% genuine）。100% H7a 意味着模型学会了完美的 tautology 策略：每个问题都生成一条 premise 等于 conclusion，solver 必定通过，ISR ≈ 0.5。\n\n脚本已在服务器上就位 `/root/solver-trace-ablation/scripts/analyze_b02_pooled.py`。s43/s44 完成训练并跑完 eval 后，执行 `python3 scripts/analyze_b02_pooled.py` 即可得到 3-seed pooled 报告。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_b02-pooled-prep_20260516T052115"
+          },
+          "id": "event-000093"
+        }
+      ],
+      "message_count": 93
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-b02-pooled-prep.md"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "bb705de311ec3c59d508",
+  "project": "solver-trace-ablation",
+  "kind": "worker",
+  "title": "exp phase0 baseline",
+  "task_key": "worker_exp_phase0-baseline_20260513T175225",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_phase0-baseline_20260513T175225.log",
+    "occurrence": 1,
+    "bytes": 544450,
+    "sha256": "b983e666917f424c2ff5ab4f41eb69aa938243b1536d1293e6a4a375caf8a703"
+  },
+  "statistics": {
+    "messages": 314,
+    "user_turns": 0,
+    "tool_calls": 125,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 60,
+      "tool_call": 125,
+      "tool_result": 125,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 314,
+      "chunks": [
+        {
+          "path": "bb705de311ec3c59d508-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "bb705de311ec3c59d508-part-0002.json",
+          "message_count": 134
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-phase0-baseline.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5fc5367967ad3a7bc65d",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analysis plan018 s43 r2 classify h7",
+  "task_key": "worker_analysis_plan018-s43-r2-classify-h7_20260514T165724",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan018-s43-r2-classify-h7_20260514T165724_result.json",
+    "occurrence": 1,
+    "bytes": 426,
+    "sha256": "7d9e6b77472e7c8920dcb0167cbe37285de34e807e15eefaca9a83acc18cf687"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated. Summary:\n\n| Metric | Value |\n|--------|-------|\n| h7_count | 0 / h7_rate: 0.0% |\n| h1_count | 82 / h1_rate: 93.2% |\n| genuine_count | 6 / genuine_rate: 6.8% |\n| n_proved | 88 |\n\nH7=0% 符合 random 条件预期。H1=93.2% 比其他 random seeds (s42: 70.9%, s44: 79.8%) 高出约 15pp，genuine 仅 6.8%（vs s42: 29.1%, s44: 20.2%）。s43 的 conclusion-embedding 行为更严重。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan018-s43-r2-classify-h7.md"
+}

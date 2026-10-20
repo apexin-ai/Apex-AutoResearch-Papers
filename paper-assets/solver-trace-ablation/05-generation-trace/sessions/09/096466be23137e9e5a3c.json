@@ -1,0 +1,1296 @@
+{
+  "schema_version": "1.0",
+  "id": "096466be23137e9e5a3c",
+  "project": "solver-trace-ablation",
+  "kind": "conversation",
+  "title": "analysis exp1 isr b03 s42 1000 r2",
+  "task_key": "worker_analysis_exp1-isr-b03-s42-1000-r2_20260515T112900",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_exp1-isr-b03-s42-1000-r2_20260515T112900.jsonl",
+    "occurrence": 1,
+    "bytes": 58432,
+    "sha256": "947d8cd4037118e83de5e3acd43a4f794703a89639d89e8308ae3fb5cf10e031"
+  },
+  "statistics": {
+    "messages": 63,
+    "user_turns": 0,
+    "tool_calls": 31,
+    "roles": {
+      "tool_call": 31,
+      "tool_result": 31,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T11:34:19.909371+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp1-isr-b03-s42-1000-r2_20260515T112900",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T11:34:19.909917+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp1-isr-b03-s42-1000-r2_20260515T112900",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T11:34:19.910197+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp1-isr-b03-s42-1000-r2_20260515T112900",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "tail -100 ~/runs/solver-trace-ablation/exp1-isr-b03-s42-1000-r2.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T11:34:19.910410+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp1-isr-b03-s42-1000-r2_20260515T112900",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "ls -la /root/autodl-tmp/outputs/exp1_isr_b03_s42_1000/",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T11:34:19.910748+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[REWARD_LOG] step=954 reward=1.3000 prove_rate=1.000 isr=1.000 parse_rate=1.000 beta_t=0.3000\\\\n\\\\r                                                    \\\\r\\\\r 95%|█████████▌| 954/1000 [1:42:10<03:56,  5.15s/it]\\\\r 96%|█████████▌| 955/1000 [1:42:12<03:14,  4.32s/it]{'loss': 0.0, 'grad_norm': 0.0, 'learning_rate': 4.7e-08, 'num_tokens': 2487979.0, 'completions/mean_length': 52.0, 'completions/min_length': 47.0, 'completions/max_length': 57.0, 'completions/clipped_ratio': 0.0, 'completions/mean_terminated_length': 52.0, 'completions/min_terminated_length': 47.0, 'completions/max_terminated_length': 57.0, 'rewards/reward_fn/mean': 1.2999999523162842, 'rewards/reward_fn/std': 0.0, 'reward': 1.2999999523162842, 'reward_std': 0.0, 'frac_reward_zero_std': 1.0, 'entropy': 9.70850742305629e-05, 'clip_ratio/low_mean': 0.0, 'clip_ratio/low_min': 0.0, 'clip_ratio/high_mean': 0.0, 'clip_ratio/high_max': 0.0, 'clip_ratio/region_mean': 0.0, 'step_time': 2.4665880920365453, 'epoch': 3.82}\\\\n[REWARD_LOG] step=955 reward=1.3000 prove_rate=1.000 isr=1.000 parse_rate=1.000 beta_t=0.3000\\\\n\\\\r                                                    \\\\r\\\\r 96%|█████████▌| 955/1000 [1:42:12<03:14,  4.32s/it]\\\\r 96%|█████████▌| 956/1000 [1:42:15<02:49,  3.86s/it]{'loss': 0.0, 'grad_norm': 0.0, 'learning_rate': 4.5999999999999995e-08, 'num_tokens': 2490003.0, 'completions/mean_length': 47.0, 'completions/min_length': 47.0, 'completions/max_length': 47.0, 'completions/clipped_ratio': 0.0, 'completions/mean_terminated_length': 47.0, 'completions/min_terminated_length': 47.0, 'completions/max_terminated_length': 47.0, 'rewards/reward_fn/mean': 1.2999999523162842, 'rewards/reward_fn/std': 0.0, 'reward': 1.2999999523162842, 'reward_std': 0.0, 'frac_reward_zero_std': 1.0, 'entropy': 0.00012913881801068783, 'clip_ratio/low_mean': 0.0, 'clip_ratio/low_min': 0.0, 'clip_ratio/high_mean': 0.0, 'clip_ratio/high_max': 0.0, 'clip_ratio/region_mean': 0.0, '\n…[truncated 6306 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp1-isr-b03-s42-1000-r2_20260515T112900",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T11:34:19.911069+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 15728668\\\\ndrwxr-xr-x  3 root root       4096 May 15 19:17 .\\\\ndrwxr-xr-x 22 root root       4096 May 15 18:27 ..\\\\n-rw-r--r--  1 root root       1876 May 15 19:16 README.md\\\\n-rw-r--r--  1 root root        707 May 15 19:17 added_tokens.json\\\\n-rw-r--r--  1 root root       4168 May 15 19:17 chat_template.jinja\\\\ndrwxr-xr-x  2 root root       4096 May 15 19:16 checkpoint-1000\\\\n-rw-r--r--  1 root root       1535 May 15 19:16 config.json\\\\n-rw-r--r--  1 root root        188 May 15 19:16 generation_config.json\\\\n-rw-r--r--  1 root root    1671853 May 15 19:17 merges.txt\\\\n-rw-r--r--  1 root root 4990095032 May 15 19:17 model-00001-of-00004.safetensors\\\\n-rw-r--r--  1 root root 4944309096 May 15 19:17 model-00002-of-00004.safetensors\\\\n-rw-r--r--  1 root root 4996758848 May 15 19:17 model-00003-of-00004.safetensors\\\\n-rw-r--r--  1 root root 1158754848 May 15 19:17 model-00004-of-00004.safetensors\\\\n-rw-r--r--  1 root root      32856 May 15 19:17 model.safetensors.index.json\\\\n-rw-r--r--  1 root root     261304 May 15 19:16 reward_log.jsonl\\\\n-rw-r--r--  1 root root        613 May 15 19:17 special_tokens_map.json\\\\n-rw-r--r--  1 root root   11422654 May 15 19:17 tokenizer.json\\\\n-rw-r--r--  1 root root       5459 May 15 19:17 tokenizer_config.json\\\\n-rw-r--r--  1 root root       7953 May 15 19:17 training_args.bin\\\\n-rw-r--r--  1 root root    2776833 May 15 19:17 vocab.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp1-isr-b03-s42-1000-r2_20260515T112900",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T11:34:19.911396+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp1-isr-b03-s42-1000-r2_20260515T112900",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "nvidia-smi --query-gpu=index,memory.used,memory.total --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T11:34:19.911628+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 0 MiB, 97887 MiB\\\\n1, 80355 MiB, 97887 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp1-isr-b03-s42-1000-r2_20260515T112900",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T11:34:19.911918+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp1-isr-b03-s42-1000-r2_20260515T112900",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && export CUDA_VISIBLE_DEVICES=0 && python3 scripts/eval_sta.py --model_path /root/autodl-tmp/outputs/exp1_isr_b03_s42_1000 --data_path data/proofwriter_fol_100.jsonl --output_dir /root/autodl-tmp/outputs/exp1_isr_b03_s42_1000/eval 2>&1",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T11:34:19.912149+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && export CUDA_VISIBLE_DEVICES=0 && python3 scripts/eval_sta.py --model_path /root/autodl-tmp/outputs/exp1_isr_b03_s42_1000 --data_path data/proofwriter_fol_100.jsonl --output_dir /root/autodl-tmp/outputs/exp1_isr_b03_s42_1000/eval 2>&1'\\\\n\\\\nExit code: 2\\\\n\\\\nStdout:\\\\n\\\\nusage: eval_sta.py [-h] --model_path MODEL_PATH --data_path DATA_PATH\\\\n                   --output_path OUTPUT_PATH [--logic_type {fol,prolog}]\\\\n                   [--solver SOLVER] [--max_new_tokens MAX_NEW_TOKENS]\\\\n                   [--timeout TIMEOUT] [--max_samples MAX_SAMPLES]\\\\n                   [--do_sample] [--temperature TEMPERATURE]\\\\neval_sta.py: error: the following arguments are required: --output_path\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.62}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp1-isr-b03-s42-1000-r2_20260515T112900",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T11:34:19.912427+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp1-isr-b03-s42-1000-r2_20260515T112900",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && export CUDA_VISIBLE_DEVICES=0 && python3 scripts/eval_sta.py --model_path /root/autodl-tmp/outputs/exp1_isr_b03_s42_1000 --data_path data/proofwriter_fol_100.jsonl --output_path /root/autodl-tmp/outputs/exp1_isr_b03_s42_1000/eval_results.json 2>&1",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T11:34:19.912657+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && export CUDA_VISIBLE_DEVICES=0 && python3 scripts/eval_sta.py --model_path /root/autodl-tmp/outputs/exp1_isr_b03_s42_1000 --data_path data/proofwriter_fol_100.jsonl --output_path /root/autodl-tmp/outputs/exp1_isr_b03_s42_1000/eval_results.json 2>&1'\\\\n\\\\nStdout:\\\\n\\\\n[12/100] id=folio_160 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[13/100] id=folio_1202 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[14/100] id=folio_192 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[15/100] id=folio_207 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[16/100] id=folio_304 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[17/100] id=folio_402 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[18/100] id=folio_999 ... proved  ISR=0.600  gen=1.1s  eval=0.0s\\\\n[19/100] id=folio_204 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[20/100] id=folio_452 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[21/100] id=folio_669 ... \\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 31.02}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp1-isr-b03-s42-1000-r2_20260515T112900",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T11:34:19.912957+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp1-isr-b03-s42-1000-r2_20260515T112900",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && export CUDA_VISIBLE_DEVICES=0 && nohup python3 scripts/eval_sta.py --model_path /root/autodl-tmp/outputs/exp1_isr_b03_s42_1000 --data_path data/proofwriter_fol_100.jsonl --output_path /root/autodl-tmp/outputs/exp1_isr_b03_s42_1000/eval_results.json > /tmp/eval_exp1_isr_b03_s42_1000.log 2>&1 & echo $!",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T11:34:19.913268+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"328550\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.9}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp1-isr-b03-s42-1000-r2_20260515T112900",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T11:34:19.913519+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp1-isr-b03-s42-1000-r2_20260515T112900",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "tail -30 /tmp/eval_exp1_isr_b03_s42_1000.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T11:34:19.913783+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  Model loaded.\\\\n  Solver: Prover9Solver\\\\n  Logic type: fol\\\\n[1/100] id=folio_765 ... The following generation flags are not valid and may be ignored: ['top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.\\\\nproved  ISR=0.600  gen=1.5s  eval=0.0s\\\\n[2/100] id=folio_1179 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[3/100] id=folio_66 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[4/100] id=folio_1378 ... proved  ISR=0.600  gen=1.1s  eval=0.0s\\\\n[5/100] id=folio_592 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[6/100] id=folio_71 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[7/100] id=folio_556 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[8/100] id=folio_938 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[9/100] id=folio_833 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[10/100] id=folio_1312 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[11/100] id=folio_1119 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[12/100] id=folio_160 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[13/100] id=folio_1202 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[14/100] id=folio_192 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[15/100] id=folio_207 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[16/100] id=folio_304 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[17/100] id=folio_402 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[18/100] id=folio_999 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[19/100] id=folio_204 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[20/100] id=folio_452 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[21/100] id=folio_669 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[22/100] id=folio_393 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[23/100] id=folio_1331 ... proved  ISR=0.600  gen=1.1s  eval=0.0s\\\\n[24/100] id=folio_699 ... FAILED  ISR=0.000  gen=1.1s  eval=0.0s\\\\n[25/100] id=folio_529 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[26/100] id=folio_233 ... \\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"\n…[truncated 59 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp1-isr-b03-s42-1000-r2_20260515T112900",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T11:34:19.914096+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp1-isr-b03-s42-1000-r2_20260515T112900",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "ps -p 328550 -o pid= 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T11:34:19.914310+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp1-isr-b03-s42-1000-r2_20260515T112900",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T11:34:19.914511+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp1-isr-b03-s42-1000-r2_20260515T112900",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "tail -5 /tmp/eval_exp1_isr_b03_s42_1000.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T11:34:19.914740+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[31/100] id=folio_769 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[32/100] id=folio_491 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[33/100] id=folio_267 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[34/100] id=folio_574 ... proved  ISR=1.000  gen=1.0s  eval=0.0s\\\\n[35/100] id=folio_149 ... \\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp1-isr-b03-s42-1000-r2_20260515T112900",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T11:34:19.915060+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp1-isr-b03-s42-1000-r2_20260515T112900",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "tail -5 /tmp/eval_exp1_isr_b03_s42_1000.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T11:34:19.915289+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[35/100] id=folio_149 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[36/100] id=folio_1364 ... proved  ISR=1.000  gen=1.0s  eval=0.0s\\\\n[37/100] id=folio_1223 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[38/100] id=folio_1329 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[39/100] id=folio_953 ... \\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp1-isr-b03-s42-1000-r2_20260515T112900",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T11:34:19.915483+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp1-isr-b03-s42-1000-r2_20260515T112900",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "tail -10 /tmp/eval_exp1_isr_b03_s42_1000.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T11:34:19.915686+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[34/100] id=folio_574 ... proved  ISR=1.000  gen=1.0s  eval=0.0s\\\\n[35/100] id=folio_149 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[36/100] id=folio_1364 ... proved  ISR=1.000  gen=1.0s  eval=0.0s\\\\n[37/100] id=folio_1223 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[38/100] id=folio_1329 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[39/100] id=folio_953 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[40/100] id=folio_558 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[41/100] id=folio_1254 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[42/100] id=folio_924 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[43/100] id=folio_693 ... \\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp1-isr-b03-s42-1000-r2_20260515T112900",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T11:34:19.915946+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp1-isr-b03-s42-1000-r2_20260515T112900",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "tail -10 /tmp/eval_exp1_isr_b03_s42_1000.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T11:34:19.916154+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[39/100] id=folio_953 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[40/100] id=folio_558 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[41/100] id=folio_1254 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[42/100] id=folio_924 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[43/100] id=folio_693 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[44/100] id=folio_1086 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[45/100] id=folio_960 ... FAILED  ISR=0.000  gen=1.2s  eval=0.0s\\\\n[46/100] id=folio_1371 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[47/100] id=folio_1323 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[48/100] id=folio_791 ... \\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp1-isr-b03-s42-1000-r2_20260515T112900",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-15T11:34:19.916358+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp1-isr-b03-s42-1000-r2_20260515T112900",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "tail -10 /tmp/eval_exp1_isr_b03_s42_1000.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T11:34:19.916571+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[43/100] id=folio_693 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[44/100] id=folio_1086 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[45/100] id=folio_960 ... FAILED  ISR=0.000  gen=1.2s  eval=0.0s\\\\n[46/100] id=folio_1371 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[47/100] id=folio_1323 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[48/100] id=folio_791 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[49/100] id=folio_80 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[50/100] id=folio_388 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[51/100] id=folio_414 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[52/100] id=folio_1296 ... \\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp1-isr-b03-s42-1000-r2_20260515T112900",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-15T11:34:19.916838+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp1-isr-b03-s42-1000-r2_20260515T112900",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "tail -10 /tmp/eval_exp1_isr_b03_s42_1000.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-15T11:34:19.917064+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[47/100] id=folio_1323 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[48/100] id=folio_791 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[49/100] id=folio_80 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[50/100] id=folio_388 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[51/100] id=folio_414 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[52/100] id=folio_1296 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[53/100] id=folio_1428 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[54/100] id=folio_1220 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[55/100] id=folio_499 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[56/100] id=folio_1030 ... \\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp1-isr-b03-s42-1000-r2_20260515T112900",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-15T11:34:19.917268+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp1-isr-b03-s42-1000-r2_20260515T112900",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "tail -10 /tmp/eval_exp1_isr_b03_s42_1000.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-15T11:34:19.917480+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[50/100] id=folio_388 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[51/100] id=folio_414 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[52/100] id=folio_1296 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[53/100] id=folio_1428 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[54/100] id=folio_1220 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[55/100] id=folio_499 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[56/100] id=folio_1030 ... FAILED  ISR=0.000  gen=1.2s  eval=0.0s\\\\n[57/100] id=folio_549 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[58/100] id=folio_711 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[59/100] id=folio_359 ... \\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp1-isr-b03-s42-1000-r2_20260515T112900",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-15T11:34:19.917687+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp1-isr-b03-s42-1000-r2_20260515T112900",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "tail -10 /tmp/eval_exp1_isr_b03_s42_1000.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-15T11:34:19.917942+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[54/100] id=folio_1220 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[55/100] id=folio_499 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[56/100] id=folio_1030 ... FAILED  ISR=0.000  gen=1.2s  eval=0.0s\\\\n[57/100] id=folio_549 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[58/100] id=folio_711 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[59/100] id=folio_359 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[60/100] id=folio_1117 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[61/100] id=folio_888 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[62/100] id=folio_23 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[63/100] id=folio_1255 ... \\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp1-isr-b03-s42-1000-r2_20260515T112900",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-15T11:34:19.918175+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp1-isr-b03-s42-1000-r2_20260515T112900",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "tail -10 /tmp/eval_exp1_isr_b03_s42_1000.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-15T11:34:19.918391+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[59/100] id=folio_359 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[60/100] id=folio_1117 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[61/100] id=folio_888 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[62/100] id=folio_23 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[63/100] id=folio_1255 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[64/100] id=folio_562 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[65/100] id=folio_629 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[66/100] id=folio_1069 ... FAILED  ISR=0.000  gen=1.2s  eval=0.0s\\\\n[67/100] id=folio_87 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[68/100] id=folio_430 ... \\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp1-isr-b03-s42-1000-r2_20260515T112900",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-15T11:34:19.918630+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp1-isr-b03-s42-1000-r2_20260515T112900",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "tail -15 /tmp/eval_exp1_isr_b03_s42_1000.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-15T11:34:19.919072+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[60/100] id=folio_1117 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[61/100] id=folio_888 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[62/100] id=folio_23 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[63/100] id=folio_1255 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[64/100] id=folio_562 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[65/100] id=folio_629 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[66/100] id=folio_1069 ... FAILED  ISR=0.000  gen=1.2s  eval=0.0s\\\\n[67/100] id=folio_87 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[68/100] id=folio_430 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[69/100] id=folio_394 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[70/100] id=folio_755 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[71/100] id=folio_167 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[72/100] id=folio_788 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[73/100] id=folio_20 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[74/100] id=folio_1396 ... \\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp1-isr-b03-s42-1000-r2_20260515T112900",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-15T11:34:19.919310+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp1-isr-b03-s42-1000-r2_20260515T112900",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "tail -15 /tmp/eval_exp1_isr_b03_s42_1000.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-15T11:34:19.919532+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[65/100] id=folio_629 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[66/100] id=folio_1069 ... FAILED  ISR=0.000  gen=1.2s  eval=0.0s\\\\n[67/100] id=folio_87 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[68/100] id=folio_430 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[69/100] id=folio_394 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[70/100] id=folio_755 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[71/100] id=folio_167 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[72/100] id=folio_788 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[73/100] id=folio_20 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[74/100] id=folio_1396 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[75/100] id=folio_564 ... proved  ISR=0.600  gen=1.1s  eval=0.0s\\\\n[76/100] id=folio_40 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[77/100] id=folio_672 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[78/100] id=folio_212 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[79/100] id=folio_58 ... \\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp1-isr-b03-s42-1000-r2_20260515T112900",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-15T11:34:19.919763+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp1-isr-b03-s42-1000-r2_20260515T112900",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "tail -15 /tmp/eval_exp1_isr_b03_s42_1000.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-15T11:34:19.919992+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[69/100] id=folio_394 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[70/100] id=folio_755 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[71/100] id=folio_167 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[72/100] id=folio_788 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[73/100] id=folio_20 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[74/100] id=folio_1396 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[75/100] id=folio_564 ... proved  ISR=0.600  gen=1.1s  eval=0.0s\\\\n[76/100] id=folio_40 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[77/100] id=folio_672 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[78/100] id=folio_212 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[79/100] id=folio_58 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[80/100] id=folio_682 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[81/100] id=folio_1135 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[82/100] id=folio_1289 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[83/100] id=folio_1051 ... \\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp1-isr-b03-s42-1000-r2_20260515T112900",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-15T11:34:19.920205+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp1-isr-b03-s42-1000-r2_20260515T112900",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "tail -20 /tmp/eval_exp1_isr_b03_s42_1000.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-15T11:34:19.920436+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[68/100] id=folio_430 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[69/100] id=folio_394 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[70/100] id=folio_755 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[71/100] id=folio_167 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[72/100] id=folio_788 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[73/100] id=folio_20 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[74/100] id=folio_1396 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[75/100] id=folio_564 ... proved  ISR=0.600  gen=1.1s  eval=0.0s\\\\n[76/100] id=folio_40 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[77/100] id=folio_672 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[78/100] id=folio_212 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[79/100] id=folio_58 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[80/100] id=folio_682 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[81/100] id=folio_1135 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[82/100] id=folio_1289 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[83/100] id=folio_1051 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[84/100] id=folio_1381 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[85/100] id=folio_847 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[86/100] id=folio_832 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[87/100] id=folio_732 ... \\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp1-isr-b03-s42-1000-r2_20260515T112900",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-15T11:34:19.920680+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp1-isr-b03-s42-1000-r2_20260515T112900",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "tail -20 /tmp/eval_exp1_isr_b03_s42_1000.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-15T11:34:19.920934+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[72/100] id=folio_788 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[73/100] id=folio_20 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[74/100] id=folio_1396 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[75/100] id=folio_564 ... proved  ISR=0.600  gen=1.1s  eval=0.0s\\\\n[76/100] id=folio_40 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[77/100] id=folio_672 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[78/100] id=folio_212 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[79/100] id=folio_58 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[80/100] id=folio_682 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[81/100] id=folio_1135 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[82/100] id=folio_1289 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[83/100] id=folio_1051 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[84/100] id=folio_1381 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[85/100] id=folio_847 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[86/100] id=folio_832 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[87/100] id=folio_732 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[88/100] id=folio_714 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[89/100] id=folio_715 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[90/100] id=folio_990 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[91/100] id=folio_643 ... \\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp1-isr-b03-s42-1000-r2_20260515T112900",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-15T11:34:19.921148+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp1-isr-b03-s42-1000-r2_20260515T112900",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "tail -20 /tmp/eval_exp1_isr_b03_s42_1000.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-15T11:34:19.921389+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[75/100] id=folio_564 ... proved  ISR=0.600  gen=1.1s  eval=0.0s\\\\n[76/100] id=folio_40 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[77/100] id=folio_672 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[78/100] id=folio_212 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[79/100] id=folio_58 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[80/100] id=folio_682 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[81/100] id=folio_1135 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[82/100] id=folio_1289 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[83/100] id=folio_1051 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[84/100] id=folio_1381 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[85/100] id=folio_847 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[86/100] id=folio_832 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[87/100] id=folio_732 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[88/100] id=folio_714 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[89/100] id=folio_715 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[90/100] id=folio_990 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[91/100] id=folio_643 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[92/100] id=folio_822 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[93/100] id=folio_1017 ... FAILED  ISR=0.000  gen=1.1s  eval=0.0s\\\\n[94/100] id=folio_1415 ... \\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp1-isr-b03-s42-1000-r2_20260515T112900",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-15T11:34:19.921637+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp1-isr-b03-s42-1000-r2_20260515T112900",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "tail -20 /tmp/eval_exp1_isr_b03_s42_1000.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-15T11:34:19.921892+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[79/100] id=folio_58 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[80/100] id=folio_682 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[81/100] id=folio_1135 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[82/100] id=folio_1289 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[83/100] id=folio_1051 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[84/100] id=folio_1381 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[85/100] id=folio_847 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[86/100] id=folio_832 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[87/100] id=folio_732 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[88/100] id=folio_714 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[89/100] id=folio_715 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[90/100] id=folio_990 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[91/100] id=folio_643 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[92/100] id=folio_822 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[93/100] id=folio_1017 ... FAILED  ISR=0.000  gen=1.1s  eval=0.0s\\\\n[94/100] id=folio_1415 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[95/100] id=folio_678 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[96/100] id=folio_650 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[97/100] id=folio_93 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[98/100] id=folio_917 ... \\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp1-isr-b03-s42-1000-r2_20260515T112900",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-15T11:34:19.922110+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp1-isr-b03-s42-1000-r2_20260515T112900",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "tail -20 /tmp/eval_exp1_isr_b03_s42_1000.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-15T11:34:19.922334+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[96/100] id=folio_650 ... proved  ISR=1.000  gen=1.1s  eval=0.0s\\\\n[97/100] id=folio_93 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n[98/100] id=folio_917 ... proved  ISR=1.000  gen=1.0s  eval=0.0s\\\\n[99/100] id=folio_39 ... proved  ISR=1.000  gen=1.0s  eval=0.0s\\\\n[100/100] id=folio_959 ... proved  ISR=0.600  gen=1.0s  eval=0.0s\\\\n\\\\n============================================================\\\\nResults saved to /root/autodl-tmp/outputs/exp1_isr_b03_s42_1000/eval_results.json\\\\n  Logic type:   fol\\\\n  Problems:     100\\\\n  Proved:       95/100 (95.0%)\\\\n  Mean ISR:     0.7340 +/- 0.2575\\\\n  Median ISR:   0.6000\\\\n  ISR/PR ratio: 0.7726\\\\n  Proved-only ISR: 0.7726\\\\n  By answer type:\\\\n    false: n=25, proved=25, ISR=0.8240\\\\n    unknown: n=41, proved=38, ISR=0.6732\\\\n    true: n=34, proved=32, ISR=0.7412\\\\n  Time: 108.1s (1.1s/sample)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp1-isr-b03-s42-1000-r2_20260515T112900",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-15T11:34:19.922609+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp1-isr-b03-s42-1000-r2_20260515T112900",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-39279",
+              "command": "cat /root/autodl-tmp/outputs/exp1_isr_b03_s42_1000/eval_results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-15T11:34:19.923178+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"summary\\\\\\\": {\\\\n    \\\\\\\"n_problems\\\\\\\": 100,\\\\n    \\\\\\\"n_proved\\\\\\\": 95,\\\\n    \\\\\\\"prove_rate\\\\\\\": 0.95,\\\\n    \\\\\\\"mean_isr\\\\\\\": 0.734,\\\\n    \\\\\\\"isr_std\\\\\\\": 0.2575,\\\\n    \\\\\\\"median_isr\\\\\\\": 0.6,\\\\n    \\\\\\\"isr_pr_ratio\\\\\\\": 0.7726,\\\\n    \\\\\\\"proved_only_mean_isr\\\\\\\": 0.7726,\\\\n    \\\\\\\"min_isr\\\\\\\": 0.0,\\\\n    \\\\\\\"max_isr\\\\\\\": 1.0,\\\\n    \\\\\\\"by_answer_type\\\\\\\": {\\\\n      \\\\\\\"false\\\\\\\": {\\\\n        \\\\\\\"count\\\\\\\": 25,\\\\n        \\\\\\\"proved\\\\\\\": 25,\\\\n        \\\\\\\"prove_rate\\\\\\\": 1.0,\\\\n        \\\\\\\"mean_isr\\\\\\\": 0.824\\\\n      },\\\\n      \\\\\\\"unknown\\\\\\\": {\\\\n        \\\\\\\"count\\\\\\\": 41,\\\\n        \\\\\\\"proved\\\\\\\": 38,\\\\n        \\\\\\\"prove_rate\\\\\\\": 0.926829268292683,\\\\n        \\\\\\\"mean_isr\\\\\\\": 0.673170731707317\\\\n      },\\\\n      \\\\\\\"true\\\\\\\": {\\\\n        \\\\\\\"count\\\\\\\": 34,\\\\n        \\\\\\\"proved\\\\\\\": 32,\\\\n        \\\\\\\"prove_rate\\\\\\\": 0.9411764705882353,\\\\n        \\\\\\\"mean_isr\\\\\\\": 0.7411764705882353\\\\n      }\\\\n    },\\\\n    \\\\\\\"elapsed_seconds\\\\\\\": 108.1,\\\\n    \\\\\\\"avg_time_per_sample\\\\\\\": 1.1,\\\\n    \\\\\\\"solver\\\\\\\": \\\\\\\"Prover9Solver\\\\\\\",\\\\n    \\\\\\\"logic_type\\\\\\\": \\\\\\\"fol\\\\\\\",\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/outputs/exp1_isr_b03_s42_1000\\\\\\\"\\\\n  },\\\\n  \\\\\\\"results\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"index\\\\\\\": 0,\\\\n      \\\\\\\"id\\\\\\\": \\\\\\\"folio_765\\\\\\\",\\\\n      \\\\\\\"context\\\\\\\": \\\\\\\"Tipped employees are not entitled to be paid the federal minimum wage by their employees. \\\\\\\\nIf a person is a white-collar worker, they are entitled to be paid the federal minimum wage by their employees. \\\\\\\\nAll lawyers are white-collar workers.\\\\\\\\nEvery advocate is a lawyer.\\\\\\\\nMary is not a lawyer or a tipped employee.\\\\\\\",\\\\n      \\\\\\\"question\\\\\\\": \\\\\\\"Mary is an advocate.\\\\\\\",\\\\n      \\\\\\\"answer\\\\\\\": \\\\\\\"false\\\\\\\",\\\\n      \\\\\\\"formalization\\\\\\\": \\\\\\\"Premises:  \\\\\\\\n1. ∀x (P(x) → Q(x))  \\\\\\\\n2. ∃x R(x)  \\\\\\\\n\\\\\\\\nConclusion:  \\\\\\\\n∀x (P(x) → Q(x))  \\\\\\\\n∃x R(x)\\\\\\\",\\\\n      \\\\\\\"gen_time\\\\\\\": 1.51,\\\\n      \\\\\\\"eval_time\\\\\n…[truncated 8261 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp1-isr-b03-s42-1000-r2_20260515T112900",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-15T11:34:19.923672+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp1-isr-b03-s42-1000-r2_20260515T112900",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp1-isr-b03-s42-1000-r2",
+              "field": "metrics",
+              "value": "{'eval_prove_rate': 0.95, 'eval_mean_isr': 0.734, 'eval_isr_std': 0.2575, 'eval_median_isr': 0.6, 'eval_proved_only_isr': 0.7726, 'eval_n_proved': 95, 'eval_n_problems': 100, 'h7_rate': 0.4316, 'h7_count': 41, 'h1_rate': 0.4316, 'h1_count': 41, 'genuine_rate': 0, 'genuine_count': 0, 'tautological_collapse': True, 'eval_component_count_mean': 5, 'eval_by_type': {'false': {'count': 25, 'proved': 25, 'prove_rate': 1, 'mean_isr': 0.824}, 'unknown': {'count': 41, 'proved': 38, 'prove_rate': 0.927, 'mean_isr': 0.673}, 'true': {'count': 34, 'proved': 32, 'prove_rate': 0.941, 'mean_isr': 0.741}}, 'train_final_prove_rate': 0.829, 'train_final_mean_isr': 0.727, 'train_loss': 0.0041, 'train_runtime_seconds': 6280, 'train_final_entropy': 9e-06, 'completions_mean_length': 47}",
+              "project": "solver-trace-ablation"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-15T11:34:19.924053+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp1-isr-b03-s42-1000-r2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T09:31:37.813Z\\\", \\\"updated_at\\\": \\\"2026-05-15T11:33:57.726Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --model_path /root/autodl-tmp/models/Qwen3-4B --data_path data/train_500_seed42.jsonl --reward_mode additive_bonus --output_dir /root/autodl-tmp/outputs/exp1_isr_b03_s42_1000 --num_steps 1000 --beta 0.3 --seed 42 --no_wandb\\\\\\\"\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"224651\\\", \\\"log_path\\\": \\\"~/runs/solver-trace-ablation/exp1-isr-b03-s42-1000-r2.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T09:32:05.796Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"pid\\\": \\\"224651\\\", \\\"log_path\\\": \\\"~/runs/solver-trace-ablation/exp1-isr-b03-s42-1000-r2.log\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --model_path /root/autodl-tmp/models/Qwen3-4B --data_path data/train_500_seed42.jsonl --reward_mode additive_bonus --output_dir /root/autodl-tmp/outputs/exp1_isr_b03_s42_1000 --num_steps 1000 --beta 0.3 --seed 42 --no_wandb\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-15T11:27:09.017Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T11:27:13.616148+00:00\\\"}]}, \\\"metrics\\\": {\\\"eval_prove_rate\\\": 0.95, \\\"eval_mean_isr\\\": 0.734, \\\"eval_isr_std\\\": 0.2575, \\\"eval_median_isr\\\": 0.6, \\\"eval_proved_only_isr\\\": 0.7726, \\\"eval_n_proved\\\": 95, \\\"eval_n_problems\\\": 100, \\\"h7_rate\\\": 0.4316, \\\"h7_count\\\": 4\n…[truncated 689 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp1-isr-b03-s42-1000-r2_20260515T112900",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-15T11:34:19.924309+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp1-isr-b03-s42-1000-r2_20260515T112900",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp1-isr-b03-s42-1000-r2",
+              "field": "checkpoint_path",
+              "value": "/root/autodl-tmp/outputs/exp1_isr_b03_s42_1000",
+              "project": "solver-trace-ablation"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-15T11:34:19.924598+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp1-isr-b03-s42-1000-r2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T09:31:37.813Z\\\", \\\"updated_at\\\": \\\"2026-05-15T11:34:01.832Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --model_path /root/autodl-tmp/models/Qwen3-4B --data_path data/train_500_seed42.jsonl --reward_mode additive_bonus --output_dir /root/autodl-tmp/outputs/exp1_isr_b03_s42_1000 --num_steps 1000 --beta 0.3 --seed 42 --no_wandb\\\\\\\"\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"224651\\\", \\\"log_path\\\": \\\"~/runs/solver-trace-ablation/exp1-isr-b03-s42-1000-r2.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T09:32:05.796Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"pid\\\": \\\"224651\\\", \\\"log_path\\\": \\\"~/runs/solver-trace-ablation/exp1-isr-b03-s42-1000-r2.log\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --model_path /root/autodl-tmp/models/Qwen3-4B --data_path data/train_500_seed42.jsonl --reward_mode additive_bonus --output_dir /root/autodl-tmp/outputs/exp1_isr_b03_s42_1000 --num_steps 1000 --beta 0.3 --seed 42 --no_wandb\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-15T11:27:09.017Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T11:27:13.616148+00:00\\\"}]}, \\\"metrics\\\": {\\\"eval_prove_rate\\\": 0.95, \\\"eval_mean_isr\\\": 0.734, \\\"eval_isr_std\\\": 0.2575, \\\"eval_median_isr\\\": 0.6, \\\"eval_proved_only_isr\\\": 0.7726, \\\"eval_n_proved\\\": 95, \\\"eval_n_problems\\\": 100, \\\"h7_rate\\\": 0.4316, \\\"h7_count\\\": 4\n…[truncated 762 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp1-isr-b03-s42-1000-r2_20260515T112900",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-15T11:34:19.924866+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp1-isr-b03-s42-1000-r2_20260515T112900",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp1-isr-b03-s42-1000-r2",
+              "field": "conclusion",
+              "value": "negative",
+              "project": "solver-trace-ablation"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-15T11:34:19.925146+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp1-isr-b03-s42-1000-r2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T09:31:37.813Z\\\", \\\"updated_at\\\": \\\"2026-05-15T11:34:02.726Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --model_path /root/autodl-tmp/models/Qwen3-4B --data_path data/train_500_seed42.jsonl --reward_mode additive_bonus --output_dir /root/autodl-tmp/outputs/exp1_isr_b03_s42_1000 --num_steps 1000 --beta 0.3 --seed 42 --no_wandb\\\\\\\"\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"224651\\\", \\\"log_path\\\": \\\"~/runs/solver-trace-ablation/exp1-isr-b03-s42-1000-r2.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T09:32:05.796Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"pid\\\": \\\"224651\\\", \\\"log_path\\\": \\\"~/runs/solver-trace-ablation/exp1-isr-b03-s42-1000-r2.log\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --model_path /root/autodl-tmp/models/Qwen3-4B --data_path data/train_500_seed42.jsonl --reward_mode additive_bonus --output_dir /root/autodl-tmp/outputs/exp1_isr_b03_s42_1000 --num_steps 1000 --beta 0.3 --seed 42 --no_wandb\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-15T11:27:09.017Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T11:27:13.616148+00:00\\\"}]}, \\\"metrics\\\": {\\\"eval_prove_rate\\\": 0.95, \\\"eval_mean_isr\\\": 0.734, \\\"eval_isr_std\\\": 0.2575, \\\"eval_median_isr\\\": 0.6, \\\"eval_proved_only_isr\\\": 0.7726, \\\"eval_n_proved\\\": 95, \\\"eval_n_problems\\\": 100, \\\"h7_rate\\\": 0.4316, \\\"h7_count\\\": 4\n…[truncated 792 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp1-isr-b03-s42-1000-r2_20260515T112900",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-15T11:34:19.925392+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp1-isr-b03-s42-1000-r2_20260515T112900",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp1-isr-b03-s42-1000-r2",
+              "field": "status",
+              "value": "DONE",
+              "project": "solver-trace-ablation"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-15T11:34:19.925746+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp1-isr-b03-s42-1000-r2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T09:31:37.813Z\\\", \\\"updated_at\\\": \\\"2026-05-15T11:34:06.399Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --model_path /root/autodl-tmp/models/Qwen3-4B --data_path data/train_500_seed42.jsonl --reward_mode additive_bonus --output_dir /root/autodl-tmp/outputs/exp1_isr_b03_s42_1000 --num_steps 1000 --beta 0.3 --seed 42 --no_wandb\\\\\\\"\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"224651\\\", \\\"log_path\\\": \\\"~/runs/solver-trace-ablation/exp1-isr-b03-s42-1000-r2.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T09:32:05.796Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 7320.6, \\\"gpu_hours\\\": 2.03}, \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"pid\\\": \\\"224651\\\", \\\"log_path\\\": \\\"~/runs/solver-trace-ablation/exp1-isr-b03-s42-1000-r2.log\\\", \\\"reproduce\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --model_path /root/autodl-tmp/models/Qwen3-4B --data_path data/train_500_seed42.jsonl --reward_mode additive_bonus --output_dir /root/autodl-tmp/outputs/exp1_isr_b03_s42_1000 --num_steps 1000 --beta 0.3 --seed 42 --no_wandb\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-15T11:27:09.017Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T11:27:13.616148+00:00\\\"}]}, \\\"metrics\\\": {\\\"eval_prove_rate\\\": 0.95, \\\"eval_mean_isr\\\": 0.734, \\\"eval_isr_std\\\": 0.2575, \\\"eval_median_isr\\\": 0.6, \\\"eval_proved_only_isr\\\": 0.7726, \\\"eval_n_proved\\\": 95, \\\"eval_n_probl\n…[truncated 939 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp1-isr-b03-s42-1000-r2_20260515T112900",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-15T11:34:19.926071+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果总结\n\n**exp1-isr-b03-s42-1000-r2: NEGATIVE — Goodhart tautological collapse**\n\n| 指标 | 值 | 对比 exec-only 1000步 |\n|------|-----|---------------------|\n| eval_prove_rate | 0.95 | 0.96 |\n| eval_mean_isr | 0.734 | 0.003 |\n| genuine_rate | **0%** | 0% |\n| tautological_collapse | **YES** | NO (minimal proofs) |\n| completions_mean_length | 47 tokens | — |\n| entropy (final) | ~9e-6 | — |\n\n**核心发现：** ISR β=0.3 bonus 在 1000 步时并没有维持「结构质量」，而是诱导了与 exec-only 不同方向的退化：\n- exec-only 1000步 → ISR 数值崩塌至 ~0（最小化证明，删除所有推理步骤）\n- ISR β=0.3 1000步 → ISR 数值\"高\"（0.734），但通过固定重言式模板实现（`∀x(P(x)→Q(x)), ∃xR(x)` 对所有问题）\n\n这是 C006 预测的 Goodhart 效应的直接实证：ISR bonus 不能防止退化，只是将退化方向从\"删除步骤\"转为\"模板化重言式\"。两种模式下 genuine_rate 均为 0%。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp1-isr-b03-s42-1000-r2_20260515T112900"
+          },
+          "id": "event-000063"
+        }
+      ],
+      "message_count": 63
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-exp1-isr-b03-s42-1000-r2.md"
+}

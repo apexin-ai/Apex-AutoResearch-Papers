@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "edcdc003afbc36b211f2",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "check d134 disk cleanup",
+  "task_key": "worker_check_d134-disk-cleanup_20260518T115548",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_d134-disk-cleanup_20260518T115548_result.json",
+    "occurrence": 1,
+    "bytes": 1686,
+    "sha256": "c69a3080c03f2b49a86aef10c737fab37bfff140670428eba16a729313b7a7ec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here's the situation:\n\n```\nDisk: 223/250G used (11% free, 28GB available)\ns47 post-cleanup size: 31GB\ns48 status: training, step ~39/500, ~65 min to completion\n```\n\n**Cleanup logic has a critical bug.** The script only deletes files from `${OUT_DIR}/` root but never touches `${OUT_DIR}/checkpoint-500/`:\n\n```bash\n# What the script does for non-s47:\nrm -f ${OUT_DIR}/model-*.safetensors          # root only\nrm -f ${OUT_DIR}/model.safetensors.index.json  # root only\nrm -f ${OUT_DIR}/optimizer*.bin ...\nrm -rf ${OUT_DIR}/global_step*\n# checkpoint-500/ is NEVER cleaned → 16GB orphaned per run\n```\n\n**s47 breakdown:**\n- Root: ~15GB model safetensors (PRESERVE, correct)\n- `checkpoint-500/`: ~16GB **duplicate** model safetensors (never cleaned)\n- Total: 31GB instead of expected ~15GB\n\n**Imminent crash projection:**\n- s48 at step 500 will try to save checkpoint-500 (~16GB) + final model (~15GB) = ~31GB\n- Only 28GB free → **disk full, s48 will crash when training finishes (~65 min)**\n\n**Risk: CRITICAL**\n\n**Required actions (in order of urgency):**\n\n1. **Now**: Delete s47's redundant checkpoint-500 to free 16GB (root already has complete weights)\n   ```bash\n   rm -rf /root/autodl-tmp/outputs/d134_4b_isr_b01_s47/checkpoint-500\n   ```\n\n2. **Fix pipeline script**: Add checkpoint cleanup for all runs:\n   ```bash\n   # After the existing cleanup block, add for ALL seeds:\n   rm -rf ${OUT_DIR}/checkpoint-*\n   ```\n\n3. **With both fixes**: s47 = ~15GB, each other run = ~200KB post-cleanup → total ~15.2GB for all 10 runs. No disk risk.\n\nWant me to execute these fixes? s48 finishes in ~65 min so this is time-sensitive."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-d134-disk-cleanup.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0b1b4e7079e481b1ae7b",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops disk cleanup",
+  "task_key": "worker_ops_disk-cleanup_20260514T220449",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_disk-cleanup_20260514T220449_result.json",
+    "occurrence": 1,
+    "bytes": 549,
+    "sha256": "c8be1a3fff7ab695e346d014b46138df415000fc59d81b7186a9797acc9aa531"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cleanup complete.\n\n| Metric | Before | After |\n|---|---|---|\n| Used | 165G | 135G |\n| Available | 86G | 116G |\n| **Freed** | — | **30G** |\n\nDeleted: `plan006_prolog_exec_s43_r3` (16G), `plan018_additive_random_b01_s43_r2` (16G, failed secondary candidate), plus small/empty stubs (`plan013_random_reward_s42.log`, `plan009_sft_s42_r3`, `plan006_prolog_exec_s43_r2`, `plan006_prolog_exec_s43`). Other primary-list targets (`sta-phase1-*`, `plan001_exec_only_s43*`, `plan018_additive_random_b01_s43`) were not present on disk."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-disk-cleanup-copy-2.md"
+}

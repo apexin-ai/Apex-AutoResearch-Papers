@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "48a25e3b2c2f689fdc71",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops check cuda1 progress",
+  "task_key": "worker_ops_check-cuda1-progress_20260515T010232",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-cuda1-progress_20260515T010232_result.json",
+    "occurrence": 1,
+    "bytes": 492,
+    "sha256": "c53f0ef786d9421d0614e30d80cee2d672611f0f1535391db36143c8bd0d6dd2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**exp1-random-b03-s44-r2 状态：**\n\n- **进程存活**：PID 51297，已运行 21h28m\n- **当前进度**：step 136/500（27.2%），最新 timestamp 01:03:53 UTC\n- **指标**：prove_rate=0.75, isr_mean=0.040, parse_rate=1.0\n- **速度**：~20s/step → 预计剩余 ~2h 完成（约 UTC 03:10）\n- **GPU 占用**：\n  - cuda:0 — PID 58051, 85050 MiB（另一个训练）\n  - cuda:1 — PID 51297, 80318 MiB（本实验）\n\n两张 GPU 均在使用，无冲突。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-cuda1-progress.md"
+}

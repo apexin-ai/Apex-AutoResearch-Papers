@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7cc331cc0e8e0d71706a",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_15_1778903205.md",
+  "task_key": "loop_15_1778903205",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_15_1778903205.md",
+    "occurrence": 1,
+    "bytes": 4197,
+    "sha256": "beb7e9779a86b20a82b96ca42caaa16f63c818f136ccaa8310585b5457c50bd7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 15\nreason: idle_timeout\nupdated: '2026-05-16T03:46:15+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**仅 westd-39279:cuda:0 和 cuda:1**，禁止用其他 GPU 编号\n- 训练脚本路径必须带前缀：`python3 scripts/train_grpo.py --config configs/...`（不是 `train_grpo.py`，首次提交因此空转过）\n- ISR β=0.1 实验必须用 `configs/grpo_additive_bonus_b01.yaml`（Reviewer 追溯一致性要求）\n- K=4 已确认（per_device_batch_size=2, K=4, B×K=8），**不是 K=8**，论文已修正（D099/D100）\n- D098 config merge bug 已修：argparse 默认值改 None，新 sweep 必须基于修复后的 `scripts/train_grpo.py`\n- genuine rate ISR 6.06% vs Random 9.54%，p=0.182 **不显著**——禁止 claim 有显著差异\n- H7a 是 GRPO 通用现象（不是 ISR 独有），H7b 才是 ISR-specific——已反复修正 8 次（D087-D094），极易写错\n\n### 2. 🖥️ 基础设施快照\n- 服务器：**westd-39279**，工作目录 `/root/solver-trace-ablation`\n- Python：服务器上用 `/root/miniconda3/bin/python`（conda base 环境，不用 venv）\n- 环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- GPU：2 × RTX PRO 6000 96GB（cuda:0, cuda:1）\n- 活跃进程：**无**——两个 sweep 均已被 killed（D098 bug），GPU 当前空闲\n- 活跃 Worker：`worker_monitor_cuda1-b005-completion`（running，但监控的 sweep-isr-b005-s42 已 killed，此 Worker 可能是僵尸）\n- 活跃 Cron：本 session 无\n- W&B / HF cache：未在 memory 中记录，需 SSH 探查确认\n\n### 3. 📊 当前状态\n**刚完成**：D098 config merge bug 修复 + D099/D100 K=4 论文修正 + D101 Round 2 排期制定。论文已通过 Reviewer 一致性审查。\n\n**Registry 概览**：88 实验总计（success 26 / negative 28 / failed 28 / killed 6）。**0 RUNNING，17 PREPARING**。\n\n**关键：两个 GPU 当前空闲。** sweep-isr-b01-s45（cuda:0）和 sweep-isr-b005-s42（cuda:1）因 D098 config bug 被 killed，修复后尚未重新提交。这是最紧急的事——GPU 空转 = 失职。\n\n**等待中**：\n- Worker `worker_monitor_cuda1-b005-completion` 仍在 running（大概率僵尸，被监控的实验已 killed）\n- 无 Director 决策待处理\n- 无活跃 Cron\n\n### 4. 📋 待办（条件触发式）\n- **立即（GPU 空闲）→ 按 D101 P1 优先级提交 Round 2 sweep**：先重跑 sweep-isr-b005-s42（cuda:1）和 sweep-isr-b01-s45（cuda:0），或直接跑 P1 的 β=0.2 ISR（sweep-isr-b02-s42 + s43），取决于 Director 最新意向\n- 僵尸 Worker `worker_monitor_cuda1-b005-completion` → 检查状态，若确认僵尸则 cancel\n- sweep 完成回调到达 → spawn Worker 跑分析 + GC4 计算 → 更新 registry + report.md → 汇报 Director\n- β=0.2 ISR 3-seed 全部完成 → 与 β=0.1/0.3 对比剂量曲线 → 更新 Fig2 dose-response\n- Round 2 sweep 全部完成 → 更新论文 Table 1 CI 区间 → 送 Review Director 最终审\n- w2-qwen3-7b-pilot → DEFER 到投稿后/rebuttal 阶段\n\n### 5. 🎯 战略上下文\n**核心结论**：STA/ISR 是 GRPO neurosymbolic formalizer 的诊断工具 + Goodhart's Law 案例研究。三个 Claim 证据链已全部就位（Claim 1 ISR 崩塌诊断，Claim 2 Goodhart/ISR 无结构优势 D095，Claim 3 Prolog 跨逻辑泛化 D059）。\n\n**DDL**：2026-05-25 EMNLP ARR 提交，剩 9 天。论文在 Writing + Review 阶段，Round 2 sweep 是为了 tighter CI 和补 β=0.2 剂量间隙——属于锦上添花而非核心证据缺口。\n\n**易踩的坑**：\n1. H7a vs H7b 区分——H7a 是 GRPO 通用（exec-only s43 也 100%），H7b 才是 ISR-specific。写论文/汇报时必须分开说，不能笼统说 \"H7 is ISR-specific\"\n2. D095 Narrative A 已批准生效——所有论文内容必须与之一致，不要回退到旧 framing\n3. Random H7 pooled 13.7% 来自 s43-r3 单 seed 贡献（38.3%），s42/s44-r2 为 0%——必须同时报 per-seed 和 pooled\n4. 训练脚本有 `scripts/` 前缀，config 有 `configs/` 前缀——submit_training_job 命令漏前缀会导致 GPU 空转\n5. 当前 **两块 GPU 都空着**——这是最高优先级问题，必须立即提交实验\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-15-1778903205.md"
+}

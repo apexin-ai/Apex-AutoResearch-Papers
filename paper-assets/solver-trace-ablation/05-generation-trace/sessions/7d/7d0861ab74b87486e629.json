@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7d0861ab74b87486e629",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "research r15 reference verification",
+  "task_key": "worker_research_r15-reference-verification_20260520T044621",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_r15-reference-verification_20260520T044621_result.json",
+    "occurrence": 1,
+    "bytes": 4049,
+    "sha256": "d6407e108490f72df8f1f8bbcf3ab41f5c2205870b2b23abcfd533637cd4e88e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完成。以下是结果：\n\n---\n\n## [1] LLMs Gaming Verifiers — arXiv:2604.15149\n\n- **完整标题**: LLMs Gaming Verifiers: RLVR can Lead to Reward Hacking\n- **作者**: Lukas Helff, Quentin Delfosse, David Steinmann, Ruben Härle, Hikaru Shindo, Patrick Schramowski, Wolfgang Stammer, Kristian Kersting, Felix Friedrich\n- **年份**: 2026\n- **Venue**: arXiv preprint / LLM Reasoning Workshop @ ICLR 2026\n- **验证状态**: ✅ 论文存在，信息正确\n- **Bib 状态**: ❌ 不在 references.bib 中，也未在任何 .tex 文件中引用\n- **BibTeX entry**:\n```bibtex\n@article{helff2026gaming,\n  author       = {Lukas Helff and Quentin Delfosse and David Steinmann and Ruben H{\\\"a}rle and Hikaru Shindo and Patrick Schramowski and Wolfgang Stammer and Kristian Kersting and Felix Friedrich},\n  title        = {{LLMs Gaming Verifiers: RLVR can Lead to Reward Hacking}},\n  journal      = {arXiv preprint arXiv:2604.15149},\n  year         = {2026},\n  eprint       = {2604.15149},\n  archivePrefix = {arXiv},\n}\n```\n\n---\n\n## [2] Countdown-Code — arXiv:2603.07084\n\n- **完整标题**: Countdown-Code: A Testbed for Studying The Emergence and Generalization of Reward Hacking in RLVR\n- **作者**: Muhammad Khalifa, Zohaib Khan, Omer Tafveez, Hao Peng, Lu Wang\n- **年份**: 2026\n- **Venue**: arXiv preprint\n- **验证状态**: ✅ 论文存在，信息正确\n- **Bib 状态**: ❌ 不在 references.bib 中，也未在任何 .tex 文件中引用\n- **BibTeX entry**:\n```bibtex\n@article{khalifa2026countdown,\n  author       = {Muhammad Khalifa and Zohaib Khan and Omer Tafveez and Hao Peng and Lu Wang},\n  title        = {{Countdown-Code: A Testbed for Studying The Emergence and Generalization of Reward Hacking in RLVR}},\n  journal      = {arXiv preprint arXiv:2603.07084},\n  year         = {2026},\n  eprint       = {2603.07084},\n  archivePrefix = {arXiv},\n}\n```\n\n---\n\n## [3] Uesato et al. (2022) — arXiv:2211.14275\n\n- **完整标题**: Solving math word problems with process- and outcome-based feedback\n- **作者**: Jonathan Uesato, Nate Kushman, **Ramana** Kumar, Francis Song, Noah Siegel, Lisa Wang, Antonia Creswell, Geoffrey Irving, Irina Higgins\n- **年份**: 2022\n- **Venue**: NeurIPS 2022 Workshop on MATH-AI\n- **验证状态**: ⚠️ 需修正 — bib 中作者写成 **\"Ramesh\"** Kumar，应为 **\"Ramana\"** Kumar\n- **Bib 状态**: 已有 (`uesato2022solving`, L396-401)，需修正作者名\n- **修正**:\n```diff\n- author={Uesato, Jonathan and Kushman, Nate and Kumar, Ramesh and ...}\n+ author={Uesato, Jonathan and Kushman, Nate and Kumar, Ramana and ...}\n```\n\n---\n\n## [4] Cobbe et al. (2021) — arXiv:2110.14168\n\n- **完整标题**: Training Verifiers to Solve Math Word Problems\n- **作者**: Karl Cobbe, Vineet Kosaraju, Mohammad Bavarian, Mark Chen, **Heewoo** Jun, Lukasz Kaiser, Matthias Plappert, Jerry Tworek, Jacob Hilton, Reiichiro Nakano, Christopher Hesse, John Schulman\n- **年份**: 2021\n- **Venue**: arXiv preprint (未正式发表于会议)\n- **验证状态**: ⚠️ 需修正 — bib 中作者写成 **\"Heather Jun\"**，应为 **\"Heewoo Jun\"**\n- **Bib 状态**: 已有 (`cobbe2021training`, L509-514)，需修正作者名\n- **修正**:\n```diff\n- author={... and Heather Jun and ...}\n+ author={... and Heewoo Jun and ...}\n```\n\n---\n\n## 汇总\n\n| # | 论文 | 存在性 | Bib 状态 | 需修正 |\n|---|------|--------|----------|--------|\n| 1 | LLMs Gaming Verifiers | ✅ | ❌ 缺失 | 需添加 entry |\n| 2 | Countdown-Code | ✅ | ❌ 缺失 | 需添加 entry |\n| 3 | Uesato 2022 | ✅ | ⚠️ 有 | Kumar, Ramesh → Ramana |\n| 4 | Cobbe 2021 | ✅ | ⚠️ 有 | Heather Jun → Heewoo Jun |\n\nSources:\n- [arXiv:2604.15149](https://arxiv.org/abs/2604.15149)\n- [arXiv:2603.07084](https://arxiv.org/abs/2603.07084)\n- [arXiv:2211.14275](https://arxiv.org/abs/2211.14275)\n- [arXiv:2110.14168](https://arxiv.org/abs/2110.14168)\n- [DBLP: Heewoo Jun](https://dblp.org/pid/200/8045.html)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-r15-reference-verification.md"
+}

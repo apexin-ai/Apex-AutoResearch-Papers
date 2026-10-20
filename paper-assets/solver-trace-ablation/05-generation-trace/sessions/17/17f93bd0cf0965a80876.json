@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "17f93bd0cf0965a80876",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "check d134 random s47 progress",
+  "task_key": "worker_check_d134-random-s47-progress_20260518T162052",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_d134-random-s47-progress_20260518T162052_result.json",
+    "occurrence": 1,
+    "bytes": 914,
+    "sha256": "d2b0212c013242b05eeccc37806432a69462721d5d96d17b741cd189f39286a7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Pipeline log 中没有 COMPLETE/STARTING 标记（grep 无匹配），说明 pipeline 脚本不使用这些关键字。但从实际文件状态可以确认：\n\n## 报告\n\n| 项目 | 状态 |\n|------|------|\n| **s51 ISR** | **COMPLETE** — 目录含完整模型文件 + eval_results.json。prove_rate=0.98, mean_ISR=0.6992, proved_only_mean_ISR=0.7134 |\n| **Random s47** | **训练中** — step 222/500 (44%), 已运行 ~47 min, 预计剩余 ~1h18m (~14s/step) |\n| **GPU** | 90% 利用率, 85453 MiB 显存占用（正常，s47 在跑） |\n| **磁盘** | 223G/250G (89%) — **剩余 28G，偏紧**。Random s47 训练完成后 checkpoint 会额外占用 ~16G，需关注是否触发 C003 |\n\n磁盘 28G 余量需要注意：如果 save_total_limit=1 已配置则勉强够用，但后续还有 s51/s53 两个 Random seed 要训练，建议 s47 完成 eval 后及时清理旧 checkpoint。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-d134-random-s47-progress.md"
+}

@@ -1,0 +1,84 @@
+{
+  "schema_version": "1.0",
+  "id": "2a20a6b917cac63e9333",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "writing introduction",
+  "task_key": "worker_writing_introduction_20260514T194602",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_introduction_20260514T194602_result.json",
+    "occurrence": 1,
+    "bytes": 2650,
+    "sha256": "9584a3bd4c481e31dc11e2009d8b2559d55c18ef5deb3b29b6626c134ebdb959"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```json\n{\n  \"section\": \"Introduction (Section 1)\",\n  \"word_count\": 1168,\n  \"citations_needed\": [\n    \"satlm\", \"logic-lm\", \"linc\", \"fover-pei2025\",\n    \"deepseekmath\", \"deepseek-r1\", \"bondarenko-spec-gaming\",\n    \"reward-hacking-survey\", \"mellgren-prolog-grpo\",\n    \"deepseek-prover-v15\", \"rlsf\", \"kim-game-formalization\",\n    \"manheim-goodhart-taxonomy\", \"gao-reward-overoptimization\",\n    \"karwowski-goodhart-rl\", \"pan-reward-misspecification\"\n  ],\n  \"figures_needed\": [\"fig:sta_overview\"],\n  \"tables_needed\": [],\n  \"notes\": [\n    \"Contributions C1-C4 woven into narrative paragraphs with bold markers and section refs, no bulleted list\",\n    \"All data from approved framing: 1.06x (not 2.4x), 7-mode taxonomy, ISR-as-reward consistently framed as failure\",\n    \"Hook uses exact approved stats: 93% PR + 87% conclusion embedding\",\n    \"ISR collapse trajectory: 0.64→0.13→0.003 over 100→500→1000 steps\",\n    \"Meta-Goodhart: H7=64.5% ISR vs 0% random, premise-count-matched 1.06x, β=0.3 PR 18% vs 48%\",\n    \"Cross-logic: Prolog 3/3 universal Goodhart, 0% genuine\",\n    \"SFT baseline: PR=14%, 92.9% genuine, RL-specificity confirmed\",\n    \"Replaced \\\\cite with \\\\citep/\\\\citet for ACL natbib compliance\"\n  ]\n}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "section": "Introduction (Section 1)",
+              "word_count": 1168,
+              "citations_needed": [
+                "satlm",
+                "logic-lm",
+                "linc",
+                "fover-pei2025",
+                "deepseekmath",
+                "deepseek-r1",
+                "bondarenko-spec-gaming",
+                "reward-hacking-survey",
+                "mellgren-prolog-grpo",
+                "deepseek-prover-v15",
+                "rlsf",
+                "kim-game-formalization",
+                "manheim-goodhart-taxonomy",
+                "gao-reward-overoptimization",
+                "karwowski-goodhart-rl",
+                "pan-reward-misspecification"
+              ],
+              "figures_needed": [
+                "fig:sta_overview"
+              ],
+              "tables_needed": [],
+              "notes": [
+                "Contributions C1-C4 woven into narrative paragraphs with bold markers and section refs, no bulleted list",
+                "All data from approved framing: 1.06x (not 2.4x), 7-mode taxonomy, ISR-as-reward consistently framed as failure",
+                "Hook uses exact approved stats: 93% PR + 87% conclusion embedding",
+                "ISR collapse trajectory: 0.64→0.13→0.003 over 100→500→1000 steps",
+                "Meta-Goodhart: H7=64.5% ISR vs 0% random, premise-count-matched 1.06x, β=0.3 PR 18% vs 48%",
+                "Cross-logic: Prolog 3/3 universal Goodhart, 0% genuine",
+                "SFT baseline: PR=14%, 92.9% genuine, RL-specificity confirmed",
+                "Replaced \\cite with \\citep/\\citet for ACL natbib compliance"
+              ]
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-introduction.md"
+}

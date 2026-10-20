@@ -1,0 +1,886 @@
+{
+  "schema_version": "1.0",
+  "id": "3f11a9fbcf8db0777180",
+  "project": "solver-trace-ablation",
+  "kind": "conversation",
+  "title": "cron hook plan009 sft baseline s44 20260516T042940 482242",
+  "task_key": "cron_hook_plan009-sft-baseline-s44_20260516T042940_482242",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/archive/cron_hook_plan009-sft-baseline-s44_20260516T042940_482242.jsonl",
+    "occurrence": 1,
+    "bytes": 55060,
+    "sha256": "d333c89d7fbabc90cd64b7aad15fc46ef113e995f9afbfb377358a45346f85e5"
+  },
+  "statistics": {
+    "messages": 44,
+    "user_turns": 2,
+    "tool_calls": 20,
+    "roles": {
+      "user": 2,
+      "tool_call": 20,
+      "tool_result": 20,
+      "assistant": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T01:25:18.833517+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[HANDOFF] 你是 Main Agent，这是 Loop #16。\n\n## 上一轮交接 (task_context)\n\n### 1. 🔴 硬约束 / 红线\n- 本项目 GPU 在 westd-39279，分配 2 × RTX PRO 6000 96GB。当前 2/2 空闲，无剩余实验需跑。**不要在其他服务器上启动实验**\n- D095 Narrative A 已批准且 binding——所有 paper 内容必须与 D095 一致，修改 framing 须重新走 Director 审批\n- H7a 是 GRPO-general（exec-only s43=100% H7a, Random s43-r3=38.3%），**绝对不能写成 \"H7 is ISR-specific\"**——已来回修正 8 次（D087-D094），这是最容易犯的错\n- H7b（obfuscated tautology）才是 ISR-specific（仅 ISR s44 的 12 样本）\n- genuine rate ISR 6.06% vs Random 9.54%, p=0.182 **不显著**——禁止 claim genuine 有显著差异\n- D051: premise-count-matched ISR=1.06x，2.4x 已作废——禁止出现 \"2.4x structural advantage\"\n- EMNLP main body ≤8 页硬限（当前刚好压线，Discussion+Conclusion 在第 8 页底）\n- DDL: 2026-05-25（EMNLP ARR 提交，剩 9 天）\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-39279（2 × RTX PRO 6000 96GB）\n- **本地项目目录**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/`\n- **论文目录**: `paper/`（main.tex 入口，已编译 main.pdf = 19 页含附录，0 error）\n- **Python**: 本地 `.venv/` 存在（用于脚本），服务器用 conda base\n- **Registry**: `registry.yaml`（86 实验，全部 DONE）\n- **Paper framing**: `paper_framing.md`（D095 Narrative A，311 行）\n- **活跃进程**: 无（0 RUNNING 实验，0 Worker，0 cron 监控）\n- **Git**: master 分支，最近 commit `8fd6215` = Round 2 fixes（H8 samples, σ notation, SFT 92.3%）\n- **Artifacts**: `artifacts/` 目录含 manifest.yaml + review_issues.yaml + 各实验产出\n- **W&B**: 未使用（本项目用本地 log + registry 追踪）\n\n### 3. 📊 当前状态\n**阶段**: ✍️ Writing（最终润色）。所有 86 实验已完成（success 26 / negative 28 / failed 26）。\n\n**已完成的审查清单**:\n- ✅ 引用审计 30/30 真实\n- ✅ 一致性检查 0 critical / 0 warning\n- ✅ 编译 0 error\n- ✅ 主体 ≤8 页\n- ✅ Checklist 验证\n- ✅ PDF 全文视觉审查（Table 4/5 重叠已修复，Table 8 超宽已修复）\n- ✅ Provenance 36/36\n- ✅ D095 Narrative A 改写 + TeX 数据同步\n\n**唯一剩余**: 最终润色 + 提交准备（submission formatting, anonymization check, supplementary materials 打包）\n\n**等待中**: 无 Worker 回调、无 Cron、无 Director 决策\n\n### 4. 📋 待办（条件触发式）\n- Director 说\"提交\" → 执行最终 anonymization check + supplementary 打包 + 上传 ARR\n- Director 要求改动 paper 内容 → 确认是否影响 D095 framing，若影响须走 Framing 审批流程\n- 发现新的数字不一致 → spawn Worker 修正 TeX + 重编译 + 更新 provenance\n- Director 批准 camera-ready 或 rebuttal → 按对应 skill 执行\n- 如果 DDL 前 Director 要求加实验 → 需重新分配 westd-39279 GPU，走 PENDING 审批\n\n### 5. 🎯 战略上下文\n**项目核心结论**: ISR 作为诊断指标能有效检测 reward hacking（ISR collapse 0.64→0.13→0.003），但作为优化目标会引发 meta-Goodhart（H7a GRPO-general 被 ISR 放大 5x，H7b ISR-specific 的逃逸行为）。Prolog 跨逻辑验证更强（0% genuine）。这是一个\"诊断工具有效，优化信号失效\"的 Goodhart's Law 经验案例。\n\n**决策链关键节点**: D051（2.4x 作废→1.06x）→ D084（genuine 公式修正）→ D085（H7a/H7b 分层）→ D093（H7 非 ISR 独有）→ D094（H7a GRPO-general）→ D095（Narrative A 定稿）\n\n**最容易判断错的事**:\n1. **H7a vs H7b 归因**——H7a 是 GRPO 通用现象（所有训练方法都有），H7b 才是 ISR 独有。写/改任何涉及 H7 的文字时必须区分\n2. **Random H7 pooled 13.7% 的来源**——全部来自 s43-r3 单 seed（38.3%），s42 和 s44-r2 为 0%。论文必须同时报 per-seed 和 pooled\n3. **genuine rate 不显著**——ISR 6.06% vs Random 9.54% p=0.182，只能说\"no significant difference\"，不能说 ISR 更低或更高\n4. **页数极度紧张**——Discussion+Conclusion 在第 8 页底部边缘，任何增加内容的修改都可能超页\n\n## 项目硬约束 (memory.md 节选)\n\n## 约束\n\n- EMNLP 主体 ≤8 页硬限制（参考文献和附录不计）\n- D095 Narrative A 已批准生效，所有 paper 内容必须与 D095 一致\n- DDL 2026-05-25（EMNLP ARR 提交）\n\n## 可查的历史\n前 233 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。\n完整聊天归档可用 `recall_session_history(\"关键词\")` 搜索。\n\n## 第一个动作要求\n1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）\n2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T01:25:33.328260+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__main_agent_post_to_director",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T01:25:33.431446+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44",
+            "tool": "ToolSearch",
+            "elapsed_ms": 103
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T01:25:36.326916+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'RUNNING'}",
+              "project": "solver-trace-ablation"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T01:25:37.138885+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'PREPARING'}",
+              "project": "solver-trace-ablation"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T01:25:37.139319+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T01:25:37.290047+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8379}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 963
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T01:25:37.591296+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "file": "report.md"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T01:25:37.792356+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "solver-trace-ablation"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T01:25:37.893110+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6393}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 754
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T01:25:38.046254+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 0, \\\"results\\\": []}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 906
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T01:25:38.046886+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-15\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n（无实验——所有 86 实验已完成）\\\\n\\\\n## Worker 池\\\\n（空——所有 Worker 已完成）\\\\n\\\\n## 审查已完成\\\\n- ✅ 引用审计：30/30 真实（OpenAlex 18 verified, 7 arXiv/blog not indexed, 5 minor author mismatch）\\\\n- ✅ 一致性检查：0 critical / 0 warning（跨章节数字一致）\\\\n- ✅ 编译：19 页（含附录），0 error，10 cosmetic warnings（float specifier + hyperref token）\\\\n- ✅ 主体 = 8 页（Discussion+Conclusion 在第 8 页底，References 从第 9 页起）\\\\n- ✅ 页数缩减完成（page-reduction Worker 成功）\\\\n- ✅ Checklist 验证完成（checklist-verify Worker 成功）\\\\n- ✅ citation-fix Worker 完成（method.tex 引用修正）\\\\n- ✅ final-sync-compile Worker 完成\\\\n- ✅ PDF 全文视觉审查（19 页逐页审查完成，修复 Table 4/5 重叠 + Table 8 超宽，重新编译 0 error）\\\\n\\\\n## 近期结论\\\\n- D095 Narrative A 已批准生效，paper_framing.md 全文改写完成\\\\n- TeX 全量数据已同步到 D095 最终数字\\\\n- Provenance 36/36 完成\\\\n\\\\n## 趋势\\\\n成功 26 / 负向 28 / 失败 26 / 共 86\\\\n\\\\n## 下一步\\\\n1. [x] Pooled 统计量: H7 p=1.3×10⁻³⁹, Genuine p=0.182 (n.s.)\\\\n2. [x] D095 Narrative A 批准\\\\n3. [x] paper_framing.md D095 全文改写\\\\n4. [x] TeX 全量数据同步\\\\n5. [x] Provenance 36/36\\\\n6. [x] 引用审计 (30/30 真实)\\\\n7. [x] 一致性检查 (0 critical)\\\\n8. [x] 页数缩减 ≤8 页\\\\n9. [x] Checklist 验证\\\\n10. [x] PDF 全文视觉审查（修复 Table 4/5 重叠 + Table 8 超宽）\\\\n11. [ ] 最终润色 + 提交准备\\\\n\\\\n## 资源状态\\\\nwestd-39279: 2 × RTX PRO 6000 96GB，2/2 空闲，无剩余实验\\\\n\\\", \\\"total_chars\\\": 1157, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 455
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T01:25:38.047449+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/ROADMAP.md\\\", \\\"content\\\": \\\"# solver-trace-ablation — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-15 19:36 UTC | 更新原因: D095 Narrative A 批准; Random 3-seed pooled stats 完成; paper_framing 改写中\\\\n\\\\n## 核心方向\\\\nSTA/ISR 作为 GRPO neurosymbolic formalizer 的**诊断工具** + **Goodhart's Law 案例研究**——检测 reward hacking、量化结构退化、分类退化模式，并展示 ISR 从诊断指标到优化目标的 Goodhart 转折。详见 paper_framing.md。\\\\n\\\\n## 当前进展\\\\n- **阶段**: ✍️ Writing | **DDL**: 2026-05-25（剩 10 天）\\\\n- **实验**: 86 个 (完成 86 | success 26 | negative 28 | failed 26)\\\\n- **运行中**: 0\\\\n- **Claims**: ✅ Claim 1 | ✅ Claim 2 (D057→D095) | ✅ Claim 3 (D059)\\\\n- **D095 Narrative A**: H7a GRPO-general (ISR amplified 5x, p=1.3×10⁻³⁹) + H7b ISR-specific (meta-Goodhart); genuine p=0.182 (n.s.)\\\\n- **Hacking mode**: seed-dependent across all conditions\\\\n- **Bootstrap CI**: 3 项统计检验通过\\\\n- **SFT 对照**: D079 PASS, 3-seed genuine=92.2%±1.2%\\\\n- **Provenance**: 36/36\\\\n\\\\n### 核心证据链 ✅ 全部就位\\\\n- ✅ Claim 1 — STA 诊断: ISR 崩塌 0.6423→0.1324→0.0027; 3-seed 1000步 genuine=1.0%±1.7%; 8-mode taxonomy; SFT 零 hacking\\\\n- ✅ Claim 2 — Goodhart / ISR 无结构优势 (D057→D095): H7 两层(H7a GRPO-general ISR-amplified 70.6% vs 13.7%, H7b ISR-specific); premise-count-matched 1.06x; genuine p=0.182 n.s.\\\\n- ✅ Claim 3 — 跨逻辑泛化 (D059): Prolog 3/3 gaming, 0% genuine\\\\n- ✅ Exec-only 3-seed 1000步 (D090): Goodhart collapse seed-invariant, hacking mode seed-dependent\\\\n\\\\n## RUNNING\\\\n（无——所有 86 实验已完成）\\\\n\\\\n## PREPARING\\\\n（无）\\\\n\\\\n## 近期任务\\\\n- [x] Random 3-seed 新数据全部到位（s42, s43-r3, s44-r2）\\\\n- [x] Pooled 统计量重算: H7 p=1.3×10⁻³⁹, Genuine p=0.182\\\\n- [x] D095 Narrative A 批准\\\\n- [x] paper_framing.md D095 全文改写 + 数据精度修正\\\\n- [x] TeX 编译环境就绪（17页 PDF，0 errors）\\\\n- [x] Provenance 36/36 完成\\\\n- [ ] TeX 全量数据同步（Paper Agent）\\\\n- [ ] Paper Agent 启动全文写作\\\\n\\\\n## GPU 预算\\\\n- 本地: 2 × RTX PRO 6000 96GB，当前 2/2 空闲\\\\n- 已消耗: ~50+ GPU·h\\\\n- 剩余实验: 0（全部完成）\\\\n\\\\n## 写作约束\\\\n- D027: plan013 vs plan017 公式不同，不可简\n…[truncated 2452 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 255
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T01:25:53.733819+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 分配 2 / 实际跑 0（无剩余实验） | Worker 池 0 (GPU 0 / CPU 0)\n\n**Loop #16 Session Start 状态确认**\n\n- 86 实验全部 DONE（success 26 / negative 28 / failed 26）\n- 审查清单全部 ✅（引用 30/30、一致性 0 critical、编译 0 error、≤8页、checklist、视觉审查、provenance 36/36）\n- D095 Narrative A binding，TeX 数据已同步\n- westd-39279 2×RTX PRO 6000 空闲，无剩余实验需跑\n- DDL 2026-05-25（剩 9 天）\n\n**当前阶段**: 最终润色 + 提交准备。等待 Director 指令（提交 / 内容修改 / 其他）。",
+              "project": "solver-trace-ablation"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-16T01:25:59.617109+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_a771c2a33d631dd40256ecd5c3a6648e:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 5883
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T01:26:03.005559+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Session-start 初始化完成。\n\n**当前状态**：\n- 86 实验全部 DONE，0 RUNNING/PREPARING，0 cron\n- 审查清单全部通过，D095 Narrative A binding\n- DDL 2026-05-25（剩 9 天）\n- 阶段：最终润色 + 提交准备，等待 Director 指令"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44"
+          },
+          "id": "event-000016"
+        }
+      ],
+      "message_count": 16
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-16T04:26:58.806684+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-16T04:27:13.103093+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-16T04:27:13.154278+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44",
+            "tool": "ToolSearch",
+            "elapsed_ms": 51
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-16T04:27:15.774601+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-16T04:27:16.277012+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-16T04:27:16.787252+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (210,633 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation--claude-sessions-agent-6e3f4839/c0d32c56-0620-41a0-9cb1-92e6af706b5a/tool-results/mcp-agent-ml-research-read_registry-1778905636417.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation--claude-sessions-agent-6e3f4839/c0d32c56-0620-41a0-9cb1-92e6af706b5a/tool-results/mcp-agent-ml-research-read_registry-1778905636417.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation--claude-sessions-agent-6e3f4839/c0d32c56-0620-41a0-9cb1-92e6af706b5a/tool-results/mcp-agent-ml-research-read_registry-1778905636417.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1012
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-16T04:27:16.789832+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "file": "report.md",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-16T04:27:17.092467+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "solver-trace-ablation"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-16T04:27:24.049613+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 2, \\\"results\\\": [{\\\"exp_id\\\": \\\"sweep-isr-b02-s43\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=633515)\\\"]}, {\\\"exp_id\\\": \\\"sweep-isr-b02-s42\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=633657)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 7772
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-16T04:27:24.150683+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-16\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| sweep-isr-b02-s43 | W3: β=0.2 ISR bonus seed=43, intermediate dose replication | — | — | — |\\\\n| sweep-isr-b02-s42 | W3: β=0.2 ISR bonus seed=42, intermediate dose between 0.1 and 0.3 | — | — | — |\\\\n\\\\n## 待处理\\\\n- plan018-additive-random-b01-s45: Random β=0.1 seed=45, 5-seed matched control for ISR β=0.1 comparison（已分配 ? GPU:?，等待提交）\\\\n- plan001-exec-only-s46: Exec-only seed=46, 5-seed baseline for tighter confidence intervals（准备中）\\\\n- plan001-exec-only-s45: Exec-only seed=45, 5-seed baseline for tighter confidence intervals（准备中）\\\\n- plan018-additive-random-b01-s46: Random β=0.1 seed=46, 5-seed matched control for ISR β=0.1 comparison（准备中）\\\\n- plan002-additive-b01-s46: ISR β=0.1 seed=46, 5-seed CI completion for Claim 2 Goodhart dose-response（准备中）\\\\n- plan002-additive-b01-s45（准备中）\\\\n- sweep-exec-only-s46: W4: Exec-only s46 extends baseline to 5-seed for tighter confidence intervals（准备中）\\\\n- sweep-exec-only-s45: W4: Exec-only s45 extends baseline to 5-seed for tighter confidence intervals（准备中）\\\\n- sweep-random-b01-s46: W4: Random β=0.1 s46 extends random control to 5-seed（准备中）\\\\n- sweep-random-b01-s45: W4: Random β=0.1 s45 extends random control to 5-seed for matched comparison with ISR β=0.1（准备中）\\\\n- …另有 5 项\\\\n\\\\n## 近期结论\\\\n- **sweep-isr-b01-s45** (killed): W4: ISR β=0.1 s45 extends existing 3-seed to 5-seed for tighter confidence intervals on hacking rates and genuine rates\\\\n  [sweep-isr-b01-s45 analysis report](/api/workspace-files/projects/solver-trace-ablation/artifacts/sweep-isr-b01-s45/report/analysis_report.md)\\\\n- **sweep-isr-b005-s42** (success): W3: β=0.05 ISR bonus produces less aggressive hacking than β=0.1/0.3 while retaining structural sig\n…[truncated 2306 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 7360
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-16T04:27:24.201803+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/ROADMAP.md\\\", \\\"content\\\": \\\"# solver-trace-ablation — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-16 03:32 UTC | 更新原因: D101 Round 2 排期 + GPU 编号修正 + D100 措辞精确化\\\\n\\\\n## 核心方向\\\\nSTA/ISR 作为 GRPO neurosymbolic formalizer 的**诊断工具** + **Goodhart's Law 案例研究**——检测 reward hacking、量化结构退化、分类退化模式，并展示 ISR 从诊断指标到优化目标的 Goodhart 转折。详见 paper_framing.md。\\\\n\\\\n## 当前进展\\\\n- **阶段**: ✍️ Writing + 🔍 Review | **DDL**: 2026-05-25（剩 9 天）\\\\n- **实验**: 主实验 86 完成 (success 26 / negative 28 / failed 26) + Round 2 sweep 2 运行中\\\\n- **Claims**: ✅ Claim 1 | ✅ Claim 2 (D057→D095) | ✅ Claim 3 (D059)\\\\n- **D100**: K=4 confirmed (per_device_batch_size=2, K=4, B×K=8)，论文已修正\\\\n- **Provenance**: 36/36\\\\n\\\\n### 核心证据链 ✅ 全部就位\\\\n- ✅ Claim 1 — STA 诊断: ISR 崩塌 0.6423→0.1324→0.0027; 3-seed 1000步 genuine=1.0%±1.7%; 8-mode taxonomy; SFT 零 hacking\\\\n- ✅ Claim 2 — Goodhart / ISR 无结构优势 (D057→D095): H7 两层(H7a GRPO-general ISR-amplified 70.6% vs 13.7%, H7b ISR-specific); premise-count-matched 1.06x; genuine p=0.182 n.s.\\\\n- ✅ Claim 3 — 跨逻辑泛化 (D059): Prolog 3/3 gaming, 0% genuine\\\\n- ✅ Exec-only 3-seed 1000步 (D090): Goodhart collapse seed-invariant, hacking mode seed-dependent\\\\n\\\\n## RUNNING\\\\n| exp_id | 假设 | GPU |\\\\n|--------|------|-----|\\\\n| sweep-isr-b01-s45 | ISR β=0.1 s45 扩 5-seed CI | cuda:0 |\\\\n| sweep-isr-b005-s42 | β=0.05 ISR dose-response | cuda:1 |\\\\n\\\\n## Round 2 排期 (D101)\\\\n| 优先级 | 实验 | 说明 | 预估时长 |\\\\n|--------|------|------|----------|\\\\n| **P1** | sweep-isr-b02-s42 + s43 | β=0.2 ISR 填 0.1↔0.3 剂量间隙 | ~1h×2 并行 |\\\\n| **P1** | sweep-isr-b02-s44 | β=0.2 ISR 第 3 seed | ~1h |\\\\n| **P2** | sweep-random-b01-s45 | Random β=0.1 s45 匹配 ISR s45 对照 | ~1h |\\\\n| **P3** | 5-seed 扩展 (exec/random/ISR s45+s46) | 更紧 CI，仅 GPU 空余时 | ~1h each |\\\\n| **DEFER** | w2-qwen3-7b-pilot | 投稿后/rebuttal | — |\\\\n| **BUFFER** | 预留 GPU | Review Director 反馈 | — |\\\\n\\\\n## 近期任务\\\\n- [x] K=4 SSH 全量验证 + 论文修正 (D100)\\\\n- [x] D098 \n…[truncated 2597 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 7109
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-16T04:27:33.856471+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Agent"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44",
+            "tool": "Agent",
+            "tool_args": {
+              "description": "Registry state analysis",
+              "prompt": "Analyze the registry JSON file at /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation--claude-sessions-agent-6e3f4839/c0d32c56-0620-41a0-9cb1-92e6af706b5a/tool-results/mcp-agent-ml-research-read_registry-1778905636417.txt\n\nThis is JSON with schema: {result: string}. The \"result\" field is a JSON string that needs to be parsed again.\n\nI need you to extract:\n1. All experiments with status RUNNING — list exp_id, hypothesis, server, gpu, pid, tmux session\n2. All experiments with status PREPARING or QUEUED or ALLOCATED — list exp_id, hypothesis\n3. Total count by status\n4. The most recent 5 experiments by updated_at — show exp_id, status, conclusion, key metrics\n\nUse jq or python to parse. Report findings verbatim — do not summarize away details.",
+              "subagent_type": "general-purpose"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-16T04:27:34.761883+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "file": "memory.md",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-16T04:27:35.315303+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "file": "paper_framing.md",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-16T04:27:37.318365+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation--claude-sessions-agent-6e3f4839/c0d32c56-0620-41a0-9cb1-92e6af706b5a/tool-results/mcp-agent-ml-research-read_registry-1778905636417.txt"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-16T04:27:37.621792+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (91154 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44",
+            "tool": "Read",
+            "elapsed_ms": 303
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-16T04:27:41.138922+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation--claude-sessions-agent-6e3f4839/c0d32c56-0620-41a0-9cb1-92e6af706b5a/tool-results/mcp-agent-ml-research-read_registry-1778905636417.txt",
+              "limit": "50"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-16T04:27:41.390406+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (91154 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44",
+            "tool": "Read",
+            "elapsed_ms": 251
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-16T04:27:44.708539+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "head -c 500 \"/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation--claude-sessions-agent-6e3f4839/c0d32c56-0620-41a0-9cb1-92e6af706b5a/tool-results/mcp-agent-ml-research-read_registry-1778905636417.txt\"",
+              "description": "Check file structure - first 500 bytes"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-16T04:27:44.910125+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"sweep-isr-b005-s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-16T02:28:49.503Z\\\", \\\"updated_at\\\": \\\"2026-05-16T04:17:27.007Z\\\", \\\"hypothesis\\\": \\\"W3: β=0.05 ISR bonus produces less aggressive hacking than β=0.1/0.3 while retaining structural signal — tests Goodhart's Law dose-response\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-16T03:28:39.948Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_compl"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44",
+            "tool": "Bash",
+            "elapsed_ms": 201
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-16T04:28:00.112753+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 << 'PYEOF'\nimport json\n\n# Read the file\nwith open(\"/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation--claude-sessions-agent-6e3f4839/c0d32c56-0620-41a0-9cb1-92e6af706b5a/tool-results/mcp-agent-ml-research-read_registry-1778905636417.txt\", \"r\") as f:\n    raw = json.load(f)\n\n# Parse the nested JSON string\ndata = json.loads(raw[\"result\"])\nexperiments = data[\"data\"][\"experiments\"]\n\nprint(f\"Total experiments in registry: {len(experiments)}\")\nprint()\n\n# 1. Count by status\nfrom collections import Counter\nstatus_counts = Counter()\nfor exp_id, exp in experiments.items():\n    status_counts[exp[\"status\"]] += 1\n\nprint(\"=\" * 60)\nprint(\"STATUS COUNTS\")\nprint(\"=\" * 60)\nfor status, count in sorted(status_counts.items(), key=lambda x: -x[1]):\n    print(f\"  {status}: {count}\")\nprint()\n\n# 2. RUNNING experiments\nprint(\"=\" * 60)\nprint(\"RUNNING EXPERIMENTS\")\nprint(\"=\" * 60)\nrunning = {k: v for k, v in experiments.items() if v[\"status\"] == \"RUNNING\"}\nif not running:\n    print(\"  (none)\")\nelse:\n    for exp_id, exp in running.items():\n        print(f\"\\n  exp_id: {exp_id}\")\n        print(f\"  hypothesis: {exp.get('hypothesis', 'N/A')}\")\n        spec = exp.get(\"spec\", {})\n        print(f\"  server: {spec.get('server', 'N/A')}\")\n        print(f\"  gpu: {spec.get('gpu', exp.get('extra', {}).get('gpu', 'N/A'))}\")\n        print(f\"  pid: {spec.get('pid', exp.get('extra', {}).get('pid', 'N/A'))}\")\n        # Look for tmux in spec or extra\n        tmux = spec.get('tmux_session', spec.get('tmux', exp.get('extra', {}).get('tmux_session', exp.get('extra', {}).get('tmux', 'N/A'))))\n        print(f\"  tmux_session: {tmux}\")\n        # Also dump spec keys for completeness\n        if spec:\n            print(f\"  spec keys: {list(spec.keys())}\")\nprint()\n\n# 3. PREPARING / QUEUED / ALLOCATED experiments\nprint(\"=\" * 60)\nprint(\"PREPARING / QUEUED / ALLOCATED EXPERIMENTS\")\nprint(\"=\" * 60)\npending_statuses = {\"PREPARING\", \"QUEUED\", \"ALLOCATED\"}\npending = {k: v for k, v in experiments.items() if v[\"status\"] in pending_statuses}\nif not pending:\n    print(\"  (none)\")\nelse:\n    for exp_id, exp in pending.items():\n        print(f\"\\n  exp_id: {exp_id}\")\n        print(f\"  status: {exp['status']}\")\n        print(f\"  hypothesis: {exp.get('hypothesis', 'N/A')}\")\nprint()\n\n# 4. Most recent 5 by updated_at\nprint(\"=\" * 60)\nprint(\"MOST RECENT 5 EXPERIMENTS (by updated_at)\")\nprint(\"=\" * 60)\nsorted_exps = sorted(experiments.items(), key=lambda x: x[1].get(\"updated_at\", \"\"), reverse=True)\nfor exp_id, exp in sorted_exps[:5]:\n    print(f\"\\n  exp_id: {exp_id}\")\n    print(f\"  status: {exp['status']}\")\n    print(f\"  updated_at: {exp.get('updated_at', 'N/A')}\")\n    print(f\"  conclusion: {exp.get('conclusion', 'N/A')}\")\n    print(f\"  hypothesis: {exp.get('hypothesis', 'N/A')}\")\n    # Extract metrics from various places\n    metrics = exp.get(\"metrics\", {})\n    spec = exp.get(\"spec\", {})\n    extra = exp.get(\"extra\", {})\n    if metrics:\n        print(f\"  metrics: {json.dumps(metrics, indent=4)}\")\n    # Check for metrics in extra\n    if \"metrics\" in extra:\n        print(f\"  extra.metrics: {json.dumps(extra['metrics'], indent=4)}\")\n    # Check for results/conclusion details\n    if \"result\" in exp:\n        print(f\"  result: {exp['result']}\")\n    if \"conclusion_detail\" in exp:\n        print(f\"  conclusion_detail: {exp['conclusion_detail']}\")\n\nPYEOF",
+              "description": "Parse registry JSON and extract experiment details",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-16T04:28:00.213884+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Total experiments in registry: 105\n\n============================================================\nSTATUS COUNTS\n============================================================\n  DONE: 88\n  PREPARING: 14\n  RUNNING: 2\n  ALLOCATED: 1\n\n============================================================\nRUNNING EXPERIMENTS\n============================================================\n\n  exp_id: sweep-isr-b02-s42\n  hypothesis: W3: β=0.2 ISR bonus seed=42, intermediate dose between 0.1 and 0.3\n  server: westd-39279\n  gpu: ['cuda:1']\n  pid: 633657\n  tmux_session: N/A\n  spec keys: ['command', 'server', 'gpu', 'pid', 'data_path', 'data_count', 'model_name', 'seed', 'reward_mode', 'beta', 'num_steps', 'num_generations', 'account', 'output_dir', 'wandb_enabled', 'note']\n\n  exp_id: sweep-isr-b02-s43\n  hypothesis: W3: β=0.2 ISR bonus seed=43, intermediate dose replication\n  server: westd-39279\n  gpu: ['cuda:0']\n  pid: 633515\n  tmux_session: N/A\n  spec keys: ['command', 'server', 'gpu', 'pid', 'data_path', 'data_count', 'model_name', 'seed', 'reward_mode', 'beta', 'num_steps', 'num_generations', 'account', 'note']\n\n============================================================\nPREPARING / QUEUED / ALLOCATED EXPERIMENTS\n============================================================\n\n  exp_id: plan018-additive-random-b01-s45\n  status: ALLOCATED\n  hypothesis: Random β=0.1 seed=45, 5-seed matched control for ISR β=0.1 comparison\n\n  exp_id: plan001-exec-only-s46\n  status: PREPARING\n  hypothesis: Exec-only seed=46, 5-seed baseline for tighter confidence intervals\n\n  exp_id: plan001-exec-only-s45\n  status: PREPARING\n  hypothesis: Exec-only seed=45, 5-seed baseline for tighter confidence intervals\n\n  exp_id: plan018-additive-random-b01-s46\n  status: PREPARING\n  hypothesis: Random β=0.1 seed=46, 5-seed matched control for ISR β=0.1 comparison\n\n  exp_id: plan002-additive-b01-s46\n  status: PREPARING\n  hypothesis: ISR β=0.1 seed=46, 5-seed CI completion for Claim 2 Goodhart dose-response\n\n  exp_id: plan002-a\n…[truncated 3317 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44",
+            "tool": "Bash",
+            "elapsed_ms": 101
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-16T04:28:14.550964+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 << 'PYEOF'\nimport json\n\nwith open(\"/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation--claude-sessions-agent-6e3f4839/c0d32c56-0620-41a0-9cb1-92e6af706b5a/tool-results/mcp-agent-ml-research-read_registry-1778905636417.txt\", \"r\") as f:\n    raw = json.load(f)\n\ndata = json.loads(raw[\"result\"])\nexperiments = data[\"data\"][\"experiments\"]\n\n# Deep-dive RUNNING experiments - dump full spec and extra for tmux info\nfor exp_id in [\"sweep-isr-b02-s42\", \"sweep-isr-b02-s43\"]:\n    exp = experiments[exp_id]\n    print(f\"{'='*60}\")\n    print(f\"FULL DETAIL: {exp_id}\")\n    print(f\"{'='*60}\")\n    print(f\"  status: {exp['status']}\")\n    print(f\"  hypothesis: {exp.get('hypothesis')}\")\n    print(f\"  created_at: {exp.get('created_at')}\")\n    print(f\"  updated_at: {exp.get('updated_at')}\")\n    \n    spec = exp.get(\"spec\", {})\n    print(f\"\\n  SPEC:\")\n    for k, v in spec.items():\n        print(f\"    {k}: {v}\")\n    \n    extra = exp.get(\"extra\", {})\n    # Print extra but skip hook_events (too verbose)\n    print(f\"\\n  EXTRA (excluding hook_events):\")\n    for k, v in extra.items():\n        if k == \"hook_events\":\n            print(f\"    hook_events: [{len(v)} events]\")\n        else:\n            print(f\"    {k}: {v}\")\n    \n    reproduce = exp.get(\"reproduce\", {})\n    if reproduce:\n        print(f\"\\n  REPRODUCE: {reproduce}\")\n    \n    print()\n\n# Also check if tmux info is in the top-level data\nprint(\"=\" * 60)\nprint(\"TOP-LEVEL DATA KEYS (besides experiments):\")\nprint(\"=\" * 60)\nfor k in data[\"data\"]:\n    if k != \"experiments\":\n        print(f\"  {k}: {type(data['data'][k]).__name__}\")\n\nPYEOF",
+              "description": "Deep-dive into RUNNING experiments for full spec/tmux details",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-16T04:28:14.701991+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "============================================================\nFULL DETAIL: sweep-isr-b02-s42\n============================================================\n  status: RUNNING\n  hypothesis: W3: β=0.2 ISR bonus seed=42, intermediate dose between 0.1 and 0.3\n  created_at: 2026-05-16T02:42:03.945Z\n  updated_at: 2026-05-16T04:13:20.275Z\n\n  SPEC:\n    command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_bonus_b02.yaml --seed 42 --num_steps 500 --num_generations 4 --output_dir /root/autodl-tmp/outputs/sweep_isr_b02_s42_v2 --wandb_run sweep-isr-b02-s42 --wandb_project solver-trace-ablation --no_wandb\"\n    server: westd-39279\n    gpu: ['cuda:1']\n    pid: 633657\n    data_path: data/train_500_seed42.jsonl\n    data_count: 500\n    model_name: Qwen3-4B\n    seed: 42\n    reward_mode: additive_bonus\n    beta: 0.2\n    num_steps: 500\n    num_generations: 4\n    account: root\n    output_dir: /root/autodl-tmp/outputs/sweep_isr_b02_s42_v2\n    wandb_enabled: False\n    note: resubmitted by fix worker with --no_wandb and _v2 output_dir\n\n  EXTRA (excluding hook_events):\n\n============================================================\nFULL DETAIL: sweep-isr-b02-s43\n============================================================\n  status: RUNNING\n  hypothesis: W3: β=0.2 ISR bonus seed=43, intermediate dose replication\n  created_at: 2026-05-16T02:42:04.644Z\n  updated_at: 2026-05-16T04:12:50.278Z\n\n  SPEC:\n    command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_bonus_b02.yaml --seed 43 --num_steps 500 --num_generations 4 --output_dir /root/autodl-tmp/outputs/sweep_isr_b02_s43 --wandb_run sweep-isr-b02-s43 --wandb_project solver-trace-ablation --no_wandb\"\n    server: westd-39279\n    gpu: ['cuda:0']\n    pid: 633515\n    data_path: data/train_500_see\n…[truncated 502 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44",
+            "tool": "Bash",
+            "elapsed_ms": 151
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-16T04:28:35.792998+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here are the complete findings:\n\n---\n\n## 1. RUNNING Experiments (2 total)\n\n| Field | sweep-isr-b02-s42 | sweep-isr-b02-s43 |\n|-------|--------------------|--------------------|\n| **hypothesis** | W3: β=0.2 ISR bonus seed=42, intermediate dose between 0.1 and 0.3 | W3: β=0.2 ISR bonus seed=43, intermediate dose replication |\n| **server** | westd-39279 | westd-39279 |\n| **gpu** | `['cuda:1']` | `['cuda:0']` |\n| **pid** | 633657 | 633515 |\n| **tmux_session** | not recorded in registry | not recorded in registry |\n| **model** | Qwen3-4B | Qwen3-4B |\n| **seed** | 42 | 43 |\n| **beta** | 0.2 | 0.2 |\n| **steps** | 500 | 500 |\n| **output_dir** | `/root/autodl-tmp/outputs/sweep_isr_b02_s42_v2` | `/root/autodl-tmp/outputs/sweep_isr_b02_s43` |\n| **note** | resubmitted by fix worker with --no_wandb and _v2 output_dir | resubmitted by fix worker with --no_wandb (wandb key missing on server) |\n\nNeither RUNNING experiment has a `tmux_session` field stored in the registry (not in `spec`, `extra`, or `reproduce`).\n\n---\n\n## 2. PREPARING / QUEUED / ALLOCATED Experiments (15 total)\n\n**ALLOCATED (1):**\n- **plan018-additive-random-b01-s45** — \"Random β=0.1 seed=45, 5-seed matched control for ISR β=0.1 comparison\" (conclusion field = `killed`, updated_at = 2026-05-16T04:06:00.006Z)\n\n**PREPARING (14):**\n\n| exp_id | hypothesis |\n|--------|-----------|\n| plan001-exec-only-s46 | Exec-only seed=46, 5-seed baseline for tighter confidence intervals |\n| plan001-exec-only-s45 | Exec-only seed=45, 5-seed baseline for tighter confidence intervals |\n| plan018-additive-random-b01-s46 | Random β=0.1 seed=46, 5-seed matched control for ISR β=0.1 comparison |\n| plan002-additive-b01-s46 | ISR β=0.1 seed=46, 5-seed CI completion for Claim 2 Goodhart dose-response |\n| plan002-additive-b01-s45 | *(N/A — no hypothesis recorded)* |\n| sweep-exec-only-s46 | W4: Exec-only s46 extends baseline to 5-seed for tighter confidence intervals |\n| sweep-exec-only-s45 | W4: Exec-only s45 extends baseline to 5-seed for tight\n…[truncated 2863 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44",
+            "tool": "Agent",
+            "elapsed_ms": 61936
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-16T04:28:35.793607+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/memory.md\\\", \\\"content\\\": \\\"# Memory — solver-trace-ablation\\\\n\\\\n> 非 metrics 性质的决策原因、约束、经验教训。可从 registry 查到的数据不写这里。\\\\n\\\\n## 经验教训\\\\n\\\\n- [2026-05-15] H7a 是 GRPO 通用 seed-dependent 现象，不是 ISR 独有。exec-only s43 也 100% H7a，Random s43-r3 也 38.3% H7a。写论文时极易滑向 \\\\\\\"H7 is ISR-specific\\\\\\\" 的旧 framing——已来回修正 8 次（D087-D094）\\\\n- [2026-05-15] H7b（obfuscated tautology）才是 ISR-specific（仅 ISR s44 的 12 个样本）\\\\n- [2026-05-15] Random H7 pooled 13.7% 由 s43-r3 单 seed 贡献（38.3%），s42/s44-r2 为 0%——论文必须同时报 per-seed 和 pooled\\\\n- [2026-05-15] genuine rate ISR 6.06% vs Random 9.54%，p=0.182 不显著——禁止 claim genuine rate 有显著差异\\\\n- [2026-05-15] D051 premise-count-matched ISR 优势仅 1.06x，2.4x 已作废\\\\n- [2026-05-15] genuine = proved − |H7 ∪ H1 ∪ H8|（集合排除，非简单减法，C013 公式）\\\\n- [2026-05-15] Hacking mode 是 seed-dependent——不同 seed 收敛到不同 hacking 策略，这是核心发现之一\\\\n- [2026-05-15] 页数缩减策略：conclusion.tex 净减 10 行，experiments.tex §4.5 净减 4 行，删除的细节移到 appendix。body 从 8.5 页压到 ≤8 页\\\\n- [2026-05-16] **训练脚本路径**：`scripts/train_grpo.py`（不是 `train_grpo.py`），config 在 `configs/` 下（如 `configs/grpo_additive_bonus.yaml`、`configs/grpo_additive_bonus_b01.yaml`）。首次提交因缺少前缀导致 GPU 1 空转，已修正。所有 submit_training_job 命令必须用 `python3 scripts/train_grpo.py --config configs/...`\\\\n- [2026-05-16] ISR β=0.1 实验用 `configs/grpo_additive_bonus_b01.yaml`（Reviewer 要求，追溯一致性）\\\\n- [2026-05-16] **Goodhart 阈值在 β∈(0.05, 0.1) 之间，是尖锐相变而非渐变**。β=0.05 ISR 保留（0.759），genuine≥75%；β=0.1 ISR 崩塌至 0，genuine=0%。**D102 定位：Claim 2 辅助证据，不升级 claim**（1 seed 不够支撑\\\\\\\"精确定位阈值\\\\\\\"）\\\\n- [2026-05-16] β=0.05 产生极端 ISR 均匀性（96.3% 样本精确 ISR=0.75）= **mode collapse 到单一 4-premise/3-necessary 模板**。论文必须诚实报告，不能只说\\\\\\\"ISR 保留\\\\\\\"而忽略多样性丧失（D102 Director 明确要求）\\\\n- [2026-05-16] sweep-isr-b01-s45 被 RAM OOM kill（exit 137）at step 219/500。双实验并行时 RAM 不足。需监控 b02-s42+s43 双跑是否复现\\\\n- [2026-05-16] **β=0.07/0.03 不排**（D102）。DDL 9 天，多 seed 复现 > 更多剂量点。P1 = β=0.2 三 seed\\\\n\\\\n## 约束\\\\n\\\\n- EMNLP 主体 ≤8\n…[truncated 585 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 61031
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-16T04:28:35.844694+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — solver-trace-ablation\\\\n\\\\n## Target Venue\\\\n- **EMNLP 2026 Main** (NLP and Symbolic Reasoning track)\\\\n- Deadline: ARR May 25, 2026\\\\n\\\\n## Core Claims (3 条 — Goodhart 主线诊断/分析论文)\\\\n\\\\n| Claim | Status | 闭环标志 |\\\\n|-------|--------|----------|\\\\n| Claim 1: STA 诊断能力 | ✅ 已闭环 | 3-seed + 1000-step + hacking taxonomy (8 modes) |\\\\n| Claim 2: Goodhart / ISR 无结构优势 | ✅ 已闭环 (D057) | 3-seed ISR + 3-seed random + premise-count-matched + SFT baseline |\\\\n| Claim 3: 跨逻辑泛化 | ✅ 已闭环 | exec-only 3-seed (D056) + STA 3-seed: **3/3 gaming** — 三种不同 gaming 路径 (H7/degenerate-syntax/query-as-fact) |\\\\n\\\\n### Claim 1: ISR as Reward Hacking Diagnostic ✅\\\\nSolver Trace Ablation (STA) derives ISR (Intensional Structural Reward) via component necessity testing (leave-one-out ablation on solver inputs). ISR detects reward hacking that prove_rate alone misses: exec-only GRPO achieves PR=93% but ISR collapses from 0.6423 (100 steps) to 0.1324 (500 steps) to 0.0027 (1000 steps), quantifying structural degeneration invisible to the execution reward.\\\\n\\\\n**证据**：\\\\n- plan003: 100-step checkpoint held-out eval PR=32%, ISR=0.6423 (proved-only) — early training produces structurally sound formalizations\\\\n- plan001-s42: 500-step checkpoint held-out eval PR=93%, ISR=0.1324, median_ISR=0.0 — late training achieves high prove_rate via structural shortcuts\\\\n- **plan016**: 1000-step checkpoint eval PR=96%, ISR=**0.0027** — ISR 崩塌持续恶化，无回升。94.8% proved 样本 ISR=0。矛盾爆炸式崩塌（components 6.58→18.55）。延长训练是 reward hacking 随时间恶化的干净消融证据\\\\n- ISR 崩塌轨迹完整链：0.6423 (100步) → 0.1324 (500步) → 0.0027 (1000步)\\\\n- 3-seed consistency: s42 redundant embedding (H1=87.1%, ISR=0.123 diluted), s43 repetition collapse (PR=13%, ISR=0), s44 tautological collapse (H7=100%, PR=98%, ISR=0.57 fake-high, n_comp=2.04). All 3 seeds exhibit 87-100% conclusion embeddin\n…[truncated 10646 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 60529
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-16T04:29:40.480416+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- **GPU 白名单**：westd-39279 仅 cuda:0 / cuda:1（2× RTX PRO 6000 96GB），不存在其他 GPU\n- **Round 2 无 wandb**：服务器 wandb key 缺失，所有 sweep 实验必须 `--no_wandb`。metrics 从 `reward_log.csv` / `output_dir` 提取，不能依赖 wandb\n- **训练脚本路径**：`python3 scripts/train_grpo.py --config configs/...`（不是根目录 `train_grpo.py`），首次提交曾因缺 `scripts/` 前缀导致 GPU 空转\n- **Round 2 模型是 Qwen3-4B**（`/root/autodl-tmp/models/Qwen3-4B`），与 Round 1 的 Qwen2.5-1.5B-Instruct 不同，这是 D096 设计意图，不要混淆\n- **双实验并行有 OOM 风险**：sweep-isr-b01-s45 在双跑时被 RAM OOM kill（exit 137, step 219/500）。当前 b02-s42+s43 双跑中，需监控是否复现\n- **β=0.07/0.03 不排**（D102 决策），DDL 9 天，多 seed 复现 > 更多剂量点\n- **Genuine rate p=0.182 不显著**（D095），禁止 claim ISR vs Random genuine rate 有显著差异\n\n### 2. 🖥️ 基础设施快照\n- **服务器**：westd-39279，工作目录 `/root/autodl-tmp/solver-trace-ablation/`（推测，需 Worker 确认）\n- **Python**：conda 环境 `/root/miniconda3/bin/python`（aml-train 镜像），激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型**：`/root/autodl-tmp/models/Qwen3-4B`\n- **Config 目录**：`configs/grpo_additive_bonus.yaml`（β=0.3）、`configs/grpo_additive_bonus_b01.yaml`（β=0.1）、β=0.2/0.05 config 由 Round 2 Worker 创建（具体路径需查服务器）\n- **活跃进程**：\n  - sweep-isr-b02-s43：PID 633515, cuda:0, output `/root/autodl-tmp/outputs/sweep_isr_b02_s43`\n  - sweep-isr-b02-s42：PID 633657, cuda:1, output `/root/autodl-tmp/outputs/sweep_isr_b02_s42_v2`（注意 `_v2` 后缀，因重提交）\n- **Cron 监控**：2 个 active cron 跟踪上述两个实验\n- **HF cache**：`/root/autodl-tmp/.hf_cache`（AutoDL 规范）\n\n### 3. 📊 当前状态\n**刚完成**：\n- sweep-isr-b005-s42 (success)：β=0.05 ISR 保留 genuine≥75%，ISR=0.759，但 96.3% 样本固定 ISR=0.75（mode collapse 到 4-premise/3-necessary 模板）。Goodhart 阈值锁定 β∈(0.05, 0.1)（D102）\n- sweep-isr-b01-s45 (killed)：RAM OOM at step 219/500，双跑内存不足\n- 论文 Round 2 fixes 已提交（commit 8fd6215）：15 H8 samples, σ notation, SFT 92.3%, RW softening\n\n**RUNNING（2/2 GPU 占满）**：\n- sweep-isr-b02-s42 + s43：β=0.2 ISR 中间剂量（填 0.1↔0.3 间隙），~1h 预估，500 steps\n\n**待处理（PREPARING 14 + ALLOCATED 1）**：\n- P1：sweep-isr-b02-s44（β=0.2 第 3 seed）\n- P1：sweep-isr-b005-s43, s44（β=0.05 复现 seed）\n- P2：sweep-random-b01-s45（匹配对照）\n- P3：5-seed 扩展（exec/random/ISR s45+s46，仅 GPU 空余时）\n- DEFER：w2-qwen3-7b-pilot（投稿后/rebuttal）\n- plan018-additive-random-b01-s45 (ALLOCATED but killed)：状态不一致，需清理\n\n**等待中**：\n- 2 个 cron 回调（b02-s42/s43 完成时触发）\n- Review Director 最终审\n- DDL 2026-05-25（剩 9 天）\n\n### 4. 📋 待办（条件触发式）\n- **sweep-isr-b02-s42+s43 cron 回调** → spawn Worker 分析（reward_log.csv + classify_h7.py）→ 与 β=0.1/0.3 对比剂量梯度 → 更新 registry + report.md → 向 Director 汇报\n- **b02 分析完成 + GPU 释放** → 立即提交 sweep-isr-b02-s44（P1 第 3 seed）+ sweep-isr-b005-s43（β=0.05 复现）双跑\n- **b02 三 seed 全完** → 更新 paper Table 1 dose-response 行 → β 剂量全景表新增 0.2 行\n- **如 b02 双跑再次 OOM** → 改为串行（一次一个），向 Director 说明\n- **Director 最终审返回** → 按反馈修改论文\n- **所有 Round 2 sweep 完成** → 论文 experiments.tex + appendix.tex 更新完整 dose-response 证据 → submission package 重新打包\n\n### 5. 🎯 战略上下文\n**项目处于 Writing+Review 末期，3 条 Core Claim 全部闭环。** 当前 Round 2 sweep 是补充证据（dose-response 更密采样），不改变核心 narrative。\n\n**核心结论链**：\n- D095：Narrative A 生效（H7a GRPO-general + H7b ISR-specific）\n- D102：Goodhart 阈值 β∈(0.05, 0.1)，尖锐相变非渐变。β=0.05 genuine≥75% 但 mode collapse\n- D100：K=4 confirmed（非 K=8），所有条件统一\n\n**易错点**：\n- β=0.05 不能只说\"ISR 保留\"——必须诚实报告 96.3% 样本 ISR=0.75 的 mode collapse（D102 Director 明确要求）\n- H7a 是 GRPO 通用现象，不是 ISR 独有（已来回修正 8 次 D087-D094），极易滑回旧 framing\n- Random H7 pooled 13.7% 由 s43-r3 单 seed 贡献（38.3%），其余为 0%——必须同时报 per-seed 和 pooled\n- plan018-additive-random-b01-s45 状态异常（ALLOCATED + conclusion=killed），需 update_registry 清理\n- Round 2 用 Qwen3-4B 而 Round 1 用 Qwen2.5-1.5B，论文需明确区分两轮实验的 model scale（或 Director 可能认为这是 confound——注意 D096 说这是设计意图）\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan009-sft-baseline-s44"
+          },
+          "id": "event-000044"
+        }
+      ],
+      "message_count": 28
+    }
+  ],
+  "readable_path": "readable/conversations/cron-hook-plan009-sft-baseline-s44-20260516t042940-482242.md"
+}

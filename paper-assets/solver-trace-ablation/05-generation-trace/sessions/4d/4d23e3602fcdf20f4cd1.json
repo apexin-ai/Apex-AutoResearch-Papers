@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4d23e3602fcdf20f4cd1",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "prep plan006 final readiness",
+  "task_key": "worker_prep_plan006-final-readiness_20260514T091331",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_plan006-final-readiness_20260514T091331_result.json",
+    "occurrence": 1,
+    "bytes": 676,
+    "sha256": "68230e6befaa9545e9c75a93830d25d219246f74e2eab8673d5bf3aca2229568"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**15/15 PASS** — Plan006 准备就绪。\n\n关键确认：\n- 训练数据 `train_500_seed42.jsonl`（500条，C001 合规）\n- Config: `num_steps=500`, `logic_type=prolog`, `reward_mode=execution_only`\n- `save_total_limit=1` + `log_completions=False`（C003 合规）\n- PrologSolver dry-run 通过（swipl 8.4.2，prove 成功，21ms）\n- train_grpo.py import 通过（`build_prolog_dataset`、`prolog_sta_reward` 均存在）\n- 磁盘 112G 可用，无 plan006 输出目录冲突\n- 启动命令使用 `export CUDA_VISIBLE_DEVICES=N`（C002 合规）\n\n3 个启动命令已写入 `artifacts/plan006/final_readiness.md`，等 GPU 释放即可执行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-plan006-final-readiness.md"
+}

@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "9a7b010ae352b37c3f42",
+  "project": "solver-trace-ablation",
+  "kind": "worker",
+  "title": "code d154 8b fix and pilot",
+  "task_key": "worker_code_d154-8b-fix-and-pilot_20260520T060050",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d154-8b-fix-and-pilot_20260520T060050.log",
+    "occurrence": 1,
+    "bytes": 574594,
+    "sha256": "36da07569c5d9b3fc0169529832bc12573ba7e96504a4f1286daa645ccce755c"
+  },
+  "statistics": {
+    "messages": 380,
+    "user_turns": 0,
+    "tool_calls": 129,
+    "roles": {
+      "log": 1,
+      "system": 23,
+      "record": 2,
+      "assistant": 93,
+      "tool_call": 129,
+      "tool_result": 129,
+      "result": 3
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 380,
+      "chunks": [
+        {
+          "path": "9a7b010ae352b37c3f42-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "9a7b010ae352b37c3f42-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "9a7b010ae352b37c3f42-part-0003.json",
+          "message_count": 20
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-d154-8b-fix-and-pilot.md"
+}

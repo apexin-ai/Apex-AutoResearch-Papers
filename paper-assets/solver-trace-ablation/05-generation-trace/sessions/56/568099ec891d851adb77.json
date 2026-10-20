@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "568099ec891d851adb77",
+  "project": "solver-trace-ablation",
+  "kind": "worker",
+  "title": "code llama crossmodel prep",
+  "task_key": "worker_code_llama-crossmodel-prep_20260521T073708",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_llama-crossmodel-prep_20260521T073708.log",
+    "occurrence": 1,
+    "bytes": 786333,
+    "sha256": "69027a47489fa1a314fe0bb6c408a00d0a18584148aa0c2a789d87eaeb1c44f8"
+  },
+  "statistics": {
+    "messages": 252,
+    "user_turns": 0,
+    "tool_calls": 96,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 56,
+      "tool_call": 96,
+      "tool_result": 96,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 252,
+      "chunks": [
+        {
+          "path": "568099ec891d851adb77-part-0001.json",
+          "message_count": 158
+        },
+        {
+          "path": "568099ec891d851adb77-part-0002.json",
+          "message_count": 94
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-llama-crossmodel-prep.md"
+}

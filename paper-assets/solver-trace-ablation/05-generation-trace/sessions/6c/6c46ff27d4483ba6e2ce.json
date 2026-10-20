@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6c46ff27d4483ba6e2ce",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops check s46 completion",
+  "task_key": "worker_ops_check-s46-completion_20260517T020855",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-s46-completion_20260517T020855_result.json",
+    "occurrence": 1,
+    "bytes": 507,
+    "sha256": "e6927509fec51e7cffe28c36eb4e6a16f67896e9e3336695f6efdd5307fc5a53"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**训练成功完成 500 步。**\n\n- **最终 checkpoint**: `/root/autodl-tmp/outputs/plan001_exec_only_s46/checkpoint-500/`\n- **合并模型也已保存**: 顶层目录有完整的 safetensors 文件（约 16GB，4 shards）\n- **最终 step 500 指标**: reward_mean=1.0, prove_rate=1.0, isr_mean=0.366, loss=0.0\n- **完成时间**: 2026-05-17 02:07:13 UTC\n\ntmux session 已退出（符合预期，训练完成后自动结束）。无 eval_results.json，eval 需后续单独执行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-s46-completion.md"
+}

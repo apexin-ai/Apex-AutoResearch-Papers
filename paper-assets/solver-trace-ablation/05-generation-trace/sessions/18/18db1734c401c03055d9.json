@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "18db1734c401c03055d9",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "exp gt isr baseline",
+  "task_key": "worker_exp_gt-isr-baseline_20260513T181022",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_gt-isr-baseline_20260513T181022_result.json",
+    "occurrence": 1,
+    "bytes": 1020,
+    "sha256": "5d042fcf4ef4a947ede2a78c64858f70180b0470df41d8977bd4e107dab31ea5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验完成。Registry 和 artifact 均已更新。\n\n## 结果总结\n\n| 指标 | Model (Qwen3-4B) | Ground-Truth FOL |\n|------|:-:|:-:|\n| Prove rate | 12% | **18%** |\n| Mean ISR | 0.064 | **0.5588** |\n| ISR median | — | 0.6125 |\n| ISR range | — | [0.14, 1.00] |\n\n**核心发现**：\n\n1. **GT ISR = 0.5588 > 0.5**，假设成立——好的 formalization 的 ISR 显著高于模型生成的 0.064。\n2. **Prove rate 只有 18%**，主要因为 Prover9 是定理证明器，只能证 entailment：\n   - `true` 类型：50% 可证，mean ISR = 0.5833\n   - `false` 类型：4% 可证（仅 1 条）\n   - `unknown` 类型：0% 可证——符合预期，这些本来就不可判定\n3. **XOR 处理正常**：34 条含 ⊕ 的样本中 6 条可证，ISR = 0.5456，与整体一致。\n4. **ISR 分布偏右**：60% 的已证样本 ISR ≥ 0.4，33% 在 [0.6, 0.8) 区间。\n5. **最佳案例** folio_711 达到 ISR=1.0（3/3 必要组件）；**最差** folio_1086/folio_167 仅 0.143。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-gt-isr-baseline.md"
+}

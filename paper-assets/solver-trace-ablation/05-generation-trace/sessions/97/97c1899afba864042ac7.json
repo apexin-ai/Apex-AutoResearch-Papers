@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "97c1899afba864042ac7",
+  "project": "solver-trace-ablation",
+  "kind": "conversation",
+  "title": "ops check random b03 s44 cron",
+  "task_key": "worker_ops_check-random-b03-s44-cron_20260515T002708",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_ops_check-random-b03-s44-cron_20260515T002708.jsonl",
+    "occurrence": 1,
+    "bytes": 288,
+    "sha256": "f75462cb8bab3bd705e685ce39b017661cc578c6d2c68e0bac5e515585bfc1e6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T00:27:17.015249+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "API Error: 500 Internal server error. This is a server-side issue, usually temporary — try again in a moment. If it persists, check status.claude.com."
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check-random-b03-s44-cron_20260515T002708"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/ops-check-random-b03-s44-cron.md"
+}

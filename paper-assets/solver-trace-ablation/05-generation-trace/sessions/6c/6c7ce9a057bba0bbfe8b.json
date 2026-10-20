@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6c7ce9a057bba0bbfe8b",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "check d134 pipeline progress",
+  "task_key": "worker_check_d134-pipeline-progress_20260518T115041",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_d134-pipeline-progress_20260518T115041_result.json",
+    "occurrence": 1,
+    "bytes": 1296,
+    "sha256": "9b8602ab8419e1a1b5a0a0d3e7d99d8b9c846d4522acaa7522daa3c5bef4bde5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nPipeline status: ALIVE\nSession: d134-pipeline (created Mon May 18 18:52:28 local / 10:52 UTC)\nCompleted runs: 1/10\nCurrent run: d134_4b_isr_b01_s48 at step ~8/500\nCurrent UTC: ~11:52\n\nRun order: ISR s47→s48→s49→s50→s51, Random s47→s48→s49→s50→s51\n\nPer-run results (completed only):\n- d134_4b_isr_b01_s47:\n    PR=97%, ISR*(train-final)=0.359\n    H7=83, H1=1, H8=10, Genuine=3 (3.1%), CntIndep=8\n\nTiming:\n  s47 training: 57 min (500 steps @ ~6.8s/step)\n  s47 eval+classify: ~2 min\n  Total per run: ~59 min\n  9 remaining × 59 min ≈ 8.9h\n  ETA: ~20:45 UTC (May 18) — significantly earlier than the original 05/19 05:00 estimate\n\nGPU: RTX PRO 6000 Black, 16299/97887 MiB, 69% util (PID 20893)\nDisk: 223G/250G used (89%) — 28G free, ~15G per checkpoint, tight for 9 more runs\n```\n\nDisk is the main concern: 28G free with 9 runs to go. The pipeline script preserves weights only for seed 47 and deletes others (optimizer + global_step removed), but each full model is ~15G. If all 10 checkpoints are kept, that's 150G which won't fit. Check whether the cleanup logic in the script is aggressive enough — currently it only preserves s47 weights and strips the rest down to just model files, but even stripped that's still ~15G per run."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-d134-pipeline-progress-copy-2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2476896de2919cf30e51",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "prep plan006 readiness check",
+  "task_key": "worker_prep_plan006-readiness-check_20260514T092253",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_plan006-readiness-check_20260514T092253_result.json",
+    "occurrence": 1,
+    "bytes": 686,
+    "sha256": "df27abe4ff79b66146da3f06267b509cfa9bcaf88895af6286cde3c50e5cf547"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已更新。总结：\n\n**✅ 全部就绪（10/10）：**\n- 训练数据 `train_500_seed42.jsonl`（C001）\n- 3 份 Prolog 配置文件（exec-only / exec+STA / k16-warmup）\n- `train_grpo.py` 完整 Prolog 分支（prompt、dataset、reward dispatch）\n- Prolog solver（`src/solvers/prolog.py` + `/usr/bin/swipl`）\n- Prolog STA reward（full O(n) + fast O(1)）\n- `eval_sta.py` Prolog 支持（C004 统一评估 ✅）\n- `save_total_limit=1`（C003）\n- 基础模型 Qwen3-4B\n- 磁盘 112GB 可用\n\n**❌ 仅剩 1 项：**\n- Dry-run 验证（需 GPU 空闲后跑 1-2 step 确认端到端）\n\n报告路径：`artifacts/plan006_readiness_report.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-plan006-readiness-check.md"
+}

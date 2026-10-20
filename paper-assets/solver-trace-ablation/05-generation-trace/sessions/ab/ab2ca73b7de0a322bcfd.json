@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ab2ca73b7de0a322bcfd",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "infra plan006 prolog readiness",
+  "task_key": "worker_infra_plan006-prolog-readiness_20260514T090023",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_plan006-prolog-readiness_20260514T090023_result.json",
+    "occurrence": 1,
+    "bytes": 765,
+    "sha256": "5747afb72e4eafb2b7c5cca57ca71c025f5fa424775d71528486cf9d1eab813b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**7/7 全部 PASS，Prolog 训练 pipeline 完全就绪。**\n\nReport 已写入 `artifacts/plan006/readiness_report.md`。关键发现：\n\n- **代码层**：`train_grpo.py`、`eval_sta.py`、`src/sta/prolog_reward.py`、`src/solvers/prolog.py` 全部已实现 Prolog 支持\n- **配置层**：3 个 Prolog YAML 配置可直接使用（exec_only / exec_only_k16_warmup / exec_sta）\n- **数据层**：复用 `train_500_seed42.jsonl`，不需要 Prolog ground truth（GRPO 流程由模型生成 Prolog → swipl 验证）\n- **环境层**：swipl 8.4.2 可执行，Qwen3-4B 已下载，磁盘剩余 112GB\n- **唯一注意项**：启动时需手动 `export CUDA_VISIBLE_DEVICES=N`（C002/C005），建议先跑 `sta_prolog.py --test` 做 smoke test"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-plan006-prolog-readiness.md"
+}

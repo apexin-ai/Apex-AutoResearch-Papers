@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a522a8fe715800a9dcce",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code xor normalize",
+  "task_key": "worker_code_xor-normalize_20260513T175523",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_xor-normalize_20260513T175523_result.json",
+    "occurrence": 1,
+    "bytes": 412,
+    "sha256": "2aa67bf908d6eb9f5f5d919e6c40a20a18382742f36f81816d31db92fa86b539"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**Prover9** — `_expand_xor()` 在 Unicode→ASCII 替换前展开 `A ⊕ B` → `((A ∨ B) ∧ ¬(A ∧ B))`，支持括号匹配、嵌套和链式 XOR。实测 100 条数据中 34 条含 ⊕（50 处 XOR），全部正确展开，0 错误。\n\n**Z3** — 添加 `XOR` token 和 `_xor_expr()` 解析层（优先级在 IMPLIES 和 OR 之间），直接映射到 `z3.Xor()`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-xor-normalize.md"
+}

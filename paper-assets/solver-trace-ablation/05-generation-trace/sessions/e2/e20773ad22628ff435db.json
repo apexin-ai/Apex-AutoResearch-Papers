@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "e20773ad22628ff435db",
+  "project": "solver-trace-ablation",
+  "kind": "worker",
+  "title": "writing paper framing d095 update",
+  "task_key": "worker_writing_paper-framing-d095-update_20260515T193520",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_paper-framing-d095-update_20260515T193520.log",
+    "occurrence": 1,
+    "bytes": 1344736,
+    "sha256": "d04e60b37fcd075e7a5a35abdffd14c8ff0d9713251e2ceac0eb456dc38a9cff"
+  },
+  "statistics": {
+    "messages": 111,
+    "user_turns": 0,
+    "tool_calls": 42,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 23,
+      "tool_call": 42,
+      "tool_result": 42,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 111,
+      "chunks": [
+        {
+          "path": "e20773ad22628ff435db-part-0001.json",
+          "message_count": 53
+        },
+        {
+          "path": "e20773ad22628ff435db-part-0002.json",
+          "message_count": 49
+        },
+        {
+          "path": "e20773ad22628ff435db-part-0003.json",
+          "message_count": 9
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/writing-paper-framing-d095-update.md"
+}

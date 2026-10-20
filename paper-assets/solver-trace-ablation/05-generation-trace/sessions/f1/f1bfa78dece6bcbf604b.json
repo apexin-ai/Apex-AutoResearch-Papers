@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f1bfa78dece6bcbf604b",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code grpo wandb fix",
+  "task_key": "worker_code_grpo-wandb-fix_20260513T195748",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_grpo-wandb-fix_20260513T195748_result.json",
+    "occurrence": 1,
+    "bytes": 1807,
+    "sha256": "8d23d12434f8ea206c111ba9d4fff33d5c4076b6b80f13feb3385ad1288dda2b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完成，清理完毕。\n\n---\n\n## 报告\n\n### 修改内容\n\n1. **W&B 禁用**：两个 YAML config 添加 `no_wandb: true`；`train_grpo.py` 修复 YAML boolean 加载逻辑（`store_true` 参数默认 `False` 不是 `None`，原逻辑会跳过），并在 `main()` 中提前设置 `os.environ[\"WANDB_MODE\"] = \"disabled\"`\n\n2. **本地 per-step logging**：\n   - 新增 `step_buf` 累积器用于 per-step reward 统计（与全局 `stats` 分开）\n   - 新增 `LocalLogCallback(TrainerCallback)` 类，在 `on_log` 回调中写入 `reward_log.jsonl`\n   - 文件名用 `reward_log.jsonl`（避免与 Transformers 内置 `training_log.jsonl` 冲突）\n   - `logging_steps=1` 确保每步都触发回调\n\n3. **其他**：清理了所有残留 tmux session 和旧输出\n\n### 验证结果\n\n**exec-only 模式（3 步）**：\n| step | reward_mean | reward_std | prove_rate | isr_mean | parse_rate | loss   | lr      |\n|------|-------------|------------|------------|----------|------------|--------|---------|\n| 1    | 0.25        | 0.463      | 0.25       | 0.25     | 1.0        | 0.0042 | 1e-6    |\n| 2    | 0.0         | 0.0        | 0.0        | 0.0      | 1.0        | 0.0    | 6.67e-7 |\n| 3    | 0.375       | 0.518      | 0.375      | 0.375    | 1.0        | 0.0    | 3.33e-7 |\n\n**exec-sta 模式（3 步）**：同样 3 行 JSONL，数值与 exec-only 一致（因为同 seed=42 + 相同模型初始权重，符合预期）。\n\n### Warnings\n- **vLLM 版本警告**：`TRL currently supports vLLM versions from 0.11.0 to 0.17.1. You have version 0.18.1`（不影响运行，TRL 未使用 vLLM）\n- **无 error**，训练稳定推进，每步 ~10-15s\n\n### 结论\n训练可以稳定运行，W&B 已禁用，`reward_log.jsonl` 每步正确写入。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-grpo-wandb-fix.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e15d07977f0b2f9accbe",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "paper d095 appendix",
+  "task_key": "worker_paper_d095-appendix_20260515T195700",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_d095-appendix_20260515T195700_result.json",
+    "occurrence": 1,
+    "bytes": 799,
+    "sha256": "5d4d947abd6de5c886af4b3125cf640de152ccb2e5152235f58294c4656e64ed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 7 modifications applied and verified. Summary:\n\n1. **tab:fol-beta01-detailed** — Random β=0.1 s43/s44 rows and 3-seed summary updated to D095 data; ISR s43 H7 updated from 96.7→100%\n2. **tab:bootstrap-ci** — Genuine rate and H7 rows updated with D095 Fisher tests; conservative correction row removed; n=256→262\n3. **Impact on genuine-rate comparison** — Rewritten with D095 numbers (6.1% vs 9.5%, p=0.182 n.s.)\n4. **H7a prevalence** — Combined H7 updated to 70.6% (163/231); Random H7 now 13.7% (36/262) with seed-dependency note\n5. **H1 prevalence** — 69.7→70.6%\n6. **tab:hacking-taxonomy-app** — H7 Random column 0→14† with footnote; caption updated with H7a count (149 ISR + 36 random)\n7. **β=0.3 table** — Verified unchanged, no edits needed"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-d095-appendix.md"
+}

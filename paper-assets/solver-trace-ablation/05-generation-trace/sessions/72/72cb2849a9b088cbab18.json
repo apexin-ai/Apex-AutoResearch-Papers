@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "72cb2849a9b088cbab18",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "recovery 21h reconnect eval submit",
+  "task_key": "worker_recovery_21h-reconnect-eval-submit_20260516T065414",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_recovery_21h-reconnect-eval-submit_20260516T065414_result.json",
+    "occurrence": 1,
+    "bytes": 1630,
+    "sha256": "20c06b2d8eae132df8d398a2532e284bb3fa18697208e8c8969fc87606c35810"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both GPUs fully loaded and producing training steps. Here's the structured report:\n\n---\n\n## 恢复报告\n\n### 1. sweep-isr-b02-s44 (ISR β=0.2, seed=44)\n\n| 项目 | 值 |\n|------|-----|\n| 状态 | **DONE — success** |\n| 训练 | 500/500 steps 完成, checkpoint-500 已保存 |\n| eval_prove_rate | 94% (94/100) |\n| eval_mean_isr | 0.9058 (median=1.0) |\n| **Taxonomy** | **H7a=100%, genuine=0%** |\n| 结论 | ISR=1.0 mode collapse 复现 (与 s42/s43 一致)。模型学会 single-premise P→P tautology hacking |\n\n### 2. plan018-additive-random-b01-s45-r3 (Random β=0.1, seed=45)\n\n| 项目 | 值 |\n|------|-----|\n| 状态 | **DONE — failed** |\n| 训练 | 400/500 steps, 磁盘满崩溃 |\n| checkpoint | checkpoint-400 corrupt (2/4 shards), checkpoint-350 已删除 |\n| 结论 | 需要完整重训（无可用 checkpoint） |\n\n### 3. 已提交新实验\n\n| exp_id | GPU | PID | Config | seed |\n|--------|-----|-----|--------|------|\n| sweep-exec-only-s45 | cuda:1 | 728319 | grpo_exec_only.yaml | 45 |\n| sweep-exec-only-s46 | cuda:0 | 728245 | grpo_exec_only.yaml | 46 |\n\n两个均为 exec-only baseline, 500 steps, Qwen3-4B. 预计 ~1h 完成。\n\n### 4. 当前资源状态\n\n| 资源 | 状态 |\n|------|------|\n| GPU 0 | 77.1/97.9 GB, 89% util (s46 训练中) |\n| GPU 1 | 79.5/97.9 GB, 88% util (s45 训练中) |\n| 磁盘 | 182G/250G used, **69G free** (73%) |\n\n### 待办\n- plan018-random-b01-s45-r3 需重跑 (r4)，等当前批次完成后提交\n- sweep-isr-b02-s44 的 s44 数据确认 β=0.2 ISR 在所有 3 个 seed (42/43/44) 上均 mode collapse 到 100% H7a"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/recovery-21h-reconnect-eval-submit.md"
+}

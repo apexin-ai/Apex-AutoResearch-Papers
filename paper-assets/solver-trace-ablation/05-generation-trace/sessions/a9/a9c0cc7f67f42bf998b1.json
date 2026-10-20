@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a9c0cc7f67f42bf998b1",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops verify gpu after kill",
+  "task_key": "worker_ops_verify-gpu-after-kill_20260515T125858",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-gpu-after-kill_20260515T125858_result.json",
+    "occurrence": 1,
+    "bytes": 941,
+    "sha256": "dd60d212e050ad35c6ac8db331b706266cc06e6e90b951dfc48d679d60340abc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**nvidia-smi 输出：**\n\n| GPU | 进程 | 显存占用 | GPU利用率 |\n|-----|------|---------|----------|\n| 0 | PID 352142 (python3) | 63,852 MiB / 97,887 MiB | 93% |\n| 1 | PID 353661 (python3) | 40,692 MiB / 97,887 MiB | 0% |\n\nPID 352975 已从进程列表消失，cuda:1 显存从 ~93GB（53GB僵尸+40GB r3）降到 40,701 MiB，僵尸显存已释放。\n\n**PID 353661 进程状态：**\n- STAT: `Rl`（运行中）\n- ELAPSED: `03:11`\n- CMD: `python3 scripts/train_sft.py --model_path .../Qwen3-4B --data_path data/train_500_seed42.jsonl --output_dir .../plan009_sft_baseline_s44_1000 --num_steps 1000 --seed 44 --gpu 1`\n\n**日志最后状态：**\n- 进度：step 100/1000（10%），速度 ~1.2 it/s\n- 无 error/OOM\n- step 50 附近有短暂降速（17s/it → 恢复到 1.2 it/s），可能是 eval checkpoint 或僵尸进程被杀时的 GPU 资源重分配抖动\n\n一切正常，r3 在健康运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-gpu-after-kill.md"
+}

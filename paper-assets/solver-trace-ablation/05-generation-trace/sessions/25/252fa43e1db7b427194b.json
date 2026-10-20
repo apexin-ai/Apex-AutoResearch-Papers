@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "252fa43e1db7b427194b",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "diagnose plan001 exec only s43 1000",
+  "task_key": "worker_diagnose_plan001-exec-only-s43-1000_20260515T134633",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_plan001-exec-only-s43-1000_20260515T134633_result.json",
+    "occurrence": 1,
+    "bytes": 1286,
+    "sha256": "62e24a37f15b140def3e31583fb757b8ac410e8fbaa6cf96aaf3d2d4d4c9aa67"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断报告：plan001-exec-only-s43-1000\n\n**根因**：磁盘满 (`No space left on device`, os error 28)\n\n**细节**：\n- `/root/autodl-tmp/` 已 250G/250G (100%)，0 可用空间\n- 训练在 step 150 / 1000 保存 checkpoint 时崩溃（`safetensors serialize` 失败）\n- 训练本身正常运行了 ~21 分钟（步 1→150），reward/loss 无异常\n\n**Checkpoint 状态**：\n| Checkpoint | 状态 | 大小 |\n|---|---|---|\n| checkpoint-100 | 完整（4/4 shards + tokenizer + trainer_state） | 15GB |\n| checkpoint-150 | **损坏**（仅 2/4 shards） | ~9.3GB（浪费空间） |\n\n**分类**：`retryable` — 环境问题，代码无 bug\n\n**紧急风险**：`plan001-exec-only-s44-1000` 正在 GPU 1 上运行（PID 357079, 82.6GB 显存），同样会在下次 checkpoint save 时因磁盘满崩溃。\n\n**重试前需要的修复**：\n1. 删除损坏的 `checkpoint-150`（回收 ~9.3GB）\n2. 清理已完成实验的旧 checkpoint（磁盘上有 ~260GB outputs，多个实验各占 15-31GB）\n3. 需要至少 ~30GB 空闲空间才能完成 1000 步训练（1 个完整 checkpoint ~15GB + save 临时空间）\n4. 优先清理候选：已 eval 且有结论的实验 checkpoint（如 plan018_r3、plan002_b01_s42、plan004_fast_isr 等）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-plan001-exec-only-s43-1000.md"
+}

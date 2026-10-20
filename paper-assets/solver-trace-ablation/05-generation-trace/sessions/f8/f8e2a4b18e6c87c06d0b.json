@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f8e2a4b18e6c87c06d0b",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "maintenance roadmap report update",
+  "task_key": "worker_maintenance_roadmap-report-update_20260515T193121",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_maintenance_roadmap-report-update_20260515T193121_result.json",
+    "occurrence": 1,
+    "bytes": 834,
+    "sha256": "d2a6d0b17078c479bafa667f4783e1d013f2add5d39ddf2356ca89f1de5839c2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个文件都已更新完成。\n\n**ROADMAP.md 变更摘要：**\n- RUNNING/PREPARING 清空，标注所有 86 实验已完成\n- 阶段改为纯 Writing，实验统计更新为 86 完成 (26 success / 28 negative / 26 failed)\n- 近期任务替换为写作阶段任务清单（8 项）\n- GPU 预算：2/2 空闲，剩余实验 0\n- 写作约束新增 D093（Random H7 ≠ 0%）和 D094（H7a GRPO通用 vs H7b ISR-specific），移除旧的 DEPRECATED 提示\n\n**report.md 变更摘要：**\n- 运行中：无\n- 待处理：Framing 审批 + 论文写作\n- 近期结论：补充 plan018-s44-r2、s43-r3、plan002-s43-r2 结论摘要\n- 下一步：6 步写作流程（Pooled 重算 → Framing 审批 → re-audit → framing 更新 → 数据表/TeX → Provenance）\n- 资源状态：westd-39279 2×GPU 空闲"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/maintenance-roadmap-report-update.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "081b6c01c3c4a57ed804",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops check missing eval files",
+  "task_key": "worker_ops_check-missing-eval-files_20260515T151559",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-missing-eval-files_20260515T151559_result.json",
+    "occurrence": 1,
+    "bytes": 1917,
+    "sha256": "9acbd8745eb93ef0ce20445d47ba3e33081bf37bac13fc94fca2a66694dbff12"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n| # | 目录 | 状态 | eval 文件 |\n|---|------|------|-----------|\n| 1 | `plan001_exec_only_s42` | **MISSING** | 目录不存在，backup 中也无 |\n| 2 | `plan001_exec_only_s43_r4` | **MISSING** | 目录不存在，backup 中也无（训练 log 存在于 `/root/runs/solver-trace-ablation/plan001-exec-only-s43-r4.log`，但 checkpoint 已被清理） |\n| 3 | `plan009_sft_baseline_s42_1000` | **EXISTS** | `/root/autodl-tmp/outputs/plan009_sft_baseline_s42_1000/eval_sta_results.json` (195KB) + `classify_h7_results.json` |\n| 4 | `plan009_sft_baseline_s43_1000` | **EXISTS** | `/root/autodl-tmp/outputs/plan009_sft_baseline_s43_1000/eval_sta_results.json` (192KB) + `classify_h7_results.json` |\n| 5 | `plan009_sft_baseline_s44_1000` | **EXISTS** | `/root/autodl-tmp/outputs/plan009_sft_baseline_s44_1000/eval_sta_results.json` (196KB) + `classify_h7_results.json` |\n| 6 | `plan013_random_reward_s42_r4` | **MISSING** | 目录不存在，backup 中也无（训练 log 存在于 `/root/runs/solver-trace-ablation/plan013-random-reward-s42-r4.log`，但 checkpoint 已被清理） |\n| 7 | `plan018_additive_random_b01_s42_1000_r3` | **EXISTS** | `/root/autodl-tmp/outputs/plan018_additive_random_b01_s42_1000_r3/eval_results.json` (207KB) — 注意文件名是 `eval_results.json` 而非 `eval_sta_results.json`，可能需要用 eval_sta.py 重新评估 |\n\n**需补扫的 eval JSON 完整路径（4 个 EXISTS）：**\n- `/root/autodl-tmp/outputs/plan009_sft_baseline_s42_1000/eval_sta_results.json`\n- `/root/autodl-tmp/outputs/plan009_sft_baseline_s43_1000/eval_sta_results.json`\n- `/root/autodl-tmp/outputs/plan009_sft_baseline_s44_1000/eval_sta_results.json`\n- `/root/autodl-tmp/outputs/plan018_additive_random_b01_s42_1000_r3/eval_results.json` (⚠️ 非 eval_sta 格式)\n\n**3 个 MISSING 的 checkpoint 已被清理，需重训才能获得 eval 数据。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-missing-eval-files-copy-2.md"
+}

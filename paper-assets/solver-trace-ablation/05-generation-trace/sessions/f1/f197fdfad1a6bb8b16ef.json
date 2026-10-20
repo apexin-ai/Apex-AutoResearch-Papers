@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "id": "f197fdfad1a6bb8b16ef",
+  "project": "solver-trace-ablation",
+  "kind": "worker",
+  "title": "code classify h8 upgrade",
+  "task_key": "worker_code_classify-h8-upgrade_20260515T115437",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_classify-h8-upgrade_20260515T115437.log",
+    "occurrence": 1,
+    "bytes": 754175,
+    "sha256": "bbf619c2c22896dd372421fc7941a4c5f1708e26a774222f8ef336dd2950f084"
+  },
+  "statistics": {
+    "messages": 212,
+    "user_turns": 2,
+    "tool_calls": 68,
+    "roles": {
+      "log": 1,
+      "system": 19,
+      "record": 1,
+      "assistant": 52,
+      "tool_call": 68,
+      "tool_result": 68,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 81,
+      "chunks": [
+        {
+          "path": "f197fdfad1a6bb8b16ef-part-0001.json",
+          "message_count": 81
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 80,
+      "chunks": [
+        {
+          "path": "f197fdfad1a6bb8b16ef-part-0001.json",
+          "message_count": 80
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 51,
+      "chunks": [
+        {
+          "path": "f197fdfad1a6bb8b16ef-part-0001.json",
+          "message_count": 15
+        },
+        {
+          "path": "f197fdfad1a6bb8b16ef-part-0002.json",
+          "message_count": 36
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-classify-h8-upgrade.md"
+}

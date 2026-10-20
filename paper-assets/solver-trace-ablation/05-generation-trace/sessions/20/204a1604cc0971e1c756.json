@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "204a1604cc0971e1c756",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "infra check progress prep sta",
+  "task_key": "worker_infra_check-progress-prep-sta_20260514T160414",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_check-progress-prep-sta_20260514T160414_result.json",
+    "occurrence": 1,
+    "bytes": 1764,
+    "sha256": "c2140977debe253e50b816a40baa4f51ba1ea1d97885a15af71a6d13f6dc0409"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`save_total_limit=1` is hardcoded in train_grpo.py line 425. Good, C003 is satisfied.\n\nHere's the report:\n\n---\n\n## plan018-additive-random-b01-s43-r2\n\n| 指标 | 值 |\n|------|-----|\n| PID | 858386 (wrapper) / 858391 (python3) |\n| 进度 | **250/500 (50%)** |\n| 已运行 | 40 分钟 |\n| step 速度 | ~7-9s/step |\n| 预计剩余 | **~33 分钟**（日志估计 35:50） |\n| GPU | cuda:0, 86031 MiB / 97887 MiB |\n| 最新 metrics (step 250) | reward=1.052, prove_rate=1.000, isr=0.359, parse_rate=1.000 |\n\n训练正常，prove_rate 已到 1.0，reward ~1.0 附近，趋势健康。\n\n## plan006-prolog-sta-s43\n\n**GPU 1 当前被占用** — PID 881804 正在运行 eval_sta.py（plan006_prolog_exec_s43_r3 评估，已跑 5 分钟，预计还需 ~10-15 分钟）。需等评估完成后再提交。\n\n`/root/autodl-tmp/outputs/plan006_prolog_sta_s43/` 已存在但为空目录（之前失败的 run），可直接覆盖写入。\n\n**完整提交命令：**\n\n```bash\nexport CUDA_VISIBLE_DEVICES=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py \\\n  --config configs/grpo_prolog_exec_sta.yaml \\\n  --data_path data/train_500_seed42.jsonl \\\n  --num_steps 500 \\\n  --seed 43 \\\n  --output_dir /root/autodl-tmp/outputs/plan006_prolog_sta_s43\n```\n\n约束检查：\n- C001 ✓ 使用 train_500_seed42.jsonl\n- C002 ✓ export CUDA_VISIBLE_DEVICES（非 inline）\n- C003 ✓ save_total_limit=1 已在 train_grpo.py:425 硬编码\n- C005 ✓ 显式设置 CUDA_VISIBLE_DEVICES=1\n\n## 磁盘\n\n```\n/dev/md0  250G  168G  83G  68%  /root/autodl-tmp\n```\n\n83G 可用，足够一次训练（单 checkpoint ~16GB + reward_log）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-check-progress-prep-sta.md"
+}

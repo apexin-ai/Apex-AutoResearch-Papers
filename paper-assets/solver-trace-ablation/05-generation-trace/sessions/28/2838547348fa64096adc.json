@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2838547348fa64096adc",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops check r6 completion",
+  "task_key": "worker_ops_check-r6-completion_20260517T001358",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-r6-completion_20260517T001358_result.json",
+    "occurrence": 1,
+    "bytes": 711,
+    "sha256": "07a032196204ae58e286603120f50bfe211cd2413debb83a416b78003041c2e0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**训练失败。**\n\n- **停止步数**: step 100 / 1000\n- **失败原因**: 磁盘满（250G/250G，仅剩 700K）\n- **最后日志时间**: 2026-05-17T00:12:10 UTC (step 100)\n- **checkpoint-100 不完整**: 只写入了 2/4 个 model shard（写到一半磁盘耗尽）\n- **checkpoint-50**: 有 trainer_state.json，可能完整\n\n根因：save_total_limit=1 已设置（save_steps=50），但 output_dir 里顶层已有完整模型文件（~16GB）+ 1112 行 reward_log（多次 run 累积），加上 checkpoint-50 未被及时删除就开始写 checkpoint-100，导致磁盘爆满。这是 C003 的变体——checkpoint 切换时的瞬时双份 checkpoint 占用超过剩余空间。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-r6-completion.md"
+}

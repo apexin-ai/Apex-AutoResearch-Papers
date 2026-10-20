@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d8c109e3cb96bc65b01f",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops disk cleanup and resubmit",
+  "task_key": "worker_ops_disk-cleanup-and-resubmit_20260514T013754",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_disk-cleanup-and-resubmit_20260514T013754_result.json",
+    "occurrence": 1,
+    "bytes": 415,
+    "sha256": "8173ef2ba9f851df1cc9d4d5a64561e65ed8ef0d41e3715d8222558170f01385"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n1. **磁盘清理**：删除 8 个 completions 目录 + 8 个 checkpoints + 2 个失败实验目录，释放 171GB（32% → 172G 可用）\n2. **脚本修复**：`log_completions=True` → `False`，不再生成 completions parquet\n3. **实验提交**：plan013-r4（cuda:0）和 plan001-s43-r4（cuda:1）均已正常训练，无 completions 目录生成，磁盘稳定"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-disk-cleanup-and-resubmit.md"
+}

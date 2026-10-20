@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "13815eff5cda4bf4e032",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "research hacking taxonomy prep",
+  "task_key": "worker_research_hacking-taxonomy-prep_20260514T015744",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_hacking-taxonomy-prep_20260514T015744_result.json",
+    "occurrence": 1,
+    "bytes": 1127,
+    "sha256": "6609753c77247a4fb7a46d3d9d929b72fbefba810a1d4ce1758d2f8187bab464"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文档已写入 `artifacts/hacking_taxonomy.md`。\n\n核心内容：\n\n**6 个分类**（按预期频率排序）：\n- **H1 Semantic Drift** — 可证但语义偏离 NL 原意（ISR 盲区，预估最高频）\n- **H2 Trivial Duplication** — 结论重复/包含在 premises 中（ISR 盲区）\n- **H3 Vacuous Truth** — 矛盾前提/重言结论（H3b/c ISR 可检测）\n- **H4 Over-specification** — 冗余 premises 填充（ISR 校准良好）\n- **H5 Syntactic Exploitation** — 利用 Prover9 特有行为\n- **H6 Degenerate Structure** — 空/极简/畸形输出\n\n**ISR 校准结论**：ISR 对 H4（冗余）和 H3b/c（空真）检测有效，对 H1（语义漂移）和 H2（重复）存在盲区 → 支撑 plan_014 downstream validation 的必要性。\n\n**标注方案**：200 条 proved outputs，8 步判断流程，JSON schema 标注格式，含 primary/secondary 多标签和决策规则。\n\n**文献基础**：Skalse 2022（形式化定义）、Gao 2023（overoptimization scaling laws）、Pan 2022（misspecification 三分类）、Yue 2026（extensional shortcuts + IPT）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-hacking-taxonomy-prep.md"
+}

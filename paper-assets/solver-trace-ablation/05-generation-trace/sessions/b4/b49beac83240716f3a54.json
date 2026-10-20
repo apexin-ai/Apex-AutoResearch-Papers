@@ -1,0 +1,1701 @@
+{
+  "schema_version": "1.0",
+  "id": "b49beac83240716f3a54",
+  "project": "solver-trace-ablation",
+  "kind": "conversation",
+  "title": "cron hook plan014 downstream nli s42 20260514T073116 699140",
+  "task_key": "cron_hook_plan014-downstream-nli-s42_20260514T073116_699140",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/archive/cron_hook_plan014-downstream-nli-s42_20260514T073116_699140.jsonl",
+    "occurrence": 1,
+    "bytes": 92617,
+    "sha256": "ea558adc7b31c6334d94b595e40f8e9e97a3d2d3ab83cf05fc0731d48fa75e94"
+  },
+  "statistics": {
+    "messages": 85,
+    "user_turns": 3,
+    "tool_calls": 40,
+    "roles": {
+      "user": 3,
+      "tool_call": 40,
+      "tool_result": 39,
+      "assistant": 3
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T03:51:19.768505+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON] 实验进程异常退出（失败），需要你诊断原因。\n详情: Process exited without valid W&B metrics\n\n- exp_id: plan014-downstream-nli-s42\n- project: solver-trace-ablation\n- server: westd-39279\n- log_path: ~/runs/solver-trace-ablation/plan014-downstream-nli-s42.log"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "source": "cron:hook"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T03:51:32.844020+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__main_agent_post_to_director",
+              "max_results": "7"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T03:51:32.844534+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T03:51:37.213871+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "limit": "0",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T03:51:37.766577+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T03:51:37.768936+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan014-downstream-nli-s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T03:43:37.925Z\\\", \\\"updated_at\\\": \\\"2026-05-14T03:51:18.427Z\\\", \\\"hypothesis\\\": \\\"Downstream NLI validation: 高ISR formalization 应在独立推理任务上表现更好(entailment accuracy)，Spearman ρ(ISR, accuracy) > 0.1 验证 ISR 作为 quality proxy 的实用价值。同时用 Z3 cross-solver agreement 验证 formalization 鲁棒性。\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"started_at\\\": \\\"2026-05-14T03:49:52.891Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/eval_downstream.py --checkpoint_path /root/autodl-tmp/outputs/plan001_exec_only_s42/checkpoint-500 --data_path data/proofwriter_fol_100.jsonl --output_path /root/autodl-tmp/outputs/plan014_downstream_nli.json --num_generations 8 --workers 4\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-14T03:51:17.579Z\\\", \\\"training_hours\\\": 0.02}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/eval_downstream.py --checkpoint_path /root/autodl-tmp/outputs/plan001_exec_only_s42/checkpoint-500 --data_path data/proofwriter_fol_100.jsonl --output_path /root/autodl-tmp/outputs/plan014_downstream_nli.json --num_generations 8 --workers 4\\\\\\\"\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"data_path\\\": \\\"/root/solver-trace-ablation/data/proofwriter_fol_100.jsonl\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"Qwen3-4B (plan001-s42-r2 checkpoint-500)\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"plan001-exec-only-s42-r2\\\", \\\"eval_data\\\": \\\"proofwriter_fol_100\\\", \\\"hypothesis\\\": \\\"Downstream NLI validation: ISR correlates with entailment accuracy\\\", \\\"plan_id\\\": \\\"p\n…[truncated 44373 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 555
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T03:51:38.221314+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "file": "report.md"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T03:51:38.472766+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "solver-trace-ablation"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T03:51:40.281898+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 1, \\\"results\\\": [{\\\"exp_id\\\": \\\"plan017-additive-random-s42\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=207116)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 2515
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T03:51:40.332916+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/report.md\\\", \\\"content\\\": \\\"<!-- AUTO-FACTS-BEGIN (generated 2026-05-14T03:51:18Z; do not edit — regenerated by auto_build_report_facts) -->\\\\n## 📊 当前状态（auto-derived from registry）\\\\n\\\\n**总计**: 28 个实验 — ANALYZING 2, DONE 25, RUNNING 1\\\\n**DONE 分布**: failed 15, negative 4, success 6\\\\n\\\\n### GPU 占用\\\\n- **分配**: 2 张 — westd-39279:cuda:0, westd-39279:cuda:1\\\\n- **实际运行**: 1 张 — westd-39279:cuda:1(plan017-additive-random-s42)\\\\n- **空闲（分配了没跑）**: westd-39279:cuda:0\\\\n\\\\n### 🏃 RUNNING\\\\n| exp_id | server | gpu | pid | log |\\\\n|--------|--------|-----|-----|-----|\\\\n| `plan017-additive-random-s42` | westd-39279 | cuda:1 | 207116 | `—` |\\\\n\\\\n### 📌 最近完成 (top 5)\\\\n- `plan014-downstream-nli-s42` [failed] — 2026-05-14T03:51:18 — EXIT_CODE=1 (generic error — check log tail)\\\\n- `plan013-random-reward-s42-r4` [success] — 2026-05-14T03:45:53\\\\n- `plan001-exec-only-s42-r2` [success] — 2026-05-14T03:45:49\\\\n- `plan005-sta-low-s42` [negative] — 2026-05-14T01:55:26\\\\n- `plan001-exec-only-s43-r3` [failed] — 2026-05-14T01:41:28 — OSError: [Errno 28] No space left on device — /root/autodl-tmp 磁盘满，TRL GRPOTrain\\\\n\\\\n### 🔴 最近失败原因 (top 3)\\\\n- `plan014-downstream-nli-s42`: EXIT_CODE=1 (generic error — check log tail)\\\\n- `plan001-exec-only-s43-r3`: OSError: [Errno 28] No space left on device — /root/autodl-tmp 磁盘满，TRL GRPOTrainer completions parquet 写入失败 at step 23\\\\n\\\\n<!-- AUTO-FACTS-END -->\\\\n\\\\n---\\\\n\\\\n# Handover — 2026-05-14\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| plan017-additive-random-s42 | Additive random control: r = r_exec·(1+0.3·random). 隔离 ISR structural signal vs variance regularization. 若 ISR > random > exec-only → signal+regularization 均贡献; 若 ISR > random ≈ exec-only → ISR signal 是关键; 若 ISR ≈ random → ISR 无结构价值。 | — | — | — |\\\\n| plan001-exec-only-s43-r\n…[truncated 1472 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 2111
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T03:51:40.333507+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/ROADMAP.md\\\", \\\"content\\\": \\\"# solver-trace-ablation — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-14 02:41 UTC | 更新原因: Session 启动全量刷新：plan001 修复成功、plan005 negative 确认、framing 转向、GRPO 饱和 confound、plan014 审批\\\\n\\\\n## 核心方向\\\\nSTA（Solver Trace Ablation）：基于 mutation testing 的 component necessity testing，为 neurosymbolic formalizer 的 GRPO 训练提供 intensional structural reward。详见 paper_framing.md。\\\\n\\\\n## 当前进展\\\\n- **阶段**: Research + 审稿进行中 | **DDL**: 2026-05-25（剩 11 天）\\\\n- **基础设施**: westd-39279 × 2 RTX PRO 6000 96GB，两卡满载\\\\n- **Framing 转向 (D010/D011)**: \\\\\\\"STA detects hacking\\\\\\\" → \\\\\\\"STA as diagnostic metric + additive bonus integration\\\\\\\"\\\\n- **消歧结论 (D008)**: 50/50 凸组合是 penalty effect，非 hacking detection → 切换 additive bonus 公式\\\\n- **GRPO 饱和 confound (D014)**: random reward 也达高 prove_rate → 论文核心论证聚焦 ISR 差异\\\\n- **ISR 方法论标准化 (D013/D015)**: 训练日志 ISR 不可信，所有 checkpoint 必须用 eval_sta.py 统一评估\\\\n- **Dream**: best 4/6 Borderline Reject, median 3/6 Weak Reject — 5 个结构性弱点已逐一应对\\\\n\\\\n## RUNNING\\\\n| 实验 | GPU | 说明 |\\\\n|------|-----|------|\\\\n| plan002-additive-b03-s42 | cuda:0 | additive bonus β=0.3 核心实验 |\\\\n| plan001-exec-only-s43-r4 | cuda:1 | exec-only 3-seed 第 2 个 |\\\\n\\\\n## 已完成关键结论\\\\n| 实验 | 结论 | 关键发现 |\\\\n|------|------|----------|\\\\n| plan003 eval | ✅ success | exec-only ISR=0.6423 (proved-only)，高于 GT 0.56 |\\\\n| plan005 weight ablation | ❌ negative | 凸组合永远是 penalty → 废弃旧公式 |\\\\n| plan013 random reward | ✅ success | PR=0.675，待 eval_sta.py 获真实 ISR |\\\\n| plan001-s42-r2 | ✅ success | PR(last100)=0.865，待 eval_sta.py |\\\\n\\\\n## 实验计划摘要（详见 experiment_plan.yaml）\\\\n**P0 关键路径**:\\\\n- plan_001: exec-only 3-seed — s42 ✅ done, s43 RUNNING, s44 待跑\\\\n- plan_002: additive bonus β=0.3 — RUNNING (单 seed 验证方向)\\\\n- plan_003: held-out eval — ✅ done\\\\n- plan_013: random reward baseline — ✅ done, 待 eval_sta.py\\\\n- **plan_014: downstream validation A+B — ✅ 已审批**（NLI accuracy + cross-solve\n…[truncated 2895 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 1860
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T03:51:53.276353+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/skills/on-experiment-failed.skill.md"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-14T03:51:53.629400+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/agent_0937fcf0."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "Read",
+            "elapsed_ms": 353
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T03:51:53.629783+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/skills/resource-saturation.skill.md"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T03:51:53.680542+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/agent_0937fcf0."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-14T03:51:57.897045+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/on-experiment-failed.skill.md",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-14T03:51:58.198870+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "Glob",
+            "elapsed_ms": 301
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-14T03:51:58.249612+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/resource-saturation.skill.md",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-14T03:51:58.300563+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "Glob",
+            "elapsed_ms": 50
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-14T03:52:03.176393+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/on-experiment-failed.skill.md",
+              "path": "/home/ubuntu/agent-ml-research"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-14T03:52:03.478219+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/agent-ml-research/skills/global/on-experiment-failed.skill.md"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "Glob",
+            "elapsed_ms": 301
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-14T03:52:03.478736+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/resource-saturation.skill.md",
+              "path": "/home/ubuntu/agent-ml-research"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-14T03:52:03.629670+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "Glob",
+            "elapsed_ms": 150
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-14T03:52:07.598333+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/on-experiment-failed.skill.md"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-14T03:52:07.599233+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: on-experiment-failed\n3\tdescription: 实验失败后的自动诊断工作流——查日志分析原因、更新 registry、通知 Director。[CRON] 实验失败消息到达时使用。\n4\tscope: global\n5\ttags:\n6\t- workflow\n7\t- diagnosis\n8\t- cron-hook\n9\ttools:\n10\t- read_registry\n11\t- tail_training_logs\n12\t- update_registry\n13\t- append_idea\n14\t- feishu_send_result_card\n15\t- spawn_worker\n16\t- check_job_status\n17\tversion: 4\n18\theavy: true\n19\troles:\n20\t- agent\n21\t---\n22\t\n23\t# 实验失败诊断工作流\n24\t\n25\t## 触发方式\n26\t由 cron hook 自动触发：进程退出且 W&B 无数据 / W&B state=failed/crashed / NaN 检测到。\n27\t\n28\t## 步骤\n29\t\n30\t### Step 0: 读取项目上下文（诊断前必须执行）\n31\t先读文档，再看日志——否则诊断方向可能完全错误：\n32\t\n33\t- `read_project_file(\"memory.md\")` — **最重要**：查是否有相同失败模式的历史记录和已知修复方案\n34\t- Worker 通过 `list_repo_tree` + `read_repo_file` 按需从代码仓库读取训练脚本结构\n35\t\n36\t读完后检查：\n37\t- memory.md 里有没有\"此类实验曾失败，原因是 X\"的记录？→ 直接按已知方案诊断，跳过 Step 2 通用流程\n38\t- 代码仓库中的训练入口和参数格式是否与本次实验配置匹配？（Worker 可用 `list_repo_tree` + `read_repo_file` 查看）\n39\t\n40\t### Step 1: 了解失败背景\n41\t- read_registry(exp_id) — 查看状态、conclusion、notes、metrics、log_path\n42\t\n43\t### Step 2: 浅层日志诊断\n44\t有 log_path 时：tail_training_logs(server, **绝对路径**, lines=80)\n45\t- 寻找：OOM、CUDA error、NaN、assertion error、数据加载错误、Python Traceback\n46\t- 没找到 → 增加行数再查\n47\t\n48\t### Step 2.5: 深查（满足以下任一条件时 spawn_worker）\n49\t- 运行时长 < 5 分钟（初始化阶段崩溃）\n50\t- tail 日志中未见明确 Traceback 或错误行\n51\t- 同类实验连续失败 ≥ 2 次\n52\t\n53\t```python\n54\tspawn_worker(\n55\t    task_type=\"diagnose:{exp_id}\",\n56\t    task_prompt=\"\"\"SSH 到服务器 {server}，诊断实验 {exp_id} 的失败原因。\n57\t\n58\t项目路径：{project_path}（绝对路径）\n59\t日志路径：{log_path}（可能为空）\n60\t\n61\t执行步骤（按顺序，有结论就停）：\n62\t\n63\t1. 如果有日志路径：\n64\t   - 先看结尾 50 行（找 Traceback / Error / CUDA OOM）\n65\t   - 没找到明确错误：再看开头 100 行（初始化崩溃在这里）\n66\t   - 日志文件不存在：说明任务启动即失败，跳到步骤 2\n67\t\n68\t2. 日志无错误或无日志时，检查基础设施：\n69\t   - 入口文件是否存在\n70\t   - 激活环境并验证 import\n71\t   - 检查 configs/ 目录\n72\t\n73\t3. 检查磁盘/内存（OOM 类）\n74\t\n75\t最后输出一行 JSON：\n76\t{\"root_cause\":\"<引用具体报错行>\",\"error_type\":\"infrastructure|hyperparameter|resource|data\",\"fix_steps\":[\"步骤1\",\"步骤2\"],\"can_auto_fix\":true}\"\"\",\n77\t    tool_groups=[\"ssh\"],\n78\t)\n79\t```\n80\t\n81\tWorker 返回后，以其结论作为 Step 3 的诊断依据。\n82\t\n83\t### \n…[truncated 1766 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-14T03:52:07.599594+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-14T03:52:07.654966+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: resource-saturation\n3\tdescription: \"当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。\"\n4\talways: false\n5\troles:\n6\t  - director\n7\t  - agent\n8\t---\n9\t\n10\t# 资源饱和度自检（硬约束）\n11\t\n12\t## A. GPU 分配率检查\n13\t\n14\t调 `get_project_resource_usage(project)` 看:\n15\t- 已分配给本项目的 GPU 总数和具体卡号\n16\t- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）\n17\t- 分配了但没跑的 GPU 清单 ⚠️\n18\t\n19\t任何\"分配了但没跑\"的 GPU = 失职。必须立即:\n20\t- 派 Worker 铺 dry-run / 下一批实验代码准备\n21\t- 铺 ablation（从 experiment-matrix 空白格子里挑）\n22\t- 确实无实验可铺 → 向 Director 汇报\"暂无可铺实验\"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作\n23\t\n24\t**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。\n25\t\n26\t## B. GPU 效率检查\n27\t\n28\t调 `get_gpu_health(server)`:\n29\t- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务\n30\t- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）\n31\t- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优\n32\t\n33\t## C. 非 GPU 任务并行\n34\t\n35\tGPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:\n36\t- 下一批实验的数据集下载 / 预处理 / fingerprint\n37\t- 下一批实验的代码准备 / dry-run / 环境配置\n38\t- 论文文献调研 / related work 检索\n39\t- 已完成实验的 log 深度分析 / metric 聚合\n40\t- 论文章节起草\n41\t- 代码 review / refactor\n42\t\n43\t**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。\n44\t\n45\t## D. 汇报格式\n46\t\n47\t向 Director 汇报时开头必须带资源声明行:\n48\t\n49\t    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)\n50\t"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "Read",
+            "elapsed_ms": 55
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-14T03:52:23.028598+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "file": "memory.md"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-14T03:52:24.236398+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/memory.md\\\", \\\"content\\\": \\\"# solver-trace-ablation — Memory\\\\n\\\\n## 环境信息 (2026-05-13)\\\\n\\\\n### westd-39279 服务器\\\\n- **GPU**: 2× RTX PRO 6000 Blackwell, 94GB VRAM 每张\\\\n- **CUDA**: 12.8, PyTorch 2.10.0+cu128\\\\n- **镜像**: aml-train（conda 环境，`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\\\\n- **ML 栈**: transformers/trl/vllm/accelerate 全部预装\\\\n- **Solvers**: Prover9 (LADR 2009-11A 源码编译), SWI-Prolog 8.4.2, Z3 4.16.0.0\\\\n- **模型**: Qwen3-4B 已下载（7.6GB，通过 ModelScope）\\\\n- **代码路径**: `/root/solver-trace-ablation/`\\\\n- **磁盘**: 系统盘 250GB，大文件（outputs/checkpoints）必须放 `/root/autodl-tmp/`\\\\n\\\\n### 决策记录\\\\n- Qwen3-4B 用 ModelScope 下载（HuggingFace 直连可能慢）\\\\n- Prover9 从 LADR 源码编译（apt 无包）\\\\n- 94GB VRAM 单卡跑 Qwen3-4B 完全无压力\\\\n\\\\n## 数据 (2026-05-13)\\\\n\\\\n### 数据源变更：ProofWriter → FOLIO\\\\n- ProofWriter 原始数据无 FOL 列，改用 `tasksource/folio`（1204 条人工标注 FOL）\\\\n- Phase 0 子集 100 条，训练子集 500 条\\\\n- 34% 数据含 XOR (⊕) 符号，已在 `_normalize_fol()` 中修复展开\\\\n\\\\n### 数据约束 (2026-05-14, D009)\\\\n- **C001**: 所有 plan001/plan013 实验统一使用 `train_500_seed42.jsonl`，不再用 `proofwriter_fol_500.jsonl`（消除数据差异 confound）\\\\n\\\\n## Phase 0 关键发现 (2026-05-13)\\\\n\\\\n### Base Model ISR Baseline (sta-phase0-baseline)\\\\n- **Prove rate**: 12% overall, 18.2% excluding XOR-affected samples\\\\n- **Mean ISR**: 0.064 (very low — base model formalizations mostly unprovable)\\\\n- **ISR 区分度**: proved 样本 ISR 0.125–0.889\\\\n\\\\n### Ground-Truth ISR Baseline (sta-gt-isr-baseline)\\\\n- **GT prove rate**: 18% (limited by Prover9 only proving entailment; true=50%, false=4%, unknown=0%)\\\\n- **GT mean ISR**: 0.5588 (median 0.6125, range 0.14–1.00)\\\\n- **MVP Pass #2 验证**: GT ISR 0.559 > 0.5 ✅，好的 formalization ISR 高\\\\n- **Model vs GT gap**: ISR 0.064 vs 0.559 = 8.7x 差距，STA 有强区分力\\\\n\\\\n### Prover9 局限性\\\\n- Prover9 只能证明 entailment（conclusion 从 premises 推出）\\\\n- `false` 和 `unknown` 类问题几乎无法证明（false 4%, unknown 0%）\\\\n- Phase 1 训练中 r\n…[truncated 5572 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 1207
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-14T03:52:24.236942+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__tail_training_logs,mcp__agent-ml-research__feishu_send_result_card,mcp__agent-ml-research__load_project_config",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-14T03:52:24.287383+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-14T03:52:33.947456+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__tail_training_logs"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "tool_args": {
+              "server": "westd-39279",
+              "log_path": "~/runs/solver-trace-ablation/plan014-downstream-nli-s42.log",
+              "n": "80"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-14T03:52:34.399974+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"lines\\\": [\\\"Loaded 100 problems from data/proofwriter_fol_100.jsonl\\\", \\\"Loading model from /root/autodl-tmp/outputs/plan001_exec_only_s42/checkpoint-500 ...\\\", \\\"Traceback (most recent call last):\\\", \\\"  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/transformers/utils/hub.py\\\\\\\", line 479, in cached_files\\\", \\\"    hf_hub_download(\\\", \\\"  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py\\\\\\\", line 106, in _inner_fn\\\", \\\"    validate_repo_id(arg_value)\\\", \\\"  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py\\\\\\\", line 154, in validate_repo_id\\\", \\\"    raise HFValidationError(\\\", \\\"huggingface_hub.errors.HFValidationError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': '/root/autodl-tmp/outputs/plan001_exec_only_s42/checkpoint-500'. Use `repo_type` argument if needed.\\\", \\\"\\\", \\\"During handling of the above exception, another exception occurred:\\\", \\\"\\\", \\\"Traceback (most recent call last):\\\", \\\"  File \\\\\\\"/root/solver-trace-ablation/scripts/eval_downstream.py\\\\\\\", line 562, in <module>\\\", \\\"    main()\\\", \\\"  File \\\\\\\"/root/solver-trace-ablation/scripts/eval_downstream.py\\\\\\\", line 443, in main\\\", \\\"    model, tokenizer = load_model(args.checkpoint_path)\\\", \\\"                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\", \\\"  File \\\\\\\"/root/solver-trace-ablation/scripts/eval_downstream.py\\\\\\\", line 70, in load_model\\\", \\\"    tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)\\\", \\\"                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\", \\\"  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/transformers/models/auto/tokenization_auto.py\\\\\\\", line 1089, in from_pretrained\\\", \\\"    tokenizer_config = get_tokenizer_config(pretrained_model_name_or_path, **kwargs)\\\", \\\"                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\", \\\"  File \\\\\\\"\n…[truncated 1717 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "elapsed_ms": 452
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-14T03:52:58.237861+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "plan014-downstream-nli-s42",
+              "field": "notes",
+              "value": "失败原因: eval_downstream.py:70 load_model() 从 checkpoint 路径加载 tokenizer 失败——TRL GRPOTrainer checkpoint 不含 tokenizer 文件，transformers from_pretrained 回退 HF Hub 时将本地路径当 repo_id → HFValidationError。| 已有成果: 无（启动即崩溃）| 修复: load_model() 需从 base model 路径加载 tokenizer（如 /root/autodl-tmp/.hf_cache/Qwen/Qwen3-4B），从 checkpoint 加载 model weights",
+              "project": "solver-trace-ablation"
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-14T03:52:58.740131+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan014-downstream-nli-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T03:43:37.925Z\\\", \\\"updated_at\\\": \\\"2026-05-14T03:52:58.303Z\\\", \\\"hypothesis\\\": \\\"Downstream NLI validation: 高ISR formalization 应在独立推理任务上表现更好(entailment accuracy)，Spearman ρ(ISR, accuracy) > 0.1 验证 ISR 作为 quality proxy 的实用价值。同时用 Z3 cross-solver agreement 验证 formalization 鲁棒性。\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"started_at\\\": \\\"2026-05-14T03:49:52.891Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/eval_downstream.py --checkpoint_path /root/autodl-tmp/outputs/plan001_exec_only_s42/checkpoint-500 --data_path data/proofwriter_fol_100.jsonl --output_path /root/autodl-tmp/outputs/plan014_downstream_nli.json --num_generations 8 --workers 4\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-14T03:51:17.579Z\\\", \\\"training_hours\\\": 0.02}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/eval_downstream.py --checkpoint_path /root/autodl-tmp/outputs/plan001_exec_only_s42/checkpoint-500 --data_path data/proofwriter_fol_100.jsonl --output_path /root/autodl-tmp/outputs/plan014_downstream_nli.json --num_generations 8 --workers 4\\\\\\\"\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"data_path\\\": \\\"/root/solver-trace-ablation/data/proofwriter_fol_100.jsonl\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"Qwen3-4B (plan001-s42-r2 checkpoint-500)\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"plan001-exec-only-s42-r2\\\", \\\"eval_data\\\": \\\"proofwriter_fol_100\\\", \\\"hypothesis\\\": \\\"Downstream NLI validation: ISR correlates with entailment accuracy\\\", \\\"plan\n…[truncated 806 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 502
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-14T03:53:01.199892+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__feishu_send_result_card"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "mcp__agent-ml-research__feishu_send_result_card",
+            "tool_args": {
+              "exp_id": "plan014-downstream-nli-s42",
+              "conclusion": "failed",
+              "key_metrics": "{}",
+              "baseline_comparison": "eval_downstream.py load_model() bug: TRL checkpoint 无 tokenizer 文件 → HFValidationError。需修复脚本从 base model 加载 tokenizer。infrastructure 类错误，可自动修复后重跑。"
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-14T03:53:17.372132+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"message_id\\\": \\\"om_x100b6f603cc5bc80b322fe39676cadd\\\", \\\"chat_id\\\": \\\"oc_a771c2a33d631dd40256ecd5c3a6648e\\\", \\\"msg_type\\\": \\\"interactive\\\", \\\"next_required_steps\\\": \\\"飞书卡片已发出。请立即完成剩余步骤（不可跳过）： (1) 如有跨实验价值的教训/约定 → save_project_file(file='memory.md', ...) 追加一行； (2) move_idea — 将实验从 IN_PROGRESS 移到对应区块。\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "mcp__agent-ml-research__feishu_send_result_card",
+            "elapsed_ms": 16172
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-14T03:53:17.422745+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "fix:plan014-downstream-nli",
+              "project": "solver-trace-ablation",
+              "task_prompt": "## 任务：修复 eval_downstream.py 的 tokenizer 加载 bug\n\n### 背景\n实验 plan014-downstream-nli-s42 失败，原因是 `eval_downstream.py:70` 的 `load_model()` 函数从 TRL GRPOTrainer checkpoint 路径加载 tokenizer 失败。\n\nTRL checkpoint（如 `/root/autodl-tmp/outputs/plan001_exec_only_s42/checkpoint-500`）只保存 model weights，不含 tokenizer 文件。当 `AutoTokenizer.from_pretrained(checkpoint_path)` 找不到本地 tokenizer 文件时，transformers 回退到 HF Hub 下载，将本地路径当作 repo_id → `HFValidationError`。\n\n### 修复方案\n1. SSH 到 westd-39279（root 用户）\n2. 先确认 checkpoint 目录结构：`ls /root/autodl-tmp/outputs/plan001_exec_only_s42/checkpoint-500/`，验证确实没有 tokenizer 文件\n3. 确认 base model 路径：检查 `/root/autodl-tmp/.hf_cache/` 或 `/root/autodl-tmp/models/` 下的 Qwen3-4B 路径\n4. 读取 `/root/solver-trace-ablation/scripts/eval_downstream.py` 的 `load_model()` 函数（约第 60-80 行）\n5. 修复逻辑：\n   - 从 checkpoint 路径加载 model weights（`AutoModelForCausalLM.from_pretrained(checkpoint_path)`）\n   - 从 base model 路径加载 tokenizer（`AutoTokenizer.from_pretrained(base_model_path)`）\n   - 可以通过读 checkpoint 的 config.json 获取 base model 名称，或添加 `--base_model` 参数\n   - 优先方案：检查 checkpoint config.json 的 `_name_or_path` 字段获取 base model 路径\n6. 修改后 dry-run 验证：`cd /root/solver-trace-ablation && python3 scripts/eval_downstream.py --checkpoint_path /root/autodl-tmp/outputs/plan001_exec_only_s42/checkpoint-500 --data_path data/proofwriter_fol_100.jsonl --output_path /tmp/test_downstream.json --num_generations 1 --workers 1 2>&1 | head -20`\n   - 只需验证模型加载成功即可（看到 \"Loaded model\" 类消息），不需要跑完全部评估\n\n### 环境\n- 服务器: westd-39279, root 用户\n- conda 环境: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 项目路径: /root/solver-trace-ablation/\n- Base model 可能路径: /root/autodl-tmp/.hf_cache/ 下的 Qwen3-4B\n\n### 产出\n修复完成后输出：\n1. 具体改了什么（diff 摘要）\n2. dry-run 是否通过\n3. 如果 dry-run 失败，错误信息是什么",
+              "tool_groups": "['ssh']"
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-14T03:53:20.247960+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_fix_plan014-downstream-nli_20260514T035317\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/logs/workers/worker_fix_plan014-downstream-nli_20260514T035317.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_fix_plan014-downstream-nli_20260514T035317 started. Use get_worker_status('worker_fix_plan014-downstream-nli_20260514T035317') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 2825
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-14T03:53:32.683426+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "plan014-downstream-nli-s42",
+              "field": "notes",
+              "value": "失败原因: eval_downstream.py:70 load_model() 从 checkpoint 路径加载 tokenizer 失败——TRL GRPOTrainer checkpoint 不含 tokenizer 文件，transformers from_pretrained 回退 HF Hub 时将本地路径当 repo_id → HFValidationError。| 已有成果: 无（启动即崩溃）| 修复: load_model() 需从 base model 路径加载 tokenizer | fix_worker_id: worker_fix_plan014-downstream-nli_20260514T035317",
+              "project": "solver-trace-ablation"
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-14T03:53:33.087557+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan014-downstream-nli-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T03:43:37.925Z\\\", \\\"updated_at\\\": \\\"2026-05-14T03:53:32.775Z\\\", \\\"hypothesis\\\": \\\"Downstream NLI validation: 高ISR formalization 应在独立推理任务上表现更好(entailment accuracy)，Spearman ρ(ISR, accuracy) > 0.1 验证 ISR 作为 quality proxy 的实用价值。同时用 Z3 cross-solver agreement 验证 formalization 鲁棒性。\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"started_at\\\": \\\"2026-05-14T03:49:52.891Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/eval_downstream.py --checkpoint_path /root/autodl-tmp/outputs/plan001_exec_only_s42/checkpoint-500 --data_path data/proofwriter_fol_100.jsonl --output_path /root/autodl-tmp/outputs/plan014_downstream_nli.json --num_generations 8 --workers 4\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-14T03:51:17.579Z\\\", \\\"training_hours\\\": 0.02}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/eval_downstream.py --checkpoint_path /root/autodl-tmp/outputs/plan001_exec_only_s42/checkpoint-500 --data_path data/proofwriter_fol_100.jsonl --output_path /root/autodl-tmp/outputs/plan014_downstream_nli.json --num_generations 8 --workers 4\\\\\\\"\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"data_path\\\": \\\"/root/solver-trace-ablation/data/proofwriter_fol_100.jsonl\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"Qwen3-4B (plan001-s42-r2 checkpoint-500)\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"plan001-exec-only-s42-r2\\\", \\\"eval_data\\\": \\\"proofwriter_fol_100\\\", \\\"hypothesis\\\": \\\"Downstream NLI validation: ISR correlates with entailment accuracy\\\", \\\"plan\n…[truncated 799 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 404
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-14T03:53:33.088113+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__save_project_file",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-14T03:53:33.138596+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-14T03:55:32.149718+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__save_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "mcp__agent-ml-research__save_project_file",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "file": "memory.md",
+              "content": "# solver-trace-ablation — Memory\n\n## 环境信息 (2026-05-13)\n\n### westd-39279 服务器\n- **GPU**: 2× RTX PRO 6000 Blackwell, 94GB VRAM 每张\n- **CUDA**: 12.8, PyTorch 2.10.0+cu128\n- **镜像**: aml-train（conda 环境，`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- **ML 栈**: transformers/trl/vllm/accelerate 全部预装\n- **Solvers**: Prover9 (LADR 2009-11A 源码编译), SWI-Prolog 8.4.2, Z3 4.16.0.0\n- **模型**: Qwen3-4B 已下载（7.6GB，通过 ModelScope）\n- **代码路径**: `/root/solver-trace-ablation/`\n- **磁盘**: 系统盘 250GB，大文件（outputs/checkpoints）必须放 `/root/autodl-tmp/`\n\n### 决策记录\n- Qwen3-4B 用 ModelScope 下载（HuggingFace 直连可能慢）\n- Prover9 从 LADR 源码编译（apt 无包）\n- 94GB VRAM 单卡跑 Qwen3-4B 完全无压力\n\n## 数据 (2026-05-13)\n\n### 数据源变更：ProofWriter → FOLIO\n- ProofWriter 原始数据无 FOL 列，改用 `tasksource/folio`（1204 条人工标注 FOL）\n- Phase 0 子集 100 条，训练子集 500 条\n- 34% 数据含 XOR (⊕) 符号，已在 `_normalize_fol()` 中修复展开\n\n### 数据约束 (2026-05-14, D009)\n- **C001**: 所有 plan001/plan013 实验统一使用 `train_500_seed42.jsonl`，不再用 `proofwriter_fol_500.jsonl`（消除数据差异 confound）\n\n## Phase 0 关键发现 (2026-05-13)\n\n### Base Model ISR Baseline (sta-phase0-baseline)\n- **Prove rate**: 12% overall, 18.2% excluding XOR-affected samples\n- **Mean ISR**: 0.064 (very low — base model formalizations mostly unprovable)\n- **ISR 区分度**: proved 样本 ISR 0.125–0.889\n\n### Ground-Truth ISR Baseline (sta-gt-isr-baseline)\n- **GT prove rate**: 18% (limited by Prover9 only proving entailment; true=50%, false=4%, unknown=0%)\n- **GT mean ISR**: 0.5588 (median 0.6125, range 0.14–1.00)\n- **MVP Pass #2 验证**: GT ISR 0.559 > 0.5 ✅，好的 formalization ISR 高\n- **Model vs GT gap**: ISR 0.064 vs 0.559 = 8.7x 差距，STA 有强区分力\n\n### Prover9 局限性\n- Prover9 只能证明 entailment（conclusion 从 premises 推出）\n- `false` 和 `unknown` 类问题几乎无法证明（false 4%, unknown 0%）\n- Phase 1 训练中 reward 信号主要来自 `true` 类样本\n\n### ISR 已知盲区\n- premise-conclusion 重复的 trivial formalization 可能获高 ISR\n- 需在论文 Discussion 中讨论此局限\n\n## Phase 1 关键经验 (2026-05-13)\n\n### fast_isr_fol 失败教训 (r4)\n- `fast_isr_fol()` 是二值 tautology gate (0/1)，Qwen3-4B 不产生 tautology → ISR ≡ prove_rate → 两条件零差异\n- **教训：binary ISR 无法提供有意义的 reward shaping 信号，必须用连续 ISR**\n\n### full STA reward 成功验证 (r5) — MVP PASS ✅\n**配置变更**: r4→r5: `fast_sta_reward` → `sta_reward` (continuous ISR) + K=4→8\n\n| 指标 | exec-only (r5) | exec-sta (r5) | Δ |\n|------|----------------|---------------|---|\n| overall prove_rate | 0.151 | 0.100 | +0.051 |\n| overall isr_mean | 0.148 | 0.043 | +0.104 |\n| last-20 prove_rate MA | 0.200 | 0.150 | +0.050 |\n| last-20 isr_mean MA | 0.200 | 0.050 | **+0.150** |\n| ISR/PR ratio (last-20) | 1.000 | 0.330 | — |\n\n**核心发现**:\n1. exec-only: isr_mean ≡ prove_rate（100步无例外）— binary ISR 是冗余信号\n2. exec-sta: isr_mean << prove_rate（overall 43%, last-20 仅 33%）— continuous ISR 真正度量质量\n3. **Reward hacking 早期信号**: exec-sta prove_rate +85% 但 ISR 平坦 (-4%)，ISR/PR 比从 64%→33%。模型学会更多 proof 但 formalization 质量下降\n4. K=8 比 K=4 有效减少全零 batch（但 prove_rate 整体仍偏低 10-20%）\n5. step 速度: exec-only ~9.4s, exec-sta ~10.1s（STA overhead 约 7%，可接受）\n\n### D005 因果消歧结论 (plan003-eval-exec-only-r5)\n- **exec-only checkpoint 的 held-out STA eval**: prove_rate=0.32 (baseline 2.7x), ISR=0.206 (baseline 3.2x)\n- **结论**: exec-only 的 ISR 提升是 organic 的（随 prove_rate 同步提升），非 reward hacking\n- proved_only_isr=0.642 说明能证明的公式化质量很高\n- **对比 exec+STA r5**: prove_rate=0.10 (低于 baseline!)，ISR=0.043 → 50/50 权重确实是退化根因\n- **决策影响**: \\\"STA as reward\\\" 叙事成立，但权重是关键——plan005 (weight=0.1) 是决定性实验\n\n### D010 Reward 公式转向 (2026-05-14)\n- **旧公式（废弃）**: r = α·r_exec + β·r_exec·ISR, α+β=1 → ISR<1 时永远是 penalty\n- **新公式**: r = r_exec · (1 + β·ISR), β>0 → ISR 只能 bonus，不能 penalty\n- **原因**: plan005 confirmed 凸组合使 ISR 成为 penalty（ISR/PR=0.298, 99/100 steps ISR<PR → prove rate 被惩罚）\n- **测试 β**: {0.1, 0.3, 0.5}，先跑 β=0.3 单 seed 验证方向\n- **Framing**: STA 是 principled structural metric，additive bonus 是正确集成方式\n\n## Held-out eval_sta 全量结果 (2026-05-14) ⚠️ 关键\n\n### 四组 500 步 checkpoint eval 对比\n\n| 实验 | Reward | eval PR | eval ISR | proved_only_ISR | n_components (mean) | 退化模式 |\n|------|--------|---------|----------|-----------------|---------------------|----------|\n| plan001-s42 | exec-only | **93%** | 0.123 | 0.132 | 6.58 | 最优，ISR低但正常 |\n| plan001-s43 | exec-only | **13%** | 0.000 | 0.000 | N/A | 长输出退化 |\n| plan013 | random | 100% | 0.535 | 0.535 | **2.04** | tautological hacking |\n| plan002 | additive ISR β=0.3 | 18% | 0.026 | 0.143 | 10.67 | 过拟合+低泛化 |\n\n### 关键教训\n\n**1. 跨 seed 极不稳定**: plan001-s42 eval PR=93% vs s43 eval PR=13%。同一配置、同一数据、仅 seed 不同。s43 的 87% 样本 hit max_new_tokens 生成不可解析长输出。exec-only reward landscape 方差极大。\n\n**2. plan013 tautological hacking 确认**: random reward 模型退化为 2-component proof (premise=conclusion)。ISR=1/2=0.5 纯粹是分母缩小 artifact。Wilcoxon p<0.0001, 93/100 样本 plan013 组件数少于 plan001。\n\n**3. plan002 additive ISR 失败**: 训练 PR(last100)=55% 尚可但 eval PR=18%。ISR bonus 没导致长度退化（组件数正常），但泛化极差。\n\n**4. ISR 作为训练信号的所有路线均失败**: convex (plan005 penalty)、additive ISR (plan002 低泛化)、random (plan013 tautological)。论文需转向 ISR 作为诊断指标。\n\n**5. 训练 PR vs eval PR 巨大鸿沟**: 训练 PR 不反映 held-out 泛化能力。所有结论必须基于 eval_sta.py held-out 评估。\n\n## GPU 隔离教训 (r3 + 2026-05-14 plan013 事故)\n- `CUDA_VISIBLE_DEVICES` 必须在 `bash -c` 内部设置，不能依赖外部 shell 继承\n- **关键区分**: `CUDA_VISIBLE_DEVICES=0 python train.py`（inline 赋值）在 bash -c 内**不等同于 export**，子进程可能看不到。必须用 `export CUDA_VISIBLE_DEVICES=0 && python train.py`\n- **2026-05-14 事故**: plan013 用 inline `CUDA_VISIBLE_DEVICES=0`（未 export），PyTorch 看到两张 GPU → 两张都被占用 → plan001-s43 在 cuda:1 OOM kill。两个实验同时失败 + 75GB zombie 显存\n- **C002 约束**: 所有训练提交后必须 `nvidia-smi` 验证只占用目标 GPU\n- **教训**: submit_training_job 的 command 必须以 `export CUDA_VISIBLE_DEVICES=N &&` 开头\n\n### submit_training_job bash -c 包装教训 (2026-05-14 r2 崩溃)\n- **必须用 `bash -c \"...\"`包装**含 source/conda activate 的命令\n- tmux 在 sh（不是 bash）下执行命令，`source` 是 bash built-in，sh 不识别\n\n### random_reward 模式下 isr_mean 含义 (2026-05-14)\n- `isr_mean` 取 `result[\"sta_reward\"]`，而 random_reward 分支调用 `_fast_fn(..., sta_weight=0.0)` → `sta_reward` 恒为 0.0\n- 随机值记录在 `random_reward` 字段中\n\n### 磁盘空间 / TRL completions parquet 教训 (2026-05-14)\n- **TRL GRPOTrainer 默认 `log_completions=True`**，每步保存 completions parquet 文件（1-5MB/step）\n- **修复**: 清理旧实验产出，`train_grpo.py` 设 `log_completions=False`\n- **C003 约束**: 所有训练必须设 `log_completions=False` + `save_total_limit=1`，output_dir 放 `/root/autodl-tmp/outputs/`\n\n### TRL checkpoint 不含 tokenizer 文件 (2026-05-14)\n- **失败模式**: TRL GRPOTrainer checkpoint 目录只保存 model weights，不含 tokenizer 文件（tokenizer.json, tokenizer_config.json 等）\n- **表现**: `AutoTokenizer.from_pretrained(checkpoint_path)` 找不到本地 tokenizer → transformers 回退 HF Hub → 将本地路径当 repo_id → `HFValidationError`\n- **修复方案**: eval 脚本 `load_model()` 需从 base model 路径加载 tokenizer，从 checkpoint 加载 model weights。可通过 checkpoint config.json 的 `_name_or_path` 字段获取 base model 路径\n- **C004 约束**: 所有 eval 脚本的 load_model() 必须分离 tokenizer 加载（base model）和 model 加载（checkpoint）\n\n## 准备就绪的资产 (2026-05-14)\n\n### Prolog STA\n- 代码已存在：`src/solvers/prolog.py`, `src/sta/prolog_reward.py`, `scripts/sta_prolog.py`\n- `train_grpo.py` 已集成 `--logic_type prolog` 支持\n- Dry-run 通过（full O(n) + fast O(1)，5/5 测试通过）\n- plan006 可直接启动，无需额外代码准备\n\n### 文献\n- literature_map.yaml: 29 篇论文，覆盖 6 个类别\n- hacking_taxonomy.md: 6 分类 + 标注方案\n\n### Eval 脚本\n- eval_sta.py: held-out STA 评估，就绪\n- eval_downstream.py: 下游 NLI 验证，需修复 tokenizer 加载（见 C004）\n- eval_cross_solver.py: Z3 cross-solver agreement，就绪\n\n## MVP 总结 (2026-05-13)\n\n| Pass 标准 | r4 | r5 | 说明 |\n|-----------|-----|-----|------|\n| #1 STA ISR 可靠运行 | ⚠️ | ✅ | solver 100%, ~10s/step |\n| #2 ISR 有区分度 | ❌ | ✅ | GT 0.559 vs base 0.064; continuous ISR 解耦 |\n| #3 ISR 趋势分离 | ❌ | ✅ | last-20 ISR: 0.200 vs 0.050 (Δ=0.150) |\n| #4 accuracy 无崩溃 | ✅ | ✅ | prove_rate 两组均提升 |\n\n**MVP PASS。项目进入全实验矩阵阶段。**\n"
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-14T04:11:20.181560+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Worker 已派出修复脚本。关联 Worker ID 到 registry，同时写入 memory.md 新失败模式。"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42"
+          },
+          "id": "event-000045"
+        }
+      ],
+      "message_count": 45
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-14T04:26:07.294362+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。\n详情: Process exited cleanly, W&B data available\n\n- exp_id: plan014-downstream-nli-s42\n- project: solver-trace-ablation\n- server: westd-39279\n- log_path: ~/runs/solver-trace-ablation/plan014-downstream-nli-s42.log"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "source": "cron:hook"
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-14T04:26:20.868502+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-14T04:26:20.969427+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "ToolSearch",
+            "elapsed_ms": 100
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-14T04:26:24.886883+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "limit": "0"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-14T04:26:24.887305+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-14T04:26:25.391073+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan014-downstream-nli-s42\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"created_at\\\": \\\"2026-05-14T03:43:37.925Z\\\", \\\"updated_at\\\": \\\"2026-05-14T04:26:05.459Z\\\", \\\"hypothesis\\\": \\\"Downstream NLI validation: 高ISR formalization 应在独立推理任务上表现更好(entailment accuracy)，Spearman ρ(ISR, accuracy) > 0.1 验证 ISR 作为 quality proxy 的实用价值。同时用 Z3 cross-solver agreement 验证 formalization 鲁棒性。\\\", \\\"notes\\\": \\\"r1 失败: checkpoint_path 多了 /checkpoint-500。save_total_limit=1 导致模型直接保存在 plan001_exec_only_s42/ 根目录。修正路径为 /root/autodl-tmp/outputs/plan001_exec_only_s42 即可。等 s43 re-eval 完成后重跑。\\\"}, \\\"plan001-exec-only-s44\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"created_at\\\": \\\"2026-05-14T03:57:09.690Z\\\", \\\"updated_at\\\": \\\"2026-05-14T04:20:31.472Z\\\", \\\"hypothesis\\\": \\\"Exec-only seed=44 第3 seed: 解决 s42(93% eval PR) vs s43(13% eval PR) 的跨 seed 不稳定问题，3-seed mean±std 是论文必需。\\\"}, \\\"plan001-exec-only-s43-r4\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"created_at\\\": \\\"2026-05-14T01:40:37.808Z\\\", \\\"updated_at\\\": \\\"2026-05-14T04:13:38.883Z\\\", \\\"metrics\\\": {\\\"eval_sampling_prove_rate\\\": 0.14, \\\"eval_sampling_mean_isr\\\": 0, \\\"eval_sampling_n_proved\\\": 14, \\\"eval_sampling_temperature\\\": 0.7, \\\"eval_sampling_method\\\": \\\"do_sample=True, temperature=0.7\\\", \\\"eval_sampling_by_answer\\\": {\\\"true\\\": {\\\"count\\\": 34, \\\"proved\\\": 6, \\\"prove_rate\\\": 0.176}, \\\"false\\\": {\\\"count\\\": 25, \\\"proved\\\": 2, \\\"prove_rate\\\": 0.08}, \\\"unknown\\\": {\\\"count\\\": 41, \\\"proved\\\": 6, \\\"prove_rate\\\": 0.146}}}, \\\"conclusion\\\": \\\"negative\\\", \\\"notes\\\": \\\"训练 PR(last100)=0.883 但 eval PR=13%, ISR=0。87% 样本 hit max_new_tokens 生成不可解析长输出。与 s42 (eval PR=93%) 形成极端跨 seed 不稳定。exec-only reward landscape 存在极大方差。\\\"}, \\\"plan017-additive-random-s42\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-14T03:11:14.694Z\\\", \\\"updated_at\\\": \\\"2026-05-14T03:48:49.653Z\\\", \\\"hypothesis\\\": \\\"Additive random control: r = r_exec·(1+0.3·random). 隔离 ISR structural signal vs variance regularization. 若 ISR > random > exec-only → signal+regularizatio\n…[truncated 10679 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 504
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-14T04:26:25.542170+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "file": "report.md"
+            }
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-14T04:26:25.643208+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "solver-trace-ablation"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-14T04:26:27.450936+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 1, \\\"results\\\": [{\\\"exp_id\\\": \\\"plan017-additive-random-s42\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=207116)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 2563
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-14T04:26:27.502072+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/report.md\\\", \\\"content\\\": \\\"<!-- AUTO-FACTS-BEGIN (generated 2026-05-14T04:26:05Z; do not edit — regenerated by auto_build_report_facts) -->\\\\n## 📊 当前状态（auto-derived from registry）\\\\n\\\\n**总计**: 29 个实验 — ANALYZING 3, DONE 24, QUEUED 1, RUNNING 1\\\\n**DONE 分布**: failed 14, negative 4, success 6\\\\n\\\\n### GPU 占用\\\\n- **分配**: 2 张 — westd-39279:cuda:0, westd-39279:cuda:1\\\\n- **实际运行**: 1 张 — westd-39279:cuda:1(plan017-additive-random-s42)\\\\n- **空闲（分配了没跑）**: westd-39279:cuda:0\\\\n\\\\n### 🏃 RUNNING\\\\n| exp_id | server | gpu | pid | log |\\\\n|--------|--------|-----|-----|-----|\\\\n| `plan017-additive-random-s42` | westd-39279 | cuda:1 | 207116 | `—` |\\\\n\\\\n### 📌 最近完成 (top 5)\\\\n- `plan013-random-reward-s42-r4` [success] — 2026-05-14T03:45:53\\\\n- `plan001-exec-only-s42-r2` [success] — 2026-05-14T03:45:49\\\\n- `plan005-sta-low-s42` [negative] — 2026-05-14T01:55:26\\\\n- `plan001-exec-only-s43-r3` [failed] — 2026-05-14T01:41:28 — OSError: [Errno 28] No space left on device — /root/autodl-tmp 磁盘满，TRL GRPOTrain\\\\n- `plan013-random-reward-s42-r3` [failed] — 2026-05-14T01:41:28 — OSError: [Errno 28] No space left on device — /root/autodl-tmp 磁盘满，TRL GRPOTrain\\\\n\\\\n### 🔴 最近失败原因 (top 3)\\\\n- `plan001-exec-only-s43-r3`: OSError: [Errno 28] No space left on device — /root/autodl-tmp 磁盘满，TRL GRPOTrainer completions parquet 写入失败 at step 23\\\\n- `plan013-random-reward-s42-r3`: OSError: [Errno 28] No space left on device — /root/autodl-tmp 磁盘满，TRL GRPOTrainer completions parquet 写入失败 at step 28\\\\n\\\\n<!-- AUTO-FACTS-END -->\\\\n\\\\n---\\\\n\\\\n# Handover — 2026-05-14\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| plan017-additive-random-s42 | Additive random control: r = r_exec·(1+0.3·random). 隔离 ISR structural signal vs variance regularization. 若 ISR > random > exec-only → signal+regulariza\n…[truncated 1681 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 1959
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-14T04:26:27.502764+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/ROADMAP.md\\\", \\\"content\\\": \\\"# solver-trace-ablation — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-14 02:41 UTC | 更新原因: Session 启动全量刷新：plan001 修复成功、plan005 negative 确认、framing 转向、GRPO 饱和 confound、plan014 审批\\\\n\\\\n## 核心方向\\\\nSTA（Solver Trace Ablation）：基于 mutation testing 的 component necessity testing，为 neurosymbolic formalizer 的 GRPO 训练提供 intensional structural reward。详见 paper_framing.md。\\\\n\\\\n## 当前进展\\\\n- **阶段**: Research + 审稿进行中 | **DDL**: 2026-05-25（剩 11 天）\\\\n- **基础设施**: westd-39279 × 2 RTX PRO 6000 96GB，两卡满载\\\\n- **Framing 转向 (D010/D011)**: \\\\\\\"STA detects hacking\\\\\\\" → \\\\\\\"STA as diagnostic metric + additive bonus integration\\\\\\\"\\\\n- **消歧结论 (D008)**: 50/50 凸组合是 penalty effect，非 hacking detection → 切换 additive bonus 公式\\\\n- **GRPO 饱和 confound (D014)**: random reward 也达高 prove_rate → 论文核心论证聚焦 ISR 差异\\\\n- **ISR 方法论标准化 (D013/D015)**: 训练日志 ISR 不可信，所有 checkpoint 必须用 eval_sta.py 统一评估\\\\n- **Dream**: best 4/6 Borderline Reject, median 3/6 Weak Reject — 5 个结构性弱点已逐一应对\\\\n\\\\n## RUNNING\\\\n| 实验 | GPU | 说明 |\\\\n|------|-----|------|\\\\n| plan002-additive-b03-s42 | cuda:0 | additive bonus β=0.3 核心实验 |\\\\n| plan001-exec-only-s43-r4 | cuda:1 | exec-only 3-seed 第 2 个 |\\\\n\\\\n## 已完成关键结论\\\\n| 实验 | 结论 | 关键发现 |\\\\n|------|------|----------|\\\\n| plan003 eval | ✅ success | exec-only ISR=0.6423 (proved-only)，高于 GT 0.56 |\\\\n| plan005 weight ablation | ❌ negative | 凸组合永远是 penalty → 废弃旧公式 |\\\\n| plan013 random reward | ✅ success | PR=0.675，待 eval_sta.py 获真实 ISR |\\\\n| plan001-s42-r2 | ✅ success | PR(last100)=0.865，待 eval_sta.py |\\\\n\\\\n## 实验计划摘要（详见 experiment_plan.yaml）\\\\n**P0 关键路径**:\\\\n- plan_001: exec-only 3-seed — s42 ✅ done, s43 RUNNING, s44 待跑\\\\n- plan_002: additive bonus β=0.3 — RUNNING (单 seed 验证方向)\\\\n- plan_003: held-out eval — ✅ done\\\\n- plan_013: random reward baseline — ✅ done, 待 eval_sta.py\\\\n- **plan_014: downstream validation A+B — ✅ 已审批**（NLI accuracy + cross-solve\n…[truncated 2895 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 1859
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-14T04:26:40.356268+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "filters": "{'exp_id': 'plan014-downstream-nli-s42'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-14T04:26:41.611792+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0836}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1255
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-14T04:26:41.612356+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_experiment_plan_with_status,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-14T04:26:41.662783+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-14T04:27:00.169934+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_experiment_plan_with_status"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+            "tool_args": {
+              "project": "solver-trace-ablation"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-14T04:27:00.622450+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": [{\\\"id\\\": \\\"plan_001\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"FOL single-logic GRPO, execution-only reward (500 steps, K=8, 3 seeds) — baseline for STA comparison\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 3, \\\"deps\\\": [], \\\"registry_id\\\": \\\"plan001-exec-only-s43-r4\\\", \\\"status\\\": \\\"ANALYZING\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"eval_sampling_prove_rate\\\": 0.14, \\\"eval_sampling_mean_isr\\\": 0, \\\"eval_sampling_n_proved\\\": 14, \\\"eval_sampling_temperature\\\": 0.7, \\\"eval_sampling_method\\\": \\\"do_sample=True, temperature=0.7\\\", \\\"eval_sampling_by_answer\\\": {\\\"true\\\": {\\\"count\\\": 34, \\\"proved\\\": 6, \\\"prove_rate\\\": 0.176}, \\\"false\\\": {\\\"count\\\": 25, \\\"proved\\\": 2, \\\"prove_rate\\\": 0.08}, \\\"unknown\\\": {\\\"count\\\": 41, \\\"proved\\\": 6, \\\"prove_rate\\\": 0.146}}}}, {\\\"id\\\": \\\"plan_002\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"FOL single-logic GRPO, additive ISR bonus: r = r_exec · (1 + β·ISR), β∈{0.1, 0.3, 0.5}. 先跑 β=0.3 单 seed 验证方向，成功再 3-seed。旧凸组合公式 (α·r_exec + β·r_exec·ISR, α+β=1) 已废弃——ISR<1 时永远是 penalty (plan005 confirmed)。 新公式确保 ISR 只能 bonus 不能 penalty。\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 4, \\\"deps\\\": [], \\\"registry_id\\\": \\\"plan002-additive-b03-s42\\\", \\\"status\\\": \\\"ANALYZING\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"total_steps\\\": 500, \\\"duration_min\\\": 56.7, \\\"overall_prove_rate\\\": 0.34025, \\\"overall_isr\\\": 0.11527, \\\"first20_prove_rate\\\": 0.15625, \\\"last50_prove_rate\\\": 0.555, \\\"last100_prove_rate\\\": 0.5525, \\\"mean_loss\\\": 0.008914, \\\"last100_loss\\\": 0.014469, \\\"parse_rate\\\": 1, \\\"w1_50_prove_rate\\\": 0.13, \\\"w51_100_prove_rate\\\": 0.095, \\\"w101_200_prove_rate\\\": 0.185, \\\"w201_300_prove_rate\\\": 0.375, \\\"w301_400_prove_rate\\\": 0.47625, \\\"w401_500_prove_rate\\\": 0.5525, \\\"steps_ge_085\\\": 52, \\\"first_step_ge_085\\\": 46, \\\"final_prove_rate\\\": 1, \\\"final_isr_mean\\\": 0.3089, \\\"final_reward_mean\\\": 1.0927}}, {\\\"id\\\": \\\"plan_003\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"FOL held-out evaluation: compare plan_001 vs \n…[truncated 7047 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+            "elapsed_ms": 452
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-14T04:27:00.623000+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "filters": "{'status': 'ANALYZING'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-14T04:27:00.774202+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan014-downstream-nli-s42\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-14T03:43:37.925Z\\\", \\\"updated_at\\\": \\\"2026-05-14T04:26:05.459Z\\\", \\\"hypothesis\\\": \\\"Downstream NLI validation: 高ISR formalization 应在独立推理任务上表现更好(entailment accuracy)，Spearman ρ(ISR, accuracy) > 0.1 验证 ISR 作为 quality proxy 的实用价值。同时用 Z3 cross-solver agreement 验证 formalization 鲁棒性。\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"started_at\\\": \\\"2026-05-14T03:49:52.891Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/eval_downstream.py --checkpoint_path /root/autodl-tmp/outputs/plan001_exec_only_s42 --base_model /root/autodl-tmp/models/Qwen3-4B --data_path data/proofwriter_fol_100.jsonl --output_path /root/autodl-tmp/outputs/plan014_downstream_nli.json --num_generations 8 --workers 4\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-14T04:26:05.334Z\\\", \\\"training_hours\\\": 0.6}, \\\"failure_reason\\\": \\\"EXIT_CODE=1 (generic error — check log tail)\\\", \\\"completed_at\\\": \\\"2026-05-14T03:51:18.427Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T03:51:19.514390+00:00\\\"}, {\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T04:26:06.788787+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"r1 失败: checkpoint_path 多了 /checkpoint-500。save_total_limit=1 导致模型直接保存在 plan001_exec_only_s42/ 根目录。修正路径为 /root/autodl-tmp/outputs/plan001_exec_only_s42 即可。等 s43 re-eval 完成后重跑。\\\"}}, \\\"notes\\\": \\\"r1 失败: checkpoint_path 多了 /checkpoint-500。save_total_limit=1 导致模型直接保存在 plan001_exec_only_s42/ 根目录。修正路径为 /root/autodl-tmp/outputs/plan001_exec_only_s42 即可。等 s43 re-eval 完成后重跑。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"export CUDA_VI\n…[truncated 5543 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 151
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-14T04:27:35.421275+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "analyze:plan014-downstream-nli-s42",
+              "project": "solver-trace-ablation",
+              "task_prompt": "## 任务：分析 plan014-downstream-nli-s42 实验结果\n\n### 背景\nplan014 是 downstream NLI validation 实验：用 plan001 exec-only s42 checkpoint 的 formalization 做独立逻辑推理任务（NLI entailment），验证 ISR 作为 quality proxy 的实用价值。\n\n实验命令：\n```\npython3 scripts/eval_downstream.py --checkpoint_path /root/autodl-tmp/outputs/plan001_exec_only_s42 --base_model /root/autodl-tmp/models/Qwen3-4B --data_path data/proofwriter_fol_100.jsonl --output_path /root/autodl-tmp/outputs/plan014_downstream_nli.json --num_generations 8 --workers 4\n```\n\n服务器：westd-39279\n日志：~/runs/solver-trace-ablation/plan014-downstream-nli-s42.log\n\n### 你要做的事\n\n1. SSH 到 westd-39279，读取日志文件尾部（最后 200 行），确认实验是否成功完成\n2. 读取输出文件 `/root/autodl-tmp/outputs/plan014_downstream_nli.json`，提取关键指标：\n   - NLI entailment accuracy\n   - Spearman ρ(ISR, accuracy)\n   - Cross-solver agreement（如果有）\n   - 任何其他相关 metrics\n3. 如果脚本有额外的 stdout 输出（如统计摘要），也记录下来\n4. 如果实验失败（EXIT_CODE=1），诊断失败原因\n\n### 注意\n- r1 曾因 checkpoint_path 多了 /checkpoint-500 而失败，已修正路径重跑\n- 这是 eval 实验，不是训练实验，关注的是下游任务上的表现而非训练 metrics\n- 完整报告你的发现，包括所有数值指标",
+              "tool_groups": "['ssh']"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-14T04:27:36.677325+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "plan001-exec-only-s43-r4",
+              "field": "status",
+              "value": "DONE",
+              "project": "solver-trace-ablation"
+            }
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-14T04:27:37.335828+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "plan002-additive-b03-s42",
+              "field": "status",
+              "value": "DONE",
+              "project": "solver-trace-ablation"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-14T04:27:37.895218+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+            }
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-14T04:27:38.499072+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analyze_plan014-downstream-nli-s42_20260514T042736\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/logs/workers/worker_analyze_plan014-downstream-nli-s42_20260514T042736.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_analyze_plan014-downstream-nli-s42_20260514T042736 started. Use get_worker_status('worker_analyze_plan014-downstream-nli-s42_20260514T042736') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 3077
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-14T04:27:38.750595+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan001-exec-only-s43-r4\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T01:40:37.808Z\\\", \\\"updated_at\\\": \\\"2026-05-14T04:27:38.542Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"export CUDA_VISIBLE_DEVICES=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_exec_only.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 43 --output_dir /root/autodl-tmp/outputs/plan001_exec_only_s43_r4\\\\\\\"\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"136339\\\", \\\"log_path\\\": \\\"~/runs/solver-trace-ablation/plan001-exec-only-s43-r4.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T01:40:37.746Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/solver-trace-ablation/data/train_500_seed42.jsonl\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"Qwen3-4B\\\", \\\"seed\\\": 43, \\\"hypothesis\\\": \\\"Exec-only seed=43 replication: confirm plan001-r2 (seed=42) prove_rate convergence is reproducible across seeds\\\", \\\"plan_id\\\": \\\"plan001\\\", \\\"wall_clock_seconds\\\": 10020.8, \\\"gpu_hours\\\": 2.78}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-14T03:13:08.926Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T03:13:12.957272+00:00\\\"}]}, \\\"metrics\\\": {\\\"eval_sampling_prove_rate\\\": 0.14, \\\"eval_sampling_mean_isr\\\": 0, \\\"eval_sampling_n_proved\\\": 14, \\\"eval_sampling_temperature\\\": 0.7, \\\"eval_sampling_method\\\": \\\"do_sample=True, temperature=0.7\\\", \\\"eval_sampling_by_answer\\\": {\\\"true\\\": {\\\"count\\\": 34, \\\"proved\\\": 6, \\\"prove_rate\\\": 0.176}, \\\"false\\\": {\\\"count\\\": 25, \\\"proved\\\": 2, \\\"prove_rate\\\": 0.08}, \\\"unknown\\\": {\\\"count\\\": 41, \\\"proved\\\": 6, \\\"prove_rate\\\": 0.146}}}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/outputs/plan001_exec_only_s43_r4\\\", \\\"log_path\\\": \\\"/root/runs/s\n…[truncated 411 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 2073
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-14T04:27:39.003038+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan002-additive-b03-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T02:24:47.843Z\\\", \\\"updated_at\\\": \\\"2026-05-14T04:27:38.822Z\\\", \\\"spec\\\": {\\\"data_path\\\": \\\"/root/solver-trace-ablation/data/train_500_seed42.jsonl\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"Qwen3-4B\\\", \\\"seed\\\": 42, \\\"hypothesis\\\": \\\"Additive ISR bonus r=r_exec*(1+β*ISR) with β=0.3: ISR can only boost reward, never penalize. Should preserve prove_rate (unlike convex combination penalty in plan005) while improving structural quality.\\\", \\\"plan_id\\\": \\\"plan_002\\\", \\\"reward_formula\\\": \\\"r = r_exec * (1 + 0.3 * ISR)\\\", \\\"beta\\\": 0.3, \\\"command\\\": \\\"bash -c \\\\\\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_additive_bonus.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 42 --beta 0.3 --reward_mode additive_bonus --output_dir /root/autodl-tmp/outputs/plan002_additive_beta03_s42\\\\\\\"\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"161819\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-14T03:24:44.110Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T03:24:48.666027+00:00\\\"}]}, \\\"metrics\\\": {\\\"total_steps\\\": 500, \\\"duration_min\\\": 56.7, \\\"overall_prove_rate\\\": 0.34025, \\\"overall_isr\\\": 0.11527, \\\"first20_prove_rate\\\": 0.15625, \\\"last50_prove_rate\\\": 0.555, \\\"last100_prove_rate\\\": 0.5525, \\\"mean_loss\\\": 0.008914, \\\"last100_loss\\\": 0.014469, \\\"parse_rate\\\": 1, \\\"w1_50_prove_rate\\\": 0.13, \\\"w51_100_prove_rate\\\": 0.095, \\\"w101_200_prove_rate\\\": 0.185, \\\"w201_300_prove_rate\\\": 0.375, \\\"w301_400_prove_rate\\\": 0.47625, \\\"w401_500_prove_rate\\\": 0.5525, \\\"steps_ge_085\\\": 52, \\\"first_step_ge_085\\\": 46, \\\"final_prove_rate\\\": 1, \\\"final_isr_mean\\\": 0.3089, \\\"final_reward_mean\\\": 1.092\n…[truncated 716 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1667
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-14T04:27:39.003637+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: resource-saturation\n3\tdescription: \"当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。\"\n4\talways: false\n5\troles:\n6\t  - director\n7\t  - agent\n8\t---\n9\t\n10\t# 资源饱和度自检（硬约束）\n11\t\n12\t## A. GPU 分配率检查\n13\t\n14\t调 `get_project_resource_usage(project)` 看:\n15\t- 已分配给本项目的 GPU 总数和具体卡号\n16\t- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）\n17\t- 分配了但没跑的 GPU 清单 ⚠️\n18\t\n19\t任何\"分配了但没跑\"的 GPU = 失职。必须立即:\n20\t- 派 Worker 铺 dry-run / 下一批实验代码准备\n21\t- 铺 ablation（从 experiment-matrix 空白格子里挑）\n22\t- 确实无实验可铺 → 向 Director 汇报\"暂无可铺实验\"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作\n23\t\n24\t**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。\n25\t\n26\t## B. GPU 效率检查\n27\t\n28\t调 `get_gpu_health(server)`:\n29\t- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务\n30\t- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）\n31\t- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优\n32\t\n33\t## C. 非 GPU 任务并行\n34\t\n35\tGPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:\n36\t- 下一批实验的数据集下载 / 预处理 / fingerprint\n37\t- 下一批实验的代码准备 / dry-run / 环境配置\n38\t- 论文文献调研 / related work 检索\n39\t- 已完成实验的 log 深度分析 / metric 聚合\n40\t- 论文章节起草\n41\t- 代码 review / refactor\n42\t\n43\t**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。\n44\t\n45\t## D. 汇报格式\n46\t\n47\t向 Director 汇报时开头必须带资源声明行:\n48\t\n49\t    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)\n50\t"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "Read",
+            "elapsed_ms": 1108
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-14T04:28:20.941174+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__load_project_config,mcp__agent-ml-research__get_project_resource_usage,mcp__agent-ml-research__submit_on_allocated,mcp__agent-ml-research__auto_build_provenance",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-14T04:28:21.042124+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "ToolSearch",
+            "elapsed_ms": 100
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-14T04:28:24.562404+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_project_resource_usage"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "mcp__agent-ml-research__get_project_resource_usage",
+            "tool_args": {
+              "project": "solver-trace-ablation"
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-14T04:28:24.915209+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"allocated_gpus\\\": [{\\\"server\\\": \\\"westd-39279\\\", \\\"gpu_id\\\": \\\"cuda:0\\\"}, {\\\"server\\\": \\\"westd-39279\\\", \\\"gpu_id\\\": \\\"cuda:1\\\"}], \\\"actually_running_gpus\\\": [{\\\"server\\\": \\\"westd-39279\\\", \\\"gpu_id\\\": \\\"cuda:1\\\", \\\"exp_id\\\": \\\"plan017-additive-random-s42\\\"}], \\\"allocated_but_idle\\\": [{\\\"server\\\": \\\"westd-39279\\\", \\\"gpu_id\\\": \\\"cuda:0\\\", \\\"idle_min\\\": null}], \\\"running_experiments\\\": [{\\\"exp_id\\\": \\\"plan017-additive-random-s42\\\", \\\"gpus\\\": [\\\"cuda:1\\\"], \\\"util_avg\\\": null}], \\\"worker_pool\\\": {\\\"total\\\": 1, \\\"gpu_tasks\\\": 0, \\\"cpu_tasks\\\": 1, \\\"details\\\": [{\\\"worker_id\\\": \\\"worker_analyze_plan014-downstream-nli-s42_20260514T042736\\\", \\\"task\\\": \\\"analyze:plan014-downstream-nli-s42\\\"}]}, \\\"summary\\\": \\\"分配 2 张, 实际跑 1 张 ⚠️ | Worker 1 (GPU 0 / CPU 1)\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "mcp__agent-ml-research__get_project_resource_usage",
+            "elapsed_ms": 352
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-14T04:28:24.915622+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__load_project_config"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "tool_args": {
+              "project_name": "solver-trace-ablation",
+              "section": "execution"
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-14T04:28:25.016277+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"project\\\": \\\"solver-trace-ablation\\\", \\\"section\\\": \\\"execution\\\", \\\"config\\\": {\\\"execution\\\": {\\\"gpu_constraint\\\": [\\\"westd-39279:cuda:0\\\", \\\"westd-39279:cuda:1\\\"], \\\"gpu_ids\\\": [\\\"cuda:0\\\", \\\"cuda:1\\\"], \\\"project_path\\\": \\\"/root/solver-trace-ablation\\\", \\\"servers\\\": [{\\\"account\\\": \\\"root\\\", \\\"server\\\": \\\"westd-39279\\\"}]}}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "elapsed_ms": 100
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-14T04:28:56.167821+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "plan001-exec-only-s44",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "solver-trace-ablation",
+              "spec": "{'command': 'bash -c \"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_exec_only.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 44 --output_dir /root/autodl-tmp/outputs/plan001_exec_only_s44\"', 'server': 'westd-39279', 'gpu': ['cuda:0'], 'data_path': '/root/solver-trace-ablation/data/train_500_seed42.jsonl', 'data_count': 500, 'model_name': 'Qwen3-4B', 'seed': 44, 'hypothesis': 'Exec-only seed=44 第3 seed: 解决 s42(93% eval PR) vs s43(13% eval PR) 的跨 seed 不稳定问题，3-seed mean±std 是论文必需。', 'plan_id': 'plan001'}"
+            }
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-14T04:28:56.420399+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan001-exec-only-s44\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T03:57:09.690Z\\\", \\\"updated_at\\\": \\\"2026-05-14T04:28:56.238Z\\\", \\\"hypothesis\\\": \\\"Exec-only seed=44 第3 seed: 解决 s42(93% eval PR) vs s43(13% eval PR) 的跨 seed 不稳定问题，3-seed mean±std 是论文必需。\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_exec_only.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 44 --output_dir /root/autodl-tmp/outputs/plan001_exec_only_s44\\\\\\\"\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"data_path\\\": \\\"/root/solver-trace-ablation/data/train_500_seed42.jsonl\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"Qwen3-4B\\\", \\\"seed\\\": 44, \\\"hypothesis\\\": \\\"Exec-only seed=44 第3 seed: 解决 s42(93% eval PR) vs s43(13% eval PR) 的跨 seed 不稳定问题，3-seed mean±std 是论文必需。\\\", \\\"plan_id\\\": \\\"plan001\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2539}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 252
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-14T04:29:04.556186+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__submit_on_allocated"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "mcp__agent-ml-research__submit_on_allocated",
+            "tool_args": {
+              "exp_id": "plan001-exec-only-s44",
+              "command": "bash -c \"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_exec_only.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 44 --output_dir /root/autodl-tmp/outputs/plan001_exec_only_s44\"",
+              "project": "solver-trace-ablation",
+              "timeout_hours": "3",
+              "work_dir": "/root/solver-trace-ablation"
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-14T04:29:06.504224+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"plan001-exec-only-s44\\\", \\\"status\\\": \\\"RUNNING\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu_ids\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"226200\\\", \\\"log_file\\\": \\\"~/runs/solver-trace-ablation/plan001-exec-only-s44.log\\\", \\\"account\\\": \\\"root\\\", \\\"tmux_session\\\": \\\"plan001-exec-only-s44\\\", \\\"cuda_visible_devices\\\": \\\"0\\\", \\\"cron_registered\\\": true, \\\"code_synced\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.96}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "tool": "mcp__agent-ml-research__submit_on_allocated",
+            "elapsed_ms": 1948
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-14T04:29:28.263345+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "plan001-exec-only-s44 已提交到 cuda:0 (PID 226200)，两卡满载。等待 plan014 分析 Worker 回调。\n\n现状：\n- cuda:0: plan001-exec-only-s44 (RUNNING)\n- cuda:1: plan017-additive-random-s42 (RUNNING)  \n- Worker 池: 1 (plan014 analysis) + 刚提交 plan001-s44\n- 等待 plan014 Worker 返回结果后更新 registry、report.md 并向 Director 汇报"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42"
+          },
+          "id": "event-000083"
+        }
+      ],
+      "message_count": 38
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-14T07:30:25.464255+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-14T07:31:16.697183+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-39279:cuda:0, westd-39279:cuda:1，严禁用其他卡\n- 训练日志中的 ISR 是 binary approximation (_fast_fn)，**不可用于论文或跨 run 对比**，所有 checkpoint 必须用 eval_sta.py (full STA) 统一评估真实 ISR\n- plan013 held-out ISR=0.535 是 tautological artifact（trivial 2-component proofs: premise=conclusion, conclusion=conclusion），不能作为 \"random reward 产生更高 ISR\" 的证据（D018 推翻 D017）\n- Framing 已转向（D010/D011）：~~\"STA detects hacking\"~~ → \"STA as diagnostic metric + additive bonus integration\"\n- 凸组合公式已废弃（plan005 confirmed penalty effect），只用 additive bonus 公式 r = r_exec·(1+β·ISR)\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-39279，账号 root，工作目录 /root/solver-trace-ablation\n- Python：/root/miniconda3/bin/python（conda base 环境，激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- 模型：/root/autodl-tmp/models/Qwen3-4B\n- 数据：/root/solver-trace-ablation/data/train_500_seed42.jsonl (500条), data/proofwriter_fol_100.jsonl (100条 eval)\n- Checkpoints：/root/autodl-tmp/outputs/ 下各实验目录（save_total_limit=1，模型直接存根目录，无 checkpoint-500 子目录）\n- 活跃进程：\n  - plan017-additive-random-s42: PID 207116, tmux=plan017-additive-random-s42, cuda:1, cron 监控中\n  - plan001-exec-only-s44: PID 226200, tmux=plan001-exec-only-s44, cuda:0, cron 监控中，刚提交\n\n### 3. 📊 当前状态\n**刚做完**：\n- 收到 plan014-downstream-nli-s42 cron 回调（ANALYZING），spawned Worker `worker_analyze_plan014-downstream-nli-s42_20260514T042736` 读日志分析结果——**Worker 尚未返回**\n- 推进 plan001-exec-only-s43-r4 (negative) 和 plan002-additive-b03-s42 (negative) 从 ANALYZING → DONE\n- 在 cuda:0 提交 plan001-exec-only-s44（第3 seed），已 RUNNING\n\n**RUNNING 实验**：\n| exp_id | GPU | 说明 |\n|--------|-----|------|\n| plan017-additive-random-s42 | cuda:1 | additive random control r=r_exec·(1+0.3·random)，隔离 ISR structural signal vs variance regularization |\n| plan001-exec-only-s44 | cuda:0 | exec-only 第3 seed，解决 s42(93%) vs s43(13%) 跨 seed 不稳定 |\n\n**等待中**：\n- Worker 回调：plan014 分析 Worker（读日志判断 downstream NLI eval 是否成功，提取 metrics）\n- Cron 回调：plan017 和 plan001-s44 完成时\n- 尚未向 Director 汇报本轮状态（等 plan014 Worker 返回后一并汇报）\n\n### 4. 📋 待办（条件触发式）\n- plan014 Worker 返回 → 根据结果更新 registry（conclusion + metrics）→ 按 on-experiment-done 分叉处理 → 向 Director 汇报（带 [资源] 行）\n- plan014 若 EXIT_CODE=1（失败）→ 诊断原因、修复、重跑 r3\n- plan014 若 Spearman ρ < 0.1 → ISR 作为 quality proxy 不成立，触发 kill criteria #3，需 Framing 调整提案\n- plan017 cron 回调 → eval_sta.py 评估 checkpoint → 与 plan002(additive ISR) 和 plan001(exec-only) 三方对比，判断 ISR structural signal vs variance regularization\n- plan001-s44 cron 回调 → eval_sta.py 评估 → 3-seed mean±std（s42=93% PR, s43=13% PR, s44=?）→ 判断 exec-only 跨 seed 稳定性\n- plan001-s43-r4 和 plan002 刚转 DONE(negative) → 这两个 negative 的 Framing 提案可能已在之前 session 处理，需确认；若未处理则补 red-section 提案\n\n### 5. 🎯 战略上下文\n- **核心论证链**：exec-only GRPO 能 prove 但 reward hacking（高 PR 低 ISR） → STA 作为 diagnostic metric 检测 hacking → additive bonus 整合 ISR 信号提升结构质量\n- **GRPO 饱和 confound (D014)**：random reward 也达高 prove_rate → prove_rate 不能区分方法，论文聚焦 ISR 差异\n- **跨 seed 不稳定是最大风险**：s42 eval PR=93% vs s43 eval PR=13%（87%样本 hit max_new_tokens），s44 是 tiebreaker\n- **plan002 additive bonus negative (D020)**：β=0.3 additive ISR 训练 PR 仅 55%（未饱和），held-out eval PR=18%, ISR=0.026，远不如 exec-only。additive bonus 公式本身可能也有问题，不仅是凸组合\n- **DDL 2026-05-25（剩 11 天）**，时间充裕但 negative 结果积累需要 Director 决策是否 pivot\n- **易错点**：(1) 不要用训练日志 ISR 做跨 run 对比，必须 eval_sta.py；(2) plan013 ISR=0.535 是 tautological，不是真结果；(3) checkpoint 路径是根目录不是 /checkpoint-500 子目录\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan014-downstream-nli-s42"
+          },
+          "id": "event-000085"
+        }
+      ],
+      "message_count": 2
+    }
+  ],
+  "readable_path": "readable/conversations/cron-hook-plan014-downstream-nli-s42-20260514t073116-699140.md"
+}

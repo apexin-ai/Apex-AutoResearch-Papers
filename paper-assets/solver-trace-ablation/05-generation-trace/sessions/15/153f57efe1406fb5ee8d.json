@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "153f57efe1406fb5ee8d",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "cleanup d165 checkpoints",
+  "task_key": "worker_cleanup_d165-checkpoints_20260521T172355",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_cleanup_d165-checkpoints_20260521T172355_result.json",
+    "occurrence": 1,
+    "bytes": 184,
+    "sha256": "52da5501949e035afb9cf363566c584f8a02c336996f532dff3c8aca689919c9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已删除 D165 三个 checkpoint 目录，释放约 25G 空间。\n\n- 删除前：~9GB 可用（97%）\n- 删除后：28GB 可用（90%）\n- D158 SFT checkpoint 未动"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/cleanup-d165-checkpoints.md"
+}

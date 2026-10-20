@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "461aa6b83fee42a11036",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "fix d134 pipeline oom restart",
+  "task_key": "worker_fix_d134-pipeline-oom-restart_20260518T105107",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_d134-pipeline-oom-restart_20260518T105107_result.json",
+    "occurrence": 1,
+    "bytes": 665,
+    "sha256": "e98c630c4a9113296a276b81e2051ce4a7b39d09fc2a3ff7874f7c304a50fa44"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n```\nConfig 确认: per_device_batch_size=2, gradient_accumulation_steps=4, num_generations=4\n  (YAML 默认 batch=4/grad_accum=2，之前 pipeline 缺 CLI 覆盖导致 OOM)\n\n修复措施:\n  1. train 命令添加 --per_device_batch_size 2 --gradient_accumulation_steps 4\n  2. 移除 set -eo pipefail，改用 PIPESTATUS + || true 容错\n  3. 清理失败的 s47 输出目录后重启\n\n新 PID: 2018 (GPU 0, 84778 MiB / 97887 MiB)\nStep 30/500 确认无 OOM（之前在 step 21 崩溃）\n磁盘: 193G/250G used, 58G available\n\n预计时间: ~11s/step → ~92min/run (train), eval+classify ~15min/run\n  10 runs 总计 ~18h\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-d134-pipeline-oom-restart.md"
+}

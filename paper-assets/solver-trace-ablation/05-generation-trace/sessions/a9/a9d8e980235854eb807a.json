@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a9d8e980235854eb807a",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "paper r29 group2 method etc",
+  "task_key": "worker_paper_r29-group2-method-etc_20260522T142617",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_r29-group2-method-etc_20260522T142617_result.json",
+    "occurrence": 1,
+    "bytes": 1280,
+    "sha256": "7571ede31029049bf453e4809cf8cc57334f079125e8279a4699c7123cc7dac2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 5 项完成。汇总：\n\n### B. ISR vs Shapley（method.tex:44-45）\n- 在 ISR 定义段（eq:isr 后）插入 2 行：ISR = Shapley $(n{-}1)$-coalition 退化、$O(2^n) \\to O(n)$ 复杂度对比、binary framing 的设计取舍。引用 `lundberg2017unified`。\n\n### M. ISR unproved（method.tex:44）\n- 同一位置，在 ISR 定义后加 \"Unproved samples receive ISR=0 by definition\"。\n\n### C. Discussion 扩展（conclusion.tex:2-4）\n- 原文 1 句扩展为 4 句：STA 泛化性（formal verifiers / test suites）、Goldilocks hypothesis（capacity narrow band + 50% non-convergence）、ISR 局限性与 per-sample mode 诊断路径。\n\n### E. Survivorship bias（limitations.tex:6）\n- seed power 段后插入 1 句：degeneration conditional on convergence，3/6 exec-only seeds 不收敛保留 85-87% genuine，指向 `app:seed-convergence`。\n\n### N. Missing references（references.bib + related_work.tex:20）\n- `references.bib` 添加 3 条：`lundberg2017unified`（NeurIPS 2017）、`coste2023reward`（ICLR 2024）、`moskovitz2023confronting`（ICLR 2024），后两条含 arXiv note。\n- `related_work.tex` reward hacking 段加半句引用 ensembles + constrained optimization，对比 STA 在 output level 诊断。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-r29-group2-method-etc.md"
+}

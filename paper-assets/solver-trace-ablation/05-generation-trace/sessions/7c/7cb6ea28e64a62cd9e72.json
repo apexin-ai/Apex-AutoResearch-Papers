@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7cb6ea28e64a62cd9e72",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops verify training and gpu",
+  "task_key": "worker_ops_verify-training-and-gpu_20260515T023913",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-training-and-gpu_20260515T023913_result.json",
+    "occurrence": 1,
+    "bytes": 2555,
+    "sha256": "a8a58f695245daf1c3e445b19e0b49c1f4afc6512d59e0910c194af3757c948f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告 — westd-39279\n\n### GPU 状态\n- **GPU 0**: 65,773 MiB / 97,887 MiB, **100% util** — 4 个 eval 进程并发\n- **GPU 1**: 83,123 MiB / 97,887 MiB, **0% util** — s43-r2 训练（vLLM 采样间隙，正常）\n\n### 训练进程\n\n**`exp1-random-b03-s43-r3` ❌ 已死亡（OOM）**\n- exit code: `1`, 时间 `2026-05-15T02:34:28Z`（启动后 18 秒崩溃）\n- log: `/root/runs/solver-trace-ablation/exp1-random-b03-s43-r3.log`\n- 错误：`CUDA out of memory. GPU 0 has 24.25 MiB free. Process 113293 has 81.17 GiB memory in use`\n- 根因：r3 尝试用 GPU 0 启动，但 GPU 0 已被 s43-r2 + evals 占满 → **C002/C007 违规**\n- output 目录 `exp1_random_b03_s43_r3/` 空\n\n**`exp1-random-b03-s43-r2` ✅ 正在跑（GPU 1，注意是 r2 不是 r3）**\n- PID `113293`, 已运行 `08:12`, CUDA_VISIBLE_DEVICES=1\n- tmux session: `exp1-random-b03-s43-r2`\n- log: `/root/runs/solver-trace-ablation/exp1-random-b03-s43-r2.log`\n- output: `/root/autodl-tmp/outputs/exp1_random_b03_s43_r2/`（已有 checkpoint-50）\n- 进度: **step 51/500 (~10%)**, step time ~7-9s, ETA ~55-60 min\n- reward 趋势：step 22-25 reward 0.45-0.56 → step 49-50 出现 reward=0 (prove_rate=0), step 51 恢复 0.30\n- README + reward_log.jsonl 正常生成\n\n### Eval 进程（全在 GPU 0，存在重复）\n\n| PID | 实验 | 启动时长 | 备注 |\n|-----|------|---------|------|\n| 113132 | `exp1_random_b03_s44_r2` (prover9, fol) | 08:15 | 输出 `outputs/exp1_random_b03_s44_r2/eval_sta_results.json`，进度 ~37/100，部分 proved |\n| 113813 | `exp1_random_b03_s44_r2/checkpoint-500` (无 solver/logic_type) | 07:38 | 输出 `eval_sta_exp1_random_b03_s44_r2.json`，**全部 FAILED ISR=0**（默认 solver 与训练不匹配？） |\n| 114065 | `exp1_isr_b03_s43_r3/checkpoint-500` (fol) | 06:58 | 输出 `eval_sta_exp1_isr_b03_s43_r3/results.json`，进度 ~23/100 |\n| 115360 | `exp1_isr_b03_s43_r3/checkpoint-500` (默认) | 04:03 | 输出 `eval_sta_exp1_isr_b03_s43_r3.json`，**重复任务**，与 114065 冲突 |\n\n### 磁盘\n`/root/autodl-tmp`: **91G / 250G (37% used)** ✓\n\n### 主要问题\n1. **registry 与现实脱节**：registry 标 `s43-r3` RUNNING，实际 r3 已 OOM 死亡（02:34）、跑的是 r2\n2. **重复 eval**：`exp1_isr_b03_s43_r3` 和 `exp1_random_b03_s44_r2` 各启了 2 个 eval 进程（参数不同，输出路径不同），GPU 0 拥挤\n3. **PID 113813 eval 结果全 FAILED**：未传 `--solver` / `--logic_type`，可能使用了与训练数据不匹配的默认配置"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-training-and-gpu.md"
+}

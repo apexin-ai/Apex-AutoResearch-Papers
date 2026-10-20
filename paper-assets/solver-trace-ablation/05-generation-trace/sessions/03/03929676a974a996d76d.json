@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "03929676a974a996d76d",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_8_1778793089.md",
+  "task_key": "loop_8_1778793089",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_8_1778793089.md",
+    "occurrence": 1,
+    "bytes": 4192,
+    "sha256": "3cf96f68dadeb9a6dcfe30773e8d9075a931ed60ea90cdc3e2fb7e7f6cc0986c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: idle_timeout\nupdated: '2026-05-14T21:11:20+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: **westd-39279:cuda:0** 和 **westd-39279:cuda:1** 仅此两张，submit_training_job 命令内必须 `export CUDA_VISIBLE_DEVICES=0` 或 `1`\n- 数据约束 C001: 所有 plan001/plan013 系列实验必须用 `train_500_seed42.jsonl`，不可用 `proofwriter_fol_500.jsonl`\n- 磁盘约束 C003: `log_completions=False` + `save_total_limit=1`，output_dir 必须在 `/root/autodl-tmp/outputs/`。磁盘 240G/250G (96%)，eval 后必须立即清理 checkpoint\n- Prolog STA s44: Reviewer 已核实为 query-as-fact gaming，**非 genuine**。Worker 曾误判为 success，strict classifier 存在盲区——任何 eval 结果必须交叉验证 n_necessary 分布\n- D051 定论不可翻转: ISR 2.4x 优势已被证伪（premise-count-matched 1.06x），论文中**禁止**引用旧的 2.4x/3.2x 数字\n- Hacking taxonomy 是 **7 种**（含 query-as-fact 第 7 种），不是 6 种\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-39279，账号 root\n- **工作目录**: `/root/solver-trace-ablation/`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- **镜像**: aml-train（已检测，跳过基础环境搭建）\n- **CUDA**: 12.8, PyTorch 2.10.0+cu128\n- **模型**: Qwen3-4B（7.6GB，通过 ModelScope 下载）\n- **Solvers**: Prover9 (LADR 源码编译), SWI-Prolog 8.4.2 (`/usr/bin/swipl`), Z3 4.16.0.0\n- **数据盘**: `/root/autodl-tmp/` 250GB (96% 已用，需清理)\n- **活跃进程**: 无。0 个 RUNNING 实验，0 个活跃 Worker，0 个活跃 Cron\n- **文献资产**: `artifacts/literature_goodhart.md` (30+ 篇), `literature_map.yaml` (33 篇, 6 类别)\n\n### 3. 📊 当前状态\n- **阶段**: ✍️ Writing，DDL 2026-05-25（剩 11 天）\n- **实验全部完成**: 50 个（success 12 / negative 18 / failed 18 / killed 2），0 个 RUNNING/PREPARING\n- **3 Claims 全部闭环**: Claim 1 (STA 诊断), Claim 2 (Goodhart/D057), Claim 3 (跨逻辑/D059)\n- **writing_plan.yaml 已获 Director 审批**（2026-05-14，含 5 项修正：taxonomy 6→7, Claim 3 Prolog STA 3/3 gaming, etc.）\n- **ROADMAP 记录 \"Method + Experiments Workers 进行中\"**，但实际 0 个 Worker 在跑。上个 session 可能派了写作 Worker 但已全部完成或未成功启动——需检查最近的 Worker 历史确认论文各章节草稿进度\n- **GPU 空闲**: 2 张 RTX PRO 6000 当前无任务，写作期间 on-demand 用于补充实验/图表生成\n\n### 4. 📋 待办（条件触发式）\n- 新 session 启动 → `list_workers(status=\"done\", limit=10)` 检查上轮写作 Worker 的产出，确认哪些章节已有草稿、哪些需要重新派发\n- 论文章节草稿未完成 → 按 writing_plan.yaml 顺序派 Worker 写 Method → Experiments → Introduction → Related Work → Discussion → Abstract\n- Paper Agent/Reviewer 要求补充实验 → 用空闲 GPU 跑（cuda:0/cuda:1）\n- 论文初稿完成 → submit_paper_to_review\n- 磁盘 96% → 派 Worker 清理 `/root/autodl-tmp/outputs/` 下旧 checkpoint（保留最终用于论文的 checkpoint）\n\n### 5. 🎯 战略上下文\n- **核心 story**: ISR/STA 是诊断工具（有效），不是训练信号（Goodhart）。三条 Claim 构成\"诊断→优化→跨逻辑\"完整链\n- **决策链**: D010(reward公式转向) → D027(taxonomy) → D033(meta-Goodhart) → D051(premise-count-matched推翻2.4x) → D057(Claim 2 3-seed闭环) → D059(Claim 3闭环)\n- **最易判断错的事**: (1) 不要被 ISR 高数值迷惑——s44 ISR=0.885 实际是 gaming artifact；(2) exec-only s42 不是\"healthy seed\"，87.1% 是 H1 conclusion embedding；(3) plan013 (convex random) 和 plan017 (additive random) 公式结构不同，不可简化为\"additive vs convex\"对照\n- **Venue**: EMNLP 2026 Main (ARR May 25)，Findings 为 fallback。**禁止 fallback 思维**——全力冲 main\n- **写作关键约束**: strict 和 functional (n_necessary) 分析必须同时报告；所有数字必须追溯到 registry；强度词与 evidence 匹配（单数据集不说\"consistently\"）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-8-1778793089.md"
+}

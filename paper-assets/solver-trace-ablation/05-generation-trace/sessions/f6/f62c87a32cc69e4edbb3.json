@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f62c87a32cc69e4edbb3",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code w8 isr posthoc filter",
+  "task_key": "worker_code_w8-isr-posthoc-filter_20260520T100131",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_w8-isr-posthoc-filter_20260520T100131_result.json",
+    "occurrence": 1,
+    "bytes": 726,
+    "sha256": "e08b55a622ad6a5b592f46230daa599586beb507ed0798ebf4d6dd44fb315caf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Report written to `artifacts/isr_posthoc_filter_analysis.md`.\n\nKey findings:\n- **CE (s42)**: ISR filter removes most CE at τ≥0.1 (mean ISR=0.107), but collateral damage to genuine proofs is heavy — 6/9 genuine lost at τ=0.3.\n- **TS (s44)**: ISR filter is structurally blind — all 97 TS samples have ISR≥0.5 (Prover9 marks 1/2 components as necessary in P→P tautologies), so no threshold ≤0.5 filters any of them.\n- **Bottom line**: Single ISR threshold cannot serve as a post-hoc quality gate. TS occupies the same ISR band as genuine proofs. Effective filtering requires mode-specific classifiers (structural tautology detection, conclusion-in-premises check) rather than a scalar threshold."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-w8-isr-posthoc-filter.md"
+}

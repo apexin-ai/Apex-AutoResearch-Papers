@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fd9baece01d361fadc92",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops server maintenance 0514",
+  "task_key": "worker_ops_server-maintenance-0514_20260514T061653",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_server-maintenance-0514_20260514T061653_result.json",
+    "occurrence": 1,
+    "bytes": 1225,
+    "sha256": "9d213d791063765a07d98f674bbc911e47076825bd03d89e2fb85b423615d954"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 维护结果汇报\n\n### 磁盘空间\n| 分区 | 清理前 | 清理后 |\n|------|--------|--------|\n| /root/autodl-tmp | 109G/250G (142G free) | 64G/250G (187G free) |\n| / (root) | 8.1G/30G (22G free) | 不变 |\n\n释放 **45GB**，接近50GB目标。\n\n### 清理的目录\n| 目录 | 大小 | 实验 | 原因 |\n|------|------|------|------|\n| `grpo_exec_only/` | 15G | sta-phase1-exec-only-r4/r5 | 早期100步实验，已被500步取代 |\n| `grpo_exec_sta/` | 15G | sta-phase1-exec-sta-r4/r5 | 早期100步实验，conclusion=negative |\n| `plan005_sta_low_s42/` | 15G | plan005-sta-low-s42 | conclusion=negative |\n\n任务提到的 `plan001_s43_r4` 和 `plan001_s44` 已在之前清理过，不再存在。\n\n### 残留进程\n- **PID 261641** (plan017 eval_sta): 已不存在，无需处理\n- GPU 上无残留占用（nvidia-smi 仅显示两个 RUNNING 实验的进程）\n\n### RUNNING 实验状态\n| 实验 | PID | GPU | 进度 | prove_rate | 状态 |\n|------|-----|-----|------|-----------|------|\n| plan002-additive-b01-s42 | 262261→262266 | cuda:0 (79.6G) | step 366/500 | 0.625 | 正常 |\n| plan016-extended-1000-s42 | 263273 | cuda:1 (80.3G) | step 266/1000 | 0.875 | 正常 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-server-maintenance-0514.md"
+}

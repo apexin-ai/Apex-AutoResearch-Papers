@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9fcb2376b3d79a7cd9c0",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "monitor plan009 sft r4",
+  "task_key": "worker_monitor_plan009-sft-r4_20260514T115122",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_plan009-sft-r4_20260514T115122_result.json",
+    "occurrence": 1,
+    "bytes": 156,
+    "sha256": "f866f493ecaac04f21af7db82ed5ee6118c855c053da11518d8e82e6409480a7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练 step 173/500，速度 ~1.2 it/s，预计 ~4.5 分钟完成。已设置 270 秒后自动回来检查训练完成状态并执行 eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-plan009-sft-r4.md"
+}

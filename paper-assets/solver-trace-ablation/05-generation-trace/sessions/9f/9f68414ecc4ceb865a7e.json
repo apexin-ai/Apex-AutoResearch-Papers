@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9f68414ecc4ceb865a7e",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops diagnose exp1 isr b03 s43 r3",
+  "task_key": "worker_ops_diagnose-exp1-isr-b03-s43-r3_20260515T021339",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_diagnose-exp1-isr-b03-s43-r3_20260515T021339_result.json",
+    "occurrence": 1,
+    "bytes": 441,
+    "sha256": "2b84f58aaa27d3020eae1166fcd60e9f06c1328de0997dc4ddc1606734230539"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 已无残留，无需清除。\n\n**结果汇总**:\n\n| 项目 | 值 |\n|------|-----|\n| 状态 | **成功** (500/500 steps) |\n| 训练时长 | 69 min (4153.6s) |\n| checkpoint | `/root/autodl-tmp/outputs/exp1_isr_b03_s43_r3/checkpoint-500` |\n| prove_rate | 0.56125 |\n| mean_isr | 0.1515 |\n| parse_rate | 1.0 |\n| train_loss | 0.0176 |\n| GPU 0 | 已释放 |\n| registry | DONE / success |\n| cron | 无活跃 job |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-diagnose-exp1-isr-b03-s43-r3.md"
+}

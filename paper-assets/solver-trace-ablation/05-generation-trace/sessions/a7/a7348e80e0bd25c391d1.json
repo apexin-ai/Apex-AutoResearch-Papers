@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a7348e80e0bd25c391d1",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code r16 o1 vs on consistency",
+  "task_key": "worker_code_r16-o1-vs-on-consistency_20260520T054719",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r16-o1-vs-on-consistency_20260520T054719_result.json",
+    "occurrence": 1,
+    "bytes": 1984,
+    "sha256": "7d2b1777c1fd6b5904daf12089ac6d72c3be1cbbc5609467628f304f0c90db93"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果保存在 `artifacts/r16_o1_vs_on_consistency.json` 和服务器 `/root/autodl-tmp/outputs/r16_o1_vs_on_consistency.json`。\n\n## 核心发现\n\n**O(1) binary ISR 在 ProofWriter-FOL 上退化为常数 1.0。** 402 个 proved 样本中，没有任何一个 conclusion 是 tautology（空前提可证），因此 binary ISR 永远输出 1。Pearson/Spearman 相关系数因零方差无法计算。\n\n### 数值摘要\n\n| 模型类型 | N | Agreement (binarized) | MAE | Mean LOO ISR | Mean Binary ISR |\n|----------|---|----------------------|-----|-------------|----------------|\n| exec-only | 234 | 34.2% | 0.954 | 0.046 | **1.0** |\n| ISR-trained | 168 | 85.1% | 0.817 | 0.183 | **1.0** |\n| **Aggregate** | **402** | **55.5%** | **0.897** | — | **1.0** |\n\n### 不一致的根本原因\n\n所有 179 个 disagreement 都是同一 pattern：**FP（binary=1, LOO=0）**。\n\n典型例子（exec_s42 的退化证明）：\n- Premises: `nice(charlie)`, `nice(charlie)`\n- Conclusion: `nice(charlie)`\n- O(1) binary: conclusion 不是 tautology → ISR=1\n- O(n) LOO: 两个 premise 互为冗余，删任一个仍可证 → n_necessary=0 → ISR=0\n\nBinary check 无法检测到「premise 是 conclusion 的重复副本」这种 Conclusion Echo (CE) hacking，因为 ground fact 不是逻辑重言式。LOO 能正确识别出所有 premise 都是冗余的。\n\n### 含义\n\n1. **训练时的 O(1) binary ISR 实际上等价于 proof success check** — 对所有证明成功的样本一视同仁给 ISR=1，完全丢失了证明质量信息\n2. **这解释了为什么 ISR reward 在训练中仍然有效** — 它通过「不给 tautology reward」来间接鼓励非平凡证明，但其判别力完全依赖 tautology 检测这一路径，而 ProofWriter 中 tautology 并不存在\n3. **ISR 训练的实际效果可能来自其他间接信号**（如鼓励更长/更复杂的 formalization），而非直接的 premise necessity 判别"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-r16-o1-vs-on-consistency.md"
+}

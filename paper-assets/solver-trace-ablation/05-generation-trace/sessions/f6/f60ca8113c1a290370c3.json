@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f60ca8113c1a290370c3",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "paper compile check",
+  "task_key": "worker_paper_compile-check_20260522T065759",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_compile-check_20260522T065759_result.json",
+    "occurrence": 1,
+    "bytes": 853,
+    "sha256": "ef39e6e12e195629a401d59210584518d1e3b5ca7827a0e70ff9ccd57c8b4c5a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All checks complete. Summary:\n\n| Check | Result |\n|---|---|\n| **Sync** | All .tex/.bib files synced, MD5 verified identical |\n| **Compilation** | Success (latexmk, no errors) |\n| **Total pages** | 24 |\n| **Main text** | 8 pages (References starts page 9) — within limit |\n| **Undefined references** | 0 |\n| **Missing citations** | 0 |\n| **Multiply-defined labels** | 0 |\n| **Appendix new sections** | All rendered — `app:seed-convergence` (E.5, p20), `app:8b-results` (E.6, p20), `app:llama-coldstart` (E.4, p19), `app:beta03` (E.1, p18), tables 7-12 on pp22-24 |\n| **Warnings** | 10× hyperref \"Token not allowed\" — math (`$\\beta$`) in section titles on lines 627/676 of `appendix.tex`. Cosmetic only, affects PDF bookmarks not rendered content. Harmless for submission. |\n\nPaper is clean and ready for submission."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-compile-check.md"
+}

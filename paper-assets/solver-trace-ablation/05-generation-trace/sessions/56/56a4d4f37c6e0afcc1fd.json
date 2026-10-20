@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "56a4d4f37c6e0afcc1fd",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "paper r30 p0 confound text",
+  "task_key": "worker_paper_r30-p0-confound-text_20260522T155330",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_r30-p0-confound-text_20260522T155330_result.json",
+    "occurrence": 1,
+    "bytes": 1540,
+    "sha256": "5444a3954567a7f9e6230ed7a750013651634b8c7588ea1bdd55e45477f1db5d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译通过，0 undefined refs，0 citation warnings，0 multiply-defined labels，23 页。\n\n---\n\n### 修改汇总\n\n**Task 1: experiments.tex §4.2 Premise-count confound 段**\n- 文件: `paper/experiments.tex:82` + `docs/paper/experiments.tex:82`\n- Before: `The asymmetry is compositional, not quantitative: ISR redirects gaming toward TS rather than reducing its prevalence.`\n- After: 替换为两层框架——scalar level（premise-count artifact, $3.2\\times \\to 1.06\\times$, 引用新 label `app:premise-count`）+ compositional level（CE-to-TS mode shift, OR_CMH=2.46, TS 分类不依赖 premise count）。末句明确\"compositional shift 才是 Goodhart effect 的主要证据\"。\n\n**Task 2: appendix.tex premise-count confound 段**\n- 文件: `paper/appendix.tex:120-128` + `docs/paper/appendix.tex:120-128`\n- 新增 `\\label{app:premise-count}` 于段首\n- 末尾新增 2 句：(1) $1.06\\times$ 基于 n=16 paired samples，near-unity 表明 scalar ISR 优势可忽略；(2) mode composition 分析（CE vs TS）不受 premise-count confound 影响，因为 TS 分类依赖 tautological proof structure\n\n**Task 3: method.tex §3.2 — 无需修改**\n- `method.tex:46` 已有 \"its diagnostic value is realized through the downstream mode breakdown (\\S\\ref{sec:taxonomy}), not the scalar alone\"\n- `method.tex:54` 已区分 aggregate vs per-sample ISR\n- `method.tex:82` 已有 \"the mode breakdown, not the ISR scalar, licenses interpretation\"\n\n**两个目录均已同步修改。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-r30-p0-confound-text.md"
+}

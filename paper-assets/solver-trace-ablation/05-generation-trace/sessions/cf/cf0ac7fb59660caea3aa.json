@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cf0ac7fb59660caea3aa",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code fix isr monitoring",
+  "task_key": "worker_code_fix-isr-monitoring_20260513T234032",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-isr-monitoring_20260513T234032_result.json",
+    "occurrence": 1,
+    "bytes": 522,
+    "sha256": "27b79a4e6813e6047064ebfd4bb26f2cd8760e555c11b57604b2427d089b988b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "语法验证通过。\n\n**修改总结**：\n\n- 文件：`scripts/train_grpo.py`，第 168 行\n- 改动：`execution_only` 分支中 `_fast_fn` → `_full_fn`（1 行）\n- 效果：`_full_fn`（即 `sta_reward`/`prolog_sta_reward`）在 proved 时通过 `run_sta` + `compute_isr` 计算连续 ISR（0.0-1.0），写入 `result[\"sta_reward\"]`，被后续监控代码 `isr = result.get(\"sta_reward\", 0.0)` 正确拾取。`reward_val` 仍然只取 `result[\"execution_reward\"]`，训练信号不变。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-isr-monitoring.md"
+}

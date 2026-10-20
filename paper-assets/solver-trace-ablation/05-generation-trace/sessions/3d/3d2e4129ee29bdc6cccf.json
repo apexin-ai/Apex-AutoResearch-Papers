@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3d2e4129ee29bdc6cccf",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code sta bugfix p1",
+  "task_key": "worker_code_sta-bugfix-p1_20260513T175253",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_sta-bugfix-p1_20260513T175253_result.json",
+    "occurrence": 1,
+    "bytes": 794,
+    "sha256": "ed9c9111294724510948162a05ddd81e153702d451f376f25053d4918d2bdc8f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部通过。\n\n**Bug #3 修复**：\n- `ablate_component()` 新增 `original_result: Optional[SolverResult] = None` 参数，None 时自行计算（保持独立可调用性）\n- `run_sta()` 同样新增该参数，内部只证明一次原始问题，传给所有 `ablate_component()` 调用\n- `sta_reward()` 也顺带优化——把已算好的 `proof_result` 传给 `run_sta()`，消除额外冗余调用\n\n**Optimization #4**：\n- `fast_isr_fol()` 在 `isr.py` 中实现，仅 2 次 solver 调用（原始证明 + tautology 检查）\n- `fast_sta_reward()` 在 `reward.py` 中实现，内部调用 `fast_isr_fol()`\n\n功能测试：`fast_isr_fol(['all x (P(x) -> Q(x))', 'P(a)'], 'Q(a)', solver)` 返回 `fast_isr=1.0`（前提必要，非 tautology），耗时 4ms。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-sta-bugfix-p1.md"
+}

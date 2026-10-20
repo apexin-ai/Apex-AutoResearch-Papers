@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fb158247d5847f41b9ca",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "eval plan009 sft s42 1000 eval",
+  "task_key": "worker_eval_plan009-sft-s42-1000-eval_20260515T123005",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_plan009-sft-s42-1000-eval_20260515T123005_result.json",
+    "occurrence": 1,
+    "bytes": 522,
+    "sha256": "5d56e64ef6f6d62a6d3eb1f187b51122858e3388956948c548f35609b8ce11c3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU released. 评估完成，registry 已更新。\n\n## 结果汇总\n\n| 指标 | SFT 500步 s42 | SFT 1000步 s42 |\n|------|:---:|:---:|\n| Prove Rate | 14% | 13% |\n| Mean ISR | — | 0.0738 ± 0.2077 |\n| Proved-only ISR | — | 0.5677 |\n| H7 | — | 0 (0%) |\n| H1 | — | 1 (7.7%) |\n| Genuine | 93% | **92.3%** (12/13) |\n\nSFT 1000步 genuine rate 92.3%，与 500步的 93% 基本持平，符合预期：Goodhart collapse 是 GRPO 特有现象，SFT 在延长训练后仍保持高 genuine rate。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-plan009-sft-s42-1000-eval.md"
+}

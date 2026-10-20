@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "49852f8d4899d35d5f4e",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_16_1778905787.md",
+  "task_key": "loop_16_1778905787",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_16_1778905787.md",
+    "occurrence": 1,
+    "bytes": 4326,
+    "sha256": "cce2d3affb698f99836aee6d3aeed7c6bf090d725c7ca348ca19f19a32f65901"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 16\nreason: idle_timeout\nupdated: '2026-05-16T04:29:45+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单只有 cuda:0 和 cuda:1（westd-39279 仅 2 卡 RTX PRO 6000 96GB），不可用其他设备号\n- 训练命令路径必须 `python3 scripts/train_grpo.py --config configs/...`（不是 `train_grpo.py`），首次提交踩过坑\n- Round 2 sweep 无 wandb（--no_wandb），metrics 只能从 `reward_log.csv` / output_dir 提取，不要调 wandb API 查 Round 2 数据\n- 论文 Narrative A (D095) 已锁定：H7a GRPO-general + H7b ISR-specific，genuine p=0.182 n.s.，不可 claim 显著\n- K=4（per_device_batch_size=2, K=4, B×K=8），论文已修正，不可回退到 K=8\n- β=0.05 的 ISR 均匀性（96.3% 样本精确 ISR=0.75）= mode collapse，论文必须诚实报告多样性丧失\n- DDL 2026-05-25 EMNLP ARR，剩 9 天，β=0.07/0.03 不排（D102），多 seed 复现优先\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-39279，2× RTX PRO 6000 96GB\n- **工作目录**: `/root/solver-trace-ablation`\n- **Python/conda**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，pip/python 在 `/root/miniconda3/bin/`\n- **模型路径**: `/root/autodl-tmp/models/Qwen3-4B`（Round 2 用 4B，Round 1 用 Qwen2.5-1.5B-Instruct）\n- **输出目录**: `/root/autodl-tmp/outputs/`（每实验 `sweep_isr_b02_s42_v2` / `sweep_isr_b02_s43` 等）\n- **日志路径**: `~/runs/solver-trace-ablation/{exp_id}.log`\n- **活跃进程**:\n  - sweep-isr-b02-s43: PID 633515, cuda:0\n  - sweep-isr-b02-s42: PID 633657, cuda:1\n- **Cron**: reconcile 确认两个 RUNNING 实验均有 cron 在监控（pid 存活检测）\n- **W&B project**: `solver-trace-ablation`（仅 Round 1 数据可查）\n\n### 3. 📊 当前状态\n上一轮完成了 D098 config merge bug 修复、D100 K=4 验证、D101 Round 2 排期、D102 β=0.05 分析，论文已通过 Reviewer 一致性审查。\n\n**RUNNING (2)**:\n- `sweep-isr-b02-s42` (cuda:1) — β=0.2 ISR seed=42，填 0.1↔0.3 剂量间隙\n- `sweep-isr-b02-s43` (cuda:0) — β=0.2 ISR seed=43，同上复制\n\n**ALLOCATED 未提交 (1)**:\n- `plan018-additive-random-b01-s45` (cuda:1) — Random β=0.1 s45 对照，等 GPU 空出\n\n**PREPARING (14)**: sweep-isr-b02-s44, sweep-isr-b005-s43/s44, exec-only s45/s46, random s45/s46, ISR b01-s46, 7B pilot 等\n\n**等待中**: 两个 RUNNING 实验的 cron 完成回调（预计 ~1h 内）；Director 最终论文审查\n\n### 4. 📋 待办（条件触发式）\n- sweep-isr-b02-s42 + s43 cron 回调到 → spawn Worker 提取 reward_log.csv 分析（genuine/hacking/ISR 指标）→ 与 β=0.1/0.3 对比 → update_registry → 汇报 Director\n- 两卡空出后 → 立即提交 sweep-isr-b02-s44 (P1, cuda:0) + plan018-additive-random-b01-s45 (P2, cuda:1，已 ALLOCATED)\n- β=0.2 三 seed 完成 → 判断是否填入 dose-response 曲线（β=0.05 保留, 0.1 崩塌, 0.2 ?, 0.3 崩塌），更新论文 Fig 2\n- 注意 RAM OOM 风险：sweep-isr-b01-s45 曾在双实验并行时 exit 137 (step 219/500)，监控 b02 双跑是否复现\n- 如 Director 要求 5-seed 扩展 → 按 PREPARING 列表排队，仅 GPU 空余时跑\n- w2-qwen3-7b-pilot 标记 DEFER，投稿后/rebuttal 再说\n\n### 5. 🎯 战略上下文\n本项目研究 GRPO reward hacking 中的 Goodhart's Law 现象。ISR（Intermediate Step Reward）从诊断指标变成优化目标后，触发 reward hacking 和 genuine prove rate 崩塌。核心叙事：STA/ISR 是诊断工具，不是训练目标。\n\n**证据链已完整**（Claim 1-3 全部就位），当前是 Round 2 补充剂量点：\n- β=0.05: 保留 ISR（0.759），genuine≥75%，但 mode collapse（D102）\n- β=0.1: ISR 崩塌至 0，genuine=0%，Goodhart 转折点\n- β=0.2: 正在跑（关键间隙数据点）\n- β=0.3: 已完成，全面崩塌\n\n**易判断错的事**:\n1. 不要把 Round 2 (Qwen3-4B) 的绝对数字直接和 Round 1 (Qwen2.5-1.5B) 对比——模型不同，只能做同模型内 dose-response 对比\n2. H7a/H7b 区分极容易搞混：H7a 是 text-match（GRPO 通用），H7b 是 obfuscated tautology（ISR-specific），来回修正 8 次才定论（D087-D094）\n3. genuine rate ISR vs Random 差异不显著（p=0.182），这条红线已踩过多次\n4. Round 2 无 wandb，所有 metric 提取必须 SSH 到服务器读 output_dir\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-16-1778905787.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8980185d3c69ca693785",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_3_1778736526.md",
+  "task_key": "loop_3_1778736526",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3_1778736526.md",
+    "occurrence": 1,
+    "bytes": 5231,
+    "sha256": "ac9b0c0b198d71ca8afaa6e4bcfc82b3fcae8f234aa58c2cd0bedf9e930dcd55"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: idle_timeout\nupdated: '2026-05-14T05:21:35+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单仅 **westd-39279:cuda:0** 和 **westd-39279:cuda:1**，两卡必须 `export CUDA_VISIBLE_DEVICES=N`（不是 inline 赋值，必须在 `bash -c` 内部 export）\n- **C001**: 所有 plan001/plan013/plan002/plan017 实验统一使用 `train_500_seed42.jsonl`，不用 `proofwriter_fol_500.jsonl`\n- **C003**: TRL 训练必须 `log_completions=False` + `save_total_limit=1`，output_dir 放 `/root/autodl-tmp/outputs/`\n- **论文 ISR 数据只能来自 eval_sta.py (full STA)**，训练日志 ISR 是 binary approximation，跨实验不可比（D013/D015）\n- DDL: **EMNLP ARR 2026-05-25**（剩 11 天）\n- ISR-as-reward 三条路线已全死（convex D010 / additive D020 / random D018），**不要再尝试 ISR 作为训练 reward**——论文已转向 ISR 作为诊断指标\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-39279，2× RTX PRO 6000 Blackwell 94GB\n- **工作目录**: `/root/solver-trace-ablation/`\n- **Python**: `/root/miniconda3/bin/python`（conda base，激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- **模型**: `/root/autodl-tmp/models/Qwen3-4B` (7.6GB, via ModelScope)\n- **数据**: `/root/solver-trace-ablation/data/train_500_seed42.jsonl` (500条 FOLIO) + `proofwriter_fol_100.jsonl` (100条 held-out eval)\n- **Checkpoints**: `/root/autodl-tmp/outputs/plan{NNN}_*`\n- **Solvers**: Prover9 (LADR 源码编译), SWI-Prolog 8.4.2, Z3 4.16.0.0\n- **活跃进程**: 无训练进程。plan017 训练已完成（PID 207116 已退出）\n- **活跃 Worker**: 2 个 running — `worker_eval_plan017-eval-sta` 和 `worker_eval_plan017-additive-random-s42`，正在对 plan017 checkpoint 跑 eval_sta.py\n- **活跃 Cron**: 无（reconcile 返回 0）\n\n### 3. 📊 当前状态\n我刚处理完 plan001-s44 和 plan002 的 on-experiment-done 回调（均 negative），以及 plan012 hacking characterization 分析。**plan017-additive-random-s42** 训练刚完成（status=ANALYZING），已派出 2 个 Worker 跑 eval_sta.py。\n\n**Registry 摘要（29 实验）:**\n- ANALYZING: plan017-additive-random-s42（additive random control，等 eval_sta 结果）\n- DONE/success: sta-phase0-baseline, sta-gt-isr-baseline, sta-phase1-exec-only-r5, plan003-eval-exec-only-r5, plan001-exec-only-s42-r2, plan013-random-reward-s42-r4\n- DONE/negative: plan001-s43-r4（length explosion）, plan001-s44（tautological collapse）, plan002-additive-b03-s42（format collapse PR=18%）, plan005-sta-low-s42（penalty effect）, plan014-downstream-nli-s42（ISR≠NLI accuracy）, sta-phase1-exec-sta-r5, sta-phase1-exec-sta-r4, sta-phase1-exec-only-r4\n- DONE/failed: 14 个（早期环境问题、OOM、磁盘满等）\n\n**等待中:**\n- 2 个 Worker 回调：plan017 eval_sta 结果（关键——决定 ISR 是否有超越 variance regularization 的结构信号）\n- 无待处理的 Director 决策\n\n### 4. 📋 待办（条件触发式）\n- **plan017 eval_sta Worker 回调到达** → 对比 plan017 (additive random) vs plan002 (additive ISR) eval 指标：\n  - 若 plan002 ISR >> plan017 ISR 且 plan002 component count > plan017 → ISR 有结构信号，写入 positive narrative\n  - 若 plan002 ≈ plan017（两者都 tautological / 两者 ISR 接近）→ ISR 无额外价值，论文定位为纯 diagnostic metric paper\n  - 两种情况都需更新 registry + report.md + 向 Director 汇报\n- **eval 完成后 GPU 空闲** → 按优先级排队：plan006 (Prolog 第二逻辑类型), plan001-s44 已完成无需补跑, plan009 (SFT baseline), plan016 (extended 1000步)\n- **若 plan017 也是 tautological collapse** → 提交 Framing 调整提案给 Director：论文核心从 \"ISR reward\" 彻底转向 \"GRPO reward hacking taxonomy + ISR as diagnostic tool + saturation mechanism analysis\"\n\n### 5. 🎯 战略上下文\n**核心结论链**: ISR-as-reward 全线失败（D010 convex penalty → D020 additive ISR negative → D018 random tautological），论文已从 \"STA improves training\" 转向 \"STA as diagnostic metric for reward hacking\"。\n\n**决策依赖图关键节点**: D008（Dream 审稿 5 弱点）→ D010/D011（additive bonus 转向）→ D016（hacking 定量证据）→ D018（random = tautological）→ D020（ISR reward 全线失败）→ D022（downstream 降级 limitation）\n\n**最易判断错的事**:\n1. **不要把不同实验的 ISR 直接比较**——plan013 ISR=0.535 看起来高，但 100% 是 2-component tautology P⊢P（D018 推翻了 D017）\n2. **plan001-s44 ISR=0.57 ≈ GT ISR=0.56 是 coincidence**——GT 的 0.56 来自 genuine multi-component proofs，s44 的 0.57 来自 2-component tautology\n3. **exec-only 3-seed 只有 s42 是 genuine**（PR=93%, components=6.58），s43 length explosion, s44 tautological collapse——2/3 失败率本身是论文的重要发现\n4. **plan002 的 PR=18% 不是 ISR bonus 的信号作用**——Worker 分析发现 79/82 失败样本连 Conclusion 标记都没生成，是 format collapse 而非 ISR 指导\n5. **GPU 两卡都空闲**——plan017 eval 用 Worker SSH 执行 eval_sta.py，不占 GPU 持久进程；eval 完后应立即安排下一批实验\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-1778736526.md"
+}

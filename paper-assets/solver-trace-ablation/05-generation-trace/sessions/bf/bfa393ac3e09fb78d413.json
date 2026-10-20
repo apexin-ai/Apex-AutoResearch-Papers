@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bfa393ac3e09fb78d413",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analysis plan001 s43 r4 metrics",
+  "task_key": "worker_analysis_plan001-s43-r4-metrics_20260514T031420",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan001-s43-r4-metrics_20260514T031420_result.json",
+    "occurrence": 1,
+    "bytes": 800,
+    "sha256": "d9b39785fff9bee8f4bca98cbdbe0e3b3743b8050557c28b73eb118d7802925d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新完毕。\n\n**plan001-exec-only-s43-r4 指标汇总：**\n\n| 指标 | 值 |\n|------|-----|\n| total_steps | 500 |\n| duration_min | 91.6 |\n| overall_prove_rate | 0.66675 |\n| first20_prove_rate | 0.0625 |\n| last50_prove_rate | 0.9225 |\n| last100_prove_rate | 0.8825 |\n| parse_rate | 1.0 |\n| mean_loss | 0.014022 |\n| last100_loss | 0.014724 |\n\n**窗口 prove_rate 趋势：** 0.15 → 0.30 → 0.63 → 0.78 → 0.81 → 0.88\n\n**Conclusion: success**（last100_pr=0.8825 > 0.5）\n\n**GPU 1 状态：** 16329 MiB / 97887 MiB 占用，训练进程已结束（EXIT_CODE=0），残余显存可能是缓存或其他进程。\n\n**注意：** 日志中的 ISR (overall=0.089) 为 binary 近似 (_fast_fn)，需通过 eval_sta.py 统一评估获取真实 ISR。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan001-s43-r4-metrics.md"
+}

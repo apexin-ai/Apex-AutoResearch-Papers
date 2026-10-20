@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "3be69960e2e2518bc630",
+  "project": "solver-trace-ablation",
+  "kind": "worker",
+  "title": "eval plan018 random b01 s44",
+  "task_key": "worker_eval_plan018-random-b01-s44_20260514T133856",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_plan018-random-b01-s44_20260514T133856.log",
+    "occurrence": 1,
+    "bytes": 728192,
+    "sha256": "30e90bffc579b7732af33022bd0403e7277a6ed497721c8e490d39ab021092dd"
+  },
+  "statistics": {
+    "messages": 636,
+    "user_turns": 0,
+    "tool_calls": 258,
+    "roles": {
+      "log": 1,
+      "system": 18,
+      "record": 2,
+      "assistant": 97,
+      "tool_call": 258,
+      "tool_result": 258,
+      "result": 2
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 636,
+      "chunks": [
+        {
+          "path": "3be69960e2e2518bc630-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "3be69960e2e2518bc630-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "3be69960e2e2518bc630-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "3be69960e2e2518bc630-part-0004.json",
+          "message_count": 96
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-plan018-random-b01-s44.md"
+}

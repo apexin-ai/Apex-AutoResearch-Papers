@@ -1,0 +1,132 @@
+{
+  "schema_version": "1.0",
+  "id": "e4ce0677ab132e387c67",
+  "project": "solver-trace-ablation",
+  "kind": "conversation",
+  "title": "analysis fix evidence table provenance",
+  "task_key": "worker_analysis_fix-evidence-table-provenance_20260514T071442",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_fix-evidence-table-provenance_20260514T071442.jsonl",
+    "occurrence": 1,
+    "bytes": 4262,
+    "sha256": "7474b37d427442d0abecd7104a93c4a7fea2f3ca281fd5143ccfd9fd9bbb0ff4"
+  },
+  "statistics": {
+    "messages": 5,
+    "user_turns": 0,
+    "tool_calls": 2,
+    "roles": {
+      "tool_call": 2,
+      "tool_result": 2,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T07:15:31.623951+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fix-evidence-table-provenance_20260514T071442",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/paper_table1_evidence.md"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T07:15:31.624373+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Table 1: Comprehensive Experimental Evidence for Solver-Trace Ablation\n2\t\n3\t**Model**: Qwen3-4B | **Training**: GRPO, 500 steps, K=8 | **Data**: train_500_seed42.jsonl (500 problems) | **Eval**: proofwriter_fol_100.jsonl (100 problems)\n4\t\n5\t## Main Results Table\n6\t\n7\t### Group A: Reference Baselines\n8\t\n9\t| Experiment ID | Reward Mode | Formula | β | Seed | Eval PR | Eval Mean ISR | ISR Std | Comp. Mean | Comp.=2 (%) | Eval Method | Diagnosis | Claims |\n10\t|---|---|---|---|---|---|---|---|---|---|---|---|---|\n11\t| sta-phase0-baseline | — (base model) | — | — | — | 0.12 | 0.0641 | 0.1983 | — | — | eval_sta.py | pre-training reference | — |\n12\t| sta-gt-isr-baseline | — (ground truth FOL) | — | — | — | 0.18 | 0.5588 | 0.2582 | — | — | direct computation | ISR ceiling on gold FOL | — |\n13\t\n14\t### Group B: Exec-Only Reward (r = r_exec)\n15\t\n16\t| Experiment ID | Reward Mode | Formula | β | Seed | Eval PR | Eval Mean ISR | ISR Std | Comp. Mean | Comp.=2 (%) | Eval Method | Diagnosis | Claims |\n17\t|---|---|---|---|---|---|---|---|---|---|---|---|---|\n18\t| plan001-exec-only-s42-r2 | exec-only | r = r_exec | — | 42 | 0.93 | 0.1232 | 0.1887 | 6.58† | — | eval_sta.py | genuine proofs | C1 |\n19\t| plan001-exec-only-s43-r4 | exec-only | r = r_exec | — | 43 | 0.14‡ | 0.00‡ | — | — | — | sampling (T=0.7)‡ | degraded (87% max_tokens) | C1, C2 |\n20\t| plan001-exec-only-s44 | exec-only | r = r_exec | — | 44 | 0.98 | 0.5700 | 0.2013 | 2.04 | 94% | eval_sta.py | tautological collapse | C1, C2 |\n21\t\n22\t**Exec-only 3-seed summary**: mean PR = 0.68 ± 0.47, 2/3 seeds degenerate. Cross-seed instability is the primary finding.\n23\t\n24\t### Group C: Additive ISR Bonus (r = r_exec · (1 + β · ISR))\n25\t\n26\t| Experiment ID | Reward Mode | Formula | β | Seed | Eval PR | Eval Mean ISR | ISR Std | Comp. Mean | Comp.=2 (%) | Eval Method | Diagnosis | Claims |\n27\t|---|---|---|---|---|---|---|---|---|---|---|---|---|\n28\t| plan002-additive-b03-s42 | additive ISR | r = r_exec · (1 + β·ISR) | 0.3 | 42 | 0.18\n…[truncated 6870 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fix-evidence-table-provenance_20260514T071442",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T07:15:31.624625+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fix-evidence-table-provenance_20260514T071442",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/paper_table1_evidence.md",
+              "old_string": "†† plan013-random-reward-s42-r4 component count not in registry metrics but noted as \"trivial 2-component proofs (premise=conclusion, conclusion=conclusion)\" in eval_note.",
+              "new_string": "†† plan013-random-reward-s42-r4 component count (~2) is an estimate from eval_note (\"trivial 2-component proofs, premise=conclusion, conclusion=conclusion\"), not a precise eval_sta.py computation."
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T07:15:31.624843+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/paper_table1_evidence.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fix-evidence-table-provenance_20260514T071442",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T07:15:31.625011+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成。实际变更：\n\n1. **plan002-b03 component_count=10.67**：文件中不存在 10.67，Comp. Mean 列已经是 `—`，无需修改。\n2. **plan013-r4 `††` 脚注**：已更新，明确标注 `~2` 为 eval_note 估算值，非 eval_sta.py 精确计算。\n3. **plan002-b01**：文件中无\"待完成\"或\"RUNNING\"标记，已显示完成数据（PR=0.81, ISR=0.3365, Comp.=5.58），无需修改。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_fix-evidence-table-provenance_20260514T071442"
+          },
+          "id": "event-000005"
+        }
+      ],
+      "message_count": 5
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-fix-evidence-table-provenance.md"
+}

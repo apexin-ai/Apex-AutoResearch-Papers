@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0916cd3941d7d319b43b",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code plan006 dryrun real",
+  "task_key": "worker_code_plan006-dryrun-real_20260514T083440",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan006-dryrun-real_20260514T083440_result.json",
+    "occurrence": 1,
+    "bytes": 752,
+    "sha256": "7fe7c5f930fa5f1cac568d5ca55286864277c76550d0df8b02e6883acbfe788f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Dry-run 结果\n\n**3 步全部成功完成，无 crash/OOM。**\n\n### 各步指标\n\n| Step | prove_rate | parse_rate | ISR | reward | loss | step_time (s) |\n|------|-----------|------------|-----|--------|------|---------------|\n| 1 | 0.000 | 1.000 | 0.000 | 0.0000 | 0.0 | 6.10 |\n| 2 | 0.000 | 1.000 | 0.000 | 0.0000 | 0.0 | 8.44 |\n| 3 | 0.250 | 1.000 | 0.050 | 0.2500 | 0.0216 | 14.01 |\n\n### 关键数据\n\n1. **初始 prove_rate**: 前两步为 0，第 3 步跳到 0.25 — 初始 PR 极低，建议 **K=16**\n2. **parse_rate**: 全程 1.000（完美）\n3. **每步耗时**: 6~14 秒，总训练时间 53 秒\n4. **第 3 步出现学习信号**: loss=0.0216, grad_norm=4.52, 说明 reward 有方差后梯度开始流动"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan006-dryrun-real.md"
+}

@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "a9570ba89a5dba2e771d",
+  "project": "solver-trace-ablation",
+  "kind": "worker",
+  "title": "ssh eval both warmstart",
+  "task_key": "worker_ssh_eval-both-warmstart_20260516T171445",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_eval-both-warmstart_20260516T171445.log",
+    "occurrence": 1,
+    "bytes": 467621,
+    "sha256": "1215a496cdf67dba323f254e1d5cd6b5b844177257ab278caa4d7a859a222239"
+  },
+  "statistics": {
+    "messages": 364,
+    "user_turns": 0,
+    "tool_calls": 139,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 82,
+      "tool_call": 139,
+      "tool_result": 139,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 364,
+      "chunks": [
+        {
+          "path": "a9570ba89a5dba2e771d-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "a9570ba89a5dba2e771d-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "a9570ba89a5dba2e771d-part-0003.json",
+          "message_count": 4
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-eval-both-warmstart.md"
+}

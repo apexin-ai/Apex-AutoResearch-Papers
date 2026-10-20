@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d4efba26a1a6dba71bf8",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code d146 tmux cleanup",
+  "task_key": "worker_code_d146-tmux-cleanup_20260519T145420",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d146-tmux-cleanup_20260519T145420_result.json",
+    "occurrence": 1,
+    "bytes": 417,
+    "sha256": "ed9011efd0355257328c7430c98109886fae35a87ebd989cb32c25cce74084f2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n1. **tmux ls**：只有 `d134-cleaner`（5/18 20:02 创建），**没有** `d146-pf-pipeline` 和 `d146-pf-exec-s42`\n2. **GPU 计算进程**：无（空输出）\n3. **GPU 状态**：GPU 0 — 0 MiB / 97887 MiB，utilization 0%\n\n**结论：两个 D146 tmux session 都已不存在，GPU 完全空闲，无需清理。** 唯一存在的 session 是 `d134-cleaner`，与本任务无关。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d146-tmux-cleanup.md"
+}

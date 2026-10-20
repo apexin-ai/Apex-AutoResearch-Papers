@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aacc122c7e1c267ce6fc",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops sync figures recompile",
+  "task_key": "worker_ops_sync-figures-recompile_20260515T000833",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_sync-figures-recompile_20260515T000833_result.json",
+    "occurrence": 1,
+    "bytes": 479,
+    "sha256": "bcba079f15e6ceeb08a7384994f6dc668e9343fb61fc56140aadc71fd09d0898"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇总：\n\n| 项目 | 结果 |\n|------|------|\n| fig1_sta_overview.pdf | 39,744 bytes (服务器一致) |\n| fig2_isr_collapse.pdf | 25,052 bytes (服务器一致) |\n| fig3_hacking_composition.pdf | 22,481 bytes (服务器一致)，视觉确认：Non-hacking/H1/H7 三色堆叠柱状图，无 \"Genuine\" |\n| fig4_prolog_comparison.pdf | 32,663 bytes (服务器一致) |\n| Citation undefined | 0 |\n| 页数 | 13 页 |\n| main.pdf | 484,404 bytes |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-sync-figures-recompile.md"
+}

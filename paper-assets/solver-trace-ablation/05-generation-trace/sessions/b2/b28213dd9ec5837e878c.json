@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b28213dd9ec5837e878c",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "monitor batch0 sweep status",
+  "task_key": "worker_monitor_batch0-sweep-status_20260516T033803",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_batch0-sweep-status_20260516T033803_result.json",
+    "occurrence": 1,
+    "bytes": 1054,
+    "sha256": "2db53ebc0bbc4f86b85c63fc618f969d35d92b742687f7d0237d83f761ee8ddd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## sweep-isr-b005-s42\n- 进程状态: **存活** (PID 604647, Rl, 100% CPU, 运行 16m45s)\n- 最后 step: **250/500** (reward_log 257行)\n- Checkpoint: checkpoint-200 (完整 ~15GB), checkpoint-250 (写入中)\n- 速率: 250 步 / 16 min ≈ 15.6 步/min\n- 预计剩余: ~16 min\n- 结论: **running (50%)**\n\n## sweep-isr-b01-s45\n- 进程状态: **存活** (PID 604569 在 GPU 上, 91% GPU利用率)\n- 进程树: 604564(bash) → 604568(timeout) → 604569(python3)\n- 最后 step: reward_log 99行至 step 96，但 checkpoint-100 已完整保存\n- Checkpoint: checkpoint-50, checkpoint-100 (完整 ~15GB)\n- 结论: **running，已过 100 步**（config merge bug 已修复，未在 100 步停止）\n- 预计剩余: ~50-60 min（步速较 b005 慢，约 5-6 步/min）\n\n## GPU 状态\n- cuda:0: 79547 MiB, 91% (sweep-isr-b01-s45, PID 604569)\n- cuda:1: 80355 MiB, 4% (sweep-isr-b005-s42, PID 604647)\n\n两个实验均正常运行，未受 cron 误报影响。b005-s42 约 16 分钟后完成，b01-s45 约 1 小时后完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-batch0-sweep-status.md"
+}

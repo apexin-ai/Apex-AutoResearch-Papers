@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "b69b0cba789b2e24dc21",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code d154 8b k4 restart",
+  "task_key": "worker_code_d154-8b-k4-restart_20260520T062312",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d154-8b-k4-restart_20260520T062312_result.json",
+    "occurrence": 1,
+    "bytes": 1444,
+    "sha256": "8b1238ef0addfa5e3629f489eba4e2569f808c6bfb904f67d377dfff3d72e05c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练稳定运行。汇报结果：\n\n## 执行结果\n\n### 1. 配置修改\n- `grpo_exec_only_8b.yaml`: `num_generations` 2→4, `gradient_accumulation_steps` 32→16\n- `grpo_isr_b01_8b.yaml`: 同上\n- 有效 batch size 不变：1×4×16 = 1×2×32 = 64 completions/step\n\n### 2. K=4 显存使用\n- 生成阶段：~33 GiB\n- 反向传播峰值：**~54 GiB**（97 GiB 卡的 55%，充裕）\n- 对比 K=2：~54 GiB（持平，因为 generation_batch_size=K）\n\n### 3. 每步时间\n- K=4: **~26 s/step**（step_time=26.3s）\n- K=2: 56 s/step\n- **快了 2.15x**，因为 grad_accum 从 32 降到 16，生成轮次减半\n\n### 4. W&B\n- **未启用**。服务器无 WANDB_API_KEY、无 .netrc、无 wandb config。所有 4B 实验也是 `no_wandb: true`。需要 `wandb login` 才能启用。\n\n### 5. dtype fix 对 4B 的影响\n- `model_init_kwargs={\"dtype\": \"bfloat16\"}` 在 `train_grpo.py` 中全局应用（非条件）\n- Qwen3-4B 原生 bf16 预训练 → **无副作用**\n\n### 注意事项\n- 发现 `--no_wandb` 的 argparse `action=\"store_true\"` 与 YAML config 合并逻辑冲突：YAML 中 `no_wandb: true` 不会覆盖 argparse 默认值 `False`（合并条件是 `current is None`）。本次已通过 CLI `--no_wandb` 绕过。后续若要启用 W&B，需配置服务器凭证并去掉 CLI flag。\n- 预估 500 步总时间：~3.6h（vs K=2 的 ~7.8h）"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "dtype": "bfloat16"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d154-8b-k4-restart.md"
+}

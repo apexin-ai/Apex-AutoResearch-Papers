@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "139898641e8c10cdd0f6",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "train d129 1 7b random b01 s43",
+  "task_key": "worker_train_d129-1_7b-random-b01-s43_20260517T234538",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_d129-1_7b-random-b01-s43_20260517T234538_result.json",
+    "occurrence": 1,
+    "bytes": 367,
+    "sha256": "d9952c9f05ac8cbb3faacc896801915b8f09c38d1c403aed089ff51ca691cbd1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **tmux session**: `d129-1_7b-random-b01-s43`\n- **PID**: 65578 (cuda:0, 33878 MiB)\n- **日志**: 正常，step 1 完成，~9.85s/it\n- **注意**: 任务中 `--reward_mode` 写的是 `random`，实际有效值是 `random_reward`，已修正\n- **预计**: 500 steps × ~10s ≈ **~83 分钟**\n- **Cron 监控**: 已注册，120s 轮询"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-d129-1-7b-random-b01-s43.md"
+}

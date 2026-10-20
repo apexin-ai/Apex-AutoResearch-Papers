@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3f7eb07bb93511c95568",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops disk cleanup audit",
+  "task_key": "worker_ops_disk-cleanup-audit_20260514T055713",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_disk-cleanup-audit_20260514T055713_result.json",
+    "occurrence": 1,
+    "bytes": 3808,
+    "sha256": "58efca3e3475cd1f039d845cf52da1a6c617b5ef9694a2d9aefe787ec4423bb8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据收集完毕。以下是磁盘审计报告。\n\n---\n\n## 磁盘使用明细\n\n### 分区概览\n\n| 分区 | 总量 | 已用 | 可用 | 使用率 |\n|------|------|------|------|--------|\n| `/` (根分区) | 30G | 8.1G | 22G | 27% |\n| `/root/autodl-tmp` (数据盘) | 250G | 109G | 142G | 44% |\n\n**注意**：相比上次检查（仅剩 6.4G），数据盘已大幅释放，目前有 142G 可用。\n\n### 数据盘 `/root/autodl-tmp` 明细 (109G)\n\n| 路径 | 大小 | 说明 |\n|------|------|------|\n| `outputs/` | **91G** | 实验输出 |\n| `models/` | **16G** | 基础模型 |\n| `.hf_cache/` | **2.5G** | HuggingFace 缓存 |\n| `gpt2-small` | 0 | 空目录 |\n\n### outputs 明细 (91G)\n\n| 目录 | 大小 | 状态 | 内容 |\n|------|------|------|------|\n| `grpo_exec_only/` | 15G | **已完成** (step 25, 05-14 05:09) | 最终模型权重 + logs |\n| `grpo_exec_sta/` | 15G | **已完成** (step 25, 05-14 05:11) | 最终模型权重 + logs |\n| `plan001_exec_only_s42/` | 15G | **已完成** (05-14 07:43) | 最终模型权重 + logs |\n| `plan005_sta_low_s42/` | 15G | **已完成** (step 500, 05-13 23:54) | 最终模型权重 + logs |\n| `plan002_additive_b01_s42/` | 15G | **运行中** | checkpoint-150 (15G) + reward_log |\n| `plan016_extended_1000_s42/` | 15G | **运行中** | checkpoint-100 (15G) + reward_log |\n\n### models 明细 (16G)\n\n| 目录 | 大小 | 说明 |\n|------|------|------|\n| `Qwen3-4B/` | 7.6G | HuggingFace 版 Qwen3-4B（3 分片） |\n| `Qwen3-4B-ms/` | 7.6G | ModelScope 版 Qwen3-4B（**重复**） |\n\n### .hf_cache 明细 (2.5G)\n\n| 目录 | 大小 | 说明 |\n|------|------|------|\n| `openai-community/gpt2` | 1.1G | GPT-2 模型（项目不需要） |\n| `models--openai-community--gpt2/` | 363M | GPT-2 blobs 缓存（同上，重复） |\n| `Qwen/` | 954M | Qwen 缓存 |\n| `hub/` + `xet/` | ~1.2M | 元数据 |\n\n### 根分区其他大目录\n\n| 目录 | 大小 |\n|------|------|\n| `miniconda3/` | 13G |\n| `min_necessary_circuit_css/` | 56M |\n| `runs/` | 33M |\n| `solver-trace-ablation/` | 5.3M |\n\n---\n\n## 推荐删除列表\n\n| 优先级 | 目标 | 大小 | 理由 |\n|--------|------|------|------|\n| **P0** | `outputs/grpo_exec_only/` | **15G** | 早期探索实验（仅 25 step），已被后续 plan001 取代 |\n| **P0** | `outputs/grpo_exec_sta/` | **15G** | 同上，早期探索实验 |\n| **P1** | `models/Qwen3-4B-ms/` | **7.6G** | ModelScope 下载的副本，与 `Qwen3-4B/` 完全重复 |\n| **P2** | `.hf_cache/openai-community/` | **1.1G** | GPT-2 模型，项目不使用 |\n| **P2** | `.hf_cache/models--openai-community--gpt2/` | **363M** | GPT-2 blobs 缓存，同上 |\n| **P3** | `gpt2-small` | 0 | 空目录，无影响 |\n\n### 需确认后决定\n\n| 目标 | 大小 | 说明 |\n|------|------|------|\n| `outputs/plan001_exec_only_s42/` | 15G | 如 plan001 系列实验已有统一评估结果，模型权重可删（保留 reward_log/README） |\n| `outputs/plan005_sta_low_s42/` | 15G | 同上，如已完成 eval_sta 统一评估则可删权重 |\n\n---\n\n## 空间预估\n\n| 方案 | 释放空间 | 删除后剩余可用 |\n|------|---------|---------------|\n| 仅 P0 | **30G** | 172G |\n| P0 + P1 | **37.6G** | 180G |\n| P0 + P1 + P2 | **39G** | 181G |\n| 全部含确认项 | **69G** | 211G |\n\n**当前 142G 可用空间对 plan006 Prolog 3-seed 实验（预计 ~45G = 15G × 3 seed）已经足够。** 如果只做保守清理（P0 + P1 = 37.6G），可用空间达 180G，非常充裕。\n\n### 保护名单（不删）\n- `outputs/plan002_additive_b01_s42/` — 运行中\n- `outputs/plan016_extended_1000_s42/` — 运行中\n- `models/Qwen3-4B/` — 基础模型，训练依赖\n- `miniconda3/` — 运行环境\n- `solver-trace-ablation/` — 项目代码"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-disk-cleanup-audit.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b416da2cee0ca90126ce",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code d146 final status and eval",
+  "task_key": "worker_code_d146-final-status-and-eval_20260520T003447",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d146-final-status-and-eval_20260520T003447_result.json",
+    "occurrence": 1,
+    "bytes": 1066,
+    "sha256": "278a101f2d8416e210d5d7e417097b9102d357cea17c6909c4df54fee14e3d8b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## D146 Pipeline Status\n\n### 5/6 完成，isr_s44 仍在训练\n\n| Experiment | Step | Prove Rate | ISR Mean | Reward | Status |\n|---|---|---|---|---|---|\n| d146_pf_exec_s42 | 500 | 1.000 | 0.000 | 1.000 | **DONE** |\n| d146_pf_exec_s43 | 500 | 1.000 | 0.205 | 1.000 | **DONE** |\n| d146_pf_exec_s44 | 500 | 1.000 | 0.043 | 1.000 | **DONE** |\n| d146_pf_isr_s42 | 500 | **0.000** | 0.000 | 0.000 | **DONE (collapsed)** |\n| d146_pf_isr_s43 | 500 | 1.000 | 0.205 | 1.020 | **DONE** |\n| d146_pf_isr_s44 | 175/500 | 0.500 | 0.100 | 0.510 | **RUNNING** |\n\n### isr_s44 详细统计\n- 176 steps done, speed=0.07 step/s\n- prove_rate: mean=0.322, final_50=0.395 (still learning)\n- ISR: mean=0.088, final_50=0.109\n- **ETA: ~72 min (约 10:10 UTC 完成)**\n\n### 警告：isr_s42 完全崩溃\nprove_rate=0.0, reward=0.0, isr=0.0 — 训练完全失败。只剩 isr_s43 和 isr_s44 两个有效 ISR seed。\n\n### Eval/Classify: 未启动\nisr_s44 还在跑（GPU 0 占用 93%, 83GB），等训练完成后再启动。预计 ~72 min 后可开始。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d146-final-status-and-eval.md"
+}

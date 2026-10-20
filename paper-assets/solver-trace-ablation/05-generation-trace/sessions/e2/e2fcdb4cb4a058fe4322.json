@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e2fcdb4cb4a058fe4322",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops kill zombie 261641",
+  "task_key": "worker_ops_kill-zombie-261641_20260514T055306",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-zombie-261641_20260514T055306_result.json",
+    "occurrence": 1,
+    "bytes": 406,
+    "sha256": "5957bb8eb1cc60585543663e5a316d6ef427c537dfe4cefa381c2536b449b069"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "僵尸进程 261641 已不存在，无需 kill。\n\n当前 GPU 状态：\n- **GPU 0**: 79,613 / 97,887 MiB — PID 262266, plan002 训练 (运行 21 分钟)\n- **GPU 1**: 80,355 / 97,887 MiB — PID 263273, plan016 训练 (运行 17 分钟)\n\n两张卡各只有一个训练进程，显存占用 ~80GB/98GB，剩余 ~17GB，无僵尸进程，OOM 风险已解除。plan016 正常运行中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-zombie-261641.md"
+}

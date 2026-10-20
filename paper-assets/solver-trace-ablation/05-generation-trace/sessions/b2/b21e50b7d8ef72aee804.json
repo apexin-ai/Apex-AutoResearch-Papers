@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b21e50b7d8ef72aee804",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "research gated isr paper narrative",
+  "task_key": "worker_research_gated-isr-paper-narrative_20260516T151204",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_gated-isr-paper-narrative_20260516T151204_result.json",
+    "occurrence": 1,
+    "bytes": 386,
+    "sha256": "44cb207c4c196fe11ccd427c5b8c3c2c0dcdd954cfd8701a7623b39d2168b6ea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析备忘已保存到 `artifacts/gated_isr_narrative_analysis.md`。\n\n核心判断：结果 A（门控仍 hack）对论文叙事最有利——直接强化 Goodhart 主线；结果 B 有价值但需重构叙事平衡；结果 C 是 Claim 2 的自然推论，一句 limitations 收尾。无论哪种结果，genuine rate（C013 标准）是第一优先 eval 指标。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-gated-isr-paper-narrative.md"
+}

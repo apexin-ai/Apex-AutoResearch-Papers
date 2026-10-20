@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ca1820af425aeb0fdf48",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_5_1778766102.md",
+  "task_key": "loop_5_1778766102",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_5_1778766102.md",
+    "occurrence": 1,
+    "bytes": 4842,
+    "sha256": "337e29a979309379b5125afb4e7f2294455124e1655d2d1d9357308114c2dbb5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: idle_timeout\nupdated: '2026-05-14T12:33:56+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单仅 `westd-39279:cuda:0` 和 `westd-39279:cuda:1`，无其他合法 GPU\n- 所有训练命令必须 `bash -c \"export CUDA_VISIBLE_DEVICES=N && ...\"` 格式，N 从 0 开始\n- 数据约束 C001：所有 plan001/plan013 实验统一用 `train_500_seed42.jsonl`\n- 磁盘约束 C003：`log_completions=False` + `save_total_limit=1`，output_dir 放 `/root/autodl-tmp/outputs/`\n- Prolog exec+STA 用 0.5/0.5 权重，FOL exec+ISR 用 additive bonus `r=r_exec·(1+β·ISR)`——两者公式不同，不可直接对比 β 值\n- plan002-b01 多 seed 结论：2/3 seeds hacking (H7)，叙事已降级为 \"sweet spot 有条件成立\"（D043）\n- DDL: 2026-05-25，剩 11 天\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-39279，2× RTX PRO 6000 Blackwell 96GB\n- **工作目录**: `/root/solver-trace-ablation/`\n- **Python**: `/root/miniconda3/bin/python`，激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **CUDA**: 12.8, PyTorch 2.10.0+cu128\n- **模型**: Qwen3-4B（ModelScope 下载，7.6GB）\n- **Solvers**: Prover9 (LADR 源码编译), SWI-Prolog 8.4.2 (`/usr/bin/swipl`), Z3 4.16.0.0\n- **磁盘**: 系统盘 ~22G free，数据盘 `/root/autodl-tmp/` ~199G free\n- **活跃进程**:\n  - plan018-additive-random-b01-s44: PID 564900, cuda:0, cron 确认仍在跑\n  - plan006-prolog-exec-s43: PID 587155, cuda:1, **⚠️ cron reconcile 报 \"Process gone, no sentinel, no W&B — escalating to agent (miss 1/5)\"——可能已崩溃，需立即诊断**\n- **活跃 Worker**: `worker_eval-analysis_plan009-sft-r4_20260514T122601`（running，28 turns，在等 SFT eval 输出缓冲）\n\n### 3. 📊 当前状态\n上一轮做的事：提交 plan006-prolog-exec-s43 和 plan018-additive-random-b01-s44 训练，准备 plan006 Prolog STA s43/s44 配置，启动 plan009-sft-r4 的 eval-analysis Worker。\n\n**Registry 状态**:\n- **RUNNING (2)**: plan018-additive-random-b01-s44 (cuda:0, 正常), plan006-prolog-exec-s43 (cuda:1, ⚠️ 疑似崩溃)\n- **ANALYZING (1)**: plan009-sft-baseline-s42-r4 — Worker 正在跑 eval，28 turns，进程输出被缓冲中\n- **PREPARING (2)**: plan006-prolog-sta-s44, plan006-prolog-sta-s43（等 GPU 释放）\n- **PENDING (1)**: plan009-sft-baseline-s42（等人工审批，可能是原始条目，r4 已覆盖）\n- **QUEUED (1)**: plan006-prolog-exec-s44（等 GPU）\n- **DONE (40)**: success 9 / negative 14 / failed 17\n\n**等待中**:\n- Worker `worker_eval-analysis_plan009-sft-r4` 回调\n- plan006-prolog-exec-s43 cron 下次检测（可能触发 failed 回调）\n- plan018-additive-random-b01-s44 完成回调\n\n### 4. 📋 待办（条件触发式）\n- **plan006-prolog-exec-s43 cron 报 process gone** → 立即 spawn Worker SSH 诊断（查 tmux session、日志、exit code）→ 若 failed 则 update_registry + 汇报 Director + 考虑重跑\n- plan009-sft-r4 eval Worker 回调 → 读结果 → update_registry(DONE) → 与 GRPO 各条件对比（SFT 有无 hacking pattern？有无 H7？）→ 汇报 Director → memory.md 写入\n- plan018-additive-random-b01-s44 完成 → spawn Worker 跑 eval_sta.py → 与 plan002-b01-s44 对照 → 验证 ISR 3.2x>random 是否 s44 成立\n- plan006-prolog-exec-s43 成功完成 → spawn Worker eval → 与 s42 (PR=83%, ISR=0.031) 对比 seed 稳定性\n- cuda:0 或 cuda:1 释放 → 按优先级启动：plan006-prolog-exec-s44 (QUEUED) > plan006-prolog-sta-s43/s44 (PREPARING)\n- 3-seed exec-only Prolog 全出齐 → mean±std 统计 → Claim 3 跨 logic type 论文定稿评估\n\n### 5. 🎯 战略上下文\n**项目核心结论链**:\n- ISR 是 neurosymbolic GRPO 的诊断+优化工具，存在 Goodhart 剂量效应（β=0.1 有效, β≥0.3 崩溃）\n- D041: Claim 2 已 pivot 为 \"all β levels exhibit Goodhart, β=0.1 delays but doesn't prevent\"（2/3 seeds hacking）\n- D044: Hacking taxonomy 用 strict exact normalized match，ISR reward 导致 mode shift (H1→H7) 非 net reduction\n- D045: Prolog 跨 logic 验证 Goodhart——Prolog 比 FOL 更容易被 hack（语义更简单，饱和更快）\n- plan014 downstream NLI 失败 (ρ=-0.049 n.s.)，已降级为 limitation\n\n**易错点**:\n- plan006-prolog-exec-s43 **极可能已经崩溃**——reconcile 报 process gone，下一个我必须优先诊断这个，不要等 cron 被动触发\n- FOL 和 Prolog 的 ISR reward 公式不同（additive bonus vs 0.5/0.5 权重），写论文时不可直接对比 β 值\n- plan009 SFT baseline 已失败 3 次 (r2, r3)，r4 是最新尝试，如果 r4 也失败需要考虑换方案\n- 成功率只有 9/40 (22.5%)，大量早期实验是环境/代码 bug 导致的 failed，不是方法论问题\n- β=0.1 \"sweet spot\" 叙事已降级（D043），论文 framing 需要谨慎措辞\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5-1778766102.md"
+}

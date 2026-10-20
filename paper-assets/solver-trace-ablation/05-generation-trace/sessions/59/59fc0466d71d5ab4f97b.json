@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "59fc0466d71d5ab4f97b",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "pipeline s46 and 8b full",
+  "task_key": "worker_pipeline_s46-and-8b-full_20260522T021547",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_pipeline_s46-and-8b-full_20260522T021547_result.json",
+    "occurrence": 1,
+    "bytes": 709,
+    "sha256": "172d6a50602810d04cf9749c53339af19c7ad41cdf9e04386d7078b2f996cb40"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Phase 1 完成，总结：**\n\n| 项目 | 状态 |\n|------|------|\n| 残留进程 | 无，GPU 空闲 |\n| s45 checkpoint | 已清理 |\n| s46 配置 | 已存在且正确（seed=46, K=4, 1000步, `data/train_500_seed42.jsonl`） |\n| s46 训练 | 已启动，tmux=`exec-only-s46-1000step`，GPU 8233MiB |\n| s46 预计耗时 | ~6.5h（23.6s/step），约北京时间 16:45 完成 |\n| 8B dry-run 配置 | 已创建 `grpo_exec_only_8b_dryrun.yaml`（2步） |\n| 8B 正式配置 | 已创建 `grpo_exec_only_8b_s42.yaml`（500步, save_total_limit=1） |\n| 磁盘 | 148GB free |\n\n**排队：** s46 完成 → eval + classify → 8B dry-run → 8B 正式训练。20 分钟后自动轮询。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/pipeline-s46-and-8b-full.md"
+}

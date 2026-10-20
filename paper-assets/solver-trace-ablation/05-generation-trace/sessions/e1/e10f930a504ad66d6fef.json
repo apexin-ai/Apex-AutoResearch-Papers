@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e10f930a504ad66d6fef",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code download qwen3 7b",
+  "task_key": "worker_code_download-qwen3-7b_20260516T024201",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_download-qwen3-7b_20260516T024201_result.json",
+    "occurrence": 1,
+    "bytes": 760,
+    "sha256": "f603fdb7161d1f8d761fefa2e548f1508859ba74d611c834ee36b192e3757565"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n1. **Qwen3 系列没有 7B 模型**。尺寸为 0.6B / 1.7B / 4B / 8B / 14B / 32B。最接近的是 **Qwen3-8B**。\n\n2. **Qwen3-8B 已在后台下载中**（PID 588329，ModelScope），无需重复启动：\n   - shard 1/4/5（共 ~8.4GB）：已完成\n   - shard 3（3.69GB）：62%，预计 ~2 分钟完成\n   - shard 2（3.72GB）：32%，预计 ~8 分钟完成\n   - 速度：shard 3 ~11MB/s，shard 2 ~6MB/s\n\n3. **预计全部完成时间：~8-10 分钟**（从现在算起）\n\n4. **磁盘空间**：58GB 可用，Qwen3-8B 约 16GB，足够。\n\n5. **模型路径**：`/root/autodl-tmp/models/Qwen3-8B/`\n\n轮询命令（稍后检查）：\n```\ntail -5 /tmp/ms_download_qwen3_8b.log\nps -p 588329 -o pid=\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-download-qwen3-7b.md"
+}

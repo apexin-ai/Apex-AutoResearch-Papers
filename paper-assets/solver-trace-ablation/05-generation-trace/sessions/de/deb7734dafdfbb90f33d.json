@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "deb7734dafdfbb90f33d",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_16_1778911248.md",
+  "task_key": "loop_16_1778911248",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_16_1778911248.md",
+    "occurrence": 1,
+    "bytes": 3302,
+    "sha256": "14bb58b50ac6f209cbc417f42893e03dbc83d0ae4dc0c3e371523c791abe923a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 16\nreason: idle_timeout\nupdated: '2026-05-16T06:00:47+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：仅 westd-39279:cuda:0 和 westd-39279:cuda:1，绝不用其他设备\n- W&B entity/project 未在 config/projects/solver-trace-ablation.yaml 中配置，fetch_wandb_metrics 会失败——必须 SSH 读本地日志/eval_results.json 获取指标\n- genuine rate p=0.182 (n.s.)，论文中**不可 claim 显著**（D095 Narrative A 硬约束）\n- Random 条件下 H7≠0%（s43-r3 有 38.3%），不可说 \"H7 is ISR-specific\"（D093）\n- H7a 是 GRPO 通用 seed-dependent，H7b 才是 ISR-specific（D094）\n- premise-count-matched 倍数是 1.06x，2.4x 已作废（D051）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-39279，账号 root，工作目录 `/root/solver-trace-ablation`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，非 venv）\n- 模型：Qwen3-4B（本地路径未确认，需 Worker SSH 探查）\n- 数据：`/root/solver-trace-ablation/data/train_500_seed42.jsonl`（500 条）\n- 输出目录：`/root/autodl-tmp/outputs/` 下各实验子目录\n- W&B：run 名对应 exp_id，但 entity/project 未配置到 MCP config\n- 活跃进程：无（两实验均已正常退出）\n- Cron：reconcile 返回 0（已清理）\n\n### 3. 📊 当前状态\n**刚做完**：Session 启动初始化（registry + reconcile + ROADMAP + report.md）\n\n**正在等**：两个分析 Worker 的回调：\n- `worker_analysis_sweep-isr-b005-s42_20260516T025842`（β=0.05 dose-response 实验）\n- `worker_analysis_sweep-isr-b01-s45_20260516T025851`（β=0.1 s45 扩展 seed 实验）\n\n两个 Worker 会 SSH 到 westd-39279 读 eval 结果、更新 registry 到 DONE、写 analysis_report.md。\n\n**Registry 概况**：105 总实验，86 DONE + 2 ANALYZING + 17 PREPARING。PREPARING 中有 W3（β=0.05/0.2 dose-response）和 W4（5-seed 扩展）系列。\n\n### 4. 📋 待办\n- Worker sweep-isr-b005-s42 回调 → 读 conclusion：success 则更新 report.md + 汇报 Director dose-response 证据；negative 则产 Framing 提案\n- Worker sweep-isr-b01-s45 回调 → 读 conclusion：与已有 s42/43/44 对比，success 则 5-seed CI 收窄证据入 report；异常偏离需分析\n- 两个 Worker 都完成后 → 汇报 Director（带 [资源] 行），建议下一批 PREPARING 实验（β=0.2 三 seed、exec-only s45/s46 等）\n- Director 审批下一批 → allocate GPU 并 submit_on_allocated\n- 如果 β=0.05 hacking rate 显著低于 β=0.1 → dose-response curve 数据点就位，可强化 Goodhart's Law 叙事\n\n### 5. 🎯 战略上下文\n- 项目处于 **Writing 阶段**，DDL 2026-05-25（剩 9 天），论文已通过 Reviewer 一致性审查 + submission package 已打包\n- D096 开启 \"Round 2 refined plan\"：7B 模型 + β={0.05, 0.2} ISR-only，目标是 dose-response curve + 模型规模泛化\n- 当前跑的 sweep 系列是 Round 2 的第一批数据点，**不影响已提交的论文主体**（论文基于 86 个已完成实验）\n- 易错点：这两个实验是 **Round 2 补充数据**，不是核心 claim 的关键证据。即使 negative 也不触发 paper Framing 调整——只影响 Round 2 扩展叙事\n- ROADMAP 显示 \"等待 Review Director 最终审\"，Round 2 实验是为 camera-ready 或 rebuttal 储备\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-16-1778911248.md"
+}

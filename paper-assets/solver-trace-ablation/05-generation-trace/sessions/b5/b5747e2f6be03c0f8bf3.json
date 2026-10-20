@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b5747e2f6be03c0f8bf3",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "review paper consistency",
+  "task_key": "worker_review_paper-consistency_20260515T041641",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_review_paper-consistency_20260515T041641_result.json",
+    "occurrence": 1,
+    "bytes": 667,
+    "sha256": "059ecb0fb7172ac1325730cc25c7050484050ac263d6da13ab1e698f7f8b26d3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审查完成。结果：\n\n- **124 个定量声明已检查**\n- **116 个一致**，0 个关键错误\n- **1 个轻微不一致**：\"200× collapse\" 实际应为 ~214× (0.6423/0.003)\n- **7 个无法仅从 registry 验证**（需要 eval 输出文件），包括 random β=0.1 s43 的 ISR*=0.058、500 步组件数 6.58、1000 步 94.8% ISR=0 等\n\n所有主表（Table 1、Table 2）、附录详细表、3-seed 聚合统计（mean±std）、关键叙事数据点（64.5% vs 0%、1.06×、99.5% 退化、σ=±47pp）均与 registry 一致。D051/C006 等约束全部满足。\n\n报告已写入 `artifacts/paper_consistency_audit.md` 并注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/review-paper-consistency.md"
+}

@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "id": "447efae63c4355ba1e2f",
+  "project": "solver-trace-ablation",
+  "kind": "worker",
+  "title": "fix eval sta fallback 20260515T010917 retry1",
+  "task_key": "worker_fix_eval-sta-fallback_20260515T010917_retry1",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_eval-sta-fallback_20260515T010917_retry1.log",
+    "occurrence": 1,
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "statistics": {
+    "messages": 0,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {},
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [],
+  "readable_path": "readable/worker-executions/fix-eval-sta-fallback-20260515t010917-retry1.md"
+}

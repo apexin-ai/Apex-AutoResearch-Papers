@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "id": "88819a487922c4f4e8b6",
+  "project": "solver-trace-ablation",
+  "kind": "worker",
+  "title": "audit tex number consistency",
+  "task_key": "worker_audit_tex-number-consistency_20260515T155635",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_tex-number-consistency_20260515T155635.log",
+    "occurrence": 1,
+    "bytes": 918333,
+    "sha256": "2fd1d6e845582e7b34a9c238300932c8dc8d63e58ec6d67f4baa4ce2da2e775c"
+  },
+  "statistics": {
+    "messages": 146,
+    "user_turns": 2,
+    "tool_calls": 49,
+    "roles": {
+      "log": 1,
+      "system": 28,
+      "record": 1,
+      "assistant": 15,
+      "tool_call": 49,
+      "tool_result": 49,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 17,
+      "chunks": [
+        {
+          "path": "88819a487922c4f4e8b6-part-0001.json",
+          "message_count": 17
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 74,
+      "chunks": [
+        {
+          "path": "88819a487922c4f4e8b6-part-0001.json",
+          "message_count": 60
+        },
+        {
+          "path": "88819a487922c4f4e8b6-part-0002.json",
+          "message_count": 14
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 55,
+      "chunks": [
+        {
+          "path": "88819a487922c4f4e8b6-part-0002.json",
+          "message_count": 55
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-tex-number-consistency.md"
+}

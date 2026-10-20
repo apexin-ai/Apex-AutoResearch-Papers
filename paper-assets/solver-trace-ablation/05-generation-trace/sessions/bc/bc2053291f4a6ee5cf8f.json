@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "bc2053291f4a6ee5cf8f",
+  "project": "solver-trace-ablation",
+  "kind": "worker",
+  "title": "eval plan009 sft r4",
+  "task_key": "worker_eval_plan009-sft-r4_20260514T133910",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_plan009-sft-r4_20260514T133910.log",
+    "occurrence": 1,
+    "bytes": 614303,
+    "sha256": "1fd8fdb6fe7a910470c6f31feea42d269f4bcc8ef826f550cba7e51636859cdb"
+  },
+  "statistics": {
+    "messages": 469,
+    "user_turns": 0,
+    "tool_calls": 201,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 63,
+      "tool_call": 201,
+      "tool_result": 201,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 469,
+      "chunks": [
+        {
+          "path": "bc2053291f4a6ee5cf8f-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "bc2053291f4a6ee5cf8f-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "bc2053291f4a6ee5cf8f-part-0003.json",
+          "message_count": 109
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-plan009-sft-r4.md"
+}

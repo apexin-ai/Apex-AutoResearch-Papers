@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d3d575379c87a0ea586b",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code taxonomy h7 subcategory",
+  "task_key": "worker_code_taxonomy-h7-subcategory_20260515T143041",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_taxonomy-h7-subcategory_20260515T143041_result.json",
+    "occurrence": 1,
+    "bytes": 650,
+    "sha256": "a369d5d93699d5d48996a378bc29ef654b55404c979cd537b98eb510ec80c311"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完美匹配：\n- H7b 检测到的 11 个 == FN 证据中的 11 个 vacuous_quantifier_wrapping，**完全一致**\n- 唯一剩余的 genuine（folio_304）== FN 证据中唯一的 structural_simplification\n\n**结果摘要**（plan002-additive-b01-s44）：\n\n| 类别 | 数量 |\n|------|------|\n| H7a (text-match tautology) | 77 |\n| H7b (obfuscated tautology) | 11 |\n| H7 total | 88 |\n| H1_exact | 0 |\n| H8 | 0 |\n| **Genuine** | **1** (folio_304, structural simplification) |\n\n脚本已更新在 `/root/solver-trace-ablation/scripts/classify_h7.py`，向后兼容（保留 `h7_strict_count`/`h7_examples` 等旧 key）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-taxonomy-h7-subcategory.md"
+}

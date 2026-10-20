@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "29ecd999a9fc65acb8cb",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "paper citation update",
+  "task_key": "worker_paper_citation-update_20260521T175241",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_citation-update_20260521T175241_result.json",
+    "occurrence": 1,
+    "bytes": 577,
+    "sha256": "47f10e06fc2db4bf5822b4866d199710d83371c8b37a6731a46ce674c7a799a4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. Summary of changes:\n\n**references.bib** — added two entries:\n- `yue2025rl-reasoning-limit`: `@inproceedings` (NeurIPS 2025 Oral)\n- `sullivan2025grpo-prm`: `@article` (arXiv preprint)\n\n**related_work.tex** — added two citations:\n- Line 13: Sullivan et al. in \"Process rewards\" paragraph — GRPO implicitly acts as a Monte-Carlo PRM, explaining component-level gaming.\n- Line 19: Yue et al. in \"Reward hacking\" paragraph — RLVR redistributes probability mass rather than eliciting new reasoning, consistent with observed gaming behaviours."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-citation-update.md"
+}

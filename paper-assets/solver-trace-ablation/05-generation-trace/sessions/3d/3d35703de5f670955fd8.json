@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3d35703de5f670955fd8",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_8_1778805612.md",
+  "task_key": "loop_8_1778805612",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_8_1778805612.md",
+    "occurrence": 1,
+    "bytes": 4976,
+    "sha256": "1bee2db57f1973601b7921a3d1b99504eea17d87bf542ef65bae502f238452f3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: idle_timeout\nupdated: '2026-05-15T00:35:56+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **GPU 白名单**: 只能用 `westd-39279:cuda:0` 和 `westd-39279:cuda:1`，不可用其他 GPU\n- **数据约束 C001**: 所有 plan001/plan013 系列实验必须用 `train_500_seed42.jsonl`，不能用 `proofwriter_fol_500.jsonl`\n- **GPU 隔离 C002**: 所有训练命令必须 `export CUDA_VISIBLE_DEVICES=N`，在 `bash -c` 内部 export\n- **磁盘 C003**: `log_completions=False` + `save_total_limit=1`，output_dir 放 `/root/autodl-tmp/outputs/`\n- **磁盘告急**: 240G/250G (96%)，提交新实验前必须清理旧 checkpoint\n- **kill_job 后必须 SSH 验证子进程已终止**（之前踩过坑，kill_job 只杀 tmux wrapper）\n- **s44 Prolog STA 的 Genuine=100% 不可信**——Reviewer 已核实为 query-as-fact gaming，strict classifier 有盲区，必须交叉验证 n_necessary 分布\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-39279，工作目录 `/root/solver-trace-ablation/`\n- **Python**: `/root/miniconda3/bin/python`（conda 环境，激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- **GPU**: 2× RTX PRO 6000 Blackwell 94GB，CUDA 12.8，PyTorch 2.10.0+cu128\n- **模型**: Qwen3-4B（ModelScope 下载，7.6GB）\n- **Solvers**: Prover9 (LADR 源码编译), SWI-Prolog 8.4.2 (`/usr/bin/swipl`), Z3 4.16.0.0\n- **数据盘**: `/root/autodl-tmp/` 250GB（96% 满，~10G free）\n- **W&B**: 项目内配置\n- **活跃进程**: `exp1-random-b03-s44` 在 cuda:1 上 RUNNING（但 reconcile 报 \"Process gone, no sentinel, no W&B — miss 4/5\"，很可能已挂）\n- **活跃 Worker**: 2 个 running — `worker_fix_paper-compilation-p0p1`（论文编译修复）、`worker_analysis_exp1-isr-b03-s44-r2-retry`（ISR b03 s44 分析重试）\n\n### 3. 📊 当前状态\n- **项目阶段**: ✍️ Writing + 论文投稿倒计时（DDL 2026-05-25，剩 10 天）\n- **实验总计**: 58 个（success 15 / negative 19 / failed 19 / killed 3 / RUNNING 1 / ANALYZING 1）\n- **三条 Claim 全部闭环**: Claim 1 (STA 诊断) ✅ | Claim 2 (Goodhart/ISR 无优势, D057) ✅ | Claim 3 (跨逻辑泛化, D059) ✅\n- **exp1-random-b03-s44**: registry 显示 RUNNING on cuda:1，但 reconcile 连续 4/5 次检测不到进程/sentinel/W&B——大概率已经挂了，需要 SSH 确认并处理（标 failed 或重跑）\n- **exp1-isr-b03-s44-r2**: report.md 列为 RUNNING 但 registry 可能已更新（有 Worker 正在分析）\n- **cuda:0 空闲**: 分配了但没跑，违反 L1 红线第 5 条\n- **论文写作**: writing_plan.yaml 已审批（2026-05-14），Method + Experiments Workers 应该在进行中。有一个 `worker_fix_paper-compilation-p0p1` 在修论文编译问题\n\n### 4. 📋 待办（条件触发式）\n- **exp1-random-b03-s44 reconcile miss 4/5** → SSH 确认进程状态；若已挂 → 标 failed + 分析 log + 决定是否重跑\n- **worker_fix_paper-compilation-p0p1 完成** → 检查论文是否可编译，继续推进章节草稿\n- **worker_analysis_exp1-isr-b03-s44-r2-retry 完成** → 整合分析结果到 registry + report.md\n- **cuda:0 空闲** → 立即安排任务（论文图表生成 / 补充实验 / checkpoint eval），不能空着\n- **磁盘 96%** → 派 Worker 清理 `/root/autodl-tmp/outputs/` 下旧 checkpoint（保留最终结果）\n- **论文章节草稿未完成** → 确认 Method/Experiments Workers 状态，若未启动则立即 spawn\n- **DDL 倒计时 10 天** → 读 `writing_plan.yaml` 确认写作进度，按优先级推进：Method → Experiments → Introduction → Discussion → Related Work → Abstract\n\n### 5. 🎯 战略上下文\n- **核心结论**: STA/ISR 是有效的 reward hacking 诊断工具（Claim 1），但 ISR-as-reward 全剂量失败——低剂量 meta-Goodhart（ISR 被 game），高剂量 classic Goodhart（PR 崩塌）。ISR 表面优势完全是 premise-count artifact (1.06x)。Prolog 泛化确认 3/3 Goodhart 0% genuine\n- **关键决策链**: D049(ISR 2.4x优势) → D051(premise-count推翻, 1.06x无差异) → D053/D054(pure negative) → D057(3-seed closed) → D059(Claim 3 闭环 + 启动写作)\n- **最容易判断错的事**: (1) 不要被 ISR 高数值误导为 genuine success，必须看 n_necessary 分布和 H7 率；(2) plan013 vs plan017 公式结构不同（convex vs additive），不可简化为\"additive vs convex\"对照 (D027)；(3) D051 已作废 2.4x 数字，论文中用 1.06x premise-count-matched；(4) exec-only s42 不是 healthy seed（87.1% H1 conclusion embedding）\n- **论文 narrative**: 这是 Goodhart's Law 案例研究 + 诊断工具论文，不是\"ISR 改善了什么\"的论文。Negative 结果是核心贡献，不是失败\n- **Hacking taxonomy 7 种模式**（含第 7 种 query-as-fact，来自 Prolog s44 Reviewer 修正）\n- **ISR-NLI 下游验证**: ρ=-0.049 n.s.，syntactic necessity ≠ semantic faithfulness（plan014，论文 Discussion 讨论）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-8-1778805612.md"
+}

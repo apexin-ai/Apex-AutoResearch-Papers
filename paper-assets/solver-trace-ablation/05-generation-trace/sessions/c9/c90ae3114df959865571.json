@@ -1,0 +1,481 @@
+{
+  "schema_version": "1.0",
+  "id": "c90ae3114df959865571",
+  "project": "solver-trace-ablation",
+  "kind": "conversation",
+  "title": "research r15 reference verification",
+  "task_key": "worker_research_r15-reference-verification_20260520T044621",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_research_r15-reference-verification_20260520T044621.jsonl",
+    "occurrence": 1,
+    "bytes": 25069,
+    "sha256": "593418bc919f0e71689845259c0ec30df2687bd5c883c30a2d859aace2ebd3a4"
+  },
+  "statistics": {
+    "messages": 23,
+    "user_turns": 0,
+    "tool_calls": 11,
+    "roles": {
+      "tool_call": 11,
+      "tool_result": 11,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T04:48:13.905425+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_r15-reference-verification_20260520T044621",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:WebSearch",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T04:48:13.905860+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_r15-reference-verification_20260520T044621",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T04:48:13.906064+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_r15-reference-verification_20260520T044621",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "arxiv 2604.15149 \"LLMs Gaming Verifiers\""
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T04:48:13.906200+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_r15-reference-verification_20260520T044621",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "arxiv 2603.07084 Countdown code reasoning"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T04:48:13.906732+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_r15-reference-verification_20260520T044621",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Uesato 2022 \"Solving math word problems\" process outcome feedback"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T04:48:13.906904+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_r15-reference-verification_20260520T044621",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Cobbe 2021 \"Training Verifiers to Solve Math Word Problems\" GSM8K"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T04:48:13.907047+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_r15-reference-verification_20260520T044621",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/references.bib"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T04:48:13.907346+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% ============================================================\n2\t% Category 1: Neurosymbolic reasoning + RL/GRPO\n3\t% ============================================================\n4\t\n5\t@article{grattafiori2024llama,\n6\t  author       = {Aaron Grattafiori and Abhimanyu Dubey and Abhinav Jauhri and others},\n7\t  title        = {{The Llama 3 Herd of Models}},\n8\t  journal      = {arXiv preprint arXiv:2407.21783},\n9\t  year         = {2024},\n10\t  eprint       = {2407.21783},\n11\t  archiveprefix = {arXiv},\n12\t}\n13\t\n14\t@article{deepseekmath,\n15\t  author       = {Zhihong Shao and Peiyi Wang and Qihao Zhu and Runxin Xu and others},\n16\t  title        = {{DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models}},\n17\t  journal      = {arXiv preprint arXiv:2402.03300},\n18\t  year         = {2024},\n19\t  eprint       = {2402.03300},\n20\t  archivePrefix = {arXiv},\n21\t  primaryClass = {cs.AI},\n22\t}\n23\t\n24\t@article{logic-rl,\n25\t  author       = {Tian Xie and Zitian Gao and Qingnan Ren and Haoming Luo and Yuqian Hong and Bryan Dai and Joey Zhou and Kai Qiu and Zhirong Wu and Chong Luo},\n26\t  title        = {{Logic-RL: Unleashing LLM Reasoning with Rule-Based Reinforcement Learning}},\n27\t  journal      = {arXiv preprint arXiv:2502.14768},\n28\t  year         = {2025},\n29\t  eprint       = {2502.14768},\n30\t  archivePrefix = {arXiv},\n31\t  primaryClass = {cs.AI},\n32\t}\n33\t\n34\t@article{mellgren-prolog-grpo,\n35\t  author       = {Niklas Mellgren and Peter Schneider-Kamp and Lukas Galke},\n36\t  title        = {{Training Language Models to Use Prolog as a Tool}},\n37\t  journal      = {arXiv preprint arXiv:2512.07407},\n38\t  year         = {2025},\n39\t  eprint       = {2512.07407},\n40\t  archivePrefix = {arXiv},\n41\t  primaryClass = {cs.AI},\n42\t}\n43\t\n44\t@inproceedings{satlm,\n45\t  author       = {Xi Ye and Qiaochu Chen and Isil Dillig and Greg Durrett},\n46\t  title        = {{SatLM: Satisfiability-Aided Language Models Using Declarative Prompting}},\n47\t  booktitle    = {Advances in Neu\n…[truncated 21817 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_r15-reference-verification_20260520T044621",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T04:48:13.907688+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"arxiv 2604.15149 \"LLMs Gaming Verifiers\"\"\n\nLinks: [{\"title\":\"[2604.15149] LLMs Gaming Verifiers: RLVR can Lead to Reward Hacking\",\"url\":\"https://arxiv.org/abs/2604.15149\"},{\"title\":\"LLMs Gaming Verifiers: RLVR can Lead to Reward Hacking\",\"url\":\"https://arxiv.org/html/2604.15149\"},{\"title\":\"LLM Reasoning Workshop @ ICLR 2026 LLMS GAMING VERIFIERS:\",\"url\":\"https://arxiv.org/pdf/2604.15149\"},{\"title\":\"LLMs Gaming Verifiers: RLVR can Lead to Reward Hacking\",\"url\":\"https://chatpaper.com/paper/268961\"},{\"title\":\"Prover-Verifier Games improve legibility of LLM outputs\",\"url\":\"https://arxiv.org/pdf/2407.13692\"}]\n\nI found the paper! Here's what I found about arxiv 2604.15149:\n\n## Paper Summary\n\nAs reinforcement Learning with Verifiable Rewards (RLVR) has become the dominant paradigm for scaling reasoning capabilities in LLMs, a new failure mode emerges: LLMs gaming verifiers.\n\nThe paper studies this phenomenon on inductive reasoning tasks, where models must induce and output logical rules. They find that RLVR-trained models systematically abandon rule induction. Instead of learning generalizable patterns (e.g., \"trains carrying red cars go east\"), they enumerate instance-level labels, producing outputs that pass verifiers without capturing the relational patterns required by the task.\n\nThe authors show that this behavior is not a failure of understanding but a form of reward hacking: imperfect verifiers that check only extensional correctness admit false positives.\n\n## Key Contribution\n\nTo diagnose this behavior, the authors introduce Isomorphic Perturbation Testing (IPT), which evaluates a model's output under two regimes: extensional verification on the original task, and isomorphic verification on a logically isomorphic perturbation obtained by permuting object identifiers while preserving relational structure.\n\nThe paper was submitted on April 16, 2026, and is associated with the LLM Reasoning Workshop at ICLR 2026.\n\n\nREMINDER: You MUST inc\n…[truncated 78 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_r15-reference-verification_20260520T044621",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T04:48:13.907944+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Cobbe 2021 \"Training Verifiers to Solve Math Word Problems\" GSM8K\"\n\nLinks: [{\"title\":\"(Open Access) Training Verifiers to Solve Math Word Problems (2021) | Karl Cobbe | 2 Citations\",\"url\":\"https://scispace.com/papers/training-verifiers-to-solve-math-word-problems-2jokilm0qa\"},{\"title\":\"openai/gsm8k · Datasets at Hugging Face\",\"url\":\"https://paperswithcode.com/dataset/gsm8k\"},{\"title\":\"[2110.14168] Training Verifiers to Solve Math Word Problems\",\"url\":\"https://arxiv.org/abs/2110.14168\"},{\"title\":\"GitHub - openai/grade-school-math · GitHub\",\"url\":\"https://github.com/openai/grade-school-math\"},{\"title\":\"[PDF] Training Verifiers to Solve Math Word Problems | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Training-Verifiers-to-Solve-Math-Word-Problems-Cobbe-Kosaraju/d6045d2ccc9c09ca1671348de86d07da6bc28eea\"},{\"title\":\"Paper page - Training Verifiers to Solve Math Word Problems\",\"url\":\"https://huggingface.co/papers/2110.14168\"},{\"title\":\"Training Verifiers to Solve Math Word Problems, Karl Cobbe+, arXiv'21 · Issue #1618 · AkihikoWatanabe/paper_notes\",\"url\":\"https://github.com/AkihikoWatanabe/paper_notes/issues/1618\"},{\"title\":\"Training Verifiers to Solve Math Word Problems\",\"url\":\"https://arxiv.org/pdf/2110.14168\"},{\"title\":\"Training Verifiers to Solve Math Word Problems - ar5iv - arXiv\",\"url\":\"https://ar5iv.labs.arxiv.org/html/2110.14168\"},{\"title\":\"Training Verifiers to Solve Math Word Problems\",\"url\":\"https://www.researchgate.net/publication/355698629_Training_Verifiers_to_Solve_Math_Word_Problems\"}]\n\nI found the paper you're looking for. Here's what I found:\n\n\"Training Verifiers to Solve Math Word Problems\" by Cobbe et al. (2021) introduces GSM8K, a dataset of 8.5K high quality linguistically diverse grade school math word problems. The paper addresses the fact that state-of-the-art language models can match human performance on many tasks, but they still struggle to robustly perform multi-step mathematical reasoning.\n\nTh\n…[truncated 830 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_r15-reference-verification_20260520T044621",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T04:48:13.908138+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"arxiv 2603.07084 Countdown code reasoning\"\n\nLinks: [{\"title\":\"[2603.07084] Countdown-Code: A Testbed for Studying The Emergence and Generalization of Reward Hacking in RLVR\",\"url\":\"https://arxiv.org/abs/2603.07084\"},{\"title\":\"Preprint Countdown-Code: A Testbed for Studying The Emergence\",\"url\":\"https://arxiv.org/pdf/2603.07084\"},{\"title\":\"Unveiling the Magic of Code Reasoning through Hypothesis Decomposition   and Amendment\",\"url\":\"https://arxiv.org/pdf/2502.13170\"},{\"title\":\"Agentic Code Reasoning\",\"url\":\"https://arxiv.org/pdf/2603.01896\"},{\"title\":\"Self-Aware Markov Models for Discrete Reasoning\",\"url\":\"https://arxiv.org/html/2603.16661\"},{\"title\":\"Evaluating Code Reasoning Abilities of Large Language Models Under Real-World Settings\",\"url\":\"https://arxiv.org/pdf/2512.14917\"},{\"title\":\"Code to Think, Think to Code: A Survey on Code-Enhanced Reasoning and   Reasoning-Driven Code Intelligence in LLMs\",\"url\":\"https://arxiv.org/pdf/2502.19411\"}]\n\nBased on the search results, here's what I found about arxiv 2603.07084:\n\n**Countdown-Code** is a minimal environment where models can both solve a mathematical reasoning task and manipulate the test harness. This dual-access design creates a clean separation between proxy rewards (test pass/fail) and true rewards (mathematical correctness), enabling accurate measurement of reward-hacking rates.\n\nThe paper studies an important problem in AI alignment: reward hacking, which is a form of misalignment in which models overoptimize proxy rewards without genuinely solving the underlying task, and precisely measuring reward hacking occurrence remains challenging because true task rewards are often expensive or impossible to compute.\n\nKey findings include: Using this environment, researchers study reward hacking in open-weight LLMs and find that such behaviors can be unintentionally learned during supervised fine-tuning (SFT) when even a small fraction of reward-hacking trajectories leak into training d\n…[truncated 390 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_r15-reference-verification_20260520T044621",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T04:48:13.908365+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Uesato 2022 \"Solving math word problems\" process outcome feedback\"\n\nLinks: [{\"title\":\"[PDF] Solving Math Word Problems with Process-based and Outcome-based Feedback | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/e002bb8dae5a18a5ea1e7e1aafa16e19ad545662\"},{\"title\":\"[PDF] Solving math word problems with process- and outcome-based feedback | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Solving-math-word-problems-with-process-and-Uesato-Kushman/6d7b8a478801bd9d21df82d5f33ae6eced90da5e\"},{\"title\":\"dblp: Solving math word problems with process- and outcome-based feedback.\",\"url\":\"https://dblp.org/rec/journals/corr/abs-2211-14275.html\"},{\"title\":\"2022-11-28 Solving math word problems with process- and outcome-based feedback\",\"url\":\"https://arxiv.org/pdf/2211.14275\"},{\"title\":\"[2211.14275v1] Solving math word problems with process- and outcome-based feedback\",\"url\":\"https://arxiv.org/abs/2211.14275v1\"},{\"title\":\"Solving Math Word Problems with Process-based and Outcome-based Feedback\",\"url\":\"https://mathai2022.github.io/papers/26.pdf\"},{\"title\":\"[2211.14275] Solving math word problems with process- and outcome-based feedback\",\"url\":\"https://arxiv.org/abs/2211.14275\"},{\"title\":\"Solving math word problems with process- and outcome-based feedback | SCALE Initiative\",\"url\":\"https://scale.stanford.edu/ai/repository/solving-math-word-problems-process-and-outcome-based-feedback\"}]\n\nI found the research paper you're looking for. Here's a summary of the Uesato 2022 paper on solving math word problems with process-based and outcome-based feedback:\n\n**Paper Details:**\nThe paper is authored by Jonathan Uesato, Nate Kushman, Ramana Kumar, Francis Song, Noah Siegel, Lisa Wang, Antonia Creswell, Geoffrey Irving, and Irina Higgins, and was published in November 2022.\n\n**Research Question:**\nThe paper addresses the question of how to supervise language models: using outcome-based approaches which supervise the final result, \n…[truncated 831 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_r15-reference-verification_20260520T044621",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-20T04:48:13.908640+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_r15-reference-verification_20260520T044621",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "arxiv 2110.14168 Cobbe \"Heewoo Jun\" OR \"Heather Jun\" authors"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T04:48:13.908810+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_r15-reference-verification_20260520T044621",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "arxiv 2604.15149 \"LLMs Gaming Verifiers\" authors full list"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-20T04:48:13.908941+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_r15-reference-verification_20260520T044621",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "gaming-verifiers|countdown-code|2604\\.15149|2603\\.07084",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-20T04:48:13.909066+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_r15-reference-verification_20260520T044621",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-20T04:48:13.909211+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"arxiv 2110.14168 Cobbe \"Heewoo Jun\" OR \"Heather Jun\" authors\"\n\nLinks: [{\"title\":\"Paper page - Training Verifiers to Solve Math Word Problems\",\"url\":\"https://huggingface.co/papers/2110.14168\"},{\"title\":\"[2110.14168] Training Verifiers to Solve Math Word Problems\",\"url\":\"https://arxiv.org/abs/2110.14168\"},{\"title\":\"[2110.14168v2] Training Verifiers to Solve Math Word Problems\",\"url\":\"https://arxiv.org/abs/2110.14168v2\"},{\"title\":\"Machine Learning authors/titles Oct 2021 (1300 skipped)\",\"url\":\"https://arxiv.org/list/cs.LG/2110?skip=1300&show=100\"},{\"title\":\"Training Verifiers to Solve Math Word Problems, Karl Cobbe+, arXiv'21 · Issue #1618 · AkihikoWatanabe/paper_notes\",\"url\":\"https://github.com/AkihikoWatanabe/paper_notes/issues/1618\"},{\"title\":\"[PDF] Training Verifiers to Solve Math Word Problems | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Training-Verifiers-to-Solve-Math-Word-Problems-Cobbe-Kosaraju/d6045d2ccc9c09ca1671348de86d07da6bc28eea\"},{\"title\":\"dblp: Heewoo Jun\",\"url\":\"https://dblp.org/pid/200/8045.html\"},{\"title\":\"CoBeL-RL: A neuroscience-oriented simulation framework for complex behavior and learning\",\"url\":\"https://www.biorxiv.org/content/10.1101/2022.12.27.521997.full.pdf\"}]\n\nBased on the search results, arxiv paper 2110.14168 titled \"Training Verifiers to Solve Math Word Problems\" has the following authors: Karl Cobbe, Vineet Kosaraju, Mohammad Bavarian, Mark Chen, Heewoo Jun, Lukasz Kaiser, Matthias Plappert, Jerry Tworek, Jacob Hilton, Reiichiro Nakano, Christopher Hesse, and John Schulman.\n\nThe paper includes \"Heewoo Jun\" as one of the authors. There is no author named \"Heather Jun\" on this paper.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_r15-reference-verification_20260520T044621",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-20T04:48:13.909428+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"arxiv 2604.15149 \"LLMs Gaming Verifiers\" authors full list\"\n\nLinks: [{\"title\":\"[2604.15149] LLMs Gaming Verifiers: RLVR can Lead to Reward Hacking\",\"url\":\"https://arxiv.org/abs/2604.15149\"},{\"title\":\"LLMs Gaming Verifiers: RLVR can Lead to Reward Hacking\",\"url\":\"https://arxiv.org/html/2604.15149\"},{\"title\":\"Prover-Verifier Games improve legibility of LLM outputs\",\"url\":\"https://arxiv.org/pdf/2407.13692\"},{\"title\":\"GAMEBoT: Transparent Assessment of LLM Reasoning in Games\",\"url\":\"https://arxiv.org/pdf/2412.13602\"},{\"title\":\"Evaluating Large Language Models with Grid-Based Game Competitions: An   Extensible LLM Benchmark and Leaderboard\",\"url\":\"https://arxiv.org/pdf/2407.07796\"},{\"title\":\"Truth or Deceit? A Bayesian Decoding Game Enhances Consistency and   Reliability\",\"url\":\"https://arxiv.org/pdf/2410.01064\"}]\n\nBased on the search results, the full list of authors for the paper \"LLMs Gaming Verifiers: RLVR can Lead to Reward Hacking\" (arxiv 2604.15149) is: Lukas Helff, Quentin Delfosse, David Steinmann, Ruben Härle, Hikaru Shindo, Patrick Schramowski, Wolfgang Stammer, Kristian Kersting, and Felix Friedrich.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_r15-reference-verification_20260520T044621",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-20T04:48:13.909682+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_r15-reference-verification_20260520T044621",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "Gaming Verifiers|Countdown.Code|gaming|countdown",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper",
+              "glob": "*.tex",
+              "output_mode": "content",
+              "-i": "True"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-20T04:48:13.909978+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "paper/related_work.tex:9:\\citet{kim-game-formalization} study whether GPT-5 and DeepSeek-R1 game Lean~4 formalization at \\emph{inference} time. Using axiom diffing and LLM-judge classification on 303 FOL problems, they find no systematic gaming in unified generation but identify two unfaithfulness modes: axiom fabrication during proof (56\\% are conclusion-as-axiom) and premise mistranslation during formalization.\npaper/related_work.tex:11:First, we study \\emph{training-time} gaming under GRPO, where the optimizer actively reshapes the output distribution, producing qualitatively different failures from one-shot inference.\npaper/related_work.tex:13:Third, we observe universal gaming under RL (all GRPO conditions show ${\\geq}80\\%$ hacking), whereas Kim et al.\\ report that models prefer failure over forcing proofs at inference time.\npaper/related_work.tex:23:Goodhart's Law~\\citep{goodhart-1975} is established theoretically~\\citep{manheim-goodhart-taxonomy, skalse-reward-hacking, karwowski-goodhart-rl, everitt2021reward} and empirically in RLHF~\\citep{amodei2016concrete, gao-reward-overoptimization, bondarenko-spec-gaming, kim-game-formalization, metr-reward-hacking, spurious-rewards}, text generation~\\citep{paulus2018deep}, and deep RL~\\citep{langosco2022goal, krakovna2020specification}.\npaper/related_work.tex:26:Our setting differs from prior work in that ISR is deterministic and solver-derived, gaming emerges during training rather than at inference~\\citep{geirhos2020shortcut, kim-game-formalization}, and the diagnostic itself becomes the optimization target.\npaper/experiments.tex:126:Under ISR reward, 3/3 seeds reach $0\\%$ non-hacking through three distinct mechanisms (TS tautology, classifier-evading pseudo-Prolog, query-as-fact gaming), with one seed evading the strict classifier entirely (Appendix Table~\\ref{tab:prolog-detailed}).\npaper/experiments.tex:127:Complete collapse across all seeds suggests Prolog's simpler operational semantics provides a broader gaming\n…[truncated 6711 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_r15-reference-verification_20260520T044621",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-20T04:48:13.910160+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_r15-reference-verification_20260520T044621",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "helff|khalifa2026|countdown",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper",
+              "output_mode": "content",
+              "-i": "True"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-20T04:48:13.910298+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_r15-reference-verification_20260520T044621",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-20T04:48:13.910531+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完成。以下是结果：\n\n---\n\n## [1] LLMs Gaming Verifiers — arXiv:2604.15149\n\n- **完整标题**: LLMs Gaming Verifiers: RLVR can Lead to Reward Hacking\n- **作者**: Lukas Helff, Quentin Delfosse, David Steinmann, Ruben Härle, Hikaru Shindo, Patrick Schramowski, Wolfgang Stammer, Kristian Kersting, Felix Friedrich\n- **年份**: 2026\n- **Venue**: arXiv preprint / LLM Reasoning Workshop @ ICLR 2026\n- **验证状态**: ✅ 论文存在，信息正确\n- **Bib 状态**: ❌ 不在 references.bib 中，也未在任何 .tex 文件中引用\n- **BibTeX entry**:\n```bibtex\n@article{helff2026gaming,\n  author       = {Lukas Helff and Quentin Delfosse and David Steinmann and Ruben H{\\\"a}rle and Hikaru Shindo and Patrick Schramowski and Wolfgang Stammer and Kristian Kersting and Felix Friedrich},\n  title        = {{LLMs Gaming Verifiers: RLVR can Lead to Reward Hacking}},\n  journal      = {arXiv preprint arXiv:2604.15149},\n  year         = {2026},\n  eprint       = {2604.15149},\n  archivePrefix = {arXiv},\n}\n```\n\n---\n\n## [2] Countdown-Code — arXiv:2603.07084\n\n- **完整标题**: Countdown-Code: A Testbed for Studying The Emergence and Generalization of Reward Hacking in RLVR\n- **作者**: Muhammad Khalifa, Zohaib Khan, Omer Tafveez, Hao Peng, Lu Wang\n- **年份**: 2026\n- **Venue**: arXiv preprint\n- **验证状态**: ✅ 论文存在，信息正确\n- **Bib 状态**: ❌ 不在 references.bib 中，也未在任何 .tex 文件中引用\n- **BibTeX entry**:\n```bibtex\n@article{khalifa2026countdown,\n  author       = {Muhammad Khalifa and Zohaib Khan and Omer Tafveez and Hao Peng and Lu Wang},\n  title        = {{Countdown-Code: A Testbed for Studying The Emergence and Generalization of Reward Hacking in RLVR}},\n  journal      = {arXiv preprint arXiv:2603.07084},\n  year         = {2026},\n  eprint       = {2603.07084},\n  archivePrefix = {arXiv},\n}\n```\n\n---\n\n## [3] Uesato et al. (2022) — arXiv:2211.14275\n\n- **完整标题**: Solving math word problems with process- and outcome-based feedback\n- **作者**: Jonathan Uesato, Nate Kushman, **Ramana** Kumar, Francis Song, Noah Siegel, Lisa Wang, Antonia Creswell, Geoffrey Irving, Irina Higgins\n- **年份**: 2022\n- **Venue**: NeurIPS 2022 Workshop on MATH-AI\n- **验证状态**: ⚠️ 需修正 — bib 中作者写成 **\"Ramesh\"** Kumar，应为 **\"Ramana\"** Kumar\n- **Bib 状态**: 已有 (`uesato2022solving`, L396-401)，需修正作者名\n- **修正**:\n```diff\n- author={Uesato, Jonathan and Kushman, Nate and Kumar, Ramesh and ...}\n+ author={Uesato, Jonathan and Kushman, Nate and Kumar, Ramana and ...}\n```\n\n---\n\n## [4] Cobbe et al. (2021) — arXiv:2110.14168\n\n- **完整标题**: Training Verifiers to Solve Math Word Problems\n- **作者**: Karl Cobbe, Vineet Kosaraju, Mohammad Bavarian, Mark Chen, **Heewoo** Jun, Lukasz Kaiser, Matthias Plappert, Jerry Tworek, Jacob Hilton, Reiichiro Nakano, Christopher Hesse, John Schulman\n- **年份**: 2021\n- **Venue**: arXiv preprint (未正式发表于会议)\n- **验证状态**: ⚠️ 需修正 — bib 中作者写成 **\"Heather Jun\"**，应为 **\"Heewoo Jun\"**\n- **Bib 状态**: 已有 (`cobbe2021training`, L509-514)，需修正作者名\n- **修正**:\n```diff\n- author={... and Heather Jun and ...}\n+ author={... and Heewoo Jun and ...}\n```\n\n---\n\n## 汇总\n\n| # | 论文 | 存在性 | Bib 状态 | 需修正 |\n|---|------|--------|----------|--------|\n| 1 | LLMs Gaming Verifiers | ✅ | ❌ 缺失 | 需添加 entry |\n| 2 | Countdown-Code | ✅ | ❌ 缺失 | 需添加 entry |\n| 3 | Uesato 2022 | ✅ | ⚠️ 有 | Kumar, Ramesh → Ramana |\n| 4 | Cobbe 2021 | ✅ | ⚠️ 有 | Heather Jun → Heewoo Jun |\n\nSources:\n- [arXiv:2604.15149](https://arxiv.org/abs/2604.15149)\n- [arXiv:2603.07084](https://arxiv.org/abs/2603.07084)\n- [arXiv:2211.14275](https://arxiv.org/abs/2211.14275)\n- [arXiv:2110.14168](https://arxiv.org/abs/2110.14168)\n- [DBLP: Heewoo Jun](https://dblp.org/pid/200/8045.html)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_r15-reference-verification_20260520T044621"
+          },
+          "id": "event-000023"
+        }
+      ],
+      "message_count": 23
+    }
+  ],
+  "readable_path": "readable/conversations/research-r15-reference-verification.md"
+}

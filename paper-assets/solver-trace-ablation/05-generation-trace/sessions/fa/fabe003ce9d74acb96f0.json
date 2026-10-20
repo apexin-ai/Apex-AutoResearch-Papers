@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fabe003ce9d74acb96f0",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "eval b03 isr s43 random s43",
+  "task_key": "worker_eval_b03-isr-s43-random-s43_20260514T234153",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_b03-isr-s43-random-s43_20260514T234153_result.json",
+    "occurrence": 1,
+    "bytes": 790,
+    "sha256": "221c0cb7e34a1368cd1d443851602320ca98a42d5c5493f3270ce5d66148b778"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。两个实验的 eval_sta 指标已收集并写入 registry。\n\n## 汇总\n\n| 指标 | exp1-isr-b03-s43 | exp1-random-b03-s43 |\n|------|:-:|:-:|\n| parse_rate | 1.0000 | 1.0000 |\n| prove_rate | 0.9100 | 0.7900 |\n| mean_isr | 0.2575 | 0.1745 |\n| isr_std | 0.2363 | 0.1628 |\n| median_isr | 0.3333 | 0.1667 |\n| hacking_rate (strict H7) | 2.2% (2/91) | 0% (0/79) |\n| hacking_rate (functional, n_necessary=0) | 33.0% (30/91) | 10.1% (8/79) |\n| genuine_rate | 67.0% (61/91) | 89.9% (71/79) |\n| genuine_count | 61 | 71 |\n| H1 (conclusion in premises) | 74.7% | 75.9% |\n\nISR reward 在 prove_rate 和 mean_isr 上优于 random，但代价是更高的 functional hacking rate（33% vs 10%）——更多样本通过冗余获得 ISR=0 而非 genuine reasoning。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-b03-isr-s43-random-s43.md"
+}

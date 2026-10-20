@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b60a75eb14b38d5c0508",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "train plan016 extended 1000 s42",
+  "task_key": "worker_train_plan016-extended-1000-s42_20260514T052804",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_plan016-extended-1000-s42_20260514T052804_result.json",
+    "occurrence": 1,
+    "bytes": 839,
+    "sha256": "b362c1c15263961bc58bc06d3950b5e2737016a8a01d2ea4c595836ccf33ec8c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已注册，训练命令已准备。\n\n## 结果\n\n**实验 plan016-extended-1000-s42** 已注册为 PENDING。\n\n**训练命令：**\n```bash\nexport CUDA_VISIBLE_DEVICES=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_exec_only.yaml --data_path data/train_500_seed42.jsonl --num_steps 1000 --seed 42 --output_dir /root/autodl-tmp/outputs/plan016_extended_1000_s42\n```\n\n**⚠️ 磁盘空间不足：** `/root/autodl-tmp` 仅剩 6.4G，需要 ~15G。提交前必须清理旧实验（如 `plan001_exec_only_s43_r4` 46G 或 `plan001_exec_only_s44` 31G，均为 negative/done）。\n\n`save_total_limit=1` 和 `log_completions=False` 已在脚本硬编码，无需额外参数。预估运行 ~2h。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-plan016-extended-1000-s42.md"
+}

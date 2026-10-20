@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c044eb7799ef515222e3",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_12_1778864138.md",
+  "task_key": "loop_12_1778864138",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_12_1778864138.md",
+    "occurrence": 1,
+    "bytes": 3848,
+    "sha256": "d7c99b3e101ebc94ea9983cbb965cf70cace16667c040275795813efff96629f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 12\nreason: idle_timeout\nupdated: '2026-05-15T16:52:04+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-39279:cuda:0, westd-39279:cuda:1，其他 GPU 一律不可用\n- 训练命令必须 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，不能假设 .venv\n- `--gpu 0` 在脚本内始终从 0 开始（框架自动映射 CUDA_VISIBLE_DEVICES）\n- SFT 实验曾因 `--gpu 0` 覆盖 CUDA_VISIBLE_DEVICES 导致 OOM（D079 教训），需注意物理 GPU 映射\n- 论文 DDL 2026-05-25（剩 10 天），所有实验必须服务于论文写作，不可偏离\n- plan013 vs plan017 公式结构不同，不可简化为 \"additive vs convex\" 对照（D027）\n- ISR β=0.1 hacking rate 69.1%，论文不标 \"no hacking\"，标 \"lowest hacking rate\"（D044）\n- Prolog STA s44 是 query-as-fact gaming，非 genuine（D059 Reviewer 核实）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-39279，工作目录 `/root/solver-trace-ablation`\n- Python：`/root/miniconda3/bin/python`（conda base 环境）\n- 输出目录：`/root/autodl-tmp/outputs/`（checkpoint 存这里，根分区空间小）\n- 日志目录：`~/runs/solver-trace-ablation/`\n- 数据：`/root/solver-trace-ablation/data/train_500_seed42.jsonl`\n- 配置：`/root/solver-trace-ablation/configs/grpo_exec_only.yaml`\n- 活跃进程：plan001-exec-only-s44-1000（PID 357074，cuda:1，tmux 管理，cron 监控中）\n- cuda:0 当前空闲（plan001-exec-only-s43-1000 刚失败）\n\n### 3. 📊 当前状态\n**刚做完**：收到 plan001-exec-only-s43-1000 失败回调（EXIT_CODE=1，约 21 分钟后退出）。已派 Worker `worker_diagnose_plan001-exec-only-s43-1000_20260515T134633` 去 SSH 读日志诊断原因，**尚未收到 Worker 回调**。\n\n**Registry**：\n- RUNNING：`plan001-exec-only-s44-1000`（exec-only GRPO 1000步 seed=44，cuda:1）\n- DONE(failed)：`plan001-exec-only-s43-1000`（exec-only GRPO 1000步 seed=43，cuda:0）— 待诊断\n- 共 81 实验：success 23, negative 25, failed 25, killed 6\n\n**等待中**：\n- Worker 回调：`worker_diagnose_plan001-exec-only-s43-1000_20260515T134633`（日志诊断）\n- Cron 监控：`plan001-exec-only-s44-1000`（cuda:1 仍在跑）\n- cuda:0 空闲 — 诊断完成后应立即重试 s43 或安排其他实验\n\n### 4. 📋 待办\n- 诊断 Worker 回调到达 → 根据失败原因决定：临时错误则重试 s43-1000（cuda:0），代码 bug 则先修再试\n- plan001-exec-only-s44-1000 完成（success）→ 检查是否 s43 也已完成，凑齐 3-seed exec-only 1000步统计\n- 3-seed exec-only 全部完成 → 更新论文 §4 最终数据表（SFT 92.2% vs exec-only vs ISR vs random），派 Worker 更新 TeX\n- **cuda:0 空闲是失职** → 诊断结果一出来立即占满\n- Director 若无新指令 → 继续推进论文写作任务（TeX 数字一致性审计、Paper Agent 初稿）\n\n### 5. 🎯 战略上下文\n**核心结论**：STA/ISR 是 GRPO neurosymbolic formalizer 的诊断工具 + Goodhart's Law 案例研究。三大 claims 已有实验支撑（Claim 1-3 ✅），bootstrap CI 统计检验完成。SFT 3-seed 1000步 genuine=92.2%±1.2%（D079 Reviewer PASS）证明 Goodhart collapse 是 RL(GRPO) 特有。\n\n**当前瓶颈**：exec-only s43/s44 1000步是最后的数据点，完成后论文数据表定稿。s43 刚失败需重试，s44 在跑。\n\n**易错点**：\n- s43 之前的重试历史：s43 有过多次失败（plan001-exec-only-s43, s43-r2, s43-r3），可能存在 seed=43 特有的不稳定性，诊断时注意区分环境问题 vs seed 相关问题\n- 1000步实验耗时约 20-30 分钟，不长，但失败后要迅速重试避免 GPU 空窗\n- 论文写作和实验并行推进，不要因为等实验而暂停写作任务\n- premise-count-matched 倍数是 1.06x（D051 作废了 2.4x），论文中不可写错\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-12-1778864138.md"
+}

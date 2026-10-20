@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "31cb32b5fec861576cc2",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code paper dir sync",
+  "task_key": "worker_code_paper-dir-sync_20260520T154902",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_paper-dir-sync_20260520T154902_result.json",
+    "occurrence": 1,
+    "bytes": 1502,
+    "sha256": "986075a1c5e99969640aad1f8043d6c5d75b6f5ee6bf9b9716b7201154d4f8e7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "剩余差异全是编译产物（`.aux/.bbl/.blg/.fdb_latexmk/.fls/.log/.out/.pdf`）和 `paper/` 独有的 `checklist.tex`/`ethics.tex`（旧版 `main.tex` 引用，新版已移除）。这些不需要同步。\n\n---\n\n## 同步报告\n\n### 差异清单\n\n| 类别 | 差异文件 | 方向 |\n|------|---------|------|\n| .tex 内容 | abstract, appendix, conclusion, experiments, introduction, limitations, method, related_work, main, references.bib | docs/paper/ 更新 |\n| 新增 .tex | discussion.tex | 仅存在于 docs/paper/ |\n| gen_fig*.py | gen_fig1-5.py 全部不同（docs/ 有 fontsize>=8pt 修复、新配色、新数据、新 taxonomy 命名 CE/TS/PG/CI） | docs/paper/ 更新 |\n| figures PDF/PNG | fig3, fig4, fig5 的 PDF 和 PNG 不同 | docs/paper/ 更新 |\n| _pdf_images | main_p1-p19 内容不同；p20-p26 仅在 paper/ | docs/paper/ 更新 |\n| 旧版独有 | checklist.tex, ethics.tex | 仅存在于 paper/（保留不删） |\n\n### 执行的同步操作\n\n- 11 个 .tex/.bib 文件：docs/paper/ → paper/（含新增的 discussion.tex）\n- 5 个 gen_fig*.py：docs/paper/figures/ → paper/figures/\n- 10 个 figure PDF/PNG：docs/paper/figures/ → paper/figures/\n- _pdf_images PNG：docs/paper/_pdf_images/ → paper/_pdf_images/\n\n### 验证结果\n\n所有同步的 .tex、.bib、gen_fig*.py、figures/*.pdf 文件经 `diff -q` 确认一致。剩余差异仅为 LaTeX 编译产物和 paper/ 独有的 checklist.tex/ethics.tex（未删除）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-paper-dir-sync.md"
+}

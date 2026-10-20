@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8a4e787a6bd31bce232d",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analysis exp1 random b03 s43 r4",
+  "task_key": "worker_analysis_exp1-random-b03-s43-r4_20260515T043230",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp1-random-b03-s43-r4_20260515T043230_result.json",
+    "occurrence": 1,
+    "bytes": 1215,
+    "sha256": "7c1f0a0e5200744a07c151afa8d75cdf15e96edc73f67d11cc731def22127e8c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。以下是完整报告：\n\n---\n\n## exp1-random-b03-s43-r4 完成报告\n\n### 训练\n- 500/500 步正常完成，耗时 1h42m\n- 最终 loss=0.01365, prove_rate=0.5505, mean_isr=0.1358, parse_rate=1.0\n\n### Eval 指标（proofwriter_fol_100.jsonl）\n\n| 指标 | s43-r4 (本次) | s44-r2 (参考) |\n|------|------|------|\n| prove_rate | **0.92** | 0.23 |\n| mean_isr | **0.1659** | 0 |\n| proved_only_isr | 0.1803 | 0 |\n| n_proved | 92/100 | 23/100 |\n| H7 strict | 7/92 (7.6%) | 0/23 (0%) |\n| H1 strict | 90/92 (97.8%) | 23/23 (100%) |\n| genuine | **2/92 (2.2%)** | 0/23 (0%) |\n\n### 异常发现\n\n**seed 间方差极大**：同为 random β=0.3，s43 的 prove_rate=0.92 是 s44 (0.23) 的 4 倍。s43 学到了高效的 conclusion-in-premise hacking 策略（97.8% H1），而 s44 基本没学到证明能力。\n\n这意味着：\n1. random baseline 本身不稳定，seed 选择严重影响结果\n2. s43 的非零 ISR (0.1659) 不代表真正推理——97.8% 的证明都有 conclusion 嵌入前提中，ISR 仅反映部分冗余组件的移除\n3. 跨 seed 对比需谨慎——这个方差水平可能削弱论文中 ISR reward vs random 的对比论证"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp1-random-b03-s43-r4.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "440b99f0cfa3d15bdd91",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops tex resync experiments appendix",
+  "task_key": "worker_ops_tex-resync-experiments-appendix_20260515T165132",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_tex-resync-experiments-appendix_20260515T165132_result.json",
+    "occurrence": 1,
+    "bytes": 579,
+    "sha256": "fe5c70e29c2222e9bd8c87d3123467196769a80b73f7453f17da956dfe61ab7f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "同步完成。结果汇总：\n\n| 项目 | 结果 |\n|------|------|\n| experiments.tex 远程大小 | **18,239B** (匹配本地) |\n| appendix.tex 远程大小 | **31,183B** (匹配本地) |\n| PDF 编译 | 成功，17 页，535,650 bytes |\n| LaTeX Error | 3 个（预存问题，旧版同样 3 个） |\n| D090 内容验证 | experiments.tex L32: \"By 1000 steps, all three converge to high PR ($0.95\\pm0.05$) but $\\leq3\\%$ non-hacking\" — 确认存在 |\n| 旧版 vs 新版 | 旧版 16 页 → 新版 17 页（新增 exec-only 3-seed 1000 步内容） |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-tex-resync-experiments-appendix.md"
+}

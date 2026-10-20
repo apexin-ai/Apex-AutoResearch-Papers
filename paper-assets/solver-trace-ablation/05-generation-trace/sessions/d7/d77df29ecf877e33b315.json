@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d77df29ecf877e33b315",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "diag exp1 random b03 s43 fail",
+  "task_key": "worker_diag_exp1-random-b03-s43-fail_20260514T233717",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_exp1-random-b03-s43-fail_20260514T233717_result.json",
+    "occurrence": 1,
+    "bytes": 1568,
+    "sha256": "fd75c6ec2c32e1d49bd6df1051979d6b6e011748629dda36940a52a28a00d466"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n### exp1-random-b03-s43: 实际上训练成功完成\n\n日志显示 **500/500 steps 全部跑完**，最终模型已保存：\n```\n2026-05-15 07:34:30 INFO Saving final model\n2026-05-15 07:34:55 INFO Final reward stats: {'parse_rate': 1.0, 'prove_rate': 0.5505, 'mean_isr': 0.13576825459814446}\nEXIT_CODE=129\n```\n\nEXIT_CODE=129 (SIGHUP) 发生在训练完成之后——tmux session 在脚本结束后收到挂断信号。**训练本身没有失败**，output 目录（31G）包含完整的 final model。\n\n### 磁盘状态\n\n```\n/dev/md0  250G  181G  70G  73%\n```\n\n当前 **70GB 可用**（不是 96% 占用），足够提交下一个实验（预估 ~31G）。\n\n主要占用：\n| 目录 | 大小 | 状态 |\n|------|------|------|\n| exp1_random_b03_s43 | 31G | 刚完成（有效模型） |\n| exp1_isr_b03_s43 | 31G | 已完成 |\n| exp1_isr_b03_s44_r2 | 23G | **正在跑（GPU 0）** |\n| plan006 × 4 | 64G | 旧实验 |\n| plan018_random_b01_s44 | 16G | 旧实验 |\n| plan009_sft_baseline | 7.6G | 旧实验 |\n\n### GPU 状态\n\n- **GPU 0**: 81419 MiB 占用（exp1_isr_b03_s44_r2 在跑）\n- **GPU 1**: 0 MiB，完全空闲，干净可用\n\n### 结论\n\n- **失败原因**：不是失败。训练正常完成 500 steps，SIGHUP 发生在脚本退出后\n- **剩余空间**：70GB，够用\n- **cuda:1**：干净可用\n- **可以安全提交 exp1-random-b03-s44**\n\n如果后续需要更多空间，plan006 系列（64G）和 exp1_isr_b03_s43（31G）是最大的可清理候选。需要我清理吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-exp1-random-b03-s43-fail.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e263abee7d461008af34",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops d134 random urgent status sync",
+  "task_key": "worker_ops_d134-random-urgent-status-sync_20260518T221425",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d134-random-urgent-status-sync_20260518T221425_result.json",
+    "occurrence": 1,
+    "bytes": 1210,
+    "sha256": "8edf2af73a10728710bf609b3641e700995712478470f180ca622f13d9074959"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。结构化摘要：\n\n| seed | train | eval | classify | registry | PR | H7 | H1 | H8 | genuine |\n|------|-------|------|----------|----------|----|----|-----|-----|---------|\n| s47 | DONE 500/500 | DONE | DONE | DONE ✓ | 89% | 0 | 79 (88.8%) | 4 (4.5%) | 6 (6.7%) |\n| s48 | DONE 500/500 | DONE | DONE | DONE ✓ | 93% | 3 (3.2%) | 75 (80.6%) | 14 (15.1%) | 4 (4.3%) |\n| s49 | DONE 500/500 | DONE | DONE | ALLOCATED→**DONE** ✓ | **5%** | 1 (20%) | 4 (80%) | 0 | 0 |\n| s50 | **RUNNING** 84/500 | — | — | PREPARING→**RUNNING** | — | — | — | — | — |\n| s51 | NOT STARTED | — | — | PREPARING | — | — | — | — | — |\n\n**GPU**: s50 训练中, PID 184872, step 84/500, cuda:0, 85GB/98GB VRAM, 92% util\n**磁盘**: 56G/250G (23%), 充足\n**Cron**: s50 已注册 (interval=120s)\n\n**关键发现**: s49 严重退化，训练 PR 降到 40%，eval 仅 5%。这是 Random reward 下的训练崩溃，与 s47 (89%) / s48 (93%) 形成极大 seed 方差。s50 pipeline 正在跑，s51 需等 s50 完成后自动启动（pipeline 串行）。预计 s50 完成约需 ~1h（按当前 ~10s/step），加上 eval+classify 约 1.5h。s51 还需再等 ~3h。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-d134-random-urgent-status-sync.md"
+}

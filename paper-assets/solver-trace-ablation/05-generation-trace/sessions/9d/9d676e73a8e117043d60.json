@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9d676e73a8e117043d60",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code phase1 r5 setup submit",
+  "task_key": "worker_code_phase1-r5-setup-submit_20260513T205222",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_phase1-r5-setup-submit_20260513T205222_result.json",
+    "occurrence": 1,
+    "bytes": 507,
+    "sha256": "a80431368c9751a2a8bcf8b0135c94fbd2e67b4a8af48671c39775821535606c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验已提交：\n\n| 实验 | GPU | 改动 | PID |\n|------|-----|------|-----|\n| `sta-phase1-exec-only-r5` | cuda:0 | K=8 | 75890 |\n| `sta-phase1-exec-sta-r5` | cuda:1 | K=8 + full `sta_reward` | 75968 |\n\n代码改动总结：\n- `scripts/train_grpo.py` line 39: import 增加 `sta_reward`\n- `scripts/train_grpo.py` line 124: execution_sta 分支 `fast_sta_reward` → `sta_reward`（完整 component ablation，连续 ISR 0.0-1.0）\n- 两个 YAML `num_generations: 4` → `8`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-phase1-r5-setup-submit.md"
+}

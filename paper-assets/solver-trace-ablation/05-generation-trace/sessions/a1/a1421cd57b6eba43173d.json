@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "a1421cd57b6eba43173d",
+  "project": "solver-trace-ablation",
+  "kind": "conversation",
+  "title": "writing introduction section",
+  "task_key": "worker_writing_introduction-section_20260515T031154",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_writing_introduction-section_20260515T031154.jsonl",
+    "occurrence": 1,
+    "bytes": 179,
+    "sha256": "ab40dccdc3aa491a5c05e79442ffd187e43cbbf50ccfe1126fde0e6dfc7223b5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T03:12:01.822022+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 4:10am (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_introduction-section_20260515T031154"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/writing-introduction-section.md"
+}

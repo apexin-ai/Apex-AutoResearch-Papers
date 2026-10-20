@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "id": "f09d3e6da623f45c3cdb",
+  "project": "solver-trace-ablation",
+  "kind": "worker",
+  "title": "ops plan016 prep and verify",
+  "task_key": "worker_ops_plan016-prep-and-verify_20260514T053423",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_plan016-prep-and-verify_20260514T053423.log",
+    "occurrence": 1,
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "statistics": {
+    "messages": 0,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {},
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [],
+  "readable_path": "readable/worker-executions/ops-plan016-prep-and-verify.md"
+}

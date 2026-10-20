@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e2d521bbaf88e2e2c38a",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "paper round6 batch1 criticals",
+  "task_key": "worker_paper_round6-batch1-criticals_20260517T164657",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_round6-batch1-criticals_20260517T164657_result.json",
+    "occurrence": 1,
+    "bytes": 1111,
+    "sha256": "3a4cda2a2a851120bb934cd06f03a338f601ee5d8a3ff3b59db0ae5c3f023c32"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Committed. Summary of modifications:\n\n| Item | Files | Changes |\n|------|-------|---------|\n| **MF1** | `introduction.tex:15`, `method.tex:44` | \"Intensional Structural Reward\" → \"Irreducible Solver Rate\" |\n| **MF2** | `abstract.tex` | Full rewrite, 141 words (≤180), 3 key numbers |\n| **MF3** | `experiments.tex:61` (new row), `experiments.tex:76` (footnote), `appendix.tex:515` ($^\\P$ markers + footnote) | Exec-only 1k row in Table 1; appendix s42 taxonomy footnoted |\n| **MF4** | `experiments.tex:94-97` (OR text), `abstract.tex:4` (already in rewrite), `introduction.tex:33` (C2 \"suggestive\") | OR framing softened to \"suggestive but non-robust\" |\n| **MF5** | `introduction.tex:22,33`, `experiments.tex:38-40` | \"localizing\" → \"consistent with\"; 100-step caveat; SFT open question added |\n| **SF1** | `conclusion.tex:7-8` | Goodhart unpredictability paragraph inserted; §5 ends on page 8 |\n\nAll checks pass: 0 \"Intensional Structural Reward\", 0 new em-dashes, 0 \"localizing the failure to RL\", 0 undefined references, abstract 141 words, §5 within page 8."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-round6-batch1-criticals.md"
+}

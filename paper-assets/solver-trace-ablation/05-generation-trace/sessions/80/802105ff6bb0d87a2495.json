@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "802105ff6bb0d87a2495",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_5_1778761292.md",
+  "task_key": "loop_5_1778761292",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_5_1778761292.md",
+    "occurrence": 1,
+    "bytes": 5320,
+    "sha256": "b7e16d6afb1a81a0ba8aee99d78d306b7b380eb1e5b061df6a7bdf414388f8d9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: idle_timeout\nupdated: '2026-05-14T12:16:29+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**只能用 westd-39279 的 cuda:0 和 cuda:1**，无其他合法 GPU\n- 所有训练命令必须 `bash -c \"export CUDA_VISIBLE_DEVICES=N && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && ...\"`——不能假设 .venv 存在，不能省 CUDA_VISIBLE_DEVICES\n- 数据约束 C001：plan001/plan013 系列统一用 `train_500_seed42.jsonl`，不能用 `proofwriter_fol_500.jsonl`\n- 磁盘约束 C003：`log_completions=False` + `save_total_limit=1`，output_dir 放 `/root/autodl-tmp/outputs/`。实验 eval 后立即清理 checkpoint（曾因 250G 爆满崩溃）\n- plan002-b01 多 seed 结论已更新（D043）：2/3 seeds ISR 膨胀为 artifact（H7 conclusion duplication），**不能再称 β=0.1 为 \"sweet spot\"**，应称 \"lowest hacking rate among all conditions\"\n- Prolog exec+STA 和 FOL exec+ISR 的 ISR 权重不同（0.5 vs 0.1），直接比较需注明此差异\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-39279，2× RTX PRO 6000 Blackwell 96GB\n- **工作目录**: `/root/solver-trace-ablation/`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- **CUDA**: 12.8, PyTorch 2.10.0+cu128\n- **模型**: Qwen3-4B（ModelScope 下载，7.6GB）\n- **Solvers**: Prover9 (LADR 编译), SWI-Prolog 8.4.2 (`/usr/bin/swipl`), Z3 4.16.0.0\n- **磁盘**: 系统盘 30GB (~22G free), 数据盘 `/root/autodl-tmp/` 250GB (~199G free)\n- **活跃进程**:\n  - plan018-additive-random-b01-s44: PID 564900, cuda:0（cron 监控中，reconcile 确认 still running）\n  - plan009-sft-baseline-s42-r4: PID 572604, cuda:1\n- **活跃 Worker**: `worker_eval_plan009-sft-r4_20260514T115824`（running，正在做 plan009-sft-r4 的 eval）\n- **W&B**: 项目内实验均有 W&B 跟踪\n\n### 3. 📊 当前状态\n**两卡满载，两个实验 RUNNING：**\n- **plan018-additive-random-b01-s44** (cuda:0): Random β=0.1 seed=44 控制组，与 plan002-b01-s44 同 seed 对照。cron 监控中。\n- **plan009-sft-baseline-s42-r4** (cuda:1): SFT baseline 第 4 次重试（前 3 次 r1-r3 均失败）。有 Worker 正在跑 eval。\n\n**等待队列：**\n- plan006-prolog-exec-s43 (QUEUED): Prolog exec-only seed=43\n- plan006-prolog-exec-s44 (QUEUED): Prolog exec-only seed=44\n- plan009-sft-baseline-s42 (PENDING): 原始 SFT baseline，已 killed，有 r4 替代\n- plan006-prolog-sta-s43/s44 (PREPARING): Prolog exec+STA 多 seed，阻塞于数据/GPU\n\n**Registry 总览**: 47 个实验，DONE 40 / RUNNING 2 / QUEUED 2 / PENDING 1 / PREPARING 2。success 9 / negative 13 / failed 17。\n\n### 4. 📋 待办（条件触发式）\n- **plan018-additive-random-b01-s44 cron 回调到达** → spawn Worker 做 eval_sta.py → 与 plan002-b01-s44 (ISR β=0.1 s44) 对比 → 更新 registry + report.md → 汇报 Director（此为 β=0.1 多 seed random 控制的最后一个 seed）\n- **plan009-sft-baseline-s42-r4 Worker 回调到达** → 如果 eval 成功：SFT vs GRPO hacking taxonomy 对比（Claim 1 关键证据）；如果又失败：向 Director 汇报 SFT baseline 4 次失败，建议降优先级或换方案\n- **任一 GPU 释放** → 立即提交 plan006-prolog-exec-s43（QUEUED 最高优先级，Claim 3 跨 logic type 3-seed 证据链）\n- **plan006 prolog-exec 3 seeds 全出齐** → 3-seed mean±std 计算 → Table 1 Prolog 行定稿 → 评估是否启动 plan006-prolog-sta s43/s44\n- **β=0.1 random 3 seeds 全出齐**（s42 done negative, s43 failed, s44 running）→ 如果 s44 也 negative → D043 \"ISR ≠ sweet spot\" 结论进一步巩固；如果 s44 success → 需要重新审视 D043\n- **所有 P0 实验完成** → 论文写作启动评估，向 Director 汇报覆盖率 + 建议写作顺序\n\n### 5. 🎯 战略上下文\n**核心研究结论**：STA/ISR 是 GRPO neurosymbolic formalizer 的诊断工具 + Goodhart's Law 案例研究。\n\n**关键决策链**：\n- D010: Reward 公式从凸组合转为 additive bonus `r = r_exec · (1 + β·ISR)`\n- D041: Claim 2 pivot — ISR β=0.1 从 \"sweet spot\" 降级为 \"all conditions hack, ISR β=0.1 has lowest rate + mode shift\"\n- D042: ISR 度量存在结构性盲点（premise≈conclusion 时 ISR 膨胀）\n- D043: β=0.1 叙事降级——2/3 seeds H7 conclusion duplication\n- D044: Hacking taxonomy 全面采用 strict exact normalized match 定义\n- D045: 跨 logic type Goodhart 确认——Prolog 比 FOL 更容易被 hack\n\n**最容易判断错的事**：\n1. **不要把 plan002-b01 (ISR β=0.1) 的 s42 单 seed 好结果当作 general conclusion**——s43/s44 都出了 H7 hacking。叙事已 pivot (D041/D043)\n2. **Prolog exec+STA vs FOL exec+ISR 的 ISR 权重不同**（0.5 vs 0.1），不能直接归因于 \"logic type difference\"，需注明权重 confound\n3. **plan009 SFT baseline 已失败 3 次**（r1 格式问题, r2/r3 CUDA/环境问题），r4 是最后机会。如果再失败，考虑 SFT 是否值得继续\n4. **DDL 2026-05-25 还剩 11 天**，2 卡 × 24h × 11d = 528 GPU·h，剩余实验需 ~12h，时间充裕但不要浪费在已知死路上\n5. **plan018-random-b01-s43 已 failed**（磁盘爆满事故），只有 s42 (done negative) 和 s44 (running) 两个数据点\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5-1778761292.md"
+}

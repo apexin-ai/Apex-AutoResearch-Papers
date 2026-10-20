@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3399ad63618ba4003bb7",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "paper ref audit a13",
+  "task_key": "worker_paper_ref-audit-a13_20260522T234649",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_ref-audit-a13_20260522T234649_result.json",
+    "occurrence": 1,
+    "bytes": 1559,
+    "sha256": "9e5d8a39e65e2d1bf31f0e9775559428c7aeeb6f0676985ed6a55ffec63a7378"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### Step 1: 两篇论文已添加\n\n**Lanham et al., 2023**\n- 完整引用: Tamera Lanham, Anna Chen, Ansh Radhakrishnan, ... Ethan Perez. \"Measuring Faithfulness in Chain-of-Thought Reasoning.\" arXiv:2307.13702, 2023.\n- bib key: `lanham2023faithfulness`\n- 已添加到 `references.bib`\n- 已在 `related_work.tex` L15 (process rewards 段落末尾) 添加引用\n\n**Turpin et al., 2023**\n- 完整引用: Miles Turpin, Julian Michael, Ethan Perez, Samuel R. Bowman. \"Language Models Don't Always Say What They Think: Unfaithful Explanations in Chain-of-Thought Prompting.\" NeurIPS 2023. arXiv:2305.04388.\n- bib key: `turpin2023unfaithful`\n- 已添加到 `references.bib`\n- 已在同一句中引用\n\n添加的句子:\n> Parallel work on CoT faithfulness finds that stated reasoning steps are often not causally necessary for model predictions (Lanham et al., 2023; Turpin et al., 2023); STA tests component necessity analogously but operates on solver-input clauses rather than natural-language CoT.\n\n### Step 2: arXiv ID 验证\n\n| arXiv ID | 状态 | 标题 |\n|----------|------|------|\n| 2509.22047 | **存在** | \"MO-GRPO: Mitigating Reward Hacking of Group Relative Policy Optimization on Multi-Objective Problems\" (Ichihara et al., 2025) |\n| 2603.28063 | **存在** | \"Reward Hacking as Equilibrium under Finite Evaluation\" (Wang & Huang, 2026) |\n\n两个 arXiv ID 均真实存在，等 Director 决定是否添加到 bib。\n\n`docs/paper/` 和 `paper/` 两个目录已同步，diff 验证一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-ref-audit-a13.md"
+}

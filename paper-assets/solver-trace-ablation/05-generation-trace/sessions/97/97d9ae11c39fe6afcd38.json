@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "97d9ae11c39fe6afcd38",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "paper h9 cross scale",
+  "task_key": "worker_paper_h9-cross-scale_20260516T154730",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_h9-cross-scale_20260516T154730_result.json",
+    "occurrence": 1,
+    "bytes": 908,
+    "sha256": "547168dbed3b8f55fb4d4bdea9a01196f19d893c474d4725ed406c2289f8618d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. Summary of changes:\n\n**abstract.tex**: Added cross-scale half-sentence; \"8 hacking modes\" → \"9 hacking modes\"; added \"2 model scales\"\n\n**introduction.tex**: C4 contribution updated to \"nine-mode\" with mention of scale-specific ex falso mode\n\n**method.tex**: \"eight structural-degeneration modes\" → \"nine\"; added H9 to the taxonomy list\n\n**experiments.tex**:\n- §4 opening: added sentence referencing §crossscale\n- Setup: \"eight cataloged patterns\" → \"nine\"\n- New `\\subsection{Cross-Scale Evidence}` (§4.4, ~10 lines) between Cross-Logic and Taxonomy\n- Table 2: added `1.7B_ISR` column with H9=100%, Non-hacking=0%\n- Table caption and following paragraph: \"Eight\" → \"Nine\", added \"2 model scales\"\n\n**appendix.tex**: \"eight distinct\" → \"nine distinct\"; added full H9 subsection with definition, example, ISR interaction, and prevalence"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-h9-cross-scale.md"
+}

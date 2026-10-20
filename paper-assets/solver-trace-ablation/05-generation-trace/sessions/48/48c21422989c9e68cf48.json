@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "48c21422989c9e68cf48",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops disk cleanup urgent",
+  "task_key": "worker_ops_disk-cleanup-urgent_20260514T114149",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_disk-cleanup-urgent_20260514T114149_result.json",
+    "occurrence": 1,
+    "bytes": 1226,
+    "sha256": "7d6ec65bbf3109d6f25da954bb026c6044f4aa4ec92d86045e14e4db7a6ef789"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部任务完成。报告：\n\n---\n\n### 执行报告\n\n**1. 磁盘清理：释放 ~90G**\n- 清理前：142G/250G (57%)\n- 清理后：52G/250G (21%)，199G 可用\n- 清理目录：plan001_s42 (15G), plan002_s42 (16G), plan016_s42 (31G), plan018_s42 (31G)\n- 保留的 eval JSON 已备份到 `/root/autodl-tmp/eval_results_backup/`\n- plan006_prolog_exec_s42 (31G) 保留用于 eval，现已完成 eval，可考虑后续清理\n\n**2. plan018-s44 (PID 564900)：存活**\n- 进程正常运行中，使用 GPU 0\n\n**3. plan006-prolog-exec-s42 eval 结果**\n\n| 指标 | plan006-exec-s42 | plan006-sta-s42 (参考) |\n|------|-------------------|----------------------|\n| PR | **83%** | 50% |\n| mean ISR | **0.031** | 0.5 |\n| median ISR | 0.0 | — |\n| max ISR | 0.2 | — |\n| True 类 PR | 92.5% | — |\n| False 类 PR | 72.4% | — |\n| Unknown 类 PR | 80.6% | — |\n\nExec-only 模式 PR 远高于 STA 模式 (+33pp)，但 ISR 极低（0.031 vs 0.5），中位数为 0——模型学会生成可执行 Prolog 代码但不做 intermediate step reasoning。\n\n**4. 异常**\n- 无异常。plan006 eval 日志因 nohup 与先前 timed-out 运行共用文件导致 null bytes，不影响结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-disk-cleanup-urgent.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "34ca2eb45fd04ef6ee5f",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "paper figure fig2 isr collapse",
+  "task_key": "worker_paper_figure_fig2_isr_collapse_20260514T173306",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig2_isr_collapse_20260514T173306_result.json",
+    "occurrence": 1,
+    "bytes": 489,
+    "sha256": "77b0e1d5cb81db1790b6a3ba6c7c9071d63882e167409fd727a0cc715a69cf18"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Fig2 已生成并注册 (`art_20260514_ca5403`)。\n\n输出文件：\n- PDF: `figures/paper/fig2_isr_collapse.pdf` (41KB)\n- PNG: `figures/paper/fig2_isr_collapse.png` (273KB)\n- 生成脚本: `figures/paper/gen_fig2.py`\n\n图表包含：双 Y 轴（绿色 PR 线 + 橙色 ISR 线）、每点数值标注、step 1000 处 \"94.8% ISR=0 / 18.55 components / Contradiction explosion\" 标注框、左下角嵌入数据面板（替代 Tab3）、component count 气泡背景。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig2-isr-collapse.md"
+}

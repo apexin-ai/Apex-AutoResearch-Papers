@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "69432ef33d30bd18ebd5",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analyze sweep exec only s46",
+  "task_key": "worker_analyze_sweep-exec-only-s46_20260516T090053",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_sweep-exec-only-s46_20260516T090053_result.json",
+    "occurrence": 1,
+    "bytes": 380,
+    "sha256": "dc73844124eb8fac2e082cbaac60adb227c9681864fe8e0ce8e434438aabc3a4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 在后台运行中，4.5 分钟后回来查看结果。\n\n目前已确认的信息：\n- **训练完成**: 500/500 步，EXIT_CODE=0，\"Done.\" 正常输出\n- **最终训练 metrics**: prove_rate=0.597, mean_isr=0.085, parse_rate=1.0\n- **Checkpoint**: /root/autodl-tmp/outputs/sweep_exec_only_s46/ (merged model, 31GB)\n- **无异常**: 无 error/exception"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-sweep-exec-only-s46.md"
+}

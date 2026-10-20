@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "33593d8efe3f0b52f086",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops checkpoint check reeval",
+  "task_key": "worker_ops_checkpoint-check-reeval_20260515T005331",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_checkpoint-check-reeval_20260515T005331_result.json",
+    "occurrence": 1,
+    "bytes": 1840,
+    "sha256": "fee5c8e3e73d24a09e26196af75874abeec560e17a0041effac8b85b3f7d6e27"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 0 已释放（仅 GPU 1 有训练进程 51297）。\n\n---\n\n## 汇报\n\n### 1. Checkpoint 存活\n\n| Experiment | 路径 | 状态 |\n|---|---|---|\n| exp1_isr_b03_s43 | — | **MISSING**（目录不存在） |\n| exp1_isr_b03_s44_r2 | `/root/autodl-tmp/outputs/exp1_isr_b03_s44_r2/checkpoint-500` | **EXISTS** |\n| exp1_random_b03_s43 | — | **MISSING**（目录不存在） |\n| exp1_random_b03_s44_r2 | `/root/autodl-tmp/outputs/exp1_random_b03_s44_r2/checkpoint-50` | **训练中**（step 78/500） |\n\n### 2. exp1_random_b03_s44_r2 训练状态\n\n- PID 51297 存活，GPU 1 占用 80318 MiB，utilization 90%\n- 当前 step 78/500，仅 checkpoint-50\n- 预计还需较长时间完成\n\n### 3. 磁盘/GPU 状态\n\n- 根分区：30G，已用 9.1G (31%) ✓\n- autodl-tmp：250G，已用 82G (33%) ✓\n- GPU 0：空闲\n- GPU 1：PID 51297 训练中\n\n### 4. Eval 结果（使用 proofwriter_fol_100.jsonl）\n\n**仅 exp1_isr_b03_s44_r2/checkpoint-500 可 eval**，其余 checkpoint 不存在或训练未完成。\n\n| 指标 | 值 |\n|---|---|\n| **Prove Rate (PR)** | 95.0% (95/100) |\n| **Mean ISR** | 0.705 ± 0.172 |\n| **Proved-only ISR** | 0.7421 |\n| **Median ISR** | 0.750 |\n| **H7 strict** | **100.0%** (95/95) |\n| **H1 strict** | 0.0% (0/95) |\n| **H7+H1** | **100.0%** (95/95) |\n| **Single premise** | 100.0% (95/95) |\n| **ISR=1.0** | 0.0% |\n| **genuine reasoning** | **0.0%** |\n\n**结论**：100% H7 — 模型完全退化为 \"单前提 = 结论\" 的 shortcut 策略。ISR 恒定 0.75 是因为 STA 中 conclusion_quantifier 组件始终冗余（4 components 中 3 个 necessary）。没有真正的推理。\n\n**待完成**：\n- exp1_isr_b03_s43、exp1_random_b03_s43 的 checkpoint 已丢失，无法 re-eval\n- exp1_random_b03_s44_r2 需等训练完成（step 78/500）后再 eval"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-checkpoint-check-reeval.md"
+}

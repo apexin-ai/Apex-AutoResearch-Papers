@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9ee90adf9d3ecf1f704d",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analysis check pending evals",
+  "task_key": "worker_analysis_check-pending-evals_20260515T001913",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_check-pending-evals_20260515T001913_result.json",
+    "occurrence": 1,
+    "bytes": 595,
+    "sha256": "48842087de29f37e730904e79240d94fab0b090a6eecea0e37d390201582718b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验均无 eval_results.json，checkpoint 均完整。\n\n## β=0.3 s43 Eval 状态\n\n| 实验 | Checkpoint | eval_results.json | 状态 |\n|------|-----------|-------------------|------|\n| `exp1_isr_b03_s43` | checkpoint-500 完整（4 shard safetensors, ~15GB） | 无 | **需要跑 eval_sta.py** |\n| `exp1_random_b03_s43` | checkpoint-500 完整（4 shard safetensors, ~15GB） | 无 | **需要跑 eval_sta.py** |\n\nCheckpoint 路径：\n- `/root/autodl-tmp/outputs/exp1_isr_b03_s43/checkpoint-500/`\n- `/root/autodl-tmp/outputs/exp1_random_b03_s43/checkpoint-500/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-check-pending-evals.md"
+}

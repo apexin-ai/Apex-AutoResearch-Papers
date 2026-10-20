@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d08084b380795cecf4cc",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analysis plan002 additive b01 s44",
+  "task_key": "worker_analysis_plan002-additive-b01-s44_20260514T093004",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan002-additive-b01-s44_20260514T093004_result.json",
+    "occurrence": 1,
+    "bytes": 1661,
+    "sha256": "a04f940914ce2662200706028c25f806b12e0c23cd49ec137d2ef8d09c05df2c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。\n\n---\n\n## 结果摘要\n\n### 1. 训练指标\n| 指标 | 值 |\n|------|-----|\n| total_steps | 500 |\n| duration | 40.8 min |\n| loss | 0.006 |\n| last100 PR | **0.9337** |\n| last100 ISR | **0.9049** |\n\n**训练曲线（windowed PR / ISR）**：\n- steps 1-100: 0.165 / 0.086\n- steps 101-200: 0.431 / 0.224\n- steps 201-300: 0.931 / 0.584\n- steps 301-400: 0.943 / 0.756\n- steps 401-500: 0.934 / 0.905\n\n### 2. Eval 指标（eval_sta.py, 100 problems）\n| 指标 | 值 |\n|------|-----|\n| prove_rate | **0.89** |\n| mean_isr | **0.803** (±0.342) |\n| median_isr | 1.0 |\n| proved_only_isr | **0.9022** |\n| component_count_mean | **4.33** |\n| component_count_2_ratio | **0.0225** |\n| tautological_collapse | **false** |\n\n### 3. Conclusion: **SUCCESS**\n- tautological_collapse=false, PR=0.89>0.5, ISR=0.803>0.1 → 全部达标\n\n### 4. 与 parent s42 对比\n| 指标 | s42 | s44 | diff |\n|------|-----|-----|------|\n| eval_prove_rate | 0.81 | **0.89** | +0.08 |\n| eval_mean_isr | 0.337 | **0.803** | **+0.466** |\n| proved_only_isr | 0.415 | **0.902** | **+0.487** |\n| component_count_mean | 5.58 | 4.33 | -1.25 |\n| component_2_ratio | 0.037 | 0.023 | -0.015 |\n\ns44 显著优于 s42，存在较大 seed 间方差。\n\n### 5. 与 exec-only s44 对比\n| 指标 | exec-only s44 | ISR β=0.1 s44 |\n|------|---------------|---------------|\n| PR | ~98% | 89% |\n| tautological_collapse | **YES**（94% 样本仅 2 comp） | **NO**（2.25% 样本 2 comp） |\n| ISR | ~0.5（假象） | **0.803**（真实） |\n\n**ISR β=0.1 additive bonus 成功防止了 seed 44 的 tautological collapse。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan002-additive-b01-s44.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e8913b13658f1428ed0e",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code d154 8b hang diagnosis",
+  "task_key": "worker_code_d154-8b-hang-diagnosis_20260520T064314",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d154-8b-hang-diagnosis_20260520T064314_result.json",
+    "occurrence": 1,
+    "bytes": 142,
+    "sha256": "26898a997c9a800fd99978aab0a412bc0858c8e7170360c79a81cd4cc36670a2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "后台计时器已完成。训练 `d154-8b-exec-s42-k4v2` 稳定运行中（已确认到 step 20+），无需进一步操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d154-8b-hang-diagnosis.md"
+}

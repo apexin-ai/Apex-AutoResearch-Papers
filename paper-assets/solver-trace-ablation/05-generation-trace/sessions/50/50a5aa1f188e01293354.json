@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "50a5aa1f188e01293354",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops force kill 352975",
+  "task_key": "worker_ops_force-kill-352975_20260515T125959",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_force-kill-352975_20260515T125959_result.json",
+    "occurrence": 1,
+    "bytes": 1034,
+    "sha256": "e097a3397d5019aa262ac4c45f425ce2ec82bd4c3149c41ef69633f5dd1f89cd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。结果汇总：\n\n**Step 1 - kill -9 352975**: 进程已不存在（`No such process`），说明在执行前已自行退出。\n\n**Step 3 - 进程确认**: `PROCESS_GONE` — 352975 已消失。\n\n**Step 4 - nvidia-smi**:\n```\nGPU 0: NVIDIA RTX PRO 6000 Black — 63861MiB / 97887MiB — 99% util — PID 352142 (63852MiB)\nGPU 1: NVIDIA RTX PRO 6000 Black — 40701MiB / 97887MiB —  5% util — PID 353661 (40692MiB)\n```\ncuda:1 上只剩 r3 (PID 353661) 的 ~40GB，僵尸进程的 53GB 已释放。\n\n**Step 5 - r3 状态**: PID 353661, 状态 `Rl`（运行中），已运行 4 分 17 秒。\n```\npython3 scripts/train_sft.py --model_path /root/autodl-tmp/models/Qwen3-4B \\\n  --data_path data/train_500_seed42.jsonl \\\n  --output_dir /root/autodl-tmp/outputs/plan009_sft_baseline_s44_1000 \\\n  --num_steps 1000 --seed 44 --no_wandb --gpu 1\n```\n\n**Step 6 - r3 日志**: 正常训练中，当前进度 150/1000 steps，速度 ~1.25 it/s。\n\ncuda:1 已恢复正常，r3 不受影响。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-force-kill-352975.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "89e79f506261745a5ef3",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "eval exp1 isr b03 s43 prep",
+  "task_key": "worker_eval_exp1-isr-b03-s43-prep_20260514T231704",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp1-isr-b03-s43-prep_20260514T231704_result.json",
+    "occurrence": 1,
+    "bytes": 1080,
+    "sha256": "f3cc4822ff894fcb41512e42d63bb837881a22042ae677a32e95f7c87379ba08"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证结果：\n\n**Checkpoint 完整性：确认完整**\n- 路径：`/root/autodl-tmp/outputs/exp1_isr_b03_s43/`\n- 4 个 safetensors 分片齐全，总大小 ~15.0GB：\n  - model-00001-of-00004.safetensors: 4.65GB\n  - model-00002-of-00004.safetensors: 4.60GB\n  - model-00003-of-00004.safetensors: 4.65GB\n  - model-00004-of-00004.safetensors: 1.08GB\n- `checkpoint-500/` 目录也存在，内含完整的模型文件和 trainer_state.json\n- 输出目录和 checkpoint-500 目录均含完整 tokenizer 文件\n\n**训练步数：500/500 确认完成**\n- 日志显示 `100%|██████████| 500/500` 进度条完成\n- `Saving final model` 于 2026-05-15 07:01:21\n- Final stats: `parse_rate=1.0, prove_rate=0.56125, mean_isr=0.1515`\n- `train_runtime=4142.3s (~69min), epoch=2.0`\n- `EXIT_CODE=129` 是 tmux 清理的 SIGHUP，模型已保存完毕\n\n**GPU 当前状态：两卡满载**\n- GPU 0: 85059/97887 MiB (87%), utilization 91%\n- GPU 1: 83123/97887 MiB (85%), utilization 90%\n\n两张卡都在跑训练，不宜现在启动 eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp1-isr-b03-s43-prep.md"
+}

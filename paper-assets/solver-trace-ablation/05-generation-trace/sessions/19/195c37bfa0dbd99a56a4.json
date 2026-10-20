@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "195c37bfa0dbd99a56a4",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "setup qwen3 1 7b dual pilot",
+  "task_key": "worker_setup_qwen3-1_7b-dual-pilot_20260516T105518",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_setup_qwen3-1_7b-dual-pilot_20260516T105518_result.json",
+    "occurrence": 1,
+    "bytes": 631,
+    "sha256": "d76959d1e1f822e2fe8ef6396beec2c925dc30e68de4f9f4712ea965ff4aa0f2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "双卡训练成功启动。\n\n**汇报：**\n\n| 项目 | 值 |\n|------|------|\n| 模型 | `Qwen/Qwen3-1.7B` (ModelScope 下载) |\n| 下载路径 | `/root/autodl-tmp/models/Qwen3-1.7B` |\n| GPU 0 (exec-only) | 34511 MiB / 97887 MiB, 83% util, step 1 完成 (5.00 s/it) |\n| GPU 1 (ISR β=0.1) | 34511 MiB / 97887 MiB, 76% util, step 1 完成 (5.17 s/it) |\n| step 1 指标 | exec: prove_rate=0.625, isr=0.416; ISR: prove_rate=0.625, isr=0.416, beta=0.1 |\n| 预计完成 | ~42 分钟 (500 steps × 5s/step) |\n| 修复 | config 需要显式 `optim: adamw_torch`（argparse default=None 时 getattr 不回退） |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/setup-qwen3-1-7b-dual-pilot.md"
+}

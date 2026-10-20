@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ad78aa71569b8a863216",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code d158 sft eval then d157 submit",
+  "task_key": "worker_code_d158-sft-eval-then-d157-submit_20260520T145313",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d158-sft-eval-then-d157-submit_20260520T145313_result.json",
+    "occurrence": 1,
+    "bytes": 537,
+    "sha256": "cd4130866b3512e03310f85f5673eac26e11592e3baae5e3e1cb249bff0dd81f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "D157 已启动，cuda:0 占用 22360 MiB，仅在 cuda:0 上运行。\n\n## 总结\n\n### D158 SFT Eval 结果\n- **PR = 0/100 (0.0%)** — 100 个样本全部 FAILED\n- **Mean ISR = 0.0000**\n- **PR gate 失败** (< 10%)，D158 GRPO 取消\n- 结果保存在 `/root/autodl-tmp/outputs/d158_llama_sft_s42_eval.json`\n\n### D157 shuffled-ISR s42\n- 已提交到 cuda:0，exp_id: `d157-shuffled-isr-s42-r3`\n- PID 788433，tmux session: `d157-shuffled-isr-s42-r3`\n- 配置: 500 steps, seed 42, shuffled_isr reward, Qwen3-4B"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d158-sft-eval-then-d157-submit.md"
+}

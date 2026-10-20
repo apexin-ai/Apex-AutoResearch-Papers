@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0faa226a11178573558f",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code r16 prooffol pipeline",
+  "task_key": "worker_code_r16-prooffol-pipeline_20260520T054743",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r16-prooffol-pipeline_20260520T054743_result.json",
+    "occurrence": 1,
+    "bytes": 1200,
+    "sha256": "cdc0fb6db1c36d8bdfde0d8ba396cc2a459a7a3d22860085a9663c0e98bac065"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results saved to `/root/autodl-tmp/outputs/prooffol_pipeline_details.json`. Here's the summary:\n\n## ProofFOL Pipeline Details\n\n### 来源\n- **原始数据集**: ProofWriter (depth 1–5)\n- **FOL 翻译**: GPT-4o 银标准翻译 + Prover9 验证 (arXiv:2409.16461, GitHub: RamyaKeerthy/Translation-NL2FOL)\n- **Pipeline 阶段**: 10,424 train + 600 test → 10,332 成功解析 (0.9% 跳过) → 我们采样 500 train + 100 eval (seed=42)\n\n### ProofFOL vs FOLIO 对比\n\n| 指标 | ProofFOL (train 500) | FOLIO (train 500) |\n|------|---------------------|-------------------|\n| FOL premises | 18.2 ± 3.2 (8–25) | 5.3 ± 1.4 (2–10) |\n| Ground facts | 10.2 ± 3.0 | 1.8 ± 1.5 |\n| Rules | 8.1 ± 1.1 | 3.5 ± 1.9 |\n| XOR (⊕) samples | 0 | 186 (37.2%) |\n| Depth 主要分布 | d4=187, d5=165 | d2=257, d3=176 |\n| Answer 分布 | T=180/F=144/U=176 | T=183/F=157/U=160 |\n\n关键差异：ProofFOL 问题复杂度显著高于 FOLIO（平均 18.2 vs 5.3 个 FOL premise，depth 4–5 为主 vs depth 2–3），但谓词语义简单（`Blue(x)`, `Rough(x)` 等 ProofWriter 风格）；FOLIO 使用真实世界谓词且包含 XOR 约束（37.2%），ProofFOL 无 XOR。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-r16-prooffol-pipeline.md"
+}

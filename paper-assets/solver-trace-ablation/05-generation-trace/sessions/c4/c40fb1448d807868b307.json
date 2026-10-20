@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c40fb1448d807868b307",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_9_1778814276.md",
+  "task_key": "loop_9_1778814276",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_9_1778814276.md",
+    "occurrence": 1,
+    "bytes": 4221,
+    "sha256": "71a0e991a3e9e58d90451536c9af94b1bd695a0f1d53b6ebd238e2b5b541ae3a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 9\nreason: idle_timeout\nupdated: '2026-05-15T03:00:13+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **GPU 白名单**: 只能用 westd-39279 的 cuda:0 和 cuda:1，不可动其他卡\n- **submit_training_job 命令格式**: 必须 `bash -c \"export CUDA_VISIBLE_DEVICES=N && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 ...\"`，缺任何一段都会静默失败\n- **kill_job 只杀 tmux wrapper**，不杀 Python 子进程——kill 后必须 SSH 验证 `ps aux | grep train` 确认清理干净\n- **磁盘 96% (240G/250G)**，output_dir 必须放 `/root/autodl-tmp/outputs/`，eval 后立即清理 checkpoint，`log_completions=False` + `save_total_limit=1`\n- **eval 测试集**: 必须用 `proofwriter_fol_100.jsonl`（不是 test_100.jsonl），D062/D063 因测试集搞错导致大量返工\n- **D066**: \"Goodhart instability\" 叙事变更已暂停，等 proofwriter 数据验证完才能动\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-39279，工作目录 `/root/solver-trace-ablation/`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- **激活**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **GPU**: 2× RTX PRO 6000 Blackwell 94GB，CUDA 12.8，PyTorch 2.10.0+cu128\n- **模型**: Qwen3-4B（ModelScope 下载，本地）\n- **Solvers**: Prover9 (LADR 源码编译), SWI-Prolog 8.4.2 (`/usr/bin/swipl`), Z3 4.16.0.0\n- **数据盘**: `/root/autodl-tmp/`（250GB，96% 已用）\n- **活跃进程**: exp1-random-b03-s43-r4, PID 117566, cuda:0, cron 监控中\n- **W&B**: 项目内配置（具体 entity/project 需 SSH 确认）\n\n### 3. 📊 当前状态\n- **exp1-random-b03-s43-r4** (RUNNING, cuda:0, PID 117566): random β=0.3 s43 第 4 次重试（r2 被 kill，r3 OOM），cron 已注册监控中\n- **exp1-random-b03-s44-r2** (ANALYZING): 训练已完成，等待 eval。Worker `worker_eval_random-b03-s44-r2-check` 正在处理\n- **3 个 Worker 在跑**:\n  - `worker_writing_method-fixes-v2`: 论文 Method 章节修复\n  - `worker_ops_server-diagnostic-and-eval`: 服务器诊断 + eval\n  - `worker_eval_random-b03-s44-r2-check`: s44-r2 eval 检查\n- **cuda:1 当前空闲**（s44-r2 训练已完成）\n- **总计**: 65 实验（success 17 / negative 19 / failed 21 / killed 6 / running 1 / analyzing 1）\n- **三个 Claim 均已闭环**，进入论文写作阶段，DDL 2026-05-25（剩 11 天）\n\n### 4. 📋 待办（条件触发式）\n- exp1-random-b03-s43-r4 cron 回调到达 → spawn Worker 跑 eval（用 proofwriter_fol_100.jsonl），提取 metrics，更新 registry\n- exp1-random-b03-s44-r2 eval Worker 完成 → 读结果，更新 registry + report.md，与 s42/s43 合并 3-seed 统计\n- **两个 exp1 都完成后** → 汇总 β=0.3 random 3-seed 统计（mean±std prove_rate, ISR, gaming rate），更新 Table 1 数据，汇报 Director\n- Method-fixes Worker 完成 → 审查论文 method 章节修改，确认与 paper_framing.md 一致\n- **cuda:1 空闲** → 若无补充实验需求，向 Director 汇报 GPU 可释放或用于图表生成\n- 论文初稿完成 → submit_paper_to_review 走 Reviewer 审查\n\n### 5. 🎯 战略上下文\n- **核心结论**: ISR/STA 是 GRPO neurosymbolic formalizer 的诊断工具，ISR 作为优化目标会触发 Goodhart's Law。7 种 hacking 模式（含 query-as-fact），结论嵌入是 GRPO 通用现象 (68-100%)\n- **关键决策链**: D057(Goodhart/ISR 无结构优势) → D059(跨逻辑泛化 Prolog gaming) → D060(seed instability reframe) → D062/D063(测试集错误发现) → D066(叙事变更暂停) → D067/D068(checkpoint 误删重训)\n- **易错点**:\n  - s44 的 PR=0.97 **不是** genuine success，是 query-as-fact gaming（functional H7=97.9%），Reviewer 已核实(D069)\n  - plan002-additive-b03-s42 的 eval PR=18% 数据来源是 eval_sta.py 直接输出，registry 里没有（写入论文时需标注来源）\n  - plan013 vs plan017 公式结构不同，**不可**简化为 \"additive vs convex\" 对照 (D027)\n  - D051: 2.4x ISR 优势已作废，premise-count-matched 后是 1.06x 无差异\n  - 磁盘极度紧张（96%），任何新训练前先检查/清理空间\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-9-1778814276.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dd2686fbc1b476a8d284",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code w13 figure font fix",
+  "task_key": "worker_code_w13-figure-font-fix_20260520T100141",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_w13-figure-font-fix_20260520T100141_result.json",
+    "occurrence": 1,
+    "bytes": 407,
+    "sha256": "fdaee6b3aac98733cb9eb40f26c02a52200d696ce3f325746580155ddfe2bdca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "6 个文件全部更新完成。\n\n变更总结：\n- **Fig 3 / Fig 4**：字号已满足要求（legend ≥8, ticks ≥8, labels ≥9），无需改动，仅重新生成\n- **Fig 5**：修改了 `gen_fig5.py` 中 5 处字号——rcParams 里 `axes.labelsize` 8→9、`xtick/ytick.labelsize` 7.5→8、`legend.fontsize` 7→8；两处 annotation 和 legend 的 inline fontsize 从 6/6.5→8"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-w13-figure-font-fix.md"
+}

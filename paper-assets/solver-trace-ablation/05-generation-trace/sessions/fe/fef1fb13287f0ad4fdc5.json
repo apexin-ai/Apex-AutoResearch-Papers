@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fef1fb13287f0ad4fdc5",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "submit sweep isr b02 batch",
+  "task_key": "worker_submit_sweep-isr-b02-batch_20260516T034827",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_sweep-isr-b02-batch_20260516T034827_result.json",
+    "occurrence": 1,
+    "bytes": 2002,
+    "sha256": "482d4035da7f8d2f40656d6e7d1c76481742edd10e20d2769c0024ca785c8368"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**停止提交。任务前提\"两块 GPU 空闲\"与实际不符。**\n\n## 现场探测结果\n\n**GPU 占用情况**：\n- **cuda:0** (pid 604569, 79.5GB, 90% util, 已运行 34:24)：`sweep-isr-b01-s45-r3` — β=0.1 seed=45 retry 3\n- **cuda:1** (pid 626802, 78.9GB, 92% util, 已运行 01:36)：`sweep-isr-b02-s42` — β=0.2 seed=42 (**已是本任务的目标实验之一**)\n\n**Registry 状态**：\n- `sweep-isr-b02-s42` 已注册为 RUNNING（2026-05-16T02:42:03Z），spec 中 pid=626802、gpu=cuda:1，与 nvidia-smi 一致 ✓\n- 没有 `sweep-isr-b02-s43` 记录\n\n**配置探测**：\n- `configs/grpo_additive_bonus_b02.yaml` **已存在**（不需要创建）：beta=0.2, seed=42, num_steps=500, per_device_batch_size=4, gradient_accumulation_steps=2, num_generations=4\n- ⚠️ config 的 `per_device_batch_size=4, gradient_accumulation_steps=2, num_generations=4` 与任务上下文中\"K=4, per_device_batch_size=2\"不一致——但 s42 已用该 config 启动\n\n**D098 fix 验证**：scripts/train_grpo.py 第 356-384 行所有 argparse default 均为 `None` ✓ 已生效\n\n**Seed 处理**：seed 在 config 中（`seed: 42`），但 CLI `--seed` 在 D098 fix 后会通过 None 检查正常覆盖 config 值。已运行的 s42 命令使用 `--seed 42` 显式覆盖。\n\n## 决策\n\n**不执行任何提交。** 原因：\n1. **s42 已在 cuda:1 跑**——重复提交会冲突并违反 C002/C007\n2. **cuda:0 被 s45-r3 占满 79.5GB**——s43 提交必 OOM\n3. 没有任何可用 GPU 容纳 s43\n\n## 建议下一步\n\n- 等待 cuda:0 上 `sweep-isr-b01-s45-r3` 完成（500 steps, 34:24/?, 用 check-training-status 查 ETA）\n- s45 完成且 GPU 释放（按 C007 必须 nvidia-smi 确认）后，再提交 `sweep-isr-b02-s43` 到 cuda:0\n- s42 已在跑，命令使用了 `--no_wandb`（\"missing WANDB_API_KEY on server\"），s43 提交时是否需要相同处理待确认\n- 若用户确认必须立即提交 s43，需先告知是否 kill s45-r3"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-sweep-isr-b02-batch.md"
+}

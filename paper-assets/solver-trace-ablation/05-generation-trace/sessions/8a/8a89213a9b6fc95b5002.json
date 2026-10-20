@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8a89213a9b6fc95b5002",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code d146 verify start",
+  "task_key": "worker_code_d146-verify-start_20260519T145552",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d146-verify-start_20260519T145552_result.json",
+    "occurrence": 1,
+    "bytes": 809,
+    "sha256": "4e409f2d4c9a3c780d22634cd6b4165906da6fe5bc952349f2c0fa7d105bdb21"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**训练失败。** 崩溃原因明确：\n\n**日志内容：**\n```\nTue May 19 22:55:32 CST 2026 [D146] exec s42\nbash: line 1: --config: command not found\nEXIT_CODE=127\n```\n\n**诊断：**\n- tmux session 已退出（无活跃 session）\n- GPU 0：0 MiB 显存，0% 利用率 — 完全空闲\n- 崩溃原因：**提交的命令缺少 Python 脚本调用**，`--config` 被 bash 当作可执行文件执行，返回 `command not found`（exit code 127）\n- config 文件存在：`grpo_prooffol_exec_only.yaml`（436B）、`grpo_prooffol_isr_b01.yaml`（420B）\n- 数据文件存在：`prooffol_train_500.jsonl`（629KB）\n\n**结论：** 需要修复 submit 命令，确保格式为 `python train_grpo.py --config configs/grpo_prooffol_exec_only.yaml ...` 而非裸 `--config ...`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d146-verify-start.md"
+}

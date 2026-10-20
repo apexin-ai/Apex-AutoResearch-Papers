@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "id": "28a4b98e95d93d93ae0f",
+  "project": "solver-trace-ablation",
+  "kind": "worker",
+  "title": "analysis genuine isr crosscheck 20260514T151533 retry1",
+  "task_key": "worker_analysis_genuine-isr-crosscheck_20260514T151533_retry1",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_genuine-isr-crosscheck_20260514T151533_retry1.log",
+    "occurrence": 1,
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "statistics": {
+    "messages": 0,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {},
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [],
+  "readable_path": "readable/worker-executions/analysis-genuine-isr-crosscheck-20260514t151533-retry1.md"
+}

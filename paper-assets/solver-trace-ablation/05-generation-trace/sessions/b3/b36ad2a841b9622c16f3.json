@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b36ad2a841b9622c16f3",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analysis genuine isr crosscheck r2",
+  "task_key": "worker_analysis_genuine-isr-crosscheck-r2_20260514T152653",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_genuine-isr-crosscheck-r2_20260514T152653_result.json",
+    "occurrence": 1,
+    "bytes": 1099,
+    "sha256": "f8928ba66d498dc814cc601d1f0e1b7269ce227628a096bdab62411bc2f362bd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。核心结论：\n\n**比较表**:\n| Condition | Seed | PR | Genuine ISR | H7% | Hacking |\n|-----------|------|------|-------------|-----|---------|\n| ISR β=0.1 | s42 | 0.81 | **0.601** | 16% | partial |\n| ISR β=0.1 | s43 | 0.61 | N/A (n≈2) | 97% | severe |\n| ISR β=0.1 | s44 | 0.89 | Unknown (n≈12) | 87% | severe |\n| Random β=0.1 | s42 | 0.79 | 0.104 | 0% | none |\n| Random β=0.1 | s44 | 0.89 | 0.062 | 0% | none |\n\n**关键发现**:\n1. **Genuine ISR 信号存在但不 robust** — s42 genuine ISR (0.601) vs random (0.104) = 5.8×，差异大且可解释\n2. **3-seed mean±std 无法计算** — s43 仅 ~2 genuine samples，s44 的 12 genuine samples 缺 per-sample ISR 分解\n3. **Random 完全无 hacking** — 两个 seed 均无 conclusion duplication，ISR 全部 genuine\n4. **2/3 seed collapse** — ISR reward 本身诱导 hacking，方法不稳定\n\n**建议**: 论文用 s42 做 within-seed case study（genuine 0.601 vs random 0.104），不报 3-seed 均值。若需 s44 genuine ISR，需对 eval outputs 跑 per-sample H7 分类。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-genuine-isr-crosscheck-r2.md"
+}

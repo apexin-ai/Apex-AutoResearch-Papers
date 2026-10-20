@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "89568b9077f21ccd8ac3",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_9_1778812075.md",
+  "task_key": "loop_9_1778812075",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_9_1778812075.md",
+    "occurrence": 1,
+    "bytes": 3869,
+    "sha256": "22b5e2996289d9063c0c45874f0ec6718aa598c75637966ba74fe99a074ecca2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 9\nreason: idle_timeout\nupdated: '2026-05-15T02:26:59+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单只有 `westd-39279:cuda:0` 和 `westd-39279:cuda:1`，禁止用其他 GPU\n- 所有训练命令必须 `bash -c \"export CUDA_VISIBLE_DEVICES=N && ...\"` 格式，GPU 编号从 0 开始\n- kill_job 只杀 tmux wrapper 不杀 Python 子进程——kill 后必须 `check_job_status(pid=子进程PID)` 验证真死了，否则会 OOM 后续实验（本 session 刚踩过）\n- 数据约束 C001：所有 EXP-1 实验统一用 `train_500_seed42.jsonl`\n- 磁盘 240G/250G (96%)，output_dir 必须放 `/root/autodl-tmp/outputs/`，`log_completions=False` + `save_total_limit=1`\n- update_registry spec 中不要带 `parent` 字段，会触发 eval 验证要求 checkpoint_source/eval_data\n\n### 2. 🖥️ 基础设施快照\n- 服务器：`westd-39279`，账号 `root`，工作目录 `/root/solver-trace-ablation/`\n- Python：`/root/miniconda3/bin/python`，conda env `base`，激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型：Qwen3-4B（7.6GB，ModelScope 下载）\n- 数据：`/root/solver-trace-ablation/data/train_500_seed42.jsonl`（500 条 FOLIO）\n- Outputs：`/root/autodl-tmp/outputs/`\n- Solvers：Prover9 (LADR 源码编译)、SWI-Prolog 8.4.2 (`/usr/bin/swipl`)、Z3 4.16.0\n- 活跃进程：\n  - `exp1-isr-b03-s44-r2` — PID 10597, tmux=exp1-isr-b03-s44-r2, cuda:0（ISR β=0.3 s44 重试）\n  - `exp1-random-b03-s43` — PID 963653, tmux session 未知, cuda:1（Random β=0.3 s43）\n- Cron 监控：reconcile 确认两个 job 都在跑\n\n### 3. 📊 当前状态\n刚处理 exp1-isr-b03-s44 的失败回调：诊断为 orphan 进程 OOM → 杀 pid 5480/5475 → 重试为 exp1-isr-b03-s44-r2。已更新 registry、发飞书结果卡片、向 Director 汇报。\n\n**RUNNING (2)**：\n- `exp1-isr-b03-s44-r2` — ISR additive β=0.3 seed 44 重试，cuda:0，刚启动\n- `exp1-random-b03-s43` — Random additive β=0.3 seed 43，cuda:1，运行中\n\n**PREPARING (1)**：\n- `exp1-random-b03-s44` — Random β=0.3 seed 44，等 GPU 空闲\n\n**等待**：两个 cron 回调（exp1-isr-b03-s44-r2 完成 + exp1-random-b03-s43 完成）。无 Worker 回调、无 Director 决策等待。\n\n### 4. 📋 待办\n- exp1-random-b03-s43 cron 完成回调 → on-experiment-done 流程 → cuda:1 空出后提交 exp1-random-b03-s44\n- exp1-isr-b03-s44-r2 cron 完成回调 → on-experiment-done 流程 → 如果 exp1-random-b03-s44 还没提交，可用 cuda:0\n- 两个 β=0.3 三 seed 组（ISR s42/s43/s44 + Random s42/s43/s44）全部完成 → 汇总 Table 1 三 seed 统计 → 向 Director 汇报\n- 论文写作 Workers（Method + Experiments）可能还在进行中——boot 后检查 worker 状态\n- 磁盘 96% → 实验完成后清理旧 checkpoint（`/root/autodl-tmp/outputs/` 下已完成实验的目录）\n\n### 5. 🎯 战略上下文\n**项目阶段**：Writing + 补充实验。DDL 2026-05-25（剩 11 天）。50 个核心实验已完成，3 条 Claim 全部闭环。当前 EXP-1 系列是 β=0.3 的 3-seed 统计补充（Table 1 用）。\n\n**核心结论链**：\n- D051: ISR-as-reward 完全失败。Premise-count-matched 后 ISR vs Random = 1.06x 无差异\n- D057: Claim 2 闭环——Random β=0.1 3-seed H7=0%，ISR H7=16%（ISR-specific gaming）\n- D059: Claim 3 闭环——Prolog STA 3/3 seeds Goodhart，0% genuine，3 种不同 gaming pathway\n\n**易错点**：\n- exp1-isr-b03-s43 的 conclusion=success 但实际是 EXIT_CODE=129 tmux 误报——checkpoint 完整可用，不要重训\n- Prolog s44 PR=0.97 ISR=0.885 看似成功实为 query-as-fact gaming——strict classifier 有盲区，必须交叉验证 n_necessary\n- Raw ISR 对比不可信（D051），论文中所有 ISR 对比必须 premise-count-matched\n- Hacking taxonomy 是 7 种（含第 7 种 query-as-fact），不是 6 种\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-9-1778812075.md"
+}

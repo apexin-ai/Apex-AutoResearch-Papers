@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1dcac0d0e0c645fe91a2",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "eval d154 8b exec s42 k8",
+  "task_key": "worker_eval_d154-8b-exec-s42-k8_20260522T063110",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_d154-8b-exec-s42-k8_20260522T063110_result.json",
+    "occurrence": 1,
+    "bytes": 606,
+    "sha256": "7533c0b538c923f2e1ac1b6b8050d8cce9f4f356d6920632fe18f05601d41ecd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。\n\n**d154-8b-exec-s42-k8 Eval 结果**\n\n| Metric | Value |\n|--------|-------|\n| Prove Rate | 14.0% (14/100) |\n| Mean ISR | 0.0802 ± 0.2220 |\n| ISR* (proved-only) | 0.573 |\n| Genuine | 13/14 (92.9%) |\n| CE (H1) | 1/14 (7.1%) |\n| TS (H7) | 0 |\n| PG (H8) | 0 |\n| CI (H9) | 0 |\n\n结论 **negative**：K=8 未能挽救 8B exec-only 的收敛问题。训练后期 reward 归零、grad_norm=0（frac_reward_zero_std=1.0），模型在 500 步内陷入完全停滞。14% PR 基本是 base model Qwen3-8B 的 pre-training 残余能力，非 GRPO 训练所得。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-d154-8b-exec-s42-k8.md"
+}

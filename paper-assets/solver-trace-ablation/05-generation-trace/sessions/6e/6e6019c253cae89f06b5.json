@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6e6019c253cae89f06b5",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code d076 h8 classifier",
+  "task_key": "worker_code_d076-h8-classifier_20260515T122920",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d076-h8-classifier_20260515T122920_result.json",
+    "occurrence": 1,
+    "bytes": 1747,
+    "sha256": "fc3e457d371a57465cfc1ab776aa67109a27f8c31a95abcf506ddea8126e71db"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### 任务 1：H8 分类器状态\n`classify_h7.py` **已包含完整的 H8 conjunction-collapse 检测逻辑**，无需修改：\n- `is_h8_conjunction_collapse()` 函数：解析 conclusion 的 top-level conjunction，检查每个 conjunct 是否匹配某个 premise\n- 已集成到 `classify_file()`，加入 `hacked_ids` 排除 genuine\n- Summary table 已含 H8 列\n\n### 任务 2：plan002-additive-b01-s42 回溯结果\n\n| 指标 | 无 H8（仅 H7+H1） | 含 H8 |\n|------|-------------------|-------|\n| Proved | 81 | 81 |\n| H7 (conclusion duplication) | 13 | 13 |\n| H1 (conclusion embedding) | 42 | 42 |\n| H8 (conjunction collapse) | — | **12** |\n| **Genuine** | **26 (32.1%)** | **14 (17.3%)** |\n\nH8 新检出 **12 例** conjunction collapse，genuine 从 26 降至 14（减少 46%）。\n\n### H8 示例（3 例）\n\n1. **folio_765**（5 premises）：\n   - Premises: `∀x(WhiteCollarWorker(x)→EntitledToMinimumWage(x))`, `∀x(Lawyer(x)→WhiteCollarWorker(x))`, `∀x(Advocate(x)→Lawyer(x))`, `¬(Lawyer(Mary)∨TippedEmployee(Mary))`, `Advocate(Mary)`\n   - Conclusion: `¬(Lawyer(Mary) ∨ TippedEmployee(Mary)) ∧ Advocate(Mary)` — 取 2 个 premise 直接合取\n\n2. **folio_207**（2 premises）：\n   - Premises: `∀x(Referee(x)→Observer(x))`, `∃x Referee(x)`\n   - Conclusion: `∀x(Referee(x)→Observer(x)) ∧ ∃x Referee(x)` — 全部 premise 合取\n\n3. **folio_669**（2 premises，content-independent）：\n   - Premises: `∀x(P(x)→Q(x))`, `∃x P(x)`\n   - Conclusion: `∀x(P(x)→Q(x)) ∧ ∃x P(x)` — 同上模式\n\n注：用户提到原始 genuine=25，实际按 H7+H1 计算为 26（81-13-42），差异可能源于旧分类器版本差异。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d076-h8-classifier.md"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "6f7d58373ed39e6cfe88",
+  "project": "solver-trace-ablation",
+  "kind": "worker",
+  "title": "code grpo training",
+  "task_key": "worker_code_grpo-training_20260513T180233",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_grpo-training_20260513T180233.log",
+    "occurrence": 1,
+    "bytes": 692298,
+    "sha256": "e8e4b5e674d56d798b0c9961abadb2a5304aaf2888fbc4918cd6269d507b236c"
+  },
+  "statistics": {
+    "messages": 277,
+    "user_turns": 0,
+    "tool_calls": 107,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 59,
+      "tool_call": 107,
+      "tool_result": 107,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 277,
+      "chunks": [
+        {
+          "path": "6f7d58373ed39e6cfe88-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "6f7d58373ed39e6cfe88-part-0002.json",
+          "message_count": 97
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-grpo-training.md"
+}

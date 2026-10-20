@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "db717941e079b6bb8bc8",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code plan017 additive random",
+  "task_key": "worker_code_plan017-additive-random_20260514T031405",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan017-additive-random_20260514T031405_result.json",
+    "occurrence": 1,
+    "bytes": 949,
+    "sha256": "a8056bc5b998647e58897e1bbc23a35b7d3454d06d0c0eb76e8feacf292aafdc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n**代码已就绪，无需新建脚本。** `train_grpo.py` 已内置 `additive_random` 模式，`grpo_additive_random.yaml` 配置也已存在。\n\n**本次改动**：给 `step_buf` 增加了 `random_sum`/`random_n` 追踪，reward_log 现在显式输出 `random_mean` 字段，方便区分 random 值和 ISR。\n\n**Dry-run 验证通过**：\n- `reward_mode=additive_random`，公式 `r = r_exec * (1 + 0.3 * random_value)` 正确执行\n- reward_log 同时记录 `isr_mean`（真实 ISR，未用于奖励）和 `random_mean`（实际用于奖励的随机值）\n- Step 1: `random=0.391, isr=0.400, reward=0.589, prove_rate=0.500`\n- Step 2: `random=0.492, isr=0.000, reward=0.000, prove_rate=0.000`（所有样本 execution 失败→reward=0，符合预期）\n\n**启动命令**：\n```bash\nexport CUDA_VISIBLE_DEVICES=<N>\npython scripts/train_grpo.py --config configs/grpo_additive_random.yaml\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan017-additive-random.md"
+}

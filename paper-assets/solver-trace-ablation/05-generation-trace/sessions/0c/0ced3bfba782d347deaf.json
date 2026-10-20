@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0ced3bfba782d347deaf",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_14_1778885602.md",
+  "task_key": "loop_14_1778885602",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_14_1778885602.md",
+    "occurrence": 1,
+    "bytes": 2951,
+    "sha256": "c0515a9edcf7fbf94c76dd095255d85c92f59f6f97fba96820113f53690cfe91"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 14\nreason: idle_timeout\nupdated: '2026-05-15T22:52:48+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-39279 上 gpu_ids 需通过 `get_project_resource_usage` 确认，不可擅自使用未分配的 GPU\n- D095 Narrative A 已批准生效——所有论文写作必须遵循两层 H7 框架（H7a GRPO-general ISR-amplified, H7b ISR-specific meta-Goodhart），不可回退到旧的 \"H7 is ISR-specific\" claim\n- genuine p=0.182 (n.s.) 不可 claim 显著差异，只能说 \"no significant difference\"\n- Random H7 ≠ 0%（D093 定论，s43-r3 有 38.3% H7a），不可说 \"H7 is ISR-specific\"\n- 写论文前必须读 paper_framing.md 确认最新 narrative，D095 改写可能尚未完成\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-39279，2 × RTX PRO 6000 96GB，当前 2/2 空闲\n- 项目目录：`/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/`\n- 论文目录：`projects/solver-trace-ablation/paper/`（LaTeX，main.tex 入口）\n- 活跃进程：无（所有 86 实验已完成，0 个 cron，0 个 running worker）\n- Provenance：35/36 完成\n\n### 3. 📊 当前状态\n- 刚处理系统告警：`worker_analysis_plan018-additive-random-b01-s44-r2` 卡死 30 分钟，确认 registry 已完整更新（DONE, negative, 全部 metrics 齐全），已 cancel\n- Registry：86 实验全部 DONE（success 26 / negative 28 / failed 26），0 RUNNING，0 PREPARING\n- 等待中：无 Worker 回调，无 Cron，无 Director 待决策项\n- 当前阶段：✍️ Writing，DDL 2026-05-25（剩 10 天）\n- paper_framing.md D095 全文改写状态不明——上一个 session 派了 Worker 执行但未确认完成\n\n### 4. 📋 待办\n- 立即检查 paper_framing.md D095 改写是否完成 → 完成则推进 TeX 全量同步；未完成则重新派 Worker\n- TeX 全量同步就绪 → 派 Worker 将 paper_framing.md 内容同步到 `paper/*.tex`，编译确认\n- Provenance 35/36 → 查缺补漏找到缺失的第 36 个，补全后标记完成\n- TeX 编译通过 → 启动 Paper Agent 全文写作/润色流程\n- 论文初稿完成 → 派 Reviewer Worker 做全文一致性审查（D095 Narrative A 合规检查）\n\n### 5. 🎯 战略上下文\n- 核心结论：STA/ISR 是 GRPO neurosymbolic formalizer 的诊断工具 + Goodhart's Law 案例研究\n- 证据链三大 Claims 全部就位：Claim 1 (STA 诊断 ISR 崩塌), Claim 2 (Goodhart / ISR 无结构优势, D095), Claim 3 (跨逻辑泛化 Prolog)\n- D093→D094→D095 决策链是最关键的 narrative 转折：从 \"H7 is ISR-specific\" 修正为 \"H7a is GRPO-general but ISR-amplified 5x (p<10⁻³⁹), H7b is ISR-specific (meta-Goodhart)\"\n- 易错点：写作约束很多（D027/D044/D051/D059/D084/D085/D089/D093/D094/D095），全在 ROADMAP.md \"写作约束\" 段，写任何 TeX 前必须读\n- 10 天 DDL 紧迫，核心瓶颈是 paper_framing → TeX 同步 → 全文写作 → 审查，需尽快串联起来\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-14-1778885602.md"
+}

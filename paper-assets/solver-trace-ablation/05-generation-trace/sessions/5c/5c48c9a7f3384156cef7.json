@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5c48c9a7f3384156cef7",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "paper page reduction",
+  "task_key": "worker_paper_page-reduction_20260515T212837",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_page-reduction_20260515T212837_result.json",
+    "occurrence": 1,
+    "bytes": 938,
+    "sha256": "5be15b75563a0ae7ac3b1adb7db25ef5e14151f37e94bbc4f54acc7093091be7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Page 9 starts with References. Body is ≤ 8 pages.\n\n**Summary of changes:**\n\n**conclusion.tex** (net −10 lines):\n- Opening paragraph: compressed from 5 sentences to 4, removed redundant numbers (β=0.3 std, random std, seed-dependent detail)\n- \"Classifier blind spots\": shortened title, compressed from 5 sentences to 3 while preserving both examples and the cross-validation argument\n- H7 dose-response paragraph: removed entirely from body (content moved to appendix)\n- Hacking mode switching: compressed from 6 sentences to 2\n- Closing sentence: unchanged\n\n**experiments.tex §4.5** (net −4 lines):\n- Post-table paragraph compressed from 8 sentences to 5; removed per-seed H7 breakdowns and specific H7a/H7b sample counts already visible in Table 2\n\n**appendix.tex** (+3 lines):\n- Added \"H7 dose-response gradient\" paragraph to Extended Discussion section with the full detail moved from the body"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-page-reduction.md"
+}

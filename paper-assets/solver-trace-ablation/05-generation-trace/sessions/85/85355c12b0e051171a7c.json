@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "85355c12b0e051171a7c",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "cleanup h7 script run and table2 dedup",
+  "task_key": "worker_cleanup_h7-script-run-and-table2-dedup_20260514T102000",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_cleanup_h7-script-run-and-table2-dedup_20260514T102000_result.json",
+    "occurrence": 1,
+    "bytes": 1622,
+    "sha256": "11ab1e5c12cd4bd081b45a05024249ab008e1da784419a6b7118107a42a9f8ed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 结果报告\n\n### 任务 1: classify_h7.py 运行结果\n\n| 模型 | Proved | H7 strict | H7 relaxed | Single premise | ISR=1.0 |\n|------|--------|-----------|------------|----------------|---------|\n| **s42 ISR β=0.1** | 81 | 55/81 (67.9%) | 13/81 (16.0%) | 15/81 (18.5%) | 10/81 (12.3%) |\n| **s43 ISR β=0.1** | 61 | 59/61 (96.7%) | 57/61 (93.4%) | 61/61 (100%) | 40/61 (65.6%) |\n| **s44 ISR β=0.1** | 89 | 77/89 (86.5%) | 82/89 (92.1%) | 89/89 (100%) | 65/89 (73.0%) |\n| **random β=0.1 s42** | 79 | 56/79 (70.9%) | 0/79 (0.0%) | 0/79 (0.0%) | 0/79 (0.0%) |\n\n注意：s42 目录没有 `eval_results.json`，使用了 `eval_sta_results.json` 代替。s42 的 H7 数值明显低于 s43/s44（strict 67.9% vs 86-97%），可能与 eval 文件来源不同有关。\n\n输出保存在服务器 `/root/autodl-tmp/outputs/h7_classification/`，已注册为 artifact。\n\n### 任务 2: Table 2 旧版清理\n\n已移动 3 个旧版文件到 `artifacts/_deprecated/`：\n- `artifacts/_project/paper/table2_hacking_taxonomy.tex` → `_deprecated/table2_hacking_taxonomy_from_project_paper.tex`\n- `artifacts/paper_tables/table2_hacking_taxonomy.tex` → `_deprecated/table2_hacking_taxonomy_from_paper_tables.tex`\n- `artifacts/paper_tables/table2_hacking_taxonomy.csv` → `_deprecated/table2_hacking_taxonomy_from_paper_tables.csv`\n\n权威版本仅剩：`artifacts/table2_hacking_taxonomy.tex` 和 `artifacts/table2_hacking_taxonomy.csv`。\n\n另外发现 `artifacts/_project/data/table2_hacking_taxonomy.csv` 也存在（由 register_artifact 系统生成），不在清理范围内。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/cleanup-h7-script-run-and-table2-dedup.md"
+}

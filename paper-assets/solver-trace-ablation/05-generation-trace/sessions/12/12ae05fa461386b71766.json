@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "12ae05fa461386b71766",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "paper 1000step panorama table",
+  "task_key": "worker_paper_1000step-panorama-table_20260515T124454",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_1000step-panorama-table_20260515T124454_result.json",
+    "occurrence": 1,
+    "bytes": 550,
+    "sha256": "e6ed496b49714292ad4f3c8e3896d6f8680187cb3c6542b406f909db6d409e91"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个产出已完成并注册：\n\n**产出 1 — LaTeX 表格**: `artifacts/paper_tables/table_1000step_comparison.tex` (`art_20260515_35553a`)\n- booktabs 风格，SFT 行用 `\\rowcolor{gray!15}` + bold 突出\n- 表注包含 H7/H1/H8/Genuine 定义和数据来源说明\n\n**产出 2 — Genuine Rate Collapse 图**: `artifacts/paper_figures/genuine_rate_collapse.pdf` + `.png` (`art_20260515_ebc419`)\n- 4 条 RL 实线全部从 500 步崩塌至 0-2.2%，SFT 虚线稳定在 ~93%\n- 单栏 3.5×2.5 inch，serif 字体，300 dpi"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-1000step-panorama-table.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "43773e7476e78f952429",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code 8b eval compat check",
+  "task_key": "worker_code_8b-eval-compat-check_20260516T100916",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_8b-eval-compat-check_20260516T100916_result.json",
+    "occurrence": 1,
+    "bytes": 1536,
+    "sha256": "67b531142de6650274f82b547da288288e03a5208839caa2d1fdf4482ee1f249"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结论：完全兼容，无需修改。**\n\n### eval_sta.py 分析\n\n| 检查项 | 状态 | 说明 |\n|--------|------|------|\n| model_path | ✅ | CLI 参数，无硬编码路径 |\n| tokenizer | ✅ | `AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)`，泛型加载 |\n| model 加载 | ✅ | `AutoModelForCausalLM` + `device_map=\"auto\"` + `torch_dtype=\"auto\"`，8B 在 96GB 单卡无压力 |\n| enable_thinking | ✅ | `enable_thinking=False` 传给 `apply_chat_template`，Qwen3-4B/8B 共享此接口 |\n| max_new_tokens | ✅ | 默认 512，CLI 可调，与模型大小无关 |\n| batch 处理 | ✅ | 逐样本推理，无 batch_size 参数，不会 OOM |\n| think tag 清理 | ✅ | `re.sub(r\"<think>.*?</think>\")` 同样适用于 8B 输出 |\n\n### classify_h7.py 分析\n\n| 检查项 | 状态 | 说明 |\n|--------|------|------|\n| 输入格式 | ✅ | 读 eval_sta.py 产出的 JSON，操作 `formalization` 字段（FOL 字符串） |\n| normalize_for_match() | ✅ | 纯字符串操作（whitespace、paren strip、quantifier normalization），模型无关 |\n| H7/H1/H8 分类 | ✅ | 全部基于 FOL 文本解析，不依赖任何模型特定 schema |\n| 无模型加载 | ✅ | 只读 JSON 文件，不涉及模型 |\n\n### dry-run 状态\n\n8B 训练刚开始（step 1），两个 output 目录只有 `reward_log.jsonl`，尚无 checkpoint 可用于 dry-run eval。base model 在 `/root/autodl-tmp/models/Qwen3-8B/` 可用，但等 checkpoint 产出后再测更有意义。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-8b-eval-compat-check.md"
+}

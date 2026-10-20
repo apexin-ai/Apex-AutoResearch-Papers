@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4d7c33baec9119131b11",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code d158 sft eval gate",
+  "task_key": "worker_code_d158-sft-eval-gate_20260520T145414",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d158-sft-eval-gate_20260520T145414_result.json",
+    "occurrence": 1,
+    "bytes": 1111,
+    "sha256": "2749531e3670fd2162f6f32e99270e652587c6b6e0c6c3b622553716d4dbfbd2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## D158 LLaMA SFT Eval Report\n\n### 结果\n\n| 指标 | 值 | 目标 |\n|------|-----|------|\n| **prove_rate** | **0.0% (0/100)** | ≥ 10% |\n| mean_isr | 0.0000 | — |\n| median_isr | 0.0000 | — |\n| 耗时 | 650.9s (6.5s/sample) | — |\n\n### Gate 判定：**FAILED**\n\nprove_rate = 0.0%，远低于 10% 门槛。\n\n### 根因分析\n\n从生成样本可以看到两个致命问题：\n\n1. **生成退化为重复循环**：模型输出正确 FOL 后，不停止生成，而是循环重复 system prompt 和模板（`...Conclusion: Advocate(mary)assistant\\n\\nUse standard FOL notation...assistant\\n\\nOutput format:\\nPremises:\\n1. ∀x...`），直到 max_new_tokens。Conclusion 被附加 `assistant` 后缀。\n\n2. **Unicode FOL vs Prover9 语法**：模型输出 Unicode 符号（∀, →, ∧, ¬, ⊕），Prover9 需要 ASCII 语法（`all x`, `->`, `&`, `-`, `|`）。即使去掉重复问题，Prover9 也无法解析。\n\n训练时 94.5% token accuracy 只是表面指标——模型学会了复制训练格式但未学会正确终止和使用 Prover9 兼容语法。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d158-sft-eval-gate.md"
+}

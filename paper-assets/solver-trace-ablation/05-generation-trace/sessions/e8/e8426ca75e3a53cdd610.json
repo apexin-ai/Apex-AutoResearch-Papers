@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e8426ca75e3a53cdd610",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analysis exec only s42 hacking taxonomy",
+  "task_key": "worker_analysis_exec-only-s42-hacking-taxonomy_20260514T161917",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exec-only-s42-hacking-taxonomy_20260514T161917_result.json",
+    "occurrence": 1,
+    "bytes": 1849,
+    "sha256": "2bd919105f50f443094b6da177c73648eab70183121f3ba115ea62c414441e63"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整结果如下：\n\n## plan001-exec-only-s42 (PR=93%, ISR=0.123)\n\n| Category | Count | Rate | Mean ISR |\n|----------|-------|------|----------|\n| **H7** | 0/93 | 0.0% | — |\n| **H1** | 81/93 | 87.1% | 0.1055 |\n| **Genuine** | 12/93 | 12.9% | 0.3141 |\n| **Embedding total** | 81/93 | **87.1%** | — |\n\n**H1 子分类：**\n- Conclusion-premise 是唯一 necessary：31/81 (38.3%) — 纯 tautological\n- Conclusion-premise + 其他也 necessary：2/81 (2.5%)\n- Conclusion-premise 不 necessary：48/81 (59.3%) — 冗余嵌入（ISR=0 有 42 个）\n\n**关键发现：** exec-only s42 并非 \"healthy seed\"。87.1% 的样本存在 conclusion embedding，只是表现形式不同于 s44：\n- s42 嵌入 conclusion 的同时还生成大量冗余 premises，导致 ISR 被稀释到很低\n- 48/81 H1 样本中 conclusion-premise 甚至不 necessary（其他 premises 已足够证明），ISR=0 占 42 个\n\n## plan001-exec-only-s44 (PR=97%, ISR=0.567) — 对照\n\n| Category | Count | Rate | Mean ISR |\n|----------|-------|------|----------|\n| **H7** | 97/97 | 100% | 0.5670 |\n| **H1** | 0/97 | 0% | — |\n| **Genuine** | 0/97 | 0% | — |\n\ns44 是完全 collapse：每个样本只有 1 个 premise 且等于 conclusion（如 `premises=['A(m)'], conclusion='A(m)'`）。\n\n## 对论文的影响\n\nexec-only s42 不能支撑 \"the only healthy seed\" 的 claim。它与 s44 的区别仅在 hacking 策略不同：\n- **s44**: 极简 tautology（1 premise = conclusion），ISR=0.57（因 n_components=2，necessary=1）\n- **s42**: 冗余 tautology（conclusion 嵌入在多个冗余 premises 中），ISR 被稀释到 0.12\n\n两者都是 87-100% conclusion embedding，只是 s42 的冗余 padding 掩盖了 hacking 的严重程度。这恰好印证了 C006 的判断：exec-only low ISR = 冗余编码。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exec-only-s42-hacking-taxonomy.md"
+}

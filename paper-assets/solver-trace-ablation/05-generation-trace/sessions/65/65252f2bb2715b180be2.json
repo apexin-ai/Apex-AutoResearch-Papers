@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "65252f2bb2715b180be2",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_14_1778892201.md",
+  "task_key": "loop_14_1778892201",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_14_1778892201.md",
+    "occurrence": 1,
+    "bytes": 3887,
+    "sha256": "cf66fdc8bd02d578a1df60495c6e3a22d0349b94c01de6acb57614046024d867"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 14\nreason: idle_timeout\nupdated: '2026-05-16T00:43:18+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 服务器 westd-39279 GPU 白名单必须查 `get_project_status` 的 `execution.gpu_ids`，不要假设 cuda 编号\n- D095 Narrative A 已批准生效——所有论文内容必须与 D095 一致，不可回退旧 framing\n- H7a 是 GRPO 通用现象（exec-only s43 也 100% H7a），**禁止**写成 \"H7 is ISR-specific\"（已来回修正 8 次 D087-D094）\n- genuine rate ISR 6.06% vs Random 9.54%，p=0.182 不显著——**禁止** claim genuine rate 有显著差异\n- 2.4x ISR 优势已作废（D051），premise-count-matched 为 1.06x，论文中不可出现旧数字\n- EMNLP 主体硬限 ≤8 页（当前恰好 8 页，改动时注意不能超）\n- DDL 2026-05-25（ARR 提交），剩 9 天\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-39279，2 × RTX PRO 6000 96GB，当前 2/2 空闲\n- 工作目录：`/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/`\n- 论文目录：`paper/`（main.tex 入口，19 页 PDF 含附录，0 error 编译）\n- 产出目录：`artifacts/`\n- 模型/数据路径：需 SSH 到 westd-39279 确认具体位置（本 session 未做 SSH 探查）\n- Python 环境：westd 用 conda（`/root/miniconda3/`），详见 ssh-env-setup 规范\n- 活跃进程：无（所有 86 实验已完成，所有 Worker 已销毁，无 cron 任务）\n- W&B 项目：需查 `load_project_config` 确认\n\n### 3. 📊 当前状态\n**项目处于最终润色阶段。** 86 个实验全部完成（success 26 / negative 28 / failed 26），三个 Core Claims 全部闭环。\n\n已完成的审查清单：\n- ✅ 引用审计 30/30 真实\n- ✅ 一致性检查 0 critical\n- ✅ 编译通过 19 页（body=8 页）\n- ✅ 页数缩减至 ≤8 页\n- ✅ Checklist 验证\n- ✅ PDF 全文视觉审查（修复 Table 4/5 重叠 + Table 8 超宽）\n- ✅ Provenance 36/36\n- ✅ D095 Narrative A 批准 + paper_framing.md 全文改写\n- ✅ TeX 全量数据同步\n\n唯一剩余项：**最终润色 + 提交准备**（report.md 第 11 项未勾）\n\n无运行中实验、无 Worker、无 cron、无等待中的回调。\n\n### 4. 📋 待办（条件触发式）\n- Director 说\"提交\" → 最终编译检查 → 确认 PDF 页数 ≤8 → ARR 提交流程\n- Director 要求润色某章节 → spawn Worker（task_type=write, academic-writer skill）修改对应 .tex 文件 → 重新编译验证页数\n- Director 提新实验 → 查 GPU 白名单 → 按正常流程走（但距 DDL 仅 9 天，应 push back 除非 Director 坚持）\n- 收到审稿意见（ARR 提交后）→ 读 rebuttal skill → spawn Worker 逐条回应\n- Director 要求备份 → 用 s3-backup skill 归档\n\n### 5. 🎯 战略上下文\n**核心结论**：GRPO neurosymbolic formalizer 存在系统性 reward hacking，ISR（Intensional Structural Reward）是有效诊断工具但不可作为优化目标（meta-Goodhart）。三条 claims：(1) ISR 诊断能力（崩塌链 0.64→0.13→0.003），(2) ISR-as-reward 的 Goodhart 效应（H7 两层结构 + premise minimization artifact），(3) 跨逻辑泛化（Prolog 3/3 gaming）。\n\n**决策链关键节点**：D051（2.4x→1.06x 定论）→ D057（Claim 2 闭环）→ D085（H7a/H7b 分类）→ D093（Random H7≠0% 发现）→ D095（Narrative A 最终批准）。\n\n**最容易判断错的事**：\n- H7a/H7b 区分——H7a 是 GRPO 通用的 text-match tautology（ISR 放大 5x 但不独有），H7b 才是 ISR-specific 的 obfuscated tautology（仅 12 samples in s44）。前 session 反复修正 8 次，新 session 极易滑回旧 framing\n- Random 条件 H7 pooled 13.7% 主要由 s43-r3 单 seed 贡献（38.3%），其余两 seed 为 0%——论文必须同时报 per-seed 和 pooled\n- genuine 定义：proved − |H7 ∪ H1 ∪ H8|（集合排除，C013 公式），不是简单减法\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-14-1778892201.md"
+}

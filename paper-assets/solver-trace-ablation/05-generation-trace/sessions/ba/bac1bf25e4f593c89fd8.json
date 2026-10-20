@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bac1bf25e4f593c89fd8",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "submit plan002 b01 s45 s46",
+  "task_key": "worker_submit_plan002-b01-s45-s46_20260517T034747",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_plan002-b01-s45-s46_20260517T034747_result.json",
+    "occurrence": 1,
+    "bytes": 456,
+    "sha256": "aae1a0317d9b482c2ff9c3ff3a4889f1fb3e40d671e43912cc2fb75c76db77f2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。两个实验均已启动并确认运行中：\n\n| 实验 | GPU | PID | Registry |\n|------|-----|-----|----------|\n| plan002-additive-b01-s45 | cuda:0 | 115767 | RUNNING |\n| plan002-additive-b01-s46 | cuda:1 | 115914 | RUNNING |\n\n两个 python3 进程均在活跃消耗 CPU（130%+），GPU 尚在模型加载阶段（nvidia-smi 暂未显示显存占用，约 1-2 分钟后会出现）。500 步训练预计 2-3 小时完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-plan002-b01-s45-s46.md"
+}

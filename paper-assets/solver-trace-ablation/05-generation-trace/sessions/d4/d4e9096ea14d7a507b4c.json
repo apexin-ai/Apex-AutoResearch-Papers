@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d4e9096ea14d7a507b4c",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analysis r15 isr overhead",
+  "task_key": "worker_analysis_r15-isr-overhead_20260520T050614",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_r15-isr-overhead_20260520T050614_result.json",
+    "occurrence": 1,
+    "bytes": 1421,
+    "sha256": "0ff993ebaacd72f5edbebfd7ddafd6aa0974bfbeb7511cbec413a170cb87755d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "JSON 已保存到 `/root/autodl-tmp/outputs/isr_overhead_analysis.json`。\n\n## 结果汇总\n\n### 1. FOL Component 数量 (N)\n- **Mean: 5.97 ± 4.24, Median: 4.0**, range [2, 22]\n- 分布集中在 2-4（占 57%），长尾到 22\n\n### 2. Solver 调用次数\n| 方法 | 每样本调用次数 | 说明 |\n|------|-------------|------|\n| Full LOO (eval) | N+1 (mean 6.97) | 1 原始证明 + N 次消融 |\n| Fast O(1) (training) | 2 | 1 原始证明 + 1 结论重言式检查 |\n\n### 3. 时间开销\n| 指标 | 数值 |\n|------|------|\n| 单次 Prover9 调用 | ~4-5ms (mean 7.4ms，含长尾 timeout) |\n| Full LOO 每个 proved 样本 | 55ms mean, 20ms median |\n| Full LOO 每个 failed 样本 | 6ms（仅 1 次调用） |\n| LLM 生成每样本 | 3.99s mean |\n| **LOO 占 eval 总时间** | **<1%**（LLM 推理完全主导） |\n\n### 4. 训练开销\n- Training 使用 O(1) fast binary ISR，每 step 32 样本 × 2 calls × ~5ms ≈ **~320ms solver 开销/step**\n- 实测 exec-only late step: **2.7s**, ISR late step: **13.9s**\n- 差异来自 ISR 训练模型生成更长输出（非 solver 开销），solver 本身占比 <2%\n\n### 5. 关键结论\nISR 的 LOO 计算是 O(N)，但 N 小（median 4）且 Prover9 极快（~5ms/call），因此 **ISR 开销可忽略**——无论 eval（<1% 总时间）还是 training（O(1) 近似，<2% step 时间）。瓶颈完全在 LLM 推理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-r15-isr-overhead.md"
+}

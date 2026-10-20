@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b8c4d9e8e518d289f0eb",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "research paper evidence table",
+  "task_key": "worker_research_paper-evidence-table_20260514T090950",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_paper-evidence-table_20260514T090950_result.json",
+    "occurrence": 1,
+    "bytes": 1080,
+    "sha256": "6ea5e9fce233d5d87163e07d0262d6d21cf18a624c132cdd0242dd91878e4a4b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "产出已写入并注册：`artifacts/paper_tables_draft.md` (art_20260514_c6d177)\n\n内容概要：\n\n**Table 1 (Main Results)** — 12 行，覆盖 6 种方法 × 多 seed/β 配置：\n- Exec-only 3 seeds: s42 正常 (PR=0.93, ISR=0.12), s43 sampling eval 退化 (PR=0.14), s44 tautological collapse (ISR=0.57§)\n- 1000-step extended: ISR 从 0.12 跌至 0.003，确认 collapse 单调恶化\n- ISR β=0.1 s42: PR=0.81, ISR=0.34 (3.2× baseline)，s43/s44 标 TBD\n- Random β=0.1 s42: PR=0.79, ISR=0.10 — 控制组证明 ISR 非纯正则化效果\n- β=0.3: 两组均 PR 崩溃 (ISR: 0.18, Random: 0.48)\n- Convex-random/Convex-ISR(STA): 退化/仅训练指标\n\n**Table 2 (Hacking Taxonomy)** — ISR β=0.1 vs Random β=0.1：\n- Genuine rate: 25.9% vs 17.7% (+8.2pp)\n- Conclusion embedding: 72.8% vs 78.5% (主导 hacking 模式)\n- Complexity w/o utility: 0% vs 3.8% (ISR 完全消除)\n- Genuine proof 质量: ISR 0.67 vs 0.34 (2.0×)\n\n所有 footnote 标注了 s43 sampling eval、s44 tautological artifact、plan005 train-only 等不可比性。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-paper-evidence-table.md"
+}

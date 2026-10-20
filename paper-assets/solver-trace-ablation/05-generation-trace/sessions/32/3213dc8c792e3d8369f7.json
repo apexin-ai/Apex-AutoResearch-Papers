@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3213dc8c792e3d8369f7",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "exp phase0 baseline",
+  "task_key": "worker_exp_phase0-baseline_20260513T175225",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_phase0-baseline_20260513T175225_result.json",
+    "occurrence": 1,
+    "bytes": 1075,
+    "sha256": "c58873f4074cd35832bb50ac15e6bc31266dd86489baa04dbb75b35226f50fe3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Phase 0 完成。结果汇总：\n\n| 指标 | 值 |\n|------|-----|\n| **Mean ISR** | 0.0641 ± 0.1983 |\n| **Median ISR** | 0.0 |\n| **ISR Range** | [0.0, 0.889] |\n| **Prove Rate** | 12/100 (12.0%) |\n| **Runtime** | 336s (3.4s/sample) |\n\n**按 answer type 分组：**\n- **true**: n=34, proved=9 (26.5%), ISR=0.1345\n- **false**: n=25, proved=1 (4.0%), ISR=0.0240  \n- **unknown**: n=41, proved=2 (4.9%), ISR=0.0302\n\n**关键发现：**\n1. Base Qwen3-4B 能生成格式正确的 FOL（Premises/Conclusion 结构），但大部分 (88%) 无法被 Prover9 证明\n2. \"true\" 类问题 prove rate 最高 (26.5%)，符合预期（solver 本来就是尝试证明结论成立）\n3. ISR 有区分度：proved 的样本中 ISR 从 0.125 到 0.889，说明 STA 能区分 tight vs. redundant 的 formalization\n4. 3 条 false/unknown 被错误 proved，说明存在 formalization 语义错误（但比例很低）\n\n这为后续 GRPO 训练提供了清晰的 baseline anchor：训练后如果 prove rate 上升但 ISR 下降，就是 reward hacking 信号。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-phase0-baseline.md"
+}

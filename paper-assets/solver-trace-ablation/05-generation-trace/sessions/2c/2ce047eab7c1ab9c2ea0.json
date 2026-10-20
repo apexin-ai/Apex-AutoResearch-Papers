@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2ce047eab7c1ab9c2ea0",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "figure isr collapse v2",
+  "task_key": "worker_figure_isr-collapse-v2_20260515T212910",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_isr-collapse-v2_20260515T212910_result.json",
+    "occurrence": 1,
+    "bytes": 298,
+    "sha256": "3826e1e9782a7f3fd46a4989f89ded726d2a01e164a03d3d812445482281378b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成：\n\n- **gen_fig2.py** — 完全重写为双面板格式（上方 PR+ISR* 双 Y 轴折线图，下方 stacked bar taxonomy）\n- **fig2_data.json** — 本地和远程均已删除\n- **fig2_isr_collapse.pdf** — 15.9KB ✓\n- **main.pdf** — 编译成功，589KB ✓"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-isr-collapse-v2.md"
+}

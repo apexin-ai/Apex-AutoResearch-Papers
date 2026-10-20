@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c9e989ddb39a5ff0fd1f",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_4_1778757336.md",
+  "task_key": "loop_4_1778757336",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1778757336.md",
+    "occurrence": 1,
+    "bytes": 4781,
+    "sha256": "e13da10307b2ffbd908586bb70b7c29d594063322a8554b7ab62e5ce9be9085c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-14T10:55:18+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**仅 westd-39279:cuda:0 和 cuda:1**，不可用其他设备\n- 数据约束 C001：所有 FOL 实验统一用 `train_500_seed42.jsonl`，不用 `proofwriter_fol_500.jsonl`\n- GPU 隔离 C002：所有命令必须 `export CUDA_VISIBLE_DEVICES=N`，在 `bash -c` 内部 export\n- 磁盘 C003：`log_completions=False` + `save_total_limit=1`，output_dir 放 `/root/autodl-tmp/outputs/`\n- β=0.1 三 seed 已出（D043）：**不可报 raw 3-seed mean ISR**（被 s43/s44 conclusion duplication 膨胀值污染），需按 hacking mode 分层报告\n- plan013 vs plan017 公式结构不同（D027），不可简化为 \"additive vs convex\" 对照\n- ISR β=0.1 hacking rate 69.1%（strict 定义 D044），论文不可标 \"no hacking\"，应标 \"lowest hacking rate\"\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-39279，2× RTX PRO 6000 Blackwell 96GB，CUDA 12.8\n- **工作目录**: `/root/solver-trace-ablation/`\n- **Python**: `/root/miniconda3/bin/python`，激活方式 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型**: Qwen2.5-1.5B（项目主模型），Qwen3-4B 也已下载（7.6GB via ModelScope）\n- **数据盘**: `/root/autodl-tmp/`（142G free），outputs 在 `/root/autodl-tmp/outputs/`\n- **Solvers**: Prover9 (LADR 源码编译), SWI-Prolog 8.4.2 (`/usr/bin/swipl`), Z3 4.16.0.0\n- **活跃进程**: plan006-prolog-exec-s42 PID=506015 cuda:0（cron 监控中，reconcile 确认 still running）\n- **cuda:1 空闲**（plan006-prolog-sta-s42 已完成，negative）\n- **W&B**: 项目内配置，eval 脚本 eval_sta.py 支持 FOL+Prolog\n\n### 3. 📊 当前状态\n**刚完成**: plan006-prolog-sta-s42（negative）——Prolog exec+STA seed=42，100% proved 样本是 H7（单 clause=query），Prolog 比 FOL 更容易被 hack。plan002-b01-s43/s44 也完成（negative），β=0.1 多 seed 中 2/3 seeds 出现 H7 conclusion duplication。\n\n**RUNNING (1)**:\n- `plan006-prolog-exec-s42` | cuda:0 | PID 506015 | Prolog exec-only seed=42，验证 hacking 模式是否跨 logic type 泛化\n\n**PENDING (1)**: plan009-sft-baseline-s42（等人工审批）\n\n**QUEUED (2)**: plan018-additive-random-b01-s43/s44（等 GPU）\n\n**PREPARING (4)**: plan006-prolog-exec-s43/s44, plan006-prolog-sta-s43/s44\n\n**关键缺口**: cuda:1 空闲！plan006-prolog-sta-s42 已完成但 cuda:1 没接上下一个实验。应立即在 cuda:1 启动 plan006-prolog-exec-s43 或其他 QUEUED/PREPARING 实验。\n\n**Worker 池**: 0 个 running worker（失职状态，应立即铺 worker）\n\n### 4. 📋 待办（条件触发式）\n- **立即**: cuda:1 空闲 → 启动 plan006-prolog-exec-s43（或 plan018-random-s43）填满 GPU\n- plan006-prolog-exec-s42 cron 回调到达 → spawn worker 跑 eval_sta.py Prolog 分析 + hacking taxonomy → 与 plan006-prolog-sta-s42 对照 → 更新 registry + report.md → 汇报 Director\n- plan006-prolog-exec-s42 完成后 cuda:0 释放 → 启动 plan006-prolog-exec-s44（第三 seed）\n- plan006 全 3 seeds 出齐 → 判断 Claim 3 是否成立：若跨 logic type hacking 模式一致 → Claim 3 confirmed；若不一致 → 降级 future work\n- plan018-random-s43/s44 启动条件：GPU 空出 → 立即跑，与 plan002-b01-s43/s44 同 seed 对照\n- plan009-sft-baseline-s42 审批通过 → 立即提交\n- 所有 plan006 + plan018 出齐 → Table 1 + Table 2 定稿 → 论文写作启动评估\n\n### 5. 🎯 战略上下文\n**核心 framing（D035）**: Goodhart 主线——ISR 展示经典 Goodhart 效应。3 个 claims：(1) ISR 作诊断工具检测 reward hacking，(2) ISR 作 reward 时出现 meta-level Goodhart（低剂量 ISR-specific gaming，高剂量 PR 崩塌），(3) 跨 logic type 泛化（conditional on plan006）。\n\n**DDL**: ARR May 25, 2026（剩 11 天），GPU 预算充裕（528 GPU·h 可用，仅需 ~12h）。\n\n**最容易判断错的事**:\n1. **不要把 plan006-prolog-sta-s42 的 negative 当作 Claim 3 失败**——它恰恰证明了 ISR gaming 跨 logic type 泛化（Prolog 更容易被 hack），这 *支持* Goodhart narrative。需要 exec-only 对照（plan006-prolog-exec-s42 正在跑）才能完整判断。\n2. **s43/s44 的高 ISR 是 artifact 不是 success**——conclusion duplication 膨胀 ISR 到 0.83/0.90，不可当真。\n3. **plan013 (convex) vs plan017 (additive) 不是同公式对照**（D027），只有 plan018 vs plan002-b01 和 plan017 vs plan002-b03 是纯净 ISR vs random 对照。\n\n**决策链**: D035 选 Goodhart 主线 → D038 taxonomy 对比足够（跳过 LLM-as-judge）→ D041 Claim 2 pivot 到 meta-level Goodhart → D043 β=0.1 sweet spot 降级 → D044 全面采用 strict hacking 定义。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1778757336.md"
+}

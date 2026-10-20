@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "53a03de0ade284f95662",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops d134 random s50 completion check",
+  "task_key": "worker_ops_d134-random-s50-completion-check_20260518T234244",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d134-random-s50-completion-check_20260518T234244_result.json",
+    "occurrence": 1,
+    "bytes": 761,
+    "sha256": "f6a06dbaabb1afc45815ec6507945ba47a789e1027b0f81f5efd8dbfac3c54bc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结构化摘要\n\n**d134-4b-random-b01-s50**\n- **Train**: 完成 500/500 步，~1h41m\n  - final prove_rate=0.656, mean_isr=0.094, parse_rate=1.0\n- **Eval**: 进行中（7/100），PID 217113，使用正确数据 `proofwriter_fol_100.jsonl`\n- **Classify**: 未开始（等 eval 完成后 pipeline v2 自动启动）\n- **Registry**: 保持 RUNNING，等 eval+classify 全部完成后更新\n- **Cron**: 已删除\n\n**d134-4b-random-b01-s51**: 未启动（目录不存在）\n\n**GPU**: 1 个进程占用 16432 MiB（eval 进程）\n**磁盘**: 56G/250G used (23%)，充足\n\neval 每题约 11s，剩余 93 题预计约 17 分钟完成，之后 pipeline 会自动跑 classify。需要后续检查 eval+classify 结果并更新 registry。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-d134-random-s50-completion-check.md"
+}

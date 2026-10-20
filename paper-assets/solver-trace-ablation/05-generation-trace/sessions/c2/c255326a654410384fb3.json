@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c255326a654410384fb3",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "eval d165 s43 summary s44 fix",
+  "task_key": "worker_eval_d165-s43-summary-s44-fix_20260521T140701",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_d165-s43-summary-s44-fix_20260521T140701_result.json",
+    "occurrence": 1,
+    "bytes": 1388,
+    "sha256": "e046325a642858e67c74d5fc441d9eb08bafdd52c69f273bfdbe0b636febf4a8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "s44 正在加载数据和初始化，确认正常启动。\n\n---\n\n## 产出汇总\n\n### 1. d165-s43 Eval 指标\n\n| 指标 | 值 |\n|------|-----|\n| n_problems | 100 |\n| n_proved | 15 |\n| prove_rate (PR) | **0.150** |\n| proved_only_mean_ISR | **0.5658** |\n| mean_ISR (all) | 0.0849 |\n| median_ISR | 0.0 |\n\n**按 answer_type**：true 34 题中 proved 15（44.1%），false/unknown 全部 0。\n\n**Hacking 分类**（15 proved）：\n\n| 类型 | 数量 | 比例 |\n|------|------|------|\n| CE (conclusion embedding) | 2 | 13.3% |\n| TS (tautological shortcut) | 0 | 0% |\n| PG (conjunction collapse) | 0 | 0% |\n| **genuine** | **13** | **86.7%** |\n\nCE 样本：idx=34 (folio_149, ISR=0.25), idx=70 (folio_167, ISR=0.14)。\n\n对比 s42：14 proved, CE=2, genuine=12 (85.7%)——两个 seed 的 hacking 分布一致。\n\n### 2. 磁盘清理报告\n\n| 删除目标 | 大小 |\n|----------|------|\n| d165_s42/checkpoint-500 | 6.1G |\n| d165_s43/checkpoint-500 | 6.1G |\n| d165_s44/ (step 50 crash) | 3.3G |\n| **合计释放** | **~15.5G** |\n\n磁盘状态：250G → 235G used，16G available（94%）。s42/s43 的最终模型和 eval 结果均保留。\n\n### 3. s44 训练提交\n\n- PID: 887104\n- tmux session: `d165-llama-exec-s44`\n- GPU: cuda:0 (RTX PRO 6000, 97GB)\n- 状态：数据加载完成，Prover9 solver 就绪，正在初始化训练"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-d165-s43-summary-s44-fix.md"
+}

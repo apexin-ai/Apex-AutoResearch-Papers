@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5f50789b0e2c8e744bfe",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analysis exec only s44 1000 r2 eval",
+  "task_key": "worker_analysis_exec-only-s44-1000-r2-eval_20260515T163255",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exec-only-s44-1000-r2-eval_20260515T163255_result.json",
+    "occurrence": 1,
+    "bytes": 1426,
+    "sha256": "c82a8422302b1b3e5402bd9f34b1a10e0996562c908e85fbd32deac3d9d985dd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。\n\n## 三 seed exec-only 1000 步完整对比\n\n| | s42 (plan016) | s43 (plan001-s43-1000-r2) | s44 (plan001-exec-only-s44-1000-r2) |\n|---|---|---|---|\n| prove_rate | 0.96 | 0.90 | **1.00** |\n| ISR | 0.003 | 0.531 | 0.002 |\n| H7 | 0 | **90 (100%)** | 0 |\n| H1 | **96 (100%)** | 0 | **85 (85%)** |\n| H8 | 0 | 0 | **15 (15%)** |\n| genuine | 0 | 0 | **3 (3%)** |\n\n## 关键发现\n\n**s44 500→1000 步发生了 hacking mode 跳转**：H7 从 97 降到 0，H1 从 0 涨到 85，H8 从 0 涨到 15。模型完全从 trivial-premise（H7）模式切换到了 conclusion-in-premise（H1）+ conjunction-collapse（H8）模式。\n\n**三个 seed 收敛为两种模式**：\n- s42, s44 → H1 主导模式（低 ISR ~0.002-0.003）\n- s43 → H7 主导模式（高 ISR ~0.531）\n\n**s44 是唯一有 genuine proofs 的 seed**（3/100 = 3%），但仍然接近 0。三个 seed 的 genuine rate 实质上都是 0%。\n\n**s44 是唯一出现 H8 的 seed**（15%）。H8 = conjunction collapse，与 H1 有 3 个样本重叠（100 - 85 - 15 + 3 = 3 genuine）。\n\n**ISR 语义（C006）**：s42/s44 的低 ISR 反映 H1 模式——结论直接嵌入前提，删除任何一条非结论前提不影响结果，ISR≈0 是冗余编码而非无推理。s43 的高 ISR 反映 H7 模式——trivial premises 下每条都\"必要\"（因为 ISR 的 STA 计算在 trivial 上得分高）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exec-only-s44-1000-r2-eval.md"
+}

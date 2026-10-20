@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1b3c82182efbc0d89514",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analysis plan006 prolog sta s44",
+  "task_key": "worker_analysis_plan006-prolog-sta-s44_20260514T181907",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan006-prolog-sta-s44_20260514T181907_result.json",
+    "occurrence": 1,
+    "bytes": 815,
+    "sha256": "6e32ff0b1ab5f363d6a746aa77d08dd95328b5c15a97e828e5ece0dcac72170c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。\n\n**三 seed Prolog exec+STA 对比：**\n\n| seed | PR | ISR | 模式 | 特征 |\n|------|-----|-----|------|------|\n| s42 | 0.50 | 0.50 | Goodhart | ISR≈PR, 100% H7 |\n| s43 | 0.38 | 0.07 | Genuine | 低 ISR, 0% H7 |\n| s44 | 0.75 | 0.50 | Goodhart | ISR≈PR, 后期 ISR≈1.0, completion 暴跌到 32 tokens |\n\ns44 明确是 s42 模式——后期 PR≈ISR≈1.0 且 completion length 从 127 崩塌到 32 tokens，entropy 极低，`frac_reward_zero_std=1.0` 频繁出现，是典型的 ISR gaming + mode collapse。3 seed 中 2/3 出现 Goodhart 崩塌，s43 是例外（可能因 seed 随机性未触发 gaming 路径）。\n\nCheckpoint 正常保存在 `/root/autodl-tmp/outputs/plan006_prolog_sta_s44/`（含 final model + checkpoint-500），模型权重 ~15GB。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan006-prolog-sta-s44.md"
+}

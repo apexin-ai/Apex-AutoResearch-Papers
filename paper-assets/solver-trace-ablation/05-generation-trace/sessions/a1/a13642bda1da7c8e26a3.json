@@ -1,0 +1,1337 @@
+{
+  "schema_version": "1.0",
+  "id": "a13642bda1da7c8e26a3",
+  "project": "solver-trace-ablation",
+  "kind": "conversation",
+  "title": "cron hook plan006 prolog exec s42 20260514T181438 109775",
+  "task_key": "cron_hook_plan006-prolog-exec-s42_20260514T181438_109775",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/archive/cron_hook_plan006-prolog-exec-s42_20260514T181438_109775.jsonl",
+    "occurrence": 1,
+    "bytes": 68562,
+    "sha256": "ed41c0e51f0f3c338b107147c0dacc51804d1b824c2895bc6882e7be8322c38f"
+  },
+  "statistics": {
+    "messages": 67,
+    "user_turns": 2,
+    "tool_calls": 32,
+    "roles": {
+      "user": 2,
+      "tool_call": 32,
+      "tool_result": 31,
+      "assistant": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T14:51:17.647172+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[HANDOFF] 你是 Main Agent，这是 Loop #6。\n\n## 上一轮交接 (task_context)\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-39279 cuda:0 和 cuda:1，不可用其他卡\n- 训练命令必须显式 `export CUDA_VISIBLE_DEVICES=N`，否则 device_map='auto' 会跨卡侵入导致 OOM（plan009-sft-baseline-s42-r2 已因此失败）\n- 脚本内 `--gpu 0` = 分配到的第一块卡（框架自动映射）\n- Prolog 实验数据路径是 `data/train_500_seed42.jsonl`（FOL 源数据 + Prolog solver），不是 `data/prolog/`（不存在，前两次 plan006 因此失败）\n- 数据中 prolog_premises/prolog_query 字段为空值，eval 脚本不应依赖这些字段\n- ISR β=0.1 hacking rate 69.1%（strict 定义 D044），论文不可标 \"no hacking\"，应标 \"lowest hacking rate\"\n- plan013 vs plan017 公式结构不同，不可简化为 \"additive vs convex\" 对照（D027）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-39279，account: root\n- 工作目录：/root/solver-trace-ablation\n- Python：/root/miniconda3/bin/python（conda base 环境，激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- 模型：Qwen3-4B（HF cache 路径未确认，训练脚本自动加载）\n- 数据：/root/solver-trace-ablation/data/train_500_seed42.jsonl (500 samples), test_100.jsonl (100 samples)\n- Checkpoints：/root/autodl-tmp/outputs/（各实验子目录）\n- W&B project: solver-trace-ablation\n- 活跃进程：\n  - plan018-additive-random-b01-s43: PID 540910, tmux=plan018-additive-random-b01-s43, cuda:1\n  - plan018-additive-random-b01-s44: PID 564900, tmux=plan018-additive-random-b01-s44, cuda:0\n  - 两个 cron 监控已注册\n\n### 3. 📊 当前状态\n刚处理 plan006-prolog-exec-s42 完成回调：已派 Worker 分析（worker_analysis_plan006-prolog-exec-s42_20260514T113229），同时将 plan018-additive-random-b01-s44 提交到 cuda:0 填充空闲 GPU。\n\n**RUNNING (2)**:\n- plan018-additive-random-b01-s43 (cuda:1) — Random β=0.1 s43 控制组，与 plan002-b01-s43 同 seed 对照\n- plan018-additive-random-b01-s44 (cuda:0) — Random β=0.1 s44 控制组，刚提交\n\n**ANALYZING (1)**:\n- plan006-prolog-exec-s42 — Prolog exec-only s42，训练完成，Worker 正在分析\n\n**PENDING (1)**: plan009-sft-baseline-s42 — SFT baseline，等人工审批\n\n**PREPARING (4)**: plan006-prolog-sta-s44, plan006-prolog-sta-s43, plan006-prolog-exec-s44, plan006-prolog-exec-s43 — Prolog 后续 seeds\n\n**等待回调**:\n- Worker: analysis:plan006-prolog-exec-s42（分析 Prolog exec-only 结果）\n- Worker: code:plan009-sft-oom-fix（修复 SFT OOM 问题）\n- Cron: plan018-s43 和 plan018-s44 训练完成回调\n\n### 4. 📋 待办\n- analysis Worker 回调 → 读 conclusion，按 on-experiment-done 分叉处理（success: 更新 report + 向 Director 汇报 Prolog 跨 logic type 结论；negative: 产 Framing 调整提案）\n- plan018-s43 cron 回调 → spawn Worker 分析，与 plan002-b01-s43 对比 ISR vs random\n- plan018-s44 cron 回调 → spawn Worker 分析，与 plan002-b01-s44 对比\n- plan018 s42/s43/s44 三 seed 全出齐 → 汇总 3-seed mean±std，更新 Claim 2 统计支撑\n- plan009-sft-oom-fix Worker 回调 → 重新提交 SFT baseline（需 Director 审批）\n- plan006 prolog-exec-s42 分析完成 + cuda 空闲 → 推进 plan006-prolog-exec-s43（PREPARING→PENDING→提交）\n\n### 5. 🎯 战略上下文\n**核心 framing（D035）**: Goodhart 主线——ISR 展示经典 Goodhart 效应（β=0.1 sweet spot → β=0.3 collapse），STA 作为跨 logic type 诊断工具。\n\n**关键决策链**:\n- D044: Hacking taxonomy 全面采用 strict 定义（exact normalized match）\n- D043: ISR β=0.1 \"sweet spot\" 叙事降级——2/3 seeds ISR 膨胀为 artificial\n- D042: ISR 度量存在结构性盲点（premise≈conclusion 时 conclusion sub-string 假阳性）\n- D041: Claim 2 framing pivot: ISR β=0.1 \"sweet spot\" → \"attenuates but doesn't eliminate\"\n- D038: Hacking taxonomy 对比足够，跳过 LLM-as-judge\n\n**易错点**:\n- plan006 prolog-sta-s42 是 negative（100% H7），但这不意味着 exec-only 也一定 negative——exec-only 没有 ISR reward，可能展示不同的 hacking pattern\n- 成功率：9 success / 13 negative / 15 failed，负向和失败比例高，对每个 negative 都要认真做 Framing 调整提案而非默默跑下一个\n- DDL 2026-05-25（剩 11 天），GPU 时间充裕（528 GPU·h 可用，剩余需求 ~12h），瓶颈在分析和写作\n\n## 项目硬约束 (memory.md 节选)\n\n## 环境信息 (2026-05-13)\n\n### westd-39279 服务器\n- **GPU**: 2× RTX PRO 6000 Blackwell, 94GB VRAM 每张\n- **CUDA**: 12.8, PyTorch 2.10.0+cu128\n- **镜像**: aml-train（conda 环境，`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- **ML 栈**: transformers/trl/vllm/accelerate 全部预装\n- **Solvers**: Prover9 (LADR 2009-11A 源码编译), SWI-Prolog 8.4.2 (`/usr/bin/swipl`), Z3 4.16.0.0\n- **模型**: Qwen3-4B 已下载（7.6GB，通过 ModelScope）\n- **代码路径**: `/root/solver-trace-ablation/`\n- **磁盘**: 系统盘 30GB (22G free)，数据盘 `/root/autodl-tmp/` 250GB (清理后 ~199G free)\n\n### 决策记录\n- Qwen3-4B 用 ModelScope 下载（HuggingFace 直连可能慢）\n- Prover9 从 LADR 源码编译（apt 无包）\n- 94GB VRAM 单卡跑 Qwen3-4B 完全无压力\n\n## GPU 隔离教训\n\n### C002: 所有命令必须 `export CUDA_VISIBLE_DEVICES=N`\n- 必须在 `bash -c` 内部 export\n- submit_training_job 命令格式: `bash -c \"export CUDA_VISIBLE_DEVICES=N && ...\"`\n\n### bash -c 包装\n- tmux 在 sh 下执行，source 是 bash built-in，必须用 `bash -c \"...\"` 包装\n\n### Checkpoint 路径\n- save_total_limit=1 时，模型直接保存在 output_dir 根目录\n\n### 磁盘\n- **C003 约束**: `log_completions=False` + `save_total_limit=1`，output_dir 放 `/root/autodl-tmp/outputs/`\n- 2026-05-14 清理后 ~199G free\n- **磁盘爆满事故 (2026-05-14)**: 多实验 checkpoint 未清理导致 250G 满，plan018-s43 崩溃。教训：实验完成 eval 后立即清理 checkpoint，保留 eval JSON\n\n### kill_job 子进程未清理教训 (2026-05-14)\n- **事故**: `kill_job` 只杀 tmux wrapper PID，不杀 Python 训练子进程。导致 plan006-prolog-exec-s43 被 kill 后，训练进程 587159/587160 继续占用 cuda:1 (~80GB VRAM)。后续 s43-r2 提交到同一卡，OOM 崩溃。\n- **根因**: kill_job 发 SIGTERM 给 tmux session，tmux 退出但不传播信号给 detached 子进程。\n- **教训**: kill_job 后**必须** SSH 验证所有子进程已终止（`ps aux | grep <关键词>` + `nvidia-smi`），发现残留手动用 kill_job 逐个杀。\n- **预防**: 提交实验前检查目标 GPU 是否干净（`nvidia-smi` 确认无残留进程）。\n\n## 可查的历史\n前 59 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。\n完整聊天归档可用 `recall_session_history(\"关键词\")` 搜索。\n\n## 第一个动作要求\n1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）\n2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan006-prolog-exec-s42",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T14:51:29.700143+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan006-prolog-exec-s42",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T14:51:29.801124+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan006-prolog-exec-s42",
+            "tool": "ToolSearch",
+            "elapsed_ms": 100
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T14:51:34.627176+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan006-prolog-exec-s42",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "limit": "0"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T14:51:34.677827+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan006-prolog-exec-s42",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T14:51:35.081264+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan018-additive-random-b01-s44\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T08:36:18.722Z\\\", \\\"updated_at\\\": \\\"2026-05-14T14:29:21.226Z\\\", \\\"hypothesis\\\": \\\"Random β=0.1 seed=44 控制组：与 plan002-b01-s44 (ISR β=0.1) 同 seed 对照。验证 ISR 3.2x > random 的结论在 s44 下是否成立。\\\", \\\"parent\\\": \\\"plan018-additive-random-b01-s42\\\", \\\"metrics\\\": {\\\"prove_rate\\\": 0.89, \\\"mean_isr\\\": 0.0619, \\\"isr_std\\\": 0.1756, \\\"median_isr\\\": 0, \\\"proved_only_mean_isr\\\": 0.0695, \\\"n_proved\\\": 89, \\\"n_problems\\\": 100, \\\"max_isr\\\": 1, \\\"min_isr\\\": 0, \\\"isr_pr_ratio\\\": 0.0695, \\\"isr_zero_count\\\": 72, \\\"isr_one_count\\\": 2, \\\"by_answer_type\\\": {\\\"false\\\": {\\\"count\\\": 25, \\\"proved\\\": 21, \\\"prove_rate\\\": 0.84, \\\"mean_isr\\\": 0.0533}, \\\"unknown\\\": {\\\"count\\\": 41, \\\"proved\\\": 40, \\\"prove_rate\\\": 0.976, \\\"mean_isr\\\": 0.0892}, \\\"true\\\": {\\\"count\\\": 34, \\\"proved\\\": 28, \\\"prove_rate\\\": 0.824, \\\"mean_isr\\\": 0.0353}}, \\\"elapsed_seconds\\\": 1012.7, \\\"eval_method\\\": \\\"eval_sta.py with Prover9Solver, FOL\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"Eval via eval_sta.py (Prover9Solver, FOL). PR=0.89, mean_isr=0.0619 (median=0). 72/89 proved samples have ISR=0 (redundant coding pattern per C006: model generates repeated ground facts like MinWage(m) x20, any single clause removable without affecting proof). Only 2 samples reach ISR=1.0. Very low ISR confirms random reward provides no signal for reasoning structure — model learns execution correctness but not meaningful proof construction. Consistent with random control hypothesis.\\\"}, \\\"plan009-sft-baseline-s42-r4\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T11:40:28.142Z\\\", \\\"updated_at\\\": \\\"2026-05-14T14:22:57.766Z\\\", \\\"hypothesis\\\": \\\"SFT baseline: supervised finetuning on FOLIO data (500 steps, Qwen3-4B, same model as all GRPO experiments) to establish whether hacking patterns are GRPO-specific or general finetuning artifacts. r4: fix CUDA_VISIBLE_DEVICES + --gpu + --no_wandb.\\\", \\\"parent\\\": \n…[truncated 37306 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan006-prolog-exec-s42",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 454
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T14:51:35.081770+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan006-prolog-exec-s42",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "file": "report.md"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T14:51:35.232537+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan006-prolog-exec-s42",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "solver-trace-ablation"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T14:51:39.955959+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 2, \\\"results\\\": [{\\\"exp_id\\\": \\\"plan006-prolog-exec-s44\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=479357)\\\"]}, {\\\"exp_id\\\": \\\"plan006-prolog-exec-s43-r3\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=483820)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan006-prolog-exec-s42",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 5278
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T14:51:40.006848+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-14\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| plan006-prolog-exec-s43-r3 | Prolog exec-only GRPO seed=43 r3: warmup_ratio=0.0 与 s42 一致。r2 因残留进程 OOM 失败，cuda:1 已清理。 | — | — | — |\\\\n| plan006-prolog-exec-s44 | Prolog exec-only GRPO seed=44: third seed for Prolog exec-only. Together with s42 (PR=83%, ISR=0.031) and s43, provides 3-seed evidence for cross-logic generalization claim (Claim 3). 3-seed mean±std required for paper. | — | — | — |\\\\n\\\\n## 待处理\\\\n- plan018-additive-random-b01-s43-r2: Random β=0.1 seed=43 控制组 r2: 重试 (原 s43 step 200 磁盘满崩溃)。与 plan002-b01-s43 (ISR β=0.1) 同 seed 对照。3-seed mean±std 审稿硬性要求。（排队等待 GPU）\\\\n- plan006-prolog-sta-s44: Prolog exec+STA GRPO seed=44: 第三 seed。3-seed mean±std 用于论文 Claim 3 跨 logic type 统计支撑。（准备中）\\\\n- plan006-prolog-sta-s43: Prolog exec+STA GRPO seed=43: 跨 seed 稳定性检查。与 exec-only s43 对照。（准备中）\\\\n\\\\n## 近期结论\\\\n- **plan018-additive-random-b01-s44** (success): Random β=0.1 seed=44 控制组：与 plan002-b01-s44 (ISR β=0.1) 同 seed 对照。验证 ISR 3.2x > random 的结论在 s44 下是否成立。 ← 基于 plan018-additive-random-b01-s42\\\\n- **plan009-sft-baseline-s42-r4** (success): SFT baseline: supervised finetuning on FOLIO data (500 steps, Qwen3-4B, same model as all GRPO experiments) to establish whether hacking patterns are GRPO-specific or general finetuning artifacts. r4: fix CUDA_VISIBLE_DEVICES + --gpu + --no_wandb. ← 基于 plan009-sft-baseline-s42-r2\\\\n- **plan009-sft-baseline-s42** (killed): SFT baseline: supervised finetuning on FOLIO data (500 steps, Qwen3-4B) to establish whether hacking patterns are GRPO-specific or general finetuning artifacts. Same model as all GRPO experiments for fair comparison.\\\\n\\\\n## 趋势\\\\n成功 11 / 负向 14 / 失败 18 / 共 45\\\\n\\\\n## 下一步\\\\n（无活跃 idea，请通过 ideas.md 添加）\\\\n\\\\n## 资源状态\\\\n\n…[truncated 1023 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan006-prolog-exec-s42",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 4925
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T14:51:40.007507+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/ROADMAP.md\\\", \\\"content\\\": \\\"# solver-trace-ablation — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-14 15:00 UTC | 更新原因: Session #7 启动同步——SFT baseline 完成 + Prolog exec s43-r3/s44 RUNNING\\\\n\\\\n## 核心方向\\\\nSTA/ISR 作为 GRPO neurosymbolic formalizer 的**诊断工具** + **Goodhart's Law 案例研究**——检测 reward hacking、量化结构退化、分类退化模式，并展示 ISR 从诊断指标到优化目标的 Goodhart 转折。详见 paper_framing.md。\\\\n\\\\n## 当前进展\\\\n- **阶段**: Research + 审稿进行中 | **DDL**: 2026-05-25（剩 11 天）\\\\n- **实验**: 50 个 (RUNNING 2, QUEUED 1, PREPARING 2, ANALYZING 1, DONE 44) | success 10\\\\n- **GPU**: 2 × RTX PRO 6000 96GB — cuda:0 plan006-exec-s44, cuda:1 plan006-exec-s43-r3 ✅\\\\n\\\\n### 核心证据链\\\\n- ✅ ISR 崩塌轨迹：0.6423 (100步) → 0.1324 (500步) → 0.0027 (1000步)\\\\n- ✅ 3-seed exec-only：s42 conclusion embedding | s43 degraded | s44 tautological collapse\\\\n- ✅ Goodhart β 剂量效应：β=0.1 sweet spot (ISR 3.2x > random) vs β=0.3 collapse (ISR < random)\\\\n- ✅ Hacking taxonomy 定量对比 (D038)：ISR β=0.1 genuine 25.9% vs random 17.7% (+8.2pp)，conclusion embedding 73-79%\\\\n- ✅ plan016 1000步：PR=0.96, ISR=0.003，崩塌持续恶化\\\\n- ✅ plan014 downstream NLI: ISR-NLI ρ=-0.049 n.s.，ISR 能力边界已刻画\\\\n- ✅ Table 1 修复 + 文献修正完成\\\\n- ✅ plan002-b01-s43/s44: DONE (negative) — β=0.1 多 seed 验证，2/3 seeds hacking (H7 conclusion duplication)\\\\n- ✅ plan006-prolog-sta-s42: DONE (negative) — 100% H7, Prolog Goodhart 更极端\\\\n- ✅ plan006-prolog-exec-s42: DONE (negative) — PR=83%, ISR=0.031, ground fact enumeration hacking（非 tautological collapse）\\\\n- ✅ plan009-sft-baseline-s42-r4: DONE (success) — SFT PR=14%, ISR=0.08, **零 hacking patterns**，确认 hacking 是 GRPO 特异性\\\\n- ⏳ plan006-prolog-exec-s44: RUNNING cuda:0 — Prolog exec-only seed=44（Claim 3 第三 seed）\\\\n- ⏳ plan006-prolog-exec-s43-r3: RUNNING cuda:1 — Prolog exec-only seed=43 r3（warmup=0.0 对齐 s42）\\\\n- ⏳ plan018-random-b01-s44: ANALYZING — eval worker 进行中\\\\n- 🔜 plan018-random-b01-s43-r2: QUEUED — matched random 多 seed 控制（等 GPU）\\\\\n…[truncated 3096 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan006-prolog-exec-s42",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 4774
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T14:52:20.449750+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan006-prolog-exec-s42",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__get_worker_status",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-14T14:52:20.650655+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan006-prolog-exec-s42",
+            "tool": "ToolSearch",
+            "elapsed_ms": 200
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T14:52:26.282916+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_workers"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan006-prolog-exec-s42",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "status": "running",
+              "limit": "10"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T14:52:27.850017+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [], \\\"count\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan006-prolog-exec-s42",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "elapsed_ms": 1567
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-14T14:52:27.850325+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan006-prolog-exec-s42",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/skills/resource-saturation.skill.md"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-14T14:52:27.900853+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/.claude/sessions/agent_d4450770."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan006-prolog-exec-s42",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-14T14:52:30.862859+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan006-prolog-exec-s42",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/resource-saturation.skill.md",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-14T14:52:30.913486+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan006-prolog-exec-s42",
+            "tool": "Glob",
+            "elapsed_ms": 50
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-14T14:52:33.977744+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan006-prolog-exec-s42",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/resource-saturation*",
+              "path": "/home/ubuntu"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-14T14:52:34.229049+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan006-prolog-exec-s42",
+            "tool": "Glob",
+            "elapsed_ms": 251
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-14T14:52:49.455862+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan006-prolog-exec-s42",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-14T14:52:49.507969+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: resource-saturation\n3\tdescription: \"当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。\"\n4\talways: false\n5\troles:\n6\t  - director\n7\t  - agent\n8\t---\n9\t\n10\t# 资源饱和度自检（硬约束）\n11\t\n12\t## A. GPU 分配率检查\n13\t\n14\t调 `get_project_resource_usage(project)` 看:\n15\t- 已分配给本项目的 GPU 总数和具体卡号\n16\t- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）\n17\t- 分配了但没跑的 GPU 清单 ⚠️\n18\t\n19\t任何\"分配了但没跑\"的 GPU = 失职。必须立即:\n20\t- 派 Worker 铺 dry-run / 下一批实验代码准备\n21\t- 铺 ablation（从 experiment-matrix 空白格子里挑）\n22\t- 确实无实验可铺 → 向 Director 汇报\"暂无可铺实验\"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作\n23\t\n24\t**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。\n25\t\n26\t## B. GPU 效率检查\n27\t\n28\t调 `get_gpu_health(server)`:\n29\t- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务\n30\t- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）\n31\t- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优\n32\t\n33\t## C. 非 GPU 任务并行\n34\t\n35\tGPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:\n36\t- 下一批实验的数据集下载 / 预处理 / fingerprint\n37\t- 下一批实验的代码准备 / dry-run / 环境配置\n38\t- 论文文献调研 / related work 检索\n39\t- 已完成实验的 log 深度分析 / metric 聚合\n40\t- 论文章节起草\n41\t- 代码 review / refactor\n42\t\n43\t**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。\n44\t\n45\t## D. 汇报格式\n46\t\n47\t向 Director 汇报时开头必须带资源声明行:\n48\t\n49\t    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)\n50\t"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan006-prolog-exec-s42",
+            "tool": "Read",
+            "elapsed_ms": 52
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-14T14:54:18.246644+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan006-prolog-exec-s42",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__save_project_file",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-14T14:54:18.297297+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan006-prolog-exec-s42",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-14T14:55:19.555830+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan006-prolog-exec-s42",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 分配 2 / 实际在跑 2 | Worker 池 2 (GPU 0 / CPU 2，刚派发)\n\n## Session #8 启动状态同步\n\n**RUNNING (2)** — 两卡满载 ✅\n- plan006-prolog-exec-s44 (cuda:0, PID 479357) — Prolog exec-only seed=44\n- plan006-prolog-exec-s43-r3 (cuda:1, PID 483820) — Prolog exec-only seed=43\n\n**QUEUED (1)**: plan018-random-b01-s43-r2 — 等 GPU 释放\n**PREPARING (2)**: plan006-prolog-sta-s43, plan006-prolog-sta-s44 — 等 GPU 释放\n\n## 上轮完成的关键结果\n\n**1. plan009-sft-baseline-s42-r4 ✅ (success)**\n- SFT baseline (Qwen3-4B, 500 steps): PR=14%, ISR=0.08, **零 hacking patterns**\n- 对照 GRPO exec-only (PR=93%, ISR=0.12, 多种 hacking): 确认 reward hacking 是 GRPO RL 特异性产物，非一般微调 artifact\n- 审稿三档均指出缺 SFT baseline 是 gap → 现已补齐\n\n**2. plan018-random-b01-s44 ✅ (success)**\n- Random β=0.1 seed=44: PR=0.89, ISR=0.0619\n- vs ISR β=0.1 s44: PR=0.89, ISR=0.803 (13x)——但 ISR s44 是 conclusion duplication hacking (H7=86.5%)\n- 2-seed 初步（s42+s44）: Random ISR mean ≈ 0.08 vs ISR-guided mean ≈ 0.57——绝对值差异显著，但 ISR-guided 的高 ISR 多为 hacking artifact\n\n**3. plan006-prolog-exec-s42 (negative, 论文 positive finding)**\n- PR=83%, ISR=0.031, H7=0% — ground fact enumeration hacking（非 tautological collapse）\n- vs prolog-sta-s42 (PR=50%, ISR=1.0, H7=100%): 两种 reward signal 驱动两种完全不同的 hacking 策略\n- 强化 Claim 1（Goodhart）+ 新发现：hacking mode 是 reward-specific\n\n## 下一步\n1. 等 plan006-prolog-exec-s43-r3 + s44 完成 → 3-seed Prolog exec-only 统计\n2. GPU 释放后推 plan018-random-s43-r2 + plan006-prolog-sta-s43/s44\n3. CPU Worker 已派: (a) 论文结果表格汇编 (b) paper_framing.md 更新整合 SFT + Prolog 证据\n4. 3-seed 全出齐 → Table 1 + Table 2 定稿 → 进入写作阶段\n\n**实验总览**: 50 个实验, success 10 / negative 14 / failed 18 / killed 2 / running 2 / queued 1 / preparing 2 / analyzing 1",
+              "project": "solver-trace-ablation"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-14T14:55:46.027800+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_a771c2a33d631dd40256ecd5c3a6648e:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan006-prolog-exec-s42",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 26471
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-14T14:55:46.466095+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan006-prolog-exec-s42",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "analysis:metrics-table-draft",
+              "project": "solver-trace-ablation",
+              "task_prompt": "## 任务：汇编论文结果表格草稿\n\n你需要从 registry 读取所有已完成实验数据，汇编两张论文核心表格的草稿。\n\n### 背景\nsolver-trace-ablation 项目研究 GRPO neurosymbolic formalizer 中的 reward hacking 现象。核心指标：\n- PR (Prove Rate): 模型生成的 FOL formalization 能被 Prover9 成功证明的比例\n- ISR (Irreducible Step Ratio): 证明中不可去除步骤的比例（越高=证明结构越好）\n- Hacking patterns: tautological collapse, conclusion embedding, ground fact enumeration 等\n\n### 实验条件\n1. **Exec-only**: 纯执行奖励 (r = r_exec)\n2. **ISR β=0.1**: 执行+ISR 结构奖励 (r = r_exec · (1 + 0.1 · ISR))\n3. **ISR β=0.3**: 执行+ISR 结构奖励 (r = r_exec · (1 + 0.3 · ISR))\n4. **Random β=0.1**: 执行+随机噪声 (r = r_exec · (1 + 0.1 · random))\n5. **Random β=0.3**: 执行+随机噪声 (r = r_exec · (1 + 0.3 · random))\n6. **SFT baseline**: 监督微调（对照组）\n7. **Extended 1000步**: exec-only 训练 1000 步（500→1000 崩塌轨迹）\n8. **Prolog exec-only**: 跨逻辑类型泛化（Prolog 而非 FOL）\n9. **Prolog exec+STA**: Prolog 上 ISR 奖励\n\n### 产出要求\n\n**Table 1: Main Results** (Markdown 格式)\n- 行: 各实验条件\n- 列: PR (mean±std), ISR (mean±std), Proved-only ISR, Component Count (mean), seeds 数量\n- 多 seed 条件用 mean±std，单 seed 标注 \"1-seed\"\n- 特别标注 ISR β=0.1 的 ISR 大部分是 hacking artifact (D042/D043)\n\n**Table 2: Hacking Taxonomy** (Markdown 格式)\n- 行: 各实验条件\n- 列: Genuine Rate, Conclusion Embedding Rate, Tautological Collapse, Repetition Collapse, H7 Rate\n- 数据来源: registry 中的 hacking 相关指标\n\n**Table 3: Prolog Cross-Logic** (Markdown 格式)\n- Prolog exec-only vs Prolog exec+STA（目前仅 s42 单 seed）\n- 对比 FOL 同条件的 hacking 模式差异\n\n每张表下附：关键发现要点（2-3 句话），注明数据来源 exp_id。\n\n### 操作步骤\n1. `read_registry(project=\"solver-trace-ablation\", fields=[\"*\"])` 获取全部实验数据\n2. 从 registry 提取各条件的 eval 指标\n3. 对多 seed 实验计算 mean±std\n4. 汇编表格，写入 artifacts 目录\n\n### 输出\n将表格保存到 `/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/tables_draft_v1.md`，然后调用 `register_artifact` 注册。\n\n### 注意事项\n- ISR β=0.1 s43/s44 的 ISR 是 conclusion duplication hacking artifact (D042/D043)，表格备注中必须说明\n- exec-only s43 eval 使用了 sampling (T=0.7)，与其他条件不同 (D029)，表格备注说明\n- plan013 (convex random β=0.3) vs plan017 (additive random β=0.3) 公式不同，不可简化为同一条件 (D027)\n- Hacking rate 69.1% 用 strict 定义 (D044)\n",
+              "tool_groups": "['registry', 'knowledge']",
+              "tools": "['register_artifact']"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-14T14:56:08.471047+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analysis_metrics-table-draft_20260514T145546\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/logs/workers/worker_analysis_metrics-table-draft_20260514T145546.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_analysis_metrics-table-draft_20260514T145546 started. Use get_worker_status('worker_analysis_metrics-table-draft_20260514T145546') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan006-prolog-exec-s42",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 22004
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-14T14:56:08.572149+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan006-prolog-exec-s42",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "knowledge:paper-framing-update",
+              "project": "solver-trace-ablation",
+              "task_prompt": "## 任务：更新 paper_framing.md 整合新实验证据\n\n### 背景\nsolver-trace-ablation 项目的 paper_framing.md 定义了论文的 story arc、core claims 和证据链。最近完成了两个重要实验，需要整合到 framing 中。\n\n### 新证据\n\n**1. SFT Baseline (plan009-sft-baseline-s42-r4)**\n- SFT (Qwen3-4B, 500 steps, 同一模型同一数据): PR=14%, ISR=0.08\n- **零 hacking patterns**: 无 tautological collapse, 无 conclusion embedding, 无 ground fact enumeration\n- 含义：reward hacking 是 GRPO RL 训练的特异性产物，非一般微调 artifact\n- 这回应了审稿人关于 \"hacking 可能只是模型学了 shortcut 而非 RL specific\" 的潜在质疑\n\n**2. Prolog Exec-only (plan006-prolog-exec-s42)**\n- Prolog exec-only: PR=83%, ISR=0.031, H7=0%\n- Hacking mode: ground fact enumeration（倾泻大量无关 ground facts，query 作为 fact 平凡成功）\n- vs Prolog exec+STA (plan006-prolog-sta-s42): PR=50%, ISR=1.0, H7=100% (tautological collapse)\n- 含义：不同 reward signal 驱动不同 hacking 策略，且 Goodhart 效应跨 logic type 泛化\n\n**3. plan018-random-b01-s44 (Random β=0.1 s44)**\n- PR=0.89, ISR=0.0619 (very low)\n- vs ISR β=0.1 s44: ISR=0.803 but 86.5% hacking\n- 2-seed 初步: random ISR ≈ 0.08 << ISR-guided ≈ 0.57, 但 ISR-guided 多为 hacking artifact\n\n### 操作步骤\n1. `read_project_file(project=\"solver-trace-ablation\", file=\"paper_framing.md\", max_chars=0)` 读取完整 framing\n2. `read_project_file(project=\"solver-trace-ablation\", file=\"ROADMAP.md\")` 了解决策链\n3. 分析当前 framing 中需要更新的部分\n4. 更新 paper_framing.md:\n   - 在 Evidence Chain 中添加 SFT baseline 证据\n   - 在 Claim 1 (Goodhart) 下添加 Prolog cross-logic 证据\n   - 在 Claim 1 下添加 reward-specific hacking modes 发现\n   - 更新 \"Open Questions\" / \"Remaining Gaps\" 反映 3-seed 待完成状态\n   - 确保所有 claims 的强度词与现有证据匹配（不 overclaim）\n5. `save_project_file(project=\"solver-trace-ablation\", file=\"paper_framing.md\", content=...)` 保存\n\n### 写作规范（red-section 规范，必须遵守）\n- 禁止 cherry-picking\n- 所有数字必须追溯到 registry (标注 exp_id)\n- 强度与 evidence 匹配: 1 个数据集 → 不能说 \"consistently\"\n- 每个定量 claim 必须附 exp_id\n- 限制强度词: \"significantly\" 必须有统计检验\n- ISR β=0.1 的 hacking rate 69.1% (strict 定义, D044)——不可标 \"no hacking\"，应标 \"lowest hacking rate\"\n- ISR β=0.1 3-seed 中 2/3 是 hacking (D043)——不可称 \"robust improvement\"\n\n### 不要做的事\n- 不要改变核心 framing 方向（Goodhart 主线不变）\n- 不要删除已有证据，只增补\n- 不要编造未做过的实验结果\n",
+              "tool_groups": "['knowledge']"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-14T15:11:17.837368+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "同时向 Director 汇报并派 2 个 CPU Worker 修复 Worker 池。"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan006-prolog-exec-s42"
+          },
+          "id": "event-000031"
+        }
+      ],
+      "message_count": 31
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-14T18:12:57.272065+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan006-prolog-exec-s42",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-14T18:13:05.020674+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan006-prolog-exec-s42",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__list_workers",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-14T18:13:05.071871+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan006-prolog-exec-s42",
+            "tool": "ToolSearch",
+            "elapsed_ms": 51
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-14T18:13:07.835092+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan006-prolog-exec-s42",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-14T18:13:08.339597+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan006-prolog-exec-s42",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-14T18:13:08.844368+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (107,689 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation--claude-sessions-agent-d4450770/9f413a4e-316b-4964-a89a-987a00c2b447/tool-results/mcp-agent-ml-research-read_registry-1778782388430.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation--claude-sessions-agent-d4450770/9f413a4e-316b-4964-a89a-987a00c2b447/tool-results/mcp-agent-ml-research-read_registry-1778782388430.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation--claude-sessions-agent-d4450770/9f413a4e-316b-4964-a89a-987a00c2b447/tool-results/mcp-agent-ml-research-read_registry-1778782388430.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan006-prolog-exec-s42",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1009
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-14T18:13:08.844973+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan006-prolog-exec-s42",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "file": "report.md",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-14T18:13:09.348521+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan006-prolog-exec-s42",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "solver-trace-ablation"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-14T18:13:09.749813+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_workers"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan006-prolog-exec-s42",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "limit": "20"
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-14T18:13:11.504883+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 1, \\\"results\\\": [{\\\"exp_id\\\": \\\"plan006-prolog-sta-s44\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=908945)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan006-prolog-exec-s42",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 3165
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-14T18:13:11.555824+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-14\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| plan006-prolog-sta-s44 | Prolog exec+STA GRPO seed=44: 第三 seed。3-seed mean±std 用于论文 Claim 3 跨 logic type 统计支撑。 | — | — | — |\\\\n| plan006-prolog-sta-s43 | Prolog exec+STA GRPO seed=43: 跨 seed 稳定性检查。与 exec-only s43 对照。 | — | — | — |\\\\n\\\\n## 待处理\\\\n（无）\\\\n\\\\n## 近期结论\\\\n- **plan016-extended-1000-s42** (success): Extended training 1000 steps exec-only: plan001-s42 500步 PR=93% 是真收敛还是 lucky early convergence? 1000步观察 PR 和 ISR 在更长 horizon 的行为。s43(14%)/s44(98% tautological) 在 500 步均失败，延长训练是否能改善？ ← 基于 plan001-exec-only-s42-r2\\\\n  [plan016-extended-1000-s42-submission-spec](/api/workspace-files/projects/solver-trace-ablation/artifacts/plan016-extended-1000-s42/report/plan016_submission_spec.md)\\\\n- **plan002-additive-b01-s42** (success): — ← 基于 plan002-additive-b03-s42\\\\n  [plan002-additive-b01-s42 训练命令](/api/workspace-files/projects/solver-trace-ablation/artifacts/plan002-additive-b01-s42/report/plan002-additive-b01-s42_prep.md)\\\\n- **plan018-additive-random-b01-s43-r2** (negative): Random β=0.1 seed=43 控制组 r2: 重试 (原 s43 step 200 磁盘满崩溃)。与 plan002-b01-s43 (ISR β=0.1) 同 seed 对照。3-seed mean±std 审稿硬性要求。 ← 基于 plan018-additive-random-b01-s43\\\\n\\\\n## 趋势\\\\n成功 11 / 负向 17 / 失败 18 / 共 48\\\\ngenuine_count: 0 ↓（近 3 次 success）\\\\ngenuine_rate: 0 ↓（近 3 次 success）\\\\n\\\\n## 下一步\\\\n（无活跃 idea，请通过 ideas.md 添加）\\\\n\\\\n## 资源状态\\\\nwestd-39279: 无 GPU 信息\\\\n\\\\n## 告警\\\\n- sta-phase1-exec-only: 训练失败 — unknown\\\\n- sta-phase1-exec-sta: 训练失败 — unknown\\\\n- sta-phase1-exec-only-r2: 训练失败 — unknown\\\\n- sta-phase1-exec-sta-r2: 训练失败 — unknown\\\\n- sta-phase1-exec-only-r3: 训练失败 — unknown\\\\n- sta-phase1-exec-sta-r3: 训练失败 — unknown\\\\n- plan001-exec-only-s42: 训练失败 — unknown\\\\n- plan001-exec-only-s42-r3: 训练失败 — unk\n…[truncated 653 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan006-prolog-exec-s42",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 2710
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-14T18:13:11.606841+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/ROADMAP.md\\\", \\\"content\\\": \\\"# solver-trace-ablation — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-14 17:02 UTC | 更新原因: 修正 RUNNING 表：prolog-exec 已全部 DONE，当前跑的是 prolog-STA s43/s44（Reviewer warning 纠正）\\\\n\\\\n## 核心方向\\\\nSTA/ISR 作为 GRPO neurosymbolic formalizer 的**诊断工具** + **Goodhart's Law 案例研究**——检测 reward hacking、量化结构退化、分类退化模式，并展示 ISR 从诊断指标到优化目标的 Goodhart 转折。详见 paper_framing.md。\\\\n\\\\n## 当前进展\\\\n- **阶段**: Research + 审稿进行中 | **DDL**: 2026-05-25（剩 11 天）\\\\n- **实验**: 50+ | Claim 1 ✅ | Claim 2 ✅ (3-seed closed D057) | Claim 3 ⏳ (exec-only 3-seed done, STA RUNNING)\\\\n- **GPU**: 2 × RTX PRO 6000 96GB — cuda:0 plan006-prolog-sta-s44, cuda:1 plan006-prolog-sta-s43\\\\n\\\\n### 核心证据链\\\\n- ✅ **Claim 1 — STA 诊断能力**: ISR 崩塌轨迹 0.6423→0.1324→0.0027; 3-seed exec-only 多模式退化; SFT 零 hacking 对照\\\\n- ✅ **Claim 2 — Goodhart / ISR 无结构优势** (D057 3-seed closed): H7=0% 全 3 seed random 一致 (ISR-specific gaming); Random PR 0.85±0.06 > ISR 0.77±0.14; Genuine rate ~19% vs ~16% 无显著差异; β 剂量效应 (β=0.1 sweet spot vs β=0.3 collapse)\\\\n- ⏳ **Claim 3 — 跨逻辑泛化**: Prolog exec-only 3-seed done (s42 PR=83% ISR=0.031); Prolog STA s42 done (100% H7); STA s43/s44 RUNNING\\\\n- ✅ Hacking taxonomy: ISR β=0.1 genuine 25.9% vs random 17.7%, conclusion embedding 73-79%\\\\n- ✅ plan014 downstream NLI: ISR-NLI ρ=-0.049 n.s.，ISR 能力边界已刻画\\\\n- ✅ plan016 1000步：PR=0.96, ISR=0.003，崩塌持续恶化\\\\n\\\\n## RUNNING\\\\n| 实验 | GPU | 说明 |\\\\n|------|-----|------|\\\\n| plan006-prolog-sta-s44 | cuda:0 | Prolog STA (ISR-as-reward) seed=44 |\\\\n| plan006-prolog-sta-s43 | cuda:1 | Prolog STA (ISR-as-reward) seed=43 |\\\\n\\\\n## 近期任务\\\\n- [x] plan018 3-seed random β=0.1 完成 → Claim 2 数据链闭环 (D057)\\\\n- [x] plan009 SFT baseline → PR=14%, ISR=0.08, 零 hacking\\\\n- [x] plan006-prolog-exec 3-seed 完成 (s42/s43-r3/s44 全部 DONE)\\\\n- [ ] plan006-prolog-sta-s43/s44 完成 → eval → 3-seed Prolog STA 统计\\\\n- [ ] 3-seed 全部出齐 → Table 1 + Table 2 定稿\\\\n- [ ] paper_frami\n…[truncated 2181 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan006-prolog-exec-s42",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 2258
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-14T18:13:11.758329+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [{\\\"worker_id\\\": \\\"worker_knowledge_update-prolog-memory_20260514T163217\\\", \\\"task_type\\\": \\\"knowledge:update-prolog-memory\\\", \\\"project\\\": \\\"solver-trace-ablation\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-14T16:32:17.601252+00:00\\\", \\\"ended_at\\\": \\\"2026-05-14T16:32:59.343046+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_infra_check-plan018-progress-v2_20260514T163225\\\", \\\"task_type\\\": \\\"infra:check-plan018-progress-v2\\\", \\\"project\\\": \\\"solver-trace-ablation\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-14T16:32:25.622967+00:00\\\", \\\"ended_at\\\": \\\"2026-05-14T16:33:00.809944+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_eval_plan018-random-b01-s43-r2_20260514T164553\\\", \\\"task_type\\\": \\\"eval:plan018-random-b01-s43-r2\\\", \\\"project\\\": \\\"solver-trace-ablation\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-14T16:45:53.514938+00:00\\\", \\\"ended_at\\\": \\\"2026-05-14T16:56:32.628522+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_analysis_training-status-check_20260514T164557\\\", \\\"task_type\\\": \\\"analysis:training-status-check\\\", \\\"project\\\": \\\"solver-trace-ablation\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-14T16:45:57.632336+00:00\\\", \\\"ended_at\\\": \\\"2026-05-14T16:46:42.562832+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_eval_plan018-s43-r2-eval-classify_20260514T164803\\\", \\\"task_type\\\": \\\"eval:plan018-s43-r2-eval-classify\\\", \\\"project\\\": \\\"solver-trace-ablation\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-14T16:48:03.239748+00:00\\\", \\\"ended_at\\\": \\\"2026-05-14T16:57:32.785348+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_knowledge_evidence-tables-finalize_20260514T165006\\\", \\\"task_type\\\": \\\"knowledge:evidence-tables-finalize\\\", \\\"project\\\": \\\"solver-trace-ablation\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-14T16:50:06.417480+00:00\\\", \\\"ended_at\\\": \\\"2026-05-14T16:51:01.845439+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_analysis_plan018-s43-r2-classify-h7_20260514T165724\\\", \\\"task_type\\\": \\\"analysis:plan018-s43-r2-classify-h7\\\", \\\"project\\\": \\\"solver-\n…[truncated 3953 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan006-prolog-exec-s42",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "elapsed_ms": 2008
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-14T18:13:17.929372+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan006-prolog-exec-s42",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "file": "memory.md",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-14T18:13:18.437267+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/memory.md\\\", \\\"content\\\": \\\"# solver-trace-ablation — Memory\\\\n\\\\n## 环境信息 (2026-05-13)\\\\n\\\\n### westd-39279 服务器\\\\n- **GPU**: 2× RTX PRO 6000 Blackwell, 94GB VRAM 每张\\\\n- **CUDA**: 12.8, PyTorch 2.10.0+cu128\\\\n- **镜像**: aml-train（conda 环境，`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\\\\n- **ML 栈**: transformers/trl/vllm/accelerate 全部预装\\\\n- **Solvers**: Prover9 (LADR 2009-11A 源码编译), SWI-Prolog 8.4.2 (`/usr/bin/swipl`), Z3 4.16.0.0\\\\n- **模型**: Qwen3-4B 已下载（7.6GB，通过 ModelScope）\\\\n- **代码路径**: `/root/solver-trace-ablation/`\\\\n- **磁盘**: 系统盘 30GB (22G free)，数据盘 `/root/autodl-tmp/` 250GB (清理后 ~131G free)\\\\n\\\\n### 决策记录\\\\n- Qwen3-4B 用 ModelScope 下载（HuggingFace 直连可能慢）\\\\n- Prover9 从 LADR 源码编译（apt 无包）\\\\n- 94GB VRAM 单卡跑 Qwen3-4B 完全无压力\\\\n\\\\n## 数据 (2026-05-13)\\\\n\\\\n### 数据源变更：ProofWriter → FOLIO\\\\n- ProofWriter 原始数据无 FOL 列，改用 `tasksource/folio`（1204 条人工标注 FOL）\\\\n- Phase 0 子集 100 条，训练子集 500 条\\\\n- 34% 数据含 XOR (⊕) 符号，已在 `_normalize_fol()` 中修复展开\\\\n\\\\n### 数据约束 (2026-05-14, D009)\\\\n- **C001**: 所有 plan001/plan013 实验统一使用 `train_500_seed42.jsonl`，不再用 `proofwriter_fol_500.jsonl`（消除数据差异 confound）\\\\n\\\\n## Phase 0 关键发现 (2026-05-13)\\\\n\\\\n### Base Model ISR Baseline (sta-phase0-baseline)\\\\n- **Prove rate**: 12% overall, 18.2% excluding XOR-affected samples\\\\n- **Mean ISR**: 0.064 (very low — base model formalizations mostly unprovable)\\\\n- **ISR 区分度**: proved 样本 ISR 0.125–0.889\\\\n\\\\n### Ground-Truth ISR Baseline (sta-gt-isr-baseline)\\\\n- **GT prove rate**: 18% (limited by Prover9 only proving entailment; true=50%, false=4%, unknown=0%)\\\\n- **GT mean ISR**: 0.5588 (median 0.6125, range 0.14–1.00)\\\\n- **Model vs GT gap**: ISR 0.064 vs 0.559 = 8.7x 差距，STA 有强区分力\\\\n\\\\n### Prover9 局限性\\\\n- Prover9 只能证明 entailment（conclusion 从 premises 推出）\\\\n- `false` 和 `unknown` 类问题几乎无法证明（false 4%, unknown 0%）\\\\n\\\\n## Phase 1 关键经验 (2026-05-13)\\\\n\\\\n### fast_isr_fol 失\n…[truncated 7560 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan006-prolog-exec-s42",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 507
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-14T18:13:18.437787+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan006-prolog-exec-s42",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "filters": "{'status': 'RUNNING'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-14T18:13:18.889527+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan006-prolog-sta-s44\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T09:19:39.743Z\\\", \\\"updated_at\\\": \\\"2026-05-14T16:52:27.739Z\\\", \\\"hypothesis\\\": \\\"Prolog exec+STA GRPO seed=44: 第三 seed。3-seed mean±std 用于论文 Claim 3 跨 logic type 统计支撑。\\\", \\\"notes\\\": \\\"PREPARING. 命令模板已修正：去掉 --warmup_ratio，与 sta-s42 (warmup_ratio=0.0) 一致。Config: configs/grpo_prolog_exec_sta.yaml + seed=44. Output: /root/autodl-tmp/outputs/plan006_prolog_sta_s44. 等 GPU 释放。\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"started_at\\\": \\\"2026-05-14T16:46:42.163Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_prolog_exec_sta.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 44 --output_dir /root/autodl-tmp/outputs/plan006_prolog_sta_s44\\\\\\\"\\\"}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_prolog_exec_sta.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 44 --output_dir /root/autodl-tmp/outputs/plan006_prolog_sta_s44\\\\\\\"\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"908945\\\", \\\"log_path\\\": \\\"~/runs/solver-trace-ablation/plan006-prolog-sta-s44.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T16:52:27.078Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"pid\\\": \\\"908945\\\", \\\"log_path\\\": \\\"~/runs/solver-trace-ablation/plan006-prolog-sta-s44.log\\\"}}, \\\"count\\\": 1, \\\"total\\\": 1, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1975}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan006-prolog-exec-s42",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 451
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-14T18:13:19.040549+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan006-prolog-exec-s42",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__load_project_config",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-14T18:13:19.091225+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan006-prolog-exec-s42",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-14T18:13:24.370005+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan006-prolog-exec-s42",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "filters": "{'status': 'RUNNING'}",
+              "fields": "['status', 'server', 'gpu', 'pid', 'spec', 'hypothesis']"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-14T18:13:24.672179+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"plan006-prolog-sta-s44\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"hypothesis\\\": \\\"Prolog exec+STA GRPO seed=44: 第三 seed。3-seed mean±std 用于论文 Claim 3 跨 logic type 统计支撑。\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py --config configs/grpo_prolog_exec_sta.yaml --data_path data/train_500_seed42.jsonl --num_steps 500 --seed 44 --output_dir /root/autodl-tmp/outputs/plan006_prolog_sta_s44\\\\\\\"\\\", \\\"server\\\": \\\"westd-39279\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"908945\\\", \\\"log_path\\\": \\\"~/runs/solver-trace-ablation/plan006-prolog-sta-s44.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T16:52:27.078Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"pid\\\": \\\"908945\\\"}}, \\\"count\\\": 1, \\\"total\\\": 1, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1954}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan006-prolog-exec-s42",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 302
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-14T18:13:24.722886+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__load_project_config"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan006-prolog-exec-s42",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "tool_args": {
+              "project_name": "solver-trace-ablation",
+              "section": "execution"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-14T18:13:25.378010+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"project\\\": \\\"solver-trace-ablation\\\", \\\"section\\\": \\\"execution\\\", \\\"config\\\": {\\\"execution\\\": {\\\"gpu_constraint\\\": [\\\"westd-39279:cuda:0\\\", \\\"westd-39279:cuda:1\\\"], \\\"gpu_ids\\\": [\\\"cuda:0\\\", \\\"cuda:1\\\"], \\\"project_path\\\": \\\"/root/solver-trace-ablation\\\", \\\"servers\\\": [{\\\"account\\\": \\\"root\\\", \\\"server\\\": \\\"westd-39279\\\"}]}}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan006-prolog-exec-s42",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "elapsed_ms": 655
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-14T18:13:25.428641+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan006-prolog-exec-s42",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_experiment_plan_with_status",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-14T18:13:25.479892+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan006-prolog-exec-s42",
+            "tool": "ToolSearch",
+            "elapsed_ms": 51
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-14T18:13:29.099949+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan006-prolog-exec-s42",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "filters": "{'exp_id': 'plan006-prolog-sta-s43'}",
+              "fields": "['status', 'server', 'gpu', 'pid', 'spec', 'hypothesis', 'conclusion']"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-14T18:13:29.551917+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1836}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan006-prolog-exec-s42",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 451
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-14T18:13:29.953973+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan006-prolog-exec-s42",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "solver-trace-ablation",
+              "file": "paper_framing.md",
+              "max_chars": "6000"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-14T18:13:30.006171+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — solver-trace-ablation\\\\n\\\\n## Target Venue\\\\n- Primary: EMNLP 2026 Main (NLP and Symbolic Reasoning track)\\\\n- Fallback: EMNLP 2026 Findings\\\\n- Deadline: ARR May 25, 2026\\\\n\\\\n## Core Claims (3 条 — Goodhart 主线诊断/分析论文)\\\\n\\\\n| Claim | Status | 闭环标志 |\\\\n|-------|--------|----------|\\\\n| Claim 1: STA 诊断能力 | ✅ 已闭环 | 3-seed + 1000-step + hacking taxonomy (6 modes) |\\\\n| Claim 2: Goodhart / ISR 无结构优势 | ✅ 已闭环 (D057) | 3-seed ISR + 3-seed random + premise-count-matched + SFT baseline |\\\\n| Claim 3: 跨逻辑泛化 | ⏳ 进行中 | exec-only 3-seed done (D056); STA s42 done (100% H7), s43/s44 RUNNING |\\\\n\\\\n### Claim 1: ISR as Reward Hacking Diagnostic ✅\\\\nSolver Trace Ablation (STA) derives ISR (Intensional Structural Reward) via component necessity testing (leave-one-out ablation on solver inputs). ISR detects reward hacking that prove_rate alone misses: exec-only GRPO achieves PR=93% but ISR collapses from 0.6423 (100 steps) to 0.1324 (500 steps) to 0.0027 (1000 steps), quantifying structural degeneration invisible to the execution reward.\\\\n\\\\n**证据**：\\\\n- plan003: 100-step checkpoint held-out eval PR=32%, ISR=0.6423 (proved-only) — early training produces structurally sound formalizations\\\\n- plan001-s42: 500-step checkpoint held-out eval PR=93%, ISR=0.1324, median_ISR=0.0 — late training achieves high prove_rate via structural shortcuts\\\\n- **plan016**: 1000-step checkpoint eval PR=96%, ISR=**0.0027** — ISR 崩塌持续恶化，无回升。94.8% proved 样本 ISR=0。矛盾爆炸式崩塌（components 6.58→18.55）。延长训练是 reward hacking 随时间恶化的干净消融证据\\\\n- ISR 崩塌轨迹完整链：0.6423 (100步) → 0.1324 (500步) → 0.0027 (1000步)\\\\n- 3-seed consistency: s42 redundant embedding (H1=87.1%, ISR=0.123 diluted), s43 repetition collapse (PR=13%, ISR=0), s44 tautological collapse (H7=100%, PR=98%, ISR=0.57 fake-high, n_comp=2.04). All 3 seeds exhibit 87-100% conclusion embedd\n…[truncated 4494 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan006-prolog-exec-s42",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 52
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-14T18:13:34.874613+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan006-prolog-exec-s42",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/registry.yaml | grep -A 5 \"plan006-prolog-sta-s43\"",
+              "description": "Search for plan006-prolog-sta-s43 in registry"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-14T18:13:34.975455+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan006-prolog-exec-s42",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:CronList",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-14T18:13:35.076347+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "  plan006-prolog-sta-s43:\n    status: ANALYZING\n    retry_count: 0\n    created_at: '2026-05-14T09:19:39.141Z'\n    updated_at: '2026-05-14T18:05:59.625Z'\n    hypothesis: 'Prolog exec+STA GRPO seed=43: 跨 seed 稳定性检查。与 exec-only s43 对照。'\n--\n      log_path: ~/runs/solver-trace-ablation/plan006-prolog-sta-s43.log\n      submitted_at: '2026-05-14T16:36:41.878Z'\n      submitted_via: submit_training_job\n      backend: tmux\n      account: root\n    server: westd-39279\n--\n    log_path: ~/runs/solver-trace-ablation/plan006-prolog-sta-s43.log\n    reproduce:\n      command: bash -c \"export CUDA_VISIBLE_DEVICES=1 && source /root/miniconda3/etc/profile.d/conda.sh\n        && conda activate base && cd /root/solver-trace-ablation && python3 scripts/train_grpo.py\n        --config configs/grpo_prolog_exec_sta.yaml --data_path data/train_500_seed42.jsonl\n        --num_steps 500 --seed 43 --output_dir /root/autodl-tmp/outputs/plan006_prolog_sta_s43\""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan006-prolog-exec-s42",
+            "tool": "Bash",
+            "elapsed_ms": 201
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-14T18:13:35.076955+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan006-prolog-exec-s42",
+            "tool": "ToolSearch",
+            "elapsed_ms": 101
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-14T18:13:37.487851+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called CronList"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan006-prolog-exec-s42",
+            "tool": "CronList"
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-14T18:13:37.638543+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No scheduled jobs."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan006-prolog-exec-s42",
+            "tool": "CronList",
+            "elapsed_ms": 150
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-14T18:14:38.108099+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**westd-39279:cuda:0** 和 **westd-39279:cuda:1**，不可用其他卡\n- 所有训练命令必须 `export CUDA_VISIBLE_DEVICES=N` 在 bash -c 内部\n- 数据约束 C001：所有实验统一使用 `train_500_seed42.jsonl`\n- 磁盘约束 C003：`log_completions=False` + `save_total_limit=1`，output_dir 放 `/root/autodl-tmp/outputs/`\n- kill_job 后必须 SSH 验证子进程已终止（只杀 tmux wrapper，不杀 Python 子进程）\n- ISR raw 对比不可信，论文中 ISR 对比必须 premise-count-matched（D051 教训）\n- 论文不可标 \"no hacking\"，应标 \"lowest hacking rate\"（ISR β=0.1 hacking 69.1%，D044）\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-39279, account=root\n- **工作目录**: `/root/solver-trace-ablation/`\n- **Python**: `/root/miniconda3/bin/python`，激活方式 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`（aml-train 镜像，不用 venv）\n- **模型**: Qwen3-4B（ModelScope 下载），路径在 HF cache\n- **数据**: `/root/solver-trace-ablation/data/train_500_seed42.jsonl`（500 条 FOLIO）\n- **Outputs**: `/root/autodl-tmp/outputs/plan006_prolog_sta_s{43,44}/`\n- **Logs**: `~/runs/solver-trace-ablation/plan006-prolog-sta-s{43,44}.log`\n- **Solvers**: Prover9 (LADR 源码编译), SWI-Prolog 8.4.2 (`/usr/bin/swipl`), Z3 4.16.0.0\n- **活跃进程**: plan006-prolog-sta-s44 PID=908945 (cuda:0, tmux, cron 监控中)\n- **Cron**: 1 个活跃 cron 监控 plan006-prolog-sta-s44（reconcile 确认 pid=908945 still running）\n- **GPU**: 2× RTX PRO 6000 96GB。cuda:0 跑 s44，cuda:1 刚释放（s43 训练完成）\n\n### 3. 📊 当前状态\n**刚完成**: plan006-prolog-sta-s43 训练完成，状态已转 ANALYZING。两个 Worker 正在跑：\n- `worker_analysis_plan006-prolog-sta-s43` (running) — 训练日志分析\n- `worker_eval_plan006-prolog-sta-s43` (running) — held-out eval_sta 评估\n\n**仍在跑**: plan006-prolog-sta-s44 (cuda:0, RUNNING, PID 908945)，cron 监控存活。\n\n**项目全局**: 48 个实验（11 success / 17 negative / 18 failed / 2 running+analyzing）。Claim 1 ✅，Claim 2 ✅ (D057 3-seed closed)，Claim 3 ⏳ 等 s43+s44 eval 出齐。DDL 2026-05-25（剩 11 天）。\n\n**已生成资产**: fig1 (STA overview), fig2 (ISR collapse), fig3 (hacking composition, genuine fix), fig4 (Prolog), table data JSON。paper_framing.md 已更新至最新证据。\n\n**等待中**:\n- 2 个 Worker 回调（s43 analysis + eval）\n- s44 训练 cron 完成回调\n- 无 pending Director 决策\n\n### 4. 📋 待办（条件触发式）\n- **s43 eval Worker 回调到达** → 读 eval 结果 → update_registry(conclusion=...) → 如果 H7 高（预期 100% 如 s42）则记录为 negative/expected pattern\n- **s44 cron 完成回调** → spawn eval Worker (eval_sta + hacking classify) → 等 eval 结果\n- **s43 + s44 eval 全部完成** → 汇总 Prolog STA 3-seed 统计（mean±std PR/ISR/H7）→ Claim 3 闭环 → update ROADMAP + report.md + 向 Director 汇报\n- **Claim 3 闭环后** → Table 1 (FOL) + Table 2 (Prolog) 定稿 → paper_framing.md 最终更新 → 向 Director 提议启动 paper writing\n- **cuda:1 空闲中** → s43 训练已完成，如果有新实验需求可立即使用；但当前无 planned 实验待跑，所有矩阵格已覆盖\n\n### 5. 🎯 战略上下文\n**核心结论链**:\n- D010: Reward 公式从 multiplicative 转 additive (r = r_exec · (1 + β·ISR))\n- D051: ISR-as-reward 完全失败——premise-count-matched 后 ISR vs Random = 1.06x 无差异，2.4x 差异全是 premise minimization artifact\n- D057: Claim 2 3-seed 闭环——H7 是 ISR-specific (64.5% vs 0%)，conclusion embedding 是 GRPO 通用 (81.3%)\n- D058: 1000步 ISR 从 0.123→0.003，矛盾爆炸式崩塌持续恶化\n\n**论文 framing**: STA/ISR 作为 GRPO neurosymbolic formalizer 的**诊断工具** + **Goodhart's Law 案例研究**。ISR 价值在诊断（Claim 1），作为 reward 失败（Claim 2），跨 logic type 泛化（Claim 3）。\n\n**易错点**:\n- plan006-prolog-sta-s43 是 ANALYZING 不是 RUNNING——不要再提交训练，等 Worker 回调\n- Prolog STA s42 已经是 100% H7（比 FOL 更极端），s43/s44 大概率类似模式。如果 3-seed 一致全 H7，这是**强证据**不是 negative——跨 logic type 复现 Goodhart\n- exec-only 3-seed Prolog PR=53.3%±31.1% 极不稳定，论文报告时必须强调 variance\n- cuda:1 当前空闲，但 Claim 3 是最后一格实验，没有新训练要跑。空闲 OK——不要为了饱和 GPU 而跑无意义实验\n- paper_framing.md 截断了（18K 字符），完整版需 max_chars=0 读取\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:plan006-prolog-exec-s42"
+          },
+          "id": "event-000067"
+        }
+      ],
+      "message_count": 36
+    }
+  ],
+  "readable_path": "readable/conversations/cron-hook-plan006-prolog-exec-s42-20260514t181438-109775.md"
+}

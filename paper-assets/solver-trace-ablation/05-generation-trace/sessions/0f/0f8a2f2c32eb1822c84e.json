@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0f8a2f2c32eb1822c84e",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code d142 registry fix",
+  "task_key": "worker_code_d142-registry-fix_20260519T135843",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d142-registry-fix_20260519T135843_result.json",
+    "occurrence": 1,
+    "bytes": 500,
+    "sha256": "defac1ecb77c686cae6bdcc415157ac3bbc567ed3032bd9719b1e38bae531cac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个实验的 registry metrics 已更新完成。汇总：\n\n| | s55 | s56 | s57 |\n|---|---|---|---|\n| prove_rate | 1.0 | 0.36 | 0.88 |\n| isr | 0.525 | 0.2925 | 0.4497 |\n| TS_pct | 82 | 0 | 1 |\n| CE_pct | 0 | 0 | 20 |\n| PG_pct | 15 | 83 | 15 |\n| CI_pct | 0 | 75 | 0 |\n| genuine_pct | 3 | 17 | 64 |\n\n主要修正：s55 的 CE/PG 被互换了（CE 18→0, PG 0→15）；s56 的 PG 从 91→83，新增 CI=75；s57 的 PG 从 73→15，CE 从 27→20，genuine 从 0→64。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d142-registry-fix.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ce1ad48804f9f8e65be0",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "prep next batch configs",
+  "task_key": "worker_prep_next-batch-configs_20260516T034925",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_next-batch-configs_20260516T034925_result.json",
+    "occurrence": 1,
+    "bytes": 2910,
+    "sha256": "a9616e7855ab869df6f8adb733e3844a0ae6f4124452a8223d277fd8a1c9a81c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总如下：\n\n---\n\n## 服务器状态汇总\n\n### GPU\n| GPU | 型号 | VRAM 占用 | 利用率 | 状态 |\n|-----|------|----------|--------|------|\n| 0 | RTX PRO 6000 Blackwell (98GB) | 79.5/97.9 GB | 15% | 训练中 (PID 604569) |\n| 1 | RTX PRO 6000 Blackwell (98GB) | 80.4/97.9 GB | 98% | 训练中 (PID 604647) |\n\n两块 GPU 均被 β=0.2 ISR sweep 占用，无空闲 GPU。\n\n### 磁盘\n| 挂载点 | 容量 | 已用 | 可用 |\n|--------|------|------|------|\n| / (根) | 30G | 9.1G (31%) | 21G |\n| /root/autodl-tmp (数据盘) | 250G | 141G (57%) | 110G |\n\n数据盘明细：outputs=110G, models=31G, hf_cache=105M。\n\n### Git\n`/root/solver-trace-ablation` 不是 git 仓库（代码直接部署，非 clone）。\n\n---\n\n## 配置文件清单\n\n### 已有配置\n| 文件 | reward_mode | β | seed |\n|------|------------|---|------|\n| grpo_additive_bonus.yaml | additive_bonus | 0.3 | 42 |\n| grpo_additive_bonus_b01.yaml | additive_bonus | 0.1 | 42 |\n| grpo_additive_bonus_b02.yaml | additive_bonus | 0.2 | 42 |\n| grpo_additive_random.yaml | additive_random | 0.3 | 42 |\n| grpo_additive_random_b01.yaml | additive_random | 0.1 | 42 |\n| plan018_random_b01_s43.yaml | additive_random | 0.1 | 43 |\n| plan018_random_b01_s44.yaml | additive_random | 0.1 | 44 |\n\n### 本次新建配置\n| 文件 | reward_mode | β | seed | 用途 |\n|------|------------|---|------|------|\n| grpo_additive_bonus_b005.yaml | additive_bonus | 0.05 | 42 | P1: β=0.05 ISR base |\n| sweep_isr_b005_s43.yaml | additive_bonus | 0.05 | 43 | P1: β=0.05 ISR s43 |\n| sweep_isr_b005_s44.yaml | additive_bonus | 0.05 | 44 | P1: β=0.05 ISR s44 |\n| sweep_random_b01_s45.yaml | additive_random | 0.1 | 45 | P2: random β=0.1 s45 |\n\n---\n\n## 需注意的问题\n\n**sweep_isr_b005_s42 可能不需要重跑**：该目录（31GB）包含完整的 checkpoint-500，trainer_state 显示 `should_training_stop=true`，reward_log 中 `beta_t=0.05` 正确。训练看起来已正常完成 500 步。上下文说\"D098 bug 被 killed 需重跑\"，但实际数据显示训练已完成且 β 值正确。建议先用 eval_sta.py 评估该 checkpoint，确认结果是否可用再决定是否重训。\n\n**磁盘压力**：数据盘 57% 已用，每个训练输出约 16-31GB。同时跑两个新实验前需确认空间充足（当前 110G 可用，足够 3-4 个并行实验）。\n\n---\n\n## 下一批就绪度\n\n| 实验 | 配置 | 输出目录 | 就绪 |\n|------|------|---------|------|\n| P1: β=0.05 ISR s42 | ✅ grpo_additive_bonus_b005.yaml | ⚠️ 已有完整输出，需确认是否可复用 |  |\n| P1: β=0.05 ISR s43 | ✅ sweep_isr_b005_s43.yaml | 空 | ✅ |\n| P1: β=0.05 ISR s44 | ✅ sweep_isr_b005_s44.yaml | 空 | ✅ |\n| P2: random β=0.1 s45 | ✅ sweep_random_b01_s45.yaml | 空 | ✅ |\n\n等 β=0.2 训练完成释放 GPU 后即可提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-next-batch-configs.md"
+}

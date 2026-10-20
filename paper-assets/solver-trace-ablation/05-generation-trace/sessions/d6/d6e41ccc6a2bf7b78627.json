@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d6e41ccc6a2bf7b78627",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops d134 random pipeline full sync",
+  "task_key": "worker_ops_d134-random-pipeline-full-sync_20260518T174303",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d134-random-pipeline-full-sync_20260518T174303_result.json",
+    "occurrence": 1,
+    "bytes": 1129,
+    "sha256": "19111a01b9cad93a02f518a63c8425b465bb173d1a6ada98690302dff0651f5f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All registry updates complete. Here's the summary:\n\n| seed | train | eval | classify | registry | 关键指标 |\n|------|-------|------|----------|----------|---------|\n| s47 | 500/500 ✅ | ✅ | ✅ | DONE/success | PR=89%, ISR=0.086, H1=88.8%, H7=0%, H8=4.5%, genuine=6.7% |\n| s48 | 25/500 🔄 | — | — | RUNNING (cron registered) | step 25, reward=0, prove_rate=0% (early) |\n| s49 | — | — | — | PREPARING | not started |\n| s50 | — | — | — | PREPARING | not started |\n| s51 | — | — | — | PREPARING | not started |\n\n**GPU**: cuda:0 — PID 121901, 84368 MiB / 97887 MiB, 90% util (s48 training)\n\n**Disk**: 223G / 250G (89%) — 28G free. Each completed seed with model weights takes ~15G. After s48 finishes + eval, disk will be tight for s49-s51. Pipeline should handle cleanup of intermediate checkpoints per C003, but worth monitoring.\n\n**Pipeline**: s48 training at step 25/500, ETA ~1h 7min remaining. The pipeline tmux session (d134-pipeline) is managing sequential execution of s47→s51. s49-s51 will run sequentially after s48 completes its train+eval+classify cycle."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-d134-random-pipeline-full-sync.md"
+}

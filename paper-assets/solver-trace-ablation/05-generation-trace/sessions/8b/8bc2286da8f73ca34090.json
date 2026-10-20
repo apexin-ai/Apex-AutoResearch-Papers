@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8bc2286da8f73ca34090",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "fix normalize body paren and spotcheck",
+  "task_key": "worker_fix_normalize-body-paren-and-spotcheck_20260516T073129",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_normalize-body-paren-and-spotcheck_20260516T073129_result.json",
+    "occurrence": 1,
+    "bytes": 1851,
+    "sha256": "21b80fcf1e560073da153b26f59cb6970b74cfd93234ad11db6403110e2d2dc9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both folio_732 and folio_959 were in the original 23 genuine (not caught by old H7 detection). Here's the complete report:\n\n---\n\n## Report\n\n### 1. normalize_for_match() fix (lines 73-97)\n\nAdded `strip_quantifier_body_parens()` — a new function that iteratively strips redundant parentheses wrapping the body of quantifier chains:\n\n```python\ndef strip_quantifier_body_parens(s):\n    # Matches: ∃x (Body) or ∀x ∃y (Body) etc.\n    # Regex: ^((?:[∀∃]\\w+\\s+)+)\\((.+)\\)$\n    # Strips outer body-parens only when inner content is balanced\n    # Loops until no more strippable parens remain (handles nesting)\n```\n\nCalled in `normalize_for_match()` after `strip_outer_parens_recursive()`, before final whitespace collapse.\n\nExamples:\n- `∃x (Hard(x))` → `∃x Hard(x)`\n- `∀x (¬A(x))` → `∀x ¬A(x)`\n- `∀x (∃y (P(x,y)))` → `∀x ∃y P(x,y)`\n- `∃x (ClumsyFoodie(x) ∧ GoesOutFrequently(x))` → `∃x ClumsyFoodie(x) ∧ GoesOutFrequently(x)`\n\nSafe: won't strip function-call parens like `Hard(x)`, and won't strip when inner parens are unbalanced (e.g., `∃x (A(x)) ∧ B(x)`).\n\n### 2. plan002-additive-b01-s42 (14 genuine)\n\n**0 body-paren H7 misses** among all 81 proved samples. The 14 genuine remains **14**.\n\n### 3. exp1-isr-b03-s43-r3 (23 genuine → remaining after audit)\n\n**1 NEW body-paren H7 miss** (beyond already-confirmed folio_732):\n\n| ID | Index | Premise | Conclusion | Match |\n|---|---|---|---|---|\n| folio_732 | 86 | `∃x (Hard(x))` | `∃x Hard(x)` | already confirmed |\n| **folio_959** | **99** | `∃x ClumsyFoodie(x) ∧ GoesOutFrequently(x)` | `∃x (ClumsyFoodie(x) ∧ GoesOutFrequently(x))` | **NEW** |\n\nCorrected genuine:\n- Original: 23\n- − folio_558 (H8): 22\n- − folio_732 (body-paren H7): 21\n- − folio_959 (body-paren H7): **20**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-normalize-body-paren-and-spotcheck.md"
+}

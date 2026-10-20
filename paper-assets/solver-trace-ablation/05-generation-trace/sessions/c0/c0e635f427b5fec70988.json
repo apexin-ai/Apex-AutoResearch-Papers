@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c0e635f427b5fec70988",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "verify d154 8b exec s42 k8",
+  "task_key": "worker_verify_d154-8b-exec-s42-k8_20260522T045000",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_d154-8b-exec-s42-k8_20260522T045000_result.json",
+    "occurrence": 1,
+    "bytes": 568,
+    "sha256": "d2c183cd30aff0f43bc3777cb8f06827d7908af6c608dab24fe66edf653353c7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练正在进行中。当前状态：\n\n- **步数**: 20/500 (4%)\n- **运行时间**: ~4分12秒\n- **平均步速**: ~13.6s/step\n- **预计剩余**: ~1小时49分\n- **最新 reward**: step 20 reward=0.1875, prove_rate=0.188, ISR=0.060\n- **Loss**: 已开始产生非零梯度（step 10 起），最近 loss=0.359, grad_norm=7.375\n- **parse_rate**: 稳定 1.000\n- **reward 趋势**: 从 step 6-8 的 0 逐步爬升，step 19 达到 0.4375，step 20 回落到 0.1875（正常波动）\n\n训练正常运行，预计约 1 小时 50 分后完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-d154-8b-exec-s42-k8.md"
+}

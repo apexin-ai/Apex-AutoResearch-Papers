@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c99e2b7455effcecae7f",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ssh exec retrain then warmstart",
+  "task_key": "worker_ssh_exec-retrain-then-warmstart_20260516T154159",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_exec-retrain-then-warmstart_20260516T154159_result.json",
+    "occurrence": 1,
+    "bytes": 756,
+    "sha256": "95535ac09e947706a91ea40d3a69e894f648c3b4f2e1075f7779d91807034d0f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exec-only retrain running on cuda:0. Summary so far:\n\n**Completed:**\n- Modified `train_grpo.py`: `save_steps`/`save_total_limit` now configurable via YAML, added `_is_h7()` function + H7 gate in isr_gated mode with `h7_blocked` tracking\n- Created `configs/grpo_exec_retrain.yaml` (500 steps, save every 50, keep 10 checkpoints)\n- Created `configs/grpo_isr_gated_warmstart_v2.yaml` (pointing to checkpoint-200)\n- Submitted exec-only retrain on cuda:0 (PID in tmux `exec-retrain`)\n\n**First steps:**\n- step 1: prove_rate=0.125, parse_rate=1.0\n- step 3: prove_rate=0.375 (non-zero, training healthy)\n- ~6.3s/step → checkpoint-200 expected in ~21 min\n\nWill check back at step ~45 and continue polling until checkpoint-200 is ready."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-exec-retrain-then-warmstart.md"
+}

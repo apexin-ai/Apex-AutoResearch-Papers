@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "efb902aa844470f3f249",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "paper writing discussion",
+  "task_key": "worker_paper_writing_discussion_20260514T193516",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_discussion_20260514T193516_result.json",
+    "occurrence": 1,
+    "bytes": 782,
+    "sha256": "aa1e884660d82cd7cc9d498a5c2a099e9ece80ea0f7ba2c25ac92dcd77c7ab4e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Written. The section has 5 paragraphs (~590 words):\n\n1. **What ISR Measures---and What It Does Not** — syntactic necessity ≠ semantic faithfulness; ρ=−0.049 finding; dual semantics of low ISR (redundant coding vs. metric gaming per C006)\n2. **The Premise-Count Confound** — LOO bias from component count; 1.06× after matching; general warning for ablation-based metrics\n3. **Meta-Level Goodhart's Law: Implications** — regress problem; dose-response mapped to Gao et al. trajectory; observer/optimizer asymmetry; ISR = post-hoc only\n4. **Single-Seed Unreliability** — PR σ=±47pp divergence; multi-seed + structural diagnostics as standard practice\n5. **Limitations** — single model, single dataset, syntactic-only, three seeds, solver-specific"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-discussion.md"
+}

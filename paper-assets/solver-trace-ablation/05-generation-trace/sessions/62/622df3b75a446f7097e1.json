@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0",
+  "id": "622df3b75a446f7097e1",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "writing paper method",
+  "task_key": "worker_writing_paper-method_20260514T184910",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_paper-method_20260514T184910_result.json",
+    "occurrence": 1,
+    "bytes": 3174,
+    "sha256": "49b816911793b959d464c48664881d4d08785d338c9485b60c80df4cf24bf440"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Method section drafted and registered. Output report:\n\n```json\n{\n  \"section\": \"Method (Section 3)\",\n  \"word_count\": 1010,\n  \"file\": \"artifacts/_project/paper/method.tex\",\n  \"citations_needed\": [\n    \"mccune2010prover9 (Prover9)\",\n    \"folio (FOLIO dataset)\",\n    \"deepseekmath (GRPO)\",\n    \"demillo1978 (mutation testing origin)\",\n    \"jia-harman-survey (mutation testing survey)\",\n    \"shapley-lime (feature attribution — placeholder, split into specific Shapley/LIME cites)\"\n  ],\n  \"figures_needed\": [\n    \"fig:sta_overview (STA protocol overview, referenced in §3.3)\"\n  ],\n  \"tables_needed\": [],\n  \"algorithms\": [\n    \"Algorithm 1: Solver Trace Ablation (STA) — requires algorithmic package\"\n  ],\n  \"notes\": [\n    \"Word count ~1010, under the 1200 budget — leaves room for reviewer-requested expansions\",\n    \"Hacking taxonomy lists all 7 modes (H1, H7, H3, tautological collapse, repetition collapse, contradiction explosion, query-as-fact gaming); writing_plan said 6 but actual count is 7 per task spec\",\n    \"Premise count bias discussed in §3.4 as explicit paragraph — critical for Claim 2 interpretation\",\n    \"Convex formulation mentioned as discarded with rationale (penalty effect), not as active condition\",\n    \"ISR explicitly scoped as syntactic necessity, not semantic faithfulness — preempts reviewer concern\",\n    \"LaTeX needs: algorithm2e or algorithmic package, amsmath for equations\",\n    \"\\\\cite{shapley-lime} is a placeholder — split into actual Shapley (1953) and LIME (Ribeiro et al. 2016) citations\"\n  ]\n}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "section": "Method (Section 3)",
+              "word_count": 1010,
+              "file": "artifacts/_project/paper/method.tex",
+              "citations_needed": [
+                "mccune2010prover9 (Prover9)",
+                "folio (FOLIO dataset)",
+                "deepseekmath (GRPO)",
+                "demillo1978 (mutation testing origin)",
+                "jia-harman-survey (mutation testing survey)",
+                "shapley-lime (feature attribution — placeholder, split into specific Shapley/LIME cites)"
+              ],
+              "figures_needed": [
+                "fig:sta_overview (STA protocol overview, referenced in §3.3)"
+              ],
+              "tables_needed": [],
+              "algorithms": [
+                "Algorithm 1: Solver Trace Ablation (STA) — requires algorithmic package"
+              ],
+              "notes": [
+                "Word count ~1010, under the 1200 budget — leaves room for reviewer-requested expansions",
+                "Hacking taxonomy lists all 7 modes (H1, H7, H3, tautological collapse, repetition collapse, contradiction explosion, query-as-fact gaming); writing_plan said 6 but actual count is 7 per task spec",
+                "Premise count bias discussed in §3.4 as explicit paragraph — critical for Claim 2 interpretation",
+                "Convex formulation mentioned as discarded with rationale (penalty effect), not as active condition",
+                "ISR explicitly scoped as syntactic necessity, not semantic faithfulness — preempts reviewer concern",
+                "LaTeX needs: algorithm2e or algorithmic package, amsmath for equations",
+                "\\cite{shapley-lime} is a placeholder — split into actual Shapley (1953) and LIME (Ribeiro et al. 2016) citations"
+              ]
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-paper-method.md"
+}

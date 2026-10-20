@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "87c8b6dc9458b35e9097",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "train plan002 additive b01 s42",
+  "task_key": "worker_train_plan002-additive-b01-s42_20260514T052749",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_plan002-additive-b01-s42_20260514T052749_result.json",
+    "occurrence": 1,
+    "bytes": 431,
+    "sha256": "f85c0e2d1caf0a93b9e256724311d88fc935e9c4032e088e1b5cc5a62c59a966"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验 **plan002-additive-b01-s42** 已准备完毕：\n\n- Registry: PENDING，parent=plan002-additive-b03-s42\n- 训练命令已验证，与 b03 唯一区别：`--beta 0.1` + 不同 output_dir\n- `save_total_limit=1` / `log_completions=False` 由脚本硬编码，无需额外参数\n- Output dir 干净，数据/config/GPU 全部就绪\n\n等 Director 审批后可直接用 spec 中的 command 提交到 cuda:0。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-plan002-additive-b01-s42.md"
+}

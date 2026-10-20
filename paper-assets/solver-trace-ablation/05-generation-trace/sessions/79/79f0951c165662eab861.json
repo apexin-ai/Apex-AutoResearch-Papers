@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "79f0951c165662eab861",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "eval plan002 b03 s42 h7",
+  "task_key": "worker_eval_plan002-b03-s42-h7_20260515T004256",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_plan002-b03-s42-h7_20260515T004256_result.json",
+    "occurrence": 1,
+    "bytes": 530,
+    "sha256": "fc94700b8925a9fd7208827f6e2418b5d4c72de85ea12a144e1f3d041a9167f8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。plan002-additive-b03-s42 eval 结果：\n\n| 指标 | 值 |\n|------|-----|\n| PR | 18/100 (18%) |\n| Mean ISR | 0.0257 ± 0.0742 |\n| Proved-only ISR | 0.1427 |\n| H7 | 0/18 (0%) |\n| H1 | 14/18 (77.8%) |\n| Genuine | 4/18 (22.2%) |\n\nCheckpoint 已被清理但 eval 结果此前已产出（`outputs/eval_sta_plan002_additive_b03.json`），H7 分类通过 `classify_h7.py` 完成。注意该实验 conclusion=negative，eval PR 从训练末期的 55% 大幅下降至 18%，泛化能力弱。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-plan002-b03-s42-h7.md"
+}

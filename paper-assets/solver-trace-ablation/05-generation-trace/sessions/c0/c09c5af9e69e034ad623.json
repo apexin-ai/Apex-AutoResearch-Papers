@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "c09c5af9e69e034ad623",
+  "project": "solver-trace-ablation",
+  "kind": "conversation",
+  "title": "paper compile check compress",
+  "task_key": "worker_paper_compile-check-compress_20260514T211257",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_compile-check-compress_20260514T211257.jsonl",
+    "occurrence": 1,
+    "bytes": 180,
+    "sha256": "02110ca75b64ce3444acc234c3fda9869e6b69c5a4e1baec609ddfdddafc1b62"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T21:13:04.086362+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 11:10pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_compile-check-compress_20260514T211257"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/paper-compile-check-compress.md"
+}

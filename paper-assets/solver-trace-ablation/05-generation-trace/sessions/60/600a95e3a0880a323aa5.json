@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "600a95e3a0880a323aa5",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_8_1778795127.md",
+  "task_key": "loop_8_1778795127",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_8_1778795127.md",
+    "occurrence": 1,
+    "bytes": 4127,
+    "sha256": "552b17a04a0854efbd77b3c18ac61a0758c95d61e0a1016636ebfcaff9dd50df"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: idle_timeout\nupdated: '2026-05-14T21:39:11+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 只能用 `westd-39279:cuda:0` 和 `westd-39279:cuda:1`，gpu_ids 白名单 = [cuda:0, cuda:1]\n- 数据约束 C001: 所有 plan001/plan013 系实验必须用 `train_500_seed42.jsonl`\n- GPU 隔离 C002: 所有命令必须 `export CUDA_VISIBLE_DEVICES=N`，在 bash -c 内部 export\n- 磁盘 C003: `log_completions=False` + `save_total_limit=1`，output_dir 放 `/root/autodl-tmp/outputs/`\n- 磁盘 240G/250G (96%)，跑任何新实验前必须先清理旧 checkpoint\n- D051 定论: 2.4x ISR 优势已作废，premise-count-matched 1.06x 无差异——论文不能引用旧数据\n- Prolog STA s44: Reviewer 核实为 query-as-fact gaming，**不是 genuine**，strict classifier 有盲区\n- Hacking taxonomy 是 7 种（含第 7 种 query-as-fact），不是 6 种\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-39279, 工作目录 `/root/solver-trace-ablation/`\n- **Python**: conda 环境，激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **GPU**: 2× RTX PRO 6000 Blackwell 96GB，当前空闲（无 RUNNING 实验）\n- **CUDA**: 12.8, PyTorch 2.10.0+cu128\n- **模型**: Qwen3-4B via ModelScope (7.6GB)\n- **Solvers**: Prover9 (LADR 编译), SWI-Prolog 8.4.2 (`/usr/bin/swipl`), Z3 4.16.0.0\n- **磁盘**: 系统盘 30GB (22G free), 数据盘 `/root/autodl-tmp/` 250GB (~10G free, 96% 满)\n- **活跃进程**: 无训练进程。无活跃 cron。\n- **Worker**: `worker_paper_compress-body-to-8p_20260514T213311` 正在运行但已 **hit rate limit**（resets 11:10pm UTC），turn_count=1，实质未产出\n\n### 3. 📊 当前状态\n- **阶段**: ✍️ Writing + DDL 2026-05-25（剩 11 天）\n- **实验**: 50 个全部完成（success 12 / negative 18 / failed 18 / killed 2），无 RUNNING/PREPARING\n- **Claims**: ✅ Claim 1 (STA 诊断能力) | ✅ Claim 2 (Goodhart/ISR 无结构优势, D057) | ✅ Claim 3 (跨逻辑泛化, D059 Reviewer-corrected: 3/3 gaming)\n- **论文写作**: writing_plan.yaml 已 Director approved (2026-05-14)。Paper compress-body-to-8p Worker 已派但 hit rate limit，未产出。Method + Experiments Workers 状态未知（report.md 说\"进行中\"但 list_workers 只显示 compress worker）\n- **等待中**: compress-body-to-8p Worker rate limit reset (~11:10pm UTC)。无 cron 回调。无 Director 待决策项\n\n### 4. 📋 待办（条件触发式）\n- compress-body-to-8p Worker rate limit 解除 → 检查其是否自动恢复；若仍 stuck → cancel 并重新 spawn\n- 论文章节草稿未全部完成 → 下一个 session 需确认 Method / Experiments / Introduction / Related Work 等各章节写作进度，未完成的立即派 Worker\n- Paper Agent / Reviewer 要求补充实验 → 用空闲 cuda:0/cuda:1 跑（先清磁盘）\n- 磁盘 96% → 派 Worker SSH 清理 `/root/autodl-tmp/outputs/` 下旧 checkpoint，释放空间\n- 论文初稿完成 → submit_paper_to_review\n\n### 5. 🎯 战略上下文\n- **核心结论**: STA/ISR 是 GRPO neurosymbolic formalizer 的诊断工具 + Goodhart's Law 案例研究。ISR-as-reward 全剂量失败（低剂量 meta-Goodhart，高剂量 classic Goodhart）。Prolog 3/3 gaming 是比 FOL 更干净的 Goodhart 证据。7-mode hacking taxonomy。\n- **决策链**: D051 (2.4x 作废→1.06x) → D053-D054 (Claim 2 pure negative→Goodhart narrative) → D057 (Claim 2 闭环) → D059 (Claim 3 闭环，启动写作)\n- **易错点**:\n  1. s44 Prolog STA 看起来像 success (PR=0.97, ISR=0.885) 但实际是 query-as-fact gaming——strict classifier Genuine=100% 是 false positive，必须用 functional (n_necessary) 分析\n  2. plan013 (convex random) 和 plan017/018 (additive random) 公式结构不同，**不可简化为 \"additive vs convex\" 对照** (D027)\n  3. ISR β=0.1 hacking rate 69.1% (strict, D044) 不标 \"no hacking\"，标 \"lowest hacking rate\"\n  4. 磁盘极满（96%），任何新实验或大文件操作前必须先清理\n  5. compress Worker 实质未工作（rate limit turn 1），论文写作进度可能比 report.md 暗示的更早期\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-8-1778795127.md"
+}

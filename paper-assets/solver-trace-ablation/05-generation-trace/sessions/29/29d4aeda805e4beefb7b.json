@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "29d4aeda805e4beefb7b",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code r15 classifier validation",
+  "task_key": "worker_code_r15-classifier-validation_20260520T044610",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_r15-classifier-validation_20260520T044610_result.json",
+    "occurrence": 1,
+    "bytes": 1157,
+    "sha256": "46ba13bf4bd132da851cb1e42934f356fd18234e2f66136cb8e45c5a8e45909b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n## 结果\n\n**样本池**: 10 个 eval 文件, 499 个 proved 样本\n- CE=374, CI=30, PG=43, genuine=50, TS=2\n\n**分层抽样**: 82 个样本 (TS 仅 2 个可用)\n\n| Mode | P | R | F1 | N |\n|------|---|---|----|----|\n| CE | 1.00 | 1.00 | 1.00 | 20 |\n| TS | 1.00 | 1.00 | 1.00 | 2 |\n| PG | 1.00 | 1.00 | 1.00 | 20 |\n| CI | 1.00 | 1.00 | 1.00 | 20 |\n| genuine | 1.00 | 1.00 | 1.00 | 20 |\n\n**Cohen's κ = 1.000** — 独立验证器与原始分类器完全一致。\n\n**阈值敏感性**:\n- H7b 量词 delta 参数 (0-4): 无影响（所有 TS 均由精确匹配 H7a 捕获，H7b 启发式未触发）\n- PG 比率阈值: `>1.0→43`, `>1.5→29`, `>2.0→17`, `>2.5→13`, `>3.0→9` (CE/TS/CI 不变)\n\n**注意**: 原始 classify_h7.py 中 H8(conjunction collapse) 映射为 CI（非 PG）。PG 使用 FOL/NL 前提数量比较检测。两种方法的 H8→CI 映射一致。\n\n**输出文件** (`/root/autodl-tmp/outputs/classifier_validation/`):\n- `stratified_samples.json` (142KB)\n- `independent_verification.json` (25KB)\n- `precision_recall.json`\n- `threshold_sensitivity.json`\n- `validation_table.tex`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-r15-classifier-validation.md"
+}

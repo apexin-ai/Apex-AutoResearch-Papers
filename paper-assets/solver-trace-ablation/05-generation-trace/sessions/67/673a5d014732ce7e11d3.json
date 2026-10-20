@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "673a5d014732ce7e11d3",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops verify cuda0 resubmit",
+  "task_key": "worker_ops_verify-cuda0-resubmit_20260514T231054",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-cuda0-resubmit_20260514T231054_result.json",
+    "occurrence": 1,
+    "bytes": 677,
+    "sha256": "b75f7eefa0ebde54588e3f4d54730f88ef92348269d7c59c9a42e0a77fd840c7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**重要发现：原始实验 exp1-isr-b03-s43 实际上已完成全部 500 步训练。**\n\n- reward_log.jsonl 记录到 step 500（最后时间戳 23:00:56）\n- checkpoint-500 和最终模型权重都已保存完整\n- SIGHUP 发生在训练完成之后（可能是 tmux/连接断开）\n\n**不需要重新提交 r2。** 原始实验结果完好，output_dir 有完整的最终模型（~31GB）。\n\n建议下一步：\n1. 用 eval_sta.py 对 `/root/autodl-tmp/outputs/exp1_isr_b03_s43/` 做统一评估\n2. 将 exp1-isr-b03-s43 的 registry 状态更新为 COMPLETED\n3. 取消 exp1-isr-b03-s43-r2 的 PREPARING 状态\n\n是否需要执行这些操作？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-cuda0-resubmit.md"
+}

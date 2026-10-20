@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "17e6d134e3b59ff238bf",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_10_1778818793.md",
+  "task_key": "loop_10_1778818793",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_10_1778818793.md",
+    "occurrence": 1,
+    "bytes": 4577,
+    "sha256": "34391ec04560a50e9b2c28bfd5afe24003dadd49c3287efa92ce4fe61c2d3909"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: idle_timeout\nupdated: '2026-05-15T04:14:10+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**仅 cuda:0 和 cuda:1**（westd-39279），config `gpu_ids` 明确限定，不可用其他设备\n- submit_training_job 命令必须包含 `bash -c \"export CUDA_VISIBLE_DEVICES=N && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/solver-trace-ablation && ...\"`——缺任何一段都会静默失败（exp1-random-b03-s44 教训）\n- kill_job 后**必须 SSH 验证子进程已终止**——kill_job 只杀 tmux wrapper，不杀 Python 子进程\n- **磁盘 96% (240G/250G)**：output_dir 必须放 `/root/autodl-tmp/outputs/`，`log_completions=False` + `save_total_limit=1`，eval 后立即清理 checkpoint\n- D051 定论：premise-count-matched ISR 优势仅 1.06x，**论文禁止写 2.4x**（已作废）\n- s44 Prolog STA：Reviewer 核实为 query-as-fact gaming，**不是 genuine**，H7 分类器盲区需 Discussion 段讨论\n- Hacking taxonomy **7 种**（含第 7 种 query-as-fact），不是 6 种\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-39279（AutoDL），2× RTX PRO 6000 Blackwell 94GB\n- **工作目录**: `/root/solver-trace-ablation/`\n- **Python**: `/root/miniconda3/bin/python`，激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **CUDA**: 12.8, PyTorch 2.10.0+cu128\n- **模型**: Qwen3-4B（ModelScope 下载，7.6GB）\n- **Solvers**: Prover9 (LADR 2009-11A 源码编译), SWI-Prolog 8.4.2 (`/usr/bin/swipl`), Z3 4.16.0.0\n- **数据盘**: `/root/autodl-tmp/`（250GB，当前 96% 占用）\n- **输出**: `/root/autodl-tmp/outputs/`\n- **活跃进程**: exp1-random-b03-s43-r4（PID 117566, cuda:0, cron 监控中）\n- **W&B**: 配置已存在，项目实验会自动上报\n\n### 3. 📊 当前状态\n- **阶段**: Writing + 审稿进行中 | **DDL: 2026-05-25（剩 11 天）**\n- **实验总计**: 65 个（DONE 64 + RUNNING 1）。success 18 / negative 19 / failed 21\n- **RUNNING**: `exp1-random-b03-s43-r4`（random β=0.3 s43 第 4 次重试，因 checkpoint 误删 D067/D068 重训，cuda:0，cron 活跃）\n- **Claims**: 三条全部闭环（Claim 1 STA 诊断, Claim 2 Goodhart/ISR 无优势 D057, Claim 3 跨逻辑泛化 D059）\n- **写作**: writing_plan.yaml 已审批（2026-05-14），Method + Experiments Workers 曾启动但当前无活跃 Worker\n- **Worker 池**: 0 个运行中（违反 L1 #4，但处于 handoff 过渡期）\n- **待处理 cron**: exp1-random-b03-s43-r4 完成回调\n\n### 4. 📋 待办（条件触发式）\n- exp1-random-b03-s43-r4 cron 回调到达 → spawn Worker 做 eval_sta.py（用 proofwriter 测试集，**不是** test_100.jsonl，D063 教训）→ 更新 registry → 若 success 则 random β=0.3 三 seed 闭环（s42 已有、s44-r2 success、s43-r4 补完）\n- random s43-r4 闭环后 → 更新 paper_framing.md β=0.3 数据表 → 通知 Director 全部数据就绪\n- 论文写作 Workers 应立即重新启动（Method / Experiments / Introduction / Related Work 各一个 Worker）——DDL 仅剩 11 天\n- 磁盘 96% → 写作期间如需新实验，先 spawn Worker 清理旧 checkpoint\n- 如 Paper Agent / Reviewer 要求补充实验 → cuda:1 当前空闲可用\n\n### 5. 🎯 战略上下文\n- **核心结论**: ISR 是诊断工具而非可靠 reward。STA 揭示 GRPO 训练中 7 种 reward hacking 模式。ISR-as-reward 展现 meta-level Goodhart 效应（低剂量 game metric 本身，高剂量产生极端跨 seed 不稳定性）。Random reward 作为对照证明 ISR 无真实结构优势（premise-count-matched 1.06x）\n- **决策链关键节点**: D051（2.4x→1.06x 定论）→ D057（3-seed ISR+random 闭环）→ D059（Prolog 泛化闭环）→ D060-D066（β=0.3 叙事从 PR collapse 转为 multimodal Goodhart instability，但 D066 暂停等 proofwriter 正确测试集验证）→ D067/D068（checkpoint 误删 → 重训）\n- **最易判断错的事**: ① D060 \"Goodhart instability\" 叙事**已被 D066 暂停**，需要 exp1-random-b03-s43-r4 在正确测试集上的结果才能最终确认；② eval 必须用 `proofwriter_*.jsonl` 测试集，**不是** `test_100.jsonl`（D062/D063 踩坑：之前的 eval 用错了测试集）；③ β=0.3 ISR 三 seed 数据（s42 PR=18%, s43 PR=86%, s44 PR=95%）展现 multimodal 而非单一失败模式——不要试图归纳为一种\n- **时间紧迫**: DDL 2026-05-25，论文草稿必须在 ~5 天内完成以留审稿迭代时间。exp1-random-b03-s43-r4 完成后所有实验数据就绪，写作是唯一瓶颈\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10-1778818793.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f13e495a14feaa50f454",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "viz paper figures v3",
+  "task_key": "worker_viz_paper-figures-v3_20260515T032514",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_viz_paper-figures-v3_20260515T032514_result.json",
+    "occurrence": 1,
+    "bytes": 1049,
+    "sha256": "7e83b2ffef6e6612d54d7c32b2d4e17077ded6ddd0eb7a82f5b0739971060643"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 figures generated successfully (PDF + PNG each) at `/root/solver-trace-ablation/figures/`:\n\n| File | PDF size | PNG size |\n|------|----------|----------|\n| `fig2_isr_collapse.pdf/.png` | 18 KB | 103 KB |\n| `fig3_hacking_composition.pdf/.png` | 25 KB | 116 KB |\n| `fig4_prolog_cross_logic.pdf/.png` | 23 KB | 117 KB |\n\nGenerator script: `/root/solver-trace-ablation/figures/gen_figs.py`\n\n**Figure summaries:**\n- **Fig 2** — Dual Y-axis: PR (blue, left) climbs 32→93→96%, ISR* (orange, right) drops 0.642→0.132→0.003; \"Structural collapse\" shaded between 500–1000 steps.\n- **Fig 3** — 5-condition stacked bar (H1/H7/Genuine/Other %) with two annotations: ISR β=0.3 PR=18% callout, and arrow highlighting ISR β=0.1's unique H7-only pathway (64.5%).\n- **Fig 4** — 2-panel scatter: left shows Prolog Exec-only ISR* (all <0.1, dashed reference line at 0.1); right shows Prolog STA Genuine=0% with per-seed gaming pathways (100% H7 / 97.4% H1 / 97.9% H7 functional).\n\nFiles ready for `register_artifact`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/viz-paper-figures-v3.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "705b942143f863c24b35",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "train 8b dryrun and launch",
+  "task_key": "worker_train_8b-dryrun-and-launch_20260522T031501",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_8b-dryrun-and-launch_20260522T031501_result.json",
+    "occurrence": 1,
+    "bytes": 690,
+    "sha256": "81fa76a0a09db152dff8f9d088abb20d5c75cedbfbdda1f8119c81e718fa44a3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**阻塞：GPU 0 被 s46 训练占用。**\n\nPID 947050 正在运行 `exec_only_s46_1000_k4.yaml`，已跑 ~59 分钟（10:16 启动），占用 63.7GB 显存。按 s45 的 8139s/1000步 估算，还需 ~76 分钟完成。\n\n服务器只有 1 张 GPU，无法并行跑 dry-run。\n\n**Phase 3 (s45) 结果已出：**\n- checkpoint: 模型权重直接存在输出目录（非 checkpoint-1000 子目录）\n- eval_sta.json: 存在 (183KB)\n- reward_log.jsonl: 1003 行（1000 步完成）\n- 最终指标: parse_rate=1.0, prove_rate=0.1495, mean_isr=0.0734\n\n**需要你决定：** kill s46 训练立即开始 8B dry-run + s42，还是等 s46 跑完（~76 min）再开始？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-8b-dryrun-and-launch.md"
+}

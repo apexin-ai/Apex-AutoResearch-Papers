@@ -1,0 +1,823 @@
+{
+  "schema_version": "1.0",
+  "id": "608bff4ce5c69c95e7df",
+  "project": "solver-trace-ablation",
+  "kind": "worker",
+  "title": "fix d134 analysis rankbiserial",
+  "task_key": "worker_fix_d134-analysis-rankbiserial_20260518T150748",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_d134-analysis-rankbiserial_20260518T150748.log",
+    "occurrence": 1,
+    "bytes": 109351,
+    "sha256": "5d75812a71b1a6142b85dba220463d68b04d09517ab8be4907a186d66d13b0ec"
+  },
+  "statistics": {
+    "messages": 18,
+    "user_turns": 0,
+    "tool_calls": 4,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 6,
+      "tool_call": 4,
+      "tool_result": 4,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+                "session_id": "b75062d4-ea86-499d-8438-4ff3b2a5a28e",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "5c0813ec-9487-464d-a4a4-b10a9c8dd6ab",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779126600,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "99cea7ea-e094-4230-8329-a46ba557edfa",
+                "session_id": "b75062d4-ea86-499d-8438-4ff3b2a5a28e"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me break this down:\n1. Read the local script\n2. SSH to remote server and write it (with shebang fix)\n3. Run it and report results\n\nLet me start by reading the local script.",
+              "signature": "EuwCClkIDRgCKkDl8LYQ4uz72HP+9ke3s0urxhWbzYNU5ZnRiePo7Y5YhixWwNm6u3GISvl80f1cINZccroBswoBSjBDu+eyeLDBMg9jbGF1ZGUtb3B1cy00LTY4ABIMJvMoP6uPz+tJxKSuGgz4QSY/lSwR31UlbMYiMNNSgbfdjh8tMU1azWgvxEoWzb040B9yDaEbHGuYUd0VL7wzaVIaxMk0lhYLqL4FgyrAAQtU4lUEajFjSw23Lk0jhXMzhFvH4r8nXr0RCC9umQ2au2N22FefLhDkg0UBE7YLeH+xAFxS6zWn3doG6k/6lTMc/ezdWJm/GWWqFQ/aoKmuDcp3oN7x7TksHVI9zvGNKoIGHvY0nU7Cq2k1XZLR/d0cBk04LjD4Z/6+kp6+kP0cSnMcV6vTNX816GwOXZCdSHJyqEx5hQMDvlGEJCHN6HBrS2x3wchK/FdlyS+koeEZLFoGfzxDhQEhsnwKf7WGKhgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b75062d4-ea86-499d-8438-4ff3b2a5a28e",
+            "uuid": "ae4721b4-fd25-4c6a-be36-330ce22ff80e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019WZJfwiQwxHjLzSZoza3nZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 15123,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 15123
+                },
+                "output_tokens": 27,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0124LDC2bvrLPotSQqjawpsA",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/scripts/d134_analysis.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b75062d4-ea86-499d-8438-4ff3b2a5a28e",
+            "uuid": "a3f88523-9287-4dd2-b4bb-bd63ce299e4d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019WZJfwiQwxHjLzSZoza3nZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 15123,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 15123
+                },
+                "output_tokens": 27,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-18T15:08:01.948Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0124LDC2bvrLPotSQqjawpsA",
+              "type": "tool_result",
+              "content": "1\t#!/usr/bin/env python3\n2\t\"\"\"D134 experiment analysis: multi-seed ISR vs Random, 4B GRPO training.\n3\tReads taxonomy data from classify.json, taxonomy.json, or top-level taxonomy files.\n4\tComputes summary stats, statistical tests (Fisher, Mann-Whitney, permutation, Bayes Factor),\n5\tand BCa bootstrap CIs. Outputs appendix-ready markdown.\n6\t\"\"\"\n7\t\n8\timport argparse\n9\timport json\n10\timport re\n11\timport sys\n12\tfrom pathlib import Path\n13\t\n14\timport numpy as np\n15\timport pandas as pd\n16\tfrom scipy import stats\n17\tfrom scipy.special import betaln\n18\t\n19\tCONDITION_MAP = [\n20\t    (\"d134_4b_isr\", \"ISR\"),\n21\t    (\"d134_4b_random\", \"RANDOM\"),\n22\t    (\"plan002_additive\", \"ISR\"),\n23\t    (\"plan018_additive_random\", \"RANDOM\"),\n24\t    (\"plan018_random\", \"RANDOM\"),\n25\t]\n26\t\n27\tMODE_PREFIXES = {\n28\t    \"d134_only\": [\"d134_4b\"],\n29\t    \"all\": [\"d134_4b\", \"plan002_additive_b01\", \"plan018_additive_random_b01\", \"plan018_random\"],\n30\t}\n31\t\n32\t\n33\tdef parse_args():\n34\t    p = argparse.ArgumentParser(description=\"D134 multi-seed analysis and statistical tests\")\n35\t    p.add_argument(\"--data_dir\", type=str, default=\"/root/autodl-tmp/outputs\",\n36\t                   help=\"Directory containing experiment outputs\")\n37\t    p.add_argument(\"--mode\", type=str, default=\"d134_only\", choices=list(MODE_PREFIXES),\n38\t                   help=\"d134_only = matched 5+5 design (default); all = include original seeds\")\n39\t    p.add_argument(\"--prefix\", type=str, default=None,\n40\t                   help=\"(Legacy) Single prefix filter; overrides mode/prefixes\")\n41\t    p.add_argument(\"--prefixes\", type=str, default=None,\n42\t                   help=\"Comma-separated prefixes; overrides --mode\")\n43\t    p.add_argument(\"--output\", type=str, default=None,\n44\t                   help=\"Write markdown summary to this file\")\n45\t    p.add_argument(\"--n_perm\", type=int, default=10000,\n46\t                   help=\"Number of permutations for permutation test\")\n47\t    p.add_argument(\"--n_boot\", type=int, default=10000,\n48\t                   help=\"Number of bootstrap resamples for BCa CI\")\n49\t    p.add_argument(\"--seed\", type=int, default=42,\n50\t                   help=\"Random seed for permutation/bootstrap\")\n51\t    return p.parse_args()\n52\t\n53\t\n54\t# --- Data loading ---\n55\t\n56\tdef match_condition(name: str) -> str | None:\n57\t    best_prefix = \"\"\n58\t    best_cond = None\n59\t    for prefix, cond in CONDITION_MAP:\n60\t        if name.startswith(prefix) and len(prefix) > len(best_prefix):\n61\t            best_prefix = prefix\n62\t            best_cond = cond\n63\t    return best_cond\n64\t\n65\t\n66\tdef extract_seed(name: str) -> int | None:\n67\t    m = re.search(r'_s(\\d+)', name)\n68\t    return int(m.group(1)) if m else None\n69\t\n70\t\n71\tdef load_eval_results(path: Path) -> dict | None:\n72\t    if not path.exists():\n73\t        return None\n74\t    with open(path) as f:\n75\t        data = json.load(f)\n76\t    if \"eval_results\" in data:\n77\t        return data[\"eval_results\"]\n78\t    return data\n79\t\n80\t\n81\tdef load_taxonomy_unified(path: Path) -> dict | None:\n82\t    with open(path) as f:\n83\t        raw = json.load(f)\n84\t    t = raw.get(\"taxonomy\", {})\n85\t    proved = t.get(\"proved\", 0)\n86\t    if proved == 0:\n87\t        return None\n88\t    h7 = t.get(\"H7\", 0)\n89\t    h1 = t.get(\"H1_exact\", 0)\n90\t    h8 = t.get(\"H8\", 0)\n91\t    genuine = t.get(\"genuine\", 0)\n92\t    return {\n93\t        \"n_total\": 100, \"n_proved\": proved,\n94\t        \"h7_total_count\": h7, \"h7_total_rate\": h7 / proved,\n95\t        \"h1_strict_count\": h1, \"h8_conjunction_collapse_count\": h8,\n96\t        \"genuine_count\": genuine, \"genuine_rate\": genuine / proved,\n97\t        \"content_independent_count\": 0,\n98\t    }\n99\t\n100\t\n101\tdef load_taxonomy_verification(path: Path) -> dict | None:\n102\t    with open(path) as f:\n103\t        raw = json.load(f)\n104\t    proved = raw.get(\"proved\", 0)\n105\t    if proved == 0:\n106\t        return None\n107\t    tax = raw.get(\"taxonomy\", {})\n108\t    h7 = tax.get(\"h7\", {}).get(\"count\", 0)\n109\t    h1 = tax.get(\"h1_exact\", {}).get(\"count\", 0)\n110\t    h8 = tax.get(\"h8\", {}).get(\"count\", 0)\n111\t    genuine = tax.get(\"genuine\", {}).get(\"count\", 0)\n112\t    return {\n113\t        \"n_total\": raw.get(\"total\", 100), \"n_proved\": proved,\n114\t        \"h7_total_count\": h7, \"h7_total_rate\": h7 / proved,\n115\t        \"h1_strict_count\": h1, \"h8_conjunction_collapse_count\": h8,\n116\t        \"genuine_count\": genuine, \"genuine_rate\": genuine / proved,\n117\t        \"content_independent_count\": 0,\n118\t    }\n119\t\n120\t\n121\tdef discover_runs(data_dir: Path, prefixes: list[str]) -> list[dict]:\n122\t    runs = []\n123\t    seen = set()\n124\t    for entry in sorted(data_dir.iterdir()):\n125\t        name = entry.name\n126\t        if not any(name.startswith(p) for p in prefixes):\n127\t            continue\n128\t        cond = match_condition(name)\n129\t        seed_val = extract_seed(name)\n130\t        if cond is None or seed_val is None:\n131\t            continue\n132\t        key = (cond, seed_val)\n133\t        if key in seen:\n134\t            continue\n135\t        data = None\n136\t        if entry.is_dir():\n137\t            for fname in [\"classify.json\", \"taxonomy.json\"]:\n138\t                data = load_eval_results(entry / fname)\n139\t                if data is not None:\n140\t                    break\n141\t            if data is None:\n142\t                continue\n143\t        elif entry.is_file():\n144\t            if name.endswith(\"_taxonomy_unified.json\"):\n145\t                data = load_taxonomy_unified(entry)\n146\t            elif name.endswith(\"_taxonomy_verification.json\"):\n147\t                data = load_taxonomy_verification(entry)\n148\t            if data is None:\n149\t                continue\n150\t        else:\n151\t            continue\n152\t        seen.add(key)\n153\t        runs.append({\"dir_name\": name, \"seed\": seed_val, \"condition\": cond, \"data\": data})\n154\t    return runs\n155\t\n156\t\n157\tdef compute_row(run: dict) -> dict:\n158\t    d = run[\"data\"]\n159\t    n_proved = d.get(\"n_proved\", 0)\n160\t    n_total = d.get(\"n_total\", 100)\n161\t    h7 = d.get(\"h7_total_count\", 0)\n162\t    h7_rate = d.get(\"h7_total_rate\", h7 / n_proved if n_proved > 0 else 0.0)\n163\t    h1 = d.get(\"h1_strict_count\", 0)\n164\t    h8 = d.get(\"h8_conjunction_collapse_count\", 0)\n165\t    genuine = d.get(\"genuine_count\", 0)\n166\t    genuine_rate = d.get(\"genuine_rate\", genuine / n_proved if n_proved > 0 else 0.0)\n167\t    ci = d.get(\"content_independent_count\", 0)\n168\t    snh = max(genuine - ci, 0)\n169\t    snh_rate = snh / n_proved if n_proved > 0 else 0.0\n170\t    return {\n171\t        \"seed\": run[\"seed\"], \"condition\": run[\"condition\"], \"n_total\": n_total,\n172\t        \"PR\": n_proved, \"H7_count\": h7, \"H7_rate\": h7_rate,\n173\t        \"H1_count\": h1, \"H8_count\": h8,\n174\t        \"genuine_count\": genuine, \"genuine_rate\": genuine_rate,\n175\t        \"CI_count\": ci, \"SNH_count\": snh, \"SNH_rate\": snh_rate,\n176\t    }\n177\t\n178\t\n179\tdef build_table(runs: list[dict]) -> pd.DataFrame:\n180\t    rows = [compute_row(r) for r in runs]\n181\t    df = pd.DataFrame(rows)\n182\t    df = df.sort_values([\"condition\", \"seed\"]).reset_index(drop=True)\n183\t    return df\n184\t\n185\t\n186\t# --- Statistical tests ---\n187\t\n188\tdef fisher_h7_domination(df: pd.DataFrame) -> dict:\n189\t    results = {}\n190\t    for cond in [\"ISR\", \"RANDOM\"]:\n191\t        sub = df[df[\"condition\"] == cond]\n192\t        results[cond] = {\n193\t            \"n\": len(sub),\n194\t            \"h7_dom\": int((sub[\"H7_rate\"] >= 0.5).sum()),\n195\t            \"not_h7_dom\": int((sub[\"H7_rate\"] < 0.5).sum()),\n196\t        }\n197\t    table = np.array([\n198\t        [results[\"ISR\"][\"h7_dom\"], results[\"ISR\"][\"not_h7_dom\"]],\n199\t        [results[\"RANDOM\"][\"h7_dom\"], results[\"RANDOM\"][\"not_h7_dom\"]],\n200\t    ])\n201\t    odds_ratio, p_value = stats.fisher_exact(table, alternative=\"greater\")\n202\t\n203\t    # 95% exact CI via scipy.stats.contingency\n204\t    or_ci_lo, or_ci_hi = np.nan, np.nan\n205\t    try:\n206\t        ct = stats.contingency.odds_ratio(table)\n207\t        ci = ct.confidence_interval(confidence_level=0.95)\n208\t        or_ci_lo, or_ci_hi = ci.low, ci.high\n209\t    except Exception:\n210\t        pass\n211\t\n212\t    return {\n213\t        \"table\": table.tolist(),\n214\t        \"ISR\": results[\"ISR\"],\n215\t        \"RANDOM\": results[\"RANDOM\"],\n216\t        \"odds_ratio\": odds_ratio,\n217\t        \"or_ci_lo\": or_ci_lo,\n218\t        \"or_ci_hi\": or_ci_hi,\n219\t        \"p_value\": p_value,\n220\t    }\n221\t\n222\t\n223\tdef permutation_test_genuine(df: pd.DataFrame, n_perm: int = 10000,\n224\t                              rng_seed: int = 42) -> dict:\n225\t    isr = df[df[\"condition\"] == \"ISR\"][\"genuine_rate\"].values\n226\t    rand = df[df[\"condition\"] == \"RANDOM\"][\"genuine_rate\"].values\n227\t    observed = isr.mean() - rand.mean()\n228\t    pooled = np.concatenate([isr, rand])\n229\t    n_isr = len(isr)\n230\t    rng = np.random.default_rng(rng_seed)\n231\t    count = 0\n232\t    for _ in range(n_perm):\n233\t        perm = rng.permutation(pooled)\n234\t        if perm[:n_isr].mean() - perm[n_isr:].mean() >= observed:\n235\t            count += 1\n236\t    return {\n237\t        \"observed_diff\": float(observed),\n238\t        \"p_value\": count / n_perm,\n239\t        \"n_perm\": n_perm,\n240\t        \"isr_mean\": float(isr.mean()),\n241\t        \"random_mean\": float(rand.mean()),\n242\t    }\n243\t\n244\t\n245\tdef mannwhitney_h7(df: pd.DataFrame) -> dict:\n246\t    isr = df[df[\"condition\"] == \"ISR\"][\"H7_rate\"].values\n247\t    rand = df[df[\"condition\"] == \"RANDOM\"][\"H7_rate\"].values\n248\t    n1, n2 = len(isr), len(rand)\n249\t    u_stat, p_value = stats.mannwhitneyu(isr, rand, alternative=\"greater\")\n250\t    r_rb = 2.0 * u_stat / (n1 * n2) - 1.0 if n1 * n2 > 0 else np.nan\n251\t    return {\n252\t        \"U\": float(u_stat),\n253\t        \"p_value\": float(p_value),\n254\t        \"r_rank_biserial\": float(r_rb),\n255\t        \"isr_median\": float(np.median(isr)),\n256\t        \"random_median\": float(np.median(rand)),\n257\t    }\n258\t\n259\t\n260\tdef bca_bootstrap_ci(df: pd.DataFrame, metric: str, n_boot: int = 10000,\n261\t                      rng_seed: int = 42) -> dict:\n262\t    \"\"\"BCa 95% CI for per-condition means of a metric.\"\"\"\n263\t    result = {}\n264\t    for cond in [\"ISR\", \"RANDOM\"]:\n265\t        vals = df[df[\"condition\"] == cond][metric].values\n266\t        if len(vals) < 2:\n267\t            result[cond] = {\"mean\": float(vals.mean()) if len(vals) else np.nan,\n268\t                            \"ci_lo\": np.nan, \"ci_hi\": np.nan}\n269\t            continue\n270\t        res = stats.bootstrap(\n271\t            (vals,), np.mean, n_resamples=n_boot,\n272\t            confidence_level=0.95, method=\"BCa\",\n273\t            random_state=np.random.default_rng(rng_seed),\n274\t        )\n275\t        result[cond] = {\n276\t            \"mean\": float(vals.mean()),\n277\t            \"ci_lo\": float(res.confidence_interval.low),\n278\t            \"ci_hi\": float(res.confidence_interval.high),\n279\t        }\n280\t    return result\n281\t\n282\t\n283\tdef bayes_factor_h7_domination(df: pd.DataFrame) -> dict:\n284\t    \"\"\"BF10 for H7-domination rate difference (beta-binomial conjugate).\n285\t    H0: ISR and Random share same domination rate.\n286\t    H1: independent rates. Prior: Beta(1,1) on each.\n287\t    \"\"\"\n288\t    isr_sub = df[df[\"condition\"] == \"ISR\"]\n289\t    rand_sub = df[df[\"condition\"] == \"RANDOM\"]\n290\t    k_isr = int((isr_sub[\"H7_rate\"] >= 0.5).sum())\n291\t    n_isr = len(isr_sub)\n292\t    k_rand = int((rand_sub[\"H7_rate\"] >= 0.5).sum())\n293\t    n_rand = len(rand_sub)\n294\t    k_total = k_isr + k_rand\n295\t    n_total = n_isr + n_rand\n296\t\n297\t    # log marginal under H0 (shared rate)\n298\t    log_m_h0 = betaln(1 + k_total, 1 + n_total - k_total) - betaln(1, 1)\n299\t    # log marginal under H1 (independent rates)\n300\t    log_m_h1 = (betaln(1 + k_isr, 1 + n_isr - k_isr) - betaln(1, 1)\n301\t                + betaln(1 + k_rand, 1 + n_rand - k_rand) - betaln(1, 1))\n302\t    log_bf10 = log_m_h1 - log_m_h0\n303\t    bf10 = float(np.exp(log_bf10))\n304\t\n305\t    return {\n306\t        \"k_isr\": k_isr, \"n_isr\": n_isr,\n307\t        \"k_rand\": k_rand, \"n_rand\": n_rand,\n308\t        \"bf10\": bf10,\n309\t        \"log_bf10\": float(log_bf10),\n310\t        \"interpretation\": _interpret_bf(bf10),\n311\t    }\n312\t\n313\t\n314\tdef _interpret_bf(bf: float) -> str:\n315\t    if bf > 100:\n316\t        return \"extreme evidence for H1\"\n317\t    if bf > 30:\n318\t        return \"very strong evidence for H1\"\n319\t    if bf > 10:\n320\t        return \"strong evidence for H1\"\n321\t    if bf > 3:\n322\t        return \"moderate evidence for H1\"\n323\t    if bf > 1:\n324\t        return \"anecdotal evidence for H1\"\n325\t    if bf > 1/3:\n326\t        return \"anecdotal evidence (inconclusive)\"\n327\t    if bf > 1/10:\n328\t        return \"moderate evidence for H0\"\n329\t    return \"strong evidence for H0\"\n330\t\n331\t\n332\tdef condition_stats(df: pd.DataFrame) -> pd.DataFrame:\n333\t    metrics = [\"PR\", \"H7_rate\", \"genuine_rate\", \"SNH_rate\"]\n334\t    rows = []\n335\t    for cond in [\"ISR\", \"RANDOM\"]:\n336\t        sub = df[df[\"condition\"] == cond]\n337\t        row = {\"condition\": cond, \"n_seeds\": len(sub)}\n338\t        for m in metrics:\n339\t            vals = sub[m].values\n340\t            row[f\"{m}_mean\"] = vals.mean()\n341\t            row[f\"{m}_std\"] = vals.std(ddof=1) if len(vals) > 1 else 0.0\n342\t        rows.append(row)\n343\t    return pd.DataFrame(rows)\n344\t\n345\t\n346\t# --- Formatting ---\n347\t\n348\tdef fmt_pct(val: float) -> str:\n349\t    return f\"{val*100:.1f}\\\\%\"\n350\t\n351\tdef fmt_or(val: float) -> str:\n352\t    return \"$\\\\infty$\" if np.isinf(val) else f\"{val:.2f}\"\n353\t\n354\tdef fmt_ci(lo: float, hi: float) -> str:\n355\t    lo_s = f\"{lo:.2f}\" if not np.isnan(lo) else \"0\"\n356\t    hi_s = \"$\\\\infty$\" if np.isinf(hi) or np.isnan(hi) else f\"{hi:.2f}\"\n357\t    return f\"[{lo_s}, {hi_s}]\"\n358\t\n359\tdef fmt_p(p: float) -> str:\n360\t    if p < 0.001:\n361\t        return \"$<$0.001\"\n362\t    return f\"{p:.3f}\"\n363\t\n364\tdef fmt_mean_std(mean: float, std: float, pct: bool = False) -> str:\n365\t    if pct:\n366\t        return f\"{mean*100:.1f} $\\\\pm$ {std*100:.1f}\\\\%\"\n367\t    return f\"{mean:.1f} $\\\\pm$ {std:.1f}\"\n368\t\n369\tdef fmt_bca(bca: dict, pct: bool = False) -> str:\n370\t    m = bca[\"mean\"]\n371\t    lo, hi = bca[\"ci_lo\"], bca[\"ci_hi\"]\n372\t    if pct:\n373\t        return f\"{m*100:.1f}\\\\% [{lo*100:.1f}, {hi*100:.1f}]\"\n374\t    return f\"{m:.1f} [{lo:.1f}, {hi:.1f}]\"\n375\t\n376\t\n377\t# --- Console output ---\n378\t\n379\tdef print_per_seed_table(df: pd.DataFrame):\n380\t    print(\"\\n\" + \"=\" * 90)\n381\t    print(\"  PER-SEED RESULTS\")\n382\t    print(\"=\" * 90)\n383\t    cols = [\"condition\", \"seed\", \"PR\", \"H7_count\", \"H7_rate\", \"H1_count\",\n384\t            \"H8_count\", \"genuine_count\", \"genuine_rate\", \"CI_count\", \"SNH_count\", \"SNH_rate\"]\n385\t    fmt = df[cols].copy()\n386\t    for c in [\"H7_rate\", \"genuine_rate\", \"SNH_rate\"]:\n387\t        fmt[c] = fmt[c].apply(lambda v: f\"{v*100:.1f}%\")\n388\t    print(fmt.to_string(index=False))\n389\t\n390\t\n391\tdef print_condition_stats(cond_df: pd.DataFrame):\n392\t    print(\"\\n\" + \"=\" * 90)\n393\t    print(\"  CONDITION-LEVEL STATISTICS (mean +/- SD)\")\n394\t    print(\"=\" * 90)\n395\t    for _, row in cond_df.iterrows():\n396\t        n = int(row['n_seeds'])\n397\t        print(f\"\\n  {row['condition']} (n={n} seeds):\")\n398\t        print(f\"    PR:           {row['PR_mean']:.1f} +/- {row['PR_std']:.1f}\")\n399\t        print(f\"    H7 rate:      {row['H7_rate_mean']*100:.1f} +/- {row['H7_rate_std']*100:.1f}%\")\n400\t        print(f\"    Genuine rate: {row['genuine_rate_mean']*100:.1f} +/- {row['genuine_rate_std']*100:.1f}%\")\n401\t        print(f\"    S-NH rate:    {row['SNH_rate_mean']*100:.1f} +/- {row['SNH_rate_std']*100:.1f}%\")\n402\t\n403\t\n404\tdef print_tests(fisher, perm, mw, bf, bca_h7, bca_gen):\n405\t    print(\"\\n\" + \"=\" * 90)\n406\t    print(\"  STATISTICAL TESTS\")\n407\t    print(\"=\" * 90)\n408\t\n409\t    print(\"\\n  1. H7 Domination Fisher Exact Test (H7-dominated = H7% >= 50%)\")\n410\t    print(f\"     ISR:    {fisher['ISR']['h7_dom']} dominated / {fisher['ISR']['n']} seeds\")\n411\t    print(f\"     RANDOM: {fisher['RANDOM']['h7_dom']} dominated / {fisher['RANDOM']['n']} seeds\")\n412\t    print(f\"     Contingency: {fisher['table']}\")\n413\t    or_str = \"inf\" if np.isinf(fisher['odds_ratio']) else f\"{fisher['odds_ratio']:.4f}\"\n414\t    print(f\"     OR = {or_str}, 95% CI = [{fisher['or_ci_lo']:.4f}, {fisher['or_ci_hi']:.4f}]\"\n415\t          if not np.isnan(fisher['or_ci_lo']) else f\"     OR = {or_str}, 95% CI = N/A\")\n416\t    print(f\"     p-value (one-sided, greater): {fisher['p_value']:.4f}\")\n417\t\n418\t    print(f\"\\n  2. Genuine Rate Permutation Test (n_perm={perm['n_perm']})\")\n419\t    print(f\"     ISR mean:    {perm['isr_mean']*100:.2f}%\")\n420\t    print(f\"     RANDOM mean: {perm['random_mean']*100:.2f}%\")\n421\t    print(f\"     Diff: {perm['observed_diff']*100:.2f} pp, p = {perm['p_value']:.4f}\")\n422\t\n423\t    print(f\"\\n  3. H7 Rate Mann-Whitney U Test\")\n424\t    print(f\"     ISR median:    {mw['isr_median']*100:.1f}%\")\n425\t    print(f\"     RANDOM median: {mw['random_median']*100:.1f}%\")\n426\t    print(f\"     U = {mw['U']:.1f}, p = {mw['p_value']:.4f}\")\n427\t    print(f\"     Rank-biserial r = {mw['r_rank_biserial']:.4f}\")\n428\t\n429\t    print(f\"\\n  4. Bayes Factor (H7 Domination, Beta-Binomial)\")\n430\t    print(f\"     ISR:    {bf['k_isr']}/{bf['n_isr']} dominated\")\n431\t    print(f\"     RANDOM: {bf['k_rand']}/{bf['n_rand']} dominated\")\n432\t    print(f\"     BF10 = {bf['bf10']:.4f} ({bf['interpretation']})\")\n433\t\n434\t    print(f\"\\n  5. BCa Bootstrap 95% CI (n_boot resamples)\")\n435\t    for label, bca in [(\"H7 rate\", bca_h7), (\"Genuine rate\", bca_gen)]:\n436\t        print(f\"     {label}:\")\n437\t        for cond in [\"ISR\", \"RANDOM\"]:\n438\t            b = bca[cond]\n439\t            print(f\"       {cond}: {b['mean']*100:.1f}% [{b['ci_lo']*100:.1f}, {b['ci_hi']*100:.1f}]\"\n440\t                  if not np.isnan(b['ci_lo']) else f\"       {cond}: {b['mean']*100:.1f}% [N/A]\")\n441\t\n442\t\n443\t# --- Markdown generation (appendix-ready) ---\n444\t\n445\tdef generate_markdown(df: pd.DataFrame, cond_df: pd.DataFrame,\n446\t                      fisher: dict, perm: dict, mw: dict,\n447\t                      bf: dict, bca_h7: dict, bca_gen: dict) -> str:\n448\t    L = []\n449\t    L.append(\"## D134: ISR vs Random Statistical Analysis\\n\")\n450\t\n451\t    # Per-seed table\n452\t    L.append(\"### Table A1: Per-Seed Hacking Taxonomy (4B Qwen3, 500 steps)\\n\")\n453\t    L.append(\"| Condition | Seed | PR | H7 | H7\\\\% | H1 | H8 | Genuine | Gen\\\\% | CI | S-NH | S-NH\\\\% |\")\n454\t    L.append(\"|:----------|-----:|---:|---:|-----:|---:|---:|--------:|------:|---:|-----:|-------:|\")\n455\t    for _, r in df.iterrows():\n456\t        L.append(\n457\t            f\"| {r['condition']} | {r['seed']} | {int(r['PR'])} | {int(r['H7_count'])} | \"\n458\t            f\"{r['H7_rate']*100:.1f} | {int(r['H1_count'])} | {int(r['H8_count'])} | \"\n459\t            f\"{int(r['genuine_count'])} | {r['genuine_rate']*100:.1f} | {int(r['CI_count'])} | \"\n460\t            f\"{int(r['SNH_count'])} | {r['SNH_rate']*100:.1f} |\"\n461\t        )\n462\t\n463\t    # Condition summary with BCa CI\n464\t    L.append(\"\\n### Table A2: Condition-Level Summary\\n\")\n465\t    L.append(\"| Condition | $n$ | PR (mean$\\\\pm$SD) | H7\\\\% (mean$\\\\pm$SD) | H7\\\\% BCa 95\\\\% CI | Gen\\\\% (mean$\\\\pm$SD) | Gen\\\\% BCa 95\\\\% CI |\")\n466\t    L.append(\"|:----------|----:|:------------------|:-------------------|:-----------------|:-------------------|:-----------------|\")\n467\t    for _, r in cond_df.iterrows():\n468\t        cond = r[\"condition\"]\n469\t        h7_bca = bca_h7.get(cond, {})\n470\t        gen_bca = bca_gen.get(cond, {})\n471\t        h7_ci = f\"[{h7_bca['ci_lo']*100:.1f}, {h7_bca['ci_hi']*100:.1f}]\" if h7_bca and not np.isnan(h7_bca.get('ci_lo', np.nan)) else \"N/A\"\n472\t        gen_ci = f\"[{gen_bca['ci_lo']*100:.1f}, {gen_bca['ci_hi']*100:.1f}]\" if gen_bca and not np.isnan(gen_bca.get('ci_lo', np.nan)) else \"N/A\"\n473\t        L.append(\n474\t            f\"| {cond} | {int(r['n_seeds'])} | \"\n475\t            f\"{r['PR_mean']:.1f}$\\\\pm${r['PR_std']:.1f} | \"\n476\t            f\"{r['H7_rate_mean']*100:.1f}$\\\\pm${r['H7_rate_std']*100:.1f} | \"\n477\t            f\"{h7_ci} | \"\n478\t            f\"{r['genuine_rate_mean']*100:.1f}$\\\\pm${r['genuine_rate_std']*100:.1f} | \"\n479\t            f\"{gen_ci} |\"\n480\t        )\n481\t\n482\t    # Statistical tests\n483\t    if fisher and perm and mw and bf:\n484\t        L.append(\"\\n### Statistical Tests\\n\")\n485\t\n486\t        # Fisher\n487\t        or_str = \"$\\\\infty$\" if np.isinf(fisher['odds_ratio']) else f\"{fisher['odds_ratio']:.2f}\"\n488\t        ci_lo = f\"{fisher['or_ci_lo']:.2f}\" if not np.isnan(fisher['or_ci_lo']) else \"0\"\n489\t        ci_hi = \"$\\\\infty$\" if np.isinf(fisher.get('or_ci_hi', np.inf)) or np.isnan(fisher.get('or_ci_hi', np.nan)) else f\"{fisher['or_ci_hi']:.2f}\"\n490\t        L.append(\"**1. H7 Domination Fisher Exact Test** (threshold: H7$\\\\geq$50\\\\% of proved)\")\n491\t        L.append(f\"- ISR: {fisher['ISR']['h7_dom']}/{fisher['ISR']['n']} seeds H7-dominated; \"\n492\t                 f\"Random: {fisher['RANDOM']['h7_dom']}/{fisher['RANDOM']['n']}\")\n493\t        L.append(f\"- OR = {or_str}, 95\\\\% exact CI = [{ci_lo}, {ci_hi}], \"\n494\t                 f\"$p$ = {fmt_p(fisher['p_value'])}\")\n495\t        L.append(\"\")\n496\t\n497\t        # Permutation\n498\t        L.append(f\"**2. Genuine Rate Permutation Test** ($n$ = {perm['n_perm']:,} permutations)\")\n499\t        L.append(f\"- ISR mean: {perm['isr_mean']*100:.2f}\\\\%, Random mean: {perm['random_mean']*100:.2f}\\\\%\")\n500\t        L.append(f\"- $\\\\Delta$ = {perm['observed_diff']*100:.2f} pp, $p$ = {fmt_p(perm['p_value'])}\")\n501\t        L.append(\"\")\n502\t\n503\t        # Mann-Whitney\n504\t        L.append(\"**3. H7 Rate Mann-Whitney $U$ Test**\")\n505\t        L.append(f\"- ISR median: {mw['isr_median']*100:.1f}\\\\%, Random median: {mw['random_median']*100:.1f}\\\\%\")\n506\t        L.append(f\"- $U$ = {mw['U']:.1f}, $p$ = {fmt_p(mw['p_value'])}, \"\n507\t                 f\"rank-biserial $r$ = {mw['r_rank_biserial']:.3f}\")\n508\t        L.append(\"\")\n509\t\n510\t        # Bayes Factor\n511\t        L.append(\"**4. Bayes Factor** (Beta-Binomial conjugate, prior: Beta(1,1))\")\n512\t        L.append(f\"- $BF_{{10}}$ = {bf['bf10']:.2f} ({bf['interpretation']})\")\n513\t        L.append(f\"- ISR: {bf['k_isr']}/{bf['n_isr']} H7-dominated, \"\n514\t                 f\"Random: {bf['k_rand']}/{bf['n_rand']}\")\n515\t\n516\t    return \"\\n\".join(L) + \"\\n\"\n517\t\n518\t\n519\t# --- Main ---\n520\t\n521\tdef main():\n522\t    args = parse_args()\n523\t    data_dir = Path(args.data_dir)\n524\t\n525\t    if not data_dir.exists():\n526\t        print(f\"ERROR: data directory {data_dir} does not exist\", file=sys.stderr)\n527\t        sys.exit(1)\n528\t\n529\t    if args.prefix:\n530\t        prefixes = [args.prefix]\n531\t    elif args.prefixes:\n532\t        prefixes = [p.strip() for p in args.prefixes.split(\",\")]\n533\t    else:\n534\t        prefixes = MODE_PREFIXES[args.mode]\n535\t    print(f\"Mode: {args.mode} | Prefixes: {prefixes}\")\n536\t\n537\t    runs = discover_runs(data_dir, prefixes)\n538\t    if not runs:\n539\t        print(f\"ERROR: no runs found in {data_dir} with prefixes {prefixes}\", file=sys.stderr)\n540\t        sys.exit(1)\n541\t\n542\t    isr_count = sum(1 for r in runs if r[\"condition\"] == \"ISR\")\n543\t    rand_count = sum(1 for r in runs if r[\"condition\"] == \"RANDOM\")\n544\t    print(f\"Found {len(runs)} runs: {isr_count} ISR, {rand_count} RANDOM\")\n545\t    for r in runs:\n546\t        print(f\"  {r['condition']:6s} s{r['seed']} <- {r['dir_name']}\")\n547\t\n548\t    df = build_table(runs)\n549\t    print_per_seed_table(df)\n550\t\n551\t    cond_df = condition_stats(df)\n552\t    print_condition_stats(cond_df)\n553\t\n554\t    if isr_count < 2 or rand_count < 2:\n555\t        print(\"\\nWARNING: need >= 2 seeds per condition for statistical tests, skipping.\",\n556\t              file=sys.stderr)\n557\t        bca_h7 = bca_bootstrap_ci(df, \"H7_rate\", args.n_boot, args.seed)\n558\t        bca_gen = bca_bootstrap_ci(df, \"genuine_rate\", args.n_boot, args.seed)\n559\t        if args.output:\n560\t            md = generate_markdown(df, cond_df, {}, {}, {}, {}, bca_h7, bca_gen)\n561\t            Path(args.output).write_text(md)\n562\t            print(f\"\\nMarkdown written to {args.output}\")\n563\t        return\n564\t\n565\t    fisher = fisher_h7_domination(df)\n566\t    perm = permutation_test_genuine(df, n_perm=args.n_perm, rng_seed=args.seed)\n567\t    mw = mannwhitney_h7(df)\n568\t    bf = bayes_factor_h7_domination(df)\n569\t    bca_h7 = bca_bootstrap_ci(df, \"H7_rate\", args.n_boot, args.seed)\n570\t    bca_gen = bca_bootstrap_ci(df, \"genuine_rate\", args.n_boot, args.seed)\n571\t\n572\t    print_tests(fisher, perm, mw, bf, bca_h7, bca_gen)\n573\t\n574\t    md = generate_markdown(df, cond_df, fisher, perm, mw, bf, bca_h7, bca_gen)\n575\t    print(\"\\n\" + \"=\" * 90)\n576\t    print(\"  MARKDOWN OUTPUT (appendix-ready)\")\n577\t    print(\"=\" * 90)\n578\t    print(md)\n579\t\n580\t    if args.output:\n581\t        Path(args.output).parent.mkdir(parents=True, exist_ok=True)\n582\t        Path(args.output).write_text(md)\n583\t        print(f\"Markdown written to {args.output}\")\n584\t\n585\t\n586\tif __name__ == \"__main__\":\n587\t    main()\n588\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b75062d4-ea86-499d-8438-4ff3b2a5a28e",
+            "uuid": "ecd7c0b1-9f25-4f8d-b015-0f7bab4e355e",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/scripts/d134_analysis.py",
+                "content": "#!/usr/bin/env python3\n\"\"\"D134 experiment analysis: multi-seed ISR vs Random, 4B GRPO training.\nReads taxonomy data from classify.json, taxonomy.json, or top-level taxonomy files.\nComputes summary stats, statistical tests (Fisher, Mann-Whitney, permutation, Bayes Factor),\nand BCa bootstrap CIs. Outputs appendix-ready markdown.\n\"\"\"\n\nimport argparse\nimport json\nimport re\nimport sys\nfrom pathlib import Path\n\nimport numpy as np\nimport pandas as pd\nfrom scipy import stats\nfrom scipy.special import betaln\n\nCONDITION_MAP = [\n    (\"d134_4b_isr\", \"ISR\"),\n    (\"d134_4b_random\", \"RANDOM\"),\n    (\"plan002_additive\", \"ISR\"),\n    (\"plan018_additive_random\", \"RANDOM\"),\n    (\"plan018_random\", \"RANDOM\"),\n]\n\nMODE_PREFIXES = {\n    \"d134_only\": [\"d134_4b\"],\n    \"all\": [\"d134_4b\", \"plan002_additive_b01\", \"plan018_additive_random_b01\", \"plan018_random\"],\n}\n\n\ndef parse_args():\n    p = argparse.ArgumentParser(description=\"D134 multi-seed analysis and statistical tests\")\n    p.add_argument(\"--data_dir\", type=str, default=\"/root/autodl-tmp/outputs\",\n                   help=\"Directory containing experiment outputs\")\n    p.add_argument(\"--mode\", type=str, default=\"d134_only\", choices=list(MODE_PREFIXES),\n                   help=\"d134_only = matched 5+5 design (default); all = include original seeds\")\n    p.add_argument(\"--prefix\", type=str, default=None,\n                   help=\"(Legacy) Single prefix filter; overrides mode/prefixes\")\n    p.add_argument(\"--prefixes\", type=str, default=None,\n                   help=\"Comma-separated prefixes; overrides --mode\")\n    p.add_argument(\"--output\", type=str, default=None,\n                   help=\"Write markdown summary to this file\")\n    p.add_argument(\"--n_perm\", type=int, default=10000,\n                   help=\"Number of permutations for permutation test\")\n    p.add_argument(\"--n_boot\", type=int, default=10000,\n                   help=\"Number of bootstrap resamples for BCa CI\")\n    p.add_argument(\"--seed\", type=int, default=42,\n                   help=\"Random seed for permutation/bootstrap\")\n    return p.parse_args()\n\n\n# --- Data loading ---\n\ndef match_condition(name: str) -> str | None:\n    best_prefix = \"\"\n    best_cond = None\n    for prefix, cond in CONDITION_MAP:\n        if name.startswith(prefix) and len(prefix) > len(best_prefix):\n            best_prefix = prefix\n            best_cond = cond\n    return best_cond\n\n\ndef extract_seed(name: str) -> int | None:\n    m = re.search(r'_s(\\d+)', name)\n    return int(m.group(1)) if m else None\n\n\ndef load_eval_results(path: Path) -> dict | None:\n    if not path.exists():\n        return None\n    with open(path) as f:\n        data = json.load(f)\n    if \"eval_results\" in data:\n        return data[\"eval_results\"]\n    return data\n\n\ndef load_taxonomy_unified(path: Path) -> dict | None:\n    with open(path) as f:\n        raw = json.load(f)\n    t = raw.get(\"taxonomy\", {})\n    proved = t.get(\"proved\", 0)\n    if proved == 0:\n        return None\n    h7 = t.get(\"H7\", 0)\n    h1 = t.get(\"H1_exact\", 0)\n    h8 = t.get(\"H8\", 0)\n    genuine = t.get(\"genuine\", 0)\n    return {\n        \"n_total\": 100, \"n_proved\": proved,\n        \"h7_total_count\": h7, \"h7_total_rate\": h7 / proved,\n        \"h1_strict_count\": h1, \"h8_conjunction_collapse_count\": h8,\n        \"genuine_count\": genuine, \"genuine_rate\": genuine / proved,\n        \"content_independent_count\": 0,\n    }\n\n\ndef load_taxonomy_verification(path: Path) -> dict | None:\n    with open(path) as f:\n        raw = json.load(f)\n    proved = raw.get(\"proved\", 0)\n    if proved == 0:\n        return None\n    tax = raw.get(\"taxonomy\", {})\n    h7 = tax.get(\"h7\", {}).get(\"count\", 0)\n    h1 = tax.get(\"h1_exact\", {}).get(\"count\", 0)\n    h8 = tax.get(\"h8\", {}).get(\"count\", 0)\n    genuine = tax.get(\"genuine\", {}).get(\"count\", 0)\n    return {\n        \"n_total\": raw.get(\"total\", 100), \"n_proved\": proved,\n        \"h7_total_count\": h7, \"h7_total_rate\": h7 / proved,\n        \"h1_strict_count\": h1, \"h8_conjunction_collapse_count\": h8,\n        \"genuine_count\": genuine, \"genuine_rate\": genuine / proved,\n        \"content_independent_count\": 0,\n    }\n\n\ndef discover_runs(data_dir: Path, prefixes: list[str]) -> list[dict]:\n    runs = []\n    seen = set()\n    for entry in sorted(data_dir.iterdir()):\n        name = entry.name\n        if not any(name.startswith(p) for p in prefixes):\n            continue\n        cond = match_condition(name)\n        seed_val = extract_seed(name)\n        if cond is None or seed_val is None:\n            continue\n        key = (cond, seed_val)\n        if key in seen:\n            continue\n        data = None\n        if entry.is_dir():\n            for fname in [\"classify.json\", \"taxonomy.json\"]:\n                data = load_eval_results(entry / fname)\n                if data is not None:\n                    break\n            if data is None:\n                continue\n        elif entry.is_file():\n            if name.endswith(\"_taxonomy_unified.json\"):\n                data = load_taxonomy_unified(entry)\n            elif name.endswith(\"_taxonomy_verification.json\"):\n                data = load_taxonomy_verification(entry)\n            if data is None:\n                continue\n        else:\n            continue\n        seen.add(key)\n        runs.append({\"dir_name\": name, \"seed\": seed_val, \"condition\": cond, \"data\": data})\n    return runs\n\n\ndef compute_row(run: dict) -> dict:\n    d = run[\"data\"]\n    n_proved = d.get(\"n_proved\", 0)\n    n_total = d.get(\"n_total\", 100)\n    h7 = d.get(\"h7_total_count\", 0)\n    h7_rate = d.get(\"h7_total_rate\", h7 / n_proved if n_proved > 0 else 0.0)\n    h1 = d.get(\"h1_strict_count\", 0)\n    h8 = d.get(\"h8_conjunction_collapse_count\", 0)\n    genuine = d.get(\"genuine_count\", 0)\n    genuine_rate = d.get(\"genuine_rate\", genuine / n_proved if n_proved > 0 else 0.0)\n    ci = d.get(\"content_independent_count\", 0)\n    snh = max(genuine - ci, 0)\n    snh_rate = snh / n_proved if n_proved > 0 else 0.0\n    return {\n        \"seed\": run[\"seed\"], \"condition\": run[\"condition\"], \"n_total\": n_total,\n        \"PR\": n_proved, \"H7_count\": h7, \"H7_rate\": h7_rate,\n        \"H1_count\": h1, \"H8_count\": h8,\n        \"genuine_count\": genuine, \"genuine_rate\": genuine_rate,\n        \"CI_count\": ci, \"SNH_count\": snh, \"SNH_rate\": snh_rate,\n    }\n\n\ndef build_table(runs: list[dict]) -> pd.DataFrame:\n    rows = [compute_row(r) for r in runs]\n    df = pd.DataFrame(rows)\n    df = df.sort_values([\"condition\", \"seed\"]).reset_index(drop=True)\n    return df\n\n\n# --- Statistical tests ---\n\ndef fisher_h7_domination(df: pd.DataFrame) -> dict:\n    results = {}\n    for cond in [\"ISR\", \"RANDOM\"]:\n        sub = df[df[\"condition\"] == cond]\n        results[cond] = {\n            \"n\": len(sub),\n            \"h7_dom\": int((sub[\"H7_rate\"] >= 0.5).sum()),\n            \"not_h7_dom\": int((sub[\"H7_rate\"] < 0.5).sum()),\n        }\n    table = np.array([\n        [results[\"ISR\"][\"h7_dom\"], results[\"ISR\"][\"not_h7_dom\"]],\n        [results[\"RANDOM\"][\"h7_dom\"], results[\"RANDOM\"][\"not_h7_dom\"]],\n    ])\n    odds_ratio, p_value = stats.fisher_exact(table, alternative=\"greater\")\n\n    # 95% exact CI via scipy.stats.contingency\n    or_ci_lo, or_ci_hi = np.nan, np.nan\n    try:\n        ct = stats.contingency.odds_ratio(table)\n        ci = ct.confidence_interval(confidence_level=0.95)\n        or_ci_lo, or_ci_hi = ci.low, ci.high\n    except Exception:\n        pass\n\n    return {\n        \"table\": table.tolist(),\n        \"ISR\": results[\"ISR\"],\n        \"RANDOM\": results[\"RANDOM\"],\n        \"odds_ratio\": odds_ratio,\n        \"or_ci_lo\": or_ci_lo,\n        \"or_ci_hi\": or_ci_hi,\n        \"p_value\": p_value,\n    }\n\n\ndef permutation_test_genuine(df: pd.DataFrame, n_perm: int = 10000,\n                              rng_seed: int = 42) -> dict:\n    isr = df[df[\"condition\"] == \"ISR\"][\"genuine_rate\"].values\n    rand = df[df[\"condition\"] == \"RANDOM\"][\"genuine_rate\"].values\n    observed = isr.mean() - rand.mean()\n    pooled = np.concatenate([isr, rand])\n    n_isr = len(isr)\n    rng = np.random.default_rng(rng_seed)\n    count = 0\n    for _ in range(n_perm):\n        perm = rng.permutation(pooled)\n        if perm[:n_isr].mean() - perm[n_isr:].mean() >= observed:\n            count += 1\n    return {\n        \"observed_diff\": float(observed),\n        \"p_value\": count / n_perm,\n        \"n_perm\": n_perm,\n        \"isr_mean\": float(isr.mean()),\n        \"random_mean\": float(rand.mean()),\n    }\n\n\ndef mannwhitney_h7(df: pd.DataFrame) -> dict:\n    isr = df[df[\"condition\"] == \"ISR\"][\"H7_rate\"].values\n    rand = df[df[\"condition\"] == \"RANDOM\"][\"H7_rate\"].values\n    n1, n2 = len(isr), len(rand)\n    u_stat, p_value = stats.mannwhitneyu(isr, rand, alternative=\"greater\")\n    r_rb = 2.0 * u_stat / (n1 * n2) - 1.0 if n1 * n2 > 0 else np.nan\n    return {\n        \"U\": float(u_stat),\n        \"p_value\": float(p_value),\n        \"r_rank_biserial\": float(r_rb),\n        \"isr_median\": float(np.median(isr)),\n        \"random_median\": float(np.median(rand)),\n    }\n\n\ndef bca_bootstrap_ci(df: pd.DataFrame, metric: str, n_boot: int = 10000,\n                      rng_seed: int = 42) -> dict:\n    \"\"\"BCa 95% CI for per-condition means of a metric.\"\"\"\n    result = {}\n    for cond in [\"ISR\", \"RANDOM\"]:\n        vals = df[df[\"condition\"] == cond][metric].values\n        if len(vals) < 2:\n            result[cond] = {\"mean\": float(vals.mean()) if len(vals) else np.nan,\n                            \"ci_lo\": np.nan, \"ci_hi\": np.nan}\n            continue\n        res = stats.bootstrap(\n            (vals,), np.mean, n_resamples=n_boot,\n            confidence_level=0.95, method=\"BCa\",\n            random_state=np.random.default_rng(rng_seed),\n        )\n        result[cond] = {\n            \"mean\": float(vals.mean()),\n            \"ci_lo\": float(res.confidence_interval.low),\n            \"ci_hi\": float(res.confidence_interval.high),\n        }\n    return result\n\n\ndef bayes_factor_h7_domination(df: pd.DataFrame) -> dict:\n    \"\"\"BF10 for H7-domination rate difference (beta-binomial conjugate).\n    H0: ISR and Random share same domination rate.\n    H1: independent rates. Prior: Beta(1,1) on each.\n    \"\"\"\n    isr_sub = df[df[\"condition\"] == \"ISR\"]\n    rand_sub = df[df[\"condition\"] == \"RANDOM\"]\n    k_isr = int((isr_sub[\"H7_rate\"] >= 0.5).sum())\n    n_isr = len(isr_sub)\n    k_rand = int((rand_sub[\"H7_rate\"] >= 0.5).sum())\n    n_rand = len(rand_sub)\n    k_total = k_isr + k_rand\n    n_total = n_isr + n_rand\n\n    # log marginal under H0 (shared rate)\n    log_m_h0 = betaln(1 + k_total, 1 + n_total - k_total) - betaln(1, 1)\n    # log marginal under H1 (independent rates)\n    log_m_h1 = (betaln(1 + k_isr, 1 + n_isr - k_isr) - betaln(1, 1)\n                + betaln(1 + k_rand, 1 + n_rand - k_rand) - betaln(1, 1))\n    log_bf10 = log_m_h1 - log_m_h0\n    bf10 = float(np.exp(log_bf10))\n\n    return {\n        \"k_isr\": k_isr, \"n_isr\": n_isr,\n        \"k_rand\": k_rand, \"n_rand\": n_rand,\n        \"bf10\": bf10,\n        \"log_bf10\": float(log_bf10),\n        \"interpretation\": _interpret_bf(bf10),\n    }\n\n\ndef _interpret_bf(bf: float) -> str:\n    if bf > 100:\n        return \"extreme evidence for H1\"\n    if bf > 30:\n        return \"very strong evidence for H1\"\n    if bf > 10:\n        return \"strong evidence for H1\"\n    if bf > 3:\n        return \"moderate evidence for H1\"\n    if bf > 1:\n        return \"anecdotal evidence for H1\"\n    if bf > 1/3:\n        return \"anecdotal evidence (inconclusive)\"\n    if bf > 1/10:\n        return \"moderate evidence for H0\"\n    return \"strong evidence for H0\"\n\n\ndef condition_stats(df: pd.DataFrame) -> pd.DataFrame:\n    metrics = [\"PR\", \"H7_rate\", \"genuine_rate\", \"SNH_rate\"]\n    rows = []\n    for cond in [\"ISR\", \"RANDOM\"]:\n        sub = df[df[\"condition\"] == cond]\n        row = {\"condition\": cond, \"n_seeds\": len(sub)}\n        for m in metrics:\n            vals = sub[m].values\n            row[f\"{m}_mean\"] = vals.mean()\n            row[f\"{m}_std\"] = vals.std(ddof=1) if len(vals) > 1 else 0.0\n        rows.append(row)\n    return pd.DataFrame(rows)\n\n\n# --- Formatting ---\n\ndef fmt_pct(val: float) -> str:\n    return f\"{val*100:.1f}\\\\%\"\n\ndef fmt_or(val: float) -> str:\n    return \"$\\\\infty$\" if np.isinf(val) else f\"{val:.2f}\"\n\ndef fmt_ci(lo: float, hi: float) -> str:\n    lo_s = f\"{lo:.2f}\" if not np.isnan(lo) else \"0\"\n    hi_s = \"$\\\\infty$\" if np.isinf(hi) or np.isnan(hi) else f\"{hi:.2f}\"\n    return f\"[{lo_s}, {hi_s}]\"\n\ndef fmt_p(p: float) -> str:\n    if p < 0.001:\n        return \"$<$0.001\"\n    return f\"{p:.3f}\"\n\ndef fmt_mean_std(mean: float, std: float, pct: bool = False) -> str:\n    if pct:\n        return f\"{mean*100:.1f} $\\\\pm$ {std*100:.1f}\\\\%\"\n    return f\"{mean:.1f} $\\\\pm$ {std:.1f}\"\n\ndef fmt_bca(bca: dict, pct: bool = False) -> str:\n    m = bca[\"mean\"]\n    lo, hi = bca[\"ci_lo\"], bca[\"ci_hi\"]\n    if pct:\n        return f\"{m*100:.1f}\\\\% [{lo*100:.1f}, {hi*100:.1f}]\"\n    return f\"{m:.1f} [{lo:.1f}, {hi:.1f}]\"\n\n\n# --- Console output ---\n\ndef print_per_seed_table(df: pd.DataFrame):\n    print(\"\\n\" + \"=\" * 90)\n    print(\"  PER-SEED RESULTS\")\n    print(\"=\" * 90)\n    cols = [\"condition\", \"seed\", \"PR\", \"H7_count\", \"H7_rate\", \"H1_count\",\n            \"H8_count\", \"genuine_count\", \"genuine_rate\", \"CI_count\", \"SNH_count\", \"SNH_rate\"]\n    fmt = df[cols].copy()\n    for c in [\"H7_rate\", \"genuine_rate\", \"SNH_rate\"]:\n        fmt[c] = fmt[c].apply(lambda v: f\"{v*100:.1f}%\")\n    print(fmt.to_string(index=False))\n\n\ndef print_condition_stats(cond_df: pd.DataFrame):\n    print(\"\\n\" + \"=\" * 90)\n    print(\"  CONDITION-LEVEL STATISTICS (mean +/- SD)\")\n    print(\"=\" * 90)\n    for _, row in cond_df.iterrows():\n        n = int(row['n_seeds'])\n        print(f\"\\n  {row['condition']} (n={n} seeds):\")\n        print(f\"    PR:           {row['PR_mean']:.1f} +/- {row['PR_std']:.1f}\")\n        print(f\"    H7 rate:      {row['H7_rate_mean']*100:.1f} +/- {row['H7_rate_std']*100:.1f}%\")\n        print(f\"    Genuine rate: {row['genuine_rate_mean']*100:.1f} +/- {row['genuine_rate_std']*100:.1f}%\")\n        print(f\"    S-NH rate:    {row['SNH_rate_mean']*100:.1f} +/- {row['SNH_rate_std']*100:.1f}%\")\n\n\ndef print_tests(fisher, perm, mw, bf, bca_h7, bca_gen):\n    print(\"\\n\" + \"=\" * 90)\n    print(\"  STATISTICAL TESTS\")\n    print(\"=\" * 90)\n\n    print(\"\\n  1. H7 Domination Fisher Exact Test (H7-dominated = H7% >= 50%)\")\n    print(f\"     ISR:    {fisher['ISR']['h7_dom']} dominated / {fisher['ISR']['n']} seeds\")\n    print(f\"     RANDOM: {fisher['RANDOM']['h7_dom']} dominated / {fisher['RANDOM']['n']} seeds\")\n    print(f\"     Contingency: {fisher['table']}\")\n    or_str = \"inf\" if np.isinf(fisher['odds_ratio']) else f\"{fisher['odds_ratio']:.4f}\"\n    print(f\"     OR = {or_str}, 95% CI = [{fisher['or_ci_lo']:.4f}, {fisher['or_ci_hi']:.4f}]\"\n          if not np.isnan(fisher['or_ci_lo']) else f\"     OR = {or_str}, 95% CI = N/A\")\n    print(f\"     p-value (one-sided, greater): {fisher['p_value']:.4f}\")\n\n    print(f\"\\n  2. Genuine Rate Permutation Test (n_perm={perm['n_perm']})\")\n    print(f\"     ISR mean:    {perm['isr_mean']*100:.2f}%\")\n    print(f\"     RANDOM mean: {perm['random_mean']*100:.2f}%\")\n    print(f\"     Diff: {perm['observed_diff']*100:.2f} pp, p = {perm['p_value']:.4f}\")\n\n    print(f\"\\n  3. H7 Rate Mann-Whitney U Test\")\n    print(f\"     ISR median:    {mw['isr_median']*100:.1f}%\")\n    print(f\"     RANDOM median: {mw['random_median']*100:.1f}%\")\n    print(f\"     U = {mw['U']:.1f}, p = {mw['p_value']:.4f}\")\n    print(f\"     Rank-biserial r = {mw['r_rank_biserial']:.4f}\")\n\n    print(f\"\\n  4. Bayes Factor (H7 Domination, Beta-Binomial)\")\n    print(f\"     ISR:    {bf['k_isr']}/{bf['n_isr']} dominated\")\n    print(f\"     RANDOM: {bf['k_rand']}/{bf['n_rand']} dominated\")\n    print(f\"     BF10 = {bf['bf10']:.4f} ({bf['interpretation']})\")\n\n    print(f\"\\n  5. BCa Bootstrap 95% CI (n_boot resamples)\")\n    for label, bca in [(\"H7 rate\", bca_h7), (\"Genuine rate\", bca_gen)]:\n        print(f\"     {label}:\")\n        for cond in [\"ISR\", \"RANDOM\"]:\n            b = bca[cond]\n            print(f\"       {cond}: {b['mean']*100:.1f}% [{b['ci_lo']*100:.1f}, {b['ci_hi']*100:.1f}]\"\n                  if not np.isnan(b['ci_lo']) else f\"       {cond}: {b['mean']*100:.1f}% [N/A]\")\n\n\n# --- Markdown generation (appendix-ready) ---\n\ndef generate_markdown(df: pd.DataFrame, cond_df: pd.DataFrame,\n                      fisher: dict, perm: dict, mw: dict,\n                      bf: dict, bca_h7: dict, bca_gen: dict) -> str:\n    L = []\n    L.append(\"## D134: ISR vs Random Statistical Analysis\\n\")\n\n    # Per-seed table\n    L.append(\"### Table A1: Per-Seed Hacking Taxonomy (4B Qwen3, 500 steps)\\n\")\n    L.append(\"| Condition | Seed | PR | H7 | H7\\\\% | H1 | H8 | Genuine | Gen\\\\% | CI | S-NH | S-NH\\\\% |\")\n    L.append(\"|:----------|-----:|---:|---:|-----:|---:|---:|--------:|------:|---:|-----:|-------:|\")\n    for _, r in df.iterrows():\n        L.append(\n            f\"| {r['condition']} | {r['seed']} | {int(r['PR'])} | {int(r['H7_count'])} | \"\n            f\"{r['H7_rate']*100:.1f} | {int(r['H1_count'])} | {int(r['H8_count'])} | \"\n            f\"{int(r['genuine_count'])} | {r['genuine_rate']*100:.1f} | {int(r['CI_count'])} | \"\n            f\"{int(r['SNH_count'])} | {r['SNH_rate']*100:.1f} |\"\n        )\n\n    # Condition summary with BCa CI\n    L.append(\"\\n### Table A2: Condition-Level Summary\\n\")\n    L.append(\"| Condition | $n$ | PR (mean$\\\\pm$SD) | H7\\\\% (mean$\\\\pm$SD) | H7\\\\% BCa 95\\\\% CI | Gen\\\\% (mean$\\\\pm$SD) | Gen\\\\% BCa 95\\\\% CI |\")\n    L.append(\"|:----------|----:|:------------------|:-------------------|:-----------------|:-------------------|:-----------------|\")\n    for _, r in cond_df.iterrows():\n        cond = r[\"condition\"]\n        h7_bca = bca_h7.get(cond, {})\n        gen_bca = bca_gen.get(cond, {})\n        h7_ci = f\"[{h7_bca['ci_lo']*100:.1f}, {h7_bca['ci_hi']*100:.1f}]\" if h7_bca and not np.isnan(h7_bca.get('ci_lo', np.nan)) else \"N/A\"\n        gen_ci = f\"[{gen_bca['ci_lo']*100:.1f}, {gen_bca['ci_hi']*100:.1f}]\" if gen_bca and not np.isnan(gen_bca.get('ci_lo', np.nan)) else \"N/A\"\n        L.append(\n            f\"| {cond} | {int(r['n_seeds'])} | \"\n            f\"{r['PR_mean']:.1f}$\\\\pm${r['PR_std']:.1f} | \"\n            f\"{r['H7_rate_mean']*100:.1f}$\\\\pm${r['H7_rate_std']*100:.1f} | \"\n            f\"{h7_ci} | \"\n            f\"{r['genuine_rate_mean']*100:.1f}$\\\\pm${r['genuine_rate_std']*100:.1f} | \"\n            f\"{gen_ci} |\"\n        )\n\n    # Statistical tests\n    if fisher and perm and mw and bf:\n        L.append(\"\\n### Statistical Tests\\n\")\n\n        # Fisher\n        or_str = \"$\\\\infty$\" if np.isinf(fisher['odds_ratio']) else f\"{fisher['odds_ratio']:.2f}\"\n        ci_lo = f\"{fisher['or_ci_lo']:.2f}\" if not np.isnan(fisher['or_ci_lo']) else \"0\"\n        ci_hi = \"$\\\\infty$\" if np.isinf(fisher.get('or_ci_hi', np.inf)) or np.isnan(fisher.get('or_ci_hi', np.nan)) else f\"{fisher['or_ci_hi']:.2f}\"\n        L.append(\"**1. H7 Domination Fisher Exact Test** (threshold: H7$\\\\geq$50\\\\% of proved)\")\n        L.append(f\"- ISR: {fisher['ISR']['h7_dom']}/{fisher['ISR']['n']} seeds H7-dominated; \"\n                 f\"Random: {fisher['RANDOM']['h7_dom']}/{fisher['RANDOM']['n']}\")\n        L.append(f\"- OR = {or_str}, 95\\\\% exact CI = [{ci_lo}, {ci_hi}], \"\n                 f\"$p$ = {fmt_p(fisher['p_value'])}\")\n        L.append(\"\")\n\n        # Permutation\n        L.append(f\"**2. Genuine Rate Permutation Test** ($n$ = {perm['n_perm']:,} permutations)\")\n        L.append(f\"- ISR mean: {perm['isr_mean']*100:.2f}\\\\%, Random mean: {perm['random_mean']*100:.2f}\\\\%\")\n        L.append(f\"- $\\\\Delta$ = {perm['observed_diff']*100:.2f} pp, $p$ = {fmt_p(perm['p_value'])}\")\n        L.append(\"\")\n\n        # Mann-Whitney\n        L.append(\"**3. H7 Rate Mann-Whitney $U$ Test**\")\n        L.append(f\"- ISR median: {mw['isr_median']*100:.1f}\\\\%, Random median: {mw['random_median']*100:.1f}\\\\%\")\n        L.append(f\"- $U$ = {mw['U']:.1f}, $p$ = {fmt_p(mw['p_value'])}, \"\n                 f\"rank-biserial $r$ = {mw['r_rank_biserial']:.3f}\")\n        L.append(\"\")\n\n        # Bayes Factor\n        L.append(\"**4. Bayes Factor** (Beta-Binomial conjugate, prior: Beta(1,1))\")\n        L.append(f\"- $BF_{{10}}$ = {bf['bf10']:.2f} ({bf['interpretation']})\")\n        L.append(f\"- ISR: {bf['k_isr']}/{bf['n_isr']} H7-dominated, \"\n                 f\"Random: {bf['k_rand']}/{bf['n_rand']}\")\n\n    return \"\\n\".join(L) + \"\\n\"\n\n\n# --- Main ---\n\ndef main():\n    args = parse_args()\n    data_dir = Path(args.data_dir)\n\n    if not data_dir.exists():\n        print(f\"ERROR: data directory {data_dir} does not exist\", file=sys.stderr)\n        sys.exit(1)\n\n    if args.prefix:\n        prefixes = [args.prefix]\n    elif args.prefixes:\n        prefixes = [p.strip() for p in args.prefixes.split(\",\")]\n    else:\n        prefixes = MODE_PREFIXES[args.mode]\n    print(f\"Mode: {args.mode} | Prefixes: {prefixes}\")\n\n    runs = discover_runs(data_dir, prefixes)\n    if not runs:\n        print(f\"ERROR: no runs found in {data_dir} with prefixes {prefixes}\", file=sys.stderr)\n        sys.exit(1)\n\n    isr_count = sum(1 for r in runs if r[\"condition\"] == \"ISR\")\n    rand_count = sum(1 for r in runs if r[\"condition\"] == \"RANDOM\")\n    print(f\"Found {len(runs)} runs: {isr_count} ISR, {rand_count} RANDOM\")\n    for r in runs:\n        print(f\"  {r['condition']:6s} s{r['seed']} <- {r['dir_name']}\")\n\n    df = build_table(runs)\n    print_per_seed_table(df)\n\n    cond_df = condition_stats(df)\n    print_condition_stats(cond_df)\n\n    if isr_count < 2 or rand_count < 2:\n        print(\"\\nWARNING: need >= 2 seeds per condition for statistical tests, skipping.\",\n              file=sys.stderr)\n        bca_h7 = bca_bootstrap_ci(df, \"H7_rate\", args.n_boot, args.seed)\n        bca_gen = bca_bootstrap_ci(df, \"genuine_rate\", args.n_boot, args.seed)\n        if args.output:\n            md = generate_markdown(df, cond_df, {}, {}, {}, {}, bca_h7, bca_gen)\n            Path(args.output).write_text(md)\n            print(f\"\\nMarkdown written to {args.output}\")\n        return\n\n    fisher = fisher_h7_domination(df)\n    perm = permutation_test_genuine(df, n_perm=args.n_perm, rng_seed=args.seed)\n    mw = mannwhitney_h7(df)\n    bf = bayes_factor_h7_domination(df)\n    bca_h7 = bca_bootstrap_ci(df, \"H7_rate\", args.n_boot, args.seed)\n    bca_gen = bca_bootstrap_ci(df, \"genuine_rate\", args.n_boot, args.seed)\n\n    print_tests(fisher, perm, mw, bf, bca_h7, bca_gen)\n\n    md = generate_markdown(df, cond_df, fisher, perm, mw, bf, bca_h7, bca_gen)\n    print(\"\\n\" + \"=\" * 90)\n    print(\"  MARKDOWN OUTPUT (appendix-ready)\")\n    print(\"=\" * 90)\n    print(md)\n\n    if args.output:\n        Path(args.output).parent.mkdir(parents=True, exist_ok=True)\n        Path(args.output).write_text(md)\n        print(f\"Markdown written to {args.output}\")\n\n\nif __name__ == \"__main__\":\n    main()\n",
+                "numLines": 588,
+                "startLine": 1,
+                "totalLines": 588
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I need to modify the shebang and write it to the remote server, then run the dry run. Let me first prepare the script content with the updated shebang, then use SSH to write and execute."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b75062d4-ea86-499d-8438-4ff3b2a5a28e",
+            "uuid": "2bdb4962-d2e0-4817-8971-7122facd4209",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JhFtJr5jGbXqDmSdWhkz1Z",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 10032,
+                "cache_read_input_tokens": 26964,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 10032
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015MrZWwoWuGqrvCMUig7bbp",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_execute",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b75062d4-ea86-499d-8438-4ff3b2a5a28e",
+            "uuid": "8e874092-837f-4491-9706-2bfcf310992e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JhFtJr5jGbXqDmSdWhkz1Z",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 10032,
+                "cache_read_input_tokens": 26964,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 10032
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-18T15:08:11.328Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_015MrZWwoWuGqrvCMUig7bbp",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b75062d4-ea86-499d-8438-4ff3b2a5a28e",
+            "uuid": "626e8317-a030-4f58-9b99-ebf1fbdf5c4f",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_execute"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_execute",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "I need to write the script to the remote server with the shebang changed to `#!/root/miniconda3/bin/python`, then run the dry run. Let me use a heredoc approach via ssh_execute to write the file.\n\nThe script is quite long. Let me use a base64 approach or a Python-based write to avoid shell escaping issues.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b75062d4-ea86-499d-8438-4ff3b2a5a28e",
+            "uuid": "14d0b806-643d-4b26-a685-e5af02b3868a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01A4Sj1D7SuH7crxS6DCxUg8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 390,
+                "cache_read_input_tokens": 36996,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 390
+                },
+                "output_tokens": 21,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Writing the script to the remote server and running the dry run."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b75062d4-ea86-499d-8438-4ff3b2a5a28e",
+            "uuid": "c53a2765-b2a6-4975-88c1-02fbc1baa9e7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01A4Sj1D7SuH7crxS6DCxUg8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 390,
+                "cache_read_input_tokens": 36996,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 390
+                },
+                "output_tokens": 21,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JaVtN6Hp14ZDQPUzz7SoTd",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-39279",
+                "account": "root",
+                "command": "cat > /root/solver-trace-ablation/scripts/d134_analysis.py << 'HEREDOC_EOF'\n#!/root/miniconda3/bin/python\n\"\"\"D134 experiment analysis: multi-seed ISR vs Random, 4B GRPO training.\nReads taxonomy data from classify.json, taxonomy.json, or top-level taxonomy files.\nComputes summary stats, statistical tests (Fisher, Mann-Whitney, permutation, Bayes Factor),\nand BCa bootstrap CIs. Outputs appendix-ready markdown.\n\"\"\"\n\nimport argparse\nimport json\nimport re\nimport sys\nfrom pathlib import Path\n\nimport numpy as np\nimport pandas as pd\nfrom scipy import stats\nfrom scipy.special import betaln\n\nCONDITION_MAP = [\n    (\"d134_4b_isr\", \"ISR\"),\n    (\"d134_4b_random\", \"RANDOM\"),\n    (\"plan002_additive\", \"ISR\"),\n    (\"plan018_additive_random\", \"RANDOM\"),\n    (\"plan018_random\", \"RANDOM\"),\n]\n\nMODE_PREFIXES = {\n    \"d134_only\": [\"d134_4b\"],\n    \"all\": [\"d134_4b\", \"plan002_additive_b01\", \"plan018_additive_random_b01\", \"plan018_random\"],\n}\n\n\ndef parse_args():\n    p = argparse.ArgumentParser(description=\"D134 multi-seed analysis and statistical tests\")\n    p.add_argument(\"--data_dir\", type=str, default=\"/root/autodl-tmp/outputs\",\n                   help=\"Directory containing experiment outputs\")\n    p.add_argument(\"--mode\", type=str, default=\"d134_only\", choices=list(MODE_PREFIXES),\n                   help=\"d134_only = matched 5+5 design (default); all = include original seeds\")\n    p.add_argument(\"--prefix\", type=str, default=None,\n                   help=\"(Legacy) Single prefix filter; overrides mode/prefixes\")\n    p.add_argument(\"--prefixes\", type=str, default=None,\n                   help=\"Comma-separated prefixes; overrides --mode\")\n    p.add_argument(\"--output\", type=str, default=None,\n                   help=\"Write markdown summary to this file\")\n    p.add_argument(\"--n_perm\", type=int, default=10000,\n                   help=\"Number of permutations for permutation test\")\n    p.add_argument(\"--n_boot\", type=int, default=10000,\n                   help=\"Number of bootstrap resamples for BCa CI\")\n    p.add_argument(\"--seed\", type=int, default=42,\n                   help=\"Random seed for permutation/bootstrap\")\n    return p.parse_args()\n\n\n# --- Data loading ---\n\ndef match_condition(name: str) -> str | None:\n    best_prefix = \"\"\n    best_cond = None\n    for prefix, cond in CONDITION_MAP:\n        if name.startswith(prefix) and len(prefix) > len(best_prefix):\n            best_prefix = prefix\n            best_cond = cond\n    return best_cond\n\n\ndef extract_seed(name: str) -> int | None:\n    m = re.search(r'_s(\\d+)', name)\n    return int(m.group(1)) if m else None\n\n\ndef load_eval_results(path: Path) -> dict | None:\n    if not path.exists():\n        return None\n    with open(path) as f:\n        data = json.load(f)\n    if \"eval_results\" in data:\n        return data[\"eval_results\"]\n    return data\n\n\ndef load_taxonomy_unified(path: Path) -> dict | None:\n    with open(path) as f:\n        raw = json.load(f)\n    t = raw.get(\"taxonomy\", {})\n    proved = t.get(\"proved\", 0)\n    if proved == 0:\n        return None\n    h7 = t.get(\"H7\", 0)\n    h1 = t.get(\"H1_exact\", 0)\n    h8 = t.get(\"H8\", 0)\n    genuine = t.get(\"genuine\", 0)\n    return {\n        \"n_total\": 100, \"n_proved\": proved,\n        \"h7_total_count\": h7, \"h7_total_rate\": h7 / proved,\n        \"h1_strict_count\": h1, \"h8_conjunction_collapse_count\": h8,\n        \"genuine_count\": genuine, \"genuine_rate\": genuine / proved,\n        \"content_independent_count\": 0,\n    }\n\n\ndef load_taxonomy_verification(path: Path) -> dict | None:\n    with open(path) as f:\n        raw = json.load(f)\n    proved = raw.get(\"proved\", 0)\n    if proved == 0:\n        return None\n    tax = raw.get(\"taxonomy\", {})\n    h7 = tax.get(\"h7\", {}).get(\"count\", 0)\n    h1 = tax.get(\"h1_exact\", {}).get(\"count\", 0)\n    h8 = tax.get(\"h8\", {}).get(\"count\", 0)\n    genuine = tax.get(\"genuine\", {}).get(\"count\", 0)\n    return {\n        \"n_total\": raw.get(\"total\", 100), \"n_proved\": proved,\n        \"h7_total_count\": h7, \"h7_total_rate\": h7 / proved,\n        \"h1_strict_count\": h1, \"h8_conjunction_collapse_count\": h8,\n        \"genuine_count\": genuine, \"genuine_rate\": genuine / proved,\n        \"content_independent_count\": 0,\n    }\n\n\ndef discover_runs(data_dir: Path, prefixes: list[str]) -> list[dict]:\n    runs = []\n    seen = set()\n    for entry in sorted(data_dir.iterdir()):\n        name = entry.name\n        if not any(name.startswith(p) for p in prefixes):\n            continue\n        cond = match_condition(name)\n        seed_val = extract_seed(name)\n        if cond is None or seed_val is None:\n            continue\n        key = (cond, seed_val)\n        if key in seen:\n            continue\n        data = None\n        if entry.is_dir():\n            for fname in [\"classify.json\", \"taxonomy.json\"]:\n                data = load_eval_results(entry / fname)\n                if data is not None:\n                    break\n            if data is None:\n                continue\n        elif entry.is_file():\n            if name.endswith(\"_taxonomy_unified.json\"):\n                data = load_taxonomy_unified(entry)\n            elif name.endswith(\"_taxonomy_verification.json\"):\n                data = load_taxonomy_verification(entry)\n            if data is None:\n                continue\n        else:\n            continue\n        seen.add(key)\n        runs.append({\"dir_name\": name, \"seed\": seed_val, \"condition\": cond, \"data\": data})\n    return runs\n\n\ndef compute_row(run: dict) -> dict:\n    d = run[\"data\"]\n    n_proved = d.get(\"n_proved\", 0)\n    n_total = d.get(\"n_total\", 100)\n    h7 = d.get(\"h7_total_count\", 0)\n    h7_rate = d.get(\"h7_total_rate\", h7 / n_proved if n_proved > 0 else 0.0)\n    h1 = d.get(\"h1_strict_count\", 0)\n    h8 = d.get(\"h8_conjunction_collapse_count\", 0)\n    genuine = d.get(\"genuine_count\", 0)\n    genuine_rate = d.get(\"genuine_rate\", genuine / n_proved if n_proved > 0 else 0.0)\n    ci = d.get(\"content_independent_count\", 0)\n    snh = max(genuine - ci, 0)\n    snh_rate = snh / n_proved if n_proved > 0 else 0.0\n    return {\n        \"seed\": run[\"seed\"], \"condition\": run[\"condition\"], \"n_total\": n_total,\n        \"PR\": n_proved, \"H7_count\": h7, \"H7_rate\": h7_rate,\n        \"H1_count\": h1, \"H8_count\": h8,\n        \"genuine_count\": genuine, \"genuine_rate\": genuine_rate,\n        \"CI_count\": ci, \"SNH_count\": snh, \"SNH_rate\": snh_rate,\n    }\n\n\ndef build_table(runs: list[dict]) -> pd.DataFrame:\n    rows = [compute_row(r) for r in runs]\n    df = pd.DataFrame(rows)\n    df = df.sort_values([\"condition\", \"seed\"]).reset_index(drop=True)\n    return df\n\n\n# --- Statistical tests ---\n\ndef fisher_h7_domination(df: pd.DataFrame) -> dict:\n    results = {}\n    for cond in [\"ISR\", \"RANDOM\"]:\n        sub = df[df[\"condition\"] == cond]\n        results[cond] = {\n            \"n\": len(sub),\n            \"h7_dom\": int((sub[\"H7_rate\"] >= 0.5).sum()),\n            \"not_h7_dom\": int((sub[\"H7_rate\"] < 0.5).sum()),\n        }\n    table = np.array([\n        [results[\"ISR\"][\"h7_dom\"], results[\"ISR\"][\"not_h7_dom\"]],\n        [results[\"RANDOM\"][\"h7_dom\"], results[\"RANDOM\"][\"not_h7_dom\"]],\n    ])\n    odds_ratio, p_value = stats.fisher_exact(table, alternative=\"greater\")\n\n    # 95% exact CI via scipy.stats.contingency\n    or_ci_lo, or_ci_hi = np.nan, np.nan\n    try:\n        ct = stats.contingency.odds_ratio(table)\n        ci = ct.confidence_interval(confidence_level=0.95)\n        or_ci_lo, or_ci_hi = ci.low, ci.high\n    except Exception:\n        pass\n\n    return {\n        \"table\": table.tolist(),\n        \"ISR\": results[\"ISR\"],\n        \"RANDOM\": results[\"RANDOM\"],\n        \"odds_ratio\": odds_ratio,\n        \"or_ci_lo\": or_ci_lo,\n        \"or_ci_hi\": or_ci_hi,\n        \"p_value\": p_value,\n    }\n\n\ndef permutation_test_genuine(df: pd.DataFrame, n_perm: int = 10000,\n                              rng_seed: int = 42) -> dict:\n    isr = df[df[\"condition\"] == \"ISR\"][\"genuine_rate\"].values\n    rand = df[df[\"condition\"] == \"RANDOM\"][\"genuine_rate\"].values\n    observed = isr.mean() - rand.mean()\n    pooled = np.concatenate([isr, rand])\n    n_isr = len(isr)\n    rng = np.random.default_rng(rng_seed)\n    count = 0\n    for _ in range(n_perm):\n        perm = rng.permutation(pooled)\n        if perm[:n_isr].mean() - perm[n_isr:].mean() >= observed:\n            count += 1\n    return {\n        \"observed_diff\": float(observed),\n        \"p_value\": count / n_perm,\n        \"n_perm\": n_perm,\n        \"isr_mean\": float(isr.mean()),\n        \"random_mean\": float(rand.mean()),\n    }\n\n\ndef mannwhitney_h7(df: pd.DataFrame) -> dict:\n    isr = df[df[\"condition\"] == \"ISR\"][\"H7_rate\"].values\n    rand = df[df[\"condition\"] == \"RANDOM\"][\"H7_rate\"].values\n    n1, n2 = len(isr), len(rand)\n    u_stat, p_value = stats.mannwhitneyu(isr, rand, alternative=\"greater\")\n    r_rb = 2.0 * u_stat / (n1 * n2) - 1.0 if n1 * n2 > 0 else np.nan\n    return {\n        \"U\": float(u_stat),\n        \"p_value\": float(p_value),\n        \"r_rank_biserial\": float(r_rb),\n        \"isr_median\": float(np.median(isr)),\n        \"random_median\": float(np.median(rand)),\n    }\n\n\ndef bca_bootstrap_ci(df: pd.DataFrame, metric: str, n_boot: int = 10000,\n                      rng_seed: int = 42) -> dict:\n    \"\"\"BCa 95% CI for per-condition means of a metric.\"\"\"\n    result = {}\n    for cond in [\"ISR\", \"RANDOM\"]:\n        vals = df[df[\"condition\"] == cond][metric].values\n        if len(vals) < 2:\n            result[cond] = {\"mean\": float(vals.mean()) if len(vals) else np.nan,\n                            \"ci_lo\": np.nan, \"ci_hi\": np.nan}\n            continue\n        res = stats.bootstrap(\n            (vals,), np.mean, n_resamples=n_boot,\n            confidence_level=0.95, method=\"BCa\",\n            random_state=np.random.default_rng(rng_seed),\n        )\n        result[cond] = {\n            \"mean\": float(vals.mean()),\n            \"ci_lo\": float(res.confidence_interval.low),\n            \"ci_hi\": float(res.confidence_interval.high),\n        }\n    return result\n\n\ndef bayes_factor_h7_domination(df: pd.DataFrame) -> dict:\n    \"\"\"BF10 for H7-domination rate difference (beta-binomial conjugate).\n    H0: ISR and Random share same domination rate.\n    H1: independent rates. Prior: Beta(1,1) on each.\n    \"\"\"\n    isr_sub = df[df[\"condition\"] == \"ISR\"]\n    rand_sub = df[df[\"condition\"] == \"RANDOM\"]\n    k_isr = int((isr_sub[\"H7_rate\"] >= 0.5).sum())\n    n_isr = len(isr_sub)\n    k_rand = int((rand_sub[\"H7_rate\"] >= 0.5).sum())\n    n_rand = len(rand_sub)\n    k_total = k_isr + k_rand\n    n_total = n_isr + n_rand\n\n    # log marginal under H0 (shared rate)\n    log_m_h0 = betaln(1 + k_total, 1 + n_total - k_total) - betaln(1, 1)\n    # log marginal under H1 (independent rates)\n    log_m_h1 = (betaln(1 + k_isr, 1 + n_isr - k_isr) - betaln(1, 1)\n                + betaln(1 + k_rand, 1 + n_rand - k_rand) - betaln(1, 1))\n    log_bf10 = log_m_h1 - log_m_h0\n    bf10 = float(np.exp(log_bf10))\n\n    return {\n        \"k_isr\": k_isr, \"n_isr\": n_isr,\n        \"k_rand\": k_rand, \"n_rand\": n_rand,\n        \"bf10\": bf10,\n        \"log_bf10\": float(log_bf10),\n        \"interpretation\": _interpret_bf(bf10),\n    }\n\n\ndef _interpret_bf(bf: float) -> str:\n    if bf > 100:\n        return \"extreme evidence for H1\"\n    if bf > 30:\n        return \"very strong evidence for H1\"\n    if bf > 10:\n        return \"strong evidence for H1\"\n    if bf > 3:\n        return \"moderate evidence for H1\"\n    if bf > 1:\n        return \"anecdotal evidence for H1\"\n    if bf > 1/3:\n        return \"anecdotal evidence (inconclusive)\"\n    if bf > 1/10:\n        return \"moderate evidence for H0\"\n    return \"strong evidence for H0\"\n\n\ndef condition_stats(df: pd.DataFrame) -> pd.DataFrame:\n    metrics = [\"PR\", \"H7_rate\", \"genuine_rate\", \"SNH_rate\"]\n    rows = []\n    for cond in [\"ISR\", \"RANDOM\"]:\n        sub = df[df[\"condition\"] == cond]\n        row = {\"condition\": cond, \"n_seeds\": len(sub)}\n        for m in metrics:\n            vals = sub[m].values\n            row[f\"{m}_mean\"] = vals.mean()\n            row[f\"{m}_std\"] = vals.std(ddof=1) if len(vals) > 1 else 0.0\n        rows.append(row)\n    return pd.DataFrame(rows)\n\n\n# --- Formatting ---\n\ndef fmt_pct(val: float) -> str:\n    return f\"{val*100:.1f}\\\\%\"\n\ndef fmt_or(val: float) -> str:\n    return \"$\\\\infty$\" if np.isinf(val) else f\"{val:.2f}\"\n\ndef fmt_ci(lo: float, hi: float) -> str:\n    lo_s = f\"{lo:.2f}\" if not np.isnan(lo) else \"0\"\n    hi_s = \"$\\\\infty$\" if np.isinf(hi) or np.isnan(hi) else f\"{hi:.2f}\"\n    return f\"[{lo_s}, {hi_s}]\"\n\ndef fmt_p(p: float) -> str:\n    if p < 0.001:\n        return \"$<$0.001\"\n    return f\"{p:.3f}\"\n\ndef fmt_mean_std(mean: float, std: float, pct: bool = False) -> str:\n    if pct:\n        return f\"{mean*100:.1f} $\\\\pm$ {std*100:.1f}\\\\%\"\n    return f\"{mean:.1f} $\\\\pm$ {std:.1f}\"\n\ndef fmt_bca(bca: dict, pct: bool = False) -> str:\n    m = bca[\"mean\"]\n    lo, hi = bca[\"ci_lo\"], bca[\"ci_hi\"]\n    if pct:\n        return f\"{m*100:.1f}\\\\% [{lo*100:.1f}, {hi*100:.1f}]\"\n    return f\"{m:.1f} [{lo:.1f}, {hi:.1f}]\"\n\n\n# --- Console output ---\n\ndef print_per_seed_table(df: pd.DataFrame):\n    print(\"\\n\" + \"=\" * 90)\n    print(\"  PER-SEED RESULTS\")\n    print(\"=\" * 90)\n    cols = [\"condition\", \"seed\", \"PR\", \"H7_count\", \"H7_rate\", \"H1_count\",\n            \"H8_count\", \"genuine_count\", \"genuine_rate\", \"CI_count\", \"SNH_count\", \"SNH_rate\"]\n    fmt = df[cols].copy()\n    for c in [\"H7_rate\", \"genuine_rate\", \"SNH_rate\"]:\n        fmt[c] = fmt[c].apply(lambda v: f\"{v*100:.1f}%\")\n    print(fmt.to_string(index=False))\n\n\ndef print_condition_stats(cond_df: pd.DataFrame):\n    print(\"\\n\" + \"=\" * 90)\n    print(\"  CONDITION-LEVEL STATISTICS (mean +/- SD)\")\n    print(\"=\" * 90)\n    for _, row in cond_df.iterrows():\n        n = int(row['n_seeds'])\n        print(f\"\\n  {row['condition']} (n={n} seeds):\")\n        print(f\"    PR:           {row['PR_mean']:.1f} +/- {row['PR_std']:.1f}\")\n        print(f\"    H7 rate:      {row['H7_rate_mean']*100:.1f} +/- {row['H7_rate_std']*100:.1f}%\")\n        print(f\"    Genuine rate: {row['genuine_rate_mean']*100:.1f} +/- {row['genuine_rate_std']*100:.1f}%\")\n        print(f\"    S-NH rate:    {row['SNH_rate_mean']*100:.1f} +/- {row['SNH_rate_std']*100:.1f}%\")\n\n\ndef print_tests(fisher, perm, mw, bf, bca_h7, bca_gen):\n    print(\"\\n\" + \"=\" * 90)\n    print(\"  STATISTICAL TESTS\")\n    print(\"=\" * 90)\n\n    print(\"\\n  1. H7 Domination Fisher Exact Test (H7-dominated = H7% >= 50%)\")\n    print(f\"     ISR:    {fisher['ISR']['h7_dom']} dominated / {fisher['ISR']['n']} seeds\")\n    print(f\"     RANDOM: {fisher['RANDOM']['h7_dom']} dominated / {fisher['RANDOM']['n']} seeds\")\n    print(f\"     Contingency: {fisher['table']}\")\n    or_str = \"inf\" if np.isinf(fisher['odds_ratio']) else f\"{fisher['odds_ratio']:.4f}\"\n    print(f\"     OR = {or_str}, 95% CI = [{fisher['or_ci_lo']:.4f}, {fisher['or_ci_hi']:.4f}]\"\n          if not np.isnan(fisher['or_ci_lo']) else f\"     OR = {or_str}, 95% CI = N/A\")\n    print(f\"     p-value (one-sided, greater): {fisher['p_value']:.4f}\")\n\n    print(f\"\\n  2. Genuine Rate Permutation Test (n_perm={perm['n_perm']})\")\n    print(f\"     ISR mean:    {perm['isr_mean']*100:.2f}%\")\n    print(f\"     RANDOM mean: {perm['random_mean']*100:.2f}%\")\n    print(f\"     Diff: {perm['observed_diff']*100:.2f} pp, p = {perm['p_value']:.4f}\")\n\n    print(f\"\\n  3. H7 Rate Mann-Whitney U Test\")\n    print(f\"     ISR median:    {mw['isr_median']*100:.1f}%\")\n    print(f\"     RANDOM median: {mw['random_median']*100:.1f}%\")\n    print(f\"     U = {mw['U']:.1f}, p = {mw['p_value']:.4f}\")\n    print(f\"     Rank-biserial r = {mw['r_rank_biserial']:.4f}\")\n\n    print(f\"\\n  4. Bayes Factor (H7 Domination, Beta-Binomial)\")\n    print(f\"     ISR:    {bf['k_isr']}/{bf['n_isr']} dominated\")\n    print(f\"     RANDOM: {bf['k_rand']}/{bf['n_rand']} dominated\")\n    print(f\"     BF10 = {bf['bf10']:.4f} ({bf['interpretation']})\")\n\n    print(f\"\\n  5. BCa Bootstrap 95% CI (n_boot resamples)\")\n    for label, bca in [(\"H7 rate\", bca_h7), (\"Genuine rate\", bca_gen)]:\n        print(f\"     {label}:\")\n        for cond in [\"ISR\", \"RANDOM\"]:\n            b = bca[cond]\n            print(f\"       {cond}: {b['mean']*100:.1f}% [{b['ci_lo']*100:.1f}, {b['ci_hi']*100:.1f}]\"\n                  if not np.isnan(b['ci_lo']) else f\"       {cond}: {b['mean']*100:.1f}% [N/A]\")\n\n\n# --- Markdown generation (appendix-ready) ---\n\ndef generate_markdown(df: pd.DataFrame, cond_df: pd.DataFrame,\n                      fisher: dict, perm: dict, mw: dict,\n                      bf: dict, bca_h7: dict, bca_gen: dict) -> str:\n    L = []\n    L.append(\"## D134: ISR vs Random Statistical Analysis\\n\")\n\n    # Per-seed table\n    L.append(\"### Table A1: Per-Seed Hacking Taxonomy (4B Qwen3, 500 steps)\\n\")\n    L.append(\"| Condition | Seed | PR | H7 | H7\\\\% | H1 | H8 | Genuine | Gen\\\\% | CI | S-NH | S-NH\\\\% |\")\n    L.append(\"|:----------|-----:|---:|---:|-----:|---:|---:|--------:|------:|---:|-----:|-------:|\")\n    for _, r in df.iterrows():\n        L.append(\n            f\"| {r['condition']} | {r['seed']} | {int(r['PR'])} | {int(r['H7_count'])} | \"\n            f\"{r['H7_rate']*100:.1f} | {int(r['H1_count'])} | {int(r['H8_count'])} | \"\n            f\"{int(r['genuine_count'])} | {r['genuine_rate']*100:.1f} | {int(r['CI_count'])} | \"\n            f\"{int(r['SNH_count'])} | {r['SNH_rate']*100:.1f} |\"\n        )\n\n    # Condition summary with BCa CI\n    L.append(\"\\n### Table A2: Condition-Level Summary\\n\")\n    L.append(\"| Condition | $n$ | PR (mean$\\\\pm$SD) | H7\\\\% (mean$\\\\pm$SD) | H7\\\\% BCa 95\\\\% CI | Gen\\\\% (mean$\\\\pm$SD) | Gen\\\\% BCa 95\\\\% CI |\")\n    L.append(\"|:----------|----:|:------------------|:-------------------|:-----------------|:-------------------|:-----------------|\")\n    for _, r in cond_df.iterrows():\n        cond = r[\"condition\"]\n        h7_bca = bca_h7.get(cond, {})\n        gen_bca = bca_gen.get(cond, {})\n        h7_ci = f\"[{h7_bca['ci_lo']*100:.1f}, {h7_bca['ci_hi']*100:.1f}]\" if h7_bca and not np.isnan(h7_bca.get('ci_lo', np.nan)) else \"N/A\"\n        gen_ci = f\"[{gen_bca['ci_lo']*100:.1f}, {gen_bca['ci_hi']*100:.1f}]\" if gen_bca and not np.isnan(gen_bca.get('ci_lo', np.nan)) else \"N/A\"\n        L.append(\n            f\"| {cond} | {int(r['n_seeds'])} | \"\n            f\"{r['PR_mean']:.1f}$\\\\pm${r['PR_std']:.1f} | \"\n            f\"{r['H7_rate_mean']*100:.1f}$\\\\pm${r['H7_rate_std']*100:.1f} | \"\n            f\"{h7_ci} | \"\n            f\"{r['genuine_rate_mean']*100:.1f}$\\\\pm${r['genuine_rate_std']*100:.1f} | \"\n            f\"{gen_ci} |\"\n        )\n\n    # Statistical tests\n    if fisher and perm and mw and bf:\n        L.append(\"\\n### Statistical Tests\\n\")\n\n        # Fisher\n        or_str = \"$\\\\infty$\" if np.isinf(fisher['odds_ratio']) else f\"{fisher['odds_ratio']:.2f}\"\n        ci_lo = f\"{fisher['or_ci_lo']:.2f}\" if not np.isnan(fisher['or_ci_lo']) else \"0\"\n        ci_hi = \"$\\\\infty$\" if np.isinf(fisher.get('or_ci_hi', np.inf)) or np.isnan(fisher.get('or_ci_hi', np.nan)) else f\"{fisher['or_ci_hi']:.2f}\"\n        L.append(\"**1. H7 Domination Fisher Exact Test** (threshold: H7$\\\\geq$50\\\\% of proved)\")\n        L.append(f\"- ISR: {fisher['ISR']['h7_dom']}/{fisher['ISR']['n']} seeds H7-dominated; \"\n                 f\"Random: {fisher['RANDOM']['h7_dom']}/{fisher['RANDOM']['n']}\")\n        L.append(f\"- OR = {or_str}, 95\\\\% exact CI = [{ci_lo}, {ci_hi}], \"\n                 f\"$p$ = {fmt_p(fisher['p_value'])}\")\n        L.append(\"\")\n\n        # Permutation\n        L.append(f\"**2. Genuine Rate Permutation Test** ($n$ = {perm['n_perm']:,} permutations)\")\n        L.append(f\"- ISR mean: {perm['isr_mean']*100:.2f}\\\\%, Random mean: {perm['random_mean']*100:.2f}\\\\%\")\n        L.append(f\"- $\\\\Delta$ = {perm['observed_diff']*100:.2f} pp, $p$ = {fmt_p(perm['p_value'])}\")\n        L.append(\"\")\n\n        # Mann-Whitney\n        L.append(\"**3. H7 Rate Mann-Whitney $U$ Test**\")\n        L.append(f\"- ISR median: {mw['isr_median']*100:.1f}\\\\%, Random median: {mw['random_median']*100:.1f}\\\\%\")\n        L.append(f\"- $U$ = {mw['U']:.1f}, $p$ = {fmt_p(mw['p_value'])}, \"\n                 f\"rank-biserial $r$ = {mw['r_rank_biserial']:.3f}\")\n        L.append(\"\")\n\n        # Bayes Factor\n        L.append(\"**4. Bayes Factor** (Beta-Binomial conjugate, prior: Beta(1,1))\")\n        L.append(f\"- $BF_{{10}}$ = {bf['bf10']:.2f} ({bf['interpretation']})\")\n        L.append(f\"- ISR: {bf['k_isr']}/{bf['n_isr']} H7-dominated, \"\n                 f\"Random: {bf['k_rand']}/{bf['n_rand']}\")\n\n    return \"\\n\".join(L) + \"\\n\"\n\n\n# --- Main ---\n\ndef main():\n    args = parse_args()\n    data_dir = Path(args.data_dir)\n\n    if not data_dir.exists():\n        print(f\"ERROR: data directory {data_dir} does not exist\", file=sys.stderr)\n        sys.exit(1)\n\n    if args.prefix:\n        prefixes = [args.prefix]\n    elif args.prefixes:\n        prefixes = [p.strip() for p in args.prefixes.split(\",\")]\n    else:\n        prefixes = MODE_PREFIXES[args.mode]\n    print(f\"Mode: {args.mode} | Prefixes: {prefixes}\")\n\n    runs = discover_runs(data_dir, prefixes)\n    if not runs:\n        print(f\"ERROR: no runs found in {data_dir} with prefixes {prefixes}\", file=sys.stderr)\n        sys.exit(1)\n\n    isr_count = sum(1 for r in runs if r[\"condition\"] == \"ISR\")\n    rand_count = sum(1 for r in runs if r[\"condition\"] == \"RANDOM\")\n    print(f\"Found {len(runs)} runs: {isr_count} ISR, {rand_count} RANDOM\")\n    for r in runs:\n        print(f\"  {r['condition']:6s} s{r['seed']} <- {r['dir_name']}\")\n\n    df = build_table(runs)\n    print_per_seed_table(df)\n\n    cond_df = condition_stats(df)\n    print_condition_stats(cond_df)\n\n    if isr_count < 2 or rand_count < 2:\n        print(\"\\nWARNING: need >= 2 seeds per condition for statistical tests, skipping.\",\n              file=sys.stderr)\n        bca_h7 = bca_bootstrap_ci(df, \"H7_rate\", args.n_boot, args.seed)\n        bca_gen = bca_bootstrap_ci(df, \"genuine_rate\", args.n_boot, args.seed)\n        if args.output:\n            md = generate_markdown(df, cond_df, {}, {}, {}, {}, bca_h7, bca_gen)\n            Path(args.output).write_text(md)\n            print(f\"\\nMarkdown written to {args.output}\")\n        return\n\n    fisher = fisher_h7_domination(df)\n    perm = permutation_test_genuine(df, n_perm=args.n_perm, rng_seed=args.seed)\n    mw = mannwhitney_h7(df)\n    bf = bayes_factor_h7_domination(df)\n    bca_h7 = bca_bootstrap_ci(df, \"H7_rate\", args.n_boot, args.seed)\n    bca_gen = bca_bootstrap_ci(df, \"genuine_rate\", args.n_boot, args.seed)\n\n    print_tests(fisher, perm, mw, bf, bca_h7, bca_gen)\n\n    md = generate_markdown(df, cond_df, fisher, perm, mw, bf, bca_h7, bca_gen)\n    print(\"\\n\" + \"=\" * 90)\n    print(\"  MARKDOWN OUTPUT (appendix-ready)\")\n    print(\"=\" * 90)\n    print(md)\n\n    if args.output:\n        Path(args.output).parent.mkdir(parents=True, exist_ok=True)\n        Path(args.output).write_text(md)\n        print(f\"Markdown written to {args.output}\")\n\n\nif __name__ == \"__main__\":\n    main()\nHEREDOC_EOF\necho \"EXIT_CODE=$?\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b75062d4-ea86-499d-8438-4ff3b2a5a28e",
+            "uuid": "b54fe895-9e55-4c2e-930a-449f91260a96",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01A4Sj1D7SuH7crxS6DCxUg8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 390,
+                "cache_read_input_tokens": 36996,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 390
+                },
+                "output_tokens": 21,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-18T15:10:11.922Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JaVtN6Hp14ZDQPUzz7SoTd",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"EXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.21}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b75062d4-ea86-499d-8438-4ff3b2a5a28e",
+            "uuid": "5f4e63cb-0a9e-4c93-ac73-c1ed5042f5a0",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"EXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.21}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"EXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.21}}"
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已写入。运行 dry run。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b75062d4-ea86-499d-8438-4ff3b2a5a28e",
+            "uuid": "fc181329-b449-4771-8b0a-eb548e88ff3e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012KLhShXM9XJpvDNe9C1ErH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8936,
+                "cache_read_input_tokens": 37386,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 8936
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SgZBUzQbCKbXMh8mkYyKZY",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-39279",
+                "account": "root",
+                "command": "cd /root/solver-trace-ablation && /root/miniconda3/bin/python scripts/d134_analysis.py --mode all --data_dir /root/autodl-tmp/outputs --n_boot 1000 2>&1"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b75062d4-ea86-499d-8438-4ff3b2a5a28e",
+            "uuid": "6042b622-97be-4d1e-bd82-19813d0e6c86",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012KLhShXM9XJpvDNe9C1ErH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8936,
+                "cache_read_input_tokens": 37386,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 8936
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-18T15:10:19.151Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SgZBUzQbCKbXMh8mkYyKZY",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/miniconda3/lib/python3.12/site-packages/scipy/stats/_resampling.py:155: RuntimeWarning: invalid value encountered in scalar divide\\\\n  a_hat = 1/6 * sum(nums) / sum(dens)**(3/2)\\\\n/root/miniconda3/lib/python3.12/site-packages/scipy/_lib/_util.py:365: DegenerateDataWarning: The BCa confidence interval cannot be calculated. This problem is known to occur when the distribution is degenerate or the statistic is np.min.\\\\n  return fun(*args, **kwargs)\\\\nMode: all | Prefixes: ['d134_4b', 'plan002_additive_b01', 'plan018_additive_random_b01', 'plan018_random']\\\\nFound 7 runs: 5 ISR, 2 RANDOM\\\\n  ISR    s47 <- d134_4b_isr_b01_s47\\\\n  ISR    s48 <- d134_4b_isr_b01_s48\\\\n  ISR    s49 <- d134_4b_isr_b01_s49\\\\n  ISR    s50 <- d134_4b_isr_b01_s50\\\\n  ISR    s42 <- plan002_additive_b01_s42_1000_taxonomy_unified.json\\\\n  RANDOM s44 <- plan018_additive_random_b01_s44_r2\\\\n  RANDOM s42 <- plan018_random_s42_taxonomy_verification.json\\\\n\\\\n==========================================================================================\\\\n  PER-SEED RESULTS\\\\n==========================================================================================\\\\ncondition  seed  PR  H7_count H7_rate  H1_count  H8_count  genuine_count genuine_rate  CI_count  SNH_count SNH_rate\\\\n      ISR    42  90        87   96.7%         0         2              1         1.1%         0          1     1.1%\\\\n      ISR    47  97        83   85.6%         1        10              3         3.1%         8          0     0.0%\\\\n      ISR    48  66        66  100.0%         0         0              0         0.0%         2          0     0.0%\\\\n      ISR    49  86        73   84.9%         6         6              1         1.2%         0          1     1.2%\\\\n      ISR    50  98        84   85.7%         0         8              6         6.1%         2          4     4.1%\\\\n   RANDOM    42  79         0    0.0%        56         3             12        15.2%         0         12    15.2%\\\\n   RANDOM    44  89         0    0.0%        73        16              6         6.7%        18          0     0.0%\\\\n\\\\n==========================================================================================\\\\n  CONDITION-LEVEL STATISTICS (mean +/- SD)\\\\n==========================================================================================\\\\n\\\\n  ISR (n=5 seeds):\\\\n    PR:           87.4 +/- 13.0\\\\n    H7 rate:      90.6 +/- 7.2%\\\\n    Genuine rate: 2.3 +/- 2.4%\\\\n    S-NH rate:    1.3 +/- 1.7%\\\\n\\\\n  RANDOM (n=2 seeds):\\\\n    PR:           84.0 +/- 7.1\\\\n    H7 rate:      0.0 +/- 0.0%\\\\n    Genuine rate: 11.0 +/- 6.0%\\\\n    S-NH rate:    7.6 +/- 10.7%\\\\n\\\\n==========================================================================================\\\\n  STATISTICAL TESTS\\\\n==========================================================================================\\\\n\\\\n  1. H7 Domination Fisher Exact Test (H7-dominated = H7% >= 50%)\\\\n     ISR:    5 dominated / 5 seeds\\\\n     RANDOM: 0 dominated / 2 seeds\\\\n     Contingency: [[5, 0], [0, 2]]\\\\n     OR = inf, 95% CI = [0.6506, inf]\\\\n     p-value (one-sided, greater): 0.0476\\\\n\\\\n  2. Genuine Rate Permutation Test (n_perm=10000)\\\\n     ISR mean:    2.30%\\\\n     RANDOM mean: 10.96%\\\\n     Diff: -8.67 pp, p = 1.0000\\\\n\\\\n  3. H7 Rate Mann-Whitney U Test\\\\n     ISR median:    85.7%\\\\n     RANDOM median: 0.0%\\\\n     U = 10.0, p = 0.0393\\\\n     Rank-biserial r = 1.0000\\\\n\\\\n  4. Bayes Factor (H7 Domination, Beta-Binomial)\\\\n     ISR:    5/5 dominated\\\\n     RANDOM: 0/2 dominated\\\\n     BF10 = 9.3333 (moderate evidence for H1)\\\\n\\\\n  5. BCa Bootstrap 95% CI (n_boot resamples)\\\\n     H7 rate:\\\\n       ISR: 90.6% [85.3, 96.4]\\\\n       RANDOM: 0.0% [N/A]\\\\n     Genuine rate:\\\\n       ISR: 2.3% [0.9, 5.1]\\\\n       RANDOM: 11.0% [6.7, 15.2]\\\\n\\\\n==========================================================================================\\\\n  MARKDOWN OUTPUT (appendix-ready)\\\\n==========================================================================================\\\\n## D134: ISR vs Random Statistical Analysis\\\\n\\\\n### Table A1: Per-Seed Hacking Taxonomy (4B Qwen3, 500 steps)\\\\n\\\\n| Condition | Seed | PR | H7 | H7\\\\\\\\% | H1 | H8 | Genuine | Gen\\\\\\\\% | CI | S-NH | S-NH\\\\\\\\% |\\\\n|:----------|-----:|---:|---:|-----:|---:|---:|--------:|------:|---:|-----:|-------:|\\\\n| ISR | 42 | 90 | 87 | 96.7 | 0 | 2 | 1 | 1.1 | 0 | 1 | 1.1 |\\\\n| ISR | 47 | 97 | 83 | 85.6 | 1 | 10 | 3 | 3.1 | 8 | 0 | 0.0 |\\\\n| ISR | 48 | 66 | 66 | 100.0 | 0 | 0 | 0 | 0.0 | 2 | 0 | 0.0 |\\\\n| ISR | 49 | 86 | 73 | 84.9 | 6 | 6 | 1 | 1.2 | 0 | 1 | 1.2 |\\\\n| ISR | 50 | 98 | 84 | 85.7 | 0 | 8 | 6 | 6.1 | 2 | 4 | 4.1 |\\\\n| RANDOM | 42 | 79 | 0 | 0.0 | 56 | 3 | 12 | 15.2 | 0 | 12 | 15.2 |\\\\n| RANDOM | 44 | 89 | 0 | 0.0 | 73 | 16 | 6 | 6.7 | 18 | 0 | 0.0 |\\\\n\\\\n### Table A2: Condition-Level Summary\\\\n\\\\n| Condition | $n$ | PR (mean$\\\\\\\\pm$SD) | H7\\\\\\\\% (mean$\\\\\\\\pm$SD) | H7\\\\\\\\% BCa 95\\\\\\\\% CI | Gen\\\\\\\\% (mean$\\\\\\\\pm$SD) | Gen\\\\\\\\% BCa 95\\\\\\\\% CI |\\\\n|:----------|----:|:------------------|:-------------------|:-----------------|:-------------------|:-----------------|\\\\n| ISR | 5 | 87.4$\\\\\\\\pm$13.0 | 90.6$\\\\\\\\pm$7.2 | [85.3, 96.4] | 2.3$\\\\\\\\pm$2.4 | [0.9, 5.1] |\\\\n| RANDOM | 2 | 84.0$\\\\\\\\pm$7.1 | 0.0$\\\\\\\\pm$0.0 | N/A | 11.0$\\\\\\\\pm$6.0 | [6.7, 15.2] |\\\\n\\\\n### Statistical Tests\\\\n\\\\n**1. H7 Domination Fisher Exact Test** (threshold: H7$\\\\\\\\geq$50\\\\\\\\% of proved)\\\\n- ISR: 5/5 seeds H7-dominated; Random: 0/2\\\\n- OR = $\\\\\\\\infty$, 95\\\\\\\\% exact CI = [0.65, $\\\\\\\\infty$], $p$ = 0.048\\\\n\\\\n**2. Genuine Rate Permutation Test** ($n$ = 10,000 permutations)\\\\n- ISR mean: 2.30\\\\\\\\%, Random mean: 10.96\\\\\\\\%\\\\n- $\\\\\\\\Delta$ = -8.67 pp, $p$ = 1.000\\\\n\\\\n**3. H7 Rate Mann-Whitney $U$ Test**\\\\n- ISR median: 85.7\\\\\\\\%, Random median: 0.0\\\\\\\\%\\\\n- $U$ = 10.0, $p$ = 0.039, rank-biserial $r$ = 1.000\\\\n\\\\n**4. Bayes Factor** (Beta-Binomial conjugate, prior: Beta(1,1))\\\\n- $BF_{10}$ = 9.33 (moderate evidence for H1)\\\\n- ISR: 5/5 H7-dominated, Random: 0/2\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.8}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b75062d4-ea86-499d-8438-4ff3b2a5a28e",
+            "uuid": "6808599c-e0a2-4c78-923b-173ae6a86173",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/miniconda3/lib/python3.12/site-packages/scipy/stats/_resampling.py:155: RuntimeWarning: invalid value encountered in scalar divide\\\\n  a_hat = 1/6 * sum(nums) / sum(dens)**(3/2)\\\\n/root/miniconda3/lib/python3.12/site-packages/scipy/_lib/_util.py:365: DegenerateDataWarning: The BCa confidence interval cannot be calculated. This problem is known to occur when the distribution is degenerate or the statistic is np.min.\\\\n  return fun(*args, **kwargs)\\\\nMode: all | Prefixes: ['d134_4b', 'plan002_additive_b01', 'plan018_additive_random_b01', 'plan018_random']\\\\nFound 7 runs: 5 ISR, 2 RANDOM\\\\n  ISR    s47 <- d134_4b_isr_b01_s47\\\\n  ISR    s48 <- d134_4b_isr_b01_s48\\\\n  ISR    s49 <- d134_4b_isr_b01_s49\\\\n  ISR    s50 <- d134_4b_isr_b01_s50\\\\n  ISR    s42 <- plan002_additive_b01_s42_1000_taxonomy_unified.json\\\\n  RANDOM s44 <- plan018_additive_random_b01_s44_r2\\\\n  RANDOM s42 <- plan018_random_s42_taxonomy_verification.json\\\\n\\\\n==========================================================================================\\\\n  PER-SEED RESULTS\\\\n==========================================================================================\\\\ncondition  seed  PR  H7_count H7_rate  H1_count  H8_count  genuine_count genuine_rate  CI_count  SNH_count SNH_rate\\\\n      ISR    42  90        87   96.7%         0         2              1         1.1%         0          1     1.1%\\\\n      ISR    47  97        83   85.6%         1        10              3         3.1%         8          0     0.0%\\\\n      ISR    48  66        66  100.0%         0         0              0         0.0%         2          0     0.0%\\\\n      ISR    49  86        73   84.9%         6         6              1         1.2%         0          1     1.2%\\\\n      ISR    50  98        84   85.7%         0         8              6         6.1%         2          4     4.1%\\\\n   RANDOM    42  79         0    0.0%        56         3             12        15.2%         0         12    15.2%\\\\n   RANDOM    44  89         0    0.0%        73        16              6         6.7%        18          0     0.0%\\\\n\\\\n==========================================================================================\\\\n  CONDITION-LEVEL STATISTICS (mean +/- SD)\\\\n==========================================================================================\\\\n\\\\n  ISR (n=5 seeds):\\\\n    PR:           87.4 +/- 13.0\\\\n    H7 rate:      90.6 +/- 7.2%\\\\n    Genuine rate: 2.3 +/- 2.4%\\\\n    S-NH rate:    1.3 +/- 1.7%\\\\n\\\\n  RANDOM (n=2 seeds):\\\\n    PR:           84.0 +/- 7.1\\\\n    H7 rate:      0.0 +/- 0.0%\\\\n    Genuine rate: 11.0 +/- 6.0%\\\\n    S-NH rate:    7.6 +/- 10.7%\\\\n\\\\n==========================================================================================\\\\n  STATISTICAL TESTS\\\\n==========================================================================================\\\\n\\\\n  1. H7 Domination Fisher Exact Test (H7-dominated = H7% >= 50%)\\\\n     ISR:    5 dominated / 5 seeds\\\\n     RANDOM: 0 dominated / 2 seeds\\\\n     Contingency: [[5, 0], [0, 2]]\\\\n     OR = inf, 95% CI = [0.6506, inf]\\\\n     p-value (one-sided, greater): 0.0476\\\\n\\\\n  2. Genuine Rate Permutation Test (n_perm=10000)\\\\n     ISR mean:    2.30%\\\\n     RANDOM mean: 10.96%\\\\n     Diff: -8.67 pp, p = 1.0000\\\\n\\\\n  3. H7 Rate Mann-Whitney U Test\\\\n     ISR median:    85.7%\\\\n     RANDOM median: 0.0%\\\\n     U = 10.0, p = 0.0393\\\\n     Rank-biserial r = 1.0000\\\\n\\\\n  4. Bayes Factor (H7 Domination, Beta-Binomial)\\\\n     ISR:    5/5 dominated\\\\n     RANDOM: 0/2 dominated\\\\n     BF10 = 9.3333 (moderate evidence for H1)\\\\n\\\\n  5. BCa Bootstrap 95% CI (n_boot resamples)\\\\n     H7 rate:\\\\n       ISR: 90.6% [85.3, 96.4]\\\\n       RANDOM: 0.0% [N/A]\\\\n     Genuine rate:\\\\n       ISR: 2.3% [0.9, 5.1]\\\\n       RANDOM: 11.0% [6.7, 15.2]\\\\n\\\\n==========================================================================================\\\\n  MARKDOWN OUTPUT (appendix-ready)\\\\n==========================================================================================\\\\n## D134: ISR vs Random Statistical Analysis\\\\n\\\\n### Table A1: Per-Seed Hacking Taxonomy (4B Qwen3, 500 steps)\\\\n\\\\n| Condition | Seed | PR | H7 | H7\\\\\\\\% | H1 | H8 | Genuine | Gen\\\\\\\\% | CI | S-NH | S-NH\\\\\\\\% |\\\\n|:----------|-----:|---:|---:|-----:|---:|---:|--------:|------:|---:|-----:|-------:|\\\\n| ISR | 42 | 90 | 87 | 96.7 | 0 | 2 | 1 | 1.1 | 0 | 1 | 1.1 |\\\\n| ISR | 47 | 97 | 83 | 85.6 | 1 | 10 | 3 | 3.1 | 8 | 0 | 0.0 |\\\\n| ISR | 48 | 66 | 66 | 100.0 | 0 | 0 | 0 | 0.0 | 2 | 0 | 0.0 |\\\\n| ISR | 49 | 86 | 73 | 84.9 | 6 | 6 | 1 | 1.2 | 0 | 1 | 1.2 |\\\\n| ISR | 50 | 98 | 84 | 85.7 | 0 | 8 | 6 | 6.1 | 2 | 4 | 4.1 |\\\\n| RANDOM | 42 | 79 | 0 | 0.0 | 56 | 3 | 12 | 15.2 | 0 | 12 | 15.2 |\\\\n| RANDOM | 44 | 89 | 0 | 0.0 | 73 | 16 | 6 | 6.7 | 18 | 0 | 0.0 |\\\\n\\\\n### Table A2: Condition-Level Summary\\\\n\\\\n| Condition | $n$ | PR (mean$\\\\\\\\pm$SD) | H7\\\\\\\\% (mean$\\\\\\\\pm$SD) | H7\\\\\\\\% BCa 95\\\\\\\\% CI | Gen\\\\\\\\% (mean$\\\\\\\\pm$SD) | Gen\\\\\\\\% BCa 95\\\\\\\\% CI |\\\\n|:----------|----:|:------------------|:-------------------|:-----------------|:-------------------|:-----------------|\\\\n| ISR | 5 | 87.4$\\\\\\\\pm$13.0 | 90.6$\\\\\\\\pm$7.2 | [85.3, 96.4] | 2.3$\\\\\\\\pm$2.4 | [0.9, 5.1] |\\\\n| RANDOM | 2 | 84.0$\\\\\\\\pm$7.1 | 0.0$\\\\\\\\pm$0.0 | N/A | 11.0$\\\\\\\\pm$6.0 | [6.7, 15.2] |\\\\n\\\\n### Statistical Tests\\\\n\\\\n**1. H7 Domination Fisher Exact Test** (threshold: H7$\\\\\\\\geq$50\\\\\\\\% of proved)\\\\n- ISR: 5/5 seeds H7-dominated; Random: 0/2\\\\n- OR = $\\\\\\\\infty$, 95\\\\\\\\% exact CI = [0.65, $\\\\\\\\infty$], $p$ = 0.048\\\\n\\\\n**2. Genuine Rate Permutation Test** ($n$ = 10,000 permutations)\\\\n- ISR mean: 2.30\\\\\\\\%, Random mean: 10.96\\\\\\\\%\\\\n- $\\\\\\\\Delta$ = -8.67 pp, $p$ = 1.000\\\\n\\\\n**3. H7 Rate Mann-Whitney $U$ Test**\\\\n- ISR median: 85.7\\\\\\\\%, Random median: 0.0\\\\\\\\%\\\\n- $U$ = 10.0, $p$ = 0.039, rank-biserial $r$ = 1.000\\\\n\\\\n**4. Bayes Factor** (Beta-Binomial conjugate, prior: Beta(1,1))\\\\n- $BF_{10}$ = 9.33 (moderate evidence for H1)\\\\n- ISR: 5/5 H7-dominated, Random: 0/2\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.8}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/lib/python3.12/site-packages/scipy/stats/_resampling.py:155: RuntimeWarning: invalid value encountered in scalar divide\\n  a_hat = 1/6 * sum(nums) / sum(dens)**(3/2)\\n/root/miniconda3/lib/python3.12/site-packages/scipy/_lib/_util.py:365: DegenerateDataWarning: The BCa confidence interval cannot be calculated. This problem is known to occur when the distribution is degenerate or the statistic is np.min.\\n  return fun(*args, **kwargs)\\nMode: all | Prefixes: ['d134_4b', 'plan002_additive_b01', 'plan018_additive_random_b01', 'plan018_random']\\nFound 7 runs: 5 ISR, 2 RANDOM\\n  ISR    s47 <- d134_4b_isr_b01_s47\\n  ISR    s48 <- d134_4b_isr_b01_s48\\n  ISR    s49 <- d134_4b_isr_b01_s49\\n  ISR    s50 <- d134_4b_isr_b01_s50\\n  ISR    s42 <- plan002_additive_b01_s42_1000_taxonomy_unified.json\\n  RANDOM s44 <- plan018_additive_random_b01_s44_r2\\n  RANDOM s42 <- plan018_random_s42_taxonomy_verification.json\\n\\n==========================================================================================\\n  PER-SEED RESULTS\\n==========================================================================================\\ncondition  seed  PR  H7_count H7_rate  H1_count  H8_count  genuine_count genuine_rate  CI_count  SNH_count SNH_rate\\n      ISR    42  90        87   96.7%         0         2              1         1.1%         0          1     1.1%\\n      ISR    47  97        83   85.6%         1        10              3         3.1%         8          0     0.0%\\n      ISR    48  66        66  100.0%         0         0              0         0.0%         2          0     0.0%\\n      ISR    49  86        73   84.9%         6         6              1         1.2%         0          1     1.2%\\n      ISR    50  98        84   85.7%         0         8              6         6.1%         2          4     4.1%\\n   RANDOM    42  79         0    0.0%        56         3             12        15.2%         0         12    15.2%\\n   RANDOM    44  89         0    0.0%        73        16              6         6.7%        18          0     0.0%\\n\\n==========================================================================================\\n  CONDITION-LEVEL STATISTICS (mean +/- SD)\\n==========================================================================================\\n\\n  ISR (n=5 seeds):\\n    PR:           87.4 +/- 13.0\\n    H7 rate:      90.6 +/- 7.2%\\n    Genuine rate: 2.3 +/- 2.4%\\n    S-NH rate:    1.3 +/- 1.7%\\n\\n  RANDOM (n=2 seeds):\\n    PR:           84.0 +/- 7.1\\n    H7 rate:      0.0 +/- 0.0%\\n    Genuine rate: 11.0 +/- 6.0%\\n    S-NH rate:    7.6 +/- 10.7%\\n\\n==========================================================================================\\n  STATISTICAL TESTS\\n==========================================================================================\\n\\n  1. H7 Domination Fisher Exact Test (H7-dominated = H7% >= 50%)\\n     ISR:    5 dominated / 5 seeds\\n     RANDOM: 0 dominated / 2 seeds\\n     Contingency: [[5, 0], [0, 2]]\\n     OR = inf, 95% CI = [0.6506, inf]\\n     p-value (one-sided, greater): 0.0476\\n\\n  2. Genuine Rate Permutation Test (n_perm=10000)\\n     ISR mean:    2.30%\\n     RANDOM mean: 10.96%\\n     Diff: -8.67 pp, p = 1.0000\\n\\n  3. H7 Rate Mann-Whitney U Test\\n     ISR median:    85.7%\\n     RANDOM median: 0.0%\\n     U = 10.0, p = 0.0393\\n     Rank-biserial r = 1.0000\\n\\n  4. Bayes Factor (H7 Domination, Beta-Binomial)\\n     ISR:    5/5 dominated\\n     RANDOM: 0/2 dominated\\n     BF10 = 9.3333 (moderate evidence for H1)\\n\\n  5. BCa Bootstrap 95% CI (n_boot resamples)\\n     H7 rate:\\n       ISR: 90.6% [85.3, 96.4]\\n       RANDOM: 0.0% [N/A]\\n     Genuine rate:\\n       ISR: 2.3% [0.9, 5.1]\\n       RANDOM: 11.0% [6.7, 15.2]\\n\\n==========================================================================================\\n  MARKDOWN OUTPUT (appendix-ready)\\n==========================================================================================\\n## D134: ISR vs Random Statistical Analysis\\n\\n### Table A1: Per-Seed Hacking Taxonomy (4B Qwen3, 500 steps)\\n\\n| Condition | Seed | PR | H7 | H7\\\\% | H1 | H8 | Genuine | Gen\\\\% | CI | S-NH | S-NH\\\\% |\\n|:----------|-----:|---:|---:|-----:|---:|---:|--------:|------:|---:|-----:|-------:|\\n| ISR | 42 | 90 | 87 | 96.7 | 0 | 2 | 1 | 1.1 | 0 | 1 | 1.1 |\\n| ISR | 47 | 97 | 83 | 85.6 | 1 | 10 | 3 | 3.1 | 8 | 0 | 0.0 |\\n| ISR | 48 | 66 | 66 | 100.0 | 0 | 0 | 0 | 0.0 | 2 | 0 | 0.0 |\\n| ISR | 49 | 86 | 73 | 84.9 | 6 | 6 | 1 | 1.2 | 0 | 1 | 1.2 |\\n| ISR | 50 | 98 | 84 | 85.7 | 0 | 8 | 6 | 6.1 | 2 | 4 | 4.1 |\\n| RANDOM | 42 | 79 | 0 | 0.0 | 56 | 3 | 12 | 15.2 | 0 | 12 | 15.2 |\\n| RANDOM | 44 | 89 | 0 | 0.0 | 73 | 16 | 6 | 6.7 | 18 | 0 | 0.0 |\\n\\n### Table A2: Condition-Level Summary\\n\\n| Condition | $n$ | PR (mean$\\\\pm$SD) | H7\\\\% (mean$\\\\pm$SD) | H7\\\\% BCa 95\\\\% CI | Gen\\\\% (mean$\\\\pm$SD) | Gen\\\\% BCa 95\\\\% CI |\\n|:----------|----:|:------------------|:-------------------|:-----------------|:-------------------|:-----------------|\\n| ISR | 5 | 87.4$\\\\pm$13.0 | 90.6$\\\\pm$7.2 | [85.3, 96.4] | 2.3$\\\\pm$2.4 | [0.9, 5.1] |\\n| RANDOM | 2 | 84.0$\\\\pm$7.1 | 0.0$\\\\pm$0.0 | N/A | 11.0$\\\\pm$6.0 | [6.7, 15.2] |\\n\\n### Statistical Tests\\n\\n**1. H7 Domination Fisher Exact Test** (threshold: H7$\\\\geq$50\\\\% of proved)\\n- ISR: 5/5 seeds H7-dominated; Random: 0/2\\n- OR = $\\\\infty$, 95\\\\% exact CI = [0.65, $\\\\infty$], $p$ = 0.048\\n\\n**2. Genuine Rate Permutation Test** ($n$ = 10,000 permutations)\\n- ISR mean: 2.30\\\\%, Random mean: 10.96\\\\%\\n- $\\\\Delta$ = -8.67 pp, $p$ = 1.000\\n\\n**3. H7 Rate Mann-Whitney $U$ Test**\\n- ISR median: 85.7\\\\%, Random median: 0.0\\\\%\\n- $U$ = 10.0, $p$ = 0.039, rank-biserial $r$ = 1.000\\n\\n**4. Bayes Factor** (Beta-Binomial conjugate, prior: Beta(1,1))\\n- $BF_{10}$ = 9.33 (moderate evidence for H1)\\n- ISR: 5/5 H7-dominated, Random: 0/2\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.8}}"
+              }
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复验证通过。Mann-Whitney U 部分关键输出：\n\n```\n  3. H7 Rate Mann-Whitney U Test\n     ISR median:    85.7%\n     RANDOM median: 0.0%\n     U = 10.0, p = 0.0393\n     Rank-biserial r = 1.0000\n```\n\n**r = +1.0000**，符合预期（ISR H7% 完全高于 Random H7%）。之前错误公式输出 r = -1.0，现在已修正为 `2U/(n1*n2) - 1`。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b75062d4-ea86-499d-8438-4ff3b2a5a28e",
+            "uuid": "e6363f23-9553-48f2-a1de-a41cc2cefa62",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0115HGBjjXuxXiMBdXGjajBQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2761,
+                "cache_read_input_tokens": 46322,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2761
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复验证通过。Mann-Whitney U 部分关键输出：\n\n```\n  3. H7 Rate Mann-Whitney U Test\n     ISR median:    85.7%\n     RANDOM median: 0.0%\n     U = 10.0, p = 0.0393\n     Rank-biserial r = 1.0000\n```\n\n**r = +1.0000**，符合预期（ISR H7% 完全高于 Random H7%）。之前错误公式输出 r = -1.0，现在已修正为 `2U/(n1*n2) - 1`。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 147131,
+            "duration_api_ms": 145163,
+            "num_turns": 5,
+            "stop_reason": "end_turn",
+            "session_id": "b75062d4-ea86-499d-8438-4ff3b2a5a28e",
+            "total_cost_usd": 0.5523020000000001,
+            "usage": {
+              "input_tokens": 9,
+              "cache_creation_input_tokens": 37242,
+              "cache_read_input_tokens": 159509,
+              "output_tokens": 9472,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 37242,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 163,
+                  "cache_read_input_tokens": 46322,
+                  "cache_creation_input_tokens": 2761,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 2761
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2830,
+                "outputTokens": 22,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.00294,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 9,
+                "outputTokens": 9472,
+                "cacheReadInputTokens": 159509,
+                "cacheCreationInputTokens": 37242,
+                "webSearchRequests": 0,
+                "costUSD": 0.549362,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "d252a36a-97e9-433e-bd72-ec550ef7f337"
+          },
+          "id": "event-000018"
+        }
+      ],
+      "message_count": 18
+    }
+  ],
+  "readable_path": "readable/worker-executions/fix-d134-analysis-rankbiserial.md"
+}

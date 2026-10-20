@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9fa1b76d4fd521016396",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "train s45 s46 1000step k8",
+  "task_key": "worker_train_s45-s46-1000step-k8_20260521T233334",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_s45-s46-1000step-k8_20260521T233334_result.json",
+    "occurrence": 1,
+    "bytes": 497,
+    "sha256": "5c71c01ee6af793125287491feb4b280c063f4b0793202ae314f63af5c0ec9da"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "s45 训练已在后台运行。状态：\n- **磁盘**：163GB 空闲，无需清理\n- **s45/s46 checkpoint-500**：不存在（已被之前清理），从 base model 从头跑 1000 步\n- **K=8 配置**：已创建 `exec_only_s45_1000_k8.yaml` 和 `exec_only_s46_1000_k8.yaml`，参数：`num_generations=8, gradient_accumulation_steps=4, per_device_batch_size=2`\n- **s45 训练**：tmux `exec-s45`，GPU 0，~6.3s/step，预计约 1.7h 完成\n\n3 分钟后检查训练进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-s45-s46-1000step-k8.md"
+}

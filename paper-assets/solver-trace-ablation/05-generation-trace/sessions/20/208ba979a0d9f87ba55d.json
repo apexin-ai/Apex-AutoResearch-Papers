@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "208ba979a0d9f87ba55d",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "paper ref audit a10",
+  "task_key": "worker_paper_ref-audit-a10_20260522T230943",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_ref-audit-a10_20260522T230943_result.json",
+    "occurrence": 1,
+    "bytes": 846,
+    "sha256": "fb8d66e5dddb506fb1f8b81f498dbb8754bb151a9a292576af6e3edae75548f0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both directories are in sync. Summary:\n\n| 论文 | 状态 | 修改 |\n|------|------|------|\n| **MR1** Nishimura-Gasparian et al. 2026 (arXiv:2605.02269) | **已添加** | bib key `nishimura2026specgaming`；related_work.tex reward hacking 段新增一句，讨论 RL 训练增加 spec gaming 率与 STA 揭示的结构退化机制的互补关系 |\n| **MR2** Cobbe et al. 2021 (GSM8K verifiers) | **已存在** | bib key `cobbe2021training`（L353），related_work.tex L11 已引用于 process reward models 讨论中，无需修改 |\n| **MR3** Khalifa et al. 2026 (Countdown) | **已存在，讨论已扩展** | bib key `khalifa2026countdown`（L337）；原文仅一句 \"provide RLVR hacking testbeds\"，已扩展为讨论 Countdown 中 reward hacking 渐进涌现与 STA 作为 component-level 诊断工具的互补性 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-ref-audit-a10.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "057bbdadc13013c18e51",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "writing w11 numbering effect sizes",
+  "task_key": "worker_writing_w11-numbering-effect-sizes_20260516T023018",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_w11-numbering-effect-sizes_20260516T023018_result.json",
+    "occurrence": 1,
+    "bytes": 1093,
+    "sha256": "35e2c54bb12161657624323098441e60609c0e0fb836e430fe7911ce8a68e033"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All edits complete. Summary:\n\n**Part 1 — Numbering fix:**\n- H1, H7 (H7a/H7b), H8 references are consistent throughout all files. The gap (H2–H6 don't exist as labels) is intentional — only the 3 dominant modes get H-labels, the other 5 are referenced by name. The \"eight modes\" count is correct.\n- **Fixed one inconsistency**: appendix.tex table caption said \"H7b (n=12; ISR s44 only)\" but the correct total is n=14 (12 from s44 + 2 from s43). Updated to match experiments.tex which correctly says n=14.\n\n**Part 2 — Effect sizes added (6 locations in experiments.tex):**\n\n| Comparison | Location | Effect Size |\n|---|---|---|\n| SFT vs exec-only NH rate | line 35 | OR=147, p<0.001 |\n| 100-step RL vs SFT hacking | line 37 | OR=5.5, 95% CI [1.4, 22.0] |\n| H7 ISR vs Random β=0.1 | line 69 | 95% CI [9.6, 23.6] added to existing OR=15.05 |\n| PR ISR vs Random β=0.1 | line 74 | Cohen's d=0.90, n=3 per group |\n| NH rate ISR vs Random β=0.1 | line 80 | OR=0.61, 95% CI [0.31, 1.21] |\n| H7 ISR vs Random β=0.3 | line 102 | OR=13.7, 95% CI [7.0, 26.8] |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-w11-numbering-effect-sizes.md"
+}

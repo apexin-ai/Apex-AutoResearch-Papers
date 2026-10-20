@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7d57a44b1e78037974b8",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "diagnose plan018 s43 failure",
+  "task_key": "worker_diagnose_plan018-s43-failure_20260514T113407",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_plan018-s43-failure_20260514T113407_result.json",
+    "occurrence": 1,
+    "bytes": 1407,
+    "sha256": "599a9afe0c0028455cd45564b7c4893e961622d73ad76ad3e2003c62a135f1e2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n**1. 错误信息：**\n```\nsafetensors_rust.SafetensorError: Error while serializing: I/O error: No space left on device (os error 28)\n```\n\n**2. 失败位置：** Step 200/500，在保存 checkpoint-200 时崩溃。checkpoint-200 只写了 3.5G（正常应 ~15G），写入中途磁盘耗尽。\n\n**3. 根因：** `/root/autodl-tmp/` 磁盘 250G/250G 已满（100%）。各目录占用：\n\n| 目录 | 大小 |\n|------|------|\n| plan002_additive_b01_s43 | 31G |\n| plan002_additive_b01_s44 | 31G |\n| plan006_prolog_exec_s42 | 31G |\n| plan006_prolog_sta_s42 | 31G |\n| plan016_extended_1000_s42 | 31G |\n| plan018_additive_random_b01_s42 | 31G |\n| plan002_additive_b01_s42 | 16G |\n| plan018_additive_random_b01_s43 | 19G |\n| plan001_exec_only_s42 | 15G |\n| 其他 | ~0 |\n| **合计** | **~236G** |\n\n旧实验输出占满了磁盘。尽管 `save_total_limit=1` 限制了单次实验的 checkpoint 数量，但多个已完成实验的 checkpoint 未清理。\n\n**4. 结论：** 这是可重试的瞬态错误，不需要代码修复。清理不再需要的旧实验 output 目录后重跑即可。建议：\n- 确认哪些旧实验结果已归档/评估完毕，删除对应的 checkpoint 目录（每个 31G 的目录删一两个就够）\n- 删除当前失败 run 的不完整 checkpoint-200（3.5G，不可用）\n- 重跑 plan018-additive-random-b01-s43"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-plan018-s43-failure.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "052b581df9019e9942cf",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "prep prolog s43 s44 data",
+  "task_key": "worker_prep_prolog-s43-s44-data_20260514T115630",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_prolog-s43-s44-data_20260514T115630_result.json",
+    "occurrence": 1,
+    "bytes": 1834,
+    "sha256": "48731d2d2dfa813bf6cf110a153f611e7d69403bfa46f86ae9d75aa5b98621f2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有信息已收集完毕。汇总如下：\n\n## 数据状态\n\n**训练数据**: `data/train_500_seed42.jsonl` (484,867 bytes) — 所有 Prolog 实验共用同一份，符合 C001 约束。数据包含 FOL premises + conclusions 的 ProofWriter 问题，与 solver 类型（Prolog/Z3）无关。\n\n**seed 含义**: config 中 `seed: 42` 是模型训练随机种子，不影响数据选择。s43/s44 只需改 `seed` 字段即可。\n\n## Config 差异\n\n| 配置 | reward_mode | exec_weight | sta_weight | 关键区别 |\n|------|------------|-------------|-----------|---------|\n| `grpo_prolog_exec_only.yaml` | execution_only | 1.0 | 0.0 | exec-only |\n| `grpo_prolog_exec_sta.yaml` | execution_sta | 0.5 | 0.5 | exec+STA |\n\n两者其余配置完全相同（model_path, data_path, batch_size, lr, steps 等）。\n\n## 4 个 PREPARING 实验需要的配置\n\n| 实验 | 基础 config | 需改的字段 | data_path |\n|------|-----------|-----------|-----------|\n| plan006-prolog-exec-s43 | `grpo_prolog_exec_only.yaml` | `seed: 43`, output_dir 改名 | `data/train_500_seed42.jsonl` (不变) |\n| plan006-prolog-exec-s44 | `grpo_prolog_exec_only.yaml` | `seed: 44`, output_dir 改名 | `data/train_500_seed42.jsonl` (不变) |\n| plan006-prolog-sta-s43 | `grpo_prolog_exec_sta.yaml` | `seed: 43`, output_dir 改名 | `data/train_500_seed42.jsonl` (不变) |\n| plan006-prolog-sta-s44 | `grpo_prolog_exec_sta.yaml` | `seed: 44`, output_dir 改名 | `data/train_500_seed42.jsonl` (不变) |\n\n## 环境确认\n\n- SWI-Prolog: v8.4.2 可用\n- 数据文件: 已存在，无需生成\n- 模型: `/root/autodl-tmp/models/Qwen3-4B` (s42 已用过)\n\n**结论**: 4 个实验的训练数据已就绪，无需额外数据生成。只需基于现有 config 复制并修改 `seed` 和 `output_dir` 即可启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-prolog-s43-s44-data.md"
+}

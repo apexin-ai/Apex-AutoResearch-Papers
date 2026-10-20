@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a70fb822ff12523b44e6",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code plan006 eval readiness",
+  "task_key": "worker_code_plan006-eval-readiness_20260514T102758",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan006-eval-readiness_20260514T102758_result.json",
+    "occurrence": 1,
+    "bytes": 905,
+    "sha256": "ffe99b56ec9110498e4f01663302a7b3b45d15a215f18a6497ae0fcfd9100689"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结论：eval_sta.py 完全兼容 Prolog，无需任何改动。**\n\n关键发现：\n\n1. **eval_sta.py 已原生支持 `--logic_type prolog`**，包含完整的 Prolog prompt 模板、reward 函数分发、solver 选择\n2. **数据格式无障碍** — 脚本只读取 `context`/`question`/`answer`（自然语言字段），不依赖 `fol_premises`/`fol_conclusion`\n3. **`prolog_sta_reward`（`src/sta/prolog_reward.py`）已完整实现** — 解析 Prolog clauses+query → 逐条 clause ablation → ISR 计算，返回与 FOL 相同的 reward dict 结构\n4. **swipl 已安装**在服务器上（`/usr/lib/swi-prolog/bin/x86_64-linux/swipl`）\n5. **指标计算完全通用** — PR, ISR, by_answer_type 等均从 reward dict 泛型计算\n\n报告已保存至 `artifacts/plan006_eval_compatibility.md`，含两个实验的 eval 命令模板，训练完成后可直接使用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan006-eval-readiness.md"
+}

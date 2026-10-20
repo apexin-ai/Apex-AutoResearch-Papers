@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eff737c577139751d1d7",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops prepare seed44 config",
+  "task_key": "worker_ops_prepare-seed44-config_20260514T020104",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_prepare-seed44-config_20260514T020104_result.json",
+    "occurrence": 1,
+    "bytes": 744,
+    "sha256": "f99cfbfba294cbcee6028dbeb7eee04661cf134088ea93afe9d4558d190353df"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**seed=44 就绪，状态: READY**\n\n已完成的检查:\n- Config 文件 ✅ — exec_only 模式，Qwen3-4B\n- 数据文件 `train_500_seed42.jsonl` ✅ — 符合 C001\n- 磁盘 112GB 可用 ✅ — s43 占 30GB，s44 同量级后仍余 ~82GB\n- Import 测试通过 ✅\n- 输出目录 `plan001_exec_only_s44` 已创建 ✅\n- `log_completions=False` ✅ — completions parquet 已禁用\n- `CUDA_VISIBLE_DEVICES` 用 `export` 设置 ✅ — 符合 C002\n\n**唯一 flag**: `save_total_limit=2`（C003 要求 1），但与当前跑的 s43 一致，且磁盘充足，不阻塞。\n\n报告已保存到 `artifacts/seed44_readiness.md`，含完整提交命令（含 nohup 版本）。等 s43 跑完释放 cuda:1 即可提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-prepare-seed44-config.md"
+}

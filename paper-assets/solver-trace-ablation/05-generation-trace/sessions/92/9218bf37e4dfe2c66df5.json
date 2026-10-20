@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9218bf37e4dfe2c66df5",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "pipeline s45 eval s46 launch",
+  "task_key": "worker_pipeline_s45-eval-s46-launch_20260522T014332",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_pipeline_s45-eval-s46-launch_20260522T014332_result.json",
+    "occurrence": 1,
+    "bytes": 142,
+    "sha256": "beb7aca6687c026d8624e3f847231723793d37ddfc40d1caed80d55d9487816d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "s45 在 step 882/1000，~17 分钟后完成。已设置 2 分钟轮询，完成后自动执行 eval + classify 并启动 s46。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/pipeline-s45-eval-s46-launch.md"
+}

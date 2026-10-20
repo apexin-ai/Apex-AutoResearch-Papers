@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c304373d99eb8b7cdc32",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analysis seed level stats",
+  "task_key": "worker_analysis_seed-level-stats_20260517T114905",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_seed-level-stats_20260517T114905_result.json",
+    "occurrence": 1,
+    "bytes": 1721,
+    "sha256": "646ef479aa7f89710e1ca30a1acdc5e1e548f9ea5f43bef6231e2daa82428165"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Script ran successfully. Here are the complete results:\n\n---\n\n## Results\n\n### 2a. CMH Test (seed-stratified, sample-level)\n\n| Comparison | Pooled OR | 95% CI | CMH chi2 | p-value |\n|---|---|---|---|---|\n| H7 rate | 2.460 | [1.852, 3.268] | 65.63 | 5.55e-16 |\n| Genuine rate | 3.366 | [2.210, 5.126] | 38.88 | 4.51e-10 |\n\nBoth significant even after accounting for seed clustering.\n\n### 2b. Permutation Test (seed as unit, n=5 per group)\n\n| Comparison | ISR mean | Random mean | Δ | p-value |\n|---|---|---|---|---|\n| H7 rate | 0.530 | 0.260 | +0.271 | 0.281 |\n| Genuine rate | 0.260 | 0.083 | +0.177 | 0.262 |\n| H7+H8 hacking | 0.575 | 0.316 | +0.259 | 0.242 |\n\nNone significant at seed level (n=5 per group is underpowered; min possible p = 0.0079).\n\n### 2c. Wilson 95% CI per seed\n\nKey observations: ISR seeds 45/46 have 55% genuine (CI: [40-69%]), while ISR seeds 43/44 have ~0% genuine (100% H7 collapse). Massive inter-seed variance.\n\n### 2d. Pooled 5-seed summary\n\n| | ISR β=0.1 | Random β=0.1 |\n|---|---|---|\n| Proved | 350 | 414 |\n| H7 | 188 (53.7%) | 122 (29.5%) |\n| Genuine | 81 (23.1%) | 32 (7.7%) |\n| Pooled Fisher: H7 | OR=2.778, p=1.32e-11 | |\n| Pooled Fisher: Genuine | OR=3.595, p=2.78e-9 | |\n\n### Key takeaway\n\nCMH (sample-level, seed-stratified) confirms both effects are significant (p<1e-9). Permutation tests (seed as unit) are non-significant due to n=5 power limitation combined with extreme bimodality (collapsed vs non-collapsed seeds). This is the expected pattern: the effect is real at the sample level even accounting for clustering, but per-seed variance is too high relative to group size for seed-level tests to reach significance."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-seed-level-stats.md"
+}

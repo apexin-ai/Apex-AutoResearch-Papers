@@ -1,0 +1,652 @@
+{
+  "schema_version": "1.0",
+  "id": "9e495aa37e6a61654db7",
+  "project": "solver-trace-ablation",
+  "kind": "conversation",
+  "title": "paper text fixes batch2",
+  "task_key": "worker_paper_text-fixes-batch2_20260522T130648",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_text-fixes-batch2_20260522T130648.jsonl",
+    "occurrence": 1,
+    "bytes": 26441,
+    "sha256": "da44866a13f119b7dd9e366c807b4f3a3c91c9d9bd076971ecc4c333a9477d43"
+  },
+  "statistics": {
+    "messages": 31,
+    "user_turns": 0,
+    "tool_calls": 15,
+    "roles": {
+      "tool_call": 15,
+      "tool_result": 15,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T13:09:12.894072+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_text-fixes-batch2_20260522T130648",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/experiments.tex"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-22T13:09:12.894575+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\tWe evaluate STA along three axes: ISR as a diagnostic for reward hacking (\\S\\ref{sec:diagnostic}); ISR as a training reward, where it exhibits Goodhart effects (\\S\\ref{sec:goodhart}); and cross-domain generalization across logic types and dataset families (\\S\\ref{sec:crossdomain}).\n5\tA hacking taxonomy synthesizes the modes observed across conditions (\\S\\ref{sec:taxonomy}).\n6\t\n7\t\\subsection{Setup}\\label{sec:setup}\n8\t\n9\tWe train Qwen3-4B~\\citep{qwen3} with GRPO~\\citep{deepseekmath} ($K{=}4$, lr $10^{-6}$, 500 steps default, 1000 where noted) over seeds $\\{42,43,44\\}$ (ISR $\\beta{=}0.1$ extends to $\\{45,46\\}$; Appendix~\\ref{app:detailed-results}) on a fixed 500-example FOLIO~\\citep{folio} subset held constant across all conditions; the SFT baseline uses negative log-likelihood on gold formalizations.\\footnote{Seeds control initialization and rollout sampling; all conditions share the same fixed training subset.}\n10\tHeld-out evaluation uses 100 FOLIO examples with greedy decoding;\\footnote{Seed~43 uses nucleus sampling ($T{=}0.7$) due to greedy-mode degeneration; excluding s43 yields consistent or stronger collapse: at 1000 steps, both remaining seeds show ${\\leq}7\\%$ non-hacking (Appendix~\\ref{app:detailed-results}).} all cross-run ISR values are recomputed uniformly by a single evaluator so training-log ISR is never compared across runs.\n11\tCross-dataset experiments (\\S\\ref{sec:crossdomain}) use ProofFOL, a silver-standard FOL corpus of ${\\sim}$500 training examples constructed by translating ProofWriter~\\citep{proofwriter} problems via GPT-4o and filtering through Prover9 (${\\sim}70\\%$ retention); \\emph{stable convergence} denotes $\\overline{\\text{PR}}_{\\text{final\\,50}} > 0.90$.\n12\tWe report prove rate (PR), proved-only ISR ($\\text{ISR}^*$), hacking-mode rates from a two-stage classifier (strict text matching for CE/TS plus functional analysis of the per-sample $n_{\\text{necessary}}$ distribution; \\S\\ref{sec:ta\n…[truncated 14582 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_text-fixes-batch2_20260522T130648",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-22T13:09:12.894844+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_text-fixes-batch2_20260522T130648",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/method.tex"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-22T13:09:12.895066+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Method}\n2\t\\label{sec:method}\n3\t\n4\t\\subsection{Task and GRPO Training}\n5\t\\label{sec:task}\n6\t\n7\tGiven premises $P_1,\\ldots,P_k$ and conclusion $C$, the task is to produce a formal program $F=\\{c_1,\\ldots,c_n\\}$ verified by an external solver $S\\in\\{\\text{Prover9, SWI-Prolog}\\}$.\n8\tWe train with Group Relative Policy Optimization (GRPO)~\\citep{deepseekmath} ($K{=}4$), where each rollout receives binary execution reward $r_{\\text{exec}}(x) = \\mathbf{1}[S(F_x){=}\\textit{proved}]$.\n9\tThis optimizes prove rate but provides no signal about \\emph{component necessity}: a formalization embedding the conclusion among its premises receives the same reward as a faithful derivation.\n10\tAll experiments draw from FOLIO~\\citep{folio}.\n11\t\n12\t\\subsection{Solver Trace Ablation (STA)}\n13\t\\label{sec:sta}\n14\t\n15\tSTA tests whether each component of a proved formalization is individually necessary for proof success (Algorithm~\\ref{alg:sta}).\n16\tGiven a proved $x$ with $n$ components, STA constructs $n$ ablated variants $x\\setminus\\{c_i\\}$ and re-runs the solver (Algorithm~\\ref{alg:sta}).\n17\tA component is \\emph{necessary} if its removal causes proof failure.\n18\tWhat constitutes a component depends on the logic: premises in FOL, clauses or ground facts in Prolog.\n19\tLOO ablation itself is standard in mutation testing and sensitivity analysis~\\citep{demillo1978, jia-harman-survey}; novelty lies in its application as a GRPO-hacking diagnostic and the empirical phenomena it surfaces.\n20\t\n21\t\\begin{algorithm}[t]\n22\t\\caption{Solver Trace Ablation (STA)}\n23\t\\label{alg:sta}\n24\t\\begin{algorithmic}[1]\n25\t\\REQUIRE Proved formalization $x = \\{c_1, \\ldots, c_n\\}$, solver $S$\n26\t\\ENSURE $\\text{ISR}(x) \\in [0, 1]$\n27\t\\STATE $\\textit{necessary} \\gets 0$\n28\t\\FOR{$i = 1$ to $n$}\n29\t    \\IF{$S(x \\setminus \\{c_i\\}) = \\textit{failed}$}\n30\t        \\STATE $\\textit{necessary} \\gets \\textit{necessary} + 1$\n31\t    \\ENDIF\n32\t\\ENDFOR\n33\t\\RETURN $\\textit{necessary} \\,/\\, n$\n34\t\\end{algorithmic}\n35\t\\end{algor\n…[truncated 4679 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_text-fixes-batch2_20260522T130648",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-22T13:09:12.895242+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_text-fixes-batch2_20260522T130648",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/references.bib"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T13:09:12.895506+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% ============================================================\n2\t% LLaMA\n3\t% ============================================================\n4\t\n5\t@article{grattafiori2024llama,\n6\t  author = {Aaron Grattafiori and Abhimanyu Dubey and Abhinav Jauhri and others},\n7\t  title = {{The Llama 3 Herd of Models}},\n8\t  journal = {arXiv preprint arXiv:2407.21783},\n9\t  year = {2024},\n10\t  eprint = {2407.21783},\n11\t  archiveprefix = {arXiv},\n12\t}\n13\t\n14\t% ============================================================\n15\t% Category 1: Neurosymbolic reasoning + RL/GRPO\n16\t% ============================================================\n17\t\n18\t@article{deepseekmath,\n19\t  author       = {Zhihong Shao and Peiyi Wang and Qihao Zhu and Runxin Xu and others},\n20\t  title        = {{DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models}},\n21\t  journal      = {arXiv preprint arXiv:2402.03300},\n22\t  year         = {2024},\n23\t  eprint       = {2402.03300},\n24\t  archivePrefix = {arXiv},\n25\t  primaryClass = {cs.AI},\n26\t}\n27\t\n28\t@article{logic-rl,\n29\t  author       = {Tian Xie and Zitian Gao and Qingnan Ren and Haoming Luo and Yuqian Hong and Bryan Dai and Joey Zhou and Kai Qiu and Zhirong Wu and Chong Luo},\n30\t  title        = {{Logic-RL: Unleashing LLM Reasoning with Rule-Based Reinforcement Learning}},\n31\t  journal      = {arXiv preprint arXiv:2502.14768},\n32\t  year         = {2025},\n33\t  eprint       = {2502.14768},\n34\t  archivePrefix = {arXiv},\n35\t  primaryClass = {cs.AI},\n36\t}\n37\t\n38\t@article{mellgren-prolog-grpo,\n39\t  author       = {Niklas Mellgren and Peter Schneider-Kamp and Lukas Galke},\n40\t  title        = {{Training Language Models to Use Prolog as a Tool}},\n41\t  journal      = {arXiv preprint arXiv:2512.07407},\n42\t  year         = {2025},\n43\t  eprint       = {2512.07407},\n44\t  archivePrefix = {arXiv},\n45\t  primaryClass = {cs.AI},\n46\t}\n47\t\n48\t@inproceedings{satlm,\n49\t  author       = {Xi Ye and Qiaochu Chen and Isil Dillig and Greg Durrett},\n50\t  title        \n…[truncated 21254 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_text-fixes-batch2_20260522T130648",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-22T13:09:12.895662+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_text-fixes-batch2_20260522T130648",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/introduction.tex"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-22T13:09:12.895844+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\n2\t\\label{sec:introduction}\n3\t\n4\tNeurosymbolic reasoning pipelines evaluate success by a single criterion: whether the generated formalization proves under a formal solver.\n5\tThis treats all proofs as equal: a formalization that embeds the conclusion verbatim among its premises receives the same reward as one that derives it through genuine reasoning.\n6\tUnder reinforcement learning, this indifference becomes an active vulnerability~\\citep{geirhos2020shortcut}. The optimizer exploits any shortcut the reward fails to penalize~\\citep{skalse-reward-hacking, reward-hacking-survey}, and execution feedback provides no signal against structural shortcuts.\n7\t\n8\t\\paragraph{The evaluation gap.}\n9\tNeurosymbolic formalizers~\\citep{logic-lm, linc, satlm} and RL-trained variants~\\citep{mellgren-prolog-grpo, logic-rl, deepseekmath} rely on execution accuracy alone, with no diagnostic for whether individual components contribute to the proof.\n10\tProcess reward models~\\citep{lightman-verify-step, math-shepherd} offer finer granularity but require expensive step-level annotations that do not transfer to arbitrary solver-backed settings.\n11\tInference-time gaming detection~\\citep{kim-game-formalization, bondarenko-spec-gaming} addresses a complementary problem but offers no training-time diagnostic.\n12\tWhat is missing is an annotation-free method for testing \\emph{component necessity} in neurosymbolic outputs.\n13\t\n14\t\\paragraph{Component necessity testing.}\n15\tWe address this gap with \\emph{Solver Trace Ablation} (STA), a diagnostic that tests whether each component of a formalization is necessary for proof success.\n16\tFor each proved output, STA removes components one at a time and re-runs the solver; the fraction whose removal breaks the proof yields the \\emph{Intensional Structural Reward} (ISR).\n17\tA formalization where every component is necessary receives $\\text{ISR}{=}1$; one that proves regardless of which component is removed receives $\\text{ISR}{=}0$.\n1\n…[truncated 2338 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_text-fixes-batch2_20260522T130648",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-22T13:09:12.895999+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_text-fixes-batch2_20260522T130648",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/limitations.tex"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-22T13:09:12.896145+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Limitations}\n2\t\\label{sec:limitations}\n3\t\n4\tExperiments use a single base model (Qwen3-4B); structural degeneration patterns may not transfer to other model families, and neither Qwen3-8B nor LLaMA-3.2-3B converges under our GRPO configuration (Appendix~\\ref{app:8b-results},~\\ref{app:llama-coldstart}), leaving cross-scale generalization untested.\n5\tThree to five seeds per condition demonstrate qualitative divergence but remain underpowered for seed-level significance; pooled statistics treat within-seed samples as independent.\n6\tOne of three exec-only seeds (s43) uses nucleus sampling ($T{=}0.7$) due to greedy-mode degeneration, making it not strictly comparable; excluding it yields consistent or stronger collapse patterns (Appendix~\\ref{app:detailed-results}).\n7\tISR quantifies component necessity, not semantic faithfulness (no correlation with NLI accuracy; Appendix~\\ref{app:extended-discussion}); its diagnostic value is realized through the mode breakdown, not the scalar alone.\n8\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_text-fixes-batch2_20260522T130648",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-22T13:09:12.896300+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_text-fixes-batch2_20260522T130648",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "p\\s*=\\s*0\\.10|p=0\\.10",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/experiments.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-22T13:09:12.896420+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_text-fixes-batch2_20260522T130648",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-22T13:09:12.896540+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_text-fixes-batch2_20260522T130648",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "ProofFOL",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/experiments.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-22T13:09:12.896667+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "11:Cross-dataset experiments (\\S\\ref{sec:crossdomain}) use ProofFOL, a silver-standard FOL corpus of ${\\sim}$500 training examples constructed by translating ProofWriter~\\citep{proofwriter} problems via GPT-4o and filtering through Prover9 (${\\sim}70\\%$ retention); \\emph{stable convergence} denotes $\\overline{\\text{PR}}_{\\text{final\\,50}} > 0.90$.\n18:ProofFOL results ($p{=}0.10$, $N{=}3$) are exploratory.\n107:\\textbf{ProofFOL exec-only: cross-dataset replication.}\n109:The dominant hacking mode shifts from CE (FOLIO) to TS (ProofFOL), showing that mode repertoire is dataset-specific while the degeneration phenomenon is universal.\n111:\\textbf{ProofFOL ISR ($\\beta{=}0.1$): dataset-dependent asymmetry.}\n112:ISR reward on ProofFOL produces substantially higher genuine rates than exec-only ($p{=}0.10$, exploratory; Table~\\ref{tab:prooffol-detailed}), though at lower PR, possibly reflecting insufficient training.\n115:The asymmetry follows from hacking geometry: on FOLIO, tautological shortcuts yield high ISR (regressional Goodhart~\\citep{manheim-goodhart-taxonomy}); on ProofFOL, the dominant hacking mode embeds conclusions among many premises, yielding $\\text{ISR}{\\approx}0$ and rendering ISR reward effectively corrective."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_text-fixes-batch2_20260522T130648",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-22T13:09:12.896819+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_text-fixes-batch2_20260522T130648",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "regressional",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-22T13:09:12.896948+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/related_work.tex:24:Our Goodhart effect follows the regressional pattern~\\citep{manheim-goodhart-taxonomy} on FOLIO, with extremal dynamics at high $\\beta$; its application to a diagnostic designed to \\emph{detect} gaming, and the dataset-dependent asymmetry it reveals, are to our knowledge novel.\ndocs/paper/experiments.tex:42:The result is a regressional Goodhart pattern~\\citep{manheim-goodhart-taxonomy}: optimizing a structural proxy shifts the \\emph{composition} of failure modes without reducing their aggregate prevalence.\ndocs/paper/experiments.tex:115:The asymmetry follows from hacking geometry: on FOLIO, tautological shortcuts yield high ISR (regressional Goodhart~\\citep{manheim-goodhart-taxonomy}); on ProofFOL, the dominant hacking mode embeds conclusions among many premises, yielding $\\text{ISR}{\\approx}0$ and rendering ISR reward effectively corrective.\ndocs/paper/appendix.tex:159:The dose-response pattern maps onto the Manheim \\& Garrabrant taxonomy~\\citep{manheim-goodhart-taxonomy}: $\\beta{=}0.1$ on FOLIO instantiates \\emph{regressional} Goodhart ($P{\\to}P$ tautologies yield $\\text{ISR}{\\geq}0.5$, so ISR erroneously rewards the shortcut); $\\beta{\\geq}0.2$ introduces \\emph{extremal} elements (PR collapse to 18\\% vs.\\ 48\\% random at $\\beta{=}0.3$)."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_text-fixes-batch2_20260522T130648",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-22T13:09:12.897071+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_text-fixes-batch2_20260522T130648",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "ISR prevents|ISR mitigates|ISR eliminates|ISR is associated|ISR correlates",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/experiments.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-22T13:09:12.897192+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_text-fixes-batch2_20260522T130648",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-22T13:09:12.897305+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_text-fixes-batch2_20260522T130648",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "all seeds|universal|all converging",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/experiments.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-22T13:09:12.897422+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "74:ISR reward amplifies TS convergence: $71\\%$ of proved samples under ISR exhibit tautological shortcuts vs.\\ $14\\%$ under random ($\\text{OR}_{\\text{CMH}}{=}2.46$; Appendix~\\ref{app:statistical-details}). %% registry: plan002 vs plan018 all seeds; D095 FINAL\n102:\\textbf{Prolog: universal Goodhart.}\n109:The dominant hacking mode shifts from CE (FOLIO) to TS (ProofFOL), showing that mode repertoire is dataset-specific while the degeneration phenomenon is universal."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_text-fixes-batch2_20260522T130648",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-22T13:09:12.897536+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_text-fixes-batch2_20260522T130648",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "folio|FOLIO",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/references.bib",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-22T13:09:12.897647+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "147:@inproceedings{folio,\n149:  title        = {{FOLIO: Natural Language Reasoning with First-Order Logic}},"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_text-fixes-batch2_20260522T130648",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-22T13:09:12.897781+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_text-fixes-batch2_20260522T130648",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "metr",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/references.bib",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-22T13:09:12.897894+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "293:@misc{metr-reward-hacking,\n298:  note         = {\\url{https://metr.org/blog/2025-06-05-recent-reward-hacking/}},"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_text-fixes-batch2_20260522T130648",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-22T13:09:12.898004+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_text-fixes-batch2_20260522T130648",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "seed-dependent convergence|non-convergence|fail to converge|seeds.*converge",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-22T13:09:12.898147+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/experiments.tex:30:Three seeds diverge into qualitatively different failure modes: conclusion embedding (s42), repetition collapse (s43), and tautological collapse (s44), yet all converge to ${\\leq}7\\%$ non-hacking by 1000 steps (Table~\\ref{tab:fol-detailed}; Appendix~\\ref{app:detailed-results}). %% registry: plan001-exec-only-s42-r2, plan001-exec-only-s43-r4, plan001-exec-only-s44; plan016-extended-1000-s42, plan001-exec-only-s43-1000-r7, plan001-exec-only-s44-1000-r2\ndocs/paper/experiments.tex:31:Two additional seeds under identical conditions fail to converge ($\\text{PR}{\\approx}14\\%$; Appendix~\\ref{app:seed-convergence}), retaining genuine reasoning and confirming that structural degeneration requires successful RL optimization as a prerequisite (Appendix~\\ref{app:llama-coldstart}).\ndocs/paper/experiments.md:53:[Omitted long matching line]\ndocs/paper/appendix.tex:628:The diversity of gaming pathways across seeds (despite identical training data and reward function) demonstrates that Goodhart's Law in neurosymbolic reasoning is not a single failure mode but a family of convergent exploits.\ndocs/paper/appendix.tex:634:At $\\beta{=}0.2$, all three seeds converge to pure TS Goodhart (100\\% or near-100\\% TS), confirming $\\beta{\\geq}0.2$ as the extremal Goodhart regime.\ndocs/paper/appendix.tex:721:Not all exec-only seeds converge.\ndocs/paper/appendix.tex:722:Of 6 seeds tested (s42--s46, s52), we observe three regimes: \\emph{converging with degeneration} (s42: $\\text{PR}{=}93\\%$, genuine${=}7.5\\%$; s44: $\\text{PR}{=}96\\%$, genuine${=}0\\%$; s46: $\\text{PR}{=}93\\%$ at 500 steps), \\emph{slow convergence with degeneration} (s43: $\\text{PR}{=}14\\%$ but $100\\%$ hacking at 500 steps), and \\emph{non-converging} (s45: $\\text{PR}{=}15\\%$, genuine${=}86.7\\%$; s52: $\\text{PR}{=}14\\%$, genuine${=}85.7\\%$).\ndocs/paper/appendix.tex:724:Extended training to 1000 steps for s45 confirms persistent non-convergence ($\\text{PR}{=}15\\%$, $\\text{ISR}^*{=}0.592$, genuine${=}86.7\\%$,\n…[truncated 2225 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_text-fixes-batch2_20260522T130648",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-22T13:09:12.898379+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_text-fixes-batch2_20260522T130648",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/appendix.tex",
+              "offset": "715",
+              "limit": "30"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-22T13:09:12.898541+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "715\tThis contrasts sharply with Qwen3-4B, where GRPO reaches $93\\%$ PR but collapses to $8\\%$ genuine with high cross-seed variance.\n716\tThe result suggests structural degeneration is a byproduct of successful RL optimization, not of the training procedure \\emph{per se}: when GRPO fails to amplify prove rate, the model retains structural integrity.\n717\t\n718\t\\subsection{Seed-Dependent Convergence in Exec-Only GRPO}\n719\t\\label{app:seed-convergence}\n720\t\n721\tNot all exec-only seeds converge.\n722\tOf 6 seeds tested (s42--s46, s52), we observe three regimes: \\emph{converging with degeneration} (s42: $\\text{PR}{=}93\\%$, genuine${=}7.5\\%$; s44: $\\text{PR}{=}96\\%$, genuine${=}0\\%$; s46: $\\text{PR}{=}93\\%$ at 500 steps), \\emph{slow convergence with degeneration} (s43: $\\text{PR}{=}14\\%$ but $100\\%$ hacking at 500 steps), and \\emph{non-converging} (s45: $\\text{PR}{=}15\\%$, genuine${=}86.7\\%$; s52: $\\text{PR}{=}14\\%$, genuine${=}85.7\\%$).\n723\tNon-converging seeds retain high genuine rates (85--87\\%), indicating that structural degeneration is conditional on successful RL optimization: when GRPO fails to bootstrap prove rate beyond base-model levels, the model preserves structural integrity.\n724\tExtended training to 1000 steps for s45 confirms persistent non-convergence ($\\text{PR}{=}15\\%$, $\\text{ISR}^*{=}0.592$, genuine${=}86.7\\%$, $n{=}15$ proved); the model neither improves nor degenerates.\n725\t\n726\tThis parallels the LLaMA-3.2-3B finding (Appendix~\\ref{app:llama-coldstart}), where GRPO also fails to improve PR and retains structural quality.\n727\tBoth cases support the interpretation that degeneration is a byproduct of reward optimization success, not of the training procedure per se.\n728\t\n729\t\\subsection{Cross-Scale: Qwen3-8B Exec-Only GRPO}\n730\t\\label{app:8b-results}\n731\t\n732\tTo test whether structural degeneration generalizes beyond 4B scale, we apply exec-only GRPO to Qwen3-8B with $K{=}8$ rollouts per prompt ($K{=}4$ produces near-identical completions at 8B scale, yiel\n…[truncated 369 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_text-fixes-batch2_20260522T130648",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-22T13:09:12.898758+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_text-fixes-batch2_20260522T130648",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/method.tex",
+              "old_string": "We distinguish two uses of ISR: as an \\emph{aggregate} metric (mean ISR across a test set, susceptible to premise-count inflation discussed in \\S\\ref{sec:goodhart}), and as a \\emph{per-sample} diagnostic (the LOO result for a single proof, unaffected by cross-sample length distributions).",
+              "new_string": "We distinguish two uses of ISR: as an \\emph{aggregate} metric (mean ISR across a test set, susceptible to premise-count inflation discussed in \\S\\ref{sec:goodhart}), and as a \\emph{per-sample} diagnostic (the LOO result for a single proof, unaffected by cross-sample length distributions).\nAs a diagnostic, ISR most readily identifies CE, where removing fabricated expressions collapses the proof ($\\text{ISR}{\\approx}0$), but is less discriminative for TS, where tautological structures score high ISR by construction; detecting TS requires combining ISR with component-count thresholds (\\S\\ref{sec:taxonomy-method})."
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-22T13:09:12.898956+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/method.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_text-fixes-batch2_20260522T130648",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-22T13:09:12.899129+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. Summary of all 8 items:\n\n| Item | Status | Detail |\n|------|--------|--------|\n| 2a | No edit | Both `p=0.10` already tagged \"exploratory\" (lines 18, 112) |\n| 2b | No edit | §4.2 language around `p=0.182` is descriptive (\"indistinguishable\", \"compositional\") |\n| 2c | No edit | \"all\" on line 30 scoped to three seeds; \"universal\" refers to cross-dataset; appendix E.5 covers seed-dependent convergence |\n| 2d | No edit | Regressional Goodhart usage accurate — ISR proxy-goal correlation breaks under optimization via TS |\n| 2e | **Edited** | Added sentence to `method.tex:53` — ISR detects CE readily (ISR≈0) but is less discriminative for TS (high ISR by construction; needs component-count thresholds) |\n| 2f | No edit | \"Two additional seeds\" matches appendix data (s45, s52 non-converging out of 6); appendix E.5 thoroughly documents |\n| 2g | No edit | FOLIO bib year=2024 correct for EMNLP venue |\n| 2h | No edit | URL already present in `note` field |"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_text-fixes-batch2_20260522T130648"
+          },
+          "id": "event-000031"
+        }
+      ],
+      "message_count": 31
+    }
+  ],
+  "readable_path": "readable/conversations/paper-text-fixes-batch2.md"
+}

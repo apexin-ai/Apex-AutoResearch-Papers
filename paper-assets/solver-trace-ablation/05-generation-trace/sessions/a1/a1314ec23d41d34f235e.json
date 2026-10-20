@@ -1,0 +1,67 @@
+{
+  "schema_version": "1.0",
+  "id": "a1314ec23d41d34f235e",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "writing experiments section",
+  "task_key": "worker_writing_experiments-section_20260515T200049",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_experiments-section_20260515T200049_result.json",
+    "occurrence": 1,
+    "bytes": 2048,
+    "sha256": "4d71b3b2a30eaabdc65e6339b84bb2903821c814f8c69f5b57fe297c39bd1bf4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```json\n{\n  \"section\": \"experiments\",\n  \"word_count\": 2500,\n  \"citations_needed\": [\"placeholder-qwen (Qwen3-4B)\", \"deepseekmath (GRPO)\"],\n  \"figures_needed\": [\"fig:isr-collapse (ISR collapse trajectory)\", \"fig:hacking-composition (stacked bar hacking modes)\", \"fig:prolog-comparison (Prolog exec-only vs STA)\"],\n  \"tables_needed\": [\"tab:isr-vs-random (β=0.1 per-seed, DONE inline)\", \"tab:goodhart-landscape (full landscape, DONE inline)\", \"tab:prolog-cross (Prolog results, DONE inline)\"],\n  \"notes\": \"All D095 constraints satisfied: H7 two-layer narrative (H7a GRPO-general, H7b ISR-specific), per-seed+pooled reporting, Random H7 single-seed source annotated, Fisher tests for all significance claims, genuine p=0.182 n.s., 1.06x premise-matched, 8-mode taxonomy, SFT 3-seed 92.2%±1.2%. Random β=0.3 s43 marked unavailable. Three figure placeholders need matplotlib generation. Discussion cross-refs use sec:discussion (no sec:limitations label exists).\"\n}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "section": "experiments",
+              "word_count": 2500,
+              "citations_needed": [
+                "placeholder-qwen (Qwen3-4B)",
+                "deepseekmath (GRPO)"
+              ],
+              "figures_needed": [
+                "fig:isr-collapse (ISR collapse trajectory)",
+                "fig:hacking-composition (stacked bar hacking modes)",
+                "fig:prolog-comparison (Prolog exec-only vs STA)"
+              ],
+              "tables_needed": [
+                "tab:isr-vs-random (β=0.1 per-seed, DONE inline)",
+                "tab:goodhart-landscape (full landscape, DONE inline)",
+                "tab:prolog-cross (Prolog results, DONE inline)"
+              ],
+              "notes": "All D095 constraints satisfied: H7 two-layer narrative (H7a GRPO-general, H7b ISR-specific), per-seed+pooled reporting, Random H7 single-seed source annotated, Fisher tests for all significance claims, genuine p=0.182 n.s., 1.06x premise-matched, 8-mode taxonomy, SFT 3-seed 92.2%±1.2%. Random β=0.3 s43 marked unavailable. Three figure placeholders need matplotlib generation. Discussion cross-refs use sec:discussion (no sec:limitations label exists)."
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-experiments-section-copy-2.md"
+}

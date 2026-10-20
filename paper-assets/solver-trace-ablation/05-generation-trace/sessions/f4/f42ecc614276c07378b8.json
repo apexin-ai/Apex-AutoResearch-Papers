@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f42ecc614276c07378b8",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analysis sweep exec only s45 r2",
+  "task_key": "worker_analysis_sweep-exec-only-s45-r2_20260516T092041",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_sweep-exec-only-s45-r2_20260516T092041_result.json",
+    "occurrence": 1,
+    "bytes": 847,
+    "sha256": "5a16ac7e324d97448499c66ce53b6a52170d273f3d9b843800c70faaa431b372"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。\n\n## sweep-exec-only-s45-r2 结果摘要\n\n**训练**: 500/500 步正常完成，prove_rate=0.74, train_loss=0.027, 运行 54.7 分钟。\n\n**Eval (proofwriter_fol_100)**:\n- prove_rate = **99%** (99/100)\n- mean_isr = 0.5012 ± 0.2055\n\n**Hacking 分类**:\n| 类别 | 数量 | 比例 |\n|------|------|------|\n| H7a (同义反复) | 93 | 93.9% |\n| H1 (结论嵌入) | 5 | 5.1% |\n| H8 (合取坍缩) | 1 | 1.0% |\n| **Genuine** | **1** | **1.0%** |\n\n**结论: success** — 典型的 exec-only 坍缩模式，93.9% H7a 单前提 P→P 证明。ISR=0.5 是 2 组件结构的伪影，genuine 仅 1%。与其他 seed 的 exec-only 结果一致，可纳入 5-seed sweep。\n\nRegistry 已更新 conclusion=success + metrics + checkpoint_path + log_path。状态保持 ANALYZING，由 Main Agent 决定推进。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-sweep-exec-only-s45-r2.md"
+}

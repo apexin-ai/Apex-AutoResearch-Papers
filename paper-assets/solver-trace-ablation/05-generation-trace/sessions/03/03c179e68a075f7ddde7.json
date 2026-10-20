@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "03c179e68a075f7ddde7",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "diag wave1 health check",
+  "task_key": "worker_diag_wave1-health-check_20260517T054338",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_wave1-health-check_20260517T054338_result.json",
+    "occurrence": 1,
+    "bytes": 515,
+    "sha256": "6fbe86588d4760a9c8deafbe5d793e9fa26cc5d606752cd1eb170080a0140459"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验都在正常运行：\n\n| 实验 | GPU | PID | 状态 | GPU 占用 | GPU Util |\n|------|-----|-----|------|----------|----------|\n| **plan018-additive-random-b01-s45** | cuda:0 | 147962 | Running | 84560 MiB | 88% |\n| **sweep-random-b005-s42** | cuda:1 | 148042 | Running | 84314 MiB | 93% |\n\n两个进程均运行约 20 分钟（启动于 13:23/13:24），CPU 利用率 99.7%，GPU 利用率 88-93%，状态正常。之前看到的 GPU 空闲可能是短暂的数据加载间隙。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-wave1-health-check.md"
+}

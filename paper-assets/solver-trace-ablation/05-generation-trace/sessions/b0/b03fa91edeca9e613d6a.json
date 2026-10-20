@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b03fa91edeca9e613d6a",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_12_1778861944.md",
+  "task_key": "loop_12_1778861944",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_12_1778861944.md",
+    "occurrence": 1,
+    "bytes": 3271,
+    "sha256": "2357c0ce942bcfe4bffd26c2ae7c071c9820c3187d282a866eba50d1eaebfce1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 12\nreason: idle_timeout\nupdated: '2026-05-15T15:58:28+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-39279 的 cuda:0 和 cuda:1，禁止用其他卡\n- submit_training_job 命令必须自带环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 服务器用 conda 环境（不是 venv），pip/python 在 `/root/miniconda3/bin/`\n- plan013 vs plan017 公式结构不同，论文中不可简化为 \"additive vs convex\" 对照 (D027)\n- ISR β=0.1 hacking rate 69.1%——论文不标 \"no hacking\"，只标 \"lowest hacking rate\" (D044)\n- D051: 2.4x 作废，premise-count-matched 1.06x 定论\n- Prolog STA s44 是 query-as-fact gaming 非 genuine（Reviewer 核实）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-39279，工作目录 `/root/solver-trace-ablation`\n- Python：`/root/miniconda3/bin/python3`（conda base 环境）\n- 模型：`/root/autodl-tmp/models/Qwen3-4B`\n- 数据：`/root/solver-trace-ablation/data/train_500_seed42.jsonl`\n- 输出目录：`/root/autodl-tmp/outputs/`\n- 无 W&B（当前 SFT 实验用 `--no_wandb`）\n- 活跃进程：\n  - plan009-sft-baseline-s43-1000: PID 352137, cuda:0\n  - plan009-sft-baseline-s44-1000: PID 352970, cuda:1\n- Cron 监控：2 个活跃（对应上述两个实验）\n\n### 3. 📊 当前状态\n刚处理 plan009-sft-baseline-s44-1000-r2 的 CRON 失败回调。原因是冗余重试提交到已占用的 cuda:1 导致 OOM。已更新 registry failure_reason，已向 Director 汇报。无需重试——原始实验 plan009-sft-baseline-s44-1000 仍在正常运行。\n\nRUNNING:\n- plan009-sft-baseline-s43-1000 (cuda:0)：SFT 1000步 seed=43，3-seed 统计第 2 个\n- plan009-sft-baseline-s44-1000 (cuda:1)：SFT 1000步 seed=44，3-seed 统计第 3 个\n\ns42 已完成（D077 确认 SFT 1000步 genuine=92.3%）。等 s43/s44 完成即凑齐 3-seed。\n\n### 4. 📋 待办\n- plan009-sft-baseline-s43-1000 完成回调 → 按 on-experiment-done 处理：提取 genuine rate，更新 registry，与 s42 的 92.3% 对比\n- plan009-sft-baseline-s44-1000 完成回调 → 同上处理，然后汇总 3-seed mean±std\n- 3-seed SFT 全部完成 → 向 Director 汇报完整 1000步对比表（exec-only vs ISR vs random vs SFT），纳入论文 §4.2\n- QUEUED 中有 plan018-additive-random-b01-s42-1000（Random β=0.1 1000步控制组）→ GPU 释放后提交\n- Bootstrap CI 数据待纳入论文 §4.2 + appendix table\n\n### 5. 🎯 战略上下文\n- 项目处于 Writing + 补实验阶段，DDL 2026-05-25（剩 10 天）\n- 核心 story：STA/ISR 作为 GRPO neurosymbolic formalizer 的诊断工具 + Goodhart's Law 案例研究\n- 三大 Claims 均已有证据支撑（Claim 1 诊断能力、Claim 2 Goodhart/ISR 无结构优势、Claim 3 跨逻辑泛化）\n- Bootstrap CI 统计检验已完成：genuine rate parity p=0.637 (n.s.)；H7 gaming p=0.0004；ISR* inflation p<0.001\n- D076 关键教训：exp1-isr-b03-s42-1000-r2 registry 曾误标 genuine——核实 metrics 来源，不盲信\n- D072/D073：Wilson CI 分析曾翻转 bootstrap 结论，后用完整 3-seed 数据 HOLD 解除——统计结论以最新全数据分析为准\n- 易踩坑：SFT 实验用 `--no_wandb`，完成后需从 log 或 output 目录提取 metrics，不能查 W&B\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-12-1778861944.md"
+}

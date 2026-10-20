@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "4c8f782ab56d3a365a45",
+  "project": "solver-trace-ablation",
+  "kind": "worker",
+  "title": "writing paper experiments",
+  "task_key": "worker_writing_paper-experiments_20260514T185009",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_paper-experiments_20260514T185009.log",
+    "occurrence": 1,
+    "bytes": 643945,
+    "sha256": "191b0e26a8d9c1bd18e3653c3a6001f6a9a5f5aa9edaa36325bf17c1d444faed"
+  },
+  "statistics": {
+    "messages": 82,
+    "user_turns": 1,
+    "tool_calls": 24,
+    "roles": {
+      "log": 1,
+      "system": 11,
+      "record": 4,
+      "assistant": 16,
+      "tool_call": 24,
+      "tool_result": 24,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 18,
+      "chunks": [
+        {
+          "path": "4c8f782ab56d3a365a45-part-0001.json",
+          "message_count": 18
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 64,
+      "chunks": [
+        {
+          "path": "4c8f782ab56d3a365a45-part-0001.json",
+          "message_count": 57
+        },
+        {
+          "path": "4c8f782ab56d3a365a45-part-0002.json",
+          "message_count": 7
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/writing-paper-experiments.md"
+}

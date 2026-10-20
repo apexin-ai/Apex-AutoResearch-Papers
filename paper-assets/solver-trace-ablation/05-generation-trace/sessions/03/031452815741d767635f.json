@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "031452815741d767635f",
+  "project": "solver-trace-ablation",
+  "kind": "conversation",
+  "title": "eval plan006 prolog exec s44",
+  "task_key": "worker_eval_plan006-prolog-exec-s44_20260514T153405",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_eval_plan006-prolog-exec-s44_20260514T153405.jsonl",
+    "occurrence": 1,
+    "bytes": 176,
+    "sha256": "68c218d54cf28257b82aba64c2998de54eca3c60735af4700984f409077d2b0d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T15:34:12.648768+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 4pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_plan006-prolog-exec-s44_20260514T153405"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/eval-plan006-prolog-exec-s44-copy-2.md"
+}

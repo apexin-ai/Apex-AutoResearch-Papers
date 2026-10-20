@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "74a418d9d43180cd2b0d",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "fix freeze checkpoints",
+  "task_key": "worker_fix_freeze-checkpoints_20260516T050910",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_freeze-checkpoints_20260516T050910_result.json",
+    "occurrence": 1,
+    "bytes": 3082,
+    "sha256": "776c4371f07e8b45d65343b085ef9681769c14a2b944782d5d243564e21a799b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "14 个 .freeze 标记全部到位。磁盘 197G/250G (79%)，无 crontab 或清理脚本。\n\n## 完整报告\n\n### Success 实验 checkpoint 状态\n\n| exp_id | checkpoint_path | 状态 | .freeze |\n|--------|----------------|------|---------|\n| sweep-isr-b02-s42 | sweep_isr_b02_s42_v2/checkpoint-500 | **存活（有权重）** | ✅ |\n| sweep-isr-b005-s42 | sweep_isr_b005_s42/checkpoint-500 | **存活（有权重）** | ✅ |\n| plan001-exec-only-s43-1000-r2 | plan001_exec_only_s43_1000_r2/ | **存活（有权重）** | ✅ |\n| plan001-exec-only-s44-1000-r2 | plan001_exec_only_s44_1000_r2/ | **存活（有权重）** | ✅ |\n| exp1-random-b03-s44-r2 | exp1_random_b03_s44_r2/ | 目录在，权重已删 | ✅ |\n| exp1-random-b03-s43-r4 | exp1_random_b03_s43_r4/ | 目录在，权重已删 | ✅ |\n| exp1-isr-b03-s44-r2 | exp1_isr_b03_s44_r2/ | 目录在，权重已删 | ✅ |\n| plan009-sft-baseline-s44-1000 | plan009_sft_baseline_s44_1000/ | 目录在，权重已删 | ✅ |\n| plan009-sft-baseline-s43-1000 | plan009_sft_baseline_s43_1000/ | 目录在，权重已删 | ✅ |\n| plan009-sft-baseline-s42-1000 | plan009_sft_baseline_s42_1000/ | 目录在，权重已删 | ✅ |\n| plan009-sft-baseline-s44-1000-r3 | plan009_sft_baseline_s44_1000/ | 同上（共用目录） | ✅ |\n| plan009-sft-baseline-s44 | plan009_sft_baseline_s44/ | 目录在，权重已删 | ✅ |\n| plan009-sft-baseline-s43 | plan009_sft_baseline_s43/ | 目录在，权重已删 | ✅ |\n| plan016-extended-1000-s42 | plan016_extended_1000_s42 | **已删（目录不存在）** | — |\n| exp1-random-b03-s43 | exp1_random_b03_s43/ | **已删（目录不存在）** | — |\n| plan013-random-reward-s42-r4 | plan013_random_reward_s42_r4/ | **已删（目录不存在）** | — |\n| exp1-isr-b03-s43 | exp1_isr_b03_s43/ | **已删（目录不存在）** | — |\n| plan001-exec-only-s42-r2 | plan001_exec_only_s42/ | **已删（目录不存在）** | — |\n| exp1-isr-b03-s43-r3 | exp1_isr_b03_s43_r3/ | **已删（目录不存在）** | — |\n| plan009-sft-baseline-s42-r4 | plan009_sft_baseline_s42/ | **已删（目录不存在）** | — |\n| plan018-additive-random-b01-s44 | plan018_additive_random_b01_s44/ | **已删（目录不存在）** | — |\n| sta-phase1-exec-only-r5 | grpo_exec_only/ | **已删（目录不存在）** | — |\n| exp2-exec-s43-greedy | N/A（eval only） | N/A | — |\n| exp4-100step-h1h7 | json 文件 | N/A | — |\n| plan012-hacking-taxonomy | N/A（分析任务） | N/A | — |\n| plan003-eval-exec-only-r5 | json 文件 | N/A | — |\n| sta-gt-isr-baseline | json 文件（存活） | N/A | — |\n| sta-phase0-baseline | json 文件（存活） | N/A | — |\n\n### 汇总\n\n- **4 个实验有完整模型权重** → 已冻结\n- **8 个实验目录存在但权重已被清理**（仅剩 training_args.bin）→ 已冻结防进一步删除\n- **9 个实验目录完全不存在** → 无法恢复\n- **5 个实验为 eval/分析任务**，无模型 checkpoint\n- 磁盘：197G/250G (79%)\n- 无 crontab 或自动清理脚本"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-freeze-checkpoints.md"
+}

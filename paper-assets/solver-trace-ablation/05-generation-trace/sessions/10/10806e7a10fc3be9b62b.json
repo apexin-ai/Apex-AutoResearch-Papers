@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "10806e7a10fc3be9b62b",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops d143 cleanup disk",
+  "task_key": "worker_ops_d143-cleanup-disk_20260519T125514",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d143-cleanup-disk_20260519T125514_result.json",
+    "occurrence": 1,
+    "bytes": 1501,
+    "sha256": "bb4c95ab9f74071dc050afc8dd79e0b20ae47dc960fffd251251f5d4fc933cb2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### 1. 删除的文件和释放空间\n\n| 文件/目录 | 大小 |\n|-----------|------|\n| `/root/autodl-tmp/d143_pw_exec_s42/` | **15 GB** |\n| `/root/autodl-tmp/d143_proofwriter_pipeline.sh` | 8 KB |\n| `/root/autodl-tmp/d143_pipeline.log` | 96 KB |\n| `/root/solver-trace-ablation/data/proofwriter_real_train_500.jsonl` | 328 KB |\n| `/root/solver-trace-ablation/data/proofwriter_real_eval_100.jsonl` | 68 KB |\n\n**总计释放：~15 GB**（数据盘从 60G used → 45G used）\n\n### 2. 当前磁盘使用\n\n| 分区 | 总量 | 已用 | 可用 | 使用率 |\n|------|------|------|------|--------|\n| `/root/autodl-tmp` (数据盘) | 250G | **45G** | **206G** | 18% |\n| `/root` (系统盘) | 30G | 11G | 20G | 34% |\n\n### 3. LLaMA 下载状态\n\n两个并行下载正在进行中：\n- **HF 下载** (`hf download`): 正在下载 `model-00001-of-00002.safetensors`，刚开始\n- **ModelScope 下载** (nohup): 两个 shard 同时下载中，速度约 400 KB/s，预计还需数小时\n  - `model-00001-of-00002.safetensors`: 39M/4.62G (1%)\n  - `model-00002-of-00002.safetensors`: 37M/1.36G (3%)\n\n当前 Llama-3.2-3B 目录已有 4.1G（部分文件已下载完成），ModelScope cache 196M。\n\n### 4. 前 10 大目录\n\n| 目录 | 大小 |\n|------|------|\n| `models/` | **40 GB** (Qwen3-8B 16G, Qwen3-4B×2 15G, Qwen3-1.7B 5G, Llama 4G) |\n| `outputs/` | 501 MB |\n| `d142_gated_isr_s52~s57` (6个) | 各 16-17 MB |\n| 其余为日志文件 | < 5 MB |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-d143-cleanup-disk.md"
+}

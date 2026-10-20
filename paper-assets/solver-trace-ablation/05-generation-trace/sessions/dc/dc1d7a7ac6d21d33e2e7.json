@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dc1d7a7ac6d21d33e2e7",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_14_1778885568.md",
+  "task_key": "loop_14_1778885568",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_14_1778885568.md",
+    "occurrence": 1,
+    "bytes": 3917,
+    "sha256": "1e14548b460997ce1418f22593e299f24f22fb57a3d6110540ca5fb8332bc40f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 14\nreason: idle_timeout\nupdated: '2026-05-15T22:46:30+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单仅 `westd-39279:cuda:0` 和 `westd-39279:cuda:1`，禁止用其他 GPU\n- D095 Narrative A 已批准生效——所有 paper 内容必须与 D095 一致，不可回退到旧 framing\n- Genuine rate ISR 6.06% vs Random 9.54% **p=0.182 不显著**——禁止 claim genuine rate 有显著差异\n- Random H7 pooled 13.7% 由 s43-r3 单 seed 贡献（38.3%），s42/s44-r2 为 0%——论文必须同时报 per-seed 和 pooled，不可简单对比 \"70.6% vs 13.7%\"\n- D051: premise-count-matched ISR 优势仅 1.06x，**2.4x 已作废**，禁止引用\n- genuine = proved − |H7 ∪ H1 ∪ H8|（集合排除，非简单减法，C013 公式）\n- EMNLP 主体 ≤8 页硬限制，当前约 8.5 页，缩减未完成\n\n### 2. 🖥️ 基础设施快照\n- 服务器：`westd-39279`，账号 `root`，工作目录 `/root/solver-trace-ablation`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- 论文本地路径：`/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/`（main.tex + 8 个 section .tex）\n- 产出目录：`/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/`\n- 远程输出：`/root/autodl-tmp/outputs/`（eval 结果、H7 分类 JSON）\n- GPU：2 × RTX PRO 6000 96GB，当前 2/2 空闲，无剩余实验\n- 活跃进程：无（0 running experiments, 0 running workers, 0 active crons）\n- W&B：实验指标已全部采集完毕\n\n### 3. 📊 当前状态\n**全部 86 实验已完成**（success 26 / negative 28 / failed 26）。0 个实验在跑，0 个 Worker 在跑。\n\n刚完成的工作：\n- D095 Narrative A 批准并生效，paper_framing.md 全文改写完成\n- TeX 全量数据同步到 D095 最终数字（Round 2 fixes committed: 15 H8 samples, σ notation, SFT 92.3%, RW softening）\n- Provenance 36/36 完成\n- 引用审计 30/30 真实\n- 一致性检查 0 critical / 0 warning\n- Fig2（ISR collapse）和 Fig3（hacking composition）已更新\n- 最后一个 Worker（ops:final-sync-compile）已 done\n\n等待中：无 Worker 回调、无 Cron、无 Director 决策\n\n### 4. 📋 待办（条件触发式）\n- 页数 ≤8 未达成（当前约 8.5 页） → 需要 spawn Worker 精简 Discussion/Taxonomy 段落，压缩到 ≤8 页\n- 页数缩减完成 → PDF 视觉审查（paper-visual-review skill），确认图表、排版、字体无问题\n- Checklist 验证 Worker 已 done，需检查其产出是否有未修复项 → 有则 spawn Worker 修复\n- 以上全部完成 → 向 Director 汇报论文 camera-ready 状态，确认是否可提交 ARR\n- DDL 2026-05-25（剩 10 天）——时间充裕但不能拖\n\n### 5. 🎯 战略上下文\n**这是一篇 Goodhart's Law 诊断/分析论文**，投 EMNLP 2026 Main（NLP and Symbolic Reasoning track）。核心贡献：STA/ISR 作为 GRPO neurosymbolic formalizer 的诊断工具，揭示 reward hacking 的 8 种模式，以及 ISR 从诊断指标变为优化目标时的 meta-level Goodhart 效应。\n\n3 条 Claims 全部闭环：\n- Claim 1: ISR 诊断 reward hacking（0.6423→0.1324→0.0027 崩塌链）\n- Claim 2: ISR-as-reward 无结构优势 + meta-Goodhart（D095 Narrative A: H7a GRPO-general amplified 5x, H7b ISR-specific, genuine n.s.）\n- Claim 3: 跨逻辑泛化（Prolog 3/3 gaming）\n\n**最容易判断错的事**：\n- H7a 不是 ISR 独有——exec-only s43 也 100% H7a，Random s43-r3 也 38.3% H7a。H7a 是 GRPO 通用 seed-dependent 现象，ISR 只是放大器（5x）。写论文时容易滑向 \"H7 is ISR-specific\" 的旧 framing（D087-D094 已经来回修正了 8 次）\n- H7b（obfuscated tautology）才是 ISR-specific（仅 ISR s44 的 12 个样本）\n- Hacking mode 是 seed-dependent 的——不同 seed 收敛到不同 hacking 策略，这是核心发现之一，不是噪声\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-14-1778885568.md"
+}

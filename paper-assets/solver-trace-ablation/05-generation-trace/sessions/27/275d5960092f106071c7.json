@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "275d5960092f106071c7",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "train d129 1 7b isr b01 s44",
+  "task_key": "worker_train_d129-1_7b-isr-b01-s44_20260517T221456",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_d129-1_7b-isr-b01-s44_20260517T221456_result.json",
+    "occurrence": 1,
+    "bytes": 364,
+    "sha256": "7800852034763cc3ffec22c47cacf28c1af4416cbbc240d032e863430f3f92df"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已启动，registry 和 cron 均已注册。\n\n**报告：**\n- tmux session: `d129-1_7b-isr-b01-s44`\n- Python PID: 36896\n- 日志正常：数据加载 500 examples、模型加载完成、GRPO 训练已开始（0/500 steps）、无 error\n- GPU 占用 11070 MiB / 97887 MiB，GPU-Util 72%\n- 预计训练时间：~54 分钟（参考 s43）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-d129-1-7b-isr-b01-s44.md"
+}

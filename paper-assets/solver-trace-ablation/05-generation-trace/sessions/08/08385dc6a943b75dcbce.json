@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "08385dc6a943b75dcbce",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "paper fig3 and provenance update",
+  "task_key": "worker_paper_fig3-and-provenance-update_20260517T202028",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fig3-and-provenance-update_20260517T202028_result.json",
+    "occurrence": 1,
+    "bytes": 459,
+    "sha256": "9f5975f5e474a6a02bcd17904f5fad01aae18684897cf3c3440a7160b73f2ee3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. Changes committed:\n\n- **gen_fig3.py**: Updated ISR β=0.1 and Random β=0.1 data from 3-seed (n=231, n=262) to 5-seed (n=350, n=414). Annotation now shows ISR H7: 54.3% vs Random: 29.5%.\n- **fig3 PDF/PNG**: Regenerated.\n- **appendix.tex**: Caption updated to reflect \"5-seed pooled s42--s46\" for β=0.1 bars.\n- **paper_provenance.yaml**: C064 and C136 updated with 5-seed numbers and s45/s46 experiment IDs. Version bumped 12→13."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fig3-and-provenance-update.md"
+}

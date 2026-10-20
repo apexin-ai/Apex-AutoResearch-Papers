@@ -1,0 +1,71 @@
+{
+  "schema_version": "1.0",
+  "id": "b64c5c3f861f3cef41b9",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "writing method section",
+  "task_key": "worker_writing_method-section_20260514T185032",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_method-section_20260514T185032_result.json",
+    "occurrence": 1,
+    "bytes": 2919,
+    "sha256": "fd119d1c34af309ecc0e129dc67f0f095a542a1b428de73503133244466cbf05"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Written to `paper/method.tex`. Report:\n\n```json\n{\n  \"section\": \"3 Method (5 subsections: Task Formulation, GRPO Training, Solver Trace Ablation, Reward Formulations, Reward Hacking Taxonomy)\",\n  \"word_count\": \"~1100 (raw LaTeX incl. commands; prose ~1050)\",\n  \"citations_needed\": [\n    \"deepseekmath — GRPO (✅ in bib)\",\n    \"demillo1978 — mutation testing origin (✅ in bib)\",\n    \"jia-harman-survey — mutation testing survey (✅ in bib)\",\n    \"prover9 — McCune 2005-2010 (❌ missing from references.bib)\",\n    \"swiprolog — Wielemaker et al. (❌ missing from references.bib, mentioned by name only)\"\n  ],\n  \"figures_needed\": [\n    \"fig1_sta_overview — STA protocol diagram (exists as figures/paper/fig1_sta_overview.pdf)\"\n  ],\n  \"tables_needed\": [],\n  \"notes\": [\n    \"Algorithm 1 (STA pseudocode) requires \\\\usepackage{algorithm} and \\\\usepackage{algorithmic} in preamble\",\n    \"Hacking taxonomy enumerate uses enumitem [leftmargin=*, itemsep=2pt] — verify ACL template compatibility or fall back to plain enumerate\",\n    \"ISR limitations paragraph included per D051 premise-count confound; forward-references §Results for controlled analysis\",\n    \"7 hacking modes per Director correction (query-as-fact gaming = mode 7)\",\n    \"H7 ISR-specificity stat (64.5% vs 0%) sourced from D057 3-seed data\",\n    \"Prover9 and SWI-Prolog bib entries need to be added to references.bib before compilation\"\n  ]\n}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "section": "3 Method (5 subsections: Task Formulation, GRPO Training, Solver Trace Ablation, Reward Formulations, Reward Hacking Taxonomy)",
+              "word_count": "~1100 (raw LaTeX incl. commands; prose ~1050)",
+              "citations_needed": [
+                "deepseekmath — GRPO (✅ in bib)",
+                "demillo1978 — mutation testing origin (✅ in bib)",
+                "jia-harman-survey — mutation testing survey (✅ in bib)",
+                "prover9 — McCune 2005-2010 (❌ missing from references.bib)",
+                "swiprolog — Wielemaker et al. (❌ missing from references.bib, mentioned by name only)"
+              ],
+              "figures_needed": [
+                "fig1_sta_overview — STA protocol diagram (exists as figures/paper/fig1_sta_overview.pdf)"
+              ],
+              "tables_needed": [],
+              "notes": [
+                "Algorithm 1 (STA pseudocode) requires \\usepackage{algorithm} and \\usepackage{algorithmic} in preamble",
+                "Hacking taxonomy enumerate uses enumitem [leftmargin=*, itemsep=2pt] — verify ACL template compatibility or fall back to plain enumerate",
+                "ISR limitations paragraph included per D051 premise-count confound; forward-references §Results for controlled analysis",
+                "7 hacking modes per Director correction (query-as-fact gaming = mode 7)",
+                "H7 ISR-specificity stat (64.5% vs 0%) sourced from D057 3-seed data",
+                "Prover9 and SWI-Prolog bib entries need to be added to references.bib before compilation"
+              ]
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-method-section.md"
+}

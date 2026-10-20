@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7744e3aeef5241870d22",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "reviewer / loop_22.md",
+  "task_key": "loop_22",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_22.md",
+    "occurrence": 1,
+    "bytes": 3927,
+    "sha256": "6cdc698d2fcc6d4118bcbe67aac006740d68c944912fc2caefe67c03d16cf9af"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 22\nreason: max_wall_time\nupdated: '2026-05-21T18:03:49+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 服务器 westd-39279 的 GPU 白名单未在 execution config 中明确看到，但所有训练都用单卡默认配置。历史上无越界事故。\n- D165 三个目录（s42/s43/s44）已被 cleanup worker 完全删除（含 eval JSON），原始数据不可恢复。数字已写入论文并经独立验证，但无法重新审计 per-sample 结果。\n- references.bib 中 dong2026probing 作者是幻觉（Guanting Dong 等 7 人全错），正确作者是 Yiming Dong, Kun Fu, Haoyu Li, Xinyuan Zhu, Yurou Liu, Lijing Shao, Jieping Ye, Zheng Wang。**我已报 Director CRITICAL，尚未确认修复。** 第一件事检查这个是否已改。\n- kimina-prover 在 bib 中但未被任何 .tex 引用（dangling entry），无害但应清理。\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-39279(root)，代码目录 /root/solver-trace-ablation\n- 磁盘：/root/autodl-tmp 250G, 90% used (223G)，cleanup 后从 97% 降下来\n- 论文本地路径：`/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/`\n- 编译 PDF：同目录 main.pdf（最近一次 16:33 UTC May 21）\n- 无活跃训练进程，无 cron，无 tmux session。所有实验已完成。\n\n### 3. 📊 当前状态\n**论文修订阶段，DDL 2026-05-25（剩 ~4 天）。**\n\n刚完成的审查：\n- R25 Fresh Review (Overall 3.0) Action Matrix 审查 → 已发 Director，方案可行\n- citation-update worker 审查 → CRITICAL: dong2026probing 作者幻觉待修\n- D165 三种子跨模型实验全部验证通过（PR=15.0±1.0%, genuine=86.6±0.9%），数据已写入 appendix\n- 全部 ~40 个引用已通过 WebSearch 验证，零幻觉（dong2026probing 除外——那是新加的）\n- 页数确认：主文本在 8 页内（experiments 压缩 ~37 行后更宽裕）\n- Power analysis d≥3.0 阈值已被 Agent 正确采用\n\nRegistry: 所有实验 DONE。无 RUNNING/PREPARING。\n\n### 4. 📋 待办\n- dong2026probing 修复通知到达 → 验证 bib 中 8 个作者是否全部正确\n- 如 Director 要求审查 R25 rebuttal 文本 → 按审查模式 B 逐条核实 claim-evidence 对齐\n- 如新 PDF 编译 → 重新检查页数（当前应 OK，但 related work 增长了 ~5 行）\n- Sullivan (2509.21154) 和 Yue (2504.13837) 加入 bib 后 → 验证作者列表（防同类幻觉）\n- limitations 若被压缩（用户规则要求 ~3 点）→ 检查是否保留了核心限制（单模型、N=3、ISR≠语义）\n\n### 5. 🎯 战略上下文\n**论文核心结论**：STA/ISR 作为诊断工具可靠（C1），作为训练 reward 产生 seed-dependent compositional Goodhart（C2）。C1 是主贡献，C2 是次要/exploratory。\n\n**审稿状态**：R22 (3.0-3.5), R23 (3.0), R25 (3.0)。三个 reviewer 一致指向同一类问题：overclaiming（单模型、N=3、Goodhart 术语混淆显著/不显著）。Agent 已大幅修订：case study 限定、5-seed 整合、214× caveat、power analysis、Goodhart 拆分为 composition (p<10⁻¹⁵) + prevalence (p=0.182 n.s.)。\n\n**易错点**：\n1. 引用作者幻觉是本项目反复出现的系统性问题（rlsf 第一次、dong2026probing 第二次）。任何新加 bib 条目必须 WebSearch 验证作者。\n2. \"compositional Goodhart effect\" 是经过多轮审查确认的正确术语——不要降级为纯描述性语言，也不要升级为 \"meta-level Goodhart\"（已被 reviewer 拒绝）。\n3. 214× 是 seed-42-specific，3-seed headline 是 \"≤7% non-hacking\"。不要在 abstract/intro 用 214× 作为 universal headline。\n4. ProofFOL 结果 p=0.10，全文标记 \"exploratory\"。不要在任何地方写 \"significant\" 或 \"confirmed\"。\n5. LLaMA D165 结果支撑 capability threshold 但不支撑 \"cross-model replication of degeneration\"——LLaMA 不退化是因为没学会，不是因为抗退化。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-22-copy-2.md"
+}

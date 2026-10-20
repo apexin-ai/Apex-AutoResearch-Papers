@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7dcee924b9b74b2b0101",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code plan006 dryrun",
+  "task_key": "worker_code_plan006-dryrun_20260514T081656",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan006-dryrun_20260514T081656_result.json",
+    "occurrence": 1,
+    "bytes": 886,
+    "sha256": "a12a195670146ecd290bd0b4f6a7f2b9b7cab6171b2e15ad0a0a6315d950af6d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**DRYRUN PASS**\n\n| 指标 | Step 1 | Step 2 | Step 3 |\n|------|--------|--------|--------|\n| reward | 0.125 | 0.000 | 0.000 |\n| prove_rate | 0.125 | 0.000 | 0.000 |\n| ISR | 0.018 | 0.000 | 0.000 |\n| parse_rate | 1.000 | 1.000 | 1.000 |\n| step_time (s) | 3.84 | 7.21 | ~7.1 |\n\n结果分析：\n- **全链路无报错**：PrologSolver → swipl 子进程 → rule ablation ISR 计算正常\n- **parse_rate = 1.0**：base model 输出全部可解析（Prolog 格式解析正常）\n- **prove_rate > 0**：Step 1 有 1/8 样本可证明（12.5%），符合预期（base model 不擅长 Prolog，但不是零）\n- **ISR = 0.018**：rule ablation 正常工作，至少有一个样本产生了非零 ISR\n- **训练速度**：~4-7s/step，比 FOL (Prover9) 快得多\n- **唯一 warning**：vLLM 版本兼容性警告（0.18.1 vs 支持到 0.17.1），不影响训练"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan006-dryrun.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "84e8ae4d569f38866577",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "paper round5 residual 4 warnings",
+  "task_key": "worker_paper_round5-residual-4-warnings_20260517T153509",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_round5-residual-4-warnings_20260517T153509_result.json",
+    "occurrence": 1,
+    "bytes": 853,
+    "sha256": "aff4162127f62d86e59413ef2c5a733ec0f36de39c6ea3a8beeb6f64a4f273d0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. Summary:\n\n- **W1/W2**: Figure 3 caption updated to reference `tab:fol-beta01-perseed` (replacing `tab:fol-detailed`), explicitly notes \"3-seed subset s42/s43/s44\" with pointers to 5-seed tables. Table 8 caption updated from \"3-seed pooled\" to \"3-seed subset\".\n- **W3**: §5 compressed from 15 to 10 lines. Removed repeated numbers (99.5%, per-seed trajectories), merged practical implications into 2 sentences + 1 future-work sentence. §5 stays on page 8, Limitations starts page 9.\n- **W4**: Added Krakovna (DeepMind blog, @misc), Polu & Sutskever (arXiv:2009.03393), Everitt et al. (Synthese 2021) to references.bib. Cited in related_work.tex: Polu in neurosymbolic paragraph, Krakovna+Everitt in Goodhart paragraph.\n- **Pages**: 22 total (8 main + ethics/limitations + appendix). No undefined citations, no em-dashes."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-round5-residual-4-warnings.md"
+}

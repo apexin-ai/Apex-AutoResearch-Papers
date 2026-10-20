@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bac0e303a73e9075f5cf",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops kill eval submit s44",
+  "task_key": "worker_ops_kill-eval-submit-s44_20260514T235712",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-eval-submit-s44_20260514T235712_result.json",
+    "occurrence": 1,
+    "bytes": 313,
+    "sha256": "47ca5f9bc78db5e937d19cfb4c1e9dc7a91be5d09f1f6af26a92129a6834170c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **Killed**: GPU 1 上 eval 进程 PID 28727、28959（各 16412 MiB）\n- **Submitted**: exp1-random-b03-s44，新 PID **33167**，GPU 1 占用 25232 MiB\n- **两卡状态**:\n  - GPU 0: PID 10602, 81410 MiB（原有训练）\n  - GPU 1: PID 33167, 25232 MiB（exp1-random-b03-s44）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-eval-submit-s44.md"
+}

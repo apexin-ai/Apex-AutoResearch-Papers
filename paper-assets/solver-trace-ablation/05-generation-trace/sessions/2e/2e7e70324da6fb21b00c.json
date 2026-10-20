@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2e7e70324da6fb21b00c",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "verify plan018 s43 config",
+  "task_key": "worker_verify_plan018-s43-config_20260514T095225",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_plan018-s43-config_20260514T095225_result.json",
+    "occurrence": 1,
+    "bytes": 960,
+    "sha256": "6c09df11be9709b43b81d30bc49da09b85ef010fcbfc7d77e30633a19bce7a28"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### num_generations 对比\n\n| 文件 | num_generations |\n|------|:-:|\n| `plan018_random_b01_s43.yaml` | **8** ✓ |\n| `plan018_random_b01_s44.yaml` | **8** ✓ |\n| `grpo_additive_random_b01.yaml` (s42) | **8** ✓ |\n\n三个文件一致，均为 8。\n\n### s43 config 完整内容\n\n```yaml\nmodel_path: /root/autodl-tmp/models/Qwen3-4B\ndata_path: data/train_500_seed42.jsonl\nreward_mode: additive_random\noutput_dir: /root/autodl-tmp/outputs/plan018_additive_random_b01_s43\nnum_steps: 500\nper_device_batch_size: 4\ngradient_accumulation_steps: 2\nnum_generations: 8\nmax_completion_length: 512\nlearning_rate: 1.0e-6\nbeta: 0.1\nseed: 43\nsolver: prover9\nno_wandb: true\n```\n\n关键参数确认：\n- `reward_mode: additive_random` ✓\n- `beta: 0.1` ✓\n- `seed: 43` ✓\n- `data_path: data/train_500_seed42.jsonl` ✓（符合 C001）\n- `output_dir: /root/autodl-tmp/outputs/plan018_additive_random_b01_s43` ✓"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-plan018-s43-config.md"
+}

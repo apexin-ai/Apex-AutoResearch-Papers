@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "23f9628ec4c92c8af98c",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "research d134 reference verification",
+  "task_key": "worker_research_d134-reference-verification_20260518T102656",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_d134-reference-verification_20260518T102656_result.json",
+    "occurrence": 1,
+    "bytes": 2537,
+    "sha256": "013143fe8abb2e5e9a81b6e72e9bd26d9768b7b3f4f79b06d5afd454bfd13a80"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完成。\n\n```\n=== 论文 1: Cao et al. 2026 ===\narXiv ID 2601.22642: ✅ 存在\n实际标题: \"Pushing the Boundaries of Natural Reasoning: Interleaved Bonus from Formal-Logic Verification\"\n作者: Chuxue Cao, Jinluan Yang, Haoran Li, Kunhao Pan, Zijian Zhao, Zhengyu Chen, Yuchen Tian, Lijun Wu, Conghui He, Sirui Han, Yike Guo\n提交日期: 2026-01-30\n摘要概要: 提出 formal logic verification 与自然语言生成动态交织的框架，在推理链中实时检测和修正逻辑错误（区别于被动的 post-hoc 验证）。用 SFT + policy optimization 两阶段流水线训练，7B/14B 模型在 6 个 benchmark 上分别超 baseline 10.4%/14.2%。\n与本文相关性: 中高\n  - 共同点：formal logic verification 作为 RL 训练信号、intermediate reasoning 质量控制\n  - 差异：他们做 interleaved real-time verification，我们做 post-hoc ISR reward shaping + hacking taxonomy\n  - 未提及 Goodhart's Law 或 reward hacking\n建议引用位置: Related Work（formal verification for reasoning 子节）+ Introduction（现有方法对比）\n\n=== 论文 2: Wang et al. 2025 ===\narXiv ID 2510.01367: ✅ 存在\n实际标题: \"Is It Thinking or Cheating? Detecting Implicit Reward Hacking by Measuring Reasoning Effort\"\n作者: Xinpeng Wang, Nitish Joshi, Barbara Plank, Rico Angell, He He\n提交日期: 2025-10-01（v4: 2026-03-02）\n摘要概要: 提出 TRACE（Truncated Reasoning AUC Evaluation），通过逐步截断 CoT 测量 reasoning effort 来检测 implicit reward hacking。核心观察：hacking 比真正解题\"更容易\"，hacker 只需 CoT 的一小部分就能获得高 reward。在 math reasoning 上比 72B CoT monitor 高 65%，coding 上比 32B monitor 高 30%。也在 OpenReview 上有记录。\n与本文相关性: 高\n  - 直接相关：reward hacking 检测、reasoning effort 量化\n  - 我们的 ISR（Inference Step Redundancy）本质上也是量化 reasoning effort/necessity\n  - TRACE 用截断 AUC 检测 hacking，我们用 per-step ablation 检测 hacking\n  - 互补视角：他们做 detection，我们做 reward shaping + taxonomy\n建议引用位置: Related Work（reward hacking detection 子节）+ Introduction（motivation for detecting hacking）+ Discussion（与 TRACE 方法论对比）\n```\n\n两篇论文均真实存在，arXiv ID 和标题完全匹配。Wang et al. (TRACE) 与本文高度相关，应重点引用；Cao et al. 属于 formal verification for reasoning 方向，相关但角度不同。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-d134-reference-verification.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a8b32f72a0b0771fb49c",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "monitor plan005 progress",
+  "task_key": "worker_monitor_plan005_progress_20260513T235317",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_plan005_progress_20260513T235317_result.json",
+    "occurrence": 1,
+    "bytes": 1039,
+    "sha256": "05daed12e1a94907ecaf321057300bb21a6455c5f5f0921cfd74766b871cc19f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## plan005-sta-low-s42 训练状态\n\n| 项目 | 值 |\n|------|-----|\n| **进度** | **498/500 步** — 即将完成 |\n| **进程** | PID 85790 存活，已运行 1h11m |\n| **预计完成** | ~20 秒内（~8.5s/step） |\n| **Checkpoints** | checkpoint-400, checkpoint-450 已保存 |\n\n### 关键指标趋势\n\n| 指标 | 初始 (step 1-5) | 最新 (step 494-498) | Baseline |\n|------|-----------------|---------------------|----------|\n| prove_rate | 0.125 - 0.375 | **0.75 - 1.0** | 0.12 |\n| reward_mean | 0.12 - 0.37 | **0.70 - 0.91** | — |\n| isr_mean | 0.10 - 0.28 | 0.09 - 0.28 | 0.064 |\n| parse_rate | 1.0 | 1.0 | — |\n| loss | 0.03 - 0.07 | -0.08 - 0.11 | — |\n\n### 判断\n\n- **训练正常**，无异常。prove_rate 从 baseline 0.12 大幅提升到 0.75-1.0。\n- ISR 提升幅度不大（0.064 → 0.09-0.28 波动），符合 STA weight=0.1 低权重的预期。\n- loss 偶有负值属于 GRPO 正常现象。\n- 总耗时 ~71 分钟/500 步，与 plan001-r2（62 分钟）量级一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-plan005-progress.md"
+}

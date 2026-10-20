@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "43f44679bd3da5962609",
+  "project": "solver-trace-ablation",
+  "kind": "worker",
+  "title": "urgent disk cleanup",
+  "task_key": "worker_urgent_disk-cleanup_20260514T114152",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_urgent_disk-cleanup_20260514T114152.log",
+    "occurrence": 1,
+    "bytes": 550359,
+    "sha256": "992d19978cf7394beb7029a6e29333d9d3178fe59149a9eac711dd416063db9c"
+  },
+  "statistics": {
+    "messages": 276,
+    "user_turns": 0,
+    "tool_calls": 102,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 67,
+      "tool_call": 102,
+      "tool_result": 102,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 276,
+      "chunks": [
+        {
+          "path": "43f44679bd3da5962609-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "43f44679bd3da5962609-part-0002.json",
+          "message_count": 96
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/urgent-disk-cleanup.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f31e9854bc97d006cc85",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_8_1778804731.md",
+  "task_key": "loop_8_1778804731",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_8_1778804731.md",
+    "occurrence": 1,
+    "bytes": 4706,
+    "sha256": "f80272818d1aa37049b698753e9ffa61138b1fc03b27ae57aec195664b8803fd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: idle_timeout\nupdated: '2026-05-14T23:54:38+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：仅 `westd-39279:cuda:0` 和 `westd-39279:cuda:1`，无例外\n- 磁盘 `/root/autodl-tmp/` 已 240G/250G (96%)——提交新实验前必须清理旧 checkpoint，否则训练会磁盘爆满中断\n- `exp1-random-b03-s44` 处于 PENDING 等审批，不可未经批准直接提交\n- Prolog STA s44 已被 Reviewer 修正为 query-as-fact gaming（非 genuine），论文中不可引用为 success\n- D051 定论：ISR 2.4x/3.2x 优势数字已作废，论文只能报 premise-count-matched 1.06x\n- `submit_training_job` 命令必须 `bash -c \"export CUDA_VISIBLE_DEVICES=N && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && ...\"`，不可假设 .venv\n- `kill_job` 后必须 SSH 验证子进程已终止（历史教训：只杀 tmux wrapper 不杀 Python 子进程）\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-39279，账户 root\n- **工作目录**: `/root/solver-trace-ablation/`\n- **Python**: `/root/miniconda3/bin/python`，激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **镜像**: aml-train（conda 环境，transformers/trl/vllm/accelerate 预装）\n- **模型**: Qwen3-4B（ModelScope 下载，7.6GB）\n- **训练数据**: `data/train_500_seed42.jsonl`（500 条 FOLIO FOL）\n- **Eval 数据**: `proofwriter_fol_100.jsonl`\n- **输出目录**: `/root/autodl-tmp/outputs/`\n- **日志目录**: `~/runs/solver-trace-ablation/`\n- **GPU**: 2× RTX PRO 6000 Blackwell 94GB，CUDA 12.8，PyTorch 2.10.0+cu128\n- **Solvers**: Prover9 (LADR 源码编译), SWI-Prolog 8.4.2 (`/usr/bin/swipl`), Z3 4.16.0.0\n- **磁盘**: 系统盘 30GB，数据盘 250GB（96% 已用，需清理）\n- **活跃进程**: exp1-isr-b03-s44-r2 (PID 10597, tmux, cuda:0)，cron 监控中\n\n### 3. 📊 当前状态\n**刚完成**: exp1-isr-b03-s43 和 exp1-random-b03-s43 训练完成（均 500/500 步 success），但尚未跑 `eval_sta.py`。writing_plan.yaml 已获 Director 审批，论文写作已启动。\n\n**Registry**: 58 个实验（success 15 / negative 19 / failed 19 / killed 3 / RUNNING 1 / PENDING 1）\n\n**RUNNING**: `exp1-isr-b03-s44-r2`（β=0.3 ISR seed 44 重试，cuda:0，cron 监控中）\n\n**PENDING**: `exp1-random-b03-s44`（β=0.3 random seed 44，等审批）\n\n**4 个 Worker 在跑**:\n1. `worker_fix_paper-compilation-p0p1` — 修复论文编译问题\n2. `worker_eval_b03-isr-s43-random-s43` — 跑 exp1-isr-b03-s43 和 exp1-random-b03-s43 的 eval_sta.py\n3. `worker_ops_eval-s43-random-and-submit-s44` — eval s43 random + 提交 s44 相关操作\n4. `worker_fix_paper-figures-r3` — 修复论文图表（第 3 轮）\n\n**等待中**: 4 个 Worker 回调；exp1-isr-b03-s44-r2 cron 完成回调；exp1-random-b03-s44 审批\n\n### 4. 📋 待办（条件触发式）\n- `exp1-isr-b03-s44-r2` cron 回调 DONE → spawn Worker 跑 eval_sta.py → 更新 registry + report.md → 汇报 Director\n- `exp1-random-b03-s44` 审批通过 → 分配 GPU (cuda:1 应空闲) → submit_on_allocated → cron 监控\n- Worker eval b03-isr-s43 / random-s43 回调 → 整合 eval 结果到 registry，更新 β=0.3 三 seed 统计表\n- β=0.3 全 6 个实验（3 ISR + 3 random）eval 完成 → 汇报 Director Table 1 β=0.3 行数据 → 更新 paper_framing.md\n- Worker paper-compilation / paper-figures 回调 → 检查论文 PDF 编译状态，如有问题继续修复\n- 磁盘 96% → 训练完成的旧 checkpoint 需清理（尤其 plan001-plan018 系列已不再需要的中间产物）\n- 论文 Method + Experiments 章节草稿完成 → submit_paper_to_review\n\n### 5. 🎯 战略上下文\n**核心结论**: STA/ISR 是诊断工具而非有效 reward。三条 Claim 全部闭环：(1) ISR 崩塌轨迹 0.64→0.13→0.003 诊断 reward hacking；(2) ISR-as-reward 完全失败，premise-count-matched 1.06x 无差异（D051/D057）；(3) Prolog 3/3 seeds gaming，0% genuine，三条不同 gaming 路径。\n\n**当前阶段**: 论文写作 + β=0.3 补充实验（Table 1 填格）。DDL 2026-05-25（剩 11 天）。\n\n**易错点**:\n- β=0.3 实验是 Table 1 补充数据，不是新 claim。不要过度解读这些结果\n- exp1-isr-b03-s43 和 exp1-random-b03-s43 的 EXIT_CODE=129 是 SIGHUP 假阳性，实际训练成功，不要当 failed 处理\n- Hacking taxonomy 是 **7 种**（含 query-as-fact 第 7 种），不是 6 种\n- 论文中 ISR vs Random 对比只能用 premise-count-matched 数据（1.06x），raw 数据已作废\n- Worker 2 和 Worker 3 任务可能有重叠（都涉及 s43 eval），回调时注意去重\n- 磁盘紧张是最大运维风险，新实验提交前务必检查剩余空间\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-8-1778804731.md"
+}

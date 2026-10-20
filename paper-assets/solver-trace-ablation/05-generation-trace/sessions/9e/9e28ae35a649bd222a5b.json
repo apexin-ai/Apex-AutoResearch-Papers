@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9e28ae35a649bd222a5b",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "eval plan018 additive random b01 s42",
+  "task_key": "worker_eval_plan018-additive-random-b01-s42_20260514T081100",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_plan018-additive-random-b01-s42_20260514T081100_result.json",
+    "occurrence": 1,
+    "bytes": 948,
+    "sha256": "ab343bd8d24597e3992c210a305cb8ae43fb333d7ffc0b67f4b621d6bcaca715"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## plan018-additive-random-b01-s42 结果总结\n\n**结论：success — ISR 在 β=0.1 下具有结构价值**\n\n### 核心对比\n\n| 实验 | PR | mean_ISR | proved_only_ISR |\n|------|-----|----------|-----------------|\n| **plan018** random β=0.1 | **0.79** | **0.1038** | **0.1314** |\n| plan002 ISR β=0.1 | 0.81 | 0.3365 | 0.4154 |\n| plan017 random β=0.3 | 0.48 | 0.0453 | — |\n| plan001 exec-only | 0.93 | 0.1232 | — |\n\n### 关键发现\n\n1. **PR 持平** (0.79 vs 0.81, 仅 2pp)：β=0.1 的随机噪声不显著影响证明能力\n2. **ISR 差距 3.2 倍** (0.104 vs 0.337)：ISR reward 在低剂量下提供 genuine structural guidance，而非仅仅是 variance regularization\n3. plan018 的 ISR (0.104) 接近 exec-only baseline (0.123)，说明 random 控制组的 ISR 仅来自模型自然生成的 proof 结构，ISR reward 将其提升了 3 倍\n4. 无 tautological collapse (component_count_2_ratio=0)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-plan018-additive-random-b01-s42.md"
+}

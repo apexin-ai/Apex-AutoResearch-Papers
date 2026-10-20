@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "98e67ab2056e810e1b35",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "research inc05 literature linkage",
+  "task_key": "worker_research_inc05-literature-linkage_20260515T140825",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_inc05-literature-linkage_20260515T140825_result.json",
+    "occurrence": 1,
+    "bytes": 966,
+    "sha256": "180da08313c8d3b09366160615397f02d2e25f274ccff40f2de00456bf901a1e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "产出已注册。核心结论：\n\n**4 篇论文映射到 INC-05 发现**：\n1. **Laidlaw et al. (2025) \"Correlated Proxies\"** — **新，需加入 literature_map**。ICLR 2025 Spotlight，提供 reward hacking 的 correlation-breakdown 形式化定义，直接框架化\"ISR 优化后 genuine rate 低于 random baseline\"。\n2. **Yang et al. (2025) \"Spurious Rewards\"** — 已在 lit map。我们的发现是其强化版：不是 random ≈ truth，而是 structured < random。\n3. **Manheim & Garrabrant (2019)** — 已在 lit map，但当前标注为 extremal Goodhart；INC-05 更准确映射到 **regressional Goodhart**（noise exploitation, 无需 distributional shift）。\n4. **Pan et al. (2022)** — 已在 lit map。\"more capable agents exploit misspecifications more\" 直接解释为何 ISR-optimized model 比 random baseline 的 genuine rate 更低。\n\n产出文件含 4 条可直接用于论文的 suggested claims。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-inc05-literature-linkage.md"
+}

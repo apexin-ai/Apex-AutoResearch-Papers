@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3893d814fef2eefa4c0a",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "eval collect t015 results",
+  "task_key": "worker_eval_collect-t015-results_20260516T190452",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_collect-t015-results_20260516T190452_result.json",
+    "occurrence": 1,
+    "bytes": 116,
+    "sha256": "8414a53358d9517b07a0852a0cb92060db4d1d2ddaa43aa6f53aed2be7d24eb1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval at 67/100. Waiting ~4.5 min for next check. Will keep polling until `eval_results.json` appears."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-collect-t015-results.md"
+}

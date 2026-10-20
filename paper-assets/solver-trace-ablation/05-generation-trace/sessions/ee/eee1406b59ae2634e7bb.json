@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eee1406b59ae2634e7bb",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code d146 isr s44 final and eval launch",
+  "task_key": "worker_code_d146-isr-s44-final-and-eval-launch_20260520T023003",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d146-isr-s44-final-and-eval-launch_20260520T023003_result.json",
+    "occurrence": 1,
+    "bytes": 1215,
+    "sha256": "d53fd0fb8c653f587dfefe3fbb69122494c57c29c77137ca517cae6d4a910838"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "eval/classify 已启动并运行中。\n\n## 汇总\n\n### 1. isr-s44 训练：已完成 ✓\n- **500/500 步**，结束于 2026-05-20T01:52:14 UTC（已空闲 ~8.5 小时）\n- Final model 存在（4 shards）\n\n### 2. 轨迹（每 50 步）\n\n| Step | prove_rate | ISR | reward |\n|------|-----------|-----|--------|\n| 1 | 0.375 | 0.068 | 0.382 |\n| 51 | 0.500 | 0.143 | 0.514 |\n| 101 | 0.500 | 0.115 | 0.512 |\n| 151 | 0.500 | 0.219 | 0.522 |\n| 201 | 0.000 | 0.000 | 0.000 |\n| 251 | 1.000 | 0.351 | 1.035 |\n| 301 | 0.500 | 0.156 | 0.516 |\n| 351 | 0.500 | 0.200 | 0.520 |\n| 401 | 1.000 | 0.290 | 1.029 |\n| 451 | 0.000 | 0.000 | 0.000 |\n| 500 | 0.000 | 0.000 | 0.000 |\n\n**统计**：\n- prove_rate: mean=0.454, final_50=0.487\n- ISR: mean=0.131, final_50=0.145\n- 366/500 步有非零 prove_rate（nz mean: pr=0.620, ISR=0.178）\n\n### 3. eval/classify：已启动 ✓\n- tmux session `d146-eval` 运行中\n- 当前：Step 0（base model Qwen3-4B），已完成 4/100 样本\n- eval_sta.py PID=689352，GPU 0 占用 8501 MiB / 50%\n- 脚本将依次评估：base → 6 个实验模型 → batch summary\n\n### 4. GPU 状态\n- GPU 0：8501 MiB used，50% 利用率（eval 运行中）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d146-isr-s44-final-and-eval-launch.md"
+}

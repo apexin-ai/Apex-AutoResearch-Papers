@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ce4e1c2f3bff76c52aa7",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "paper d095 front matter",
+  "task_key": "worker_paper_d095-front-matter_20260515T195607",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_d095-front-matter_20260515T195607_result.json",
+    "occurrence": 1,
+    "bytes": 778,
+    "sha256": "181df5ffe1d21c4fec09fdc38047e33bda4d028cb0b7bd6e571a9ee68bca19d5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个文件全部更新完毕，数据一致性验证通过：\n\n| 数据点 | abstract | introduction | conclusion |\n|--------|----------|-------------|------------|\n| ISR H7 | 70.6% | 70.6% | 70.6% (163/231) |\n| Random H7 | 13.7% | 13.7% | 13.7% (36/262) |\n| Fisher p | 1.3×10⁻³⁹ | <10⁻³⁸ | <10⁻³⁸ |\n| ~5× amplification | ✓ | ✓ | — (gradient描述) |\n| seed-dependent | ✓ | ✓ | 38.3%/0%/0% |\n| 1.06× | ✓ | ✓ | ✓ |\n\nNarrative A 硬约束检查：\n- 未说 \"H7 is ISR-specific\" 或 \"zero under random\" ✓\n- 标注 random H7 单 seed 来源 ✓\n- 未 claim genuine 显著差异 ✓\n- dose-response 段已删除 \"by 1000 steps converges to 100% H7\" 作为主论据 ✓\n- random β=0.3 更新为 4–7 H7a ✓"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-d095-front-matter.md"
+}

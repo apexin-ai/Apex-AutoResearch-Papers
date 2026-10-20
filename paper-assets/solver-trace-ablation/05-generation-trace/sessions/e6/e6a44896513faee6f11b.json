@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e6a44896513faee6f11b",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops check training progress",
+  "task_key": "worker_ops_check-training-progress_20260514T020044",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-training-progress_20260514T020044_result.json",
+    "occurrence": 1,
+    "bytes": 485,
+    "sha256": "4bb13200170aad87e96ba1a05450abb8e2647b9e1b9ec5bc90f0b616773992f4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验均正常运行，无异常：\n\n| 实验 | 进度 | 预计完成 |\n|---|---|---|\n| **plan013-random-reward-s42-r4** | 165/500 (33%) | ~02:36 UTC (~35 min) |\n| **plan001-exec-only-s43-r4** | 123/500 (24.6%) | ~02:47 UTC (~46 min) |\n\n- GPU 0/1 利用率 100%/91%，显存占用 ~82%，正常\n- 磁盘 112G 剩余 (56%)，安全\n- 两个实验 parse_rate 稳定 1.0，prove_rate 正常波动\n\n报告已写入 `artifacts/training_progress_check.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-training-progress.md"
+}

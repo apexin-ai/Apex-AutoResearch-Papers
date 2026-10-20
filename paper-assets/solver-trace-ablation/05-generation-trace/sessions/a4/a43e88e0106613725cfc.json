@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a43e88e0106613725cfc",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "eval d165 s44 status check",
+  "task_key": "worker_eval_d165-s44-status-check_20260521T142100",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_d165-s44-status-check_20260521T142100_result.json",
+    "occurrence": 1,
+    "bytes": 1221,
+    "sha256": "b7ec3f47141a3b085916b6b1e8729562dad4a5b323c3ba78b3ba13e3daebf8fb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## d165-llama-exec-s44 状态报告\n\n**进程状态**: Running (PID 887114)\n- 启动时间: 2026-05-21 22:09（约 12 分钟前，从 step 1 重新开始的新 run）\n- 当前进度: **step 76/500** (15%)\n- 平均 step 时间: ~10s/step\n- **预计剩余: ~70 分钟**（约 23:30 完成）\n\n**GPU**: GPU 0, 36.6G / 97.9G VRAM, 60% util — 正常\n\n**磁盘风险**: `/root/autodl-tmp` 97% 满（9.3G 可用）\n- 当前 checkpoint-50 占 6.1G\n- save_total_limit=1，每次 checkpoint 轮转需写入 ~6.1G 再删旧的\n- 峰值时可用空间会降至 ~3.2G — 勉强够用但很紧\n\n**配置确认**: \n- 数据: `data/train_500_seed42.jsonl` ✓ (C001)\n- CUDA_VISIBLE_DEVICES=0 ✓ (C002)\n- save_total_limit=1 ✓ (C003)\n- seed=44, 500 steps, execution_only\n\n**最后 5 步 reward**:\n| step | reward | prove_rate | ISR |\n|------|--------|------------|-----|\n| 72 | 0.250 | 0.250 | 0.092 |\n| 73 | 0.125 | 0.125 | 0.062 |\n| 74 | 0.125 | 0.125 | 0.018 |\n| 75 | 0.125 | 0.125 | 0.083 |\n| 76 | 0.000 | 0.000 | 0.000 |\n\n训练仍在早期阶段，prove_rate 还较低（step 76 时 s42/s43 也类似）。需要等 ~70 分钟完成后再 eval。是否需要我设定定时检查？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-d165-s44-status-check.md"
+}

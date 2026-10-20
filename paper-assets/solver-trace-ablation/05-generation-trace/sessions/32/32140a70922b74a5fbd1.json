@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "32140a70922b74a5fbd1",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "eval plan009 sft baseline s42 1000",
+  "task_key": "worker_eval_plan009-sft-baseline-s42-1000_20260515T124400",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_plan009-sft-baseline-s42-1000_20260515T124400_result.json",
+    "occurrence": 1,
+    "bytes": 1156,
+    "sha256": "f09eb7acf70840ab175ef2d6d61813312cf18cfdf45eaeb3570c264082f21e8a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成，status=DONE, conclusion=success。\n\n## 结果摘要\n\n### Eval 结果（eval_sta.py + classify_h7）\n\n| 指标 | SFT 500步 (s42-r4) | SFT 1000步 (s42-1000) | 变化 |\n|------|--------------------|-----------------------|------|\n| prove_rate | 0.14 | 0.13 | -0.01 |\n| genuine_count | 13/14 (92.9%) | 12/13 (92.3%) | -0.6pp |\n| h7_count | 0 | 0 | 不变 |\n| h1_count | 1 | 1 | 不变 |\n| h8_count | 0 | 0 | 不变 |\n| mean_isr | — | 0.0738 | — |\n| proved_only_isr | — | 0.5677 | — |\n| train_loss | — | 0.0168 | 严重过拟合 |\n\n### 1000步 vs 500步分析\n\n- **无退化**：prove_rate 微降 0.01（13→14 仅差 1 题），genuine_rate 92.3% vs 92.9% 基本持平\n- **无 Goodhart collapse**：h7=0, h8=0，SFT 即使训练 15.88 epochs（严重过拟合，loss 0.0168）也不产生 reward hacking\n- **unknown 类完全未解**：0/41 prove rate，与 500 步一致。SFT 只学会了模仿训练集中的 formalization 模式，无法泛化到 unknown 类\n- **关键结论**：Goodhart collapse 是 RL(GRPO) reward optimization 特有现象，非一般 finetuning 过拟合导致"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-plan009-sft-baseline-s42-1000.md"
+}

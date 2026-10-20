@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aec75093a69f37f0a0b9",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "diagnose sweep isr b02 s42",
+  "task_key": "worker_diagnose_sweep-isr-b02-s42_20260516T045433",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_sweep-isr-b02-s42_20260516T045433_result.json",
+    "occurrence": 1,
+    "bytes": 693,
+    "sha256": "0c8c0e4498122fec4ec35931940a5d1444b93d0a8ba5b14b98ed57c4b00a9434"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结论：训练实际已成功完成，EXIT_CODE=129 是误报。**\n\n关键事实：\n- 训练跑完了 500/500 步，日志最后打印了 \"Done.\"，final model 已保存\n- EXIT_CODE=129 (SIGHUP) 来自 tmux session 在训练进程正常退出后的清理过程，监控系统捕获的是 shell 的退出码而非 Python 进程的\n- 完整模型权重在 `/root/autodl-tmp/outputs/sweep_isr_b02_s42_v2/`（含 checkpoint-500 子目录）\n- GPU 1 已释放，GPU 0 正在跑 sweep-isr-b02-s43\n- 磁盘 85% (39G free)，output_dir 有两份权重共 ~30GB，可删 checkpoint-500 回收 ~15GB\n\n**下一步**：更新 registry 为 success，直接进入 eval 阶段。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-sweep-isr-b02-s42.md"
+}

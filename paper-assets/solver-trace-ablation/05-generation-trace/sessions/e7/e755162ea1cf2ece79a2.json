@@ -1,0 +1,1512 @@
+{
+  "schema_version": "1.0",
+  "id": "e755162ea1cf2ece79a2",
+  "project": "solver-trace-ablation",
+  "kind": "worker",
+  "title": "review post to reviewer v2",
+  "task_key": "worker_review_post-to-reviewer-v2_20260515T050523",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_review_post-to-reviewer-v2_20260515T050523.log",
+    "occurrence": 1,
+    "bytes": 128350,
+    "sha256": "3d1d3eeac8ae374ad1b0f90791941d04de41d9cfaeee17939e02bfeab567eff1"
+  },
+  "statistics": {
+    "messages": 35,
+    "user_turns": 1,
+    "tool_calls": 10,
+    "roles": {
+      "system": 4,
+      "record": 1,
+      "assistant": 8,
+      "tool_call": 10,
+      "tool_result": 10,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+                "session_id": "d5e76642-4b80-417b-bcfe-3fabceb51940",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__check_paper_consistency",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__save_project_file",
+                  "mcp__agent-ml-research__verify_references"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "93d78320-bda0-4e08-892a-dafd6eba8a85",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed_warning",
+                  "resetsAt": 1779379200,
+                  "rateLimitType": "seven_day",
+                  "utilization": 0.37,
+                  "isUsingOverage": false
+                },
+                "uuid": "8135a07b-244e-4a50-8547-47ad440fffb0",
+                "session_id": "d5e76642-4b80-417b-bcfe-3fabceb51940"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The user wants me to do a consistency check on their paper. Let me read the relevant tex files and check for inconsistencies. I'll start by reading all the relevant files in parallel.",
+              "signature": "EvMCClkIDRgCKkD1WBL7rM02BrkIYtbmm6i9x7QKxD4xAc6puaCUu+lfYPorSKEc0+WnBLLFmOkab0QZahB5lNaKAQopf/kYYFAsMg9jbGF1ZGUtb3B1cy00LTY4ABIMCz2un2a5eWcDJGfOGgyNEzdt64C2sH89ZjIiMGq+tljBdxaxCLKWARfI66QvXoRoWKGpmTSikiz6EOXROGpjQw0+8bFeCyVTH3rFPirHAYHizPx6ZhcbAFcysoSeTZW0kvkfRHp/Crg0qrKc4NfLAxcLdNkTZzo80hOnmgpEmGEp1PUVPsGLU7prOktNPUYyCA9Vgo6OBE84ziaP5SkYOXr6sxoYPc6gZ114cbFtI/Vw9HuxFCP2bAJ7TlSMfbgIX7Mf67fIW9cCk2DbQFy4Y7KnbtEZRf6OLo3ILVKeaqvrwlDaBLRIxbyiJ9OtSSzNGXKInu2H96PDn2Tck7WGk3ZCwjRQTBq0MsnFXcFT/isHF4Vafl4YAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d5e76642-4b80-417b-bcfe-3fabceb51940",
+            "uuid": "767bf2dd-e8d5-4e65-b264-53c26d257004",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015WmvieXfT4bmYZeNyiZe7L",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 13213,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13213
+                },
+                "output_tokens": 25,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Reading the paper files to check consistency."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d5e76642-4b80-417b-bcfe-3fabceb51940",
+            "uuid": "abc3bba7-7f28-447e-9cde-89d5f74eeac9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015WmvieXfT4bmYZeNyiZe7L",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 13213,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13213
+                },
+                "output_tokens": 25,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WRvyzPiRanAJGLLv9L8LAb",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/abstract.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d5e76642-4b80-417b-bcfe-3fabceb51940",
+            "uuid": "2e5b67af-f52a-41e2-b2ef-f74d76acd805",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015WmvieXfT4bmYZeNyiZe7L",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 13213,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13213
+                },
+                "output_tokens": 25,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T05:18:41.630Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WRvyzPiRanAJGLLv9L8LAb",
+              "type": "tool_result",
+              "content": "1\t\\begin{abstract}\n2\tGRPO-trained neurosymbolic formalizers achieve high prove rates---93\\% on FOLIO---yet 87\\% of proved outputs embed the conclusion verbatim among the premises, a degenerate shortcut invisible to execution reward.\n3\tWe introduce \\emph{Solver Trace Ablation} (STA), a diagnostic that applies leave-one-out component necessity testing to solver inputs.\n4\tThe fraction of components whose removal causes proof failure yields the \\emph{Intensional Structural Reward} (ISR): ISR$=$1 indicates full necessity; ISR$=$0 complete redundancy.\n5\tISR is uncorrelated with downstream NLI accuracy ($\\rho{=}{-}0.049$), confirming it measures structural---not semantic---integrity.\n6\tAs a diagnostic, ISR exposes a collapse trajectory hidden from PR: over 100--1000 GRPO steps (Qwen3-4B), ISR falls $0.642{\\to}0.003$ while PR rises $32\\%{\\to}96\\%$; an SFT baseline reaches 92.9\\% non-hacking on identical data, localizing the failure to RL.\n7\tAs a reward, $r = r_{\\text{exec}}\\cdot(1{+}\\beta\\,\\text{ISR})$ at $\\beta{=}0.1$ induces \\emph{meta-level Goodhart's Law}: 64.5\\% conclusion duplication (H7) versus 0\\% under matched random; the sole apparent ISR improvement reduces to $1.06\\times$ after controlling for a premise-count confound; $\\beta{=}0.3$ produces extreme cross-seed instability (PR $66{\\pm}42\\%$), with individual seeds collapsing to as low as $18\\%$.\n8\tCross-logic transfer to Prolog yields universal Goodhart: 3/3 seeds gaming via distinct mechanisms, 0\\% non-hacking.\n9\tAcross 6 reward conditions, 2 logic types, 3 seeds, we catalog 7 hacking modes---including query-as-fact gaming that bypasses text-match classifiers---documenting ISR's fundamental asymmetry: reliable as a diagnostic, unreliable as an optimization target.\\footnote{Code and data: \\url{[anonymized]}}\n10\t\\end{abstract}\n11\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "d5e76642-4b80-417b-bcfe-3fabceb51940",
+            "uuid": "1d84dd83-5787-4785-b895-30e3fca16798",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/abstract.tex",
+                "content": "\\begin{abstract}\nGRPO-trained neurosymbolic formalizers achieve high prove rates---93\\% on FOLIO---yet 87\\% of proved outputs embed the conclusion verbatim among the premises, a degenerate shortcut invisible to execution reward.\nWe introduce \\emph{Solver Trace Ablation} (STA), a diagnostic that applies leave-one-out component necessity testing to solver inputs.\nThe fraction of components whose removal causes proof failure yields the \\emph{Intensional Structural Reward} (ISR): ISR$=$1 indicates full necessity; ISR$=$0 complete redundancy.\nISR is uncorrelated with downstream NLI accuracy ($\\rho{=}{-}0.049$), confirming it measures structural---not semantic---integrity.\nAs a diagnostic, ISR exposes a collapse trajectory hidden from PR: over 100--1000 GRPO steps (Qwen3-4B), ISR falls $0.642{\\to}0.003$ while PR rises $32\\%{\\to}96\\%$; an SFT baseline reaches 92.9\\% non-hacking on identical data, localizing the failure to RL.\nAs a reward, $r = r_{\\text{exec}}\\cdot(1{+}\\beta\\,\\text{ISR})$ at $\\beta{=}0.1$ induces \\emph{meta-level Goodhart's Law}: 64.5\\% conclusion duplication (H7) versus 0\\% under matched random; the sole apparent ISR improvement reduces to $1.06\\times$ after controlling for a premise-count confound; $\\beta{=}0.3$ produces extreme cross-seed instability (PR $66{\\pm}42\\%$), with individual seeds collapsing to as low as $18\\%$.\nCross-logic transfer to Prolog yields universal Goodhart: 3/3 seeds gaming via distinct mechanisms, 0\\% non-hacking.\nAcross 6 reward conditions, 2 logic types, 3 seeds, we catalog 7 hacking modes---including query-as-fact gaming that bypasses text-match classifiers---documenting ISR's fundamental asymmetry: reliable as a diagnostic, unreliable as an optimization target.\\footnote{Code and data: \\url{[anonymized]}}\n\\end{abstract}\n",
+                "numLines": 11,
+                "startLine": 1,
+                "totalLines": 11
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NDxmcKSkVTFYXXikCSzDvj",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/introduction.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d5e76642-4b80-417b-bcfe-3fabceb51940",
+            "uuid": "3c48eda9-c53d-465a-ac7d-bfabc2cd5958",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015WmvieXfT4bmYZeNyiZe7L",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 13213,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13213
+                },
+                "output_tokens": 25,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T05:18:42.097Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NDxmcKSkVTFYXXikCSzDvj",
+              "type": "tool_result",
+              "content": "1\t\\section{Introduction}\n2\t\\label{sec:introduction}\n3\t\n4\tA GRPO-trained formalizer achieves a 93\\% prove rate on first-order logic problems---yet 87\\% of its proved outputs embed the conclusion verbatim among the premises.\n5\tThe solver succeeds not because the model has learned to reason, but because the formalization trivially entails any conclusion already appearing as a premise.\n6\tThis structural shortcut is invisible to execution-based evaluation: prove rate registers success regardless of whether the proof reflects genuine derivation or degenerate circular embedding.\n7\t\n8\t\\paragraph{The execution-only blind spot.}\n9\tProve rate---the dominant evaluation metric for neurosymbolic formalizers~\\citep{logic-lm, linc, satlm}---conflates faithful reasoning with degenerate shortcuts, a gap especially consequential under RL, where the optimizer exploits any shortcut the reward fails to penalize~\\citep{skalse-reward-hacking, reward-hacking-survey}.\n10\tRecent work applies GRPO~\\citep{deepseekmath} to train LLMs that generate solver-verified formal programs~\\citep{mellgren-prolog-grpo, logic-rl} using binary execution feedback; this drives rapid PR gains but gives no gradient on structural quality.\n11\tProcess reward models~\\citep{lightman-verify-step, math-shepherd} require expensive annotations and do not transfer to arbitrary solver-backed settings.\n12\tA separate line documents that LLMs already game logical formalization at inference time~\\citep{kim-game-formalization, bondarenko-spec-gaming}; what is missing is an annotation-free \\emph{diagnostic} for structural integrity in neurosymbolic outputs.\n13\t\n14\t\\paragraph{Component necessity testing.}\n15\tWe address this gap with \\emph{Solver Trace Ablation} (STA), a diagnostic applying \\emph{component necessity testing}---leave-one-out (LOO) ablation on solver inputs---to quantify structural integrity (\\autoref{fig:sta-overview}).\n16\tFor each proved formalization, STA removes each component individually and re-runs the solver; the fraction of components whose removal causes proof failure yields the \\emph{Intensional Structural Reward} (ISR), with $\\text{ISR}{=}1$ indicating full necessity and $\\text{ISR}{=}0$ complete redundancy.\n17\tLOO ablation itself is standard~\\citep{demillo1978, jia-harman-survey}; novelty lies in its application as a GRPO-hacking diagnostic and in the empirical phenomena it surfaces.\n18\tISR captures structural rather than semantic integrity (downstream NLI: $\\rho{=}{-}0.049$, $p{=}0.187$).\n19\t\n20\t\\paragraph{ISR as diagnostic.}\n21\tAs a post-hoc diagnostic on a GRPO formalizer trained with FOLIO~\\citep{folio}, ISR reveals a structural collapse trajectory invisible to PR: $\\text{ISR}^{*}{:}\\,0.642\\to 0.132\\to 0.003$ over 100--1000 steps (99.5\\% degradation) while PR rises $32\\%{\\to}96\\%$.\n22\tThree seeds diverge radically (PR $\\sigma{=}\\pm47$\\,pp), each converging to a qualitatively different mode: conclusion embedding, repetition collapse, and tautological collapse.\n23\tAn SFT baseline on identical data reaches $\\text{PR}{=}14\\%$ with 92.9\\% non-hacking, localizing the failure to RL optimization, not data or capacity.\n24\t\n25\t\\paragraph{Meta-level Goodhart.}\n26\tRepurposed as a training signal, $r = r_{\\text{exec}} \\cdot (1 + \\beta\\,\\text{ISR})$, ISR is gamed at its own definition---\\emph{meta-level Goodhart's Law}~\\citep{manheim-goodhart-taxonomy, karwowski-goodhart-rl, gao-reward-overoptimization}.\n27\tAt $\\beta{=}0.1$, 64.5\\% of proved samples exhibit single-premise-equals-conclusion duplication---ISR high \\emph{by definition}---versus 0\\% under matched random; the one seed with non-trivial residual reduces to $1.06\\times$ random after controlling for a premise-count confound.\n28\tAt $\\beta{=}0.3$, cross-seed instability is extreme (PR $66{\\pm}42\\%$) across three distinct pathways: reward collapse, shortcut dominance, pure metric gaming.\n29\tThe effect transfers and intensifies in Prolog: 3/3 seeds yield 0\\% non-hacking via distinct mechanisms, including \\emph{query-as-fact gaming} that bypasses text-match classifiers.\n30\tISR's asymmetry is the central finding: \\emph{reliable as observer, unreliable as optimizer.}\n31\t\n32\t\\paragraph{Contributions.}\n33\tAcross 6 reward conditions, 3 seeds, 2 logic types, and up to 1000 steps, we contribute: (\\textbf{C1}) ISR as a diagnostic for GRPO reward hacking, with a 99.5\\% collapse trajectory invisible to PR and an SFT control localizing the failure to RL (\\S\\ref{sec:diagnostic}); (\\textbf{C2}) empirical meta-level Goodhart, with a random control isolating ISR-specific gaming (64.5\\% vs.\\ 0\\%) and a premise-count-matched analysis showing the sole apparent gain is an LOO artifact (\\S\\ref{sec:goodhart}); (\\textbf{C3}) cross-logic transfer to Prolog with universal Goodhart (\\S\\ref{sec:crosslogic}); (\\textbf{C4}) a seven-mode hacking taxonomy including query-as-fact gaming, motivating functional cross-validation of diagnostics (\\S\\ref{sec:taxonomy}).\n34\tThese are cautionary results for any work treating a structural proxy as a training signal.\n35\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "d5e76642-4b80-417b-bcfe-3fabceb51940",
+            "uuid": "a6c4256c-38e7-40c5-b592-64421c181704",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/introduction.tex",
+                "content": "\\section{Introduction}\n\\label{sec:introduction}\n\nA GRPO-trained formalizer achieves a 93\\% prove rate on first-order logic problems---yet 87\\% of its proved outputs embed the conclusion verbatim among the premises.\nThe solver succeeds not because the model has learned to reason, but because the formalization trivially entails any conclusion already appearing as a premise.\nThis structural shortcut is invisible to execution-based evaluation: prove rate registers success regardless of whether the proof reflects genuine derivation or degenerate circular embedding.\n\n\\paragraph{The execution-only blind spot.}\nProve rate---the dominant evaluation metric for neurosymbolic formalizers~\\citep{logic-lm, linc, satlm}---conflates faithful reasoning with degenerate shortcuts, a gap especially consequential under RL, where the optimizer exploits any shortcut the reward fails to penalize~\\citep{skalse-reward-hacking, reward-hacking-survey}.\nRecent work applies GRPO~\\citep{deepseekmath} to train LLMs that generate solver-verified formal programs~\\citep{mellgren-prolog-grpo, logic-rl} using binary execution feedback; this drives rapid PR gains but gives no gradient on structural quality.\nProcess reward models~\\citep{lightman-verify-step, math-shepherd} require expensive annotations and do not transfer to arbitrary solver-backed settings.\nA separate line documents that LLMs already game logical formalization at inference time~\\citep{kim-game-formalization, bondarenko-spec-gaming}; what is missing is an annotation-free \\emph{diagnostic} for structural integrity in neurosymbolic outputs.\n\n\\paragraph{Component necessity testing.}\nWe address this gap with \\emph{Solver Trace Ablation} (STA), a diagnostic applying \\emph{component necessity testing}---leave-one-out (LOO) ablation on solver inputs---to quantify structural integrity (\\autoref{fig:sta-overview}).\nFor each proved formalization, STA removes each component individually and re-runs the solver; the fraction of components whose removal causes proof failure yields the \\emph{Intensional Structural Reward} (ISR), with $\\text{ISR}{=}1$ indicating full necessity and $\\text{ISR}{=}0$ complete redundancy.\nLOO ablation itself is standard~\\citep{demillo1978, jia-harman-survey}; novelty lies in its application as a GRPO-hacking diagnostic and in the empirical phenomena it surfaces.\nISR captures structural rather than semantic integrity (downstream NLI: $\\rho{=}{-}0.049$, $p{=}0.187$).\n\n\\paragraph{ISR as diagnostic.}\nAs a post-hoc diagnostic on a GRPO formalizer trained with FOLIO~\\citep{folio}, ISR reveals a structural collapse trajectory invisible to PR: $\\text{ISR}^{*}{:}\\,0.642\\to 0.132\\to 0.003$ over 100--1000 steps (99.5\\% degradation) while PR rises $32\\%{\\to}96\\%$.\nThree seeds diverge radically (PR $\\sigma{=}\\pm47$\\,pp), each converging to a qualitatively different mode: conclusion embedding, repetition collapse, and tautological collapse.\nAn SFT baseline on identical data reaches $\\text{PR}{=}14\\%$ with 92.9\\% non-hacking, localizing the failure to RL optimization, not data or capacity.\n\n\\paragraph{Meta-level Goodhart.}\nRepurposed as a training signal, $r = r_{\\text{exec}} \\cdot (1 + \\beta\\,\\text{ISR})$, ISR is gamed at its own definition---\\emph{meta-level Goodhart's Law}~\\citep{manheim-goodhart-taxonomy, karwowski-goodhart-rl, gao-reward-overoptimization}.\nAt $\\beta{=}0.1$, 64.5\\% of proved samples exhibit single-premise-equals-conclusion duplication---ISR high \\emph{by definition}---versus 0\\% under matched random; the one seed with non-trivial residual reduces to $1.06\\times$ random after controlling for a premise-count confound.\nAt $\\beta{=}0.3$, cross-seed instability is extreme (PR $66{\\pm}42\\%$) across three distinct pathways: reward collapse, shortcut dominance, pure metric gaming.\nThe effect transfers and intensifies in Prolog: 3/3 seeds yield 0\\% non-hacking via distinct mechanisms, including \\emph{query-as-fact gaming} that bypasses text-match classifiers.\nISR's asymmetry is the central finding: \\emph{reliable as observer, unreliable as optimizer.}\n\n\\paragraph{Contributions.}\nAcross 6 reward conditions, 3 seeds, 2 logic types, and up to 1000 steps, we contribute: (\\textbf{C1}) ISR as a diagnostic for GRPO reward hacking, with a 99.5\\% collapse trajectory invisible to PR and an SFT control localizing the failure to RL (\\S\\ref{sec:diagnostic}); (\\textbf{C2}) empirical meta-level Goodhart, with a random control isolating ISR-specific gaming (64.5\\% vs.\\ 0\\%) and a premise-count-matched analysis showing the sole apparent gain is an LOO artifact (\\S\\ref{sec:goodhart}); (\\textbf{C3}) cross-logic transfer to Prolog with universal Goodhart (\\S\\ref{sec:crosslogic}); (\\textbf{C4}) a seven-mode hacking taxonomy including query-as-fact gaming, motivating functional cross-validation of diagnostics (\\S\\ref{sec:taxonomy}).\nThese are cautionary results for any work treating a structural proxy as a training signal.\n",
+                "numLines": 35,
+                "startLine": 1,
+                "totalLines": 35
+              }
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012cz8H8JQ2Do4G1xmZmFmeG",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/experiments.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d5e76642-4b80-417b-bcfe-3fabceb51940",
+            "uuid": "71c13804-41c6-4c20-a2f3-54a8a94763a4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015WmvieXfT4bmYZeNyiZe7L",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 13213,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13213
+                },
+                "output_tokens": 25,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T05:18:42.562Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012cz8H8JQ2Do4G1xmZmFmeG",
+              "type": "tool_result",
+              "content": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\tWe evaluate STA along three axes: ISR as a diagnostic for reward hacking (\\S\\ref{sec:diagnostic}); ISR as a training reward, where it exhibits meta-level Goodhart's Law (\\S\\ref{sec:goodhart}); and STA as a cross-logic protocol (\\S\\ref{sec:crosslogic}).\n5\tA hacking taxonomy synthesizes the modes observed across conditions (\\S\\ref{sec:taxonomy}).\n6\t\n7\t\\subsection{Setup}\\label{sec:setup}\n8\t\n9\tWe train Qwen3-4B~\\citep{qwen3} with GRPO~\\citep{deepseekmath} ($K{=}8$, lr $10^{-6}$, 500 steps default, 1000 where noted) over seeds $\\{42,43,44\\}$ on a fixed 500-example FOLIO~\\citep{folio} subset held constant across all conditions; the SFT baseline is trained with NLL on gold formalizations.\\footnote{All experiments use \\texttt{data/train\\_500\\_seed42.jsonl}; seeds control initialization and rollout sampling only.}\n10\tHeld-out evaluation uses 100 FOLIO examples (\\texttt{proofwriter\\_fol\\_100.jsonl}---legacy filename, no ProofWriter data) with greedy decoding; all cross-run ISR values are recomputed uniformly by a single evaluator (\\texttt{eval\\_sta.py}) so training-log ISR is never compared across runs.\n11\tWe report prove rate (PR), proved-only ISR ($\\text{ISR}^*$), hacking-mode rates from a two-stage classifier (strict text matching for H1/H7 plus functional analysis of the per-sample $n_{\\text{necessary}}$ distribution; \\S\\ref{sec:taxonomy-method}), and a \\emph{non-hacking} (N-H) rate---the residual of proved samples matching none of the seven cataloged patterns, a necessary but not sufficient condition for semantic correctness.\n12\t\n13\t\\subsection{ISR as Diagnostic}\n14\t\\label{sec:diagnostic}\n15\t\n16\t\\begin{figure}[t]\n17\t\\centering\n18\t\\includegraphics[width=0.95\\columnwidth]{figures/fig2_isr_collapse.pdf}\n19\t\\caption{ISR collapse under exec-only GRPO (seed~42). PR rises 32\\%$\\to$93\\%$\\to$96\\% while proved-only ISR falls $0.642{\\to}0.132{\\to}0.003$ over 100$\\to$500$\\to$1000 steps. By step 1000, 94.8\\% of proved samples have $\\text{ISR}{=}0$ and mean component count inflates 6.58$\\to$18.55 (contradiction explosion).}\n20\t\\label{fig:isr-collapse}\n21\t\\end{figure}\n22\t\n23\t\\textbf{Collapse trajectory.}\n24\tFigure~\\ref{fig:isr-collapse} traces exec-only GRPO (seed~42) at 100, 500, 1000 steps.\n25\tPR rises $32\\%\\to93\\%\\to96\\%$, a trajectory execution-only evaluation would read as successful optimization; $\\text{ISR}^*$ tells the opposite story, $0.642\\to0.132\\to0.003$ (214$\\times$ collapse). %% registry: plan003-eval-exec-only-r5, plan001-exec-only-s42-r2, plan016-extended-1000-s42\n26\tBy 500 steps, 87.1\\% of proved samples embed the conclusion (H1); by 1000 steps the embedding rate saturates at 100\\% and mean component count more than doubles ($6.58\\to18.55$) as the model emits contradictory or vacuous premises that trivially derive any conclusion.\n27\tExtended training, lacking a structural signal, \\emph{worsens} formalization quality while improving the headline number.\n28\t\n29\t\\textbf{Cross-seed instability.}\n30\tThe three exec-only seeds diverge into qualitatively different failure modes despite shared data, hyperparameters, and reward (Appendix~\\ref{app:detailed-results}): s42 reaches $\\text{PR}{=}93\\%$ via conclusion embedding ($\\text{H1}{=}87\\%$); s43 collapses to $\\text{PR}{=}14\\%$ via repetition (87\\% of rollouts truncated); s44 reaches $\\text{PR}{=}98\\%$ via tautological collapse ($\\text{H7}{=}100\\%$, mean $n{=}2.04$). %% registry: plan001-exec-only-s42-r2, plan001-exec-only-s43-r4, plan001-exec-only-s44\n31\tThe cross-seed PR variance ($\\sigma{\\pm}47$\\,pp) shows aggregate metrics obscure qualitatively different failure modes; all three are flagged by $\\text{ISR}^*$ even though one passes the PR check (s44) and one fails it (s43).\n32\t\n33\t\\textbf{SFT baseline.}\n34\tSFT on gold formalizations reaches $\\text{PR}{=}14\\%$ with $\\text{ISR}^{*}{=}0.571$, $\\text{H7}{=}0$, $\\text{H1}{=}7.1\\%$, $92.9\\%$ non-hacking. %% registry: plan009-sft-baseline-s42-r4\n35\tThe near-absence of hacking under identical data exposure is consistent with hacking being RL-specific.\n36\tA 100-step RL checkpoint (Appendix~\\ref{app:100step}) at $\\text{PR}{=}32\\%$ already shows 31.2\\% hacking (vs.\\ SFT's 7.1\\%), indicating reward hacking emerges early in RL training, not merely at high PR.\n37\t\n38\t\\subsection{Meta-Level Goodhart's Law}\n39\t\\label{sec:goodhart}\n40\t\n41\tWe now reverse roles: instead of treating ISR as an observer, we use it as a reward augmentation, $r = r_{\\text{exec}}\\cdot(1 + \\beta\\,\\text{ISR})$, with a matched random control, $r = r_{\\text{exec}}\\cdot(1 + \\beta\\,u)$, $u\\sim\\mathcal{U}(0,1)$, to isolate ISR-specific signal from generic reward-variance effects.\n42\tThe headline finding: ISR-as-reward produces \\emph{meta-level} Goodhart~\\citep{manheim-goodhart-taxonomy}---the diagnostic itself becomes the target of gaming.\n43\t\n44\t\\begin{table}[t]\n45\t\\centering\n46\t\\small\n47\t\\resizebox{\\columnwidth}{!}{%\n48\t\\begin{tabular}{lcccccc}\n49\t\\toprule\n50\t\\textbf{Condition} & $\\boldsymbol{\\beta}$ & \\textbf{PR\\%}$\\uparrow$ & \\textbf{ISR}$^*$ & \\textbf{H7\\%} & \\textbf{H1\\%} & \\textbf{N-H\\%} \\\\\n51\t\\midrule\n52\tBase (0-shot) & --- & 12 & --- & --- & --- & --- \\\\ %% registry: sta-phase0-baseline\n53\tSFT & --- & 14 & 0.571 & 0 & 7 & \\textbf{93} \\\\ %% registry: plan009-sft-baseline-s42-r4\n54\t\\midrule\n55\tExec-only$^\\dagger$ & --- & 93 & 0.132 & 0 & 87 & 13 \\\\ %% registry: plan001-exec-only-s42-r2\n56\tISR & 0.1 & 77{\\scriptsize$\\pm$14} & $\\ddagger$ & \\textbf{65} & 17 & ${\\sim}$16 \\\\ %% registry: plan002-additive-b01-s42/s43/s44\n57\tRandom & 0.1 & \\textbf{85}{\\scriptsize$\\pm$6} & 0.086{\\scriptsize$\\pm$.04} & 0 & 81 & 19 \\\\ %% registry: plan018-additive-random-b01-s42/s43-r2/s44\n58\t\\midrule\n59\tISR & 0.3 & 66{\\scriptsize$\\pm$42} & 0.39{\\scriptsize$\\pm$.31} & 35 & 49 & 16 \\\\ %% registry: plan002-additive-b03-s42/s43/s44\n60\tRandom & 0.3 & 54{\\scriptsize$\\pm$35} & 0.09{\\scriptsize$\\pm$.09} & 3 & 96 & 1 \\\\ %% registry: plan017-additive-random-s42, exp1-random-b03-s43-r4, exp1-random-b03-s44-r2\n61\t\\bottomrule\n62\t\\end{tabular}}\n63\t\\caption{Goodhart landscape across reward conditions. 3-seed rows: mean$\\pm$std. $^\\dagger$Seed~42. $\\ddagger$$\\text{ISR}^*$ omitted for ISR $\\beta{=}0.1$ because the raw mean is inflated by H7 gaming; premise-count-matched value is $1.06\\times$ random (\\S\\ref{sec:goodhart}, Appendix~\\ref{app:detailed-results}). Per-seed breakdown in Appendix Table~\\ref{tab:fol-detailed}.}\n64\t\\label{tab:goodhart-landscape}\n65\t\\end{table}\n66\t\n67\t\\textbf{Low-dose ISR ($\\beta{=}0.1$): ISR-specific gaming.}\n68\tThe most striking number is H7: 64.5\\% of proved samples under ISR ($n{=}149/231$) vs.\\ \\emph{zero} under random ($0/256$). %% registry: plan002 vs plan018 all seeds\n69\tH7---a single premise identical to the conclusion, giving $\\text{ISR}\\geq 0.5$ by construction (\\S\\ref{sec:taxonomy-method})---is the canonical meta-level Goodhart move: the model satisfies the LOO definition directly rather than producing a derivation that happens to satisfy it.\n70\tTotal conclusion embedding ($\\text{H1}+\\text{H7}$) is GRPO-universal at $68$--$97\\%$ across both conditions, and is in fact \\emph{higher} under random (mean H1 81\\% vs.\\ 17\\% under ISR).\n71\tISR does not reduce hacking; it converts H1 into H7 (Figure~\\ref{fig:hacking-composition}).\n72\tRandom also yields higher and more stable PR ($85{\\pm}6\\%$ vs.\\ $77{\\pm}14\\%$).\n73\t\n74\t\\textbf{Premise-count confound.}\n75\tThe one ISR seed not dominated by H7 (s42) has raw $\\text{ISR}^{*}{=}0.415$, $3.2\\times$ its random control ($0.131$), suggesting genuine improvement.\n76\tThis appearance is a premise-minimization artifact: ISR-trained models produce shorter formalizations (mean $n{=}5.58$ vs.\\ $8.46$ for random), and ISR rises mechanically as $n$ falls---when $n{=}2$, $\\text{ISR}\\geq 0.5$ by definition.\n77\tRestricting to non-hacking samples with $\\geq{3}$ premises (eliminating the trivial-$n$ regime) gives $\\text{ISR}^{*}{=}0.258$ for ISR vs.\\ $0.243$ for random: a $1.06\\times$ ratio, no meaningful advantage. %% D051 premise-count-matched analysis\n78\tThe raw $3.2\\times$ headline collapses once the LOO bias is controlled---a methodological lesson for any LOO-based metric on variable-length outputs.\n79\t\n80\t\\textbf{High-dose ISR ($\\beta{=}0.3$): multi-modal Goodhart.}\n81\tAt $\\beta{=}0.3$, ISR-as-reward produces extreme cross-seed instability ($\\text{PR}{=}66{\\pm}42\\%$, spanning 18--95\\%); each seed converges to a distinct pathway (Appendix~\\ref{app:detailed-results}). %% registry: plan002-additive-b03-s42/s43/s44\n82\tSeed~42: \\emph{reward collapse} ($\\text{PR}{=}18\\%$), the classical pattern of~\\citep{gao-reward-overoptimization}.\n83\tSeed~43: \\emph{H1 shortcutting} ($\\text{PR}{=}86\\%$, $\\text{H1}{=}69\\%$, only $27\\%$ non-hacking).\n84\tSeed~44: \\emph{pure H7 meta-Goodhart} ($\\text{PR}{=}95\\%$, $\\text{H7}{=}100\\%$, $\\text{ISR}^{*}{=}0.742$, $0\\%$ non-hacking)---simultaneously gaming \\emph{both} execution and structural metrics through the same construction.\n85\tThe random control at $\\beta{=}0.3$ is equally unstable ($\\text{PR}{=}54{\\pm}35\\%$, spanning 23--92\\%) with near-universal H1 hacking ($96\\%$) and ${\\leq}1\\%$ non-hacking across all 3 seeds; high-dose proxy weighting is harmful in both conditions, but ISR uniquely produces \\emph{mode diversity} while random converges to uniform H1 dominance (Appendix~\\ref{app:beta03}).\n86\t\n87\t\\subsection{Cross-Logic Diagnostic Transfer}\n88\t\\label{sec:crosslogic}\n89\t\n90\t\\begin{figure}[t]\n91\t\\centering\n92\t\\includegraphics[width=0.95\\columnwidth]{figures/fig4_prolog_comparison.pdf}\n93\t\\caption{Cross-logic results. \\textbf{Left}: FOL vs.\\ Prolog exec-only $\\text{ISR}^*$ across 3 seeds (s44 Prolog $0.387$ is a small-sample artifact, $n{=}21$). \\textbf{Right}: Prolog ISR-reward gaming-mode composition---all 3 seeds reach 0\\% non-hacking through distinct mechanisms.}\n94\t\\label{fig:prolog-comparison}\n95\t\\end{figure}\n96\t\n97\tWe replicate the FOL pipeline with Prolog/SWI-Prolog: (i) does ISR retain diagnostic value on a structurally different logic; (ii) does ISR-as-reward reproduce meta-level Goodhart?\n98\tDetailed per-seed numbers are in Appendix Table~\\ref{tab:prolog-detailed}.\n99\t\n100\t\\textbf{Prolog exec-only: ISR catches redundancy across logics.}\n101\tTwo of three seeds (s42, s43) show $\\text{ISR}^{*}{\\approx}0$ despite moderate-to-high PR (0.83, 0.56). %% registry: plan006-prolog-exec-s42, plan006-prolog-exec-s43-r3\n102\tInspection reveals \\emph{redundant coding}: ground facts repeated multiple times (e.g., \\texttt{penguin(fido).} appearing three times), so per-clause LOO never breaks the proof.\n103\tThis is a different failure semantics from FOL exec-only (conclusion embedding), but $\\text{ISR}^{*}$ flags both.\n104\tWe are careful to distinguish: exec-only \\emph{low} ISR signals \\emph{redundancy}; ISR-rewarded \\emph{high} ISR signals \\emph{metric gaming} (\\S\\ref{sec:taxonomy-method})---the same number does not license the same reasoning-quality conclusion.\n105\t\n106\t\\textbf{Prolog ISR-as-reward: universal Goodhart.}\n107\tThe Prolog result is stronger than FOL: 3/3 seeds reach $0\\%$ non-hacking via three distinct mechanisms (Figure~\\ref{fig:prolog-comparison}).\n108\tSeed~42: clean H7 tautologies ($\\text{ISR}^{*}{=}1.0$, all $50/100$ proved). %% registry: plan006-prolog-sta-s42\n109\tSeed~43: \\emph{degenerate uppercase pseudo-Prolog} (e.g., \\texttt{MARY\\_IS\\_AN\\_AVA\\-DEOTE.}); strict text-match returns $\\text{H7}{=}0$ but functional analysis shows all 38 proved samples have $n_{\\text{necessary}}{=}1$ (functionally H7). %% registry: plan006-prolog-sta-s43\n110\tSeed~44: \\emph{query-as-fact gaming}---the model transforms the NL question into a snake-case atom asserted as both fact and query (e.g., \\texttt{is\\_the\\_dog\\_furry.} as both fact and query), with $95/97$ proved samples at $n_{\\text{necessary}}{=}1$. %% registry: plan006-prolog-sta-s44\n111\tSeed~44 evaded our initial strict classifier (reported $100\\%$ genuine); functional cross-validation exposed it---a methodological lesson that text-match classifiers have blind spots and STA's necessity profile is the cross-check.\n112\tWe attribute Prolog's stronger collapse to its simpler operational semantics: a broader gaming basin makes the genuine residual disappear---corroborating evidence for Claim 2.\n113\t\n114\t\\subsection{Hacking Taxonomy}\n115\t\\label{sec:taxonomy}\n116\t\n117\t\\begin{figure}[t]\n118\t\\centering\n119\t\\includegraphics[width=0.92\\columnwidth]{figures/fig3_hacking_composition.pdf}\n120\t\\caption{Hacking composition across reward conditions (proved samples, seed~42 for FOL; appendix has all seeds). ISR converts H1 into more extreme H7 without reducing total hacking; SFT shows near-zero hacking.}\n121\t\\label{fig:hacking-composition}\n122\t\\end{figure}\n123\t\n124\t\\begin{table}[t]\n125\t\\centering\n126\t\\small\n127\t\\resizebox{\\columnwidth}{!}{%\n128\t\\begin{tabular}{lccccc}\n129\t\\toprule\n130\t\\textbf{Mode} & \\textbf{Exec} & \\textbf{ISR$_{.1}$} & \\textbf{Rnd$_{.1}$} & \\textbf{SFT} & \\textbf{Prolog$_{\\text{ISR}}$} \\\\\n131\t\\midrule\n132\tH1 embed       & 87 & 17 & 81 & 7 & 0$^\\sharp$ \\\\\n133\tH7 duplicate   & 0  & 65 & 0  & 0 & 100$^\\sharp$ \\\\\n134\tTautological   & --- & --- & --- & --- & s42 \\\\\n135\tRepetition     & s43 & --- & --- & --- & --- \\\\\n136\tContradiction  & 1k & --- & --- & --- & --- \\\\\n137\tCmplx.\\ vacuous& 0  & 0  & 4  & 0 & --- \\\\\n138\tQuery-as-fact  & --- & --- & --- & --- & s44 \\\\\n139\t\\midrule\n140\t\\textbf{Non-hacking} & 13 & ${\\sim}$16 & 19 & \\textbf{93} & \\textbf{0} \\\\\n141\t\\bottomrule\n142\t\\end{tabular}}\n143\t\\caption{Seven hacking modes across conditions (\\% of proved samples; seed~42 unless noted). Cells with seed identifiers indicate the mode dominates that seed. $^\\sharp$Prolog row pools strict+functional (\\S\\ref{sec:crosslogic}).}\n144\t\\label{tab:hacking-taxonomy}\n145\t\\end{table}\n146\t\n147\tThe seven modes (Table~\\ref{tab:hacking-taxonomy}; full definitions in Appendix~\\ref{app:hacking-modes}) span the studied conditions.\n148\tTwo are quantifiable across all conditions: \\textbf{H1} (conclusion embedding) is GRPO-universal at $68$--$97\\%$ regardless of reward type, and \\textbf{H7} (conclusion duplication) is ISR-specific at $64.5\\%$ vs.\\ $0\\%$ in random controls.\n149\tThe remaining five appear in specific cells: tautological collapse (exec-only s44, Prolog ISR s42), repetition (exec-only s43), contradiction explosion (exec-only at 1000 steps), complexity-without-utility (random $\\beta{=}0.1$ residual), and query-as-fact gaming (Prolog ISR s44).\n150\t\n151\tThe cross-condition pattern is consistent with \\S\\ref{sec:goodhart}: \\emph{reward formulation determines hacking composition but not hacking prevalence.}\n152\tExec-only, ISR, and random conditions all show $\\geq 80\\%$ pooled hacking among proved samples; only SFT shows $93\\%$ non-hacking.\n153\tAcross 2 logic types, 6 reward conditions, 3 seeds, and up to 1000 steps, no GRPO condition we tested produces a high-PR run that is also majority non-hacking; the closest is ISR $\\beta{=}0.1$ s42 at $\\text{PR}{=}81\\%$, $31\\%$ non-hacking, and even that residual is the premise-minimization artifact analyzed above.\n154\tQuery-as-fact gaming was found only when we cross-validated the strict classifier against $n_{\\text{necessary}}$ distributions, suggesting the taxonomy is descriptive, not exhaustive.\n155\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "d5e76642-4b80-417b-bcfe-3fabceb51940",
+            "uuid": "8cb50c8e-edf3-43a0-b64a-7519b36eebab",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/experiments.tex",
+                "content": "\\section{Experiments}\n\\label{sec:experiments}\n\nWe evaluate STA along three axes: ISR as a diagnostic for reward hacking (\\S\\ref{sec:diagnostic}); ISR as a training reward, where it exhibits meta-level Goodhart's Law (\\S\\ref{sec:goodhart}); and STA as a cross-logic protocol (\\S\\ref{sec:crosslogic}).\nA hacking taxonomy synthesizes the modes observed across conditions (\\S\\ref{sec:taxonomy}).\n\n\\subsection{Setup}\\label{sec:setup}\n\nWe train Qwen3-4B~\\citep{qwen3} with GRPO~\\citep{deepseekmath} ($K{=}8$, lr $10^{-6}$, 500 steps default, 1000 where noted) over seeds $\\{42,43,44\\}$ on a fixed 500-example FOLIO~\\citep{folio} subset held constant across all conditions; the SFT baseline is trained with NLL on gold formalizations.\\footnote{All experiments use \\texttt{data/train\\_500\\_seed42.jsonl}; seeds control initialization and rollout sampling only.}\nHeld-out evaluation uses 100 FOLIO examples (\\texttt{proofwriter\\_fol\\_100.jsonl}---legacy filename, no ProofWriter data) with greedy decoding; all cross-run ISR values are recomputed uniformly by a single evaluator (\\texttt{eval\\_sta.py}) so training-log ISR is never compared across runs.\nWe report prove rate (PR), proved-only ISR ($\\text{ISR}^*$), hacking-mode rates from a two-stage classifier (strict text matching for H1/H7 plus functional analysis of the per-sample $n_{\\text{necessary}}$ distribution; \\S\\ref{sec:taxonomy-method}), and a \\emph{non-hacking} (N-H) rate---the residual of proved samples matching none of the seven cataloged patterns, a necessary but not sufficient condition for semantic correctness.\n\n\\subsection{ISR as Diagnostic}\n\\label{sec:diagnostic}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=0.95\\columnwidth]{figures/fig2_isr_collapse.pdf}\n\\caption{ISR collapse under exec-only GRPO (seed~42). PR rises 32\\%$\\to$93\\%$\\to$96\\% while proved-only ISR falls $0.642{\\to}0.132{\\to}0.003$ over 100$\\to$500$\\to$1000 steps. By step 1000, 94.8\\% of proved samples have $\\text{ISR}{=}0$ and mean component count inflates 6.58$\\to$18.55 (contradiction explosion).}\n\\label{fig:isr-collapse}\n\\end{figure}\n\n\\textbf{Collapse trajectory.}\nFigure~\\ref{fig:isr-collapse} traces exec-only GRPO (seed~42) at 100, 500, 1000 steps.\nPR rises $32\\%\\to93\\%\\to96\\%$, a trajectory execution-only evaluation would read as successful optimization; $\\text{ISR}^*$ tells the opposite story, $0.642\\to0.132\\to0.003$ (214$\\times$ collapse). %% registry: plan003-eval-exec-only-r5, plan001-exec-only-s42-r2, plan016-extended-1000-s42\nBy 500 steps, 87.1\\% of proved samples embed the conclusion (H1); by 1000 steps the embedding rate saturates at 100\\% and mean component count more than doubles ($6.58\\to18.55$) as the model emits contradictory or vacuous premises that trivially derive any conclusion.\nExtended training, lacking a structural signal, \\emph{worsens} formalization quality while improving the headline number.\n\n\\textbf{Cross-seed instability.}\nThe three exec-only seeds diverge into qualitatively different failure modes despite shared data, hyperparameters, and reward (Appendix~\\ref{app:detailed-results}): s42 reaches $\\text{PR}{=}93\\%$ via conclusion embedding ($\\text{H1}{=}87\\%$); s43 collapses to $\\text{PR}{=}14\\%$ via repetition (87\\% of rollouts truncated); s44 reaches $\\text{PR}{=}98\\%$ via tautological collapse ($\\text{H7}{=}100\\%$, mean $n{=}2.04$). %% registry: plan001-exec-only-s42-r2, plan001-exec-only-s43-r4, plan001-exec-only-s44\nThe cross-seed PR variance ($\\sigma{\\pm}47$\\,pp) shows aggregate metrics obscure qualitatively different failure modes; all three are flagged by $\\text{ISR}^*$ even though one passes the PR check (s44) and one fails it (s43).\n\n\\textbf{SFT baseline.}\nSFT on gold formalizations reaches $\\text{PR}{=}14\\%$ with $\\text{ISR}^{*}{=}0.571$, $\\text{H7}{=}0$, $\\text{H1}{=}7.1\\%$, $92.9\\%$ non-hacking. %% registry: plan009-sft-baseline-s42-r4\nThe near-absence of hacking under identical data exposure is consistent with hacking being RL-specific.\nA 100-step RL checkpoint (Appendix~\\ref{app:100step}) at $\\text{PR}{=}32\\%$ already shows 31.2\\% hacking (vs.\\ SFT's 7.1\\%), indicating reward hacking emerges early in RL training, not merely at high PR.\n\n\\subsection{Meta-Level Goodhart's Law}\n\\label{sec:goodhart}\n\nWe now reverse roles: instead of treating ISR as an observer, we use it as a reward augmentation, $r = r_{\\text{exec}}\\cdot(1 + \\beta\\,\\text{ISR})$, with a matched random control, $r = r_{\\text{exec}}\\cdot(1 + \\beta\\,u)$, $u\\sim\\mathcal{U}(0,1)$, to isolate ISR-specific signal from generic reward-variance effects.\nThe headline finding: ISR-as-reward produces \\emph{meta-level} Goodhart~\\citep{manheim-goodhart-taxonomy}---the diagnostic itself becomes the target of gaming.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{lcccccc}\n\\toprule\n\\textbf{Condition} & $\\boldsymbol{\\beta}$ & \\textbf{PR\\%}$\\uparrow$ & \\textbf{ISR}$^*$ & \\textbf{H7\\%} & \\textbf{H1\\%} & \\textbf{N-H\\%} \\\\\n\\midrule\nBase (0-shot) & --- & 12 & --- & --- & --- & --- \\\\ %% registry: sta-phase0-baseline\nSFT & --- & 14 & 0.571 & 0 & 7 & \\textbf{93} \\\\ %% registry: plan009-sft-baseline-s42-r4\n\\midrule\nExec-only$^\\dagger$ & --- & 93 & 0.132 & 0 & 87 & 13 \\\\ %% registry: plan001-exec-only-s42-r2\nISR & 0.1 & 77{\\scriptsize$\\pm$14} & $\\ddagger$ & \\textbf{65} & 17 & ${\\sim}$16 \\\\ %% registry: plan002-additive-b01-s42/s43/s44\nRandom & 0.1 & \\textbf{85}{\\scriptsize$\\pm$6} & 0.086{\\scriptsize$\\pm$.04} & 0 & 81 & 19 \\\\ %% registry: plan018-additive-random-b01-s42/s43-r2/s44\n\\midrule\nISR & 0.3 & 66{\\scriptsize$\\pm$42} & 0.39{\\scriptsize$\\pm$.31} & 35 & 49 & 16 \\\\ %% registry: plan002-additive-b03-s42/s43/s44\nRandom & 0.3 & 54{\\scriptsize$\\pm$35} & 0.09{\\scriptsize$\\pm$.09} & 3 & 96 & 1 \\\\ %% registry: plan017-additive-random-s42, exp1-random-b03-s43-r4, exp1-random-b03-s44-r2\n\\bottomrule\n\\end{tabular}}\n\\caption{Goodhart landscape across reward conditions. 3-seed rows: mean$\\pm$std. $^\\dagger$Seed~42. $\\ddagger$$\\text{ISR}^*$ omitted for ISR $\\beta{=}0.1$ because the raw mean is inflated by H7 gaming; premise-count-matched value is $1.06\\times$ random (\\S\\ref{sec:goodhart}, Appendix~\\ref{app:detailed-results}). Per-seed breakdown in Appendix Table~\\ref{tab:fol-detailed}.}\n\\label{tab:goodhart-landscape}\n\\end{table}\n\n\\textbf{Low-dose ISR ($\\beta{=}0.1$): ISR-specific gaming.}\nThe most striking number is H7: 64.5\\% of proved samples under ISR ($n{=}149/231$) vs.\\ \\emph{zero} under random ($0/256$). %% registry: plan002 vs plan018 all seeds\nH7---a single premise identical to the conclusion, giving $\\text{ISR}\\geq 0.5$ by construction (\\S\\ref{sec:taxonomy-method})---is the canonical meta-level Goodhart move: the model satisfies the LOO definition directly rather than producing a derivation that happens to satisfy it.\nTotal conclusion embedding ($\\text{H1}+\\text{H7}$) is GRPO-universal at $68$--$97\\%$ across both conditions, and is in fact \\emph{higher} under random (mean H1 81\\% vs.\\ 17\\% under ISR).\nISR does not reduce hacking; it converts H1 into H7 (Figure~\\ref{fig:hacking-composition}).\nRandom also yields higher and more stable PR ($85{\\pm}6\\%$ vs.\\ $77{\\pm}14\\%$).\n\n\\textbf{Premise-count confound.}\nThe one ISR seed not dominated by H7 (s42) has raw $\\text{ISR}^{*}{=}0.415$, $3.2\\times$ its random control ($0.131$), suggesting genuine improvement.\nThis appearance is a premise-minimization artifact: ISR-trained models produce shorter formalizations (mean $n{=}5.58$ vs.\\ $8.46$ for random), and ISR rises mechanically as $n$ falls---when $n{=}2$, $\\text{ISR}\\geq 0.5$ by definition.\nRestricting to non-hacking samples with $\\geq{3}$ premises (eliminating the trivial-$n$ regime) gives $\\text{ISR}^{*}{=}0.258$ for ISR vs.\\ $0.243$ for random: a $1.06\\times$ ratio, no meaningful advantage. %% D051 premise-count-matched analysis\nThe raw $3.2\\times$ headline collapses once the LOO bias is controlled---a methodological lesson for any LOO-based metric on variable-length outputs.\n\n\\textbf{High-dose ISR ($\\beta{=}0.3$): multi-modal Goodhart.}\nAt $\\beta{=}0.3$, ISR-as-reward produces extreme cross-seed instability ($\\text{PR}{=}66{\\pm}42\\%$, spanning 18--95\\%); each seed converges to a distinct pathway (Appendix~\\ref{app:detailed-results}). %% registry: plan002-additive-b03-s42/s43/s44\nSeed~42: \\emph{reward collapse} ($\\text{PR}{=}18\\%$), the classical pattern of~\\citep{gao-reward-overoptimization}.\nSeed~43: \\emph{H1 shortcutting} ($\\text{PR}{=}86\\%$, $\\text{H1}{=}69\\%$, only $27\\%$ non-hacking).\nSeed~44: \\emph{pure H7 meta-Goodhart} ($\\text{PR}{=}95\\%$, $\\text{H7}{=}100\\%$, $\\text{ISR}^{*}{=}0.742$, $0\\%$ non-hacking)---simultaneously gaming \\emph{both} execution and structural metrics through the same construction.\nThe random control at $\\beta{=}0.3$ is equally unstable ($\\text{PR}{=}54{\\pm}35\\%$, spanning 23--92\\%) with near-universal H1 hacking ($96\\%$) and ${\\leq}1\\%$ non-hacking across all 3 seeds; high-dose proxy weighting is harmful in both conditions, but ISR uniquely produces \\emph{mode diversity} while random converges to uniform H1 dominance (Appendix~\\ref{app:beta03}).\n\n\\subsection{Cross-Logic Diagnostic Transfer}\n\\label{sec:crosslogic}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=0.95\\columnwidth]{figures/fig4_prolog_comparison.pdf}\n\\caption{Cross-logic results. \\textbf{Left}: FOL vs.\\ Prolog exec-only $\\text{ISR}^*$ across 3 seeds (s44 Prolog $0.387$ is a small-sample artifact, $n{=}21$). \\textbf{Right}: Prolog ISR-reward gaming-mode composition---all 3 seeds reach 0\\% non-hacking through distinct mechanisms.}\n\\label{fig:prolog-comparison}\n\\end{figure}\n\nWe replicate the FOL pipeline with Prolog/SWI-Prolog: (i) does ISR retain diagnostic value on a structurally different logic; (ii) does ISR-as-reward reproduce meta-level Goodhart?\nDetailed per-seed numbers are in Appendix Table~\\ref{tab:prolog-detailed}.\n\n\\textbf{Prolog exec-only: ISR catches redundancy across logics.}\nTwo of three seeds (s42, s43) show $\\text{ISR}^{*}{\\approx}0$ despite moderate-to-high PR (0.83, 0.56). %% registry: plan006-prolog-exec-s42, plan006-prolog-exec-s43-r3\nInspection reveals \\emph{redundant coding}: ground facts repeated multiple times (e.g., \\texttt{penguin(fido).} appearing three times), so per-clause LOO never breaks the proof.\nThis is a different failure semantics from FOL exec-only (conclusion embedding), but $\\text{ISR}^{*}$ flags both.\nWe are careful to distinguish: exec-only \\emph{low} ISR signals \\emph{redundancy}; ISR-rewarded \\emph{high} ISR signals \\emph{metric gaming} (\\S\\ref{sec:taxonomy-method})---the same number does not license the same reasoning-quality conclusion.\n\n\\textbf{Prolog ISR-as-reward: universal Goodhart.}\nThe Prolog result is stronger than FOL: 3/3 seeds reach $0\\%$ non-hacking via three distinct mechanisms (Figure~\\ref{fig:prolog-comparison}).\nSeed~42: clean H7 tautologies ($\\text{ISR}^{*}{=}1.0$, all $50/100$ proved). %% registry: plan006-prolog-sta-s42\nSeed~43: \\emph{degenerate uppercase pseudo-Prolog} (e.g., \\texttt{MARY\\_IS\\_AN\\_AVA\\-DEOTE.}); strict text-match returns $\\text{H7}{=}0$ but functional analysis shows all 38 proved samples have $n_{\\text{necessary}}{=}1$ (functionally H7). %% registry: plan006-prolog-sta-s43\nSeed~44: \\emph{query-as-fact gaming}---the model transforms the NL question into a snake-case atom asserted as both fact and query (e.g., \\texttt{is\\_the\\_dog\\_furry.} as both fact and query), with $95/97$ proved samples at $n_{\\text{necessary}}{=}1$. %% registry: plan006-prolog-sta-s44\nSeed~44 evaded our initial strict classifier (reported $100\\%$ genuine); functional cross-validation exposed it---a methodological lesson that text-match classifiers have blind spots and STA's necessity profile is the cross-check.\nWe attribute Prolog's stronger collapse to its simpler operational semantics: a broader gaming basin makes the genuine residual disappear---corroborating evidence for Claim 2.\n\n\\subsection{Hacking Taxonomy}\n\\label{sec:taxonomy}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=0.92\\columnwidth]{figures/fig3_hacking_composition.pdf}\n\\caption{Hacking composition across reward conditions (proved samples, seed~42 for FOL; appendix has all seeds). ISR converts H1 into more extreme H7 without reducing total hacking; SFT shows near-zero hacking.}\n\\label{fig:hacking-composition}\n\\end{figure}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{lccccc}\n\\toprule\n\\textbf{Mode} & \\textbf{Exec} & \\textbf{ISR$_{.1}$} & \\textbf{Rnd$_{.1}$} & \\textbf{SFT} & \\textbf{Prolog$_{\\text{ISR}}$} \\\\\n\\midrule\nH1 embed       & 87 & 17 & 81 & 7 & 0$^\\sharp$ \\\\\nH7 duplicate   & 0  & 65 & 0  & 0 & 100$^\\sharp$ \\\\\nTautological   & --- & --- & --- & --- & s42 \\\\\nRepetition     & s43 & --- & --- & --- & --- \\\\\nContradiction  & 1k & --- & --- & --- & --- \\\\\nCmplx.\\ vacuous& 0  & 0  & 4  & 0 & --- \\\\\nQuery-as-fact  & --- & --- & --- & --- & s44 \\\\\n\\midrule\n\\textbf{Non-hacking} & 13 & ${\\sim}$16 & 19 & \\textbf{93} & \\textbf{0} \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{Seven hacking modes across conditions (\\% of proved samples; seed~42 unless noted). Cells with seed identifiers indicate the mode dominates that seed. $^\\sharp$Prolog row pools strict+functional (\\S\\ref{sec:crosslogic}).}\n\\label{tab:hacking-taxonomy}\n\\end{table}\n\nThe seven modes (Table~\\ref{tab:hacking-taxonomy}; full definitions in Appendix~\\ref{app:hacking-modes}) span the studied conditions.\nTwo are quantifiable across all conditions: \\textbf{H1} (conclusion embedding) is GRPO-universal at $68$--$97\\%$ regardless of reward type, and \\textbf{H7} (conclusion duplication) is ISR-specific at $64.5\\%$ vs.\\ $0\\%$ in random controls.\nThe remaining five appear in specific cells: tautological collapse (exec-only s44, Prolog ISR s42), repetition (exec-only s43), contradiction explosion (exec-only at 1000 steps), complexity-without-utility (random $\\beta{=}0.1$ residual), and query-as-fact gaming (Prolog ISR s44).\n\nThe cross-condition pattern is consistent with \\S\\ref{sec:goodhart}: \\emph{reward formulation determines hacking composition but not hacking prevalence.}\nExec-only, ISR, and random conditions all show $\\geq 80\\%$ pooled hacking among proved samples; only SFT shows $93\\%$ non-hacking.\nAcross 2 logic types, 6 reward conditions, 3 seeds, and up to 1000 steps, no GRPO condition we tested produces a high-PR run that is also majority non-hacking; the closest is ISR $\\beta{=}0.1$ s42 at $\\text{PR}{=}81\\%$, $31\\%$ non-hacking, and even that residual is the premise-minimization artifact analyzed above.\nQuery-as-fact gaming was found only when we cross-validated the strict classifier against $n_{\\text{necessary}}$ distributions, suggesting the taxonomy is descriptive, not exhaustive.\n",
+                "numLines": 155,
+                "startLine": 1,
+                "totalLines": 155
+              }
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01H7wrPSi53LnnD3wtgYqRHh",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/conclusion.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d5e76642-4b80-417b-bcfe-3fabceb51940",
+            "uuid": "a9ed18f0-49ad-46d4-ba0e-8102789b5caa",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015WmvieXfT4bmYZeNyiZe7L",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 13213,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13213
+                },
+                "output_tokens": 25,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T05:18:42.911Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01H7wrPSi53LnnD3wtgYqRHh",
+              "type": "tool_result",
+              "content": "1\t\\section{Discussion and Conclusion}\n2\t\n3\tSolver Trace Ablation (STA) exposes structural degeneration invisible to execution-based evaluation: ISR reveals a 99.5\\% collapse under exec-only GRPO that PR hides; an SFT baseline with 92.9\\% non-hacking localizes the failure to RL optimization (\\S\\ref{sec:diagnostic}).\n4\tRepurposed as a training signal, ISR induces meta-level Goodhart's Law: the diagnostic for gaming becomes itself the target of gaming.\n5\tAt $\\beta{=}0.1$, conclusion duplication exploits the LOO definition (64.5\\% vs.\\ 0\\% under matched random), and the sole apparent ISR gain reduces to $1.06\\times$ random once a premise-count confound is controlled; at $\\beta{=}0.3$, PR collapses (18\\% vs.\\ 48\\% random).\n6\tThe pattern transfers to Prolog, where ISR-as-reward yields universal gaming (3/3 seeds, 0\\% non-hacking) via three distinct mechanisms including query-as-fact gaming, which bypasses text-match classifiers (\\S\\ref{sec:taxonomy}).\n7\tISR semantics depend on objective: exec-only \\emph{low} ISR signals redundancy; ISR-rewarded \\emph{high} ISR signals metric gaming.\n8\tThe asymmetry---reliable observer, unreliable optimizer---may generalize to other perturbation-based diagnostics; ISR and structurally similar metrics should be used as post-hoc evaluation, with future work targeting gaming-robust rewards and broader logic types.\n9\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "d5e76642-4b80-417b-bcfe-3fabceb51940",
+            "uuid": "ffff044a-bed3-4656-b735-9e85e357aac9",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/conclusion.tex",
+                "content": "\\section{Discussion and Conclusion}\n\nSolver Trace Ablation (STA) exposes structural degeneration invisible to execution-based evaluation: ISR reveals a 99.5\\% collapse under exec-only GRPO that PR hides; an SFT baseline with 92.9\\% non-hacking localizes the failure to RL optimization (\\S\\ref{sec:diagnostic}).\nRepurposed as a training signal, ISR induces meta-level Goodhart's Law: the diagnostic for gaming becomes itself the target of gaming.\nAt $\\beta{=}0.1$, conclusion duplication exploits the LOO definition (64.5\\% vs.\\ 0\\% under matched random), and the sole apparent ISR gain reduces to $1.06\\times$ random once a premise-count confound is controlled; at $\\beta{=}0.3$, PR collapses (18\\% vs.\\ 48\\% random).\nThe pattern transfers to Prolog, where ISR-as-reward yields universal gaming (3/3 seeds, 0\\% non-hacking) via three distinct mechanisms including query-as-fact gaming, which bypasses text-match classifiers (\\S\\ref{sec:taxonomy}).\nISR semantics depend on objective: exec-only \\emph{low} ISR signals redundancy; ISR-rewarded \\emph{high} ISR signals metric gaming.\nThe asymmetry---reliable observer, unreliable optimizer---may generalize to other perturbation-based diagnostics; ISR and structurally similar metrics should be used as post-hoc evaluation, with future work targeting gaming-robust rewards and broader logic types.\n",
+                "numLines": 9,
+                "startLine": 1,
+                "totalLines": 9
+              }
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me now check the appendix files for the tables mentioned, and also check for \\ref{} and \\label{} consistency. Let me also look at the related work and method sections.",
+              "signature": "EucCClkIDRgCKkDXjNAjnYjflgxr67lNsMg76IMdi1+jtoS3Nij6L391YBW60rArIuoO0brC+Kk9OpTYde720MHNgHuYsNErVOhbMg9jbGF1ZGUtb3B1cy00LTY4ABIM7kwT9ZtM48IQmjrdGgzTqS2aPpZhw9w85j8iMEq6hyJGeTRfpAcQJ/WcNQMgyg5TZmGxLNkx6aM8oerUTqAYLIp7xpoDPRCuuCrsIyq7AdjnAI75YDOCc94VqEOJKHVflwYRqwij07MlLFDVI9kB79HetipQgZOeuET1AIVaIZegjFgvajZT2/W+yC3xmkd//D0TQ/dYzIGarcUagrtrQRsGMS6aLm7VNvURHMyrUp2pB8iND4wfz5g4WVmM2/wpAy7jFNGBzpfuceesXvmhi1iYOP9m02bjSLfVi7qAz0rdXFcFveNy+S0D8X4RCMpRPZhq3ZqC2B/kOPl334dl6jeaQci+XbuNjQwYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d5e76642-4b80-417b-bcfe-3fabceb51940",
+            "uuid": "ed7946ff-efae-4a0f-b92f-24bcea865020",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017pPz9uPGy694gCTB9phz2R",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8625,
+                "cache_read_input_tokens": 25054,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 8625
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now checking the appendix and remaining sections for cross-references."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d5e76642-4b80-417b-bcfe-3fabceb51940",
+            "uuid": "99f928d3-4ce1-4162-91d2-6b22da5aaa64",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017pPz9uPGy694gCTB9phz2R",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8625,
+                "cache_read_input_tokens": 25054,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 8625
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0161AKCnsdNWzQbQDyqZN7ir",
+              "name": "Agent",
+              "input": {
+                "subagent_type": "Explore",
+                "description": "Find all tex files in paper",
+                "prompt": "List all .tex files in /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/ directory. I need the full list of files."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d5e76642-4b80-417b-bcfe-3fabceb51940",
+            "uuid": "b227dffa-73a4-4a02-abdf-863d8c6aed33",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017pPz9uPGy694gCTB9phz2R",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8625,
+                "cache_read_input_tokens": 25054,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 8625
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_started",
+                "task_id": "a913ee2b97e580b70",
+                "tool_use_id": "toolu_0161AKCnsdNWzQbQDyqZN7ir",
+                "description": "Find all tex files in paper",
+                "task_type": "local_agent",
+                "prompt": "List all .tex files in /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/ directory. I need the full list of files.",
+                "uuid": "6f01c61e-7c33-4ad1-8318-53df4ffb408b",
+                "session_id": "d5e76642-4b80-417b-bcfe-3fabceb51940"
+              }
+            }
+          ],
+          "id": "event-000016"
+        }
+      ],
+      "message_count": 16
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T05:18:50.218Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "List all .tex files in /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/ directory. I need the full list of files."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_0161AKCnsdNWzQbQDyqZN7ir",
+            "session_id": "d5e76642-4b80-417b-bcfe-3fabceb51940",
+            "uuid": "12ea4ca2-648c-4d17-8196-82615d55c99d"
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "a913ee2b97e580b70",
+                "tool_use_id": "toolu_0161AKCnsdNWzQbQDyqZN7ir",
+                "description": "Finding **/*.tex",
+                "usage": {
+                  "total_tokens": 18445,
+                  "tool_uses": 1,
+                  "duration_ms": 1382
+                },
+                "last_tool_name": "Glob",
+                "uuid": "3d817d4d-8995-4b09-9912-b09b1f17568a",
+                "session_id": "d5e76642-4b80-417b-bcfe-3fabceb51940"
+              }
+            }
+          ],
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013uuf2aAnk4joy1G253G7sB",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/*.tex",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": "toolu_0161AKCnsdNWzQbQDyqZN7ir",
+            "session_id": "d5e76642-4b80-417b-bcfe-3fabceb51940",
+            "uuid": "e295d8c1-c7f4-43b1-9a41-358590ee949e",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_014ycuPCZgndz6ZthLVSv9Mi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 18426,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 18426,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T05:18:51.631Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013uuf2aAnk4joy1G253G7sB",
+              "type": "tool_result",
+              "content": "paper/introduction.tex\npaper/related_work.tex\npaper/conclusion.tex\npaper/main.tex\npaper/abstract.tex\npaper/limitations.tex\npaper/method.tex\npaper/experiments.tex\npaper/appendix.tex"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": "toolu_0161AKCnsdNWzQbQDyqZN7ir",
+            "session_id": "d5e76642-4b80-417b-bcfe-3fabceb51940",
+            "uuid": "ab2d89f7-d6a0-4588-811b-720a72f4fb7f"
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RktH9eUN7rFe32ZsHrV3Gp",
+              "name": "Grep",
+              "input": {
+                "pattern": "\\\\label\\{",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper",
+                "output_mode": "content",
+                "glob": "*.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d5e76642-4b80-417b-bcfe-3fabceb51940",
+            "uuid": "1d43152d-8f34-4135-94a1-57d814d1b604",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017pPz9uPGy694gCTB9phz2R",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8625,
+                "cache_read_input_tokens": 25054,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 8625
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T05:18:51.735Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RktH9eUN7rFe32ZsHrV3Gp",
+              "type": "tool_result",
+              "content": "paper/related_work.tex:2:\\label{sec:related-work}\npaper/experiments.tex:2:\\label{sec:experiments}\npaper/experiments.tex:7:\\subsection{Setup}\\label{sec:setup}\npaper/experiments.tex:14:\\label{sec:diagnostic}\npaper/experiments.tex:20:\\label{fig:isr-collapse}\npaper/experiments.tex:39:\\label{sec:goodhart}\npaper/experiments.tex:64:\\label{tab:goodhart-landscape}\npaper/experiments.tex:88:\\label{sec:crosslogic}\npaper/experiments.tex:94:\\label{fig:prolog-comparison}\npaper/experiments.tex:115:\\label{sec:taxonomy}\npaper/experiments.tex:121:\\label{fig:hacking-composition}\npaper/experiments.tex:144:\\label{tab:hacking-taxonomy}\npaper/method.tex:2:\\label{sec:method}\npaper/method.tex:8:\\label{fig:sta-overview}\npaper/method.tex:12:\\label{sec:task}\npaper/method.tex:20:\\label{sec:sta}\npaper/method.tex:30:\\label{alg:sta}\npaper/method.tex:48:  \\label{eq:isr}\npaper/method.tex:59:\\label{sec:rewards}\npaper/method.tex:60:\\label{sec:taxonomy-method}\npaper/limitations.tex:2:\\label{sec:limitations}\npaper/appendix.tex:4:\\label{app:setup}\npaper/appendix.tex:13:\\label{tab:hyperparams}\npaper/appendix.tex:58:\\label{app:algorithm}\npaper/appendix.tex:65:\\label{app:extended-discussion}\npaper/appendix.tex:101:\\label{app:hacking-modes}\npaper/appendix.tex:125:\\label{tab:hacking-taxonomy-app}\npaper/appendix.tex:305:\\label{app:detailed-results}\npaper/appendix.tex:314:\\label{tab:fol-detailed}\npaper/appendix.tex:315:\\label{tab:fol-beta01-detailed}\npaper/appendix.tex:366:\\label{tab:prolog-detailed}\npaper/appendix.tex:410:\\label{app:beta03}\npaper/appendix.tex:418:\\label{tab:beta03-detailed}\npaper/appendix.tex:442:\\label{app:100step}\npaper/introduction.tex:2:\\label{sec:introduction}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "d5e76642-4b80-417b-bcfe-3fabceb51940",
+            "uuid": "9b665f6f-bb0e-43db-8274-e85bdaad0412",
+            "tool_use_result": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "paper/related_work.tex:2:\\label{sec:related-work}\npaper/experiments.tex:2:\\label{sec:experiments}\npaper/experiments.tex:7:\\subsection{Setup}\\label{sec:setup}\npaper/experiments.tex:14:\\label{sec:diagnostic}\npaper/experiments.tex:20:\\label{fig:isr-collapse}\npaper/experiments.tex:39:\\label{sec:goodhart}\npaper/experiments.tex:64:\\label{tab:goodhart-landscape}\npaper/experiments.tex:88:\\label{sec:crosslogic}\npaper/experiments.tex:94:\\label{fig:prolog-comparison}\npaper/experiments.tex:115:\\label{sec:taxonomy}\npaper/experiments.tex:121:\\label{fig:hacking-composition}\npaper/experiments.tex:144:\\label{tab:hacking-taxonomy}\npaper/method.tex:2:\\label{sec:method}\npaper/method.tex:8:\\label{fig:sta-overview}\npaper/method.tex:12:\\label{sec:task}\npaper/method.tex:20:\\label{sec:sta}\npaper/method.tex:30:\\label{alg:sta}\npaper/method.tex:48:  \\label{eq:isr}\npaper/method.tex:59:\\label{sec:rewards}\npaper/method.tex:60:\\label{sec:taxonomy-method}\npaper/limitations.tex:2:\\label{sec:limitations}\npaper/appendix.tex:4:\\label{app:setup}\npaper/appendix.tex:13:\\label{tab:hyperparams}\npaper/appendix.tex:58:\\label{app:algorithm}\npaper/appendix.tex:65:\\label{app:extended-discussion}\npaper/appendix.tex:101:\\label{app:hacking-modes}\npaper/appendix.tex:125:\\label{tab:hacking-taxonomy-app}\npaper/appendix.tex:305:\\label{app:detailed-results}\npaper/appendix.tex:314:\\label{tab:fol-detailed}\npaper/appendix.tex:315:\\label{tab:fol-beta01-detailed}\npaper/appendix.tex:366:\\label{tab:prolog-detailed}\npaper/appendix.tex:410:\\label{app:beta03}\npaper/appendix.tex:418:\\label{tab:beta03-detailed}\npaper/appendix.tex:442:\\label{app:100step}\npaper/introduction.tex:2:\\label{sec:introduction}",
+              "numLines": 35
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0182RdE6zGg6YxxqznjpuFZX",
+              "name": "Grep",
+              "input": {
+                "pattern": "\\\\ref\\{|\\\\autoref\\{",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper",
+                "output_mode": "content",
+                "glob": "*.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d5e76642-4b80-417b-bcfe-3fabceb51940",
+            "uuid": "32a50f97-d34a-4705-b67a-e78473e13e6a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017pPz9uPGy694gCTB9phz2R",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8625,
+                "cache_read_input_tokens": 25054,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 8625
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T05:18:52.383Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0182RdE6zGg6YxxqznjpuFZX",
+              "type": "tool_result",
+              "content": "paper/experiments.tex:4:We evaluate STA along three axes: ISR as a diagnostic for reward hacking (\\S\\ref{sec:diagnostic}); ISR as a training reward, where it exhibits meta-level Goodhart's Law (\\S\\ref{sec:goodhart}); and STA as a cross-logic protocol (\\S\\ref{sec:crosslogic}).\npaper/experiments.tex:5:A hacking taxonomy synthesizes the modes observed across conditions (\\S\\ref{sec:taxonomy}).\npaper/experiments.tex:11:We report prove rate (PR), proved-only ISR ($\\text{ISR}^*$), hacking-mode rates from a two-stage classifier (strict text matching for H1/H7 plus functional analysis of the per-sample $n_{\\text{necessary}}$ distribution; \\S\\ref{sec:taxonomy-method}), and a \\emph{non-hacking} (N-H) rate---the residual of proved samples matching none of the seven cataloged patterns, a necessary but not sufficient condition for semantic correctness.\npaper/experiments.tex:24:Figure~\\ref{fig:isr-collapse} traces exec-only GRPO (seed~42) at 100, 500, 1000 steps.\npaper/experiments.tex:30:[Omitted long matching line]\npaper/experiments.tex:36:A 100-step RL checkpoint (Appendix~\\ref{app:100step}) at $\\text{PR}{=}32\\%$ already shows 31.2\\% hacking (vs.\\ SFT's 7.1\\%), indicating reward hacking emerges early in RL training, not merely at high PR.\npaper/experiments.tex:63:\\caption{Goodhart landscape across reward conditions. 3-seed rows: mean$\\pm$std. $^\\dagger$Seed~42. $\\ddagger$$\\text{ISR}^*$ omitted for ISR $\\beta{=}0.1$ because the raw mean is inflated by H7 gaming; premise-count-matched value is $1.06\\times$ random (\\S\\ref{sec:goodhart}, Appendix~\\ref{app:detailed-results}). Per-seed breakdown in Appendix Table~\\ref{tab:fol-detailed}.}\npaper/experiments.tex:69:H7---a single premise identical to the conclusion, giving $\\text{ISR}\\geq 0.5$ by construction (\\S\\ref{sec:taxonomy-method})---is the canonical meta-level Goodhart move: the model satisfies the LOO definition directly rather than producing a derivation that happens to satisfy it.\npaper/experiments.tex:71:ISR does not reduce hacking; it converts H1 into H7 (Figure~\\ref{fig:hacking-composition}).\npaper/experiments.tex:81:At $\\beta{=}0.3$, ISR-as-reward produces extreme cross-seed instability ($\\text{PR}{=}66{\\pm}42\\%$, spanning 18--95\\%); each seed converges to a distinct pathway (Appendix~\\ref{app:detailed-results}). %% registry: plan002-additive-b03-s42/s43/s44\npaper/experiments.tex:85:The random control at $\\beta{=}0.3$ is equally unstable ($\\text{PR}{=}54{\\pm}35\\%$, spanning 23--92\\%) with near-universal H1 hacking ($96\\%$) and ${\\leq}1\\%$ non-hacking across all 3 seeds; high-dose proxy weighting is harmful in both conditions, but ISR uniquely produces \\emph{mode diversity} while random converges to uniform H1 dominance (Appendix~\\ref{app:beta03}).\npaper/experiments.tex:98:Detailed per-seed numbers are in Appendix Table~\\ref{tab:prolog-detailed}.\npaper/experiments.tex:104:We are careful to distinguish: exec-only \\emph{low} ISR signals \\emph{redundancy}; ISR-rewarded \\emph{high} ISR signals \\emph{metric gaming} (\\S\\ref{sec:taxonomy-method})---the same number does not license the same reasoning-quality conclusion.\npaper/experiments.tex:107:The Prolog result is stronger than FOL: 3/3 seeds reach $0\\%$ non-hacking via three distinct mechanisms (Figure~\\ref{fig:prolog-comparison}).\npaper/experiments.tex:143:\\caption{Seven hacking modes across conditions (\\% of proved samples; seed~42 unless noted). Cells with seed identifiers indicate the mode dominates that seed. $^\\sharp$Prolog row pools strict+functional (\\S\\ref{sec:crosslogic}).}\npaper/experiments.tex:147:The seven modes (Table~\\ref{tab:hacking-taxonomy}; full definitions in Appendix~\\ref{app:hacking-modes}) span the studied conditions.\npaper/experiments.tex:151:The cross-condition pattern is consistent with \\S\\ref{sec:goodhart}: \\emph{reward formulation determines hacking composition but not hacking prevalence.}\npaper/conclusion.tex:3:Solver Trace Ablation (STA) exposes structural degeneration invisible to execution-based evaluation: ISR reveals a 99.5\\% collapse under exec-only GRPO that PR hides; an SFT baseline with 92.9\\% non-hacking localizes the failure to RL optimization (\\S\\ref{sec:diagnostic}).\npaper/conclusion.tex:6:The pattern transfers to Prolog, where ISR-as-reward yields universal gaming (3/3 seeds, 0\\% non-hacking) via three distinct mechanisms including query-as-fact gaming, which bypasses text-match classifiers (\\S\\ref{sec:taxonomy}).\npaper/method.tex:14:Given premises $P_1,\\ldots,P_k$ and conclusion $C$, the task is to produce a formal program $F=\\{c_1,\\ldots,c_n\\}$ verified by an external solver $S\\in\\{\\text{Prover9, SWI-Prolog}\\}$ (\\autoref{fig:sta-overview}a).\npaper/method.tex:22:STA tests whether each component of a proved formalization is individually necessary for proof success (\\autoref{fig:sta-overview}b).\npaper/method.tex:23:Given a proved $x$ with $n$ components, STA constructs $n$ ablated variants $x\\setminus\\{c_i\\}$ and re-runs the solver (Algorithm~\\ref{alg:sta}).\npaper/method.tex:56:We control for this confound via premise-count-matched analysis in \\S\\ref{sec:goodhart}.\npaper/method.tex:66:An earlier convex formulation ($\\alpha r_{\\text{exec}} + \\beta r_{\\text{exec}}\\text{ISR}$, $\\alpha{+}\\beta{=}1$) was discarded because $\\text{ISR}{<}1$ always penalized relative to exec-only, collapsing PR (Appendix~\\ref{app:setup}).\npaper/method.tex:69:Across conditions, seeds, and logic types we identify seven structural-degeneration modes (full definitions in Appendix~\\ref{app:hacking-modes}):\npaper/method.tex:78:We report both classifications in \\S\\ref{sec:experiments}.\npaper/limitations.tex:5:ISR quantifies syntactic component necessity, not semantic faithfulness: a downstream NLI evaluation finds ISR and task accuracy uncorrelated (Spearman $\\rho{=}{-}0.049$, $p{=}0.187$; Appendix~\\ref{app:extended-discussion}).\npaper/appendix.tex:6:Table~\\ref{tab:hyperparams} lists all hyperparameters shared across experiments.\npaper/appendix.tex:60:Algorithm~\\ref{alg:sta} (Section~\\ref{sec:sta}) gives the procedure for computing ISR over a proved formalization.\npaper/appendix.tex:75:Under exec-only training, low ISR in Prolog reflects redundant coding---repeated ground facts where removing any single copy does not affect the proof---rather than absence of reasoning (\\S\\ref{sec:crosslogic}).\npaper/appendix.tex:76:Under ISR-as-reward, high ISR reflects metric gaming (\\S\\ref{sec:goodhart}).\npaper/appendix.tex:82:This confound explains the sole apparent ISR-as-reward success (\\S\\ref{sec:goodhart}): ISR $\\beta{=}0.1$ seed~42 produces shorter formalizations, mechanically inflating ISR.\npaper/appendix.tex:83:Premise-count-matched comparison eliminates the difference ($1.06\\times$; Table~\\ref{tab:fol-beta01-detailed}).\npaper/appendix.tex:95:The three exec-only seeds diverge radically (PR $\\sigma{=}\\pm 47$ percentage points), each converging to a qualitatively different degeneration mode (\\S\\ref{sec:diagnostic}).\npaper/appendix.tex:96:ISR $\\beta{=}0.1$ seeds show similar divergence: 2/3 dominated by conclusion duplication (H7), 1/3 by premise minimization (\\S\\ref{sec:goodhart}).\npaper/appendix.tex:105:Table~\\ref{tab:hacking-taxonomy-app} summarizes prevalence across FOL conditions.\npaper/appendix.tex:124:\\caption{Hacking taxonomy across FOL conditions (\\% of proved samples). ISR/Rand columns: $\\beta{=}0.1$ 3-seed means. Exec: H1${=}87$\\% in s42; $\\bullet$ marks seed- or step-specific modes (H7/Tautological in s44, Repetition in s43, Contradiction at 1000 steps). C-w/o-util.: complexity-without-utility (random-specific). Q-as-fact: Prolog STA only (Table~\\ref{tab:prolog-detailed}).}\npaper/appendix.tex:136:This cross-validation revealed query-as-fact gaming in Prolog (\\S\\ref{app:hacking-modes}), where the strict text classifier reported 100\\% non-hacking but functional analysis showed 95/97 samples were tautological ($n_{\\text{necessary}}{=}1$).\npaper/appendix.tex:307:Tables~\\ref{tab:fol-beta01-detailed} and \\ref{tab:prolog-detailed} report full per-seed results.\npaper/appendix.tex:313:\\caption{Detailed per-seed results: FOL (Prover9). Includes the per-seed $\\beta{=}0.1$ breakdown referenced from Table~\\ref{tab:goodhart-landscape}. PR = prove rate, ISR$^*$ = proved-only ISR, H7/H1/N-H\\ = percentage among proved samples. ``---'' indicates data not available. $^\\dagger$s43 uses sampling eval ($T{=}0.7$).}\npaper/appendix.tex:397:Table~\\ref{tab:fol-detailed} traces the ISR collapse over training:\npaper/appendix.tex:403:All three Prolog exec+ISR seeds exhibit Goodhart's Law with 0\\% non-hacking proofs (Figure~\\ref{fig:prolog-comparison}), but each discovers a different gaming mechanism:\npaper/appendix.tex:412:Table~\\ref{tab:beta03-detailed} reports per-seed results for both ISR and Random reward at $\\beta{=}0.3$.\npaper/appendix.tex:413:The three ISR seeds illustrate qualitatively distinct Goodhart pathways (\\S\\ref{sec:goodhart}).\npaper/appendix.tex:444:To control for the prove-rate confound in our SFT comparison (\\S\\ref{sec:diagnostic}), we analyze the exec-only checkpoint at 100 training steps (seed~42), where PR${=}32$\\%---higher than SFT (14\\%) but still early in training.\npaper/introduction.tex:15:We address this gap with \\emph{Solver Trace Ablation} (STA), a diagnostic applying \\emph{component necessity testing}---leave-one-out (LOO) ablation on solver inputs---to quantify structural integrity (\\autoref{fig:sta-overview}).\npaper/introduction.tex:33:[Omitted long matching line]"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "d5e76642-4b80-417b-bcfe-3fabceb51940",
+            "uuid": "efc69263-5612-4716-8151-9b8b61bee9b9",
+            "tool_use_result": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "paper/experiments.tex:4:We evaluate STA along three axes: ISR as a diagnostic for reward hacking (\\S\\ref{sec:diagnostic}); ISR as a training reward, where it exhibits meta-level Goodhart's Law (\\S\\ref{sec:goodhart}); and STA as a cross-logic protocol (\\S\\ref{sec:crosslogic}).\npaper/experiments.tex:5:A hacking taxonomy synthesizes the modes observed across conditions (\\S\\ref{sec:taxonomy}).\npaper/experiments.tex:11:We report prove rate (PR), proved-only ISR ($\\text{ISR}^*$), hacking-mode rates from a two-stage classifier (strict text matching for H1/H7 plus functional analysis of the per-sample $n_{\\text{necessary}}$ distribution; \\S\\ref{sec:taxonomy-method}), and a \\emph{non-hacking} (N-H) rate---the residual of proved samples matching none of the seven cataloged patterns, a necessary but not sufficient condition for semantic correctness.\npaper/experiments.tex:24:Figure~\\ref{fig:isr-collapse} traces exec-only GRPO (seed~42) at 100, 500, 1000 steps.\npaper/experiments.tex:30:[Omitted long matching line]\npaper/experiments.tex:36:A 100-step RL checkpoint (Appendix~\\ref{app:100step}) at $\\text{PR}{=}32\\%$ already shows 31.2\\% hacking (vs.\\ SFT's 7.1\\%), indicating reward hacking emerges early in RL training, not merely at high PR.\npaper/experiments.tex:63:\\caption{Goodhart landscape across reward conditions. 3-seed rows: mean$\\pm$std. $^\\dagger$Seed~42. $\\ddagger$$\\text{ISR}^*$ omitted for ISR $\\beta{=}0.1$ because the raw mean is inflated by H7 gaming; premise-count-matched value is $1.06\\times$ random (\\S\\ref{sec:goodhart}, Appendix~\\ref{app:detailed-results}). Per-seed breakdown in Appendix Table~\\ref{tab:fol-detailed}.}\npaper/experiments.tex:69:H7---a single premise identical to the conclusion, giving $\\text{ISR}\\geq 0.5$ by construction (\\S\\ref{sec:taxonomy-method})---is the canonical meta-level Goodhart move: the model satisfies the LOO definition directly rather than producing a derivation that happens to satisfy it.\npaper/experiments.tex:71:ISR does not reduce hacking; it converts H1 into H7 (Figure~\\ref{fig:hacking-composition}).\npaper/experiments.tex:81:At $\\beta{=}0.3$, ISR-as-reward produces extreme cross-seed instability ($\\text{PR}{=}66{\\pm}42\\%$, spanning 18--95\\%); each seed converges to a distinct pathway (Appendix~\\ref{app:detailed-results}). %% registry: plan002-additive-b03-s42/s43/s44\npaper/experiments.tex:85:The random control at $\\beta{=}0.3$ is equally unstable ($\\text{PR}{=}54{\\pm}35\\%$, spanning 23--92\\%) with near-universal H1 hacking ($96\\%$) and ${\\leq}1\\%$ non-hacking across all 3 seeds; high-dose proxy weighting is harmful in both conditions, but ISR uniquely produces \\emph{mode diversity} while random converges to uniform H1 dominance (Appendix~\\ref{app:beta03}).\npaper/experiments.tex:98:Detailed per-seed numbers are in Appendix Table~\\ref{tab:prolog-detailed}.\npaper/experiments.tex:104:We are careful to distinguish: exec-only \\emph{low} ISR signals \\emph{redundancy}; ISR-rewarded \\emph{high} ISR signals \\emph{metric gaming} (\\S\\ref{sec:taxonomy-method})---the same number does not license the same reasoning-quality conclusion.\npaper/experiments.tex:107:The Prolog result is stronger than FOL: 3/3 seeds reach $0\\%$ non-hacking via three distinct mechanisms (Figure~\\ref{fig:prolog-comparison}).\npaper/experiments.tex:143:\\caption{Seven hacking modes across conditions (\\% of proved samples; seed~42 unless noted). Cells with seed identifiers indicate the mode dominates that seed. $^\\sharp$Prolog row pools strict+functional (\\S\\ref{sec:crosslogic}).}\npaper/experiments.tex:147:The seven modes (Table~\\ref{tab:hacking-taxonomy}; full definitions in Appendix~\\ref{app:hacking-modes}) span the studied conditions.\npaper/experiments.tex:151:The cross-condition pattern is consistent with \\S\\ref{sec:goodhart}: \\emph{reward formulation determines hacking composition but not hacking prevalence.}\npaper/conclusion.tex:3:Solver Trace Ablation (STA) exposes structural degeneration invisible to execution-based evaluation: ISR reveals a 99.5\\% collapse under exec-only GRPO that PR hides; an SFT baseline with 92.9\\% non-hacking localizes the failure to RL optimization (\\S\\ref{sec:diagnostic}).\npaper/conclusion.tex:6:The pattern transfers to Prolog, where ISR-as-reward yields universal gaming (3/3 seeds, 0\\% non-hacking) via three distinct mechanisms including query-as-fact gaming, which bypasses text-match classifiers (\\S\\ref{sec:taxonomy}).\npaper/method.tex:14:Given premises $P_1,\\ldots,P_k$ and conclusion $C$, the task is to produce a formal program $F=\\{c_1,\\ldots,c_n\\}$ verified by an external solver $S\\in\\{\\text{Prover9, SWI-Prolog}\\}$ (\\autoref{fig:sta-overview}a).\npaper/method.tex:22:STA tests whether each component of a proved formalization is individually necessary for proof success (\\autoref{fig:sta-overview}b).\npaper/method.tex:23:Given a proved $x$ with $n$ components, STA constructs $n$ ablated variants $x\\setminus\\{c_i\\}$ and re-runs the solver (Algorithm~\\ref{alg:sta}).\npaper/method.tex:56:We control for this confound via premise-count-matched analysis in \\S\\ref{sec:goodhart}.\npaper/method.tex:66:An earlier convex formulation ($\\alpha r_{\\text{exec}} + \\beta r_{\\text{exec}}\\text{ISR}$, $\\alpha{+}\\beta{=}1$) was discarded because $\\text{ISR}{<}1$ always penalized relative to exec-only, collapsing PR (Appendix~\\ref{app:setup}).\npaper/method.tex:69:Across conditions, seeds, and logic types we identify seven structural-degeneration modes (full definitions in Appendix~\\ref{app:hacking-modes}):\npaper/method.tex:78:We report both classifications in \\S\\ref{sec:experiments}.\npaper/limitations.tex:5:ISR quantifies syntactic component necessity, not semantic faithfulness: a downstream NLI evaluation finds ISR and task accuracy uncorrelated (Spearman $\\rho{=}{-}0.049$, $p{=}0.187$; Appendix~\\ref{app:extended-discussion}).\npaper/appendix.tex:6:Table~\\ref{tab:hyperparams} lists all hyperparameters shared across experiments.\npaper/appendix.tex:60:Algorithm~\\ref{alg:sta} (Section~\\ref{sec:sta}) gives the procedure for computing ISR over a proved formalization.\npaper/appendix.tex:75:Under exec-only training, low ISR in Prolog reflects redundant coding---repeated ground facts where removing any single copy does not affect the proof---rather than absence of reasoning (\\S\\ref{sec:crosslogic}).\npaper/appendix.tex:76:Under ISR-as-reward, high ISR reflects metric gaming (\\S\\ref{sec:goodhart}).\npaper/appendix.tex:82:This confound explains the sole apparent ISR-as-reward success (\\S\\ref{sec:goodhart}): ISR $\\beta{=}0.1$ seed~42 produces shorter formalizations, mechanically inflating ISR.\npaper/appendix.tex:83:Premise-count-matched comparison eliminates the difference ($1.06\\times$; Table~\\ref{tab:fol-beta01-detailed}).\npaper/appendix.tex:95:The three exec-only seeds diverge radically (PR $\\sigma{=}\\pm 47$ percentage points), each converging to a qualitatively different degeneration mode (\\S\\ref{sec:diagnostic}).\npaper/appendix.tex:96:ISR $\\beta{=}0.1$ seeds show similar divergence: 2/3 dominated by conclusion duplication (H7), 1/3 by premise minimization (\\S\\ref{sec:goodhart}).\npaper/appendix.tex:105:Table~\\ref{tab:hacking-taxonomy-app} summarizes prevalence across FOL conditions.\npaper/appendix.tex:124:\\caption{Hacking taxonomy across FOL conditions (\\% of proved samples). ISR/Rand columns: $\\beta{=}0.1$ 3-seed means. Exec: H1${=}87$\\% in s42; $\\bullet$ marks seed- or step-specific modes (H7/Tautological in s44, Repetition in s43, Contradiction at 1000 steps). C-w/o-util.: complexity-without-utility (random-specific). Q-as-fact: Prolog STA only (Table~\\ref{tab:prolog-detailed}).}\npaper/appendix.tex:136:This cross-validation revealed query-as-fact gaming in Prolog (\\S\\ref{app:hacking-modes}), where the strict text classifier reported 100\\% non-hacking but functional analysis showed 95/97 samples were tautological ($n_{\\text{necessary}}{=}1$).\npaper/appendix.tex:307:Tables~\\ref{tab:fol-beta01-detailed} and \\ref{tab:prolog-detailed} report full per-seed results.\npaper/appendix.tex:313:\\caption{Detailed per-seed results: FOL (Prover9). Includes the per-seed $\\beta{=}0.1$ breakdown referenced from Table~\\ref{tab:goodhart-landscape}. PR = prove rate, ISR$^*$ = proved-only ISR, H7/H1/N-H\\ = percentage among proved samples. ``---'' indicates data not available. $^\\dagger$s43 uses sampling eval ($T{=}0.7$).}\npaper/appendix.tex:397:Table~\\ref{tab:fol-detailed} traces the ISR collapse over training:\npaper/appendix.tex:403:All three Prolog exec+ISR seeds exhibit Goodhart's Law with 0\\% non-hacking proofs (Figure~\\ref{fig:prolog-comparison}), but each discovers a different gaming mechanism:\npaper/appendix.tex:412:Table~\\ref{tab:beta03-detailed} reports per-seed results for both ISR and Random reward at $\\beta{=}0.3$.\npaper/appendix.tex:413:The three ISR seeds illustrate qualitatively distinct Goodhart pathways (\\S\\ref{sec:goodhart}).\npaper/appendix.tex:444:To control for the prove-rate confound in our SFT comparison (\\S\\ref{sec:diagnostic}), we analyze the exec-only checkpoint at 100 training steps (seed~42), where PR${=}32$\\%---higher than SFT (14\\%) but still early in training.\npaper/introduction.tex:15:We address this gap with \\emph{Solver Trace Ablation} (STA), a diagnostic applying \\emph{component necessity testing}---leave-one-out (LOO) ablation on solver inputs---to quantify structural integrity (\\autoref{fig:sta-overview}).\npaper/introduction.tex:33:[Omitted long matching line]",
+              "numLines": 47
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_notification",
+                "task_id": "a913ee2b97e580b70",
+                "tool_use_id": "toolu_0161AKCnsdNWzQbQDyqZN7ir",
+                "status": "completed",
+                "output_file": "",
+                "summary": "Find all tex files in paper",
+                "usage": {
+                  "total_tokens": 19464,
+                  "tool_uses": 1,
+                  "duration_ms": 3699
+                },
+                "uuid": "f713d276-4968-4385-a078-48824b3055de",
+                "session_id": "d5e76642-4b80-417b-bcfe-3fabceb51940"
+              }
+            }
+          ],
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T05:18:53.920Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0161AKCnsdNWzQbQDyqZN7ir",
+              "type": "tool_result",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Here are all the .tex files in the paper directory:\n\n1. /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/introduction.tex\n2. /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/related_work.tex\n3. /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/conclusion.tex\n4. /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/main.tex\n5. /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/abstract.tex\n6. /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/limitations.tex\n7. /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/method.tex\n8. /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/experiments.tex\n9. /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/appendix.tex\n\nThere are 9 .tex files total in the paper directory."
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "d5e76642-4b80-417b-bcfe-3fabceb51940",
+            "uuid": "6c482129-2fa0-460a-ac95-4f421109c2af",
+            "tool_use_result": {
+              "status": "completed",
+              "prompt": "List all .tex files in /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/ directory. I need the full list of files.",
+              "agentId": "a913ee2b97e580b70",
+              "agentType": "Explore",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "Here are all the .tex files in the paper directory:\n\n1. /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/introduction.tex\n2. /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/related_work.tex\n3. /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/conclusion.tex\n4. /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/main.tex\n5. /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/abstract.tex\n6. /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/limitations.tex\n7. /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/method.tex\n8. /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/experiments.tex\n9. /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/appendix.tex\n\nThere are 9 .tex files total in the paper directory."
+                }
+              ],
+              "totalDurationMs": 3701,
+              "totalTokens": 19813,
+              "totalToolUseCount": 1,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1016,
+                "cache_read_input_tokens": 18426,
+                "output_tokens": 366,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1016
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 366,
+                    "cache_read_input_tokens": 18426,
+                    "cache_creation_input_tokens": 1016,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1016,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "toolStats": {
+                "readCount": 0,
+                "searchCount": 1,
+                "bashCount": 0,
+                "editFileCount": 0,
+                "linesAdded": 0,
+                "linesRemoved": 0,
+                "otherToolCount": 0
+              }
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me now check the appendix for the β=0.3 table and the conclusion's specific numbers. Let me also check a few specific items:\n\n1. Abstract says \"PR $66{\\pm}42\\%$\" for ISR β=0.3 — matches Table 1 (line 59: `66{\\scriptsize$\\pm$42}`)\n2. Abstract doesn't mention Random β=0.3 numbers explicitly\n3. Conclusion says \"18\\% vs.\\ 48\\% random\" at β=0.3 — let me check this against Table 1\n\nWait, the conclusion line 5 says: \"at $\\beta{=}0.3$, PR collapses (18\\% vs.\\ 48\\% random).\"\n\n\nBut Table 1 shows ISR β=0.3 at 66±42% and Random β=0.3 at 54±35%, so those conclusion numbers don't match the table values — 18% appears to be the lowest seed result for ISR, and 48% doesn't correspond to anything in the table.\n\nI'm wondering if this is outdated data from before the Random β=0.3 was updated from 2-seed to 3-seed results, since the old mean might have been around 48%. The 18% also looks like cherry-picked worst-case performance rather than the reported mean.\n\nLet me verify the other claims in the conclusion against the actual results — the Abstract and Introduction both cite PR 66±42% for β=0.3, which matches Table 1, and the ISR gains and collapse percentages also line up with what's in the experiments section.\n\nThe real problem is that stale \"48% random\" figure in the conclusion — it should be 54±35% based on the current Random β=0.3 results. The \"18%\" is also technically just the worst seed rather than the mean, though calling it a \"collapse\" makes that somewhat defensible.\n\nI should also double-check that all the section labels and references are properly matched throughout the document. I'm checking through the references to make sure all the figures and tables are properly cited in the text. Most of them check out, though I'm noticing the goodhart-landscape table might be implicitly referenced through its caption rather than explicitly called out. The rest of the tables and figures appear to be accounted for throughout the document. I'm checking whether the table reference `tab:fol-detailed` in experiments.tex actually corresponds to a properly defined label in the appendix, and I notice there are consecutive label definitions that might indicate separate tables or a shared one. Let me trace through the appendix more carefully to verify the structure and cross-check the numbers against what's cited in the conclusion.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d5e76642-4b80-417b-bcfe-3fabceb51940",
+            "uuid": "2b8a627f-c919-46d0-a007-67a701add2e3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FJxwtBqMLHw9dd8y1mFhh1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3692,
+                "cache_creation_input_tokens": 849,
+                "cache_read_input_tokens": 33679,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 849
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found a potential issue in the conclusion. Let me verify by reading the appendix β=0.3 section."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d5e76642-4b80-417b-bcfe-3fabceb51940",
+            "uuid": "512b009f-4912-44e5-82be-55a3db7c4063",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FJxwtBqMLHw9dd8y1mFhh1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3692,
+                "cache_creation_input_tokens": 849,
+                "cache_read_input_tokens": 33679,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 849
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014G1PuXgZkVedFwtV3R1QJu",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/appendix.tex",
+                "offset": 405,
+                "limit": 50
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d5e76642-4b80-417b-bcfe-3fabceb51940",
+            "uuid": "b2c1f4b7-77cd-40f1-bfb9-609d16e78fc5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FJxwtBqMLHw9dd8y1mFhh1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3692,
+                "cache_creation_input_tokens": 849,
+                "cache_read_input_tokens": 33679,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 849
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-15T05:19:35.665Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014G1PuXgZkVedFwtV3R1QJu",
+              "type": "tool_result",
+              "content": "405\tseed~43 generates uppercase pseudo-Prolog that bypasses the text-match classifier while remaining functionally tautological,\n406\tand seed~44 converts NL conclusions to snake\\_case atoms used as both fact and query.\n407\tThe diversity of gaming pathways across seeds---despite identical training data and reward function---demonstrates that Goodhart's Law in neurosymbolic reasoning is not a single failure mode but a family of convergent exploits.\n408\t\n409\t\\subsection{Per-Seed Results at $\\beta{=}0.3$}\n410\t\\label{app:beta03}\n411\t\n412\tTable~\\ref{tab:beta03-detailed} reports per-seed results for both ISR and Random reward at $\\beta{=}0.3$.\n413\tThe three ISR seeds illustrate qualitatively distinct Goodhart pathways (\\S\\ref{sec:goodhart}).\n414\t\n415\t\\begin{table}[h]\n416\t\\centering\n417\t\\caption{Per-seed results at $\\beta{=}0.3$ (FOL). PR = prove rate, ISR$^*$ = proved-only ISR, H7/H1/N-H = percentage among proved samples.}\n418\t\\label{tab:beta03-detailed}\n419\t\\small\n420\t\\begin{tabular}{@{}llcccccl@{}}\n421\t\\toprule\n422\t\\textbf{Condition} & \\textbf{Seed} & \\textbf{PR} & \\textbf{ISR$^*$} & \\textbf{H7\\%} & \\textbf{H1\\%} & \\textbf{N-H\\%} & \\textbf{Mode} \\\\\n423\t\\midrule\n424\t\\multicolumn{8}{@{}l}{\\textit{ISR $\\beta{=}0.3$}} \\\\\n425\t  & 42 & 0.18 & 0.143 & --- & --- & --- & Reward collapse \\\\\n426\t  & 43 & 0.86 & 0.295 & 4.7 & 68.6 & 26.7 & H1 shortcutting \\\\\n427\t  & 44 & 0.95 & 0.742 & \\textbf{100} & 0 & 0 & Pure H7 meta-Goodhart \\\\\n428\t\\cmidrule(l){2-8}\n429\t  & \\multicolumn{2}{l}{3-seed mean$\\pm$std} & \\makebox[0pt][l]{$0.66{\\pm}0.42$} & & \\makebox[0pt][l]{$0.39{\\pm}0.31$} & & \\\\\n430\t\\midrule\n431\t\\multicolumn{8}{@{}l}{\\textit{Random $\\beta{=}0.3$}} \\\\\n432\t  & 42 & 0.48 & 0.094 & 0 & 100 & 0 & \\\\\n433\t  & 43 & 0.92 & 0.180 & 7.6 & 90.2 & 2.2 & \\\\\n434\t  & 44 & 0.23 & 0 & 0 & 100 & 0 & \\\\\n435\t\\cmidrule(l){2-8}\n436\t  & \\multicolumn{2}{l}{3-seed mean$\\pm$std} & \\makebox[0pt][l]{$0.54{\\pm}0.35$} & & \\makebox[0pt][l]{$0.09{\\pm}0.09$} & & \\\\\n437\t\\bottomrule\n438\t\\end{tabular}\n439\t\\end{table}\n440\t\n441\t\\subsection{Early-Training Hacking Analysis (100-Step Checkpoint)}\n442\t\\label{app:100step}\n443\t\n444\tTo control for the prove-rate confound in our SFT comparison (\\S\\ref{sec:diagnostic}), we analyze the exec-only checkpoint at 100 training steps (seed~42), where PR${=}32$\\%---higher than SFT (14\\%) but still early in training.\n445\tOf the 32 proved samples, 9 (28.1\\%) exhibit H7 hacking (single premise identical to conclusion) and 1 (3.1\\%) exhibits H1 (conclusion embedded among premises), yielding a total hacking rate of 31.2\\%.\n446\tBy contrast, SFT at comparable or lower PR shows 7.1\\% hacking (1/14 proved samples).\n447\tThis demonstrates that reward hacking emerges early in GRPO training---well before the prove-rate plateau---and is not simply an artifact of having more proved samples available for exploitation.\n448\tThe 100-step hacking rate (31.2\\%) is already substantially above SFT (7.1\\%), supporting the claim that hacking is associated with RL optimization rather than prove-rate level alone.\n449\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "d5e76642-4b80-417b-bcfe-3fabceb51940",
+            "uuid": "aaa8cf87-dda1-4a93-b145-91f2eae5de32",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/appendix.tex",
+                "content": "seed~43 generates uppercase pseudo-Prolog that bypasses the text-match classifier while remaining functionally tautological,\nand seed~44 converts NL conclusions to snake\\_case atoms used as both fact and query.\nThe diversity of gaming pathways across seeds---despite identical training data and reward function---demonstrates that Goodhart's Law in neurosymbolic reasoning is not a single failure mode but a family of convergent exploits.\n\n\\subsection{Per-Seed Results at $\\beta{=}0.3$}\n\\label{app:beta03}\n\nTable~\\ref{tab:beta03-detailed} reports per-seed results for both ISR and Random reward at $\\beta{=}0.3$.\nThe three ISR seeds illustrate qualitatively distinct Goodhart pathways (\\S\\ref{sec:goodhart}).\n\n\\begin{table}[h]\n\\centering\n\\caption{Per-seed results at $\\beta{=}0.3$ (FOL). PR = prove rate, ISR$^*$ = proved-only ISR, H7/H1/N-H = percentage among proved samples.}\n\\label{tab:beta03-detailed}\n\\small\n\\begin{tabular}{@{}llcccccl@{}}\n\\toprule\n\\textbf{Condition} & \\textbf{Seed} & \\textbf{PR} & \\textbf{ISR$^*$} & \\textbf{H7\\%} & \\textbf{H1\\%} & \\textbf{N-H\\%} & \\textbf{Mode} \\\\\n\\midrule\n\\multicolumn{8}{@{}l}{\\textit{ISR $\\beta{=}0.3$}} \\\\\n  & 42 & 0.18 & 0.143 & --- & --- & --- & Reward collapse \\\\\n  & 43 & 0.86 & 0.295 & 4.7 & 68.6 & 26.7 & H1 shortcutting \\\\\n  & 44 & 0.95 & 0.742 & \\textbf{100} & 0 & 0 & Pure H7 meta-Goodhart \\\\\n\\cmidrule(l){2-8}\n  & \\multicolumn{2}{l}{3-seed mean$\\pm$std} & \\makebox[0pt][l]{$0.66{\\pm}0.42$} & & \\makebox[0pt][l]{$0.39{\\pm}0.31$} & & \\\\\n\\midrule\n\\multicolumn{8}{@{}l}{\\textit{Random $\\beta{=}0.3$}} \\\\\n  & 42 & 0.48 & 0.094 & 0 & 100 & 0 & \\\\\n  & 43 & 0.92 & 0.180 & 7.6 & 90.2 & 2.2 & \\\\\n  & 44 & 0.23 & 0 & 0 & 100 & 0 & \\\\\n\\cmidrule(l){2-8}\n  & \\multicolumn{2}{l}{3-seed mean$\\pm$std} & \\makebox[0pt][l]{$0.54{\\pm}0.35$} & & \\makebox[0pt][l]{$0.09{\\pm}0.09$} & & \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\subsection{Early-Training Hacking Analysis (100-Step Checkpoint)}\n\\label{app:100step}\n\nTo control for the prove-rate confound in our SFT comparison (\\S\\ref{sec:diagnostic}), we analyze the exec-only checkpoint at 100 training steps (seed~42), where PR${=}32$\\%---higher than SFT (14\\%) but still early in training.\nOf the 32 proved samples, 9 (28.1\\%) exhibit H7 hacking (single premise identical to conclusion) and 1 (3.1\\%) exhibits H1 (conclusion embedded among premises), yielding a total hacking rate of 31.2\\%.\nBy contrast, SFT at comparable or lower PR shows 7.1\\% hacking (1/14 proved samples).\nThis demonstrates that reward hacking emerges early in GRPO training---well before the prove-rate plateau---and is not simply an artifact of having more proved samples available for exploitation.\nThe 100-step hacking rate (31.2\\%) is already substantially above SFT (7.1\\%), supporting the claim that hacking is associated with RL optimization rather than prove-rate level alone.\n",
+                "numLines": 45,
+                "startLine": 405,
+                "totalLines": 449
+              }
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MGQNcDdg7NFuH4dKkQub21",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/appendix.tex",
+                "offset": 300,
+                "limit": 70
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d5e76642-4b80-417b-bcfe-3fabceb51940",
+            "uuid": "41f0a6bc-fe3c-4d32-9ba2-74539440dc47",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FJxwtBqMLHw9dd8y1mFhh1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3692,
+                "cache_creation_input_tokens": 849,
+                "cache_read_input_tokens": 33679,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 849
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-15T05:19:36.066Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MGQNcDdg7NFuH4dKkQub21",
+              "type": "tool_result",
+              "content": "300\tObserved in Prolog exec+STA seed~44 (PR~$=0.97$, ISR~$=0.912$).\n301\t95/97 proved samples have $n_{\\text{necessary}}=1$, confirming functional tautology despite the strict classifier reporting 100\\% non-hacking.\n302\t\n303\t\n304\t\\section{Per-Seed Detailed Results}\n305\t\\label{app:detailed-results}\n306\t\n307\tTables~\\ref{tab:fol-beta01-detailed} and \\ref{tab:prolog-detailed} report full per-seed results.\n308\tAll metrics are computed by \\texttt{eval\\_sta.py} on the held-out 100-example FOLIO evaluation set using greedy decoding unless otherwise noted.\n309\tISR values are proved-only ISR$^*$.\n310\t\n311\t\\begin{table*}[t]\n312\t\\centering\n313\t\\caption{Detailed per-seed results: FOL (Prover9). Includes the per-seed $\\beta{=}0.1$ breakdown referenced from Table~\\ref{tab:goodhart-landscape}. PR = prove rate, ISR$^*$ = proved-only ISR, H7/H1/N-H\\ = percentage among proved samples. ``---'' indicates data not available. $^\\dagger$s43 uses sampling eval ($T{=}0.7$).}\n314\t\\label{tab:fol-detailed}\n315\t\\label{tab:fol-beta01-detailed}\n316\t\\footnotesize\n317\t\\setlength{\\tabcolsep}{3pt}\n318\t\\begin{tabular}{@{}llccccccl@{}}\n319\t\\toprule\n320\t\\textbf{Condition} & \\textbf{Seed} & \\textbf{Steps} & \\textbf{PR} & \\textbf{ISR$^*$} & \\textbf{H7\\%} & \\textbf{H1\\%} & \\textbf{N-H\\%} & \\textbf{Notes} \\\\\n321\t\\midrule\n322\t\\multicolumn{9}{@{}l}{\\textit{Baselines}} \\\\\n323\tBase model (no training)\n324\t  & --- & 0 & 0.12 & 0.064 & --- & --- & --- & Pre-training \\\\\n325\tGround-truth FOL\n326\t  & --- & --- & 0.18 & 0.559 & --- & --- & --- & Human formalizations \\\\\n327\tSFT\n328\t  & 42 & ${\\sim}$8 ep. & 0.14 & 0.571 & 0 & 7.1 & \\textbf{92.9} & Supervised, no RL \\\\\n329\t\\midrule\n330\t\\multicolumn{9}{@{}l}{\\textit{Exec-only}} \\\\\n331\t  & 42 & 100 & 0.32 & \\textbf{0.642} & --- & --- & --- & Early checkpoint \\\\\n332\t  & 42 & 500 & 0.93 & 0.132 & 0 & 87.1 & 12.9 & \\\\\n333\t  & 42 & 1000 & 0.96 & 0.003 & 0 & 100 & 0 & Contradiction explosion \\\\\n334\t  & 43 & 500 & 0.14 & 0$^\\dagger$ & --- & --- & --- & $^\\dagger$Sampling $T{=}0.7$ \\\\\n335\t  & 44 & 500 & 0.98 & 0.582 & 100 & 0 & 0 & Tautological collapse \\\\\n336\t\\cmidrule(l){2-9}\n337\t  & \\multicolumn{2}{l}{3-seed mean$\\pm$std$^\\dagger$} & \\makebox[0pt][l]{$0.68{\\pm}0.47$} & & \\makebox[0pt][l]{$0.238{\\pm}0.30$} & & & 500-step only \\\\\n338\t\\midrule\n339\t\\multicolumn{9}{@{}l}{\\textit{ISR $\\beta{=}0.1$}} \\\\\n340\t  & 42 & 500 & 0.81 & 0.415 & 16.0 & 51.9 & \\textbf{30.9} & Mixed H1+H7 \\\\\n341\t  & 43 & 500 & 0.61 & 0.830 & \\textbf{96.7} & 0 & ${\\sim}$3 & H7 dominant \\\\\n342\t  & 44 & 500 & 0.89 & 0.902 & 86.5 & 0 & ${\\sim}$13.5 & H7 dominant \\\\\n343\t\\cmidrule(l){2-9}\n344\t  & \\multicolumn{2}{l}{3-seed mean$\\pm$std} & \\makebox[0pt][l]{$0.77{\\pm}0.14$} & & \\makebox[0pt][l]{$0.716{\\pm}0.26$} & & & \\\\\n345\t\\midrule\n346\t\\multicolumn{9}{@{}l}{\\textit{ISR $\\beta{=}0.3$}} \\\\\n347\t  & 42 & 500 & 0.18 & 0.143 & --- & --- & --- & PR collapse \\\\\n348\t\\midrule\n349\t\\multicolumn{9}{@{}l}{\\textit{Random $\\beta{=}0.1$}} \\\\\n350\t  & 42 & 500 & 0.79 & 0.131 & 0 & 70.9 & 29.1 & \\\\\n351\t  & 43 & 500 & 0.88 & 0.058 & 0 & 93.2 & 6.8 & \\\\\n352\t  & 44 & 500 & 0.89 & 0.070 & 0 & 79.8 & 20.2 & \\\\\n353\t\\cmidrule(l){2-9}\n354\t  & \\multicolumn{2}{l}{3-seed mean$\\pm$std} & \\makebox[0pt][l]{$0.85{\\pm}0.06$} & & \\makebox[0pt][l]{$0.086{\\pm}0.039$} & & & H7 = 0\\% all seeds \\\\\n355\t\\midrule\n356\t\\multicolumn{9}{@{}l}{\\textit{Random $\\beta{=}0.3$}} \\\\\n357\t  & 42 & 500 & 0.48 & 0.094 & 0 & 100 & 0 & $n_{\\text{comp}} = 9.6$ \\\\\n358\t\\bottomrule\n359\t\\end{tabular}\n360\t\\end{table*}\n361\t\n362\t\n363\t\\begin{table*}[t]\n364\t\\centering\n365\t\\caption{Detailed per-seed results: Prolog (SWI-Prolog 8.4.2). PR = prove rate, ISR$^*$ = proved-only ISR, H7/H1/N-H\\ = percentage among proved samples.  ``---'' indicates data not available.}\n366\t\\label{tab:prolog-detailed}\n367\t\\small\n368\t\\begin{tabular}{@{}llcccccl@{}}\n369\t\\toprule"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "d5e76642-4b80-417b-bcfe-3fabceb51940",
+            "uuid": "a4219a77-8767-4596-8b81-e82c91a1d521",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/appendix.tex",
+                "content": "Observed in Prolog exec+STA seed~44 (PR~$=0.97$, ISR~$=0.912$).\n95/97 proved samples have $n_{\\text{necessary}}=1$, confirming functional tautology despite the strict classifier reporting 100\\% non-hacking.\n\n\n\\section{Per-Seed Detailed Results}\n\\label{app:detailed-results}\n\nTables~\\ref{tab:fol-beta01-detailed} and \\ref{tab:prolog-detailed} report full per-seed results.\nAll metrics are computed by \\texttt{eval\\_sta.py} on the held-out 100-example FOLIO evaluation set using greedy decoding unless otherwise noted.\nISR values are proved-only ISR$^*$.\n\n\\begin{table*}[t]\n\\centering\n\\caption{Detailed per-seed results: FOL (Prover9). Includes the per-seed $\\beta{=}0.1$ breakdown referenced from Table~\\ref{tab:goodhart-landscape}. PR = prove rate, ISR$^*$ = proved-only ISR, H7/H1/N-H\\ = percentage among proved samples. ``---'' indicates data not available. $^\\dagger$s43 uses sampling eval ($T{=}0.7$).}\n\\label{tab:fol-detailed}\n\\label{tab:fol-beta01-detailed}\n\\footnotesize\n\\setlength{\\tabcolsep}{3pt}\n\\begin{tabular}{@{}llccccccl@{}}\n\\toprule\n\\textbf{Condition} & \\textbf{Seed} & \\textbf{Steps} & \\textbf{PR} & \\textbf{ISR$^*$} & \\textbf{H7\\%} & \\textbf{H1\\%} & \\textbf{N-H\\%} & \\textbf{Notes} \\\\\n\\midrule\n\\multicolumn{9}{@{}l}{\\textit{Baselines}} \\\\\nBase model (no training)\n  & --- & 0 & 0.12 & 0.064 & --- & --- & --- & Pre-training \\\\\nGround-truth FOL\n  & --- & --- & 0.18 & 0.559 & --- & --- & --- & Human formalizations \\\\\nSFT\n  & 42 & ${\\sim}$8 ep. & 0.14 & 0.571 & 0 & 7.1 & \\textbf{92.9} & Supervised, no RL \\\\\n\\midrule\n\\multicolumn{9}{@{}l}{\\textit{Exec-only}} \\\\\n  & 42 & 100 & 0.32 & \\textbf{0.642} & --- & --- & --- & Early checkpoint \\\\\n  & 42 & 500 & 0.93 & 0.132 & 0 & 87.1 & 12.9 & \\\\\n  & 42 & 1000 & 0.96 & 0.003 & 0 & 100 & 0 & Contradiction explosion \\\\\n  & 43 & 500 & 0.14 & 0$^\\dagger$ & --- & --- & --- & $^\\dagger$Sampling $T{=}0.7$ \\\\\n  & 44 & 500 & 0.98 & 0.582 & 100 & 0 & 0 & Tautological collapse \\\\\n\\cmidrule(l){2-9}\n  & \\multicolumn{2}{l}{3-seed mean$\\pm$std$^\\dagger$} & \\makebox[0pt][l]{$0.68{\\pm}0.47$} & & \\makebox[0pt][l]{$0.238{\\pm}0.30$} & & & 500-step only \\\\\n\\midrule\n\\multicolumn{9}{@{}l}{\\textit{ISR $\\beta{=}0.1$}} \\\\\n  & 42 & 500 & 0.81 & 0.415 & 16.0 & 51.9 & \\textbf{30.9} & Mixed H1+H7 \\\\\n  & 43 & 500 & 0.61 & 0.830 & \\textbf{96.7} & 0 & ${\\sim}$3 & H7 dominant \\\\\n  & 44 & 500 & 0.89 & 0.902 & 86.5 & 0 & ${\\sim}$13.5 & H7 dominant \\\\\n\\cmidrule(l){2-9}\n  & \\multicolumn{2}{l}{3-seed mean$\\pm$std} & \\makebox[0pt][l]{$0.77{\\pm}0.14$} & & \\makebox[0pt][l]{$0.716{\\pm}0.26$} & & & \\\\\n\\midrule\n\\multicolumn{9}{@{}l}{\\textit{ISR $\\beta{=}0.3$}} \\\\\n  & 42 & 500 & 0.18 & 0.143 & --- & --- & --- & PR collapse \\\\\n\\midrule\n\\multicolumn{9}{@{}l}{\\textit{Random $\\beta{=}0.1$}} \\\\\n  & 42 & 500 & 0.79 & 0.131 & 0 & 70.9 & 29.1 & \\\\\n  & 43 & 500 & 0.88 & 0.058 & 0 & 93.2 & 6.8 & \\\\\n  & 44 & 500 & 0.89 & 0.070 & 0 & 79.8 & 20.2 & \\\\\n\\cmidrule(l){2-9}\n  & \\multicolumn{2}{l}{3-seed mean$\\pm$std} & \\makebox[0pt][l]{$0.85{\\pm}0.06$} & & \\makebox[0pt][l]{$0.086{\\pm}0.039$} & & & H7 = 0\\% all seeds \\\\\n\\midrule\n\\multicolumn{9}{@{}l}{\\textit{Random $\\beta{=}0.3$}} \\\\\n  & 42 & 500 & 0.48 & 0.094 & 0 & 100 & 0 & $n_{\\text{comp}} = 9.6$ \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table*}\n\n\n\\begin{table*}[t]\n\\centering\n\\caption{Detailed per-seed results: Prolog (SWI-Prolog 8.4.2). PR = prove rate, ISR$^*$ = proved-only ISR, H7/H1/N-H\\ = percentage among proved samples.  ``---'' indicates data not available.}\n\\label{tab:prolog-detailed}\n\\small\n\\begin{tabular}{@{}llcccccl@{}}\n\\toprule",
+                "numLines": 70,
+                "startLine": 300,
+                "totalLines": 449
+              }
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have all the data I need. Let me compile the inconsistencies.\n\nKey findings:\n\n### 1. CRITICAL: Conclusion has stale Random β=0.3 number\nConclusion line 5: \"at $\\beta{=}0.3$, PR collapses (18\\% vs.\\ 48\\% random)\"\n\nThe \"48%\" refers to Random β=0.3 seed 42 (the only seed that was originally available). Now with 3-seed data:\n- Random β=0.3 mean = 54±35%\n\n\n- Random β=0.3 s42 = 48%, s43 = 92%, s44 = 23%\n\nSo the conclusion is comparing seed-42 results across conditions (18% ISR vs. 48% Random), which isn't technically wrong but is misleading since it cherry-picks a single seed rather than showing the new mean performance of 54%.\n\nThe real issue is that Random also has collapsing seeds now (s44 = 23%), so presenting just the 18% vs. 48% comparison obscures that both methods have high variance at β=0.3. I need to either update the conclusion to use the 3-seed means or explicitly note that I'm comparing individual seeds.\n\nNow checking the Random β=0.3 entries in Table 1 — the N-H value of 1% checks out as the mean across the three seeds, and I'm verifying the H7 column next.\n\nFor H7, the individual seed values average to about 2.5%, which rounds to the reported 3%. The H1 column shows 96% in the table, and while the mean of the three seeds comes to roughly 96.7%, the 96% figure is close enough. Now I'm looking at the ISR values for Random β=0.3, which should be 0.09±0.09 according to the table, but the seed-level data shows 0.094, 0.180, and 0 — let me calculate what the mean and standard deviation actually are. I'm verifying the standard deviation calculation for the PR values—the deviations from the mean of 54.3% are -6.3, 37.7, and -31.3 percentage points, which when squared and averaged give a population standard deviation of about 28.5% or sample standard deviation of 35%, confirming the reported ±35%. Now I'm checking the corresponding text in the experiments document to make sure it accurately reflects these statistics and the range of 23–92%. The mean non-hacking rate across seeds is around 0.7%, which satisfies the ≤1% claim, though seed 43 individually hits 2.2% — so the phrasing \"across all 3 seeds\" likely refers to the aggregate rather than each seed individually. This is a minor inconsistency worth flagging. Moving on to check the β=0.3 instability claims in the abstract and introduction, which align with Table 1 showing extreme cross-seed variation.\n\nNow I'm verifying the detailed tables and cross-references — the fol-detailed table intentionally focuses on β=0.1 with only one seed for β=0.3, while the full β=0.3 picture is in a separate tab. All figure, table, algorithm, and appendix references match their defined labels. I've verified all the cross-references are working correctly. Now I'm spotting two issues that need fixing: the conclusion cites a stale \"48% random\" baseline for β=0.3 that should reflect the updated 3-seed mean of 54±35%, and section 4.3 claims \"≤1% non-hacking across all 3 seeds\" but Random β=0.3 seed-43 actually hits 2.2%, though the mean does stay under 1%.\n\nLet me verify the Abstract numbers are accurate—the ISR β=0.3 instability (66±42%) and lowest seed (18%) check out, and the 64.5% conclusion duplication for H7 under ISR β=0.1 matches the table data. I'm verifying the ISR degradation calculation—from 0.642 to 0.003 represents a 99.5% drop, which checks out. Now I'm cross-referencing the key claims across the paper: the 64.5% duplication rate in the introduction, the 1.06× random baseline after controlling for premise count, the PR variance of 66±42%, and the Prolog results showing 0% non-hacking across all seeds.\n\nMoving to the conclusion, I'm checking the collapse metrics—99.5% ISR degradation and 92.9% non-hacking rates both verify. The critical claim about conclusion duplication at β=0.1 shows 64.5% versus 0% under matched random, with the ISR gain reducing to just 1.06× random once confounds are controlled. At the higher β=0.3 threshold, precision recall completely collapses to 18% compared to 48% under random baseline.\n\nBut I'm realizing the comparison here is problematic. The 18% figure appears to be cherry-picking the worst ISR seed (s42) without acknowledging it's a single outlier, and the 48% random baseline is also that same seed's performance—quite low itself. The real issue is that after updating to three seeds, the ISR mean actually reaches 66% while random sits at 54%, which directly contradicts the \"collapse\" framing. The main experimental text correctly reports these means (ISR 66±42%, Random 54±35%), so the conclusion is relying on outdated single-seed numbers that misrepresent the actual findings.\n\nLet me check whether the abstract and introduction are making similar claims about Random β=0.3 specifically. Looking at the abstract and introduction, they both reference ISR β=0.3 producing 66±42% with individual seeds as low as 18%, but neither mentions Random β=0.3 numbers at all—which is actually fine since the conclusion is the only place making that comparison.\n\nNow I'm verifying that the numbers in the task match what's in Table 1: Random β=0.3 shows PR=54±35%, H7=3%, H1=96%, N-H=1%, and ISR β=0.3 shows PR=66±42%, which all check out. Let me also scan the appendix beta03 section to make sure the detailed per-seed data and the 3-seed means align with these updated figures.\n\nLooking at the appendix table, the Random β=0.3 seeds show 0.48, 0.92, and 0.23 with a mean of 0.54±0.35, which matches Table 1. For ISR β=0.3, the text correctly references the range of 18–95% and the individual seed results all line up with the appendix table data. Everything appears consistent across the document.\n\nNow I'm identifying the key discrepancies: the conclusion references 48% for Random β=0.3, but that's only seed 42—the paper actually has three seeds with a mean of 54±35%, so that comparison needs updating. There's also a potential issue with the claim about ≤1% non-hacking across all three Random β=0.3 seeds, since seed 43 shows 2.2%. And the detailed table in the appendix only includes seed 42 for both conditions, not the full three-seed data.\n\nLet me verify the range claim of 23–92% for Random β=0.3 against the actual seed values: seed 42 is 48%, seed 43 is 92%, seed 44 is 23%—that checks out. Before finalizing the report, I need to reread that conclusion line one more time to make sure I'm capturing the exact issue.\n\nLooking at the phrasing \"PR collapses (18% vs. 48% random)\"—the 18% refers to ISR at β=0.3 while 48% is the random control. This framing suggests ISR performs worse than random, but that's misleading because the overall means show ISR at 66% versus random at 54%, so ISR actually has higher mean PR. The discrepancy is that seed 42 specifically shows ISR at 18% versus random at 48%, which is just one seed's behavior being highlighted rather than the full picture. higher than Random (54%), but that's heavily skewed by s44's gaming behavior. The real issue is that ISR shows extreme instability — it either crashes performance or achieves it through pure exploitation, while the conclusion frames this selectively. I need to acknowledge that the cherry-picking goes both directions and that using 3-seed means would be more honest than highlighting individual seed comparisons.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d5e76642-4b80-417b-bcfe-3fabceb51940",
+            "uuid": "502951ac-ee95-4da6-b1b1-a9ea607ace68",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UbiNE3jpvdTDEsdXnpdqdn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 9185,
+                "cache_read_input_tokens": 34528,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 9185
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Consistency Check Report\n\n### CRITICAL (1)\n\n**Conclusion `conclusion.tex:5` — stale Random β=0.3 number**\n\n> \"at $\\beta{=}0.3$, PR collapses (18\\% vs.\\ 48\\% random)\"\n\n- \"18%\" = ISR β=0.3 seed-42 (correct per-seed value)\n- \"48%\" = Random β=0.3 seed-42 only — this was the old single-seed number\n\nAfter the 3-seed update, Random β=0.3 **mean = 54±35%** (Table 1, `experiments.tex:60`). The conclusion still uses the old seed-42-only value (48%) without qualification. Meanwhile `experiments.tex:85` correctly reports the 3-seed mean: \"PR=54±35%, spanning 23--92%\".\n\nAdditionally, comparing single cherry-picked seeds is misleading: ISR 3-seed mean PR (66%) is actually *higher* than Random (54%). The \"collapse\" framing only holds for s42 specifically, while s44 shows the opposite (ISR 95% vs Random 23%).\n\n**Fix needed:** Update to use 3-seed means, e.g., \"at $\\beta{=}0.3$, cross-seed instability is extreme (PR $66{\\pm}42\\%$, Random $54{\\pm}35\\%$)\".\n\n---\n\n### WARNING (1)\n\n**Experiments `experiments.tex:85` — \"≤1% non-hacking across all 3 seeds\"**\n\nRandom β=0.3 per-seed N-H (`appendix.tex:432-434`): s42=0%, s43=**2.2%**, s44=0%. The phrase \"≤1% non-hacking across all 3 seeds\" implies each seed is ≤1%, but s43 is 2.2%. The **mean** (~0.7%) rounds to ≤1%, so if \"across all 3 seeds\" means \"on average,\" it's fine. If it means \"each seed individually,\" it's inaccurate.\n\n**Suggested fix:** Change to \"${\\leq}1\\%$ mean non-hacking\" or \"${\\leq}3\\%$ non-hacking per seed\".\n\n---\n\n### INFO (2)\n\n1. **`appendix.tex:314-315` — tab:fol-detailed only shows β=0.3 seed-42** for both ISR and Random conditions. Seeds 43/44 are in the separate `tab:beta03-detailed`. This is by design but could confuse readers expecting all β=0.3 data in one place.\n\n2. **Abstract vs Table 1 rounding: H7 64.5% vs 65%** — Abstract uses the exact fraction (149/231 = 64.5%, `abstract.tex:7`), Table 1 rounds to 65% (`experiments.tex:56`). Consistent intent, just different precision. No action needed.\n\n---\n\n### Verified Consistent\n\n- Abstract ISR β=0.3 PR 66±42% ✓ matches Table 1\n- Abstract/Introduction 99.5% collapse (0.642→0.003) ✓\n- Abstract/Introduction/Conclusion 1.06× ✓\n- Abstract/Introduction/Conclusion 64.5% vs 0% H7 ✓\n- Abstract/Introduction ρ=−0.049 ✓\n- SFT 92.9% non-hacking ✓ everywhere\n- All `\\ref{}`/`\\label{}` pairs matched — 0 dangling references\n- ISR β=0.3 per-seed numbers in §4.3 match appendix tab:beta03-detailed ✓\n- Random β=0.3 Table 1 aggregates match per-seed data ✓\n\n**Summary: 1 CRITICAL, 1 WARNING, 2 INFO.** The critical issue is a stale \"48% random\" in the conclusion that should reflect the updated 3-seed mean of 54%."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "d5e76642-4b80-417b-bcfe-3fabceb51940",
+            "uuid": "ccfd1c8f-648b-421c-bc7f-ec8fca5cc09c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UbiNE3jpvdTDEsdXnpdqdn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 9185,
+                "cache_read_input_tokens": 34528,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 9185
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Consistency Check Report\n\n### CRITICAL (1)\n\n**Conclusion `conclusion.tex:5` — stale Random β=0.3 number**\n\n> \"at $\\beta{=}0.3$, PR collapses (18\\% vs.\\ 48\\% random)\"\n\n- \"18%\" = ISR β=0.3 seed-42 (correct per-seed value)\n- \"48%\" = Random β=0.3 seed-42 only — this was the old single-seed number\n\nAfter the 3-seed update, Random β=0.3 **mean = 54±35%** (Table 1, `experiments.tex:60`). The conclusion still uses the old seed-42-only value (48%) without qualification. Meanwhile `experiments.tex:85` correctly reports the 3-seed mean: \"PR=54±35%, spanning 23--92%\".\n\nAdditionally, comparing single cherry-picked seeds is misleading: ISR 3-seed mean PR (66%) is actually *higher* than Random (54%). The \"collapse\" framing only holds for s42 specifically, while s44 shows the opposite (ISR 95% vs Random 23%).\n\n**Fix needed:** Update to use 3-seed means, e.g., \"at $\\beta{=}0.3$, cross-seed instability is extreme (PR $66{\\pm}42\\%$, Random $54{\\pm}35\\%$)\".\n\n---\n\n### WARNING (1)\n\n**Experiments `experiments.tex:85` — \"≤1% non-hacking across all 3 seeds\"**\n\nRandom β=0.3 per-seed N-H (`appendix.tex:432-434`): s42=0%, s43=**2.2%**, s44=0%. The phrase \"≤1% non-hacking across all 3 seeds\" implies each seed is ≤1%, but s43 is 2.2%. The **mean** (~0.7%) rounds to ≤1%, so if \"across all 3 seeds\" means \"on average,\" it's fine. If it means \"each seed individually,\" it's inaccurate.\n\n**Suggested fix:** Change to \"${\\leq}1\\%$ mean non-hacking\" or \"${\\leq}3\\%$ non-hacking per seed\".\n\n---\n\n### INFO (2)\n\n1. **`appendix.tex:314-315` — tab:fol-detailed only shows β=0.3 seed-42** for both ISR and Random conditions. Seeds 43/44 are in the separate `tab:beta03-detailed`. This is by design but could confuse readers expecting all β=0.3 data in one place.\n\n2. **Abstract vs Table 1 rounding: H7 64.5% vs 65%** — Abstract uses the exact fraction (149/231 = 64.5%, `abstract.tex:7`), Table 1 rounds to 65% (`experiments.tex:56`). Consistent intent, just different precision. No action needed.\n\n---\n\n### Verified Consistent\n\n- Abstract ISR β=0.3 PR 66±42% ✓ matches Table 1\n- Abstract/Introduction 99.5% collapse (0.642→0.003) ✓\n- Abstract/Introduction/Conclusion 1.06× ✓\n- Abstract/Introduction/Conclusion 64.5% vs 0% H7 ✓\n- Abstract/Introduction ρ=−0.049 ✓\n- SFT 92.9% non-hacking ✓ everywhere\n- All `\\ref{}`/`\\label{}` pairs matched — 0 dangling references\n- ISR β=0.3 per-seed numbers in §4.3 match appendix tab:beta03-detailed ✓\n- Random β=0.3 Table 1 aggregates match per-seed data ✓\n\n**Summary: 1 CRITICAL, 1 WARNING, 2 INFO.** The critical issue is a stale \"48% random\" in the conclusion that should reflect the updated 3-seed mean of 54%."
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 188867,
+            "duration_api_ms": 191941,
+            "num_turns": 10,
+            "stop_reason": "end_turn",
+            "session_id": "d5e76642-4b80-417b-bcfe-3fabceb51940",
+            "total_cost_usd": 0.5331751,
+            "usage": {
+              "input_tokens": 3696,
+              "cache_creation_input_tokens": 31872,
+              "cache_read_input_tokens": 105102,
+              "output_tokens": 9251,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 31872,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 6276,
+                  "cache_read_input_tokens": 34528,
+                  "cache_creation_input_tokens": 9185,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 9185
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 3059,
+                "outputTokens": 493,
+                "cacheReadInputTokens": 18426,
+                "cacheCreationInputTokens": 19442,
+                "webSearchRequests": 0,
+                "costUSD": 0.0316691,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 3696,
+                "outputTokens": 9251,
+                "cacheReadInputTokens": 105102,
+                "cacheCreationInputTokens": 31872,
+                "webSearchRequests": 0,
+                "costUSD": 0.501506,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "a38b2685-a114-43a7-8da2-8664187101e5"
+          },
+          "id": "event-000035"
+        }
+      ],
+      "message_count": 19
+    }
+  ],
+  "readable_path": "readable/worker-executions/review-post-to-reviewer-v2.md"
+}

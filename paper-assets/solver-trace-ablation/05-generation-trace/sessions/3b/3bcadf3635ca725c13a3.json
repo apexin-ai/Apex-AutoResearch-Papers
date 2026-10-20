@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3bcadf3635ca725c13a3",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "knowledge literature map goodhart",
+  "task_key": "worker_knowledge_literature-map-goodhart_20260514T085034",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_knowledge_literature-map-goodhart_20260514T085034_result.json",
+    "occurrence": 1,
+    "bytes": 1247,
+    "sha256": "d81a0c358673ac1a2dcfdf9a0e95764bafa1e921ac74496a25827ea860edd968"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Added 14 papers across 3 categories:\n\n**New category `goodhart-overoptimization` (6 papers):**\n- Manheim & Garrabrant 2019 — Goodhart 四类分类法\n- Pan et al. 2022 (ICLR) — reward misspecification phase transition\n- Kwa et al. 2024 (NeurIPS) — catastrophic Goodhart\n- Rafailov et al. 2024 (NeurIPS) — DAA β dose-response scaling laws\n- Huang et al. 2025 (ICLR Spotlight) — chi-squared 替代 KL\n- Coste et al. 2023 (NeurIPS Workshop) — RM ensemble 缓解 overoptimization\n\n**New category `verification-reward` (5 papers):**\n- RLSF (Jha et al. 2024) — solver 证书作为 token-level reward\n- FoVer-PRM (Kamoi et al. 2025) — Z3/Isabelle 生成 PRM 训练数据\n- DeepSeek-Prover-V1.5 (2024, ICLR 2025) — GRPO + Lean binary reward\n- AlphaProof (DeepMind 2024) — binary verification at IMO scale\n- Math-Shepherd (Wang et al. 2024, ACL) — 自动 process supervision\n\n**Existing category `reward-shaping` 追加 (3 papers):**\n- BiPaRS (Hu et al. 2020, NeurIPS) — 双层优化学习 shaping 权重\n- DAPO (Yu et al. 2025, ByteDance) — 多组件 reward 稳定性技术\n\nGao 2023、Skalse 2022、Moskovitz 2024 等已存在，跳过。literature_map.yaml 现共 47 篇论文、8 类别。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/knowledge-literature-map-goodhart.md"
+}

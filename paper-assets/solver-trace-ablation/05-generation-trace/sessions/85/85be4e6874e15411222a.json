@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "85be4e6874e15411222a",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_12_1778866556.md",
+  "task_key": "loop_12_1778866556",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_12_1778866556.md",
+    "occurrence": 1,
+    "bytes": 3795,
+    "sha256": "a61aeba4a5fe5af4abb07d03fa3e3c8539232b70201bbe1d0acbeb5eaacb698f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 12\nreason: idle_timeout\nupdated: '2026-05-15T16:55:38+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-39279 的 cuda:0 和 cuda:1，**不可用其他卡**\n- `--gpu 0` 始终表示\"分配到的第一块卡\"（框架注入 CUDA_VISIBLE_DEVICES），不要用物理 GPU 编号\n- s43 历史：r1/r2 因 `--gpu 0` 覆盖 CUDA_VISIBLE_DEVICES 导致 OOM，必须用 `--gpu 1` 指定物理卡（参见 plan009-sft-baseline-s44-1000-r3 的教训）\n- 磁盘满是本项目反复出现的问题（/dev/md0 250G 满），**提交实验前必须先 df -h 确认可用空间 ≥ 50GB**\n- checkpoint 写到 `/root/autodl-tmp/outputs/`，不要写根分区\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-39279，账号 root\n- 工作目录：`/root/solver-trace-ablation`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- 输出目录：`/root/autodl-tmp/outputs/`（各实验子目录）\n- 数据：`/root/solver-trace-ablation/data/train_500_seed42.jsonl`\n- 配置：`/root/solver-trace-ablation/configs/grpo_exec_only.yaml`\n- HF cache：`/root/autodl-tmp/.hf_cache/`（推测）\n- 活跃进程：**无**——两个实验均已失败退出，cron reconcile 返回 0\n- Worker 在跑：`worker_diagnose_disk-cleanup-westd_20260515T135142`（磁盘诊断+清理，尚未回调）\n\n### 3. 📊 当前状态\n**刚做完**：收到 plan001-exec-only-s44-1000 失败 cron 回调，确认两个 exec-only 1000步实验均因磁盘满失败，已向 Director 汇报。\n\n**Registry 关键实验**：\n- plan001-exec-only-s43-1000: DONE/failed — 磁盘满，step 150 崩溃，checkpoint-100 完整(15GB)\n- plan001-exec-only-s44-1000: DONE/failed — 磁盘满，手动 kill，无有效 checkpoint\n- plan009-sft-baseline-s44-1000-r3: DONE/success — SFT 3-seed 已全部完成(D079)\n- 其余 ~78 个实验均 DONE\n\n**等待中**：\n- Worker `worker_diagnose_disk-cleanup-westd_20260515T135142` 的 [WORKER DONE] 回调——磁盘清理结果\n- 收到 s44 的重复 cron 回调（同一实验两次），已忽略第二次\n\n### 4. 📋 待办\n- 磁盘清理 Worker 回调到 → 确认释放空间 ≥ 100GB → 立即重提两个实验：\n  - s43: 检查能否从 checkpoint-100 恢复（若不行则从头跑）\n  - s44: 从头跑（seed=44, 1000步）\n- 如果清理后空间仍不够 → 向 Director 汇报，列出可删的已完成实验 checkpoint 请求授权\n- 两个实验完成 → 3-seed exec-only 1000步统计 → 更新论文 §4 最终数据表（SFT 92.2% vs exec-only X% vs ISR ~2% vs random 0%）\n- 3-seed 完成 → 论文 TeX 数字一致性审计 → 提交审稿\n\n### 5. 🎯 战略上下文\n- **核心结论**：Goodhart collapse 是 RL(GRPO) 特有现象。SFT 3-seed 1000步 genuine=92.2%±1.2%（零 hacking），GRPO 各条件 0-2.2%。统计检验全部通过（Bootstrap CI, permutation test B=10000）\n- **三个 Claim 全部有证据支撑**：Claim 1(STA诊断) ✅ / Claim 2(Goodhart/ISR无结构优势) ✅ / Claim 3(跨逻辑泛化) ✅\n- **唯一缺口**：exec-only s43/s44 1000步数据——这是论文最终数据表的最后两个数据点。s42 已完成(PR=0.96, ISR=0.003)，预期 s43/s44 趋势一致\n- **DDL 2026-05-25**（剩 10 天），时间充裕但不能拖\n- **易错点**：\n  - 磁盘满是反复问题，每次提交前必须检查空间\n  - D082 taxonomy 已升级到 8 种（新增 H8 conjunction conditioning），写论文时注意不是 7 种\n  - D051 的 2.4x 已作废，premise-count-matched 1.06x 是定论\n  - Prolog STA s44 是 query-as-fact gaming 不是 genuine（D059 Reviewer 修正）\n  - 实验总数 81 个，success 率低（22/81），大量 failed 是磁盘/OOM/配置问题，不是方法问题\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-12-1778866556.md"
+}

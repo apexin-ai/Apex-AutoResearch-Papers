@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fc542013ad72488332b6",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "paper d095 experiments",
+  "task_key": "worker_paper_d095-experiments_20260515T195541",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_d095-experiments_20260515T195541_result.json",
+    "occurrence": 1,
+    "bytes": 1519,
+    "sha256": "ffb99b7237664323d30c19f9c4f57f4d8ff43b770eb543f9a0342b4b41804aa8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All edits are consistent. Let me verify the key data points against D095:\n\n**Table 1 verification:**\n- ISR β=0.1: H7=71% (163/231=70.6%→71), H1=18% (42/231=18.2%→18), N-H=6% (14/231=6.06%→6) ✓\n- Random β=0.1: PR=87±8, ISR*=0.117±.04, H7=14% (36/262=13.7%→14), H1=71% (187/262=71.4%→71), N-H=10% (25/262=9.5%→10) ✓\n- §-footnote for Random H7 seed dependency ✓\n\n**§4.3 verification:**\n- Fisher p=1.3×10⁻³⁹, OR=15.05 ✓\n- Random H7 per-seed: 38.3% s43, 0% s42/s44 ✓\n- H1 updated to 71% (from 81%) ✓\n- PR updated to 87±8 (from 85±6) ✓\n- Genuine rate: 6.1% vs 9.5%, Fisher p=0.182, n.s. ✓\n- Wilson CI: ISR [3.6%, 9.9%], Random [6.5%, 13.7%] ✓\n- Removed \"significantly lower\" claim, \"conservative correction\" sentence, and \"crowd out genuine proofs\" ✓\n\n**§4.4 verification:**\n- H7: \"70.6% vs 13.7%, Fisher p=1.3×10⁻³⁹\" ✓\n- H7a: \"64.5%, 149/231\" ✓\n- H7b: \"6.1%, 14/231\" ✓\n- Table 2: H1=71, H7=14, H8=8, N-H=10 for Random; H7=71, N-H=6 for ISR ✓\n\n**Narrative A compliance:**\n1. No \"H7 is ISR-specific\" or \"zero under random\" ✓\n2. \"H7a is GRPO-general, seed-dependent; ISR amplifies it ~5x\" ✓\n3. Per-seed and pooled reported ✓\n4. Random H7 single-seed source marked with §-footnote ✓\n5. Genuine rate difference reported as n.s. (p=0.182) ✓\n6. Correct framing: ISR makes H7 \"near-deterministic\" vs stochastic ✓\n\nAll 10 edits applied across 4 sections. Data matches D095 FINAL values exactly."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-d095-experiments.md"
+}

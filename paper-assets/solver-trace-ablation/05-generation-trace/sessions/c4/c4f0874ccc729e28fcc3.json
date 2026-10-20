@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c4f0874ccc729e28fcc3",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "ops check training status loop2",
+  "task_key": "worker_ops_check-training-status-loop2_20260513T233646",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-training-status-loop2_20260513T233646_result.json",
+    "occurrence": 1,
+    "bytes": 901,
+    "sha256": "8f4c404e09b311b66366f350f9c9ba51fec057b1cff32a2dfb6b1ba60960ae70"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## plan001-r2 Status\n- PID 84901: **running** (elapsed 56m25s)\n- Total steps completed: **441/500**\n- Last metrics (step 441): prove_rate=0.875, isr=0.875, reward=0.875\n- Recent trend (steps 437-441): prove_rate 波动 0.625~1.0, 均值高位\n- Conclusion: **仍在运行，预计约 10 分钟内完成**\n\n## plan005 Status\n- PID 85790: **running** (elapsed 54m25s, bash wrapper)\n- Total steps completed: **376/500**\n- Last metrics (step 376): prove_rate=0.875, isr=0.136, reward=0.801\n- Recent trend (steps 372-376): prove_rate 0.5~1.0, isr 很低 (0.13~0.38), STA 信号贡献弱\n- Conclusion: **仍在运行，预计约 20 分钟内完成**\n\n## Server Health\n- GPU 0: 80323/97887 MiB (82%), utilization 87%\n- GPU 1: 80355/97887 MiB (82%), utilization 90%\n- Disk: root=27% (22G free), autodl-tmp=68% (82G free)\n- 两块 GPU 都在满载训练，服务器状态正常"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-training-status-loop2.md"
+}

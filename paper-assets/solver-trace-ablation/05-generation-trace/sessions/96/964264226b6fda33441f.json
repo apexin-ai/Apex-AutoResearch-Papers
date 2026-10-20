@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "964264226b6fda33441f",
+  "project": "solver-trace-ablation",
+  "kind": "worker",
+  "title": "setup qwen3 7b pilot prep",
+  "task_key": "worker_setup_qwen3-7b-pilot-prep_20260516T085843",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_setup_qwen3-7b-pilot-prep_20260516T085843.log",
+    "occurrence": 1,
+    "bytes": 595855,
+    "sha256": "a4f5014e3e83b31974316b4eebfce1fa915e29d0244dbea8e90127b002f0c196"
+  },
+  "statistics": {
+    "messages": 428,
+    "user_turns": 0,
+    "tool_calls": 172,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 80,
+      "tool_call": 172,
+      "tool_result": 172,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 428,
+      "chunks": [
+        {
+          "path": "964264226b6fda33441f-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "964264226b6fda33441f-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "964264226b6fda33441f-part-0003.json",
+          "message_count": 68
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/setup-qwen3-7b-pilot-prep.md"
+}

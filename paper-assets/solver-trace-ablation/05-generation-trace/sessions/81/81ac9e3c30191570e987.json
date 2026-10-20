@@ -1,0 +1,1318 @@
+{
+  "schema_version": "1.0",
+  "id": "81ac9e3c30191570e987",
+  "project": "solver-trace-ablation",
+  "kind": "conversation",
+  "title": "analysis r15 bonferroni",
+  "task_key": "worker_analysis_r15-bonferroni_20260520T044634",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_r15-bonferroni_20260520T044634.jsonl",
+    "occurrence": 1,
+    "bytes": 64887,
+    "sha256": "cf72739f4641b38d48efcc906cf1be1768fa114600d5fb1ddab59502b6920398"
+  },
+  "statistics": {
+    "messages": 63,
+    "user_turns": 0,
+    "tool_calls": 31,
+    "roles": {
+      "tool_call": 31,
+      "tool_result": 31,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T04:48:59.331610+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r15-bonferroni_20260520T044634",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "p[\\s=<>]|Fisher|permutation|significant|p-value|\\\\text.?test|McNemar|Wilcoxon|chi.?sq|bootstrap",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/experiments.tex",
+              "output_mode": "content",
+              "-n": "True",
+              "-i": "True"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T04:48:59.332063+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "32:\\caption{ISR collapse under exec-only GRPO (seed~42). (a) Both metrics on the same $[0,1]$ scale: PR rises 32\\%$\\to$93\\%$\\to$96\\% while ISR$^*$ falls $0.642{\\to}0.132{\\to}0.003$ over 100$\\to$500$\\to$1000 steps; the shaded region shows the growing divergence. (b) Hacking modes progressively replace non-hacking output: by step 1000, CE dominates 100\\% of proved samples.}\n52:The near-absence of hacking under identical data exposure is consistent with hacking being associated with RL optimization rather than data exposure; a 100-step checkpoint ($\\text{PR}{=}32\\%$, hacking${\\geq}31\\%$) partially controls for the PR-level confound (Appendix~\\ref{app:100step}).\n104:The matched cohort resolves this ambiguity: ISR yields 5/5 TS-dominated seeds versus 0/5 under random control (Fisher $p{=}0.004$), confirming TS as ISR-specific rather than a generic GRPO artifact.\n107:The reward gap explains this: TS tautologies receive expected reward ${\\geq}1{+}0.5\\beta$ (mean empirical $\\text{ISR}{=}0.535$) versus ${\\sim}1{+}0.26\\beta$ for non-hacking proofs (premise-count-matched), creating a persistent gradient toward tautological constructions regardless of dose.\n114:Fisher exact test on TS domination yields $\\text{OR}{=}\\infty$ ($p{=}0.004$, 95\\% CI $[2.30, \\infty]$, $\\text{BF}_{10}{=}77$); Mann-Whitney $U$ on $\\text{ISR}^*$: $U{=}25$, $p{=}0.004$, $r{=}1.0$; genuine rates do not differ significantly ($2.3\\%$ vs.\\ $5.9\\%$, $p{=}0.92$, permutation test; Appendix~\\ref{app:matched-stats}), with the point estimate consistently favoring Random (corrected 3-seed: ISR $6.1\\%$ vs.\\ Random $9.5\\%$; matched: $2.3\\%$ vs.\\ $5.9\\%$).\n166:CE, TS, and PG account for ${>}90\\%$ of hacking across ${\\geq}3$ seeds each; ISR modestly increases TS probability ($\\text{OR}{=}2.84$; Appendix Table~\\ref{tab:bootstrap-ci}), but per-seed variance dominates."
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r15-bonferroni_20260520T044634",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T04:48:59.332264+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r15-bonferroni_20260520T044634",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "p[\\s=<>]|Fisher|permutation|significant|p-value|\\\\text.?test|McNemar|Wilcoxon|chi.?sq|bootstrap",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/appendix.tex",
+              "output_mode": "content",
+              "-n": "True",
+              "-i": "True"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T04:48:59.332432+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "77:We verify this empirically: Spearman $\\rho(\\text{ISR}, \\text{NLI accuracy}) = -0.049$ ($p = 0.187$, n.s.) from a downstream NLI evaluation on exec-only checkpoint outputs.\n96:\\caption{Fisher exact tests across conditions. Non-hacking rate reported at 5-seed (primary) and 3-seed with PG+FN corrections (sensitivity); TS comparison at 5-seed (primary) and 3-seed (sensitivity).}\n97:\\label{tab:bootstrap-ci}\n124:To address potential inflation from within-seed dependence, we supplement pooled Fisher exact tests with two seed-aware analyses.\n127:Seed-level permutation tests (treating each seed as a single observation, $n{=}5$ per group) yield $p{=}0.28$ (TS) and $p{=}0.26$ (non-hacking), consistent with the severe power limitation of $n{=}5$ (minimum achievable $p{=}0.008$) rather than absence of effect.\n185:ISR was designed to \\emph{detect} reward gaming of $r_{\\text{exec}}$, yet it contains an inherent structural vulnerability: by its LOO definition, single-premise-equals-conclusion constructions receive artificially high ISR ($\\text{ISR}{\\geq}0.5$; empirically 93\\% at $\\text{ISR}{=}0.5$, 7\\% at $\\text{ISR}{=}1.0$; 5-seed ISR $\\beta{=}0.1$ pooled TS samples), creating a positive feedback loop once sampled during GRPO rollouts~\\citep{karwowski-goodhart-rl, kwa-catastrophic-goodhart}.\n225:Tautological & 2-comp $P{=}C$ & $\\bullet$ & 0 & 0 & 0 \\\\\n269:After PG reclassification and TS false-negative correction: ISR non-hacking $= 14/231 = 6.06\\%$ vs.\\ random non-hacking $= 25/262 = 9.5\\%$ (Fisher $p{=}0.182$, n.s.; Wilson 95\\% CI: ISR [3.6\\%, 9.9\\%], Random [6.5\\%, 13.7\\%]).\n270:The direction is consistent with ISR-amplified gaming modes (TS, PG) displacing non-hacking output, but the effect is not statistically significant at the conventional $\\alpha{=}0.05$ threshold.\n300:Since $P \\to P$ is trivially provable, this simultaneously maximizes exec reward.\n350:Two-component formalizations where the premise and conclusion are identical atomic or simple formulas, yielding a $P \\\n…[truncated 2233 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r15-bonferroni_20260520T044634",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T04:48:59.332600+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r15-bonferroni_20260520T044634",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "p[\\s=<>]|Fisher|permutation|significant|p-value|\\\\text.?test|McNemar|Wilcoxon|chi.?sq|bootstrap",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/introduction.tex",
+              "output_mode": "content",
+              "-n": "True",
+              "-i": "True"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T04:48:59.332760+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "5:This gap is especially consequential under RL, where the optimizer exploits any shortcut the reward fails to penalize~\\citep{skalse-reward-hacking, reward-hacking-survey}.\n10:We address this gap with \\emph{Solver Trace Ablation} (STA), which applies leave-one-out ablation on solver inputs to test whether each component of a proved formalization is individually necessary.\n14:An SFT baseline on identical data largely avoids hacking, consistent with hacking being associated with RL optimization rather than data exposure, though the large prove-rate gap prevents definitive causal attribution (\\S\\ref{sec:diagnostic}).\n21:We present an empirical case study of Goodhart collapse in solver-backed RL, using FOLIO with Qwen3 (4B/1.7B) across six reward conditions, ten seeds (5+5 matched design), two logic types, and up to 1000 training steps. Our contributions:\n22:\\begin{enumerate}[leftmargin=*,itemsep=2pt]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r15-bonferroni_20260520T044634",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T04:48:59.332898+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r15-bonferroni_20260520T044634",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "p[\\s=<>]|Fisher|permutation|significant|p-value|\\\\text.?test|McNemar|Wilcoxon|chi.?sq|bootstrap",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/conclusion.tex",
+              "output_mode": "content",
+              "-n": "True",
+              "-i": "True"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T04:48:59.333030+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "6:An SFT baseline largely avoids hacking under identical data, consistent with hacking being associated with RL optimization, though the prove-rate gap (13\\% vs.\\ 97\\%) prevents definitive causal attribution.\n7:Any transient non-hacking window ($p{=}0.92$, permutation test; matched 5+5 design) disappears under extended training; snapshot evaluation overestimates ISR's benefit.\n17:%  The structural bias toward single-premise tautologies ($P \\to P$ yielding\n36:Reward ensembling~\\citep{coste2024reward} targets learned rewards, not deterministic solver signals; constrained optimization~\\citep{moskovitz2024confronting} could cap ISR, but collapse at all $\\beta$ suggests a narrow proxy-validity boundary."
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r15-bonferroni_20260520T044634",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T04:48:59.333154+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r15-bonferroni_20260520T044634",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "p[\\s=<>]|Fisher|permutation|significant|p-value|\\\\text.?test|McNemar|Wilcoxon|chi.?sq|bootstrap",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/docs/paper/experiments.tex",
+              "output_mode": "content",
+              "-n": "True",
+              "-i": "True"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T04:48:59.333280+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>Path does not exist: /home/ubuntu/.agent-ml-research-idea_gen_0509_3/docs/paper/experiments.tex. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation.</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r15-bonferroni_20260520T044634",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T04:48:59.333401+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r15-bonferroni_20260520T044634",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "p[\\s=<>]|Fisher|permutation|significant|p-value|\\\\text.?test|McNemar|Wilcoxon|chi.?sq|bootstrap",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/docs/paper/appendix.tex",
+              "output_mode": "content",
+              "-n": "True",
+              "-i": "True"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T04:48:59.333515+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>Path does not exist: /home/ubuntu/.agent-ml-research-idea_gen_0509_3/docs/paper/appendix.tex. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation.</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r15-bonferroni_20260520T044634",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-20T04:48:59.333651+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r15-bonferroni_20260520T044634",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "docs/paper/*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T04:48:59.333795+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/discussion.tex\ndocs/paper/main.tex\ndocs/paper/related_work.tex\ndocs/paper/method.tex\ndocs/paper/experiments.tex\ndocs/paper/conclusion.tex\ndocs/paper/abstract.tex\ndocs/paper/introduction.tex\ndocs/paper/limitations.tex\ndocs/paper/appendix.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r15-bonferroni_20260520T044634",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-20T04:48:59.333913+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r15-bonferroni_20260520T044634",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "p[\\s=<>]|Fisher|permutation|significant|p-value|test",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/method.tex",
+              "output_mode": "content",
+              "-n": "True",
+              "-i": "True"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-20T04:48:59.334033+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "8:We train with Group Relative Policy Optimization (GRPO)~\\citep{deepseekmath} ($K{=}4$), where each rollout receives binary execution reward $r_{\\text{exec}}(x) = \\mathbf{1}[S(x){=}\\textit{proved}]$.\n15:STA tests whether each component of a proved formalization is individually necessary for proof success .\n20:LOO ablation itself is standard in mutation testing and sensitivity analysis~\\citep{demillo1978, jia-harman-survey}; our contribution lies in applying it as a GRPO-hacking diagnostic and in the empirical phenomena it surfaces.\n37:{\\footnotesize For FOL, components include both premises and conclusion sub-expressions (quantifier, antecedent, consequent); each sub-expression is ablated by removing it from the solver input and testing whether the proof still succeeds.}\n64:An SFT baseline trained with negative log-likelihood on gold formalizations tests whether structural degeneration arises from RL optimization or data exposure."
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r15-bonferroni_20260520T044634",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-20T04:48:59.334153+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r15-bonferroni_20260520T044634",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "p[\\s=<>]|Fisher|permutation|significant|p-value|test",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/limitations.tex",
+              "output_mode": "content",
+              "-n": "True",
+              "-i": "True"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-20T04:48:59.334271+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r15-bonferroni_20260520T044634",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-20T04:48:59.334383+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r15-bonferroni_20260520T044634",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "p[\\s=<>]|Fisher|permutation|significant|p-value|test",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/experiments.tex",
+              "output_mode": "content",
+              "-n": "True",
+              "-i": "True"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-20T04:48:59.334521+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "20:\\caption{ISR collapse under exec-only GRPO (seed~42). PR rises 32\\%$\\to$93\\%$\\to$96\\% while proved-only ISR falls $0.642{\\to}0.132{\\to}0.003$ over 100$\\to$500$\\to$1000 steps. By step 1000, 94.8\\% of proved samples have $\\text{ISR}{=}0$ and mean component count inflates 6.58$\\to$18.55 (contradiction explosion).}\n38:A 100-step RL checkpoint (Appendix~\\ref{app:100step}) at $\\text{PR}{=}32\\%$ already shows 31.2\\% hacking (vs.\\ SFT's 7.7\\%; $\\text{OR}{=}5.5$, 95\\% CI $[1.4, 22.0]$), indicating reward hacking emerges early in RL training, not merely at high PR.\n70:H7 tautological collapse occurs under both ISR and random conditions, but ISR amplifies it ${\\sim}5\\times$: $70.6\\%$ ($163/231$) under ISR vs.\\ $13.7\\%$ ($36/262$) under random (Fisher $p{=}1.3{\\times}10^{-39}$, $\\text{OR}{=}15.05$, 95\\% CI $[9.6, 23.6]$). %% registry: plan002 vs plan018 all seeds; D095 FINAL\n81:[Omitted long matching line]\n88:\\caption{Training ISR trajectories across reward conditions. ISR $\\beta{=}0.1$ seeds rise rapidly toward $\\text{ISR}{\\approx}1$ (meta-Goodhart gaming via H7 tautology); exec-only s44's plateau at ${\\sim}0.5$ is an H7a artifact ($n{=}2$ gives $\\text{ISR}{\\geq}0.5$ by construction), not genuine structural quality; random $\\beta{=}0.1$ remains low. The s42 1k-step trace shows ISR eventually saturates at $0.88$ through the same H7 mechanism.}\n93:Extended training (1000 steps; Figure~\\ref{fig:training-isr-curves}) reveals ISR $\\beta{=}0.1$'s non-hacking at 500 steps ($17.3\\%$, seed~42) is transient: by step 1000, H7 escalates $16.0\\%{\\to}96.7\\%$ while non-hacking collapses to $2.2\\%$, converging to $\\text{ISR}^{*}{=}0.88$ via near-complete tautological gaming.\n94:This mirrors exec-only 1000-step (\\S\\ref{sec:diagnostic}): both reach ${\\sim}0\\%$ non-hacking despite opposite ISR ($0.88$ vs.\\ $0.003$), two paths to the same structural collapse. %% registry: plan002-b01-s42-1000, plan016-extended-1000-s42\n129:Hacking-mode classification reverses this reading: ISR seeds average 76\n…[truncated 612 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r15-bonferroni_20260520T044634",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-20T04:48:59.334660+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r15-bonferroni_20260520T044634",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "p[\\s=<>]|Fisher|permutation|significant|p-value|test",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/appendix.tex",
+              "output_mode": "content",
+              "-n": "True",
+              "-i": "True"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-20T04:48:59.334824+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "70:We verify this empirically: Spearman $\\rho(\\text{ISR}, \\text{NLI accuracy}) = -0.049$ ($p = 0.187$, n.s.) from a downstream NLI evaluation on exec-only checkpoint outputs.\n89:\\caption{Fisher exact tests for non-hacking rate across conditions (3-seed pooled). ISR $\\beta{=}0.1$ non-hacking rate is corrected for H8 reclassification and H7 false negatives (Appendix~\\ref{app:h8}).}\n148:Tautological & 2-comp $P{=}C$ & $\\bullet$ & 0 & 0 & 0 \\\\\n192:After H8 reclassification and H7 false-negative correction: ISR non-hacking $= 14/231 = 6.06\\%$ vs.\\ random non-hacking $= 25/262 = 9.5\\%$ (Fisher $p{=}0.182$, n.s.; Wilson 95\\% CI: ISR [3.6\\%, 9.9\\%], Random [6.5\\%, 13.7\\%]).\n193:The direction is consistent with ISR-amplified gaming modes (H7, H8) displacing non-hacking output, but the effect is not statistically significant at the conventional $\\alpha{=}0.05$ threshold.\n223:Since $P \\to P$ is trivially provable, this simultaneously maximizes exec reward.\n273:Two-component formalizations where the premise and conclusion are identical atomic or simple formulas, yielding a $P \\to P$ tautology with minimal token cost.\n345:\\paragraph{Example (FOL, 1000-step exec-only).}\n425:  & \\multicolumn{2}{l}{3-seed mean$\\pm$std} & \\makebox[0pt][l]{$0.68{\\pm}0.47$} & & \\makebox[0pt][l]{$0.238{\\pm}0.30$} & & & 500-step \\\\\n426:  & \\multicolumn{2}{l}{3-seed mean$\\pm$std} & \\makebox[0pt][l]{$0.95{\\pm}0.05$} & & \\makebox[0pt][l]{$0.16{\\pm}0.27$} & & \\makebox[0pt][l]{$0.0{\\pm}0.0$} & 1000-step \\\\\n517:{\\footnotesize Aggregate genuine rate: mean of per-seed genuine rates. Permutation test (exec vs.\\ ISR genuine): $p{=}0.10$, $N{=}3$ per group.}\n522:ISR$^*=0.642$ at 100 steps $\\to$ $0.132$ at 500 steps ($-79.4$\\%) $\\to$ $0.003$ at 1000 steps ($-99.5$\\% from step 100).\n524:By step 1000, 94.8\\% of proved samples have ISR~$=0$ and the mean component count rises to 18.55.\n566:\\subsection{Early-Training Hacking Analysis (100-Step Checkpoint)}\n573:The 100-step hacking rate (31.2\\%) is already substantially \n…[truncated 365 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r15-bonferroni_20260520T044634",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-20T04:48:59.335000+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r15-bonferroni_20260520T044634",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/experiments.tex",
+              "offset": "100",
+              "limit": "25"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-20T04:48:59.335125+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r15-bonferroni_20260520T044634",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/experiments.tex",
+              "offset": "160",
+              "limit": "15"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-20T04:48:59.335275+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "100\tConclusion embedding ($\\text{CE}+\\text{TS}$) is GRPO-universal at $68$--$100\\%$ across both ISR and random conditions (Appendix Figure~\\ref{fig:hacking-composition}).\n101\tThe matched cohort (below) confirms TS as a deterministic attractor under ISR (5/5 seeds), though collapse severity and secondary modes are stochastic.\n102\tRandom yields higher PR ($83{\\pm}15\\%$ vs.\\ $70{\\pm}19\\%$) but near-zero $\\text{ISR}^*$ ($0.080{\\pm}0.06$), because the uniform bonus has no structural correlation with component necessity: it reinforces CE (conclusion embedding) rather than TS (tautology).\n103\tIn the exploratory cohort, both conditions produce TS in 2 of 5 seeds; however, exploratory Random TS is non-absorbing (coexists with other modes at $38$--$92\\%$, driven by s46 and s43), while ISR-induced TS saturates to $100\\%$ in affected seeds.\n104\tThe matched cohort resolves this ambiguity: ISR yields 5/5 TS-dominated seeds versus 0/5 under random control (Fisher $p{=}0.004$), confirming TS as ISR-specific rather than a generic GRPO artifact.\n105\tISR-induced TS is absorbing ($100\\%$ of proved samples in affected seeds), while random-induced TS coexists with other modes ($38$--$92\\%$) and shows extreme seed dependence (per-seed range: $0\\%$--$91.5\\%$).\n106\tISR converts TS from a stochastic possibility into an irreversible attractor.\n107\tThe reward gap explains this: TS tautologies receive expected reward ${\\geq}1{+}0.5\\beta$ (mean empirical $\\text{ISR}{=}0.535$) versus ${\\sim}1{+}0.26\\beta$ for non-hacking proofs (premise-count-matched), creating a persistent gradient toward tautological constructions regardless of dose.\n108\t\n109\t\\textbf{Matched replication: deterministic attractor, stochastic severity.}\n110\tAn independent matched cohort (seeds 47--51, $\\beta{=}0.1$; Appendix Table~\\ref{tab:matched-perseed}) confirms TS as a deterministic attractor under ISR reward: all 5/5 seeds are TS-dominated ($\\text{TS}{=}90.8{\\pm}7.5\\%$; range $85$--$100\\%$), with non-hacking rates of $0$--$6\n…[truncated 2616 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r15-bonferroni_20260520T044634",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-20T04:48:59.335430+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "160\t\\end{tabular}}\n161\t\\caption{Hacking modes (\\% of proved). $^a$Single seed (s42); remaining columns pooled (ISR/Rnd 4B: 5-seed; Prolog/1.7B: 3-seed). $^\\sharp$Prolog: strict+functional pooled. $^\\ddagger$1.7B N-H overestimates true rate: strict non-hacking (S-NH; \\S\\ref{sec:rewards}) is $0$--$3.7\\%$ (ISR $\\beta{=}0.1$), $0\\%$ (Rnd $\\beta{=}0.1$), $0$--$29\\%$ (ISR $\\beta{=}0.3$); CI undetected by classifier at 1.7B.}\n162\t\\label{tab:hacking-taxonomy}\n163\t\\end{table}\n164\t\n165\tEight modes are detected by automated classifiers (Table~\\ref{tab:hacking-taxonomy}; Appendix~\\ref{app:hacking-modes}); CI (contradiction injection) is identified via manual audit at 1.7B in a single seed (s42, Random $\\beta{=}0.1$) and may not generalize.\n166\tCE, TS, and PG account for ${>}90\\%$ of hacking across ${\\geq}3$ seeds each; ISR modestly increases TS probability ($\\text{OR}{=}2.84$; Appendix Table~\\ref{tab:bootstrap-ci}), but per-seed variance dominates.\n167\tAll GRPO conditions show ${\\geq}80\\%$ pooled hacking; only SFT achieves $92.3\\%$ non-hacking.\n168\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r15-bonferroni_20260520T044634",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-20T04:48:59.335602+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r15-bonferroni_20260520T044634",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/appendix.tex",
+              "offset": "70",
+              "limit": "15"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-20T04:48:59.335769+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "70\t\n71\t\\section{Extended Discussion}\n72\t\\label{app:extended-discussion}\n73\t\n74\t\\paragraph{What ISR measures, and what it does not.}\n75\tISR quantifies syntactic component necessity: the fraction of solver-input components whose individual removal causes proof failure.\n76\tThis is strictly weaker than semantic faithfulness (whether the formalization accurately captures the natural-language meaning).\n77\tWe verify this empirically: Spearman $\\rho(\\text{ISR}, \\text{NLI accuracy}) = -0.049$ ($p = 0.187$, n.s.) from a downstream NLI evaluation on exec-only checkpoint outputs.\n78\tISR and downstream task performance are uncorrelated.\n79\tISR is thus a structural integrity diagnostic, not a semantic quality metric: high ISR indicates that every component contributes to the proof, not that the proof faithfully represents the original reasoning problem.\n80\t\n81\tCritically, low ISR carries different semantics depending on the training objective.\n82\tUnder exec-only training, low ISR in Prolog reflects redundant coding (repeated ground facts where removing any single copy does not affect the proof) rather than an absence of reasoning (\\S\\ref{sec:crosslogic}).\n83\tUnder ISR-as-reward, high ISR reflects metric gaming (\\S\\ref{sec:goodhart}).\n84\tISR values must always be interpreted relative to the optimization objective that produced them."
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r15-bonferroni_20260520T044634",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-20T04:48:59.335901+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r15-bonferroni_20260520T044634",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/appendix.tex",
+              "offset": "120",
+              "limit": "15"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-20T04:48:59.336028+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "120\t\\end{table}\n121\t\n122\t\\paragraph{Seed-level statistical analysis.}\n123\t\\label{app:statistical-details}\n124\tTo address potential inflation from within-seed dependence, we supplement pooled Fisher exact tests with two seed-aware analyses.\n125\tCochran--Mantel--Haenszel (CMH) tests stratify by seed while pooling across samples: TS $\\text{OR}_{\\text{CMH}}{=}2.46$ (95\\% CI $[1.85, 3.27]$, $p{=}5.6{\\times}10^{-16}$); non-hacking $\\text{OR}_{\\text{CMH}}{=}3.37$ (95\\% CI $[2.21, 5.13]$, $p{=}4.5{\\times}10^{-10}$).\n126\tCMH assumes within-stratum independence, but samples within each seed share a single checkpoint and use greedy decoding; the effective independent units are seeds ($n{=}5$), not samples, and CMH $p$-values are consequently inflated.\n127\tSeed-level permutation tests (treating each seed as a single observation, $n{=}5$ per group) yield $p{=}0.28$ (TS) and $p{=}0.26$ (non-hacking), consistent with the severe power limitation of $n{=}5$ (minimum achievable $p{=}0.008$) rather than absence of effect.\n128\t\n129\t\\begin{table}[!htb]\n130\t\\centering\n131\t\\caption{Per-seed classification results for ISR and Random at $\\beta{=}0.1$ (500 steps, FOL). $n$ = proved samples. ISR$^*$ = proved-only mean ISR. $\\dagger$~PG audit complete; $\\ddagger$~checkpoint unavailable before audit, N-H is uncorrected upper bound. Percentages are per-classifier; samples may match multiple modes. N-H uses set-exclusion per the C013 taxonomy standard.}\n132\t\\label{tab:fol-beta01-perseed}\n133\t\\small\n134\t\\resizebox{\\columnwidth}{!}{%"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r15-bonferroni_20260520T044634",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-20T04:48:59.336162+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r15-bonferroni_20260520T044634",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/appendix.tex",
+              "offset": "260",
+              "limit": "15"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-20T04:48:59.336290+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "260\t\n261\t\\paragraph{TS false-negative correction (TS-b obfuscated tautology).}\n262\tISR $\\beta{=}0.1$ seed~44 contained 12 samples with $n_{\\text{prem}}{=}1$ classified as non-hacking by the text matcher.\n263\tManual inspection confirmed all 12 are logically equivalent to TS but evade text matching through vacuous quantifier wrapping ($11/12$) or structural simplification ($1/12$).\n264\tWe classify these as \\textbf{TS-b} (obfuscated tautology), distinct from text-match-detectable TS-a.\n265\t$10/12$ achieve $\\text{ISR}{\\geq}0.83$, indicating simultaneous gaming of execution reward, ISR metric, and TS classifier (triple gaming; \\S\\ref{sec:taxonomy}).\n266\tAfter correction, ISR s44 non-hacking${=}0$; total TS = TS-a (77 text-match) + TS-b (12 obfuscated) = 89.\n267\t\n268\t\\paragraph{Impact on non-hacking-rate comparison.}\n269\tAfter PG reclassification and TS false-negative correction: ISR non-hacking $= 14/231 = 6.06\\%$ vs.\\ random non-hacking $= 25/262 = 9.5\\%$ (Fisher $p{=}0.182$, n.s.; Wilson 95\\% CI: ISR [3.6\\%, 9.9\\%], Random [6.5\\%, 13.7\\%]).\n270\tThe direction is consistent with ISR-amplified gaming modes (TS, PG) displacing non-hacking output, but the effect is not statistically significant at the conventional $\\alpha{=}0.05$ threshold.\n271\t\n272\t\\subsection{Conclusion Embedding (CE)}\n273\t\n274\t\\paragraph{Definition.}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r15-bonferroni_20260520T044634",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-20T04:48:59.336415+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r15-bonferroni_20260520T044634",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/appendix.tex",
+              "offset": "768",
+              "limit": "20"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-20T04:48:59.336541+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "768\t\\label{tab:stat-tests}\n769\t\\resizebox{\\columnwidth}{!}{%\n770\t\\begin{tabular}{@{}llccl@{}}\n771\t\\toprule\n772\t\\textbf{Comparison} & \\textbf{Test} & \\textbf{Statistic} & $\\boldsymbol{p}$ & \\textbf{BF$_{10}$} \\\\\n773\t\\midrule\n774\tTS domination & Fisher exact & $\\text{OR}{=}\\infty$ & 0.004 & 77 \\\\\n775\tISR$^*$ & Mann-Whitney $U$ & $U{=}25$ & 0.004 & --- \\\\\n776\tTS rate & Mann-Whitney $U$ & $U{=}25$ & 0.004 & --- \\\\\n777\tN-H rate & Permutation & $\\Delta{=}{-}3.6$\\,pp & 0.917 & --- \\\\\n778\t\\bottomrule\n779\t\\end{tabular}}\n780\t\\end{table}\n781\t\n782\t\\subsection{Exploratory Cohort (Partial)}\n783\t\\label{app:exploratory-cohort}\n784\t\n785\tThe original exploratory cohort (seeds 42--46, $\\beta{=}0.1$) motivated the matched replication.\n786\tMost checkpoints were deleted during disk cleanup before retrospective audit; Table~\\ref{tab:exploratory-perseed} reports the three seeds with surviving checkpoints.\n787\tFull 5-seed pooled statistics from the original evaluation are in Table~\\ref{tab:fol-beta01-perseed}; those results informed the exploratory analysis in \\S\\ref{sec:goodhart} but should be interpreted with the caveat that not all seeds could be re-audited."
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r15-bonferroni_20260520T044634",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-20T04:48:59.336719+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r15-bonferroni_20260520T044634",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/experiments.tex",
+              "offset": "44",
+              "limit": "15"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-20T04:48:59.336873+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "44\tSeed~42 reaches $\\text{PR}{=}93\\%$ via conclusion embedding ($\\text{CE}{=}87\\%$); s43 collapses to $\\text{PR}{=}13\\%$ via repetition (87\\% of rollouts truncated)\\footnote{Exec-only s43 was evaluated with sampling ($T{=}0.7$) rather than greedy decoding; its metrics are included for completeness but are not strictly comparable (Appendix~\\ref{app:setup}).}; s44 reaches $\\text{PR}{=}98\\%$ via tautological collapse ($\\text{TS}{=}100\\%$, mean $n{=}2.04$). %% registry: plan001-exec-only-s42-r2, plan001-exec-only-s43-r4, plan001-exec-only-s44\n45\tCross-seed PR variance ($\\sigma{=}47$\\,pp) shows that aggregate metrics obscure qualitatively different failure modes. All three seeds are flagged by $\\text{ISR}^*$, whether they pass the PR check (s44) or fail it (s43).\n46\tBy 1000 steps, all three converge to high PR ($0.97{\\pm}0.02$) with near-zero non-hacking output via different dominant modes (Appendix Tables~\\ref{tab:exec-only-1000},~\\ref{tab:fol-detailed}). %% registry: plan016-extended-1000-s42, exec-only-s43-1000step-r7, plan001-exec-only-s44-1000-r2\n47\tS43 recovers from $\\text{PR}{=}13\\%$ to $96\\%$ entirely through CE exploitation: PR recovery does not imply quality recovery.\n48\t\n49\t\\textbf{SFT baseline.}\n50\tSFT on gold formalizations reaches $\\text{PR}{=}13.0\\%$ (3-seed pooled, 1000 steps) with $92.3\\%$ non-hacking ($n{=}39$; per-seed range ${\\sim}$91--93\\%).\n51\tTS is entirely absent; CE occurs at $7.7\\%$ ($\\text{OR}{=}147$ vs.\\ exec-only, $p{<}0.001$). %% registry: plan009-sft-baseline-s42-1000/s43-1000/s44-1000-r3\n52\tThe near-absence of hacking under identical data exposure is consistent with hacking being associated with RL optimization rather than data exposure; a 100-step checkpoint ($\\text{PR}{=}32\\%$, hacking${\\geq}31\\%$) partially controls for the PR-level confound (Appendix~\\ref{app:100step}).\n53\tExploit discovery requires the trial-and-error sampling inherent to RL but absent from supervised training; whether SFT would hack at higher PR remains an open quest\n…[truncated 403 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r15-bonferroni_20260520T044634",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-20T04:48:59.337012+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r15-bonferroni_20260520T044634",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/experiments.tex",
+              "offset": "122",
+              "limit": "50"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-20T04:48:59.337157+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "122\t\\subsection{Cross-Logic Extension}\n123\t\\label{sec:crosslogic}\n124\t\n125\tAs a preliminary cross-logic probe, we replicate the pipeline with Prolog/SWI-Prolog (3 seeds, $\\beta{=}0.1$).\n126\tUnder ISR reward, 3/3 seeds reach $0\\%$ non-hacking through three distinct mechanisms (TS tautology, classifier-evading pseudo-Prolog, query-as-fact gaming), with one seed evading the strict classifier entirely (Appendix Table~\\ref{tab:prolog-detailed}).\n127\tComplete collapse across all seeds suggests Prolog's simpler operational semantics provides a broader gaming basin than FOL.\n128\tNo matched random control was run for Prolog; the ISR-specificity of these gaming modes is inferred from the FOL random comparison rather than directly demonstrated in Prolog.\n129\t\n130\t\\subsection{Cross-Scale Evidence}\n131\t\\label{sec:crossscale}\n132\t\n133\tWe train Qwen3-1.7B under ISR $\\beta\\in\\{0.1,0.3\\}$ and Random $\\beta{=}0.1$ (3 seeds each, 500 steps; Appendix Table~\\ref{tab:crossscale}).\n134\tStrict non-hacking rates are $0$--$3.7\\%$ (ISR $\\beta{=}0.1$) and $0$--$29\\%$ (ISR $\\beta{=}0.3$, driven by a single low-PR seed).\n135\t1.7B models are constrained to content-independent strategies when PR is high (content-independence $94$--$100\\%$ at $\\text{PR}{\\geq}52\\%$); different capacities converge to different Goodhart basins under identical rewards.\n136\t\n137\t\\subsection{Hacking Taxonomy}\n138\t\\label{sec:taxonomy}\n139\t\n140\t\n141\t\\begin{table}[t]\n142\t\\centering\n143\t\\small\n144\t\\resizebox{\\columnwidth}{!}{%\n145\t\\begin{tabular}{lccccccc}\n146\t\\toprule\n147\t\\textbf{Mode} & \\textbf{Exec}$^a$ & \\textbf{ISR$_{.1}$} & \\textbf{Rnd$_{.1}$} & \\textbf{SFT}$^a$ & \\textbf{Prolog$_{\\text{ISR}}$} & \\textbf{1.7B$_{\\text{ISR}}$} & \\textbf{1.7B$_{\\text{Rnd}}$} \\\\\n148\t\\midrule\n149\tCE embed       & 87 & 18 & 59 & 7 & 0$^\\sharp$ & 55 & \\textbf{81} \\\\\n150\tTS duplicate   & 0  & \\textbf{54} & 30 & 0 & 100$^\\sharp$ & 25 & 0 \\\\\n151\tPG prem-subset & 6  & 5  & 8   & 0 & --- & 6 & $<$1 \\\\\n152\tTautological   & --- & --- & --- & --- & s\n…[truncated 1450 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r15-bonferroni_20260520T044634",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-20T04:48:59.337303+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r15-bonferroni_20260520T044634",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/appendix.tex",
+              "offset": "88",
+              "limit": "35"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-20T04:48:59.337447+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "88\tA formalization with 2 premises where both are necessary yields ISR${=}1.0$; one with 10 premises where 8 are necessary yields ISR${=}0.8$, even though the latter encodes richer reasoning.\n89\tThis confound is central to ISR's Goodhart vulnerability: TS tautologies (single premise $=$ conclusion) achieve $\\text{ISR}{\\geq}0.5$ \\emph{by construction}, and the shorter formalizations produced by non-collapsed seeds at $\\beta{=}0.1$ also inflate ISR mechanically.\n90\tPremise-count-matched comparison on non-hacking samples yields $\\text{ISR}^{*}{=}0.258$ vs.\\ $0.243$ for random ($1.06\\times$; Table~\\ref{tab:fol-beta01-detailed}), confirming that even within the transient non-hacking window the structural benefit is negligible.\n91\tThis bias is not specific to our setting; any LOO-based structural metric applied to variable-length outputs requires component-count normalization.\n92\tWe recommend that future work employing ablation-based diagnostics report premise-count-matched comparisons alongside raw values.\n93\t\n94\t\\begin{table}[!htb]\n95\t\\centering\n96\t\\caption{Fisher exact tests across conditions. Non-hacking rate reported at 5-seed (primary) and 3-seed with PG+FN corrections (sensitivity); TS comparison at 5-seed (primary) and 3-seed (sensitivity).}\n97\t\\label{tab:bootstrap-ci}\n98\t\\small\n99\t\\resizebox{\\columnwidth}{!}{%\n100\t\\begin{tabular}{@{}lcccc@{}}\n101\t\\toprule\n102\t\\textbf{Comparison} & \\textbf{Condition} & \\textbf{Control} & \\textbf{OR} & \\textbf{$p$} \\\\\n103\t\\midrule\n104\t\\multicolumn{5}{@{}l}{\\textit{Non-hacking rate (5-seed)}} \\\\\n105\tISR vs.\\ Random & 22.6\\% {\\scriptsize[18.2,27.0]} & 7.7\\% {\\scriptsize[5.5,10.7]} & 3.48 & ${<}10^{-8}$ \\\\\n106\t\\multicolumn{5}{@{}l}{\\textit{Non-hacking rate (3-seed, PG+FN corrected)}} \\\\\n107\tISR vs.\\ Random & 6.06\\% {\\scriptsize[3.6,9.9]} & 9.5\\% {\\scriptsize[6.5,13.7]} & 0.61 & 0.182 (n.s.) \\\\\n108\t\\midrule\n109\t\\multicolumn{5}{@{}l}{\\textit{TS gaming rate (5-seed)}} \\\\\n110\tISR vs.\\ Random & 54.3\\% {\\scriptsize[49.1,59.5]} & 29.5\\% {\\sc\n…[truncated 751 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r15-bonferroni_20260520T044634",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-20T04:48:59.337605+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r15-bonferroni_20260520T044634",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/appendix.tex",
+              "offset": "175",
+              "limit": "20"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-20T04:48:59.337768+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "175\ts43 & 97 & 0.96 & 96.9 & 0 \\\\\n176\ts44 & 93 & 0.55 & 100 & 0 \\\\\n177\t\\midrule\n178\t\\textbf{Pooled} & 97$\\pm$4 & 0.69$\\pm$0.24 & 99.0 & \\textbf{0} \\\\\n179\t\\bottomrule\n180\t\\end{tabular}\n181\t\\end{table}\n182\t\n183\t\\paragraph{Goodhart effects: implications.}\n184\tThe finding extends beyond this specific system.\n185\tISR was designed to \\emph{detect} reward gaming of $r_{\\text{exec}}$, yet it contains an inherent structural vulnerability: by its LOO definition, single-premise-equals-conclusion constructions receive artificially high ISR ($\\text{ISR}{\\geq}0.5$; empirically 93\\% at $\\text{ISR}{=}0.5$, 7\\% at $\\text{ISR}{=}1.0$; 5-seed ISR $\\beta{=}0.1$ pooled TS samples), creating a positive feedback loop once sampled during GRPO rollouts~\\citep{karwowski-goodhart-rl, kwa-catastrophic-goodhart}.\n186\tGoodhart collapse~\\citep{manheim-goodhart-taxonomy} is observed at all four tested doses ($\\beta{=}0.05$: 3 seeds; $\\beta\\in\\{0.1, 0.2, 0.3\\}$: 3--5 seeds each).\n187\tThe structural bias predicts universality (TS tautology is always the global reward-maximizing exploit regardless of $\\beta$), and $\\beta$ controls only the probability of early sampling and thus the timing of collapse; at $\\beta{=}0.05$, three seeds confirm deterministic TS collapse ($93.7\\%$ pooled) while the matched random control at the same $\\beta$ produces CE redundancy instead ($77.4\\%$), ruling out dose magnitude as the driver.\n188\tAt moderate doses ($\\beta{=}0.1$), collapse is stochastic and delayed (5 seeds bifurcate: 2 collapse rapidly, 3 sustain a transient non-hacking window that trajectory analysis confirms is temporary); at higher doses ($\\beta{=}0.2$), collapse is immediate and universal.\n189\t$\\beta{=}0.3$ adds reward collapse~\\citep{gao-reward-overoptimization} as a competing failure mode (PR drops to 18\\% in 1/3 seeds), but the underlying Goodhart vulnerability remains the same.\n190\tThe practical implication is that ISR (and structurally similar LOO-based diagnostics) should be used exclusively as pos\n…[truncated 438 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r15-bonferroni_20260520T044634",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-20T04:48:59.337915+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r15-bonferroni_20260520T044634",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/appendix.tex",
+              "offset": "695",
+              "limit": "25"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-20T04:48:59.338058+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "695\t\\label{app:beta005}\n696\t\n697\tThe 3-seed random control at $\\beta{=}0.05$ is highly unstable: s42 fails entirely ($\\text{PR}{=}0\\%$), s44 barely learns ($\\text{PR}{=}7\\%$, CE $71\\%$, non-hacking $0\\%$), and only s43 reaches moderate output ($\\text{PR}{=}62\\%$, CE $77\\%$, non-hacking $13\\%$).\n698\tThe single random seed that learns (s43) shows higher non-hacking output than ISR ($13\\%$ vs.\\ $5.1\\%$ pooled), consistent with a signal-floor below which ISR's non-hacking component is undetectable while its TS bias remains exploitable.\n699\t\n700\t\\subsection{Early-Training Hacking Analysis (100-Step Checkpoint)}\n701\t\\label{app:100step}\n702\t\n703\tTo control for the prove-rate confound in our SFT comparison (\\S\\ref{sec:diagnostic}), we analyze the exec-only checkpoint at 100 training steps (seed~42), where PR${=}32$\\%, higher than SFT (13.0\\%, 3-seed pooled) but still early in training.\n704\tOf the 32 proved samples, 9 (28.1\\%) exhibit TS hacking (single premise identical to conclusion) and 1 (3.1\\%) exhibits CE (conclusion embedded among premises), yielding a total hacking rate of 31.2\\%.\n705\tBy contrast, SFT at comparable or lower PR shows 7.7\\% hacking (1/13 proved samples).\n706\tThis demonstrates that reward hacking emerges early in GRPO training, well before the prove-rate plateau, and is not simply an artifact of having more proved samples available for exploitation.\n707\tThe 100-step hacking rate (31.2\\%) is already substantially above SFT (7.7\\%), supporting the claim that hacking is associated with RL optimization rather than prove-rate level alone.\n708\t\n709\t\\subsection{$O(1)$ vs.\\ $O(n)$ ISR Ablation}\n710\t\\label{app:o1-ablation}\n711\t\n712\tTo justify the per-clause LOO design (\\S\\ref{sec:sta}), we train a variant that replaces the $O(n)$ ablation with a cheaper $O(1)$ binary signal: $\\text{fast\\_ISR}(x) = 1$ if $x$ is proved \\emph{and} the conclusion is not provable under empty premises (tautology check), $0$ otherwise.\n713\tThe reward becomes $r = 0.5\\,r_{\\text{exec}} +\n…[truncated 920 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r15-bonferroni_20260520T044634",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-20T04:48:59.338228+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r15-bonferroni_20260520T044634",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/experiments.tex",
+              "offset": "125",
+              "limit": "15"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-20T04:48:59.338367+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "125\tAll seeds have $\\text{ISR}^*{<}0.12$---far below the pre-training baseline ($0.31$)---consistent with the LOO tautological attractor being metric-intrinsic.\n126\t\n127\t\\textbf{ProofFOL ISR ($\\beta{=}0.1$): beneficial instability.}\n128\tISR bonus reduces stable convergence from 2/3 to 0/3 seeds---superficially, another optimization failure.\n129\tHacking-mode classification reverses this reading: ISR seeds average 76.8\\% genuine versus 17.4\\% for exec-only (permutation $p{=}0.10$, $N{=}3$), with s42 and s44 achieving 100\\% genuine despite training collapse (Table~\\ref{tab:prooffol-detailed}).\n130\tThe models that failed to converge produced structurally honest proofs.\n131\t\n132\t\\textbf{Mechanism.}\n133\tEval-time ISR confirms the asymmetry: on ProofFOL, hacking constructions yield $\\text{ISR}{=}0.0$ while genuine proofs yield $\\text{ISR}{=}0.27$ (s42) and $0.20$ (s44)---ISR correctly penalizes shortcuts.\n134\tOn FOLIO (baseline $\\text{ISR}^*{\\approx}0.50$), $P{\\to}P$ yields $\\text{ISR}{\\geq}0.5$, so ISR erroneously rewards tautological hacking (regressional Goodhart~\\citep{manheim-goodhart-taxonomy}); on ProofFOL (baseline $\\text{ISR}^*{=}0.31$), hacking does not satisfy ISR, so the bonus correctly suppresses shortcuts at the cost of convergence stability.\n135\tThe same metric produces opposite outcomes---Goodhart collapse where hacking satisfies it (FOLIO), beneficial instability where it does not (ProofFOL)---determined by the dataset's hacking geometry.\n136\t\n137\t\\subsection{Hacking Taxonomy}\n138\t\\label{sec:taxonomy}\n139\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r15-bonferroni_20260520T044634",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-20T04:48:59.338613+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r15-bonferroni_20260520T044634",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper/appendix.tex",
+              "offset": "510",
+              "limit": "15"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-20T04:48:59.339073+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "510\t  & 44 & 0.49 & 0.145 & 0 & 0 & \\textbf{100} & $n{=}66$; oscillation \\\\\n511\t\\cmidrule(l){2-8}\n512\t  & \\multicolumn{2}{l}{Aggregate} & & \\multicolumn{3}{c}{\\textbf{76.8\\%} genuine (mean of seeds)} & \\\\\n513\t\\bottomrule\n514\t\\end{tabular}\n515\t\n516\t\\vspace{4pt}\n517\t{\\footnotesize Aggregate genuine rate: mean of per-seed genuine rates. Permutation test (exec vs.\\ ISR genuine): $p{=}0.10$, $N{=}3$ per group.}\n518\t\\end{table*}\n519\t\n520\t\\paragraph{ISR collapse trajectory (FOL exec-only, seed 42).}\n521\tTable~\\ref{tab:fol-detailed} traces the ISR collapse over training:\n522\tISR$^*=0.642$ at 100 steps $\\to$ $0.132$ at 500 steps ($-79.4$\\%) $\\to$ $0.003$ at 1000 steps ($-99.5$\\% from step 100).\n523\tPR increases monotonically ($0.32 \\to 0.93 \\to 0.96$) while structural quality collapses, confirming that ISR captures degeneration invisible to execution reward.\n524\tBy step 1000, 94.8\\% of proved samples have ISR~$=0$ and the mean component count rises to 18.55."
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r15-bonferroni_20260520T044634",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-20T04:48:59.339268+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r15-bonferroni_20260520T044634",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/appendix.tex",
+              "offset": "840",
+              "limit": "20"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-20T04:48:59.339444+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "840\tTwo seeds produce predominantly non-hacking output (s54: 96.7\\%, s57: 63.6\\%), though s54 has 35.2\\% content-independent samples.\n841\tThe high variance across seeds (TS, PG, and genuine outcomes all observed) reinforces that component-count gating is insufficient for reliable structural improvement.\n842\t\n843\t\\subsection{Cross-Model Generalization: LLaMA-3.2-3B Cold-Start Failure}\n844\t\\label{app:llama-coldstart}\n845\t\n846\tTo probe cross-architecture generalization, we applied the identical GRPO configuration (Table~\\ref{tab:hyperparams}) to LLaMA-3.2-3B~\\citep{grattafiori2024llama} (3B parameters; execution-only reward, seed~42, $K{=}4$ rollouts, FOLIO training set).\n847\t\n848\tThe model produced zero valid Prover9 output across 72 of the planned 500 training steps: reward, policy loss, and gradient norm remained at zero throughout, and training was terminated early.\n849\tManual inspection of generations revealed natural-language text (e.g., homework-style problem restatements and conversational responses) with no first-order logic syntax.\n850\tBecause $r_{\\text{exec}}{=}0$ for all $K$ rollouts on every prompt, the GRPO advantage signal is identically zero and no policy update occurs.\n851\t\n852\tThis result establishes a \\emph{capability threshold} for GRPO-based formalization: the base model must possess at minimum a rudimentary ability to generate syntactically valid solver input for the RL loop to produce any learning signal.\n853\tQwen3-4B crosses this threshold (non-zero prove rates within the first 10 steps), while LLaMA-3.2-3B~\\citep{grattafiori2024llama} does not despite comparable parameter count (3B vs.\\ 4B).\n854\tThe failure likely reflects differences in pretraining data composition---specifically, exposure to formal logic and structured symbolic syntax---rather than model scale \\emph{per se}.\n855\t\n856\tAn SFT warmstart phase (supervised fine-tuning on a small set of gold formalizations before switching to GRPO) could potentially lift models below this threshold\n…[truncated 283 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r15-bonferroni_20260520T044634",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-20T04:48:59.339837+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r15-bonferroni_20260520T044634",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "ProofFOL|prooffol|genuine.*permutation|permutation.*genuine|p.*0\\.10",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper",
+              "output_mode": "content",
+              "-n": "True",
+              "-i": "True"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-20T04:48:59.340041+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "paper/experiments.tex:12:%% D146-ACTIVATE: uncomment the following ProofFOL dataset description\npaper/experiments.tex:13:% For cross-dataset validation (\\S\\ref{sec:prooffol}), we additionally train on\npaper/experiments.tex:14:% ProofFOL, a silver-standard FOL corpus constructed by translating\npaper/experiments.tex:18:% ProofFOL's formulas are syntactically simpler than FOLIO's human-authored FOL\npaper/experiments.tex:114:Fisher exact test on TS domination yields $\\text{OR}{=}\\infty$ ($p{=}0.004$, 95\\% CI $[2.30, \\infty]$, $\\text{BF}_{10}{=}77$); Mann-Whitney $U$ on $\\text{ISR}^*$: $U{=}25$, $p{=}0.004$, $r{=}1.0$; genuine rates do not differ significantly ($2.3\\%$ vs.\\ $5.9\\%$, $p{=}0.92$, permutation test; Appendix~\\ref{app:matched-stats}), with the point estimate consistently favoring Random (corrected 3-seed: ISR $6.1\\%$ vs.\\ Random $9.5\\%$; matched: $2.3\\%$ vs.\\ $5.9\\%$).\npaper/main.bbl:91:\\newblock \\href {https://doi.org/10.1007/s11229-021-03141-4} {{Reward Tampering\npaper/conclusion.tex:10:%% === ProofFOL cross-dataset skeleton (fill after D146) ===\npaper/conclusion.tex:11:%% BRANCH A (collapse replicates on ProofFOL):\npaper/conclusion.tex:12:%  Preliminary cross-dataset evidence supports this prediction: training on ProofFOL\npaper/conclusion.tex:21:%% BRANCH B (collapse does NOT replicate on ProofFOL):\npaper/conclusion.tex:22:%  However, ProofFOL training does not reproduce the same collapse pattern\npaper/conclusion.tex:24:%  ProofFOL's silver-standard FOL---generated by GPT-4o from ProofWriter's\npaper/limitations.tex:6:% Experiments use a single model family (Qwen3-4B/1.7B) and one RL algorithm (GRPO); while cross-dataset evidence from ProofFOL (\\S\\ref{sec:prooffol}) supports generality, hacking-mode prevalence may vary across benchmarks.\npaper/abstract.tex:8:% Across six reward conditions, two dataset families (FOLIO and ProofFOL), two logic types, and two model scales, we identify three persistent hacking modes (conclusion embedding [CE] / tautological sho\n…[truncated 607 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r15-bonferroni_20260520T044634",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-20T04:48:59.340202+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r15-bonferroni_20260520T044634",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "OR.*5\\.5|5\\.5.*CI|100.step.*OR|OR.*147|p.*0\\.001",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper",
+              "output_mode": "content",
+              "-n": "True",
+              "-i": "True"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-20T04:48:59.340347+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "paper/experiments.tex:51:TS is entirely absent; CE occurs at $7.7\\%$ ($\\text{OR}{=}147$ vs.\\ exec-only, $p{<}0.001$). %% registry: plan009-sft-baseline-s42-1000/s43-1000/s44-1000-r3\npaper/experiments.tex:52:The near-absence of hacking under identical data exposure is consistent with hacking being associated with RL optimization rather than data exposure; a 100-step checkpoint ($\\text{PR}{=}32\\%$, hacking${\\geq}31\\%$) partially controls for the PR-level confound (Appendix~\\ref{app:100step}).\npaper/main.bbl:378:\\newblock \\href {https://arxiv.org/abs/2502.14768} {{Logic-RL: Unleashing LLM\npaper/appendix.tex:115:SFT vs.\\ Exec-only & 92.3\\% {\\scriptsize[79.7,97.3]} & 7.5\\% & 147 & ${<}0.001$ \\\\\npaper/appendix.tex:707:The 100-step hacking rate (31.2\\%) is already substantially above SFT (7.7\\%), supporting the claim that hacking is associated with RL optimization rather than prove-rate level alone.\npaper/appendix.tex:733:\\caption{Per-seed results for the matched replication cohort (seeds 47--51, $\\beta{=}0.1$, 500 steps). PR = prove rate, ISR$^*$ = proved-only ISR, TS/CE/N-H = percentage among proved samples. Wilson 95\\% CIs for N-H: ISR s47 $[1.1, 8.7]$, s48 $[0, 5.5]$, s49 $[0.2, 6.3]$, s50 $[2.8, 12.7]$, s51 $[0.2, 5.6]$; Random s47 $[3.1, 13.9]$, s48 $[1.7, 10.5]$, s49 $[0, 43.4]$, s50 $[1.2, 14.8]$, s51 $[7.5, 24.3]$.}\npaper/main.aux:2090:[Omitted long matching line]\npaper/main.aux:2091:\\newlabel{tab:matched-perseed}{{13}{23}{Per-seed results for the matched replication cohort (seeds 47--51, $\\beta {=}0.1$, 500 steps). PR = prove rate, ISR$^*$ = proved-only ISR, TS/CE/N-H = percentage among proved samples. Wilson 95\\% CIs for N-H: ISR s47 $[1.1, 8.7]$, s48 $[0, 5.5]$, s49 $[0.2, 6.3]$, s50 $[2.8, 12.7]$, s51 $[0.2, 5.6]$; Random s47 $[3.1, 13.9]$, s48 $[1.7, 10.5]$, s49 $[0, 43.4]$, s50 $[1.2, 14.8]$, s51 $[7.5, 24.3]$}{table.caption.79}{}}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r15-bonferroni_20260520T044634",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-20T04:48:59.340516+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r15-bonferroni_20260520T044634",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "p.*=.*0\\.10|0\\.10.*permutation|genuine.*rate.*per",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper/appendix.tex",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-20T04:48:59.340644+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r15-bonferroni_20260520T044634",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-20T04:48:59.340870+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r15-bonferroni_20260520T044634",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "Aggregate.*genuine|genuine.*Aggregate|76\\.8",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-20T04:48:59.341015+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r15-bonferroni_20260520T044634",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-20T04:48:59.341152+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r15-bonferroni_20260520T044634",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "OR.*5\\.5|5\\.5.*OR",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/docs/paper",
+              "output_mode": "content",
+              "-n": "True"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-20T04:48:59.341276+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/experiments.tex:38:A 100-step RL checkpoint (Appendix~\\ref{app:100step}) at $\\text{PR}{=}32\\%$ already shows 31.2\\% hacking (vs.\\ SFT's 7.7\\%; $\\text{OR}{=}5.5$, 95\\% CI $[1.4, 22.0]$), indicating reward hacking emerges early in RL training, not merely at high PR."
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r15-bonferroni_20260520T044634",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-20T04:48:59.341472+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r15-bonferroni_20260520T044634",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat << 'PYEOF' | python3\nimport json\n\n# All statistical tests with reported p-values from paper/ directory\ntests = [\n    {\n        \"name\": \"Fisher exact: TS domination (matched 5+5)\",\n        \"original_p\": 0.004,\n        \"context\": \"ISR 5/5 TS-dominated vs Random 0/5; OR=inf, BF10=77\",\n        \"test_type\": \"Fisher exact\",\n        \"location\": \"experiments.tex:104,114; appendix.tex:774\"\n    },\n    {\n        \"name\": \"Mann-Whitney U: ISR* (matched 5+5)\",\n        \"original_p\": 0.004,\n        \"context\": \"U=25, r=1.0; ISR* comparison between matched ISR and Random cohorts\",\n        \"test_type\": \"Mann-Whitney U\",\n        \"location\": \"experiments.tex:114; appendix.tex:775\"\n    },\n    {\n        \"name\": \"Mann-Whitney U: TS rate (matched 5+5)\",\n        \"original_p\": 0.004,\n        \"context\": \"U=25; TS rate comparison between matched ISR and Random cohorts\",\n        \"test_type\": \"Mann-Whitney U\",\n        \"location\": \"appendix.tex:776\"\n    },\n    {\n        \"name\": \"Permutation: N-H rate (matched 5+5)\",\n        \"original_p\": 0.917,\n        \"context\": \"Δ=-3.6pp; genuine/non-hacking rate ISR 2.3% vs Random 5.9%\",\n        \"test_type\": \"Permutation\",\n        \"location\": \"experiments.tex:114; appendix.tex:777\"\n    },\n    {\n        \"name\": \"Fisher exact: N-H rate (5-seed pooled)\",\n        \"original_p\": 1e-8,\n        \"context\": \"ISR 22.6% vs Random 7.7%, OR=3.48 (uncorrected for PG/FN)\",\n        \"test_type\": \"Fisher exact\",\n        \"location\": \"appendix.tex:105\"\n    },\n    {\n        \"name\": \"Fisher exact: N-H rate (3-seed, PG+FN corrected)\",\n        \"original_p\": 0.182,\n        \"context\": \"ISR 6.06% vs Random 9.5%, OR=0.61 (n.s.)\",\n        \"test_type\": \"Fisher exact\",\n        \"location\": \"appendix.tex:107,269\"\n    },\n    {\n        \"name\": \"Fisher exact: TS rate (5-seed pooled)\",\n        \"original_p\": 4.82e-12,\n        \"context\": \"ISR 54.3% vs Random 29.5%, OR=2.84\",\n        \"test_type\": \"Fisher exact\",\n        \"location\": \"appendix.tex:110\"\n    },\n    {\n        \"name\": \"Fisher exact: TS rate (3-seed sensitivity)\",\n        \"original_p\": 1.3e-39,\n        \"context\": \"ISR 70.6% vs Random 13.7%, OR=15.05\",\n        \"test_type\": \"Fisher exact\",\n        \"location\": \"appendix.tex:112\"\n    },\n    {\n        \"name\": \"Fisher exact: SFT vs Exec-only N-H rate\",\n        \"original_p\": 0.001,\n        \"context\": \"SFT 92.3% vs Exec-only 7.5%, OR=147 (p<0.001, using 0.001 as upper bound)\",\n        \"test_type\": \"Fisher exact\",\n        \"location\": \"experiments.tex:51; appendix.tex:115\"\n    },\n    {\n        \"name\": \"CMH: TS (seed-stratified)\",\n        \"original_p\": 5.6e-16,\n        \"context\": \"OR_CMH=2.46, 95% CI [1.85,3.27]; authors note CMH p-values are inflated due to within-seed dependence\",\n        \"test_type\": \"Cochran-Mantel-Haenszel\",\n        \"location\": \"appendix.tex:125\"\n    },\n    {\n        \"name\": \"CMH: non-hacking (seed-stratified)\",\n        \"original_p\": 4.5e-10,\n        \"context\": \"OR_CMH=3.37, 95% CI [2.21,5.13]; authors note CMH p-values are inflated\",\n        \"test_type\": \"Cochran-Mantel-Haenszel\",\n        \"location\": \"appendix.tex:125\"\n    },\n    {\n        \"name\": \"Seed-level permutation: TS (n=5 per group)\",\n        \"original_p\": 0.28,\n        \"context\": \"Seed as unit of observation; limited power (min achievable p=0.008)\",\n        \"test_type\": \"Permutation\",\n        \"location\": \"appendix.tex:127\"\n    },\n    {\n        \"name\": \"Seed-level permutation: N-H (n=5 per group)\",\n        \"original_p\": 0.26,\n        \"context\": \"Seed as unit of observation; limited power (min achievable p=0.008)\",\n        \"test_type\": \"Permutation\",\n        \"location\": \"appendix.tex:127\"\n    },\n    {\n        \"name\": \"Spearman: ISR vs NLI accuracy\",\n        \"original_p\": 0.187,\n        \"context\": \"ρ=-0.049, n.s.; confirms ISR uncorrelated with downstream task performance\",\n        \"test_type\": \"Spearman correlation\",\n        \"location\": \"appendix.tex:77\"\n    }\n]\n\nN = len(tests)\n\nfor t in tests:\n    t[\"bonferroni_p\"] = min(t[\"original_p\"] * N, 1.0)\n    t[\"still_significant_005\"] = t[\"bonferroni_p\"] < 0.05\n    t[\"still_significant_010\"] = t[\"bonferroni_p\"] < 0.10\n\nresult = {\n    \"n_tests\": N,\n    \"method\": \"Bonferroni\",\n    \"alpha_levels\": [0.05, 0.10],\n    \"tests\": tests\n}\n\nwith open(\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/bonferroni_correction.json\", \"w\") as f:\n    json.dump(result, f, indent=2, ensure_ascii=False)\n\n# Summary\nn_orig_005 = sum(1 for t in tests if t[\"original_p\"] < 0.05)\nn_orig_010 = sum(1 for t in tests if t[\"original_p\"] < 0.10)\nn_corr_005 = sum(1 for t in tests if t[\"still_significant_005\"])\nn_corr_010 = sum(1 for t in tests if t[\"still_significant_010\"])\n\nprint(f\"Total tests (N): {N}\")\nprint(f\"\\nPre-correction significant at α=0.05: {n_orig_005}/{N}\")\nprint(f\"Pre-correction significant at α=0.10: {n_orig_010}/{N}\")\nprint(f\"\\nPost-Bonferroni significant at α=0.05: {n_corr_005}/{N}\")\nprint(f\"Post-Bonferroni significant at α=0.10: {n_corr_010}/{N}\")\n\nprint(\"\\n--- All tests ---\")\nfor t in tests:\n    flag = \"✓\" if t[\"still_significant_005\"] else (\"~\" if t[\"still_significant_010\"] else \"✗\")\n    print(f\"  [{flag}] {t['name']}: p_orig={t['original_p']:.4g} → p_bonf={t['bonferroni_p']:.4g}\")\n\n# Tests that lose significance\nprint(\"\\n--- Tests that LOSE significance after Bonferroni ---\")\nlost = [t for t in tests if t[\"original_p\"] < 0.05 and not t[\"still_significant_005\"]]\nif lost:\n    for t in lost:\n        print(f\"  {t['name']}: p_orig={t['original_p']:.4g} → p_bonf={t['bonferroni_p']:.4g}\")\nelse:\n    print(\"  None — all originally significant tests remain significant at α=0.05\")\n\nlost_010 = [t for t in tests if t[\"original_p\"] < 0.10 and not t[\"still_significant_010\"]]\nif lost_010:\n    print(f\"\\n--- Lost at α=0.10 ---\")\n    for t in lost_010:\n        print(f\"  {t['name']}: p_orig={t['original_p']:.4g} → p_bonf={t['bonferroni_p']:.4g}\")\nPYEOF\n",
+              "description": "Compute Bonferroni correction on all paper p-values"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-20T04:48:59.341734+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Total tests (N): 14\n\nPre-correction significant at α=0.05: 9/14\nPre-correction significant at α=0.10: 9/14\n\nPost-Bonferroni significant at α=0.05: 6/14\nPost-Bonferroni significant at α=0.10: 9/14\n\n--- All tests ---\n  [~] Fisher exact: TS domination (matched 5+5): p_orig=0.004 → p_bonf=0.056\n  [~] Mann-Whitney U: ISR* (matched 5+5): p_orig=0.004 → p_bonf=0.056\n  [~] Mann-Whitney U: TS rate (matched 5+5): p_orig=0.004 → p_bonf=0.056\n  [✗] Permutation: N-H rate (matched 5+5): p_orig=0.917 → p_bonf=1\n  [✓] Fisher exact: N-H rate (5-seed pooled): p_orig=1e-08 → p_bonf=1.4e-07\n  [✗] Fisher exact: N-H rate (3-seed, PG+FN corrected): p_orig=0.182 → p_bonf=1\n  [✓] Fisher exact: TS rate (5-seed pooled): p_orig=4.82e-12 → p_bonf=6.748e-11\n  [✓] Fisher exact: TS rate (3-seed sensitivity): p_orig=1.3e-39 → p_bonf=1.82e-38\n  [✓] Fisher exact: SFT vs Exec-only N-H rate: p_orig=0.001 → p_bonf=0.014\n  [✓] CMH: TS (seed-stratified): p_orig=5.6e-16 → p_bonf=7.84e-15\n  [✓] CMH: non-hacking (seed-stratified): p_orig=4.5e-10 → p_bonf=6.3e-09\n  [✗] Seed-level permutation: TS (n=5 per group): p_orig=0.28 → p_bonf=1\n  [✗] Seed-level permutation: N-H (n=5 per group): p_orig=0.26 → p_bonf=1\n  [✗] Spearman: ISR vs NLI accuracy: p_orig=0.187 → p_bonf=1\n\n--- Tests that LOSE significance after Bonferroni ---\n  Fisher exact: TS domination (matched 5+5): p_orig=0.004 → p_bonf=0.056\n  Mann-Whitney U: ISR* (matched 5+5): p_orig=0.004 → p_bonf=0.056\n  Mann-Whitney U: TS rate (matched 5+5): p_orig=0.004 → p_bonf=0.056"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r15-bonferroni_20260520T044634",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-20T04:48:59.341962+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "JSON 已保存。汇总：\n\n## Bonferroni 校正结果\n\n**N = 14 个统计检验**\n\n| | α=0.05 | α=0.10 |\n|---|---|---|\n| 校正前显著 | 9/14 | 9/14 |\n| 校正后显著 | 6/14 | 9/14 |\n\n### 校正后不再显著的检验（α=0.05）\n\n3 个 matched-cohort (n=5 per group) 检验从 p=0.004 升至 p_bonf=0.056，刚好超过 0.05 阈值，但仍在 α=0.10 下显著：\n\n| 检验 | p_orig | p_bonf |\n|---|---|---|\n| Fisher exact: TS domination (matched 5+5) | 0.004 | 0.056 |\n| Mann-Whitney U: ISR* (matched 5+5) | 0.004 | 0.056 |\n| Mann-Whitney U: TS rate (matched 5+5) | 0.004 | 0.056 |\n\n这三个检验实质上是对同一 matched-cohort 数据的不同切面（TS domination / ISR* / TS rate），本身高度相关。论文核心结论（TS 为 ISR 特异性吸引子）同时有 pooled Fisher (p_bonf ≈ 10⁻¹¹) 和 3-seed sensitivity (p_bonf ≈ 10⁻³⁸) 支撑，这两个校正后仍然极度显著。\n\n### 影响评估\n\n- 论文主要统计结论（TS rate 差异、SFT vs RL 差异）校正后仍然稳健\n- matched-cohort 的 p=0.004 系列检验边际化，但考虑到 N=5 的 discrete permutation 限制（最小可达 p=0.008），BF₁₀=77 的贝叶斯证据仍然很强\n- 5 个原本不显著的检验（permutation N-H、3-seed Fisher N-H、seed-level permutations、Spearman）校正后当然仍不显著"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_r15-bonferroni_20260520T044634"
+          },
+          "id": "event-000063"
+        }
+      ],
+      "message_count": 63
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-r15-bonferroni.md"
+}

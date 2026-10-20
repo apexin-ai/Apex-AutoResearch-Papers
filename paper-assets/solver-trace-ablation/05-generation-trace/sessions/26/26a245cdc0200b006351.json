@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "26a245cdc0200b006351",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "monitor plan002 b01 s42 1000",
+  "task_key": "worker_monitor_plan002-b01-s42-1000_20260515T082948",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_plan002-b01-s42-1000_20260515T082948_result.json",
+    "occurrence": 1,
+    "bytes": 584,
+    "sha256": "df2eb77aca6ba8993419a4a685584f0677d1def8abc450672b501070ccb46986"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**plan002-additive-b01-s42-1000 训练状态**\n\n| 指标 | 值 |\n|------|-----|\n| 进度 | **782/1000** (78%) |\n| 已运行 | 60 分钟 |\n| 预计剩余 | ~17 分钟 (按 ~2.6s/step × 218 步) |\n| reward | 0.78–0.97，近 10 步均值 ~0.83 |\n| prove_rate | 1.000（偶有 0.875） |\n| ISR | 0.375–0.938，波动较大，均值 ~0.65 |\n| loss | 接近 0，偶有小幅正/负波动 |\n| entropy | 0.01–0.09，已收敛至低位 |\n| GPU 0 | 100%, 79715/97887 MiB |\n| GPU 1 | 99%, 87644/97887 MiB |\n\n训练正常推进，预计 ~17 分钟后完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-plan002-b01-s42-1000.md"
+}

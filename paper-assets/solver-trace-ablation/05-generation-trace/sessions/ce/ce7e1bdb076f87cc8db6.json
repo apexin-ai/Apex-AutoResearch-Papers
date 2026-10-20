@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ce7e1bdb076f87cc8db6",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "diag preparing experiments status",
+  "task_key": "worker_diag_preparing-experiments-status_20260513T223748",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_preparing-experiments-status_20260513T223748_result.json",
+    "occurrence": 1,
+    "bytes": 1217,
+    "sha256": "bf5833b38781f9cc2e942290199c567dbf207593583a39162570f85101d4ad13"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n| 实验 | 状态 | 原因 |\n|------|------|------|\n| **plan001-exec-only-s42** | **crashed** | 参数错误，启动即退出 |\n| **plan005-sta-low-s42** | **crashed** | 同上，参数错误 |\n| **plan003-eval-exec-only-r5** | **finished** | 正常完成，EXIT_CODE=0 |\n\n### 详情\n\n**plan001 & plan005** — 两个训练实验都因同一错误立即退出：\n```\ntrain_grpo.py: error: unrecognized arguments: --max_steps 500\n```\n脚本的参数名是 `--num_steps`，不是 `--max_steps`。无输出目录产生。\n\n**plan003** — eval 已完成，结果：\n- 输出文件：`/root/autodl-tmp/outputs/plan003_eval_exec_only_r5.json`（177KB）\n- Proved: 32/100 (32.0%)\n- Mean ISR: 0.2055 ± 0.3194\n- Proved-only ISR: 0.6423\n- 按 answer type：true=35.98% ISR, false=17.23%, unknown=9.79%\n- 耗时 251.7s\n\n### GPU 状态\n两块 RTX PRO 6000 (98GB) 均空闲，显存 0 MiB，利用率 0%。\n\n### 数据文件\n`train_500_seed42.jsonl` 存在，500 行。\n\n### 需要的操作\n- plan001 和 plan005 的 registry 状态应更新为 **FAILED**\n- 重新提交时将 `--max_steps` 改为 `--num_steps`\n- plan003 的 registry 状态应更新为 **DONE**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-preparing-experiments-status.md"
+}

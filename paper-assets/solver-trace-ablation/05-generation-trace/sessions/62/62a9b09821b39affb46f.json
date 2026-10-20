@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "62a9b09821b39affb46f",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code paper tex redline fix",
+  "task_key": "worker_code_paper-tex-redline-fix_20260515T152900",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_paper-tex-redline-fix_20260515T152900_result.json",
+    "occurrence": 1,
+    "bytes": 1276,
+    "sha256": "63d044c8df759890e01e604852c7b1d7009f629d460b4ad777e8e2e47f1d1898"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All fixes complete. Summary of changes across 8 files:\n\n**RED LINE fixes:**\n- **RL-01** (7→8 modes): Added H8 to taxonomy tables in experiments.tex and appendix.tex. Merged H7a/H7b into single H7 row. Updated method.tex mode list and introduction.tex contribution text.\n- **RL-02** (H7 64.5%→69.7%): Updated H7 table values from 65→70. Fixed ISR s44 H7 from 86.5%→100% (FN corrected). Updated figure script and annotation.\n- **RL-03** (ISR N-H 17%→6.9%): Updated taxonomy table ISR N-H from 17→7.\n\n**MEDIUM fixes:**\n- **ISS-04** (s42 31%→17%): Fixed experiments.tex text ($31\\%$→$17\\%$), temporal collapse numbers (30.9→17.3%, 92.2→96.7% H7, 3.0→1.1% genuine), and detailed table.\n- **ISS-05** (Exec N-H 13%→7.5%): Updated Table 1 (13→8), taxonomy table (13→8), detailed table (12.9→7.5), and Fisher table (5.9%→7.5% with recomputed OR/p).\n\n**LOW fix:**\n- **ISS-06** (SFT 91.3%→92.2%): Switched to 1000-step 3-seed data across all mentions (abstract, intro, experiments, conclusion, appendix detailed table, Fisher table). PR 15.3%→13.0%, n=46→39, per-seed range 88-93%→91-93%.\n\nFigure `fig3_hacking_composition.pdf` regenerated with corrected data. Changelog registered as artifact `art_20260515_beda84`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-paper-tex-redline-fix.md"
+}

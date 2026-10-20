@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dc27ee2e6528cd4154ae",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "paper compress 8 items",
+  "task_key": "worker_paper_compress-8-items_20260517T144658",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_compress-8-items_20260517T144658_result.json",
+    "occurrence": 1,
+    "bytes": 1745,
+    "sha256": "99e9bed88bc369698669a75eead75f5e7a0f4a2cd1181ee7519d1f6e21e6938e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No undefined references. The PDF compiles cleanly at 21 total pages. Discussion and Conclusion (Section 5) ends on page 8, with Limitations starting on the same page.\n\nHere's the summary:\n\n### Edits executed\n\n| # | File | What changed | Lines saved (approx) |\n|---|------|-------------|---------------------|\n| 1 | method.tex L64-66 | O(1) variant: 3 sentences → 1 sentence + Appendix ref | ~2 |\n| 2 | experiments.tex L106-109 | β=0.05: 4 sentences → 2 sentences; per-seed random breakdown moved to new Appendix §app:beta005 | ~4 |\n| 3 | experiments.tex L11 | Setup: removed legacy filename note + eval_sta.py clause; both moved to Appendix §app:setup | ~1.5 |\n| 4 | experiments.tex L38-39 | 100-step RL checkpoint: 2 sentences → 1 sentence with Appendix ref | ~1.5 |\n| 5 | experiments.tex L120-123 | Dose-response: 4 sentences → 2 sentences; removed repeated per-β numbers | ~2 |\n| 6 | experiments.tex L111-113 | β=0.2: 3 sentences → 1 sentence; ISR* numbers dropped (already in Appendix Table) | ~1.5 |\n| 7 | experiments.tex L98-99 | Premise-count confound: removed specific ISR* numbers, kept conclusion | ~0.5 |\n| 8 | introduction.tex L33 | C2: removed seed trajectory detail (\"trajectory analysis on seeds 42 and 45...\") | ~1.5 |\n\n### Appendix additions\n- **app:setup**: Added \"Evaluation protocol\" paragraph (uniform ISR recomputation + legacy filename note)\n- **app:beta005**: New subsection \"Per-Seed Results at β=0.05\" with random control per-seed breakdown\n\n### Result\n- Total saved: ~15 lines\n- Main body (Abstract through Conclusion): ends on **page 8**\n- **Main body ≤ 8 pages: confirmed**\n- No undefined references, no LaTeX warnings\n- Backup edits #9/#11 not needed"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-compress-8-items.md"
+}

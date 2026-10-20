@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "61c52c42de3f93eccad2",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "paper fix bib placeholders",
+  "task_key": "worker_paper_fix-bib-placeholders_20260514T194816",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fix-bib-placeholders_20260514T194816_result.json",
+    "occurrence": 1,
+    "bytes": 1186,
+    "sha256": "bfb47fe9b7590440e4ff608c132ab486eadbc42b7c5f96205f4f89591adad7cb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成，共更新 10 个条目：\n\n| 条目 | 原值 | 修复后 |\n|------|------|--------|\n| logic-rl | `Xian and others` | `Tian Xie and Zitian Gao and Qingnan Ren and Haoming Luo and others` |\n| rubric-grpo | `{Various}` | `Manish Bhattarai and Ismael Boureima and Nishath Rajiv Ranasinghe and Scott Pakin and Dan O'Malley` |\n| reward-hacking-survey | `{Various}` | `Xiaohua Wang and Muzhao Tian and Yuqi Zeng and Zisu Huang and others` |\n| lorp | `{Various}` | `Zhengkun Di and Chaoli Zhang and Hongtao Lv and Lizhen Cui and Lei Liu` |\n| rlvr-reasoning | `{Various}` | `Xumeng Wen and Zihan Liu and Shun Zheng and Shengyu Ye and others` |\n| mutation-consistency-llm | `{Various}` | `Ziyu Li and Donghwan Shin` |\n| deepmutation | `{Various}` | `Florian Tambon and Foutse Khomh and Giuliano Antoniol` |\n| inform-reward-hacking | `{Various}` | `Yuchun Miao and Sen Zhang and Liang Ding and Rong Bao and others` |\n| energy-loss-reward-hacking | `{Various}` | `Yuchun Miao and Sen Zhang and Liang Ding and Yuqi Zhang and others` |\n| mo-grpo | `{CyberAgent AI Lab}` | `Yuki Ichihara and Yuu Jinnai and Tetsuro Morimura and Mitsuki Sakamoto and others` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fix-bib-placeholders.md"
+}

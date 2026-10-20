@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4ba703224496860236be",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "eval plan006 collect results v4",
+  "task_key": "worker_eval_plan006-collect-results-v4_20260514T161210",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_plan006-collect-results-v4_20260514T161210_result.json",
+    "occurrence": 1,
+    "bytes": 831,
+    "sha256": "1f18d71dc191c009ad7bfb1e3f53a5ec00b5364a34ac98d2b4177535c187db14"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 eval 均已完成并更新 registry。汇总：\n\n## Prolog exec-only 3-seed eval 结果 (eval_sta.py full STA)\n\n| Seed | PR | Mean ISR | Proved-only ISR | n_proved |\n|------|-----|----------|-----------------|----------|\n| s42 | **83%** | 0.031 | 0.037 | 83 |\n| s43 | **56%** | 0.008 | 0.015 | 56 |\n| s44 | **21%** | 0.081 | 0.387 | 21 |\n| **Mean±Std** | **53.3%±31.1%** | **0.040±0.037** | **0.146±0.210** | — |\n\n关键发现：\n- PR 跨 seed 极不稳定（std=31pp），与 FOL exec-only 一致\n- Mean ISR 始终极低（<0.1），确认 Prolog exec-only 不产生 genuine reasoning traces（参考 C006: 低 ISR = 冗余编码，非无推理）\n- s44 异常：PR 最低（21%）但 proved_only_ISR 最高（0.387, max=1.0），可能因少量 proved 样本中有几个碰巧 ISR 较高"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-plan006-collect-results-v4.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e11cd960d2ca6ed9cf3c",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analysis 4b content independent backcheck",
+  "task_key": "worker_analysis_4b-content-independent-backcheck_20260518T001553",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_4b-content-independent-backcheck_20260518T001553_result.json",
+    "occurrence": 1,
+    "bytes": 586,
+    "sha256": "187976aea346602c134bbb987c2772d6f35a0848df209343cd25a77988698622"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**4B genuine 数据无 content_independent 高估问题。**\n\n核心发现：\n- 三个 genuine>0 的 seed（s42/s45/s46），genuine 样本中 content_independent = **0**\n- 4B 模型使用内容相关谓词（Lawyer, Chef, Defender），不像 1.7B 抽象为单字母（P, Q, R）\n- genuine 样本展示真实多步推理链（如 Centerback→Defender→Player→¬BasketballPlayer）\n- s42 整体 CI=19，但全部落在 H7/H1/H8 分类中，不在 genuine 中\n- pooled genuine mean 15.8% 无需修正\n\n报告已注册：`d130_4b_content_independent_backcheck`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-4b-content-independent-backcheck.md"
+}

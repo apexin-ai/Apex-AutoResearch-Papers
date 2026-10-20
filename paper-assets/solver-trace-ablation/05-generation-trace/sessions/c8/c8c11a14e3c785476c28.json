@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c8c11a14e3c785476c28",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_15_1778903167.md",
+  "task_key": "loop_15_1778903167",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_15_1778903167.md",
+    "occurrence": 1,
+    "bytes": 4724,
+    "sha256": "711dcf468454f05ef5259f370761c88d71e1b6271ca07607f13b21886b0c585f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 15\nreason: idle_timeout\nupdated: '2026-05-16T03:00:19+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单仅 `westd-39279:cuda:0` 和 `westd-39279:cuda:1`，禁止用其他 GPU\n- 训练脚本路径必须 `python3 scripts/train_grpo.py --config configs/...`（不是根目录的 `train_grpo.py`），首次提交曾因缺 `scripts/` 前缀导致 GPU 空转\n- ISR β=0.1 实验必须用 `configs/grpo_additive_bonus_b01.yaml`（Reviewer 要求追溯一致性）\n- D095 Narrative A 已批准生效，所有 paper 内容必须与 D095 一致——H7a 是 GRPO 通用 seed-dependent，H7b 才是 ISR-specific\n- genuine rate ISR 6.06% vs Random 9.54%，p=0.182 **不显著**，禁止 claim genuine rate 有显著差异\n- D051 定论 premise-count-matched 1.06x，2.4x 已作废，禁止引用旧数据\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-39279，账户 root\n- **工作目录**: `/root/solver-trace-ablation`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- **环境激活**: `source /root/miniconda3/bin/activate && python3 scripts/train_grpo.py --config configs/...`\n- **GPU**: 2 × RTX PRO 6000 96GB（cuda:0, cuda:1）\n- **训练配置**: `configs/` 目录下，主要有 `grpo_additive_bonus.yaml`（β=0.3）、`grpo_additive_bonus_b01.yaml`（β=0.1）等\n- **活跃进程**: 无 RUNNING 实验，2 张 GPU 空闲\n- **活跃 Worker**: 2 个 analysis worker 正在运行：\n  - `worker_analysis_sweep-isr-b005-s42`（分析 β=0.05 s42 实验）\n  - `worker_analysis_sweep-isr-b01-s45`（分析 ISR β=0.1 s45 实验）\n- **活跃 Cron**: reconcile 返回 0（无活跃 cron）\n\n### 3. 📊 当前状态\n**论文已基本完成写作，等待 Review Director 最终审。** Submission package 已生成（artifacts/submission.zip, 733KB, 0 error），Reviewer 一致性审查 PASS。DDL 2026-05-25（剩 9 天）。\n\n**Registry**: 105 个实验——DONE 86（success 26, negative 28, failed 26, killed 6）, ANALYZING 2, PREPARING 17。\n\n**ANALYZING（等 Worker 回调）**:\n- `sweep-isr-b005-s42`: β=0.05 ISR dose-response（W3 波次）\n- `sweep-isr-b01-s45`: ISR β=0.1 s45 扩展到 5-seed（W4 波次）\n\n**PREPARING（17 个，D096 Round 2 规划的后续实验）**:\n- W3 β sweep: β=0.05 (s43/s44), β=0.2 (s42/s43/s44)——3 seeds × 2 doses = 6 个\n- W4 extra seeds: exec-only (s45/s46), random (s45/s46), ISR (s46), additive (s45/s46)——7 个\n- W2 7B pilot: `w2-qwen3-7b-pilot`（测试 Qwen3-8B 在 96GB 上的可行性）\n- 其他: plan001-exec-only-s45/s46, plan002-additive-b01-s45/s46\n\n**等待中**: 2 个 analysis Worker 回调 → 处理结果后更新 registry 和 report.md。\n\n### 4. 📋 待办（条件触发式）\n- `sweep-isr-b005-s42` analysis Worker 回调 → 更新 registry + 检查 β=0.05 是否符合 dose-response 预期（hacking < β=0.1 的 70.6%？）→ 汇报 Director\n- `sweep-isr-b01-s45` analysis Worker 回调 → 更新 registry + 计算 4-seed pooled stats → 汇报 Director\n- Director 审批 Round 2 实验 → 用空闲的 cuda:0/cuda:1 提交 PREPARING 中的下一批实验（优先 W3 β sweep，因为 dose-response 曲线是新 claim 支撑）\n- Review Director 最终审通过 → 准备 ARR 提交流程\n- Review Director 要求修改 → 派 Worker 按修改意见改 TeX，重新编译+打包\n- 任何 analysis 结果出现 negative → 按 red-section 规范产出 Framing 提案，禁止直接改 paper\n\n### 5. 🎯 战略上下文\n**项目核心结论**: STA/ISR 是 GRPO neurosymbolic formalizer 的诊断工具；ISR 从诊断转为优化目标时出现 meta-level Goodhart（首个经验案例）。3 个 Core Claims 全部闭环。\n\n**决策链要点**:\n- D095 是最关键决策：Narrative A 生效——H7 分两层（H7a GRPO-general + H7b ISR-specific），genuine p=0.182 不显著\n- D093→D094→D095 来回修正了 8 次 H7 归属——最易犯的错是滑向 \"H7 is ISR-specific\" 旧 framing\n- D096: Round 2 规划已出，目的是补 β dose-response 曲线（0.05/0.2）和 5-seed confidence intervals\n\n**最容易判断错的事**:\n1. **H7 归属**——Random 也有 H7（s43-r3 贡献 38.3%），不是 ISR 独有。写论文 / 汇报时极易犯\n2. **genuine rate 不显著**——数值上 ISR 略低（6.06% vs 9.54%），但 p=0.182，不能 claim\n3. **Hacking mode 是 seed-dependent**——不同 seed 收敛不同策略，这是 feature 不是 noise\n4. **论文已进入提交倒计时**——不要因为 PREPARING 里有 17 个实验就觉得离完成很远，核心证据链已全部就位，Round 2 是锦上添花（更多 seeds + dose-response 曲线）\n5. **2 张 GPU 当前空闲**——Director 审批后应立即提交，不要让 GPU 闲置\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-15-1778903167.md"
+}

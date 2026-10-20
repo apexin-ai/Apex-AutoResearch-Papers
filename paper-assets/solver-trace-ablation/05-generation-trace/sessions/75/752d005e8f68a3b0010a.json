@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "752d005e8f68a3b0010a",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code w14 bib fixes and citations",
+  "task_key": "worker_code_w14-bib-fixes-and-citations_20260520T100155",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_w14-bib-fixes-and-citations_20260520T100155_result.json",
+    "occurrence": 1,
+    "bytes": 946,
+    "sha256": "b7f34c8a34557318982446cdb1604e1b6c4e351641d7e5734410670ee821ce95"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All keys present in both files. Summary:\n\n| 条目 | 操作 |\n|------|------|\n| `folio` (year) | **无需修改** — 2024 正确（EMNLP 2024 proceedings，OpenAlex 的 2022 是 arXiv 预印本日期） |\n| `metr-reward-hacking` | 补充作者：Sydney Von Arx, Lawrence Chan, Beth Barnes；`howpublished` 改为 `METR Technical Blog` |\n| `setlur2025rewarding` | **新增** — ICLR 2025, arXiv:2410.08146 |\n| `alphaproof2025` | **新增** — Hubert et al., Nature 2025, DOI:10.1038/s41586-025-09833-y |\n\n**未找到的引用**：Wen et al. (2025) \"From Outcome to Process: Rewards for RL with LLMs\" — 经过多轮搜索未找到该确切标题的论文。最接近的 Wen 作者论文是 Xumeng Wen et al. \"Reinforcement Learning with Verifiable Rewards Implicitly Incentivizes Correct Reasoning in Base LLMs\" (arXiv:2506.14245)，但标题和主题不匹配。建议确认 reviewer 给的确切标题/arXiv ID。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-w14-bib-fixes-and-citations.md"
+}

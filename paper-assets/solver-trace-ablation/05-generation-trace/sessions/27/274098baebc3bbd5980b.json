@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "274098baebc3bbd5980b",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "eval wave1 completion",
+  "task_key": "worker_eval_wave1-completion_20260517T081552",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_wave1-completion_20260517T081552_result.json",
+    "occurrence": 1,
+    "bytes": 199,
+    "sha256": "94a450a9e3fa89f2b4981eabac49ac1fdaf634988a6a3efb7bc4b4cb2f7b17e9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个任务并行中：\n- **s45 训练**: step 479/500，预计 ~5 min 内完成\n- **b005-s42 eval**: 8/100 samples，预计 ~15 min 完成\n\n3 分钟后自动回来检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-wave1-completion.md"
+}

@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "68d375699f8064a61ec6",
+  "project": "solver-trace-ablation",
+  "kind": "conversation",
+  "title": "writing experiments section",
+  "task_key": "worker_writing_experiments-section_20260515T031136",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_writing_experiments-section_20260515T031136.jsonl",
+    "occurrence": 1,
+    "bytes": 178,
+    "sha256": "fcb3c11043eb34df4c951e048635dfc6fd838cd49dc367945da2b3cd4cd5298f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T03:11:44.152910+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 4:10am (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_writing_experiments-section_20260515T031136"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/writing-experiments-section.md"
+}

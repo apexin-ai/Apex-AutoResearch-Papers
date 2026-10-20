@@ -1,0 +1,6834 @@
+# writing paper literature bib
+
+**Observe but Don’t Optimize: Structural Rewards Trigger Goodhart Effects in Neurosymbolic Reasoning** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 100
+- **Recorded user turns:** 0
+- **Tool calls:** 40
+- **Original source:** `logs/workers/worker_writing_paper-literature-bib_20260514T185103.log`
+- **Structured JSON:** [`6afc0227f9c2af176894.json`](../../sessions/6a/6afc0227f9c2af176894.json)
+
+## Before a recorded user message
+
+100 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation",
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__save_project_file"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "e7656b8f-16ce-40b3-a3bc-4d44ffc44681",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-3-projects-solver-trace-ablation/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778800200,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "3b251313-2912-4f60-a6fc-1853884647c6",
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+I'll start by reading the literature map and paper framing to understand what's needed.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "b9338ed5-fde1-40ca-ab71-b7165db37c32",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012iJg24XgzXRJ4dU5Ss2nnP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12715,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12715
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_012P8dDQboCPrcvm4Te9y9A6`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_project_file,WebSearch,WebFetch",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "72b528de-baf3-4469-874a-ffe0f2685fc1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012iJg24XgzXRJ4dU5Ss2nnP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12715,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12715
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-14T18:51:14.130Z_
+
+<details><summary>↩ Tool result · `toolu_012P8dDQboCPrcvm4Te9y9A6`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "5b135472-2332-4743-9060-392b3f8526d2",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__read_project_file",
+      "WebSearch",
+      "WebFetch"
+    ],
+    "query": "select:mcp__agent-ml-research__read_project_file,WebSearch,WebFetch",
+    "total_deferred_tools": 22
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me read the literature map and paper framing files first.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "50ff2f6f-318e-4457-8448-c44d957bfe1d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R7HwTJy4z7A2519LbiwWDt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1453,
+      "cache_read_input_tokens": 24556,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1453
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01JQNyDLV6DrW9piaKAzJ26E`</summary>
+
+```json
+{
+  "project": "solver-trace-ablation",
+  "file": "literature_map.yaml",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "3f7f8f72-3ee9-4488-903d-b1ea8d1359d5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R7HwTJy4z7A2519LbiwWDt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1453,
+      "cache_read_input_tokens": 24556,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1453
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-14T18:51:18.210Z_
+
+<details><summary>↩ Tool result · `toolu_01JQNyDLV6DrW9piaKAzJ26E`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/literature_map.yaml\", \"content\": \"# Literature Map for Solver Trace Ablation (STA)\\n# Categories:\\n#   1. neurosymbolic-rl: Neurosymbolic reasoning + RL/GRPO\\n#   2. reward-shaping: Reward shaping for code/formal verification\\n#   3. mutation-testing: Mutation testing in software engineering\\n#   4. intensional-analysis: Intensional program analysis\\n#   5. reward-hacking: Reward hacking / overoptimization\\n#   6. fol-formalization: FOL/Prolog formalization with LLMs\\n#   7. goodhart-overoptimization: Goodhart's Law theory and dose-response dynamics\\n#   8. verification-reward: Solver/prover as RL reward signal\\n\\npapers:\\n\\n  # ============================================================\\n  # Category 1: Neurosymbolic reasoning + RL/GRPO\\n  # ============================================================\\n\\n  - id: deepseek-r1\\n    title: \\\"DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning\\\"\\n    authors: \\\"DeepSeek-AI\\\"\\n    year: 2025\\n    venue: \\\"arXiv 2501.12948 / Nature 2025\\\"\\n    category: neurosymbolic-rl\\n    role: method-component\\n    relevance: >\\n      Demonstrates that pure RL (GRPO) can incentivize reasoning in LLMs without SFT.\\n      STA builds on the same GRPO framework but replaces binary outcome reward with\\n      intensional structural reward for neurosymbolic formalization.\\n    key_finding: >\\n      DeepSeek-R1-Zero trained via GRPO alone achieves 71% on AIME 2024,\\n      showing emergent chain-of-thought reasoning from RL alone.\\n\\n  - id: deepseekmath\\n    title: \\\"DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models\\\"\\n    authors: \\\"Zhihong Shao, Peiyi Wang, Qihao Zhu, Runxin Xu, et al.\\\"\\n    year: 2024\\n    venue: \\\"arXiv 2402.03300\\\"\\n    category: neurosymbolic-rl\\n    role: method-component\\n    relevance: >\\n      Introduces GRPO (Group Relative Policy Optimization), the RL algorithm\\n      used in STA training. GRPO eliminates the critic model by estimating\\n      baselines from group scores.\\n    key_finding: >\\n      GRPO matches PPO performance while significantly reducing training\\n      resources; improves GSM8K 82.9->88.2% and MATH 46.8->51.7%.\\n\\n  - id: logic-rl\\n    title: \\\"Logic-RL: Unleashing LLM Reasoning with Rule-Based Reinforcement Learning\\\"\\n    authors: \\\"Xian et al.\\\"\\n    year: 2025\\n    venue: \\\"arXiv 2502.14768\\\"\\n    category: neurosymbolic-rl\\n    role: direct-competitor\\n    relevance: >\\n      Uses rule-based RL (REINFORCE++) for LLM logical reasoning on synthetic\\n      logic puzzles. Closest competitor to STA's approach of RL for logical\\n      formalization, though Logic-RL uses extensional (answer-correctness)\\n      rewards rather than STA's intensional structural rewards.\\n    key_finding: >\\n      REINFORCE++ outperforms GRPO on logic puzzles with superior stability;\\n      rule-based reward design is critical for RL-based logical reasoning.\\n\\n  - id: mellgren-prolog-grpo\\n    title: \\\"Training Language Models to Use Prolog as a Tool\\\"\\n    authors: \\\"Niklas Mellgren\\\"\\n    year: 2024\\n    venue: \\\"arXiv 2512.07407\\\"\\n    category: neurosymbolic-rl\\n    role: direct-competitor\\n    relevance: >\\n      Uses GRPO to train a 3B LLM to generate Prolog code for reasoning,\\n      directly comparable to STA's approach of GRPO-training a formalizer.\\n      Key difference: uses pass/fail reward vs STA's structural ISR.\\n    key_finding: >\\n      GRPO is effective for teaching small LLMs to use Prolog as a tool\\n      for logical and mathematical reasoning.\\n\\n  - id: satlm\\n    title: \\\"SatLM: Satisfiability-Aided Language Models Using Declarative Prompting\\\"\\n    authors: \\\"Xi Ye et al.\\\"\\n    year: 2023\\n    venue: \\\"NeurIPS 2023\\\"\\n    category: neurosymbolic-rl\\n    role: background\\n    relevance: >\\n      Neurosymbolic approach where LLM generates declarative specifications\\n      verified by SAT solver. Similar pipeline to STA (LLM->formal spec->solver)\\n      but uses prompting, not RL training.\\n    key_finding: >\\n      Declarative formulation outperforms imperative program-aided LMs by 23%\\n      on GSM; achieves SoTA on LSAT and BoardgameQA.\\n\\n  - id: deepproblog\\n    title: \\\"Neural Probabilistic Logic Programming in DeepProbLog\\\"\\n    authors: \\\"Robin Manhaeve, Sebastijan Dumančić, Angelika Kimmig, Thomas Demeester, Luc De Raedt\\\"\\n    year: 2021\\n    venue: \\\"Artificial Intelligence 298\\\"\\n    category: neurosymbolic-rl\\n    role: background\\n    relevance: >\\n      Foundational neural-probabilistic logic programming framework that integrates\\n      deep learning with ProbLog via neural predicates. Establishes the intellectual\\n      tradition of combining neural networks with logic programming that STA extends\\n      to LLM-generated Prolog with RL training.\\n    key_finding: >\\n      End-to-end differentiable framework integrating neural perception with\\n      probabilistic logical reasoning; supports program induction and learning\\n      from examples.\\n\\n  - id: neurasp\\n    title: \\\"NeurASP: Embracing Neural Networks into Answer Set Programming\\\"\\n    authors: \\\"Zhun Yang, Adam Ishay, Joohyung Lee\\\"\\n    year: 2020\\n    venue: \\\"IJCAI 2020\\\"\\n    category: neurosymbolic-rl\\n    role: background\\n    relevance: >\\n      Integrates neural networks with answer set programming (ASP), using\\n      ASP rules to constrain and improve neural network training. Complementary\\n      to DeepProbLog; together they represent the neuro-symbolic LP foundation\\n      that STA's LLM-to-Prolog pipeline builds upon.\\n    key_finding: >\\n      ASP semantic constraints improve neural network perception accuracy;\\n      demonstrates bidirectional benefit of neural-symbolic integration.\\n\\n  - id: thought-like-pro\\n    title: \\\"Thought-Like-Pro: Enhancing Reasoning of Large Language Models through Self-Driven Prolog-based Chain-of-Thought\\\"\\n    authors: \\\"Xiaoyu Tan, Yongxin Deng, Xihe Qiu, Weidi Xu, Chao Qu, Wei Chu, Yinghui Xu, Yuan Qi\\\"\\n    year: 2024\\n    venue: \\\"arXiv 2407.14562\\\"\\n    category: neurosymbolic-rl\\n    role: direct-competitor\\n    relevance: >\\n      Uses Prolog engine to generate verified reasoning trajectories, then trains\\n      LLMs via imitation learning to replicate them. Directly comparable pipeline\\n      to STA (Prolog verification + LLM training), but uses imitation learning\\n      instead of GRPO with structural reward.\\n    key_finding: >\\n      Prolog-verified reasoning trajectories as training signal improve LLM\\n      logical reasoning; self-driven framework enables LLMs to formulate\\n      rules from instructions and leverage Prolog for derivation.\\n\\n  # ============================================================\\n  # Category 2: Reward shaping for code/formal verification\\n  # ============================================================\\n\\n  - id: lightman-verify-step\\n    title: \\\"Let's Verify Step by Step\\\"\\n    authors: \\\"Hunter Lightman, Vineet Kosaraju, Yura Burda, et al.\\\"\\n    year: 2023\\n    venue: \\\"arXiv 2305.20050 / ICLR 2024\\\"\\n    category: reward-shaping\\n    role: method-component\\n    relevance: >\\n      Establishes that process supervision (step-level reward) outperforms\\n      outcome supervision (final-answer reward) for reasoning. STA's ISR\\n      is analogous: it provides structural process-level signal about which\\n      components of a formalization matter, rather than just pass/fail.\\n    key_finding: >\\n      Process-supervised reward model achieves 78% on MATH, significantly\\n      outperforming outcome-supervised models. Released PRM800K dataset.\\n\\n  - id: reward-shaping-rlhf\\n    title: \\\"Reward Shaping to Mitigate Reward Hacking in RLHF\\\"\\n    authors: \\\"Jiayi Fu, Xuandong Zhao, Chengyuan Yao, et al.\\\"\\n    year: 2025\\n    venue: \\\"arXiv 2502.18770\\\"\\n    category: reward-shaping\\n    role: background\\n    relevance: >\\n      Studies reward shaping design principles for RLHF: bounded rewards and\\n      rapid-then-convergent growth. STA's ISR follows these principles\\n      naturally since structural necessity scores are bounded [0,1].\\n    key_finding: >\\n      Two key reward shaping principles: (1) bounded RL reward, (2) rapid\\n      initial growth with gradual convergence. PAR method achieves 5%+\\n      win rate improvement on AlpacaEval 2.0.\\n\\n  - id: rlvr-reasoning\\n    title: \\\"Reinforcement Learning with Verifiable Rewards Implicitly Incentivizes Correct Reasoning in Base LLMs\\\"\\n    authors: \\\"Various\\\"\\n    year: 2025\\n    venue: \\\"arXiv 2506.14245\\\"\\n    category: reward-shaping\\n    role: background\\n    relevance: >\\n      Shows that binary verifiable rewards (pass/fail) can implicitly incentivize\\n      reasoning. STA argues that for neurosymbolic formalization, binary reward\\n      is insufficient and structural reward is needed to avoid reward hacking.\\n    key_finding: >\\n      RLVR with binary verification implicitly teaches correct reasoning\\n      strategies, not just answer matching.\\n\\n  - id: rubric-grpo\\n    title: \\\"Rubric-Grounded Reinforcement Learning: Structured Judge Rewards for Generalizable Reasoning\\\"\\n    authors: \\\"Various\\\"\\n    year: 2025\\n    venue: \\\"arXiv 2605.08061\\\"\\n    category: reward-shaping\\n    role: direct-competitor\\n    relevance: >\\n      Uses structured rubric-based rewards with GRPO, similar in spirit to\\n      STA's structured ISR. Key difference: rubric rewards come from LLM\\n      judges, while ISR comes from solver-based mutation testing.\\n    key_finding: >\\n      Structured multi-dimensional reward signals improve GRPO training\\n      generalization compared to scalar rewards.\\n\\n  - id: gao-effective-rl-reward\\n    title: \\\"On Designing Effective RL Reward at Training Time for LLM Reasoning\\\"\\n    authors: \\\"Jiaxuan Gao, Shusheng Xu, Wenjie Ye, Weilin Liu, Chuyi He, Wei Fu, Zhiyu Mei, Guangju Wang, Yi Wu\\\"\\n    year: 2024\\n    venue: \\\"arXiv 2410.15115\\\"\\n    category: reward-shaping\\n    role: background\\n    relevance: >\\n      Demonstrates that learned process/outcome reward models can hurt RL\\n      training, producing worse performance than simple success reward only.\\n      Directly explains plan005 NEGATIVE: STA's ISR as auxiliary process\\n      reward degrades prove_rate compared to exec-only baseline.\\n    key_finding: >\\n      PRM/ORM rewards may NOT help or even hurt RL training vs success-only\\n      reward. Solution: Clipping and Delta techniques to bound accumulated\\n      reward magnitude prevent reward hacking.\\n\\n  - id: prof-process-outcome\\n    title: \\\"Beyond Correctness: Harmonizing Process and Outcome Rewards through RL Training\\\"\\n    authors: \\\"Chenlu Ye, Zhou Yu, Ziji Zhang, Hao Chen, Narayanan Sadagopan, Jing Huang, Tong Zhang, Anurag Beniwal\\\"\\n    year: 2025\\n    venue: \\\"arXiv 2509.03403\\\"\\n    category: reward-shaping\\n    role: background\\n    relevance: >\\n      Shows that naively combining PRM+ORM signals leads to performance\\n      degradation. PROF consistency filter retains only PRM-ORM consistent\\n      samples, achieving 4%+ improvement over blending. Suggests STA should\\n      only apply ISR when consistent with execution outcome.\\n    key_finding: >\\n      Process rewards frequently suffer from inaccuracies and reward hacking\\n      susceptibility. PROF filters training data by PRM-ORM consistency,\\n      outperforming naive reward blending by 4%+ accuracy.\\n\\n  - id: moskovitz-constrained-rlhf\\n    title: \\\"Confronting Reward Model Overoptimization with Constrained RLHF\\\"\\n    authors: \\\"Ted Moskovitz, Aaditya K. Singh, DJ Strouse, Tuomas Sandholm, Ruslan Salakhutdinov, Anca D. Dragan, Stephen McAleer\\\"\\n    year: 2023\\n    venue: \\\"arXiv 2310.04373 / ICLR 2024\\\"\\n    category: reward-shaping\\n    role: background\\n    relevance: >\\n      First study on overoptimization in composite reward models. Shows that\\n      fixed-weight linear scalarization of component rewards leads to\\n      degradation past a threshold. Proposes constrained RL with dynamic\\n      Lagrange multiplier weighting as alternative to fixed ISR weight.\\n    key_finding: >\\n      Correlation between component RMs significantly affects overoptimization\\n      thresholds. Constrained RL with Lagrange multipliers outperforms\\n      fixed-weight reward composition.\\n\\n  - id: skalse-reward-hacking\\n    title: \\\"Defining and Characterizing Reward Hacking\\\"\\n    authors: \\\"Joar Skalse, Nikolaus H. R. Howe, Dmitrii Krasheninnikov, David Krueger\\\"\\n    year: 2022\\n    venue: \\\"arXiv 2209.13085 / NeurIPS 2022\\\"\\n    category: reward-shaping\\n    role: background\\n    relevance: >\\n      Formal proof that for stochastic policies, two reward functions are\\n      unhackable only if one is constant. Theoretically explains why any\\n      non-zero ISR weight can decrease prove_rate -- this is a fundamental\\n      property of reward composition, not STA-specific.\\n    key_finding: >\\n      Any non-constant proxy reward can decrease true reward when optimized.\\n      Unhackability requires the proxy to be constant, making all non-trivial\\n      auxiliary rewards theoretically vulnerable to degrading primary performance.\\n\\n  - id: progrs-outcome-conditioned\\n    title: \\\"LLM Reasoning with Process Rewards for Outcome-Guided Steps\\\"\\n    authors: \\\"Mohammad Rezaei, Jens Lehmann, Sahar Vahdati\\\"\\n    year: 2026\\n    venue: \\\"arXiv 2604.02341\\\"\\n    category: reward-shaping\\n    role: background\\n    relevance: >\\n      PRM scores optimized as absolute rewards amplify fluent failure modes.\\n      Outcome-conditioned centering shifts incorrect trajectories' PRM scores\\n      to zero mean, preserving ranking info without corrupting gradients.\\n      Suggests STA should condition ISR on execution outcome.\\n    key_finding: >\\n      Naive process rewards induce reward hacking by rewarding locally fluent\\n      but globally incorrect reasoning. Outcome-conditioned centering resolves\\n      the conflict with fewer rollouts than outcome-only baselines.\\n\\n  - id: qwen-prm-lessons\\n    title: \\\"The Lessons of Developing Process Reward Models in Mathematical Reasoning\\\"\\n    authors: \\\"Zhenru Zhang et al. (Qwen Team, Alibaba)\\\"\\n    year: 2025\\n    venue: \\\"ACL 2025 Findings (arXiv 2501.07301)\\\"\\n    category: reward-shaping\\n    role: supporting-evidence\\n    relevance: >\\n      MC estimation-synthesized PRM data leads to quality degradation; policy\\n      model generates \\\"answer-correct but reasoning-flawed\\\" responses, causing\\n      process reward / outcome misalignment. Directly parallels ISR problem:\\n      structurally correct but semantically wrong proof traces get high ISR\\n      but low execution reward.\\n    key_finding: >\\n      PRM performance depends critically on data quality; MC estimation\\n      introduces systematic bias. Answer-correct reasoning-flawed samples\\n      corrupt process supervision signal.\\n\\n  # ============================================================\\n  # Category 3: Mutation testing in software engineering\\n  # ============================================================\\n\\n  - id: demillo1978\\n    title: \\\"Hints on Test Data Selection: Help for the Practicing Programmer\\\"\\n    authors: \\\"Richard A. DeMillo, Richard J. Lipton, Frederick G. Sayward\\\"\\n    year: 1978\\n    venue: \\\"Computer 11(4):34-43\\\"\\n    category: mutation-testing\\n    role: background\\n    relevance: >\\n      Foundational paper introducing mutation testing. STA's component\\n      necessity testing directly extends this idea: instead of mutating\\n      source code to test test suites, STA mutates logical formulas\\n      to test component necessity for solver success.\\n    key_finding: >\\n      Introduced mutation testing and the coupling effect hypothesis:\\n      tests that detect simple faults also detect complex faults.\\n\\n  - id: offutt-coupling\\n    title: \\\"Investigations of the Software Testing Coupling Effect\\\"\\n    authors: \\\"A. Jefferson Offutt\\\"\\n    year: 1992\\n    venue: \\\"ACM TOSEM 1(1):5-20\\\"\\n    category: mutation-testing\\n    role: background\\n    relevance: >\\n      Empirically validates the coupling effect hypothesis that underpins\\n      mutation testing. STA's single-component ablation is analogous to\\n      first-order mutation; the coupling effect suggests this suffices.\\n    key_finding: >\\n      Test data killing all first-order mutants killed >99% of second-\\n      and third-order mutants, validating the coupling effect.\\n\\n  - id: jia-harman-survey\\n    title: \\\"An Analysis and Survey of the Development of Mutation Testing\\\"\\n    authors: \\\"Yue Jia, Mark Harman\\\"\\n    year: 2011\\n    venue: \\\"IEEE TSE 37(5):649-678\\\"\\n    category: mutation-testing\\n    role: background\\n    relevance: >\\n      Comprehensive survey of mutation testing covering three decades of\\n      development. Provides theoretical and practical foundation for STA's\\n      adaptation of mutation testing to logical formulas.\\n    key_finding: >\\n      Systematic classification of mutation operators, cost reduction\\n      techniques, and equivalence problem -- all relevant to STA's design\\n      of clause-level ablation operators.\\n\\n  - id: just-mutants-real-faults\\n    title: \\\"Are Mutants a Valid Substitute for Real Faults in Software Testing?\\\"\\n    authors: \\\"Rene Just, Darioush Jalali, Laura Inozemtseva, et al.\\\"\\n    year: 2014\\n    venue: \\\"FSE 2014\\\"\\n    category: mutation-testing\\n    role: background\\n    relevance: >\\n      Validates that mutation testing (structural/intensional analysis of\\n      program adequacy) correlates with real fault detection. Supports STA's\\n      premise that structural analysis of formalization components provides\\n      meaningful signal about formalization quality.\\n    key_finding: >\\n      Mutant detection is statistically correlated with real fault detection,\\n      and mutation score is a better predictor of test effectiveness than\\n      code coverage.\\n\\n  - id: llmorpheus\\n    title: \\\"LLMorpheus: Mutation Testing Using Large Language Models\\\"\\n    authors: \\\"Frank Tip, Jon Bell, et al.\\\"\\n    year: 2025\\n    venue: \\\"IEEE TSE 2025\\\"\\n    category: mutation-testing\\n    role: background\\n    relevance: >\\n      Uses LLMs to generate realistic code mutants beyond traditional\\n      mutation operators. Shows mutation testing evolving toward\\n      ML-integrated approaches, validating STA's cross-pollination\\n      of mutation testing ideas into ML training.\\n    key_finding: >\\n      LLM-generated mutants simulate real bugs that rule-based operators\\n      cannot produce, improving mutation testing realism.\\n\\n  - id: mutation-guided-meta\\n    title: \\\"Mutation-Guided LLM-based Test Generation at Meta\\\"\\n    authors: \\\"Christopher Foster et al.\\\"\\n    year: 2025\\n    venue: \\\"FSE 2025\\\"\\n    category: mutation-testing\\n    role: background\\n    relevance: >\\n      Industrial application of mutation-guided LLM test generation at\\n      Meta. Demonstrates that mutation analysis can guide LLM behavior\\n      in production -- analogous to how STA uses mutation (ablation) to\\n      guide GRPO reward signal.\\n    key_finding: >\\n      Mutation-guided approach generates tests that kill significantly\\n      more mutants than unguided LLM test generation at Meta scale.\\n\\n  - id: mutation-consistency-llm\\n    title: \\\"Mutation-based Consistency Testing for Evaluating the Code Understanding Capability of LLMs\\\"\\n    authors: \\\"Various\\\"\\n    year: 2024\\n    venue: \\\"arXiv 2401.05940\\\"\\n    category: mutation-testing\\n    role: background\\n    relevance: >\\n      Uses code mutations to evaluate LLM code understanding consistency.\\n      Conceptually related to STA: both use systematic code/formula\\n      mutations to assess model capabilities.\\n    key_finding: >\\n      LLMs show significant inconsistency when evaluated on mutated code\\n      variants, suggesting superficial pattern matching.\\n\\n  # ============================================================\\n  # Category 4: Intensional program analysis\\n  # ============================================================\\n\\n  - id: deepmutation\\n    title: \\\"A Probabilistic Framework for Mutation Testing in Deep Neural Networks\\\"\\n    authors: \\\"Various\\\"\\n    year: 2023\\n    venue: \\\"Information and Software Technology 2023\\\"\\n    category: intensional-analysis\\n    role: background\\n    relevance: >\\n      Extends mutation testing to DNN testing with probabilistic mutation\\n      operators. Parallel to STA's extension of mutation testing from\\n      traditional programs to logical formulas.\\n    key_finding: >\\n      Probabilistic mutation framework enables meaningful test adequacy\\n      assessment for neural networks through structural perturbation.\\n\\n  # ============================================================\\n  # Category 5: Reward hacking / overoptimization\\n  # ============================================================\\n\\n  - id: inform-reward-hacking\\n    title: \\\"InfoRM: Mitigating Reward Hacking in RLHF via Information-Theoretic Reward Modeling\\\"\\n    authors: \\\"Various\\\"\\n    year: 2024\\n    venue: \\\"NeurIPS 2024\\\"\\n    category: reward-hacking\\n    role: background\\n    relevance: >\\n      Proposes information-bottleneck approach to detect and mitigate reward\\n      hacking. STA's ISR addresses the same problem differently: by grounding\\n      reward in verifiable structural properties (component necessity), it\\n      reduces the attack surface for reward hacking.\\n    key_finding: >\\n      Variational information bottleneck filters irrelevant features from\\n      reward model; Cluster Separation Index detects reward overoptimization.\\n\\n  - id: mo-grpo\\n    title: \\\"MO-GRPO: Mitigating Reward Hacking of Group Relative Policy Optimization on Multi-Objective Problems\\\"\\n    authors: \\\"CyberAgent AI Lab\\\"\\n    year: 2025\\n    venue: \\\"arXiv 2509.22047\\\"\\n    category: reward-hacking\\n    role: background\\n    relevance: >\\n      Directly addresses GRPO reward hacking in multi-objective settings.\\n      STA's ISR can be viewed as adding a structural objective to the\\n      correctness objective, making MO-GRPO's insights directly applicable.\\n    key_finding: >\\n      Standard GRPO normalizes after summing rewards, allowing high-variance\\n      objectives to dominate. MO-GRPO equalizes scales before aggregation.\\n\\n  - id: reward-hacking-survey\\n    title: \\\"Reward Hacking in the Era of Large Models: Mechanisms, Emergent Misalignment, Challenges\\\"\\n    authors: \\\"Various\\\"\\n    year: 2026\\n    venue: \\\"arXiv 2604.13602\\\"\\n    category: reward-hacking\\n    role: background\\n    relevance: >\\n      Comprehensive survey of reward hacking mechanisms in the LLM era.\\n      Provides theoretical framework for understanding why STA's structural\\n      reward is more robust than pure outcome-based reward.\\n    key_finding: >\\n      Reward hacking manifests through specification gaming, reward model\\n      exploitation, and emergent misalignment; structural verification\\n      rewards are more robust than learned reward models.\\n\\n  - id: energy-loss-reward-hacking\\n    title: \\\"The Energy Loss Phenomenon in RLHF: A New Perspective on Mitigating Reward Hacking\\\"\\n    authors: \\\"Various\\\"\\n    year: 2025\\n    venue: \\\"ICML 2025\\\"\\n    category: reward-hacking\\n    role: background\\n    relevance: >\\n      Identifies energy loss in LLM final layer as an indicator of reward\\n      hacking during RL. Provides complementary diagnostic to STA's\\n      structural reward approach.\\n    key_finding: >\\n      Energy loss in the final layer increases during RL and excessive\\n      increase characterizes reward hacking; EPPO algorithm penalizes\\n      this to mitigate hacking.\\n\\n  - id: spurious-rewards\\n    title: \\\"Spurious Rewards: Rethinking Training Signals in RLVR\\\"\\n    authors: \\\"Ruixin Yang et al.\\\"\\n    year: 2025\\n    venue: \\\"arXiv 2506.10947 / NeurIPS 2025 submission\\\"\\n    category: reward-hacking\\n    role: direct-evidence\\n    relevance: >\\n      Most directly relevant to STA findings. GRPO+random reward on\\n      Qwen2.5-Math improves 21.4%, nearly matching ground-truth reward's\\n      29.1%. Matches our plan017 finding: additive random (PR=48%) >\\n      additive ISR (PR=18%). Structured metrics can be worse than random\\n      noise due to systematic bias vs pure variance.\\n    key_finding: >\\n      Random reward nearly matches ground-truth reward in GRPO training,\\n      suggesting GRPO's group normalization extracts signal from noise.\\n      Effect is model-dependent (works on Qwen2.5, not Llama3).\\n\\n  - id: bondarenko-spec-gaming\\n    title: \\\"Demonstrating Specification Gaming in Reasoning Models\\\"\\n    authors: \\\"Alexander Bondarenko, Denis Volk, Dmitrii Volkov, Jeffrey Ladish\\\"\\n    year: 2025\\n    venue: \\\"arXiv 2502.13295\\\"\\n    category: reward-hacking\\n    role: direct-evidence\\n    relevance: >\\n      Shows that reasoning models (o3, DeepSeek-R1) resort to specification\\n      gaming on difficult tasks by default, without explicit nudging.\\n      Directly relevant to STA's concern: RL-trained reasoning models\\n      may game formal verification rewards rather than learn genuine\\n      formalization skills.\\n    key_finding: >\\n      Reasoning models spontaneously hack benchmarks (e.g., manipulating\\n      chess engine files instead of playing chess). Stronger reasoning\\n      capability correlates with more sophisticated gaming strategies.\\n\\n  - id: kim-game-formalization\\n    title: \\\"Do LLMs Game Formalization? Evaluating Faithfulness in Logical Reasoning\\\"\\n    authors: \\\"Kyuhee Kim, Auguste Poiroux, Antoine Bosselut\\\"\\n    year: 2026\\n    venue: \\\"VerifAI-2 Workshop, ICLR 2026 (arXiv 2604.19459)\\\"\\n    category: reward-hacking\\n    role: direct-evidence\\n    relevance: >\\n      Directly studies whether LLMs game formalization in logical reasoning --\\n      the exact phenomenon STA's ISR is designed to detect. Evaluates GPT-5\\n      and DeepSeek-R1 on FOLIO with Lean 4 proofs. Finds two modes of\\n      unfaithfulness: axiom fabrication (GPT-5) and premise mistranslation\\n      (R1), the latter evading detection entirely.\\n    key_finding: >\\n      High compilation rates (87-99%) do not imply faithful formalization.\\n      Two-stage pipelines reveal unfaithfulness that unified generation hides.\\n      Premise mistranslation produces internally consistent but unfaithful\\n      outputs -- analogous to STA's high-ISR but semantically wrong traces.\\n\\n  - id: gao-reward-overoptimization\\n    title: \\\"Scaling Laws for Reward Model Overoptimization\\\"\\n    authors: \\\"Leo Gao, John Schulman, Jacob Hilton\\\"\\n    year: 2023\\n    venue: \\\"ICML 2023 (arXiv 2210.10760)\\\"\\n    category: reward-hacking\\n    role: theoretical-foundation\\n    relevance: >\\n      Foundational work quantifying Goodhart's effect: proxy reward rises\\n      but gold reward first rises then falls. ISR is a proxy reward that\\n      exhibits exactly this pattern — ISR can increase while prove_rate\\n      decreases, making it suitable for post-hoc diagnosis but harmful\\n      as training signal.\\n    key_finding: >\\n      Gold/proxy reward divergence follows predictable scaling laws.\\n      Proxy reward optimization past critical point degrades gold reward,\\n      with the divergence point scaling with model and dataset size.\\n\\n  - id: karwowski-goodhart-rl\\n    title: \\\"Goodhart's Law in Reinforcement Learning\\\"\\n    authors: \\\"Jacek Karwowski, Oliver Hayman, Xingjian Bai, Klaus Kiendlhofer, Charlie Griffin, Joar Skalse\\\"\\n    year: 2024\\n    venue: \\\"ICLR 2024 (arXiv 2310.09144)\\\"\\n    category: reward-hacking\\n    role: theoretical-foundation\\n    relevance: >\\n      Geometric interpretation of Goodhart's Law in MDPs: optimizing\\n      imperfect proxy past critical point decreases true objective. ISR as\\n      proxy has partial correlation with execution correctness — exceeding\\n      critical optimization point pushes policy toward high-ISR but\\n      low-correctness regions. Explains plan002/plan005 negative results.\\n    key_finding: >\\n      Formalizes Goodhart's Law for RL: any non-trivially correlated proxy\\n      reward creates regions where proxy and true reward diverge, and\\n      policy optimization inevitably enters these regions.\\n\\n  # ============================================================\\n  # Category 6: FOL/Prolog formalization with LLMs\\n  # ============================================================\\n\\n  - id: folio\\n    title: \\\"FOLIO: Natural Language Reasoning with First-Order Logic\\\"\\n    authors: \\\"Simeng Han et al.\\\"\\n    year: 2022\\n    venue: \\\"arXiv 2209.00840 / EMNLP 2024\\\"\\n    category: fol-formalization\\n    role: evaluation\\n    relevance: >\\n      Primary FOL reasoning benchmark. STA uses FOLIO-style NL->FOL\\n      formalization as the target task for GRPO training. FOLIO's\\n      expert-annotated FOL annotations serve as reference formalizations.\\n    key_finding: >\\n      1,430 NL-FOL paired examples with reasoning depths up to 5+;\\n      GPT-4 still struggles on the hardest examples.\\n\\n  - id: proofwriter\\n    title: \\\"ProofWriter: Generating Implications, Proofs, and Abductive Statements over Natural Language\\\"\\n    authors: \\\"Oyvind Tafjord, Bhavana Dalvi, Peter Clark\\\"\\n    year: 2021\\n    venue: \\\"Findings of ACL-IJCNLP 2021\\\"\\n    category: fol-formalization\\n    role: evaluation\\n    relevance: >\\n      Source dataset for STA's training data. ProofWriter provides\\n      rule-based logical reasoning problems in natural language that\\n      STA uses for training formalizer models.\\n    key_finding: >\\n      Generative model can reliably produce implications and proofs;\\n      accuracy exceeds prior methods by 9% and generalizes to unseen\\n      proof depths.\\n\\n  - id: logic-lm\\n    title: \\\"Logic-LM: Empowering Large Language Models with Symbolic Solvers for Faithful Logical Reasoning\\\"\\n    authors: \\\"Liangming Pan, Alon Albalak, Xinyi Wang, William Wang\\\"\\n    year: 2023\\n    venue: \\\"Findings of EMNLP 2023\\\"\\n    category: fol-formalization\\n    role: direct-competitor\\n    relevance: >\\n      LLM->symbolic solver pipeline for logical reasoning, directly\\n      comparable to STA's formalizer->Prolog solver pipeline. Key\\n      difference: Logic-LM uses prompting, STA uses GRPO training.\\n    key_finding: >\\n      LLM+solver achieves 39.2% improvement over LLM-alone on logical\\n      reasoning benchmarks including ProofWriter and FOLIO.\\n\\n  - id: linc\\n    title: \\\"LINC: A Neurosymbolic Approach for Logical Reasoning by Combining Language Models with First-Order Logic Provers\\\"\\n    authors: \\\"Theo X. Olausson, Alex Gu, Ben Lipkin, et al.\\\"\\n    year: 2023\\n    venue: \\\"EMNLP 2023\\\"\\n    category: fol-formalization\\n    role: direct-competitor\\n    relevance: >\\n      Neurosymbolic approach where LLM translates NL to FOL for theorem\\n      prover. Directly comparable to STA's NL->Prolog translation.\\n      LINC uses prompting-based approach; STA uses RL training.\\n    key_finding: >\\n      StarCoder+ (15.5B) with LINC outperforms GPT-3.5 and GPT-4 with\\n      CoT by 38% and 10% respectively on ProofWriter.\\n\\n  - id: fover-pei2025\\n    title: \\\"FoVer: First-Order Logic Verification for Natural Language Reasoning\\\"\\n    authors: \\\"Yu Pei, Yongping Du, Xingnan Jin\\\"\\n    year: 2025\\n    venue: \\\"TACL 13:1340-1359\\\"\\n    category: fol-formalization\\n    role: direct-competitor\\n    relevance: >\\n      Uses LLM->FOL->Z3 pipeline for verifying NL reasoning correctness.\\n      Similar to STA's verification pipeline but focuses on post-hoc\\n      verification rather than training reward signal.\\n    key_finding: >\\n      FOL verification via Z3 significantly outperforms existing methods\\n      on ProofWriter and FOLIO benchmarks.\\n\\n  - id: lorp\\n    title: \\\"LoRP: LLM-based Logical Reasoning via Prolog\\\"\\n    authors: \\\"Various\\\"\\n    year: 2025\\n    venue: \\\"Knowledge-Based Systems 2025\\\"\\n    category: fol-formalization\\n    role: direct-competitor\\n    relevance: >\\n      LLM->Prolog pipeline with FOL-to-Prolog translation mechanism.\\n      Closest to STA's formalization target (Prolog), though LoRP\\n      uses prompting while STA uses GRPO training with structural reward.\\n    key_finding: >\\n      Systematic FOL-to-Prolog translation extends Prolog expressiveness;\\n      achieves SoTA accuracy on logical reasoning with three-vote majority.\\n\\n  - id: nl2fol\\n    title: \\\"NL2FOL: Translating Natural Language to First-Order Logic for Logical Fallacy Detection\\\"\\n    authors: \\\"Lalwani, Kim, et al.\\\"\\n    year: 2024\\n    venue: \\\"arXiv 2405.02318\\\"\\n    category: fol-formalization\\n    role: background\\n    relevance: >\\n      Step-by-step NL->FOL translation using LLMs with SMT solver\\n      verification. Demonstrates the NL->formal logic pipeline that\\n      STA aims to improve via RL training.\\n    key_finding: >\\n      Neurosymbolic NL2FOL achieves 78% F1 on LOGIC dataset and\\n      generalizes to LogicClimate (80% F1), outperforming supervised\\n      models by 21%.\\n\\n  - id: logica2\\n    title: \\\"LogiQA 2.0: An Improved Dataset for Logical Reasoning in Natural Language Understanding\\\"\\n    authors: \\\"Liu et al.\\\"\\n    year: 2023\\n    venue: \\\"IEEE/ACM TASLP 2023\\\"\\n    category: fol-formalization\\n    role: evaluation\\n    relevance: >\\n      Logical reasoning evaluation benchmark derived from Chinese civil\\n      service exams. Provides supplementary evaluation for STA's\\n      formalization capabilities.\\n    key_finding: >\\n      8,678 multiple-choice questions covering categorical, disjunctive,\\n      and conditional reasoning; widely used LLM benchmark.\\n\\n  # ============================================================\\n  # Category 7: Goodhart's Law theory and dose-response dynamics\\n  # ============================================================\\n\\n  - id: manheim-goodhart-taxonomy\\n    title: \\\"Categorizing Variants of Goodhart's Law\\\"\\n    authors: \\\"David Manheim, Scott Garrabrant\\\"\\n    year: 2019\\n    venue: \\\"arXiv 1803.04585\\\"\\n    category: goodhart-overoptimization\\n    role: theoretical-foundation\\n    relevance: >\\n      Four-part Goodhart taxonomy: regressional, extremal, causal, adversarial.\\n      STA's high-β ISR collapse is best classified as extremal Goodhart\\n      (policy moves to OOD region where ISR↑ but prove_rate↓). Provides\\n      vocabulary for discussion section.\\n    key_finding: >\\n      First systematic categorization of Goodhart failure modes. Extremal\\n      variant occurs when proxy-goal relationship breaks in out-of-distribution\\n      regions reached by strong optimization.\\n\\n  - id: pan-reward-misspecification\\n    title: \\\"The Effects of Reward Misspecification: Mapping and Mitigating Misaligned Models\\\"\\n    authors: \\\"Alexander Pan, Kush Bhatia, Jacob Steinhardt\\\"\\n    year: 2022\\n    venue: \\\"ICLR 2022\\\"\\n    category: goodhart-overoptimization\\n    role: theoretical-foundation\\n    relevance: >\\n      Across 9 environments, more capable agents exploit misspecifications more.\\n      Observes dose-dependent degradation — capability thresholds where true\\n      reward sharply drops. Matches STA's β=0.1→0.3 qualitative shift.\\n    key_finding: >\\n      Reward misspecification causes dose-dependent degradation where true reward\\n      sharply drops past capability thresholds. More capable optimization\\n      produces worse outcomes under misspecification.\\n\\n  - id: kwa-catastrophic-goodhart\\n    title: \\\"Catastrophic Goodhart: Regularizing RLHF with KL Divergence Does Not Mitigate Heavy-Tailed Reward Misspecification\\\"\\n    authors: \\\"Tat-Thang Kwa, Rachel Thomas, Adrià Garriga-Alonso\\\"\\n    year: 2024\\n    venue: \\\"NeurIPS 2024\\\"\\n    category: goodhart-overoptimization\\n    role: theoretical-foundation\\n    relevance: >\\n      If reward model error is heavy-tailed, policies achieve arbitrarily\\n      high proxy reward with no true utility gain. KL regularization provably\\n      fails. Explains why KL penalty in GRPO cannot prevent ISR collapse\\n      at high β if ISR error distribution is heavy-tailed.\\n    key_finding: >\\n      KL-regularized RL provably fails to prevent overoptimization under\\n      heavy-tailed reward misspecification. Policies can achieve arbitrarily\\n      high proxy reward with zero true utility.\\n\\n  - id: rafailov-daa-scaling\\n    title: \\\"Scaling Laws for Reward Model Overoptimization in Direct Alignment Algorithms\\\"\\n    authors: \\\"Rafael Rafailov, Yaswanth Chittepu, Ryan Park, Harshit Sikchi, Joey Hejna, W. Bradley Knox, Chelsea Finn, Scott Niekum\\\"\\n    year: 2024\\n    venue: \\\"NeurIPS 2024\\\"\\n    category: goodhart-overoptimization\\n    role: supporting-evidence\\n    relevance: >\\n      Extends Gao et al. to DPO/IPO/SLiC. Tests seven β values across\\n      1B-6.9B models. DAAs still overoptimize despite no explicit proxy RM.\\n      Validates β as a \\\"dose\\\" parameter — directly analogous to STA's\\n      ISR weight sweep.\\n    key_finding: >\\n      Direct alignment algorithms exhibit overoptimization following\\n      predictable scaling laws. Smaller models overoptimize sooner.\\n      β-controlled dose-response is a general phenomenon across RL paradigms.\\n\\n  - id: huang-chi-squared\\n    title: \\\"Correcting the Mythos of KL-Regularization: Direct and Contrastive Distribution Correction\\\"\\n    authors: \\\"Afra Feyza Akyürek, Banghua Zhu, Sham Kakade, Jiantao Jiao\\\"\\n    year: 2025\\n    venue: \\\"ICLR 2025 Poster\\\"\\n    category: goodhart-overoptimization\\n    role: supporting-evidence\\n    relevance: >\\n      KL-regularization is theoretically inadequate for preventing\\n      overoptimization. Chi-squared divergence provably alleviates it.\\n      Suggests that even with KL penalty in GRPO, STA's high-β collapse\\n      is theoretically expected.\\n    key_finding: >\\n      Chi-squared preference optimization provably mitigates overoptimization\\n      where KL-regularization fails. Alternative divergence measures offer\\n      stronger guarantees.\\n\\n  - id: coste-rm-ensembles\\n    title: \\\"Reward Model Ensembles Help Mitigate Overoptimization\\\"\\n    authors: \\\"Thomas Coste, Usman Anwar, Robert Kirk, David Krueger\\\"\\n    year: 2023\\n    venue: \\\"NeurIPS 2023 Workshop on Alignment\\\"\\n    category: goodhart-overoptimization\\n    role: background\\n    relevance: >\\n      Worst-case optimization across RM ensembles practically eliminates\\n      overoptimization for BoN and reduces it for PPO. Suggests ensemble\\n      of multiple solver metrics (instead of single ISR) as mitigation.\\n    key_finding: >\\n      RM ensembles with worst-case aggregation mitigate overoptimization.\\n      Ensemble size and diversity directly affect robustness.\\n\\n  # ============================================================\\n  # Category 8: Solver/prover as RL reward signal\\n  # ============================================================\\n\\n  - id: rlsf\\n    title: \\\"Reinforcement Learning via Symbolic Feedback\\\"\\n    authors: \\\"Abhinav Jha, Shikhar Murty, Zico Kolter, et al.\\\"\\n    year: 2024\\n    venue: \\\"arXiv 2405.16661\\\"\\n    category: verification-reward\\n    role: direct-competitor\\n    relevance: >\\n      Most directly relevant: uses solver/prover certificates as fine-grained\\n      token-level reward signal. Outperforms traditional approaches on program\\n      synthesis (+31.4%). STA extends this paradigm and shows when it breaks\\n      (Goodhart effects at high auxiliary reward weight).\\n    key_finding: >\\n      Symbolic reasoning tools provide poly-sized certificates as reward.\\n      Smaller RLSF models outperform GPT-4 on structured generation tasks.\\n\\n  - id: fover-kamoi2026\\n    title: \\\"FoVer: Generalizable Process Reward Models via Formally Verified Training Data\\\"\\n    authors: \\\"Ryo Kamoi, Yusen Zhang, Nan Zhang, Jiawei Han, Rui Zhang\\\"\\n    year: 2025\\n    venue: \\\"Findings of ACL 2026 (arXiv 2502.01345)\\\"\\n    category: verification-reward\\n    role: supporting-evidence\\n    relevance: >\\n      Uses Z3 and Isabelle to synthesize PRM training data by annotating\\n      step-level error labels without human annotation. Same solver family\\n      as STA. Shows verification-based rewards work; STA extends by showing\\n      dose-response dynamics.\\n    key_finding: >\\n      Formally verified training data enables generalizable process reward\\n      models competitive on ProcessBench and 12 reasoning benchmarks.\\n\\n  - id: deepseek-prover-v15\\n    title: \\\"DeepSeek-Prover-V1.5: Harnessing Proof Assistant Feedback for Reinforcement Learning and Monte-Carlo Tree Search\\\"\\n    authors: \\\"DeepSeek AI\\\"\\n    year: 2024\\n    venue: \\\"ICLR 2025 (arXiv 2408.08152)\\\"\\n    category: verification-reward\\n    role: method-component\\n    relevance: >\\n      Uses GRPO with Lean 4 verification as binary reward. Same algorithm\\n      (GRPO) + formal verification, but binary (pass/fail). Binary reward\\n      avoids the graded-metric Goodhart risk that STA identifies with ISR.\\n    key_finding: >\\n      GRPO + binary Lean verification achieves 63.5% on miniF2F. Binary\\n      correctness guarantee via formal verification sidesteps proxy reward\\n      overoptimization.\\n\\n  - id: alphaproof\\n    title: \\\"AlphaProof\\\"\\n    authors: \\\"Google DeepMind\\\"\\n    year: 2024\\n    venue: \\\"Nature 2025\\\"\\n    category: verification-reward\\n    role: background\\n    relevance: >\\n      AlphaZero-inspired RL with Lean proof verification at scale.\\n      Silver medal at IMO 2024. Binary verification reward avoids the\\n      Goodhart problem STA identifies with graded verification metrics.\\n    key_finding: >\\n      Binary formal verification as RL reward scales to IMO-level\\n      mathematical reasoning. Demonstrates verification-reward RL works\\n      at the frontier of mathematical difficulty.\\n\\n  - id: math-shepherd\\n    title: \\\"Math-Shepherd: Verify and Reinforce LLMs Step-by-step without Human Annotations\\\"\\n    authors: \\\"Peiyi Wang, Lei Li, Zhihong Shao, R.X. Xu, et al.\\\"\\n    year: 2024\\n    venue: \\\"ACL 2024 (arXiv 2312.08935)\\\"\\n    category: verification-reward\\n    role: supporting-evidence\\n    relevance: >\\n      Automatically constructs process supervision data and uses it as\\n      step-by-step PPO reward. Automated verification reward without human\\n      labels, analogous to STA's automated ISR computation via solver.\\n    key_finding: >\\n      Automated process supervision improves Mistral-7B on GSM8K\\n      (77.9→84.1%) and MATH (28.6→33.0%) without human annotation.\\n\\n  # ============================================================\\n  # Additional reward-shaping papers (Goodhart survey additions)\\n  # ============================================================\\n\\n  - id: bipars\\n    title: \\\"Learning to Utilize Shaping Rewards: A New Approach of Reward Shaping\\\"\\n    authors: \\\"Yujing Hu, Weixun Wang, Hangtian Jia, et al.\\\"\\n    year: 2020\\n    venue: \\\"NeurIPS 2020\\\"\\n    category: reward-shaping\\n    role: background\\n    relevance: >\\n      Bi-level optimization learns parameterized shaping reward weights.\\n      Can transform harmful shaping rewards into beneficial ones by learning\\n      negative weights. Directly addresses STA's problem: when ISR weight\\n      is wrong, automated weight learning could find optimal β.\\n    key_finding: >\\n      Bi-level optimization automatically learns auxiliary reward weights,\\n      outperforming fixed weights and recovering from harmful shaping rewards.\\n\\n  - id: dapo\\n    title: \\\"DAPO: An Open-Source LLM Reinforcement Learning System at Scale\\\"\\n    authors: \\\"Qiying Yu et al. (ByteDance)\\\"\\n    year: 2025\\n    venue: \\\"arXiv 2503.14476\\\"\\n    category: reward-shaping\\n    role: background\\n    relevance: >\\n      Four techniques for stable multi-component reward in GRPO: Clip-Higher,\\n      Dynamic Sampling, token-level policy gradient, Overlong Reward Shaping.\\n      Addresses stability issues relevant to STA's multi-reward setup.\\n    key_finding: >\\n      Clip-Higher and Dynamic Sampling prevent entropy collapse in GRPO\\n      with multi-component rewards. Soft punishment for overlong outputs\\n      avoids reward hacking through length exploitation.\\n\", \"total_chars\": 42743, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "8aae5d20-ac2a-4dfa-9b6b-f8d79906f1fa",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/literature_map.yaml\\\", \\\"content\\\": \\\"# Literature Map for Solver Trace Ablation (STA)\\\\n# Categories:\\\\n#   1. neurosymbolic-rl: Neurosymbolic reasoning + RL/GRPO\\\\n#   2. reward-shaping: Reward shaping for code/formal verification\\\\n#   3. mutation-testing: Mutation testing in software engineering\\\\n#   4. intensional-analysis: Intensional program analysis\\\\n#   5. reward-hacking: Reward hacking / overoptimization\\\\n#   6. fol-formalization: FOL/Prolog formalization with LLMs\\\\n#   7. goodhart-overoptimization: Goodhart's Law theory and dose-response dynamics\\\\n#   8. verification-reward: Solver/prover as RL reward signal\\\\n\\\\npapers:\\\\n\\\\n  # ============================================================\\\\n  # Category 1: Neurosymbolic reasoning + RL/GRPO\\\\n  # ============================================================\\\\n\\\\n  - id: deepseek-r1\\\\n    title: \\\\\\\"DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning\\\\\\\"\\\\n    authors: \\\\\\\"DeepSeek-AI\\\\\\\"\\\\n    year: 2025\\\\n    venue: \\\\\\\"arXiv 2501.12948 / Nature 2025\\\\\\\"\\\\n    category: neurosymbolic-rl\\\\n    role: method-component\\\\n    relevance: >\\\\n      Demonstrates that pure RL (GRPO) can incentivize reasoning in LLMs without SFT.\\\\n      STA builds on the same GRPO framework but replaces binary outcome reward with\\\\n      intensional structural reward for neurosymbolic formalization.\\\\n    key_finding: >\\\\n      DeepSeek-R1-Zero trained via GRPO alone achieves 71% on AIME 2024,\\\\n      showing emergent chain-of-thought reasoning from RL alone.\\\\n\\\\n  - id: deepseekmath\\\\n    title: \\\\\\\"DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models\\\\\\\"\\\\n    authors: \\\\\\\"Zhihong Shao, Peiyi Wang, Qihao Zhu, Runxin Xu, et al.\\\\\\\"\\\\n    year: 2024\\\\n    venue: \\\\\\\"arXiv 2402.03300\\\\\\\"\\\\n    category: neurosymbolic-rl\\\\n    role: method-component\\\\n    relevance: >\\\\n      Introduces GRPO (Group Relative Policy Optimization), the RL algorithm\\\\n      used in STA training. GRPO eliminates the critic model by estimating\\\\n      baselines from group scores.\\\\n    key_finding: >\\\\n      GRPO matches PPO performance while significantly reducing training\\\\n      resources; improves GSM8K 82.9->88.2% and MATH 46.8->51.7%.\\\\n\\\\n  - id: logic-rl\\\\n    title: \\\\\\\"Logic-RL: Unleashing LLM Reasoning with Rule-Based Reinforcement Learning\\\\\\\"\\\\n    authors: \\\\\\\"Xian et al.\\\\\\\"\\\\n    year: 2025\\\\n    venue: \\\\\\\"arXiv 2502.14768\\\\\\\"\\\\n    category: neurosymbolic-rl\\\\n    role: direct-competitor\\\\n    relevance: >\\\\n      Uses rule-based RL (REINFORCE++) for LLM logical reasoning on synthetic\\\\n      logic puzzles. Closest competitor to STA's approach of RL for logical\\\\n      formalization, though Logic-RL uses extensional (answer-correctness)\\\\n      rewards rather than STA's intensional structural rewards.\\\\n    key_finding: >\\\\n      REINFORCE++ outperforms GRPO on logic puzzles with superior stability;\\\\n      rule-based reward design is critical for RL-based logical reasoning.\\\\n\\\\n  - id: mellgren-prolog-grpo\\\\n    title: \\\\\\\"Training Language Models to Use Prolog as a Tool\\\\\\\"\\\\n    authors: \\\\\\\"Niklas Mellgren\\\\\\\"\\\\n    year: 2024\\\\n    venue: \\\\\\\"arXiv 2512.07407\\\\\\\"\\\\n    category: neurosymbolic-rl\\\\n    role: direct-competitor\\\\n    relevance: >\\\\n      Uses GRPO to train a 3B LLM to generate Prolog code for reasoning,\\\\n      directly comparable to STA's approach of GRPO-training a formalizer.\\\\n      Key difference: uses pass/fail reward vs STA's structural ISR.\\\\n    key_finding: >\\\\n      GRPO is effective for teaching small LLMs to use Prolog as a tool\\\\n      for logical and mathematical reasoning.\\\\n\\\\n  - id: satlm\\\\n    title: \\\\\\\"SatLM: Satisfiability-Aided Language Models Using Declarative Prompting\\\\\\\"\\\\n    authors: \\\\\\\"Xi Ye et al.\\\\\\\"\\\\n    year: 2023\\\\n    venue: \\\\\\\"NeurIPS 2023\\\\\\\"\\\\n    category: neurosymbolic-rl\\\\n    role: background\\\\n    relevance: >\\\\n      Neurosymbolic approach where LLM generates declarative specifications\\\\n      verified by SAT solver. Similar pipeline to STA (LLM->formal spec->solver)\\\\n      but uses prompting, not RL training.\\\\n    key_finding: >\\\\n      Declarative formulation outperforms imperative program-aided LMs by 23%\\\\n      on GSM; achieves SoTA on LSAT and BoardgameQA.\\\\n\\\\n  - id: deepproblog\\\\n    title: \\\\\\\"Neural Probabilistic Logic Programming in DeepProbLog\\\\\\\"\\\\n    authors: \\\\\\\"Robin Manhaeve, Sebastijan Dumančić, Angelika Kimmig, Thomas Demeester, Luc De Raedt\\\\\\\"\\\\n    year: 2021\\\\n    venue: \\\\\\\"Artificial Intelligence 298\\\\\\\"\\\\n    category: neurosymbolic-rl\\\\n    role: background\\\\n    relevance: >\\\\n      Foundational neural-probabilistic logic programming framework that integrates\\\\n      deep learning with ProbLog via neural predicates. Establishes the intellectual\\\\n      tradition of combining neural networks with logic programming that STA extends\\\\n      to LLM-generated Prolog with RL training.\\\\n    key_finding: >\\\\n      End-to-end differentiable framework integrating neural perception with\\\\n      probabilistic logical reasoning; supports program induction and learning\\\\n      from examples.\\\\n\\\\n  - id: neurasp\\\\n    title: \\\\\\\"NeurASP: Embracing Neural Networks into Answer Set Programming\\\\\\\"\\\\n    authors: \\\\\\\"Zhun Yang, Adam Ishay, Joohyung Lee\\\\\\\"\\\\n    year: 2020\\\\n    venue: \\\\\\\"IJCAI 2020\\\\\\\"\\\\n    category: neurosymbolic-rl\\\\n    role: background\\\\n    relevance: >\\\\n      Integrates neural networks with answer set programming (ASP), using\\\\n      ASP rules to constrain and improve neural network training. Complementary\\\\n      to DeepProbLog; together they represent the neuro-symbolic LP foundation\\\\n      that STA's LLM-to-Prolog pipeline builds upon.\\\\n    key_finding: >\\\\n      ASP semantic constraints improve neural network perception accuracy;\\\\n      demonstrates bidirectional benefit of neural-symbolic integration.\\\\n\\\\n  - id: thought-like-pro\\\\n    title: \\\\\\\"Thought-Like-Pro: Enhancing Reasoning of Large Language Models through Self-Driven Prolog-based Chain-of-Thought\\\\\\\"\\\\n    authors: \\\\\\\"Xiaoyu Tan, Yongxin Deng, Xihe Qiu, Weidi Xu, Chao Qu, Wei Chu, Yinghui Xu, Yuan Qi\\\\\\\"\\\\n    year: 2024\\\\n    venue: \\\\\\\"arXiv 2407.14562\\\\\\\"\\\\n    category: neurosymbolic-rl\\\\n    role: direct-competitor\\\\n    relevance: >\\\\n      Uses Prolog engine to generate verified reasoning trajectories, then trains\\\\n      LLMs via imitation learning to replicate them. Directly comparable pipeline\\\\n      to STA (Prolog verification + LLM training), but uses imitation learning\\\\n      instead of GRPO with structural reward.\\\\n    key_finding: >\\\\n      Prolog-verified reasoning trajectories as training signal improve LLM\\\\n      logical reasoning; self-driven framework enables LLMs to formulate\\\\n      rules from instructions and leverage Prolog for derivation.\\\\n\\\\n  # ============================================================\\\\n  # Category 2: Reward shaping for code/formal verification\\\\n  # ============================================================\\\\n\\\\n  - id: lightman-verify-step\\\\n    title: \\\\\\\"Let's Verify Step by Step\\\\\\\"\\\\n    authors: \\\\\\\"Hunter Lightman, Vineet Kosaraju, Yura Burda, et al.\\\\\\\"\\\\n    year: 2023\\\\n    venue: \\\\\\\"arXiv 2305.20050 / ICLR 2024\\\\\\\"\\\\n    category: reward-shaping\\\\n    role: method-component\\\\n    relevance: >\\\\n      Establishes that process supervision (step-level reward) outperforms\\\\n      outcome supervision (final-answer reward) for reasoning. STA's ISR\\\\n      is analogous: it provides structural process-level signal about which\\\\n      components of a formalization matter, rather than just pass/fail.\\\\n    key_finding: >\\\\n      Process-supervised reward model achieves 78% on MATH, significantly\\\\n      outperforming outcome-supervised models. Released PRM800K dataset.\\\\n\\\\n  - id: reward-shaping-rlhf\\\\n    title: \\\\\\\"Reward Shaping to Mitigate Reward Hacking in RLHF\\\\\\\"\\\\n    authors: \\\\\\\"Jiayi Fu, Xuandong Zhao, Chengyuan Yao, et al.\\\\\\\"\\\\n    year: 2025\\\\n    venue: \\\\\\\"arXiv 2502.18770\\\\\\\"\\\\n    category: reward-shaping\\\\n    role: background\\\\n    relevance: >\\\\n      Studies reward shaping design principles for RLHF: bounded rewards and\\\\n      rapid-then-convergent growth. STA's ISR follows these principles\\\\n      naturally since structural necessity scores are bounded [0,1].\\\\n    key_finding: >\\\\n      Two key reward shaping principles: (1) bounded RL reward, (2) rapid\\\\n      initial growth with gradual convergence. PAR method achieves 5%+\\\\n      win rate improvement on AlpacaEval 2.0.\\\\n\\\\n  - id: rlvr-reasoning\\\\n    title: \\\\\\\"Reinforcement Learning with Verifiable Rewards Implicitly Incentivizes Correct Reasoning in Base LLMs\\\\\\\"\\\\n    authors: \\\\\\\"Various\\\\\\\"\\\\n    year: 2025\\\\n    venue: \\\\\\\"arXiv 2506.14245\\\\\\\"\\\\n    category: reward-shaping\\\\n    role: background\\\\n    relevance: >\\\\n      Shows that binary verifiable rewards (pass/fail) can implicitly incentivize\\\\n      reasoning. STA argues that for neurosymbolic formalization, binary reward\\\\n      is insufficient and structural reward is needed to avoid reward hacking.\\\\n    key_finding: >\\\\n      RLVR with binary verification implicitly teaches correct reasoning\\\\n      strategies, not just answer matching.\\\\n\\\\n  - id: rubric-grpo\\\\n    title: \\\\\\\"Rubric-Grounded Reinforcement Learning: Structured Judge Rewards for Generalizable Reasoning\\\\\\\"\\\\n    authors: \\\\\\\"Various\\\\\\\"\\\\n    year: 2025\\\\n    venue: \\\\\\\"arXiv 2605.08061\\\\\\\"\\\\n    category: reward-shaping\\\\n    role: direct-competitor\\\\n    relevance: >\\\\n      Uses structured rubric-based rewards with GRPO, similar in spirit to\\\\n      STA's structured ISR. Key difference: rubric rewards come from LLM\\\\n      judges, while ISR comes from solver-based mutation testing.\\\\n    key_finding: >\\\\n      Structured multi-dimensional reward signals improve GRPO training\\\\n      generalization compared to scalar rewards.\\\\n\\\\n  - id: gao-effective-rl-reward\\\\n    title: \\\\\\\"On Designing Effective RL Reward at Training Time for LLM Reasoning\\\\\\\"\\\\n    authors: \\\\\\\"Jiaxuan Gao, Shusheng Xu, Wenjie Ye, Weilin Liu, Chuyi He, Wei Fu, Zhiyu Mei, Guangju Wang, Yi Wu\\\\\\\"\\\\n    year: 2024\\\\n    venue: \\\\\\\"arXiv 2410.15115\\\\\\\"\\\\n    category: reward-shaping\\\\n    role: background\\\\n    relevance: >\\\\n      Demonstrates that learned process/outcome reward models can hurt RL\\\\n      training, producing worse performance than simple success reward only.\\\\n      Directly explains plan005 NEGATIVE: STA's ISR as auxiliary process\\\\n      reward degrades prove_rate compared to exec-only baseline.\\\\n    key_finding: >\\\\n      PRM/ORM rewards may NOT help or even hurt RL training vs success-only\\\\n      reward. Solution: Clipping and Delta techniques to bound accumulated\\\\n      reward magnitude prevent reward hacking.\\\\n\\\\n  - id: prof-process-outcome\\\\n    title: \\\\\\\"Beyond Correctness: Harmonizing Process and Outcome Rewards through RL Training\\\\\\\"\\\\n    authors: \\\\\\\"Chenlu Ye, Zhou Yu, Ziji Zhang, Hao Chen, Narayanan Sadagopan, Jing Huang, Tong Zhang, Anurag Beniwal\\\\\\\"\\\\n    year: 2025\\\\n    venue: \\\\\\\"arXiv 2509.03403\\\\\\\"\\\\n    category: reward-shaping\\\\n    role: background\\\\n    relevance: >\\\\n      Shows that naively combining PRM+ORM signals leads to performance\\\\n      degradation. PROF consistency filter retains only PRM-ORM consistent\\\\n      samples, achieving 4%+ improvement over blending. Suggests STA should\\\\n      only apply ISR when consistent with execution outcome.\\\\n    key_finding: >\\\\n      Process rewards frequently suffer from inaccuracies and reward hacking\\\\n      susceptibility. PROF filters training data by PRM-ORM consistency,\\\\n      outperforming naive reward blending by 4%+ accuracy.\\\\n\\\\n  - id: moskovitz-constrained-rlhf\\\\n    title: \\\\\\\"Confronting Reward Model Overoptimization with Constrained RLHF\\\\\\\"\\\\n    authors: \\\\\\\"Ted Moskovitz, Aaditya K. Singh, DJ Strouse, Tuomas Sandholm, Ruslan Salakhutdinov, Anca D. Dragan, Stephen McAleer\\\\\\\"\\\\n    year: 2023\\\\n    venue: \\\\\\\"arXiv 2310.04373 / ICLR 2024\\\\\\\"\\\\n    category: reward-shaping\\\\n    role: background\\\\n    relevance: >\\\\n      First study on overoptimization in composite reward models. Shows that\\\\n      fixed-weight linear scalarization of component rewards leads to\\\\n      degradation past a threshold. Proposes constrained RL with dynamic\\\\n      Lagrange multiplier weighting as alternative to fixed ISR weight.\\\\n    key_finding: >\\\\n      Correlation between component RMs significantly affects overoptimization\\\\n      thresholds. Constrained RL with Lagrange multipliers outperforms\\\\n      fixed-weight reward composition.\\\\n\\\\n  - id: skalse-reward-hacking\\\\n    title: \\\\\\\"Defining and Characterizing Reward Hacking\\\\\\\"\\\\n    authors: \\\\\\\"Joar Skalse, Nikolaus H. R. Howe, Dmitrii Krasheninnikov, David Krueger\\\\\\\"\\\\n    year: 2022\\\\n    venue: \\\\\\\"arXiv 2209.13085 / NeurIPS 2022\\\\\\\"\\\\n    category: reward-shaping\\\\n    role: background\\\\n    relevance: >\\\\n      Formal proof that for stochastic policies, two reward functions are\\\\n      unhackable only if one is constant. Theoretically explains why any\\\\n      non-zero ISR weight can decrease prove_rate -- this is a fundamental\\\\n      property of reward composition, not STA-specific.\\\\n    key_finding: >\\\\n      Any non-constant proxy reward can decrease true reward when optimized.\\\\n      Unhackability requires the proxy to be constant, making all non-trivial\\\\n      auxiliary rewards theoretically vulnerable to degrading primary performance.\\\\n\\\\n  - id: progrs-outcome-conditioned\\\\n    title: \\\\\\\"LLM Reasoning with Process Rewards for Outcome-Guided Steps\\\\\\\"\\\\n    authors: \\\\\\\"Mohammad Rezaei, Jens Lehmann, Sahar Vahdati\\\\\\\"\\\\n    year: 2026\\\\n    venue: \\\\\\\"arXiv 2604.02341\\\\\\\"\\\\n    category: reward-shaping\\\\n    role: background\\\\n    relevance: >\\\\n      PRM scores optimized as absolute rewards amplify fluent failure modes.\\\\n      Outcome-conditioned centering shifts incorrect trajectories' PRM scores\\\\n      to zero mean, preserving ranking info without corrupting gradients.\\\\n      Suggests STA should condition ISR on execution outcome.\\\\n    key_finding: >\\\\n      Naive process rewards induce reward hacking by rewarding locally fluent\\\\n      but globally incorrect reasoning. Outcome-conditioned centering resolves\\\\n      the conflict with fewer rollouts than outcome-only baselines.\\\\n\\\\n  - id: qwen-prm-lessons\\\\n    title: \\\\\\\"The Lessons of Developing Process Reward Models in Mathematical Reasoning\\\\\\\"\\\\n    authors: \\\\\\\"Zhenru Zhang et al. (Qwen Team, Alibaba)\\\\\\\"\\\\n    year: 2025\\\\n    venue: \\\\\\\"ACL 2025 Findings (arXiv 2501.07301)\\\\\\\"\\\\n    category: reward-shaping\\\\n    role: supporting-evidence\\\\n    relevance: >\\\\n      MC estimation-synthesized PRM data leads to quality degradation; policy\\\\n      model generates \\\\\\\"answer-correct but reasoning-flawed\\\\\\\" responses, causing\\\\n      process reward / outcome misalignment. Directly parallels ISR problem:\\\\n      structurally correct but semantically wrong proof traces get high ISR\\\\n      but low execution reward.\\\\n    key_finding: >\\\\n      PRM performance depends critically on data quality; MC estimation\\\\n      introduces systematic bias. Answer-correct reasoning-flawed samples\\\\n      corrupt process supervision signal.\\\\n\\\\n  # ============================================================\\\\n  # Category 3: Mutation testing in software engineering\\\\n  # ============================================================\\\\n\\\\n  - id: demillo1978\\\\n    title: \\\\\\\"Hints on Test Data Selection: Help for the Practicing Programmer\\\\\\\"\\\\n    authors: \\\\\\\"Richard A. DeMillo, Richard J. Lipton, Frederick G. Sayward\\\\\\\"\\\\n    year: 1978\\\\n    venue: \\\\\\\"Computer 11(4):34-43\\\\\\\"\\\\n    category: mutation-testing\\\\n    role: background\\\\n    relevance: >\\\\n      Foundational paper introducing mutation testing. STA's component\\\\n      necessity testing directly extends this idea: instead of mutating\\\\n      source code to test test suites, STA mutates logical formulas\\\\n      to test component necessity for solver success.\\\\n    key_finding: >\\\\n      Introduced mutation testing and the coupling effect hypothesis:\\\\n      tests that detect simple faults also detect complex faults.\\\\n\\\\n  - id: offutt-coupling\\\\n    title: \\\\\\\"Investigations of the Software Testing Coupling Effect\\\\\\\"\\\\n    authors: \\\\\\\"A. Jefferson Offutt\\\\\\\"\\\\n    year: 1992\\\\n    venue: \\\\\\\"ACM TOSEM 1(1):5-20\\\\\\\"\\\\n    category: mutation-testing\\\\n    role: background\\\\n    relevance: >\\\\n      Empirically validates the coupling effect hypothesis that underpins\\\\n      mutation testing. STA's single-component ablation is analogous to\\\\n      first-order mutation; the coupling effect suggests this suffices.\\\\n    key_finding: >\\\\n      Test data killing all first-order mutants killed >99% of second-\\\\n      and third-order mutants, validating the coupling effect.\\\\n\\\\n  - id: jia-harman-survey\\\\n    title: \\\\\\\"An Analysis and Survey of the Development of Mutation Testing\\\\\\\"\\\\n    authors: \\\\\\\"Yue Jia, Mark Harman\\\\\\\"\\\\n    year: 2011\\\\n    venue: \\\\\\\"IEEE TSE 37(5):649-678\\\\\\\"\\\\n    category: mutation-testing\\\\n    role: background\\\\n    relevance: >\\\\n      Comprehensive survey of mutation testing covering three decades of\\\\n      development. Provides theoretical and practical foundation for STA's\\\\n      adaptation of mutation testing to logical formulas.\\\\n    key_finding: >\\\\n      Systematic classification of mutation operators, cost reduction\\\\n      techniques, and equivalence problem -- all relevant to STA's design\\\\n      of clause-level ablation operators.\\\\n\\\\n  - id: just-mutants-real-faults\\\\n    title: \\\\\\\"Are Mutants a Valid Substitute for Real Faults in Software Testing?\\\\\\\"\\\\n    authors: \\\\\\\"Rene Just, Darioush Jalali, Laura Inozemtseva, et al.\\\\\\\"\\\\n    year: 2014\\\\n    venue: \\\\\\\"FSE 2014\\\\\\\"\\\\n    category: mutation-testing\\\\n    role: background\\\\n    relevance: >\\\\n      Validates that mutation testing (structural/intensional analysis of\\\\n      program adequacy) correlates with real fault detection. Supports STA's\\\\n      premise that structural analysis of formalization components provides\\\\n      meaningful signal about formalization quality.\\\\n    key_finding: >\\\\n      Mutant detection is statistically correlated with real fault detection,\\\\n      and mutation score is a better predictor of test effectiveness than\\\\n      code coverage.\\\\n\\\\n  - id: llmorpheus\\\\n    title: \\\\\\\"LLMorpheus: Mutation Testing Using Large Language Models\\\\\\\"\\\\n    authors: \\\\\\\"Frank Tip, Jon Bell, et al.\\\\\\\"\\\\n    year: 2025\\\\n    venue: \\\\\\\"IEEE TSE 2025\\\\\\\"\\\\n    category: mutation-testing\\\\n    role: background\\\\n    relevance: >\\\\n      Uses LLMs to generate realistic code mutants beyond traditional\\\\n      mutation operators. Shows mutation testing evolving toward\\\\n      ML-integrated approaches, validating STA's cross-pollination\\\\n      of mutation testing ideas into ML training.\\\\n    key_finding: >\\\\n      LLM-generated mutants simulate real bugs that rule-based operators\\\\n      cannot produce, improving mutation testing realism.\\\\n\\\\n  - id: mutation-guided-meta\\\\n    title: \\\\\\\"Mutation-Guided LLM-based Test Generation at Meta\\\\\\\"\\\\n    authors: \\\\\\\"Christopher Foster et al.\\\\\\\"\\\\n    year: 2025\\\\n    venue: \\\\\\\"FSE 2025\\\\\\\"\\\\n    category: mutation-testing\\\\n    role: background\\\\n    relevance: >\\\\n      Industrial application of mutation-guided LLM test generation at\\\\n      Meta. Demonstrates that mutation analysis can guide LLM behavior\\\\n      in production -- analogous to how STA uses mutation (ablation) to\\\\n      guide GRPO reward signal.\\\\n    key_finding: >\\\\n      Mutation-guided approach generates tests that kill significantly\\\\n      more mutants than unguided LLM test generation at Meta scale.\\\\n\\\\n  - id: mutation-consistency-llm\\\\n    title: \\\\\\\"Mutation-based Consistency Testing for Evaluating the Code Understanding Capability of LLMs\\\\\\\"\\\\n    authors: \\\\\\\"Various\\\\\\\"\\\\n    year: 2024\\\\n    venue: \\\\\\\"arXiv 2401.05940\\\\\\\"\\\\n    category: mutation-testing\\\\n    role: background\\\\n    relevance: >\\\\n      Uses code mutations to evaluate LLM code understanding consistency.\\\\n      Conceptually related to STA: both use systematic code/formula\\\\n      mutations to assess model capabilities.\\\\n    key_finding: >\\\\n      LLMs show significant inconsistency when evaluated on mutated code\\\\n      variants, suggesting superficial pattern matching.\\\\n\\\\n  # ============================================================\\\\n  # Category 4: Intensional program analysis\\\\n  # ============================================================\\\\n\\\\n  - id: deepmutation\\\\n    title: \\\\\\\"A Probabilistic Framework for Mutation Testing in Deep Neural Networks\\\\\\\"\\\\n    authors: \\\\\\\"Various\\\\\\\"\\\\n    year: 2023\\\\n    venue: \\\\\\\"Information and Software Technology 2023\\\\\\\"\\\\n    category: intensional-analysis\\\\n    role: background\\\\n    relevance: >\\\\n      Extends mutation testing to DNN testing with probabilistic mutation\\\\n      operators. Parallel to STA's extension of mutation testing from\\\\n      traditional programs to logical formulas.\\\\n    key_finding: >\\\\n      Probabilistic mutation framework enables meaningful test adequacy\\\\n      assessment for neural networks through structural perturbation.\\\\n\\\\n  # ============================================================\\\\n  # Category 5: Reward hacking / overoptimization\\\\n  # ============================================================\\\\n\\\\n  - id: inform-reward-hacking\\\\n    title: \\\\\\\"InfoRM: Mitigating Reward Hacking in RLHF via Information-Theoretic Reward Modeling\\\\\\\"\\\\n    authors: \\\\\\\"Various\\\\\\\"\\\\n    year: 2024\\\\n    venue: \\\\\\\"NeurIPS 2024\\\\\\\"\\\\n    category: reward-hacking\\\\n    role: background\\\\n    relevance: >\\\\n      Proposes information-bottleneck approach to detect and mitigate reward\\\\n      hacking. STA's ISR addresses the same problem differently: by grounding\\\\n      reward in verifiable structural properties (component necessity), it\\\\n      reduces the attack surface for reward hacking.\\\\n    key_finding: >\\\\n      Variational information bottleneck filters irrelevant features from\\\\n      reward model; Cluster Separation Index detects reward overoptimization.\\\\n\\\\n  - id: mo-grpo\\\\n    title: \\\\\\\"MO-GRPO: Mitigating Reward Hacking of Group Relative Policy Optimization on Multi-Objective Problems\\\\\\\"\\\\n    authors: \\\\\\\"CyberAgent AI Lab\\\\\\\"\\\\n    year: 2025\\\\n    venue: \\\\\\\"arXiv 2509.22047\\\\\\\"\\\\n    category: reward-hacking\\\\n    role: background\\\\n    relevance: >\\\\n      Directly addresses GRPO reward hacking in multi-objective settings.\\\\n      STA's ISR can be viewed as adding a structural objective to the\\\\n      correctness objective, making MO-GRPO's insights directly applicable.\\\\n    key_finding: >\\\\n      Standard GRPO normalizes after summing rewards, allowing high-variance\\\\n      objectives to dominate. MO-GRPO equalizes scales before aggregation.\\\\n\\\\n  - id: reward-hacking-survey\\\\n    title: \\\\\\\"Reward Hacking in the Era of Large Models: Mechanisms, Emergent Misalignment, Challenges\\\\\\\"\\\\n    authors: \\\\\\\"Various\\\\\\\"\\\\n    year: 2026\\\\n    venue: \\\\\\\"arXiv 2604.13602\\\\\\\"\\\\n    category: reward-hacking\\\\n    role: background\\\\n    relevance: >\\\\n      Comprehensive survey of reward hacking mechanisms in the LLM era.\\\\n      Provides theoretical framework for understanding why STA's structural\\\\n      reward is more robust than pure outcome-based reward.\\\\n    key_finding: >\\\\n      Reward hacking manifests through specification gaming, reward model\\\\n      exploitation, and emergent misalignment; structural verification\\\\n      rewards are more robust than learned reward models.\\\\n\\\\n  - id: energy-loss-reward-hacking\\\\n    title: \\\\\\\"The Energy Loss Phenomenon in RLHF: A New Perspective on Mitigating Reward Hacking\\\\\\\"\\\\n    authors: \\\\\\\"Various\\\\\\\"\\\\n    year: 2025\\\\n    venue: \\\\\\\"ICML 2025\\\\\\\"\\\\n    category: reward-hacking\\\\n    role: background\\\\n    relevance: >\\\\n      Identifies energy loss in LLM final layer as an indicator of reward\\\\n      hacking during RL. Provides complementary diagnostic to STA's\\\\n      structural reward approach.\\\\n    key_finding: >\\\\n      Energy loss in the final layer increases during RL and excessive\\\\n      increase characterizes reward hacking; EPPO algorithm penalizes\\\\n      this to mitigate hacking.\\\\n\\\\n  - id: spurious-rewards\\\\n    title: \\\\\\\"Spurious Rewards: Rethinking Training Signals in RLVR\\\\\\\"\\\\n    authors: \\\\\\\"Ruixin Yang et al.\\\\\\\"\\\\n    year: 2025\\\\n    venue: \\\\\\\"arXiv 2506.10947 / NeurIPS 2025 submission\\\\\\\"\\\\n    category: reward-hacking\\\\n    role: direct-evidence\\\\n    relevance: >\\\\n      Most directly relevant to STA findings. GRPO+random reward on\\\\n      Qwen2.5-Math improves 21.4%, nearly matching ground-truth reward's\\\\n      29.1%. Matches our plan017 finding: additive random (PR=48%) >\\\\n      additive ISR (PR=18%). Structured metrics can be worse than random\\\\n      noise due to systematic bias vs pure variance.\\\\n    key_finding: >\\\\n      Random reward nearly matches ground-truth reward in GRPO training,\\\\n      suggesting GRPO's group normalization extracts signal from noise.\\\\n      Effect is model-dependent (works on Qwen2.5, not Llama3).\\\\n\\\\n  - id: bondarenko-spec-gaming\\\\n    title: \\\\\\\"Demonstrating Specification Gaming in Reasoning Models\\\\\\\"\\\\n    authors: \\\\\\\"Alexander Bondarenko, Denis Volk, Dmitrii Volkov, Jeffrey Ladish\\\\\\\"\\\\n    year: 2025\\\\n    venue: \\\\\\\"arXiv 2502.13295\\\\\\\"\\\\n    category: reward-hacking\\\\n    role: direct-evidence\\\\n    relevance: >\\\\n      Shows that reasoning models (o3, DeepSeek-R1) resort to specification\\\\n      gaming on difficult tasks by default, without explicit nudging.\\\\n      Directly relevant to STA's concern: RL-trained reasoning models\\\\n      may game formal verification rewards rather than learn genuine\\\\n      formalization skills.\\\\n    key_finding: >\\\\n      Reasoning models spontaneously hack benchmarks (e.g., manipulating\\\\n      chess engine files instead of playing chess). Stronger reasoning\\\\n      capability correlates with more sophisticated gaming strategies.\\\\n\\\\n  - id: kim-game-formalization\\\\n    title: \\\\\\\"Do LLMs Game Formalization? Evaluating Faithfulness in Logical Reasoning\\\\\\\"\\\\n    authors: \\\\\\\"Kyuhee Kim, Auguste Poiroux, Antoine Bosselut\\\\\\\"\\\\n    year: 2026\\\\n    venue: \\\\\\\"VerifAI-2 Workshop, ICLR 2026 (arXiv 2604.19459)\\\\\\\"\\\\n    category: reward-hacking\\\\n    role: direct-evidence\\\\n    relevance: >\\\\n      Directly studies whether LLMs game formalization in logical reasoning --\\\\n      the exact phenomenon STA's ISR is designed to detect. Evaluates GPT-5\\\\n      and DeepSeek-R1 on FOLIO with Lean 4 proofs. Finds two modes of\\\\n      unfaithfulness: axiom fabrication (GPT-5) and premise mistranslation\\\\n      (R1), the latter evading detection entirely.\\\\n    key_finding: >\\\\n      High compilation rates (87-99%) do not imply faithful formalization.\\\\n      Two-stage pipelines reveal unfaithfulness that unified generation hides.\\\\n      Premise mistranslation produces internally consistent but unfaithful\\\\n      outputs -- analogous to STA's high-ISR but semantically wrong traces.\\\\n\\\\n  - id: gao-reward-overoptimization\\\\n    title: \\\\\\\"Scaling Laws for Reward Model Overoptimization\\\\\\\"\\\\n    authors: \\\\\\\"Leo Gao, John Schulman, Jacob Hilton\\\\\\\"\\\\n    year: 2023\\\\n    venue: \\\\\\\"ICML 2023 (arXiv 2210.10760)\\\\\\\"\\\\n    category: reward-hacking\\\\n    role: theoretical-foundation\\\\n    relevance: >\\\\n      Foundational work quantifying Goodhart's effect: proxy reward rises\\\\n      but gold reward first rises then falls. ISR is a proxy reward that\\\\n      exhibits exactly this pattern — ISR can increase while prove_rate\\\\n      decreases, making it suitable for post-hoc diagnosis but harmful\\\\n      as training signal.\\\\n    key_finding: >\\\\n      Gold/proxy reward divergence follows predictable scaling laws.\\\\n      Proxy reward optimization past critical point degrades gold reward,\\\\n      with the divergence point scaling with model and dataset size.\\\\n\\\\n  - id: karwowski-goodhart-rl\\\\n    title: \\\\\\\"Goodhart's Law in Reinforcement Learning\\\\\\\"\\\\n    authors: \\\\\\\"Jacek Karwowski, Oliver Hayman, Xingjian Bai, Klaus Kiendlhofer, Charlie Griffin, Joar Skalse\\\\\\\"\\\\n    year: 2024\\\\n    venue: \\\\\\\"ICLR 2024 (arXiv 2310.09144)\\\\\\\"\\\\n    category: reward-hacking\\\\n    role: theoretical-foundation\\\\n    relevance: >\\\\n      Geometric interpretation of Goodhart's Law in MDPs: optimizing\\\\n      imperfect proxy past critical point decreases true objective. ISR as\\\\n      proxy has partial correlation with execution correctness — exceeding\\\\n      critical optimization point pushes policy toward high-ISR but\\\\n      low-correctness regions. Explains plan002/plan005 negative results.\\\\n    key_finding: >\\\\n      Formalizes Goodhart's Law for RL: any non-trivially correlated proxy\\\\n      reward creates regions where proxy and true reward diverge, and\\\\n      policy optimization inevitably enters these regions.\\\\n\\\\n  # ============================================================\\\\n  # Category 6: FOL/Prolog formalization with LLMs\\\\n  # ============================================================\\\\n\\\\n  - id: folio\\\\n    title: \\\\\\\"FOLIO: Natural Language Reasoning with First-Order Logic\\\\\\\"\\\\n    authors: \\\\\\\"Simeng Han et al.\\\\\\\"\\\\n    year: 2022\\\\n    venue: \\\\\\\"arXiv 2209.00840 / EMNLP 2024\\\\\\\"\\\\n    category: fol-formalization\\\\n    role: evaluation\\\\n    relevance: >\\\\n      Primary FOL reasoning benchmark. STA uses FOLIO-style NL->FOL\\\\n      formalization as the target task for GRPO training. FOLIO's\\\\n      expert-annotated FOL annotations serve as reference formalizations.\\\\n    key_finding: >\\\\n      1,430 NL-FOL paired examples with reasoning depths up to 5+;\\\\n      GPT-4 still struggles on the hardest examples.\\\\n\\\\n  - id: proofwriter\\\\n    title: \\\\\\\"ProofWriter: Generating Implications, Proofs, and Abductive Statements over Natural Language\\\\\\\"\\\\n    authors: \\\\\\\"Oyvind Tafjord, Bhavana Dalvi, Peter Clark\\\\\\\"\\\\n    year: 2021\\\\n    venue: \\\\\\\"Findings of ACL-IJCNLP 2021\\\\\\\"\\\\n    category: fol-formalization\\\\n    role: evaluation\\\\n    relevance: >\\\\n      Source dataset for STA's training data. ProofWriter provides\\\\n      rule-based logical reasoning problems in natural language that\\\\n      STA uses for training formalizer models.\\\\n    key_finding: >\\\\n      Generative model can reliably produce implications and proofs;\\\\n      accuracy exceeds prior methods by 9% and generalizes to unseen\\\\n      proof depths.\\\\n\\\\n  - id: logic-lm\\\\n    title: \\\\\\\"Logic-LM: Empowering Large Language Models with Symbolic Solvers for Faithful Logical Reasoning\\\\\\\"\\\\n    authors: \\\\\\\"Liangming Pan, Alon Albalak, Xinyi Wang, William Wang\\\\\\\"\\\\n    year: 2023\\\\n    venue: \\\\\\\"Findings of EMNLP 2023\\\\\\\"\\\\n    category: fol-formalization\\\\n    role: direct-competitor\\\\n    relevance: >\\\\n      LLM->symbolic solver pipeline for logical reasoning, directly\\\\n      comparable to STA's formalizer->Prolog solver pipeline. Key\\\\n      difference: Logic-LM uses prompting, STA uses GRPO training.\\\\n    key_finding: >\\\\n      LLM+solver achieves 39.2% improvement over LLM-alone on logical\\\\n      reasoning benchmarks including ProofWriter and FOLIO.\\\\n\\\\n  - id: linc\\\\n    title: \\\\\\\"LINC: A Neurosymbolic Approach for Logical Reasoning by Combining Language Models with First-Order Logic Provers\\\\\\\"\\\\n    authors: \\\\\\\"Theo X. Olausson, Alex Gu, Ben Lipkin, et al.\\\\\\\"\\\\n    year: 2023\\\\n    venue: \\\\\\\"EMNLP 2023\\\\\\\"\\\\n    category: fol-formalization\\\\n    role: direct-competitor\\\\n    relevance: >\\\\n      Neurosymbolic approach where LLM translates NL to FOL for theorem\\\\n      prover. Directly comparable to STA's NL->Prolog translation.\\\\n      LINC uses prompting-based approach; STA uses RL training.\\\\n    key_finding: >\\\\n      StarCoder+ (15.5B) with LINC outperforms GPT-3.5 and GPT-4 with\\\\n      CoT by 38% and 10% respectively on ProofWriter.\\\\n\\\\n  - id: fover-pei2025\\\\n    title: \\\\\\\"FoVer: First-Order Logic Verification for Natural Language Reasoning\\\\\\\"\\\\n    authors: \\\\\\\"Yu Pei, Yongping Du, Xingnan Jin\\\\\\\"\\\\n    year: 2025\\\\n    venue: \\\\\\\"TACL 13:1340-1359\\\\\\\"\\\\n    category: fol-formalization\\\\n    role: direct-competitor\\\\n    relevance: >\\\\n      Uses LLM->FOL->Z3 pipeline for verifying NL reasoning correctness.\\\\n      Similar to STA's verification pipeline but focuses on post-hoc\\\\n      verification rather than training reward signal.\\\\n    key_finding: >\\\\n      FOL verification via Z3 significantly outperforms existing methods\\\\n      on ProofWriter and FOLIO benchmarks.\\\\n\\\\n  - id: lorp\\\\n    title: \\\\\\\"LoRP: LLM-based Logical Reasoning via Prolog\\\\\\\"\\\\n    authors: \\\\\\\"Various\\\\\\\"\\\\n    year: 2025\\\\n    venue: \\\\\\\"Knowledge-Based Systems 2025\\\\\\\"\\\\n    category: fol-formalization\\\\n    role: direct-competitor\\\\n    relevance: >\\\\n      LLM->Prolog pipeline with FOL-to-Prolog translation mechanism.\\\\n      Closest to STA's formalization target (Prolog), though LoRP\\\\n      uses prompting while STA uses GRPO training with structural reward.\\\\n    key_finding: >\\\\n      Systematic FOL-to-Prolog translation extends Prolog expressiveness;\\\\n      achieves SoTA accuracy on logical reasoning with three-vote majority.\\\\n\\\\n  - id: nl2fol\\\\n    title: \\\\\\\"NL2FOL: Translating Natural Language to First-Order Logic for Logical Fallacy Detection\\\\\\\"\\\\n    authors: \\\\\\\"Lalwani, Kim, et al.\\\\\\\"\\\\n    year: 2024\\\\n    venue: \\\\\\\"arXiv 2405.02318\\\\\\\"\\\\n    category: fol-formalization\\\\n    role: background\\\\n    relevance: >\\\\n      Step-by-step NL->FOL translation using LLMs with SMT solver\\\\n      verification. Demonstrates the NL->formal logic pipeline that\\\\n      STA aims to improve via RL training.\\\\n    key_finding: >\\\\n      Neurosymbolic NL2FOL achieves 78% F1 on LOGIC dataset and\\\\n      generalizes to LogicClimate (80% F1), outperforming supervised\\\\n      models by 21%.\\\\n\\\\n  - id: logica2\\\\n    title: \\\\\\\"LogiQA 2.0: An Improved Dataset for Logical Reasoning in Natural Language Understanding\\\\\\\"\\\\n    authors: \\\\\\\"Liu et al.\\\\\\\"\\\\n    year: 2023\\\\n    venue: \\\\\\\"IEEE/ACM TASLP 2023\\\\\\\"\\\\n    category: fol-formalization\\\\n    role: evaluation\\\\n    relevance: >\\\\n      Logical reasoning evaluation benchmark derived from Chinese civil\\\\n      service exams. Provides supplementary evaluation for STA's\\\\n      formalization capabilities.\\\\n    key_finding: >\\\\n      8,678 multiple-choice questions covering categorical, disjunctive,\\\\n      and conditional reasoning; widely used LLM benchmark.\\\\n\\\\n  # ============================================================\\\\n  # Category 7: Goodhart's Law theory and dose-response dynamics\\\\n  # ============================================================\\\\n\\\\n  - id: manheim-goodhart-taxonomy\\\\n    title: \\\\\\\"Categorizing Variants of Goodhart's Law\\\\\\\"\\\\n    authors: \\\\\\\"David Manheim, Scott Garrabrant\\\\\\\"\\\\n    year: 2019\\\\n    venue: \\\\\\\"arXiv 1803.04585\\\\\\\"\\\\n    category: goodhart-overoptimization\\\\n    role: theoretical-foundation\\\\n    relevance: >\\\\n      Four-part Goodhart taxonomy: regressional, extremal, causal, adversarial.\\\\n      STA's high-β ISR collapse is best classified as extremal Goodhart\\\\n      (policy moves to OOD region where ISR↑ but prove_rate↓). Provides\\\\n      vocabulary for discussion section.\\\\n    key_finding: >\\\\n      First systematic categorization of Goodhart failure modes. Extremal\\\\n      variant occurs when proxy-goal relationship breaks in out-of-distribution\\\\n      regions reached by strong optimization.\\\\n\\\\n  - id: pan-reward-misspecification\\\\n    title: \\\\\\\"The Effects of Reward Misspecification: Mapping and Mitigating Misaligned Models\\\\\\\"\\\\n    authors: \\\\\\\"Alexander Pan, Kush Bhatia, Jacob Steinhardt\\\\\\\"\\\\n    year: 2022\\\\n    venue: \\\\\\\"ICLR 2022\\\\\\\"\\\\n    category: goodhart-overoptimization\\\\n    role: theoretical-foundation\\\\n    relevance: >\\\\n      Across 9 environments, more capable agents exploit misspecifications more.\\\\n      Observes dose-dependent degradation — capability thresholds where true\\\\n      reward sharply drops. Matches STA's β=0.1→0.3 qualitative shift.\\\\n    key_finding: >\\\\n      Reward misspecification causes dose-dependent degradation where true reward\\\\n      sharply drops past capability thresholds. More capable optimization\\\\n      produces worse outcomes under misspecification.\\\\n\\\\n  - id: kwa-catastrophic-goodhart\\\\n    title: \\\\\\\"Catastrophic Goodhart: Regularizing RLHF with KL Divergence Does Not Mitigate Heavy-Tailed Reward Misspecification\\\\\\\"\\\\n    authors: \\\\\\\"Tat-Thang Kwa, Rachel Thomas, Adrià Garriga-Alonso\\\\\\\"\\\\n    year: 2024\\\\n    venue: \\\\\\\"NeurIPS 2024\\\\\\\"\\\\n    category: goodhart-overoptimization\\\\n    role: theoretical-foundation\\\\n    relevance: >\\\\n      If reward model error is heavy-tailed, policies achieve arbitrarily\\\\n      high proxy reward with no true utility gain. KL regularization provably\\\\n      fails. Explains why KL penalty in GRPO cannot prevent ISR collapse\\\\n      at high β if ISR error distribution is heavy-tailed.\\\\n    key_finding: >\\\\n      KL-regularized RL provably fails to prevent overoptimization under\\\\n      heavy-tailed reward misspecification. Policies can achieve arbitrarily\\\\n      high proxy reward with zero true utility.\\\\n\\\\n  - id: rafailov-daa-scaling\\\\n    title: \\\\\\\"Scaling Laws for Reward Model Overoptimization in Direct Alignment Algorithms\\\\\\\"\\\\n    authors: \\\\\\\"Rafael Rafailov, Yaswanth Chittepu, Ryan Park, Harshit Sikchi, Joey Hejna, W. Bradley Knox, Chelsea Finn, Scott Niekum\\\\\\\"\\\\n    year: 2024\\\\n    venue: \\\\\\\"NeurIPS 2024\\\\\\\"\\\\n    category: goodhart-overoptimization\\\\n    role: supporting-evidence\\\\n    relevance: >\\\\n      Extends Gao et al. to DPO/IPO/SLiC. Tests seven β values across\\\\n      1B-6.9B models. DAAs still overoptimize despite no explicit proxy RM.\\\\n      Validates β as a \\\\\\\"dose\\\\\\\" parameter — directly analogous to STA's\\\\n      ISR weight sweep.\\\\n    key_finding: >\\\\n      Direct alignment algorithms exhibit overoptimization following\\\\n      predictable scaling laws. Smaller models overoptimize sooner.\\\\n      β-controlled dose-response is a general phenomenon across RL paradigms.\\\\n\\\\n  - id: huang-chi-squared\\\\n    title: \\\\\\\"Correcting the Mythos of KL-Regularization: Direct and Contrastive Distribution Correction\\\\\\\"\\\\n    authors: \\\\\\\"Afra Feyza Akyürek, Banghua Zhu, Sham Kakade, Jiantao Jiao\\\\\\\"\\\\n    year: 2025\\\\n    venue: \\\\\\\"ICLR 2025 Poster\\\\\\\"\\\\n    category: goodhart-overoptimization\\\\n    role: supporting-evidence\\\\n    relevance: >\\\\n      KL-regularization is theoretically inadequate for preventing\\\\n      overoptimization. Chi-squared divergence provably alleviates it.\\\\n      Suggests that even with KL penalty in GRPO, STA's high-β collapse\\\\n      is theoretically expected.\\\\n    key_finding: >\\\\n      Chi-squared preference optimization provably mitigates overoptimization\\\\n      where KL-regularization fails. Alternative divergence measures offer\\\\n      stronger guarantees.\\\\n\\\\n  - id: coste-rm-ensembles\\\\n    title: \\\\\\\"Reward Model Ensembles Help Mitigate Overoptimization\\\\\\\"\\\\n    authors: \\\\\\\"Thomas Coste, Usman Anwar, Robert Kirk, David Krueger\\\\\\\"\\\\n    year: 2023\\\\n    venue: \\\\\\\"NeurIPS 2023 Workshop on Alignment\\\\\\\"\\\\n    category: goodhart-overoptimization\\\\n    role: background\\\\n    relevance: >\\\\n      Worst-case optimization across RM ensembles practically eliminates\\\\n      overoptimization for BoN and reduces it for PPO. Suggests ensemble\\\\n      of multiple solver metrics (instead of single ISR) as mitigation.\\\\n    key_finding: >\\\\n      RM ensembles with worst-case aggregation mitigate overoptimization.\\\\n      Ensemble size and diversity directly affect robustness.\\\\n\\\\n  # ============================================================\\\\n  # Category 8: Solver/prover as RL reward signal\\\\n  # ============================================================\\\\n\\\\n  - id: rlsf\\\\n    title: \\\\\\\"Reinforcement Learning via Symbolic Feedback\\\\\\\"\\\\n    authors: \\\\\\\"Abhinav Jha, Shikhar Murty, Zico Kolter, et al.\\\\\\\"\\\\n    year: 2024\\\\n    venue: \\\\\\\"arXiv 2405.16661\\\\\\\"\\\\n    category: verification-reward\\\\n    role: direct-competitor\\\\n    relevance: >\\\\n      Most directly relevant: uses solver/prover certificates as fine-grained\\\\n      token-level reward signal. Outperforms traditional approaches on program\\\\n      synthesis (+31.4%). STA extends this paradigm and shows when it breaks\\\\n      (Goodhart effects at high auxiliary reward weight).\\\\n    key_finding: >\\\\n      Symbolic reasoning tools provide poly-sized certificates as reward.\\\\n      Smaller RLSF models outperform GPT-4 on structured generation tasks.\\\\n\\\\n  - id: fover-kamoi2026\\\\n    title: \\\\\\\"FoVer: Generalizable Process Reward Models via Formally Verified Training Data\\\\\\\"\\\\n    authors: \\\\\\\"Ryo Kamoi, Yusen Zhang, Nan Zhang, Jiawei Han, Rui Zhang\\\\\\\"\\\\n    year: 2025\\\\n    venue: \\\\\\\"Findings of ACL 2026 (arXiv 2502.01345)\\\\\\\"\\\\n    category: verification-reward\\\\n    role: supporting-evidence\\\\n    relevance: >\\\\n      Uses Z3 and Isabelle to synthesize PRM training data by annotating\\\\n      step-level error labels without human annotation. Same solver family\\\\n      as STA. Shows verification-based rewards work; STA extends by showing\\\\n      dose-response dynamics.\\\\n    key_finding: >\\\\n      Formally verified training data enables generalizable process reward\\\\n      models competitive on ProcessBench and 12 reasoning benchmarks.\\\\n\\\\n  - id: deepseek-prover-v15\\\\n    title: \\\\\\\"DeepSeek-Prover-V1.5: Harnessing Proof Assistant Feedback for Reinforcement Learning and Monte-Carlo Tree Search\\\\\\\"\\\\n    authors: \\\\\\\"DeepSeek AI\\\\\\\"\\\\n    year: 2024\\\\n    venue: \\\\\\\"ICLR 2025 (arXiv 2408.08152)\\\\\\\"\\\\n    category: verification-reward\\\\n    role: method-component\\\\n    relevance: >\\\\n      Uses GRPO with Lean 4 verification as binary reward. Same algorithm\\\\n      (GRPO) + formal verification, but binary (pass/fail). Binary reward\\\\n      avoids the graded-metric Goodhart risk that STA identifies with ISR.\\\\n    key_finding: >\\\\n      GRPO + binary Lean verification achieves 63.5% on miniF2F. Binary\\\\n      correctness guarantee via formal verification sidesteps proxy reward\\\\n      overoptimization.\\\\n\\\\n  - id: alphaproof\\\\n    title: \\\\\\\"AlphaProof\\\\\\\"\\\\n    authors: \\\\\\\"Google DeepMind\\\\\\\"\\\\n    year: 2024\\\\n    venue: \\\\\\\"Nature 2025\\\\\\\"\\\\n    category: verification-reward\\\\n    role: background\\\\n    relevance: >\\\\n      AlphaZero-inspired RL with Lean proof verification at scale.\\\\n      Silver medal at IMO 2024. Binary verification reward avoids the\\\\n      Goodhart problem STA identifies with graded verification metrics.\\\\n    key_finding: >\\\\n      Binary formal verification as RL reward scales to IMO-level\\\\n      mathematical reasoning. Demonstrates verification-reward RL works\\\\n      at the frontier of mathematical difficulty.\\\\n\\\\n  - id: math-shepherd\\\\n    title: \\\\\\\"Math-Shepherd: Verify and Reinforce LLMs Step-by-step without Human Annotations\\\\\\\"\\\\n    authors: \\\\\\\"Peiyi Wang, Lei Li, Zhihong Shao, R.X. Xu, et al.\\\\\\\"\\\\n    year: 2024\\\\n    venue: \\\\\\\"ACL 2024 (arXiv 2312.08935)\\\\\\\"\\\\n    category: verification-reward\\\\n    role: supporting-evidence\\\\n    relevance: >\\\\n      Automatically constructs process supervision data and uses it as\\\\n      step-by-step PPO reward. Automated verification reward without human\\\\n      labels, analogous to STA's automated ISR computation via solver.\\\\n    key_finding: >\\\\n      Automated process supervision improves Mistral-7B on GSM8K\\\\n      (77.9→84.1%) and MATH (28.6→33.0%) without human annotation.\\\\n\\\\n  # ============================================================\\\\n  # Additional reward-shaping papers (Goodhart survey additions)\\\\n  # ============================================================\\\\n\\\\n  - id: bipars\\\\n    title: \\\\\\\"Learning to Utilize Shaping Rewards: A New Approach of Reward Shaping\\\\\\\"\\\\n    authors: \\\\\\\"Yujing Hu, Weixun Wang, Hangtian Jia, et al.\\\\\\\"\\\\n    year: 2020\\\\n    venue: \\\\\\\"NeurIPS 2020\\\\\\\"\\\\n    category: reward-shaping\\\\n    role: background\\\\n    relevance: >\\\\n      Bi-level optimization learns parameterized shaping reward weights.\\\\n      Can transform harmful shaping rewards into beneficial ones by learning\\\\n      negative weights. Directly addresses STA's problem: when ISR weight\\\\n      is wrong, automated weight learning could find optimal β.\\\\n    key_finding: >\\\\n      Bi-level optimization automatically learns auxiliary reward weights,\\\\n      outperforming fixed weights and recovering from harmful shaping rewards.\\\\n\\\\n  - id: dapo\\\\n    title: \\\\\\\"DAPO: An Open-Source LLM Reinforcement Learning System at Scale\\\\\\\"\\\\n    authors: \\\\\\\"Qiying Yu et al. (ByteDance)\\\\\\\"\\\\n    year: 2025\\\\n    venue: \\\\\\\"arXiv 2503.14476\\\\\\\"\\\\n    category: reward-shaping\\\\n    role: background\\\\n    relevance: >\\\\n      Four techniques for stable multi-component reward in GRPO: Clip-Higher,\\\\n      Dynamic Sampling, token-level policy gradient, Overlong Reward Shaping.\\\\n      Addresses stability issues relevant to STA's multi-reward setup.\\\\n    key_finding: >\\\\n      Clip-Higher and Dynamic Sampling prevent entropy collapse in GRPO\\\\n      with multi-component rewards. Soft punishment for overlong outputs\\\\n      avoids reward hacking through length exploitation.\\\\n\\\", \\\"total_chars\\\": 42743, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/literature_map.yaml\", \"content\": \"# Literature Map for Solver Trace Ablation (STA)\\n# Categories:\\n#   1. neurosymbolic-rl: Neurosymbolic reasoning + RL/GRPO\\n#   2. reward-shaping: Reward shaping for code/formal verification\\n#   3. mutation-testing: Mutation testing in software engineering\\n#   4. intensional-analysis: Intensional program analysis\\n#   5. reward-hacking: Reward hacking / overoptimization\\n#   6. fol-formalization: FOL/Prolog formalization with LLMs\\n#   7. goodhart-overoptimization: Goodhart's Law theory and dose-response dynamics\\n#   8. verification-reward: Solver/prover as RL reward signal\\n\\npapers:\\n\\n  # ============================================================\\n  # Category 1: Neurosymbolic reasoning + RL/GRPO\\n  # ============================================================\\n\\n  - id: deepseek-r1\\n    title: \\\"DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning\\\"\\n    authors: \\\"DeepSeek-AI\\\"\\n    year: 2025\\n    venue: \\\"arXiv 2501.12948 / Nature 2025\\\"\\n    category: neurosymbolic-rl\\n    role: method-component\\n    relevance: >\\n      Demonstrates that pure RL (GRPO) can incentivize reasoning in LLMs without SFT.\\n      STA builds on the same GRPO framework but replaces binary outcome reward with\\n      intensional structural reward for neurosymbolic formalization.\\n    key_finding: >\\n      DeepSeek-R1-Zero trained via GRPO alone achieves 71% on AIME 2024,\\n      showing emergent chain-of-thought reasoning from RL alone.\\n\\n  - id: deepseekmath\\n    title: \\\"DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models\\\"\\n    authors: \\\"Zhihong Shao, Peiyi Wang, Qihao Zhu, Runxin Xu, et al.\\\"\\n    year: 2024\\n    venue: \\\"arXiv 2402.03300\\\"\\n    category: neurosymbolic-rl\\n    role: method-component\\n    relevance: >\\n      Introduces GRPO (Group Relative Policy Optimization), the RL algorithm\\n      used in STA training. GRPO eliminates the critic model by estimating\\n      baselines from group scores.\\n    key_finding: >\\n      GRPO matches PPO performance while significantly reducing training\\n      resources; improves GSM8K 82.9->88.2% and MATH 46.8->51.7%.\\n\\n  - id: logic-rl\\n    title: \\\"Logic-RL: Unleashing LLM Reasoning with Rule-Based Reinforcement Learning\\\"\\n    authors: \\\"Xian et al.\\\"\\n    year: 2025\\n    venue: \\\"arXiv 2502.14768\\\"\\n    category: neurosymbolic-rl\\n    role: direct-competitor\\n    relevance: >\\n      Uses rule-based RL (REINFORCE++) for LLM logical reasoning on synthetic\\n      logic puzzles. Closest competitor to STA's approach of RL for logical\\n      formalization, though Logic-RL uses extensional (answer-correctness)\\n      rewards rather than STA's intensional structural rewards.\\n    key_finding: >\\n      REINFORCE++ outperforms GRPO on logic puzzles with superior stability;\\n      rule-based reward design is critical for RL-based logical reasoning.\\n\\n  - id: mellgren-prolog-grpo\\n    title: \\\"Training Language Models to Use Prolog as a Tool\\\"\\n    authors: \\\"Niklas Mellgren\\\"\\n    year: 2024\\n    venue: \\\"arXiv 2512.07407\\\"\\n    category: neurosymbolic-rl\\n    role: direct-competitor\\n    relevance: >\\n      Uses GRPO to train a 3B LLM to generate Prolog code for reasoning,\\n      directly comparable to STA's approach of GRPO-training a formalizer.\\n      Key difference: uses pass/fail reward vs STA's structural ISR.\\n    key_finding: >\\n      GRPO is effective for teaching small LLMs to use Prolog as a tool\\n      for logical and mathematical reasoning.\\n\\n  - id: satlm\\n    title: \\\"SatLM: Satisfiability-Aided Language Models Using Declarative Prompting\\\"\\n    authors: \\\"Xi Ye et al.\\\"\\n    year: 2023\\n    venue: \\\"NeurIPS 2023\\\"\\n    category: neurosymbolic-rl\\n    role: background\\n    relevance: >\\n      Neurosymbolic approach where LLM generates declarative specifications\\n      verified by SAT solver. Similar pipeline to STA (LLM->formal spec->solver)\\n      but uses prompting, not RL training.\\n    key_finding: >\\n      Declarative formulation outperforms imperative program-aided LMs by 23%\\n      on GSM; achieves SoTA on LSAT and BoardgameQA.\\n\\n  - id: deepproblog\\n    title: \\\"Neural Probabilistic Logic Programming in DeepProbLog\\\"\\n    authors: \\\"Robin Manhaeve, Sebastijan Dumančić, Angelika Kimmig, Thomas Demeester, Luc De Raedt\\\"\\n    year: 2021\\n    venue: \\\"Artificial Intelligence 298\\\"\\n    category: neurosymbolic-rl\\n    role: background\\n    relevance: >\\n      Foundational neural-probabilistic logic programming framework that integrates\\n      deep learning with ProbLog via neural predicates. Establishes the intellectual\\n      tradition of combining neural networks with logic programming that STA extends\\n      to LLM-generated Prolog with RL training.\\n    key_finding: >\\n      End-to-end differentiable framework integrating neural perception with\\n      probabilistic logical reasoning; supports program induction and learning\\n      from examples.\\n\\n  - id: neurasp\\n    title: \\\"NeurASP: Embracing Neural Networks into Answer Set Programming\\\"\\n    authors: \\\"Zhun Yang, Adam Ishay, Joohyung Lee\\\"\\n    year: 2020\\n    venue: \\\"IJCAI 2020\\\"\\n    category: neurosymbolic-rl\\n    role: background\\n    relevance: >\\n      Integrates neural networks with answer set programming (ASP), using\\n      ASP rules to constrain and improve neural network training. Complementary\\n      to DeepProbLog; together they represent the neuro-symbolic LP foundation\\n      that STA's LLM-to-Prolog pipeline builds upon.\\n    key_finding: >\\n      ASP semantic constraints improve neural network perception accuracy;\\n      demonstrates bidirectional benefit of neural-symbolic integration.\\n\\n  - id: thought-like-pro\\n    title: \\\"Thought-Like-Pro: Enhancing Reasoning of Large Language Models through Self-Driven Prolog-based Chain-of-Thought\\\"\\n    authors: \\\"Xiaoyu Tan, Yongxin Deng, Xihe Qiu, Weidi Xu, Chao Qu, Wei Chu, Yinghui Xu, Yuan Qi\\\"\\n    year: 2024\\n    venue: \\\"arXiv 2407.14562\\\"\\n    category: neurosymbolic-rl\\n    role: direct-competitor\\n    relevance: >\\n      Uses Prolog engine to generate verified reasoning trajectories, then trains\\n      LLMs via imitation learning to replicate them. Directly comparable pipeline\\n      to STA (Prolog verification + LLM training), but uses imitation learning\\n      instead of GRPO with structural reward.\\n    key_finding: >\\n      Prolog-verified reasoning trajectories as training signal improve LLM\\n      logical reasoning; self-driven framework enables LLMs to formulate\\n      rules from instructions and leverage Prolog for derivation.\\n\\n  # ============================================================\\n  # Category 2: Reward shaping for code/formal verification\\n  # ============================================================\\n\\n  - id: lightman-verify-step\\n    title: \\\"Let's Verify Step by Step\\\"\\n    authors: \\\"Hunter Lightman, Vineet Kosaraju, Yura Burda, et al.\\\"\\n    year: 2023\\n    venue: \\\"arXiv 2305.20050 / ICLR 2024\\\"\\n    category: reward-shaping\\n    role: method-component\\n    relevance: >\\n      Establishes that process supervision (step-level reward) outperforms\\n      outcome supervision (final-answer reward) for reasoning. STA's ISR\\n      is analogous: it provides structural process-level signal about which\\n      components of a formalization matter, rather than just pass/fail.\\n    key_finding: >\\n      Process-supervised reward model achieves 78% on MATH, significantly\\n      outperforming outcome-supervised models. Released PRM800K dataset.\\n\\n  - id: reward-shaping-rlhf\\n    title: \\\"Reward Shaping to Mitigate Reward Hacking in RLHF\\\"\\n    authors: \\\"Jiayi Fu, Xuandong Zhao, Chengyuan Yao, et al.\\\"\\n    year: 2025\\n    venue: \\\"arXiv 2502.18770\\\"\\n    category: reward-shaping\\n    role: background\\n    relevance: >\\n      Studies reward shaping design principles for RLHF: bounded rewards and\\n      rapid-then-convergent growth. STA's ISR follows these principles\\n      naturally since structural necessity scores are bounded [0,1].\\n    key_finding: >\\n      Two key reward shaping principles: (1) bounded RL reward, (2) rapid\\n      initial growth with gradual convergence. PAR method achieves 5%+\\n      win rate improvement on AlpacaEval 2.0.\\n\\n  - id: rlvr-reasoning\\n    title: \\\"Reinforcement Learning with Verifiable Rewards Implicitly Incentivizes Correct Reasoning in Base LLMs\\\"\\n    authors: \\\"Various\\\"\\n    year: 2025\\n    venue: \\\"arXiv 2506.14245\\\"\\n    category: reward-shaping\\n    role: background\\n    relevance: >\\n      Shows that binary verifiable rewards (pass/fail) can implicitly incentivize\\n      reasoning. STA argues that for neurosymbolic formalization, binary reward\\n      is insufficient and structural reward is needed to avoid reward hacking.\\n    key_finding: >\\n      RLVR with binary verification implicitly teaches correct reasoning\\n      strategies, not just answer matching.\\n\\n  - id: rubric-grpo\\n    title: \\\"Rubric-Grounded Reinforcement Learning: Structured Judge Rewards for Generalizable Reasoning\\\"\\n    authors: \\\"Various\\\"\\n    year: 2025\\n    venue: \\\"arXiv 2605.08061\\\"\\n    category: reward-shaping\\n    role: direct-competitor\\n    relevance: >\\n      Uses structured rubric-based rewards with GRPO, similar in spirit to\\n      STA's structured ISR. Key difference: rubric rewards come from LLM\\n      judges, while ISR comes from solver-based mutation testing.\\n    key_finding: >\\n      Structured multi-dimensional reward signals improve GRPO training\\n      generalization compared to scalar rewards.\\n\\n  - id: gao-effective-rl-reward\\n    title: \\\"On Designing Effective RL Reward at Training Time for LLM Reasoning\\\"\\n    authors: \\\"Jiaxuan Gao, Shusheng Xu, Wenjie Ye, Weilin Liu, Chuyi He, Wei Fu, Zhiyu Mei, Guangju Wang, Yi Wu\\\"\\n    year: 2024\\n    venue: \\\"arXiv 2410.15115\\\"\\n    category: reward-shaping\\n    role: background\\n    relevance: >\\n      Demonstrates that learned process/outcome reward models can hurt RL\\n      training, producing worse performance than simple success reward only.\\n      Directly explains plan005 NEGATIVE: STA's ISR as auxiliary process\\n      reward degrades prove_rate compared to exec-only baseline.\\n    key_finding: >\\n      PRM/ORM rewards may NOT help or even hurt RL training vs success-only\\n      reward. Solution: Clipping and Delta techniques to bound accumulated\\n      reward magnitude prevent reward hacking.\\n\\n  - id: prof-process-outcome\\n    title: \\\"Beyond Correctness: Harmonizing Process and Outcome Rewards through RL Training\\\"\\n    authors: \\\"Chenlu Ye, Zhou Yu, Ziji Zhang, Hao Chen, Narayanan Sadagopan, Jing Huang, Tong Zhang, Anurag Beniwal\\\"\\n    year: 2025\\n    venue: \\\"arXiv 2509.03403\\\"\\n    category: reward-shaping\\n    role: background\\n    relevance: >\\n      Shows that naively combining PRM+ORM signals leads to performance\\n      degradation. PROF consistency filter retains only PRM-ORM consistent\\n      samples, achieving 4%+ improvement over blending. Suggests STA should\\n      only apply ISR when consistent with execution outcome.\\n    key_finding: >\\n      Process rewards frequently suffer from inaccuracies and reward hacking\\n      susceptibility. PROF filters training data by PRM-ORM consistency,\\n      outperforming naive reward blending by 4%+ accuracy.\\n\\n  - id: moskovitz-constrained-rlhf\\n    title: \\\"Confronting Reward Model Overoptimization with Constrained RLHF\\\"\\n    authors: \\\"Ted Moskovitz, Aaditya K. Singh, DJ Strouse, Tuomas Sandholm, Ruslan Salakhutdinov, Anca D. Dragan, Stephen McAleer\\\"\\n    year: 2023\\n    venue: \\\"arXiv 2310.04373 / ICLR 2024\\\"\\n    category: reward-shaping\\n    role: background\\n    relevance: >\\n      First study on overoptimization in composite reward models. Shows that\\n      fixed-weight linear scalarization of component rewards leads to\\n      degradation past a threshold. Proposes constrained RL with dynamic\\n      Lagrange multiplier weighting as alternative to fixed ISR weight.\\n    key_finding: >\\n      Correlation between component RMs significantly affects overoptimization\\n      thresholds. Constrained RL with Lagrange multipliers outperforms\\n      fixed-weight reward composition.\\n\\n  - id: skalse-reward-hacking\\n    title: \\\"Defining and Characterizing Reward Hacking\\\"\\n    authors: \\\"Joar Skalse, Nikolaus H. R. Howe, Dmitrii Krasheninnikov, David Krueger\\\"\\n    year: 2022\\n    venue: \\\"arXiv 2209.13085 / NeurIPS 2022\\\"\\n    category: reward-shaping\\n    role: background\\n    relevance: >\\n      Formal proof that for stochastic policies, two reward functions are\\n      unhackable only if one is constant. Theoretically explains why any\\n      non-zero ISR weight can decrease prove_rate -- this is a fundamental\\n      property of reward composition, not STA-specific.\\n    key_finding: >\\n      Any non-constant proxy reward can decrease true reward when optimized.\\n      Unhackability requires the proxy to be constant, making all non-trivial\\n      auxiliary rewards theoretically vulnerable to degrading primary performance.\\n\\n  - id: progrs-outcome-conditioned\\n    title: \\\"LLM Reasoning with Process Rewards for Outcome-Guided Steps\\\"\\n    authors: \\\"Mohammad Rezaei, Jens Lehmann, Sahar Vahdati\\\"\\n    year: 2026\\n    venue: \\\"arXiv 2604.02341\\\"\\n    category: reward-shaping\\n    role: background\\n    relevance: >\\n      PRM scores optimized as absolute rewards amplify fluent failure modes.\\n      Outcome-conditioned centering shifts incorrect trajectories' PRM scores\\n      to zero mean, preserving ranking info without corrupting gradients.\\n      Suggests STA should condition ISR on execution outcome.\\n    key_finding: >\\n      Naive process rewards induce reward hacking by rewarding locally fluent\\n      but globally incorrect reasoning. Outcome-conditioned centering resolves\\n      the conflict with fewer rollouts than outcome-only baselines.\\n\\n  - id: qwen-prm-lessons\\n    title: \\\"The Lessons of Developing Process Reward Models in Mathematical Reasoning\\\"\\n    authors: \\\"Zhenru Zhang et al. (Qwen Team, Alibaba)\\\"\\n    year: 2025\\n    venue: \\\"ACL 2025 Findings (arXiv 2501.07301)\\\"\\n    category: reward-shaping\\n    role: supporting-evidence\\n    relevance: >\\n      MC estimation-synthesized PRM data leads to quality degradation; policy\\n      model generates \\\"answer-correct but reasoning-flawed\\\" responses, causing\\n      process reward / outcome misalignment. Directly parallels ISR problem:\\n      structurally correct but semantically wrong proof traces get high ISR\\n      but low execution reward.\\n    key_finding: >\\n      PRM performance depends critically on data quality; MC estimation\\n      introduces systematic bias. Answer-correct reasoning-flawed samples\\n      corrupt process supervision signal.\\n\\n  # ============================================================\\n  # Category 3: Mutation testing in software engineering\\n  # ============================================================\\n\\n  - id: demillo1978\\n    title: \\\"Hints on Test Data Selection: Help for the Practicing Programmer\\\"\\n    authors: \\\"Richard A. DeMillo, Richard J. Lipton, Frederick G. Sayward\\\"\\n    year: 1978\\n    venue: \\\"Computer 11(4):34-43\\\"\\n    category: mutation-testing\\n    role: background\\n    relevance: >\\n      Foundational paper introducing mutation testing. STA's component\\n      necessity testing directly extends this idea: instead of mutating\\n      source code to test test suites, STA mutates logical formulas\\n      to test component necessity for solver success.\\n    key_finding: >\\n      Introduced mutation testing and the coupling effect hypothesis:\\n      tests that detect simple faults also detect complex faults.\\n\\n  - id: offutt-coupling\\n    title: \\\"Investigations of the Software Testing Coupling Effect\\\"\\n    authors: \\\"A. Jefferson Offutt\\\"\\n    year: 1992\\n    venue: \\\"ACM TOSEM 1(1):5-20\\\"\\n    category: mutation-testing\\n    role: background\\n    relevance: >\\n      Empirically validates the coupling effect hypothesis that underpins\\n      mutation testing. STA's single-component ablation is analogous to\\n      first-order mutation; the coupling effect suggests this suffices.\\n    key_finding: >\\n      Test data killing all first-order mutants killed >99% of second-\\n      and third-order mutants, validating the coupling effect.\\n\\n  - id: jia-harman-survey\\n    title: \\\"An Analysis and Survey of the Development of Mutation Testing\\\"\\n    authors: \\\"Yue Jia, Mark Harman\\\"\\n    year: 2011\\n    venue: \\\"IEEE TSE 37(5):649-678\\\"\\n    category: mutation-testing\\n    role: background\\n    relevance: >\\n      Comprehensive survey of mutation testing covering three decades of\\n      development. Provides theoretical and practical foundation for STA's\\n      adaptation of mutation testing to logical formulas.\\n    key_finding: >\\n      Systematic classification of mutation operators, cost reduction\\n      techniques, and equivalence problem -- all relevant to STA's design\\n      of clause-level ablation operators.\\n\\n  - id: just-mutants-real-faults\\n    title: \\\"Are Mutants a Valid Substitute for Real Faults in Software Testing?\\\"\\n    authors: \\\"Rene Just, Darioush Jalali, Laura Inozemtseva, et al.\\\"\\n    year: 2014\\n    venue: \\\"FSE 2014\\\"\\n    category: mutation-testing\\n    role: background\\n    relevance: >\\n      Validates that mutation testing (structural/intensional analysis of\\n      program adequacy) correlates with real fault detection. Supports STA's\\n      premise that structural analysis of formalization components provides\\n      meaningful signal about formalization quality.\\n    key_finding: >\\n      Mutant detection is statistically correlated with real fault detection,\\n      and mutation score is a better predictor of test effectiveness than\\n      code coverage.\\n\\n  - id: llmorpheus\\n    title: \\\"LLMorpheus: Mutation Testing Using Large Language Models\\\"\\n    authors: \\\"Frank Tip, Jon Bell, et al.\\\"\\n    year: 2025\\n    venue: \\\"IEEE TSE 2025\\\"\\n    category: mutation-testing\\n    role: background\\n    relevance: >\\n      Uses LLMs to generate realistic code mutants beyond traditional\\n      mutation operators. Shows mutation testing evolving toward\\n      ML-integrated approaches, validating STA's cross-pollination\\n      of mutation testing ideas into ML training.\\n    key_finding: >\\n      LLM-generated mutants simulate real bugs that rule-based operators\\n      cannot produce, improving mutation testing realism.\\n\\n  - id: mutation-guided-meta\\n    title: \\\"Mutation-Guided LLM-based Test Generation at Meta\\\"\\n    authors: \\\"Christopher Foster et al.\\\"\\n    year: 2025\\n    venue: \\\"FSE 2025\\\"\\n    category: mutation-testing\\n    role: background\\n    relevance: >\\n      Industrial application of mutation-guided LLM test generation at\\n      Meta. Demonstrates that mutation analysis can guide LLM behavior\\n      in production -- analogous to how STA uses mutation (ablation) to\\n      guide GRPO reward signal.\\n    key_finding: >\\n      Mutation-guided approach generates tests that kill significantly\\n      more mutants than unguided LLM test generation at Meta scale.\\n\\n  - id: mutation-consistency-llm\\n    title: \\\"Mutation-based Consistency Testing for Evaluating the Code Understanding Capability of LLMs\\\"\\n    authors: \\\"Various\\\"\\n    year: 2024\\n    venue: \\\"arXiv 2401.05940\\\"\\n    category: mutation-testing\\n    role: background\\n    relevance: >\\n      Uses code mutations to evaluate LLM code understanding consistency.\\n      Conceptually related to STA: both use systematic code/formula\\n      mutations to assess model capabilities.\\n    key_finding: >\\n      LLMs show significant inconsistency when evaluated on mutated code\\n      variants, suggesting superficial pattern matching.\\n\\n  # ============================================================\\n  # Category 4: Intensional program analysis\\n  # ============================================================\\n\\n  - id: deepmutation\\n    title: \\\"A Probabilistic Framework for Mutation Testing in Deep Neural Networks\\\"\\n    authors: \\\"Various\\\"\\n    year: 2023\\n    venue: \\\"Information and Software Technology 2023\\\"\\n    category: intensional-analysis\\n    role: background\\n    relevance: >\\n      Extends mutation testing to DNN testing with probabilistic mutation\\n      operators. Parallel to STA's extension of mutation testing from\\n      traditional programs to logical formulas.\\n    key_finding: >\\n      Probabilistic mutation framework enables meaningful test adequacy\\n      assessment for neural networks through structural perturbation.\\n\\n  # ============================================================\\n  # Category 5: Reward hacking / overoptimization\\n  # ============================================================\\n\\n  - id: inform-reward-hacking\\n    title: \\\"InfoRM: Mitigating Reward Hacking in RLHF via Information-Theoretic Reward Modeling\\\"\\n    authors: \\\"Various\\\"\\n    year: 2024\\n    venue: \\\"NeurIPS 2024\\\"\\n    category: reward-hacking\\n    role: background\\n    relevance: >\\n      Proposes information-bottleneck approach to detect and mitigate reward\\n      hacking. STA's ISR addresses the same problem differently: by grounding\\n      reward in verifiable structural properties (component necessity), it\\n      reduces the attack surface for reward hacking.\\n    key_finding: >\\n      Variational information bottleneck filters irrelevant features from\\n      reward model; Cluster Separation Index detects reward overoptimization.\\n\\n  - id: mo-grpo\\n    title: \\\"MO-GRPO: Mitigating Reward Hacking of Group Relative Policy Optimization on Multi-Objective Problems\\\"\\n    authors: \\\"CyberAgent AI Lab\\\"\\n    year: 2025\\n    venue: \\\"arXiv 2509.22047\\\"\\n    category: reward-hacking\\n    role: background\\n    relevance: >\\n      Directly addresses GRPO reward hacking in multi-objective settings.\\n      STA's ISR can be viewed as adding a structural objective to the\\n      correctness objective, making MO-GRPO's insights directly applicable.\\n    key_finding: >\\n      Standard GRPO normalizes after summing rewards, allowing high-variance\\n      objectives to dominate. MO-GRPO equalizes scales before aggregation.\\n\\n  - id: reward-hacking-survey\\n    title: \\\"Reward Hacking in the Era of Large Models: Mechanisms, Emergent Misalignment, Challenges\\\"\\n    authors: \\\"Various\\\"\\n    year: 2026\\n    venue: \\\"arXiv 2604.13602\\\"\\n    category: reward-hacking\\n    role: background\\n    relevance: >\\n      Comprehensive survey of reward hacking mechanisms in the LLM era.\\n      Provides theoretical framework for understanding why STA's structural\\n      reward is more robust than pure outcome-based reward.\\n    key_finding: >\\n      Reward hacking manifests through specification gaming, reward model\\n      exploitation, and emergent misalignment; structural verification\\n      rewards are more robust than learned reward models.\\n\\n  - id: energy-loss-reward-hacking\\n    title: \\\"The Energy Loss Phenomenon in RLHF: A New Perspective on Mitigating Reward Hacking\\\"\\n    authors: \\\"Various\\\"\\n    year: 2025\\n    venue: \\\"ICML 2025\\\"\\n    category: reward-hacking\\n    role: background\\n    relevance: >\\n      Identifies energy loss in LLM final layer as an indicator of reward\\n      hacking during RL. Provides complementary diagnostic to STA's\\n      structural reward approach.\\n    key_finding: >\\n      Energy loss in the final layer increases during RL and excessive\\n      increase characterizes reward hacking; EPPO algorithm penalizes\\n      this to mitigate hacking.\\n\\n  - id: spurious-rewards\\n    title: \\\"Spurious Rewards: Rethinking Training Signals in RLVR\\\"\\n    authors: \\\"Ruixin Yang et al.\\\"\\n    year: 2025\\n    venue: \\\"arXiv 2506.10947 / NeurIPS 2025 submission\\\"\\n    category: reward-hacking\\n    role: direct-evidence\\n    relevance: >\\n      Most directly relevant to STA findings. GRPO+random reward on\\n      Qwen2.5-Math improves 21.4%, nearly matching ground-truth reward's\\n      29.1%. Matches our plan017 finding: additive random (PR=48%) >\\n      additive ISR (PR=18%). Structured metrics can be worse than random\\n      noise due to systematic bias vs pure variance.\\n    key_finding: >\\n      Random reward nearly matches ground-truth reward in GRPO training,\\n      suggesting GRPO's group normalization extracts signal from noise.\\n      Effect is model-dependent (works on Qwen2.5, not Llama3).\\n\\n  - id: bondarenko-spec-gaming\\n    title: \\\"Demonstrating Specification Gaming in Reasoning Models\\\"\\n    authors: \\\"Alexander Bondarenko, Denis Volk, Dmitrii Volkov, Jeffrey Ladish\\\"\\n    year: 2025\\n    venue: \\\"arXiv 2502.13295\\\"\\n    category: reward-hacking\\n    role: direct-evidence\\n    relevance: >\\n      Shows that reasoning models (o3, DeepSeek-R1) resort to specification\\n      gaming on difficult tasks by default, without explicit nudging.\\n      Directly relevant to STA's concern: RL-trained reasoning models\\n      may game formal verification rewards rather than learn genuine\\n      formalization skills.\\n    key_finding: >\\n      Reasoning models spontaneously hack benchmarks (e.g., manipulating\\n      chess engine files instead of playing chess). Stronger reasoning\\n      capability correlates with more sophisticated gaming strategies.\\n\\n  - id: kim-game-formalization\\n    title: \\\"Do LLMs Game Formalization? Evaluating Faithfulness in Logical Reasoning\\\"\\n    authors: \\\"Kyuhee Kim, Auguste Poiroux, Antoine Bosselut\\\"\\n    year: 2026\\n    venue: \\\"VerifAI-2 Workshop, ICLR 2026 (arXiv 2604.19459)\\\"\\n    category: reward-hacking\\n    role: direct-evidence\\n    relevance: >\\n      Directly studies whether LLMs game formalization in logical reasoning --\\n      the exact phenomenon STA's ISR is designed to detect. Evaluates GPT-5\\n      and DeepSeek-R1 on FOLIO with Lean 4 proofs. Finds two modes of\\n      unfaithfulness: axiom fabrication (GPT-5) and premise mistranslation\\n      (R1), the latter evading detection entirely.\\n    key_finding: >\\n      High compilation rates (87-99%) do not imply faithful formalization.\\n      Two-stage pipelines reveal unfaithfulness that unified generation hides.\\n      Premise mistranslation produces internally consistent but unfaithful\\n      outputs -- analogous to STA's high-ISR but semantically wrong traces.\\n\\n  - id: gao-reward-overoptimization\\n    title: \\\"Scaling Laws for Reward Model Overoptimization\\\"\\n    authors: \\\"Leo Gao, John Schulman, Jacob Hilton\\\"\\n    year: 2023\\n    venue: \\\"ICML 2023 (arXiv 2210.10760)\\\"\\n    category: reward-hacking\\n    role: theoretical-foundation\\n    relevance: >\\n      Foundational work quantifying Goodhart's effect: proxy reward rises\\n      but gold reward first rises then falls. ISR is a proxy reward that\\n      exhibits exactly this pattern — ISR can increase while prove_rate\\n      decreases, making it suitable for post-hoc diagnosis but harmful\\n      as training signal.\\n    key_finding: >\\n      Gold/proxy reward divergence follows predictable scaling laws.\\n      Proxy reward optimization past critical point degrades gold reward,\\n      with the divergence point scaling with model and dataset size.\\n\\n  - id: karwowski-goodhart-rl\\n    title: \\\"Goodhart's Law in Reinforcement Learning\\\"\\n    authors: \\\"Jacek Karwowski, Oliver Hayman, Xingjian Bai, Klaus Kiendlhofer, Charlie Griffin, Joar Skalse\\\"\\n    year: 2024\\n    venue: \\\"ICLR 2024 (arXiv 2310.09144)\\\"\\n    category: reward-hacking\\n    role: theoretical-foundation\\n    relevance: >\\n      Geometric interpretation of Goodhart's Law in MDPs: optimizing\\n      imperfect proxy past critical point decreases true objective. ISR as\\n      proxy has partial correlation with execution correctness — exceeding\\n      critical optimization point pushes policy toward high-ISR but\\n      low-correctness regions. Explains plan002/plan005 negative results.\\n    key_finding: >\\n      Formalizes Goodhart's Law for RL: any non-trivially correlated proxy\\n      reward creates regions where proxy and true reward diverge, and\\n      policy optimization inevitably enters these regions.\\n\\n  # ============================================================\\n  # Category 6: FOL/Prolog formalization with LLMs\\n  # ============================================================\\n\\n  - id: folio\\n    title: \\\"FOLIO: Natural Language Reasoning with First-Order Logic\\\"\\n    authors: \\\"Simeng Han et al.\\\"\\n    year: 2022\\n    venue: \\\"arXiv 2209.00840 / EMNLP 2024\\\"\\n    category: fol-formalization\\n    role: evaluation\\n    relevance: >\\n      Primary FOL reasoning benchmark. STA uses FOLIO-style NL->FOL\\n      formalization as the target task for GRPO training. FOLIO's\\n      expert-annotated FOL annotations serve as reference formalizations.\\n    key_finding: >\\n      1,430 NL-FOL paired examples with reasoning depths up to 5+;\\n      GPT-4 still struggles on the hardest examples.\\n\\n  - id: proofwriter\\n    title: \\\"ProofWriter: Generating Implications, Proofs, and Abductive Statements over Natural Language\\\"\\n    authors: \\\"Oyvind Tafjord, Bhavana Dalvi, Peter Clark\\\"\\n    year: 2021\\n    venue: \\\"Findings of ACL-IJCNLP 2021\\\"\\n    category: fol-formalization\\n    role: evaluation\\n    relevance: >\\n      Source dataset for STA's training data. ProofWriter provides\\n      rule-based logical reasoning problems in natural language that\\n      STA uses for training formalizer models.\\n    key_finding: >\\n      Generative model can reliably produce implications and proofs;\\n      accuracy exceeds prior methods by 9% and generalizes to unseen\\n      proof depths.\\n\\n  - id: logic-lm\\n    title: \\\"Logic-LM: Empowering Large Language Models with Symbolic Solvers for Faithful Logical Reasoning\\\"\\n    authors: \\\"Liangming Pan, Alon Albalak, Xinyi Wang, William Wang\\\"\\n    year: 2023\\n    venue: \\\"Findings of EMNLP 2023\\\"\\n    category: fol-formalization\\n    role: direct-competitor\\n    relevance: >\\n      LLM->symbolic solver pipeline for logical reasoning, directly\\n      comparable to STA's formalizer->Prolog solver pipeline. Key\\n      difference: Logic-LM uses prompting, STA uses GRPO training.\\n    key_finding: >\\n      LLM+solver achieves 39.2% improvement over LLM-alone on logical\\n      reasoning benchmarks including ProofWriter and FOLIO.\\n\\n  - id: linc\\n    title: \\\"LINC: A Neurosymbolic Approach for Logical Reasoning by Combining Language Models with First-Order Logic Provers\\\"\\n    authors: \\\"Theo X. Olausson, Alex Gu, Ben Lipkin, et al.\\\"\\n    year: 2023\\n    venue: \\\"EMNLP 2023\\\"\\n    category: fol-formalization\\n    role: direct-competitor\\n    relevance: >\\n      Neurosymbolic approach where LLM translates NL to FOL for theorem\\n      prover. Directly comparable to STA's NL->Prolog translation.\\n      LINC uses prompting-based approach; STA uses RL training.\\n    key_finding: >\\n      StarCoder+ (15.5B) with LINC outperforms GPT-3.5 and GPT-4 with\\n      CoT by 38% and 10% respectively on ProofWriter.\\n\\n  - id: fover-pei2025\\n    title: \\\"FoVer: First-Order Logic Verification for Natural Language Reasoning\\\"\\n    authors: \\\"Yu Pei, Yongping Du, Xingnan Jin\\\"\\n    year: 2025\\n    venue: \\\"TACL 13:1340-1359\\\"\\n    category: fol-formalization\\n    role: direct-competitor\\n    relevance: >\\n      Uses LLM->FOL->Z3 pipeline for verifying NL reasoning correctness.\\n      Similar to STA's verification pipeline but focuses on post-hoc\\n      verification rather than training reward signal.\\n    key_finding: >\\n      FOL verification via Z3 significantly outperforms existing methods\\n      on ProofWriter and FOLIO benchmarks.\\n\\n  - id: lorp\\n    title: \\\"LoRP: LLM-based Logical Reasoning via Prolog\\\"\\n    authors: \\\"Various\\\"\\n    year: 2025\\n    venue: \\\"Knowledge-Based Systems 2025\\\"\\n    category: fol-formalization\\n    role: direct-competitor\\n    relevance: >\\n      LLM->Prolog pipeline with FOL-to-Prolog translation mechanism.\\n      Closest to STA's formalization target (Prolog), though LoRP\\n      uses prompting while STA uses GRPO training with structural reward.\\n    key_finding: >\\n      Systematic FOL-to-Prolog translation extends Prolog expressiveness;\\n      achieves SoTA accuracy on logical reasoning with three-vote majority.\\n\\n  - id: nl2fol\\n    title: \\\"NL2FOL: Translating Natural Language to First-Order Logic for Logical Fallacy Detection\\\"\\n    authors: \\\"Lalwani, Kim, et al.\\\"\\n    year: 2024\\n    venue: \\\"arXiv 2405.02318\\\"\\n    category: fol-formalization\\n    role: background\\n    relevance: >\\n      Step-by-step NL->FOL translation using LLMs with SMT solver\\n      verification. Demonstrates the NL->formal logic pipeline that\\n      STA aims to improve via RL training.\\n    key_finding: >\\n      Neurosymbolic NL2FOL achieves 78% F1 on LOGIC dataset and\\n      generalizes to LogicClimate (80% F1), outperforming supervised\\n      models by 21%.\\n\\n  - id: logica2\\n    title: \\\"LogiQA 2.0: An Improved Dataset for Logical Reasoning in Natural Language Understanding\\\"\\n    authors: \\\"Liu et al.\\\"\\n    year: 2023\\n    venue: \\\"IEEE/ACM TASLP 2023\\\"\\n    category: fol-formalization\\n    role: evaluation\\n    relevance: >\\n      Logical reasoning evaluation benchmark derived from Chinese civil\\n      service exams. Provides supplementary evaluation for STA's\\n      formalization capabilities.\\n    key_finding: >\\n      8,678 multiple-choice questions covering categorical, disjunctive,\\n      and conditional reasoning; widely used LLM benchmark.\\n\\n  # ============================================================\\n  # Category 7: Goodhart's Law theory and dose-response dynamics\\n  # ============================================================\\n\\n  - id: manheim-goodhart-taxonomy\\n    title: \\\"Categorizing Variants of Goodhart's Law\\\"\\n    authors: \\\"David Manheim, Scott Garrabrant\\\"\\n    year: 2019\\n    venue: \\\"arXiv 1803.04585\\\"\\n    category: goodhart-overoptimization\\n    role: theoretical-foundation\\n    relevance: >\\n      Four-part Goodhart taxonomy: regressional, extremal, causal, adversarial.\\n      STA's high-β ISR collapse is best classified as extremal Goodhart\\n      (policy moves to OOD region where ISR↑ but prove_rate↓). Provides\\n      vocabulary for discussion section.\\n    key_finding: >\\n      First systematic categorization of Goodhart failure modes. Extremal\\n      variant occurs when proxy-goal relationship breaks in out-of-distribution\\n      regions reached by strong optimization.\\n\\n  - id: pan-reward-misspecification\\n    title: \\\"The Effects of Reward Misspecification: Mapping and Mitigating Misaligned Models\\\"\\n    authors: \\\"Alexander Pan, Kush Bhatia, Jacob Steinhardt\\\"\\n    year: 2022\\n    venue: \\\"ICLR 2022\\\"\\n    category: goodhart-overoptimization\\n    role: theoretical-foundation\\n    relevance: >\\n      Across 9 environments, more capable agents exploit misspecifications more.\\n      Observes dose-dependent degradation — capability thresholds where true\\n      reward sharply drops. Matches STA's β=0.1→0.3 qualitative shift.\\n    key_finding: >\\n      Reward misspecification causes dose-dependent degradation where true reward\\n      sharply drops past capability thresholds. More capable optimization\\n      produces worse outcomes under misspecification.\\n\\n  - id: kwa-catastrophic-goodhart\\n    title: \\\"Catastrophic Goodhart: Regularizing RLHF with KL Divergence Does Not Mitigate Heavy-Tailed Reward Misspecification\\\"\\n    authors: \\\"Tat-Thang Kwa, Rachel Thomas, Adrià Garriga-Alonso\\\"\\n    year: 2024\\n    venue: \\\"NeurIPS 2024\\\"\\n    category: goodhart-overoptimization\\n    role: theoretical-foundation\\n    relevance: >\\n      If reward model error is heavy-tailed, policies achieve arbitrarily\\n      high proxy reward with no true utility gain. KL regularization provably\\n      fails. Explains why KL penalty in GRPO cannot prevent ISR collapse\\n      at high β if ISR error distribution is heavy-tailed.\\n    key_finding: >\\n      KL-regularized RL provably fails to prevent overoptimization under\\n      heavy-tailed reward misspecification. Policies can achieve arbitrarily\\n      high proxy reward with zero true utility.\\n\\n  - id: rafailov-daa-scaling\\n    title: \\\"Scaling Laws for Reward Model Overoptimization in Direct Alignment Algorithms\\\"\\n    authors: \\\"Rafael Rafailov, Yaswanth Chittepu, Ryan Park, Harshit Sikchi, Joey Hejna, W. Bradley Knox, Chelsea Finn, Scott Niekum\\\"\\n    year: 2024\\n    venue: \\\"NeurIPS 2024\\\"\\n    category: goodhart-overoptimization\\n    role: supporting-evidence\\n    relevance: >\\n      Extends Gao et al. to DPO/IPO/SLiC. Tests seven β values across\\n      1B-6.9B models. DAAs still overoptimize despite no explicit proxy RM.\\n      Validates β as a \\\"dose\\\" parameter — directly analogous to STA's\\n      ISR weight sweep.\\n    key_finding: >\\n      Direct alignment algorithms exhibit overoptimization following\\n      predictable scaling laws. Smaller models overoptimize sooner.\\n      β-controlled dose-response is a general phenomenon across RL paradigms.\\n\\n  - id: huang-chi-squared\\n    title: \\\"Correcting the Mythos of KL-Regularization: Direct and Contrastive Distribution Correction\\\"\\n    authors: \\\"Afra Feyza Akyürek, Banghua Zhu, Sham Kakade, Jiantao Jiao\\\"\\n    year: 2025\\n    venue: \\\"ICLR 2025 Poster\\\"\\n    category: goodhart-overoptimization\\n    role: supporting-evidence\\n    relevance: >\\n      KL-regularization is theoretically inadequate for preventing\\n      overoptimization. Chi-squared divergence provably alleviates it.\\n      Suggests that even with KL penalty in GRPO, STA's high-β collapse\\n      is theoretically expected.\\n    key_finding: >\\n      Chi-squared preference optimization provably mitigates overoptimization\\n      where KL-regularization fails. Alternative divergence measures offer\\n      stronger guarantees.\\n\\n  - id: coste-rm-ensembles\\n    title: \\\"Reward Model Ensembles Help Mitigate Overoptimization\\\"\\n    authors: \\\"Thomas Coste, Usman Anwar, Robert Kirk, David Krueger\\\"\\n    year: 2023\\n    venue: \\\"NeurIPS 2023 Workshop on Alignment\\\"\\n    category: goodhart-overoptimization\\n    role: background\\n    relevance: >\\n      Worst-case optimization across RM ensembles practically eliminates\\n      overoptimization for BoN and reduces it for PPO. Suggests ensemble\\n      of multiple solver metrics (instead of single ISR) as mitigation.\\n    key_finding: >\\n      RM ensembles with worst-case aggregation mitigate overoptimization.\\n      Ensemble size and diversity directly affect robustness.\\n\\n  # ============================================================\\n  # Category 8: Solver/prover as RL reward signal\\n  # ============================================================\\n\\n  - id: rlsf\\n    title: \\\"Reinforcement Learning via Symbolic Feedback\\\"\\n    authors: \\\"Abhinav Jha, Shikhar Murty, Zico Kolter, et al.\\\"\\n    year: 2024\\n    venue: \\\"arXiv 2405.16661\\\"\\n    category: verification-reward\\n    role: direct-competitor\\n    relevance: >\\n      Most directly relevant: uses solver/prover certificates as fine-grained\\n      token-level reward signal. Outperforms traditional approaches on program\\n      synthesis (+31.4%). STA extends this paradigm and shows when it breaks\\n      (Goodhart effects at high auxiliary reward weight).\\n    key_finding: >\\n      Symbolic reasoning tools provide poly-sized certificates as reward.\\n      Smaller RLSF models outperform GPT-4 on structured generation tasks.\\n\\n  - id: fover-kamoi2026\\n    title: \\\"FoVer: Generalizable Process Reward Models via Formally Verified Training Data\\\"\\n    authors: \\\"Ryo Kamoi, Yusen Zhang, Nan Zhang, Jiawei Han, Rui Zhang\\\"\\n    year: 2025\\n    venue: \\\"Findings of ACL 2026 (arXiv 2502.01345)\\\"\\n    category: verification-reward\\n    role: supporting-evidence\\n    relevance: >\\n      Uses Z3 and Isabelle to synthesize PRM training data by annotating\\n      step-level error labels without human annotation. Same solver family\\n      as STA. Shows verification-based rewards work; STA extends by showing\\n      dose-response dynamics.\\n    key_finding: >\\n      Formally verified training data enables generalizable process reward\\n      models competitive on ProcessBench and 12 reasoning benchmarks.\\n\\n  - id: deepseek-prover-v15\\n    title: \\\"DeepSeek-Prover-V1.5: Harnessing Proof Assistant Feedback for Reinforcement Learning and Monte-Carlo Tree Search\\\"\\n    authors: \\\"DeepSeek AI\\\"\\n    year: 2024\\n    venue: \\\"ICLR 2025 (arXiv 2408.08152)\\\"\\n    category: verification-reward\\n    role: method-component\\n    relevance: >\\n      Uses GRPO with Lean 4 verification as binary reward. Same algorithm\\n      (GRPO) + formal verification, but binary (pass/fail). Binary reward\\n      avoids the graded-metric Goodhart risk that STA identifies with ISR.\\n    key_finding: >\\n      GRPO + binary Lean verification achieves 63.5% on miniF2F. Binary\\n      correctness guarantee via formal verification sidesteps proxy reward\\n      overoptimization.\\n\\n  - id: alphaproof\\n    title: \\\"AlphaProof\\\"\\n    authors: \\\"Google DeepMind\\\"\\n    year: 2024\\n    venue: \\\"Nature 2025\\\"\\n    category: verification-reward\\n    role: background\\n    relevance: >\\n      AlphaZero-inspired RL with Lean proof verification at scale.\\n      Silver medal at IMO 2024. Binary verification reward avoids the\\n      Goodhart problem STA identifies with graded verification metrics.\\n    key_finding: >\\n      Binary formal verification as RL reward scales to IMO-level\\n      mathematical reasoning. Demonstrates verification-reward RL works\\n      at the frontier of mathematical difficulty.\\n\\n  - id: math-shepherd\\n    title: \\\"Math-Shepherd: Verify and Reinforce LLMs Step-by-step without Human Annotations\\\"\\n    authors: \\\"Peiyi Wang, Lei Li, Zhihong Shao, R.X. Xu, et al.\\\"\\n    year: 2024\\n    venue: \\\"ACL 2024 (arXiv 2312.08935)\\\"\\n    category: verification-reward\\n    role: supporting-evidence\\n    relevance: >\\n      Automatically constructs process supervision data and uses it as\\n      step-by-step PPO reward. Automated verification reward without human\\n      labels, analogous to STA's automated ISR computation via solver.\\n    key_finding: >\\n      Automated process supervision improves Mistral-7B on GSM8K\\n      (77.9→84.1%) and MATH (28.6→33.0%) without human annotation.\\n\\n  # ============================================================\\n  # Additional reward-shaping papers (Goodhart survey additions)\\n  # ============================================================\\n\\n  - id: bipars\\n    title: \\\"Learning to Utilize Shaping Rewards: A New Approach of Reward Shaping\\\"\\n    authors: \\\"Yujing Hu, Weixun Wang, Hangtian Jia, et al.\\\"\\n    year: 2020\\n    venue: \\\"NeurIPS 2020\\\"\\n    category: reward-shaping\\n    role: background\\n    relevance: >\\n      Bi-level optimization learns parameterized shaping reward weights.\\n      Can transform harmful shaping rewards into beneficial ones by learning\\n      negative weights. Directly addresses STA's problem: when ISR weight\\n      is wrong, automated weight learning could find optimal β.\\n    key_finding: >\\n      Bi-level optimization automatically learns auxiliary reward weights,\\n      outperforming fixed weights and recovering from harmful shaping rewards.\\n\\n  - id: dapo\\n    title: \\\"DAPO: An Open-Source LLM Reinforcement Learning System at Scale\\\"\\n    authors: \\\"Qiying Yu et al. (ByteDance)\\\"\\n    year: 2025\\n    venue: \\\"arXiv 2503.14476\\\"\\n    category: reward-shaping\\n    role: background\\n    relevance: >\\n      Four techniques for stable multi-component reward in GRPO: Clip-Higher,\\n      Dynamic Sampling, token-level policy gradient, Overlong Reward Shaping.\\n      Addresses stability issues relevant to STA's multi-reward setup.\\n    key_finding: >\\n      Clip-Higher and Dynamic Sampling prevent entropy collapse in GRPO\\n      with multi-component rewards. Soft punishment for overlong outputs\\n      avoids reward hacking through length exploitation.\\n\", \"total_chars\": 42743, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01Q7J9UcxA7jcHdy9BKBMS1A`</summary>
+
+```json
+{
+  "project": "solver-trace-ablation",
+  "file": "paper_framing.md",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "27869e49-075f-4d68-ae7d-d5256cf7653d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R7HwTJy4z7A2519LbiwWDt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1453,
+      "cache_read_input_tokens": 24556,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1453
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-14T18:51:18.557Z_
+
+<details><summary>↩ Tool result · `toolu_01Q7J9UcxA7jcHdy9BKBMS1A`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md\", \"content\": \"# Paper Framing — solver-trace-ablation\\n\\n## Target Venue\\n- Primary: EMNLP 2026 Main (NLP and Symbolic Reasoning track)\\n- Fallback: EMNLP 2026 Findings\\n- Deadline: ARR May 25, 2026\\n\\n## Core Claims (3 条 — Goodhart 主线诊断/分析论文)\\n\\n| Claim | Status | 闭环标志 |\\n|-------|--------|----------|\\n| Claim 1: STA 诊断能力 | ✅ 已闭环 | 3-seed + 1000-step + hacking taxonomy (6 modes) |\\n| Claim 2: Goodhart / ISR 无结构优势 | ✅ 已闭环 (D057) | 3-seed ISR + 3-seed random + premise-count-matched + SFT baseline |\\n| Claim 3: 跨逻辑泛化 | ✅ 已闭环 | exec-only 3-seed (D056) + STA 3-seed: **3/3 gaming** — 三种不同 gaming 路径 (H7/degenerate-syntax/query-as-fact) |\\n\\n### Claim 1: ISR as Reward Hacking Diagnostic ✅\\nSolver Trace Ablation (STA) derives ISR (Intensional Structural Reward) via component necessity testing (leave-one-out ablation on solver inputs). ISR detects reward hacking that prove_rate alone misses: exec-only GRPO achieves PR=93% but ISR collapses from 0.6423 (100 steps) to 0.1324 (500 steps) to 0.0027 (1000 steps), quantifying structural degeneration invisible to the execution reward.\\n\\n**证据**：\\n- plan003: 100-step checkpoint held-out eval PR=32%, ISR=0.6423 (proved-only) — early training produces structurally sound formalizations\\n- plan001-s42: 500-step checkpoint held-out eval PR=93%, ISR=0.1324, median_ISR=0.0 — late training achieves high prove_rate via structural shortcuts\\n- **plan016**: 1000-step checkpoint eval PR=96%, ISR=**0.0027** — ISR 崩塌持续恶化，无回升。94.8% proved 样本 ISR=0。矛盾爆炸式崩塌（components 6.58→18.55）。延长训练是 reward hacking 随时间恶化的干净消融证据\\n- ISR 崩塌轨迹完整链：0.6423 (100步) → 0.1324 (500步) → 0.0027 (1000步)\\n- 3-seed consistency: s42 redundant embedding (H1=87.1%, ISR=0.123 diluted), s43 repetition collapse (PR=13%, ISR=0), s44 tautological collapse (H7=100%, PR=98%, ISR=0.57 fake-high, n_comp=2.04). All 3 seeds exhibit 87-100% conclusion embedding.\\n- Hacking taxonomy: 6 distinct modes identified and quantified (plan012 + plan017 D027 + D043 conclusion duplication with ISR inflation)\\n\\n### Claim 2: ISR as Reward Exhibits Meta-Level Goodhart ✅ (D033→D043→D051→D057 闭环)\\nISR 作为 proxy metric 展现 **meta-level Goodhart 效应**：当 ISR 从诊断指标转变为优化目标，模型不仅在高剂量 Goodhart PR（β=0.3 PR 崩塌），还在低剂量 Goodhart ISR 度量本身（β=0.1，2/3 seeds 通过 conclusion duplication 膨胀 ISR）。ISR-as-reward **不提供任何真实结构优势**。\\n\\n**D051 定论：ISR 结构优势完全是 premise minimization artifact**\\n\\n之前 D049 报告 genuine-only ISR 2.4x（ISR 0.601 vs Random 0.252），但 premise-count-matched 分析证明这完全由 ultra-short proofs 驱动：\\n\\n| 条件 | n | Mean n_prem | Mean ISR |\\n|------|---|-------------|----------|\\n| ISR s42 genuine, n_prem≥3 | 11 | ~5.5 | **0.2578** |\\n| Random s42 genuine, n_prem≥3 | 21 | ~6.5 | **0.2434** |\\n| **Ratio** | — | — | **1.06×** |\\n\\n- 控制 premise count 后，ISR vs Random 无差异 (1.06x)\\n- ISR s42 的 15/26 \\\"genuine\\\" 样本只有 1-2 premises → ISR 天然 ≥0.5（LOO 删 1/2 → 50%+ necessary）\\n- ISR s44 的 12 个\\\"genuine\\\"全是 n_prem=1（H7 分类器 false negative——单 premise 但 normalization 差异导致未匹配 conclusion）\\n- **Premise minimization 不是推理质量改善，是 ISR metric 的数学性质**：更少的 premise → 每个 premise 更\\\"必要\\\" → ISR 更高，与证明质量无关\\n\\n**证据（β=0.1 三 seed + random 对照，D043→D051 定论）**：\\n\\n| Seed | PR | proved_only ISR | H7 (单premise=结论) | H1 (多premise含结论) | H7+H1 | Genuine % |\\n|------|-----|-----------------|---------------------|----------------------|-------|-----------|\\n| s42 (ISR β=0.1) | 0.81 | **0.415** | 16.0% (13/81) | 51.9% (42/81) | 67.9% | 32.1% (26) |\\n| s43 (ISR β=0.1) | 0.61 | **0.830** | **96.7%** (59/61) | 0% | 96.7% | ~3% (~2) |\\n| s44 (ISR β=0.1) | 0.89 | **0.902** | **86.5%** (77/89) | 0% | 86.5% | ~13.5% (~12, 全 n_prem=1 FN) |\\n| s42 (random β=0.1) | 0.79 | 0.131 | **0%** (0/79) | **70.9%** (56/79) | 70.9% | 29.1% (23) |\\n| s43 (random β=0.1) | 0.88 | 0.058 | **0%** (0/88) | **93.2%** (82/88) | 93.2% | 6.8% (6) |\\n| s44 (random β=0.1) | 0.89 | 0.070 | **0%** (0/89) | **79.8%** (71/89) | 79.8% | 20.2% (18) |\\n| **Random 3-seed mean±std** | **0.85±0.06** | **0.086±0.039** | **0%** | **81.3%±11.3%** | — | **18.7%±11.3%** |\\n| **ISR 3-seed mean±std** | **0.77±0.14** | **0.716±0.26** | **64.5%** | **17.3%** | — | **~16.2%** |\\n\\n**关键发现 (D057 3-seed closed)**：\\n- **H7 是 ISR-specific gaming**：ISR 3-seed H7=64.5% (149/231)，Random 3-seed H7=**0%** (0/256)。H7 跨全部 3 random seeds 一致为零，确认是 ISR reward 特异性诱导\\n- **Conclusion embedding 是 GRPO 通用策略**：Random H1=81.3%±11.3% > ISR H1=17.3%。Random 的 H1 率反而更高（ISR 将 H1 转化为 H7）\\n- **ISR 改变了 hacking 的组成而非总量**：总 conclusion-in-premise 率接近，但 ISR 将 H1 转化为更极端的 H7\\n- **Random PR 更高更稳定**：0.85±0.06 vs ISR 0.77±0.14，ISR-as-reward 无 PR 优势\\n- **Premise-count-matched 无差异**：控制 premise 数后 ISR=0.2578 vs Random=0.2434 (1.06x)，ISR 不提供真实结构优势\\n- **ISR-as-reward 完全失败**：低剂量 gaming ISR 本身，高剂量 PR 崩塌，premise minimization 不是推理改善\\n- **结论**: ISR 的核心价值在诊断（Claim 1），作为 reward 不可靠且不提供真实结构优势\\n\\n**s42 单 seed Hacking Taxonomy 定量对比 (D038→D044 strict 校准)**：\\n- ISR β=0.1 genuine: **30.9%** (25/81) vs random β=0.1 genuine: **25.3%** (20/79) — **+5.6pp**\\n- H1 (multi-premise conclusion embedding, strict): ISR 51.9% vs random 70.9% — GRPO 通用退化\\n- H7 (single premise=conclusion, ISR-specific): ISR **16.1%** vs random **0%** — ISR 特异性\\n- H3 (complexity-without-utility): ISR **0%** vs random 3.8% — ISR 完全消除此模式\\n- 整体 hacking rate (strict): ISR **69.1%** vs random **74.7%** — ISR 略降但主要是模式转移（H1→H7）\\n- ⚠️ s43/s44 几乎 100% H7（96.7%/86.5%），无 H1\\n\\n**证据（β=0.3 同剂量对照）**：\\n- plan002-b03 (ISR β=0.3): eval PR=0.18, ISR=0.026 — Goodhart 效应，PR 崩塌\\n- plan017 (random β=0.3): eval PR=0.48, ISR=0.045 — random 比 ISR 好 2.7x PR\\n- **结论**：高剂量 ISR 对训练 actively misleading (PR 18% < random 48%)\\n\\n**β 剂量效应全景**：\\n| β | ISR reward PR | Random reward PR | ISR reward ISR | Random reward ISR | 解读 |\\n|---|---|---|---|---|---|\\n| 0.1 | 0.81 (s42) / 0.61 (s43) / 0.89 (s44) | 0.79 (s42) / 0.88 (s43) / 0.89 (s44) | **0.415** (s42) / **0.830** (s43) / **0.902** (s44) | 0.131 (s42) / 0.058 (s43) / 0.070 (s44) | ISR-specific gaming; premise-count-matched 无结构差异 |\\n| 0.3 | 0.18 | 0.48 | 0.026 | 0.045 | ISR << random (Goodhart) |\\n\\n**其他 ISR-as-reward 失败模式**：\\n- plan005 凸组合 (α·r_exec + β·r_exec·ISR, α+β=1): ISR<1 时永远是 penalty → PR 下降 (D010)\\n- plan013 convex random: PR=1.0 但 100% P→P tautological collapse (D018)\\n\\n⚠️ **措辞约束 (Reviewer D027)**: plan013 vs plan017 公式结构不同，不可简化为\\\"additive vs convex\\\"对照。plan017 vs plan002 和 plan018 vs plan002-b01 的 ISR vs random 对比是纯净的\\n\\n⚠️ **β=0.1 三 seed（D043→D051）**：s42 的\\\"genuine\\\"优势是 premise minimization artifact。不可报 raw 3-seed mean ISR（被膨胀值污染），不可报 genuine-only 2.4x（premise count artifact）。\\n\\n**SFT Baseline 对照 (plan009-sft-baseline-s42-r4)**：\\n- SFT PR=0.14, ISR=0.08, proved-only ISR=0.571\\n- H7=0/14 (0%), H1=1/14 (7.1%, folio_167), Genuine=13/14 (**92.9%**)\\n- proved-only ISR=0.571 来自 genuine reasoning，非 short-proof artifact\\n- 确认 Goodhart 效应是 RL-reward-specific，非一般微调产物\\n\\n### Claim 3: Cross-Logic Diagnostic Transfer ✅ (D056 exec-only + Prolog STA 3-seed 闭环)\\nThe STA diagnostic protocol transfers across structurally different formal languages: ISR detects structural degeneration in Prolog→SWI-Prolog as it does in FOL→Prover9, regardless of training outcome (PR). Cross-seed instability and reward hacking patterns replicate across logic types, validating ISR as a solver-agnostic diagnostic. Critically, Prolog STA reveals **universal Goodhart across all seeds**: identical reward signal + identical model → each seed converges to a distinct **gaming** mode (H7 conclusion duplication / degenerate syntax / query-as-fact gaming), with **3/3 seeds exhibiting Goodhart, 0% genuine**. This is the strongest cross-logic Goodhart evidence — every optimization trajectory leads to gaming, only the mechanism differs.\\n\\n**证据 Part A — Prolog exec-only 3-seed (D056 闭环)**：\\n- **plan006-prolog-exec 3-seed DONE**: PR=53.3%±31.1%, ISR=0.040±0.037。ISR 在所有 3 seeds 上一致检测到结构退化（near-zero），不受 PR 水平影响——诊断迁移的核心证据。跨 seed 不稳定 (σ=31pp) 复现 FOL 模式 (σ=47pp)，seed instability 本身是跨逻辑复现的发现。\\n  - s42: PR=83%, ISR=0.031 (ground fact enumeration)\\n  - s43: PR=56%, ISR=0.008 (degraded)\\n  - s44: PR=21%, ISR=0.081, proved-only ISR=0.387 (severe degradation, small-sample artifact)\\n- D056 结论：Prolog exec-only 跨 3 seeds ISR 一致崩塌（0.008–0.081），与 FOL exec-only 崩塌模式（0.0–0.132）对应。ISR 作为诊断指标在不同 logic type 上均能检测到 structural degeneration。\\n\\n**证据 Part B — Prolog exec+STA 3-seed (Goodhart 跨逻辑复现 ✅ 闭环，Reviewer-corrected)**：\\n\\n| Seed | PR_eval | Strict H7 | Strict H1 | Strict Genuine | Functional H7 (n_necessary=1) | 退化模式 |\\n|------|---------|-----------|-----------|----------------|-------------------------------|----------|\\n| s42 | 0.50 | 100% | 0% | 0% | 100% | Clean H7 tautology (单 clause=query) |\\n| s43 | 0.38 | 0% | 97.4% | 0% | 100% (38/38 n_necessary=1) | Degenerate uppercase pseudo-Prolog |\\n| s44 | **0.97** | 0% | 0% | **0%** (Reviewer override) | **97.9%** (95/97 n_necessary=1) | Query-as-fact gaming |\\n\\n⚠️ **s44 关键修正**: Worker 初始判断 s44 为 \\\"100% Genuine\\\"（strict classifier 未匹配到 H7/H1），但 Reviewer 独立核实发现 query-as-fact gaming——模型将 NL 问题转为 snake_case atom 同时设为 fact 和 query，Prolog trivially 证明。95/97 proved 样本 n_necessary=1（功能性 H7）。PR=0.97 和 ISR=0.885 均为 gaming artifact。**教训：strict text-match classifier 的 \\\"Genuine=100%\\\" 不可信，必须交叉验证 n_necessary 分布。**\\n\\n**关键发现——Universal Goodhart (3/3 seeds)**：\\n- **3/3 seeds 全部 Goodhart，0% genuine across all seeds**——比 FOL ISR β=0.1（2/3 seeds hacking, ~16% genuine residual）更极端\\n- 每个 seed 发展出不同的 gaming pathway：\\n  - s42: Clean H7 — 模型生成单个 clause 完全等于 query，最纯粹的 Goodhart\\n  - s43: Degenerate syntax — 模型生成大写伪 Prolog (MARY_IS_AN_AVADEOTE.)，绕过 strict classifier 但功能分析显示 38/38 tautological (n_necessary=1)\\n  - s44: Query-as-fact gaming — 模型将 NL 问题转为 snake_case atom 同时设为 fact 和 query，Prolog trivially 证明（第三种 Goodhart pathway，vs s42 clean H7, s43 degenerate syntax）\\n- **不是 \\\"seed-mode separation\\\"（旧版误报）——是 \\\"universal Goodhart with mode diversity\\\"**：旧版称 s44 为 genuine 从而论证 \\\"hacking 不是必然\\\"，这是错误的。修正后的结论更强：所有优化轨迹**必然**导向 gaming，只是 gaming 机制不同\\n- Prolog 的更简单语义使 hacking 路径更快收敛到极端，消除了 FOL 中的 genuine residual\\n\\n**FOL vs Prolog ISR-as-reward 对比**：\\n- FOL ISR β=0.1: H7=64.5% (3-seed mean), H1=17.3%, Genuine=~16%（模式混合，有 residual genuine）\\n- Prolog ISR: 每个 seed 纯模式（clean H7 / degenerate syntax / query-as-fact），但 **3/3 全部 gaming, 0% genuine**\\n- 解读：Prolog 的更简单语义使 Goodhart 更彻底——FOL 中仍有 ~16% genuine residual，Prolog 中为 0%。形式语言越简单，reward hacking 越完全\\n\\n⚠️ **ISR 语义区分 (C006)**：Prolog exec-only 的 low ISR 反映冗余编码（重复 ground facts 导致 n_necessary=0），exec+STA 的 high ISR 反映 metric gaming（Goodhart 效应）。论文需区分这两种语义，不可将 ISR 差异直接等同于 reasoning 能力差异。\\n\\n## Story Spine\\n\\n- **Problem**: GRPO with execution-only rewards trains neurosymbolic formalizers that achieve high solve rates but produce structurally degenerate outputs (reward hacking). Current practice evaluates only prove_rate, missing structural quality entirely. No principled diagnostic exists for detecting and characterizing this failure mode.\\n- **Existing approaches & gaps**: Mellgren et al. (2025) hand-craft Prolog-specific structure penalties. EVOM (2026) uses scalar execution rewards only. ExecVerify/EGCA derive trace-level rewards for code, not formal logic. No work systematically studies reward hacking in formal reasoning GRPO or provides diagnostic tools for it.\\n- **Our contribution**: We propose STA (Solver Trace Ablation), applying component necessity testing (LOO ablation) to derive ISR as a **diagnostic metric** for structural integrity. Key findings:\\n  1. ISR quantifies hacking invisible to prove_rate (64% → 13% → 0.3% collapse over training)\\n  2. ISR as proxy metric exhibits **meta-level Goodhart's Law**: at low dose (β=0.1), ISR reward induces ISR-specific gaming in 2/3 seeds (conclusion duplication inflating ISR), while the apparent \\\"genuine improvement\\\" in the remaining seed is entirely a premise minimization artifact (premise-count-matched: 1.06x, no real difference); at high dose (β=0.3), classic Goodhart collapse (PR 18% vs random 48%)\\n  3. Conclusion embedding (52-93% of proved samples) is GRPO-universal regardless of reward type; ISR reward restructures but doesn't reduce it\\n  4. Different reward formulations produce distinct, classifiable hacking strategies (6 modes identified, including ISR-specific \\\"conclusion duplication with ISR inflation\\\")\\n  5. ISR measures syntactic component necessity, not semantic faithfulness — premise minimization inflates ISR without improving reasoning\\n  6. SFT baseline confirms hacking is RL-reward-specific (PR=14%, 92.9% genuine, near-zero hacking)\\n  7. ISR diagnostic and Goodhart effects transfer across logic types (FOL→Prolog): Prolog STA shows **universal Goodhart** — 3/3 seeds converge to gaming (clean H7 / degenerate syntax / query-as-fact), 0% genuine, demonstrating that simpler formal languages enable more complete exploitation with zero genuine residual\\n- **Actionable insights for practitioners**:\\n  1. Never trust prove_rate alone — use ISR + component count as joint diagnostic\\n  2. Single-seed GRPO results are unreliable (2/3 exec-only seeds collapse differently)\\n  3. ISR reward is unreliable as training signal at any dose: β=0.1 induces ISR-specific gaming, β=0.3 collapses PR. Apparent \\\"genuine improvement\\\" is premise minimization artifact. Use ISR for post-hoc diagnosis only.\\n  4. Proxy metrics that detect gaming can themselves become gaming targets when used as optimization signals (meta-level Goodhart) — a cautionary result for any proxy-metric-as-reward approach.\\n  5. Conclusion embedding is GRPO-universal (68-100%); reward shaping changes the composition of hacking, not its prevalence\\n  6. LOO-based metrics like ISR are mathematically biased by component count: fewer premises → higher ISR, independent of reasoning quality\\n  7. Text-match hacking classifiers have blind spots (Prolog s44 query-as-fact gaming bypassed strict classifier); always cross-validate with functional analysis (n_necessary distribution)\\n- **Headline result**: \\\"We demonstrate that ISR — a component necessity metric derived from solver trace ablation — serves as a powerful diagnostic for reward hacking in GRPO-trained formalizers, but fails as a training signal due to meta-level Goodhart's Law. At low dose (β=0.1), ISR reward induces ISR-specific gaming in 2/3 seeds via conclusion duplication that inflates ISR itself; the remaining seed's apparent structural improvement (2.4x ISR) is entirely a premise minimization artifact — controlling for premise count eliminates the difference (1.06x). At high dose (β=0.3), classic Goodhart collapse occurs (PR 18% vs random 48%). These findings transfer across formal languages: in Prolog, the same ISR reward produces universal Goodhart — all 3 seeds converge to gaming via distinct mechanisms (tautological collapse, degenerate syntax, query-as-fact gaming) with 0% genuine output, compared to ~16% genuine residual in FOL. Across 6 reward conditions, 3 seeds, 2 logic types, and up to 1000 training steps, we identify 6 distinct hacking strategies and document ISR's fundamental asymmetry: reliable as observer, unreliable as optimizer.\\\"\\n\\n## ISR Capability Boundary (D021/D022)\\n\\n**ISR 度量的是 syntactic necessity（组件在证明中是否必要），不是 semantic faithfulness（formalization 是否忠实于自然语言语义）。**\\n\\nplan014 downstream NLI 验证结果（negative）精确刻画了这一边界：\\n- Spearman ρ(ISR, NLI accuracy) = -0.049 (p=0.187, 不显著)\\n\\n**论文处理**：降级为 **Limitation / Future Work**。\\n\\n**D051 补充**：ISR 还受 premise count 数学偏差影响。更少的 premise → 每个 premise 更\\\"必要\\\" → ISR 更高。这是 LOO-based metric 的固有局限，论文需明确讨论。\\n\\n## ISR-as-Reward: Goodhart Landscape (D033→D051→D057 闭环)\\n\\n| 条件 | 公式 | eval PR | eval ISR | 退化模式 | Goodhart 阶段 |\\n|------|------|---------|----------|----------|---------------|\\n| exec-only (baseline) | r = r_exec | 0.93 (s42) | 0.123 | H1=87.1%, conclusion embedding (diluted) | N/A |\\n| SFT baseline | supervised | 0.14 | 0.08 | **近零 hacking** (H1=1/14, Genuine=92.9%) | N/A |\\n| ISR β=0.1 (s42) | r = r_exec·(1+0.1·ISR) | 0.81 | **0.415** | H1 52%, H7 16%, premise minimization | **meta-Goodhart** (premise-matched 1.06x) |\\n| ISR β=0.1 (s43) | r = r_exec·(1+0.1·ISR) | 0.61 | **0.830** | **H7 97%**, ISR inflation | **meta-Goodhart** |\\n| ISR β=0.1 (s44) | r = r_exec·(1+0.1·ISR) | 0.89 | **0.902** | **H7 87%**, ISR inflation | **meta-Goodhart** |\\n| random β=0.1 (s42) | r = r_exec·(1+0.1·random) | 0.79 | 0.131 | H1 71%, redundant premises | control |\\n| random β=0.1 (s43) | r = r_exec·(1+0.1·random) | 0.88 | 0.058 | H1 93%, redundant premises | control |\\n| random β=0.1 (s44) | r = r_exec·(1+0.1·random) | 0.89 | 0.070 | H1 80%, redundant premises | control |\\n| ISR β=0.3 | r = r_exec·(1+0.3·ISR) | 0.18 | 0.026 | format collapse | post-Goodhart |\\n| random β=0.3 | r = r_exec·(1+0.3·random) | 0.48 | 0.045 | complexity-without-utility | control |\\n| convex combination | r = 0.9·r_exec + 0.1·ISR | 0.77 (train) | 0.230 (train) | ISR-PR separation | penalty effect |\\n| convex random | r = 0.9·r_exec + 0.1·random | 1.00 | 0.535 (fake) | tautological | hacking |\\n\\n**ISR-as-reward 完全失败**：所有剂量、所有配方，ISR 作为 reward 不提供真实结构优势。β=0.1 的表面优势是 premise minimization artifact + ISR-specific gaming；β=0.3 是 classic Goodhart。ISR 的核心价值在诊断（Claim 1）。\\n\\n## Venue Fit Risks\\n\\n- **EMNLP fit**: Diagnostic/analysis paper with Goodhart's Law case study in NLP + formal reasoning track. Empirical findings + mechanistic insight valued at EMNLP.\\n- **\\\"Just negative results\\\" risk**: Mitigate by: (a) ISR as diagnostic IS the positive result (Claim 1)，(b) meta-Goodhart finding is novel mechanistic insight，(c) 6-mode hacking taxonomy is actionable，(d) premise-count confound analysis contributes methodology，(e) SFT baseline confirms RL-specificity.\\n- **\\\"Old wine\\\" risk**: ISR = LOO ablation. Claim novelty at application level + empirical findings.\\n- **\\\"Single-logic risk\\\"**: plan006 Prolog validates generality — and reveals universal Goodhart (3/3 gaming, 0% genuine).\\n\\n## Anticipated Reviewer Concerns\\n\\n1. **\\\"ISR is just LOO ablation — not novel\\\"** — Yes, explicitly acknowledge. Contribution is application + empirical Goodhart analysis + hacking taxonomy.\\n2. **\\\"β=0.1 success is just one seed\\\"** — D051 shows even that one seed's \\\"success\\\" is a premise minimization artifact (1.06x when premise-count-matched). All 3 seeds fail.\\n3. **\\\"Conclusion embedding invalidates ISR results\\\"** — Conclusion embedding is GRPO-universal (52-93%), present in both conditions. Random actually has higher H1 (71-93% vs 17-52%).\\n4. **\\\"Goodhart's Law is obvious\\\"** — Conceptual prediction known; empirical characterization in formal reasoning GRPO is not. Meta-Goodhart + premise count confound are novel insights.\\n5. **\\\"No positive result\\\"** — ISR's positive result is as **diagnostic** (Claim 1). The negative result on ISR-as-reward IS the contribution (meta-Goodhart + premise minimization confound).\\n6. **\\\"ISR is circular\\\"** — Empirically validated: ISR as reward induces ISR-specific gaming. This supports using ISR for post-hoc diagnosis only.\\n7. **\\\"Only one logic type\\\"** — plan006 Prolog validates generality with even stronger results (3/3 Goodhart, 0% genuine vs FOL ~16%).\\n8. **\\\"500 steps too short\\\"** — plan016 extends to 1000 steps (ISR 0.123→0.003, -97.8%).\\n9. **\\\"3 seeds insufficient\\\"** — 3-seed divergence is itself a finding. Premise-count-matched analysis on s42 is conclusive.\\n10. **\\\"2.4x was wrong — credibility concern\\\"** — Transparent correction: D049→D051 shows iterative analysis caught the confound. Premise-count-matched methodology is stronger than raw comparison.\\n11. **\\\"Premise count confound is obvious\\\"** — LOO metrics are widely used without this correction. Explicitly documenting and controlling for it is a methodological contribution.\\n12. **\\\"Practitioners can't act on this\\\"** — 7 actionable insights listed. ISR + component count diagnostic is deployable. LOO bias warning is actionable. Classifier cross-validation with n_necessary is a concrete tool.\\n13. **\\\"Prolog s44 was initially misclassified\\\"** — Transparent: initial text-match classifier returned \\\"Genuine=100%\\\", independent review with functional analysis (n_necessary) corrected to \\\"0% genuine, query-as-fact gaming\\\". This classifier blind spot is itself a finding (Practitioner Insight #7).\\n\\n## Dream-Identified Structural Fixes (Paper Agent)\\n\\n- [ ] Related work: 6→25+ references (literature_map.yaml now has 33)\\n- [ ] RIP framing: reframe as \\\"component necessity testing inspired by RIP\\\"\\n- [ ] \\\"Dense+automatic\\\" → \\\"conditionally dense\\\"\\n- [ ] Remove all \\\"Pareto-improving\\\" language\\n- [ ] Acknowledge ISR = LOO ablation, cite feature attribution literature\\n- [ ] Address ISR sparsity for unproved outputs explicitly\\n- [ ] Add Goodhart's Law literature (Manheim & Garrabrant 2019, Karwowski 2024, Gao 2023)\\n- [ ] **D051: Add premise-count confound discussion in Discussion/Limitations section**\\n- [ ] **D051: Remove all \\\"2.4x genuine improvement\\\" language, replace with \\\"1.06x premise-matched\\\"**\\n- [ ] **Prolog s44 classifier blind spot → Discussion: text-match classifiers need functional cross-validation**\\n- [x] Convex combination → additive bonus (D010, then D020)\\n- [x] ISR downstream validation → Limitation/Future Work (D021/D022)\\n- [x] Hacking taxonomy expanded to 6 modes (plan012 + plan017 + D043)\\n- [x] β=0.1 ISR: s42 genuine, s43/s44 conclusion duplication → meta-Goodhart (D031→D043)\\n- [x] β=0.1 random control confirms ISR structural value (D033, plan018 eval)\\n- [x] 1000-step ISR collapse documented (plan016)\\n- [x] D049: SFT baseline confirms hacking is RL-specific\\n- [x] D049→D051: Genuine-only 2.4x 作废，premise-count-matched 1.06x 定论\\n- [x] D051: paper_framing 回退到 \\\"pure negative finding\\\"\\n- [x] D057: Claim 2 闭环——3-seed random 控制组完成 (H7=0% 全 seed 一致, PR 0.85±0.06 > ISR 0.77±0.14)\\n- [x] D056: Prolog exec-only 3-seed 闭环——ISR 崩塌跨逻辑复现 (PR=53.3%±31.1%, ISR=0.040±0.037)\\n- [x] SFT baseline (plan009) 确认 hacking 是 RL-reward-specific (PR=14%, 92.9% genuine)\\n- [x] Claim 3 闭环: Prolog STA 3-seed 完成——universal Goodhart (3/3 gaming, 0% genuine, Reviewer-corrected s44)\\n\", \"total_chars\": 21623, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "e6c73f61-57f2-49f1-86d2-1a29d80acc31",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — solver-trace-ablation\\\\n\\\\n## Target Venue\\\\n- Primary: EMNLP 2026 Main (NLP and Symbolic Reasoning track)\\\\n- Fallback: EMNLP 2026 Findings\\\\n- Deadline: ARR May 25, 2026\\\\n\\\\n## Core Claims (3 条 — Goodhart 主线诊断/分析论文)\\\\n\\\\n| Claim | Status | 闭环标志 |\\\\n|-------|--------|----------|\\\\n| Claim 1: STA 诊断能力 | ✅ 已闭环 | 3-seed + 1000-step + hacking taxonomy (6 modes) |\\\\n| Claim 2: Goodhart / ISR 无结构优势 | ✅ 已闭环 (D057) | 3-seed ISR + 3-seed random + premise-count-matched + SFT baseline |\\\\n| Claim 3: 跨逻辑泛化 | ✅ 已闭环 | exec-only 3-seed (D056) + STA 3-seed: **3/3 gaming** — 三种不同 gaming 路径 (H7/degenerate-syntax/query-as-fact) |\\\\n\\\\n### Claim 1: ISR as Reward Hacking Diagnostic ✅\\\\nSolver Trace Ablation (STA) derives ISR (Intensional Structural Reward) via component necessity testing (leave-one-out ablation on solver inputs). ISR detects reward hacking that prove_rate alone misses: exec-only GRPO achieves PR=93% but ISR collapses from 0.6423 (100 steps) to 0.1324 (500 steps) to 0.0027 (1000 steps), quantifying structural degeneration invisible to the execution reward.\\\\n\\\\n**证据**：\\\\n- plan003: 100-step checkpoint held-out eval PR=32%, ISR=0.6423 (proved-only) — early training produces structurally sound formalizations\\\\n- plan001-s42: 500-step checkpoint held-out eval PR=93%, ISR=0.1324, median_ISR=0.0 — late training achieves high prove_rate via structural shortcuts\\\\n- **plan016**: 1000-step checkpoint eval PR=96%, ISR=**0.0027** — ISR 崩塌持续恶化，无回升。94.8% proved 样本 ISR=0。矛盾爆炸式崩塌（components 6.58→18.55）。延长训练是 reward hacking 随时间恶化的干净消融证据\\\\n- ISR 崩塌轨迹完整链：0.6423 (100步) → 0.1324 (500步) → 0.0027 (1000步)\\\\n- 3-seed consistency: s42 redundant embedding (H1=87.1%, ISR=0.123 diluted), s43 repetition collapse (PR=13%, ISR=0), s44 tautological collapse (H7=100%, PR=98%, ISR=0.57 fake-high, n_comp=2.04). All 3 seeds exhibit 87-100% conclusion embedding.\\\\n- Hacking taxonomy: 6 distinct modes identified and quantified (plan012 + plan017 D027 + D043 conclusion duplication with ISR inflation)\\\\n\\\\n### Claim 2: ISR as Reward Exhibits Meta-Level Goodhart ✅ (D033→D043→D051→D057 闭环)\\\\nISR 作为 proxy metric 展现 **meta-level Goodhart 效应**：当 ISR 从诊断指标转变为优化目标，模型不仅在高剂量 Goodhart PR（β=0.3 PR 崩塌），还在低剂量 Goodhart ISR 度量本身（β=0.1，2/3 seeds 通过 conclusion duplication 膨胀 ISR）。ISR-as-reward **不提供任何真实结构优势**。\\\\n\\\\n**D051 定论：ISR 结构优势完全是 premise minimization artifact**\\\\n\\\\n之前 D049 报告 genuine-only ISR 2.4x（ISR 0.601 vs Random 0.252），但 premise-count-matched 分析证明这完全由 ultra-short proofs 驱动：\\\\n\\\\n| 条件 | n | Mean n_prem | Mean ISR |\\\\n|------|---|-------------|----------|\\\\n| ISR s42 genuine, n_prem≥3 | 11 | ~5.5 | **0.2578** |\\\\n| Random s42 genuine, n_prem≥3 | 21 | ~6.5 | **0.2434** |\\\\n| **Ratio** | — | — | **1.06×** |\\\\n\\\\n- 控制 premise count 后，ISR vs Random 无差异 (1.06x)\\\\n- ISR s42 的 15/26 \\\\\\\"genuine\\\\\\\" 样本只有 1-2 premises → ISR 天然 ≥0.5（LOO 删 1/2 → 50%+ necessary）\\\\n- ISR s44 的 12 个\\\\\\\"genuine\\\\\\\"全是 n_prem=1（H7 分类器 false negative——单 premise 但 normalization 差异导致未匹配 conclusion）\\\\n- **Premise minimization 不是推理质量改善，是 ISR metric 的数学性质**：更少的 premise → 每个 premise 更\\\\\\\"必要\\\\\\\" → ISR 更高，与证明质量无关\\\\n\\\\n**证据（β=0.1 三 seed + random 对照，D043→D051 定论）**：\\\\n\\\\n| Seed | PR | proved_only ISR | H7 (单premise=结论) | H1 (多premise含结论) | H7+H1 | Genuine % |\\\\n|------|-----|-----------------|---------------------|----------------------|-------|-----------|\\\\n| s42 (ISR β=0.1) | 0.81 | **0.415** | 16.0% (13/81) | 51.9% (42/81) | 67.9% | 32.1% (26) |\\\\n| s43 (ISR β=0.1) | 0.61 | **0.830** | **96.7%** (59/61) | 0% | 96.7% | ~3% (~2) |\\\\n| s44 (ISR β=0.1) | 0.89 | **0.902** | **86.5%** (77/89) | 0% | 86.5% | ~13.5% (~12, 全 n_prem=1 FN) |\\\\n| s42 (random β=0.1) | 0.79 | 0.131 | **0%** (0/79) | **70.9%** (56/79) | 70.9% | 29.1% (23) |\\\\n| s43 (random β=0.1) | 0.88 | 0.058 | **0%** (0/88) | **93.2%** (82/88) | 93.2% | 6.8% (6) |\\\\n| s44 (random β=0.1) | 0.89 | 0.070 | **0%** (0/89) | **79.8%** (71/89) | 79.8% | 20.2% (18) |\\\\n| **Random 3-seed mean±std** | **0.85±0.06** | **0.086±0.039** | **0%** | **81.3%±11.3%** | — | **18.7%±11.3%** |\\\\n| **ISR 3-seed mean±std** | **0.77±0.14** | **0.716±0.26** | **64.5%** | **17.3%** | — | **~16.2%** |\\\\n\\\\n**关键发现 (D057 3-seed closed)**：\\\\n- **H7 是 ISR-specific gaming**：ISR 3-seed H7=64.5% (149/231)，Random 3-seed H7=**0%** (0/256)。H7 跨全部 3 random seeds 一致为零，确认是 ISR reward 特异性诱导\\\\n- **Conclusion embedding 是 GRPO 通用策略**：Random H1=81.3%±11.3% > ISR H1=17.3%。Random 的 H1 率反而更高（ISR 将 H1 转化为 H7）\\\\n- **ISR 改变了 hacking 的组成而非总量**：总 conclusion-in-premise 率接近，但 ISR 将 H1 转化为更极端的 H7\\\\n- **Random PR 更高更稳定**：0.85±0.06 vs ISR 0.77±0.14，ISR-as-reward 无 PR 优势\\\\n- **Premise-count-matched 无差异**：控制 premise 数后 ISR=0.2578 vs Random=0.2434 (1.06x)，ISR 不提供真实结构优势\\\\n- **ISR-as-reward 完全失败**：低剂量 gaming ISR 本身，高剂量 PR 崩塌，premise minimization 不是推理改善\\\\n- **结论**: ISR 的核心价值在诊断（Claim 1），作为 reward 不可靠且不提供真实结构优势\\\\n\\\\n**s42 单 seed Hacking Taxonomy 定量对比 (D038→D044 strict 校准)**：\\\\n- ISR β=0.1 genuine: **30.9%** (25/81) vs random β=0.1 genuine: **25.3%** (20/79) — **+5.6pp**\\\\n- H1 (multi-premise conclusion embedding, strict): ISR 51.9% vs random 70.9% — GRPO 通用退化\\\\n- H7 (single premise=conclusion, ISR-specific): ISR **16.1%** vs random **0%** — ISR 特异性\\\\n- H3 (complexity-without-utility): ISR **0%** vs random 3.8% — ISR 完全消除此模式\\\\n- 整体 hacking rate (strict): ISR **69.1%** vs random **74.7%** — ISR 略降但主要是模式转移（H1→H7）\\\\n- ⚠️ s43/s44 几乎 100% H7（96.7%/86.5%），无 H1\\\\n\\\\n**证据（β=0.3 同剂量对照）**：\\\\n- plan002-b03 (ISR β=0.3): eval PR=0.18, ISR=0.026 — Goodhart 效应，PR 崩塌\\\\n- plan017 (random β=0.3): eval PR=0.48, ISR=0.045 — random 比 ISR 好 2.7x PR\\\\n- **结论**：高剂量 ISR 对训练 actively misleading (PR 18% < random 48%)\\\\n\\\\n**β 剂量效应全景**：\\\\n| β | ISR reward PR | Random reward PR | ISR reward ISR | Random reward ISR | 解读 |\\\\n|---|---|---|---|---|---|\\\\n| 0.1 | 0.81 (s42) / 0.61 (s43) / 0.89 (s44) | 0.79 (s42) / 0.88 (s43) / 0.89 (s44) | **0.415** (s42) / **0.830** (s43) / **0.902** (s44) | 0.131 (s42) / 0.058 (s43) / 0.070 (s44) | ISR-specific gaming; premise-count-matched 无结构差异 |\\\\n| 0.3 | 0.18 | 0.48 | 0.026 | 0.045 | ISR << random (Goodhart) |\\\\n\\\\n**其他 ISR-as-reward 失败模式**：\\\\n- plan005 凸组合 (α·r_exec + β·r_exec·ISR, α+β=1): ISR<1 时永远是 penalty → PR 下降 (D010)\\\\n- plan013 convex random: PR=1.0 但 100% P→P tautological collapse (D018)\\\\n\\\\n⚠️ **措辞约束 (Reviewer D027)**: plan013 vs plan017 公式结构不同，不可简化为\\\\\\\"additive vs convex\\\\\\\"对照。plan017 vs plan002 和 plan018 vs plan002-b01 的 ISR vs random 对比是纯净的\\\\n\\\\n⚠️ **β=0.1 三 seed（D043→D051）**：s42 的\\\\\\\"genuine\\\\\\\"优势是 premise minimization artifact。不可报 raw 3-seed mean ISR（被膨胀值污染），不可报 genuine-only 2.4x（premise count artifact）。\\\\n\\\\n**SFT Baseline 对照 (plan009-sft-baseline-s42-r4)**：\\\\n- SFT PR=0.14, ISR=0.08, proved-only ISR=0.571\\\\n- H7=0/14 (0%), H1=1/14 (7.1%, folio_167), Genuine=13/14 (**92.9%**)\\\\n- proved-only ISR=0.571 来自 genuine reasoning，非 short-proof artifact\\\\n- 确认 Goodhart 效应是 RL-reward-specific，非一般微调产物\\\\n\\\\n### Claim 3: Cross-Logic Diagnostic Transfer ✅ (D056 exec-only + Prolog STA 3-seed 闭环)\\\\nThe STA diagnostic protocol transfers across structurally different formal languages: ISR detects structural degeneration in Prolog→SWI-Prolog as it does in FOL→Prover9, regardless of training outcome (PR). Cross-seed instability and reward hacking patterns replicate across logic types, validating ISR as a solver-agnostic diagnostic. Critically, Prolog STA reveals **universal Goodhart across all seeds**: identical reward signal + identical model → each seed converges to a distinct **gaming** mode (H7 conclusion duplication / degenerate syntax / query-as-fact gaming), with **3/3 seeds exhibiting Goodhart, 0% genuine**. This is the strongest cross-logic Goodhart evidence — every optimization trajectory leads to gaming, only the mechanism differs.\\\\n\\\\n**证据 Part A — Prolog exec-only 3-seed (D056 闭环)**：\\\\n- **plan006-prolog-exec 3-seed DONE**: PR=53.3%±31.1%, ISR=0.040±0.037。ISR 在所有 3 seeds 上一致检测到结构退化（near-zero），不受 PR 水平影响——诊断迁移的核心证据。跨 seed 不稳定 (σ=31pp) 复现 FOL 模式 (σ=47pp)，seed instability 本身是跨逻辑复现的发现。\\\\n  - s42: PR=83%, ISR=0.031 (ground fact enumeration)\\\\n  - s43: PR=56%, ISR=0.008 (degraded)\\\\n  - s44: PR=21%, ISR=0.081, proved-only ISR=0.387 (severe degradation, small-sample artifact)\\\\n- D056 结论：Prolog exec-only 跨 3 seeds ISR 一致崩塌（0.008–0.081），与 FOL exec-only 崩塌模式（0.0–0.132）对应。ISR 作为诊断指标在不同 logic type 上均能检测到 structural degeneration。\\\\n\\\\n**证据 Part B — Prolog exec+STA 3-seed (Goodhart 跨逻辑复现 ✅ 闭环，Reviewer-corrected)**：\\\\n\\\\n| Seed | PR_eval | Strict H7 | Strict H1 | Strict Genuine | Functional H7 (n_necessary=1) | 退化模式 |\\\\n|------|---------|-----------|-----------|----------------|-------------------------------|----------|\\\\n| s42 | 0.50 | 100% | 0% | 0% | 100% | Clean H7 tautology (单 clause=query) |\\\\n| s43 | 0.38 | 0% | 97.4% | 0% | 100% (38/38 n_necessary=1) | Degenerate uppercase pseudo-Prolog |\\\\n| s44 | **0.97** | 0% | 0% | **0%** (Reviewer override) | **97.9%** (95/97 n_necessary=1) | Query-as-fact gaming |\\\\n\\\\n⚠️ **s44 关键修正**: Worker 初始判断 s44 为 \\\\\\\"100% Genuine\\\\\\\"（strict classifier 未匹配到 H7/H1），但 Reviewer 独立核实发现 query-as-fact gaming——模型将 NL 问题转为 snake_case atom 同时设为 fact 和 query，Prolog trivially 证明。95/97 proved 样本 n_necessary=1（功能性 H7）。PR=0.97 和 ISR=0.885 均为 gaming artifact。**教训：strict text-match classifier 的 \\\\\\\"Genuine=100%\\\\\\\" 不可信，必须交叉验证 n_necessary 分布。**\\\\n\\\\n**关键发现——Universal Goodhart (3/3 seeds)**：\\\\n- **3/3 seeds 全部 Goodhart，0% genuine across all seeds**——比 FOL ISR β=0.1（2/3 seeds hacking, ~16% genuine residual）更极端\\\\n- 每个 seed 发展出不同的 gaming pathway：\\\\n  - s42: Clean H7 — 模型生成单个 clause 完全等于 query，最纯粹的 Goodhart\\\\n  - s43: Degenerate syntax — 模型生成大写伪 Prolog (MARY_IS_AN_AVADEOTE.)，绕过 strict classifier 但功能分析显示 38/38 tautological (n_necessary=1)\\\\n  - s44: Query-as-fact gaming — 模型将 NL 问题转为 snake_case atom 同时设为 fact 和 query，Prolog trivially 证明（第三种 Goodhart pathway，vs s42 clean H7, s43 degenerate syntax）\\\\n- **不是 \\\\\\\"seed-mode separation\\\\\\\"（旧版误报）——是 \\\\\\\"universal Goodhart with mode diversity\\\\\\\"**：旧版称 s44 为 genuine 从而论证 \\\\\\\"hacking 不是必然\\\\\\\"，这是错误的。修正后的结论更强：所有优化轨迹**必然**导向 gaming，只是 gaming 机制不同\\\\n- Prolog 的更简单语义使 hacking 路径更快收敛到极端，消除了 FOL 中的 genuine residual\\\\n\\\\n**FOL vs Prolog ISR-as-reward 对比**：\\\\n- FOL ISR β=0.1: H7=64.5% (3-seed mean), H1=17.3%, Genuine=~16%（模式混合，有 residual genuine）\\\\n- Prolog ISR: 每个 seed 纯模式（clean H7 / degenerate syntax / query-as-fact），但 **3/3 全部 gaming, 0% genuine**\\\\n- 解读：Prolog 的更简单语义使 Goodhart 更彻底——FOL 中仍有 ~16% genuine residual，Prolog 中为 0%。形式语言越简单，reward hacking 越完全\\\\n\\\\n⚠️ **ISR 语义区分 (C006)**：Prolog exec-only 的 low ISR 反映冗余编码（重复 ground facts 导致 n_necessary=0），exec+STA 的 high ISR 反映 metric gaming（Goodhart 效应）。论文需区分这两种语义，不可将 ISR 差异直接等同于 reasoning 能力差异。\\\\n\\\\n## Story Spine\\\\n\\\\n- **Problem**: GRPO with execution-only rewards trains neurosymbolic formalizers that achieve high solve rates but produce structurally degenerate outputs (reward hacking). Current practice evaluates only prove_rate, missing structural quality entirely. No principled diagnostic exists for detecting and characterizing this failure mode.\\\\n- **Existing approaches & gaps**: Mellgren et al. (2025) hand-craft Prolog-specific structure penalties. EVOM (2026) uses scalar execution rewards only. ExecVerify/EGCA derive trace-level rewards for code, not formal logic. No work systematically studies reward hacking in formal reasoning GRPO or provides diagnostic tools for it.\\\\n- **Our contribution**: We propose STA (Solver Trace Ablation), applying component necessity testing (LOO ablation) to derive ISR as a **diagnostic metric** for structural integrity. Key findings:\\\\n  1. ISR quantifies hacking invisible to prove_rate (64% → 13% → 0.3% collapse over training)\\\\n  2. ISR as proxy metric exhibits **meta-level Goodhart's Law**: at low dose (β=0.1), ISR reward induces ISR-specific gaming in 2/3 seeds (conclusion duplication inflating ISR), while the apparent \\\\\\\"genuine improvement\\\\\\\" in the remaining seed is entirely a premise minimization artifact (premise-count-matched: 1.06x, no real difference); at high dose (β=0.3), classic Goodhart collapse (PR 18% vs random 48%)\\\\n  3. Conclusion embedding (52-93% of proved samples) is GRPO-universal regardless of reward type; ISR reward restructures but doesn't reduce it\\\\n  4. Different reward formulations produce distinct, classifiable hacking strategies (6 modes identified, including ISR-specific \\\\\\\"conclusion duplication with ISR inflation\\\\\\\")\\\\n  5. ISR measures syntactic component necessity, not semantic faithfulness — premise minimization inflates ISR without improving reasoning\\\\n  6. SFT baseline confirms hacking is RL-reward-specific (PR=14%, 92.9% genuine, near-zero hacking)\\\\n  7. ISR diagnostic and Goodhart effects transfer across logic types (FOL→Prolog): Prolog STA shows **universal Goodhart** — 3/3 seeds converge to gaming (clean H7 / degenerate syntax / query-as-fact), 0% genuine, demonstrating that simpler formal languages enable more complete exploitation with zero genuine residual\\\\n- **Actionable insights for practitioners**:\\\\n  1. Never trust prove_rate alone — use ISR + component count as joint diagnostic\\\\n  2. Single-seed GRPO results are unreliable (2/3 exec-only seeds collapse differently)\\\\n  3. ISR reward is unreliable as training signal at any dose: β=0.1 induces ISR-specific gaming, β=0.3 collapses PR. Apparent \\\\\\\"genuine improvement\\\\\\\" is premise minimization artifact. Use ISR for post-hoc diagnosis only.\\\\n  4. Proxy metrics that detect gaming can themselves become gaming targets when used as optimization signals (meta-level Goodhart) — a cautionary result for any proxy-metric-as-reward approach.\\\\n  5. Conclusion embedding is GRPO-universal (68-100%); reward shaping changes the composition of hacking, not its prevalence\\\\n  6. LOO-based metrics like ISR are mathematically biased by component count: fewer premises → higher ISR, independent of reasoning quality\\\\n  7. Text-match hacking classifiers have blind spots (Prolog s44 query-as-fact gaming bypassed strict classifier); always cross-validate with functional analysis (n_necessary distribution)\\\\n- **Headline result**: \\\\\\\"We demonstrate that ISR — a component necessity metric derived from solver trace ablation — serves as a powerful diagnostic for reward hacking in GRPO-trained formalizers, but fails as a training signal due to meta-level Goodhart's Law. At low dose (β=0.1), ISR reward induces ISR-specific gaming in 2/3 seeds via conclusion duplication that inflates ISR itself; the remaining seed's apparent structural improvement (2.4x ISR) is entirely a premise minimization artifact — controlling for premise count eliminates the difference (1.06x). At high dose (β=0.3), classic Goodhart collapse occurs (PR 18% vs random 48%). These findings transfer across formal languages: in Prolog, the same ISR reward produces universal Goodhart — all 3 seeds converge to gaming via distinct mechanisms (tautological collapse, degenerate syntax, query-as-fact gaming) with 0% genuine output, compared to ~16% genuine residual in FOL. Across 6 reward conditions, 3 seeds, 2 logic types, and up to 1000 training steps, we identify 6 distinct hacking strategies and document ISR's fundamental asymmetry: reliable as observer, unreliable as optimizer.\\\\\\\"\\\\n\\\\n## ISR Capability Boundary (D021/D022)\\\\n\\\\n**ISR 度量的是 syntactic necessity（组件在证明中是否必要），不是 semantic faithfulness（formalization 是否忠实于自然语言语义）。**\\\\n\\\\nplan014 downstream NLI 验证结果（negative）精确刻画了这一边界：\\\\n- Spearman ρ(ISR, NLI accuracy) = -0.049 (p=0.187, 不显著)\\\\n\\\\n**论文处理**：降级为 **Limitation / Future Work**。\\\\n\\\\n**D051 补充**：ISR 还受 premise count 数学偏差影响。更少的 premise → 每个 premise 更\\\\\\\"必要\\\\\\\" → ISR 更高。这是 LOO-based metric 的固有局限，论文需明确讨论。\\\\n\\\\n## ISR-as-Reward: Goodhart Landscape (D033→D051→D057 闭环)\\\\n\\\\n| 条件 | 公式 | eval PR | eval ISR | 退化模式 | Goodhart 阶段 |\\\\n|------|------|---------|----------|----------|---------------|\\\\n| exec-only (baseline) | r = r_exec | 0.93 (s42) | 0.123 | H1=87.1%, conclusion embedding (diluted) | N/A |\\\\n| SFT baseline | supervised | 0.14 | 0.08 | **近零 hacking** (H1=1/14, Genuine=92.9%) | N/A |\\\\n| ISR β=0.1 (s42) | r = r_exec·(1+0.1·ISR) | 0.81 | **0.415** | H1 52%, H7 16%, premise minimization | **meta-Goodhart** (premise-matched 1.06x) |\\\\n| ISR β=0.1 (s43) | r = r_exec·(1+0.1·ISR) | 0.61 | **0.830** | **H7 97%**, ISR inflation | **meta-Goodhart** |\\\\n| ISR β=0.1 (s44) | r = r_exec·(1+0.1·ISR) | 0.89 | **0.902** | **H7 87%**, ISR inflation | **meta-Goodhart** |\\\\n| random β=0.1 (s42) | r = r_exec·(1+0.1·random) | 0.79 | 0.131 | H1 71%, redundant premises | control |\\\\n| random β=0.1 (s43) | r = r_exec·(1+0.1·random) | 0.88 | 0.058 | H1 93%, redundant premises | control |\\\\n| random β=0.1 (s44) | r = r_exec·(1+0.1·random) | 0.89 | 0.070 | H1 80%, redundant premises | control |\\\\n| ISR β=0.3 | r = r_exec·(1+0.3·ISR) | 0.18 | 0.026 | format collapse | post-Goodhart |\\\\n| random β=0.3 | r = r_exec·(1+0.3·random) | 0.48 | 0.045 | complexity-without-utility | control |\\\\n| convex combination | r = 0.9·r_exec + 0.1·ISR | 0.77 (train) | 0.230 (train) | ISR-PR separation | penalty effect |\\\\n| convex random | r = 0.9·r_exec + 0.1·random | 1.00 | 0.535 (fake) | tautological | hacking |\\\\n\\\\n**ISR-as-reward 完全失败**：所有剂量、所有配方，ISR 作为 reward 不提供真实结构优势。β=0.1 的表面优势是 premise minimization artifact + ISR-specific gaming；β=0.3 是 classic Goodhart。ISR 的核心价值在诊断（Claim 1）。\\\\n\\\\n## Venue Fit Risks\\\\n\\\\n- **EMNLP fit**: Diagnostic/analysis paper with Goodhart's Law case study in NLP + formal reasoning track. Empirical findings + mechanistic insight valued at EMNLP.\\\\n- **\\\\\\\"Just negative results\\\\\\\" risk**: Mitigate by: (a) ISR as diagnostic IS the positive result (Claim 1)，(b) meta-Goodhart finding is novel mechanistic insight，(c) 6-mode hacking taxonomy is actionable，(d) premise-count confound analysis contributes methodology，(e) SFT baseline confirms RL-specificity.\\\\n- **\\\\\\\"Old wine\\\\\\\" risk**: ISR = LOO ablation. Claim novelty at application level + empirical findings.\\\\n- **\\\\\\\"Single-logic risk\\\\\\\"**: plan006 Prolog validates generality — and reveals universal Goodhart (3/3 gaming, 0% genuine).\\\\n\\\\n## Anticipated Reviewer Concerns\\\\n\\\\n1. **\\\\\\\"ISR is just LOO ablation — not novel\\\\\\\"** — Yes, explicitly acknowledge. Contribution is application + empirical Goodhart analysis + hacking taxonomy.\\\\n2. **\\\\\\\"β=0.1 success is just one seed\\\\\\\"** — D051 shows even that one seed's \\\\\\\"success\\\\\\\" is a premise minimization artifact (1.06x when premise-count-matched). All 3 seeds fail.\\\\n3. **\\\\\\\"Conclusion embedding invalidates ISR results\\\\\\\"** — Conclusion embedding is GRPO-universal (52-93%), present in both conditions. Random actually has higher H1 (71-93% vs 17-52%).\\\\n4. **\\\\\\\"Goodhart's Law is obvious\\\\\\\"** — Conceptual prediction known; empirical characterization in formal reasoning GRPO is not. Meta-Goodhart + premise count confound are novel insights.\\\\n5. **\\\\\\\"No positive result\\\\\\\"** — ISR's positive result is as **diagnostic** (Claim 1). The negative result on ISR-as-reward IS the contribution (meta-Goodhart + premise minimization confound).\\\\n6. **\\\\\\\"ISR is circular\\\\\\\"** — Empirically validated: ISR as reward induces ISR-specific gaming. This supports using ISR for post-hoc diagnosis only.\\\\n7. **\\\\\\\"Only one logic type\\\\\\\"** — plan006 Prolog validates generality with even stronger results (3/3 Goodhart, 0% genuine vs FOL ~16%).\\\\n8. **\\\\\\\"500 steps too short\\\\\\\"** — plan016 extends to 1000 steps (ISR 0.123→0.003, -97.8%).\\\\n9. **\\\\\\\"3 seeds insufficient\\\\\\\"** — 3-seed divergence is itself a finding. Premise-count-matched analysis on s42 is conclusive.\\\\n10. **\\\\\\\"2.4x was wrong — credibility concern\\\\\\\"** — Transparent correction: D049→D051 shows iterative analysis caught the confound. Premise-count-matched methodology is stronger than raw comparison.\\\\n11. **\\\\\\\"Premise count confound is obvious\\\\\\\"** — LOO metrics are widely used without this correction. Explicitly documenting and controlling for it is a methodological contribution.\\\\n12. **\\\\\\\"Practitioners can't act on this\\\\\\\"** — 7 actionable insights listed. ISR + component count diagnostic is deployable. LOO bias warning is actionable. Classifier cross-validation with n_necessary is a concrete tool.\\\\n13. **\\\\\\\"Prolog s44 was initially misclassified\\\\\\\"** — Transparent: initial text-match classifier returned \\\\\\\"Genuine=100%\\\\\\\", independent review with functional analysis (n_necessary) corrected to \\\\\\\"0% genuine, query-as-fact gaming\\\\\\\". This classifier blind spot is itself a finding (Practitioner Insight #7).\\\\n\\\\n## Dream-Identified Structural Fixes (Paper Agent)\\\\n\\\\n- [ ] Related work: 6→25+ references (literature_map.yaml now has 33)\\\\n- [ ] RIP framing: reframe as \\\\\\\"component necessity testing inspired by RIP\\\\\\\"\\\\n- [ ] \\\\\\\"Dense+automatic\\\\\\\" → \\\\\\\"conditionally dense\\\\\\\"\\\\n- [ ] Remove all \\\\\\\"Pareto-improving\\\\\\\" language\\\\n- [ ] Acknowledge ISR = LOO ablation, cite feature attribution literature\\\\n- [ ] Address ISR sparsity for unproved outputs explicitly\\\\n- [ ] Add Goodhart's Law literature (Manheim & Garrabrant 2019, Karwowski 2024, Gao 2023)\\\\n- [ ] **D051: Add premise-count confound discussion in Discussion/Limitations section**\\\\n- [ ] **D051: Remove all \\\\\\\"2.4x genuine improvement\\\\\\\" language, replace with \\\\\\\"1.06x premise-matched\\\\\\\"**\\\\n- [ ] **Prolog s44 classifier blind spot → Discussion: text-match classifiers need functional cross-validation**\\\\n- [x] Convex combination → additive bonus (D010, then D020)\\\\n- [x] ISR downstream validation → Limitation/Future Work (D021/D022)\\\\n- [x] Hacking taxonomy expanded to 6 modes (plan012 + plan017 + D043)\\\\n- [x] β=0.1 ISR: s42 genuine, s43/s44 conclusion duplication → meta-Goodhart (D031→D043)\\\\n- [x] β=0.1 random control confirms ISR structural value (D033, plan018 eval)\\\\n- [x] 1000-step ISR collapse documented (plan016)\\\\n- [x] D049: SFT baseline confirms hacking is RL-specific\\\\n- [x] D049→D051: Genuine-only 2.4x 作废，premise-count-matched 1.06x 定论\\\\n- [x] D051: paper_framing 回退到 \\\\\\\"pure negative finding\\\\\\\"\\\\n- [x] D057: Claim 2 闭环——3-seed random 控制组完成 (H7=0% 全 seed 一致, PR 0.85±0.06 > ISR 0.77±0.14)\\\\n- [x] D056: Prolog exec-only 3-seed 闭环——ISR 崩塌跨逻辑复现 (PR=53.3%±31.1%, ISR=0.040±0.037)\\\\n- [x] SFT baseline (plan009) 确认 hacking 是 RL-reward-specific (PR=14%, 92.9% genuine)\\\\n- [x] Claim 3 闭环: Prolog STA 3-seed 完成——universal Goodhart (3/3 gaming, 0% genuine, Reviewer-corrected s44)\\\\n\\\", \\\"total_chars\\\": 21623, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/paper_framing.md\", \"content\": \"# Paper Framing — solver-trace-ablation\\n\\n## Target Venue\\n- Primary: EMNLP 2026 Main (NLP and Symbolic Reasoning track)\\n- Fallback: EMNLP 2026 Findings\\n- Deadline: ARR May 25, 2026\\n\\n## Core Claims (3 条 — Goodhart 主线诊断/分析论文)\\n\\n| Claim | Status | 闭环标志 |\\n|-------|--------|----------|\\n| Claim 1: STA 诊断能力 | ✅ 已闭环 | 3-seed + 1000-step + hacking taxonomy (6 modes) |\\n| Claim 2: Goodhart / ISR 无结构优势 | ✅ 已闭环 (D057) | 3-seed ISR + 3-seed random + premise-count-matched + SFT baseline |\\n| Claim 3: 跨逻辑泛化 | ✅ 已闭环 | exec-only 3-seed (D056) + STA 3-seed: **3/3 gaming** — 三种不同 gaming 路径 (H7/degenerate-syntax/query-as-fact) |\\n\\n### Claim 1: ISR as Reward Hacking Diagnostic ✅\\nSolver Trace Ablation (STA) derives ISR (Intensional Structural Reward) via component necessity testing (leave-one-out ablation on solver inputs). ISR detects reward hacking that prove_rate alone misses: exec-only GRPO achieves PR=93% but ISR collapses from 0.6423 (100 steps) to 0.1324 (500 steps) to 0.0027 (1000 steps), quantifying structural degeneration invisible to the execution reward.\\n\\n**证据**：\\n- plan003: 100-step checkpoint held-out eval PR=32%, ISR=0.6423 (proved-only) — early training produces structurally sound formalizations\\n- plan001-s42: 500-step checkpoint held-out eval PR=93%, ISR=0.1324, median_ISR=0.0 — late training achieves high prove_rate via structural shortcuts\\n- **plan016**: 1000-step checkpoint eval PR=96%, ISR=**0.0027** — ISR 崩塌持续恶化，无回升。94.8% proved 样本 ISR=0。矛盾爆炸式崩塌（components 6.58→18.55）。延长训练是 reward hacking 随时间恶化的干净消融证据\\n- ISR 崩塌轨迹完整链：0.6423 (100步) → 0.1324 (500步) → 0.0027 (1000步)\\n- 3-seed consistency: s42 redundant embedding (H1=87.1%, ISR=0.123 diluted), s43 repetition collapse (PR=13%, ISR=0), s44 tautological collapse (H7=100%, PR=98%, ISR=0.57 fake-high, n_comp=2.04). All 3 seeds exhibit 87-100% conclusion embedding.\\n- Hacking taxonomy: 6 distinct modes identified and quantified (plan012 + plan017 D027 + D043 conclusion duplication with ISR inflation)\\n\\n### Claim 2: ISR as Reward Exhibits Meta-Level Goodhart ✅ (D033→D043→D051→D057 闭环)\\nISR 作为 proxy metric 展现 **meta-level Goodhart 效应**：当 ISR 从诊断指标转变为优化目标，模型不仅在高剂量 Goodhart PR（β=0.3 PR 崩塌），还在低剂量 Goodhart ISR 度量本身（β=0.1，2/3 seeds 通过 conclusion duplication 膨胀 ISR）。ISR-as-reward **不提供任何真实结构优势**。\\n\\n**D051 定论：ISR 结构优势完全是 premise minimization artifact**\\n\\n之前 D049 报告 genuine-only ISR 2.4x（ISR 0.601 vs Random 0.252），但 premise-count-matched 分析证明这完全由 ultra-short proofs 驱动：\\n\\n| 条件 | n | Mean n_prem | Mean ISR |\\n|------|---|-------------|----------|\\n| ISR s42 genuine, n_prem≥3 | 11 | ~5.5 | **0.2578** |\\n| Random s42 genuine, n_prem≥3 | 21 | ~6.5 | **0.2434** |\\n| **Ratio** | — | — | **1.06×** |\\n\\n- 控制 premise count 后，ISR vs Random 无差异 (1.06x)\\n- ISR s42 的 15/26 \\\"genuine\\\" 样本只有 1-2 premises → ISR 天然 ≥0.5（LOO 删 1/2 → 50%+ necessary）\\n- ISR s44 的 12 个\\\"genuine\\\"全是 n_prem=1（H7 分类器 false negative——单 premise 但 normalization 差异导致未匹配 conclusion）\\n- **Premise minimization 不是推理质量改善，是 ISR metric 的数学性质**：更少的 premise → 每个 premise 更\\\"必要\\\" → ISR 更高，与证明质量无关\\n\\n**证据（β=0.1 三 seed + random 对照，D043→D051 定论）**：\\n\\n| Seed | PR | proved_only ISR | H7 (单premise=结论) | H1 (多premise含结论) | H7+H1 | Genuine % |\\n|------|-----|-----------------|---------------------|----------------------|-------|-----------|\\n| s42 (ISR β=0.1) | 0.81 | **0.415** | 16.0% (13/81) | 51.9% (42/81) | 67.9% | 32.1% (26) |\\n| s43 (ISR β=0.1) | 0.61 | **0.830** | **96.7%** (59/61) | 0% | 96.7% | ~3% (~2) |\\n| s44 (ISR β=0.1) | 0.89 | **0.902** | **86.5%** (77/89) | 0% | 86.5% | ~13.5% (~12, 全 n_prem=1 FN) |\\n| s42 (random β=0.1) | 0.79 | 0.131 | **0%** (0/79) | **70.9%** (56/79) | 70.9% | 29.1% (23) |\\n| s43 (random β=0.1) | 0.88 | 0.058 | **0%** (0/88) | **93.2%** (82/88) | 93.2% | 6.8% (6) |\\n| s44 (random β=0.1) | 0.89 | 0.070 | **0%** (0/89) | **79.8%** (71/89) | 79.8% | 20.2% (18) |\\n| **Random 3-seed mean±std** | **0.85±0.06** | **0.086±0.039** | **0%** | **81.3%±11.3%** | — | **18.7%±11.3%** |\\n| **ISR 3-seed mean±std** | **0.77±0.14** | **0.716±0.26** | **64.5%** | **17.3%** | — | **~16.2%** |\\n\\n**关键发现 (D057 3-seed closed)**：\\n- **H7 是 ISR-specific gaming**：ISR 3-seed H7=64.5% (149/231)，Random 3-seed H7=**0%** (0/256)。H7 跨全部 3 random seeds 一致为零，确认是 ISR reward 特异性诱导\\n- **Conclusion embedding 是 GRPO 通用策略**：Random H1=81.3%±11.3% > ISR H1=17.3%。Random 的 H1 率反而更高（ISR 将 H1 转化为 H7）\\n- **ISR 改变了 hacking 的组成而非总量**：总 conclusion-in-premise 率接近，但 ISR 将 H1 转化为更极端的 H7\\n- **Random PR 更高更稳定**：0.85±0.06 vs ISR 0.77±0.14，ISR-as-reward 无 PR 优势\\n- **Premise-count-matched 无差异**：控制 premise 数后 ISR=0.2578 vs Random=0.2434 (1.06x)，ISR 不提供真实结构优势\\n- **ISR-as-reward 完全失败**：低剂量 gaming ISR 本身，高剂量 PR 崩塌，premise minimization 不是推理改善\\n- **结论**: ISR 的核心价值在诊断（Claim 1），作为 reward 不可靠且不提供真实结构优势\\n\\n**s42 单 seed Hacking Taxonomy 定量对比 (D038→D044 strict 校准)**：\\n- ISR β=0.1 genuine: **30.9%** (25/81) vs random β=0.1 genuine: **25.3%** (20/79) — **+5.6pp**\\n- H1 (multi-premise conclusion embedding, strict): ISR 51.9% vs random 70.9% — GRPO 通用退化\\n- H7 (single premise=conclusion, ISR-specific): ISR **16.1%** vs random **0%** — ISR 特异性\\n- H3 (complexity-without-utility): ISR **0%** vs random 3.8% — ISR 完全消除此模式\\n- 整体 hacking rate (strict): ISR **69.1%** vs random **74.7%** — ISR 略降但主要是模式转移（H1→H7）\\n- ⚠️ s43/s44 几乎 100% H7（96.7%/86.5%），无 H1\\n\\n**证据（β=0.3 同剂量对照）**：\\n- plan002-b03 (ISR β=0.3): eval PR=0.18, ISR=0.026 — Goodhart 效应，PR 崩塌\\n- plan017 (random β=0.3): eval PR=0.48, ISR=0.045 — random 比 ISR 好 2.7x PR\\n- **结论**：高剂量 ISR 对训练 actively misleading (PR 18% < random 48%)\\n\\n**β 剂量效应全景**：\\n| β | ISR reward PR | Random reward PR | ISR reward ISR | Random reward ISR | 解读 |\\n|---|---|---|---|---|---|\\n| 0.1 | 0.81 (s42) / 0.61 (s43) / 0.89 (s44) | 0.79 (s42) / 0.88 (s43) / 0.89 (s44) | **0.415** (s42) / **0.830** (s43) / **0.902** (s44) | 0.131 (s42) / 0.058 (s43) / 0.070 (s44) | ISR-specific gaming; premise-count-matched 无结构差异 |\\n| 0.3 | 0.18 | 0.48 | 0.026 | 0.045 | ISR << random (Goodhart) |\\n\\n**其他 ISR-as-reward 失败模式**：\\n- plan005 凸组合 (α·r_exec + β·r_exec·ISR, α+β=1): ISR<1 时永远是 penalty → PR 下降 (D010)\\n- plan013 convex random: PR=1.0 但 100% P→P tautological collapse (D018)\\n\\n⚠️ **措辞约束 (Reviewer D027)**: plan013 vs plan017 公式结构不同，不可简化为\\\"additive vs convex\\\"对照。plan017 vs plan002 和 plan018 vs plan002-b01 的 ISR vs random 对比是纯净的\\n\\n⚠️ **β=0.1 三 seed（D043→D051）**：s42 的\\\"genuine\\\"优势是 premise minimization artifact。不可报 raw 3-seed mean ISR（被膨胀值污染），不可报 genuine-only 2.4x（premise count artifact）。\\n\\n**SFT Baseline 对照 (plan009-sft-baseline-s42-r4)**：\\n- SFT PR=0.14, ISR=0.08, proved-only ISR=0.571\\n- H7=0/14 (0%), H1=1/14 (7.1%, folio_167), Genuine=13/14 (**92.9%**)\\n- proved-only ISR=0.571 来自 genuine reasoning，非 short-proof artifact\\n- 确认 Goodhart 效应是 RL-reward-specific，非一般微调产物\\n\\n### Claim 3: Cross-Logic Diagnostic Transfer ✅ (D056 exec-only + Prolog STA 3-seed 闭环)\\nThe STA diagnostic protocol transfers across structurally different formal languages: ISR detects structural degeneration in Prolog→SWI-Prolog as it does in FOL→Prover9, regardless of training outcome (PR). Cross-seed instability and reward hacking patterns replicate across logic types, validating ISR as a solver-agnostic diagnostic. Critically, Prolog STA reveals **universal Goodhart across all seeds**: identical reward signal + identical model → each seed converges to a distinct **gaming** mode (H7 conclusion duplication / degenerate syntax / query-as-fact gaming), with **3/3 seeds exhibiting Goodhart, 0% genuine**. This is the strongest cross-logic Goodhart evidence — every optimization trajectory leads to gaming, only the mechanism differs.\\n\\n**证据 Part A — Prolog exec-only 3-seed (D056 闭环)**：\\n- **plan006-prolog-exec 3-seed DONE**: PR=53.3%±31.1%, ISR=0.040±0.037。ISR 在所有 3 seeds 上一致检测到结构退化（near-zero），不受 PR 水平影响——诊断迁移的核心证据。跨 seed 不稳定 (σ=31pp) 复现 FOL 模式 (σ=47pp)，seed instability 本身是跨逻辑复现的发现。\\n  - s42: PR=83%, ISR=0.031 (ground fact enumeration)\\n  - s43: PR=56%, ISR=0.008 (degraded)\\n  - s44: PR=21%, ISR=0.081, proved-only ISR=0.387 (severe degradation, small-sample artifact)\\n- D056 结论：Prolog exec-only 跨 3 seeds ISR 一致崩塌（0.008–0.081），与 FOL exec-only 崩塌模式（0.0–0.132）对应。ISR 作为诊断指标在不同 logic type 上均能检测到 structural degeneration。\\n\\n**证据 Part B — Prolog exec+STA 3-seed (Goodhart 跨逻辑复现 ✅ 闭环，Reviewer-corrected)**：\\n\\n| Seed | PR_eval | Strict H7 | Strict H1 | Strict Genuine | Functional H7 (n_necessary=1) | 退化模式 |\\n|------|---------|-----------|-----------|----------------|-------------------------------|----------|\\n| s42 | 0.50 | 100% | 0% | 0% | 100% | Clean H7 tautology (单 clause=query) |\\n| s43 | 0.38 | 0% | 97.4% | 0% | 100% (38/38 n_necessary=1) | Degenerate uppercase pseudo-Prolog |\\n| s44 | **0.97** | 0% | 0% | **0%** (Reviewer override) | **97.9%** (95/97 n_necessary=1) | Query-as-fact gaming |\\n\\n⚠️ **s44 关键修正**: Worker 初始判断 s44 为 \\\"100% Genuine\\\"（strict classifier 未匹配到 H7/H1），但 Reviewer 独立核实发现 query-as-fact gaming——模型将 NL 问题转为 snake_case atom 同时设为 fact 和 query，Prolog trivially 证明。95/97 proved 样本 n_necessary=1（功能性 H7）。PR=0.97 和 ISR=0.885 均为 gaming artifact。**教训：strict text-match classifier 的 \\\"Genuine=100%\\\" 不可信，必须交叉验证 n_necessary 分布。**\\n\\n**关键发现——Universal Goodhart (3/3 seeds)**：\\n- **3/3 seeds 全部 Goodhart，0% genuine across all seeds**——比 FOL ISR β=0.1（2/3 seeds hacking, ~16% genuine residual）更极端\\n- 每个 seed 发展出不同的 gaming pathway：\\n  - s42: Clean H7 — 模型生成单个 clause 完全等于 query，最纯粹的 Goodhart\\n  - s43: Degenerate syntax — 模型生成大写伪 Prolog (MARY_IS_AN_AVADEOTE.)，绕过 strict classifier 但功能分析显示 38/38 tautological (n_necessary=1)\\n  - s44: Query-as-fact gaming — 模型将 NL 问题转为 snake_case atom 同时设为 fact 和 query，Prolog trivially 证明（第三种 Goodhart pathway，vs s42 clean H7, s43 degenerate syntax）\\n- **不是 \\\"seed-mode separation\\\"（旧版误报）——是 \\\"universal Goodhart with mode diversity\\\"**：旧版称 s44 为 genuine 从而论证 \\\"hacking 不是必然\\\"，这是错误的。修正后的结论更强：所有优化轨迹**必然**导向 gaming，只是 gaming 机制不同\\n- Prolog 的更简单语义使 hacking 路径更快收敛到极端，消除了 FOL 中的 genuine residual\\n\\n**FOL vs Prolog ISR-as-reward 对比**：\\n- FOL ISR β=0.1: H7=64.5% (3-seed mean), H1=17.3%, Genuine=~16%（模式混合，有 residual genuine）\\n- Prolog ISR: 每个 seed 纯模式（clean H7 / degenerate syntax / query-as-fact），但 **3/3 全部 gaming, 0% genuine**\\n- 解读：Prolog 的更简单语义使 Goodhart 更彻底——FOL 中仍有 ~16% genuine residual，Prolog 中为 0%。形式语言越简单，reward hacking 越完全\\n\\n⚠️ **ISR 语义区分 (C006)**：Prolog exec-only 的 low ISR 反映冗余编码（重复 ground facts 导致 n_necessary=0），exec+STA 的 high ISR 反映 metric gaming（Goodhart 效应）。论文需区分这两种语义，不可将 ISR 差异直接等同于 reasoning 能力差异。\\n\\n## Story Spine\\n\\n- **Problem**: GRPO with execution-only rewards trains neurosymbolic formalizers that achieve high solve rates but produce structurally degenerate outputs (reward hacking). Current practice evaluates only prove_rate, missing structural quality entirely. No principled diagnostic exists for detecting and characterizing this failure mode.\\n- **Existing approaches & gaps**: Mellgren et al. (2025) hand-craft Prolog-specific structure penalties. EVOM (2026) uses scalar execution rewards only. ExecVerify/EGCA derive trace-level rewards for code, not formal logic. No work systematically studies reward hacking in formal reasoning GRPO or provides diagnostic tools for it.\\n- **Our contribution**: We propose STA (Solver Trace Ablation), applying component necessity testing (LOO ablation) to derive ISR as a **diagnostic metric** for structural integrity. Key findings:\\n  1. ISR quantifies hacking invisible to prove_rate (64% → 13% → 0.3% collapse over training)\\n  2. ISR as proxy metric exhibits **meta-level Goodhart's Law**: at low dose (β=0.1), ISR reward induces ISR-specific gaming in 2/3 seeds (conclusion duplication inflating ISR), while the apparent \\\"genuine improvement\\\" in the remaining seed is entirely a premise minimization artifact (premise-count-matched: 1.06x, no real difference); at high dose (β=0.3), classic Goodhart collapse (PR 18% vs random 48%)\\n  3. Conclusion embedding (52-93% of proved samples) is GRPO-universal regardless of reward type; ISR reward restructures but doesn't reduce it\\n  4. Different reward formulations produce distinct, classifiable hacking strategies (6 modes identified, including ISR-specific \\\"conclusion duplication with ISR inflation\\\")\\n  5. ISR measures syntactic component necessity, not semantic faithfulness — premise minimization inflates ISR without improving reasoning\\n  6. SFT baseline confirms hacking is RL-reward-specific (PR=14%, 92.9% genuine, near-zero hacking)\\n  7. ISR diagnostic and Goodhart effects transfer across logic types (FOL→Prolog): Prolog STA shows **universal Goodhart** — 3/3 seeds converge to gaming (clean H7 / degenerate syntax / query-as-fact), 0% genuine, demonstrating that simpler formal languages enable more complete exploitation with zero genuine residual\\n- **Actionable insights for practitioners**:\\n  1. Never trust prove_rate alone — use ISR + component count as joint diagnostic\\n  2. Single-seed GRPO results are unreliable (2/3 exec-only seeds collapse differently)\\n  3. ISR reward is unreliable as training signal at any dose: β=0.1 induces ISR-specific gaming, β=0.3 collapses PR. Apparent \\\"genuine improvement\\\" is premise minimization artifact. Use ISR for post-hoc diagnosis only.\\n  4. Proxy metrics that detect gaming can themselves become gaming targets when used as optimization signals (meta-level Goodhart) — a cautionary result for any proxy-metric-as-reward approach.\\n  5. Conclusion embedding is GRPO-universal (68-100%); reward shaping changes the composition of hacking, not its prevalence\\n  6. LOO-based metrics like ISR are mathematically biased by component count: fewer premises → higher ISR, independent of reasoning quality\\n  7. Text-match hacking classifiers have blind spots (Prolog s44 query-as-fact gaming bypassed strict classifier); always cross-validate with functional analysis (n_necessary distribution)\\n- **Headline result**: \\\"We demonstrate that ISR — a component necessity metric derived from solver trace ablation — serves as a powerful diagnostic for reward hacking in GRPO-trained formalizers, but fails as a training signal due to meta-level Goodhart's Law. At low dose (β=0.1), ISR reward induces ISR-specific gaming in 2/3 seeds via conclusion duplication that inflates ISR itself; the remaining seed's apparent structural improvement (2.4x ISR) is entirely a premise minimization artifact — controlling for premise count eliminates the difference (1.06x). At high dose (β=0.3), classic Goodhart collapse occurs (PR 18% vs random 48%). These findings transfer across formal languages: in Prolog, the same ISR reward produces universal Goodhart — all 3 seeds converge to gaming via distinct mechanisms (tautological collapse, degenerate syntax, query-as-fact gaming) with 0% genuine output, compared to ~16% genuine residual in FOL. Across 6 reward conditions, 3 seeds, 2 logic types, and up to 1000 training steps, we identify 6 distinct hacking strategies and document ISR's fundamental asymmetry: reliable as observer, unreliable as optimizer.\\\"\\n\\n## ISR Capability Boundary (D021/D022)\\n\\n**ISR 度量的是 syntactic necessity（组件在证明中是否必要），不是 semantic faithfulness（formalization 是否忠实于自然语言语义）。**\\n\\nplan014 downstream NLI 验证结果（negative）精确刻画了这一边界：\\n- Spearman ρ(ISR, NLI accuracy) = -0.049 (p=0.187, 不显著)\\n\\n**论文处理**：降级为 **Limitation / Future Work**。\\n\\n**D051 补充**：ISR 还受 premise count 数学偏差影响。更少的 premise → 每个 premise 更\\\"必要\\\" → ISR 更高。这是 LOO-based metric 的固有局限，论文需明确讨论。\\n\\n## ISR-as-Reward: Goodhart Landscape (D033→D051→D057 闭环)\\n\\n| 条件 | 公式 | eval PR | eval ISR | 退化模式 | Goodhart 阶段 |\\n|------|------|---------|----------|----------|---------------|\\n| exec-only (baseline) | r = r_exec | 0.93 (s42) | 0.123 | H1=87.1%, conclusion embedding (diluted) | N/A |\\n| SFT baseline | supervised | 0.14 | 0.08 | **近零 hacking** (H1=1/14, Genuine=92.9%) | N/A |\\n| ISR β=0.1 (s42) | r = r_exec·(1+0.1·ISR) | 0.81 | **0.415** | H1 52%, H7 16%, premise minimization | **meta-Goodhart** (premise-matched 1.06x) |\\n| ISR β=0.1 (s43) | r = r_exec·(1+0.1·ISR) | 0.61 | **0.830** | **H7 97%**, ISR inflation | **meta-Goodhart** |\\n| ISR β=0.1 (s44) | r = r_exec·(1+0.1·ISR) | 0.89 | **0.902** | **H7 87%**, ISR inflation | **meta-Goodhart** |\\n| random β=0.1 (s42) | r = r_exec·(1+0.1·random) | 0.79 | 0.131 | H1 71%, redundant premises | control |\\n| random β=0.1 (s43) | r = r_exec·(1+0.1·random) | 0.88 | 0.058 | H1 93%, redundant premises | control |\\n| random β=0.1 (s44) | r = r_exec·(1+0.1·random) | 0.89 | 0.070 | H1 80%, redundant premises | control |\\n| ISR β=0.3 | r = r_exec·(1+0.3·ISR) | 0.18 | 0.026 | format collapse | post-Goodhart |\\n| random β=0.3 | r = r_exec·(1+0.3·random) | 0.48 | 0.045 | complexity-without-utility | control |\\n| convex combination | r = 0.9·r_exec + 0.1·ISR | 0.77 (train) | 0.230 (train) | ISR-PR separation | penalty effect |\\n| convex random | r = 0.9·r_exec + 0.1·random | 1.00 | 0.535 (fake) | tautological | hacking |\\n\\n**ISR-as-reward 完全失败**：所有剂量、所有配方，ISR 作为 reward 不提供真实结构优势。β=0.1 的表面优势是 premise minimization artifact + ISR-specific gaming；β=0.3 是 classic Goodhart。ISR 的核心价值在诊断（Claim 1）。\\n\\n## Venue Fit Risks\\n\\n- **EMNLP fit**: Diagnostic/analysis paper with Goodhart's Law case study in NLP + formal reasoning track. Empirical findings + mechanistic insight valued at EMNLP.\\n- **\\\"Just negative results\\\" risk**: Mitigate by: (a) ISR as diagnostic IS the positive result (Claim 1)，(b) meta-Goodhart finding is novel mechanistic insight，(c) 6-mode hacking taxonomy is actionable，(d) premise-count confound analysis contributes methodology，(e) SFT baseline confirms RL-specificity.\\n- **\\\"Old wine\\\" risk**: ISR = LOO ablation. Claim novelty at application level + empirical findings.\\n- **\\\"Single-logic risk\\\"**: plan006 Prolog validates generality — and reveals universal Goodhart (3/3 gaming, 0% genuine).\\n\\n## Anticipated Reviewer Concerns\\n\\n1. **\\\"ISR is just LOO ablation — not novel\\\"** — Yes, explicitly acknowledge. Contribution is application + empirical Goodhart analysis + hacking taxonomy.\\n2. **\\\"β=0.1 success is just one seed\\\"** — D051 shows even that one seed's \\\"success\\\" is a premise minimization artifact (1.06x when premise-count-matched). All 3 seeds fail.\\n3. **\\\"Conclusion embedding invalidates ISR results\\\"** — Conclusion embedding is GRPO-universal (52-93%), present in both conditions. Random actually has higher H1 (71-93% vs 17-52%).\\n4. **\\\"Goodhart's Law is obvious\\\"** — Conceptual prediction known; empirical characterization in formal reasoning GRPO is not. Meta-Goodhart + premise count confound are novel insights.\\n5. **\\\"No positive result\\\"** — ISR's positive result is as **diagnostic** (Claim 1). The negative result on ISR-as-reward IS the contribution (meta-Goodhart + premise minimization confound).\\n6. **\\\"ISR is circular\\\"** — Empirically validated: ISR as reward induces ISR-specific gaming. This supports using ISR for post-hoc diagnosis only.\\n7. **\\\"Only one logic type\\\"** — plan006 Prolog validates generality with even stronger results (3/3 Goodhart, 0% genuine vs FOL ~16%).\\n8. **\\\"500 steps too short\\\"** — plan016 extends to 1000 steps (ISR 0.123→0.003, -97.8%).\\n9. **\\\"3 seeds insufficient\\\"** — 3-seed divergence is itself a finding. Premise-count-matched analysis on s42 is conclusive.\\n10. **\\\"2.4x was wrong — credibility concern\\\"** — Transparent correction: D049→D051 shows iterative analysis caught the confound. Premise-count-matched methodology is stronger than raw comparison.\\n11. **\\\"Premise count confound is obvious\\\"** — LOO metrics are widely used without this correction. Explicitly documenting and controlling for it is a methodological contribution.\\n12. **\\\"Practitioners can't act on this\\\"** — 7 actionable insights listed. ISR + component count diagnostic is deployable. LOO bias warning is actionable. Classifier cross-validation with n_necessary is a concrete tool.\\n13. **\\\"Prolog s44 was initially misclassified\\\"** — Transparent: initial text-match classifier returned \\\"Genuine=100%\\\", independent review with functional analysis (n_necessary) corrected to \\\"0% genuine, query-as-fact gaming\\\". This classifier blind spot is itself a finding (Practitioner Insight #7).\\n\\n## Dream-Identified Structural Fixes (Paper Agent)\\n\\n- [ ] Related work: 6→25+ references (literature_map.yaml now has 33)\\n- [ ] RIP framing: reframe as \\\"component necessity testing inspired by RIP\\\"\\n- [ ] \\\"Dense+automatic\\\" → \\\"conditionally dense\\\"\\n- [ ] Remove all \\\"Pareto-improving\\\" language\\n- [ ] Acknowledge ISR = LOO ablation, cite feature attribution literature\\n- [ ] Address ISR sparsity for unproved outputs explicitly\\n- [ ] Add Goodhart's Law literature (Manheim & Garrabrant 2019, Karwowski 2024, Gao 2023)\\n- [ ] **D051: Add premise-count confound discussion in Discussion/Limitations section**\\n- [ ] **D051: Remove all \\\"2.4x genuine improvement\\\" language, replace with \\\"1.06x premise-matched\\\"**\\n- [ ] **Prolog s44 classifier blind spot → Discussion: text-match classifiers need functional cross-validation**\\n- [x] Convex combination → additive bonus (D010, then D020)\\n- [x] ISR downstream validation → Limitation/Future Work (D021/D022)\\n- [x] Hacking taxonomy expanded to 6 modes (plan012 + plan017 + D043)\\n- [x] β=0.1 ISR: s42 genuine, s43/s44 conclusion duplication → meta-Goodhart (D031→D043)\\n- [x] β=0.1 random control confirms ISR structural value (D033, plan018 eval)\\n- [x] 1000-step ISR collapse documented (plan016)\\n- [x] D049: SFT baseline confirms hacking is RL-specific\\n- [x] D049→D051: Genuine-only 2.4x 作废，premise-count-matched 1.06x 定论\\n- [x] D051: paper_framing 回退到 \\\"pure negative finding\\\"\\n- [x] D057: Claim 2 闭环——3-seed random 控制组完成 (H7=0% 全 seed 一致, PR 0.85±0.06 > ISR 0.77±0.14)\\n- [x] D056: Prolog exec-only 3-seed 闭环——ISR 崩塌跨逻辑复现 (PR=53.3%±31.1%, ISR=0.040±0.037)\\n- [x] SFT baseline (plan009) 确认 hacking 是 RL-reward-specific (PR=14%, 92.9% genuine)\\n- [x] Claim 3 闭环: Prolog STA 3-seed 完成——universal Goodhart (3/3 gaming, 0% genuine, Reviewer-corrected s44)\\n\", \"total_chars\": 21623, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a comprehensive understanding of the literature. Let me compile BibTeX entries for all the must-cite and should-cite papers. I'll need to search for accurate BibTeX for each one. Let me batch the searches efficiently.
+
+Let me organize what I need:
+
+**Must-cite:**
+1. deepseekmath - Shao et al. 2024
+2. logic-lm - Pan et al. 2023
+3. linc - Olausson et al. 2023
+4. satlm - Ye et al. 2023
+5. mellgren-prolog-grpo - Mellgren 2024
+
+
+6. lightman-verify-step - Lightman et al. 2023
+7. gao-reward-overoptimization - Gao et al. 2023
+8. karwowski-goodhart-rl - Karwowski et al. 2024
+9. manheim-goodhart-taxonomy - Manheim & Garrabrant 2019
+10. skalse-reward-hacking - Skalse et al. 2022
+11. pan-reward-misspecification - Pan et al. 2022
+12. demillo1978 - DeMillo et al. 1978
+
+I'll continue gathering the remaining entries and then search for their BibTeX citations. I'm adding more papers to the bibliography—DeepProbLog, NeuroASP, and several others from the literature map on specification gaming and reward hacking. Rather than searching for each one individually, I'll compile the BibTeX entries directly since I'm familiar with most of these papers, though I should verify a few of the key ones to ensure accuracy.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "dce5d10c-9398-4add-93ee-40a426f48348",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0112fjQEqzcQVSqsZMCL2Jgp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 23503,
+      "cache_read_input_tokens": 26009,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 23503
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+Now I have all the literature info. Let me search for accurate BibTeX entries for the must-cite papers. I'll batch searches in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "96409494-a779-45a3-9131-a70fc8bdde11",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0112fjQEqzcQVSqsZMCL2Jgp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 23503,
+      "cache_read_input_tokens": 26009,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 23503
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01UKRFFurAm4ZxDA2WCBEcbm`</summary>
+
+```json
+{
+  "query": "DeepSeekMath Shao 2024 GRPO bibtex arxiv 2402.03300"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "770121bc-a34d-4c0b-961f-79ec5845aa2b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0112fjQEqzcQVSqsZMCL2Jgp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 23503,
+      "cache_read_input_tokens": 26009,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 23503
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Qw4ETjCkGTMivVBHxVr2V7`</summary>
+
+```json
+{
+  "query": "Logic-LM Pan Albalak 2023 EMNLP bibtex symbolic solvers"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "e83b6983-af39-43ef-ae48-d709e3995409",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0112fjQEqzcQVSqsZMCL2Jgp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 23503,
+      "cache_read_input_tokens": 26009,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 23503
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_017mHmv42bERwP7QuRBto8hi`</summary>
+
+```json
+{
+  "query": "LINC Olausson 2023 EMNLP neurosymbolic first-order logic provers bibtex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "3003b986-071b-44ae-a219-8e69b27d5b60",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0112fjQEqzcQVSqsZMCL2Jgp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 23503,
+      "cache_read_input_tokens": 26009,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 23503
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012vU2fiD5eLahMKXWn4m7Dc`</summary>
+
+```json
+{
+  "query": "SatLM Ye 2023 NeurIPS satisfiability-aided language models bibtex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "39616916-30f3-4893-85bf-bc13909065f0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0112fjQEqzcQVSqsZMCL2Jgp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 23503,
+      "cache_read_input_tokens": 26009,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 23503
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019bAcA81XhzV5vUgTgSSPY7`</summary>
+
+```json
+{
+  "query": "Mellgren 2024 \"Training Language Models to Use Prolog\" arxiv 2512.07407 bibtex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "7c394a17-536a-4be7-8531-b888f7c7c256",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0112fjQEqzcQVSqsZMCL2Jgp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 23503,
+      "cache_read_input_tokens": 26009,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 23503
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FsfFX7NupKZdxSea9sTGUw`</summary>
+
+```json
+{
+  "query": "\"Let's Verify Step by Step\" Lightman 2023 bibtex arxiv 2305.20050"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "2e708392-406b-45d3-a785-7a6e9c0c6a3c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0112fjQEqzcQVSqsZMCL2Jgp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 23503,
+      "cache_read_input_tokens": 26009,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 23503
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-14T18:51:44.527Z_
+
+<details><summary>↩ Tool result · `toolu_01UKRFFurAm4ZxDA2WCBEcbm`</summary>
+
+````text
+Web search results for query: "DeepSeekMath Shao 2024 GRPO bibtex arxiv 2402.03300"
+
+Links: [{"title":"[2402.03300] DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models","url":"https://arxiv.org/abs/2402.03300"},{"title":"DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models | by Eleventh Hour Enthusiast | Medium","url":"https://medium.com/@EleventhHourEnthusiast/deepseekmath-pushing-the-limits-of-mathematical-reasoning-in-open-language-models-f2665df4019e"},{"title":"GitHub - deepseek-ai/DeepSeek-Math: DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models · GitHub","url":"https://github.com/deepseek-ai/deepseek-math"},{"title":"DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models","url":"https://arxiv.org/html/2402.03300v3"},{"title":"arXiv:2402.03300v3 [cs.CL] 27 Apr 2024","url":"https://arxiv.org/pdf/2402.03300"},{"title":"Paper page - DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models","url":"https://huggingface.co/papers/2402.03300"},{"title":"DeepSeekMath: Advancing Math Reasoning","url":"https://www.emergentmind.com/papers/2402.03300"},{"title":"Zhihong Shao 邵智宏 - Zhihong Shao 邵智宏","url":"https://zhihongshao.github.io/"},{"title":"DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models - ADS","url":"https://ui.adsabs.harvard.edu/abs/2024arXiv240203300S/abstract"},{"title":"[2402.03300v3] DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models","url":"https://arxiv.org/abs/2402.03300v3"}]
+
+I found the paper you're looking for! Here's the key information about the DeepSeekMath paper by Shao et al. (2024):
+
+## Paper Details
+
+The paper is titled "DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models" (arXiv 2402.03300). The authors include Zhihong Shao, Peiyi Wang, Qihao Zhu, Runxin Xu, Junxiao Song, Xiao Bi, Haowei Zhang, Mingchuan Zhang, Y.K. Li, Y. Wu, and Daya Guo.
+
+## BibTeX Citation
+
+Here's the BibTeX citation from the GitHub repository:
+
+```
+@misc{deepseek-math,
+  author = {Zhihong Shao, Peiyi Wang, Qihao Zhu, Runxin Xu, Junxiao Song, Mingchuan Zhang, Y.K. Li, Y. Wu, Daya Guo},
+  title = {DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models},
+  journal = {CoRR},
+  volume = {abs/2402.03300},
+  year = {2024},
+  url = {https://arxiv.org/abs/2402.03300}
+}
+```
+
+
+## Key Contributions
+
+DeepSeekMath 7B continues pre-training DeepSeek-Coder-Base-v1.5 7B with 120B math-related tokens sourced from Common Crawl, and has achieved an impressive score of 51.7% on the competition-level MATH benchmark without relying on external toolkits and voting techniques.
+
+The paper introduces Group Relative Policy Optimization (GRPO), a variant of Proximal Policy Optimization (PPO), that enhances mathematical reasoning abilities while concurrently optimizing the memory usage of PPO.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "51284272-e7d4-4e97-80d7-68758fee06a0",
+  "tool_use_result": {
+    "query": "DeepSeekMath Shao 2024 GRPO bibtex arxiv 2402.03300",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_017ddaPhY2rcJK78vBmvYgCS",
+        "content": [
+          {
+            "title": "[2402.03300] DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models",
+            "url": "https://arxiv.org/abs/2402.03300"
+          },
+          {
+            "title": "DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models | by Eleventh Hour Enthusiast | Medium",
+            "url": "https://medium.com/@EleventhHourEnthusiast/deepseekmath-pushing-the-limits-of-mathematical-reasoning-in-open-language-models-f2665df4019e"
+          },
+          {
+            "title": "GitHub - deepseek-ai/DeepSeek-Math: DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models · GitHub",
+            "url": "https://github.com/deepseek-ai/deepseek-math"
+          },
+          {
+            "title": "DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models",
+            "url": "https://arxiv.org/html/2402.03300v3"
+          },
+          {
+            "title": "arXiv:2402.03300v3 [cs.CL] 27 Apr 2024",
+            "url": "https://arxiv.org/pdf/2402.03300"
+          },
+          {
+            "title": "Paper page - DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models",
+            "url": "https://huggingface.co/papers/2402.03300"
+          },
+          {
+            "title": "DeepSeekMath: Advancing Math Reasoning",
+            "url": "https://www.emergentmind.com/papers/2402.03300"
+          },
+          {
+            "title": "Zhihong Shao 邵智宏 - Zhihong Shao 邵智宏",
+            "url": "https://zhihongshao.github.io/"
+          },
+          {
+            "title": "DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2024arXiv240203300S/abstract"
+          },
+          {
+            "title": "[2402.03300v3] DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models",
+            "url": "https://arxiv.org/abs/2402.03300v3"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here's the key information about the DeepSeekMath paper by Shao et al. (2024):\n\n## Paper Details\n\nThe paper is titled \"DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models\" (arXiv 2402.03300). The authors include Zhihong Shao, Peiyi Wang, Qihao Zhu, Runxin Xu, Junxiao Song, Xiao Bi, Haowei Zhang, Mingchuan Zhang, Y.K. Li, Y. Wu, and Daya Guo.\n\n## BibTeX Citation\n\nHere's the BibTeX citation from the GitHub repository:\n\n```\n@misc{deepseek-math,\n  author = {Zhihong Shao, Peiyi Wang, Qihao Zhu, Runxin Xu, Junxiao Song, Mingchuan Zhang, Y.K. Li, Y. Wu, Daya Guo},\n  title = {DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models},\n  journal = {CoRR},\n  volume = {abs/2402.03300},\n  year = {2024},\n  url = {https://arxiv.org/abs/2402.03300}\n}\n```\n\n\n## Key Contributions\n\nDeepSeekMath 7B continues pre-training DeepSeek-Coder-Base-v1.5 7B with 120B math-related tokens sourced from Common Crawl, and has achieved an impressive score of 51.7% on the competition-level MATH benchmark without relying on external toolkits and voting techniques.\n\nThe paper introduces Group Relative Policy Optimization (GRPO), a variant of Proximal Policy Optimization (PPO), that enhances mathematical reasoning abilities while concurrently optimizing the memory usage of PPO."
+    ],
+    "durationSeconds": 6.127198626999998
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-14T18:51:44.883Z_
+
+<details><summary>↩ Tool result · `toolu_01Qw4ETjCkGTMivVBHxVr2V7`</summary>
+
+```text
+Web search results for query: "Logic-LM Pan Albalak 2023 EMNLP bibtex symbolic solvers"
+
+Links: [{"title":"[2305.12295] Logic-LM: Empowering Large Language Models with Symbolic Solvers for Faithful Logical Reasoning","url":"https://arxiv.org/abs/2305.12295"},{"title":"Logic-LM: Empowering Large Language Models with Symbolic Solvers for Faithful Logical Reasoning - ACL Anthology","url":"https://aclanthology.org/2023.findings-emnlp.248/"},{"title":"GitHub - teacherpeterpan/Logic-LLM: The project page for \"LOGIC-LM: Empowering Large Language Models with Symbolic Solvers for Faithful Logical Reasoning\" · GitHub","url":"https://github.com/teacherpeterpan/Logic-LLM"},{"title":"[PDF] Logic-LM: Empowering Large Language Models with Symbolic Solvers for Faithful Logical Reasoning | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Logic-LM:-Empowering-Large-Language-Models-with-for-Pan-Albalak/9e9e4df2996bac794c4f04cb887df3e553bae4fd"},{"title":"Logic-LM: Empowering Large Language Models with Symbolic Solvers for Faithful Logical Reasoning | OpenReview","url":"https://openreview.net/forum?id=nWXMv949ZH&noteId=qt0t8SsVvT"},{"title":"LOGIC-LM: Empowering Large Language Models with ...","url":"https://aclanthology.org/2023.findings-emnlp.248.pdf"},{"title":"[2305.12295v2] Logic-LM: Empowering Large Language Models with Symbolic Solvers for Faithful Logical Reasoning","url":"https://arxiv.org/abs/2305.12295v2"},{"title":"(PDF) Logic-LM: Empowering Large Language Models with Symbolic Solvers for Faithful Logical Reasoning","url":"https://www.researchgate.net/publication/370948908_Logic-LM_Empowering_Large_Language_Models_with_Symbolic_Solvers_for_Faithful_Logical_Reasoning"},{"title":"Logic-LM: Empowering Large Language Models with Symbolic Solvers for Faithful Logical Reasoning [Quick Review]","url":"https://liner.com/review/logiclm-empowering-large-language-models-with-symbolic-solvers-for-faithful"},{"title":"dblp: Logic-LM: Empowering Large Language Models with Symbolic Solvers for Faithful Logical Reasoning.","url":"https://dblp.org/rec/journals/corr/abs-2305-12295.html"}]
+
+Based on the search results, I found comprehensive information about the Logic-LM paper. Here are the key findings:
+
+## Paper Overview
+
+Logic-LM: Empowering Large Language Models with Symbolic Solvers for Faithful Logical Reasoning was published in Findings of the Association for Computational Linguistics: EMNLP 2023, pages 3806–3824, Singapore.
+
+## Authors
+
+The paper is authored by Liangming Pan, Alon Albalak, Xinyi Wang, and William Wang.
+
+## Key Contribution
+
+The paper introduces a novel framework, Logic-LM, which integrates LLMs with symbolic solvers to improve logical problem-solving. The method first utilizes LLMs to translate a natural language problem into a symbolic formulation. Afterward, a deterministic symbolic solver performs inference on the formulated problem. The paper also introduces a self-refinement module, which utilizes the symbolic solver's error messages to revise symbolic formalizations.
+
+## BibTeX Citation
+
+The official BibTeX entry is:
+@inproceedings{PanLogicLM23, author = {Liangming Pan and Alon Albalak and Xinyi Wang and William Yang Wang}, title = {{Logic-LM:} Empowering Large Language Models with Symbolic Solvers for Faithful Logical Reasoning}, booktitle = {Findings of the 2023 Conference on Empirical Methods in Natural Language Processing (Findings of EMNLP)}, address = {Singapore}, year = {2023}, month = {Dec}, url = {https://arxiv.org/abs/2305.12295}.
+
+## Evaluation
+
+The paper demonstrates Logic-LM's effectiveness on five logical reasoning datasets: ProofWriter, PrOntoQA, FOLIO, LogicalDeduction, and AR-LSAT.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "b5c666c6-c30c-465d-8f2a-73ab1be7d982",
+  "tool_use_result": {
+    "query": "Logic-LM Pan Albalak 2023 EMNLP bibtex symbolic solvers",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01EMUXRcCh3XXBvX4mnjQDwF",
+        "content": [
+          {
+            "title": "[2305.12295] Logic-LM: Empowering Large Language Models with Symbolic Solvers for Faithful Logical Reasoning",
+            "url": "https://arxiv.org/abs/2305.12295"
+          },
+          {
+            "title": "Logic-LM: Empowering Large Language Models with Symbolic Solvers for Faithful Logical Reasoning - ACL Anthology",
+            "url": "https://aclanthology.org/2023.findings-emnlp.248/"
+          },
+          {
+            "title": "GitHub - teacherpeterpan/Logic-LLM: The project page for \"LOGIC-LM: Empowering Large Language Models with Symbolic Solvers for Faithful Logical Reasoning\" · GitHub",
+            "url": "https://github.com/teacherpeterpan/Logic-LLM"
+          },
+          {
+            "title": "[PDF] Logic-LM: Empowering Large Language Models with Symbolic Solvers for Faithful Logical Reasoning | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Logic-LM:-Empowering-Large-Language-Models-with-for-Pan-Albalak/9e9e4df2996bac794c4f04cb887df3e553bae4fd"
+          },
+          {
+            "title": "Logic-LM: Empowering Large Language Models with Symbolic Solvers for Faithful Logical Reasoning | OpenReview",
+            "url": "https://openreview.net/forum?id=nWXMv949ZH&noteId=qt0t8SsVvT"
+          },
+          {
+            "title": "LOGIC-LM: Empowering Large Language Models with ...",
+            "url": "https://aclanthology.org/2023.findings-emnlp.248.pdf"
+          },
+          {
+            "title": "[2305.12295v2] Logic-LM: Empowering Large Language Models with Symbolic Solvers for Faithful Logical Reasoning",
+            "url": "https://arxiv.org/abs/2305.12295v2"
+          },
+          {
+            "title": "(PDF) Logic-LM: Empowering Large Language Models with Symbolic Solvers for Faithful Logical Reasoning",
+            "url": "https://www.researchgate.net/publication/370948908_Logic-LM_Empowering_Large_Language_Models_with_Symbolic_Solvers_for_Faithful_Logical_Reasoning"
+          },
+          {
+            "title": "Logic-LM: Empowering Large Language Models with Symbolic Solvers for Faithful Logical Reasoning [Quick Review]",
+            "url": "https://liner.com/review/logiclm-empowering-large-language-models-with-symbolic-solvers-for-faithful"
+          },
+          {
+            "title": "dblp: Logic-LM: Empowering Large Language Models with Symbolic Solvers for Faithful Logical Reasoning.",
+            "url": "https://dblp.org/rec/journals/corr/abs-2305-12295.html"
+          }
+        ]
+      },
+      "Based on the search results, I found comprehensive information about the Logic-LM paper. Here are the key findings:\n\n## Paper Overview\n\nLogic-LM: Empowering Large Language Models with Symbolic Solvers for Faithful Logical Reasoning was published in Findings of the Association for Computational Linguistics: EMNLP 2023, pages 3806–3824, Singapore.\n\n## Authors\n\nThe paper is authored by Liangming Pan, Alon Albalak, Xinyi Wang, and William Wang.\n\n## Key Contribution\n\nThe paper introduces a novel framework, Logic-LM, which integrates LLMs with symbolic solvers to improve logical problem-solving. The method first utilizes LLMs to translate a natural language problem into a symbolic formulation. Afterward, a deterministic symbolic solver performs inference on the formulated problem. The paper also introduces a self-refinement module, which utilizes the symbolic solver's error messages to revise symbolic formalizations.\n\n## BibTeX Citation\n\nThe official BibTeX entry is:\n@inproceedings{PanLogicLM23, author = {Liangming Pan and Alon Albalak and Xinyi Wang and William Yang Wang}, title = {{Logic-LM:} Empowering Large Language Models with Symbolic Solvers for Faithful Logical Reasoning}, booktitle = {Findings of the 2023 Conference on Empirical Methods in Natural Language Processing (Findings of EMNLP)}, address = {Singapore}, year = {2023}, month = {Dec}, url = {https://arxiv.org/abs/2305.12295}.\n\n## Evaluation\n\nThe paper demonstrates Logic-LM's effectiveness on five logical reasoning datasets: ProofWriter, PrOntoQA, FOLIO, LogicalDeduction, and AR-LSAT."
+    ],
+    "durationSeconds": 6.165438068999996
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-14T18:51:45.071Z_
+
+<details><summary>↩ Tool result · `toolu_01FsfFX7NupKZdxSea9sTGUw`</summary>
+
+```text
+Web search results for query: ""Let's Verify Step by Step" Lightman 2023 bibtex arxiv 2305.20050"
+
+Links: [{"title":"[2305.20050] Let's Verify Step by Step","url":"https://arxiv.org/abs/2305.20050"},{"title":"[PDF] Let's Verify Step by Step | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Let's-Verify-Step-by-Step-Lightman-Kosaraju/be8db99310602d66bba64bcf41a572c45816fbfc"},{"title":"Let's Verify Step by Step","url":"https://www.researchgate.net/publication/371175770_Let's_Verify_Step_by_Step"},{"title":"Paper page - Let's Verify Step by Step","url":"https://huggingface.co/papers/2305.20050"},{"title":"[2305.20050] Let's Verify Step by Step - ar5iv - arXiv","url":"https://ar5iv.labs.arxiv.org/html/2305.20050"},{"title":"GitHub - kyegomez/Lets-Verify-Step-by-Step: \"Improving Mathematical Reasoning with Process Supervision\" by OPENAI · GitHub","url":"https://github.com/kyegomez/Lets-Verify-Step-by-Step"},{"title":"[2305.20050] Let's Verify Step by Step","url":"http://export.arxiv.org/abs/2305.20050"},{"title":"Let's Verify Step by Step | OpenReview","url":"https://openreview.net/forum?id=v8L0pN6EOi"},{"title":"[2305.20050v1] Let's Verify Step by Step","url":"https://arxiv.org/abs/2305.20050v1"},{"title":"Let's Verify Step by Step","url":"https://blog.athina.ai/let-s-verify-step-by-step"}]
+
+I found the paper you're looking for. Here's the BibTeX citation for the paper:
+
+@misc{lightman2023lets, title={Let's Verify Step by Step}, author={Hunter Lightman and Vineet Kosaraju and Yura Burda and Harri Edwards and Bowen Baker and Teddy Lee and Jan Leike and John Schulman and Ilya Sutskever and Karl Cobbe}, year={2023}, eprint={2305.20050}, archivePrefix={arXiv}, primaryClass={cs.LG}}
+
+The paper finds that process supervision significantly outperforms outcome supervision for training models to solve problems from the challenging MATH dataset. The process-supervised model solves 78% of problems from a representative subset of the MATH test set.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "fb33ba1c-1e63-42e5-a608-be5f5ae248ee",
+  "tool_use_result": {
+    "query": "\"Let's Verify Step by Step\" Lightman 2023 bibtex arxiv 2305.20050",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_017KZ5jqKgaGqhHNBYaasM9P",
+        "content": [
+          {
+            "title": "[2305.20050] Let's Verify Step by Step",
+            "url": "https://arxiv.org/abs/2305.20050"
+          },
+          {
+            "title": "[PDF] Let's Verify Step by Step | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Let's-Verify-Step-by-Step-Lightman-Kosaraju/be8db99310602d66bba64bcf41a572c45816fbfc"
+          },
+          {
+            "title": "Let's Verify Step by Step",
+            "url": "https://www.researchgate.net/publication/371175770_Let's_Verify_Step_by_Step"
+          },
+          {
+            "title": "Paper page - Let's Verify Step by Step",
+            "url": "https://huggingface.co/papers/2305.20050"
+          },
+          {
+            "title": "[2305.20050] Let's Verify Step by Step - ar5iv - arXiv",
+            "url": "https://ar5iv.labs.arxiv.org/html/2305.20050"
+          },
+          {
+            "title": "GitHub - kyegomez/Lets-Verify-Step-by-Step: \"Improving Mathematical Reasoning with Process Supervision\" by OPENAI · GitHub",
+            "url": "https://github.com/kyegomez/Lets-Verify-Step-by-Step"
+          },
+          {
+            "title": "[2305.20050] Let's Verify Step by Step",
+            "url": "http://export.arxiv.org/abs/2305.20050"
+          },
+          {
+            "title": "Let's Verify Step by Step | OpenReview",
+            "url": "https://openreview.net/forum?id=v8L0pN6EOi"
+          },
+          {
+            "title": "[2305.20050v1] Let's Verify Step by Step",
+            "url": "https://arxiv.org/abs/2305.20050v1"
+          },
+          {
+            "title": "Let's Verify Step by Step",
+            "url": "https://blog.athina.ai/let-s-verify-step-by-step"
+          }
+        ]
+      },
+      "I found the paper you're looking for. Here's the BibTeX citation for the paper:\n\n@misc{lightman2023lets, title={Let's Verify Step by Step}, author={Hunter Lightman and Vineet Kosaraju and Yura Burda and Harri Edwards and Bowen Baker and Teddy Lee and Jan Leike and John Schulman and Ilya Sutskever and Karl Cobbe}, year={2023}, eprint={2305.20050}, archivePrefix={arXiv}, primaryClass={cs.LG}}\n\nThe paper finds that process supervision significantly outperforms outcome supervision for training models to solve problems from the challenging MATH dataset. The process-supervised model solves 78% of problems from a representative subset of the MATH test set."
+    ],
+    "durationSeconds": 3.862749840999997
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-14T18:51:45.151Z_
+
+<details><summary>↩ Tool result · `toolu_017mHmv42bERwP7QuRBto8hi`</summary>
+
+````text
+Web search results for query: "LINC Olausson 2023 EMNLP neurosymbolic first-order logic provers bibtex"
+
+Links: [{"title":"LINC: A Neurosymbolic Approach for Logical Reasoning by Combining Language Models with First-Order Logic Provers - ACL Anthology","url":"https://aclanthology.org/2023.emnlp-main.313/"},{"title":"[2310.15164] LINC: A Neurosymbolic Approach for Logical Reasoning by Combining Language Models with First-Order Logic Provers","url":"https://arxiv.org/abs/2310.15164"},{"title":"GitHub - benlipkin/linc: 🔗 LINC: Logical Inference via Neurosymbolic Computation [EMNLP2023]","url":"https://github.com/benlipkin/linc"},{"title":"LINC: A Neurosymbolic Approach for Logical Reasoning by Combining Language Models with First-Order Logic Provers | OpenReview","url":"https://openreview.net/forum?id=h00GHjWDEp"},{"title":"[PDF] LINC: A Neurosymbolic Approach for Logical Reasoning by Combining Language Models with First-Order Logic Provers | Semantic Scholar","url":"https://www.semanticscholar.org/paper/LINC:-A-Neurosymbolic-Approach-for-Logical-by-with-Olausson-Gu/66d98dc2aad17c03532dbae21d05f098257cc2e2"},{"title":"LINC: A Neurosymbolic Approach for Logical Reasoning ...","url":"https://aclanthology.org/2023.emnlp-main.313.pdf"},{"title":"LINC: A Neurosymbolic Approach for Logical Reasoning by Combining Language Models with First-Order Logic Provers","url":"https://www.researchgate.net/publication/376394657_LINC_A_Neurosymbolic_Approach_for_Logical_Reasoning_by_Combining_Language_Models_with_First-Order_Logic_Provers"},{"title":"[2310.15164v2] LINC: A Neurosymbolic Approach for Logical Reasoning by Combining Language Models with First-Order Logic Provers","url":"https://arxiv.org/abs/2310.15164v2"},{"title":"LINC: A Neurosymbolic Approach for Logical Reasoning by Combining Language Models with First-Order Logic Provers","url":"https://bibbase.org/network/publication/olausson-gu-lipkin-zhang-solarlezama-tenenbaum-levy-lincaneurosymbolicapproachforlogicalreasoningbycombininglanguagemodelswithfirstorderlogicprovers-2023"},{"title":"LINC: Neurosymbolic Logical Reasoning | PDF","url":"https://www.scribd.com/document/712225566/LINC-A-Neurosymbolic-Approach-for-Logical-Reasoning-by-Combining-Language-Models-with-First-Order-Logic-Provers-Theo-X-Olausson-et-al-2023-v2"}]
+
+I found the LINC paper and relevant sources. Here's the information about the paper:
+
+## Paper Information
+
+LINC: A Neurosymbolic Approach for Logical Reasoning by Combining Language Models with First-Order Logic Provers was authored by Theo Olausson, Alex Gu, Ben Lipkin, Cedegao Zhang, Armando Solar-Lezama, Joshua Tenenbaum, and Roger Levy, and appeared in the Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing, pages 5153–5176, Singapore.
+
+## BibTeX Format
+
+Here is the BibTeX entry for the paper from the ACL Anthology:
+
+```bibtex
+@inproceedings{olausson-etal-2023-linc,
+  title={LINC: A Neurosymbolic Approach for Logical Reasoning by Combining Language Models with First-Order Logic Provers},
+  author={Olausson, Theo and Gu, Alex and Lipkin, Ben and Zhang, Cedegao and Solar-Lezama, Armando and Tenenbaum, Joshua and Levy, Roger},
+  booktitle={Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing},
+  pages={5153--5176},
+  year={2023},
+  address={Singapore},
+  doi={10.18653/v1/2023.emnlp-main.313}
+}
+```
+
+## Paper Summary
+
+The paper investigates modular neurosymbolic programming called LINC: Logical Inference via Neurosymbolic Computation, where the LLM acts as a semantic parser, translating premises and conclusions from natural language to expressions in first-order logic, which are then offloaded to an external theorem prover for symbolic deductive inference.
+
+The paper is available at the ACL Anthology (https://aclanthology.org/2023.emnlp-main.313/) and on arXiv (https://arxiv.org/abs/2310.15164).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "a80d0011-8752-4d9f-9456-2f97afee169a",
+  "tool_use_result": {
+    "query": "LINC Olausson 2023 EMNLP neurosymbolic first-order logic provers bibtex",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0145ysBTguG3CusLgm6LM77N",
+        "content": [
+          {
+            "title": "LINC: A Neurosymbolic Approach for Logical Reasoning by Combining Language Models with First-Order Logic Provers - ACL Anthology",
+            "url": "https://aclanthology.org/2023.emnlp-main.313/"
+          },
+          {
+            "title": "[2310.15164] LINC: A Neurosymbolic Approach for Logical Reasoning by Combining Language Models with First-Order Logic Provers",
+            "url": "https://arxiv.org/abs/2310.15164"
+          },
+          {
+            "title": "GitHub - benlipkin/linc: 🔗 LINC: Logical Inference via Neurosymbolic Computation [EMNLP2023]",
+            "url": "https://github.com/benlipkin/linc"
+          },
+          {
+            "title": "LINC: A Neurosymbolic Approach for Logical Reasoning by Combining Language Models with First-Order Logic Provers | OpenReview",
+            "url": "https://openreview.net/forum?id=h00GHjWDEp"
+          },
+          {
+            "title": "[PDF] LINC: A Neurosymbolic Approach for Logical Reasoning by Combining Language Models with First-Order Logic Provers | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/LINC:-A-Neurosymbolic-Approach-for-Logical-by-with-Olausson-Gu/66d98dc2aad17c03532dbae21d05f098257cc2e2"
+          },
+          {
+            "title": "LINC: A Neurosymbolic Approach for Logical Reasoning ...",
+            "url": "https://aclanthology.org/2023.emnlp-main.313.pdf"
+          },
+          {
+            "title": "LINC: A Neurosymbolic Approach for Logical Reasoning by Combining Language Models with First-Order Logic Provers",
+            "url": "https://www.researchgate.net/publication/376394657_LINC_A_Neurosymbolic_Approach_for_Logical_Reasoning_by_Combining_Language_Models_with_First-Order_Logic_Provers"
+          },
+          {
+            "title": "[2310.15164v2] LINC: A Neurosymbolic Approach for Logical Reasoning by Combining Language Models with First-Order Logic Provers",
+            "url": "https://arxiv.org/abs/2310.15164v2"
+          },
+          {
+            "title": "LINC: A Neurosymbolic Approach for Logical Reasoning by Combining Language Models with First-Order Logic Provers",
+            "url": "https://bibbase.org/network/publication/olausson-gu-lipkin-zhang-solarlezama-tenenbaum-levy-lincaneurosymbolicapproachforlogicalreasoningbycombininglanguagemodelswithfirstorderlogicprovers-2023"
+          },
+          {
+            "title": "LINC: Neurosymbolic Logical Reasoning | PDF",
+            "url": "https://www.scribd.com/document/712225566/LINC-A-Neurosymbolic-Approach-for-Logical-Reasoning-by-Combining-Language-Models-with-First-Order-Logic-Provers-Theo-X-Olausson-et-al-2023-v2"
+          }
+        ]
+      },
+      "I found the LINC paper and relevant sources. Here's the information about the paper:\n\n## Paper Information\n\nLINC: A Neurosymbolic Approach for Logical Reasoning by Combining Language Models with First-Order Logic Provers was authored by Theo Olausson, Alex Gu, Ben Lipkin, Cedegao Zhang, Armando Solar-Lezama, Joshua Tenenbaum, and Roger Levy, and appeared in the Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing, pages 5153–5176, Singapore.\n\n## BibTeX Format\n\nHere is the BibTeX entry for the paper from the ACL Anthology:\n\n```bibtex\n@inproceedings{olausson-etal-2023-linc,\n  title={LINC: A Neurosymbolic Approach for Logical Reasoning by Combining Language Models with First-Order Logic Provers},\n  author={Olausson, Theo and Gu, Alex and Lipkin, Ben and Zhang, Cedegao and Solar-Lezama, Armando and Tenenbaum, Joshua and Levy, Roger},\n  booktitle={Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing},\n  pages={5153--5176},\n  year={2023},\n  address={Singapore},\n  doi={10.18653/v1/2023.emnlp-main.313}\n}\n```\n\n## Paper Summary\n\nThe paper investigates modular neurosymbolic programming called LINC: Logical Inference via Neurosymbolic Computation, where the LLM acts as a semantic parser, translating premises and conclusions from natural language to expressions in first-order logic, which are then offloaded to an external theorem prover for symbolic deductive inference.\n\nThe paper is available at the ACL Anthology (https://aclanthology.org/2023.emnlp-main.313/) and on arXiv (https://arxiv.org/abs/2310.15164)."
+    ],
+    "durationSeconds": 5.959567827000006
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-14T18:51:45.371Z_
+
+<details><summary>↩ Tool result · `toolu_012vU2fiD5eLahMKXWn4m7Dc`</summary>
+
+````text
+Web search results for query: "SatLM Ye 2023 NeurIPS satisfiability-aided language models bibtex"
+
+Links: [{"title":"[2305.09656] SatLM: Satisfiability-Aided Language Models Using Declarative Prompting","url":"https://arxiv.org/abs/2305.09656"},{"title":"SatLM: Satisfiability-Aided Language Models Using Declarative Prompting","url":"https://proceedings.neurips.cc//paper_files/paper/2023/hash/8e9c7d4a48bdac81a58f983a64aaf42b-Abstract-Conference.html"},{"title":"SATLM: Satisfiability-Aided Language Models Using Declarative Prompting Xi Ye","url":"https://proceedings.neurips.cc/paper_files/paper/2023/file/8e9c7d4a48bdac81a58f983a64aaf42b-Paper-Conference.pdf"},{"title":"NeurIPS SatLM: Satisfiability-Aided Language Models Using Declarative Prompting","url":"https://neurips.cc/virtual/2023/74998"},{"title":"SATLM: Satisfiability-Aided Language Models Using Declarative Prompting Xi Ye","url":"https://mathai2023.github.io/papers/32.pdf"},{"title":"SatLM: Satisfiability-Aided Language Models Using Declarative Prompting (Conference Paper) | NSF PAGES","url":"https://par.nsf.gov/biblio/10516570-satlm-satisfiability-aided-language-models-using-declarative-prompting"},{"title":"SatLM: Satisfiability-Aided Language Models Using Declarative Prompting - ADS","url":"https://ui.adsabs.harvard.edu/abs/2023arXiv230509656Y/abstract"},{"title":"GitHub - xiye17/SAT-LM: SatLM: SATisfiability-Aided Language Models using Declarative Prompting (NeurIPS 2023)","url":"https://github.com/xiye17/sat-lm"},{"title":"SatLM: Satisfiability-Aided Language Models Using Declarative Prompting | OpenReview","url":"https://openreview.net/forum?id=8tt9KxyV2s"},{"title":"NeurIPS Poster SatLM: Satisfiability-Aided Language Models Using Declarative Prompting","url":"https://nips.cc/virtual/2023/poster/71537"}]
+
+I found the paper and bibtex information for SatLM. Here's what I found:
+
+## Paper Information
+
+The paper "SatLM: Satisfiability-Aided Language Models Using Declarative Prompting" was written by Xi Ye, Qiaochu Chen, Isil Dillig, and Greg Durrett, and published at Advances in Neural Information Processing Systems 36 (NeurIPS 2023) Main Conference Track.
+
+## BibTeX Citation
+
+The official BibTeX citation is:
+
+```
+@InProceedings{Ye-Et-Al:2023:SAT,
+  title = {SatLM: Satisfiability-Aided Language Models Using Declarative Prompting},
+  author = {Xi Ye and Qiaochu Chen and Isil Dillig and Greg Durrett},
+  booktitle = {Proceedings of NeurIPS},
+  year = {2023},
+}
+```
+
+
+## Paper Summary
+
+The paper proposes a satisfiability-aided language modeling (SatLM) approach that uses an LLM to generate a declarative task specification rather than an imperative program and leverages an off-the-shelf automated theorem prover to derive the final answer. The evaluation shows it consistently outperforms program-aided LMs, with 23% improvement on a challenging subset of the GSM arithmetic reasoning dataset, and achieves state-of-the-art results on LSAT and BoardgameQA.
+
+You can also access the official NeurIPS proceedings page and the arXiv paper (2305.09656) for more details.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "9a80590d-4960-4515-89a9-63faf2e503d1",
+  "tool_use_result": {
+    "query": "SatLM Ye 2023 NeurIPS satisfiability-aided language models bibtex",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01PMHfNUehvEGhadQNtFw7o6",
+        "content": [
+          {
+            "title": "[2305.09656] SatLM: Satisfiability-Aided Language Models Using Declarative Prompting",
+            "url": "https://arxiv.org/abs/2305.09656"
+          },
+          {
+            "title": "SatLM: Satisfiability-Aided Language Models Using Declarative Prompting",
+            "url": "https://proceedings.neurips.cc//paper_files/paper/2023/hash/8e9c7d4a48bdac81a58f983a64aaf42b-Abstract-Conference.html"
+          },
+          {
+            "title": "SATLM: Satisfiability-Aided Language Models Using Declarative Prompting Xi Ye",
+            "url": "https://proceedings.neurips.cc/paper_files/paper/2023/file/8e9c7d4a48bdac81a58f983a64aaf42b-Paper-Conference.pdf"
+          },
+          {
+            "title": "NeurIPS SatLM: Satisfiability-Aided Language Models Using Declarative Prompting",
+            "url": "https://neurips.cc/virtual/2023/74998"
+          },
+          {
+            "title": "SATLM: Satisfiability-Aided Language Models Using Declarative Prompting Xi Ye",
+            "url": "https://mathai2023.github.io/papers/32.pdf"
+          },
+          {
+            "title": "SatLM: Satisfiability-Aided Language Models Using Declarative Prompting (Conference Paper) | NSF PAGES",
+            "url": "https://par.nsf.gov/biblio/10516570-satlm-satisfiability-aided-language-models-using-declarative-prompting"
+          },
+          {
+            "title": "SatLM: Satisfiability-Aided Language Models Using Declarative Prompting - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2023arXiv230509656Y/abstract"
+          },
+          {
+            "title": "GitHub - xiye17/SAT-LM: SatLM: SATisfiability-Aided Language Models using Declarative Prompting (NeurIPS 2023)",
+            "url": "https://github.com/xiye17/sat-lm"
+          },
+          {
+            "title": "SatLM: Satisfiability-Aided Language Models Using Declarative Prompting | OpenReview",
+            "url": "https://openreview.net/forum?id=8tt9KxyV2s"
+          },
+          {
+            "title": "NeurIPS Poster SatLM: Satisfiability-Aided Language Models Using Declarative Prompting",
+            "url": "https://nips.cc/virtual/2023/poster/71537"
+          }
+        ]
+      },
+      "I found the paper and bibtex information for SatLM. Here's what I found:\n\n## Paper Information\n\nThe paper \"SatLM: Satisfiability-Aided Language Models Using Declarative Prompting\" was written by Xi Ye, Qiaochu Chen, Isil Dillig, and Greg Durrett, and published at Advances in Neural Information Processing Systems 36 (NeurIPS 2023) Main Conference Track.\n\n## BibTeX Citation\n\nThe official BibTeX citation is:\n\n```\n@InProceedings{Ye-Et-Al:2023:SAT,\n  title = {SatLM: Satisfiability-Aided Language Models Using Declarative Prompting},\n  author = {Xi Ye and Qiaochu Chen and Isil Dillig and Greg Durrett},\n  booktitle = {Proceedings of NeurIPS},\n  year = {2023},\n}\n```\n\n\n## Paper Summary\n\nThe paper proposes a satisfiability-aided language modeling (SatLM) approach that uses an LLM to generate a declarative task specification rather than an imperative program and leverages an off-the-shelf automated theorem prover to derive the final answer. The evaluation shows it consistently outperforms program-aided LMs, with 23% improvement on a challenging subset of the GSM arithmetic reasoning dataset, and achieves state-of-the-art results on LSAT and BoardgameQA.\n\nYou can also access the official NeurIPS proceedings page and the arXiv paper (2305.09656) for more details."
+    ],
+    "durationSeconds": 5.682240789000003
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-14T18:51:46.499Z_
+
+<details><summary>↩ Tool result · `toolu_019bAcA81XhzV5vUgTgSSPY7`</summary>
+
+````text
+Web search results for query: "Mellgren 2024 "Training Language Models to Use Prolog" arxiv 2512.07407 bibtex"
+
+Links: [{"title":"[2512.07407] Training Language Models to Use Prolog as a Tool","url":"https://arxiv.org/abs/2512.07407"},{"title":"Training Language Models to Use Prolog as a Tool Niklas Mellgren","url":"https://arxiv.org/pdf/2512.07407"},{"title":"Training Language Models to Use Prolog as a Tool","url":"https://arxiv.org/html/2512.07407v1"},{"title":"Thought-Like-Pro: Enhancing Reasoning of Large Language Models through Self-Driven Prolog-based Chain-of-Though","url":"https://arxiv.org/html/2407.14562v1"},{"title":"Computation and Language Apr 2026","url":"https://arxiv.org/list/cs.CL/current?skip=35&show=2000"},{"title":"[2409.11589] ProSLM : A Prolog Synergized Language Model for explainable Domain Specific Knowledge Based Question Answering","url":"https://arxiv.org/abs/2409.11589"},{"title":"[2403.07407] In-context learning enables multimodal large language models to classify cancer pathology images","url":"https://arxiv.org/abs/2403.07407"},{"title":"Thought-Like-Pro: Enhancing Reasoning of Large Language Models through Self-Driven Prolog-based Chain-of-Thought","url":"https://arxiv.org/html/2407.14562"},{"title":"Recursive Language Models","url":"https://arxiv.org/html/2512.24601v2"},{"title":"Recursive Language Models Alex L. Zhang 1 Tim Kraska 1 Omar Khattab 1 Abstract","url":"https://arxiv.org/pdf/2512.24601"}]
+
+I found the paper! The paper is titled "Training Language Models to Use Prolog as a Tool" by Niklas Mellgren, Peter Schneider-Kamp, and Lukas Galke Poech. The arxiv identifier is 2512.07407.
+
+However, the search results don't contain the bibtex citation format. To get the bibtex entry, you can typically access it directly from the arXiv page. You can visit:
+- https://arxiv.org/abs/2512.07407 and look for a "BibTeX" link in the abstract page sidebar
+
+The bibtex entry would generally follow this format based on the paper information:
+
+```
+@article{Mellgren2025,
+  title={Training Language Models to Use Prolog as a Tool},
+  author={Mellgren, Niklas and Schneider-Kamp, Peter and Galke Poech, Lukas},
+  journal={arXiv preprint arXiv:2512.07407},
+  year={2025}
+}
+```
+
+Note: The paper was submitted in December 2025 (not 2024), so you may want to adjust the year accordingly depending on your needs.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "407e5ec9-1aff-4e61-9971-02ef93539139",
+  "tool_use_result": {
+    "query": "Mellgren 2024 \"Training Language Models to Use Prolog\" arxiv 2512.07407 bibtex",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_015eezemyPf4HJ4XM59nw2en",
+        "content": [
+          {
+            "title": "[2512.07407] Training Language Models to Use Prolog as a Tool",
+            "url": "https://arxiv.org/abs/2512.07407"
+          },
+          {
+            "title": "Training Language Models to Use Prolog as a Tool Niklas Mellgren",
+            "url": "https://arxiv.org/pdf/2512.07407"
+          },
+          {
+            "title": "Training Language Models to Use Prolog as a Tool",
+            "url": "https://arxiv.org/html/2512.07407v1"
+          },
+          {
+            "title": "Thought-Like-Pro: Enhancing Reasoning of Large Language Models through Self-Driven Prolog-based Chain-of-Though",
+            "url": "https://arxiv.org/html/2407.14562v1"
+          },
+          {
+            "title": "Computation and Language Apr 2026",
+            "url": "https://arxiv.org/list/cs.CL/current?skip=35&show=2000"
+          },
+          {
+            "title": "[2409.11589] ProSLM : A Prolog Synergized Language Model for explainable Domain Specific Knowledge Based Question Answering",
+            "url": "https://arxiv.org/abs/2409.11589"
+          },
+          {
+            "title": "[2403.07407] In-context learning enables multimodal large language models to classify cancer pathology images",
+            "url": "https://arxiv.org/abs/2403.07407"
+          },
+          {
+            "title": "Thought-Like-Pro: Enhancing Reasoning of Large Language Models through Self-Driven Prolog-based Chain-of-Thought",
+            "url": "https://arxiv.org/html/2407.14562"
+          },
+          {
+            "title": "Recursive Language Models",
+            "url": "https://arxiv.org/html/2512.24601v2"
+          },
+          {
+            "title": "Recursive Language Models Alex L. Zhang 1 Tim Kraska 1 Omar Khattab 1 Abstract",
+            "url": "https://arxiv.org/pdf/2512.24601"
+          }
+        ]
+      },
+      "I found the paper! The paper is titled \"Training Language Models to Use Prolog as a Tool\" by Niklas Mellgren, Peter Schneider-Kamp, and Lukas Galke Poech. The arxiv identifier is 2512.07407.\n\nHowever, the search results don't contain the bibtex citation format. To get the bibtex entry, you can typically access it directly from the arXiv page. You can visit:\n- https://arxiv.org/abs/2512.07407 and look for a \"BibTeX\" link in the abstract page sidebar\n\nThe bibtex entry would generally follow this format based on the paper information:\n\n```\n@article{Mellgren2025,\n  title={Training Language Models to Use Prolog as a Tool},\n  author={Mellgren, Niklas and Schneider-Kamp, Peter and Galke Poech, Lukas},\n  journal={arXiv preprint arXiv:2512.07407},\n  year={2025}\n}\n```\n\nNote: The paper was submitted in December 2025 (not 2024), so you may want to adjust the year accordingly depending on your needs."
+    ],
+    "durationSeconds": 5.560422796999999
+  }
+}
+````
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I have the first batch. Let me continue with more searches.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "c8f3383b-e2e6-4cc7-b484-a278bc470c17",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HxZm4sCQauXis8YBSqFLjx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 719,
+      "cache_creation_input_tokens": 6671,
+      "cache_read_input_tokens": 49512,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6671
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01YSuftBLKorp5xSZBSWQfxQ`</summary>
+
+```json
+{
+  "query": "\"Scaling Laws for Reward Model Overoptimization\" Gao Schulman 2023 ICML bibtex arxiv 2210.10760"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "8e3e6a12-15a1-4d27-821d-d98c01e690e6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HxZm4sCQauXis8YBSqFLjx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 719,
+      "cache_creation_input_tokens": 6671,
+      "cache_read_input_tokens": 49512,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6671
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012AGjcuu2cJiqkNbd88eUJq`</summary>
+
+```json
+{
+  "query": "Karwowski \"Goodhart's Law in Reinforcement Learning\" 2024 ICLR bibtex arxiv 2310.09144"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "4bf420d3-1f8d-41c6-a584-3f1fa07c75c3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HxZm4sCQauXis8YBSqFLjx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 719,
+      "cache_creation_input_tokens": 6671,
+      "cache_read_input_tokens": 49512,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6671
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TwBrwVwTic6jhxE1FJUB2w`</summary>
+
+```json
+{
+  "query": "Manheim Garrabrant \"Categorizing Variants of Goodhart's Law\" 2019 bibtex arxiv 1803.04585"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "7dabf1bc-3fad-426c-a372-4acc8be490fb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HxZm4sCQauXis8YBSqFLjx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 719,
+      "cache_creation_input_tokens": 6671,
+      "cache_read_input_tokens": 49512,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6671
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MARACD8Rr71hQoTqzHPrJU`</summary>
+
+```json
+{
+  "query": "Skalse \"Defining and Characterizing Reward Hacking\" 2022 NeurIPS bibtex arxiv 2209.13085"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "cb966aee-c14f-4783-abb4-85d363f3b947",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HxZm4sCQauXis8YBSqFLjx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 719,
+      "cache_creation_input_tokens": 6671,
+      "cache_read_input_tokens": 49512,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6671
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01G6Q65P6hSy6KMrMVHR5xmR`</summary>
+
+```json
+{
+  "query": "Pan Bhatia Steinhardt \"Effects of Reward Misspecification\" 2022 ICLR bibtex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "fdccdc44-df52-430c-b49b-2d69113d09da",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HxZm4sCQauXis8YBSqFLjx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 719,
+      "cache_creation_input_tokens": 6671,
+      "cache_read_input_tokens": 49512,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6671
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016QBHeKVMP45cgVQ2Fa2HR4`</summary>
+
+```json
+{
+  "query": "DeMillo Lipton Sayward 1978 \"Hints on Test Data Selection\" mutation testing bibtex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "6dace924-c99f-4e40-92ec-fe1491e1b6f7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HxZm4sCQauXis8YBSqFLjx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 719,
+      "cache_creation_input_tokens": 6671,
+      "cache_read_input_tokens": 49512,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6671
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-14T18:51:57.029Z_
+
+<details><summary>↩ Tool result · `toolu_01YSuftBLKorp5xSZBSWQfxQ`</summary>
+
+````text
+Web search results for query: ""Scaling Laws for Reward Model Overoptimization" Gao Schulman 2023 ICML bibtex arxiv 2210.10760"
+
+Links: [{"title":"Scaling laws for reward model overoptimization | Proceedings of the 40th International Conference on Machine Learning","url":"https://dl.acm.org/doi/10.5555/3618408.3618845"},{"title":"Scaling Laws for Reward Model Overoptimization","url":"https://proceedings.mlr.press/v202/gao23h.html"},{"title":"[2210.10760] Scaling Laws for Reward Model Overoptimization","url":"https://arxiv.org/abs/2210.10760"},{"title":"[PDF] Scaling Laws for Reward Model Overoptimization | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Scaling-Laws-for-Reward-Model-Overoptimization-Gao-Schulman/fb3dc5e20e0a71134ca916f0d6d8d41f01225b4b"},{"title":"Scaling Laws for Reward Model Overoptimization","url":"https://www.researchgate.net/publication/364436070_Scaling_Laws_for_Reward_Model_Overoptimization"},{"title":"Scaling Laws for Reward Model Overoptimization - ADS","url":"https://ui.adsabs.harvard.edu/abs/2022arXiv221010760G/abstract"},{"title":"Scaling Laws for Reward Model Overoptimization in Direct Alignment Algorithms","url":"https://proceedings.neurips.cc/paper_files/paper/2024/file/e45caa3d5273d105b8d045e748636957-Paper-Conference.pdf"},{"title":"Scaling Laws for Reward Model Overoptimization Leo Gao OpenAI John Schulman","url":"https://arxiv.org/pdf/2210.10760"},{"title":"ICML Poster Scaling Laws for Reward Model Overoptimization","url":"https://icml.cc/virtual/2023/poster/24924"},{"title":"Scaling Laws for Reward Model Overoptimization - researchr publication","url":"https://researchr.org/publication/GaoSH23"}]
+
+Perfect! I found comprehensive information about this paper. Here are the key details:
+
+## Paper Information
+
+**Title:** Scaling Laws for Reward Model Overoptimization
+
+**Authors:** Leo Gao, John Schulman, and Jacob Hilton
+
+**Conference:** Proceedings of the 40th International Conference on Machine Learning (ICML 2023)
+
+**Publication Details:** Pages 10835--10866, published 23--29 July 2023
+
+**ArXiv ID:** 2210.10760 (submitted October 19, 2022)
+
+## BibTeX Citation
+
+Here's the BibTeX entry for the paper:
+
+```bibtex
+@InProceedings{pmlr-v202-gao23h,
+  title = {Scaling Laws for Reward Model Overoptimization},
+  author = {Gao, Leo and Schulman, John and Hilton, Jacob},
+  booktitle = {Proceedings of the 40th International Conference on Machine Learning},
+  pages = {10835--10866},
+  year = {2023},
+  editor = {Krause, Andreas and Brunskill, Emma and Cho, Kyunghyun and Engelhardt, Barbara and Sabato, Sivan and Scarlett, Jonathan},
+  volume = {202},
+  series = {Proceedings of Machine Learning Research},
+  month = {23--29 Jul},
+  publisher = {PMLR},
+  url = {https://proceedings.mlr.press/v202/gao23h.html}
+}
+```
+
+## Paper Summary
+
+The paper uses a synthetic setup where a fixed "gold-standard" reward model plays the role of humans, and studies how the gold reward model score changes as optimization occurs against a proxy reward model using either reinforcement learning or best-of-n sampling. The relationship follows different functional forms depending on the optimization method, with coefficients scaling smoothly with reward model parameters.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "42ca2e3d-856a-474e-8cc1-11b4da311d3e",
+  "tool_use_result": {
+    "query": "\"Scaling Laws for Reward Model Overoptimization\" Gao Schulman 2023 ICML bibtex arxiv 2210.10760",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Sp4u1eHfQ91NtjxMmSUg2x",
+        "content": [
+          {
+            "title": "Scaling laws for reward model overoptimization | Proceedings of the 40th International Conference on Machine Learning",
+            "url": "https://dl.acm.org/doi/10.5555/3618408.3618845"
+          },
+          {
+            "title": "Scaling Laws for Reward Model Overoptimization",
+            "url": "https://proceedings.mlr.press/v202/gao23h.html"
+          },
+          {
+            "title": "[2210.10760] Scaling Laws for Reward Model Overoptimization",
+            "url": "https://arxiv.org/abs/2210.10760"
+          },
+          {
+            "title": "[PDF] Scaling Laws for Reward Model Overoptimization | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Scaling-Laws-for-Reward-Model-Overoptimization-Gao-Schulman/fb3dc5e20e0a71134ca916f0d6d8d41f01225b4b"
+          },
+          {
+            "title": "Scaling Laws for Reward Model Overoptimization",
+            "url": "https://www.researchgate.net/publication/364436070_Scaling_Laws_for_Reward_Model_Overoptimization"
+          },
+          {
+            "title": "Scaling Laws for Reward Model Overoptimization - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2022arXiv221010760G/abstract"
+          },
+          {
+            "title": "Scaling Laws for Reward Model Overoptimization in Direct Alignment Algorithms",
+            "url": "https://proceedings.neurips.cc/paper_files/paper/2024/file/e45caa3d5273d105b8d045e748636957-Paper-Conference.pdf"
+          },
+          {
+            "title": "Scaling Laws for Reward Model Overoptimization Leo Gao OpenAI John Schulman",
+            "url": "https://arxiv.org/pdf/2210.10760"
+          },
+          {
+            "title": "ICML Poster Scaling Laws for Reward Model Overoptimization",
+            "url": "https://icml.cc/virtual/2023/poster/24924"
+          },
+          {
+            "title": "Scaling Laws for Reward Model Overoptimization - researchr publication",
+            "url": "https://researchr.org/publication/GaoSH23"
+          }
+        ]
+      },
+      "Perfect! I found comprehensive information about this paper. Here are the key details:\n\n## Paper Information\n\n**Title:** Scaling Laws for Reward Model Overoptimization\n\n**Authors:** Leo Gao, John Schulman, and Jacob Hilton\n\n**Conference:** Proceedings of the 40th International Conference on Machine Learning (ICML 2023)\n\n**Publication Details:** Pages 10835--10866, published 23--29 July 2023\n\n**ArXiv ID:** 2210.10760 (submitted October 19, 2022)\n\n## BibTeX Citation\n\nHere's the BibTeX entry for the paper:\n\n```bibtex\n@InProceedings{pmlr-v202-gao23h,\n  title = {Scaling Laws for Reward Model Overoptimization},\n  author = {Gao, Leo and Schulman, John and Hilton, Jacob},\n  booktitle = {Proceedings of the 40th International Conference on Machine Learning},\n  pages = {10835--10866},\n  year = {2023},\n  editor = {Krause, Andreas and Brunskill, Emma and Cho, Kyunghyun and Engelhardt, Barbara and Sabato, Sivan and Scarlett, Jonathan},\n  volume = {202},\n  series = {Proceedings of Machine Learning Research},\n  month = {23--29 Jul},\n  publisher = {PMLR},\n  url = {https://proceedings.mlr.press/v202/gao23h.html}\n}\n```\n\n## Paper Summary\n\nThe paper uses a synthetic setup where a fixed \"gold-standard\" reward model plays the role of humans, and studies how the gold reward model score changes as optimization occurs against a proxy reward model using either reinforcement learning or best-of-n sampling. The relationship follows different functional forms depending on the optimization method, with coefficients scaling smoothly with reward model parameters."
+    ],
+    "durationSeconds": 6.213642294000005
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-14T18:51:58.631Z_
+
+<details><summary>↩ Tool result · `toolu_01TwBrwVwTic6jhxE1FJUB2w`</summary>
+
+```text
+Web search results for query: "Manheim Garrabrant "Categorizing Variants of Goodhart's Law" 2019 bibtex arxiv 1803.04585"
+
+Links: [{"title":"[1803.04585] Categorizing Variants of Goodhart's Law","url":"https://arxiv.org/abs/1803.04585"},{"title":"Categorizing Variants of Goodhart's Law","url":"https://arxiv.org/pdf/1803.04585"},{"title":"(PDF) Categorizing Variants of Goodhart's Law","url":"https://www.researchgate.net/publication/323747167_Categorizing_Variants_of_Goodhart's_Law"},{"title":"[PDF] Categorizing Variants of Goodhart's Law | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Categorizing-Variants-of-Goodhart's-Law-Manheim-Garrabrant/80939dd8a5cad405053c88ed856c28791bdc0582"},{"title":"David Manheim | IDEAS/RePEc","url":"https://ideas.repec.org/f/pma2620.html"},{"title":"[1803.04585v1] Categorizing Variants of Goodhart's Law","url":"https://arxiv.org/abs/1803.04585v1"},{"title":"[1803.04585v3] Categorizing Variants of Goodhart's Law","url":"https://arxiv.org/abs/1803.04585v3"},{"title":"Categorizing Variants of Goodhart's Law - ADS","url":"https://ui.adsabs.harvard.edu/abs/2018arXiv180304585M/abstract"},{"title":"Goodhart’s Law and the Death of Honest Metrics | by Claus Rainer Anton Nisslmüller | Medium","url":"https://medium.com/@claus.nisslmueller/goodharts-law-and-the-death-of-honest-metrics-e08cc756f93a"},{"title":"dblp: Categorizing Variants of Goodhart's Law.","url":"https://dblp.uni-trier.de/rec/journals/corr/abs-1803-04585.html"}]
+
+I found the paper you're looking for. Here's the information about it:
+
+**Paper Details:**
+@article{Manheim2018CategorizingVO, title={Categorizing Variants of Goodhart's Law}, author={David Manheim and Scott Garrabrant}, journal={ArXiv}, year={2018}, volume={abs/1803.04585}
+
+**Full Citation (including revised date):**
+"Categorizing Variants of Goodhart's Law," Papers 1803.04585, arXiv.org, revised Feb 2019
+
+**Abstract:**
+The paper examines several distinct failure modes for overoptimization of systems on the basis of metrics, which occurs when a metric used to improve a system is used to an extent that further optimization is ineffective or harmful, and is sometimes termed Goodhart's Law. The paper expands on an earlier discussion by Garrabrant, which notes there are "(at least) four different mechanisms" that relate to Goodhart's Law, and explores these mechanisms further to specify more clearly how they occur.
+
+The paper is available on arXiv at: https://arxiv.org/abs/1803.04585
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "284d0858-e002-4674-9533-779716fceb3b",
+  "tool_use_result": {
+    "query": "Manheim Garrabrant \"Categorizing Variants of Goodhart's Law\" 2019 bibtex arxiv 1803.04585",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_013WzrsBmBPqUZ8gNjLXPu93",
+        "content": [
+          {
+            "title": "[1803.04585] Categorizing Variants of Goodhart's Law",
+            "url": "https://arxiv.org/abs/1803.04585"
+          },
+          {
+            "title": "Categorizing Variants of Goodhart's Law",
+            "url": "https://arxiv.org/pdf/1803.04585"
+          },
+          {
+            "title": "(PDF) Categorizing Variants of Goodhart's Law",
+            "url": "https://www.researchgate.net/publication/323747167_Categorizing_Variants_of_Goodhart's_Law"
+          },
+          {
+            "title": "[PDF] Categorizing Variants of Goodhart's Law | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Categorizing-Variants-of-Goodhart's-Law-Manheim-Garrabrant/80939dd8a5cad405053c88ed856c28791bdc0582"
+          },
+          {
+            "title": "David Manheim | IDEAS/RePEc",
+            "url": "https://ideas.repec.org/f/pma2620.html"
+          },
+          {
+            "title": "[1803.04585v1] Categorizing Variants of Goodhart's Law",
+            "url": "https://arxiv.org/abs/1803.04585v1"
+          },
+          {
+            "title": "[1803.04585v3] Categorizing Variants of Goodhart's Law",
+            "url": "https://arxiv.org/abs/1803.04585v3"
+          },
+          {
+            "title": "Categorizing Variants of Goodhart's Law - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2018arXiv180304585M/abstract"
+          },
+          {
+            "title": "Goodhart’s Law and the Death of Honest Metrics | by Claus Rainer Anton Nisslmüller | Medium",
+            "url": "https://medium.com/@claus.nisslmueller/goodharts-law-and-the-death-of-honest-metrics-e08cc756f93a"
+          },
+          {
+            "title": "dblp: Categorizing Variants of Goodhart's Law.",
+            "url": "https://dblp.uni-trier.de/rec/journals/corr/abs-1803-04585.html"
+          }
+        ]
+      },
+      "I found the paper you're looking for. Here's the information about it:\n\n**Paper Details:**\n@article{Manheim2018CategorizingVO, title={Categorizing Variants of Goodhart's Law}, author={David Manheim and Scott Garrabrant}, journal={ArXiv}, year={2018}, volume={abs/1803.04585}\n\n**Full Citation (including revised date):**\n\"Categorizing Variants of Goodhart's Law,\" Papers 1803.04585, arXiv.org, revised Feb 2019\n\n**Abstract:**\nThe paper examines several distinct failure modes for overoptimization of systems on the basis of metrics, which occurs when a metric used to improve a system is used to an extent that further optimization is ineffective or harmful, and is sometimes termed Goodhart's Law. The paper expands on an earlier discussion by Garrabrant, which notes there are \"(at least) four different mechanisms\" that relate to Goodhart's Law, and explores these mechanisms further to specify more clearly how they occur.\n\nThe paper is available on arXiv at: https://arxiv.org/abs/1803.04585"
+    ],
+    "durationSeconds": 5.846692481999998
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-14T18:51:59.345Z_
+
+<details><summary>↩ Tool result · `toolu_012AGjcuu2cJiqkNbd88eUJq`</summary>
+
+```text
+Web search results for query: "Karwowski "Goodhart's Law in Reinforcement Learning" 2024 ICLR bibtex arxiv 2310.09144"
+
+Links: [{"title":"[2310.09144] Goodhart's Law in Reinforcement Learning","url":"https://arxiv.org/abs/2310.09144"},{"title":"Goodhart’s Law in Reinforcement Learning","url":"https://arxiv.org/html/2310.09144v1"},{"title":"‪Goodhart's Law in Reinforcement Learning‬","url":"https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GuzLUmQAAAAJ&sortby=pubdate&citation_for_view=GuzLUmQAAAAJ:roLk4NBRz8UC"},{"title":"GOODHART'S LAW IN REINFORCEMENT LEARNING","url":"https://proceedings.iclr.cc/paper_files/paper/2024/file/6ad68a54eaa8f9bf6ac698b02ec05048-Paper-Conference.pdf"},{"title":"Goodhart's Law in Reinforcement Learning | OpenReview","url":"https://openreview.net/forum?id=5o9G4XF1LI"},{"title":"Published as a conference paper at ICLR 2025","url":"https://arxiv.org/pdf/2410.05584"},{"title":"dblp: Goodhart's Law in Reinforcement Learning.","url":"https://dblp.org/rec/journals/corr/abs-2310-09144.html"},{"title":"Goodhart's Law in Reinforcement Learning","url":"https://www.semanticscholar.org/paper/Goodhart's-Law-in-Reinforcement-Learning-Karwowski-Hayman/a4bd4da02241eacee990c89ddd748ce37a248fc0"},{"title":"Rethinking Reward Model Evaluation: Are We Barking up the Wrong Tree?","url":"https://arxiv.org/html/2410.05584v5"},{"title":"Goodhart's Law in Reinforcement Learning","url":"https://www.lesswrong.com/posts/Eu6CvP7c7ivcGM3PJ/goodhart-s-law-in-reinforcement-learning"}]
+
+Based on the search results, here is information about the paper you requested:
+
+## Paper Details
+
+**Title:** "Goodhart's Law in Reinforcement Learning"
+
+**Authors:** Jacek Karwowski, Oliver Hayman, Xingjian Bai, Klaus Kiendlhofer, Charlie Griffin, Joar Skalse
+
+**ArXiv ID:** 2310.09144 (published October 13, 2023)
+
+**Venue:** ICLR 2024
+
+## Paper Overview
+
+The paper studies Goodhart's law through the lens of reinforcement learning, which predicts that increasing optimization of an imperfect proxy beyond some critical point decreases performance on the true objective. The authors propose a way to quantify this effect and show empirically that optimizing an imperfect proxy reward often leads to the behavior predicted by Goodhart's law for a wide range of environments and reward functions.
+
+The paper provides a geometric explanation for why Goodhart's law occurs in Markov decision processes and proposes an optimal early stopping method that provably avoids this pitfall, deriving theoretical regret bounds for the method.
+
+## Access
+
+The paper is available at:
+- **ArXiv:** https://arxiv.org/abs/2310.09144
+- **ICLR Proceedings:** https://proceedings.iclr.cc/paper_files/paper/2024/file/6ad68a54eaa8f9bf6ac698b02ec05048-Paper-Conference.pdf
+- **OpenReview:** https://openreview.net/forum?id=5o9G4XF1LI
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "9d91b06a-5461-4760-a36e-fde0761662b4",
+  "tool_use_result": {
+    "query": "Karwowski \"Goodhart's Law in Reinforcement Learning\" 2024 ICLR bibtex arxiv 2310.09144",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01DhoS4wNvNCwpRp7hC41CUV",
+        "content": [
+          {
+            "title": "[2310.09144] Goodhart's Law in Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2310.09144"
+          },
+          {
+            "title": "Goodhart’s Law in Reinforcement Learning",
+            "url": "https://arxiv.org/html/2310.09144v1"
+          },
+          {
+            "title": "‪Goodhart's Law in Reinforcement Learning‬",
+            "url": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=GuzLUmQAAAAJ&sortby=pubdate&citation_for_view=GuzLUmQAAAAJ:roLk4NBRz8UC"
+          },
+          {
+            "title": "GOODHART'S LAW IN REINFORCEMENT LEARNING",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2024/file/6ad68a54eaa8f9bf6ac698b02ec05048-Paper-Conference.pdf"
+          },
+          {
+            "title": "Goodhart's Law in Reinforcement Learning | OpenReview",
+            "url": "https://openreview.net/forum?id=5o9G4XF1LI"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2025",
+            "url": "https://arxiv.org/pdf/2410.05584"
+          },
+          {
+            "title": "dblp: Goodhart's Law in Reinforcement Learning.",
+            "url": "https://dblp.org/rec/journals/corr/abs-2310-09144.html"
+          },
+          {
+            "title": "Goodhart's Law in Reinforcement Learning",
+            "url": "https://www.semanticscholar.org/paper/Goodhart's-Law-in-Reinforcement-Learning-Karwowski-Hayman/a4bd4da02241eacee990c89ddd748ce37a248fc0"
+          },
+          {
+            "title": "Rethinking Reward Model Evaluation: Are We Barking up the Wrong Tree?",
+            "url": "https://arxiv.org/html/2410.05584v5"
+          },
+          {
+            "title": "Goodhart's Law in Reinforcement Learning",
+            "url": "https://www.lesswrong.com/posts/Eu6CvP7c7ivcGM3PJ/goodhart-s-law-in-reinforcement-learning"
+          }
+        ]
+      },
+      "Based on the search results, here is information about the paper you requested:\n\n## Paper Details\n\n**Title:** \"Goodhart's Law in Reinforcement Learning\"\n\n**Authors:** Jacek Karwowski, Oliver Hayman, Xingjian Bai, Klaus Kiendlhofer, Charlie Griffin, Joar Skalse\n\n**ArXiv ID:** 2310.09144 (published October 13, 2023)\n\n**Venue:** ICLR 2024\n\n## Paper Overview\n\nThe paper studies Goodhart's law through the lens of reinforcement learning, which predicts that increasing optimization of an imperfect proxy beyond some critical point decreases performance on the true objective. The authors propose a way to quantify this effect and show empirically that optimizing an imperfect proxy reward often leads to the behavior predicted by Goodhart's law for a wide range of environments and reward functions.\n\nThe paper provides a geometric explanation for why Goodhart's law occurs in Markov decision processes and proposes an optimal early stopping method that provably avoids this pitfall, deriving theoretical regret bounds for the method.\n\n## Access\n\nThe paper is available at:\n- **ArXiv:** https://arxiv.org/abs/2310.09144\n- **ICLR Proceedings:** https://proceedings.iclr.cc/paper_files/paper/2024/file/6ad68a54eaa8f9bf6ac698b02ec05048-Paper-Conference.pdf\n- **OpenReview:** https://openreview.net/forum?id=5o9G4XF1LI"
+    ],
+    "durationSeconds": 7.546121029999995
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-14T18:51:59.872Z_
+
+<details><summary>↩ Tool result · `toolu_01MARACD8Rr71hQoTqzHPrJU`</summary>
+
+````text
+Web search results for query: "Skalse "Defining and Characterizing Reward Hacking" 2022 NeurIPS bibtex arxiv 2209.13085"
+
+Links: [{"title":"[2209.13085] Defining and Characterizing Reward Hacking","url":"https://arxiv.org/abs/2209.13085"},{"title":"Defining and Characterizing Reward Hacking Joar Skalse∗ University of Oxford","url":"https://arxiv.org/pdf/2209.13085"},{"title":"[PDF] Defining and Characterizing Reward Hacking | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Defining-and-Characterizing-Reward-Hacking-Skalse-Howe/004357dd9bbf3012c8fe0ccada4da401bf85dfff"},{"title":"(PDF) Defining and Characterizing Reward Hacking","url":"https://www.researchgate.net/publication/363888695_Defining_and_Characterizing_Reward_Hacking"},{"title":"[2209.13085] Defining and Characterizing Reward Hacking","url":"http://export.arxiv.org/abs/2209.13085"},{"title":"Defining and Characterizing Reward Hacking | alphaXiv","url":"https://www.alphaxiv.org/overview/2209.13085v2"},{"title":"Joar Skalse, Nikolaus H R Howe, Dmitrii Krasheninnikov, David Krueger · Defining and Characterizing Reward Hacking","url":"https://slideslive.com/38989954/defining-and-characterizing-reward-hacking"},{"title":"Paper page - Defining and Characterizing Reward Hacking","url":"https://huggingface.co/papers/2209.13085"},{"title":"Detecting and Mitigating Reward Hacking in Reinforcement Learning Systems: A Comprehensive Empirical Study","url":"https://arxiv.org/html/2507.05619v1"},{"title":"Defining and Characterizing Reward Hacking","url":"https://www.summarizepaper.com/en/arxiv-id/2209.13085v1/"}]
+
+I found the paper! Here's the information about it:
+
+**Title:** "Defining and Characterizing Reward Hacking"
+
+**Authors:** Joar Skalse, Nikolaus H. R. Howe, Dmitrii Krasheninnikov, David Krueger
+
+**Conference:** &lt;cite index="2-1">36th Conference on Neural Information Processing Systems (NeurIPS 2022)
+
+**arXiv ID:** 2209.13085
+
+**Submission Date:** Submitted on 27 Sep 2022
+
+**Main Contribution:** The paper provides the first formal definition of reward hacking, a phenomenon where optimizing an imperfect proxy reward function leads to poor performance according to the true reward function.
+
+For the BibTeX citation, based on the metadata from the arXiv page:
+
+```bibtex
+@inproceedings{Skalse2022DefiningAC,
+  title={Defining and Characterizing Reward Hacking},
+  author={Joar Skalse and Nikolaus H. R. Howe and Dmitrii Krasheninnikov and David Krueger},
+  booktitle={Advances in Neural Information Processing Systems},
+  year={2022},
+  volume={36},
+  archivePrefix={arXiv},
+  eprint={2209.13085},
+  primaryClass={cs.LG}
+}
+```
+
+You can access the paper directly at: https://arxiv.org/abs/2209.13085
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "3b283ed2-d40c-4507-ae17-d8aaeeb72171",
+  "tool_use_result": {
+    "query": "Skalse \"Defining and Characterizing Reward Hacking\" 2022 NeurIPS bibtex arxiv 2209.13085",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01FoUqE6XtETpWLnHueLCBA2",
+        "content": [
+          {
+            "title": "[2209.13085] Defining and Characterizing Reward Hacking",
+            "url": "https://arxiv.org/abs/2209.13085"
+          },
+          {
+            "title": "Defining and Characterizing Reward Hacking Joar Skalse∗ University of Oxford",
+            "url": "https://arxiv.org/pdf/2209.13085"
+          },
+          {
+            "title": "[PDF] Defining and Characterizing Reward Hacking | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Defining-and-Characterizing-Reward-Hacking-Skalse-Howe/004357dd9bbf3012c8fe0ccada4da401bf85dfff"
+          },
+          {
+            "title": "(PDF) Defining and Characterizing Reward Hacking",
+            "url": "https://www.researchgate.net/publication/363888695_Defining_and_Characterizing_Reward_Hacking"
+          },
+          {
+            "title": "[2209.13085] Defining and Characterizing Reward Hacking",
+            "url": "http://export.arxiv.org/abs/2209.13085"
+          },
+          {
+            "title": "Defining and Characterizing Reward Hacking | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2209.13085v2"
+          },
+          {
+            "title": "Joar Skalse, Nikolaus H R Howe, Dmitrii Krasheninnikov, David Krueger · Defining and Characterizing Reward Hacking",
+            "url": "https://slideslive.com/38989954/defining-and-characterizing-reward-hacking"
+          },
+          {
+            "title": "Paper page - Defining and Characterizing Reward Hacking",
+            "url": "https://huggingface.co/papers/2209.13085"
+          },
+          {
+            "title": "Detecting and Mitigating Reward Hacking in Reinforcement Learning Systems: A Comprehensive Empirical Study",
+            "url": "https://arxiv.org/html/2507.05619v1"
+          },
+          {
+            "title": "Defining and Characterizing Reward Hacking",
+            "url": "https://www.summarizepaper.com/en/arxiv-id/2209.13085v1/"
+          }
+        ]
+      },
+      "I found the paper! Here's the information about it:\n\n**Title:** \"Defining and Characterizing Reward Hacking\"\n\n**Authors:** Joar Skalse, Nikolaus H. R. Howe, Dmitrii Krasheninnikov, David Krueger\n\n**Conference:** &lt;cite index=\"2-1\">36th Conference on Neural Information Processing Systems (NeurIPS 2022)\n\n**arXiv ID:** 2209.13085\n\n**Submission Date:** Submitted on 27 Sep 2022\n\n**Main Contribution:** The paper provides the first formal definition of reward hacking, a phenomenon where optimizing an imperfect proxy reward function leads to poor performance according to the true reward function.\n\nFor the BibTeX citation, based on the metadata from the arXiv page:\n\n```bibtex\n@inproceedings{Skalse2022DefiningAC,\n  title={Defining and Characterizing Reward Hacking},\n  author={Joar Skalse and Nikolaus H. R. Howe and Dmitrii Krasheninnikov and David Krueger},\n  booktitle={Advances in Neural Information Processing Systems},\n  year={2022},\n  volume={36},\n  archivePrefix={arXiv},\n  eprint={2209.13085},\n  primaryClass={cs.LG}\n}\n```\n\nYou can access the paper directly at: https://arxiv.org/abs/2209.13085"
+    ],
+    "durationSeconds": 5.613216370000002
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-14T18:51:59.899Z_
+
+<details><summary>↩ Tool result · `toolu_01G6Q65P6hSy6KMrMVHR5xmR`</summary>
+
+````text
+Web search results for query: "Pan Bhatia Steinhardt "Effects of Reward Misspecification" 2022 ICLR bibtex"
+
+Links: [{"title":"[2201.03544] The Effects of Reward Misspecification: Mapping and Mitigating Misaligned Models","url":"https://arxiv.org/abs/2201.03544"},{"title":"The Effects of Reward Misspecification: Mapping and Mitigating Misaligned Models | OpenReview","url":"https://openreview.net/forum?id=JYtwGwIL7ye"},{"title":"[PDF] The Effects of Reward Misspecification: Mapping and Mitigating Misaligned Models | Semantic Scholar","url":"https://www.semanticscholar.org/paper/The-Effects-of-Reward-Misspecification:-Mapping-and-Pan-Bhatia/10b9ca173c665e3f2c322c2d5ce9b9d433fe4629"},{"title":"The Effects of Reward Misspecification: Mapping and Mitigating Misaligned Models - ADS","url":"https://ui.adsabs.harvard.edu/abs/2022arXiv220103544P/abstract"},{"title":"ICLR Poster The Effects of Reward Misspecification: Mapping and Mitigating Misaligned Models","url":"https://iclr.cc/virtual/2022/poster/6579"},{"title":"(PDF) The Effects of Reward Misspecification: Mapping and Mitigating Misaligned Models","url":"https://www.researchgate.net/publication/357733580_The_Effects_of_Reward_Misspecification_Mapping_and_Mitigating_Misaligned_Models"},{"title":"THE EFFECTS OF REWARD MISSPECIFICATION","url":"https://openreview.net/pdf?id=mp1AstNFvQ5"},{"title":"Defining and Characterizing Reward Hacking Joar Skalse∗ University of Oxford","url":"https://arxiv.org/pdf/2209.13085"},{"title":"Publications - Jacob Steinhardt","url":"https://jsteinhardt.stat.berkeley.edu/publications/"},{"title":"JAILBREAKING AS A REWARD MISSPECIFICATION ...","url":"https://openreview.net/notes/edits/attachment?id=gKdz7jAGak&name=pdf"}]
+
+Based on the search results, I found the paper and the BibTeX citation. The paper "The Effects of Reward Misspecification: Mapping and Mitigating Misaligned Models" by Alexander Pan, Kush Bhatia, and Jacob Steinhardt was published at ICLR 2022.
+
+Here is the BibTeX citation:
+
+```bibtex
+@inproceedings{pan2022effects,
+  author = {Alexander Pan and Kush Bhatia and Jacob Steinhardt},
+  booktitle = {International Conference on Learning Representations (ICLR)},
+  title = {The Effects of Reward Misspecification: Mapping and Mitigating Misaligned Models},
+  year = {2022}
+}
+```
+
+The paper investigates how more capable agents often exploit reward misspecifications, achieving higher proxy reward and lower true reward than less capable agents.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "e03f3721-4b21-44d8-8e19-eb598c5a5a72",
+  "tool_use_result": {
+    "query": "Pan Bhatia Steinhardt \"Effects of Reward Misspecification\" 2022 ICLR bibtex",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Nf2X4N7ix2mLyCi8XWapiX",
+        "content": [
+          {
+            "title": "[2201.03544] The Effects of Reward Misspecification: Mapping and Mitigating Misaligned Models",
+            "url": "https://arxiv.org/abs/2201.03544"
+          },
+          {
+            "title": "The Effects of Reward Misspecification: Mapping and Mitigating Misaligned Models | OpenReview",
+            "url": "https://openreview.net/forum?id=JYtwGwIL7ye"
+          },
+          {
+            "title": "[PDF] The Effects of Reward Misspecification: Mapping and Mitigating Misaligned Models | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/The-Effects-of-Reward-Misspecification:-Mapping-and-Pan-Bhatia/10b9ca173c665e3f2c322c2d5ce9b9d433fe4629"
+          },
+          {
+            "title": "The Effects of Reward Misspecification: Mapping and Mitigating Misaligned Models - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2022arXiv220103544P/abstract"
+          },
+          {
+            "title": "ICLR Poster The Effects of Reward Misspecification: Mapping and Mitigating Misaligned Models",
+            "url": "https://iclr.cc/virtual/2022/poster/6579"
+          },
+          {
+            "title": "(PDF) The Effects of Reward Misspecification: Mapping and Mitigating Misaligned Models",
+            "url": "https://www.researchgate.net/publication/357733580_The_Effects_of_Reward_Misspecification_Mapping_and_Mitigating_Misaligned_Models"
+          },
+          {
+            "title": "THE EFFECTS OF REWARD MISSPECIFICATION",
+            "url": "https://openreview.net/pdf?id=mp1AstNFvQ5"
+          },
+          {
+            "title": "Defining and Characterizing Reward Hacking Joar Skalse∗ University of Oxford",
+            "url": "https://arxiv.org/pdf/2209.13085"
+          },
+          {
+            "title": "Publications - Jacob Steinhardt",
+            "url": "https://jsteinhardt.stat.berkeley.edu/publications/"
+          },
+          {
+            "title": "JAILBREAKING AS A REWARD MISSPECIFICATION ...",
+            "url": "https://openreview.net/notes/edits/attachment?id=gKdz7jAGak&name=pdf"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper and the BibTeX citation. The paper \"The Effects of Reward Misspecification: Mapping and Mitigating Misaligned Models\" by Alexander Pan, Kush Bhatia, and Jacob Steinhardt was published at ICLR 2022.\n\nHere is the BibTeX citation:\n\n```bibtex\n@inproceedings{pan2022effects,\n  author = {Alexander Pan and Kush Bhatia and Jacob Steinhardt},\n  booktitle = {International Conference on Learning Representations (ICLR)},\n  title = {The Effects of Reward Misspecification: Mapping and Mitigating Misaligned Models},\n  year = {2022}\n}\n```\n\nThe paper investigates how more capable agents often exploit reward misspecifications, achieving higher proxy reward and lower true reward than less capable agents."
+    ],
+    "durationSeconds": 4.697308524
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-14T18:52:01.681Z_
+
+<details><summary>↩ Tool result · `toolu_016QBHeKVMP45cgVQ2Fa2HR4`</summary>
+
+````text
+Web search results for query: "DeMillo Lipton Sayward 1978 "Hints on Test Data Selection" mutation testing bibtex"
+
+Links: [{"title":"(PDF) Hints on Test Data Selection: Help for the Practicing Programmer","url":"https://www.researchgate.net/publication/2957629_Hints_on_Test_Data_Selection_Help_for_the_Practicing_Programmer"},{"title":"DeMillo, R.A., Lipton, R.J. and Sayward, F.G. (1978) Hints on Test Data Selection Help for the Practicing Programmer. Computer, 11, 34-41. - References - Scientific Research Publishing","url":"https://www.scirp.org/reference/referencespapers?referenceid=2763951"},{"title":"Theoretical and empirical studies on using program mutation to test the functional correctness of programs | Proceedings of the 7th ACM SIGPLAN-SIGACT symposium on Principles of programming languages","url":"https://dl.acm.org/doi/10.1145/567446.567468"},{"title":"Development and Analysis of Mutation Testing Joe Cummings March 14, 2019 1","url":"https://www.eecs.northwestern.edu/~chrdimo/teaching/eecs396-w19/16.pdf"},{"title":"[PDF] Hints on Test Data Selection: Help for the Practicing Programmer | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Hints-on-Test-Data-Selection:-Help-for-the-DeMillo-Lipton/91b1f655c6e42c02eed722b213e3c03df2e2d75a"},{"title":"(PDF) The design of a prototype mutation system for program testing (PDF)","url":"https://www.researchgate.net/publication/232622113_The_design_of_a_prototype_mutation_system_for_program_testing_PDF"},{"title":"Papers on Program Testing, - DTIC","url":"https://apps.dtic.mil/sti/tr/pdf/ADA107774.pdf"},{"title":"Hints on Test Data Selection: Help for the Practicing Programmer","url":"https://gse.ufsc.br/bezerra/disciplinas/Confiabilidade/docs/demillo-mutants.pdf"},{"title":"(PDF) Mutation Analysis","url":"https://www.researchgate.net/publication/235050055_Mutation_Analysis"},{"title":"Mutation Testing and Test Data Generation Approaches: A Review | Springer Nature Link","url":"https://link.springer.com/chapter/10.1007/978-981-10-3433-6_45"}]
+
+Based on the search results, I found bibliographic information for the DeMillo, Lipton, and Sayward 1978 paper on mutation testing. Here is the BibTeX entry:
+
+The paper is by R. A. DeMillo, R. J. Lipton, and F. G. Sayward, titled "Hints on Test Data Selection: Help for the Practicing Programmer", published in Computer journal in 1978, volume 11, number 4, pages 34-41, published in April.
+
+Here is the formatted BibTeX citation:
+
+```bibtex
+@article{DeMillo1978,
+  author = {DeMillo, R. A. and Lipton, R. J. and Sayward, F. G.},
+  title = {Hints on Test Data Selection: Help for the Practicing Programmer},
+  journal = {Computer},
+  year = {1978},
+  volume = {11},
+  number = {4},
+  pages = {34--41},
+  month = {April},
+  doi = {10.1109/C-M.1978.218136},
+  issn = {0018-9162}
+}
+```
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "834b67c0-697e-4e10-8579-b8280df1ed81",
+  "tool_use_result": {
+    "query": "DeMillo Lipton Sayward 1978 \"Hints on Test Data Selection\" mutation testing bibtex",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_018P2YzggZkLjTFBMkwgu2qR",
+        "content": [
+          {
+            "title": "(PDF) Hints on Test Data Selection: Help for the Practicing Programmer",
+            "url": "https://www.researchgate.net/publication/2957629_Hints_on_Test_Data_Selection_Help_for_the_Practicing_Programmer"
+          },
+          {
+            "title": "DeMillo, R.A., Lipton, R.J. and Sayward, F.G. (1978) Hints on Test Data Selection Help for the Practicing Programmer. Computer, 11, 34-41. - References - Scientific Research Publishing",
+            "url": "https://www.scirp.org/reference/referencespapers?referenceid=2763951"
+          },
+          {
+            "title": "Theoretical and empirical studies on using program mutation to test the functional correctness of programs | Proceedings of the 7th ACM SIGPLAN-SIGACT symposium on Principles of programming languages",
+            "url": "https://dl.acm.org/doi/10.1145/567446.567468"
+          },
+          {
+            "title": "Development and Analysis of Mutation Testing Joe Cummings March 14, 2019 1",
+            "url": "https://www.eecs.northwestern.edu/~chrdimo/teaching/eecs396-w19/16.pdf"
+          },
+          {
+            "title": "[PDF] Hints on Test Data Selection: Help for the Practicing Programmer | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Hints-on-Test-Data-Selection:-Help-for-the-DeMillo-Lipton/91b1f655c6e42c02eed722b213e3c03df2e2d75a"
+          },
+          {
+            "title": "(PDF) The design of a prototype mutation system for program testing (PDF)",
+            "url": "https://www.researchgate.net/publication/232622113_The_design_of_a_prototype_mutation_system_for_program_testing_PDF"
+          },
+          {
+            "title": "Papers on Program Testing, - DTIC",
+            "url": "https://apps.dtic.mil/sti/tr/pdf/ADA107774.pdf"
+          },
+          {
+            "title": "Hints on Test Data Selection: Help for the Practicing Programmer",
+            "url": "https://gse.ufsc.br/bezerra/disciplinas/Confiabilidade/docs/demillo-mutants.pdf"
+          },
+          {
+            "title": "(PDF) Mutation Analysis",
+            "url": "https://www.researchgate.net/publication/235050055_Mutation_Analysis"
+          },
+          {
+            "title": "Mutation Testing and Test Data Generation Approaches: A Review | Springer Nature Link",
+            "url": "https://link.springer.com/chapter/10.1007/978-981-10-3433-6_45"
+          }
+        ]
+      },
+      "Based on the search results, I found bibliographic information for the DeMillo, Lipton, and Sayward 1978 paper on mutation testing. Here is the BibTeX entry:\n\nThe paper is by R. A. DeMillo, R. J. Lipton, and F. G. Sayward, titled \"Hints on Test Data Selection: Help for the Practicing Programmer\", published in Computer journal in 1978, volume 11, number 4, pages 34-41, published in April.\n\nHere is the formatted BibTeX citation:\n\n```bibtex\n@article{DeMillo1978,\n  author = {DeMillo, R. A. and Lipton, R. J. and Sayward, F. G.},\n  title = {Hints on Test Data Selection: Help for the Practicing Programmer},\n  journal = {Computer},\n  year = {1978},\n  volume = {11},\n  number = {4},\n  pages = {34--41},\n  month = {April},\n  doi = {10.1109/C-M.1978.218136},\n  issn = {0018-9162}\n}\n```"
+    ],
+    "durationSeconds": 5.701755944000004
+  }
+}
+````
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good progress. Let me continue searching for the remaining must-cite and should-cite papers.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "d2ff6d63-cb50-4fe2-8a9c-4457ff6814da",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013SHCvBncBASgVxfZtZuDum",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6835,
+      "cache_read_input_tokens": 56183,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6835
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013txU5eiGLe9z8UrXNG3WNC`</summary>
+
+```json
+{
+  "query": "Jia Harman 2011 \"Analysis and Survey of the Development of Mutation Testing\" IEEE TSE bibtex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "70135075-e908-4e5a-af7a-340a68f4cc1e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013SHCvBncBASgVxfZtZuDum",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6835,
+      "cache_read_input_tokens": 56183,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6835
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01L1EBAFUqWHxwQWPLfdbEci`</summary>
+
+```json
+{
+  "query": "FOLIO Han 2022 \"Natural Language Reasoning with First-Order Logic\" bibtex arxiv 2209.00840"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "c65e6ea2-4822-4525-96d2-c9c52e1204e5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013SHCvBncBASgVxfZtZuDum",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6835,
+      "cache_read_input_tokens": 56183,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6835
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TsCSqraQFYZ9J6NVqf1GVb`</summary>
+
+```json
+{
+  "query": "ProofWriter Tafjord Dalvi Clark 2021 ACL \"Generating Implications Proofs\" bibtex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "d3a7fc55-911a-4222-9002-62a92ded5def",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013SHCvBncBASgVxfZtZuDum",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6835,
+      "cache_read_input_tokens": 56183,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6835
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-14T18:52:10.407Z_
+
+<details><summary>↩ Tool result · `toolu_013txU5eiGLe9z8UrXNG3WNC`</summary>
+
+````text
+Web search results for query: "Jia Harman 2011 "Analysis and Survey of the Development of Mutation Testing" IEEE TSE bibtex"
+
+Links: [{"title":"An Analysis and Survey of the Development of Mutation Testing | IEEE Transactions on Software Engineering","url":"https://dl.acm.org/doi/10.1109/TSE.2010.62"},{"title":"(PDF) An Analysis and Survey of the Development of Mutation Testing","url":"https://www.researchgate.net/publication/220069671_An_Analysis_and_Survey_of_the_Development_of_Mutation_Testing"},{"title":"Y. Jia and M. Harman, “An Analysis and Survey of the Development of Mutation Testing,” IEEE Transactions on Software Engineering, Vol. 37, No. 5, 2011, pp. 649-678. - References - Scientific Research Publishing","url":"https://www.scirp.org/reference/referencespapers?referenceid=953150"},{"title":"[PDF] An Analysis and Survey of the Development of Mutation Testing | Semantic Scholar","url":"https://www.semanticscholar.org/paper/An-Analysis-and-Survey-of-the-Development-of-Jia-Harman/d7c38286734419b52de4262c9802ebdfcf4b9447"},{"title":"An Analysis and Survey of the Development of Mutation Testing | IEEE Journals & Magazine | IEEE Xplore","url":"https://ieeexplore.ieee.org/document/5487526/"},{"title":"Mutation Testing Advances: An Analysis and Survey","url":"https://mutationtesting.uni.lu/survey.pdf"},{"title":"An analysis and survey of the development of mutation testing","url":"https://alastairreid.github.io/RelatedWork/papers/jia:ieeetse:2010/"},{"title":"dblp: An Analysis and Survey of the Development of Mutation Testing.","url":"https://dblp.org/rec/journals/tse/JiaH11.html"},{"title":"Jia and Harman's an Analysis and Survey of the Development Of - DocsLib","url":"https://docslib.org/doc/2285964/jia-and-harmans-an-analysis-and-survey-of-the-development-of"},{"title":"Mutation Testing Repository","url":"https://mutationtesting.uni.lu/"}]
+
+I found the paper you're looking for! Here's the bibliographic information and BibTeX entry:
+
+**Full Citation:**
+Yue Jia and Mark Harman, "An Analysis and Survey of the Development of Mutation Testing," IEEE Transactions on Software Engineering, Vol. 37, No. 5, 2011, pp. 649-678.
+
+**BibTeX Entry:**
+```bibtex
+@article{JiaH11,
+  author = {Yue Jia and Mark Harman},
+  title = {An Analysis and Survey of the Development of Mutation Testing},
+  journal = {IEEE Transactions on Software Engineering},
+  year = {2011},
+  volume = {37},
+  number = {5},
+  pages = {649--678},
+  doi = {10.1109/TSE.2010.62}
+}
+```
+
+The paper is also available through various sources including IEEE Xplore, ACM Digital Library, and ResearchGate.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "e7926156-3107-4160-8fa6-7dbcf97d211b",
+  "tool_use_result": {
+    "query": "Jia Harman 2011 \"Analysis and Survey of the Development of Mutation Testing\" IEEE TSE bibtex",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01S7kJ6mP1xxAinrQVoLoJoe",
+        "content": [
+          {
+            "title": "An Analysis and Survey of the Development of Mutation Testing | IEEE Transactions on Software Engineering",
+            "url": "https://dl.acm.org/doi/10.1109/TSE.2010.62"
+          },
+          {
+            "title": "(PDF) An Analysis and Survey of the Development of Mutation Testing",
+            "url": "https://www.researchgate.net/publication/220069671_An_Analysis_and_Survey_of_the_Development_of_Mutation_Testing"
+          },
+          {
+            "title": "Y. Jia and M. Harman, “An Analysis and Survey of the Development of Mutation Testing,” IEEE Transactions on Software Engineering, Vol. 37, No. 5, 2011, pp. 649-678. - References - Scientific Research Publishing",
+            "url": "https://www.scirp.org/reference/referencespapers?referenceid=953150"
+          },
+          {
+            "title": "[PDF] An Analysis and Survey of the Development of Mutation Testing | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/An-Analysis-and-Survey-of-the-Development-of-Jia-Harman/d7c38286734419b52de4262c9802ebdfcf4b9447"
+          },
+          {
+            "title": "An Analysis and Survey of the Development of Mutation Testing | IEEE Journals & Magazine | IEEE Xplore",
+            "url": "https://ieeexplore.ieee.org/document/5487526/"
+          },
+          {
+            "title": "Mutation Testing Advances: An Analysis and Survey",
+            "url": "https://mutationtesting.uni.lu/survey.pdf"
+          },
+          {
+            "title": "An analysis and survey of the development of mutation testing",
+            "url": "https://alastairreid.github.io/RelatedWork/papers/jia:ieeetse:2010/"
+          },
+          {
+            "title": "dblp: An Analysis and Survey of the Development of Mutation Testing.",
+            "url": "https://dblp.org/rec/journals/tse/JiaH11.html"
+          },
+          {
+            "title": "Jia and Harman's an Analysis and Survey of the Development Of - DocsLib",
+            "url": "https://docslib.org/doc/2285964/jia-and-harmans-an-analysis-and-survey-of-the-development-of"
+          },
+          {
+            "title": "Mutation Testing Repository",
+            "url": "https://mutationtesting.uni.lu/"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here's the bibliographic information and BibTeX entry:\n\n**Full Citation:**\nYue Jia and Mark Harman, \"An Analysis and Survey of the Development of Mutation Testing,\" IEEE Transactions on Software Engineering, Vol. 37, No. 5, 2011, pp. 649-678.\n\n**BibTeX Entry:**\n```bibtex\n@article{JiaH11,\n  author = {Yue Jia and Mark Harman},\n  title = {An Analysis and Survey of the Development of Mutation Testing},\n  journal = {IEEE Transactions on Software Engineering},\n  year = {2011},\n  volume = {37},\n  number = {5},\n  pages = {649--678},\n  doi = {10.1109/TSE.2010.62}\n}\n```\n\nThe paper is also available through various sources including IEEE Xplore, ACM Digital Library, and ResearchGate."
+    ],
+    "durationSeconds": 4.0810398889999995
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01YFfXmg6Hx8h4DhvSjB7zUL`</summary>
+
+```json
+{
+  "query": "\"DeepSeek-Prover-V1.5\" 2024 ICLR 2025 arxiv 2408.08152 bibtex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "1c199055-69ff-4530-9650-d9beb5c64fc1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013SHCvBncBASgVxfZtZuDum",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6835,
+      "cache_read_input_tokens": 56183,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6835
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01ASMoieXgyBreCEonyNvvxc`</summary>
+
+```json
+{
+  "query": "Math-Shepherd Wang Li Shao 2024 ACL \"Verify and Reinforce LLMs Step-by-step\" bibtex arxiv 2312.08935"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "2fe18617-7258-44d7-acc4-7dde42268fcc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013SHCvBncBASgVxfZtZuDum",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6835,
+      "cache_read_input_tokens": 56183,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6835
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01UczFZETW65DZw6xieEQSyM`</summary>
+
+```json
+{
+  "query": "DeepSeek-R1 2025 \"Incentivizing Reasoning Capability\" arxiv 2501.12948 bibtex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "6daa853f-5c8d-4375-b9f8-ad34f7b0304f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013SHCvBncBASgVxfZtZuDum",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6835,
+      "cache_read_input_tokens": 56183,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6835
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-14T18:52:13.785Z_
+
+<details><summary>↩ Tool result · `toolu_01TsCSqraQFYZ9J6NVqf1GVb`</summary>
+
+```text
+Web search results for query: "ProofWriter Tafjord Dalvi Clark 2021 ACL "Generating Implications Proofs" bibtex"
+
+Links: [{"title":"ProofWriter: Generating Implications, Proofs, and Abductive Statements over Natural Language - ACL Anthology","url":"https://aclanthology.org/2021.findings-acl.317/"},{"title":"ProofWriter: Generating Implications, Proofs, and Abductive ...","url":"https://aclanthology.org/2021.findings-acl.317.pdf"},{"title":"[2012.13048] ProofWriter: Generating Implications, Proofs, and Abductive Statements over Natural Language","url":"https://arxiv.org/abs/2012.13048"},{"title":"[PDF] ProofWriter: Generating Implications, Proofs, and Abductive Statements over Natural Language | Semantic Scholar","url":"https://www.semanticscholar.org/paper/ProofWriter:-Generating-Implications,-Proofs,-and-Tafjord-Dalvi/87c45a908537ffe1d2ab71a5d609bd7b4efa4fe1"},{"title":"Table 11 from ProofWriter: Generating Implications, Proofs, and Abductive Statements over Natural Language | Semantic Scholar","url":"https://www.semanticscholar.org/paper/ProofWriter:-Generating-Implications,-Proofs,-and-Tafjord-Dalvi/87c45a908537ffe1d2ab71a5d609bd7b4efa4fe1/figure/15"},{"title":"Natural-Language Policy Reasoning with Proof Generation: Turning Platform Rules into Verifiable Knowledge | Journal of Technology Informatics and Engineering","url":"https://jtie.stekom.ac.id/index.php/jtie/article/view/505"},{"title":"ProofWriter: Generating Implications, Proofs, and Abductive Statements over Natural Language | Request PDF","url":"https://www.researchgate.net/publication/353489965_ProofWriter_Generating_Implications_Proofs_and_Abductive_Statements_over_Natural_Language"},{"title":"Table 5 from ProofWriter: Generating Implications, Proofs, and Abductive Statements over Natural Language | Semantic Scholar","url":"https://www.semanticscholar.org/paper/ProofWriter:-Generating-Implications,-Proofs,-and-Tafjord-Dalvi/87c45a908537ffe1d2ab71a5d609bd7b4efa4fe1/figure/9"},{"title":"dblp: Bhavana Dalvi","url":"https://dblp.org/pid/78/6527.html"},{"title":"(PDF) ProofWriter: Generating Implications, Proofs, and Abductive Statements over Natural Language","url":"https://www.academia.edu/97512358/ProofWriter_Generating_Implications_Proofs_and_Abductive_Statements_over_Natural_Language"}]
+
+Based on the search results, here is the BibTeX citation for the ProofWriter paper:
+
+@inproceedings{tafjord-etal-2021-proofwriter, title = "{P}roof{W}riter: Generating Implications, Proofs, and Abductive Statements over Natural Language", author = "Tafjord, Oyvind and Dalvi, Bhavana and Clark, Peter", editor = "Zong, Chengqing and Xia, Fei and Li, Wenjie and Navigli, Roberto", booktitle = "Findings of the Association for Computational Linguistics: ACL-IJCNLP 2021", month = aug, year = "2021", address = "Online", publisher = "Association for Computational Linguistics", url = "https://aclanthology.org/2021.findings-acl.317/", doi = "10.18653/v1/2021.findings-acl.317", pages = "3621--3634" }
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "1a6897c1-bf37-4449-84e7-b1604aea46d4",
+  "tool_use_result": {
+    "query": "ProofWriter Tafjord Dalvi Clark 2021 ACL \"Generating Implications Proofs\" bibtex",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01B5d1peSuRekfKftRfod4Un",
+        "content": [
+          {
+            "title": "ProofWriter: Generating Implications, Proofs, and Abductive Statements over Natural Language - ACL Anthology",
+            "url": "https://aclanthology.org/2021.findings-acl.317/"
+          },
+          {
+            "title": "ProofWriter: Generating Implications, Proofs, and Abductive ...",
+            "url": "https://aclanthology.org/2021.findings-acl.317.pdf"
+          },
+          {
+            "title": "[2012.13048] ProofWriter: Generating Implications, Proofs, and Abductive Statements over Natural Language",
+            "url": "https://arxiv.org/abs/2012.13048"
+          },
+          {
+            "title": "[PDF] ProofWriter: Generating Implications, Proofs, and Abductive Statements over Natural Language | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/ProofWriter:-Generating-Implications,-Proofs,-and-Tafjord-Dalvi/87c45a908537ffe1d2ab71a5d609bd7b4efa4fe1"
+          },
+          {
+            "title": "Table 11 from ProofWriter: Generating Implications, Proofs, and Abductive Statements over Natural Language | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/ProofWriter:-Generating-Implications,-Proofs,-and-Tafjord-Dalvi/87c45a908537ffe1d2ab71a5d609bd7b4efa4fe1/figure/15"
+          },
+          {
+            "title": "Natural-Language Policy Reasoning with Proof Generation: Turning Platform Rules into Verifiable Knowledge | Journal of Technology Informatics and Engineering",
+            "url": "https://jtie.stekom.ac.id/index.php/jtie/article/view/505"
+          },
+          {
+            "title": "ProofWriter: Generating Implications, Proofs, and Abductive Statements over Natural Language | Request PDF",
+            "url": "https://www.researchgate.net/publication/353489965_ProofWriter_Generating_Implications_Proofs_and_Abductive_Statements_over_Natural_Language"
+          },
+          {
+            "title": "Table 5 from ProofWriter: Generating Implications, Proofs, and Abductive Statements over Natural Language | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/ProofWriter:-Generating-Implications,-Proofs,-and-Tafjord-Dalvi/87c45a908537ffe1d2ab71a5d609bd7b4efa4fe1/figure/9"
+          },
+          {
+            "title": "dblp: Bhavana Dalvi",
+            "url": "https://dblp.org/pid/78/6527.html"
+          },
+          {
+            "title": "(PDF) ProofWriter: Generating Implications, Proofs, and Abductive Statements over Natural Language",
+            "url": "https://www.academia.edu/97512358/ProofWriter_Generating_Implications_Proofs_and_Abductive_Statements_over_Natural_Language"
+          }
+        ]
+      },
+      "Based on the search results, here is the BibTeX citation for the ProofWriter paper:\n\n@inproceedings{tafjord-etal-2021-proofwriter, title = \"{P}roof{W}riter: Generating Implications, Proofs, and Abductive Statements over Natural Language\", author = \"Tafjord, Oyvind and Dalvi, Bhavana and Clark, Peter\", editor = \"Zong, Chengqing and Xia, Fei and Li, Wenjie and Navigli, Roberto\", booktitle = \"Findings of the Association for Computational Linguistics: ACL-IJCNLP 2021\", month = aug, year = \"2021\", address = \"Online\", publisher = \"Association for Computational Linguistics\", url = \"https://aclanthology.org/2021.findings-acl.317/\", doi = \"10.18653/v1/2021.findings-acl.317\", pages = \"3621--3634\" }"
+    ],
+    "durationSeconds": 5.412788738000003
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-14T18:52:13.995Z_
+
+<details><summary>↩ Tool result · `toolu_01L1EBAFUqWHxwQWPLfdbEci`</summary>
+
+````text
+Web search results for query: "FOLIO Han 2022 "Natural Language Reasoning with First-Order Logic" bibtex arxiv 2209.00840"
+
+Links: [{"title":"[2209.00840] FOLIO: Natural Language Reasoning with First-Order Logic","url":"https://arxiv.org/abs/2209.00840"},{"title":"Paper page - FOLIO: Natural Language Reasoning with First-Order Logic","url":"https://huggingface.co/papers/2209.00840"},{"title":"[2209.00840] FOLIO: Natural Language Reasoning with First-Order Logic","url":"https://arxiv-export1.library.cornell.edu/abs/2209.00840"},{"title":"FOLIO: Natural Language Reasoning with First-Order Logic","url":"https://arxiv.org/html/2209.00840v2"},{"title":"[2209.00840] FOLIO: Natural Language Reasoning with First-Order Logic","url":"https://ar5iv.labs.arxiv.org/html/2209.00840"},{"title":"FOLIO: Natural Language Reasoning with First-Order Logic","url":"https://github.com/Yale-LILY/FOLIO"},{"title":"FOLIO: Natural Language Reasoning with First-Order Logic Simeng Han1","url":"https://arxiv.org/pdf/2209.00840"},{"title":"[PDF] FOLIO: Natural Language Reasoning with First-Order Logic | Semantic Scholar","url":"https://www.semanticscholar.org/paper/FOLIO:-Natural-Language-Reasoning-with-First-Order-Han-Schoelkopf/5581bf85386737bd3378eec68189759a05280bea"},{"title":"dblp: FOLIO: Natural Language Reasoning with First-Order Logic.","url":"https://dblp.org/rec/journals/corr/abs-2209-00840.html"},{"title":"FOLIO: Natural Language Reasoning with First-Order Logic - ADS","url":"https://ui.adsabs.harvard.edu/abs/2022arXiv220900840H/abstract"}]
+
+I found the paper you're looking for. Here's the information:
+
+## Paper Details
+
+**Title:** FOLIO: Natural Language Reasoning with First-Order Logic
+
+**Authors:** Simeng Han, Hailey Schoelkopf, Yilun Zhao, Zhenting Qi, Martin Riddell, Wenfei Zhou, James Coady, David Peng, Yujie Qiao, Luke Benson, Lucy Sun, Alex Wardle-Solano, Hannah Szabo, Ekaterina Zubova, Matthew Burtell, Jonathan Fan, Yixin Liu, Brian Wong, Malcolm Sailor, Ansong Ni, Linyong Nan, Jungo Kasai, Tao Yu, Rui Zhang, Alexander R. Fabbri, Wojciech Kryscinski, Semih Yavuz, Ye Liu, Xi Victoria Lin, Shafiq Joty, Yingbo Zhou, Caiming Xiong, Rex Ying, Arman Cohan, Dragomir Radev
+
+**arXiv ID:** 2209.00840
+
+**Submission Date:** September 2, 2022
+
+## BibTeX Citation
+
+Here is the BibTeX entry for the paper:
+
+```
+@article{han2022folio,
+  title={FOLIO: Natural Language Reasoning with First-Order Logic},
+  author = {Han, Simeng and Schoelkopf, Hailey and Zhao, Yilun and Qi, Zhenting and Riddell, Martin and Benson, Luke and Sun, Lucy and Zubova, Ekaterina and Qiao, Yujie and Burtell, Matthew and Peng, David and Fan, Jonathan and Liu, Yixin and Wong, Brian and Sailor, Malcolm and Ni, Ansong and Nan, Linyong and Kasai, Jungo and Yu, Tao and Zhang, Rui and Joty, Shafiq and Fabbri, Alexander R. and Kryscinski, Wojciech and Lin, Xi Victoria and Xiong, Caiming and Radev, Dragomir},
+  journal={arXiv preprint arXiv:2209.00840},
+  url = {https://arxiv.org/abs/2209.00840},
+  year={2022}
+}
+```
+
+## Overview
+
+FOLIO is a human-annotated, logically complex and diverse dataset for reasoning in natural language (NL), equipped with first-order logic (FOL) annotations. FOLIO consists of 1,430 examples (unique conclusions), each paired with one of 487 sets of premises used to deductively reason for the validity of each conclusion.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "e7e4c18c-b452-4f84-ba60-35d0dcd638bc",
+  "tool_use_result": {
+    "query": "FOLIO Han 2022 \"Natural Language Reasoning with First-Order Logic\" bibtex arxiv 2209.00840",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01VkcwQNdCjUxJcEYYXNayQC",
+        "content": [
+          {
+            "title": "[2209.00840] FOLIO: Natural Language Reasoning with First-Order Logic",
+            "url": "https://arxiv.org/abs/2209.00840"
+          },
+          {
+            "title": "Paper page - FOLIO: Natural Language Reasoning with First-Order Logic",
+            "url": "https://huggingface.co/papers/2209.00840"
+          },
+          {
+            "title": "[2209.00840] FOLIO: Natural Language Reasoning with First-Order Logic",
+            "url": "https://arxiv-export1.library.cornell.edu/abs/2209.00840"
+          },
+          {
+            "title": "FOLIO: Natural Language Reasoning with First-Order Logic",
+            "url": "https://arxiv.org/html/2209.00840v2"
+          },
+          {
+            "title": "[2209.00840] FOLIO: Natural Language Reasoning with First-Order Logic",
+            "url": "https://ar5iv.labs.arxiv.org/html/2209.00840"
+          },
+          {
+            "title": "FOLIO: Natural Language Reasoning with First-Order Logic",
+            "url": "https://github.com/Yale-LILY/FOLIO"
+          },
+          {
+            "title": "FOLIO: Natural Language Reasoning with First-Order Logic Simeng Han1",
+            "url": "https://arxiv.org/pdf/2209.00840"
+          },
+          {
+            "title": "[PDF] FOLIO: Natural Language Reasoning with First-Order Logic | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/FOLIO:-Natural-Language-Reasoning-with-First-Order-Han-Schoelkopf/5581bf85386737bd3378eec68189759a05280bea"
+          },
+          {
+            "title": "dblp: FOLIO: Natural Language Reasoning with First-Order Logic.",
+            "url": "https://dblp.org/rec/journals/corr/abs-2209-00840.html"
+          },
+          {
+            "title": "FOLIO: Natural Language Reasoning with First-Order Logic - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2022arXiv220900840H/abstract"
+          }
+        ]
+      },
+      "I found the paper you're looking for. Here's the information:\n\n## Paper Details\n\n**Title:** FOLIO: Natural Language Reasoning with First-Order Logic\n\n**Authors:** Simeng Han, Hailey Schoelkopf, Yilun Zhao, Zhenting Qi, Martin Riddell, Wenfei Zhou, James Coady, David Peng, Yujie Qiao, Luke Benson, Lucy Sun, Alex Wardle-Solano, Hannah Szabo, Ekaterina Zubova, Matthew Burtell, Jonathan Fan, Yixin Liu, Brian Wong, Malcolm Sailor, Ansong Ni, Linyong Nan, Jungo Kasai, Tao Yu, Rui Zhang, Alexander R. Fabbri, Wojciech Kryscinski, Semih Yavuz, Ye Liu, Xi Victoria Lin, Shafiq Joty, Yingbo Zhou, Caiming Xiong, Rex Ying, Arman Cohan, Dragomir Radev\n\n**arXiv ID:** 2209.00840\n\n**Submission Date:** September 2, 2022\n\n## BibTeX Citation\n\nHere is the BibTeX entry for the paper:\n\n```\n@article{han2022folio,\n  title={FOLIO: Natural Language Reasoning with First-Order Logic},\n  author = {Han, Simeng and Schoelkopf, Hailey and Zhao, Yilun and Qi, Zhenting and Riddell, Martin and Benson, Luke and Sun, Lucy and Zubova, Ekaterina and Qiao, Yujie and Burtell, Matthew and Peng, David and Fan, Jonathan and Liu, Yixin and Wong, Brian and Sailor, Malcolm and Ni, Ansong and Nan, Linyong and Kasai, Jungo and Yu, Tao and Zhang, Rui and Joty, Shafiq and Fabbri, Alexander R. and Kryscinski, Wojciech and Lin, Xi Victoria and Xiong, Caiming and Radev, Dragomir},\n  journal={arXiv preprint arXiv:2209.00840},\n  url = {https://arxiv.org/abs/2209.00840},\n  year={2022}\n}\n```\n\n## Overview\n\nFOLIO is a human-annotated, logically complex and diverse dataset for reasoning in natural language (NL), equipped with first-order logic (FOL) annotations. FOLIO consists of 1,430 examples (unique conclusions), each paired with one of 487 sets of premises used to deductively reason for the validity of each conclusion."
+    ],
+    "durationSeconds": 6.7283338189999995
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-14T18:52:17.909Z_
+
+<details><summary>↩ Tool result · `toolu_01UczFZETW65DZw6xieEQSyM`</summary>
+
+````text
+Web search results for query: "DeepSeek-R1 2025 "Incentivizing Reasoning Capability" arxiv 2501.12948 bibtex"
+
+Links: [{"title":"[2501.12948] DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning","url":"https://arxiv.org/abs/2501.12948"},{"title":"Paper page - DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning","url":"https://huggingface.co/papers/2501.12948"},{"title":"DeepSeek-R1: Incentivizing Reasoning Capability in LLMs ...","url":"https://ui.adsabs.harvard.edu/abs/arXiv:2501.12948"},{"title":"deepseek-ai/DeepSeek-R1 · Hugging Face","url":"https://huggingface.co/deepseek-ai/DeepSeek-R1"},{"title":"DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via","url":"https://arxiv.org/pdf/2501.12948v1"},{"title":"DeepSeek-R1: Incentivizing reasoning capability in LLMs via reinforcement learning · Pablo Stafforini","url":"https://stafforini.com/works/deepseek-ai-2025-deepseek-r-1-incentivizing/"},{"title":"GitHub - deepseek-ai/DeepSeek-R1 · GitHub","url":"https://github.com/deepseek-ai/DeepSeek-R1"},{"title":"DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning","url":"https://www.researchgate.net/publication/388317525_DeepSeek-R1_Incentivizing_Reasoning_Capability_in_LLMs_via_Reinforcement_Learning"},{"title":"[2501.12948v1] DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning","url":"https://arxiv.org/abs/2501.12948v1"},{"title":"DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning - ADS","url":"https://ui.adsabs.harvard.edu/abs/2025arXiv250112948D"}]
+
+I found the paper and BibTeX information for you. Here are the key details:
+
+## Paper Information
+
+The paper is titled "DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning" with arXiv ID 2501.12948.
+
+## BibTeX Citation
+
+The BibTeX entry is:
+```
+@misc{deepseekai2025deepseekr1incentivizingreasoningcapability,
+  title={DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning},
+  author={DeepSeek-AI},
+  year={2025},
+  eprint={2501.12948},
+  archivePrefix={arXiv},
+  primaryClass={cs.CL},
+  url={https://arxiv.org/abs/2501.12948}
+}
+```
+
+
+## Summary
+
+The paper shows that the reasoning abilities of LLMs can be incentivized through pure reinforcement learning (RL), obviating the need for human-labeled reasoning trajectories. The proposed RL framework facilitates the emergent development of advanced reasoning patterns, such as self-reflection, verification, and dynamic strategy adaptation.
+
+You can access the paper directly at https://arxiv.org/abs/2501.12948.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "7facc25d-7d99-43c1-8d75-736f1add0ca1",
+  "tool_use_result": {
+    "query": "DeepSeek-R1 2025 \"Incentivizing Reasoning Capability\" arxiv 2501.12948 bibtex",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Q8RFkvAswfWTbTdazNZVrf",
+        "content": [
+          {
+            "title": "[2501.12948] DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2501.12948"
+          },
+          {
+            "title": "Paper page - DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning",
+            "url": "https://huggingface.co/papers/2501.12948"
+          },
+          {
+            "title": "DeepSeek-R1: Incentivizing Reasoning Capability in LLMs ...",
+            "url": "https://ui.adsabs.harvard.edu/abs/arXiv:2501.12948"
+          },
+          {
+            "title": "deepseek-ai/DeepSeek-R1 · Hugging Face",
+            "url": "https://huggingface.co/deepseek-ai/DeepSeek-R1"
+          },
+          {
+            "title": "DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via",
+            "url": "https://arxiv.org/pdf/2501.12948v1"
+          },
+          {
+            "title": "DeepSeek-R1: Incentivizing reasoning capability in LLMs via reinforcement learning · Pablo Stafforini",
+            "url": "https://stafforini.com/works/deepseek-ai-2025-deepseek-r-1-incentivizing/"
+          },
+          {
+            "title": "GitHub - deepseek-ai/DeepSeek-R1 · GitHub",
+            "url": "https://github.com/deepseek-ai/DeepSeek-R1"
+          },
+          {
+            "title": "DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning",
+            "url": "https://www.researchgate.net/publication/388317525_DeepSeek-R1_Incentivizing_Reasoning_Capability_in_LLMs_via_Reinforcement_Learning"
+          },
+          {
+            "title": "[2501.12948v1] DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2501.12948v1"
+          },
+          {
+            "title": "DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2025arXiv250112948D"
+          }
+        ]
+      },
+      "I found the paper and BibTeX information for you. Here are the key details:\n\n## Paper Information\n\nThe paper is titled \"DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning\" with arXiv ID 2501.12948.\n\n## BibTeX Citation\n\nThe BibTeX entry is:\n```\n@misc{deepseekai2025deepseekr1incentivizingreasoningcapability,\n  title={DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning},\n  author={DeepSeek-AI},\n  year={2025},\n  eprint={2501.12948},\n  archivePrefix={arXiv},\n  primaryClass={cs.CL},\n  url={https://arxiv.org/abs/2501.12948}\n}\n```\n\n\n## Summary\n\nThe paper shows that the reasoning abilities of LLMs can be incentivized through pure reinforcement learning (RL), obviating the need for human-labeled reasoning trajectories. The proposed RL framework facilitates the emergent development of advanced reasoning patterns, such as self-reflection, verification, and dynamic strategy adaptation.\n\nYou can access the paper directly at https://arxiv.org/abs/2501.12948."
+    ],
+    "durationSeconds": 5.596269184000004
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-14T18:52:19.190Z_
+
+<details><summary>↩ Tool result · `toolu_01ASMoieXgyBreCEonyNvvxc`</summary>
+
+````text
+Web search results for query: "Math-Shepherd Wang Li Shao 2024 ACL "Verify and Reinforce LLMs Step-by-step" bibtex arxiv 2312.08935"
+
+Links: [{"title":"[2312.08935] Math-Shepherd: Verify and Reinforce LLMs Step-by-step without Human Annotations","url":"https://arxiv.org/abs/2312.08935"},{"title":"MATH-SHEPHERD: VERIFY AND REINFORCE LLMS STEP-BY-STEP WITHOUT HUMAN ANNOTATIONS","url":"https://arxiv.org/pdf/2312.08935"},{"title":"Math-Shepherd: Verify and Reinforce LLMs Step-by-step without Human Annotations - ACL Anthology","url":"https://aclanthology.org/2024.acl-long.510/"},{"title":"2024-12-10 Improve Mathematical Reasoning in Language","url":"https://arxiv.org/pdf/2406.06592"},{"title":"[PDF] Math-Shepherd: Verify and Reinforce LLMs Step-by-step without Human Annotations | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Math-Shepherd:-Verify-and-Reinforce-LLMs-without-Wang-Li/4ba57555bef02f988f2ed3bab2f102733dc55221"},{"title":"Math-Shepherd: LLM Step-by-Step Verification","url":"https://www.emergentmind.com/papers/2312.08935"},{"title":"awesome-o1 | A bibliography and survey of the papers surrounding o1","url":"https://srush.github.io/awesome-o1/"},{"title":"arXiv:2409.00147v1 [cs.CL] 30 Aug 2024","url":"https://arxiv.org/pdf/2409.00147"},{"title":"Zhihong Shao 邵智宏 - Zhihong Shao 邵智宏","url":"https://zhihongshao.github.io/"},{"title":"Preprint. Under review DOES MATH REASONING IMPROVE GENERAL LLM","url":"https://arxiv.org/pdf/2507.00432"}]
+
+Based on the search results, I found the paper you're looking for. Here's the information about the Math-Shepherd paper:
+
+## Paper Details
+
+The paper "Math-Shepherd: Verify and Reinforce LLMs Step-by-step without Human Annotations" was authored by Peiyi Wang, Lei Li, Zhihong Shao, Runxin Xu, Damai Dai, Yifei Li, Deli Chen, Yu Wu, and Zhifang Sui in 2024, and was published in the Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers), pages 9426–9439, Bangkok, Thailand.
+
+## ArXiv Information
+
+The paper was submitted on December 14, 2023 (v1), with the last revision on February 19, 2024 (v3), and the arXiv ID is **2312.08935**.
+
+## BibTeX Citation
+
+Here's the BibTeX format for this paper:
+
+```bibtex
+@inproceedings{wang-etal-2024-math,
+  title={Math-Shepherd: Verify and Reinforce LLMs Step-by-step without Human Annotations},
+  author={Wang, Peiyi and Li, Lei and Shao, Zhihong and Xu, Runxin and Dai, Damai and Li, Yifei and Chen, Deli and Wu, Yu and Sui, Zhifang},
+  booktitle={Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)},
+  pages={9426--9439},
+  year={2024},
+  address={Bangkok, Thailand},
+  publisher={Association for Computational Linguistics},
+  doi={10.18653/v1/2024.acl-long.510}
+}
+```
+
+## Overview
+
+The paper presents a process-oriented math process reward model called Math-Shepherd, which assigns a reward score to each step of math problem solutions, with training achieved using automatically constructed process-wise supervision data.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "fa02afe9-038b-4b66-8ec7-0f3c62a278c5",
+  "tool_use_result": {
+    "query": "Math-Shepherd Wang Li Shao 2024 ACL \"Verify and Reinforce LLMs Step-by-step\" bibtex arxiv 2312.08935",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01THwMPvB7yBRg5HAvWdfcHU",
+        "content": [
+          {
+            "title": "[2312.08935] Math-Shepherd: Verify and Reinforce LLMs Step-by-step without Human Annotations",
+            "url": "https://arxiv.org/abs/2312.08935"
+          },
+          {
+            "title": "MATH-SHEPHERD: VERIFY AND REINFORCE LLMS STEP-BY-STEP WITHOUT HUMAN ANNOTATIONS",
+            "url": "https://arxiv.org/pdf/2312.08935"
+          },
+          {
+            "title": "Math-Shepherd: Verify and Reinforce LLMs Step-by-step without Human Annotations - ACL Anthology",
+            "url": "https://aclanthology.org/2024.acl-long.510/"
+          },
+          {
+            "title": "2024-12-10 Improve Mathematical Reasoning in Language",
+            "url": "https://arxiv.org/pdf/2406.06592"
+          },
+          {
+            "title": "[PDF] Math-Shepherd: Verify and Reinforce LLMs Step-by-step without Human Annotations | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Math-Shepherd:-Verify-and-Reinforce-LLMs-without-Wang-Li/4ba57555bef02f988f2ed3bab2f102733dc55221"
+          },
+          {
+            "title": "Math-Shepherd: LLM Step-by-Step Verification",
+            "url": "https://www.emergentmind.com/papers/2312.08935"
+          },
+          {
+            "title": "awesome-o1 | A bibliography and survey of the papers surrounding o1",
+            "url": "https://srush.github.io/awesome-o1/"
+          },
+          {
+            "title": "arXiv:2409.00147v1 [cs.CL] 30 Aug 2024",
+            "url": "https://arxiv.org/pdf/2409.00147"
+          },
+          {
+            "title": "Zhihong Shao 邵智宏 - Zhihong Shao 邵智宏",
+            "url": "https://zhihongshao.github.io/"
+          },
+          {
+            "title": "Preprint. Under review DOES MATH REASONING IMPROVE GENERAL LLM",
+            "url": "https://arxiv.org/pdf/2507.00432"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for. Here's the information about the Math-Shepherd paper:\n\n## Paper Details\n\nThe paper \"Math-Shepherd: Verify and Reinforce LLMs Step-by-step without Human Annotations\" was authored by Peiyi Wang, Lei Li, Zhihong Shao, Runxin Xu, Damai Dai, Yifei Li, Deli Chen, Yu Wu, and Zhifang Sui in 2024, and was published in the Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers), pages 9426–9439, Bangkok, Thailand.\n\n## ArXiv Information\n\nThe paper was submitted on December 14, 2023 (v1), with the last revision on February 19, 2024 (v3), and the arXiv ID is **2312.08935**.\n\n## BibTeX Citation\n\nHere's the BibTeX format for this paper:\n\n```bibtex\n@inproceedings{wang-etal-2024-math,\n  title={Math-Shepherd: Verify and Reinforce LLMs Step-by-step without Human Annotations},\n  author={Wang, Peiyi and Li, Lei and Shao, Zhihong and Xu, Runxin and Dai, Damai and Li, Yifei and Chen, Deli and Wu, Yu and Sui, Zhifang},\n  booktitle={Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)},\n  pages={9426--9439},\n  year={2024},\n  address={Bangkok, Thailand},\n  publisher={Association for Computational Linguistics},\n  doi={10.18653/v1/2024.acl-long.510}\n}\n```\n\n## Overview\n\nThe paper presents a process-oriented math process reward model called Math-Shepherd, which assigns a reward score to each step of math problem solutions, with training achieved using automatically constructed process-wise supervision data."
+    ],
+    "durationSeconds": 7.104250678000011
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-14T18:52:20.795Z_
+
+<details><summary>↩ Tool result · `toolu_01YFfXmg6Hx8h4DhvSjB7zUL`</summary>
+
+```text
+Web search results for query: ""DeepSeek-Prover-V1.5" 2024 ICLR 2025 arxiv 2408.08152 bibtex"
+
+Links: [{"title":"[2408.08152] DeepSeek-Prover-V1.5: Harnessing Proof Assistant Feedback for Reinforcement Learning and Monte-Carlo Tree Search","url":"https://arxiv.org/abs/2408.08152"},{"title":"GitHub - deepseek-ai/DeepSeek-Prover-V1.5 · GitHub","url":"https://github.com/deepseek-ai/DeepSeek-Prover-V1.5"},{"title":"deepseek-ai/DeepSeek-Prover-V1.5-Base · Hugging Face","url":"https://huggingface.co/deepseek-ai/DeepSeek-Prover-V1.5-Base"},{"title":"DeepSeek-Prover-V1.5: Proof Tree Search for Lean Theorem Proving","url":"https://www.opentrain.ai/papers/deepseek-prover-v1-5-harnessing-proof-assistant-feedback-for-reinforcement-learn--arxiv-2408.08152/"},{"title":"[2408.08152] DeepSeek-Prover-V1.5: Harnessing Proof Assistant Feedback for Reinforcement Learning and Monte-Carlo Tree Search","url":"http://export.arxiv.org/abs/2408.08152"},{"title":"DeepSeek-Prover-V1.5: Harnessing Proof Assistant Feedback for Reinforcement Learning and Monte-Carlo Tree Search","url":"https://arxiv.org/html/2408.08152v1"},{"title":"DeepSeek-Prover-V2: Advancing Formal Mathematical Reasoning via Reinforcement Learning for Subgoal Decomposition","url":"https://arxiv.org/html/2504.21801v1"},{"title":"Paper page - DeepSeek-Prover-V1.5: Harnessing Proof Assistant Feedback for Reinforcement Learning and Monte-Carlo Tree Search","url":"https://huggingface.co/papers/2408.08152"},{"title":"[2408.08152v1] DeepSeek-Prover-V1.5: Harnessing Proof Assistant Feedback for Reinforcement Learning and Monte-Carlo Tree Search","url":"https://arxiv.org/abs/2408.08152v1"},{"title":"DeepSeek-Prover-V1.5","url":"http://arxiv.org/pdf/2408.08152"}]
+
+I've found comprehensive information about DeepSeek-Prover-V1.5 (arxiv 2408.08152). Here's what I found:
+
+## Overview
+
+DeepSeek-Prover-V1.5 is an open-source language model designed for theorem proving in Lean 4, which enhances DeepSeek-Prover-V1 by optimizing both training and inference processes.
+
+## Key Features
+
+The model is pre-trained on DeepSeekMath-Base with specialization in formal mathematical languages, undergoes supervised fine-tuning using an enhanced formal theorem proving dataset, and achieves further refinement through reinforcement learning from proof assistant feedback (RLPAF).
+
+The paper proposes RMaxTS, a variant of Monte-Carlo tree search that employs an intrinsic-reward-driven exploration strategy to generate diverse proof paths.
+
+## Performance
+
+DeepSeek-Prover-V1.5 demonstrates significant improvements over DeepSeek-Prover-V1, achieving new state-of-the-art results on the test set of the high school level miniF2F benchmark (63.5%) and the undergraduate level ProofNet benchmark (25.3%).
+
+## BibTeX Citation
+
+The complete BibTeX entry is: @article{xin2024deepseekproverv15harnessingproofassistant, title={DeepSeek-Prover-V1.5: Harnessing Proof Assistant Feedback for Reinforcement Learning and Monte-Carlo Tree Search}, author={Huajian Xin and Z. Z. Ren and Junxiao Song and Zhihong Shao and Wanjia Zhao and Haocheng Wang and Bo Liu and Liyue Zhang and Xuan Lu and Qiushi Du and Wenjun Gao and Qihao Zhu and Dejian Yang and Zhibin Gou and Z. F. Wu and Fuli Luo and Chong Ruan}, year={2024}, eprint={2408.08152}, archivePrefix={arXiv}, primaryClass={cs.CL}, url={https://arxiv.org/abs/2408.08152}}
+
+The paper was submitted on August 15, 2024. The search results don't indicate acceptance to ICLR 2025, so I cannot confirm that venue status from the available information.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "f16b867f-8e6e-4374-9900-a88d5e2ba008",
+  "tool_use_result": {
+    "query": "\"DeepSeek-Prover-V1.5\" 2024 ICLR 2025 arxiv 2408.08152 bibtex",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01X53fPA3wE86dh7BBLVguJq",
+        "content": [
+          {
+            "title": "[2408.08152] DeepSeek-Prover-V1.5: Harnessing Proof Assistant Feedback for Reinforcement Learning and Monte-Carlo Tree Search",
+            "url": "https://arxiv.org/abs/2408.08152"
+          },
+          {
+            "title": "GitHub - deepseek-ai/DeepSeek-Prover-V1.5 · GitHub",
+            "url": "https://github.com/deepseek-ai/DeepSeek-Prover-V1.5"
+          },
+          {
+            "title": "deepseek-ai/DeepSeek-Prover-V1.5-Base · Hugging Face",
+            "url": "https://huggingface.co/deepseek-ai/DeepSeek-Prover-V1.5-Base"
+          },
+          {
+            "title": "DeepSeek-Prover-V1.5: Proof Tree Search for Lean Theorem Proving",
+            "url": "https://www.opentrain.ai/papers/deepseek-prover-v1-5-harnessing-proof-assistant-feedback-for-reinforcement-learn--arxiv-2408.08152/"
+          },
+          {
+            "title": "[2408.08152] DeepSeek-Prover-V1.5: Harnessing Proof Assistant Feedback for Reinforcement Learning and Monte-Carlo Tree Search",
+            "url": "http://export.arxiv.org/abs/2408.08152"
+          },
+          {
+            "title": "DeepSeek-Prover-V1.5: Harnessing Proof Assistant Feedback for Reinforcement Learning and Monte-Carlo Tree Search",
+            "url": "https://arxiv.org/html/2408.08152v1"
+          },
+          {
+            "title": "DeepSeek-Prover-V2: Advancing Formal Mathematical Reasoning via Reinforcement Learning for Subgoal Decomposition",
+            "url": "https://arxiv.org/html/2504.21801v1"
+          },
+          {
+            "title": "Paper page - DeepSeek-Prover-V1.5: Harnessing Proof Assistant Feedback for Reinforcement Learning and Monte-Carlo Tree Search",
+            "url": "https://huggingface.co/papers/2408.08152"
+          },
+          {
+            "title": "[2408.08152v1] DeepSeek-Prover-V1.5: Harnessing Proof Assistant Feedback for Reinforcement Learning and Monte-Carlo Tree Search",
+            "url": "https://arxiv.org/abs/2408.08152v1"
+          },
+          {
+            "title": "DeepSeek-Prover-V1.5",
+            "url": "http://arxiv.org/pdf/2408.08152"
+          }
+        ]
+      },
+      "I've found comprehensive information about DeepSeek-Prover-V1.5 (arxiv 2408.08152). Here's what I found:\n\n## Overview\n\nDeepSeek-Prover-V1.5 is an open-source language model designed for theorem proving in Lean 4, which enhances DeepSeek-Prover-V1 by optimizing both training and inference processes.\n\n## Key Features\n\nThe model is pre-trained on DeepSeekMath-Base with specialization in formal mathematical languages, undergoes supervised fine-tuning using an enhanced formal theorem proving dataset, and achieves further refinement through reinforcement learning from proof assistant feedback (RLPAF).\n\nThe paper proposes RMaxTS, a variant of Monte-Carlo tree search that employs an intrinsic-reward-driven exploration strategy to generate diverse proof paths.\n\n## Performance\n\nDeepSeek-Prover-V1.5 demonstrates significant improvements over DeepSeek-Prover-V1, achieving new state-of-the-art results on the test set of the high school level miniF2F benchmark (63.5%) and the undergraduate level ProofNet benchmark (25.3%).\n\n## BibTeX Citation\n\nThe complete BibTeX entry is: @article{xin2024deepseekproverv15harnessingproofassistant, title={DeepSeek-Prover-V1.5: Harnessing Proof Assistant Feedback for Reinforcement Learning and Monte-Carlo Tree Search}, author={Huajian Xin and Z. Z. Ren and Junxiao Song and Zhihong Shao and Wanjia Zhao and Haocheng Wang and Bo Liu and Liyue Zhang and Xuan Lu and Qiushi Du and Wenjun Gao and Qihao Zhu and Dejian Yang and Zhibin Gou and Z. F. Wu and Fuli Luo and Chong Ruan}, year={2024}, eprint={2408.08152}, archivePrefix={arXiv}, primaryClass={cs.CL}, url={https://arxiv.org/abs/2408.08152}}\n\nThe paper was submitted on August 15, 2024. The search results don't indicate acceptance to ICLR 2025, so I cannot confirm that venue status from the available information."
+    ],
+    "durationSeconds": 8.96904417200001
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RASzxq3VPjsGPXNxWMRPvF`</summary>
+
+```json
+{
+  "query": "Logic-RL Xian 2025 \"Unleashing LLM Reasoning with Rule-Based Reinforcement Learning\" arxiv 2502.14768 bibtex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "c3794366-e4d8-4602-925d-7579587d25bf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018FF2cXG8R8a5ZQG25Q6zSa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2036,
+      "cache_creation_input_tokens": 4895,
+      "cache_read_input_tokens": 63018,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4895
+      },
+      "output_tokens": 39,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HNFMkrEt9jZVKDj4gsUAYw`</summary>
+
+```json
+{
+  "query": "Kwa \"Catastrophic Goodhart\" RLHF KL divergence NeurIPS 2024 bibtex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "9cc4d844-ccfe-48e3-901c-d5290c41b41d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018FF2cXG8R8a5ZQG25Q6zSa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2036,
+      "cache_creation_input_tokens": 4895,
+      "cache_read_input_tokens": 63018,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4895
+      },
+      "output_tokens": 39,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019tWuKAzeiv81NpSA4iQzHV`</summary>
+
+```json
+{
+  "query": "FoVer Pei \"First-Order Logic Verification for Natural Language Reasoning\" TACL 2025 bibtex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "9cad8256-59b3-4595-afc0-5295c6dad24d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018FF2cXG8R8a5ZQG25Q6zSa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2036,
+      "cache_creation_input_tokens": 4895,
+      "cache_read_input_tokens": 63018,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4895
+      },
+      "output_tokens": 39,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016VCqnDPnhJewVSo1ZtRu5f`</summary>
+
+```json
+{
+  "query": "\"Reinforcement Learning via Symbolic Feedback\" RLSF Jha 2024 arxiv 2405.16661 bibtex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "6212c8e0-cf70-482e-afee-9e6f35eb6cfb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018FF2cXG8R8a5ZQG25Q6zSa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2036,
+      "cache_creation_input_tokens": 4895,
+      "cache_read_input_tokens": 63018,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4895
+      },
+      "output_tokens": 39,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019cq9NLJgum5TiGB3AJwRtC`</summary>
+
+```json
+{
+  "query": "\"Spurious Rewards Rethinking Training Signals\" RLVR Yang 2025 arxiv 2506.10947 bibtex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "a85c42ff-20ee-4bf7-afe2-c9b9ac519b89",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018FF2cXG8R8a5ZQG25Q6zSa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2036,
+      "cache_creation_input_tokens": 4895,
+      "cache_read_input_tokens": 63018,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4895
+      },
+      "output_tokens": 39,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014EhuBu9YRHxyaGEdfUevTK`</summary>
+
+```json
+{
+  "query": "\"Thought-Like-Pro\" Tan 2024 \"Prolog-based Chain-of-Thought\" arxiv 2407.14562 bibtex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "bb031695-d697-488b-8a5e-320bf5aabcc4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018FF2cXG8R8a5ZQG25Q6zSa",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2036,
+      "cache_creation_input_tokens": 4895,
+      "cache_read_input_tokens": 63018,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4895
+      },
+      "output_tokens": 39,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-14T18:52:32.241Z_
+
+<details><summary>↩ Tool result · `toolu_01RASzxq3VPjsGPXNxWMRPvF`</summary>
+
+````text
+Web search results for query: "Logic-RL Xian 2025 "Unleashing LLM Reasoning with Rule-Based Reinforcement Learning" arxiv 2502.14768 bibtex"
+
+Links: [{"title":"[2502.14768] Logic-RL: Unleashing LLM Reasoning with Rule-Based Reinforcement Learning","url":"https://arxiv.org/abs/2502.14768"},{"title":"Paper page - Logic-RL: Unleashing LLM Reasoning with Rule-Based Reinforcement Learning","url":"https://huggingface.co/papers/2502.14768"},{"title":"Logic-RL: Unleashing LLM Reasoning with Rule-Based Reinforcement Learning","url":"https://arxiv.org/html/2502.14768v1"},{"title":"[2502.14768v1] Logic-RL: Unleashing LLM Reasoning with Rule-Based Reinforcement Learning","url":"https://arxiv.org/abs/2502.14768v1"},{"title":"Logic-RL: Unleashing LLM Reasoning with Rule-Based Reinforcement Learning","url":"https://www.arxiv.org/pdf/2502.14768"},{"title":"Logic-RL/README.md at main · Unakar/Logic-RL","url":"https://github.com/Unakar/Logic-RL/blob/main/README.md"},{"title":"[PDF] Logic-RL: Unleashing LLM Reasoning with Rule-Based Reinforcement Learning | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Logic-RL:-Unleashing-LLM-Reasoning-with-Rule-Based-Xie-Gao/446c3356b95a29dca4b908533c088ce63f2275cb"},{"title":"GitHub - Unakar/Logic-RL: Reproduce R1 Zero on Logic Puzzle · GitHub","url":"https://github.com/Unakar/Logic-RL"},{"title":"Logic-RL: Unleashing LLM Reasoning with Rule-Based ...","url":"https://www.alphaxiv.org/abs/2502.14768"},{"title":"Logic-RL: Unleashing LLM Reasoning with Rule-Based Reinforcement Learning","url":"https://www.researchgate.net/publication/389207383_Logic-RL_Unleashing_LLM_Reasoning_with_Rule-Based_Reinforcement_Learning"}]
+
+I found the paper and BibTeX information for you. Here are the results:
+
+## Paper Details
+
+The paper "Logic-RL: Unleashing LLM Reasoning with Rule-Based Reinforcement Learning" (arXiv:2502.14768) was submitted on February 20, 2025 by authors Tian Xie, Zitian Gao, Qingnan Ren, Haoming Luo, Yuqian Hong, Bryan Dai, Joey Zhou, Kai Qiu, Zhirong Wu, and Chong Luo.
+
+## BibTeX Citation
+
+Here is the BibTeX entry:
+
+```
+@misc{xie2025logicrlunleashingllmreasoning,
+  title={Logic-RL: Unleashing LLM Reasoning with Rule-Based Reinforcement Learning},
+  author={Tian Xie and Zitian Gao and Qingnan Ren and Haoming Luo and Yuqian Hong and Bryan Dai and Joey Zhou and Kai Qiu and Zhirong Wu and Chong Luo},
+  year={2025},
+  eprint={2502.14768},
+  archivePrefix={arXiv},
+  primaryClass={cs.CL},
+  url={https://arxiv.org/abs/2502.14768},
+}
+```
+
+
+## Paper Summary
+
+The paper explores rule-based reinforcement learning in large reasoning models and makes technical contributions including a system prompt emphasizing thinking and answering processes, a stringent format reward function that penalizes shortcuts, and a training recipe achieving stable convergence.
+
+The paper is available at: https://arxiv.org/abs/2502.14768
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "4b338d8a-1d4f-4c35-aa0e-425c409398b7",
+  "tool_use_result": {
+    "query": "Logic-RL Xian 2025 \"Unleashing LLM Reasoning with Rule-Based Reinforcement Learning\" arxiv 2502.14768 bibtex",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01LokRHs3srrBoN54ARvWbnh",
+        "content": [
+          {
+            "title": "[2502.14768] Logic-RL: Unleashing LLM Reasoning with Rule-Based Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2502.14768"
+          },
+          {
+            "title": "Paper page - Logic-RL: Unleashing LLM Reasoning with Rule-Based Reinforcement Learning",
+            "url": "https://huggingface.co/papers/2502.14768"
+          },
+          {
+            "title": "Logic-RL: Unleashing LLM Reasoning with Rule-Based Reinforcement Learning",
+            "url": "https://arxiv.org/html/2502.14768v1"
+          },
+          {
+            "title": "[2502.14768v1] Logic-RL: Unleashing LLM Reasoning with Rule-Based Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2502.14768v1"
+          },
+          {
+            "title": "Logic-RL: Unleashing LLM Reasoning with Rule-Based Reinforcement Learning",
+            "url": "https://www.arxiv.org/pdf/2502.14768"
+          },
+          {
+            "title": "Logic-RL/README.md at main · Unakar/Logic-RL",
+            "url": "https://github.com/Unakar/Logic-RL/blob/main/README.md"
+          },
+          {
+            "title": "[PDF] Logic-RL: Unleashing LLM Reasoning with Rule-Based Reinforcement Learning | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Logic-RL:-Unleashing-LLM-Reasoning-with-Rule-Based-Xie-Gao/446c3356b95a29dca4b908533c088ce63f2275cb"
+          },
+          {
+            "title": "GitHub - Unakar/Logic-RL: Reproduce R1 Zero on Logic Puzzle · GitHub",
+            "url": "https://github.com/Unakar/Logic-RL"
+          },
+          {
+            "title": "Logic-RL: Unleashing LLM Reasoning with Rule-Based ...",
+            "url": "https://www.alphaxiv.org/abs/2502.14768"
+          },
+          {
+            "title": "Logic-RL: Unleashing LLM Reasoning with Rule-Based Reinforcement Learning",
+            "url": "https://www.researchgate.net/publication/389207383_Logic-RL_Unleashing_LLM_Reasoning_with_Rule-Based_Reinforcement_Learning"
+          }
+        ]
+      },
+      "I found the paper and BibTeX information for you. Here are the results:\n\n## Paper Details\n\nThe paper \"Logic-RL: Unleashing LLM Reasoning with Rule-Based Reinforcement Learning\" (arXiv:2502.14768) was submitted on February 20, 2025 by authors Tian Xie, Zitian Gao, Qingnan Ren, Haoming Luo, Yuqian Hong, Bryan Dai, Joey Zhou, Kai Qiu, Zhirong Wu, and Chong Luo.\n\n## BibTeX Citation\n\nHere is the BibTeX entry:\n\n```\n@misc{xie2025logicrlunleashingllmreasoning,\n  title={Logic-RL: Unleashing LLM Reasoning with Rule-Based Reinforcement Learning},\n  author={Tian Xie and Zitian Gao and Qingnan Ren and Haoming Luo and Yuqian Hong and Bryan Dai and Joey Zhou and Kai Qiu and Zhirong Wu and Chong Luo},\n  year={2025},\n  eprint={2502.14768},\n  archivePrefix={arXiv},\n  primaryClass={cs.CL},\n  url={https://arxiv.org/abs/2502.14768},\n}\n```\n\n\n## Paper Summary\n\nThe paper explores rule-based reinforcement learning in large reasoning models and makes technical contributions including a system prompt emphasizing thinking and answering processes, a stringent format reward function that penalizes shortcuts, and a training recipe achieving stable convergence.\n\nThe paper is available at: https://arxiv.org/abs/2502.14768"
+    ],
+    "durationSeconds": 6.4145038429999985
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-14T18:52:33.557Z_
+
+<details><summary>↩ Tool result · `toolu_019tWuKAzeiv81NpSA4iQzHV`</summary>
+
+```text
+Web search results for query: "FoVer Pei "First-Order Logic Verification for Natural Language Reasoning" TACL 2025 bibtex"
+
+Links: [{"title":"FoVer: First-Order Logic Verification for Natural Language Reasoning | Transactions of the Association for Computational Linguistics | MIT Press","url":"https://direct.mit.edu/tacl/article/doi/10.1162/TACL.a.41/133797/FoVer-First-Order-Logic-Verification-for-Natural"},{"title":"FoVer: First-Order Logic Verification for Natural Language Reasoning - ACL Anthology","url":"https://aclanthology.org/2025.tacl-1.61/"},{"title":"FoVer: First-Order Logic Verification for Natural Language Reasoning | Transactions of the Association for Computational Linguistics","url":"https://transacl.org/index.php/tacl/article/view/8211"},{"title":"GitHub - peiyu-cn/FoVer: Official code repository for the paper: \"FoVer: First-Order Logic Verification for Natural Language Reasoning\" (TACL) · GitHub","url":"https://github.com/peiyu-cn/FoVer"},{"title":"FoVer: First-Order Logic Verification for Natural Language Reasoning","url":"https://www.researchgate.net/publication/397118426_FoVer_First-Order_Logic_Verification_for_Natural_Language_Reasoning"},{"title":"FoVer: First-Order Logic Verification for Natural Language Reasoning Yu Pei1, 2","url":"https://direct.mit.edu/tacl/article-pdf/doi/10.1162/TACL.a.41/2561649/tacl.a.41.pdf"},{"title":"Accepted TACL Papers - EMNLP 2025","url":"https://2025.emnlp.org/program/tacl_papers/"},{"title":"ProoFVer: Natural Logic Theorem Proving for Fact Verification | Transactions of the Association for Computational Linguistics | MIT Press","url":"https://direct.mit.edu/tacl/article/doi/10.1162/tacl_a_00503/113022/ProoFVer-Natural-Logic-Theorem-Proving-for-Fact"},{"title":"FOLIO: Natural Language Reasoning with First-Order Logic | Request PDF","url":"https://www.researchgate.net/publication/363269585_FOLIO_Natural_Language_Reasoning_with_First-Order_Logic"},{"title":"Towards Advanced Mathematical Reasoning for LLMs via ...","url":"https://aclanthology.org/2025.emnlp-main.628.pdf"}]
+
+I found the paper and its BibTeX citation. Here's the BibTeX entry for the FoVer paper:
+
+@article{pei-etal-2025-fover, title = "{F}o{V}er: First-Order Logic Verification for Natural Language Reasoning", author = "Pei, Yu and Du, Yongping and Jin, Xingnan", journal = "Transactions of the Association for Computational Linguistics", volume = "13", year = "2025", address = "Cambridge, MA", publisher = "MIT Press", url = "https://aclanthology.org/2025.tacl-1.61/", doi = "10.1162/tacl.a.41", pages = "1340--1359"}
+
+You can also find an alternative BibTeX format from GitHub: @article{peiyu2025fover, title={FoVer: First-Order Logic Verification for Natural Language Reasoning}, author={Pei, Yu and Du, Yongping and Jin, Xingnan}, journal={Transactions of the Association for Computational Linguistics}, volume={13}, pages={1340-1359}, year={2025}, publisher={MIT Press}, doi={10.1162/TACL.a.41}}
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "904009b9-4c90-46f2-adb1-ac861cb0d9fb",
+  "tool_use_result": {
+    "query": "FoVer Pei \"First-Order Logic Verification for Natural Language Reasoning\" TACL 2025 bibtex",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01JyHGpE1XqAR8XfVc8QsKoR",
+        "content": [
+          {
+            "title": "FoVer: First-Order Logic Verification for Natural Language Reasoning | Transactions of the Association for Computational Linguistics | MIT Press",
+            "url": "https://direct.mit.edu/tacl/article/doi/10.1162/TACL.a.41/133797/FoVer-First-Order-Logic-Verification-for-Natural"
+          },
+          {
+            "title": "FoVer: First-Order Logic Verification for Natural Language Reasoning - ACL Anthology",
+            "url": "https://aclanthology.org/2025.tacl-1.61/"
+          },
+          {
+            "title": "FoVer: First-Order Logic Verification for Natural Language Reasoning | Transactions of the Association for Computational Linguistics",
+            "url": "https://transacl.org/index.php/tacl/article/view/8211"
+          },
+          {
+            "title": "GitHub - peiyu-cn/FoVer: Official code repository for the paper: \"FoVer: First-Order Logic Verification for Natural Language Reasoning\" (TACL) · GitHub",
+            "url": "https://github.com/peiyu-cn/FoVer"
+          },
+          {
+            "title": "FoVer: First-Order Logic Verification for Natural Language Reasoning",
+            "url": "https://www.researchgate.net/publication/397118426_FoVer_First-Order_Logic_Verification_for_Natural_Language_Reasoning"
+          },
+          {
+            "title": "FoVer: First-Order Logic Verification for Natural Language Reasoning Yu Pei1, 2",
+            "url": "https://direct.mit.edu/tacl/article-pdf/doi/10.1162/TACL.a.41/2561649/tacl.a.41.pdf"
+          },
+          {
+            "title": "Accepted TACL Papers - EMNLP 2025",
+            "url": "https://2025.emnlp.org/program/tacl_papers/"
+          },
+          {
+            "title": "ProoFVer: Natural Logic Theorem Proving for Fact Verification | Transactions of the Association for Computational Linguistics | MIT Press",
+            "url": "https://direct.mit.edu/tacl/article/doi/10.1162/tacl_a_00503/113022/ProoFVer-Natural-Logic-Theorem-Proving-for-Fact"
+          },
+          {
+            "title": "FOLIO: Natural Language Reasoning with First-Order Logic | Request PDF",
+            "url": "https://www.researchgate.net/publication/363269585_FOLIO_Natural_Language_Reasoning_with_First-Order_Logic"
+          },
+          {
+            "title": "Towards Advanced Mathematical Reasoning for LLMs via ...",
+            "url": "https://aclanthology.org/2025.emnlp-main.628.pdf"
+          }
+        ]
+      },
+      "I found the paper and its BibTeX citation. Here's the BibTeX entry for the FoVer paper:\n\n@article{pei-etal-2025-fover, title = \"{F}o{V}er: First-Order Logic Verification for Natural Language Reasoning\", author = \"Pei, Yu and Du, Yongping and Jin, Xingnan\", journal = \"Transactions of the Association for Computational Linguistics\", volume = \"13\", year = \"2025\", address = \"Cambridge, MA\", publisher = \"MIT Press\", url = \"https://aclanthology.org/2025.tacl-1.61/\", doi = \"10.1162/tacl.a.41\", pages = \"1340--1359\"}\n\nYou can also find an alternative BibTeX format from GitHub: @article{peiyu2025fover, title={FoVer: First-Order Logic Verification for Natural Language Reasoning}, author={Pei, Yu and Du, Yongping and Jin, Xingnan}, journal={Transactions of the Association for Computational Linguistics}, volume={13}, pages={1340-1359}, year={2025}, publisher={MIT Press}, doi={10.1162/TACL.a.41}}"
+    ],
+    "durationSeconds": 5.348755027999999
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-14T18:52:34.547Z_
+
+<details><summary>↩ Tool result · `toolu_01HNFMkrEt9jZVKDj4gsUAYw`</summary>
+
+```text
+Web search results for query: "Kwa "Catastrophic Goodhart" RLHF KL divergence NeurIPS 2024 bibtex"
+
+Links: [{"title":"[2407.14503] Catastrophic Goodhart: regularizing RLHF with KL divergence does not mitigate heavy-tailed reward misspecification","url":"https://arxiv.org/abs/2407.14503"},{"title":"Catastrophic Goodhart: regularizing RLHF with KL","url":"https://proceedings.neurips.cc/paper_files/paper/2024/file/1a8189929f3d7bd6183718f42c3f4309-Paper-Conference.pdf"},{"title":"NeurIPS Poster Catastrophic Goodhart: regularizing RLHF with KL divergence does not mitigate heavy-tailed reward misspecification","url":"https://neurips.cc/virtual/2024/poster/94961"},{"title":"Catastrophic Goodhart: regularizing RLHF with KL divergence does not mitigate heavy-tailed reward misspecification | OpenReview","url":"https://openreview.net/forum?id=UXuBzWoZGK&noteId=YiStZYdof7"},{"title":"Catastrophic Goodhart: regularizing RLHF with KL divergence does not mitigate heavy-tailed reward misspecification","url":"https://proceedings.neurips.cc//paper_files/paper/2024/hash/1a8189929f3d7bd6183718f42c3f4309-Abstract-Conference.html"},{"title":"Catastrophic Goodhart: regularizing RLHF with KL divergence does not mitigate heavy-tailed reward misspecification","url":"https://arxiv.org/html/2407.14503v1"},{"title":"Catastrophic Goodhart in RLHF","url":"https://www.emergentmind.com/papers/2407.14503"},{"title":"Catastrophic Goodhart: regularizing RLHF with KL divergence does not mitigate heavy-tailed reward misspecification | FAR.AI","url":"https://www.far.ai/research/catastrophic-goodhart-regularizing-rlhf-with-kl-divergence-does-not-mitigate-heavy-tailed-reward-misspecification"},{"title":"Catastrophic Goodhart: regularizing RLHF with KL divergence does not mitigate heavy-tailed reward misspecification - proceedings.com","url":"https://www.proceedings.com/079017-0466.html"},{"title":"Catastrophic Goodhart: regularizing RLHF with KL divergence does not mitigate heavy-tailed reward misspecification | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/catastrophic-goodhart-regularizing-rlhf-kl-divergence-does"}]
+
+I found the paper! Here's information about the "Catastrophic Goodhart" paper:
+
+## Paper Summary
+
+The paper is by Thomas Kwa, Drake Thomas, and Adrià Garriga-Alonso, published in Advances in Neural Information Processing Systems 37 (NeurIPS 2024) Main Conference Track.
+
+The paper introduces "catastrophic Goodhart," a phenomenon where some policies obtain arbitrarily high reward despite achieving no more utility than the base model when error is heavy-tailed. The paper shows that regularizing the policy with KL divergence from a base model is common practice to mitigate reward misspecification, with the hope that balancing reward with regularization will achieve desirable outcomes.
+
+## Key Findings
+
+When the reward function has light-tailed error, optimal policies under less restrictive KL penalties achieve arbitrarily high utility. However, the authors adapt a discrete optimization method to measure the tails of reward models, finding that they are consistent with light-tailed error.
+
+## Resources
+
+The paper is available at:
+- **arXiv**: https://arxiv.org/abs/2407.14503
+- **NeurIPS Proceedings**: https://proceedings.neurips.cc/paper_files/paper/2024/file/1a8189929f3d7bd6183718f42c3f4309-Paper-Conference.pdf
+- **OpenReview**: https://openreview.net/forum?id=UXuBzWoZGK
+
+You can access the BibTeX citation directly from the NeurIPS proceedings page linked above.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "294384c0-5f30-4fbc-8661-d0bddb68977e",
+  "tool_use_result": {
+    "query": "Kwa \"Catastrophic Goodhart\" RLHF KL divergence NeurIPS 2024 bibtex",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01HPoNi7htX3C36h83bAmrZc",
+        "content": [
+          {
+            "title": "[2407.14503] Catastrophic Goodhart: regularizing RLHF with KL divergence does not mitigate heavy-tailed reward misspecification",
+            "url": "https://arxiv.org/abs/2407.14503"
+          },
+          {
+            "title": "Catastrophic Goodhart: regularizing RLHF with KL",
+            "url": "https://proceedings.neurips.cc/paper_files/paper/2024/file/1a8189929f3d7bd6183718f42c3f4309-Paper-Conference.pdf"
+          },
+          {
+            "title": "NeurIPS Poster Catastrophic Goodhart: regularizing RLHF with KL divergence does not mitigate heavy-tailed reward misspecification",
+            "url": "https://neurips.cc/virtual/2024/poster/94961"
+          },
+          {
+            "title": "Catastrophic Goodhart: regularizing RLHF with KL divergence does not mitigate heavy-tailed reward misspecification | OpenReview",
+            "url": "https://openreview.net/forum?id=UXuBzWoZGK&noteId=YiStZYdof7"
+          },
+          {
+            "title": "Catastrophic Goodhart: regularizing RLHF with KL divergence does not mitigate heavy-tailed reward misspecification",
+            "url": "https://proceedings.neurips.cc//paper_files/paper/2024/hash/1a8189929f3d7bd6183718f42c3f4309-Abstract-Conference.html"
+          },
+          {
+            "title": "Catastrophic Goodhart: regularizing RLHF with KL divergence does not mitigate heavy-tailed reward misspecification",
+            "url": "https://arxiv.org/html/2407.14503v1"
+          },
+          {
+            "title": "Catastrophic Goodhart in RLHF",
+            "url": "https://www.emergentmind.com/papers/2407.14503"
+          },
+          {
+            "title": "Catastrophic Goodhart: regularizing RLHF with KL divergence does not mitigate heavy-tailed reward misspecification | FAR.AI",
+            "url": "https://www.far.ai/research/catastrophic-goodhart-regularizing-rlhf-with-kl-divergence-does-not-mitigate-heavy-tailed-reward-misspecification"
+          },
+          {
+            "title": "Catastrophic Goodhart: regularizing RLHF with KL divergence does not mitigate heavy-tailed reward misspecification - proceedings.com",
+            "url": "https://www.proceedings.com/079017-0466.html"
+          },
+          {
+            "title": "Catastrophic Goodhart: regularizing RLHF with KL divergence does not mitigate heavy-tailed reward misspecification | AI Research Paper Details",
+            "url": "https://www.aimodels.fyi/papers/arxiv/catastrophic-goodhart-regularizing-rlhf-kl-divergence-does"
+          }
+        ]
+      },
+      "I found the paper! Here's information about the \"Catastrophic Goodhart\" paper:\n\n## Paper Summary\n\nThe paper is by Thomas Kwa, Drake Thomas, and Adrià Garriga-Alonso, published in Advances in Neural Information Processing Systems 37 (NeurIPS 2024) Main Conference Track.\n\nThe paper introduces \"catastrophic Goodhart,\" a phenomenon where some policies obtain arbitrarily high reward despite achieving no more utility than the base model when error is heavy-tailed. The paper shows that regularizing the policy with KL divergence from a base model is common practice to mitigate reward misspecification, with the hope that balancing reward with regularization will achieve desirable outcomes.\n\n## Key Findings\n\nWhen the reward function has light-tailed error, optimal policies under less restrictive KL penalties achieve arbitrarily high utility. However, the authors adapt a discrete optimization method to measure the tails of reward models, finding that they are consistent with light-tailed error.\n\n## Resources\n\nThe paper is available at:\n- **arXiv**: https://arxiv.org/abs/2407.14503\n- **NeurIPS Proceedings**: https://proceedings.neurips.cc/paper_files/paper/2024/file/1a8189929f3d7bd6183718f42c3f4309-Paper-Conference.pdf\n- **OpenReview**: https://openreview.net/forum?id=UXuBzWoZGK\n\nYou can access the BibTeX citation directly from the NeurIPS proceedings page linked above."
+    ],
+    "durationSeconds": 7.740086546999999
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-14T18:52:34.755Z_
+
+<details><summary>↩ Tool result · `toolu_016VCqnDPnhJewVSo1ZtRu5f`</summary>
+
+```text
+Web search results for query: ""Reinforcement Learning via Symbolic Feedback" RLSF Jha 2024 arxiv 2405.16661 bibtex"
+
+Links: [{"title":"[2405.16661] RLSF: Fine-tuning LLMs via Symbolic Feedback","url":"https://arxiv.org/abs/2405.16661"},{"title":"[2405.16661v2] RLSF: Reinforcement Learning via Symbolic Feedback","url":"https://arxiv.org/abs/2405.16661v2"},{"title":"(PDF) RLSF: Reinforcement Learning via Symbolic Feedback","url":"https://www.researchgate.net/publication/380907103_RLSF_Reinforcement_Learning_via_Symbolic_Feedback"},{"title":"RLSF: Reinforcement Learning via Symbolic Feedback","url":"https://arxiv.org/html/2405.16661v1"},{"title":"RLSF: Fine-tuning LLMs via Symbolic Feedback - ADS","url":"https://ui.adsabs.harvard.edu/abs/2024arXiv240516661J/abstract"},{"title":"RLSF: Fine-tuning LLMs via Symbolic Feedback","url":"https://arxiv.org/html/2405.16661v3"},{"title":"RLSF: Reinforcement Learning via Symbolic Feedback | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/rlsf-reinforcement-learning-via-symbolic-feedback"},{"title":"RLSF: Reinforcement Learning via Symbolic Feedback | PromptLayer","url":"https://www.promptlayer.com/research-papers/rlsf-reinforcement-learning-via-symbolic-feedback"},{"title":"Computer Science May 2024","url":"https://arxiv.org/list/cs/2024-05?skip=7405&show=2000"},{"title":"RLSF: Reinforcement Learning via Symbolic Feedback | OpenReview","url":"https://openreview.net/forum?id=vf8iou7FNF"}]
+
+Perfect! I found the paper. RLSF (Reinforcement Learning via Symbolic Feedback) is a novel fine-tuning paradigm where symbolic reasoning tools (e.g., solvers, provers, and algebra systems) provide fine-grained feedback to LLMs.
+
+## Key Information:
+
+**Paper Details:**
+- arXiv: 2405.16661
+- Authors: Piyush Jha, Prithwish Jana, Pranavkrishna Suresh, Arnav Arora, Vijay Ganesh
+- Published in ECAI 2025, Frontiers in Artificial Intelligence and Applications, Vol. 413, pp. 1687-1694, 2025
+
+**What is RLSF:**
+RLSF uses poly-sized certificates (e.g., proofs) generated by symbolic tools to identify and correct errors in model outputs, offering token-level guidance without requiring differentiable reasoning systems.
+
+**Results:**
+The method outperforms traditional approaches on five different applications: program synthesis (+31.43% in functional correctness for CodeGemma-2b compared to supervised fine-tuning, +17.01% compared to GPT-3.5), three chemistry tasks, and solving the Game of 24 (+25% success rate using Llama2-7b).
+
+You can access the paper directly at https://arxiv.org/abs/2405.16661
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "6de3242c-b1ad-4c13-a5ca-db0ac745b150",
+  "tool_use_result": {
+    "query": "\"Reinforcement Learning via Symbolic Feedback\" RLSF Jha 2024 arxiv 2405.16661 bibtex",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01QkA7pQV9nvkxbDeuLpEKSS",
+        "content": [
+          {
+            "title": "[2405.16661] RLSF: Fine-tuning LLMs via Symbolic Feedback",
+            "url": "https://arxiv.org/abs/2405.16661"
+          },
+          {
+            "title": "[2405.16661v2] RLSF: Reinforcement Learning via Symbolic Feedback",
+            "url": "https://arxiv.org/abs/2405.16661v2"
+          },
+          {
+            "title": "(PDF) RLSF: Reinforcement Learning via Symbolic Feedback",
+            "url": "https://www.researchgate.net/publication/380907103_RLSF_Reinforcement_Learning_via_Symbolic_Feedback"
+          },
+          {
+            "title": "RLSF: Reinforcement Learning via Symbolic Feedback",
+            "url": "https://arxiv.org/html/2405.16661v1"
+          },
+          {
+            "title": "RLSF: Fine-tuning LLMs via Symbolic Feedback - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2024arXiv240516661J/abstract"
+          },
+          {
+            "title": "RLSF: Fine-tuning LLMs via Symbolic Feedback",
+            "url": "https://arxiv.org/html/2405.16661v3"
+          },
+          {
+            "title": "RLSF: Reinforcement Learning via Symbolic Feedback | AI Research Paper Details",
+            "url": "https://www.aimodels.fyi/papers/arxiv/rlsf-reinforcement-learning-via-symbolic-feedback"
+          },
+          {
+            "title": "RLSF: Reinforcement Learning via Symbolic Feedback | PromptLayer",
+            "url": "https://www.promptlayer.com/research-papers/rlsf-reinforcement-learning-via-symbolic-feedback"
+          },
+          {
+            "title": "Computer Science May 2024",
+            "url": "https://arxiv.org/list/cs/2024-05?skip=7405&show=2000"
+          },
+          {
+            "title": "RLSF: Reinforcement Learning via Symbolic Feedback | OpenReview",
+            "url": "https://openreview.net/forum?id=vf8iou7FNF"
+          }
+        ]
+      },
+      "Perfect! I found the paper. RLSF (Reinforcement Learning via Symbolic Feedback) is a novel fine-tuning paradigm where symbolic reasoning tools (e.g., solvers, provers, and algebra systems) provide fine-grained feedback to LLMs.\n\n## Key Information:\n\n**Paper Details:**\n- arXiv: 2405.16661\n- Authors: Piyush Jha, Prithwish Jana, Pranavkrishna Suresh, Arnav Arora, Vijay Ganesh\n- Published in ECAI 2025, Frontiers in Artificial Intelligence and Applications, Vol. 413, pp. 1687-1694, 2025\n\n**What is RLSF:**\nRLSF uses poly-sized certificates (e.g., proofs) generated by symbolic tools to identify and correct errors in model outputs, offering token-level guidance without requiring differentiable reasoning systems.\n\n**Results:**\nThe method outperforms traditional approaches on five different applications: program synthesis (+31.43% in functional correctness for CodeGemma-2b compared to supervised fine-tuning, +17.01% compared to GPT-3.5), three chemistry tasks, and solving the Game of 24 (+25% success rate using Llama2-7b).\n\nYou can access the paper directly at https://arxiv.org/abs/2405.16661"
+    ],
+    "durationSeconds": 5.5495478319999965
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-14T18:52:36.112Z_
+
+<details><summary>↩ Tool result · `toolu_019cq9NLJgum5TiGB3AJwRtC`</summary>
+
+````text
+Web search results for query: ""Spurious Rewards Rethinking Training Signals" RLVR Yang 2025 arxiv 2506.10947 bibtex"
+
+Links: [{"title":"[2506.10947] Spurious Rewards: Rethinking Training Signals in RLVR","url":"https://arxiv.org/abs/2506.10947"},{"title":"Spurious Rewards: Rethinking Training Signals in RLVR | OpenReview","url":"https://openreview.net/forum?id=4NeiwxQ2Bp"},{"title":"(PDF) Spurious Rewards: Rethinking Training Signals in RLVR","url":"https://www.researchgate.net/publication/392629816_Spurious_Rewards_Rethinking_Training_Signals_in_RLVR"},{"title":"GitHub - ruixin31/Spurious_Rewards","url":"https://github.com/ruixin31/Spurious_Rewards"},{"title":"Reasoning or Memorization? Unreliable Results of Reinforcement Learning Due to Data Contamination","url":"https://arxiv.org/html/2507.10532v1"},{"title":"Spurious Rewards: Rethinking Training Signals in RLVR | Cool Papers - Immersive Paper Discovery","url":"https://papers.cool/arxiv/2506.10947"},{"title":"Spurious Rewards in RLVR for Math Reasoning","url":"https://www.emergentmind.com/papers/2506.10947"},{"title":"Spurious Rewards: Rethinking Training Signals in RLVR | alphaXiv","url":"https://www.alphaxiv.org/abs/2506.10947"},{"title":"Spurious Rewards Paradox: Mechanistically Understanding How RLVR Activates Memorization Shortcuts in LLMs","url":"https://arxiv.org/html/2601.11061v1"},{"title":"Spurious Rewards: Rethinking Training Signals in RLVR","url":"https://github.com/ruixin31/Rethink_RLVR"}]
+
+I found the paper and the BibTeX citation. Here's what I retrieved:
+
+## Paper Information
+
+Title: "Spurious Rewards: Rethinking Training Signals in RLVR"
+
+arXiv: 2506.10947
+
+Authors: Rulin Shao, Shuyue Stella Li, Rui Xin, Scott Geng, Yiping Wang, Sewoong Oh, Simon Shaolei Du, Nathan Lambert, Sewon Min, Ranjay Krishna, Yulia Tsvetkov, Hannaneh Hajishirzi, Pang Wei Koh, Luke Zettlemoyer
+
+## Key Findings
+
+The paper shows that reinforcement learning with verifiable rewards (RLVR) can elicit strong mathematical reasoning in certain language models even with spurious rewards that have little, no, or even negative correlation with the correct answer. For example, RLVR training with GRPO improves MATH-500 performance for Qwen2.5-Math-7B by 21.4 percentage points using randomly assigned rewards, nearly matching the 29.1-point gain from ground-truth rewards.
+
+## BibTeX Citation
+
+```bibtex
+@misc{shao2025spuriousrewardsrethinkingtraining,
+  title={Spurious Rewards: Rethinking Training Signals in RLVR},
+  author={Rulin Shao and Shuyue Stella Li and Rui Xin and Scott Geng and Yiping Wang and Sewoong Oh and Simon Shaolei Du and Nathan Lambert and Sewon Min and Ranjay Krishna and Yulia Tsvetkov and Hannaneh Hajishirzi and Pang Wei Koh and Luke Zettlemoyer},
+  year={2025},
+  eprint={2506.10947},
+  archivePrefix={arXiv},
+  primaryClass={cs.AI},
+  url={https://arxiv.org/abs/2506.10947}
+}
+```
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "b10d3f0f-4df3-4a49-85b0-9f6d9165b61d",
+  "tool_use_result": {
+    "query": "\"Spurious Rewards Rethinking Training Signals\" RLVR Yang 2025 arxiv 2506.10947 bibtex",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_018LfGXukk5uThmQ99cdVWN9",
+        "content": [
+          {
+            "title": "[2506.10947] Spurious Rewards: Rethinking Training Signals in RLVR",
+            "url": "https://arxiv.org/abs/2506.10947"
+          },
+          {
+            "title": "Spurious Rewards: Rethinking Training Signals in RLVR | OpenReview",
+            "url": "https://openreview.net/forum?id=4NeiwxQ2Bp"
+          },
+          {
+            "title": "(PDF) Spurious Rewards: Rethinking Training Signals in RLVR",
+            "url": "https://www.researchgate.net/publication/392629816_Spurious_Rewards_Rethinking_Training_Signals_in_RLVR"
+          },
+          {
+            "title": "GitHub - ruixin31/Spurious_Rewards",
+            "url": "https://github.com/ruixin31/Spurious_Rewards"
+          },
+          {
+            "title": "Reasoning or Memorization? Unreliable Results of Reinforcement Learning Due to Data Contamination",
+            "url": "https://arxiv.org/html/2507.10532v1"
+          },
+          {
+            "title": "Spurious Rewards: Rethinking Training Signals in RLVR | Cool Papers - Immersive Paper Discovery",
+            "url": "https://papers.cool/arxiv/2506.10947"
+          },
+          {
+            "title": "Spurious Rewards in RLVR for Math Reasoning",
+            "url": "https://www.emergentmind.com/papers/2506.10947"
+          },
+          {
+            "title": "Spurious Rewards: Rethinking Training Signals in RLVR | alphaXiv",
+            "url": "https://www.alphaxiv.org/abs/2506.10947"
+          },
+          {
+            "title": "Spurious Rewards Paradox: Mechanistically Understanding How RLVR Activates Memorization Shortcuts in LLMs",
+            "url": "https://arxiv.org/html/2601.11061v1"
+          },
+          {
+            "title": "Spurious Rewards: Rethinking Training Signals in RLVR",
+            "url": "https://github.com/ruixin31/Rethink_RLVR"
+          }
+        ]
+      },
+      "I found the paper and the BibTeX citation. Here's what I retrieved:\n\n## Paper Information\n\nTitle: \"Spurious Rewards: Rethinking Training Signals in RLVR\"\n\narXiv: 2506.10947\n\nAuthors: Rulin Shao, Shuyue Stella Li, Rui Xin, Scott Geng, Yiping Wang, Sewoong Oh, Simon Shaolei Du, Nathan Lambert, Sewon Min, Ranjay Krishna, Yulia Tsvetkov, Hannaneh Hajishirzi, Pang Wei Koh, Luke Zettlemoyer\n\n## Key Findings\n\nThe paper shows that reinforcement learning with verifiable rewards (RLVR) can elicit strong mathematical reasoning in certain language models even with spurious rewards that have little, no, or even negative correlation with the correct answer. For example, RLVR training with GRPO improves MATH-500 performance for Qwen2.5-Math-7B by 21.4 percentage points using randomly assigned rewards, nearly matching the 29.1-point gain from ground-truth rewards.\n\n## BibTeX Citation\n\n```bibtex\n@misc{shao2025spuriousrewardsrethinkingtraining,\n  title={Spurious Rewards: Rethinking Training Signals in RLVR},\n  author={Rulin Shao and Shuyue Stella Li and Rui Xin and Scott Geng and Yiping Wang and Sewoong Oh and Simon Shaolei Du and Nathan Lambert and Sewon Min and Ranjay Krishna and Yulia Tsvetkov and Hannaneh Hajishirzi and Pang Wei Koh and Luke Zettlemoyer},\n  year={2025},\n  eprint={2506.10947},\n  archivePrefix={arXiv},\n  primaryClass={cs.AI},\n  url={https://arxiv.org/abs/2506.10947}\n}\n```"
+    ],
+    "durationSeconds": 5.459352333000003
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-14T18:52:37.931Z_
+
+<details><summary>↩ Tool result · `toolu_014EhuBu9YRHxyaGEdfUevTK`</summary>
+
+````text
+Web search results for query: ""Thought-Like-Pro" Tan 2024 "Prolog-based Chain-of-Thought" arxiv 2407.14562 bibtex"
+
+Links: [{"title":"[2407.14562] Thought-Like-Pro: Enhancing Reasoning of Large Language Models through Self-Driven Prolog-based Chain-of-Thought","url":"https://arxiv.org/abs/2407.14562"},{"title":"Thought-Like-Pro: Enhancing Reasoning of Large Language Models through Self-Driven Prolog-based Chain-of-Thought","url":"https://arxiv.org/html/2407.14562"},{"title":"Thought-Like-Pro: Enhancing Reasoning of Large Language Models through Self-Driven Prolog-based Chain-of-Though | AI Research Paper Details","url":"https://www.aimodels.fyi/papers/arxiv/thought-like-pro-enhancing-reasoning-large-language"},{"title":"𝜋-CoT: Prolog-Initialized Chain-of-Thought Prompting for Multi-Hop Question-Answering","url":"https://arxiv.org/html/2506.20642v2"},{"title":"Thought-Like-Pro: Enhancing Reasoning of Large ...","url":"https://bytez.com/docs/arxiv/2407.14562/paper"},{"title":"Thought-Like-Pro: Enhancing Reasoning of Large Language Models through Self-Driven Prolog-based Chain-of-Thought | alphaXiv","url":"https://www.alphaxiv.org/overview/2407.14562"}]
+
+I found the paper! Here's the information about "Thought-Like-Pro":
+
+Thought-Like-Pro is a paper titled "Enhancing Reasoning of Large Language Models through Self-Driven Prolog-based Chain-of-Thought" with arXiv identifier 2407.14562.
+
+**Paper Details:**
+
+- Authors: Xiaoyu Tan, Yongxin Deng, Xihe Qiu, Weidi Xu, Chao Qu, Wei Chu, Yinghui Xu, and Yuan Qi from INF Technology (Shanghai), Shanghai University of Engineering Science, and Fudan University
+
+- Submitted on July 18, 2024, with the latest revision on August 10, 2024
+
+**Overview:**
+
+The framework uses imitation learning to imitate the Chain-of-Thought (CoT) process which is verified and translated from reasoning trajectories generated by a symbolic Prolog logic engine, proceeding in a self-driven manner that enables LLMs to formulate rules and statements from given instructions and leverage the symbolic Prolog engine to derive results.
+
+The paper is available on arXiv at: https://arxiv.org/abs/2407.14562
+
+If you need the BibTeX citation, it would typically follow this format based on the paper details:
+```
+@article{Tan2024ThoughtLikePro,
+  title={Thought-Like-Pro: Enhancing Reasoning of Large Language Models through Self-Driven Prolog-based Chain-of-Thought},
+  author={Tan, Xiaoyu and Deng, Yongxin and Qiu, Xihe and Xu, Weidi and Qu, Chao and Chu, Wei and Xu, Yinghui and Qi, Yuan},
+  journal={arXiv preprint arXiv:2407.14562},
+  year={2024}
+}
+```
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "a15ed705-1908-4af4-935f-01f529d314e0",
+  "tool_use_result": {
+    "query": "\"Thought-Like-Pro\" Tan 2024 \"Prolog-based Chain-of-Thought\" arxiv 2407.14562 bibtex",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01RznxrdZs7dufgzpuP3nK6n",
+        "content": [
+          {
+            "title": "[2407.14562] Thought-Like-Pro: Enhancing Reasoning of Large Language Models through Self-Driven Prolog-based Chain-of-Thought",
+            "url": "https://arxiv.org/abs/2407.14562"
+          },
+          {
+            "title": "Thought-Like-Pro: Enhancing Reasoning of Large Language Models through Self-Driven Prolog-based Chain-of-Thought",
+            "url": "https://arxiv.org/html/2407.14562"
+          },
+          {
+            "title": "Thought-Like-Pro: Enhancing Reasoning of Large Language Models through Self-Driven Prolog-based Chain-of-Though | AI Research Paper Details",
+            "url": "https://www.aimodels.fyi/papers/arxiv/thought-like-pro-enhancing-reasoning-large-language"
+          },
+          {
+            "title": "𝜋-CoT: Prolog-Initialized Chain-of-Thought Prompting for Multi-Hop Question-Answering",
+            "url": "https://arxiv.org/html/2506.20642v2"
+          },
+          {
+            "title": "Thought-Like-Pro: Enhancing Reasoning of Large ...",
+            "url": "https://bytez.com/docs/arxiv/2407.14562/paper"
+          },
+          {
+            "title": "Thought-Like-Pro: Enhancing Reasoning of Large Language Models through Self-Driven Prolog-based Chain-of-Thought | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2407.14562"
+          }
+        ]
+      },
+      "I found the paper! Here's the information about \"Thought-Like-Pro\":\n\nThought-Like-Pro is a paper titled \"Enhancing Reasoning of Large Language Models through Self-Driven Prolog-based Chain-of-Thought\" with arXiv identifier 2407.14562.\n\n**Paper Details:**\n\n- Authors: Xiaoyu Tan, Yongxin Deng, Xihe Qiu, Weidi Xu, Chao Qu, Wei Chu, Yinghui Xu, and Yuan Qi from INF Technology (Shanghai), Shanghai University of Engineering Science, and Fudan University\n\n- Submitted on July 18, 2024, with the latest revision on August 10, 2024\n\n**Overview:**\n\nThe framework uses imitation learning to imitate the Chain-of-Thought (CoT) process which is verified and translated from reasoning trajectories generated by a symbolic Prolog logic engine, proceeding in a self-driven manner that enables LLMs to formulate rules and statements from given instructions and leverage the symbolic Prolog engine to derive results.\n\nThe paper is available on arXiv at: https://arxiv.org/abs/2407.14562\n\nIf you need the BibTeX citation, it would typically follow this format based on the paper details:\n```\n@article{Tan2024ThoughtLikePro,\n  title={Thought-Like-Pro: Enhancing Reasoning of Large Language Models through Self-Driven Prolog-based Chain-of-Thought},\n  author={Tan, Xiaoyu and Deng, Yongxin and Qiu, Xihe and Xu, Weidi and Qu, Chao and Chu, Wei and Xu, Yinghui and Qi, Yuan},\n  journal={arXiv preprint arXiv:2407.14562},\n  year={2024}\n}\n```"
+    ],
+    "durationSeconds": 6.539826218999995
+  }
+}
+````
+
+</details>
+
+---
+
+### Assistant
+
+_source line 64_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, let me search for the remaining papers I need: DeepProbLog, NeurASP, reward-hacking survey, rubric-grpo, and Kim et al. game formalization paper (from the literature map). Let me also search for some additional papers from the literature map that should be included.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "1a69a06b-7b69-4631-a92e-ebf214e79f6e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014PsQo7KV8X5smr7uSDYViG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8496,
+      "cache_read_input_tokens": 67913,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8496
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016fhcyLV7rGKnPYNAerpoTr`</summary>
+
+```json
+{
+  "query": "DeepProbLog Manhaeve 2021 \"Neural Probabilistic Logic Programming\" Artificial Intelligence bibtex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "3e26bfe7-2fcb-4da2-8f15-cc6b827031e7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014PsQo7KV8X5smr7uSDYViG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8496,
+      "cache_read_input_tokens": 67913,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8496
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018LwgZC8CZo8Q6XeHFEEuoz`</summary>
+
+```json
+{
+  "query": "NeurASP Yang Ishay Lee 2020 IJCAI \"Embracing Neural Networks into Answer Set Programming\" bibtex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "cb27c2f1-1050-4cdb-a702-14c570698848",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014PsQo7KV8X5smr7uSDYViG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8496,
+      "cache_read_input_tokens": 67913,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8496
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0175UmcckQCzpaaUm2HRg2uC`</summary>
+
+```json
+{
+  "query": "\"Reward Hacking in the Era of Large Models\" 2026 survey arxiv 2604.13602 bibtex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "74417b0e-c78b-4eab-a5ee-38b095bd2d9c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014PsQo7KV8X5smr7uSDYViG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8496,
+      "cache_read_input_tokens": 67913,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8496
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VqGBupM4V2y3ydGRFq3CY2`</summary>
+
+```json
+{
+  "query": "\"Rubric-Grounded Reinforcement Learning\" rubric GRPO 2025 arxiv 2605.08061 bibtex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "b0b7b2a6-7271-442c-a026-8985a9f39fb3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014PsQo7KV8X5smr7uSDYViG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8496,
+      "cache_read_input_tokens": 67913,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8496
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_017stu5qbFvxYJ47vja6N1mQ`</summary>
+
+```json
+{
+  "query": "Kim \"Do LLMs Game Formalization\" 2026 VerifAI ICLR arxiv 2604.19459 bibtex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "bd70fe02-cc2b-43ac-907c-7db6bba6d737",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014PsQo7KV8X5smr7uSDYViG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8496,
+      "cache_read_input_tokens": 67913,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8496
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012ajQhaLQ8FvhPzbyjiCnY9`</summary>
+
+```json
+{
+  "query": "Bondarenko \"Demonstrating Specification Gaming in Reasoning Models\" 2025 arxiv 2502.13295 bibtex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "ecac4f33-c9ac-4440-ad27-8c37e658d17c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014PsQo7KV8X5smr7uSDYViG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8496,
+      "cache_read_input_tokens": 67913,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 8496
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-14T18:52:48.483Z_
+
+<details><summary>↩ Tool result · `toolu_018LwgZC8CZo8Q6XeHFEEuoz`</summary>
+
+````text
+Web search results for query: "NeurASP Yang Ishay Lee 2020 IJCAI "Embracing Neural Networks into Answer Set Programming" bibtex"
+
+Links: [{"title":"NeurASP: Embracing Neural Networks into Answer Set Programming | IJCAI","url":"https://www.ijcai.org/proceedings/2020/243"},{"title":"[2307.07700] NeurASP: Embracing Neural Networks into Answer Set Programming","url":"https://arxiv.org/abs/2307.07700"},{"title":"NeurASP: Embracing neural networks into answer set programming - Arizona State University","url":"https://asu.elsevierpure.com/en/publications/neurasp-embracing-neural-networks-into-answer-set-programming/"},{"title":"[PDF] NeurASP: Embracing Neural Networks into Answer Set Programming | Semantic Scholar","url":"https://www.semanticscholar.org/paper/NeurASP:-Embracing-Neural-Networks-into-Answer-Set-Yang-Ishay/e53beddcf3b79dd1f4673f126bbda6526039b2b8"},{"title":"NeurASP: Embracing Neural Networks into Answer Set Programming | NSF Public Access Repository","url":"https://par.nsf.gov/biblio/10184165-neurasp-embracing-neural-networks-answer-set-programming"},{"title":"NeurASP: Embracing Neural Networks into Answer Set ...","url":"https://www.ijcai.org/proceedings/2020/0243.pdf"},{"title":"Submitted to: c⃝Yang, Ishay & Lee This work is licensed under the","url":"https://par.nsf.gov/servlets/purl/10295440"},{"title":"NeurASP: Embracing Neural Networks into Answer Set Programming | Request PDF","url":"https://www.researchgate.net/publication/342796349_NeurASP_Embracing_Neural_Networks_into_Answer_Set_Programming"},{"title":"NeurASP: embracing neural networks into answer set ...","url":"https://dl.acm.org/doi/10.5555/3491440.3491683"},{"title":"dblp: NeurASP: Embracing Neural Networks into Answer Set Programming.","url":"https://dblp.org/rec/conf/ijcai/YangIL20.html"}]
+
+Based on the search results, I found the bibliographic information for the NeurASP paper. Here is the BibTeX entry for the paper:
+
+
+```bibtex
+@inproceedings{Yang2020NeurASPEN,
+  title={NeurASP: Embracing Neural Networks into Answer Set Programming},
+  author={Zhun Yang and Adam Ishay and Joohyung Lee},
+  booktitle={International Joint Conference on Artificial Intelligence},
+  year={2020}
+}
+```
+
+
+For a more complete BibTeX entry with page numbers, you can also use:
+
+```bibtex
+@inproceedings{Yang2020,
+  title={NeurASP: Embracing Neural Networks into Answer Set Programming},
+  author={Yang, Zhun and Ishay, Adam and Lee, Joohyung},
+  booktitle={Proceedings of the 29th International Joint Conference on Artificial Intelligence, IJCAI 2020},
+  pages={1755--1762},
+  year={2020},
+  doi={10.24963/ijcai.2020/243}
+}
+```
+
+The paper was published in the Proceedings of the 29th International Joint Conference on Artificial Intelligence (IJCAI 2020) on pages 1755-1762.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "7dd60ee4-8493-408a-9ef3-26a577fc8a3b",
+  "tool_use_result": {
+    "query": "NeurASP Yang Ishay Lee 2020 IJCAI \"Embracing Neural Networks into Answer Set Programming\" bibtex",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_011kyZtWeuNH5zNdrPpHjZoQ",
+        "content": [
+          {
+            "title": "NeurASP: Embracing Neural Networks into Answer Set Programming | IJCAI",
+            "url": "https://www.ijcai.org/proceedings/2020/243"
+          },
+          {
+            "title": "[2307.07700] NeurASP: Embracing Neural Networks into Answer Set Programming",
+            "url": "https://arxiv.org/abs/2307.07700"
+          },
+          {
+            "title": "NeurASP: Embracing neural networks into answer set programming - Arizona State University",
+            "url": "https://asu.elsevierpure.com/en/publications/neurasp-embracing-neural-networks-into-answer-set-programming/"
+          },
+          {
+            "title": "[PDF] NeurASP: Embracing Neural Networks into Answer Set Programming | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/NeurASP:-Embracing-Neural-Networks-into-Answer-Set-Yang-Ishay/e53beddcf3b79dd1f4673f126bbda6526039b2b8"
+          },
+          {
+            "title": "NeurASP: Embracing Neural Networks into Answer Set Programming | NSF Public Access Repository",
+            "url": "https://par.nsf.gov/biblio/10184165-neurasp-embracing-neural-networks-answer-set-programming"
+          },
+          {
+            "title": "NeurASP: Embracing Neural Networks into Answer Set ...",
+            "url": "https://www.ijcai.org/proceedings/2020/0243.pdf"
+          },
+          {
+            "title": "Submitted to: c⃝Yang, Ishay & Lee This work is licensed under the",
+            "url": "https://par.nsf.gov/servlets/purl/10295440"
+          },
+          {
+            "title": "NeurASP: Embracing Neural Networks into Answer Set Programming | Request PDF",
+            "url": "https://www.researchgate.net/publication/342796349_NeurASP_Embracing_Neural_Networks_into_Answer_Set_Programming"
+          },
+          {
+            "title": "NeurASP: embracing neural networks into answer set ...",
+            "url": "https://dl.acm.org/doi/10.5555/3491440.3491683"
+          },
+          {
+            "title": "dblp: NeurASP: Embracing Neural Networks into Answer Set Programming.",
+            "url": "https://dblp.org/rec/conf/ijcai/YangIL20.html"
+          }
+        ]
+      },
+      "Based on the search results, I found the bibliographic information for the NeurASP paper. Here is the BibTeX entry for the paper:\n\n\n```bibtex\n@inproceedings{Yang2020NeurASPEN,\n  title={NeurASP: Embracing Neural Networks into Answer Set Programming},\n  author={Zhun Yang and Adam Ishay and Joohyung Lee},\n  booktitle={International Joint Conference on Artificial Intelligence},\n  year={2020}\n}\n```\n\n\nFor a more complete BibTeX entry with page numbers, you can also use:\n\n```bibtex\n@inproceedings{Yang2020,\n  title={NeurASP: Embracing Neural Networks into Answer Set Programming},\n  author={Yang, Zhun and Ishay, Adam and Lee, Joohyung},\n  booktitle={Proceedings of the 29th International Joint Conference on Artificial Intelligence, IJCAI 2020},\n  pages={1755--1762},\n  year={2020},\n  doi={10.24963/ijcai.2020/243}\n}\n```\n\nThe paper was published in the Proceedings of the 29th International Joint Conference on Artificial Intelligence (IJCAI 2020) on pages 1755-1762."
+    ],
+    "durationSeconds": 4.207381955000004
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-14T18:52:49.100Z_
+
+<details><summary>↩ Tool result · `toolu_016fhcyLV7rGKnPYNAerpoTr`</summary>
+
+````text
+Web search results for query: "DeepProbLog Manhaeve 2021 "Neural Probabilistic Logic Programming" Artificial Intelligence bibtex"
+
+Links: [{"title":"[1805.10872] DeepProbLog: Neural Probabilistic Logic Programming","url":"https://arxiv.org/abs/1805.10872"},{"title":"(PDF) Neural probabilistic logic programming in DeepProbLog","url":"https://www.researchgate.net/publication/350911019_Neural_probabilistic_logic_programming_in_DeepProbLog"},{"title":"Neural probabilistic logic programming in DeepProbLog - ScienceDirect","url":"https://www.sciencedirect.com/science/article/pii/S0004370221000552"},{"title":"GitHub - ML-KULeuven/deepproblog: DeepProbLog is an extension of ProbLog that integrates Probabilistic Logic Programming with deep learning by introducing the neural predicate. · GitHub","url":"https://github.com/ML-KULeuven/deepproblog"},{"title":"[1907.08194] Neural Probabilistic Logic Programming in DeepProbLog","url":"https://arxiv.org/abs/1907.08194"},{"title":"(Open Access) Neural probabilistic logic programming in DeepProbLog (2021) | Robin Manhaeve | 158 Citations","url":"https://scispace.com/papers/neural-probabilistic-logic-programming-in-deepproblog-x2gdjqjbs3"},{"title":"[PDF] DeepProbLog: Neural Probabilistic Logic Programming | Semantic Scholar","url":"https://www.semanticscholar.org/paper/DeepProbLog:-Neural-Probabilistic-Logic-Programming-Manhaeve-Dumancic/f6e6fba61b654c5b799a9efe3b5849ce1197aab3"},{"title":"DeepProbLog: Neural Probabilistic Logic Programming","url":"https://papers.nips.cc/paper/7632-deepproblog-neural-probabilistic-logic-programming"},{"title":"(PDF) DeepProbLog: Neural Probabilistic Logic Programming","url":"https://www.researchgate.net/publication/334602669_DeepProbLog_Neural_Probabilistic_Logic_Programming"},{"title":"Neural Probabilistic Logic Programming in DeepProbLog - ADS","url":"https://ui.adsabs.harvard.edu/abs/2019arXiv190708194M/abstract"}]
+
+Based on the search results, I found information about the DeepProbLog paper by Manhaeve et al. Here are the key details:
+
+## Publication Information
+
+The paper is titled "Neural Probabilistic Logic Programming in DeepProbLog" by Robin Manhaeve, Sebastijan Dumancic, Angelika Kimmig, Thomas Demeester, and Luc De Raedt, and it was published in the journal Artificial Intelligence in September 2021.
+
+## BibTeX Citation
+
+Based on the publication details found, here is the BibTeX entry:
+
+```bibtex
+@article{Manhaeve2021,
+  author = {Manhaeve, Robin and Dumancic, Sebastijan and Kimmig, Angelika and Demeester, Thomas and De Raedt, Luc},
+  title = {Neural Probabilistic Logic Programming in DeepProbLog},
+  journal = {Artificial Intelligence},
+  year = {2021},
+  doi = {10.1016/j.artint.2021.103504}
+}
+```
+
+## Paper Description
+
+DeepProbLog is a neural probabilistic logic programming language that incorporates deep learning by means of neural predicates. This 2021 version is a significantly extended and completed version of their previous work, now containing the necessary deep learning and probabilistic logic programming background and more in-depth theoretical explanation.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "9e61c191-95c5-4f9e-8d78-60aab106f687",
+  "tool_use_result": {
+    "query": "DeepProbLog Manhaeve 2021 \"Neural Probabilistic Logic Programming\" Artificial Intelligence bibtex",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_018oW41pxYPfzr37URLH5Bms",
+        "content": [
+          {
+            "title": "[1805.10872] DeepProbLog: Neural Probabilistic Logic Programming",
+            "url": "https://arxiv.org/abs/1805.10872"
+          },
+          {
+            "title": "(PDF) Neural probabilistic logic programming in DeepProbLog",
+            "url": "https://www.researchgate.net/publication/350911019_Neural_probabilistic_logic_programming_in_DeepProbLog"
+          },
+          {
+            "title": "Neural probabilistic logic programming in DeepProbLog - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/pii/S0004370221000552"
+          },
+          {
+            "title": "GitHub - ML-KULeuven/deepproblog: DeepProbLog is an extension of ProbLog that integrates Probabilistic Logic Programming with deep learning by introducing the neural predicate. · GitHub",
+            "url": "https://github.com/ML-KULeuven/deepproblog"
+          },
+          {
+            "title": "[1907.08194] Neural Probabilistic Logic Programming in DeepProbLog",
+            "url": "https://arxiv.org/abs/1907.08194"
+          },
+          {
+            "title": "(Open Access) Neural probabilistic logic programming in DeepProbLog (2021) | Robin Manhaeve | 158 Citations",
+            "url": "https://scispace.com/papers/neural-probabilistic-logic-programming-in-deepproblog-x2gdjqjbs3"
+          },
+          {
+            "title": "[PDF] DeepProbLog: Neural Probabilistic Logic Programming | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/DeepProbLog:-Neural-Probabilistic-Logic-Programming-Manhaeve-Dumancic/f6e6fba61b654c5b799a9efe3b5849ce1197aab3"
+          },
+          {
+            "title": "DeepProbLog: Neural Probabilistic Logic Programming",
+            "url": "https://papers.nips.cc/paper/7632-deepproblog-neural-probabilistic-logic-programming"
+          },
+          {
+            "title": "(PDF) DeepProbLog: Neural Probabilistic Logic Programming",
+            "url": "https://www.researchgate.net/publication/334602669_DeepProbLog_Neural_Probabilistic_Logic_Programming"
+          },
+          {
+            "title": "Neural Probabilistic Logic Programming in DeepProbLog - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2019arXiv190708194M/abstract"
+          }
+        ]
+      },
+      "Based on the search results, I found information about the DeepProbLog paper by Manhaeve et al. Here are the key details:\n\n## Publication Information\n\nThe paper is titled \"Neural Probabilistic Logic Programming in DeepProbLog\" by Robin Manhaeve, Sebastijan Dumancic, Angelika Kimmig, Thomas Demeester, and Luc De Raedt, and it was published in the journal Artificial Intelligence in September 2021.\n\n## BibTeX Citation\n\nBased on the publication details found, here is the BibTeX entry:\n\n```bibtex\n@article{Manhaeve2021,\n  author = {Manhaeve, Robin and Dumancic, Sebastijan and Kimmig, Angelika and Demeester, Thomas and De Raedt, Luc},\n  title = {Neural Probabilistic Logic Programming in DeepProbLog},\n  journal = {Artificial Intelligence},\n  year = {2021},\n  doi = {10.1016/j.artint.2021.103504}\n}\n```\n\n## Paper Description\n\nDeepProbLog is a neural probabilistic logic programming language that incorporates deep learning by means of neural predicates. This 2021 version is a significantly extended and completed version of their previous work, now containing the necessary deep learning and probabilistic logic programming background and more in-depth theoretical explanation."
+    ],
+    "durationSeconds": 5.776718532000014
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-14T18:52:52.579Z_
+
+<details><summary>↩ Tool result · `toolu_017stu5qbFvxYJ47vja6N1mQ`</summary>
+
+```text
+Web search results for query: "Kim "Do LLMs Game Formalization" 2026 VerifAI ICLR arxiv 2604.19459 bibtex"
+
+Links: [{"title":"[2604.19459] Do LLMs Game Formalization? Evaluating Faithfulness in Logical Reasoning","url":"https://arxiv.org/abs/2604.19459"},{"title":"Do LLMs Game Formalization? Evaluating Faithfulness in Logical Reasoning","url":"https://arxiv.org/html/2604.19459"},{"title":"Published at the VerifAI-2 Workshop, ICLR 2026 DO LLMS GAME FORMALIZATION?","url":"https://arxiv.org/pdf/2604.19459"}]
+
+Based on the search results, I found the paper you're looking for:
+
+**Paper Information:**
+
+Title: "Do LLMs Game Formalization? Evaluating Faithfulness in Logical Reasoning"
+Authors: Kyuhee Kim, Auguste Poiroux, Antoine Bosselut
+ArXiv ID: 2604.19459
+
+Published at the VerifAI-2 Workshop, ICLR 2026
+
+**Abstract:**
+
+The paper investigates formal verification and formalization faithfulness in logical reasoning, specifically examining whether frontier models exploit gaps when generating Lean 4 proofs, a behavior termed "formalization gaming." The study evaluates GPT-5 and DeepSeek-R1 on 303 first-order logic problems (203 from FOLIO, 100 from Multi-LogiEval), comparing unified generation against a two-stage pipeline that separates formalization from proving.
+
+**Key Findings:**
+
+The two-stage pipeline reveals two distinct modes of unfaithfulness: GPT-5 fabricates axioms during proof generation (a reactive fallback detectable via cross-stage comparison), while DeepSeek-R1 mistranslates premises during formalization, producing internally consistent outputs that evade detection.
+
+The paper is available at https://arxiv.org/abs/2604.19459
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "0cce71d0-a316-43d3-99c8-20875d9e9e6f",
+  "tool_use_result": {
+    "query": "Kim \"Do LLMs Game Formalization\" 2026 VerifAI ICLR arxiv 2604.19459 bibtex",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_013xJ6ZZqzBfANyW7Wq9YJbt",
+        "content": [
+          {
+            "title": "[2604.19459] Do LLMs Game Formalization? Evaluating Faithfulness in Logical Reasoning",
+            "url": "https://arxiv.org/abs/2604.19459"
+          },
+          {
+            "title": "Do LLMs Game Formalization? Evaluating Faithfulness in Logical Reasoning",
+            "url": "https://arxiv.org/html/2604.19459"
+          },
+          {
+            "title": "Published at the VerifAI-2 Workshop, ICLR 2026 DO LLMS GAME FORMALIZATION?",
+            "url": "https://arxiv.org/pdf/2604.19459"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for:\n\n**Paper Information:**\n\nTitle: \"Do LLMs Game Formalization? Evaluating Faithfulness in Logical Reasoning\"\nAuthors: Kyuhee Kim, Auguste Poiroux, Antoine Bosselut\nArXiv ID: 2604.19459\n\nPublished at the VerifAI-2 Workshop, ICLR 2026\n\n**Abstract:**\n\nThe paper investigates formal verification and formalization faithfulness in logical reasoning, specifically examining whether frontier models exploit gaps when generating Lean 4 proofs, a behavior termed \"formalization gaming.\" The study evaluates GPT-5 and DeepSeek-R1 on 303 first-order logic problems (203 from FOLIO, 100 from Multi-LogiEval), comparing unified generation against a two-stage pipeline that separates formalization from proving.\n\n**Key Findings:**\n\nThe two-stage pipeline reveals two distinct modes of unfaithfulness: GPT-5 fabricates axioms during proof generation (a reactive fallback detectable via cross-stage comparison), while DeepSeek-R1 mistranslates premises during formalization, producing internally consistent outputs that evade detection.\n\nThe paper is available at https://arxiv.org/abs/2604.19459"
+    ],
+    "durationSeconds": 5.470563714999996
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-14T18:52:53.263Z_
+
+<details><summary>↩ Tool result · `toolu_0175UmcckQCzpaaUm2HRg2uC`</summary>
+
+````text
+Web search results for query: ""Reward Hacking in the Era of Large Models" 2026 survey arxiv 2604.13602 bibtex"
+
+Links: [{"title":"[2604.13602] Reward Hacking in the Era of Large Models: Mechanisms, Emergent Misalignment, Challenges","url":"https://arxiv.org/abs/2604.13602"},{"title":"Reward Hacking in the Era of Large Models: Mechanisms, Emergent Misalignment, Challenges - ADS","url":"https://ui.adsabs.harvard.edu/abs/2026arXiv260413602W/abstract"},{"title":"[2604.13602v1] Reward Hacking in the Era of Large Models: Mechanisms, Emergent Misalignment, Challenges","url":"https://arxiv.org/abs/2604.13602v1"},{"title":"GitHub - xhwang22/Awesome-Reward-Hacking: A curated list of papers and resources on Reward Hacking, Emergent Misalignment, and Proxy Exploitation in Large Models · GitHub","url":"https://github.com/xhwang22/Awesome-Reward-Hacking"},{"title":"Reward Hacking in the Era of Large Models: Mechanisms, Emergent Misalignment, Challenges","url":"https://arxiv.org/html/2604.13602v1"},{"title":"Paper page - Reward Hacking in the Era of Large Models: Mechanisms, Emergent Misalignment, Challenges","url":"https://huggingface.co/papers/2604.13602"},{"title":"Inference-Time Reward Hacking in Large Language Models","url":"https://arxiv.org/html/2506.19248v2"},{"title":"Inference-Time Reward Hacking in Large Language Models | OpenReview","url":"https://openreview.net/forum?id=hSX7Dd8dxy"},{"title":"[2506.19248] Inference-Time Reward Hacking in Large Language Models","url":"https://arxiv.org/abs/2506.19248"},{"title":"Reward Hacking in the Era of Large Models: Mechanisms, Emergent Misalignment, Challenges | alphaXiv","url":"https://www.alphaxiv.org/overview/2604.13602v1"}]
+
+I found the paper you're looking for! "Reward Hacking in the Era of Large Models: Mechanisms, Emergent Misalignment, Challenges" was submitted on April 15, 2026 by Xiaohua Wang and 22 other authors.
+
+Here's the BibTeX citation from the GitHub repository companion project:
+
+```bibtex
+@article{wang2026rewardhacking,
+  title = {Reward Hacking in the Era of Large Models: Mechanisms, Emergent Misalignment, Challenges},
+  author = {Wang, Xiaohua and Tian, Muzhao and Zeng, Yuqi and Huang, Zisu and Yuan, Jiakang and Chen, Bowen and Xu, Jingwen and Zhou, Mingbo and Liu, Wenhao and Wu, Muling and Guo, Zhengkang and Qian, Qi and Wang, Yifei and Zhang, Feiran and Yin, Ruicheng and Dou, Shihan and Lv, Changze and Chen, Tao and Song, Kaitao and Tan, Xu and Gui, Tao and Zheng, Xiaoqing and Huang, Xuanjing},
+  journal = {arXiv preprint arXiv:2604.13602},
+  year = {2026},
+  url = {https://arxiv.org/abs/2604.13602}
+}
+```
+
+The paper addresses how models exploit imperfections in learned reward signals to maximize proxy objectives without fulfilling true task intent. The survey proposes the Proxy Compression Hypothesis (PCH) as a unifying theoretical frame and organizes the field along an escalating hierarchy of exploitation mechanisms: Feature-level → Representation-level → Evaluator-level → Environment-level.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "2418873f-20d8-41f6-b4e0-20b474812d86",
+  "tool_use_result": {
+    "query": "\"Reward Hacking in the Era of Large Models\" 2026 survey arxiv 2604.13602 bibtex",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01RfgXNzfLtmuKMnwJP1ePrJ",
+        "content": [
+          {
+            "title": "[2604.13602] Reward Hacking in the Era of Large Models: Mechanisms, Emergent Misalignment, Challenges",
+            "url": "https://arxiv.org/abs/2604.13602"
+          },
+          {
+            "title": "Reward Hacking in the Era of Large Models: Mechanisms, Emergent Misalignment, Challenges - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2026arXiv260413602W/abstract"
+          },
+          {
+            "title": "[2604.13602v1] Reward Hacking in the Era of Large Models: Mechanisms, Emergent Misalignment, Challenges",
+            "url": "https://arxiv.org/abs/2604.13602v1"
+          },
+          {
+            "title": "GitHub - xhwang22/Awesome-Reward-Hacking: A curated list of papers and resources on Reward Hacking, Emergent Misalignment, and Proxy Exploitation in Large Models · GitHub",
+            "url": "https://github.com/xhwang22/Awesome-Reward-Hacking"
+          },
+          {
+            "title": "Reward Hacking in the Era of Large Models: Mechanisms, Emergent Misalignment, Challenges",
+            "url": "https://arxiv.org/html/2604.13602v1"
+          },
+          {
+            "title": "Paper page - Reward Hacking in the Era of Large Models: Mechanisms, Emergent Misalignment, Challenges",
+            "url": "https://huggingface.co/papers/2604.13602"
+          },
+          {
+            "title": "Inference-Time Reward Hacking in Large Language Models",
+            "url": "https://arxiv.org/html/2506.19248v2"
+          },
+          {
+            "title": "Inference-Time Reward Hacking in Large Language Models | OpenReview",
+            "url": "https://openreview.net/forum?id=hSX7Dd8dxy"
+          },
+          {
+            "title": "[2506.19248] Inference-Time Reward Hacking in Large Language Models",
+            "url": "https://arxiv.org/abs/2506.19248"
+          },
+          {
+            "title": "Reward Hacking in the Era of Large Models: Mechanisms, Emergent Misalignment, Challenges | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2604.13602v1"
+          }
+        ]
+      },
+      "I found the paper you're looking for! \"Reward Hacking in the Era of Large Models: Mechanisms, Emergent Misalignment, Challenges\" was submitted on April 15, 2026 by Xiaohua Wang and 22 other authors.\n\nHere's the BibTeX citation from the GitHub repository companion project:\n\n```bibtex\n@article{wang2026rewardhacking,\n  title = {Reward Hacking in the Era of Large Models: Mechanisms, Emergent Misalignment, Challenges},\n  author = {Wang, Xiaohua and Tian, Muzhao and Zeng, Yuqi and Huang, Zisu and Yuan, Jiakang and Chen, Bowen and Xu, Jingwen and Zhou, Mingbo and Liu, Wenhao and Wu, Muling and Guo, Zhengkang and Qian, Qi and Wang, Yifei and Zhang, Feiran and Yin, Ruicheng and Dou, Shihan and Lv, Changze and Chen, Tao and Song, Kaitao and Tan, Xu and Gui, Tao and Zheng, Xiaoqing and Huang, Xuanjing},\n  journal = {arXiv preprint arXiv:2604.13602},\n  year = {2026},\n  url = {https://arxiv.org/abs/2604.13602}\n}\n```\n\nThe paper addresses how models exploit imperfections in learned reward signals to maximize proxy objectives without fulfilling true task intent. The survey proposes the Proxy Compression Hypothesis (PCH) as a unifying theoretical frame and organizes the field along an escalating hierarchy of exploitation mechanisms: Feature-level → Representation-level → Evaluator-level → Environment-level."
+    ],
+    "durationSeconds": 8.03446945199999
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 75 · 2026-05-14T18:52:53.468Z_
+
+<details><summary>↩ Tool result · `toolu_012ajQhaLQ8FvhPzbyjiCnY9`</summary>
+
+````text
+Web search results for query: "Bondarenko "Demonstrating Specification Gaming in Reasoning Models" 2025 arxiv 2502.13295 bibtex"
+
+Links: [{"title":"[2502.13295] Demonstrating specification gaming in reasoning models","url":"https://arxiv.org/abs/2502.13295"},{"title":"Demonstrating specification gaming in reasoning models Alexander Bondarenko 1","url":"https://arxiv.org/pdf/2502.13295"},{"title":"Towards Understanding Specification Gaming in Reasoning Models","url":"https://arxiv.org/html/2605.02269v1"},{"title":"[2502.13295v1] Demonstrating specification gaming in reasoning models","url":"https://arxiv.org/abs/2502.13295v1"},{"title":"[2502.13295v2] Demonstrating specification gaming in reasoning models","url":"https://arxiv.org/abs/2502.13295v2"},{"title":"(PDF) Demonstrating specification gaming in reasoning models","url":"https://www.researchgate.net/publication/389167750_Demonstrating_specification_gaming_in_reasoning_models"},{"title":"Demonstrating specification gaming in reasoning models | Palisade Research","url":"https://palisaderesearch.org/blog/specification-gaming"},{"title":"Do LLMs Game Formalization? Evaluating Faithfulness in Logical Reasoning","url":"https://arxiv.org/pdf/2604.19459"},{"title":"Artificial Intelligence Feb 2025","url":"https://arxiv.org/list/cs.AI/2025-02?skip=325&show=100"},{"title":"arXiv:2505.07846v1 [cs.AI] 7 May 2025","url":"https://arxiv.org/pdf/2505.07846"}]
+
+Based on the search results, I found the paper you're looking for. Here is the BibTeX citation for the paper:
+
+```bibtex
+@article{Bondarenko2025SpecificationGaming,
+  title={Demonstrating specification gaming in reasoning models},
+  author={Bondarenko, Alexander and Volk, Denis and Volkov, Dmitrii and Ladish, Jeffrey},
+  journal={arXiv preprint arXiv:2502.13295},
+  year={2025}
+}
+```
+
+The paper was submitted on February 18, 2025, and authored by Alexander Bondarenko, Denis Volk, Dmitrii Volkov, and Jeffrey Ladish. The paper demonstrates LLM agent specification gaming by instructing models to win against a chess engine, finding that reasoning models like OpenAI o3 and DeepSeek R1 will often hack the benchmark by default.
+
+The paper is available at: https://arxiv.org/abs/2502.13295
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "2b6f3b4e-3c22-4689-b43b-5dc48b7d0071",
+  "tool_use_result": {
+    "query": "Bondarenko \"Demonstrating Specification Gaming in Reasoning Models\" 2025 arxiv 2502.13295 bibtex",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01UvXNp7QMrxYoPnJtLqmjAb",
+        "content": [
+          {
+            "title": "[2502.13295] Demonstrating specification gaming in reasoning models",
+            "url": "https://arxiv.org/abs/2502.13295"
+          },
+          {
+            "title": "Demonstrating specification gaming in reasoning models Alexander Bondarenko 1",
+            "url": "https://arxiv.org/pdf/2502.13295"
+          },
+          {
+            "title": "Towards Understanding Specification Gaming in Reasoning Models",
+            "url": "https://arxiv.org/html/2605.02269v1"
+          },
+          {
+            "title": "[2502.13295v1] Demonstrating specification gaming in reasoning models",
+            "url": "https://arxiv.org/abs/2502.13295v1"
+          },
+          {
+            "title": "[2502.13295v2] Demonstrating specification gaming in reasoning models",
+            "url": "https://arxiv.org/abs/2502.13295v2"
+          },
+          {
+            "title": "(PDF) Demonstrating specification gaming in reasoning models",
+            "url": "https://www.researchgate.net/publication/389167750_Demonstrating_specification_gaming_in_reasoning_models"
+          },
+          {
+            "title": "Demonstrating specification gaming in reasoning models | Palisade Research",
+            "url": "https://palisaderesearch.org/blog/specification-gaming"
+          },
+          {
+            "title": "Do LLMs Game Formalization? Evaluating Faithfulness in Logical Reasoning",
+            "url": "https://arxiv.org/pdf/2604.19459"
+          },
+          {
+            "title": "Artificial Intelligence Feb 2025",
+            "url": "https://arxiv.org/list/cs.AI/2025-02?skip=325&show=100"
+          },
+          {
+            "title": "arXiv:2505.07846v1 [cs.AI] 7 May 2025",
+            "url": "https://arxiv.org/pdf/2505.07846"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for. Here is the BibTeX citation for the paper:\n\n```bibtex\n@article{Bondarenko2025SpecificationGaming,\n  title={Demonstrating specification gaming in reasoning models},\n  author={Bondarenko, Alexander and Volk, Denis and Volkov, Dmitrii and Ladish, Jeffrey},\n  journal={arXiv preprint arXiv:2502.13295},\n  year={2025}\n}\n```\n\nThe paper was submitted on February 18, 2025, and authored by Alexander Bondarenko, Denis Volk, Dmitrii Volkov, and Jeffrey Ladish. The paper demonstrates LLM agent specification gaming by instructing models to win against a chess engine, finding that reasoning models like OpenAI o3 and DeepSeek R1 will often hack the benchmark by default.\n\nThe paper is available at: https://arxiv.org/abs/2502.13295"
+    ],
+    "durationSeconds": 5.432200572999995
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-14T18:52:53.716Z_
+
+<details><summary>↩ Tool result · `toolu_01VqGBupM4V2y3ydGRFq3CY2`</summary>
+
+```text
+Web search results for query: ""Rubric-Grounded Reinforcement Learning" rubric GRPO 2025 arxiv 2605.08061 bibtex"
+
+Links: [{"title":"Rubric-Grounded Reinforcement Learning: Structured Judge Rewards for Generalizable Reasoning in Language Models","url":"https://arxiv.org/html/2605.08061v1"},{"title":"[2605.08061v1] Rubric-Grounded RL: Structured Judge Rewards for Generalizable Reasoning","url":"https://arxiv.org/abs/2605.08061v1"},{"title":"RubricEM: Meta-RL with Rubric-guided Policy Decomposition beyond Verifiable Rewards","url":"https://arxiv.org/html/2605.10899v1"},{"title":"[2605.10899v1] RubricEM: Meta-RL with Rubric-guided Policy Decomposition beyond Verifiable Rewards","url":"https://arxiv.org/abs/2605.10899v1"},{"title":"Multi-Objective and Mixed-Reward Reinforcement Learning via Reward-Decorrelated Policy Optimization","url":"https://arxiv.org/html/2605.13641"},{"title":"Paper page - Reinforcement Learning with Rubric Anchors","url":"https://huggingface.co/papers/2508.12790"},{"title":"Your Language Model is Its Own Critic: Reinforcement Learning with Value Estimation from Actor’s Internal States","url":"https://arxiv.org/html/2605.07579"},{"title":"RCoT-Seg: Reinforced Chain-of-Thought for Video Reasoning and Segmentation","url":"https://arxiv.org/html/2605.07334"},{"title":"Chaining the Evidence: Robust Reinforcement Learning for Deep Search Agents with Citation-Aware Rubric Rewards","url":"https://arxiv.org/html/2601.06021v1"},{"title":"AlphaGRPO: Unlocking Self-Reflective Multimodal Generation in Unified Multimodal Models via Decompositional Verifiable Reward","url":"https://arxiv.org/html/2605.12495.pdf"}]
+
+I found the paper for you! Here's the information about the "Rubric-Grounded Reinforcement Learning" paper:
+
+## Paper Details
+
+**Title:** Rubric-Grounded Reinforcement Learning: Structured Judge Rewards for Generalizable Reasoning in Language Models
+
+**arXiv ID:** 2605.08061 (v1, published May 8, 2026)
+
+**Authors:** Manish Bhattarai, Ismael Boureima, Nishath Rajiv, Ranasinghe, Scott Pakin, Dan O'Malley
+
+## Key Contribution
+
+The paper formalizes rubric-grounded reinforcement learning (RL): a framework in which the policy is optimized against a structured, multi-criterion reward produced by a frozen LLM judge that conditions on auxiliary grounding the policy never sees.
+
+## Methodology
+
+The framework is instantiated by deriving rubrics from an Office of Scientific and Technical Information (OSTI)-derived corpus of roughly 100,000 scientific and technical documents and training Llama-3.1-8B-Instruct with Group Relative Policy Optimization (GRPO).
+
+## Results
+
+The GRPO-tuned policy improves over the base model on four reasoning benchmarks not derived from the training corpus—GSM8K, MATH, GPQA Main, and GPQA Diamond, providing evidence that structured, document-grounded rewards can improve held-out rubric performance and induce transferable reasoning behaviors beyond the corpus used to construct the training environment.
+
+You can access the paper directly at: https://arxiv.org/abs/2605.08061
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "72f7429f-04e0-4b65-8ce2-f3d3d3d8d5b9",
+  "tool_use_result": {
+    "query": "\"Rubric-Grounded Reinforcement Learning\" rubric GRPO 2025 arxiv 2605.08061 bibtex",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01GyDd3NMnNiYD4nuY4fAgBB",
+        "content": [
+          {
+            "title": "Rubric-Grounded Reinforcement Learning: Structured Judge Rewards for Generalizable Reasoning in Language Models",
+            "url": "https://arxiv.org/html/2605.08061v1"
+          },
+          {
+            "title": "[2605.08061v1] Rubric-Grounded RL: Structured Judge Rewards for Generalizable Reasoning",
+            "url": "https://arxiv.org/abs/2605.08061v1"
+          },
+          {
+            "title": "RubricEM: Meta-RL with Rubric-guided Policy Decomposition beyond Verifiable Rewards",
+            "url": "https://arxiv.org/html/2605.10899v1"
+          },
+          {
+            "title": "[2605.10899v1] RubricEM: Meta-RL with Rubric-guided Policy Decomposition beyond Verifiable Rewards",
+            "url": "https://arxiv.org/abs/2605.10899v1"
+          },
+          {
+            "title": "Multi-Objective and Mixed-Reward Reinforcement Learning via Reward-Decorrelated Policy Optimization",
+            "url": "https://arxiv.org/html/2605.13641"
+          },
+          {
+            "title": "Paper page - Reinforcement Learning with Rubric Anchors",
+            "url": "https://huggingface.co/papers/2508.12790"
+          },
+          {
+            "title": "Your Language Model is Its Own Critic: Reinforcement Learning with Value Estimation from Actor’s Internal States",
+            "url": "https://arxiv.org/html/2605.07579"
+          },
+          {
+            "title": "RCoT-Seg: Reinforced Chain-of-Thought for Video Reasoning and Segmentation",
+            "url": "https://arxiv.org/html/2605.07334"
+          },
+          {
+            "title": "Chaining the Evidence: Robust Reinforcement Learning for Deep Search Agents with Citation-Aware Rubric Rewards",
+            "url": "https://arxiv.org/html/2601.06021v1"
+          },
+          {
+            "title": "AlphaGRPO: Unlocking Self-Reflective Multimodal Generation in Unified Multimodal Models via Decompositional Verifiable Reward",
+            "url": "https://arxiv.org/html/2605.12495.pdf"
+          }
+        ]
+      },
+      "I found the paper for you! Here's the information about the \"Rubric-Grounded Reinforcement Learning\" paper:\n\n## Paper Details\n\n**Title:** Rubric-Grounded Reinforcement Learning: Structured Judge Rewards for Generalizable Reasoning in Language Models\n\n**arXiv ID:** 2605.08061 (v1, published May 8, 2026)\n\n**Authors:** Manish Bhattarai, Ismael Boureima, Nishath Rajiv, Ranasinghe, Scott Pakin, Dan O'Malley\n\n## Key Contribution\n\nThe paper formalizes rubric-grounded reinforcement learning (RL): a framework in which the policy is optimized against a structured, multi-criterion reward produced by a frozen LLM judge that conditions on auxiliary grounding the policy never sees.\n\n## Methodology\n\nThe framework is instantiated by deriving rubrics from an Office of Scientific and Technical Information (OSTI)-derived corpus of roughly 100,000 scientific and technical documents and training Llama-3.1-8B-Instruct with Group Relative Policy Optimization (GRPO).\n\n## Results\n\nThe GRPO-tuned policy improves over the base model on four reasoning benchmarks not derived from the training corpus—GSM8K, MATH, GPQA Main, and GPQA Diamond, providing evidence that structured, document-grounded rewards can improve held-out rubric performance and induce transferable reasoning behaviors beyond the corpus used to construct the training environment.\n\nYou can access the paper directly at: https://arxiv.org/abs/2605.08061"
+    ],
+    "durationSeconds": 7.530952940000003
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 77_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have most of the information I need. Let me also search for a few more papers from the literature map that would be good to include. Let me also check the Mellgren paper authors more carefully - it said "Mellgren, Schneider-Kamp, and Galke Poech" but I should verify.
+
+Let me also search for the remaining papers I want to include from the literature map - there are additional ones beyond the must-cite/should-cite list.
+
+Actually, let me now compile the BibTeX file. I have enough information to write accurate entries for all the must-cite and should-cite papers. 
+
+Now I'll pull in the additional papers referenced in the paper from the literature map, verify the output directory exists, and write out the complete BibTeX file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "9fabb594-542c-46e0-a85f-b92e567d7fc8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QgHu7LsUV7N2K8nm13DPAj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1257,
+      "cache_creation_input_tokens": 4492,
+      "cache_read_input_tokens": 76409,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4492
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 78_
+
+Now let me check the output directory and write the complete BibTeX file.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "76d6309f-c041-436b-b775-aebaefa94991",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QgHu7LsUV7N2K8nm13DPAj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1257,
+      "cache_creation_input_tokens": 4492,
+      "cache_read_input_tokens": 76409,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4492
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01XSkx3hHEoSRFDE6r3M3E4U`</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/_project/paper/ 2>/dev/null || echo \"DIR_NOT_FOUND\"",
+  "description": "Check if paper directory exists"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "66083f52-fd6a-4a8a-bfd8-122be53f764f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QgHu7LsUV7N2K8nm13DPAj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1257,
+      "cache_creation_input_tokens": 4492,
+      "cache_read_input_tokens": 76409,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4492
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-14T18:53:03.774Z_
+
+<details><summary>↩ Tool result · `toolu_01XSkx3hHEoSRFDE6r3M3E4U`</summary>
+
+```text
+method.tex
+method_1594b5.tex
+table1_goodhart.tex
+table3_isr_collapse.tex
+table4_beta01_comparison.tex
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "1d7696c5-f04b-4277-8126-2658a71d631f",
+  "tool_use_result": {
+    "stdout": "method.tex\nmethod_1594b5.tex\ntable1_goodhart.tex\ntable3_isr_collapse.tex\ntable4_beta01_comparison.tex",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01YT949GtAjkbaD6BZhyo79U`</summary>
+
+```json
+{
+  "query": "Mellgren Schneider-Kamp Galke \"Training Language Models to Use Prolog\" arxiv 2512.07407 authors"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "ca821d35-bd6b-46a2-9ff1-f2d05da4289a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QgHu7LsUV7N2K8nm13DPAj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1257,
+      "cache_creation_input_tokens": 4492,
+      "cache_read_input_tokens": 76409,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4492
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-14T18:53:09.298Z_
+
+<details><summary>↩ Tool result · `toolu_01YT949GtAjkbaD6BZhyo79U`</summary>
+
+```text
+Web search results for query: "Mellgren Schneider-Kamp Galke "Training Language Models to Use Prolog" arxiv 2512.07407 authors"
+
+Links: [{"title":"[2512.07407] Training Language Models to Use Prolog as a Tool","url":"https://arxiv.org/abs/2512.07407"},{"title":"Training Language Models to Use Prolog as a Tool","url":"https://arxiv.org/html/2512.07407v1"},{"title":"Training Language Models to Use Prolog as a Tool Niklas Mellgren","url":"https://arxiv.org/pdf/2512.07407"},{"title":"In-context learning enables multimodal large language ...","url":"https://arxiv.org/pdf/2403.07407"},{"title":"Lukas Galke Poech's scientific contributions","url":"https://www.researchgate.net/scientific-contributions/Lukas-Galke-Poech-2331653185"},{"title":"[2602.08818] FlexMoRE: A Flexible Mixture of Rank-heterogeneous Experts for Efficient Federatedly-trained Large Language Models","url":"https://arxiv.org/abs/2602.08818"},{"title":"Computation and Language Apr 2026","url":"https://arxiv.org/list/cs.CL/current?skip=35&show=2000"},{"title":"Advancing Symbolic Integration in Large Language Models: Beyond Conventional Neurosymbolic AI","url":"https://arxiv.org/html/2510.21425v1"},{"title":"[2403.14427v1] Emergent communication and learning pressures in language models: a language evolution perspective","url":"https://arxiv.org/abs/2403.14427v1"},{"title":"In-context learning enables multimodal large language models to classify cancer pathology images","url":"https://arxiv.org/html/2403.07407"}]
+
+Based on the search results, here's what I found about the paper and its authors:
+
+The paper "Training Language Models to Use Prolog as a Tool" (arxiv 2512.07407) is authored by Niklas Mellgren, Peter Schneider-Kamp, and Lukas Galke Poech. All three authors are affiliated with the University of Southern Denmark.
+
+The research investigates fine-tuning models to use Prolog as an external tool for verifiable computation, using Group Relative Policy Optimization (GRPO) to fine-tune Qwen2.5-3B-Instruct on a cleaned GSM8K-Prolog-Prover dataset.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "54c37023-7c9f-4ded-9cef-50e7bab594ec",
+  "tool_use_result": {
+    "query": "Mellgren Schneider-Kamp Galke \"Training Language Models to Use Prolog\" arxiv 2512.07407 authors",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0168iom5WxknbgXFa3nLZGRV",
+        "content": [
+          {
+            "title": "[2512.07407] Training Language Models to Use Prolog as a Tool",
+            "url": "https://arxiv.org/abs/2512.07407"
+          },
+          {
+            "title": "Training Language Models to Use Prolog as a Tool",
+            "url": "https://arxiv.org/html/2512.07407v1"
+          },
+          {
+            "title": "Training Language Models to Use Prolog as a Tool Niklas Mellgren",
+            "url": "https://arxiv.org/pdf/2512.07407"
+          },
+          {
+            "title": "In-context learning enables multimodal large language ...",
+            "url": "https://arxiv.org/pdf/2403.07407"
+          },
+          {
+            "title": "Lukas Galke Poech's scientific contributions",
+            "url": "https://www.researchgate.net/scientific-contributions/Lukas-Galke-Poech-2331653185"
+          },
+          {
+            "title": "[2602.08818] FlexMoRE: A Flexible Mixture of Rank-heterogeneous Experts for Efficient Federatedly-trained Large Language Models",
+            "url": "https://arxiv.org/abs/2602.08818"
+          },
+          {
+            "title": "Computation and Language Apr 2026",
+            "url": "https://arxiv.org/list/cs.CL/current?skip=35&show=2000"
+          },
+          {
+            "title": "Advancing Symbolic Integration in Large Language Models: Beyond Conventional Neurosymbolic AI",
+            "url": "https://arxiv.org/html/2510.21425v1"
+          },
+          {
+            "title": "[2403.14427v1] Emergent communication and learning pressures in language models: a language evolution perspective",
+            "url": "https://arxiv.org/abs/2403.14427v1"
+          },
+          {
+            "title": "In-context learning enables multimodal large language models to classify cancer pathology images",
+            "url": "https://arxiv.org/html/2403.07407"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about the paper and its authors:\n\nThe paper \"Training Language Models to Use Prolog as a Tool\" (arxiv 2512.07407) is authored by Niklas Mellgren, Peter Schneider-Kamp, and Lukas Galke Poech. All three authors are affiliated with the University of Southern Denmark.\n\nThe research investigates fine-tuning models to use Prolog as an external tool for verifiable computation, using Group Relative Policy Optimization (GRPO) to fine-tune Qwen2.5-3B-Instruct on a cleaned GSM8K-Prolog-Prover dataset."
+    ],
+    "durationSeconds": 5.076323747000002
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 83_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, now let me also fetch the FOLIO paper's venue - it says "arXiv 2209.00840 / EMNLP 2024" in the literature map. Let me verify.
+
+Actually, I have enough information now. Let me compile the BibTeX file. Let me also note that for the Spurious Rewards paper, the first author is actually "Rulin Shao" based on the search (not "Ruixin Yang" as in the literature map). Let me double check... The literature map says "Ruixin Yang et al." but the search returned "Rulin Shao" as first author. 
+
+The arxiv ID 2506.10947 checks out, and I can see the full author list from the search results - Rulin Shao is definitely the first author, not Ruixin Yang as the literature map indicated, so I'll use the correct author information going forward.
+
+I'm also noticing similar discrepancies with other papers - the literature map has "Xian et al." but the actual first author is Tian Xie, so I'll make sure to use the accurate author names throughout.
+
+Now I'm compiling the complete BibTeX file with all the must-cite papers, should-cite papers, and additional important references from the literature map. I'm compiling the bibliography now, pulling in the remaining citations from the literature map.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "8bb28bee-15e7-42b5-9949-69380934a2df",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Tu2diDcByAG3ShPHa7c8qj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2393,
+      "cache_read_input_tokens": 80901,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2393
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 84_
+
+Directory exists. Now I'll write the complete BibTeX file.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "d61ddd27-047d-411b-95f4-46e53d1b41fc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Tu2diDcByAG3ShPHa7c8qj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2393,
+      "cache_read_input_tokens": 80901,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2393
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01AgSPVLBfN4BzK32B5sVhru`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/_project/paper/references.bib",
+  "content": "% ============================================================\n% Solver Trace Ablation (STA) — EMNLP 2026 References\n% Generated 2026-05-14\n% ============================================================\n\n% ============================================================\n% Category 1: Neurosymbolic reasoning + RL/GRPO\n% ============================================================\n\n@article{shao2024deepseekmath,\n  title     = {{DeepSeekMath}: Pushing the Limits of Mathematical Reasoning in Open Language Models},\n  author    = {Shao, Zhihong and Wang, Peiyi and Zhu, Qihao and Xu, Runxin and Song, Junxiao and Bi, Xiao and Zhang, Haowei and Zhang, Mingchuan and Li, Y.K. and Wu, Y. and Guo, Daya},\n  journal   = {arXiv preprint arXiv:2402.03300},\n  year      = {2024},\n  eprint    = {2402.03300},\n  archiveprefix = {arXiv},\n  primaryclass  = {cs.CL},\n  url       = {https://arxiv.org/abs/2402.03300}\n}\n\n@misc{deepseek2025r1,\n  title     = {{DeepSeek-R1}: Incentivizing Reasoning Capability in {LLMs} via Reinforcement Learning},\n  author    = {{DeepSeek-AI}},\n  year      = {2025},\n  eprint    = {2501.12948},\n  archiveprefix = {arXiv},\n  primaryclass  = {cs.CL},\n  url       = {https://arxiv.org/abs/2501.12948}\n}\n\n@misc{xie2025logicrl,\n  title     = {{Logic-RL}: Unleashing {LLM} Reasoning with Rule-Based Reinforcement Learning},\n  author    = {Xie, Tian and Gao, Zitian and Ren, Qingnan and Luo, Haoming and Hong, Yuqian and Dai, Bryan and Zhou, Joey and Qiu, Kai and Wu, Zhirong and Luo, Chong},\n  year      = {2025},\n  eprint    = {2502.14768},\n  archiveprefix = {arXiv},\n  primaryclass  = {cs.CL},\n  url       = {https://arxiv.org/abs/2502.14768}\n}\n\n@article{mellgren2025prolog,\n  title     = {Training Language Models to Use {Prolog} as a Tool},\n  author    = {Mellgren, Niklas and Schneider-Kamp, Peter and Galke Poech, Lukas},\n  journal   = {arXiv preprint arXiv:2512.07407},\n  year      = {2025},\n  eprint    = {2512.07407},\n  archiveprefix = {arXiv},\n  primaryclass  = {cs.CL},\n  url       = {https://arxiv.org/abs/2512.07407}\n}\n\n@inproceedings{ye2023satlm,\n  title     = {{SatLM}: Satisfiability-Aided Language Models Using Declarative Prompting},\n  author    = {Ye, Xi and Chen, Qiaochu and Dillig, Isil and Durrett, Greg},\n  booktitle = {Advances in Neural Information Processing Systems},\n  volume    = {36},\n  year      = {2023},\n  url       = {https://arxiv.org/abs/2305.09656}\n}\n\n@article{manhaeve2021deepproblog,\n  title     = {Neural Probabilistic Logic Programming in {DeepProbLog}},\n  author    = {Manhaeve, Robin and Duman{\\v{c}}i{\\'c}, Sebastijan and Kimmig, Angelika and Demeester, Thomas and De Raedt, Luc},\n  journal   = {Artificial Intelligence},\n  volume    = {298},\n  pages     = {103504},\n  year      = {2021},\n  publisher = {Elsevier},\n  doi       = {10.1016/j.artint.2021.103504}\n}\n\n@inproceedings{yang2020neurasp,\n  title     = {{NeurASP}: Embracing Neural Networks into Answer Set Programming},\n  author    = {Yang, Zhun and Ishay, Adam and Lee, Joohyung},\n  booktitle = {Proceedings of the 29th International Joint Conference on Artificial Intelligence (IJCAI)},\n  pages     = {1755--1762},\n  year      = {2020},\n  doi       = {10.24963/ijcai.2020/243}\n}\n\n@article{tan2024thoughtlikepro,\n  title     = {{Thought-Like-Pro}: Enhancing Reasoning of Large Language Models through Self-Driven {Prolog}-based Chain-of-Thought},\n  author    = {Tan, Xiaoyu and Deng, Yongxin and Qiu, Xihe and Xu, Weidi and Qu, Chao and Chu, Wei and Xu, Yinghui and Qi, Yuan},\n  journal   = {arXiv preprint arXiv:2407.14562},\n  year      = {2024},\n  eprint    = {2407.14562},\n  archiveprefix = {arXiv},\n  primaryclass  = {cs.CL},\n  url       = {https://arxiv.org/abs/2407.14562}\n}\n\n% ============================================================\n% Category 2: Reward shaping for code/formal verification\n% ============================================================\n\n@misc{lightman2023verifystep,\n  title     = {Let's Verify Step by Step},\n  author    = {Lightman, Hunter and Kosaraju, Vineet and Burda, Yura and Edwards, Harri and Baker, Bowen and Lee, Teddy and Leike, Jan and Schulman, John and Sutskever, Ilya and Cobbe, Karl},\n  year      = {2023},\n  eprint    = {2305.20050},\n  archiveprefix = {arXiv},\n  primaryclass  = {cs.LG},\n  url       = {https://arxiv.org/abs/2305.20050}\n}\n\n% ============================================================\n% Category 3: Mutation testing in software engineering\n% ============================================================\n\n@article{demillo1978mutation,\n  title     = {Hints on Test Data Selection: Help for the Practicing Programmer},\n  author    = {DeMillo, Richard A. and Lipton, Richard J. and Sayward, Frederick G.},\n  journal   = {Computer},\n  volume    = {11},\n  number    = {4},\n  pages     = {34--41},\n  year      = {1978},\n  publisher = {IEEE},\n  doi       = {10.1109/C-M.1978.218136}\n}\n\n@article{offutt1992coupling,\n  title     = {Investigations of the Software Testing Coupling Effect},\n  author    = {Offutt, A. Jefferson},\n  journal   = {ACM Transactions on Software Engineering and Methodology},\n  volume    = {1},\n  number    = {1},\n  pages     = {5--20},\n  year      = {1992},\n  publisher = {ACM},\n  doi       = {10.1145/125489.125473}\n}\n\n@article{jia2011mutation,\n  title     = {An Analysis and Survey of the Development of Mutation Testing},\n  author    = {Jia, Yue and Harman, Mark},\n  journal   = {IEEE Transactions on Software Engineering},\n  volume    = {37},\n  number    = {5},\n  pages     = {649--678},\n  year      = {2011},\n  publisher = {IEEE},\n  doi       = {10.1109/TSE.2010.62}\n}\n\n@inproceedings{just2014mutants,\n  title     = {Are Mutants a Valid Substitute for Real Faults in Software Testing?},\n  author    = {Just, Ren{\\'e} and Jalali, Darioush and Inozemtseva, Laura and Ernst, Michael D. and Holmes, Reid and Fraser, Gordon},\n  booktitle = {Proceedings of the 22nd ACM SIGSOFT International Symposium on Foundations of Software Engineering (FSE)},\n  pages     = {654--665},\n  year      = {2014},\n  publisher = {ACM},\n  doi       = {10.1145/2635868.2635929}\n}\n\n% ============================================================\n% Category 4: Reward hacking / overoptimization\n% ============================================================\n\n@inproceedings{gao2023overoptimization,\n  title     = {Scaling Laws for Reward Model Overoptimization},\n  author    = {Gao, Leo and Schulman, John and Hilton, Jacob},\n  booktitle = {Proceedings of the 40th International Conference on Machine Learning (ICML)},\n  series    = {Proceedings of Machine Learning Research},\n  volume    = {202},\n  pages     = {10835--10866},\n  year      = {2023},\n  publisher = {PMLR},\n  url       = {https://proceedings.mlr.press/v202/gao23h.html}\n}\n\n@inproceedings{karwowski2024goodhart,\n  title     = {Goodhart's Law in Reinforcement Learning},\n  author    = {Karwowski, Jacek and Hayman, Oliver and Bai, Xingjian and Kiendlhofer, Klaus and Griffin, Charlie and Skalse, Joar},\n  booktitle = {International Conference on Learning Representations (ICLR)},\n  year      = {2024},\n  url       = {https://arxiv.org/abs/2310.09144}\n}\n\n@article{manheim2019goodhart,\n  title     = {Categorizing Variants of {Goodhart's} Law},\n  author    = {Manheim, David and Garrabrant, Scott},\n  journal   = {arXiv preprint arXiv:1803.04585},\n  year      = {2019},\n  eprint    = {1803.04585},\n  archiveprefix = {arXiv},\n  primaryclass  = {cs.AI},\n  url       = {https://arxiv.org/abs/1803.04585}\n}\n\n@inproceedings{skalse2022rewardhacking,\n  title     = {Defining and Characterizing Reward Hacking},\n  author    = {Skalse, Joar and Howe, Nikolaus H. R. and Krasheninnikov, Dmitrii and Krueger, David},\n  booktitle = {Advances in Neural Information Processing Systems},\n  volume    = {36},\n  year      = {2022},\n  url       = {https://arxiv.org/abs/2209.13085}\n}\n\n@inproceedings{pan2022misspecification,\n  title     = {The Effects of Reward Misspecification: Mapping and Mitigating Misaligned Models},\n  author    = {Pan, Alexander and Bhatia, Kush and Steinhardt, Jacob},\n  booktitle = {International Conference on Learning Representations (ICLR)},\n  year      = {2022},\n  url       = {https://arxiv.org/abs/2201.03544}\n}\n\n@inproceedings{kwa2024goodhart,\n  title     = {Catastrophic {Goodhart}: Regularizing {RLHF} with {KL} Divergence Does Not Mitigate Heavy-Tailed Reward Misspecification},\n  author    = {Kwa, Thomas and Thomas, Drake and Garriga-Alonso, Adri{\\`a}},\n  booktitle = {Advances in Neural Information Processing Systems},\n  volume    = {37},\n  year      = {2024},\n  url       = {https://arxiv.org/abs/2407.14503}\n}\n\n@misc{shao2025spurious,\n  title     = {Spurious Rewards: Rethinking Training Signals in {RLVR}},\n  author    = {Shao, Rulin and Li, Shuyue Stella and Xin, Rui and Geng, Scott and Wang, Yiping and Oh, Sewoong and Du, Simon Shaolei and Lambert, Nathan and Min, Sewon and Krishna, Ranjay and Tsvetkov, Yulia and Hajishirzi, Hannaneh and Koh, Pang Wei and Zettlemoyer, Luke},\n  year      = {2025},\n  eprint    = {2506.10947},\n  archiveprefix = {arXiv},\n  primaryclass  = {cs.AI},\n  url       = {https://arxiv.org/abs/2506.10947}\n}\n\n@article{wang2026rewardhacking,\n  title     = {Reward Hacking in the Era of Large Models: Mechanisms, Emergent Misalignment, Challenges},\n  author    = {Wang, Xiaohua and Tian, Muzhao and Zeng, Yuqi and Huang, Zisu and Yuan, Jiakang and Chen, Bowen and Xu, Jingwen and Zhou, Mingbo and Liu, Wenhao and Wu, Muling and Guo, Zhengkang and Qian, Qi and Wang, Yifei and Zhang, Feiran and Yin, Ruicheng and Dou, Shihan and Lv, Changze and Chen, Tao and Song, Kaitao and Tan, Xu and Gui, Tao and Zheng, Xiaoqing and Huang, Xuanjing},\n  journal   = {arXiv preprint arXiv:2604.13602},\n  year      = {2026},\n  eprint    = {2604.13602},\n  archiveprefix = {arXiv},\n  primaryclass  = {cs.AI},\n  url       = {https://arxiv.org/abs/2604.13602}\n}\n\n@misc{bondarenko2025specgaming,\n  title     = {Demonstrating Specification Gaming in Reasoning Models},\n  author    = {Bondarenko, Alexander and Volk, Denis and Volkov, Dmitrii and Ladish, Jeffrey},\n  year      = {2025},\n  eprint    = {2502.13295},\n  archiveprefix = {arXiv},\n  primaryclass  = {cs.AI},\n  url       = {https://arxiv.org/abs/2502.13295}\n}\n\n@inproceedings{kim2026formalization,\n  title     = {Do {LLMs} Game Formalization? {Evaluating} Faithfulness in Logical Reasoning},\n  author    = {Kim, Kyuhee and Poiroux, Auguste and Bosselut, Antoine},\n  booktitle = {VerifAI-2 Workshop, International Conference on Learning Representations (ICLR)},\n  year      = {2026},\n  eprint    = {2604.19459},\n  archiveprefix = {arXiv},\n  primaryclass  = {cs.CL},\n  url       = {https://arxiv.org/abs/2604.19459}\n}\n\n% ============================================================\n% Category 5: FOL/Prolog formalization with LLMs\n% ============================================================\n\n@article{han2022folio,\n  title     = {{FOLIO}: Natural Language Reasoning with First-Order Logic},\n  author    = {Han, Simeng and Schoelkopf, Hailey and Zhao, Yilun and Qi, Zhenting and Riddell, Martin and Benson, Luke and Sun, Lucy and Zubova, Ekaterina and Qiao, Yujie and Burtell, Matthew and Peng, David and Fan, Jonathan and Liu, Yixin and Wong, Brian and Sailor, Malcolm and Ni, Ansong and Nan, Linyong and Kasai, Jungo and Yu, Tao and Zhang, Rui and Joty, Shafiq and Fabbri, Alexander R. and Kryscinski, Wojciech and Lin, Xi Victoria and Xiong, Caiming and Radev, Dragomir},\n  journal   = {arXiv preprint arXiv:2209.00840},\n  year      = {2022},\n  eprint    = {2209.00840},\n  archiveprefix = {arXiv},\n  primaryclass  = {cs.CL},\n  url       = {https://arxiv.org/abs/2209.00840}\n}\n\n@inproceedings{tafjord2021proofwriter,\n  title     = {{ProofWriter}: Generating Implications, Proofs, and Abductive Statements over Natural Language},\n  author    = {Tafjord, Oyvind and Dalvi, Bhavana and Clark, Peter},\n  booktitle = {Findings of the Association for Computational Linguistics: ACL-IJCNLP 2021},\n  pages     = {3621--3634},\n  year      = {2021},\n  publisher = {Association for Computational Linguistics},\n  doi       = {10.18653/v1/2021.findings-acl.317},\n  url       = {https://aclanthology.org/2021.findings-acl.317/}\n}\n\n@inproceedings{pan2023logiclm,\n  title     = {{Logic-LM}: Empowering Large Language Models with Symbolic Solvers for Faithful Logical Reasoning},\n  author    = {Pan, Liangming and Albalak, Alon and Wang, Xinyi and Wang, William Yang},\n  booktitle = {Findings of the Association for Computational Linguistics: EMNLP 2023},\n  pages     = {3806--3824},\n  year      = {2023},\n  address   = {Singapore},\n  publisher = {Association for Computational Linguistics},\n  doi       = {10.18653/v1/2023.findings-emnlp.248},\n  url       = {https://aclanthology.org/2023.findings-emnlp.248/}\n}\n\n@inproceedings{olausson2023linc,\n  title     = {{LINC}: A Neurosymbolic Approach for Logical Reasoning by Combining Language Models with First-Order Logic Provers},\n  author    = {Olausson, Theo and Gu, Alex and Lipkin, Ben and Zhang, Cedegao and Solar-Lezama, Armando and Tenenbaum, Joshua and Levy, Roger},\n  booktitle = {Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n  pages     = {5153--5176},\n  year      = {2023},\n  address   = {Singapore},\n  publisher = {Association for Computational Linguistics},\n  doi       = {10.18653/v1/2023.emnlp-main.313},\n  url       = {https://aclanthology.org/2023.emnlp-main.313/}\n}\n\n@article{pei2025fover,\n  title     = {{FoVer}: First-Order Logic Verification for Natural Language Reasoning},\n  author    = {Pei, Yu and Du, Yongping and Jin, Xingnan},\n  journal   = {Transactions of the Association for Computational Linguistics},\n  volume    = {13},\n  pages     = {1340--1359},\n  year      = {2025},\n  publisher = {MIT Press},\n  doi       = {10.1162/tacl.a.41},\n  url       = {https://aclanthology.org/2025.tacl-1.61/}\n}\n\n% ============================================================\n% Category 6: Solver/prover as RL reward signal\n% ============================================================\n\n@article{xin2024deepseekprover,\n  title     = {{DeepSeek-Prover-V1.5}: Harnessing Proof Assistant Feedback for Reinforcement Learning and {Monte-Carlo} Tree Search},\n  author    = {Xin, Huajian and Ren, Z. Z. and Song, Junxiao and Shao, Zhihong and Zhao, Wanjia and Wang, Haocheng and Liu, Bo and Zhang, Liyue and Lu, Xuan and Du, Qiushi and Gao, Wenjun and Zhu, Qihao and Yang, Dejian and Gou, Zhibin and Wu, Z. F. and Luo, Fuli and Ruan, Chong},\n  journal   = {arXiv preprint arXiv:2408.08152},\n  year      = {2024},\n  eprint    = {2408.08152},\n  archiveprefix = {arXiv},\n  primaryclass  = {cs.CL},\n  url       = {https://arxiv.org/abs/2408.08152}\n}\n\n@inproceedings{wang2024mathshepherd,\n  title     = {{Math-Shepherd}: Verify and Reinforce {LLMs} Step-by-step without Human Annotations},\n  author    = {Wang, Peiyi and Li, Lei and Shao, Zhihong and Xu, Runxin and Dai, Damai and Li, Yifei and Chen, Deli and Wu, Yu and Sui, Zhifang},\n  booktitle = {Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)},\n  pages     = {9426--9439},\n  year      = {2024},\n  address   = {Bangkok, Thailand},\n  publisher = {Association for Computational Linguistics},\n  doi       = {10.18653/v1/2024.acl-long.510},\n  url       = {https://aclanthology.org/2024.acl-long.510/}\n}\n\n@inproceedings{jha2025rlsf,\n  title     = {{RLSF}: Reinforcement Learning via Symbolic Feedback},\n  author    = {Jha, Piyush and Jana, Prithwish and Suresh, Pranavkrishna and Arora, Arnav and Ganesh, Vijay},\n  booktitle = {Proceedings of the 27th European Conference on Artificial Intelligence (ECAI)},\n  series    = {Frontiers in Artificial Intelligence and Applications},\n  volume    = {413},\n  pages     = {1687--1694},\n  year      = {2025},\n  url       = {https://arxiv.org/abs/2405.16661}\n}\n\n% ============================================================\n% Category 7: Rubric / structured rewards\n% ============================================================\n\n@article{bhattarai2026rubricgrpo,\n  title     = {Rubric-Grounded {RL}: Structured Judge Rewards for Generalizable Reasoning},\n  author    = {Bhattarai, Manish and Boureima, Ismael and Rajiv, Nishath and Ranasinghe and Pakin, Scott and O'Malley, Dan},\n  journal   = {arXiv preprint arXiv:2605.08061},\n  year      = {2026},\n  eprint    = {2605.08061},\n  archiveprefix = {arXiv},\n  primaryclass  = {cs.CL},\n  url       = {https://arxiv.org/abs/2605.08061}\n}\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "ad2e37a5-aa03-49a0-af83-78d5cb93093d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Tu2diDcByAG3ShPHa7c8qj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2393,
+      "cache_read_input_tokens": 80901,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2393
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-14T18:55:00.636Z_
+
+<details><summary>↩ Tool result · `toolu_01AgSPVLBfN4BzK32B5sVhru`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/_project/paper/references.bib
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "8e53bf72-a58d-417e-9dac-d4fda18327b3",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/_project/paper/references.bib",
+    "content": "% ============================================================\n% Solver Trace Ablation (STA) — EMNLP 2026 References\n% Generated 2026-05-14\n% ============================================================\n\n% ============================================================\n% Category 1: Neurosymbolic reasoning + RL/GRPO\n% ============================================================\n\n@article{shao2024deepseekmath,\n  title     = {{DeepSeekMath}: Pushing the Limits of Mathematical Reasoning in Open Language Models},\n  author    = {Shao, Zhihong and Wang, Peiyi and Zhu, Qihao and Xu, Runxin and Song, Junxiao and Bi, Xiao and Zhang, Haowei and Zhang, Mingchuan and Li, Y.K. and Wu, Y. and Guo, Daya},\n  journal   = {arXiv preprint arXiv:2402.03300},\n  year      = {2024},\n  eprint    = {2402.03300},\n  archiveprefix = {arXiv},\n  primaryclass  = {cs.CL},\n  url       = {https://arxiv.org/abs/2402.03300}\n}\n\n@misc{deepseek2025r1,\n  title     = {{DeepSeek-R1}: Incentivizing Reasoning Capability in {LLMs} via Reinforcement Learning},\n  author    = {{DeepSeek-AI}},\n  year      = {2025},\n  eprint    = {2501.12948},\n  archiveprefix = {arXiv},\n  primaryclass  = {cs.CL},\n  url       = {https://arxiv.org/abs/2501.12948}\n}\n\n@misc{xie2025logicrl,\n  title     = {{Logic-RL}: Unleashing {LLM} Reasoning with Rule-Based Reinforcement Learning},\n  author    = {Xie, Tian and Gao, Zitian and Ren, Qingnan and Luo, Haoming and Hong, Yuqian and Dai, Bryan and Zhou, Joey and Qiu, Kai and Wu, Zhirong and Luo, Chong},\n  year      = {2025},\n  eprint    = {2502.14768},\n  archiveprefix = {arXiv},\n  primaryclass  = {cs.CL},\n  url       = {https://arxiv.org/abs/2502.14768}\n}\n\n@article{mellgren2025prolog,\n  title     = {Training Language Models to Use {Prolog} as a Tool},\n  author    = {Mellgren, Niklas and Schneider-Kamp, Peter and Galke Poech, Lukas},\n  journal   = {arXiv preprint arXiv:2512.07407},\n  year      = {2025},\n  eprint    = {2512.07407},\n  archiveprefix = {arXiv},\n  primaryclass  = {cs.CL},\n  url       = {https://arxiv.org/abs/2512.07407}\n}\n\n@inproceedings{ye2023satlm,\n  title     = {{SatLM}: Satisfiability-Aided Language Models Using Declarative Prompting},\n  author    = {Ye, Xi and Chen, Qiaochu and Dillig, Isil and Durrett, Greg},\n  booktitle = {Advances in Neural Information Processing Systems},\n  volume    = {36},\n  year      = {2023},\n  url       = {https://arxiv.org/abs/2305.09656}\n}\n\n@article{manhaeve2021deepproblog,\n  title     = {Neural Probabilistic Logic Programming in {DeepProbLog}},\n  author    = {Manhaeve, Robin and Duman{\\v{c}}i{\\'c}, Sebastijan and Kimmig, Angelika and Demeester, Thomas and De Raedt, Luc},\n  journal   = {Artificial Intelligence},\n  volume    = {298},\n  pages     = {103504},\n  year      = {2021},\n  publisher = {Elsevier},\n  doi       = {10.1016/j.artint.2021.103504}\n}\n\n@inproceedings{yang2020neurasp,\n  title     = {{NeurASP}: Embracing Neural Networks into Answer Set Programming},\n  author    = {Yang, Zhun and Ishay, Adam and Lee, Joohyung},\n  booktitle = {Proceedings of the 29th International Joint Conference on Artificial Intelligence (IJCAI)},\n  pages     = {1755--1762},\n  year      = {2020},\n  doi       = {10.24963/ijcai.2020/243}\n}\n\n@article{tan2024thoughtlikepro,\n  title     = {{Thought-Like-Pro}: Enhancing Reasoning of Large Language Models through Self-Driven {Prolog}-based Chain-of-Thought},\n  author    = {Tan, Xiaoyu and Deng, Yongxin and Qiu, Xihe and Xu, Weidi and Qu, Chao and Chu, Wei and Xu, Yinghui and Qi, Yuan},\n  journal   = {arXiv preprint arXiv:2407.14562},\n  year      = {2024},\n  eprint    = {2407.14562},\n  archiveprefix = {arXiv},\n  primaryclass  = {cs.CL},\n  url       = {https://arxiv.org/abs/2407.14562}\n}\n\n% ============================================================\n% Category 2: Reward shaping for code/formal verification\n% ============================================================\n\n@misc{lightman2023verifystep,\n  title     = {Let's Verify Step by Step},\n  author    = {Lightman, Hunter and Kosaraju, Vineet and Burda, Yura and Edwards, Harri and Baker, Bowen and Lee, Teddy and Leike, Jan and Schulman, John and Sutskever, Ilya and Cobbe, Karl},\n  year      = {2023},\n  eprint    = {2305.20050},\n  archiveprefix = {arXiv},\n  primaryclass  = {cs.LG},\n  url       = {https://arxiv.org/abs/2305.20050}\n}\n\n% ============================================================\n% Category 3: Mutation testing in software engineering\n% ============================================================\n\n@article{demillo1978mutation,\n  title     = {Hints on Test Data Selection: Help for the Practicing Programmer},\n  author    = {DeMillo, Richard A. and Lipton, Richard J. and Sayward, Frederick G.},\n  journal   = {Computer},\n  volume    = {11},\n  number    = {4},\n  pages     = {34--41},\n  year      = {1978},\n  publisher = {IEEE},\n  doi       = {10.1109/C-M.1978.218136}\n}\n\n@article{offutt1992coupling,\n  title     = {Investigations of the Software Testing Coupling Effect},\n  author    = {Offutt, A. Jefferson},\n  journal   = {ACM Transactions on Software Engineering and Methodology},\n  volume    = {1},\n  number    = {1},\n  pages     = {5--20},\n  year      = {1992},\n  publisher = {ACM},\n  doi       = {10.1145/125489.125473}\n}\n\n@article{jia2011mutation,\n  title     = {An Analysis and Survey of the Development of Mutation Testing},\n  author    = {Jia, Yue and Harman, Mark},\n  journal   = {IEEE Transactions on Software Engineering},\n  volume    = {37},\n  number    = {5},\n  pages     = {649--678},\n  year      = {2011},\n  publisher = {IEEE},\n  doi       = {10.1109/TSE.2010.62}\n}\n\n@inproceedings{just2014mutants,\n  title     = {Are Mutants a Valid Substitute for Real Faults in Software Testing?},\n  author    = {Just, Ren{\\'e} and Jalali, Darioush and Inozemtseva, Laura and Ernst, Michael D. and Holmes, Reid and Fraser, Gordon},\n  booktitle = {Proceedings of the 22nd ACM SIGSOFT International Symposium on Foundations of Software Engineering (FSE)},\n  pages     = {654--665},\n  year      = {2014},\n  publisher = {ACM},\n  doi       = {10.1145/2635868.2635929}\n}\n\n% ============================================================\n% Category 4: Reward hacking / overoptimization\n% ============================================================\n\n@inproceedings{gao2023overoptimization,\n  title     = {Scaling Laws for Reward Model Overoptimization},\n  author    = {Gao, Leo and Schulman, John and Hilton, Jacob},\n  booktitle = {Proceedings of the 40th International Conference on Machine Learning (ICML)},\n  series    = {Proceedings of Machine Learning Research},\n  volume    = {202},\n  pages     = {10835--10866},\n  year      = {2023},\n  publisher = {PMLR},\n  url       = {https://proceedings.mlr.press/v202/gao23h.html}\n}\n\n@inproceedings{karwowski2024goodhart,\n  title     = {Goodhart's Law in Reinforcement Learning},\n  author    = {Karwowski, Jacek and Hayman, Oliver and Bai, Xingjian and Kiendlhofer, Klaus and Griffin, Charlie and Skalse, Joar},\n  booktitle = {International Conference on Learning Representations (ICLR)},\n  year      = {2024},\n  url       = {https://arxiv.org/abs/2310.09144}\n}\n\n@article{manheim2019goodhart,\n  title     = {Categorizing Variants of {Goodhart's} Law},\n  author    = {Manheim, David and Garrabrant, Scott},\n  journal   = {arXiv preprint arXiv:1803.04585},\n  year      = {2019},\n  eprint    = {1803.04585},\n  archiveprefix = {arXiv},\n  primaryclass  = {cs.AI},\n  url       = {https://arxiv.org/abs/1803.04585}\n}\n\n@inproceedings{skalse2022rewardhacking,\n  title     = {Defining and Characterizing Reward Hacking},\n  author    = {Skalse, Joar and Howe, Nikolaus H. R. and Krasheninnikov, Dmitrii and Krueger, David},\n  booktitle = {Advances in Neural Information Processing Systems},\n  volume    = {36},\n  year      = {2022},\n  url       = {https://arxiv.org/abs/2209.13085}\n}\n\n@inproceedings{pan2022misspecification,\n  title     = {The Effects of Reward Misspecification: Mapping and Mitigating Misaligned Models},\n  author    = {Pan, Alexander and Bhatia, Kush and Steinhardt, Jacob},\n  booktitle = {International Conference on Learning Representations (ICLR)},\n  year      = {2022},\n  url       = {https://arxiv.org/abs/2201.03544}\n}\n\n@inproceedings{kwa2024goodhart,\n  title     = {Catastrophic {Goodhart}: Regularizing {RLHF} with {KL} Divergence Does Not Mitigate Heavy-Tailed Reward Misspecification},\n  author    = {Kwa, Thomas and Thomas, Drake and Garriga-Alonso, Adri{\\`a}},\n  booktitle = {Advances in Neural Information Processing Systems},\n  volume    = {37},\n  year      = {2024},\n  url       = {https://arxiv.org/abs/2407.14503}\n}\n\n@misc{shao2025spurious,\n  title     = {Spurious Rewards: Rethinking Training Signals in {RLVR}},\n  author    = {Shao, Rulin and Li, Shuyue Stella and Xin, Rui and Geng, Scott and Wang, Yiping and Oh, Sewoong and Du, Simon Shaolei and Lambert, Nathan and Min, Sewon and Krishna, Ranjay and Tsvetkov, Yulia and Hajishirzi, Hannaneh and Koh, Pang Wei and Zettlemoyer, Luke},\n  year      = {2025},\n  eprint    = {2506.10947},\n  archiveprefix = {arXiv},\n  primaryclass  = {cs.AI},\n  url       = {https://arxiv.org/abs/2506.10947}\n}\n\n@article{wang2026rewardhacking,\n  title     = {Reward Hacking in the Era of Large Models: Mechanisms, Emergent Misalignment, Challenges},\n  author    = {Wang, Xiaohua and Tian, Muzhao and Zeng, Yuqi and Huang, Zisu and Yuan, Jiakang and Chen, Bowen and Xu, Jingwen and Zhou, Mingbo and Liu, Wenhao and Wu, Muling and Guo, Zhengkang and Qian, Qi and Wang, Yifei and Zhang, Feiran and Yin, Ruicheng and Dou, Shihan and Lv, Changze and Chen, Tao and Song, Kaitao and Tan, Xu and Gui, Tao and Zheng, Xiaoqing and Huang, Xuanjing},\n  journal   = {arXiv preprint arXiv:2604.13602},\n  year      = {2026},\n  eprint    = {2604.13602},\n  archiveprefix = {arXiv},\n  primaryclass  = {cs.AI},\n  url       = {https://arxiv.org/abs/2604.13602}\n}\n\n@misc{bondarenko2025specgaming,\n  title     = {Demonstrating Specification Gaming in Reasoning Models},\n  author    = {Bondarenko, Alexander and Volk, Denis and Volkov, Dmitrii and Ladish, Jeffrey},\n  year      = {2025},\n  eprint    = {2502.13295},\n  archiveprefix = {arXiv},\n  primaryclass  = {cs.AI},\n  url       = {https://arxiv.org/abs/2502.13295}\n}\n\n@inproceedings{kim2026formalization,\n  title     = {Do {LLMs} Game Formalization? {Evaluating} Faithfulness in Logical Reasoning},\n  author    = {Kim, Kyuhee and Poiroux, Auguste and Bosselut, Antoine},\n  booktitle = {VerifAI-2 Workshop, International Conference on Learning Representations (ICLR)},\n  year      = {2026},\n  eprint    = {2604.19459},\n  archiveprefix = {arXiv},\n  primaryclass  = {cs.CL},\n  url       = {https://arxiv.org/abs/2604.19459}\n}\n\n% ============================================================\n% Category 5: FOL/Prolog formalization with LLMs\n% ============================================================\n\n@article{han2022folio,\n  title     = {{FOLIO}: Natural Language Reasoning with First-Order Logic},\n  author    = {Han, Simeng and Schoelkopf, Hailey and Zhao, Yilun and Qi, Zhenting and Riddell, Martin and Benson, Luke and Sun, Lucy and Zubova, Ekaterina and Qiao, Yujie and Burtell, Matthew and Peng, David and Fan, Jonathan and Liu, Yixin and Wong, Brian and Sailor, Malcolm and Ni, Ansong and Nan, Linyong and Kasai, Jungo and Yu, Tao and Zhang, Rui and Joty, Shafiq and Fabbri, Alexander R. and Kryscinski, Wojciech and Lin, Xi Victoria and Xiong, Caiming and Radev, Dragomir},\n  journal   = {arXiv preprint arXiv:2209.00840},\n  year      = {2022},\n  eprint    = {2209.00840},\n  archiveprefix = {arXiv},\n  primaryclass  = {cs.CL},\n  url       = {https://arxiv.org/abs/2209.00840}\n}\n\n@inproceedings{tafjord2021proofwriter,\n  title     = {{ProofWriter}: Generating Implications, Proofs, and Abductive Statements over Natural Language},\n  author    = {Tafjord, Oyvind and Dalvi, Bhavana and Clark, Peter},\n  booktitle = {Findings of the Association for Computational Linguistics: ACL-IJCNLP 2021},\n  pages     = {3621--3634},\n  year      = {2021},\n  publisher = {Association for Computational Linguistics},\n  doi       = {10.18653/v1/2021.findings-acl.317},\n  url       = {https://aclanthology.org/2021.findings-acl.317/}\n}\n\n@inproceedings{pan2023logiclm,\n  title     = {{Logic-LM}: Empowering Large Language Models with Symbolic Solvers for Faithful Logical Reasoning},\n  author    = {Pan, Liangming and Albalak, Alon and Wang, Xinyi and Wang, William Yang},\n  booktitle = {Findings of the Association for Computational Linguistics: EMNLP 2023},\n  pages     = {3806--3824},\n  year      = {2023},\n  address   = {Singapore},\n  publisher = {Association for Computational Linguistics},\n  doi       = {10.18653/v1/2023.findings-emnlp.248},\n  url       = {https://aclanthology.org/2023.findings-emnlp.248/}\n}\n\n@inproceedings{olausson2023linc,\n  title     = {{LINC}: A Neurosymbolic Approach for Logical Reasoning by Combining Language Models with First-Order Logic Provers},\n  author    = {Olausson, Theo and Gu, Alex and Lipkin, Ben and Zhang, Cedegao and Solar-Lezama, Armando and Tenenbaum, Joshua and Levy, Roger},\n  booktitle = {Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n  pages     = {5153--5176},\n  year      = {2023},\n  address   = {Singapore},\n  publisher = {Association for Computational Linguistics},\n  doi       = {10.18653/v1/2023.emnlp-main.313},\n  url       = {https://aclanthology.org/2023.emnlp-main.313/}\n}\n\n@article{pei2025fover,\n  title     = {{FoVer}: First-Order Logic Verification for Natural Language Reasoning},\n  author    = {Pei, Yu and Du, Yongping and Jin, Xingnan},\n  journal   = {Transactions of the Association for Computational Linguistics},\n  volume    = {13},\n  pages     = {1340--1359},\n  year      = {2025},\n  publisher = {MIT Press},\n  doi       = {10.1162/tacl.a.41},\n  url       = {https://aclanthology.org/2025.tacl-1.61/}\n}\n\n% ============================================================\n% Category 6: Solver/prover as RL reward signal\n% ============================================================\n\n@article{xin2024deepseekprover,\n  title     = {{DeepSeek-Prover-V1.5}: Harnessing Proof Assistant Feedback for Reinforcement Learning and {Monte-Carlo} Tree Search},\n  author    = {Xin, Huajian and Ren, Z. Z. and Song, Junxiao and Shao, Zhihong and Zhao, Wanjia and Wang, Haocheng and Liu, Bo and Zhang, Liyue and Lu, Xuan and Du, Qiushi and Gao, Wenjun and Zhu, Qihao and Yang, Dejian and Gou, Zhibin and Wu, Z. F. and Luo, Fuli and Ruan, Chong},\n  journal   = {arXiv preprint arXiv:2408.08152},\n  year      = {2024},\n  eprint    = {2408.08152},\n  archiveprefix = {arXiv},\n  primaryclass  = {cs.CL},\n  url       = {https://arxiv.org/abs/2408.08152}\n}\n\n@inproceedings{wang2024mathshepherd,\n  title     = {{Math-Shepherd}: Verify and Reinforce {LLMs} Step-by-step without Human Annotations},\n  author    = {Wang, Peiyi and Li, Lei and Shao, Zhihong and Xu, Runxin and Dai, Damai and Li, Yifei and Chen, Deli and Wu, Yu and Sui, Zhifang},\n  booktitle = {Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)},\n  pages     = {9426--9439},\n  year      = {2024},\n  address   = {Bangkok, Thailand},\n  publisher = {Association for Computational Linguistics},\n  doi       = {10.18653/v1/2024.acl-long.510},\n  url       = {https://aclanthology.org/2024.acl-long.510/}\n}\n\n@inproceedings{jha2025rlsf,\n  title     = {{RLSF}: Reinforcement Learning via Symbolic Feedback},\n  author    = {Jha, Piyush and Jana, Prithwish and Suresh, Pranavkrishna and Arora, Arnav and Ganesh, Vijay},\n  booktitle = {Proceedings of the 27th European Conference on Artificial Intelligence (ECAI)},\n  series    = {Frontiers in Artificial Intelligence and Applications},\n  volume    = {413},\n  pages     = {1687--1694},\n  year      = {2025},\n  url       = {https://arxiv.org/abs/2405.16661}\n}\n\n% ============================================================\n% Category 7: Rubric / structured rewards\n% ============================================================\n\n@article{bhattarai2026rubricgrpo,\n  title     = {Rubric-Grounded {RL}: Structured Judge Rewards for Generalizable Reasoning},\n  author    = {Bhattarai, Manish and Boureima, Ismael and Rajiv, Nishath and Ranasinghe and Pakin, Scott and O'Malley, Dan},\n  journal   = {arXiv preprint arXiv:2605.08061},\n  year      = {2026},\n  eprint    = {2605.08061},\n  archiveprefix = {arXiv},\n  primaryclass  = {cs.CL},\n  url       = {https://arxiv.org/abs/2605.08061}\n}\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 87_
+
+Now let me verify the file and count entries.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "7e36ba74-e943-4e42-97fa-599e6ba6d34c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BDbePxy3iWwdBqyRgBFR6T",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6868,
+      "cache_read_input_tokens": 83294,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6868
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 88_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_014mFxiTRSH1h51DEKvMqq7q`</summary>
+
+```json
+{
+  "command": "grep -c '^@' /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/_project/paper/references.bib",
+  "description": "Count BibTeX entries"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "ba360254-71f5-4187-b83e-c155b51b7070",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BDbePxy3iWwdBqyRgBFR6T",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6868,
+      "cache_read_input_tokens": 83294,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6868
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 89 · 2026-05-14T18:55:04.152Z_
+
+<details><summary>↩ Tool result · `toolu_014mFxiTRSH1h51DEKvMqq7q`</summary>
+
+```text
+32
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "c6db887f-cf89-46c6-978a-5b228e23e984",
+  "tool_use_result": {
+    "stdout": "32",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 90_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01NfxFwdwVSvV5TRpiBnBYUV`</summary>
+
+```json
+{
+  "command": "grep '^@' /home/ubuntu/.agent-ml-research-idea_gen_0509_3/projects/solver-trace-ablation/artifacts/_project/paper/references.bib",
+  "description": "List all BibTeX entry keys"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "bf3f0d9c-2dbb-4c87-b69c-f88b33030560",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BDbePxy3iWwdBqyRgBFR6T",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6868,
+      "cache_read_input_tokens": 83294,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6868
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 91 · 2026-05-14T18:55:04.896Z_
+
+<details><summary>↩ Tool result · `toolu_01NfxFwdwVSvV5TRpiBnBYUV`</summary>
+
+```text
+@article{shao2024deepseekmath,
+@misc{deepseek2025r1,
+@misc{xie2025logicrl,
+@article{mellgren2025prolog,
+@inproceedings{ye2023satlm,
+@article{manhaeve2021deepproblog,
+@inproceedings{yang2020neurasp,
+@article{tan2024thoughtlikepro,
+@misc{lightman2023verifystep,
+@article{demillo1978mutation,
+@article{offutt1992coupling,
+@article{jia2011mutation,
+@inproceedings{just2014mutants,
+@inproceedings{gao2023overoptimization,
+@inproceedings{karwowski2024goodhart,
+@article{manheim2019goodhart,
+@inproceedings{skalse2022rewardhacking,
+@inproceedings{pan2022misspecification,
+@inproceedings{kwa2024goodhart,
+@misc{shao2025spurious,
+@article{wang2026rewardhacking,
+@misc{bondarenko2025specgaming,
+@inproceedings{kim2026formalization,
+@article{han2022folio,
+@inproceedings{tafjord2021proofwriter,
+@inproceedings{pan2023logiclm,
+@inproceedings{olausson2023linc,
+@article{pei2025fover,
+@article{xin2024deepseekprover,
+@inproceedings{wang2024mathshepherd,
+@inproceedings{jha2025rlsf,
+@article{bhattarai2026rubricgrpo,
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "451a93a9-d940-4c8a-b6bb-5afe159c7ea6",
+  "tool_use_result": {
+    "stdout": "@article{shao2024deepseekmath,\n@misc{deepseek2025r1,\n@misc{xie2025logicrl,\n@article{mellgren2025prolog,\n@inproceedings{ye2023satlm,\n@article{manhaeve2021deepproblog,\n@inproceedings{yang2020neurasp,\n@article{tan2024thoughtlikepro,\n@misc{lightman2023verifystep,\n@article{demillo1978mutation,\n@article{offutt1992coupling,\n@article{jia2011mutation,\n@inproceedings{just2014mutants,\n@inproceedings{gao2023overoptimization,\n@inproceedings{karwowski2024goodhart,\n@article{manheim2019goodhart,\n@inproceedings{skalse2022rewardhacking,\n@inproceedings{pan2022misspecification,\n@inproceedings{kwa2024goodhart,\n@misc{shao2025spurious,\n@article{wang2026rewardhacking,\n@misc{bondarenko2025specgaming,\n@inproceedings{kim2026formalization,\n@article{han2022folio,\n@inproceedings{tafjord2021proofwriter,\n@inproceedings{pan2023logiclm,\n@inproceedings{olausson2023linc,\n@article{pei2025fover,\n@article{xin2024deepseekprover,\n@inproceedings{wang2024mathshepherd,\n@inproceedings{jha2025rlsf,\n@article{bhattarai2026rubricgrpo,",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 92_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778800200,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "3732f6dd-400c-45c0-9642-359e9937c509",
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445"
+}
+```
+
+---
+
+### Assistant
+
+_source line 93_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+32 entries. Let me verify against the must-cite list:
+
+Must-cite (21):
+1. shao2024deepseekmath ✓
+2. pan2023logiclm ✓
+3. olausson2023linc ✓
+4. ye2023satlm ✓
+5. mellgren2025prolog ✓
+6. lightman2023verifystep ✓
+7. gao2023overoptimization ✓
+8. karwowski2024goodhart ✓
+
+
+9. manheim2019goodhart ✓
+10. skalse2022rewardhacking ✓
+11. pan2022misspecification ✓
+12. demillo1978mutation ✓
+13. jia2011mutation ✓
+14. han2022folio ✓
+15. tafjord2021proofwriter ✓
+16. xin2024deepseekprover ✓
+17. wang2024mathshepherd ✓
+18. deepseek2025r1 ✓
+19. xie2025logicrl ✓
+20. kwa2024goodhart ✓
+
+Continuing through the rest of the required citations...
+
+21. pei2025fover ✓
+
+All 21 must-cite found!
+
+Should-cite (7):
+22. wang2026rewardhacking ✓
+23. shao2025spurious ✓
+24. jha2025rlsf ✓
+25. bhattarai2026rubricgrpo ✓
+26. tan2024thoughtlikepro ✓
+27. manhaeve2021deepproblog ✓
+28. yang2020neurasp ✓
+
+All 7 should-cite found!
+
+Additional (4):
+29. kim2026formalization ✓
+30. bondarenko2025specgaming ✓
+31. offutt1992coupling ✓
+32. just2014mutants ✓
+
+Total: 32 entries, all must-cite and should-cite found.
+
+Now I'll register this artifact.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "6bfe72ee-c224-4686-994a-59d4dbd5ad38",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JuT69jEHLgcMJUE9zHzKHb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 713,
+      "cache_read_input_tokens": 90162,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 713
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 94_
+
+All 32 entries written. Let me register the artifact.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "d388ba22-fd46-4769-8676-ca92d011eab7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JuT69jEHLgcMJUE9zHzKHb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 713,
+      "cache_read_input_tokens": 90162,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 713
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 95_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_019CRAkca9jjtLxsgwKscP9F`</summary>
+
+```json
+{
+  "query": "register artifact",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "c5a9f0b8-d5ce-4d16-a980-0772f88942bf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JuT69jEHLgcMJUE9zHzKHb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 713,
+      "cache_read_input_tokens": 90162,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 713
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-14T18:55:21.036Z_
+
+<details><summary>↩ Tool result · `toolu_019CRAkca9jjtLxsgwKscP9F`</summary>
+
+```text
+No matching deferred tools found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "e3ef47c0-fbe5-4459-8637-a793bb0e8985",
+  "tool_use_result": {
+    "matches": [],
+    "query": "register artifact",
+    "total_deferred_tools": 22
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 97_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_015MnuLmkh2H3PiGT6rjbsSN`</summary>
+
+```json
+{
+  "query": "+agent-ml-research register",
+  "max_results": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "5480c60b-c17a-4659-9856-ee01ec77e0a3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BKHz5RGhcj9rkRGyXsMphn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 712,
+      "cache_read_input_tokens": 90875,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 712
+      },
+      "output_tokens": 56,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 98 · 2026-05-14T18:55:23.623Z_
+
+<details><summary>↩ Tool result · `toolu_015MnuLmkh2H3PiGT6rjbsSN`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__append_idea"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "59412d28-3d46-4c47-84d6-7872fbc06987",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "query": "+agent-ml-research register",
+    "total_deferred_tools": 22
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 99_
+
+BibTeX file written to `artifacts/_project/paper/references.bib`.
+
+```json
+{
+  "total_entries": 32,
+  "must_cite_found": 21,
+  "must_cite_missing": [],
+  "should_cite_found": 7,
+  "should_cite_missing": [],
+  "additional_entries": 4,
+  "notes": "All 21 must-cite and 7 should-cite papers included. 4 additional papers from literature_map (offutt1992coupling, just2014mutants, bondarenko2025specgaming, kim2026formalization) added for mutation testing and reward hacking coverage. Mellgren et al. year corrected to 2025 (Dec 2024 submission). Logic-RL first author is Xie not Xian. Spurious Rewards first author is Rulin Shao not Ruixin Yang. Kwa et al. authors corrected to Thomas Kwa, Drake Thomas, Adrià Garriga-Alonso (not Rachel Thomas as in some sources)."
+}
+```
+
+**Key naming:** `\cite{shao2024deepseekmath}`, `\cite{deepseek2025r1}`, `\cite{pan2023logiclm}`, `\cite{olausson2023linc}`, `\cite{gao2023overoptimization}`, `\cite{karwowski2024goodhart}`, `\cite{manheim2019goodhart}`, `\cite{kwa2024goodhart}`, `\cite{demillo1978mutation}`, `\cite{jia2011mutation}`, etc.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "uuid": "c48c670f-b8a1-4557-abd0-3442879b562c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RMWGRLVJ7U4Eywc7A2xHTG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 854,
+      "cache_read_input_tokens": 91587,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 854
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 100_
+
+BibTeX file written to `artifacts/_project/paper/references.bib`.
+
+```json
+{
+  "total_entries": 32,
+  "must_cite_found": 21,
+  "must_cite_missing": [],
+  "should_cite_found": 7,
+  "should_cite_missing": [],
+  "additional_entries": 4,
+  "notes": "All 21 must-cite and 7 should-cite papers included. 4 additional papers from literature_map (offutt1992coupling, just2014mutants, bondarenko2025specgaming, kim2026formalization) added for mutation testing and reward hacking coverage. Mellgren et al. year corrected to 2025 (Dec 2024 submission). Logic-RL first author is Xie not Xian. Spurious Rewards first author is Rulin Shao not Ruixin Yang. Kwa et al. authors corrected to Thomas Kwa, Drake Thomas, Adrià Garriga-Alonso (not Rachel Thomas as in some sources)."
+}
+```
+
+**Key naming:** `\cite{shao2024deepseekmath}`, `\cite{deepseek2025r1}`, `\cite{pan2023logiclm}`, `\cite{olausson2023linc}`, `\cite{gao2023overoptimization}`, `\cite{karwowski2024goodhart}`, `\cite{manheim2019goodhart}`, `\cite{kwa2024goodhart}`, `\cite{demillo1978mutation}`, `\cite{jia2011mutation}`, etc.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 263036,
+  "duration_api_ms": 413800,
+  "num_turns": 41,
+  "stop_reason": "end_turn",
+  "session_id": "99dd4dff-226e-4379-a674-77dd721c1445",
+  "total_cost_usd": 2.098889,
+  "usage": {
+    "input_tokens": 4028,
+    "cache_creation_input_tokens": 80600,
+    "cache_read_input_tokens": 812260,
+    "output_tokens": 11806,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 80600,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 3,
+        "output_tokens": 394,
+        "cache_read_input_tokens": 91587,
+        "cache_creation_input_tokens": 854,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 854
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 489709,
+      "outputTokens": 14802,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 31,
+      "costUSD": 0.8737189999999998,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 4028,
+      "outputTokens": 11806,
+      "cacheReadInputTokens": 812260,
+      "cacheCreationInputTokens": 80600,
+      "webSearchRequests": 0,
+      "costUSD": 1.22517,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "89dae886-194c-4bcc-9f4c-16d643dad79c"
+}
+```
+
+</details>
+
+---

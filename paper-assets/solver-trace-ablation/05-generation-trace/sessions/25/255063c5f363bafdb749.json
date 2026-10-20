@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "255063c5f363bafdb749",
+  "project": "solver-trace-ablation",
+  "kind": "history",
+  "title": "agent / loop_23_1779385768.md",
+  "task_key": "loop_23_1779385768",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_23_1779385768.md",
+    "occurrence": 1,
+    "bytes": 2956,
+    "sha256": "7287cab8a3ccdd1b6262bbe6613f780c092816a3b41f0e01815aa02b9cf0ac18"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 23\nreason: max_wall_time\nupdated: '2026-05-21T17:22:12+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- westd-39279 磁盘 97% 满（9.3GB 可用），提交任何新实验前必须先清理或确认空间\n- LLaMA 模型使用 `<|eot_id|>` (token_id=128009) 作为 eos，TRL GRPOTrainer 忽略 `model.generation_config`，必须 patch `trainer.generation_config` + `trainer.generation_kwargs[\"eos_token_id\"]`\n- prover9.py `_expand_xor` 已改为 graceful degradation（return formula 而非 raise ValueError），不要回滚\n- D165 LLaMA 结论是 **negative**（不 bootstrap），但 Director 已确认这对论文有价值——高 genuine% 反映低 PR baseline 状态，不是\"模型不 hack\"，写论文时不要误读\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-39279，工作目录 `/root/solver-trace-ablation`\n- Python：`/root/miniconda3/bin/python`，conda base 环境\n- 模型：SFT warmstart `/root/autodl-tmp/outputs/d158_llama_sft_s42/checkpoint-200`；LLaMA base 在 HF cache\n- 数据：`data/train_500_seed42.jsonl`（训练）、`data/proofwriter_fol_100.jsonl`（eval）\n- GRPO 配置：`configs/d165_llama_exec_s{42,43,44}.yaml`\n- WANDB_MODE=disabled（服务器无 API key）\n- 活跃进程：无（D165 全部完成）\n- Cron：已全部清理（reconcile_crons 确认）\n\n### 3. 📊 当前状态\n刚完成 D165 LLaMA-3.2-3B GRPO exec-only 3-seed 全流程（训练 + STA eval + 汇总）。\n\n3-seed 汇总已注册为 artifact（`d165_3seed_summary.md`）并汇报 Director：\n- PR=15.0±1.0%, ISR*=0.554±0.010, genuine=86.6±0.9%\n\nRegistry: 无 RUNNING 实验。大量 PREPARING 实验待命（d154-8b 系列、d144-llama-isr 系列等）。\n等待：Director 回复——确认更新 appendix + 最终编译流程。GPU 当前空闲。\n\n### 4. 📋 待办\n- Director 确认 D165 数据 → 协助更新 appendix 表格（Director 可能自己改或派 Worker）\n- Director 指示最终编译 → 派 Worker 编译 LaTeX 并做 visual review\n- Director 分配新 GPU 任务（d154-8b 或 d144-llama-isr）→ 按 experiment plan 提交\n- 磁盘告警（westd-39279 <5GB）→ 清理已完成实验 checkpoint（d165 s42/s43/s44 checkpoint-500 各 6.1GB，需 Director 确认后可删）\n\n### 5. 🎯 战略上下文\n- 论文核心结论：ISR 作为诊断可靠（99.5% collapse invisible to PR），作为优化信号被 Goodhart（dataset-dependent）\n- D165 是回应 W2（single-model weakness）的跨模型验证。LLaMA 不 bootstrap 是 negative 但 informative——论文已包含此数据（Director 上一轮指令确认）\n- 投稿目标：EMNLP 2026 ARR，deadline 2026-05-25（4天后）\n- 论文已基本完成，当前处于最终 polish 阶段（label cleanup 已做，bib 已修，审稿 3 项任务已完成）\n- 易踩坑：s44 日志文件名是 `_r2.log`（复用了 r2 文件名，实际是 r3 的内容）；cron 曾因监控旧 PID 误标 failed，手动编辑 registry.yaml 修正过\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-23-1779385768.md"
+}

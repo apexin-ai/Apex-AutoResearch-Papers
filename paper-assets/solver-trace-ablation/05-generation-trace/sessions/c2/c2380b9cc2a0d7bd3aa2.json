@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c2380b9cc2a0d7bd3aa2",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code d146 status check",
+  "task_key": "worker_code_d146-status-check_20260519T173947",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d146-status-check_20260519T173947_result.json",
+    "occurrence": 1,
+    "bytes": 849,
+    "sha256": "6e1d27bf36788111bbd0975ad698162785fb15bea74310805f45f466b67cf267"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## D146 Pipeline 状态报告\n\n### 1. Pipeline 在运行\n- tmux session `d146-pipeline` 存活，训练进程活跃（CPU 98%）\n\n### 2. 当前实验：`d146_pf_exec_s43`\n- **进度：427/500 steps (85%)**，预计剩余 ~16 分钟\n- 当前 reward ≈ 0.5–1.0，ISR ≈ 0.16–0.24，parse_rate = 1.0\n- 已保存 checkpoint-400\n\n### 3. 已完成实验\n- **`d146_pf_exec_s42`** — 500/500 steps 完成 ✓\n  - 最终：reward=1.0, prove_rate=1.0, ISR=0.0, parse_rate=1.0\n  - 模型权重已保存（4 shard safetensors + checkpoint-500）\n\n### 4. GPU / 磁盘\n\n| 资源 | 使用 | 总量 | 占比 |\n|------|------|------|------|\n| GPU 显存 | 85.4 GB | 97.9 GB | 87% |\n| 根分区 | 9.1 GB | 30 GB | 31% |\n| 数据盘 | 97 GB | 250 GB | 39% |\n\n磁盘和 GPU 状态健康，s43 预计约 16 分钟内完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d146-status-check-copy-2.md"
+}

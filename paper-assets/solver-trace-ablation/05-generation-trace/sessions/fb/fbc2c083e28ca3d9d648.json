@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fbc2c083e28ca3d9d648",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "check d129 1 7b isr b03 s43 urgent",
+  "task_key": "worker_check_d129-1_7b-isr-b03-s43-urgent_20260518T062145",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_d129-1_7b-isr-b03-s43-urgent_20260518T062145_result.json",
+    "occurrence": 1,
+    "bytes": 846,
+    "sha256": "23f288a6ce55125b3d6c704365419081a2194dd6b72e1b22b56487fe36755b5d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总：\n\n**d129-1.7b-isr-b03-s43 状态：崩溃于 step 100，已重启**\n\n| 项目 | 详情 |\n|------|------|\n| 崩溃原因 | 磁盘满（250G/250G，0 可用） |\n| 崩溃位置 | step 100/500（03:18 UTC） |\n| 磁盘清理 | 删除崩溃输出 (8.7G) + 5个旧实验 checkpoint 副本 (~80G) → 84G 可用 |\n| 重启时间 | 14:24:55 UTC |\n| 新 PID | **148580** |\n| tmux | `d129-isr-b03-s43` |\n| GPU | cuda:0, 39.3GB 占用, 69% util |\n| 预计完成 | ~16:05 UTC (~1h40m) |\n| 当前进度 | step 2/500, ~12s/step |\n| Cron | 每小时 :53 检查（14:53, 15:53, 16:53） |\n\n**nvidia-smi**:\n- GPU 0: 39303MiB / 97887MiB, PID 148580 (python)\n- 无其他 GPU 进程\n\n**附注**: d129-random-b01-s43-r2 训练已完成（500步, 08:50 UTC），eval+classify 已执行，tmux session 仍存活但空闲。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-d129-1-7b-isr-b03-s43-urgent.md"
+}

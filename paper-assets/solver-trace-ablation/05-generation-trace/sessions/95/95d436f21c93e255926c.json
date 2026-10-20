@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "95d436f21c93e255926c",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "paper research bib sync",
+  "task_key": "worker_paper_research_bib_sync_20260514T183047",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_research_bib_sync_20260514T183047_result.json",
+    "occurrence": 1,
+    "bytes": 427,
+    "sha256": "02ba6eeee35d64df9e8b34ef412f422db9687349de5ed7c4f9eb90f6264029ef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "56 条 BibTeX 条目已写入 `paper/references.bib`，覆盖 literature_map.yaml 中全部 56 篇论文（YAML 实际有 56 篇，非任务描述的 44 篇）。按 8 个 category 分组，注释分隔。arXiv+会议的条目优先用会议格式（`@inproceedings`），arXiv ID 放 `note`；纯 arXiv 用 `@article` 带 `eprint`/`archivePrefix`；期刊用 `@article`。所有 title 已用 `{{...}}` 保护。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-research-bib-sync.md"
+}

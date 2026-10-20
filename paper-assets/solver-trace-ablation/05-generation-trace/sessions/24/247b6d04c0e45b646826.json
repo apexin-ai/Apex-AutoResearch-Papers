@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "247b6d04c0e45b646826",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "analysis s42 random reclassify standard",
+  "task_key": "worker_analysis_s42-random-reclassify-standard_20260515T180652",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_s42-random-reclassify-standard_20260515T180652_result.json",
+    "occurrence": 1,
+    "bytes": 721,
+    "sha256": "dea22ece1bea1ce2295cf3435785f2191950f77f54c487de661ca1c5e63a6bc2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。总结：\n\n**s42 random (plan018-additive-random-b01-s42) classify_h7 标准分类结果**\n\n| 指标 | 值 | 旧值 |\n|------|---|------|\n| Proved | 79 | 79 |\n| H7 (tautology) | 0 (0%) | 0 |\n| H1 (conclusion in premises) | 58 (73.4%) | 56 (exact) + 8 (near) |\n| H8 (conjunction collapse) | 4 (5.1%) | 3 |\n| **Genuine** | **18 (22.8%)** | 12 (strict) / 23 (exact_h1 only) |\n\n关键差异：当前 classify_h7 将 2 个原 H1-near 重新分类为 H1，多识别 1 个 H8。有 1 个 H1∩H8 重叠样本，genuine = 79 − |H7∪H1∪H8| = 79 − 61 = 18。\n\nJSON 分类详情保存在 `/root/autodl-tmp/outputs/h7_classification/plan018_additive_random_b01_s42_h7.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-s42-random-reclassify-standard.md"
+}

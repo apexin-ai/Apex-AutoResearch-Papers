@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4a4a41391cd8655b7b5d",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "fix d134 disk cleanup urgent",
+  "task_key": "worker_fix_d134-disk-cleanup-urgent_20260518T120127",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_d134-disk-cleanup-urgent_20260518T120127_result.json",
+    "occurrence": 1,
+    "bytes": 812,
+    "sha256": "c3bb81bcb612dcc3b6dd1667ec1d34022d64046a2a4b2ebca23242953360d5c2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成。汇总：\n\n| 项目 | 状态 |\n|------|------|\n| s47 checkpoint-500 (16GB) | 已删除 |\n| 磁盘 | 223G/250G (28G free, 从 13G → 28G) |\n| d134-cleaner tmux session | 运行中，每 2 分钟扫描 |\n| s48 进度 | step 54/500 (~11%), ~82 min remaining |\n| s48 checkpoint-50 | 15GB，训练完成后 cleaner 会自动清理 |\n\n注意：s48 的 checkpoint-50 (15GB) 目前不会被 cleaner 删除（因为根目录还没有 model-*.safetensors），训练完成后根目录出现最终 model 时 cleaner 会在下一轮扫描中自动清理。s48 训练期间还会产生 checkpoint-500 (~16GB)，但训练完成→model 复制到根目录后，cleaner 会在 2 分钟内清理两个 checkpoint 目录（释放 ~31GB）。当前 28G free 足够撑到 s48 训练结束。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-d134-disk-cleanup-urgent.md"
+}
